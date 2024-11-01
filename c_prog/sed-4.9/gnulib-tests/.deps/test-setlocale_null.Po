@@ -1,0 +1,54 @@
+test-setlocale_null.o: test-setlocale_null.c /usr/include/stdc-predef.h \
+ ../config.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stdalign.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdbool.h ../lib/assert.h \
+ /usr/include/assert.h /usr/include/features.h \
+ /usr/include/x86_64-linux-gnu/sys/cdefs.h \
+ /usr/include/x86_64-linux-gnu/bits/wordsize.h \
+ /usr/include/x86_64-linux-gnu/bits/long-double.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+ /usr/include/x86_64-linux-gnu/gnu/stubs-64.h ../lib/locale.h \
+ /usr/include/locale.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h \
+ /usr/include/x86_64-linux-gnu/bits/locale.h \
+ /usr/include/x86_64-linux-gnu/bits/types/locale_t.h \
+ /usr/include/x86_64-linux-gnu/bits/types/__locale_t.h \
+ ../lib/setlocale_null.h ../lib/arg-nonnull.h
+
+/usr/include/stdc-predef.h:
+
+../config.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdalign.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdbool.h:
+
+../lib/assert.h:
+
+/usr/include/assert.h:
+
+/usr/include/features.h:
+
+/usr/include/x86_64-linux-gnu/sys/cdefs.h:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/x86_64-linux-gnu/bits/long-double.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
+
+../lib/locale.h:
+
+/usr/include/locale.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h:
+
+/usr/include/x86_64-linux-gnu/bits/locale.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/__locale_t.h:
+
+../lib/setlocale_null.h:
+
+../lib/arg-nonnull.h:

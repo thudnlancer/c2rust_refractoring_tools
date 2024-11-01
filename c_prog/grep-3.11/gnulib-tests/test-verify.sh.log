@@ -1,0 +1,170 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests gt-test-verify.sh.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests
++++ template_=gt-test-verify.sh.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
+++++ ls -dgo /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
++++ perms='drwx------ 2 4096 Oct 28 04:19 /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
+++ cd /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ EXIT
++ unset MALLOC_PERTURB_
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests
++ rm -f test-verify-try.o
++ make test-verify-try.o
++ :
++ :
++ for i in 1 2 3 4 5
++ for i in 1 2 3 4 5
++ for i in 1 2 3 4 5
++ for i in 1 2 3 4 5
++ for i in 1 2 3 4 5
++ Exit
++ set +e
++ exit
++ exit
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
++ rm -rf /home/c2rust/Desktop/c_prog/grep-3.11/gnulib-tests/gt-test-verify.sh.4yIM
++ exit 0
+PASS test-verify.sh (exit status: 0)

@@ -1,0 +1,2 @@
+cat: stdin: No such file or directory
+PASS testsuite/stdin.sh (exit status: 0)

@@ -1,0 +1,2 @@
+Skipping test: multithreading not enabled
+SKIP test-thread_create (exit status: 77)

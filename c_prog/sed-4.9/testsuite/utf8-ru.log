@@ -1,0 +1,2 @@
+utf8-ru.sh: skipped test: ru_RU.UTF-8 locale not found
+SKIP testsuite/utf8-ru.sh (exit status: 77)

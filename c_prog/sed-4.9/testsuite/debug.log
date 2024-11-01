@@ -1,0 +1,2 @@
+PATH = /home/c2rust/Desktop/c_prog/sed-4.9/sed:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-912bb683695358a54ae0c670461738984cbb5b95/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+PASS testsuite/debug.pl (exit status: 0)

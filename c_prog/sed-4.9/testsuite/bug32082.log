@@ -1,0 +1,2 @@
+bug32082.sh: skipped test: requires a working valgrind
+SKIP testsuite/bug32082.sh (exit status: 77)

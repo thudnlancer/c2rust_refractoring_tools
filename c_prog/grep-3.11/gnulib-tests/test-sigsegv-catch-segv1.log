@@ -1,0 +1,2 @@
+Test passed.
+PASS test-sigsegv-catch-segv1 (exit status: 0)

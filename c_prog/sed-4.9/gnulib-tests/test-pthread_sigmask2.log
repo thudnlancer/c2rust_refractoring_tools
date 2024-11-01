@@ -1,0 +1,2 @@
+Skipping test: POSIX threads not enabled
+SKIP test-pthread_sigmask2 (exit status: 77)

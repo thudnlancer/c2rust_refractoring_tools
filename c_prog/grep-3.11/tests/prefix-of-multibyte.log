@@ -1,0 +1,1487 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/grep-3.11/tests gt-prefix-of-multibyte.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ template_=gt-prefix-of-multibyte.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
+++++ ls -dgo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
++++ perms='drwx------ 2 4096 Oct 28 04:18 /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
+++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/src/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ EXIT
++ path_prepend_ ../src
++ test 1 '!=' 0
++ path_dir_=../src
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ require_en_utf8_locale_
++ path_prepend_ .
++ test 1 '!=' 0
++ path_dir_=.
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ case $(get-mb-cur-max en_US.UTF-8) in
+++ get-mb-cur-max en_US.UTF-8
++ require_compiled_in_MB_support
++ require_en_utf8_locale_
++ path_prepend_ .
++ test 1 '!=' 0
++ path_dir_=.
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ case $(get-mb-cur-max en_US.UTF-8) in
+++ get-mb-cur-max en_US.UTF-8
++ printf $'\303\251'
++ LC_ALL=en_US.UTF-8
++ grep '[[:lower:]]'
+Ã©
++ encode ABC
++ echo ABC
++ tr ABC '\357\274\241'
++ LC_ALL=C
++ env -- tr ABC '\357\274\241'
++ encode aABC
++ echo aABC
++ tr ABC '\357\274\241'
++ LC_ALL=C
++ env -- tr ABC '\357\274\241'
++ encode ABCABC
++ echo ABCABC
++ tr ABC '\357\274\241'
++ LC_ALL=C
++ env -- tr ABC '\357\274\241'
++ encode _____________________ABCABC___
++ echo _____________________ABCABC___
++ tr ABC '\357\274\241'
++ LC_ALL=C
++ env -- tr ABC '\357\274\241'
++ fail=0
++ for LOC in en_US.UTF-8 $LOCALE_FR_UTF8
++ for pat in A aA BCA
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
+++ echo A
++ pattern='\(\)\1ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1ï' exp1
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp1 out-regex-en_US.UTF-8
++ compare_dev_null_ exp1 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp1 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp1 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp1 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\357' exp1
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp1 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp1 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp1 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp1 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp1 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\357' exp1
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp1 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp1 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp1 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp1 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp1 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1ï' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-regex-en_US.UTF-8
++ compare_dev_null_ exp2 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\357' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp2 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\357' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp2 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1ï' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-regex-en_US.UTF-8
++ compare_dev_null_ exp3 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\357' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp3 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\357' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp3 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1ï' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-regex-en_US.UTF-8
++ compare_dev_null_ exp4 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\357' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp4 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode A
+++ echo A
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\357' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp4 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for pat in A aA BCA
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1aï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1aï' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-regex-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-regex-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'a\357' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-dfa-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-dfa-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'a\357' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-fgrep-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1aï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1aï' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-regex-en_US.UTF-8
++ compare_dev_null_ exp2 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'a\357' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp2 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'a\357' exp2
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp2 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp2 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp2 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp2 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp2 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1aï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1aï' exp3
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-regex-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-regex-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'a\357' exp3
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-dfa-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-dfa-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'a\357' exp3
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-fgrep-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1aï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1aï' exp4
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-regex-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-regex-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
+++ echo aA
++ pattern=$'a\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'a\357' exp4
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-dfa-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-dfa-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode aA
+++ echo aA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'a\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'a\357' exp4
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-fgrep-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for pat in A aA BCA
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1¼¡ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1¼¡ï' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-regex-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-regex-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\274\241\357' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-dfa-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-dfa-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\274\241\357' exp1
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-fgrep-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1¼¡ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1¼¡ï' exp2
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-regex-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-regex-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\274\241\357' exp2
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-dfa-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-dfa-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\274\241\357' exp2
++ status=1
++ echo 1
++ test 1 -eq 0
++ test 1 -eq 1
++ compare_dev_null_ /dev/null out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test x/dev/null = x/dev/null
++ test -s out-fgrep-en_US.UTF-8
++ return 0
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1¼¡ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1¼¡ï' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-regex-en_US.UTF-8
++ compare_dev_null_ exp3 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\274\241\357' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp3 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\274\241\357' exp3
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp3 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp3 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp3 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp3 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp3 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ for file in exp1 exp2 exp3 exp4
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix='\(\)\1'
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern='\(\)\1¼¡ï'
++ out=out-regex-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep '\(\)\1¼¡ï' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-regex-en_US.UTF-8
++ compare_dev_null_ exp4 out-regex-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-regex-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-regex-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-regex-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-regex-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-dfa-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep $'\274\241\357' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-dfa-en_US.UTF-8
++ compare_dev_null_ exp4 out-dfa-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-dfa-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-dfa-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-dfa-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-dfa-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-dfa-en_US.UTF-8.status
++ for type in regex dfa fgrep
++ case $type in
++ opt=-F
++ prefix=
+++ encode BCA
+++ echo BCA
+++ tr ABC '\357\274\241'
+++ LC_ALL=C
+++ env -- tr ABC '\357\274\241'
++ pattern=$'\274\241\357'
++ out=out-fgrep-en_US.UTF-8
++ LC_ALL=en_US.UTF-8
++ grep -F $'\274\241\357' exp4
++ status=0
++ echo 0
++ test 0 -eq 0
++ compare exp4 out-fgrep-en_US.UTF-8
++ compare_dev_null_ exp4 out-fgrep-en_US.UTF-8
++ test 2 = 2
++ test xexp4 = x/dev/null
++ test xout-fgrep-en_US.UTF-8 = x/dev/null
++ return 2
++ case $? in
++ compare_ exp4 out-fgrep-en_US.UTF-8
++ LC_ALL=C
++ diff -u exp4 out-fgrep-en_US.UTF-8
++ compare out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ compare_dev_null_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ test 2 = 2
++ test xout-regex-en_US.UTF-8.status = x/dev/null
++ test xout-fgrep-en_US.UTF-8.status = x/dev/null
++ return 2
++ case $? in
++ compare_ out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ LC_ALL=C
++ diff -u out-regex-en_US.UTF-8.status out-fgrep-en_US.UTF-8.status
++ Exit 0
++ set +e
++ exit 0
++ exit 0
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
++ rm -rf /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-prefix-of-multibyte.irla
++ exit 0
+PASS prefix-of-multibyte (exit status: 0)

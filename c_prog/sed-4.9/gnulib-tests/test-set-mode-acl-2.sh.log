@@ -1,0 +1,2 @@
+Skipping test: insufficient ACL support
+SKIP test-set-mode-acl-2.sh (exit status: 77)

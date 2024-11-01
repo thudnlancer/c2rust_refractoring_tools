@@ -1,0 +1,2 @@
+obinary.sh: skipped test: platform does not enable O_TEXT by default
+SKIP testsuite/obinary.sh (exit status: 77)

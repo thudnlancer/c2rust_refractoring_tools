@@ -1,0 +1,1269 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/grep-3.11/tests gt-case-fold-titlecase.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ template_=gt-case-fold-titlecase.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
+++++ ls -dgo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
++++ perms='drwx------ 2 4096 Oct 28 04:17 /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
+++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/src/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ EXIT
++ path_prepend_ ../src
++ test 1 '!=' 0
++ path_dir_=../src
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ require_en_utf8_locale_
++ path_prepend_ .
++ test 1 '!=' 0
++ path_dir_=.
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ case $(get-mb-cur-max en_US.UTF-8) in
+++ get-mb-cur-max en_US.UTF-8
++ require_compiled_in_MB_support
++ require_en_utf8_locale_
++ path_prepend_ .
++ test 1 '!=' 0
++ path_dir_=.
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/.:/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/.
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ case $(get-mb-cur-max en_US.UTF-8) in
+++ get-mb-cur-max en_US.UTF-8
++ printf $'\303\251'
++ LC_ALL=en_US.UTF-8
++ grep '[[:lower:]]'
+é
++ LC_ALL=en_US.UTF-8
++ export LC_ALL
++ fail=0
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\302\265'
++ b='\316\234'
++ c='\316\274'
++ printf '\302\265\n\316\234\n\316\274\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\302\265\n'
++ pat=µ
++ grep -i '\(\)\1µ' in
++ grep -i µ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF µ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\234\n'
++ pat=Μ
++ grep -i '\(\)\1Μ' in
++ grep -i Μ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Μ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\274\n'
++ pat=μ
++ grep -i '\(\)\1μ' in
++ grep -i μ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF μ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\111'
++ b='\151'
++ c='\304\260'
++ printf '\111\n\151\n\304\260\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\111\n'
++ pat=I
++ grep -i '\(\)\1I' in
++ grep -i I in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF I in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\151\n'
++ pat=i
++ grep -i '\(\)\1i' in
++ grep -i i in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF i in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\304\260\n'
++ pat=İ
++ grep -i '\(\)\1İ' in
++ grep -i İ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF İ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\111'
++ b='\151'
++ c='\304\261'
++ printf '\111\n\151\n\304\261\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\111\n'
++ pat=I
++ grep -i '\(\)\1I' in
++ grep -i I in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF I in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\151\n'
++ pat=i
++ grep -i '\(\)\1i' in
++ grep -i i in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF i in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\304\261\n'
++ pat=ı
++ grep -i '\(\)\1ı' in
++ grep -i ı in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ı in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\123'
++ b='\163'
++ c='\305\277'
++ printf '\123\n\163\n\305\277\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\123\n'
++ pat=S
++ grep -i '\(\)\1S' in
++ grep -i S in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF S in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\163\n'
++ pat=s
++ grep -i '\(\)\1s' in
++ grep -i s in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF s in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\305\277\n'
++ pat=ſ
++ grep -i '\(\)\1ſ' in
++ grep -i ſ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ſ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\307\204'
++ b='\307\205'
++ c='\307\206'
++ printf '\307\204\n\307\205\n\307\206\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\204\n'
++ pat=Ǆ
++ grep -i '\(\)\1Ǆ' in
++ grep -i Ǆ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ǆ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\205\n'
++ pat=ǅ
++ grep -i '\(\)\1ǅ' in
++ grep -i ǅ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǅ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\206\n'
++ pat=ǆ
++ grep -i '\(\)\1ǆ' in
++ grep -i ǆ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǆ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\307\207'
++ b='\307\210'
++ c='\307\211'
++ printf '\307\207\n\307\210\n\307\211\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\207\n'
++ pat=Ǉ
++ grep -i '\(\)\1Ǉ' in
++ grep -i Ǉ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ǉ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\210\n'
++ pat=ǈ
++ grep -i '\(\)\1ǈ' in
++ grep -i ǈ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǈ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\211\n'
++ pat=ǉ
++ grep -i '\(\)\1ǉ' in
++ grep -i ǉ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǉ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\307\212'
++ b='\307\213'
++ c='\307\214'
++ printf '\307\212\n\307\213\n\307\214\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\212\n'
++ pat=Ǌ
++ grep -i '\(\)\1Ǌ' in
++ grep -i Ǌ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ǌ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\213\n'
++ pat=ǋ
++ grep -i '\(\)\1ǋ' in
++ grep -i ǋ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǋ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\214\n'
++ pat=ǌ
++ grep -i '\(\)\1ǌ' in
++ grep -i ǌ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǌ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\307\261'
++ b='\307\262'
++ c='\307\263'
++ printf '\307\261\n\307\262\n\307\263\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\261\n'
++ pat=Ǳ
++ grep -i '\(\)\1Ǳ' in
++ grep -i Ǳ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ǳ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\262\n'
++ pat=ǲ
++ grep -i '\(\)\1ǲ' in
++ grep -i ǲ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǲ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\307\263\n'
++ pat=ǳ
++ grep -i '\(\)\1ǳ' in
++ grep -i ǳ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ǳ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\315\205'
++ b='\316\231'
++ c='\316\271'
++ printf '\315\205\n\316\231\n\316\271\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\315\205\n'
++ pat=ͅ
++ grep -i '\(\)\1ͅ' in
++ grep -i ͅ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ͅ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\231\n'
++ pat=Ι
++ grep -i '\(\)\1Ι' in
++ grep -i Ι in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ι in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\271\n'
++ pat=ι
++ grep -i '\(\)\1ι' in
++ grep -i ι in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ι in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\243'
++ b='\317\202'
++ c='\317\203'
++ printf '\316\243\n\317\202\n\317\203\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\243\n'
++ pat=Σ
++ grep -i '\(\)\1Σ' in
++ grep -i Σ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Σ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\202\n'
++ pat=ς
++ grep -i '\(\)\1ς' in
++ grep -i ς in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ς in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\203\n'
++ pat=σ
++ grep -i '\(\)\1σ' in
++ grep -i σ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF σ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\222'
++ b='\316\262'
++ c='\317\220'
++ printf '\316\222\n\316\262\n\317\220\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\222\n'
++ pat=Β
++ grep -i '\(\)\1Β' in
++ grep -i Β in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Β in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\262\n'
++ pat=β
++ grep -i '\(\)\1β' in
++ grep -i β in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF β in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\220\n'
++ pat=ϐ
++ grep -i '\(\)\1ϐ' in
++ grep -i ϐ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϐ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\230'
++ b='\316\270'
++ c='\317\221'
++ printf '\316\230\n\316\270\n\317\221\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\230\n'
++ pat=Θ
++ grep -i '\(\)\1Θ' in
++ grep -i Θ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Θ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\270\n'
++ pat=θ
++ grep -i '\(\)\1θ' in
++ grep -i θ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF θ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\221\n'
++ pat=ϑ
++ grep -i '\(\)\1ϑ' in
++ grep -i ϑ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϑ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\246'
++ b='\317\206'
++ c='\317\225'
++ printf '\316\246\n\317\206\n\317\225\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\246\n'
++ pat=Φ
++ grep -i '\(\)\1Φ' in
++ grep -i Φ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Φ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\206\n'
++ pat=φ
++ grep -i '\(\)\1φ' in
++ grep -i φ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF φ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\225\n'
++ pat=ϕ
++ grep -i '\(\)\1ϕ' in
++ grep -i ϕ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϕ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\240'
++ b='\317\200'
++ c='\317\226'
++ printf '\316\240\n\317\200\n\317\226\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\240\n'
++ pat=Π
++ grep -i '\(\)\1Π' in
++ grep -i Π in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Π in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\200\n'
++ pat=π
++ grep -i '\(\)\1π' in
++ grep -i π in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF π in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\226\n'
++ pat=ϖ
++ grep -i '\(\)\1ϖ' in
++ grep -i ϖ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϖ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\232'
++ b='\316\272'
++ c='\317\260'
++ printf '\316\232\n\316\272\n\317\260\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\232\n'
++ pat=Κ
++ grep -i '\(\)\1Κ' in
++ grep -i Κ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Κ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\272\n'
++ pat=κ
++ grep -i '\(\)\1κ' in
++ grep -i κ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF κ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\260\n'
++ pat=ϰ
++ grep -i '\(\)\1ϰ' in
++ grep -i ϰ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϰ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\241'
++ b='\317\201'
++ c='\317\261'
++ printf '\316\241\n\317\201\n\317\261\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\241\n'
++ pat=Ρ
++ grep -i '\(\)\1Ρ' in
++ grep -i Ρ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ρ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\201\n'
++ pat=ρ
++ grep -i '\(\)\1ρ' in
++ grep -i ρ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ρ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\261\n'
++ pat=ϱ
++ grep -i '\(\)\1ϱ' in
++ grep -i ϱ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϱ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\230'
++ b='\316\270'
++ c='\317\264'
++ printf '\316\230\n\316\270\n\317\264\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\230\n'
++ pat=Θ
++ grep -i '\(\)\1Θ' in
++ grep -i Θ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Θ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\270\n'
++ pat=θ
++ grep -i '\(\)\1θ' in
++ grep -i θ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF θ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\264\n'
++ pat=ϴ
++ grep -i '\(\)\1ϴ' in
++ grep -i ϴ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϴ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\225'
++ b='\316\265'
++ c='\317\265'
++ printf '\316\225\n\316\265\n\317\265\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\225\n'
++ pat=Ε
++ grep -i '\(\)\1Ε' in
++ grep -i Ε in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ε in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\265\n'
++ pat=ε
++ grep -i '\(\)\1ε' in
++ grep -i ε in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ε in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\265\n'
++ pat=ϵ
++ grep -i '\(\)\1ϵ' in
++ grep -i ϵ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϵ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\341\271\240'
++ b='\341\271\241'
++ c='\341\272\233'
++ printf '\341\271\240\n\341\271\241\n\341\272\233\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\341\271\240\n'
++ pat=Ṡ
++ grep -i '\(\)\1Ṡ' in
++ grep -i Ṡ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ṡ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\341\271\241\n'
++ pat=ṡ
++ grep -i '\(\)\1ṡ' in
++ grep -i ṡ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ṡ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\341\272\233\n'
++ pat=ẛ
++ grep -i '\(\)\1ẛ' in
++ grep -i ẛ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ẛ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\303\237'
++ b='\303\237'
++ c='\341\272\236'
++ printf '\303\237\n\303\237\n\341\272\236\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\303\237\n'
++ pat=ß
++ grep -i '\(\)\1ß' in
++ grep -i ß in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ß in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\303\237\n'
++ pat=ß
++ grep -i '\(\)\1ß' in
++ grep -i ß in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ß in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\341\272\236\n'
++ pat=ẞ
++ grep -i '\(\)\1ẞ' in
++ grep -i ẞ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ẞ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\231'
++ b='\316\271'
++ c='\341\276\276'
++ printf '\316\231\n\316\271\n\341\276\276\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\231\n'
++ pat=Ι
++ grep -i '\(\)\1Ι' in
++ grep -i Ι in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ι in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\271\n'
++ pat=ι
++ grep -i '\(\)\1ι' in
++ grep -i ι in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ι in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\341\276\276\n'
++ pat=ι
++ grep -i '\(\)\1ι' in
++ grep -i ι in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ι in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\251'
++ b='\317\211'
++ c='\342\204\246'
++ printf '\316\251\n\317\211\n\342\204\246\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\251\n'
++ pat=Ω
++ grep -i '\(\)\1Ω' in
++ grep -i Ω in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ω in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\211\n'
++ pat=ω
++ grep -i '\(\)\1ω' in
++ grep -i ω in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ω in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\342\204\246\n'
++ pat=Ω
++ grep -i '\(\)\1Ω' in
++ grep -i Ω in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Ω in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\113'
++ b='\153'
++ c='\342\204\252'
++ printf '\113\n\153\n\342\204\252\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\113\n'
++ pat=K
++ grep -i '\(\)\1K' in
++ grep -i K in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF K in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\153\n'
++ pat=k
++ grep -i '\(\)\1k' in
++ grep -i k in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF k in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\342\204\252\n'
++ pat=K
++ grep -i '\(\)\1K' in
++ grep -i K in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF K in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\303\205'
++ b='\303\245'
++ c='\342\204\253'
++ printf '\303\205\n\303\245\n\342\204\253\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\303\205\n'
++ pat=Å
++ grep -i '\(\)\1Å' in
++ grep -i Å in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Å in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\303\245\n'
++ pat=å
++ grep -i '\(\)\1å' in
++ grep -i å in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF å in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\342\204\253\n'
++ pat=Å
++ grep -i '\(\)\1Å' in
++ grep -i Å in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Å in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for testcase in 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24
++ case $testcase in
++ a='\316\243'
++ b='\317\203'
++ c='\317\262'
++ printf '\316\243\n\317\203\n\317\262\n'
++ for pattern in "$a" "$b" "$c"
+++ printf '\316\243\n'
++ pat=Σ
++ grep -i '\(\)\1Σ' in
++ grep -i Σ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF Σ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\203\n'
++ pat=σ
++ grep -i '\(\)\1σ' in
++ grep -i σ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF σ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
++ for pattern in "$a" "$b" "$c"
+++ printf '\317\262\n'
++ pat=ϲ
++ grep -i '\(\)\1ϲ' in
++ grep -i ϲ in
++ compare_ out-regex out-dfa
++ LC_ALL=C
++ diff -u out-regex out-dfa
++ grep -iF ϲ in
++ compare_ out-regex out-fixed
++ LC_ALL=C
++ diff -u out-regex out-fixed
+++ get-mb-cur-max el_GR.iso88597
++ test '' = 1
++ Exit 0
++ set +e
++ exit 0
++ exit 0
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
++ rm -rf /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-case-fold-titlecase.GQIu
++ exit 0
+PASS case-fold-titlecase (exit status: 0)

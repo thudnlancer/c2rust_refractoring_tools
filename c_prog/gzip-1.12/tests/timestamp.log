@@ -1,0 +1,293 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/gzip-1.12/tests gt-timestamp.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests
++++ template_=gt-timestamp.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
+++++ ls -dgo /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
++++ perms='drwx------ 2 4096 Oct 28 04:20 /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
+++ cd /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/gzip-1.12/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ 0
++ path_prepend_ ..
++ test 1 '!=' 0
++ path_dir_=..
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/..
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/..:/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/gzip-1.12/tests/..
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ TZ=UTC0
++ export TZ
++ oldIFS=' 	
+'
++ for time_date in '190101010000~Jan  1  1901' '196912312359.59~Dec 31  1969' '197001010000~Jan  1  1970' '210602070628.16~Feb  7  2106'
++ IFS='~'
++ set 190101010000 'Jan  1  1901'
++ time=190101010000
++ date='Jan  1  1901'
++ IFS=' 	
+'
++ touch -t 190101010000 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Dec 13  1901 in'
++ case $ls_l in
++ rm -f in.gz in
++ for time_date in '190101010000~Jan  1  1901' '196912312359.59~Dec 31  1969' '197001010000~Jan  1  1970' '210602070628.16~Feb  7  2106'
++ IFS='~'
++ set 196912312359.59 'Dec 31  1969'
++ time=196912312359.59
++ date='Dec 31  1969'
++ IFS=' 	
+'
++ touch -t 196912312359.59 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Dec 31  1969 in'
++ case $ls_l in
++ returns_ 2 gzip in
+gzip: in: warning: file timestamp out of range for gzip format
++ rm -f in.gz in
++ for time_date in '190101010000~Jan  1  1901' '196912312359.59~Dec 31  1969' '197001010000~Jan  1  1970' '210602070628.16~Feb  7  2106'
++ IFS='~'
++ set 197001010000 'Jan  1  1970'
++ time=197001010000
++ date='Jan  1  1970'
++ IFS=' 	
+'
++ touch -t 197001010000 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Jan  1  1970 in'
++ case $ls_l in
++ returns_ 2 gzip in
+gzip: in: warning: file timestamp out of range for gzip format
++ rm -f in.gz in
++ for time_date in '190101010000~Jan  1  1901' '196912312359.59~Dec 31  1969' '197001010000~Jan  1  1970' '210602070628.16~Feb  7  2106'
++ IFS='~'
++ set 210602070628.16 'Feb  7  2106'
++ time=210602070628.16
++ date='Feb  7  2106'
++ IFS=' 	
+'
++ touch -t 210602070628.16 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Feb  7  2106 in'
++ case $ls_l in
++ returns_ 2 gzip in
+gzip: in: warning: file timestamp out of range for gzip format
++ rm -f in.gz in
++ for time_date in '197001010000.01~Jan  1  1970' '203801190314.07~Jan 19  2038' '203801190314.08~Jan 19  2038' '210602070628.15~Feb  7  2106'
++ IFS='~'
++ set 197001010000.01 'Jan  1  1970'
++ time=197001010000.01
++ date='Jan  1  1970'
++ IFS=' 	
+'
++ touch -t 197001010000.01 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Jan  1  1970 in'
++ case $ls_l in
++ gzip in
++ rm -f in.gz in
++ for time_date in '197001010000.01~Jan  1  1970' '203801190314.07~Jan 19  2038' '203801190314.08~Jan 19  2038' '210602070628.15~Feb  7  2106'
++ IFS='~'
++ set 203801190314.07 'Jan 19  2038'
++ time=203801190314.07
++ date='Jan 19  2038'
++ IFS=' 	
+'
++ touch -t 203801190314.07 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Jan 19  2038 in'
++ case $ls_l in
++ gzip in
++ rm -f in.gz in
++ for time_date in '197001010000.01~Jan  1  1970' '203801190314.07~Jan 19  2038' '203801190314.08~Jan 19  2038' '210602070628.15~Feb  7  2106'
++ IFS='~'
++ set 203801190314.08 'Jan 19  2038'
++ time=203801190314.08
++ date='Jan 19  2038'
++ IFS=' 	
+'
++ touch -t 203801190314.08 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Jan 19  2038 in'
++ case $ls_l in
++ gzip in
++ rm -f in.gz in
++ for time_date in '197001010000.01~Jan  1  1970' '203801190314.07~Jan 19  2038' '203801190314.08~Jan 19  2038' '210602070628.15~Feb  7  2106'
++ IFS='~'
++ set 210602070628.15 'Feb  7  2106'
++ time=210602070628.15
++ date='Feb  7  2106'
++ IFS=' 	
+'
++ touch -t 210602070628.15 in
+++ ls -l in
++ ls_l='-rw-rw-r-- 1 c2rust c2rust 0 Feb  7  2106 in'
++ case $ls_l in
++ gzip in
++ rm -f in.gz in
++ printf '\037\213\10\0\377\377\377\377\0\377\3\0\0\0\0\0\0\0\0\0'
++ gzip -Nlv
+method  crc     date  time           compressed        uncompressed  ratio uncompressed_name
+defla 00000000 Feb  7 06:28                  20                   0   0.0% stdout
++ status=0
++ test 0 -eq 0
++ :
++ gzip --no-name
++ Exit
++ set +e
++ exit
++ exit
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/gzip-1.12/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
++ rm -rf /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-timestamp.FAy6
++ exit 0
+PASS timestamp (exit status: 0)

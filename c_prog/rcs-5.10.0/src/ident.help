@@ -1,0 +1,10 @@
+#include "gnu-h-v.h"
+static char const ident_blurb[] = "Identify RCS keyword strings in files.";
+static char const ident_help[] = ""
+"[options] [file ...]\n"
+"Options:\n"
+"  -q            Suppress warnings if no patterns are found.\n"
+"  -V            Obsolete; do not use.\n"
+"\n"
+"If no FILE is specified, scan standard input.\n"
+;

@@ -1,0 +1,6034 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/grep-3.11/tests gt-c-locale.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ template_=gt-c-locale.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
+++++ ls -dgo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
++++ perms='drwx------ 2 4096 Oct 28 04:17 /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
+++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/src/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ EXIT
++ path_prepend_ ../src
++ test 1 '!=' 0
++ path_dir_=../src
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ fail=0
++ c=1
++ test 1 -lt 256
+++ printf '\\%o\n' 1
++ tr2='\1'
++ echo X
++ tr X '\1'
++ LC_ALL=C
++ env -- tr X '\1'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 1 + 1
++ c=2
++ test 2 -lt 256
+++ printf '\\%o\n' 2
++ tr2='\2'
++ echo X
++ tr X '\2'
++ LC_ALL=C
++ env -- tr X '\2'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 2 + 1
++ c=3
++ test 3 -lt 256
+++ printf '\\%o\n' 3
++ tr2='\3'
++ echo X
++ tr X '\3'
++ LC_ALL=C
++ env -- tr X '\3'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 3 + 1
++ c=4
++ test 4 -lt 256
+++ printf '\\%o\n' 4
++ tr2='\4'
++ echo X
++ tr X '\4'
++ LC_ALL=C
++ env -- tr X '\4'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 4 + 1
++ c=5
++ test 5 -lt 256
+++ printf '\\%o\n' 5
++ tr2='\5'
++ echo X
++ tr X '\5'
++ LC_ALL=C
++ env -- tr X '\5'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 5 + 1
++ c=6
++ test 6 -lt 256
+++ printf '\\%o\n' 6
++ tr2='\6'
++ echo X
++ tr X '\6'
++ LC_ALL=C
++ env -- tr X '\6'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 6 + 1
++ c=7
++ test 7 -lt 256
+++ printf '\\%o\n' 7
++ tr2='\7'
++ echo X
++ tr X '\7'
++ LC_ALL=C
++ env -- tr X '\7'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 7 + 1
++ c=8
++ test 8 -lt 256
+++ printf '\\%o\n' 8
++ tr2='\10'
++ echo X
++ tr X '\10'
++ LC_ALL=C
++ env -- tr X '\10'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 8 + 1
++ c=9
++ test 9 -lt 256
+++ printf '\\%o\n' 9
++ tr2='\11'
++ echo X
++ tr X '\11'
++ LC_ALL=C
++ env -- tr X '\11'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 9 + 1
++ c=10
++ test 10 -lt 256
+++ printf '\\%o\n' 10
++ tr2='\12'
++ echo X
++ tr X '\12'
++ LC_ALL=C
++ env -- tr X '\12'
+++ wc -l
++ test 2 -eq 1
++ test 0 -ne 0
+++ expr 10 + 1
++ c=11
++ test 11 -lt 256
+++ printf '\\%o\n' 11
++ tr2='\13'
++ echo X
++ tr X '\13'
++ LC_ALL=C
++ env -- tr X '\13'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 11 + 1
++ c=12
++ test 12 -lt 256
+++ printf '\\%o\n' 12
++ tr2='\14'
++ echo X
++ tr X '\14'
++ LC_ALL=C
++ env -- tr X '\14'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 12 + 1
++ c=13
++ test 13 -lt 256
+++ printf '\\%o\n' 13
++ tr2='\15'
++ echo X
++ tr X '\15'
++ LC_ALL=C
++ env -- tr X '\15'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 13 + 1
++ c=14
++ test 14 -lt 256
+++ printf '\\%o\n' 14
++ tr2='\16'
++ echo X
++ tr X '\16'
++ LC_ALL=C
++ env -- tr X '\16'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 14 + 1
++ c=15
++ test 15 -lt 256
+++ printf '\\%o\n' 15
++ tr2='\17'
++ echo X
++ tr X '\17'
++ LC_ALL=C
++ env -- tr X '\17'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 15 + 1
++ c=16
++ test 16 -lt 256
+++ printf '\\%o\n' 16
++ tr2='\20'
++ echo X
++ tr X '\20'
++ LC_ALL=C
++ env -- tr X '\20'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 16 + 1
++ c=17
++ test 17 -lt 256
+++ printf '\\%o\n' 17
++ tr2='\21'
++ echo X
++ tr X '\21'
++ LC_ALL=C
++ env -- tr X '\21'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 17 + 1
++ c=18
++ test 18 -lt 256
+++ printf '\\%o\n' 18
++ tr2='\22'
++ echo X
++ tr X '\22'
++ LC_ALL=C
++ env -- tr X '\22'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 18 + 1
++ c=19
++ test 19 -lt 256
+++ printf '\\%o\n' 19
++ tr2='\23'
++ echo X
++ tr X '\23'
++ LC_ALL=C
++ env -- tr X '\23'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 19 + 1
++ c=20
++ test 20 -lt 256
+++ printf '\\%o\n' 20
++ tr2='\24'
++ echo X
++ tr X '\24'
++ LC_ALL=C
++ env -- tr X '\24'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 20 + 1
++ c=21
++ test 21 -lt 256
+++ printf '\\%o\n' 21
++ tr2='\25'
++ echo X
++ tr X '\25'
++ LC_ALL=C
++ env -- tr X '\25'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 21 + 1
++ c=22
++ test 22 -lt 256
+++ printf '\\%o\n' 22
++ tr2='\26'
++ echo X
++ tr X '\26'
++ LC_ALL=C
++ env -- tr X '\26'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 22 + 1
++ c=23
++ test 23 -lt 256
+++ printf '\\%o\n' 23
++ tr2='\27'
++ echo X
++ tr X '\27'
++ LC_ALL=C
++ env -- tr X '\27'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 23 + 1
++ c=24
++ test 24 -lt 256
+++ printf '\\%o\n' 24
++ tr2='\30'
++ echo X
++ tr X '\30'
++ LC_ALL=C
++ env -- tr X '\30'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 24 + 1
++ c=25
++ test 25 -lt 256
+++ printf '\\%o\n' 25
++ tr2='\31'
++ echo X
++ tr X '\31'
++ LC_ALL=C
++ env -- tr X '\31'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 25 + 1
++ c=26
++ test 26 -lt 256
+++ printf '\\%o\n' 26
++ tr2='\32'
++ echo X
++ tr X '\32'
++ LC_ALL=C
++ env -- tr X '\32'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 26 + 1
++ c=27
++ test 27 -lt 256
+++ printf '\\%o\n' 27
++ tr2='\33'
++ echo X
++ tr X '\33'
++ LC_ALL=C
++ env -- tr X '\33'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 27 + 1
++ c=28
++ test 28 -lt 256
+++ printf '\\%o\n' 28
++ tr2='\34'
++ echo X
++ tr X '\34'
++ LC_ALL=C
++ env -- tr X '\34'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 28 + 1
++ c=29
++ test 29 -lt 256
+++ printf '\\%o\n' 29
++ tr2='\35'
++ echo X
++ tr X '\35'
++ LC_ALL=C
++ env -- tr X '\35'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 29 + 1
++ c=30
++ test 30 -lt 256
+++ printf '\\%o\n' 30
++ tr2='\36'
++ echo X
++ tr X '\36'
++ LC_ALL=C
++ env -- tr X '\36'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 30 + 1
++ c=31
++ test 31 -lt 256
+++ printf '\\%o\n' 31
++ tr2='\37'
++ echo X
++ tr X '\37'
++ LC_ALL=C
++ env -- tr X '\37'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 31 + 1
++ c=32
++ test 32 -lt 256
+++ printf '\\%o\n' 32
++ tr2='\40'
++ echo X
++ tr X '\40'
++ LC_ALL=C
++ env -- tr X '\40'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 32 + 1
++ c=33
++ test 33 -lt 256
+++ printf '\\%o\n' 33
++ tr2='\41'
++ echo X
++ tr X '\41'
++ LC_ALL=C
++ env -- tr X '\41'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 33 + 1
++ c=34
++ test 34 -lt 256
+++ printf '\\%o\n' 34
++ tr2='\42'
++ echo X
++ tr X '\42'
++ LC_ALL=C
++ env -- tr X '\42'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 34 + 1
++ c=35
++ test 35 -lt 256
+++ printf '\\%o\n' 35
++ tr2='\43'
++ echo X
++ tr X '\43'
++ LC_ALL=C
++ env -- tr X '\43'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 35 + 1
++ c=36
++ test 36 -lt 256
+++ printf '\\%o\n' 36
++ tr2='\44'
++ echo X
++ tr X '\44'
++ LC_ALL=C
++ env -- tr X '\44'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 36 + 1
++ c=37
++ test 37 -lt 256
+++ printf '\\%o\n' 37
++ tr2='\45'
++ echo X
++ tr X '\45'
++ LC_ALL=C
++ env -- tr X '\45'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 37 + 1
++ c=38
++ test 38 -lt 256
+++ printf '\\%o\n' 38
++ tr2='\46'
++ echo X
++ tr X '\46'
++ LC_ALL=C
++ env -- tr X '\46'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 38 + 1
++ c=39
++ test 39 -lt 256
+++ printf '\\%o\n' 39
++ tr2='\47'
++ echo X
++ tr X '\47'
++ LC_ALL=C
++ env -- tr X '\47'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 39 + 1
++ c=40
++ test 40 -lt 256
+++ printf '\\%o\n' 40
++ tr2='\50'
++ echo X
++ tr X '\50'
++ LC_ALL=C
++ env -- tr X '\50'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 40 + 1
++ c=41
++ test 41 -lt 256
+++ printf '\\%o\n' 41
++ tr2='\51'
++ echo X
++ tr X '\51'
++ LC_ALL=C
++ env -- tr X '\51'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 41 + 1
++ c=42
++ test 42 -lt 256
+++ printf '\\%o\n' 42
++ tr2='\52'
++ tr X '\52'
++ echo X
++ LC_ALL=C
++ env -- tr X '\52'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 42 + 1
++ c=43
++ test 43 -lt 256
+++ printf '\\%o\n' 43
++ tr2='\53'
++ echo X
++ tr X '\53'
++ LC_ALL=C
++ env -- tr X '\53'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 43 + 1
++ c=44
++ test 44 -lt 256
+++ printf '\\%o\n' 44
++ tr2='\54'
++ echo X
++ tr X '\54'
++ LC_ALL=C
++ env -- tr X '\54'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 44 + 1
++ c=45
++ test 45 -lt 256
+++ printf '\\%o\n' 45
++ tr2='\55'
++ echo X
++ tr X '\55'
++ LC_ALL=C
++ env -- tr X '\55'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 45 + 1
++ c=46
++ test 46 -lt 256
+++ printf '\\%o\n' 46
++ tr2='\56'
++ echo X
++ tr X '\56'
++ LC_ALL=C
++ env -- tr X '\56'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 46 + 1
++ c=47
++ test 47 -lt 256
+++ printf '\\%o\n' 47
++ tr2='\57'
++ echo X
++ tr X '\57'
++ LC_ALL=C
++ env -- tr X '\57'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 47 + 1
++ c=48
++ test 48 -lt 256
+++ printf '\\%o\n' 48
++ tr2='\60'
++ echo X
++ tr X '\60'
++ LC_ALL=C
++ env -- tr X '\60'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 48 + 1
++ c=49
++ test 49 -lt 256
+++ printf '\\%o\n' 49
++ tr2='\61'
++ echo X
++ tr X '\61'
++ LC_ALL=C
++ env -- tr X '\61'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 49 + 1
++ c=50
++ test 50 -lt 256
+++ printf '\\%o\n' 50
++ tr2='\62'
++ echo X
++ tr X '\62'
++ LC_ALL=C
++ env -- tr X '\62'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 50 + 1
++ c=51
++ test 51 -lt 256
+++ printf '\\%o\n' 51
++ tr2='\63'
++ echo X
++ tr X '\63'
++ LC_ALL=C
++ env -- tr X '\63'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 51 + 1
++ c=52
++ test 52 -lt 256
+++ printf '\\%o\n' 52
++ tr2='\64'
++ echo X
++ tr X '\64'
++ LC_ALL=C
++ env -- tr X '\64'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 52 + 1
++ c=53
++ test 53 -lt 256
+++ printf '\\%o\n' 53
++ tr2='\65'
++ echo X
++ tr X '\65'
++ LC_ALL=C
++ env -- tr X '\65'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 53 + 1
++ c=54
++ test 54 -lt 256
+++ printf '\\%o\n' 54
++ tr2='\66'
++ echo X
++ tr X '\66'
++ LC_ALL=C
++ env -- tr X '\66'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 54 + 1
++ c=55
++ test 55 -lt 256
+++ printf '\\%o\n' 55
++ tr2='\67'
++ echo X
++ tr X '\67'
++ LC_ALL=C
++ env -- tr X '\67'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 55 + 1
++ c=56
++ test 56 -lt 256
+++ printf '\\%o\n' 56
++ tr2='\70'
++ echo X
++ tr X '\70'
++ LC_ALL=C
++ env -- tr X '\70'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 56 + 1
++ c=57
++ test 57 -lt 256
+++ printf '\\%o\n' 57
++ tr2='\71'
++ echo X
++ tr X '\71'
++ LC_ALL=C
++ env -- tr X '\71'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 57 + 1
++ c=58
++ test 58 -lt 256
+++ printf '\\%o\n' 58
++ tr2='\72'
++ echo X
++ tr X '\72'
++ LC_ALL=C
++ env -- tr X '\72'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 58 + 1
++ c=59
++ test 59 -lt 256
+++ printf '\\%o\n' 59
++ tr2='\73'
++ echo X
++ tr X '\73'
++ LC_ALL=C
++ env -- tr X '\73'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 59 + 1
++ c=60
++ test 60 -lt 256
+++ printf '\\%o\n' 60
++ tr2='\74'
++ echo X
++ tr X '\74'
++ LC_ALL=C
++ env -- tr X '\74'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 60 + 1
++ c=61
++ test 61 -lt 256
+++ printf '\\%o\n' 61
++ tr2='\75'
++ echo X
++ tr X '\75'
++ LC_ALL=C
++ env -- tr X '\75'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 61 + 1
++ c=62
++ test 62 -lt 256
+++ printf '\\%o\n' 62
++ tr2='\76'
++ echo X
++ tr X '\76'
++ LC_ALL=C
++ env -- tr X '\76'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 62 + 1
++ c=63
++ test 63 -lt 256
+++ printf '\\%o\n' 63
++ tr2='\77'
++ echo X
++ tr X '\77'
++ LC_ALL=C
++ env -- tr X '\77'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 63 + 1
++ c=64
++ test 64 -lt 256
+++ printf '\\%o\n' 64
++ tr2='\100'
++ echo X
++ tr X '\100'
++ LC_ALL=C
++ env -- tr X '\100'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 64 + 1
++ c=65
++ test 65 -lt 256
+++ printf '\\%o\n' 65
++ tr2='\101'
++ echo X
++ tr X '\101'
++ LC_ALL=C
++ env -- tr X '\101'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 65 + 1
++ c=66
++ test 66 -lt 256
+++ printf '\\%o\n' 66
++ tr2='\102'
++ echo X
++ tr X '\102'
++ LC_ALL=C
++ env -- tr X '\102'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 66 + 1
++ c=67
++ test 67 -lt 256
+++ printf '\\%o\n' 67
++ tr2='\103'
++ echo X
++ tr X '\103'
++ LC_ALL=C
++ env -- tr X '\103'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 67 + 1
++ c=68
++ test 68 -lt 256
+++ printf '\\%o\n' 68
++ tr2='\104'
++ echo X
++ tr X '\104'
++ LC_ALL=C
++ env -- tr X '\104'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 68 + 1
++ c=69
++ test 69 -lt 256
+++ printf '\\%o\n' 69
++ tr2='\105'
++ echo X
++ tr X '\105'
++ LC_ALL=C
++ env -- tr X '\105'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 69 + 1
++ c=70
++ test 70 -lt 256
+++ printf '\\%o\n' 70
++ tr2='\106'
++ echo X
++ tr X '\106'
++ LC_ALL=C
++ env -- tr X '\106'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 70 + 1
++ c=71
++ test 71 -lt 256
+++ printf '\\%o\n' 71
++ tr2='\107'
++ echo X
++ tr X '\107'
++ LC_ALL=C
++ env -- tr X '\107'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 71 + 1
++ c=72
++ test 72 -lt 256
+++ printf '\\%o\n' 72
++ tr2='\110'
++ echo X
++ tr X '\110'
++ LC_ALL=C
++ env -- tr X '\110'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 72 + 1
++ c=73
++ test 73 -lt 256
+++ printf '\\%o\n' 73
++ tr2='\111'
++ echo X
++ tr X '\111'
++ LC_ALL=C
++ env -- tr X '\111'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 73 + 1
++ c=74
++ test 74 -lt 256
+++ printf '\\%o\n' 74
++ tr2='\112'
++ echo X
++ tr X '\112'
++ LC_ALL=C
++ env -- tr X '\112'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 74 + 1
++ c=75
++ test 75 -lt 256
+++ printf '\\%o\n' 75
++ tr2='\113'
++ echo X
++ tr X '\113'
++ LC_ALL=C
++ env -- tr X '\113'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 75 + 1
++ c=76
++ test 76 -lt 256
+++ printf '\\%o\n' 76
++ tr2='\114'
++ echo X
++ tr X '\114'
++ LC_ALL=C
++ env -- tr X '\114'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 76 + 1
++ c=77
++ test 77 -lt 256
+++ printf '\\%o\n' 77
++ tr2='\115'
++ echo X
++ tr X '\115'
++ LC_ALL=C
++ env -- tr X '\115'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 77 + 1
++ c=78
++ test 78 -lt 256
+++ printf '\\%o\n' 78
++ tr2='\116'
++ echo X
++ tr X '\116'
++ LC_ALL=C
++ env -- tr X '\116'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 78 + 1
++ c=79
++ test 79 -lt 256
+++ printf '\\%o\n' 79
++ tr2='\117'
++ echo X
++ tr X '\117'
++ LC_ALL=C
++ env -- tr X '\117'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 79 + 1
++ c=80
++ test 80 -lt 256
+++ printf '\\%o\n' 80
++ tr2='\120'
++ echo X
++ tr X '\120'
++ LC_ALL=C
++ env -- tr X '\120'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 80 + 1
++ c=81
++ test 81 -lt 256
+++ printf '\\%o\n' 81
++ tr2='\121'
++ echo X
++ tr X '\121'
++ LC_ALL=C
++ env -- tr X '\121'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 81 + 1
++ c=82
++ test 82 -lt 256
+++ printf '\\%o\n' 82
++ tr2='\122'
++ echo X
++ tr X '\122'
++ LC_ALL=C
++ env -- tr X '\122'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 82 + 1
++ c=83
++ test 83 -lt 256
+++ printf '\\%o\n' 83
++ tr2='\123'
++ echo X
++ tr X '\123'
++ LC_ALL=C
++ env -- tr X '\123'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 83 + 1
++ c=84
++ test 84 -lt 256
+++ printf '\\%o\n' 84
++ tr2='\124'
++ echo X
++ tr X '\124'
++ LC_ALL=C
++ env -- tr X '\124'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 84 + 1
++ c=85
++ test 85 -lt 256
+++ printf '\\%o\n' 85
++ tr2='\125'
++ echo X
++ tr X '\125'
++ LC_ALL=C
++ env -- tr X '\125'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 85 + 1
++ c=86
++ test 86 -lt 256
+++ printf '\\%o\n' 86
++ tr2='\126'
++ echo X
++ tr X '\126'
++ LC_ALL=C
++ env -- tr X '\126'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 86 + 1
++ c=87
++ test 87 -lt 256
+++ printf '\\%o\n' 87
++ tr2='\127'
++ tr X '\127'
++ echo X
++ LC_ALL=C
++ env -- tr X '\127'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 87 + 1
++ c=88
++ test 88 -lt 256
+++ printf '\\%o\n' 88
++ tr2='\130'
++ echo X
++ tr X '\130'
++ LC_ALL=C
++ env -- tr X '\130'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 88 + 1
++ c=89
++ test 89 -lt 256
+++ printf '\\%o\n' 89
++ tr2='\131'
++ echo X
++ tr X '\131'
++ LC_ALL=C
++ env -- tr X '\131'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 89 + 1
++ c=90
++ test 90 -lt 256
+++ printf '\\%o\n' 90
++ tr2='\132'
++ echo X
++ tr X '\132'
++ LC_ALL=C
++ env -- tr X '\132'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 90 + 1
++ c=91
++ test 91 -lt 256
+++ printf '\\%o\n' 91
++ tr2='\133'
++ echo X
++ tr X '\133'
++ LC_ALL=C
++ env -- tr X '\133'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 91 + 1
++ c=92
++ test 92 -lt 256
+++ printf '\\%o\n' 92
++ tr2='\134'
++ echo X
++ tr X '\134'
++ LC_ALL=C
++ env -- tr X '\134'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 92 + 1
++ c=93
++ test 93 -lt 256
+++ printf '\\%o\n' 93
++ tr2='\135'
++ tr X '\135'
++ echo X
++ LC_ALL=C
++ env -- tr X '\135'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 93 + 1
++ c=94
++ test 94 -lt 256
+++ printf '\\%o\n' 94
++ tr2='\136'
++ echo X
++ tr X '\136'
++ LC_ALL=C
++ env -- tr X '\136'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 94 + 1
++ c=95
++ test 95 -lt 256
+++ printf '\\%o\n' 95
++ tr2='\137'
++ echo X
++ tr X '\137'
++ LC_ALL=C
++ env -- tr X '\137'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 95 + 1
++ c=96
++ test 96 -lt 256
+++ printf '\\%o\n' 96
++ tr2='\140'
++ echo X
++ tr X '\140'
++ LC_ALL=C
++ env -- tr X '\140'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 96 + 1
++ c=97
++ test 97 -lt 256
+++ printf '\\%o\n' 97
++ tr2='\141'
++ echo X
++ tr X '\141'
++ LC_ALL=C
++ env -- tr X '\141'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 97 + 1
++ c=98
++ test 98 -lt 256
+++ printf '\\%o\n' 98
++ tr2='\142'
++ echo X
++ tr X '\142'
++ LC_ALL=C
++ env -- tr X '\142'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 98 + 1
++ c=99
++ test 99 -lt 256
+++ printf '\\%o\n' 99
++ tr2='\143'
++ echo X
++ tr X '\143'
++ LC_ALL=C
++ env -- tr X '\143'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 99 + 1
++ c=100
++ test 100 -lt 256
+++ printf '\\%o\n' 100
++ tr2='\144'
++ tr X '\144'
++ echo X
++ LC_ALL=C
++ env -- tr X '\144'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 100 + 1
++ c=101
++ test 101 -lt 256
+++ printf '\\%o\n' 101
++ tr2='\145'
++ echo X
++ tr X '\145'
++ LC_ALL=C
++ env -- tr X '\145'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 101 + 1
++ c=102
++ test 102 -lt 256
+++ printf '\\%o\n' 102
++ tr2='\146'
++ echo X
++ tr X '\146'
++ LC_ALL=C
++ env -- tr X '\146'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 102 + 1
++ c=103
++ test 103 -lt 256
+++ printf '\\%o\n' 103
++ tr2='\147'
++ echo X
++ tr X '\147'
++ LC_ALL=C
++ env -- tr X '\147'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 103 + 1
++ c=104
++ test 104 -lt 256
+++ printf '\\%o\n' 104
++ tr2='\150'
++ echo X
++ tr X '\150'
++ LC_ALL=C
++ env -- tr X '\150'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 104 + 1
++ c=105
++ test 105 -lt 256
+++ printf '\\%o\n' 105
++ tr2='\151'
++ echo X
++ tr X '\151'
++ LC_ALL=C
++ env -- tr X '\151'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 105 + 1
++ c=106
++ test 106 -lt 256
+++ printf '\\%o\n' 106
++ tr2='\152'
++ echo X
++ tr X '\152'
++ LC_ALL=C
++ env -- tr X '\152'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 106 + 1
++ c=107
++ test 107 -lt 256
+++ printf '\\%o\n' 107
++ tr2='\153'
++ echo X
++ tr X '\153'
++ LC_ALL=C
++ env -- tr X '\153'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 107 + 1
++ c=108
++ test 108 -lt 256
+++ printf '\\%o\n' 108
++ tr2='\154'
++ echo X
++ tr X '\154'
++ LC_ALL=C
++ env -- tr X '\154'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 108 + 1
++ c=109
++ test 109 -lt 256
+++ printf '\\%o\n' 109
++ tr2='\155'
++ echo X
++ tr X '\155'
++ LC_ALL=C
++ env -- tr X '\155'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 109 + 1
++ c=110
++ test 110 -lt 256
+++ printf '\\%o\n' 110
++ tr2='\156'
++ echo X
++ tr X '\156'
++ LC_ALL=C
++ env -- tr X '\156'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 110 + 1
++ c=111
++ test 111 -lt 256
+++ printf '\\%o\n' 111
++ tr2='\157'
++ echo X
++ tr X '\157'
++ LC_ALL=C
++ env -- tr X '\157'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 111 + 1
++ c=112
++ test 112 -lt 256
+++ printf '\\%o\n' 112
++ tr2='\160'
++ echo X
++ tr X '\160'
++ LC_ALL=C
++ env -- tr X '\160'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 112 + 1
++ c=113
++ test 113 -lt 256
+++ printf '\\%o\n' 113
++ tr2='\161'
++ echo X
++ tr X '\161'
++ LC_ALL=C
++ env -- tr X '\161'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 113 + 1
++ c=114
++ test 114 -lt 256
+++ printf '\\%o\n' 114
++ tr2='\162'
++ echo X
++ tr X '\162'
++ LC_ALL=C
++ env -- tr X '\162'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 114 + 1
++ c=115
++ test 115 -lt 256
+++ printf '\\%o\n' 115
++ tr2='\163'
++ echo X
++ tr X '\163'
++ LC_ALL=C
++ env -- tr X '\163'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 115 + 1
++ c=116
++ test 116 -lt 256
+++ printf '\\%o\n' 116
++ tr2='\164'
++ echo X
++ tr X '\164'
++ LC_ALL=C
++ env -- tr X '\164'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 116 + 1
++ c=117
++ test 117 -lt 256
+++ printf '\\%o\n' 117
++ tr2='\165'
++ echo X
++ tr X '\165'
++ LC_ALL=C
++ env -- tr X '\165'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 117 + 1
++ c=118
++ test 118 -lt 256
+++ printf '\\%o\n' 118
++ tr2='\166'
++ echo X
++ tr X '\166'
++ LC_ALL=C
++ env -- tr X '\166'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 118 + 1
++ c=119
++ test 119 -lt 256
+++ printf '\\%o\n' 119
++ tr2='\167'
++ echo X
++ tr X '\167'
++ LC_ALL=C
++ env -- tr X '\167'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 119 + 1
++ c=120
++ test 120 -lt 256
+++ printf '\\%o\n' 120
++ tr2='\170'
++ echo X
++ tr X '\170'
++ LC_ALL=C
++ env -- tr X '\170'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 120 + 1
++ c=121
++ test 121 -lt 256
+++ printf '\\%o\n' 121
++ tr2='\171'
++ echo X
++ tr X '\171'
++ LC_ALL=C
++ env -- tr X '\171'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 121 + 1
++ c=122
++ test 122 -lt 256
+++ printf '\\%o\n' 122
++ tr2='\172'
++ echo X
++ tr X '\172'
++ LC_ALL=C
++ env -- tr X '\172'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 122 + 1
++ c=123
++ test 123 -lt 256
+++ printf '\\%o\n' 123
++ tr2='\173'
++ echo X
++ tr X '\173'
++ LC_ALL=C
++ env -- tr X '\173'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 123 + 1
++ c=124
++ test 124 -lt 256
+++ printf '\\%o\n' 124
++ tr2='\174'
++ echo X
++ tr X '\174'
++ LC_ALL=C
++ env -- tr X '\174'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 124 + 1
++ c=125
++ test 125 -lt 256
+++ printf '\\%o\n' 125
++ tr2='\175'
++ echo X
++ tr X '\175'
++ LC_ALL=C
++ env -- tr X '\175'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 125 + 1
++ c=126
++ test 126 -lt 256
+++ printf '\\%o\n' 126
++ tr2='\176'
++ echo X
++ tr X '\176'
++ LC_ALL=C
++ env -- tr X '\176'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 126 + 1
++ c=127
++ test 127 -lt 256
+++ printf '\\%o\n' 127
++ tr2='\177'
++ echo X
++ tr X '\177'
++ LC_ALL=C
++ env -- tr X '\177'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 127 + 1
++ c=128
++ test 128 -lt 256
+++ printf '\\%o\n' 128
++ tr2='\200'
++ echo X
++ tr X '\200'
++ LC_ALL=C
++ env -- tr X '\200'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 128 + 1
++ c=129
++ test 129 -lt 256
+++ printf '\\%o\n' 129
++ tr2='\201'
++ echo X
++ tr X '\201'
++ LC_ALL=C
++ env -- tr X '\201'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 129 + 1
++ c=130
++ test 130 -lt 256
+++ printf '\\%o\n' 130
++ tr2='\202'
++ echo X
++ tr X '\202'
++ LC_ALL=C
++ env -- tr X '\202'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 130 + 1
++ c=131
++ test 131 -lt 256
+++ printf '\\%o\n' 131
++ tr2='\203'
++ echo X
++ tr X '\203'
++ LC_ALL=C
++ env -- tr X '\203'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 131 + 1
++ c=132
++ test 132 -lt 256
+++ printf '\\%o\n' 132
++ tr2='\204'
++ echo X
++ tr X '\204'
++ LC_ALL=C
++ env -- tr X '\204'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 132 + 1
++ c=133
++ test 133 -lt 256
+++ printf '\\%o\n' 133
++ tr2='\205'
++ echo X
++ tr X '\205'
++ LC_ALL=C
++ env -- tr X '\205'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 133 + 1
++ c=134
++ test 134 -lt 256
+++ printf '\\%o\n' 134
++ tr2='\206'
++ echo X
++ tr X '\206'
++ LC_ALL=C
++ env -- tr X '\206'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 134 + 1
++ c=135
++ test 135 -lt 256
+++ printf '\\%o\n' 135
++ tr2='\207'
++ echo X
++ tr X '\207'
++ LC_ALL=C
++ env -- tr X '\207'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 135 + 1
++ c=136
++ test 136 -lt 256
+++ printf '\\%o\n' 136
++ tr2='\210'
++ echo X
++ tr X '\210'
++ LC_ALL=C
++ env -- tr X '\210'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 136 + 1
++ c=137
++ test 137 -lt 256
+++ printf '\\%o\n' 137
++ tr2='\211'
++ echo X
++ tr X '\211'
++ LC_ALL=C
++ env -- tr X '\211'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 137 + 1
++ c=138
++ test 138 -lt 256
+++ printf '\\%o\n' 138
++ tr2='\212'
++ echo X
++ tr X '\212'
++ LC_ALL=C
++ env -- tr X '\212'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 138 + 1
++ c=139
++ test 139 -lt 256
+++ printf '\\%o\n' 139
++ tr2='\213'
++ echo X
++ tr X '\213'
++ LC_ALL=C
++ env -- tr X '\213'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 139 + 1
++ c=140
++ test 140 -lt 256
+++ printf '\\%o\n' 140
++ tr2='\214'
++ echo X
++ tr X '\214'
++ LC_ALL=C
++ env -- tr X '\214'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 140 + 1
++ c=141
++ test 141 -lt 256
+++ printf '\\%o\n' 141
++ tr2='\215'
++ echo X
++ tr X '\215'
++ LC_ALL=C
++ env -- tr X '\215'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 141 + 1
++ c=142
++ test 142 -lt 256
+++ printf '\\%o\n' 142
++ tr2='\216'
++ echo X
++ tr X '\216'
++ LC_ALL=C
++ env -- tr X '\216'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 142 + 1
++ c=143
++ test 143 -lt 256
+++ printf '\\%o\n' 143
++ tr2='\217'
++ echo X
++ tr X '\217'
++ LC_ALL=C
++ env -- tr X '\217'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 143 + 1
++ c=144
++ test 144 -lt 256
+++ printf '\\%o\n' 144
++ tr2='\220'
++ echo X
++ tr X '\220'
++ LC_ALL=C
++ env -- tr X '\220'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 144 + 1
++ c=145
++ test 145 -lt 256
+++ printf '\\%o\n' 145
++ tr2='\221'
++ tr X '\221'
++ LC_ALL=C
++ env -- tr X '\221'
++ echo X
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 145 + 1
++ c=146
++ test 146 -lt 256
+++ printf '\\%o\n' 146
++ tr2='\222'
++ echo X
++ tr X '\222'
++ LC_ALL=C
++ env -- tr X '\222'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 146 + 1
++ c=147
++ test 147 -lt 256
+++ printf '\\%o\n' 147
++ tr2='\223'
++ echo X
++ tr X '\223'
++ LC_ALL=C
++ env -- tr X '\223'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 147 + 1
++ c=148
++ test 148 -lt 256
+++ printf '\\%o\n' 148
++ tr2='\224'
++ echo X
++ tr X '\224'
++ LC_ALL=C
++ env -- tr X '\224'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 148 + 1
++ c=149
++ test 149 -lt 256
+++ printf '\\%o\n' 149
++ tr2='\225'
++ echo X
++ tr X '\225'
++ LC_ALL=C
++ env -- tr X '\225'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 149 + 1
++ c=150
++ test 150 -lt 256
+++ printf '\\%o\n' 150
++ tr2='\226'
++ echo X
++ tr X '\226'
++ LC_ALL=C
++ env -- tr X '\226'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 150 + 1
++ c=151
++ test 151 -lt 256
+++ printf '\\%o\n' 151
++ tr2='\227'
++ echo X
++ tr X '\227'
++ LC_ALL=C
++ env -- tr X '\227'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 151 + 1
++ c=152
++ test 152 -lt 256
+++ printf '\\%o\n' 152
++ tr2='\230'
++ echo X
++ tr X '\230'
++ LC_ALL=C
++ env -- tr X '\230'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 152 + 1
++ c=153
++ test 153 -lt 256
+++ printf '\\%o\n' 153
++ tr2='\231'
++ echo X
++ tr X '\231'
++ LC_ALL=C
++ env -- tr X '\231'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 153 + 1
++ c=154
++ test 154 -lt 256
+++ printf '\\%o\n' 154
++ tr2='\232'
++ echo X
++ tr X '\232'
++ LC_ALL=C
++ env -- tr X '\232'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 154 + 1
++ c=155
++ test 155 -lt 256
+++ printf '\\%o\n' 155
++ tr2='\233'
++ echo X
++ tr X '\233'
++ LC_ALL=C
++ env -- tr X '\233'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 155 + 1
++ c=156
++ test 156 -lt 256
+++ printf '\\%o\n' 156
++ tr2='\234'
++ echo X
++ tr X '\234'
++ LC_ALL=C
++ env -- tr X '\234'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 156 + 1
++ c=157
++ test 157 -lt 256
+++ printf '\\%o\n' 157
++ tr2='\235'
++ echo X
++ tr X '\235'
++ LC_ALL=C
++ env -- tr X '\235'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 157 + 1
++ c=158
++ test 158 -lt 256
+++ printf '\\%o\n' 158
++ tr2='\236'
++ echo X
++ tr X '\236'
++ LC_ALL=C
++ env -- tr X '\236'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 158 + 1
++ c=159
++ test 159 -lt 256
+++ printf '\\%o\n' 159
++ tr2='\237'
++ echo X
++ tr X '\237'
++ LC_ALL=C
++ env -- tr X '\237'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 159 + 1
++ c=160
++ test 160 -lt 256
+++ printf '\\%o\n' 160
++ tr2='\240'
++ echo X
++ tr X '\240'
++ LC_ALL=C
++ env -- tr X '\240'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 160 + 1
++ c=161
++ test 161 -lt 256
+++ printf '\\%o\n' 161
++ tr2='\241'
++ echo X
++ tr X '\241'
++ LC_ALL=C
++ env -- tr X '\241'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 161 + 1
++ c=162
++ test 162 -lt 256
+++ printf '\\%o\n' 162
++ tr2='\242'
++ echo X
++ tr X '\242'
++ LC_ALL=C
++ env -- tr X '\242'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 162 + 1
++ c=163
++ test 163 -lt 256
+++ printf '\\%o\n' 163
++ tr2='\243'
++ echo X
++ tr X '\243'
++ LC_ALL=C
++ env -- tr X '\243'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 163 + 1
++ c=164
++ test 164 -lt 256
+++ printf '\\%o\n' 164
++ tr2='\244'
++ echo X
++ tr X '\244'
++ LC_ALL=C
++ env -- tr X '\244'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 164 + 1
++ c=165
++ test 165 -lt 256
+++ printf '\\%o\n' 165
++ tr2='\245'
++ echo X
++ tr X '\245'
++ LC_ALL=C
++ env -- tr X '\245'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 165 + 1
++ c=166
++ test 166 -lt 256
+++ printf '\\%o\n' 166
++ tr2='\246'
++ echo X
++ tr X '\246'
++ LC_ALL=C
++ env -- tr X '\246'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 166 + 1
++ c=167
++ test 167 -lt 256
+++ printf '\\%o\n' 167
++ tr2='\247'
++ echo X
++ tr X '\247'
++ LC_ALL=C
++ env -- tr X '\247'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 167 + 1
++ c=168
++ test 168 -lt 256
+++ printf '\\%o\n' 168
++ tr2='\250'
++ echo X
++ tr X '\250'
++ LC_ALL=C
++ env -- tr X '\250'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 168 + 1
++ c=169
++ test 169 -lt 256
+++ printf '\\%o\n' 169
++ tr2='\251'
++ echo X
++ tr X '\251'
++ LC_ALL=C
++ env -- tr X '\251'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 169 + 1
++ c=170
++ test 170 -lt 256
+++ printf '\\%o\n' 170
++ tr2='\252'
++ echo X
++ tr X '\252'
++ LC_ALL=C
++ env -- tr X '\252'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 170 + 1
++ c=171
++ test 171 -lt 256
+++ printf '\\%o\n' 171
++ tr2='\253'
++ echo X
++ tr X '\253'
++ LC_ALL=C
++ env -- tr X '\253'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 171 + 1
++ c=172
++ test 172 -lt 256
+++ printf '\\%o\n' 172
++ tr2='\254'
++ echo X
++ tr X '\254'
++ LC_ALL=C
++ env -- tr X '\254'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 172 + 1
++ c=173
++ test 173 -lt 256
+++ printf '\\%o\n' 173
++ tr2='\255'
++ echo X
++ tr X '\255'
++ LC_ALL=C
++ env -- tr X '\255'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 173 + 1
++ c=174
++ test 174 -lt 256
+++ printf '\\%o\n' 174
++ tr2='\256'
++ echo X
++ tr X '\256'
++ LC_ALL=C
++ env -- tr X '\256'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 174 + 1
++ c=175
++ test 175 -lt 256
+++ printf '\\%o\n' 175
++ tr2='\257'
++ echo X
++ tr X '\257'
++ LC_ALL=C
++ env -- tr X '\257'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 175 + 1
++ c=176
++ test 176 -lt 256
+++ printf '\\%o\n' 176
++ tr2='\260'
++ echo X
++ tr X '\260'
++ LC_ALL=C
++ env -- tr X '\260'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 176 + 1
++ c=177
++ test 177 -lt 256
+++ printf '\\%o\n' 177
++ tr2='\261'
++ echo X
++ tr X '\261'
++ LC_ALL=C
++ env -- tr X '\261'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 177 + 1
++ c=178
++ test 178 -lt 256
+++ printf '\\%o\n' 178
++ tr2='\262'
++ echo X
++ tr X '\262'
++ LC_ALL=C
++ env -- tr X '\262'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 178 + 1
++ c=179
++ test 179 -lt 256
+++ printf '\\%o\n' 179
++ tr2='\263'
++ echo X
++ tr X '\263'
++ LC_ALL=C
++ env -- tr X '\263'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 179 + 1
++ c=180
++ test 180 -lt 256
+++ printf '\\%o\n' 180
++ tr2='\264'
++ echo X
++ tr X '\264'
++ LC_ALL=C
++ env -- tr X '\264'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 180 + 1
++ c=181
++ test 181 -lt 256
+++ printf '\\%o\n' 181
++ tr2='\265'
++ echo X
++ tr X '\265'
++ LC_ALL=C
++ env -- tr X '\265'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 181 + 1
++ c=182
++ test 182 -lt 256
+++ printf '\\%o\n' 182
++ tr2='\266'
++ echo X
++ tr X '\266'
++ LC_ALL=C
++ env -- tr X '\266'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 182 + 1
++ c=183
++ test 183 -lt 256
+++ printf '\\%o\n' 183
++ tr2='\267'
++ echo X
++ tr X '\267'
++ LC_ALL=C
++ env -- tr X '\267'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 183 + 1
++ c=184
++ test 184 -lt 256
+++ printf '\\%o\n' 184
++ tr2='\270'
++ echo X
++ tr X '\270'
++ LC_ALL=C
++ env -- tr X '\270'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 184 + 1
++ c=185
++ test 185 -lt 256
+++ printf '\\%o\n' 185
++ tr2='\271'
++ echo X
++ tr X '\271'
++ LC_ALL=C
++ env -- tr X '\271'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 185 + 1
++ c=186
++ test 186 -lt 256
+++ printf '\\%o\n' 186
++ tr2='\272'
++ echo X
++ tr X '\272'
++ LC_ALL=C
++ env -- tr X '\272'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 186 + 1
++ c=187
++ test 187 -lt 256
+++ printf '\\%o\n' 187
++ tr2='\273'
++ echo X
++ tr X '\273'
++ LC_ALL=C
++ env -- tr X '\273'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 187 + 1
++ c=188
++ test 188 -lt 256
+++ printf '\\%o\n' 188
++ tr2='\274'
++ echo X
++ tr X '\274'
++ LC_ALL=C
++ env -- tr X '\274'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 188 + 1
++ c=189
++ test 189 -lt 256
+++ printf '\\%o\n' 189
++ tr2='\275'
++ echo X
++ tr X '\275'
++ LC_ALL=C
++ env -- tr X '\275'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 189 + 1
++ c=190
++ test 190 -lt 256
+++ printf '\\%o\n' 190
++ tr2='\276'
++ echo X
++ tr X '\276'
++ LC_ALL=C
++ env -- tr X '\276'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 190 + 1
++ c=191
++ test 191 -lt 256
+++ printf '\\%o\n' 191
++ tr2='\277'
++ echo X
++ tr X '\277'
++ LC_ALL=C
++ env -- tr X '\277'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 191 + 1
++ c=192
++ test 192 -lt 256
+++ printf '\\%o\n' 192
++ tr2='\300'
++ echo X
++ tr X '\300'
++ LC_ALL=C
++ env -- tr X '\300'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 192 + 1
++ c=193
++ test 193 -lt 256
+++ printf '\\%o\n' 193
++ tr2='\301'
++ echo X
++ tr X '\301'
++ LC_ALL=C
++ env -- tr X '\301'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 193 + 1
++ c=194
++ test 194 -lt 256
+++ printf '\\%o\n' 194
++ tr2='\302'
++ echo X
++ tr X '\302'
++ LC_ALL=C
++ env -- tr X '\302'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 194 + 1
++ c=195
++ test 195 -lt 256
+++ printf '\\%o\n' 195
++ tr2='\303'
++ echo X
++ tr X '\303'
++ LC_ALL=C
++ env -- tr X '\303'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 195 + 1
++ c=196
++ test 196 -lt 256
+++ printf '\\%o\n' 196
++ tr2='\304'
++ echo X
++ tr X '\304'
++ LC_ALL=C
++ env -- tr X '\304'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 196 + 1
++ c=197
++ test 197 -lt 256
+++ printf '\\%o\n' 197
++ tr2='\305'
++ echo X
++ tr X '\305'
++ LC_ALL=C
++ env -- tr X '\305'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 197 + 1
++ c=198
++ test 198 -lt 256
+++ printf '\\%o\n' 198
++ tr2='\306'
++ echo X
++ tr X '\306'
++ LC_ALL=C
++ env -- tr X '\306'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 198 + 1
++ c=199
++ test 199 -lt 256
+++ printf '\\%o\n' 199
++ tr2='\307'
++ echo X
++ tr X '\307'
++ LC_ALL=C
++ env -- tr X '\307'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 199 + 1
++ c=200
++ test 200 -lt 256
+++ printf '\\%o\n' 200
++ tr2='\310'
++ echo X
++ tr X '\310'
++ LC_ALL=C
++ env -- tr X '\310'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 200 + 1
++ c=201
++ test 201 -lt 256
+++ printf '\\%o\n' 201
++ tr2='\311'
++ echo X
++ tr X '\311'
++ LC_ALL=C
++ env -- tr X '\311'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 201 + 1
++ c=202
++ test 202 -lt 256
+++ printf '\\%o\n' 202
++ tr2='\312'
++ echo X
++ tr X '\312'
++ LC_ALL=C
++ env -- tr X '\312'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 202 + 1
++ c=203
++ test 203 -lt 256
+++ printf '\\%o\n' 203
++ tr2='\313'
++ echo X
++ tr X '\313'
++ LC_ALL=C
++ env -- tr X '\313'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 203 + 1
++ c=204
++ test 204 -lt 256
+++ printf '\\%o\n' 204
++ tr2='\314'
++ echo X
++ tr X '\314'
++ LC_ALL=C
++ env -- tr X '\314'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 204 + 1
++ c=205
++ test 205 -lt 256
+++ printf '\\%o\n' 205
++ tr2='\315'
++ echo X
++ tr X '\315'
++ LC_ALL=C
++ env -- tr X '\315'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 205 + 1
++ c=206
++ test 206 -lt 256
+++ printf '\\%o\n' 206
++ tr2='\316'
++ echo X
++ tr X '\316'
++ LC_ALL=C
++ env -- tr X '\316'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 206 + 1
++ c=207
++ test 207 -lt 256
+++ printf '\\%o\n' 207
++ tr2='\317'
++ echo X
++ tr X '\317'
++ LC_ALL=C
++ env -- tr X '\317'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 207 + 1
++ c=208
++ test 208 -lt 256
+++ printf '\\%o\n' 208
++ tr2='\320'
++ echo X
++ tr X '\320'
++ LC_ALL=C
++ env -- tr X '\320'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 208 + 1
++ c=209
++ test 209 -lt 256
+++ printf '\\%o\n' 209
++ tr2='\321'
++ echo X
++ tr X '\321'
++ LC_ALL=C
++ env -- tr X '\321'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 209 + 1
++ c=210
++ test 210 -lt 256
+++ printf '\\%o\n' 210
++ tr2='\322'
++ echo X
++ tr X '\322'
++ LC_ALL=C
++ env -- tr X '\322'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 210 + 1
++ c=211
++ test 211 -lt 256
+++ printf '\\%o\n' 211
++ tr2='\323'
++ echo X
++ tr X '\323'
++ LC_ALL=C
++ env -- tr X '\323'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 211 + 1
++ c=212
++ test 212 -lt 256
+++ printf '\\%o\n' 212
++ tr2='\324'
++ tr X '\324'
++ LC_ALL=C
++ env -- tr X '\324'
++ echo X
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 212 + 1
++ c=213
++ test 213 -lt 256
+++ printf '\\%o\n' 213
++ tr2='\325'
++ echo X
++ tr X '\325'
++ LC_ALL=C
++ env -- tr X '\325'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 213 + 1
++ c=214
++ test 214 -lt 256
+++ printf '\\%o\n' 214
++ tr2='\326'
++ echo X
++ tr X '\326'
++ LC_ALL=C
++ env -- tr X '\326'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 214 + 1
++ c=215
++ test 215 -lt 256
+++ printf '\\%o\n' 215
++ tr2='\327'
++ echo X
++ tr X '\327'
++ LC_ALL=C
++ env -- tr X '\327'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 215 + 1
++ c=216
++ test 216 -lt 256
+++ printf '\\%o\n' 216
++ tr2='\330'
++ echo X
++ tr X '\330'
++ LC_ALL=C
++ env -- tr X '\330'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 216 + 1
++ c=217
++ test 217 -lt 256
+++ printf '\\%o\n' 217
++ tr2='\331'
++ echo X
++ tr X '\331'
++ LC_ALL=C
++ env -- tr X '\331'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 217 + 1
++ c=218
++ test 218 -lt 256
+++ printf '\\%o\n' 218
++ tr2='\332'
++ echo X
++ tr X '\332'
++ LC_ALL=C
++ env -- tr X '\332'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 218 + 1
++ c=219
++ test 219 -lt 256
+++ printf '\\%o\n' 219
++ tr2='\333'
++ echo X
++ tr X '\333'
++ LC_ALL=C
++ env -- tr X '\333'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 219 + 1
++ c=220
++ test 220 -lt 256
+++ printf '\\%o\n' 220
++ tr2='\334'
++ echo X
++ tr X '\334'
++ LC_ALL=C
++ env -- tr X '\334'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 220 + 1
++ c=221
++ test 221 -lt 256
+++ printf '\\%o\n' 221
++ tr2='\335'
++ echo X
++ tr X '\335'
++ LC_ALL=C
++ env -- tr X '\335'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 221 + 1
++ c=222
++ test 222 -lt 256
+++ printf '\\%o\n' 222
++ tr2='\336'
++ echo X
++ tr X '\336'
++ LC_ALL=C
++ env -- tr X '\336'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 222 + 1
++ c=223
++ test 223 -lt 256
+++ printf '\\%o\n' 223
++ tr2='\337'
++ echo X
++ tr X '\337'
++ LC_ALL=C
++ env -- tr X '\337'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 223 + 1
++ c=224
++ test 224 -lt 256
+++ printf '\\%o\n' 224
++ tr2='\340'
++ echo X
++ tr X '\340'
++ LC_ALL=C
++ env -- tr X '\340'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 224 + 1
++ c=225
++ test 225 -lt 256
+++ printf '\\%o\n' 225
++ tr2='\341'
++ echo X
++ tr X '\341'
++ LC_ALL=C
++ env -- tr X '\341'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 225 + 1
++ c=226
++ test 226 -lt 256
+++ printf '\\%o\n' 226
++ tr2='\342'
++ echo X
++ tr X '\342'
++ LC_ALL=C
++ env -- tr X '\342'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 226 + 1
++ c=227
++ test 227 -lt 256
+++ printf '\\%o\n' 227
++ tr2='\343'
++ echo X
++ tr X '\343'
++ LC_ALL=C
++ env -- tr X '\343'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 227 + 1
++ c=228
++ test 228 -lt 256
+++ printf '\\%o\n' 228
++ tr2='\344'
++ echo X
++ tr X '\344'
++ LC_ALL=C
++ env -- tr X '\344'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 228 + 1
++ c=229
++ test 229 -lt 256
+++ printf '\\%o\n' 229
++ tr2='\345'
++ echo X
++ tr X '\345'
++ LC_ALL=C
++ env -- tr X '\345'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 229 + 1
++ c=230
++ test 230 -lt 256
+++ printf '\\%o\n' 230
++ tr2='\346'
++ echo X
++ tr X '\346'
++ LC_ALL=C
++ env -- tr X '\346'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 230 + 1
++ c=231
++ test 231 -lt 256
+++ printf '\\%o\n' 231
++ tr2='\347'
++ echo X
++ tr X '\347'
++ LC_ALL=C
++ env -- tr X '\347'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 231 + 1
++ c=232
++ test 232 -lt 256
+++ printf '\\%o\n' 232
++ tr2='\350'
++ echo X
++ tr X '\350'
++ LC_ALL=C
++ env -- tr X '\350'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 232 + 1
++ c=233
++ test 233 -lt 256
+++ printf '\\%o\n' 233
++ tr2='\351'
++ echo X
++ tr X '\351'
++ LC_ALL=C
++ env -- tr X '\351'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 233 + 1
++ c=234
++ test 234 -lt 256
+++ printf '\\%o\n' 234
++ tr2='\352'
++ echo X
++ tr X '\352'
++ LC_ALL=C
++ env -- tr X '\352'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 234 + 1
++ c=235
++ test 235 -lt 256
+++ printf '\\%o\n' 235
++ tr2='\353'
++ echo X
++ tr X '\353'
++ LC_ALL=C
++ env -- tr X '\353'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 235 + 1
++ c=236
++ test 236 -lt 256
+++ printf '\\%o\n' 236
++ tr2='\354'
++ echo X
++ tr X '\354'
++ LC_ALL=C
++ env -- tr X '\354'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 236 + 1
++ c=237
++ test 237 -lt 256
+++ printf '\\%o\n' 237
++ tr2='\355'
++ echo X
++ tr X '\355'
++ LC_ALL=C
++ env -- tr X '\355'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 237 + 1
++ c=238
++ test 238 -lt 256
+++ printf '\\%o\n' 238
++ tr2='\356'
++ echo X
++ tr X '\356'
++ LC_ALL=C
++ env -- tr X '\356'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 238 + 1
++ c=239
++ test 239 -lt 256
+++ printf '\\%o\n' 239
++ tr2='\357'
++ echo X
++ tr X '\357'
++ LC_ALL=C
++ env -- tr X '\357'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 239 + 1
++ c=240
++ test 240 -lt 256
+++ printf '\\%o\n' 240
++ tr2='\360'
++ echo X
++ tr X '\360'
++ LC_ALL=C
++ env -- tr X '\360'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 240 + 1
++ c=241
++ test 241 -lt 256
+++ printf '\\%o\n' 241
++ tr2='\361'
++ echo X
++ tr X '\361'
++ LC_ALL=C
++ env -- tr X '\361'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 241 + 1
++ c=242
++ test 242 -lt 256
+++ printf '\\%o\n' 242
++ tr2='\362'
++ echo X
++ tr X '\362'
++ LC_ALL=C
++ env -- tr X '\362'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 242 + 1
++ c=243
++ test 243 -lt 256
+++ printf '\\%o\n' 243
++ tr2='\363'
++ echo X
++ tr X '\363'
++ LC_ALL=C
++ env -- tr X '\363'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 243 + 1
++ c=244
++ test 244 -lt 256
+++ printf '\\%o\n' 244
++ tr2='\364'
++ echo X
++ tr X '\364'
++ LC_ALL=C
++ env -- tr X '\364'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 244 + 1
++ c=245
++ test 245 -lt 256
+++ printf '\\%o\n' 245
++ tr2='\365'
++ echo X
++ tr X '\365'
++ LC_ALL=C
++ env -- tr X '\365'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 245 + 1
++ c=246
++ test 246 -lt 256
+++ printf '\\%o\n' 246
++ tr2='\366'
++ echo X
++ tr X '\366'
++ LC_ALL=C
++ env -- tr X '\366'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 246 + 1
++ c=247
++ test 247 -lt 256
+++ printf '\\%o\n' 247
++ tr2='\367'
++ echo X
++ tr X '\367'
++ LC_ALL=C
++ env -- tr X '\367'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 247 + 1
++ c=248
++ test 248 -lt 256
+++ printf '\\%o\n' 248
++ tr2='\370'
++ echo X
++ tr X '\370'
++ LC_ALL=C
++ env -- tr X '\370'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 248 + 1
++ c=249
++ test 249 -lt 256
+++ printf '\\%o\n' 249
++ tr2='\371'
++ echo X
++ tr X '\371'
++ LC_ALL=C
++ env -- tr X '\371'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 249 + 1
++ c=250
++ test 250 -lt 256
+++ printf '\\%o\n' 250
++ tr2='\372'
++ echo X
++ tr X '\372'
++ LC_ALL=C
++ env -- tr X '\372'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 250 + 1
++ c=251
++ test 251 -lt 256
+++ printf '\\%o\n' 251
++ tr2='\373'
++ echo X
++ tr X '\373'
++ LC_ALL=C
++ env -- tr X '\373'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 251 + 1
++ c=252
++ test 252 -lt 256
+++ printf '\\%o\n' 252
++ tr2='\374'
++ echo X
++ tr X '\374'
++ LC_ALL=C
++ env -- tr X '\374'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 252 + 1
++ c=253
++ test 253 -lt 256
+++ printf '\\%o\n' 253
++ tr2='\375'
++ echo X
++ tr X '\375'
++ LC_ALL=C
++ env -- tr X '\375'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 253 + 1
++ c=254
++ test 254 -lt 256
+++ printf '\\%o\n' 254
++ tr2='\376'
++ echo X
++ tr X '\376'
++ LC_ALL=C
++ env -- tr X '\376'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 254 + 1
++ c=255
++ test 255 -lt 256
+++ printf '\\%o\n' 255
++ tr2='\377'
++ echo X
++ tr X '\377'
++ LC_ALL=C
++ env -- tr X '\377'
+++ wc -l
++ test 1 -eq 1
++ grep . in
++ compare in out
++ compare_dev_null_ in out
++ test 2 = 2
++ test xin = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ in out
++ LC_ALL=C
++ diff -u in out
++ test 0 -ne 0
+++ expr 255 + 1
++ c=256
++ test 256 -lt 256
++ Exit 0
++ set +e
++ exit 0
++ exit 0
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
++ rm -rf /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-c-locale.xOgS
++ exit 0
+PASS c-locale (exit status: 0)

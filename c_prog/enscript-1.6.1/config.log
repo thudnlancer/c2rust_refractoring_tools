@@ -1,0 +1,89 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:568: checking for a BSD compatible install
+configure:621: checking whether build environment is sane
+configure:678: checking whether make sets ${MAKE}
+configure:724: checking for working aclocal
+configure:737: checking for working autoconf
+configure:750: checking for working automake
+configure:763: checking for working autoheader
+configure:776: checking for working makeinfo
+configure:820: checking for gcc
+configure:897: checking whether the C compiler (gcc  ) works
+configure:911: gcc -o conftest    conftest.c  1>&5
+configure:908:1: warning: return type defaults to 'int' [-Wimplicit-int]
+ main(){return(0);}
+ ^~~~
+configure:931: checking whether the C compiler (gcc  ) is a cross-compiler
+configure:936: checking whether we are using GNU C
+configure:960: checking whether gcc accepts -g
+configure:990: checking for POSIXized ISC
+configure:1014: checking for gcc option to accept ANSI C
+configure:1091: checking how to run the C preprocessor
+configure:1154: checking for function prototypes
+configure:1314: checking for working const
+configure:1391: checking for working alloca.h
+configure:1424: checking for alloca
+configure:1619: checking for ANSI C header files
+configure:1726: checking for string.h
+configure:1726: checking for stdlib.h
+configure:1726: checking for unistd.h
+configure:1726: checking for stdarg.h
+configure:1726: checking for math.h
+configure:1726: checking for pwd.h
+configure:1766: checking for strchr
+configure:1819: checking for strerror
+configure:1873: checking for memmove
+configure:1927: checking for memcpy
+configure:1981: checking for strtoul
+configure:2036: checking for getcwd
+configure:2141: checking for vprintf
+configure:2247: checking for main in -lsun
+configure:2291: checking for gethostname
+configure:2385: checking for ranlib
+configure:2416: checking for bison
+configure:2416: checking for byacc
+configure:2451: checking for flex
+configure:2483: checking for flex
+configure:2516: checking for yywrap in -lfl
+configure:2558: checking lex output file root
+configure:2579: checking whether yytext is a pointer
+configure:2657: checking for lpr
+configure:2685: checking for lp
+configure:2739: checking for inline
+configure:2779: checking for off_t
+configure:2812: checking for size_t
+configure:2848: checking for unistd.h
+configure:2887: checking for getpagesize
+configure:2940: checking for working mmap
+configure:3116: checking for argz.h
+configure:3116: checking for limits.h
+configure:3116: checking for locale.h
+configure:3116: checking for nl_types.h
+configure:3116: checking for malloc.h
+configure:3116: checking for string.h
+configure:3116: checking for unistd.h
+configure:3116: checking for values.h
+configure:3156: checking for getcwd
+configure:3156: checking for munmap
+configure:3156: checking for putenv
+configure:3156: checking for setenv
+configure:3156: checking for setlocale
+configure:3156: checking for strchr
+configure:3156: checking for strcasecmp
+configure:3156: checking for __argz_count
+configure:3156: checking for __argz_stringify
+configure:3156: checking for __argz_next
+configure:3275: checking for LC_MESSAGES
+configure:3308: checking whether NLS is requested
+configure:3328: checking whether included gettext is requested
+configure:3347: checking for libintl.h
+configure:3374: checking for gettext in libc
+configure:3477: checking for msgfmt
+configure:3511: checking for dcgettext
+configure:3566: checking for gmsgfmt
+configure:3598: checking for xgettext
+configure:3638: gcc -o conftest -g -O2   conftest.c  1>&5
+configure:4081: checking for catalogs to be installed
+configure:4186: checking for perl

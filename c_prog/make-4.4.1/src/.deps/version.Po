@@ -1,0 +1,15 @@
+src/version.o: src/version.c /usr/include/stdc-predef.h src/config.h \
+ /usr/lib/gcc/x86_64-linux-gnu/7/include/stdbool.h src/../src/mkcustom.h \
+ lib/alloca.h /usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h
+
+/usr/include/stdc-predef.h:
+
+src/config.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stdbool.h:
+
+src/../src/mkcustom.h:
+
+lib/alloca.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/7/include/stddef.h:

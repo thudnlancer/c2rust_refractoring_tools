@@ -1,0 +1,1492 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/grep-3.11/tests gt-foad1.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests
++++ template_=gt-foad1.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
+++++ ls -dgo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
++++ perms='drwx------ 2 4096 Oct 28 04:17 /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
+++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/grep-3.11/src/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ EXIT
++ path_prepend_ ../src
++ test 1 '!=' 0
++ path_dir_=../src
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/grep-3.11/tests/../src:/home/c2rust/Desktop/c_prog/grep-3.11/src:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/grep-3.11/tests/../src
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ failures=0
++ grep_test WordA/wordB/WORDC/ Word/word/WORD/ word -o -i
++ INPUT=WordA/wordB/WORDC/
++ EXPECT=Word/word/WORD/
++ shift 2
+++ printf %s WordA/wordB/WORDC/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep word -o -i
++ OUTPUT=Word/word/WORD/
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ test yes = yes
++ echo 'Testing:  grep word' -o -i
+Testing:  grep word -o -i
++ test C '!=' C
++ echo '  input:  "WordA/wordB/WORDC/"'
+  input:  "WordA/wordB/WORDC/"
++ echo '  output: "Word/word/WORD/"'
+  output: "Word/word/WORD/"
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ grep_test WordA/wordB/WORDC/ Word/word/WORD/ Word -o -i
++ INPUT=WordA/wordB/WORDC/
++ EXPECT=Word/word/WORD/
++ shift 2
+++ printf %s WordA/wordB/WORDC/
+++ tr / '\n'
+++ LC_ALL=C
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep Word -o -i
+++ env -- tr / '\n'
++ OUTPUT=Word/word/WORD/
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ test yes = yes
++ echo 'Testing:  grep Word' -o -i
+Testing:  grep Word -o -i
++ test C '!=' C
++ echo '  input:  "WordA/wordB/WORDC/"'
+  input:  "WordA/wordB/WORDC/"
++ echo '  output: "Word/word/WORD/"'
+  output: "Word/word/WORD/"
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ grep_test WordA/wordB/WORDC/ Word/word/WORD/ WORD -o -i
++ INPUT=WordA/wordB/WORDC/
++ EXPECT=Word/word/WORD/
++ shift 2
+++ printf %s WordA/wordB/WORDC/
+++ tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ env -- tr '\n' /
+++ grep WORD -o -i
++ OUTPUT=Word/word/WORD/
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ test yes = yes
++ echo 'Testing:  grep WORD' -o -i
+Testing:  grep WORD -o -i
++ test C '!=' C
++ echo '  input:  "WordA/wordB/WORDC/"'
+  input:  "WordA/wordB/WORDC/"
++ echo '  output: "Word/word/WORD/"'
+  output: "Word/word/WORD/"
++ test Word/word/WORD/ '!=' Word/word/WORD/
++ grep_test 'wA wB/wC/' 1:wA/1:wB/2:wC/ w. -o -n
++ INPUT='wA wB/wC/'
++ EXPECT=1:wA/1:wB/2:wC/
++ shift 2
+++ printf %s 'wA wB/wC/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep w. -o -n
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=1:wA/1:wB/2:wC/
++ test 1:wA/1:wB/2:wC/ '!=' 1:wA/1:wB/2:wC/
++ test yes = yes
++ echo 'Testing:  grep w.' -o -n
+Testing:  grep w. -o -n
++ test C '!=' C
++ echo '  input:  "wA wB/wC/"'
+  input:  "wA wB/wC/"
++ echo '  output: "1:wA/1:wB/2:wC/"'
+  output: "1:wA/1:wB/2:wC/"
++ test 1:wA/1:wB/2:wC/ '!=' 1:wA/1:wB/2:wC/
++ grep_test 'wA wB/wC/' 1:wA/1:wB/2:wC/ w. -o -n -i
++ INPUT='wA wB/wC/'
++ EXPECT=1:wA/1:wB/2:wC/
++ shift 2
+++ printf %s 'wA wB/wC/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w. -o -n -i
++ OUTPUT=1:wA/1:wB/2:wC/
++ test 1:wA/1:wB/2:wC/ '!=' 1:wA/1:wB/2:wC/
++ test yes = yes
++ echo 'Testing:  grep w.' -o -n -i
+Testing:  grep w. -o -n -i
++ test C '!=' C
++ echo '  input:  "wA wB/wC/"'
+  input:  "wA wB/wC/"
++ echo '  output: "1:wA/1:wB/2:wC/"'
+  output: "1:wA/1:wB/2:wC/"
++ test 1:wA/1:wB/2:wC/ '!=' 1:wA/1:wB/2:wC/
++ grep_test 'wA wB/wC/' 1:wA/1:wB/2:wC/ w. -o -n -3
+Testing:  grep w. -o -n -3
+  input:  "wA wB/wC/"
+  output: "1:wA/1:wB/2:wC/"
++ grep_test 'XwA YwB/ZwC/' 1:wA/5:wB/9:wC/ w. -o -b
++ INPUT='XwA YwB/ZwC/'
++ EXPECT=1:wA/5:wB/9:wC/
++ shift 2
+++ printf %s 'XwA YwB/ZwC/'
+++ tr / '\n'
+++ grep w. -o -b
+++ tr '\n' /
+++ LC_ALL=C
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ env -- tr '\n' /
++ OUTPUT=1:wA/5:wB/9:wC/
++ test 1:wA/5:wB/9:wC/ '!=' 1:wA/5:wB/9:wC/
++ test yes = yes
++ echo 'Testing:  grep w.' -o -b
+Testing:  grep w. -o -b
++ test C '!=' C
++ echo '  input:  "XwA YwB/ZwC/"'
+  input:  "XwA YwB/ZwC/"
++ echo '  output: "1:wA/5:wB/9:wC/"'
+  output: "1:wA/5:wB/9:wC/"
++ test 1:wA/5:wB/9:wC/ '!=' 1:wA/5:wB/9:wC/
++ grep_test 'XwA YwB/ZwC/' 1:wA/5:wB/9:wC/ w. -o -b -i
++ INPUT='XwA YwB/ZwC/'
++ EXPECT=1:wA/5:wB/9:wC/
++ shift 2
+++ printf %s 'XwA YwB/ZwC/'
+++ tr '\n' /
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w. -o -b -i
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT=1:wA/5:wB/9:wC/
++ test 1:wA/5:wB/9:wC/ '!=' 1:wA/5:wB/9:wC/
++ test yes = yes
++ echo 'Testing:  grep w.' -o -b -i
+Testing:  grep w. -o -b -i
++ test C '!=' C
++ echo '  input:  "XwA YwB/ZwC/"'
+  input:  "XwA YwB/ZwC/"
++ echo '  output: "1:wA/5:wB/9:wC/"'
+  output: "1:wA/5:wB/9:wC/"
++ test 1:wA/5:wB/9:wC/ '!=' 1:wA/5:wB/9:wC/
++ grep_test 'XwA YwB/ZwC/' 1:wA/5:wB/9:wC/ w. -o -b -3
+Testing:  grep w. -o -b -3
+  input:  "XwA YwB/ZwC/"
+  output: "1:wA/5:wB/9:wC/"
++ grep_test 'XwA YwB/ZwC/' 1:w/5:w/9:w/ w -F -o -b
++ INPUT='XwA YwB/ZwC/'
++ EXPECT=1:w/5:w/9:w/
++ shift 2
+++ printf %s 'XwA YwB/ZwC/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w -F -o -b
++ OUTPUT=1:w/5:w/9:w/
++ test 1:w/5:w/9:w/ '!=' 1:w/5:w/9:w/
++ test yes = yes
++ echo 'Testing:  grep w' -F -o -b
+Testing:  grep w -F -o -b
++ test C '!=' C
++ echo '  input:  "XwA YwB/ZwC/"'
+  input:  "XwA YwB/ZwC/"
++ echo '  output: "1:w/5:w/9:w/"'
+  output: "1:w/5:w/9:w/"
++ test 1:w/5:w/9:w/ '!=' 1:w/5:w/9:w/
++ grep_test 'XwA YwB/ZwC/' 1:w/5:w/9:w/ w -F -o -b -i
++ INPUT='XwA YwB/ZwC/'
++ EXPECT=1:w/5:w/9:w/
++ shift 2
+++ printf %s 'XwA YwB/ZwC/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w -F -o -b -i
++ OUTPUT=1:w/5:w/9:w/
++ test 1:w/5:w/9:w/ '!=' 1:w/5:w/9:w/
++ test yes = yes
++ echo 'Testing:  grep w' -F -o -b -i
+Testing:  grep w -F -o -b -i
++ test C '!=' C
++ echo '  input:  "XwA YwB/ZwC/"'
+  input:  "XwA YwB/ZwC/"
++ echo '  output: "1:w/5:w/9:w/"'
+  output: "1:w/5:w/9:w/"
++ test 1:w/5:w/9:w/ '!=' 1:w/5:w/9:w/
++ grep_test 'XwA YwB/ZwC/' 1:w/5:w/9:w/ w -F -o -b -3
+Testing:  grep w -F -o -b -3
+  input:  "XwA YwB/ZwC/"
+  output: "1:w/5:w/9:w/"
++ grep_test 'wA wB/' '(standard input):wA/(standard input):wB/' w. -o -H
++ INPUT='wA wB/'
++ EXPECT='(standard input):wA/(standard input):wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep w. -o -H
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='(standard input):wA/(standard input):wB/'
++ test '(standard input):wA/(standard input):wB/' '!=' '(standard input):wA/(standard input):wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -o -H
+Testing:  grep w. -o -H
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "(standard input):wA/(standard input):wB/"'
+  output: "(standard input):wA/(standard input):wB/"
++ test '(standard input):wA/(standard input):wB/' '!=' '(standard input):wA/(standard input):wB/'
++ grep_test 'wA wB/' '(standard input):wA/(standard input):wB/' w. -o -H -i
++ INPUT='wA wB/'
++ EXPECT='(standard input):wA/(standard input):wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ grep w. -o -H -i
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='(standard input):wA/(standard input):wB/'
++ test '(standard input):wA/(standard input):wB/' '!=' '(standard input):wA/(standard input):wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -o -H -i
+Testing:  grep w. -o -H -i
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "(standard input):wA/(standard input):wB/"'
+  output: "(standard input):wA/(standard input):wB/"
++ test '(standard input):wA/(standard input):wB/' '!=' '(standard input):wA/(standard input):wB/'
++ grep_test 'wA wB/' '(standard input):wA/(standard input):wB/' w. -o -H -3
+Testing:  grep w. -o -H -3
+  input:  "wA wB/"
+  output: "(standard input):wA/(standard input):wB/"
++ grep_test 'wA wB/' 'wA wB/' w.
++ INPUT='wA wB/'
++ EXPECT='wA wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w.
++ OUTPUT='wA wB/'
++ test 'wA wB/' '!=' 'wA wB/'
++ test yes = yes
++ echo 'Testing:  grep w.'
+Testing:  grep w.
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "wA wB/"'
+  output: "wA wB/"
++ test 'wA wB/' '!=' 'wA wB/'
++ grep_test 'wA wB/' 'wA wB/' w. -h
++ INPUT='wA wB/'
++ EXPECT='wA wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep w. -h
++ OUTPUT='wA wB/'
++ test 'wA wB/' '!=' 'wA wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -h
+Testing:  grep w. -h
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "wA wB/"'
+  output: "wA wB/"
++ test 'wA wB/' '!=' 'wA wB/'
++ grep_test 'wA wB/' 'wA wB/' w. -H -h
++ INPUT='wA wB/'
++ EXPECT='wA wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep w. -H -h
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='wA wB/'
++ test 'wA wB/' '!=' 'wA wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -H -h
+Testing:  grep w. -H -h
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "wA wB/"'
+  output: "wA wB/"
++ test 'wA wB/' '!=' 'wA wB/'
++ grep_test 'wA wB/' '(standard input):wA wB/' w. -H
++ INPUT='wA wB/'
++ EXPECT='(standard input):wA wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep w. -H
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='(standard input):wA wB/'
++ test '(standard input):wA wB/' '!=' '(standard input):wA wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -H
+Testing:  grep w. -H
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "(standard input):wA wB/"'
+  output: "(standard input):wA wB/"
++ test '(standard input):wA wB/' '!=' '(standard input):wA wB/'
++ grep_test 'wA wB/' '(standard input):wA wB/' w. -h -H
++ INPUT='wA wB/'
++ EXPECT='(standard input):wA wB/'
++ shift 2
+++ printf %s 'wA wB/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep w. -h -H
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='(standard input):wA wB/'
++ test '(standard input):wA wB/' '!=' '(standard input):wA wB/'
++ test yes = yes
++ echo 'Testing:  grep w.' -h -H
+Testing:  grep w. -h -H
++ test C '!=' C
++ echo '  input:  "wA wB/"'
+  input:  "wA wB/"
++ echo '  output: "(standard input):wA wB/"'
+  output: "(standard input):wA wB/"
++ test '(standard input):wA wB/' '!=' '(standard input):wA wB/'
++ grep_test word_word/ word_/ '^word_*' -o
++ INPUT=word_word/
++ EXPECT=word_/
++ shift 2
+++ printf %s word_word/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '^word_*' -o
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=word_/
++ test word_/ '!=' word_/
++ test yes = yes
++ echo 'Testing:  grep ^word_*' -o
+Testing:  grep ^word_* -o
++ test C '!=' C
++ echo '  input:  "word_word/"'
+  input:  "word_word/"
++ echo '  output: "word_/"'
+  output: "word_/"
++ test word_/ '!=' word_/
++ grep_test wordword/ word/ '\<word' -o
++ INPUT=wordword/
++ EXPECT=word/
++ shift 2
+++ printf %s wordword/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '\<word' -o
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=word/
++ test word/ '!=' word/
++ test yes = yes
++ echo 'Testing:  grep \<word' -o
+Testing:  grep \<word -o
++ test C '!=' C
++ echo '  input:  "wordword/"'
+  input:  "wordword/"
++ echo '  output: "word/"'
+  output: "word/"
++ test word/ '!=' word/
++ CB='[01;31m[K'
++ CE='[m[K'
++ grep_test WordA/wordb/WORDC/ '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' word --color=always -i
++ INPUT=WordA/wordb/WORDC/
++ EXPECT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ shift 2
+++ printf %s WordA/wordb/WORDC/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ grep word --color=always -i
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test yes = yes
++ echo 'Testing:  grep word' --color=always -i
+Testing:  grep word --color=always -i
++ test C '!=' C
++ echo '  input:  "WordA/wordb/WORDC/"'
+  input:  "WordA/wordb/WORDC/"
++ echo '  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"'
+  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ grep_test WordA/wordb/WORDC/ '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' Word --color=always -i
++ INPUT=WordA/wordb/WORDC/
++ EXPECT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ shift 2
+++ printf %s WordA/wordb/WORDC/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep Word --color=always -i
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test yes = yes
++ echo 'Testing:  grep Word' --color=always -i
+Testing:  grep Word --color=always -i
++ test C '!=' C
++ echo '  input:  "WordA/wordb/WORDC/"'
+  input:  "WordA/wordb/WORDC/"
++ echo '  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"'
+  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ grep_test WordA/wordb/WORDC/ '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' WORD --color=always -i
++ INPUT=WordA/wordb/WORDC/
++ EXPECT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ shift 2
+++ printf %s WordA/wordb/WORDC/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep WORD --color=always -i
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ test yes = yes
++ echo 'Testing:  grep WORD' --color=always -i
+Testing:  grep WORD --color=always -i
++ test C '!=' C
++ echo '  input:  "WordA/wordb/WORDC/"'
+  input:  "WordA/wordb/WORDC/"
++ echo '  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"'
+  output: "[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/"
++ test '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/' '!=' '[01;31m[KWord[m[KA/[01;31m[Kword[m[Kb/[01;31m[KWORD[m[KC/'
++ grep_test word_word/ '[01;31m[Kword_[m[Kword/' '^word_*' --color=always
++ INPUT=word_word/
++ EXPECT='[01;31m[Kword_[m[Kword/'
++ shift 2
+++ printf %s word_word/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '^word_*' --color=always
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[Kword_[m[Kword/'
++ test '[01;31m[Kword_[m[Kword/' '!=' '[01;31m[Kword_[m[Kword/'
++ test yes = yes
++ echo 'Testing:  grep ^word_*' --color=always
+Testing:  grep ^word_* --color=always
++ test C '!=' C
++ echo '  input:  "word_word/"'
+  input:  "word_word/"
++ echo '  output: "[01;31m[Kword_[m[Kword/"'
+  output: "[01;31m[Kword_[m[Kword/"
++ test '[01;31m[Kword_[m[Kword/' '!=' '[01;31m[Kword_[m[Kword/'
++ grep_test wordword/ '[01;31m[Kword[m[Kword/' '\<word' --color=always
++ INPUT=wordword/
++ EXPECT='[01;31m[Kword[m[Kword/'
++ shift 2
+++ printf %s wordword/
+++ tr / '\n'
+++ grep '\<word' --color=always
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[Kword[m[Kword/'
++ test '[01;31m[Kword[m[Kword/' '!=' '[01;31m[Kword[m[Kword/'
++ test yes = yes
++ echo 'Testing:  grep \<word' --color=always
+Testing:  grep \<word --color=always
++ test C '!=' C
++ echo '  input:  "wordword/"'
+  input:  "wordword/"
++ echo '  output: "[01;31m[Kword[m[Kword/"'
+  output: "[01;31m[Kword[m[Kword/"
++ test '[01;31m[Kword[m[Kword/' '!=' '[01;31m[Kword[m[Kword/'
++ grep_test 4/40/ 4/40/ '^4$' -m1 -A99
++ INPUT=4/40/
++ EXPECT=4/40/
++ shift 2
+++ printf %s 4/40/
+++ tr / '\n'
+++ LC_ALL=C
+++ grep '^4$' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ env -- tr / '\n'
++ OUTPUT=4/40/
++ test 4/40/ '!=' 4/40/
++ test yes = yes
++ echo 'Testing:  grep ^4$' -m1 -A99
+Testing:  grep ^4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/40/"'
+  input:  "4/40/"
++ echo '  output: "4/40/"'
+  output: "4/40/"
++ test 4/40/ '!=' 4/40/
++ grep_test 4/04/ 4/04/ '^4$' -m1 -A99
++ INPUT=4/04/
++ EXPECT=4/04/
++ shift 2
+++ printf %s 4/04/
+++ tr / '\n'
+++ LC_ALL=C
+++ grep '^4$' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ env -- tr / '\n'
++ OUTPUT=4/04/
++ test 4/04/ '!=' 4/04/
++ test yes = yes
++ echo 'Testing:  grep ^4$' -m1 -A99
+Testing:  grep ^4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/04/"'
+  input:  "4/04/"
++ echo '  output: "4/04/"'
+  output: "4/04/"
++ test 4/04/ '!=' 4/04/
++ grep_test 4/444/ 4/444/ '^4$' -m1 -A99
++ INPUT=4/444/
++ EXPECT=4/444/
++ shift 2
+++ printf %s 4/444/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '^4$' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=4/444/
++ test 4/444/ '!=' 4/444/
++ test yes = yes
++ echo 'Testing:  grep ^4$' -m1 -A99
+Testing:  grep ^4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/444/"'
+  input:  "4/444/"
++ echo '  output: "4/444/"'
+  output: "4/444/"
++ test 4/444/ '!=' 4/444/
++ grep_test 4/40/ 4/40/ '^4' -m1 -A99
++ INPUT=4/40/
++ EXPECT=4/40/
++ shift 2
+++ printf %s 4/40/
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep '^4' -m1 -A99
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT=4/40/
++ test 4/40/ '!=' 4/40/
++ test yes = yes
++ echo 'Testing:  grep ^4' -m1 -A99
+Testing:  grep ^4 -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/40/"'
+  input:  "4/40/"
++ echo '  output: "4/40/"'
+  output: "4/40/"
++ test 4/40/ '!=' 4/40/
++ grep_test 4/04/ 4/04/ '^4' -m1 -A99
++ INPUT=4/04/
++ EXPECT=4/04/
++ shift 2
+++ printf %s 4/04/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '^4' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=4/04/
++ test 4/04/ '!=' 4/04/
++ test yes = yes
++ echo 'Testing:  grep ^4' -m1 -A99
+Testing:  grep ^4 -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/04/"'
+  input:  "4/04/"
++ echo '  output: "4/04/"'
+  output: "4/04/"
++ test 4/04/ '!=' 4/04/
++ grep_test 4/444/ 4/444/ '^4' -m1 -A99
++ INPUT=4/444/
++ EXPECT=4/444/
++ shift 2
+++ printf %s 4/444/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '^4' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=4/444/
++ test 4/444/ '!=' 4/444/
++ test yes = yes
++ echo 'Testing:  grep ^4' -m1 -A99
+Testing:  grep ^4 -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/444/"'
+  input:  "4/444/"
++ echo '  output: "4/444/"'
+  output: "4/444/"
++ test 4/444/ '!=' 4/444/
++ grep_test 4/40/ 4/40/ '4$' -m1 -A99
++ INPUT=4/40/
++ EXPECT=4/40/
++ shift 2
+++ printf %s 4/40/
+++ grep '4$' -m1 -A99
+++ tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT=4/40/
++ test 4/40/ '!=' 4/40/
++ test yes = yes
++ echo 'Testing:  grep 4$' -m1 -A99
+Testing:  grep 4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/40/"'
+  input:  "4/40/"
++ echo '  output: "4/40/"'
+  output: "4/40/"
++ test 4/40/ '!=' 4/40/
++ grep_test 4/04/ 4/04/ '4$' -m1 -A99
++ INPUT=4/04/
++ EXPECT=4/04/
++ shift 2
+++ printf %s 4/04/
+++ grep '4$' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT=4/04/
++ test 4/04/ '!=' 4/04/
++ test yes = yes
++ echo 'Testing:  grep 4$' -m1 -A99
+Testing:  grep 4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/04/"'
+  input:  "4/04/"
++ echo '  output: "4/04/"'
+  output: "4/04/"
++ test 4/04/ '!=' 4/04/
++ grep_test 4/444/ 4/444/ '4$' -m1 -A99
++ INPUT=4/444/
++ EXPECT=4/444/
++ shift 2
+++ printf %s 4/444/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep '4$' -m1 -A99
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=4/444/
++ test 4/444/ '!=' 4/444/
++ test yes = yes
++ echo 'Testing:  grep 4$' -m1 -A99
+Testing:  grep 4$ -m1 -A99
++ test C '!=' C
++ echo '  input:  "4/444/"'
+  input:  "4/444/"
++ echo '  output: "4/444/"'
+  output: "4/444/"
++ test 4/444/ '!=' 4/444/
++ grep_test A/CX/B/C/ A/B/C/ -wF -e A -e B -e C
++ INPUT=A/CX/B/C/
++ EXPECT=A/B/C/
++ shift 2
+++ printf %s A/CX/B/C/
+++ grep -wF -e A -e B -e C
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT=A/B/C/
++ test A/B/C/ '!=' A/B/C/
++ test yes = yes
++ echo 'Testing:  grep -wF' -e A -e B -e C
+Testing:  grep -wF -e A -e B -e C
++ test C '!=' C
++ echo '  input:  "A/CX/B/C/"'
+  input:  "A/CX/B/C/"
++ echo '  output: "A/B/C/"'
+  output: "A/B/C/"
++ test A/B/C/ '!=' A/B/C/
++ grep_test 'LIN7C 55327/' '' -wF -e 5327 -e 5532
++ INPUT='LIN7C 55327/'
++ EXPECT=
++ shift 2
+++ printf %s 'LIN7C 55327/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -wF -e 5327 -e 5532
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=
++ test '' '!=' ''
++ test yes = yes
++ echo 'Testing:  grep -wF' -e 5327 -e 5532
+Testing:  grep -wF -e 5327 -e 5532
++ test C '!=' C
++ echo '  input:  "LIN7C 55327/"'
+  input:  "LIN7C 55327/"
++ echo '  output: ""'
+  output: ""
++ test '' '!=' ''
++ grep_test xyz/ y/ -o 'y*'
++ INPUT=xyz/
++ EXPECT=y/
++ shift 2
+++ printf %s xyz/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -o 'y*'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=y/
++ test y/ '!=' y/
++ test yes = yes
++ echo 'Testing:  grep -o' 'y*'
+Testing:  grep -o y*
++ test C '!=' C
++ echo '  input:  "xyz/"'
+  input:  "xyz/"
++ echo '  output: "y/"'
+  output: "y/"
++ test y/ '!=' y/
++ grep_test xyz/ 'x[01;31m[Ky[m[Kz/' --color=always 'y*'
++ INPUT=xyz/
++ EXPECT='x[01;31m[Ky[m[Kz/'
++ shift 2
+++ printf %s xyz/
+++ tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep --color=always 'y*'
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='x[01;31m[Ky[m[Kz/'
++ test 'x[01;31m[Ky[m[Kz/' '!=' 'x[01;31m[Ky[m[Kz/'
++ test yes = yes
++ echo 'Testing:  grep --color=always' 'y*'
+Testing:  grep --color=always y*
++ test C '!=' C
++ echo '  input:  "xyz/"'
+  input:  "xyz/"
++ echo '  output: "x[01;31m[Ky[m[Kz/"'
+  output: "x[01;31m[Ky[m[Kz/"
++ test 'x[01;31m[Ky[m[Kz/' '!=' 'x[01;31m[Ky[m[Kz/'
++ x0='a bb ccc dddd/'
++ x1='dddd ccc bb a/'
++ x2='bcd abcd abc bc bcd abc/'
++ x3='bc abcd bc/'
++ y0='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ y1='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ y2='bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ y3='[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -E --color=always -e bb -e cc -e ccc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ tr '\n' /
+++ env -- tr / '\n'
+++ grep -E --color=always -e bb -e cc -e ccc
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -E' --color=always -e bb -e cc -e ccc
+Testing:  grep -E --color=always -e bb -e cc -e ccc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -F --color=always -e bb -e cc -e ccc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F --color=always -e bb -e cc -e ccc
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -F' --color=always -e bb -e cc -e ccc
+Testing:  grep -F --color=always -e bb -e cc -e ccc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -E --color=always -e bb -e ccc -e cc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ tr '\n' /
+++ grep -E --color=always -e bb -e ccc -e cc
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -E' --color=always -e bb -e ccc -e cc
+Testing:  grep -E --color=always -e bb -e ccc -e cc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -F --color=always -e bb -e ccc -e cc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F --color=always -e bb -e ccc -e cc
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -F' --color=always -e bb -e ccc -e cc
+Testing:  grep -F --color=always -e bb -e ccc -e cc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -E -w --color=always -e bb -e ccc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -E -w --color=always -e bb -e ccc
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always -e bb -e ccc
+Testing:  grep -E -w --color=always -e bb -e ccc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -F -w --color=always -e bb -e ccc
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F -w --color=always -e bb -e ccc
+++ env -- tr / '\n'
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always -e bb -e ccc
+Testing:  grep -F -w --color=always -e bb -e ccc
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -E -w --color=always -e ccc -e bb
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ tr '\n' /
+++ env -- tr / '\n'
+++ grep -E -w --color=always -e ccc -e bb
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always -e ccc -e bb
+Testing:  grep -E -w --color=always -e ccc -e bb
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'a bb ccc dddd/' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' -F -w --color=always -e ccc -e bb
++ INPUT='a bb ccc dddd/'
++ EXPECT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ shift 2
+++ printf %s 'a bb ccc dddd/'
+++ tr / '\n'
+++ LC_ALL=C
+++ grep -F -w --color=always -e ccc -e bb
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always -e ccc -e bb
+Testing:  grep -F -w --color=always -e ccc -e bb
++ test C '!=' C
++ echo '  input:  "a bb ccc dddd/"'
+  input:  "a bb ccc dddd/"
++ echo '  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"'
+  output: "a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/"
++ test 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/' '!=' 'a [01;31m[Kbb[m[K [01;31m[Kccc[m[K dddd/'
++ grep_test 'dddd ccc bb a/' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' -E -w --color=always -e bb -e ccc
++ INPUT='dddd ccc bb a/'
++ EXPECT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ shift 2
+++ printf %s 'dddd ccc bb a/'
+++ tr / '\n'
+++ LC_ALL=C
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -E -w --color=always -e bb -e ccc
+++ env -- tr / '\n'
++ OUTPUT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always -e bb -e ccc
+Testing:  grep -E -w --color=always -e bb -e ccc
++ test C '!=' C
++ echo '  input:  "dddd ccc bb a/"'
+  input:  "dddd ccc bb a/"
++ echo '  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"'
+  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ grep_test 'dddd ccc bb a/' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' -F -w --color=always -e bb -e ccc
++ INPUT='dddd ccc bb a/'
++ EXPECT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ shift 2
+++ printf %s 'dddd ccc bb a/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F -w --color=always -e bb -e ccc
++ OUTPUT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always -e bb -e ccc
+Testing:  grep -F -w --color=always -e bb -e ccc
++ test C '!=' C
++ echo '  input:  "dddd ccc bb a/"'
+  input:  "dddd ccc bb a/"
++ echo '  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"'
+  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ grep_test 'dddd ccc bb a/' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' -E -w --color=always -e ccc -e bb
++ INPUT='dddd ccc bb a/'
++ EXPECT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ shift 2
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ printf %s 'dddd ccc bb a/'
+++ grep -E -w --color=always -e ccc -e bb
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always -e ccc -e bb
+Testing:  grep -E -w --color=always -e ccc -e bb
++ test C '!=' C
++ echo '  input:  "dddd ccc bb a/"'
+  input:  "dddd ccc bb a/"
++ echo '  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"'
+  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ grep_test 'dddd ccc bb a/' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' -F -w --color=always -e ccc -e bb
++ INPUT='dddd ccc bb a/'
++ EXPECT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ shift 2
+++ printf %s 'dddd ccc bb a/'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F -w --color=always -e ccc -e bb
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always -e ccc -e bb
+Testing:  grep -F -w --color=always -e ccc -e bb
++ test C '!=' C
++ echo '  input:  "dddd ccc bb a/"'
+  input:  "dddd ccc bb a/"
++ echo '  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"'
+  output: "dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/"
++ test 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/' '!=' 'dddd [01;31m[Kccc[m[K [01;31m[Kbb[m[K a/'
++ grep_test 'bcd abcd abc bc bcd abc/' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' -E -w --color=always bc
++ INPUT='bcd abcd abc bc bcd abc/'
++ EXPECT='bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ shift 2
+++ tr '\n' /
+++ printf %s 'bcd abcd abc bc bcd abc/'
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -E -w --color=always bc
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ test 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' '!=' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always bc
+Testing:  grep -E -w --color=always bc
++ test C '!=' C
++ echo '  input:  "bcd abcd abc bc bcd abc/"'
+  input:  "bcd abcd abc bc bcd abc/"
++ echo '  output: "bcd abcd abc [01;31m[Kbc[m[K bcd abc/"'
+  output: "bcd abcd abc [01;31m[Kbc[m[K bcd abc/"
++ test 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' '!=' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ grep_test 'bcd abcd abc bc bcd abc/' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' -F -w --color=always bc
++ INPUT='bcd abcd abc bc bcd abc/'
++ EXPECT='bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ shift 2
+++ printf %s 'bcd abcd abc bc bcd abc/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ grep -F -w --color=always bc
++ OUTPUT='bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ test 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' '!=' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always bc
+Testing:  grep -F -w --color=always bc
++ test C '!=' C
++ echo '  input:  "bcd abcd abc bc bcd abc/"'
+  input:  "bcd abcd abc bc bcd abc/"
++ echo '  output: "bcd abcd abc [01;31m[Kbc[m[K bcd abc/"'
+  output: "bcd abcd abc [01;31m[Kbc[m[K bcd abc/"
++ test 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/' '!=' 'bcd abcd abc [01;31m[Kbc[m[K bcd abc/'
++ grep_test 'bc abcd bc/' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' -E -w --color=always bc
++ INPUT='bc abcd bc/'
++ EXPECT='[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ shift 2
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
+++ printf %s 'bc abcd bc/'
+++ grep -E -w --color=always bc
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
++ OUTPUT='[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ test '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' '!=' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ test yes = yes
++ echo 'Testing:  grep -E' -w --color=always bc
+Testing:  grep -E -w --color=always bc
++ test C '!=' C
++ echo '  input:  "bc abcd bc/"'
+  input:  "bc abcd bc/"
++ echo '  output: "[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/"'
+  output: "[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/"
++ test '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' '!=' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ grep_test 'bc abcd bc/' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' -F -w --color=always bc
++ INPUT='bc abcd bc/'
++ EXPECT='[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ shift 2
+++ printf %s 'bc abcd bc/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -F -w --color=always bc
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ test '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' '!=' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ test yes = yes
++ echo 'Testing:  grep -F' -w --color=always bc
+Testing:  grep -F -w --color=always bc
++ test C '!=' C
++ echo '  input:  "bc abcd bc/"'
+  input:  "bc abcd bc/"
++ echo '  output: "[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/"'
+  output: "[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/"
++ test '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/' '!=' '[01;31m[Kbc[m[K abcd [01;31m[Kbc[m[K/'
++ grep_test .tar/ .tar/ -e '\.tar' -e '\.tbz'
++ INPUT=.tar/
++ EXPECT=.tar/
++ shift 2
+++ printf %s .tar/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -e '\.tar' -e '\.tbz'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=.tar/
++ test .tar/ '!=' .tar/
++ test yes = yes
++ echo 'Testing:  grep -e' '\.tar' -e '\.tbz'
+Testing:  grep -e \.tar -e \.tbz
++ test C '!=' C
++ echo '  input:  ".tar/"'
+  input:  ".tar/"
++ echo '  output: ".tar/"'
+  output: ".tar/"
++ test .tar/ '!=' .tar/
++ grep_test .tar/ .tar/ -o -e '\.tar' -e tar
++ INPUT=.tar/
++ EXPECT=.tar/
++ shift 2
+++ printf %s .tar/
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -o -e '\.tar' -e tar
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT=.tar/
++ test .tar/ '!=' .tar/
++ test yes = yes
++ echo 'Testing:  grep -o' -e '\.tar' -e tar
+Testing:  grep -o -e \.tar -e tar
++ test C '!=' C
++ echo '  input:  ".tar/"'
+  input:  ".tar/"
++ echo '  output: ".tar/"'
+  output: ".tar/"
++ test .tar/ '!=' .tar/
++ grep_test '$*.[^\/' '$*.[^\/' -o -e '\$\*\.\[\^\\' -e abc
++ INPUT='$*.[^\/'
++ EXPECT='$*.[^\/'
++ shift 2
+++ printf %s '$*.[^\/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -o -e '\$\*\.\[\^\\' -e abc
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='$*.[^\/'
++ test '$*.[^\/' '!=' '$*.[^\/'
++ test yes = yes
++ echo 'Testing:  grep -o' -e '\$\*\.\[\^\\' -e abc
+Testing:  grep -o -e \$\*\.\[\^\\ -e abc
++ test C '!=' C
++ echo '  input:  "$*.[^\/"'
+  input:  "$*.[^\/"
++ echo '  output: "$*.[^\/"'
+  output: "$*.[^\/"
++ test '$*.[^\/' '!=' '$*.[^\/'
++ grep_test '$*.[^\/(+?{|/' '$*.[^\/(+?{|/' -o -E -e '\$\*\.\[\^\\' -e '\(\+\?\{\|'
++ INPUT='$*.[^\/(+?{|/'
++ EXPECT='$*.[^\/(+?{|/'
++ shift 2
+++ printf %s '$*.[^\/(+?{|/'
+++ tr / '\n'
+++ LC_ALL=C
+++ env -- tr / '\n'
+++ grep -o -E -e '\$\*\.\[\^\\' -e '\(\+\?\{\|'
+++ tr '\n' /
+++ LC_ALL=C
+++ env -- tr '\n' /
++ OUTPUT='$*.[^\/(+?{|/'
++ test '$*.[^\/(+?{|/' '!=' '$*.[^\/(+?{|/'
++ test yes = yes
++ echo 'Testing:  grep -o' -E -e '\$\*\.\[\^\\' -e '\(\+\?\{\|'
+Testing:  grep -o -E -e \$\*\.\[\^\\ -e \(\+\?\{\|
++ test C '!=' C
++ echo '  input:  "$*.[^\/(+?{|/"'
+  input:  "$*.[^\/(+?{|/"
++ echo '  output: "$*.[^\/(+?{|/"'
+  output: "$*.[^\/(+?{|/"
++ test '$*.[^\/(+?{|/' '!=' '$*.[^\/(+?{|/'
++ Exit 0
++ set +e
++ exit 0
++ exit 0
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/grep-3.11/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
++ rm -rf /home/c2rust/Desktop/c_prog/grep-3.11/tests/gt-foad1.rxUg
++ exit 0
+PASS foad1 (exit status: 0)

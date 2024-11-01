@@ -1,0 +1,2 @@
+newline-dfa-bug.sh: skipped test: requires a working valgrind
+SKIP testsuite/newline-dfa-bug.sh (exit status: 77)

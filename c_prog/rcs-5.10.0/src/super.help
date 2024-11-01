@@ -1,0 +1,13 @@
+#include "gnu-h-v.h"
+static char const super_blurb[] = "Dispatch an RCS command.";
+static char const super_help[] = ""
+"[options] command [command-arg ...]\n"
+"Options:\n"
+"  --commands       Display available commands and exit.\n"
+"  --aliases        Display command aliases and exit.\n"
+"  --help COMMAND   Display help for COMMAND.\n"
+"\n"
+"To display help for the legacy interface, use:\n"
+"  --help frob\n"
+;
+#include "b-yacmd.h"

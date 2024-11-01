@@ -1,0 +1,6 @@
+Doing SIGSEGV pass 1.
+Fault 1 caught.
+Doing SIGSEGV pass 2.
+Fault 2 caught.
+Test passed.
+PASS test-sigsegv-catch-segv2 (exit status: 0)

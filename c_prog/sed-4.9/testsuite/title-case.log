@@ -1,0 +1,2 @@
+title-case.sh: skipped test: el_GR.iso88597 locale not found
+SKIP testsuite/title-case.sh (exit status: 77)

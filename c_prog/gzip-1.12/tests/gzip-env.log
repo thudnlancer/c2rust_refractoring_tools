@@ -1,0 +1,489 @@
+++ initial_cwd_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests
++++ testdir_prefix_
++++ printf gt
+++ pfx_=gt
++++ mktempd_ /home/c2rust/Desktop/c_prog/gzip-1.12/tests gt-gzip-env.XXXX
++++ case $# in
++++ destdir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests
++++ template_=gt-gzip-env.XXXX
++++ MAX_TRIES_=4
++++ case $destdir_ in
++++ destdir_slash_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/
++++ case $template_ in
+++++ unset TMPDIR
++++ d=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
++++ case $d in
++++ :
++++ test -d /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
+++++ ls -dgo /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
++++ perms='drwx------ 2 4096 Oct 28 04:20 /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp'
++++ case $perms in
++++ :
++++ echo /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
++++ return
+++ test_dir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
+++ cd /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
+++ case $srcdir in
+++ srcdir=../.
+++ builddir=..
+++ export srcdir builddir
+++ gl_init_sh_nl_='
+'
+++ IFS=' 	
+'
+++ for sig_ in 1 2 3 13 15
++++ expr 1 + 128
+++ eval 'trap '\''Exit 129'\'' 1'
++++ trap 'Exit 129' 1
+++ for sig_ in 1 2 3 13 15
++++ expr 2 + 128
+++ eval 'trap '\''Exit 130'\'' 2'
++++ trap 'Exit 130' 2
+++ for sig_ in 1 2 3 13 15
++++ expr 3 + 128
+++ eval 'trap '\''Exit 131'\'' 3'
++++ trap 'Exit 131' 3
+++ for sig_ in 1 2 3 13 15
++++ expr 13 + 128
+++ eval 'trap '\''Exit 141'\'' 13'
++++ trap 'Exit 141' 13
+++ for sig_ in 1 2 3 13 15
++++ expr 15 + 128
+++ eval 'trap '\''Exit 143'\'' 15'
++++ trap 'Exit 143' 15
+++ saved_IFS=' 	
+'
+++ IFS=:
+++ new_PATH=
+++ sep_=
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/Desktop/c_prog/gzip-1.12/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.cargo/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /home/c2rust/.local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /sbin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /usr/local/games/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games
+++ sep_=:
+++ for dir in $PATH
+++ case "$dir" in
+++ test -d /snap/bin/.
+++ new_PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ sep_=:
+++ IFS=' 	
+'
+++ PATH=/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+++ export PATH
+++ trap remove_tmp_ 0
++ path_prepend_ ..
++ test 1 '!=' 0
++ path_dir_=..
++ case $path_dir_ in
++ abs_path_dir_=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/..
++ case $abs_path_dir_ in
++ PATH=/home/c2rust/Desktop/c_prog/gzip-1.12/tests/..:/home/c2rust/Desktop/c_prog/gzip-1.12:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli:/home/c2rust/.local/bin:/usr/local/bin:/home/c2rust/.cargo/bin:/home/c2rust/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
++ create_exe_shims_ /home/c2rust/Desktop/c_prog/gzip-1.12/tests/..
++ case $EXEEXT in
++ return 0
++ shift
++ test 0 '!=' 0
++ export PATH
++ echo a
++ gzip
++ fail=0
++ GZIP=-qv
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-c
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--stdout
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-d
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--decompress
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-f
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--force
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-h
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--help
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-k
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--keep
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-l
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--list
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-L
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--license
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-r
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--recursive
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-Sxxx
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--suffix=xxx
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP='--suffix xxx'
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-t
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--test
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=-V
++ gzip -d
++ for badopt in -- -c --stdout -d --decompress -f --force -h --help -k --keep -l --list -L --license -r --recursive -Sxxx --suffix=xxx '--suffix xxx' -t --test -V --version
++ GZIP=--version
++ gzip -d
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-n
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--no-name
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-N
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--name
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-q
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--quiet
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-v
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--verbose
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-1
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--fast
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-2
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-3
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-4
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-5
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-6
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-7
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-8
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=-9
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ for goodopt in -n --no-name -N --name -q --quiet -v --verbose -1 --fast -2 -3 -4 -5 -6 -7 -8 -9 --best
++ GZIP=--best
++ gzip -d
++ compare exp out
++ compare_dev_null_ exp out
++ test 2 = 2
++ test xexp = x/dev/null
++ test xout = x/dev/null
++ return 2
++ case $? in
++ compare_ exp out
++ diff -u exp out
++ Exit 0
++ set +e
++ exit 0
++ exit 0
++ remove_tmp_
++ __st=0
++ cleanup_
++ :
++ test '' = yes
++ cd /home/c2rust/Desktop/c_prog/gzip-1.12/tests
++ chmod -R u+rwx /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
++ rm -rf /home/c2rust/Desktop/c_prog/gzip-1.12/tests/gt-gzip-env.vCWp
++ exit 0
+PASS gzip-env (exit status: 0)

@@ -1,0 +1,2 @@
+Skipping test: multithreading not enabled
+SKIP test-setlocale_null-mt-one (exit status: 77)

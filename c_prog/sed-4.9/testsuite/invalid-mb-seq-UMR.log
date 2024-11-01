@@ -1,0 +1,2 @@
+invalid-mb-seq-UMR.sh: skipped test: requires a working valgrind
+SKIP testsuite/invalid-mb-seq-UMR.sh (exit status: 77)
