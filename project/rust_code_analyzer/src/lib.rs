@@ -8,6 +8,7 @@ use std::path::Path;
 use syn::{visit::Visit, DeriveInput, Item, ItemStruct, ItemEnum, ItemFn, ItemUnion};
 
 // 定义一个访问器来收集使用位置
+#[derive(Serialize, Deserialize)]
 struct LocationCollector {
     structs: Vec<String>,
     enums: Vec<String>,
@@ -48,7 +49,8 @@ fn process_files(dir: &Path, collector: &mut LocationCollector) -> std::io::Resu
             } else if path.extension().map_or(false, |e| e == "rs") {
                 let contents = fs::read_to_string(&path)?;
                 let file = syn::parse_file(&contents).map_err(|e| io::Error::new(io::ErrorKind::InvalidData, e.to_string()))?;
-                file.visit(&mut collector);
+                //file.visit_file(&mut collector);
+                collector.visit_file(&file);
                 println!("Structs in {}: {:?}", path.display(), collector.structs);
                 println!("Enums in {}: {:?}", path.display(), collector.enums);
                 println!("Functions in {}: {:?}", path.display(), collector.functions);
