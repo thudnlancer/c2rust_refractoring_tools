@@ -1,0 +1,24 @@
+{
+  "C2RustUnnamed": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      144,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/c.rs",
+      168,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/printf_parse.rs",
+      42,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      42,
+      0
+    ]
+  ]
+}

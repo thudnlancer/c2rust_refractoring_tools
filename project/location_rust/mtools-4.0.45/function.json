@@ -1,0 +1,2142 @@
+{
+  "yy_delete_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4764,
+      0
+    ]
+  ],
+  "arg": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1622,
+      0
+    ]
+  ],
+  "argcv_unquote_char": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      143,
+      0
+    ]
+  ],
+  "parse_function_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      920,
+      0
+    ]
+  ],
+  "parse_rc": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      149,
+      0
+    ]
+  ],
+  "tokpush": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      347,
+      0
+    ]
+  ],
+  "hol_free": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1004,
+      0
+    ]
+  ],
+  "space": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1615,
+      0
+    ]
+  ],
+  "source": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      703,
+      0
+    ]
+  ],
+  "select_output_driver": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      274,
+      0
+    ]
+  ],
+  "begin": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      318,
+      0
+    ]
+  ],
+  "argp_error": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2586,
+      0
+    ]
+  ],
+  "xalloc_die": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1806,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/xalloc_die.rs",
+      17,
+      0
+    ]
+  ],
+  "hash_get_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      296,
+      0
+    ]
+  ],
+  "free_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      603,
+      0
+    ]
+  ],
+  "xrealloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      65,
+      0
+    ]
+  ],
+  "yyset_lineno": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5059,
+      0
+    ]
+  ],
+  "compute_bucket_size": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      438,
+      0
+    ]
+  ],
+  "hol_add_cluster": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      976,
+      0
+    ]
+  ],
+  "argp_doc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2245,
+      0
+    ]
+  ],
+  "argcv_string": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      550,
+      0
+    ]
+  ],
+  "yy_fatal_error": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5035,
+      0
+    ]
+  ],
+  "func_body": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1463,
+      0
+    ]
+  ],
+  "argp_args_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2178,
+      0
+    ]
+  ],
+  "hol_entry_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1718,
+      0
+    ]
+  ],
+  "xsum": [
+    [
+      "../../c_prog/cflow/gnu/printf_parse.rs",
+      100,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      123,
+      0
+    ]
+  ],
+  "rpl_getopt_internal": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      741,
+      0
+    ]
+  ],
+  "hol_sort": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1397,
+      0
+    ]
+  ],
+  "pp_close": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      656,
+      0
+    ]
+  ],
+  "fake_struct": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      978,
+      0
+    ]
+  ],
+  "find_option_type": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      964,
+      0
+    ]
+  ],
+  "initializer_list": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1138,
+      0
+    ]
+  ],
+  "yy_init_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4784,
+      0
+    ]
+  ],
+  "yylex": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      3046,
+      0
+    ]
+  ],
+  "raw_comparator": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      412,
+      0
+    ]
+  ],
+  "hash_find_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      608,
+      0
+    ]
+  ],
+  "xzalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      83,
+      0
+    ]
+  ],
+  "is_var": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      389,
+      0
+    ]
+  ],
+  "hol_entry_long_iterate": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1056,
+      0
+    ]
+  ],
+  "argcv_scan": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      46,
+      0
+    ]
+  ],
+  "printf_parse": [
+    [
+      "../../c_prog/cflow/gnu/printf_parse.rs",
+      105,
+      0
+    ]
+  ],
+  "argp_fmtstream_putc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      424,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      157,
+      0
+    ]
+  ],
+  "cleanup_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      367,
+      0
+    ]
+  ],
+  "output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      680,
+      0
+    ]
+  ],
+  "gnu_output_handler": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      188,
+      0
+    ]
+  ],
+  "set_preprocessor": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      493,
+      0
+    ]
+  ],
+  "group_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1179,
+      0
+    ]
+  ],
+  "pp_open": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      607,
+      0
+    ]
+  ],
+  "_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2344,
+      0
+    ]
+  ],
+  "yypop_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4866,
+      0
+    ]
+  ],
+  "hash_get_n_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      122,
+      0
+    ]
+  ],
+  "hash_initialize": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      465,
+      0
+    ]
+  ],
+  "toupper": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      38,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/main.rs",
+      323,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/c.rs",
+      275,
+      0
+    ]
+  ],
+  "globals_only": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1766,
+      0
+    ]
+  ],
+  "yyset_debug": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5075,
+      0
+    ]
+  ],
+  "hash_rehash": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      735,
+      0
+    ]
+  ],
+  "hash_insert": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      794,
+      0
+    ]
+  ],
+  "argcv_quoted_length": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      232,
+      0
+    ]
+  ],
+  "emit_bug_reporting_address": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      338,
+      0
+    ]
+  ],
+  "usage_argful_short_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1964,
+      0
+    ]
+  ],
+  "parse_typedef": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1216,
+      0
+    ]
+  ],
+  "hash_symbol_hasher": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      159,
+      0
+    ]
+  ],
+  "init_lex": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      399,
+      0
+    ]
+  ],
+  "yyparse": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      755,
+      0
+    ]
+  ],
+  "skip_balanced": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      723,
+      0
+    ]
+  ],
+  "yy_scan_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4959,
+      0
+    ]
+  ],
+  "argcv_unquote_copy": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      268,
+      0
+    ]
+  ],
+  "x2nrealloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      25,
+      0
+    ]
+  ],
+  "hash_reset_tuning": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      404,
+      0
+    ]
+  ],
+  "version_etc_hook": [
+    [
+      "../../c_prog/cflow/gnu/argp_version_etc.rs",
+      115,
+      0
+    ]
+  ],
+  "is_prime": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      375,
+      0
+    ]
+  ],
+  "hash_lookup": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      215,
+      0
+    ]
+  ],
+  "symbol_is_function": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      403,
+      0
+    ]
+  ],
+  "input": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4623,
+      0
+    ]
+  ],
+  "yy_load_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4728,
+      0
+    ]
+  ],
+  "argp_fmtstream_puts": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      380,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      144,
+      0
+    ]
+  ],
+  "parse_knr_dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1174,
+      0
+    ]
+  ],
+  "linked_list_create": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      39,
+      0
+    ]
+  ],
+  "reference": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1832,
+      0
+    ]
+  ],
+  "exchange": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      111,
+      0
+    ]
+  ],
+  "print_level": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      216,
+      0
+    ]
+  ],
+  "indent_to": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1603,
+      0
+    ]
+  ],
+  "rotr_sz": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      93,
+      0
+    ]
+  ],
+  "install": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      227,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_wmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      409,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      83,
+      0
+    ]
+  ],
+  "argp_fmtstream_write": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      393,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      128,
+      0
+    ]
+  ],
+  "direct_tree": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      518,
+      0
+    ]
+  ],
+  "get_knr_args": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1558,
+      0
+    ]
+  ],
+  "print_token": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      275,
+      0
+    ]
+  ],
+  "call": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1813,
+      0
+    ]
+  ],
+  "print_refs": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      412,
+      0
+    ]
+  ],
+  "xtonum": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      170,
+      0
+    ]
+  ],
+  "skip_struct": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1179,
+      0
+    ]
+  ],
+  "dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1252,
+      0
+    ]
+  ],
+  "maybe_parm_list": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1388,
+      0
+    ]
+  ],
+  "print_function": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      432,
+      0
+    ]
+  ],
+  "hol_append": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1424,
+      0
+    ]
+  ],
+  "hash_delete": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      856,
+      0
+    ]
+  ],
+  "hash_get_n_buckets": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      112,
+      0
+    ]
+  ],
+  "move_parms": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      604,
+      0
+    ]
+  ],
+  "add_argless_short_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1948,
+      0
+    ]
+  ],
+  "raw_hasher": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      408,
+      0
+    ]
+  ],
+  "yypush_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4832,
+      0
+    ]
+  ],
+  "yyget_in": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5043,
+      0
+    ]
+  ],
+  "getnum": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      785,
+      0
+    ]
+  ],
+  "is_last": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      506,
+      0
+    ]
+  ],
+  "print_type": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      445,
+      0
+    ]
+  ],
+  "mark": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      336,
+      0
+    ]
+  ],
+  "linked_list_iterate": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      112,
+      0
+    ]
+  ],
+  "tolower": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      310,
+      0
+    ]
+  ],
+  "putback": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      398,
+      0
+    ]
+  ],
+  "yy_flush_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4807,
+      0
+    ]
+  ],
+  "fill_in_uparams": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      570,
+      0
+    ]
+  ],
+  "set_program_name": [
+    [
+      "../../c_prog/cflow/gnu/progname.rs",
+      14,
+      0
+    ]
+  ],
+  "tree_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      578,
+      0
+    ]
+  ],
+  "yyrealloc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5119,
+      0
+    ]
+  ],
+  "until_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1093,
+      0
+    ]
+  ],
+  "yyget_debug": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5071,
+      0
+    ]
+  ],
+  "argp_args_levels": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2159,
+      0
+    ]
+  ],
+  "append_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      146,
+      0
+    ]
+  ],
+  "yyget_out": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5047,
+      0
+    ]
+  ],
+  "putc_unlocked": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      318,
+      0
+    ]
+  ],
+  "symbol_override": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1056,
+      0
+    ]
+  ],
+  "get_symbol": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1769,
+      0
+    ]
+  ],
+  "parse_level_string": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1275,
+      0
+    ]
+  ],
+  "static_free": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      387,
+      0
+    ]
+  ],
+  "undo_save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      609,
+      0
+    ]
+  ],
+  "argcv_quote_copy": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      417,
+      0
+    ]
+  ],
+  "collect_symbols": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      484,
+      0
+    ]
+  ],
+  "delete_parms_itr": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      569,
+      0
+    ]
+  ],
+  "finish_save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      613,
+      0
+    ]
+  ],
+  "print_symbol": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      162,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      152,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/output.rs",
+      354,
+      0
+    ]
+  ],
+  "nexttoken": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      386,
+      0
+    ]
+  ],
+  "comma": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1693,
+      0
+    ]
+  ],
+  "hash_do_for_each": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      325,
+      0
+    ]
+  ],
+  "include_symbol": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1770,
+      0
+    ]
+  ],
+  "print_symbol_type": [
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      139,
+      0
+    ]
+  ],
+  "delete_autos": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      438,
+      0
+    ]
+  ],
+  "pp_option": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      497,
+      0
+    ]
+  ],
+  "check_tuning": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      418,
+      0
+    ]
+  ],
+  "hash_get_n_buckets_used": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      116,
+      0
+    ]
+  ],
+  "sourcerc": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      233,
+      0
+    ]
+  ],
+  "parse_opt": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1529,
+      0
+    ]
+  ],
+  "delete_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      377,
+      0
+    ]
+  ],
+  "number": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1173,
+      0
+    ]
+  ],
+  "parse_dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1239,
+      0
+    ]
+  ],
+  "depmap_isset": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      127,
+      0
+    ]
+  ],
+  "print_header": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1659,
+      0
+    ]
+  ],
+  "hash_free": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      552,
+      0
+    ]
+  ],
+  "get_token": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      689,
+      0
+    ]
+  ],
+  "linked_list_unlink": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      89,
+      0
+    ]
+  ],
+  "atoi": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      315,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      302,
+      0
+    ]
+  ],
+  "hol_entry_qcmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1391,
+      0
+    ]
+  ],
+  "save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      604,
+      0
+    ]
+  ],
+  "delete_parms": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      590,
+      0
+    ]
+  ],
+  "make_hol": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      768,
+      0
+    ]
+  ],
+  "hol_find_entry": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1135,
+      0
+    ]
+  ],
+  "restore": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      340,
+      0
+    ]
+  ],
+  "main": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1964,
+      0
+    ]
+  ],
+  "yyget_text": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5055,
+      0
+    ]
+  ],
+  "hash_symbol_compare": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      169,
+      0
+    ]
+  ],
+  "argp_version_setup": [
+    [
+      "../../c_prog/cflow/gnu/argp_version_etc.rs",
+      127,
+      0
+    ]
+  ],
+  "expand_argcv": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      128,
+      0
+    ]
+  ],
+  "yyset_in": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5063,
+      0
+    ]
+  ],
+  "hol_set_group": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1169,
+      0
+    ]
+  ],
+  "hash_clear": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      519,
+      0
+    ]
+  ],
+  "hash_table_ok": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      154,
+      0
+    ]
+  ],
+  "set_active": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      499,
+      0
+    ]
+  ],
+  "file_error": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      315,
+      0
+    ]
+  ],
+  "x2realloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      76,
+      0
+    ]
+  ],
+  "yyget_lineno": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5039,
+      0
+    ]
+  ],
+  "validate_uparams": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      537,
+      0
+    ]
+  ],
+  "version_etc_va": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      297,
+      0
+    ]
+  ],
+  "data_in_list": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      139,
+      0
+    ]
+  ],
+  "ident_change_storage": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      309,
+      0
+    ]
+  ],
+  "clearstack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      381,
+      0
+    ]
+  ],
+  "depmap_rowptr": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      99,
+      0
+    ]
+  ],
+  "declare": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1626,
+      0
+    ]
+  ],
+  "argp_fmtstream_point": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      352,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      70,
+      0
+    ]
+  ],
+  "hol_cluster_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1194,
+      0
+    ]
+  ],
+  "yyunput": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4574,
+      0
+    ]
+  ],
+  "argp_hol": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2130,
+      0
+    ]
+  ],
+  "dir_len": [
+    [
+      "../../c_prog/cflow/gnu/dirname_lgpl.rs",
+      12,
+      0
+    ]
+  ],
+  "yylex_destroy": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5090,
+      0
+    ]
+  ],
+  "yy_scan_string": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4994,
+      0
+    ]
+  ],
+  "clear_active": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      409,
+      0
+    ]
+  ],
+  "yyset_out": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5067,
+      0
+    ]
+  ],
+  "argp_state_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2556,
+      0
+    ]
+  ],
+  "depmap_tc": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      149,
+      0
+    ]
+  ],
+  "unlink_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      356,
+      0
+    ]
+  ],
+  "expression": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      851,
+      0
+    ]
+  ],
+  "delete_statics": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      402,
+      0
+    ]
+  ],
+  "hol_entry_first_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1101,
+      0
+    ]
+  ],
+  "transitive_closure": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      14,
+      0
+    ]
+  ],
+  "yyget_leng": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5051,
+      0
+    ]
+  ],
+  "_option_is_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      339,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      128,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_lmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      365,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      113,
+      0
+    ]
+  ],
+  "print_function_name": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      129,
+      0
+    ]
+  ],
+  "argp_failure": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2623,
+      0
+    ]
+  ],
+  "allocate_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      592,
+      0
+    ]
+  ],
+  "posix_output_handler": [
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      174,
+      0
+    ]
+  ],
+  "yy_switch_to_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4699,
+      0
+    ]
+  ],
+  "usage_long_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2000,
+      0
+    ]
+  ],
+  "main_0": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1847,
+      0
+    ]
+  ],
+  "argp_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2525,
+      0
+    ]
+  ],
+  "declare_type": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1735,
+      0
+    ]
+  ],
+  "yy_get_previous_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4519,
+      0
+    ]
+  ],
+  "yy_init_globals": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5079,
+      0
+    ]
+  ],
+  "hash_string": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      354,
+      0
+    ]
+  ],
+  "init_parse": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      422,
+      0
+    ]
+  ],
+  "inverted_tree": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      548,
+      0
+    ]
+  ],
+  "_option_is_end": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      334,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      123,
+      0
+    ]
+  ],
+  "add_name": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1515,
+      0
+    ]
+  ],
+  "install_ident": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      329,
+      0
+    ]
+  ],
+  "delete_level_autos": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      412,
+      0
+    ]
+  ],
+  "delete_level_statics": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      425,
+      0
+    ]
+  ],
+  "output_init": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      290,
+      0
+    ]
+  ],
+  "newline": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      303,
+      0
+    ]
+  ],
+  "hol_entry_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1251,
+      0
+    ]
+  ],
+  "lookup": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      178,
+      0
+    ]
+  ],
+  "ident": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      417,
+      0
+    ]
+  ],
+  "update_loc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      857,
+      0
+    ]
+  ],
+  "transfer_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      663,
+      0
+    ]
+  ],
+  "register_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      250,
+      0
+    ]
+  ],
+  "filter_doc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1645,
+      0
+    ]
+  ],
+  "end": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      330,
+      0
+    ]
+  ],
+  "separator": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      342,
+      0
+    ]
+  ],
+  "hash_get_max_bucket_length": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      126,
+      0
+    ]
+  ],
+  "deref_linked_list": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      25,
+      0
+    ]
+  ],
+  "yy_try_NUL_trans": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4551,
+      0
+    ]
+  ],
+  "hol_entry_first_long": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1117,
+      0
+    ]
+  ],
+  "hash_get_first": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      245,
+      0
+    ]
+  ],
+  "_getopt_initialize": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      154,
+      0
+    ]
+  ],
+  "xcalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      87,
+      0
+    ]
+  ],
+  "xmemdup": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      110,
+      0
+    ]
+  ],
+  "version_etc_arn": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      69,
+      0
+    ]
+  ],
+  "xsum4": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      132,
+      0
+    ]
+  ],
+  "next_prime": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      393,
+      0
+    ]
+  ],
+  "linked_list_destroy": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      71,
+      0
+    ]
+  ],
+  "init_tokens": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      346,
+      0
+    ]
+  ],
+  "yyfree": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5126,
+      0
+    ]
+  ],
+  "canon_doc_option": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1225,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_rmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      98,
+      0
+    ]
+  ],
+  "collect_functions": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      526,
+      0
+    ]
+  ],
+  "skip_to": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      715,
+      0
+    ]
+  ],
+  "init": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1818,
+      0
+    ]
+  ],
+  "backslash": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      840,
+      0
+    ]
+  ],
+  "_getopt_internal_r": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      183,
+      0
+    ]
+  ],
+  "is_printable": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      502,
+      0
+    ]
+  ],
+  "yyalloc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5115,
+      0
+    ]
+  ],
+  "argcv_get": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      467,
+      0
+    ]
+  ],
+  "set_level_indent": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1425,
+      0
+    ]
+  ],
+  "version_etc": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      326,
+      0
+    ]
+  ],
+  "mdir_name": [
+    [
+      "../../c_prog/cflow/gnu/dirname_lgpl.rs",
+      52,
+      0
+    ]
+  ],
+  "yy_create_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4735,
+      0
+    ]
+  ],
+  "collect_processor": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      463,
+      0
+    ]
+  ],
+  "linked_list_append": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      51,
+      0
+    ]
+  ],
+  "hash_get_next": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      264,
+      0
+    ]
+  ],
+  "argcv_free": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      533,
+      0
+    ]
+  ],
+  "depmap_set": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      105,
+      0
+    ]
+  ],
+  "yy_get_next_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4315,
+      0
+    ]
+  ],
+  "find_char": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      753,
+      0
+    ]
+  ],
+  "argcv_quote_char": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      155,
+      0
+    ]
+  ],
+  "set_print_option": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1155,
+      0
+    ]
+  ],
+  "stat": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      121,
+      0
+    ]
+  ],
+  "set_level_mark": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      208,
+      0
+    ]
+  ],
+  "pp_finalize": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      539,
+      0
+    ]
+  ],
+  "hol_cluster_is_child": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1216,
+      0
+    ]
+  ],
+  "parmdcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1362,
+      0
+    ]
+  ],
+  "xmax": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      128,
+      0
+    ]
+  ],
+  "is_function": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      803,
+      0
+    ]
+  ],
+  "parse_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      839,
+      0
+    ]
+  ],
+  "depmap_alloc": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      72,
+      0
+    ]
+  ],
+  "xmalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      57,
+      0
+    ]
+  ],
+  "hash_print_statistics": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      184,
+      0
+    ]
+  ],
+  "yywrap": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      666,
+      0
+    ]
+  ],
+  "xref_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      456,
+      0
+    ]
+  ],
+  "parse_variable_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1021,
+      0
+    ]
+  ],
+  "argp_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      141,
+      0
+    ]
+  ],
+  "xstrdup": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      117,
+      0
+    ]
+  ],
+  "save_token": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      443,
+      0
+    ]
+  ],
+  "yyrestart": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4676,
+      0
+    ]
+  ],
+  "yy_scan_bytes": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5000,
+      0
+    ]
+  ],
+  "version_etc_ar": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      281,
+      0
+    ]
+  ],
+  "hol_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1901,
+      0
+    ]
+  ],
+  "add_reference": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1788,
+      0
+    ]
+  ],
+  "hol_entry_short_iterate": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1017,
+      0
+    ]
+  ],
+  "yyensure_buffer_stack": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4901,
+      0
+    ]
+  ],
+  "add_preproc_option": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1518,
+      0
+    ]
+  ],
+  "vasnprintf": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      141,
+      0
+    ]
+  ],
+  "hol_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2040,
+      0
+    ]
+  ],
+  "hol_cluster_base": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1210,
+      0
+    ]
+  ],
+  "dirdcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1295,
+      0
+    ]
+  ],
+  "compare": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      381,
+      0
+    ]
+  ],
+  "rpl_getopt": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      769,
+      0
+    ]
+  ]
+}

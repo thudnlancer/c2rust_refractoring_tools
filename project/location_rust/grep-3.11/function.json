@@ -1,0 +1,7952 @@
+{
+  "yy_delete_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4764,
+      0
+    ]
+  ],
+  "dfaexec_mb": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4717,
+      0
+    ]
+  ],
+  "rpl_regcomp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3683,
+      0
+    ]
+  ],
+  "arg": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1622,
+      0
+    ]
+  ],
+  "gl_locale_name_environ": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      268,
+      0
+    ]
+  ],
+  "fts_palloc": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1903,
+      0
+    ]
+  ],
+  "fts_safe_changedir": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1965,
+      0
+    ]
+  ],
+  "hash_pattern": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1015,
+      0
+    ]
+  ],
+  "tokpush": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      347,
+      0
+    ]
+  ],
+  "rpl_strtoull": [
+    [
+      "../../c_prog/grep-3.11/lib/strtoull.rs",
+      29,
+      0
+    ]
+  ],
+  "free_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      603,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      605,
+      0
+    ]
+  ],
+  "other_constraint": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      416,
+      0
+    ]
+  ],
+  "diropen": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      511,
+      0
+    ]
+  ],
+  "pop_fail_stack": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10097,
+      0
+    ]
+  ],
+  "cycle_check": [
+    [
+      "../../c_prog/grep-3.11/lib/cycle_check.rs",
+      73,
+      0
+    ]
+  ],
+  "hol_add_cluster": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      976,
+      0
+    ]
+  ],
+  "argp_doc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2245,
+      0
+    ]
+  ],
+  "push_lex_state": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      1099,
+      0
+    ]
+  ],
+  "re_string_context_at": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2266,
+      0
+    ]
+  ],
+  "regexp": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2390,
+      0
+    ]
+  ],
+  "argcv_string": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      550,
+      0
+    ]
+  ],
+  "rpl_fts_read": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      908,
+      0
+    ]
+  ],
+  "hol_entry_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1718,
+      0
+    ]
+  ],
+  "rpl_fts_set": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1217,
+      0
+    ]
+  ],
+  "rpl_getopt_internal": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      741,
+      0
+    ]
+  ],
+  "bitset_mask": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      925,
+      0
+    ]
+  ],
+  "get_quoting_style": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      417,
+      0
+    ]
+  ],
+  "re_dfa_add_node": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2898,
+      0
+    ]
+  ],
+  "check_node_accept": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13394,
+      0
+    ]
+  ],
+  "rpl_fts_close": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      748,
+      0
+    ]
+  ],
+  "string_hash": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      88,
+      0
+    ]
+  ],
+  "argcv_scan": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      46,
+      0
+    ]
+  ],
+  "add_utf8_anychar": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2168,
+      0
+    ]
+  ],
+  "last_component": [
+    [
+      "../../c_prog/grep-3.11/lib/basename_lgpl.rs",
+      6,
+      0
+    ]
+  ],
+  "imbrlen": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      946,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      64,
+      0
+    ]
+  ],
+  "set_preprocessor": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      493,
+      0
+    ]
+  ],
+  "mbiter_multi_reloc": [
+    [
+      "../../c_prog/grep-3.11/lib/mbiter.rs",
+      89,
+      0
+    ]
+  ],
+  "gl_dynarray_emplace_enlarge": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_emplace_enlarge.rs",
+      20,
+      0
+    ]
+  ],
+  "calc_state_hash": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3014,
+      0
+    ]
+  ],
+  "parse_bracket_element": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7560,
+      0
+    ]
+  ],
+  "toupper": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      38,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/main.rs",
+      323,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/c.rs",
+      275,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/strtoll.rs",
+      302,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      379,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1000,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/strtoull.rs",
+      21,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      914,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      56,
+      0
+    ]
+  ],
+  "yyset_debug": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5075,
+      0
+    ]
+  ],
+  "check_halt_node_context": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9852,
+      0
+    ]
+  ],
+  "mbscasecmp": [
+    [
+      "../../c_prog/grep-3.11/lib/mbscasecmp.rs",
+      226,
+      0
+    ]
+  ],
+  "hash_symbol_hasher": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      159,
+      0
+    ]
+  ],
+  "rpl_re_set_registers": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8888,
+      0
+    ]
+  ],
+  "fts_compare_ino": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1290,
+      0
+    ]
+  ],
+  "yy_scan_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4959,
+      0
+    ]
+  ],
+  "context_length_arg": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2051,
+      0
+    ]
+  ],
+  "treefails": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      611,
+      0
+    ]
+  ],
+  "mbsstr_trimmed_wordbounded": [
+    [
+      "../../c_prog/grep-3.11/lib/propername.rs",
+      241,
+      0
+    ]
+  ],
+  "hash_reset_tuning": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      404,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      403,
+      0
+    ]
+  ],
+  "hash_lookup": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      215,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      225,
+      0
+    ]
+  ],
+  "analyze": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4647,
+      0
+    ]
+  ],
+  "symbol_is_function": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      403,
+      0
+    ]
+  ],
+  "input": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4623,
+      0
+    ]
+  ],
+  "wctob": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      396,
+      0
+    ]
+  ],
+  "free_exclude": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      654,
+      0
+    ]
+  ],
+  "parse_knr_dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1174,
+      0
+    ]
+  ],
+  "epsclosure": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2731,
+      0
+    ]
+  ],
+  "color_cap_rv_fct": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1192,
+      0
+    ]
+  ],
+  "sub_epsilon_src_nodes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10698,
+      0
+    ]
+  ],
+  "print_level": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      216,
+      0
+    ]
+  ],
+  "rotr_sz": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      93,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      40,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      92,
+      0
+    ]
+  ],
+  "dfaexec": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4748,
+      0
+    ]
+  ],
+  "install": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      227,
+      0
+    ]
+  ],
+  "re_node_set_remove_at": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2882,
+      0
+    ]
+  ],
+  "build_range_exp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6992,
+      0
+    ]
+  ],
+  "re_copy_regs": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8801,
+      0
+    ]
+  ],
+  "strcaseeq6": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      163,
+      0
+    ]
+  ],
+  "argp_fmtstream_write": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      393,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      128,
+      0
+    ]
+  ],
+  "using_simple_locale": [
+    [
+      "../../c_prog/grep-3.11/lib/localeinfo.rs",
+      57,
+      0
+    ]
+  ],
+  "direct_tree": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      518,
+      0
+    ]
+  ],
+  "call": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1813,
+      0
+    ]
+  ],
+  "mb_width_aux": [
+    [
+      "../../c_prog/grep-3.11/lib/mbchar.rs",
+      65,
+      0
+    ]
+  ],
+  "print_refs": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      412,
+      0
+    ]
+  ],
+  "dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1252,
+      0
+    ]
+  ],
+  "maybe_parm_list": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1388,
+      0
+    ]
+  ],
+  "cycle_check_init": [
+    [
+      "../../c_prog/grep-3.11/lib/cycle_check.rs",
+      68,
+      0
+    ]
+  ],
+  "parse_bracket_exp": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      813,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7146,
+      0
+    ]
+  ],
+  "quotearg_n_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1693,
+      0
+    ]
+  ],
+  "is_cjk_encoding": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      33,
+      0
+    ]
+  ],
+  "setlocale_null": [
+    [
+      "../../c_prog/grep-3.11/lib/setlocale_null.rs",
+      65,
+      0
+    ]
+  ],
+  "move_parms": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      604,
+      0
+    ]
+  ],
+  "peek_token_bracket": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5980,
+      0
+    ]
+  ],
+  "c_strcasestr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/c_strcasestr.rs",
+      403,
+      0
+    ]
+  ],
+  "charclass_index": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      562,
+      0
+    ]
+  ],
+  "streq9": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      144,
+      0
+    ]
+  ],
+  "getnum": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      785,
+      0
+    ]
+  ],
+  "is_last": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      506,
+      0
+    ]
+  ],
+  "quotearg_n_style_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1721,
+      0
+    ]
+  ],
+  "create_token_tree": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8310,
+      0
+    ]
+  ],
+  "enqueue": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      602,
+      0
+    ]
+  ],
+  "putback": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      398,
+      0
+    ]
+  ],
+  "rof_scanf_lx": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      220,
+      0
+    ]
+  ],
+  "prev_letter_dependent": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      444,
+      0
+    ]
+  ],
+  "glthread_recursive_lock_init_multithreaded": [
+    [
+      "../../c_prog/grep-3.11/lib/glthread/lock.rs",
+      124,
+      0
+    ]
+  ],
+  "re_acquire_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3031,
+      0
+    ]
+  ],
+  "check_subexp_matching_top": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11384,
+      0
+    ]
+  ],
+  "dev_type_hash": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      795,
+      0
+    ]
+  ],
+  "check_arrival_expand_ecl": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12301,
+      0
+    ]
+  ],
+  "fts_stat": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1691,
+      0
+    ]
+  ],
+  "set_stat_type": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1301,
+      0
+    ]
+  ],
+  "rpl_mbrlen": [
+    [
+      "../../c_prog/grep-3.11/lib/mbrlen.rs",
+      29,
+      0
+    ]
+  ],
+  "delete_parms_itr": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      569,
+      0
+    ]
+  ],
+  "drain_input": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3206,
+      0
+    ]
+  ],
+  "parse_grep_colors": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4236,
+      0
+    ]
+  ],
+  "string_hasher_ci": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      503,
+      0
+    ]
+  ],
+  "delete_autos": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      438,
+      0
+    ]
+  ],
+  "pp_option": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      497,
+      0
+    ]
+  ],
+  "c_isalnum": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      3,
+      0
+    ]
+  ],
+  "gl_locale_name_posix": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      259,
+      0
+    ]
+  ],
+  "state_separate_contexts": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3240,
+      0
+    ]
+  ],
+  "check_tuning": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      418,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      417,
+      0
+    ]
+  ],
+  "maybe_disable_superset_dfa": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4815,
+      0
+    ]
+  ],
+  "re_node_set_insert_last": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2810,
+      0
+    ]
+  ],
+  "grepbuf": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2795,
+      0
+    ]
+  ],
+  "parse_opt": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1529,
+      0
+    ]
+  ],
+  "delete_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      377,
+      0
+    ]
+  ],
+  "segv_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/c_stack.rs",
+      173,
+      0
+    ]
+  ],
+  "is_device_mode": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1874,
+      0
+    ]
+  ],
+  "contains_encoding_error": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4295,
+      0
+    ]
+  ],
+  "grepdirent": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3063,
+      0
+    ]
+  ],
+  "dfassbuild": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4856,
+      0
+    ]
+  ],
+  "get_token": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      689,
+      0
+    ]
+  ],
+  "parse_reg_exp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6153,
+      0
+    ]
+  ],
+  "bitmap_lookup": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      3647,
+      0
+    ]
+  ],
+  "state_index": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2646,
+      0
+    ]
+  ],
+  "openat_proc_name": [
+    [
+      "../../c_prog/grep-3.11/lib/openat_proc.rs",
+      14,
+      0
+    ]
+  ],
+  "delete_parms": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      590,
+      0
+    ]
+  ],
+  "print_sep": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2411,
+      0
+    ]
+  ],
+  "rpl_fts_open": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      531,
+      0
+    ]
+  ],
+  "re_string_allocate": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1100,
+      0
+    ]
+  ],
+  "grepdesc": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3269,
+      0
+    ]
+  ],
+  "expand_argcv": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      128,
+      0
+    ]
+  ],
+  "yyset_in": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5063,
+      0
+    ]
+  ],
+  "hol_set_group": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1169,
+      0
+    ]
+  ],
+  "xstrtol_fatal": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xstrtol_error.rs",
+      76,
+      0
+    ]
+  ],
+  "stackoverflow_install_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      418,
+      0
+    ]
+  ],
+  "re_acquire_state_context": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3067,
+      0
+    ]
+  ],
+  "free_charset": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8280,
+      0
+    ]
+  ],
+  "kwsfree": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      4874,
+      0
+    ]
+  ],
+  "prune_impossible_nodes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9516,
+      0
+    ]
+  ],
+  "cdb_init": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      39,
+      0
+    ]
+  ],
+  "xcharalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      100,
+      0
+    ]
+  ],
+  "ident_change_storage": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      309,
+      0
+    ]
+  ],
+  "clearstack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      381,
+      0
+    ]
+  ],
+  "argp_fmtstream_point": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      352,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      70,
+      0
+    ]
+  ],
+  "should_colorize": [
+    [
+      "../../c_prog/grep-3.11/lib/colorize.rs",
+      64,
+      0
+    ]
+  ],
+  "nlscan": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2386,
+      0
+    ]
+  ],
+  "filesystem_type": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      811,
+      0
+    ]
+  ],
+  "branch": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2380,
+      0
+    ]
+  ],
+  "open_symlink_nofollow_error": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3171,
+      0
+    ]
+  ],
+  "Fcompile": [
+    [
+      "../../c_prog/grep-3.11/src/kwsearch.rs",
+      99,
+      0
+    ]
+  ],
+  "parse_expression": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6302,
+      0
+    ]
+  ],
+  "c_stack_action": [
+    [
+      "../../c_prog/grep-3.11/lib/c_stack.rs",
+      195,
+      0
+    ]
+  ],
+  "mbiter_multi_copy": [
+    [
+      "../../c_prog/grep-3.11/lib/mbiter.rs",
+      64,
+      0
+    ]
+  ],
+  "get_nondigit_option": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4176,
+      0
+    ]
+  ],
+  "gl_dynarray_resize": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_resize.rs",
+      20,
+      0
+    ]
+  ],
+  "parse_dup_op": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6751,
+      0
+    ]
+  ],
+  "rpl_re_match": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8503,
+      0
+    ]
+  ],
+  "update_patterns": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1058,
+      0
+    ]
+  ],
+  "hol_entry_first_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1101,
+      0
+    ]
+  ],
+  "rof_peekchar": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      204,
+      0
+    ]
+  ],
+  "gettext_quote": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      509,
+      0
+    ]
+  ],
+  "rpl_mbrtowc": [
+    [
+      "../../c_prog/grep-3.11/lib/mbrtowc.rs",
+      26,
+      0
+    ]
+  ],
+  "quotearg_buffer_restyled": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      569,
+      0
+    ]
+  ],
+  "rpl_btowc": [
+    [
+      "../../c_prog/grep-3.11/lib/btowc.rs",
+      31,
+      0
+    ]
+  ],
+  "str_eq": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      387,
+      0
+    ]
+  ],
+  "proper_name": [
+    [
+      "../../c_prog/grep-3.11/lib/propername.rs",
+      439,
+      0
+    ]
+  ],
+  "new_exclude": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      492,
+      0
+    ]
+  ],
+  "pr_sgr_start": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1169,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_lmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      365,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      113,
+      0
+    ]
+  ],
+  "hasevery": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      661,
+      0
+    ]
+  ],
+  "print_filename": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2406,
+      0
+    ]
+  ],
+  "posix_output_handler": [
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      174,
+      0
+    ]
+  ],
+  "rotl8": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      19,
+      0
+    ]
+  ],
+  "merge2": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2587,
+      0
+    ]
+  ],
+  "mbslen": [
+    [
+      "../../c_prog/grep-3.11/lib/mbslen.rs",
+      195,
+      0
+    ]
+  ],
+  "setlocale_null_unlocked": [
+    [
+      "../../c_prog/grep-3.11/lib/setlocale_null.rs",
+      21,
+      0
+    ]
+  ],
+  "yy_init_globals": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5079,
+      0
+    ]
+  ],
+  "xinmalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      152,
+      0
+    ]
+  ],
+  "memchr_kwset": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      1120,
+      0
+    ]
+  ],
+  "calc_first": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4951,
+      0
+    ]
+  ],
+  "init_parse": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      422,
+      0
+    ]
+  ],
+  "inverted_tree": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      548,
+      0
+    ]
+  ],
+  "cwd_advance_fd": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      464,
+      0
+    ]
+  ],
+  "imaxtostr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/imaxtostr.rs",
+      4,
+      0
+    ]
+  ],
+  "tstbit": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      491,
+      0
+    ]
+  ],
+  "add_name": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1515,
+      0
+    ]
+  ],
+  "install_ident": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      329,
+      0
+    ]
+  ],
+  "re_string_fetch_byte_case": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2225,
+      0
+    ]
+  ],
+  "parse_byte": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6982,
+      0
+    ]
+  ],
+  "succeeds_in_context": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      419,
+      0
+    ]
+  ],
+  "exclude_patopts": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      768,
+      0
+    ]
+  ],
+  "strip_trailing_slashes": [
+    [
+      "../../c_prog/grep-3.11/lib/stripslash.rs",
+      7,
+      0
+    ]
+  ],
+  "lookup": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      178,
+      0
+    ]
+  ],
+  "asan_poison": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1148,
+      0
+    ]
+  ],
+  "dfaexec_sb": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4727,
+      0
+    ]
+  ],
+  "register_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      250,
+      0
+    ]
+  ],
+  "c_isblank": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      45,
+      0
+    ]
+  ],
+  "yy_try_NUL_trans": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4551,
+      0
+    ]
+  ],
+  "version_etc_arn": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      69,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/version_etc.rs",
+      68,
+      0
+    ]
+  ],
+  "build_equiv_class": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7653,
+      0
+    ]
+  ],
+  "build_sifted_states": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10437,
+      0
+    ]
+  ],
+  "clear_asan_poison": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1147,
+      0
+    ]
+  ],
+  "create_cd_newstate": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3229,
+      0
+    ]
+  ],
+  "xsum4": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      132,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/vasnprintf.rs",
+      202,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xsize.rs",
+      21,
+      0
+    ]
+  ],
+  "free_tree": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8380,
+      0
+    ]
+  ],
+  "get_stat_ctime_ns": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      54,
+      0
+    ]
+  ],
+  "imalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      78,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/ialloc.rs",
+      55,
+      0
+    ]
+  ],
+  "canon_doc_option": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1225,
+      0
+    ]
+  ],
+  "_obstack_begin_worker": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      135,
+      0
+    ]
+  ],
+  "print_and_abort": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      461,
+      0
+    ]
+  ],
+  "kwsmusts": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      245,
+      0
+    ]
+  ],
+  "skip_to": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      715,
+      0
+    ]
+  ],
+  "dfasupported": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4785,
+      0
+    ]
+  ],
+  "getprogname": [
+    [
+      "../../c_prog/grep-3.11/lib/getprogname.rs",
+      5,
+      0
+    ]
+  ],
+  "strcaseeq9": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      106,
+      0
+    ]
+  ],
+  "re_string_skip_chars": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1725,
+      0
+    ]
+  ],
+  "glthread_rwlock_init_for_glibc": [
+    [
+      "../../c_prog/grep-3.11/lib/glthread/lock.rs",
+      102,
+      0
+    ]
+  ],
+  "c_toupper": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      166,
+      0
+    ]
+  ],
+  "streq1": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      270,
+      0
+    ]
+  ],
+  "reorder_tokens": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3369,
+      0
+    ]
+  ],
+  "quotearg_free": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1581,
+      0
+    ]
+  ],
+  "argcv_get": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      467,
+      0
+    ]
+  ],
+  "set_level_indent": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1425,
+      0
+    ]
+  ],
+  "build_wcs_upper_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1381,
+      0
+    ]
+  ],
+  "version_etc": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      326,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/version_etc.rs",
+      326,
+      0
+    ]
+  ],
+  "set_regs": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10133,
+      0
+    ]
+  ],
+  "get_subexp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11750,
+      0
+    ]
+  ],
+  "free_dfa_content": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3866,
+      0
+    ]
+  ],
+  "Fexecute": [
+    [
+      "../../c_prog/grep-3.11/src/kwsearch.rs",
+      164,
+      0
+    ]
+  ],
+  "linked_list_append": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      51,
+      0
+    ]
+  ],
+  "printf_fetchargs": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/printf_args.rs",
+      149,
+      0
+    ]
+  ],
+  "init_word_char": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4352,
+      0
+    ]
+  ],
+  "wordchar_prev": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      295,
+      0
+    ]
+  ],
+  "freemust": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5236,
+      0
+    ]
+  ],
+  "rpl_strerror_r": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/strerror_r.rs",
+      43,
+      0
+    ]
+  ],
+  "fetch_token": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5437,
+      0
+    ]
+  ],
+  "GEAcompile": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      416,
+      0
+    ]
+  ],
+  "set_level_mark": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      208,
+      0
+    ]
+  ],
+  "color_cap_mt_fct": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1189,
+      0
+    ]
+  ],
+  "mapped_range_start": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      331,
+      0
+    ]
+  ],
+  "lower_subexps": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4893,
+      0
+    ]
+  ],
+  "fd_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/fd_safer.rs",
+      7,
+      0
+    ]
+  ],
+  "parse_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      839,
+      0
+    ]
+  ],
+  "glthread_once_singlethreaded": [
+    [
+      "../../c_prog/grep-3.11/lib/glthread/lock.rs",
+      156,
+      0
+    ]
+  ],
+  "rpl_fcntl": [
+    [
+      "../../c_prog/grep-3.11/lib/fcntl.rs",
+      18,
+      0
+    ]
+  ],
+  "hash_print_statistics": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      184,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      183,
+      0
+    ]
+  ],
+  "strcaseeq4": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      214,
+      0
+    ]
+  ],
+  "save_cwd": [
+    [
+      "../../c_prog/grep-3.11/lib/save_cwd.rs",
+      18,
+      0
+    ]
+  ],
+  "strnlen1": [
+    [
+      "../../c_prog/grep-3.11/lib/strnlen1.rs",
+      10,
+      0
+    ]
+  ],
+  "add_exclude_file": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      1118,
+      0
+    ]
+  ],
+  "color_cap_ne_fct": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1195,
+      0
+    ]
+  ],
+  "xstrdup": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      117,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7094,
+      0
+    ]
+  ],
+  "critical_factorization": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/c_strcasestr.rs",
+      319,
+      0
+    ]
+  ],
+  "yyrestart": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4676,
+      0
+    ]
+  ],
+  "print_line_middle": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2469,
+      0
+    ]
+  ],
+  "restore_cwd": [
+    [
+      "../../c_prog/grep-3.11/lib/save_cwd.rs",
+      39,
+      0
+    ]
+  ],
+  "rpl_regerror": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3828,
+      0
+    ]
+  ],
+  "init_dfa": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4133,
+      0
+    ]
+  ],
+  "add_reference": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1788,
+      0
+    ]
+  ],
+  "dfaoptimize": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3496,
+      0
+    ]
+  ],
+  "add_preproc_option": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1518,
+      0
+    ]
+  ],
+  "unibyte_word_constituent": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      585,
+      0
+    ]
+  ],
+  "streq3": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      227,
+      0
+    ]
+  ],
+  "kwsalloc": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      157,
+      0
+    ]
+  ],
+  "dfamustfree": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5741,
+      0
+    ]
+  ],
+  "maybe_realloc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      550,
+      0
+    ]
+  ],
+  "file_name_matches": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      801,
+      0
+    ]
+  ],
+  "safe_read": [
+    [
+      "../../c_prog/grep-3.11/lib/safe_read.rs",
+      11,
+      0
+    ]
+  ],
+  "equal": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      530,
+      0
+    ]
+  ],
+  "wordchar_next": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      288,
+      0
+    ]
+  ],
+  "argcv_unquote_char": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      143,
+      0
+    ]
+  ],
+  "offtostr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/offtostr.rs",
+      4,
+      0
+    ]
+  ],
+  "rpl_re_compile_pattern": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3344,
+      0
+    ]
+  ],
+  "append": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2507,
+      0
+    ]
+  ],
+  "re_node_set_insert": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2742,
+      0
+    ]
+  ],
+  "select_output_driver": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      274,
+      0
+    ]
+  ],
+  "parse": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6098,
+      0
+    ]
+  ],
+  "c_strcasecmp": [
+    [
+      "../../c_prog/grep-3.11/lib/c_strcasecmp.rs",
+      12,
+      0
+    ]
+  ],
+  "quotearg_char": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1763,
+      0
+    ]
+  ],
+  "xicalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7065,
+      0
+    ]
+  ],
+  "quotearg_n_custom_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1820,
+      0
+    ]
+  ],
+  "yyset_lineno": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5059,
+      0
+    ]
+  ],
+  "print_line_head": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2421,
+      0
+    ]
+  ],
+  "try_fgrep_pattern": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4504,
+      0
+    ]
+  ],
+  "dfawarn": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      232,
+      0
+    ]
+  ],
+  "setup_ok_fold": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4318,
+      0
+    ]
+  ],
+  "rof_close": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      251,
+      0
+    ]
+  ],
+  "yy_fatal_error": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5035,
+      0
+    ]
+  ],
+  "func_body": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1463,
+      0
+    ]
+  ],
+  "gl_thread_create": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/glthread/thread.rs",
+      32,
+      0
+    ]
+  ],
+  "xsum3": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xsize.rs",
+      11,
+      0
+    ]
+  ],
+  "rpl_fcntl_DUPFD": [
+    [
+      "../../c_prog/grep-3.11/lib/fcntl.rs",
+      155,
+      0
+    ]
+  ],
+  "pp_close": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      656,
+      0
+    ]
+  ],
+  "initializer_list": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1138,
+      0
+    ]
+  ],
+  "raw_comparator": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      412,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      411,
+      0
+    ]
+  ],
+  "two_way_short_needle": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/c_strcasestr.rs",
+      195,
+      0
+    ]
+  ],
+  "fts_maxarglen": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1951,
+      0
+    ]
+  ],
+  "yylex": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      3046,
+      0
+    ]
+  ],
+  "xzalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      83,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7053,
+      0
+    ]
+  ],
+  "re_string_construct_common": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1278,
+      0
+    ]
+  ],
+  "check_dst_limits_calc_pos_1": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10818,
+      0
+    ]
+  ],
+  "i_ring_empty": [
+    [
+      "../../c_prog/grep-3.11/lib/i_ring.rs",
+      30,
+      0
+    ]
+  ],
+  "quotearg_style_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1738,
+      0
+    ]
+  ],
+  "get_stat_ctime": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      78,
+      0
+    ]
+  ],
+  "prev_newline_dependent": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      440,
+      0
+    ]
+  ],
+  "setlocale_null_r": [
+    [
+      "../../c_prog/grep-3.11/lib/setlocale_null.rs",
+      57,
+      0
+    ]
+  ],
+  "re_set_fastmap": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3414,
+      0
+    ]
+  ],
+  "printf_parse": [
+    [
+      "../../c_prog/cflow/gnu/printf_parse.rs",
+      105,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/printf_parse.rs",
+      184,
+      0
+    ]
+  ],
+  "output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      680,
+      0
+    ]
+  ],
+  "gnu_output_handler": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      188,
+      0
+    ]
+  ],
+  "pipe_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/pipe_safer.rs",
+      8,
+      0
+    ]
+  ],
+  "_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2344,
+      0
+    ]
+  ],
+  "yypop_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4866,
+      0
+    ]
+  ],
+  "setmatcher": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4068,
+      0
+    ]
+  ],
+  "rpl_fcntl_DUPFD_CLOEXEC": [
+    [
+      "../../c_prog/grep-3.11/lib/fcntl.rs",
+      164,
+      0
+    ]
+  ],
+  "hash_rehash": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      735,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      714,
+      0
+    ]
+  ],
+  "emit_bug_reporting_address": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      338,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/version_etc.rs",
+      338,
+      0
+    ]
+  ],
+  "rpl_free": [
+    [
+      "../../c_prog/grep-3.11/lib/free.rs",
+      6,
+      0
+    ]
+  ],
+  "strcaseeq5": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      188,
+      0
+    ]
+  ],
+  "xset_binary_mode_error": [
+    [
+      "../../c_prog/grep-3.11/lib/xbinary_io.rs",
+      11,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      966,
+      0
+    ]
+  ],
+  "re_string_char_size_at": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      980,
+      0
+    ]
+  ],
+  "c_isascii": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      28,
+      0
+    ]
+  ],
+  "calc_next": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4974,
+      0
+    ]
+  ],
+  "grep_command_line_arg": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3429,
+      0
+    ]
+  ],
+  "match_ctx_free": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13749,
+      0
+    ]
+  ],
+  "c_isdigit": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      393,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      63,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      926,
+      0
+    ]
+  ],
+  "free_exclude_segment": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      632,
+      0
+    ]
+  ],
+  "addtok_wc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2124,
+      0
+    ]
+  ],
+  "gl_locale_name": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      298,
+      0
+    ]
+  ],
+  "argp_fmtstream_puts": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      380,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      144,
+      0
+    ]
+  ],
+  "open_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/open_safer.rs",
+      19,
+      0
+    ]
+  ],
+  "nonnull": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      86,
+      0
+    ]
+  ],
+  "reference": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1832,
+      0
+    ]
+  ],
+  "build_trtable": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12544,
+      0
+    ]
+  ],
+  "mem_cd_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/striconv.rs",
+      32,
+      0
+    ]
+  ],
+  "indent_to": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1603,
+      0
+    ]
+  ],
+  "fputs_errno": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1314,
+      0
+    ]
+  ],
+  "hol_append": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1424,
+      0
+    ]
+  ],
+  "get_knr_args": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1558,
+      0
+    ]
+  ],
+  "rotl_sz": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      75,
+      0
+    ]
+  ],
+  "hard_locale": [
+    [
+      "../../c_prog/grep-3.11/lib/hard_locale.rs",
+      11,
+      0
+    ]
+  ],
+  "skip_struct": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1179,
+      0
+    ]
+  ],
+  "fts_sort": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1764,
+      0
+    ]
+  ],
+  "bracket_fetch_wc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      682,
+      0
+    ]
+  ],
+  "exclude_options": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2114,
+      0
+    ]
+  ],
+  "add_argless_short_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1948,
+      0
+    ]
+  ],
+  "gl_locale_name_thread": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      245,
+      0
+    ]
+  ],
+  "yypush_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4832,
+      0
+    ]
+  ],
+  "prtext": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2686,
+      0
+    ]
+  ],
+  "fillset": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      514,
+      0
+    ]
+  ],
+  "optimize_utf8": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4559,
+      0
+    ]
+  ],
+  "re_node_set_init_2": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2364,
+      0
+    ]
+  ],
+  "close_stdout_set_ignore_EPIPE": [
+    [
+      "../../c_prog/grep-3.11/lib/closeout.rs",
+      72,
+      0
+    ]
+  ],
+  "streq2": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      248,
+      0
+    ]
+  ],
+  "enter_dir": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      408,
+      0
+    ]
+  ],
+  "tolower": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      310,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbscasecmp.rs",
+      83,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1008,
+      0
+    ]
+  ],
+  "ireallocarray": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      54,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/ialloc.rs",
+      17,
+      0
+    ]
+  ],
+  "close_stdout_set_file_name": [
+    [
+      "../../c_prog/grep-3.11/lib/closeout.rs",
+      67,
+      0
+    ]
+  ],
+  "c_isupper": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      134,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      359,
+      0
+    ]
+  ],
+  "quotearg_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1482,
+      0
+    ]
+  ],
+  "excluded_file_name": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      837,
+      0
+    ]
+  ],
+  "pr_sgr_start_if": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1179,
+      0
+    ]
+  ],
+  "fflush_errno": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1369,
+      0
+    ]
+  ],
+  "kwsinit": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      113,
+      0
+    ]
+  ],
+  "update_cur_sifted_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10598,
+      0
+    ]
+  ],
+  "yy_flush_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4807,
+      0
+    ]
+  ],
+  "mapped_range_end": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      380,
+      0
+    ]
+  ],
+  "fill_in_uparams": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      570,
+      0
+    ]
+  ],
+  "set_custom_quoting": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      474,
+      0
+    ]
+  ],
+  "two_way_long_needle": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/c_strcasestr.rs",
+      25,
+      0
+    ]
+  ],
+  "insert": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2471,
+      0
+    ]
+  ],
+  "resetmust": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5224,
+      0
+    ]
+  ],
+  "until_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1093,
+      0
+    ]
+  ],
+  "yyget_debug": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5071,
+      0
+    ]
+  ],
+  "argp_args_levels": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2159,
+      0
+    ]
+  ],
+  "is_basic": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      210,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbslen.rs",
+      60,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbscasecmp.rs",
+      91,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbchar.rs",
+      25,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/propername.rs",
+      106,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbuiter.rs",
+      228,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      289,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbiter.rs",
+      231,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/trim.rs",
+      83,
+      0
+    ]
+  ],
+  "clean_up_stdout": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1922,
+      0
+    ]
+  ],
+  "yyget_out": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5047,
+      0
+    ]
+  ],
+  "zeroset": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      507,
+      0
+    ]
+  ],
+  "parse_level_string": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1275,
+      0
+    ]
+  ],
+  "static_free": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      387,
+      0
+    ]
+  ],
+  "addlists": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5173,
+      0
+    ]
+  ],
+  "undo_save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      609,
+      0
+    ]
+  ],
+  "argcv_quote_copy": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      417,
+      0
+    ]
+  ],
+  "collect_symbols": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      484,
+      0
+    ]
+  ],
+  "finish_save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      613,
+      0
+    ]
+  ],
+  "chdir_long": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      97,
+      0
+    ]
+  ],
+  "run_static_initializers": [
+    [
+      "../../c_prog/grep-3.11/lib/fcntl.rs",
+      196,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      3730,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5844,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13893,
+      0
+    ]
+  ],
+  "hash_do_for_each": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      325,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      324,
+      0
+    ]
+  ],
+  "include_symbol": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1770,
+      0
+    ]
+  ],
+  "string_compare": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      554,
+      0
+    ]
+  ],
+  "build_upper_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1771,
+      0
+    ]
+  ],
+  "quotearg_char_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1746,
+      0
+    ]
+  ],
+  "check_arrival_expand_ecl_sub": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12360,
+      0
+    ]
+  ],
+  "_obstack_free": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      424,
+      0
+    ]
+  ],
+  "print_start_colorize": [
+    [
+      "../../c_prog/grep-3.11/lib/colorize.rs",
+      55,
+      0
+    ]
+  ],
+  "to_uchar": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      407,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      922,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      139,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      94,
+      0
+    ]
+  ],
+  "exclude_add_pattern_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      424,
+      0
+    ]
+  ],
+  "number": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1173,
+      0
+    ]
+  ],
+  "transit_state_singlebyte": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4336,
+      0
+    ]
+  ],
+  "setup_dir": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      327,
+      0
+    ]
+  ],
+  "call_addfn": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      1104,
+      0
+    ]
+  ],
+  "__xargmatch_internal": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      245,
+      0
+    ]
+  ],
+  "fgrep_icase_charlen": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4353,
+      0
+    ]
+  ],
+  "print_header": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1659,
+      0
+    ]
+  ],
+  "c_isspace": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      125,
+      0
+    ]
+  ],
+  "atoi": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      315,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      302,
+      0
+    ]
+  ],
+  "hol_entry_qcmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1391,
+      0
+    ]
+  ],
+  "copytoks": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2311,
+      0
+    ]
+  ],
+  "save_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      604,
+      0
+    ]
+  ],
+  "make_hol": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      768,
+      0
+    ]
+  ],
+  "defaulted_getenv": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/locale.rs",
+      10,
+      0
+    ]
+  ],
+  "bitset_clear": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1068,
+      0
+    ]
+  ],
+  "re_string_reconstruct": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1836,
+      0
+    ]
+  ],
+  "parse_branch": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6226,
+      0
+    ]
+  ],
+  "i_ring_pop": [
+    [
+      "../../c_prog/grep-3.11/lib/i_ring.rs",
+      54,
+      0
+    ]
+  ],
+  "get_stat_birthtime_ns": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      66,
+      0
+    ]
+  ],
+  "yyget_text": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5055,
+      0
+    ]
+  ],
+  "callback": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      502,
+      0
+    ]
+  ],
+  "duplicate_tree": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8387,
+      0
+    ]
+  ],
+  "argp_version_setup": [
+    [
+      "../../c_prog/cflow/gnu/argp_version_etc.rs",
+      127,
+      0
+    ]
+  ],
+  "rpl_fts_children": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1233,
+      0
+    ]
+  ],
+  "parse_sub_exp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      6681,
+      0
+    ]
+  ],
+  "transit_state_mb": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11415,
+      0
+    ]
+  ],
+  "gl_dynarray_resize_clear": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_resize_clear.rs",
+      23,
+      0
+    ]
+  ],
+  "skipped_file": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2122,
+      0
+    ]
+  ],
+  "c_isalpha": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      16,
+      0
+    ]
+  ],
+  "dfamust": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5244,
+      0
+    ]
+  ],
+  "sigsegv_install_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      378,
+      0
+    ]
+  ],
+  "hash_table_ok": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      154,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      153,
+      0
+    ]
+  ],
+  "set_active": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      499,
+      0
+    ]
+  ],
+  "lower_subexp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4917,
+      0
+    ]
+  ],
+  "dfaalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5745,
+      0
+    ]
+  ],
+  "validate_uparams": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      537,
+      0
+    ]
+  ],
+  "version_etc_va": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      297,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/version_etc.rs",
+      297,
+      0
+    ]
+  ],
+  "re_search_2_stub": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8591,
+      0
+    ]
+  ],
+  "data_in_list": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      139,
+      0
+    ]
+  ],
+  "check_halt_state_context": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9881,
+      0
+    ]
+  ],
+  "locale_charset": [
+    [
+      "../../c_prog/grep-3.11/lib/localcharset.rs",
+      390,
+      0
+    ]
+  ],
+  "string_compare_ci": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      562,
+      0
+    ]
+  ],
+  "yylex_destroy": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5090,
+      0
+    ]
+  ],
+  "yy_scan_string": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4994,
+      0
+    ]
+  ],
+  "putchar_errno": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1309,
+      0
+    ]
+  ],
+  "mincore_is_near_this": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      472,
+      0
+    ]
+  ],
+  "transit_state_bkref": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11546,
+      0
+    ]
+  ],
+  "xstrtoul": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoul.rs",
+      3475,
+      0
+    ]
+  ],
+  "acexec": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      4847,
+      0
+    ]
+  ],
+  "expression": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      851,
+      0
+    ]
+  ],
+  "delete_statics": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      402,
+      0
+    ]
+  ],
+  "uinttostr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/uinttostr.rs",
+      2,
+      0
+    ]
+  ],
+  "uc_width": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      3677,
+      0
+    ]
+  ],
+  "argmatch_valid": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      200,
+      0
+    ]
+  ],
+  "mfile_name_concat": [
+    [
+      "../../c_prog/grep-3.11/lib/filenamecat_lgpl.rs",
+      14,
+      0
+    ]
+  ],
+  "yyget_leng": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5051,
+      0
+    ]
+  ],
+  "_option_is_short": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      339,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      128,
+      0
+    ]
+  ],
+  "print_function_name": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      129,
+      0
+    ]
+  ],
+  "mb_goback": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      154,
+      0
+    ]
+  ],
+  "trim2": [
+    [
+      "../../c_prog/grep-3.11/lib/trim.rs",
+      221,
+      0
+    ]
+  ],
+  "kwsexec": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      4863,
+      0
+    ]
+  ],
+  "preorder": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4830,
+      0
+    ]
+  ],
+  "yy_get_previous_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4519,
+      0
+    ]
+  ],
+  "fd_safer_flag": [
+    [
+      "../../c_prog/grep-3.11/lib/fd_safer_flag.rs",
+      7,
+      0
+    ]
+  ],
+  "duplicate_node": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5215,
+      0
+    ]
+  ],
+  "merge": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2580,
+      0
+    ]
+  ],
+  "check_arrival_add_next_nodes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12215,
+      0
+    ]
+  ],
+  "hash_string": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      354,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      353,
+      0
+    ]
+  ],
+  "argmatch_to_argument": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      270,
+      0
+    ]
+  ],
+  "EGexecute": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      669,
+      0
+    ]
+  ],
+  "fillbuf": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2235,
+      0
+    ]
+  ],
+  "output_init": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      290,
+      0
+    ]
+  ],
+  "delete": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2604,
+      0
+    ]
+  ],
+  "hol_entry_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1251,
+      0
+    ]
+  ],
+  "mbs_to_wchar": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      465,
+      0
+    ]
+  ],
+  "c_isxdigit": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      144,
+      0
+    ]
+  ],
+  "_getopt_initialize": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      154,
+      0
+    ]
+  ],
+  "update_loc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      857,
+      0
+    ]
+  ],
+  "regex_compile": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      326,
+      0
+    ]
+  ],
+  "memchr2": [
+    [
+      "../../c_prog/grep-3.11/lib/memchr2.rs",
+      12,
+      0
+    ]
+  ],
+  "end": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      330,
+      0
+    ]
+  ],
+  "separator": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      342,
+      0
+    ]
+  ],
+  "fetch_wc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      666,
+      0
+    ]
+  ],
+  "get_stat_mtime": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      84,
+      0
+    ]
+  ],
+  "gl_dynarray_at_failure": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_at_failure.rs",
+      6,
+      0
+    ]
+  ],
+  "hash_get_first": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      245,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      248,
+      0
+    ]
+  ],
+  "usage": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3446,
+      0
+    ]
+  ],
+  "dfafree": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5019,
+      0
+    ]
+  ],
+  "rpl_strtoll": [
+    [
+      "../../c_prog/grep-3.11/lib/strtoll.rs",
+      21,
+      0
+    ]
+  ],
+  "rotr8": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      12,
+      0
+    ]
+  ],
+  "linked_list_destroy": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      71,
+      0
+    ]
+  ],
+  "yyfree": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5126,
+      0
+    ]
+  ],
+  "rotl64": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      51,
+      0
+    ]
+  ],
+  "quotearg_n_style_colon": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1783,
+      0
+    ]
+  ],
+  "bkm_scale_by_power": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoimax.rs",
+      222,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoul.rs",
+      3456,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xstrtol.rs",
+      3167,
+      0
+    ]
+  ],
+  "build_collating_symbol": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7126,
+      0
+    ]
+  ],
+  "sift_states_bkref": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11058,
+      0
+    ]
+  ],
+  "creat_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/creat_safer.rs",
+      8,
+      0
+    ]
+  ],
+  "dfaexec_main": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4507,
+      0
+    ]
+  ],
+  "sift_states_iter_mb": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11214,
+      0
+    ]
+  ],
+  "fts_lfree": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1889,
+      0
+    ]
+  ],
+  "case_folded_counterparts": [
+    [
+      "../../c_prog/grep-3.11/lib/localeinfo.rs",
+      143,
+      0
+    ]
+  ],
+  "collect_processor": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      463,
+      0
+    ]
+  ],
+  "streq0": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      293,
+      0
+    ]
+  ],
+  "check_matching": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9724,
+      0
+    ]
+  ],
+  "icalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      38,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/ialloc.rs",
+      37,
+      0
+    ]
+  ],
+  "_obstack_memory_used": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      446,
+      0
+    ]
+  ],
+  "argcv_quote_char": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      155,
+      0
+    ]
+  ],
+  "set_print_option": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1155,
+      0
+    ]
+  ],
+  "streq7": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      16,
+      0
+    ]
+  ],
+  "finalize_input": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3247,
+      0
+    ]
+  ],
+  "is_unmapped": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      430,
+      0
+    ]
+  ],
+  "parmdcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1362,
+      0
+    ]
+  ],
+  "is_function": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      803,
+      0
+    ]
+  ],
+  "re_search_internal": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8908,
+      0
+    ]
+  ],
+  "pr_sgr_end": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1174,
+      0
+    ]
+  ],
+  "strtoimax": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoimax.rs",
+      3367,
+      0
+    ]
+  ],
+  "dfaisfast": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4764,
+      0
+    ]
+  ],
+  "parse_variable_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1021,
+      0
+    ]
+  ],
+  "create_initial_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4442,
+      0
+    ]
+  ],
+  "base_len": [
+    [
+      "../../c_prog/grep-3.11/lib/basename_lgpl.rs",
+      30,
+      0
+    ]
+  ],
+  "save_token": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      443,
+      0
+    ]
+  ],
+  "merge_constrained": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2521,
+      0
+    ]
+  ],
+  "init_localeinfo": [
+    [
+      "../../c_prog/grep-3.11/lib/localeinfo.rs",
+      80,
+      0
+    ]
+  ],
+  "vasnprintf": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      141,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/vasnprintf.rs",
+      215,
+      0
+    ]
+  ],
+  "addtok": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2098,
+      0
+    ]
+  ],
+  "cdb_fchdir": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      42,
+      0
+    ]
+  ],
+  "null_action": [
+    [
+      "../../c_prog/grep-3.11/lib/c_stack.rs",
+      171,
+      0
+    ]
+  ],
+  "printf_errno": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1319,
+      0
+    ]
+  ],
+  "streq6": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      170,
+      0
+    ]
+  ],
+  "link_nfa_nodes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4997,
+      0
+    ]
+  ],
+  "compare": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      381,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3360,
+      0
+    ]
+  ],
+  "struniq": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      130,
+      0
+    ]
+  ],
+  "search_cur_bkref_entry": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13822,
+      0
+    ]
+  ],
+  "fts_load": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      721,
+      0
+    ]
+  ],
+  "_obstack_begin_1": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      301,
+      0
+    ]
+  ],
+  "freea": [
+    [
+      "../../c_prog/grep-3.11/lib/malloca.rs",
+      64,
+      0
+    ]
+  ],
+  "check_dst_limits_calc_pos": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10908,
+      0
+    ]
+  ],
+  "argp_error": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2586,
+      0
+    ]
+  ],
+  "parse_rc": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      149,
+      0
+    ]
+  ],
+  "asnprintf": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/asnprintf.rs",
+      22,
+      0
+    ]
+  ],
+  "xmem_cd_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/xstriconv.rs",
+      21,
+      0
+    ]
+  ],
+  "fstatat": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      311,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      860,
+      0
+    ]
+  ],
+  "re_search_stub": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8652,
+      0
+    ]
+  ],
+  "hash_get_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      296,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      295,
+      0
+    ]
+  ],
+  "begin": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      318,
+      0
+    ]
+  ],
+  "set_quoting_style": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      423,
+      0
+    ]
+  ],
+  "xalloc_die": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1806,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/xalloc_die.rs",
+      17,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xalloc_die.rs",
+      17,
+      0
+    ]
+  ],
+  "free_token": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8369,
+      0
+    ]
+  ],
+  "file_pattern_matches": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      785,
+      0
+    ]
+  ],
+  "bm_delta2_search": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      1049,
+      0
+    ]
+  ],
+  "compute_bucket_size": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      438,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      437,
+      0
+    ]
+  ],
+  "pr_sgr_end_if": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1184,
+      0
+    ]
+  ],
+  "dev_type_compare": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      803,
+      0
+    ]
+  ],
+  "init_colorize": [
+    [
+      "../../c_prog/grep-3.11/lib/colorize.rs",
+      62,
+      0
+    ]
+  ],
+  "ximemdup0": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7083,
+      0
+    ]
+  ],
+  "argp_args_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2178,
+      0
+    ]
+  ],
+  "inboth": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5184,
+      0
+    ]
+  ],
+  "_obstack_begin": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      288,
+      0
+    ]
+  ],
+  "hash_pjw": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/hash_pjw.rs",
+      3,
+      0
+    ]
+  ],
+  "_obstack_allocated_p": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      408,
+      0
+    ]
+  ],
+  "add_count": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2154,
+      0
+    ]
+  ],
+  "notset": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      522,
+      0
+    ]
+  ],
+  "hol_sort": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1397,
+      0
+    ]
+  ],
+  "dfasuperset": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4760,
+      0
+    ]
+  ],
+  "fake_struct": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      978,
+      0
+    ]
+  ],
+  "xstr_cd_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/xstriconv.rs",
+      35,
+      0
+    ]
+  ],
+  "re_node_set_init_1": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2343,
+      0
+    ]
+  ],
+  "hol_entry_long_iterate": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1056,
+      0
+    ]
+  ],
+  "re_string_destruct": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2259,
+      0
+    ]
+  ],
+  "free_mbdata": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4768,
+      0
+    ]
+  ],
+  "calc_inveclosure": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5242,
+      0
+    ]
+  ],
+  "skip_remains_mb": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4484,
+      0
+    ]
+  ],
+  "pp_open": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      607,
+      0
+    ]
+  ],
+  "string_hasher": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      496,
+      0
+    ]
+  ],
+  "hash_initialize": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      465,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      467,
+      0
+    ]
+  ],
+  "add_exclude_fp": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      993,
+      0
+    ]
+  ],
+  "match_ctx_add_entry": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13550,
+      0
+    ]
+  ],
+  "zap_nuls": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2771,
+      0
+    ]
+  ],
+  "argcv_quoted_length": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      232,
+      0
+    ]
+  ],
+  "dfacopysyntax": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5835,
+      0
+    ]
+  ],
+  "xstrtoimax": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoimax.rs",
+      41,
+      0
+    ]
+  ],
+  "strcaseeq2": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      269,
+      0
+    ]
+  ],
+  "_gl_alloc_nomem": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      72,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/ialloc.rs",
+      65,
+      0
+    ]
+  ],
+  "cdb_advance_fd": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      76,
+      0
+    ]
+  ],
+  "i_ring_init": [
+    [
+      "../../c_prog/grep-3.11/lib/i_ring.rs",
+      16,
+      0
+    ]
+  ],
+  "wordchars_count": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      238,
+      0
+    ]
+  ],
+  "fetch_number": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8241,
+      0
+    ]
+  ],
+  "install_for": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      324,
+      0
+    ]
+  ],
+  "skip_balanced": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      723,
+      0
+    ]
+  ],
+  "rpl_re_search_2": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8566,
+      0
+    ]
+  ],
+  "prline": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2570,
+      0
+    ]
+  ],
+  "x2nrealloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      25,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      163,
+      0
+    ]
+  ],
+  "exchange": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      111,
+      0
+    ]
+  ],
+  "knuth_morris_pratt": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      243,
+      0
+    ]
+  ],
+  "ximalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      96,
+      0
+    ]
+  ],
+  "is_zero_or_power_of_two": [
+    [
+      "../../c_prog/grep-3.11/lib/cycle_check.rs",
+      64,
+      0
+    ]
+  ],
+  "pattern_file_name": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1128,
+      0
+    ]
+  ],
+  "vma_iterate_proc": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      256,
+      0
+    ]
+  ],
+  "dfaerror": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      208,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_wmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      409,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      83,
+      0
+    ]
+  ],
+  "expand_bkref_cache": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12415,
+      0
+    ]
+  ],
+  "peek_token": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5444,
+      0
+    ]
+  ],
+  "print_function": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      432,
+      0
+    ]
+  ],
+  "xset_binary_mode": [
+    [
+      "../../c_prog/grep-3.11/lib/xbinary_io.rs",
+      3,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      968,
+      0
+    ]
+  ],
+  "stat_time_normalize": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      39,
+      0
+    ]
+  ],
+  "rpl_re_match_2": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8542,
+      0
+    ]
+  ],
+  "icatalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5063,
+      0
+    ]
+  ],
+  "openat_restore_fail": [
+    [
+      "../../c_prog/grep-3.11/lib/openat_die.rs",
+      31,
+      0
+    ]
+  ],
+  "yyget_in": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5043,
+      0
+    ]
+  ],
+  "rpl_fopen": [
+    [
+      "../../c_prog/grep-3.11/lib/fopen.rs",
+      63,
+      0
+    ]
+  ],
+  "__dynarray_error": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_finalize.rs",
+      25,
+      0
+    ]
+  ],
+  "lex": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      1113,
+      0
+    ]
+  ],
+  "search_duplicated_node": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5195,
+      0
+    ]
+  ],
+  "linked_list_iterate": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      112,
+      0
+    ]
+  ],
+  "quotearg_colon_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1776,
+      0
+    ]
+  ],
+  "dfaexec_noop": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4737,
+      0
+    ]
+  ],
+  "openat_save_fail": [
+    [
+      "../../c_prog/grep-3.11/lib/openat_die.rs",
+      17,
+      0
+    ]
+  ],
+  "free_workarea_compile": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4422,
+      0
+    ]
+  ],
+  "hash_remove": [
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      852,
+      0
+    ]
+  ],
+  "merge_nfa_state": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3255,
+      0
+    ]
+  ],
+  "buf_has_encoding_errors": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1986,
+      0
+    ]
+  ],
+  "set_program_name": [
+    [
+      "../../c_prog/cflow/gnu/progname.rs",
+      14,
+      0
+    ]
+  ],
+  "sigsegv_deinstall_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      388,
+      0
+    ]
+  ],
+  "tree_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      578,
+      0
+    ]
+  ],
+  "yyrealloc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5119,
+      0
+    ]
+  ],
+  "re_node_set_add_intersect": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2429,
+      0
+    ]
+  ],
+  "mbuiter_multi_next": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      83,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbslen.rs",
+      68,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbscasecmp.rs",
+      99,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/propername.rs",
+      114,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbuiter.rs",
+      99,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      297,
+      0
+    ]
+  ],
+  "treedelta": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      647,
+      0
+    ]
+  ],
+  "streq4": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      207,
+      0
+    ]
+  ],
+  "xstrtol": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtol.rs",
+      3186,
+      0
+    ]
+  ],
+  "input_filename": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1900,
+      0
+    ]
+  ],
+  "get_symbol": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1769,
+      0
+    ]
+  ],
+  "acquire_init_state_context": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9680,
+      0
+    ]
+  ],
+  "reset": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2200,
+      0
+    ]
+  ],
+  "print_symbol": [
+    [
+      "../../c_prog/cflow/src/gnu.rs",
+      162,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      152,
+      0
+    ],
+    [
+      "../../c_prog/cflow/src/output.rs",
+      354,
+      0
+    ]
+  ],
+  "nexttoken": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      386,
+      0
+    ]
+  ],
+  "c_islower": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      87,
+      0
+    ]
+  ],
+  "replace": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2633,
+      0
+    ]
+  ],
+  "AD_hash": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      320,
+      0
+    ]
+  ],
+  "bitset_set": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      974,
+      0
+    ]
+  ],
+  "streq5": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      188,
+      0
+    ]
+  ],
+  "call_chunkfun": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      113,
+      0
+    ]
+  ],
+  "stackoverflow_deinstall_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      450,
+      0
+    ]
+  ],
+  "free_dir": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      359,
+      0
+    ]
+  ],
+  "kwsincr": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      247,
+      0
+    ]
+  ],
+  "regmatch_list_init": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13807,
+      0
+    ]
+  ],
+  "bmexec": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      4685,
+      0
+    ]
+  ],
+  "hash_get_n_buckets_used": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      116,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      115,
+      0
+    ]
+  ],
+  "wordinit": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      104,
+      0
+    ]
+  ],
+  "update_regs": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10304,
+      0
+    ]
+  ],
+  "print_offset": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2416,
+      0
+    ]
+  ],
+  "parse_dcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1239,
+      0
+    ]
+  ],
+  "char_context": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      594,
+      0
+    ]
+  ],
+  "argmatch_exact": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      155,
+      0
+    ]
+  ],
+  "depmap_isset": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      127,
+      0
+    ]
+  ],
+  "linked_list_unlink": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      89,
+      0
+    ]
+  ],
+  "U": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      143,
+      0
+    ]
+  ],
+  "accepting": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      449,
+      0
+    ]
+  ],
+  "restore": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      340,
+      0
+    ]
+  ],
+  "main": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1964,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/test_localcharset.rs",
+      15,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/locale.rs",
+      86,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      5621,
+      0
+    ]
+  ],
+  "hash_symbol_compare": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      169,
+      0
+    ]
+  ],
+  "fnmatch_pattern_has_wildcards": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      436,
+      0
+    ]
+  ],
+  "quotearg_custom": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1832,
+      0
+    ]
+  ],
+  "proper_name_utf8": [
+    [
+      "../../c_prog/grep-3.11/lib/propername.rs",
+      485,
+      0
+    ]
+  ],
+  "fgrep_icase_available": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4405,
+      0
+    ]
+  ],
+  "initialize_unibyte_mask": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1937,
+      0
+    ]
+  ],
+  "re_node_set_merge": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2628,
+      0
+    ]
+  ],
+  "re_node_set_compare": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2836,
+      0
+    ]
+  ],
+  "string_free": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      570,
+      0
+    ]
+  ],
+  "yyget_lineno": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5039,
+      0
+    ]
+  ],
+  "sigsegv_leave_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      400,
+      0
+    ]
+  ],
+  "dup_cloexec": [
+    [
+      "../../c_prog/grep-3.11/lib/cloexec.rs",
+      25,
+      0
+    ]
+  ],
+  "buf_has_nulls": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2020,
+      0
+    ]
+  ],
+  "push_fail_stack": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10041,
+      0
+    ]
+  ],
+  "depmap_rowptr": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      99,
+      0
+    ]
+  ],
+  "declare": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1626,
+      0
+    ]
+  ],
+  "dir_len": [
+    [
+      "../../c_prog/cflow/gnu/dirname_lgpl.rs",
+      12,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/dirname_lgpl.rs",
+      12,
+      0
+    ]
+  ],
+  "hol_cluster_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1194,
+      0
+    ]
+  ],
+  "yyunput": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4574,
+      0
+    ]
+  ],
+  "argp_hol": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2130,
+      0
+    ]
+  ],
+  "set_cloexec_flag": [
+    [
+      "../../c_prog/grep-3.11/lib/cloexec.rs",
+      5,
+      0
+    ]
+  ],
+  "letter_constraint": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      413,
+      0
+    ]
+  ],
+  "find_pred": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      802,
+      0
+    ]
+  ],
+  "rpl_re_search": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8522,
+      0
+    ]
+  ],
+  "irealloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      27,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/ialloc.rs",
+      73,
+      0
+    ]
+  ],
+  "suppressible_error": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1911,
+      0
+    ]
+  ],
+  "yyset_out": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5067,
+      0
+    ]
+  ],
+  "kwsprep": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      689,
+      0
+    ]
+  ],
+  "argp_state_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2556,
+      0
+    ]
+  ],
+  "knuth_morris_pratt_multibyte": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      345,
+      0
+    ]
+  ],
+  "unlink_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      356,
+      0
+    ]
+  ],
+  "regmatch_list_free__array__": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13857,
+      0
+    ]
+  ],
+  "dfaanalyze": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3585,
+      0
+    ]
+  ],
+  "pop_lex_state": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      1109,
+      0
+    ]
+  ],
+  "dfacomp": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4986,
+      0
+    ]
+  ],
+  "re_string_elem_size_at": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1022,
+      0
+    ]
+  ],
+  "yy_switch_to_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4699,
+      0
+    ]
+  ],
+  "print_end_colorize": [
+    [
+      "../../c_prog/grep-3.11/lib/colorize.rs",
+      51,
+      0
+    ]
+  ],
+  "argp_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2525,
+      0
+    ]
+  ],
+  "xstr_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/xstriconv.rs",
+      46,
+      0
+    ]
+  ],
+  "__dynarray_error_marker": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1028,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_finalize.rs",
+      29,
+      0
+    ]
+  ],
+  "extend_buffers": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13468,
+      0
+    ]
+  ],
+  "re_node_set_init_union": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2546,
+      0
+    ]
+  ],
+  "build_wcs_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1300,
+      0
+    ]
+  ],
+  "_option_is_end": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      334,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      123,
+      0
+    ]
+  ],
+  "quote_n": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1881,
+      0
+    ]
+  ],
+  "argmatch_invalid": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      171,
+      0
+    ]
+  ],
+  "filter_doc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1645,
+      0
+    ]
+  ],
+  "__argmatch_die": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      111,
+      0
+    ]
+  ],
+  "deref_linked_list": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      25,
+      0
+    ]
+  ],
+  "new_exclude_segment": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      573,
+      0
+    ]
+  ],
+  "wordchars_size": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      281,
+      0
+    ]
+  ],
+  "next_prime": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      393,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      392,
+      0
+    ]
+  ],
+  "u8_uctomb_aux": [
+    [
+      "../../c_prog/grep-3.11/lib/unistr/u8_uctomb_aux.rs",
+      8,
+      0
+    ]
+  ],
+  "exclude_fnmatch": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      716,
+      0
+    ]
+  ],
+  "build_charclass": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7667,
+      0
+    ]
+  ],
+  "argp_fmtstream_set_rmargin": [
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      98,
+      0
+    ]
+  ],
+  "usable_st_size": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1890,
+      0
+    ]
+  ],
+  "strcaseeq8": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      116,
+      0
+    ]
+  ],
+  "rotl16": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      33,
+      0
+    ]
+  ],
+  "backslash": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      840,
+      0
+    ]
+  ],
+  "sigsegv_reset_onstack_flag": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      237,
+      0
+    ]
+  ],
+  "dirent_inode_sort_may_be_useful": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      886,
+      0
+    ]
+  ],
+  "fts_padjust": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1925,
+      0
+    ]
+  ],
+  "re_node_set_contains": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2856,
+      0
+    ]
+  ],
+  "dfasyntax": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5749,
+      0
+    ]
+  ],
+  "merge_state_array": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10555,
+      0
+    ]
+  ],
+  "yyalloc": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5115,
+      0
+    ]
+  ],
+  "c_tolower": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/c_strcasestr.rs",
+      15,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/c_strncasecmp.rs",
+      3,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/c_strcasecmp.rs",
+      2,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      154,
+      0
+    ]
+  ],
+  "free_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3155,
+      0
+    ]
+  ],
+  "prpending": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2666,
+      0
+    ]
+  ],
+  "re_compile_internal": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3951,
+      0
+    ]
+  ],
+  "yy_create_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4735,
+      0
+    ]
+  ],
+  "quote_n_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1866,
+      0
+    ]
+  ],
+  "get_stat_atime": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      72,
+      0
+    ]
+  ],
+  "fts_set_stat_required": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      453,
+      0
+    ]
+  ],
+  "bitset_not": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      942,
+      0
+    ]
+  ],
+  "add_epsilon_src_nodes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10660,
+      0
+    ]
+  ],
+  "inttostr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/inttostr.rs",
+      2,
+      0
+    ]
+  ],
+  "leave_dir": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      368,
+      0
+    ]
+  ],
+  "strcaseeq3": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      241,
+      0
+    ]
+  ],
+  "pp_finalize": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      539,
+      0
+    ]
+  ],
+  "calc_eclosure_iter": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5329,
+      0
+    ]
+  ],
+  "hol_cluster_is_child": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1216,
+      0
+    ]
+  ],
+  "xmax": [
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      128,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/vasnprintf.rs",
+      211,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xsize.rs",
+      32,
+      0
+    ]
+  ],
+  "bitset_contain": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1016,
+      0
+    ]
+  ],
+  "ferror_unlocked": [
+    [
+      "../../c_prog/grep-3.11/lib/close_stream.rs",
+      49,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      898,
+      0
+    ]
+  ],
+  "re_string_peek_byte_case": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2191,
+      0
+    ]
+  ],
+  "i_ring_push": [
+    [
+      "../../c_prog/grep-3.11/lib/i_ring.rs",
+      34,
+      0
+    ]
+  ],
+  "depmap_alloc": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      72,
+      0
+    ]
+  ],
+  "gl_locale_name_thread_unsafe": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      229,
+      0
+    ]
+  ],
+  "charclass_context": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3216,
+      0
+    ]
+  ],
+  "re_string_wchar_at": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      916,
+      0
+    ]
+  ],
+  "skip_devices": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1884,
+      0
+    ]
+  ],
+  "yywrap": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      666,
+      0
+    ]
+  ],
+  "fgrep_to_grep_pattern": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4430,
+      0
+    ]
+  ],
+  "argp_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_xinl.rs",
+      141,
+      0
+    ]
+  ],
+  "rpl_mbsrtowcs": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsrtowcs.rs",
+      29,
+      0
+    ]
+  ],
+  "accepts_in_context": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      453,
+      0
+    ]
+  ],
+  "hol_help": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1901,
+      0
+    ]
+  ],
+  "allocmust": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5210,
+      0
+    ]
+  ],
+  "is_using_utf8": [
+    [
+      "../../c_prog/grep-3.11/lib/localeinfo.rs",
+      41,
+      0
+    ]
+  ],
+  "c_ispunct": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      114,
+      0
+    ]
+  ],
+  "bkm_scale": [
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoimax.rs",
+      241,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xstrtoul.rs",
+      38,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xstrtol.rs",
+      38,
+      0
+    ]
+  ],
+  "hol_cluster_base": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1210,
+      0
+    ]
+  ],
+  "gl_sockets_cleanup": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/sockets.rs",
+      6,
+      0
+    ]
+  ],
+  "rotr32": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      69,
+      0
+    ]
+  ],
+  "xstrtol_error": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xstrtol_error.rs",
+      31,
+      0
+    ]
+  ],
+  "mark_opt_subexp": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8357,
+      0
+    ]
+  ],
+  "rotr16": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      26,
+      0
+    ]
+  ],
+  "comsubs": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5139,
+      0
+    ]
+  ],
+  "proceed_next_node": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      9906,
+      0
+    ]
+  ],
+  "rpl_getopt": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      769,
+      0
+    ]
+  ],
+  "acexec_trans": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      4702,
+      0
+    ]
+  ],
+  "umaxtostr": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/umaxtostr.rs",
+      4,
+      0
+    ]
+  ],
+  "grep": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2855,
+      0
+    ]
+  ],
+  "gl_dynarray_finalize": [
+    [
+      "../../c_prog/grep-3.11/lib/malloc/dynarray_finalize.rs",
+      33,
+      0
+    ]
+  ],
+  "bitset_copy": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1057,
+      0
+    ]
+  ],
+  "parse_function_declaration": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      920,
+      0
+    ]
+  ],
+  "hol_free": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1004,
+      0
+    ]
+  ],
+  "space": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1615,
+      0
+    ]
+  ],
+  "source": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      703,
+      0
+    ]
+  ],
+  "addtok_mb": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2024,
+      0
+    ]
+  ],
+  "strcaseeq0": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      328,
+      0
+    ]
+  ],
+  "remember_stack_top": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      239,
+      0
+    ]
+  ],
+  "treenext": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      680,
+      0
+    ]
+  ],
+  "xrealloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      65,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      110,
+      0
+    ]
+  ],
+  "match_ctx_add_sublast": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13611,
+      0
+    ]
+  ],
+  "xirealloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      121,
+      0
+    ]
+  ],
+  "xpalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      191,
+      0
+    ]
+  ],
+  "clone_quoting_options": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      401,
+      0
+    ]
+  ],
+  "print_category": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/locale.rs",
+      20,
+      0
+    ]
+  ],
+  "re_compile_fastmap_iter": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3449,
+      0
+    ]
+  ],
+  "xizalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7057,
+      0
+    ]
+  ],
+  "fts_alloc": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1856,
+      0
+    ]
+  ],
+  "xsum": [
+    [
+      "../../c_prog/cflow/gnu/printf_parse.rs",
+      100,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/vasnprintf.rs",
+      123,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/printf_parse.rs",
+      179,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/vasnprintf.rs",
+      197,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/xsize.rs",
+      4,
+      0
+    ]
+  ],
+  "setbit": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      497,
+      0
+    ]
+  ],
+  "free_cwd": [
+    [
+      "../../c_prog/grep-3.11/lib/save_cwd.rs",
+      47,
+      0
+    ]
+  ],
+  "gl_locale_name_default": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/localename.rs",
+      294,
+      0
+    ]
+  ],
+  "hash_find_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      608,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      610,
+      0
+    ]
+  ],
+  "find_option_type": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      964,
+      0
+    ]
+  ],
+  "yy_init_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4784,
+      0
+    ]
+  ],
+  "alloc_position_set": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2462,
+      0
+    ]
+  ],
+  "wordchar": [
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      101,
+      0
+    ]
+  ],
+  "is_var": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      389,
+      0
+    ]
+  ],
+  "rof_getchar": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      212,
+      0
+    ]
+  ],
+  "nsubtoks": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2294,
+      0
+    ]
+  ],
+  "match_ctx_init": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13651,
+      0
+    ]
+  ],
+  "argp_fmtstream_putc": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      424,
+      0
+    ],
+    [
+      "../../c_prog/cflow/gnu/argp_fs_xinl.rs",
+      157,
+      0
+    ]
+  ],
+  "cleanup_stack": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      367,
+      0
+    ]
+  ],
+  "group_cmp": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1179,
+      0
+    ]
+  ],
+  "bitset_merge": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1032,
+      0
+    ]
+  ],
+  "mbuiter_multi_reloc": [
+    [
+      "../../c_prog/grep-3.11/lib/mbuiter.rs",
+      90,
+      0
+    ]
+  ],
+  "newline_constraint": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      410,
+      0
+    ]
+  ],
+  "strcaseeq7": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      139,
+      0
+    ]
+  ],
+  "quotearg_alloc_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1518,
+      0
+    ]
+  ],
+  "hash_get_n_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      122,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      121,
+      0
+    ]
+  ],
+  "hash_insert_if_absent": [
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      773,
+      0
+    ]
+  ],
+  "optimize_subexps": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4862,
+      0
+    ]
+  ],
+  "globals_only": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1766,
+      0
+    ]
+  ],
+  "hash_insert": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      794,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      839,
+      0
+    ]
+  ],
+  "print_line_tail": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2547,
+      0
+    ]
+  ],
+  "mbsstr": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      602,
+      0
+    ]
+  ],
+  "re_string_realloc_buffers": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1214,
+      0
+    ]
+  ],
+  "usage_argful_short_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1964,
+      0
+    ]
+  ],
+  "rpl_time": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/time.rs",
+      15,
+      0
+    ]
+  ],
+  "mincore_get_vma": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      485,
+      0
+    ]
+  ],
+  "quotearg_custom_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1840,
+      0
+    ]
+  ],
+  "mb_copy": [
+    [
+      "../../c_prog/grep-3.11/lib/mbsstr.rs",
+      218,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbchar.rs",
+      35,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbuiter.rs",
+      236,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/mbiter.rs",
+      239,
+      0
+    ]
+  ],
+  "orig_fopen": [
+    [
+      "../../c_prog/grep-3.11/lib/fopen.rs",
+      57,
+      0
+    ]
+  ],
+  "parse_typedef": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1216,
+      0
+    ]
+  ],
+  "init_lex": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      399,
+      0
+    ]
+  ],
+  "yyparse": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      755,
+      0
+    ]
+  ],
+  "clean_state_log_if_needed": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10519,
+      0
+    ]
+  ],
+  "regmatch_list_free": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13799,
+      0
+    ]
+  ],
+  "xireallocarray": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      140,
+      0
+    ]
+  ],
+  "close_stdout": [
+    [
+      "../../c_prog/grep-3.11/lib/closeout.rs",
+      76,
+      0
+    ]
+  ],
+  "argcv_unquote_copy": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      268,
+      0
+    ]
+  ],
+  "sift_states_backward": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10350,
+      0
+    ]
+  ],
+  "version_etc_hook": [
+    [
+      "../../c_prog/cflow/gnu/argp_version_etc.rs",
+      115,
+      0
+    ]
+  ],
+  "rpl_dirfd": [
+    [
+      "../../c_prog/grep-3.11/lib/dirfd.rs",
+      8,
+      0
+    ]
+  ],
+  "is_prime": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      375,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      374,
+      0
+    ]
+  ],
+  "_obstack_newchunk": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      320,
+      0
+    ]
+  ],
+  "yy_load_buffer_state": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4728,
+      0
+    ]
+  ],
+  "setbit_case_fold_c": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      616,
+      0
+    ]
+  ],
+  "getc_unlocked": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      902,
+      0
+    ]
+  ],
+  "linked_list_create": [
+    [
+      "../../c_prog/cflow/src/linked_list.rs",
+      39,
+      0
+    ]
+  ],
+  "rpl_nanosleep": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/nanosleep.rs",
+      20,
+      0
+    ]
+  ],
+  "freelist": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5083,
+      0
+    ]
+  ],
+  "check_arrival": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11999,
+      0
+    ]
+  ],
+  "skip_easy_bytes": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1959,
+      0
+    ]
+  ],
+  "simple_is_near_this": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      62,
+      0
+    ]
+  ],
+  "str_cd_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/striconv.rs",
+      167,
+      0
+    ]
+  ],
+  "check_subexp_limits": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10938,
+      0
+    ]
+  ],
+  "check_node_accept_bytes": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13214,
+      0
+    ]
+  ],
+  "leaf_optimization": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      895,
+      0
+    ]
+  ],
+  "print_token": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      275,
+      0
+    ]
+  ],
+  "clrbit": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      502,
+      0
+    ]
+  ],
+  "init_pagesize": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      323,
+      0
+    ]
+  ],
+  "xtonum": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      170,
+      0
+    ]
+  ],
+  "hash_delete": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      856,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      900,
+      0
+    ]
+  ],
+  "fts_compar": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1755,
+      0
+    ]
+  ],
+  "find_subexp_node": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11980,
+      0
+    ]
+  ],
+  "hash_get_n_buckets": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      112,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      111,
+      0
+    ]
+  ],
+  "__gl_setmode": [
+    [
+      "../../c_prog/grep-3.11/lib/xbinary_io.rs",
+      22,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/binary_io.rs",
+      12,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      974,
+      0
+    ]
+  ],
+  "raw_hasher": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      408,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      407,
+      0
+    ]
+  ],
+  "dfaparse": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2398,
+      0
+    ]
+  ],
+  "c_isgraph": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      72,
+      0
+    ]
+  ],
+  "quotearg_colon": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1770,
+      0
+    ]
+  ],
+  "quotearg_n_style": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1712,
+      0
+    ]
+  ],
+  "print_type": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      445,
+      0
+    ]
+  ],
+  "mark": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      336,
+      0
+    ]
+  ],
+  "calc_eclosure": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5276,
+      0
+    ]
+  ],
+  "add_exclude": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      874,
+      0
+    ]
+  ],
+  "emptyset": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      540,
+      0
+    ]
+  ],
+  "register_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3102,
+      0
+    ]
+  ],
+  "overflow_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/c_stack.rs",
+      183,
+      0
+    ]
+  ],
+  "append_symbol": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      146,
+      0
+    ]
+  ],
+  "xreallocarray": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      128,
+      0
+    ]
+  ],
+  "putc_unlocked": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      318,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      95,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      869,
+      0
+    ]
+  ],
+  "symbol_override": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1056,
+      0
+    ]
+  ],
+  "regmatch_list_resize": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13868,
+      0
+    ]
+  ],
+  "get_stat_mtime_ns": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      60,
+      0
+    ]
+  ],
+  "check_dst_limits": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10772,
+      0
+    ]
+  ],
+  "comma": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1693,
+      0
+    ]
+  ],
+  "call_freefun": [
+    [
+      "../../c_prog/grep-3.11/lib/obstack.rs",
+      124,
+      0
+    ]
+  ],
+  "mmalloca": [
+    [
+      "../../c_prog/grep-3.11/lib/malloca.rs",
+      18,
+      0
+    ]
+  ],
+  "closure": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2336,
+      0
+    ]
+  ],
+  "print_symbol_type": [
+    [
+      "../../c_prog/cflow/src/posix.rs",
+      139,
+      0
+    ]
+  ],
+  "possible_backrefs_in_pattern": [
+    [
+      "../../c_prog/grep-3.11/src/dfasearch.rs",
+      284,
+      0
+    ]
+  ],
+  "fwrite_errno": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1326,
+      0
+    ]
+  ],
+  "merge_state_with_log": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11291,
+      0
+    ]
+  ],
+  "build_charclass_op": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8124,
+      0
+    ]
+  ],
+  "ximemdup": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7076,
+      0
+    ]
+  ],
+  "safe_hasher": [
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      214,
+      0
+    ]
+  ],
+  "sourcerc": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      233,
+      0
+    ]
+  ],
+  "file_must_have_nulls": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2024,
+      0
+    ]
+  ],
+  "rpl_re_compile_fastmap": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3386,
+      0
+    ]
+  ],
+  "close_stream": [
+    [
+      "../../c_prog/grep-3.11/lib/close_stream.rs",
+      53,
+      0
+    ]
+  ],
+  "re_string_construct": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1145,
+      0
+    ]
+  ],
+  "hash_free": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      552,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      554,
+      0
+    ]
+  ],
+  "str_iconv": [
+    [
+      "../../c_prog/grep-3.11/lib/striconv.rs",
+      320,
+      0
+    ]
+  ],
+  "c_iscntrl": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      51,
+      0
+    ]
+  ],
+  "match_ctx_add_subtop": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13703,
+      0
+    ]
+  ],
+  "fstat": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      304,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      853,
+      0
+    ]
+  ],
+  "quotearg_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1705,
+      0
+    ]
+  ],
+  "hol_find_entry": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1135,
+      0
+    ]
+  ],
+  "re_node_set_init_copy": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2395,
+      0
+    ]
+  ],
+  "rpl_re_set_syntax": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3380,
+      0
+    ]
+  ],
+  "setbit_wc": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      608,
+      0
+    ]
+  ],
+  "sigsegv_handler": [
+    [
+      "../../c_prog/grep-3.11/lib/sigsegv.rs",
+      265,
+      0
+    ]
+  ],
+  "rotr64": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      57,
+      0
+    ]
+  ],
+  "vma_iterate": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      315,
+      0
+    ]
+  ],
+  "hash_clear": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      519,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      521,
+      0
+    ]
+  ],
+  "transit_state": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      4391,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11239,
+      0
+    ]
+  ],
+  "file_error": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      315,
+      0
+    ]
+  ],
+  "x2realloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      76,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      156,
+      0
+    ]
+  ],
+  "quoting_options_from_style": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      490,
+      0
+    ]
+  ],
+  "quotearg_n_options": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1602,
+      0
+    ]
+  ],
+  "rof_open": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      71,
+      0
+    ]
+  ],
+  "build_state": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3994,
+      0
+    ]
+  ],
+  "u8_mbtoucr": [
+    [
+      "../../c_prog/grep-3.11/lib/unistr/u8_mbtoucr.rs",
+      8,
+      0
+    ]
+  ],
+  "quote": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1888,
+      0
+    ]
+  ],
+  "copy": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2440,
+      0
+    ]
+  ],
+  "argmatch": [
+    [
+      "../../c_prog/grep-3.11/lib/argmatch.rs",
+      118,
+      0
+    ]
+  ],
+  "strcaseeq1": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      298,
+      0
+    ]
+  ],
+  "fnmatch_no_wildcards": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      673,
+      0
+    ]
+  ],
+  "realloc_trans_if_necessary": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      3916,
+      0
+    ]
+  ],
+  "unescape_pattern": [
+    [
+      "../../c_prog/grep-3.11/lib/exclude.rs",
+      473,
+      0
+    ]
+  ],
+  "c_strncasecmp": [
+    [
+      "../../c_prog/grep-3.11/lib/c_strncasecmp.rs",
+      13,
+      0
+    ]
+  ],
+  "clear_active": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      409,
+      0
+    ]
+  ],
+  "quote_mem": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1874,
+      0
+    ]
+  ],
+  "depmap_tc": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      149,
+      0
+    ]
+  ],
+  "fd_ring_clear": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      445,
+      0
+    ]
+  ],
+  "kwswords": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      598,
+      0
+    ]
+  ],
+  "setlocale_null_androidfix": [
+    [
+      "../../c_prog/grep-3.11/lib/setlocale_null.rs",
+      15,
+      0
+    ]
+  ],
+  "dup_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/dup_safer.rs",
+      5,
+      0
+    ]
+  ],
+  "transitive_closure": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      14,
+      0
+    ]
+  ],
+  "streq8": [
+    [
+      "../../c_prog/grep-3.11/lib/uniwidth/width.rs",
+      154,
+      0
+    ]
+  ],
+  "AD_compare": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      437,
+      0
+    ]
+  ],
+  "group_nodes_into_DFAstates": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      12857,
+      0
+    ]
+  ],
+  "xnmalloc": [
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      148,
+      0
+    ]
+  ],
+  "allocate_entry": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      592,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      594,
+      0
+    ]
+  ],
+  "argp_failure": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2623,
+      0
+    ]
+  ],
+  "re_node_set_alloc": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      2324,
+      0
+    ]
+  ],
+  "free_fail_stack_return": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      10285,
+      0
+    ]
+  ],
+  "usage_long_opt": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2000,
+      0
+    ]
+  ],
+  "bmexec_trans": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      1159,
+      0
+    ]
+  ],
+  "main_0": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1847,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/test_localcharset.rs",
+      10,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/locale.rs",
+      38,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      4596,
+      0
+    ]
+  ],
+  "declare_type": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1735,
+      0
+    ]
+  ],
+  "parse_bracket_symbol": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      7601,
+      0
+    ]
+  ],
+  "create_tree": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8287,
+      0
+    ]
+  ],
+  "set_quoting_flags": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      461,
+      0
+    ]
+  ],
+  "putchar_unlocked": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      885,
+      0
+    ]
+  ],
+  "find_recover_state": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11359,
+      0
+    ]
+  ],
+  "quotearg_style": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1731,
+      0
+    ]
+  ],
+  "rpl_regfree": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3924,
+      0
+    ]
+  ],
+  "delete_level_statics": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      425,
+      0
+    ]
+  ],
+  "delete_level_autos": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      412,
+      0
+    ]
+  ],
+  "xmemdup": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      110,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7069,
+      0
+    ]
+  ],
+  "openat_safer": [
+    [
+      "../../c_prog/grep-3.11/lib/openat_safer.rs",
+      24,
+      0
+    ]
+  ],
+  "enlist": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5132,
+      0
+    ]
+  ],
+  "newline": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      303,
+      0
+    ]
+  ],
+  "sigsegv_get_vma": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      519,
+      0
+    ]
+  ],
+  "ident": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      417,
+      0
+    ]
+  ],
+  "transfer_entries": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      663,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      658,
+      0
+    ]
+  ],
+  "fts_build": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      1331,
+      0
+    ]
+  ],
+  "dup_safer_flag": [
+    [
+      "../../c_prog/grep-3.11/lib/dup_safer_flag.rs",
+      5,
+      0
+    ]
+  ],
+  "xcalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      87,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      7061,
+      0
+    ]
+  ],
+  "hash_get_max_bucket_length": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      126,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      125,
+      0
+    ]
+  ],
+  "quotearg_n": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1681,
+      0
+    ]
+  ],
+  "hol_entry_first_long": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1117,
+      0
+    ]
+  ],
+  "match_ctx_clean": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13754,
+      0
+    ]
+  ],
+  "tr": [
+    [
+      "../../c_prog/grep-3.11/src/kwset.rs",
+      146,
+      0
+    ]
+  ],
+  "quotearg": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1701,
+      0
+    ]
+  ],
+  "regmatch_list_free__elements__": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13863,
+      0
+    ]
+  ],
+  "init_tokens": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      346,
+      0
+    ]
+  ],
+  "safe_copy": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/strerror_r.rs",
+      28,
+      0
+    ]
+  ],
+  "quotearg_n_custom": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1805,
+      0
+    ]
+  ],
+  "collect_functions": [
+    [
+      "../../c_prog/cflow/src/symbol.rs",
+      526,
+      0
+    ]
+  ],
+  "set_char_quoting": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      430,
+      0
+    ]
+  ],
+  "init": [
+    [
+      "../../c_prog/cflow/src/main.rs",
+      1818,
+      0
+    ]
+  ],
+  "rpl_regexec": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      8427,
+      0
+    ]
+  ],
+  "_getopt_internal_r": [
+    [
+      "../../c_prog/cflow/gnu/getopt.rs",
+      183,
+      0
+    ]
+  ],
+  "compare_patterns": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      1039,
+      0
+    ]
+  ],
+  "is_printable": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      502,
+      0
+    ]
+  ],
+  "is_mapped": [
+    [
+      "../../c_prog/grep-3.11/lib/stackvma.rs",
+      326,
+      0
+    ]
+  ],
+  "get_stat_birthtime": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      90,
+      0
+    ]
+  ],
+  "gl_sockets_startup": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/sockets.rs",
+      2,
+      0
+    ]
+  ],
+  "rotl32": [
+    [
+      "../../c_prog/grep-3.11/lib/bitrotate.rs",
+      63,
+      0
+    ]
+  ],
+  "bitset_set_all": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1075,
+      0
+    ]
+  ],
+  "duplicate_node_closure": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      5057,
+      0
+    ]
+  ],
+  "mbuiter_multi_copy": [
+    [
+      "../../c_prog/grep-3.11/lib/mbuiter.rs",
+      66,
+      0
+    ]
+  ],
+  "regmatch_list_begin": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13544,
+      0
+    ]
+  ],
+  "all_zeros": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      2189,
+      0
+    ]
+  ],
+  "opendirat": [
+    [
+      "../../c_prog/grep-3.11/lib/opendirat.rs",
+      16,
+      0
+    ]
+  ],
+  "mdir_name": [
+    [
+      "../../c_prog/cflow/gnu/dirname_lgpl.rs",
+      52,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/dirname_lgpl.rs",
+      52,
+      0
+    ]
+  ],
+  "grepfile": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      3177,
+      0
+    ]
+  ],
+  "postorder": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      4792,
+      0
+    ]
+  ],
+  "hash_get_next": [
+    [
+      "../../c_prog/cflow/gnu/hash.rs",
+      264,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/hash.rs",
+      267,
+      0
+    ]
+  ],
+  "argcv_free": [
+    [
+      "../../c_prog/cflow/src/argcv.rs",
+      533,
+      0
+    ]
+  ],
+  "atom": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      2233,
+      0
+    ]
+  ],
+  "depmap_set": [
+    [
+      "../../c_prog/cflow/src/depmap.rs",
+      105,
+      0
+    ]
+  ],
+  "get_subexp_sub": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      11944,
+      0
+    ]
+  ],
+  "yy_get_next_buffer": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4315,
+      0
+    ]
+  ],
+  "find_char": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      753,
+      0
+    ]
+  ],
+  "regmatch_list_mark_failed": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13847,
+      0
+    ]
+  ],
+  "c_isprint": [
+    [
+      "../../c_prog/grep-3.11/lib/c_ctype.rs",
+      99,
+      0
+    ]
+  ],
+  "stat": [
+    [
+      "../../c_prog/cflow/src/rc.rs",
+      121,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      846,
+      0
+    ]
+  ],
+  "enlistnew": [
+    [
+      "../../c_prog/grep-3.11/lib/dfa.rs",
+      5090,
+      0
+    ]
+  ],
+  "die": [
+    [
+      "../../c_prog/grep-3.11/lib/c_stack.rs",
+      118,
+      0
+    ]
+  ],
+  "mbiter_multi_next": [
+    [
+      "../../c_prog/grep-3.11/lib/mbiter.rs",
+      99,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/trim.rs",
+      91,
+      0
+    ]
+  ],
+  "quotearg_alloc": [
+    [
+      "../../c_prog/grep-3.11/lib/quotearg.rs",
+      1510,
+      0
+    ]
+  ],
+  "mb_clen": [
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      933,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/searchutils.rs",
+      79,
+      0
+    ]
+  ],
+  "restore_initial_cwd": [
+    [
+      "../../c_prog/grep-3.11/lib/fts.rs",
+      485,
+      0
+    ]
+  ],
+  "re_string_translate_buffer": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1817,
+      0
+    ]
+  ],
+  "xmalloc": [
+    [
+      "../../c_prog/cflow/gnu/xmalloc.rs",
+      57,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/xmalloc.rs",
+      92,
+      0
+    ]
+  ],
+  "sift_ctx_init": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      13782,
+      0
+    ]
+  ],
+  "xref_output": [
+    [
+      "../../c_prog/cflow/src/output.rs",
+      456,
+      0
+    ]
+  ],
+  "yy_scan_bytes": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      5000,
+      0
+    ]
+  ],
+  "rpl_ioctl": [
+    [
+      "../../c_prog/grep-3.11/gnulib-tests/ioctl.rs",
+      16,
+      0
+    ]
+  ],
+  "bitset_empty": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      1049,
+      0
+    ]
+  ],
+  "version_etc_ar": [
+    [
+      "../../c_prog/cflow/gnu/version_etc.rs",
+      281,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/version_etc.rs",
+      281,
+      0
+    ]
+  ],
+  "set_binary_mode": [
+    [
+      "../../c_prog/grep-3.11/lib/xbinary_io.rs",
+      15,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/lib/binary_io.rs",
+      3,
+      0
+    ],
+    [
+      "../../c_prog/grep-3.11/src/grep.rs",
+      959,
+      0
+    ]
+  ],
+  "hol_entry_short_iterate": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      1017,
+      0
+    ]
+  ],
+  "find_non_slash": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      93,
+      0
+    ]
+  ],
+  "yyensure_buffer_stack": [
+    [
+      "../../c_prog/cflow/src/c.rs",
+      4901,
+      0
+    ]
+  ],
+  "create_ci_newstate": [
+    [
+      "../../c_prog/grep-3.11/lib/regex.rs",
+      3167,
+      0
+    ]
+  ],
+  "hol_usage": [
+    [
+      "../../c_prog/cflow/gnu/argp_help.rs",
+      2040,
+      0
+    ]
+  ],
+  "cdb_free": [
+    [
+      "../../c_prog/grep-3.11/lib/chdir_long.rs",
+      45,
+      0
+    ]
+  ],
+  "get_stat_atime_ns": [
+    [
+      "../../c_prog/grep-3.11/lib/stat_time.rs",
+      48,
+      0
+    ]
+  ],
+  "dirdcl": [
+    [
+      "../../c_prog/cflow/src/parser.rs",
+      1295,
+      0
+    ]
+  ]
+}
