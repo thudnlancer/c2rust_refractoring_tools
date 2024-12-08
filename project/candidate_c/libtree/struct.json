@@ -1,1 +1,1 @@
-{}
+{"libtree.c": ["header_64_t", "header_32_t", "prog_64_t", "prog_32_t", "dyn_64_t", "dyn_32_t", "compat_t", "found_t", "string_table_t", "visited_file_t", "visited_file_array_t", "libtree_state_t", "small_vec_u64_t"]}

@@ -1,1 +1,1 @@
-["../c_prog/hiredis/test.rs", "../c_prog/hiredis/hiredis.rs", "../c_prog/hiredis/alloc.rs", "../c_prog/hiredis/async.rs", "../c_prog/hiredis/net.rs", "../c_prog/hiredis/read.rs", "../c_prog/hiredis/sds.rs"]
+["../c_prog/hiredis/async.rs", "../c_prog/hiredis/hiredis.rs", "../c_prog/hiredis/net.rs", "../c_prog/hiredis/test.rs", "../c_prog/hiredis/alloc.rs", "../c_prog/hiredis/sds.rs", "../c_prog/hiredis/read.rs"]

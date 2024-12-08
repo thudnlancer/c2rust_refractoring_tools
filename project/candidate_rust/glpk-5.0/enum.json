@@ -1,1 +1,1 @@
-["../c_prog/glpk-5.0/src/zlib/inflate.rs", "../c_prog/glpk-5.0/src/zlib/inftrees.rs", "../c_prog/glpk-5.0/src/zlib/inffast.rs"]
+["../c_prog/glpk-5.0/src/zlib/inflate.rs", "../c_prog/glpk-5.0/src/zlib/inftrees.rs", "../c_prog/glpk-5.0/src/zlib/deflate.rs", "../c_prog/glpk-5.0/src/zlib/inffast.rs"]

@@ -19,6 +19,12 @@ def get_location_path(prog_name):
 def get_candidate_path(prog_name):
     return 'candidate_c/' + prog_name
 
+def find_file(file_name, directory):
+    for root, dirs, files in os.walk(directory):
+        if file_name in files:
+            return os.path.join(root, file_name)
+    return None
+
 def get_data_list(prog, stats):
     return [prog, stats['files'], stats['LOC'], stats['structs'], stats['unions'], stats['enums'], stats['functions']]
 
@@ -163,12 +169,8 @@ def make_candidate_c_list():
 
                 if not def_file_path.startswith(prefix_filter):
                     continue
-            
-                # 提取 def_file 的文件名
-                def_file_name = os.path.basename(def_file_path)
-            
-                # 如果 def_file 文件名与 use_file 文件名不同，则记录为使用
-                if def_file_name != use_file_name:
+
+                if struct_name not in struct_dict[use_file_name]:
                     struct_dict[use_file_name].append(struct_name)
         
         # 转换 defaultdict 为普通字典
@@ -184,12 +186,8 @@ def make_candidate_c_list():
 
                 if not def_file_path.startswith(prefix_filter):
                     continue
-        
-                # 提取 def_file 的文件名
-                def_file_name = os.path.basename(def_file_path)
-        
-                # 如果 def_file 文件名与 use_file 文件名不同，则记录为使用
-                if def_file_name != use_file_name:
+            
+                if enum_name not in enum_dict[use_file_name]:
                     enum_dict[use_file_name].append(enum_name)
         
         # 转换 defaultdict 为普通字典
@@ -221,19 +219,33 @@ def make_candidate_rust_list():
         struct_list = []
         enum_list = []
 
-        for root, _, files in os.walk(path_to_prog):
-            for file in files:
-                # 检查文件后缀名是否为 `.rs`
-                if file.endswith(".rs"):
-                    # 提取不包含后缀名的文件名
-                    file_name_without_ext = os.path.splitext(file)[0]
-                    file_name_with_c = file_name_without_ext + '.c'
+        for filename in structs.keys():
+            file_name_without_ext = os.path.splitext(filename)[0]
+            rust_file_name = file_name_without_ext + '.rs'
+            rust_file = find_file(rust_file_name, path_to_prog)
+            if rust_file:
+                if rust_file not in struct_list:
+                    struct_list.append(rust_file)
+            else:
+                rust_file_name = file_name_without_ext.replace('-', '_')
+                rust_file = find_file(rust_file_name, path_to_prog)
+                if rust_file:
+                    if rust_file not in struct_list:
+                        struct_list.append(rust_file)
 
-                    # 如果文件名与 keys 中的某个值匹配，则记录
-                    if file_name_with_c in list(structs.keys()):
-                        struct_list.append(os.path.join(root, file))
-                    if file_name_with_c in list(enums.keys()):
-                        enum_list.append(os.path.join(root, file))
+        for filename in enums.keys():
+            file_name_without_ext = os.path.splitext(filename)[0]
+            rust_file_name = file_name_without_ext + '.rs'
+            rust_file = find_file(rust_file_name, path_to_prog)
+            if rust_file:
+                if rust_file not in enum_list:
+                    enum_list.append(rust_file)
+            else:
+                rust_file_name = file_name_without_ext.replace('-', '_') + '.rs'
+                rust_file = find_file(rust_file_name, path_to_prog)
+                if rust_file:
+                    if rust_file not in enum_list:
+                        enum_list.append(rust_file)
                     
         if not os.path.exists('candidate_rust/' + prog):
             os.makedirs('candidate_rust/' + prog)
@@ -245,5 +257,5 @@ def make_candidate_rust_list():
 
 # make_data_csv()
 # make_location_c_json()
-# make_candidate_c_list()
-# make_candidate_rust_list()
+make_candidate_c_list()
+make_candidate_rust_list()

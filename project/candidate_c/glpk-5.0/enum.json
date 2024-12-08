@@ -1,1 +1,1 @@
-{"inflate.c": ["", ""], "inftrees.c": [""], "inffast.c": ["", ""]}
+{"inflate.h": [""], "inflate.c": [""], "inftrees.c": [""], "deflate.c": [""], "inftrees.h": [""], "inffast.c": [""]}
