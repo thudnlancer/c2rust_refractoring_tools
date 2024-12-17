@@ -143,7 +143,7 @@ def extract_enum_info_rust(filename):
 
         for member_name, member_enum, member_value in enum_members:
             if member_enum == enum_name:
-                filtered_members[member_name] = int(member_value)
+                filtered_members[member_name] = (int(member_value), 10)
                 member_code = f"pub const {member_name}: {enum_name} = {member_value};"
                 last_member_end_pos = code.find(member_code) + len(member_code)
         
@@ -206,5 +206,88 @@ def make_enum_code_rust():
         with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
             json.dump(result, json_file)
 
-make_enum_code_c()
-make_enum_code_rust()
+def convert_value(value, base):
+    """根据给定的进制将值转换为字符串"""
+    if base == 16:
+        return hex(value)  # 转换为十六进制
+    else:
+        return str(value)  # 其他进制（默认为十进制）
+    
+def generate_enum_code(enum_name, members):
+    """根据枚举名称和成员生成替换后的代码"""
+    enum_code = f"#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]\n"
+    enum_code += f"#[repr(C)]\n"
+    enum_code += f"pub enum {enum_name} {{\n"
+    
+    for member, (value, base) in members.items():
+        value_str = convert_value(value, base)  # 根据进制转换值
+        enum_code += f"    {member} = {value_str},\n"  # 添加枚举成员和对应的值
+    
+    enum_code += "}  // end of enum\n"
+    return enum_code
+
+def process_enum_in_file(file_path, enums_info):
+    """处理指定文件中的枚举并替换为新的格式"""
+    with open(file_path, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    # 调整枚举位置的偏移量（初始为0）
+    offset = 0
+    
+    # 遍历枚举信息，替换文件中的枚举部分
+    for enum_info in enums_info:
+        enum_name = enum_info['enum_name']
+        start_pos = enum_info['start_pos'] + offset
+        end_pos = enum_info['end_pos'] + offset
+        members = enum_info['members']
+        
+        # 生成新的枚举代码块
+        new_enum_code = generate_enum_code(enum_name, members)
+        
+        # 替换文件中的旧枚举代码块
+        content = content[:start_pos] + new_enum_code + content[end_pos:]
+
+        # 计算替换后新的内容长度差异，更新偏移量
+        old_enum_length = end_pos - start_pos
+        new_enum_length = len(new_enum_code)
+        offset += (new_enum_length - old_enum_length)  # 更新偏移量
+    
+    return content
+
+def process_json_file(json_file_path, output_dir):
+    """处理给定的 JSON 文件，并生成新的 Rust 文件"""
+    # 读取 JSON 文件
+    with open(json_file_path, 'r', encoding='utf-8') as f:
+        data = json.load(f)
+    
+    for rs_file_path, enums_info in data.items():
+        if not os.path.exists(rs_file_path):
+            print(f"File not found: {rs_file_path}")
+            continue
+        
+        # 处理枚举并替换文本
+        modified_content = process_enum_in_file(rs_file_path, enums_info)
+        
+        # 确保输出目录存在
+        os.makedirs(output_dir, exist_ok=True)
+        
+        # 生成新的文件路径
+        output_file_path = os.path.join(output_dir, os.path.basename(rs_file_path))
+        
+        # 将修改后的内容写入新文件
+        with open(output_file_path, 'w', encoding='utf-8') as f:
+            f.write(modified_content)
+        
+        print(f"Processed file saved to: {output_file_path}")
+
+def refactoring():
+    if not os.path.exists('output'):
+        os.makedirs('output')
+    for prog in pre_process.prog_list:
+        path_to_json = 'enum_code_rust/' + prog + '/enum.json'
+        path_to_output = 'output/' + prog
+        process_json_file(path_to_json, path_to_output)
+
+# make_enum_code_c()
+# make_enum_code_rust()
+refactoring()

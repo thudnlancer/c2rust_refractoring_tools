@@ -1,1 +1,1 @@
-{"../c_prog/gsl-2.7.1/cdf/exponential.rs": [], "../c_prog/gsl-2.7.1/bst/rb.rs": [{"enum_name": "rb_color", "start_pos": 4152, "end_pos": 4151, "members": {"RB_BLACK": 0, "RB_RED": 1}}]}
+{"../c_prog/gsl-2.7.1/cdf/exponential.rs": [], "../c_prog/gsl-2.7.1/bst/rb.rs": [{"enum_name": "rb_color", "start_pos": 4152, "end_pos": 4151, "members": {"RB_BLACK": [0, 10], "RB_RED": [1, 10]}}]}
