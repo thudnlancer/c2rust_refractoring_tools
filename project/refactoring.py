@@ -17,10 +17,12 @@ def remove_comments(code):
     
     # 去除多行注释
     code_no_comments = re.sub(r'/\*.*?\*/', '', code_no_single_line_comments, flags=re.DOTALL)
-    
-    return code_no_comments
 
-def extract_enum_info_c(filename, enum_name=None):
+    code_no_conditions = re.sub(r'#(if|ifdef|ifndef|else|endif)\b.*?(\n|$)', '', code_no_comments, flags=re.DOTALL)
+    
+    return code_no_conditions
+
+def extract_enum_info_c(filename):
     with open(filename, 'rb') as file:
         raw_data = file.read()
         result = chardet.detect(raw_data)
@@ -34,15 +36,14 @@ def extract_enum_info_c(filename, enum_name=None):
     
     # 匹配枚举的定义（包括匿名枚举）
     enum_pattern = re.compile(r'\b(enum)\s*(\w*)\s*{(.*?)}', re.DOTALL)
-    enums = enum_pattern.findall(code)
-    
-    # 如果指定了枚举名，只查找该枚举，否则提取所有枚举
-    enums = [enum for enum in enums if enum[1] == enum_name]
     
     enum_info = []
     
-    for enum in enums:
-        enum_type, enum_name, enum_body = enum
+    for match in enum_pattern.finditer(code):
+        enum_body = match.group(3).strip()     # 枚举体
+        enum_name = match.group(2).strip()     # 枚举名称
+        start_idx = match.start()              # 起始位置
+        end_idx = match.end()                  # 结束位置
         enum_members = {}
         
         # 提取枚举成员和它们的值
@@ -58,21 +59,44 @@ def extract_enum_info_c(filename, enum_name=None):
             last_value = value
             enum_members[member] = value
         
-        if enum_name:
-            # 获取枚举的定义块的位置
-            start_idx = code.find(f"enum {enum_name}")
-            end_idx = code.find("}", start_idx)
-        else:
-            start_idx = code.find(f"enum")
-            end_idx = code.find("}", start_idx)
+        enum_info.append({
+            'enum_name': enum_name,
+            'members': enum_members,
+            'start_pos': start_idx,
+            'end_pos': end_idx
+        })
+
+    # 匹配枚举类型别名的定义
+    typedef_pattern = re.compile(r'typedef\s+enum\s*\{(.*?)\}\s*(\w+)')
+
+    for match in typedef_pattern.finditer(code):
+        # 提取枚举内容和类型别名名称
+        enum_body = match.group(1).strip()     # 枚举体
+        enum_name = match.group(2).strip()     # 类型别名名称
+        start_idx = match.start()              # 起始位置
+        end_idx = match.end()                  # 结束位置
+        enum_members = {}
         
-        if start_idx >= 0:
-            enum_info.append({
-                'enum_name': enum_name,
-                'members': enum_members,
-                'start_pos': start_idx,
-                'end_pos': end_idx
-            })
+        # 提取枚举成员和它们的值
+        member_pattern = re.compile(r'(\w+)\s*(?:=\s*(\d+))?')
+        members = member_pattern.findall(enum_body)
+        
+        last_value = -1
+        for member, value in members:
+            if value:
+                value = int(value)
+            else:
+                value = last_value + 1
+            last_value = value
+            enum_members[member] = value
+
+        # 保存结果
+        enum_info.append({
+            'enum_name': enum_name,
+            'members': enum_members,
+            'start_pos': start_idx,
+            'end_pos': end_idx
+        })
     
     # 查找枚举的使用位置
     # usage_pattern = re.compile(r'(\w+)\s*=\s*(\w+)\s*;\s*|\b(\w+)\b')
@@ -153,12 +177,7 @@ def make_enum_code_c():
 
         for filename, enum_names in enums.items():
             filepath = find_file_in_directory(path_to_prog, filename)
-            file_enums = []
-            for enum_name in enum_names:
-                enum_info = extract_enum_info_c(filepath, enum_name)
-                if enum_info:
-                    file_enums.append(enum_info)
-            result[filename] = file_enums
+            result[filename] = extract_enum_info_c(filepath)
 
         if not os.path.exists('enum_code_c/' + prog):
             os.makedirs('enum_code_c/' + prog)
@@ -178,9 +197,8 @@ def make_enum_code_rust():
         result = {}
 
         for candidate_path in candidates:
-            filename = os.path.basename(candidate_path)
             file_enums = extract_enum_info_rust(candidate_path)
-            result[filename] = file_enums
+            result[candidate_path] = file_enums
 
         if not os.path.exists('enum_code_rust/' + prog):
             os.makedirs('enum_code_rust/' + prog)
