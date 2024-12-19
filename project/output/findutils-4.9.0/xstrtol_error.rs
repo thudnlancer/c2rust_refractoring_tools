@@ -17,11 +17,11 @@ extern "C" {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID = 4,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW = 3,
-    LONGINT_INVALID_SUFFIX_CHAR = 2,
-    LONGINT_OVERFLOW = 1,
-    LONGINT_OK = 0,
+    LONGINT_INVALID,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OVERFLOW,
+    LONGINT_OK,
 }  // end of enum
 
 #[derive(Copy, Clone)]

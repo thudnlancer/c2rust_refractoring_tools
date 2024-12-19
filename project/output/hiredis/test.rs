@@ -471,9 +471,9 @@ pub struct C2RustUnnamed_2 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD = 2,
-    REDIS_CONN_UNIX = 1,
-    REDIS_CONN_TCP = 0,
+    REDIS_CONN_USERFD,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_TCP,
 }  // end of enum
 
 pub type redisFD = libc::c_int;
@@ -542,10 +542,10 @@ pub struct redisPollEvents {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum connection_type {
-    CONN_SSL = 3,
-    CONN_FD = 2,
-    CONN_UNIX = 1,
-    CONN_TCP = 0,
+    CONN_SSL,
+    CONN_FD,
+    CONN_UNIX,
+    CONN_TCP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -591,12 +591,12 @@ pub struct pushCounters {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum astest_no {
-    ASTEST_ISSUE_931_PING = 5,
-    ASTEST_ISSUE_931 = 4,
-    ASTEST_PINGPONG_TIMEOUT = 3,
-    ASTEST_PINGPONG = 2,
-    ASTEST_CONN_TIMEOUT = 1,
-    ASTEST_CONNECT = 0,
+    ASTEST_ISSUE_931_PING,
+    ASTEST_ISSUE_931,
+    ASTEST_PINGPONG_TIMEOUT,
+    ASTEST_PINGPONG,
+    ASTEST_CONN_TIMEOUT,
+    ASTEST_CONNECT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

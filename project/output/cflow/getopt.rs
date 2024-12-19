@@ -47,9 +47,9 @@ pub struct _getopt_data {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    RETURN_IN_ORDER = 2,
-    PERMUTE = 1,
-    REQUIRE_ORDER = 0,
+    RETURN_IN_ORDER,
+    PERMUTE,
+    REQUIRE_ORDER,
 }  // end of enum
 
 pub type FILE = _IO_FILE;
@@ -93,9 +93,9 @@ pub type __off_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    POSIXLY_CORRECT = 1,
+    POSIXLY_CORRECT,
 }  // end of enum
- Clone)]
+derive(Copy, Clone)]
 #[repr(C)]
 pub struct _getopt_data {
     pub rpl_optind: libc::c_int,
@@ -112,9 +112,9 @@ pub struct _getopt_data {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    RETURN_IN_ORDER = 2,
-    PERMUTE = 1,
-    REQUIRE_ORDER = 0,
+    RETURN_IN_ORDER,
+    PERMUTE,
+    REQUIRE_ORDER,
 }  // end of enum
 
 pub type FILE = _IO_FILE;

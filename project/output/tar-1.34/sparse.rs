@@ -203,7 +203,7 @@ pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    DEFAULT_MXFAST = 128,
+    DEFAULT_MXFAST,
 }  // end of enum
 
 pub type C2RustUnnamed_2 = libc::c_uint;
@@ -299,13 +299,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT = 6,
-    STAR_FORMAT = 5,
-    POSIX_FORMAT = 4,
-    USTAR_FORMAT = 3,
-    OLDGNU_FORMAT = 2,
-    V7_FORMAT = 1,
-    DEFAULT_FORMAT = 0,
+    GNU_FORMAT,
+    STAR_FORMAT,
+    POSIX_FORMAT,
+    USTAR_FORMAT,
+    OLDGNU_FORMAT,
+    V7_FORMAT,
+    DEFAULT_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -382,18 +382,18 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hole_detection_method {
-    HOLE_DETECTION_SEEK = 2,
-    HOLE_DETECTION_RAW = 1,
-    HOLE_DETECTION_DEFAULT = 0,
+    HOLE_DETECTION_SEEK,
+    HOLE_DETECTION_RAW,
+    HOLE_DETECTION_DEFAULT,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
-    dump_status_not_implemented = 3,
-    dump_status_fail = 2,
-    dump_status_short = 1,
-    dump_status_ok = 0,
+    dump_status_not_implemented,
+    dump_status_fail,
+    dump_status_short,
+    dump_status_ok,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -433,18 +433,18 @@ pub struct tar_sparse_optab {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sparse_scan_state {
-    scan_end = 2,
-    scan_block = 1,
-    scan_begin = 0,
+    scan_end,
+    scan_block,
+    scan_begin,
 }  // end of enum
 
 pub const add_fail: oldgnu_add_status = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum oldgnu_add_status {
-    add_fail = 2,
-    add_finish = 1,
-    add_ok = 0,
+    add_fail,
+    add_finish,
+    add_ok,
 }  // end of enum
 
 #[inline]

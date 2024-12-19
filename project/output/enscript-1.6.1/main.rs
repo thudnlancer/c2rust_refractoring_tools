@@ -243,18 +243,18 @@ pub struct tm {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -287,70 +287,70 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum HeaderType {
-    HDR_FANCY = 2,
-    HDR_SIMPLE = 1,
-    HDR_NONE = 0,
+    HDR_FANCY,
+    HDR_SIMPLE,
+    HDR_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum InputEncoding {
-    ENC_PS = 14,
-    ENC_KOI8 = 13,
-    ENC_HP8 = 12,
-    ENC_VMS = 11,
-    ENC_MAC = 10,
-    ENC_IBMPC = 9,
-    ENC_ASCII_DKNO = 8,
-    ENC_ASCII_FISE = 7,
-    ENC_ASCII = 6,
-    ENC_ISO_8859_7 = 5,
-    ENC_ISO_8859_5 = 4,
-    ENC_ISO_8859_4 = 3,
-    ENC_ISO_8859_3 = 2,
-    ENC_ISO_8859_2 = 1,
-    ENC_ISO_8859_1 = 0,
+    ENC_PS,
+    ENC_KOI8,
+    ENC_HP8,
+    ENC_VMS,
+    ENC_MAC,
+    ENC_IBMPC,
+    ENC_ASCII_DKNO,
+    ENC_ASCII_FISE,
+    ENC_ASCII,
+    ENC_ISO_8859_7,
+    ENC_ISO_8859_5,
+    ENC_ISO_8859_4,
+    ENC_ISO_8859_3,
+    ENC_ISO_8859_2,
+    ENC_ISO_8859_1,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
-    LABEL_LONG = 1,
-    LABEL_SHORT = 0,
+    LABEL_LONG,
+    LABEL_SHORT,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum MarkWrappedLinesStyle {
-    MWLS_ARROW = 3,
-    MWLS_BOX = 2,
-    MWLS_PLUS = 1,
-    MWLS_NONE = 0,
+    MWLS_ARROW,
+    MWLS_BOX,
+    MWLS_PLUS,
+    MWLS_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NonPrintableFormat {
-    NPF_OCTAL = 3,
-    NPF_CARET = 2,
-    NPF_QUESTIONMARK = 1,
-    NPF_SPACE = 0,
+    NPF_OCTAL,
+    NPF_CARET,
+    NPF_QUESTIONMARK,
+    NPF_SPACE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN = 2,
-    FORMFEED_PAGE = 1,
-    FORMFEED_COLUMN = 0,
+    FORMFEED_HCOLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_COLUMN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LineEndType {
-    LE_WORD_WRAP = 2,
-    LE_CHAR_WRAP = 1,
-    LE_TRUNCATE = 0,
+    LE_WORD_WRAP,
+    LE_CHAR_WRAP,
+    LE_TRUNCATE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

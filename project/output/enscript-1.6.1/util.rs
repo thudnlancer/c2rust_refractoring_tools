@@ -331,18 +331,18 @@ pub struct tm {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -363,8 +363,8 @@ pub type AFMInteger = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMBoolean {
-    AFMTrue = 1,
-    AFMFalse = 0,
+    AFMTrue,
+    AFMFalse,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -501,19 +501,19 @@ pub type AFMHandle = *mut afm_handle_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMEncoding {
-    AFM_ENCODING_KOI8 = 12,
-    AFM_ENCODING_HP8 = 11,
-    AFM_ENCODING_VMS = 10,
-    AFM_ENCODING_MAC = 9,
-    AFM_ENCODING_ASCII = 8,
-    AFM_ENCODING_IBMPC = 7,
-    AFM_ENCODING_ISO_8859_7 = 6,
-    AFM_ENCODING_ISO_8859_5 = 5,
-    AFM_ENCODING_ISO_8859_4 = 4,
-    AFM_ENCODING_ISO_8859_3 = 3,
-    AFM_ENCODING_ISO_8859_2 = 2,
-    AFM_ENCODING_ISO_8859_1 = 1,
-    AFM_ENCODING_DEFAULT = 0,
+    AFM_ENCODING_KOI8,
+    AFM_ENCODING_HP8,
+    AFM_ENCODING_VMS,
+    AFM_ENCODING_MAC,
+    AFM_ENCODING_ASCII,
+    AFM_ENCODING_IBMPC,
+    AFM_ENCODING_ISO_8859_7,
+    AFM_ENCODING_ISO_8859_5,
+    AFM_ENCODING_ISO_8859_4,
+    AFM_ENCODING_ISO_8859_3,
+    AFM_ENCODING_ISO_8859_2,
+    AFM_ENCODING_ISO_8859_1,
+    AFM_ENCODING_DEFAULT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -552,29 +552,29 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum InputEncoding {
-    ENC_PS = 14,
-    ENC_KOI8 = 13,
-    ENC_HP8 = 12,
-    ENC_VMS = 11,
-    ENC_MAC = 10,
-    ENC_IBMPC = 9,
-    ENC_ASCII_DKNO = 8,
-    ENC_ASCII_FISE = 7,
-    ENC_ASCII = 6,
-    ENC_ISO_8859_7 = 5,
-    ENC_ISO_8859_5 = 4,
-    ENC_ISO_8859_4 = 3,
-    ENC_ISO_8859_3 = 2,
-    ENC_ISO_8859_2 = 1,
-    ENC_ISO_8859_1 = 0,
+    ENC_PS,
+    ENC_KOI8,
+    ENC_HP8,
+    ENC_VMS,
+    ENC_MAC,
+    ENC_IBMPC,
+    ENC_ASCII_DKNO,
+    ENC_ASCII_FISE,
+    ENC_ASCII,
+    ENC_ISO_8859_7,
+    ENC_ISO_8859_5,
+    ENC_ISO_8859_4,
+    ENC_ISO_8859_3,
+    ENC_ISO_8859_2,
+    ENC_ISO_8859_1,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN = 2,
-    FORMFEED_PAGE = 1,
-    FORMFEED_COLUMN = 0,
+    FORMFEED_HCOLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_COLUMN,
 }  // end of enum
 
 #[derive(Copy, Clone)]

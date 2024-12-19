@@ -298,13 +298,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT = 6,
-    STAR_FORMAT = 5,
-    POSIX_FORMAT = 4,
-    USTAR_FORMAT = 3,
-    OLDGNU_FORMAT = 2,
-    V7_FORMAT = 1,
-    DEFAULT_FORMAT = 0,
+    GNU_FORMAT,
+    STAR_FORMAT,
+    POSIX_FORMAT,
+    USTAR_FORMAT,
+    OLDGNU_FORMAT,
+    V7_FORMAT,
+    DEFAULT_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -381,16 +381,16 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND = 9,
-    UPDATE_SUBCOMMAND = 8,
-    LIST_SUBCOMMAND = 7,
-    EXTRACT_SUBCOMMAND = 6,
-    DIFF_SUBCOMMAND = 5,
-    DELETE_SUBCOMMAND = 4,
-    CREATE_SUBCOMMAND = 3,
-    CAT_SUBCOMMAND = 2,
-    APPEND_SUBCOMMAND = 1,
-    UNKNOWN_SUBCOMMAND = 0,
+    TEST_LABEL_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    UNKNOWN_SUBCOMMAND,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -413,28 +413,28 @@ pub struct name {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE = 2,
-    ACCESS_WRITE = 1,
-    ACCESS_READ = 0,
+    ACCESS_UPDATE,
+    ACCESS_WRITE,
+    ACCESS_READ,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_FAILURE = 5,
-    HEADER_END_OF_FILE = 4,
-    HEADER_ZERO_BLOCK = 3,
-    HEADER_SUCCESS_EXTENDED = 2,
-    HEADER_SUCCESS = 1,
-    HEADER_STILL_UNREAD = 0,
+    HEADER_FAILURE,
+    HEADER_END_OF_FILE,
+    HEADER_ZERO_BLOCK,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_SUCCESS,
+    HEADER_STILL_UNREAD,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global = 2,
-    read_header_x_raw = 1,
-    read_header_auto = 0,
+    read_header_x_global,
+    read_header_x_raw,
+    read_header_auto,
 }  // end of enum
 
 pub type namebuf_t = *mut namebuf;

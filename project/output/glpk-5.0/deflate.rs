@@ -191,10 +191,10 @@ pub const block_done: block_state = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum block_state {
-    block_done = 1,
-    finish_done = 3,
-    finish_started = 2,
-    need_more = 0,
+    block_done,
+    finish_done,
+    finish_started,
+    need_more,
 }  // end of enum
 
 pub type compress_func = Option::<

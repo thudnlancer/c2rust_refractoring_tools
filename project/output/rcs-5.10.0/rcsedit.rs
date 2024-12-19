@@ -315,9 +315,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO = 2,
-    RM_MEM = 1,
-    RM_MMAP = 0,
+    RM_STDIO,
+    RM_MEM,
+    RM_MMAP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -370,9 +370,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective = 2,
-    real = 1,
-    notmade = 0,
+    effective,
+    real,
+    notmade,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -528,27 +528,27 @@ pub const _ISdigit: C2RustUnnamed_3 = 2048;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum isr_actions {
-    ISR_CATCHMMAPINTS = 3,
-    ISR_RESTOREINTS = 2,
-    ISR_IGNOREINTS = 1,
-    ISR_CATCHINTS = 0,
+    ISR_CATCHMMAPINTS,
+    ISR_RESTOREINTS,
+    ISR_IGNOREINTS,
+    ISR_CATCHINTS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    _ISdigit = 2048,
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISdigit,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[inline]

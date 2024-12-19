@@ -135,15 +135,15 @@ pub const L: C2RustUnnamed_2 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    L = 0,
-    R = 1,
+    L,
+    R,
 }  // end of enum
 
 pub const NCHAR: C2RustUnnamed_3 = 256;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    NCHAR = 256,
+    NCHAR,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;

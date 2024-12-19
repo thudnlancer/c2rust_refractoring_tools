@@ -37,8 +37,8 @@ pub type AFMInteger = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMBoolean {
-    AFMTrue = 1,
-    AFMFalse = 0,
+    AFMTrue,
+    AFMFalse,
 }  // end of enum
 
 #[derive(Copy, Clone)]

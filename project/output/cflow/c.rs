@@ -194,28 +194,28 @@ pub type linked_list_free_data_fp = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symtype {
-    SymIdentifier = 2,
-    SymToken = 1,
-    SymUndefined = 0,
+    SymIdentifier,
+    SymToken,
+    SymUndefined,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
-    AnyStorage = 4,
-    AutoStorage = 3,
-    StaticStorage = 2,
-    ExplicitExternStorage = 1,
-    ExternStorage = 0,
+    AnyStorage,
+    AutoStorage,
+    StaticStorage,
+    ExplicitExternStorage,
+    ExternStorage,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
-    symbol_alias = 3,
-    symbol_parm = 2,
-    symbol_temp = 1,
-    symbol_none = 0,
+    symbol_alias,
+    symbol_parm,
+    symbol_temp,
+    symbol_none,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -275,18 +275,18 @@ pub const _ISspace: C2RustUnnamed_0 = 8192;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    _ISspace = 8192,
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISspace,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[inline]

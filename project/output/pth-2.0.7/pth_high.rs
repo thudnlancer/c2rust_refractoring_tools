@@ -369,27 +369,27 @@ pub struct sockaddr {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    MSG_CMSG_CLOEXEC = 1073741824,
-    MSG_FASTOPEN = 536870912,
-    MSG_ZEROCOPY = 67108864,
-    MSG_BATCH = 262144,
-    MSG_WAITFORONE = 65536,
-    MSG_MORE = 32768,
-    MSG_NOSIGNAL = 16384,
-    MSG_ERRQUEUE = 8192,
-    MSG_RST = 4096,
-    MSG_CONFIRM = 2048,
-    MSG_SYN = 1024,
-    MSG_FIN = 512,
-    MSG_WAITALL = 256,
-    MSG_EOR = 128,
-    MSG_DONTWAIT = 64,
-    MSG_TRUNC = 32,
-    MSG_PROXY = 16,
-    MSG_CTRUNC = 8,
-    MSG_DONTROUTE = 4,
-    MSG_PEEK = 2,
-    MSG_OOB = 1,
+    MSG_CMSG_CLOEXEC,
+    MSG_FASTOPEN,
+    MSG_ZEROCOPY,
+    MSG_BATCH,
+    MSG_WAITFORONE,
+    MSG_MORE,
+    MSG_NOSIGNAL,
+    MSG_ERRQUEUE,
+    MSG_RST,
+    MSG_CONFIRM,
+    MSG_SYN,
+    MSG_FIN,
+    MSG_WAITALL,
+    MSG_EOR,
+    MSG_DONTWAIT,
+    MSG_TRUNC,
+    MSG_PROXY,
+    MSG_CTRUNC,
+    MSG_DONTROUTE,
+    MSG_PEEK,
+    MSG_OOB,
 }  // end of enum
 
 pub type pth_time_t = timeval;
@@ -566,20 +566,20 @@ pub struct C2RustUnnamed_20 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED = 2,
-    PTH_STATUS_OCCURRED = 1,
-    PTH_STATUS_PENDING = 0,
+    PTH_STATUS_FAILED,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_PENDING,
 }  // end of enum
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_state_en {
-    PTH_STATE_DEAD = 4,
-    PTH_STATE_WAITING = 3,
-    PTH_STATE_READY = 2,
-    PTH_STATE_NEW = 1,
-    PTH_STATE_SCHEDULER = 0,
+    PTH_STATE_DEAD,
+    PTH_STATE_WAITING,
+    PTH_STATE_READY,
+    PTH_STATE_NEW,
+    PTH_STATE_SCHEDULER,
 }  // end of enum
 
 pub type pth_key_t = libc::c_int;

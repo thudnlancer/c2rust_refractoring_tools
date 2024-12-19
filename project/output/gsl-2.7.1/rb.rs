@@ -128,8 +128,8 @@ pub const RB_RED: rb_color = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum rb_color {
-    RB_BLACK = 0,
-    RB_RED = 1,
+    RB_BLACK,
+    RB_RED,
 }  // end of enum
 
 pub type rb_color = libc::c_uint;

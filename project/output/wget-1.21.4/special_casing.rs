@@ -10,12 +10,12 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    SCC_AFTER_I = 5,
-    SCC_BEFORE_DOT = 4,
-    SCC_MORE_ABOVE = 3,
-    SCC_AFTER_SOFT_DOTTED = 2,
-    SCC_FINAL_SIGMA = 1,
-    SCC_ALWAYS = 0,
+    SCC_AFTER_I,
+    SCC_BEFORE_DOT,
+    SCC_MORE_ABOVE,
+    SCC_AFTER_SOFT_DOTTED,
+    SCC_FINAL_SIGMA,
+    SCC_ALWAYS,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]

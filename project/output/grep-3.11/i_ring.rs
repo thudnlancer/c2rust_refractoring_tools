@@ -5,7 +5,7 @@ extern "C" {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    I_RING_SIZE = 4,
+    I_RING_SIZE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

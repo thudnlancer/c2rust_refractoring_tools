@@ -244,18 +244,18 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    MERpm = 1,
-    MERam = 0,
-    MER24 = 2,
+    MERpm,
+    MERam,
+    MER24,
 }  // end of enum
-: textint,
+intval: textint,
     pub timespec: timespec,
     pub rel: relative_time,
 }
@@ -292,7 +292,7 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -300,15 +300,15 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
-ONE: yytokentype = 269;
+OCAL_ZONE: yytokentype = 269;
 pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -317,29 +317,29 @@ pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum yytokentype {
-    tDAYZONE = 268,
-    tZONE = 273,
-    tAGO = 258,
-    tORDINAL = 272,
-    tDAY_SHIFT = 266,
-    tSEC_UNIT = 264,
-    tMINUTE_UNIT = 263,
-    tHOUR_UNIT = 262,
-    tDAY_UNIT = 265,
-    tMONTH_UNIT = 261,
-    tYEAR_UNIT = 260,
-    tDST = 259,
-    tDAY = 267,
-    tMONTH = 271,
-    tMERIDIAN = 270,
-    tUNUMBER = 275,
-    tSNUMBER = 274,
-    tUDECIMAL_NUMBER = 277,
-    tSDECIMAL_NUMBER = 276,
-    tLOCAL_ZONE = 269,
+    tDAYZONE,
+    tZONE,
+    tAGO,
+    tORDINAL,
+    tDAY_SHIFT,
+    tSEC_UNIT,
+    tMINUTE_UNIT,
+    tHOUR_UNIT,
+    tDAY_UNIT,
+    tMONTH_UNIT,
+    tYEAR_UNIT,
+    tDST,
+    tDAY,
+    tMONTH,
+    tMERIDIAN,
+    tUNUMBER,
+    tSNUMBER,
+    tUDECIMAL_NUMBER,
+    tSDECIMAL_NUMBER,
+    tLOCAL_ZONE,
 }  // end of enum
- {
-    TZBUFSIZE = 100,
+nnamed {
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -349,9 +349,14 @@ pub type yytokentype = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    TM_YEAR_BASE = 1900,
+    TM_YEAR_BASE,
 }  // end of enum
-6,
+type = 276;
+pub const LOG10_BILLION: C2RustUnnamed_1 = 9;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub union yyalloc {
+    pub yyss_alloc: yytype_int16,
     pub yyvs_alloc: YYSTYPE,
 }
 pub const tLOCAL_ZONE: yytokentype = 269;
@@ -359,7 +364,7 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -367,15 +372,15 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
-ONE: yytokentype = 269;
+OCAL_ZONE: yytokentype = 269;
 pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -384,29 +389,29 @@ pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum yytokentype {
-    tDAYZONE = 268,
-    tZONE = 273,
-    tAGO = 258,
-    tORDINAL = 272,
-    tDAY_SHIFT = 266,
-    tSEC_UNIT = 264,
-    tMINUTE_UNIT = 263,
-    tHOUR_UNIT = 262,
-    tDAY_UNIT = 265,
-    tMONTH_UNIT = 261,
-    tYEAR_UNIT = 260,
-    tDST = 259,
-    tDAY = 267,
-    tMONTH = 271,
-    tMERIDIAN = 270,
-    tUNUMBER = 275,
-    tSNUMBER = 274,
-    tUDECIMAL_NUMBER = 277,
-    tSDECIMAL_NUMBER = 276,
-    tLOCAL_ZONE = 269,
+    tDAYZONE,
+    tZONE,
+    tAGO,
+    tORDINAL,
+    tDAY_SHIFT,
+    tSEC_UNIT,
+    tMINUTE_UNIT,
+    tHOUR_UNIT,
+    tDAY_UNIT,
+    tMONTH_UNIT,
+    tYEAR_UNIT,
+    tDST,
+    tDAY,
+    tMONTH,
+    tMERIDIAN,
+    tUNUMBER,
+    tSNUMBER,
+    tUDECIMAL_NUMBER,
+    tSDECIMAL_NUMBER,
+    tLOCAL_ZONE,
 }  // end of enum
- {
-    TZBUFSIZE = 100,
+nnamed {
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

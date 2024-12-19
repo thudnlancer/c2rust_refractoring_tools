@@ -164,18 +164,18 @@ pub struct timespec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type ptrdiff_t = libc::c_long;
@@ -445,8 +445,8 @@ pub const pax_file_header: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    pax_global_header = 1,
-    pax_file_header = 0,
+    pax_global_header,
+    pax_file_header,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;

@@ -145,15 +145,15 @@ pub struct dirent {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    DT_WHT = 14,
-    DT_SOCK = 12,
-    DT_LNK = 10,
-    DT_REG = 8,
-    DT_BLK = 6,
-    DT_DIR = 4,
-    DT_CHR = 2,
-    DT_FIFO = 1,
-    DT_UNKNOWN = 0,
+    DT_WHT,
+    DT_SOCK,
+    DT_LNK,
+    DT_REG,
+    DT_BLK,
+    DT_DIR,
+    DT_CHR,
+    DT_FIFO,
+    DT_UNKNOWN,
 }  // end of enum
 
 pub type DIR = __dirstream;
@@ -301,8 +301,8 @@ pub const NO_LEAF_OPTIMIZATION: leaf_optimization = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum leaf_optimization {
-    NO_LEAF_OPTIMIZATION = 0,
-    OK_LEAF_OPTIMIZATION = 1,
+    NO_LEAF_OPTIMIZATION,
+    OK_LEAF_OPTIMIZATION,
 }  // end of enum
 
 pub const MIN_DIR_NLINK: C2RustUnnamed_3 = 2;
@@ -317,18 +317,19 @@ pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    _FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD = 10000,
+    _FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD,
 }  // end of enum
-eaf_optimization {
-    NO_LEAF_OPTIMIZATION = 0,
-    OK_LEAF_OPTIMIZATION = 1,
+)]
+pub enum leaf_optimization {
+    NO_LEAF_OPTIMIZATION,
+    OK_LEAF_OPTIMIZATION,
 }  // end of enum
 
 pub const MIN_DIR_NLINK: C2RustUnnamed_3 = 2;
@@ -343,7 +344,7 @@ pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
@@ -351,10 +352,10 @@ pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum Fts_stat {
-    FTS_NO_STAT_REQUIRED = 1,
-    FTS_STAT_REQUIRED = 2,
+    FTS_NO_STAT_REQUIRED,
+    FTS_STAT_REQUIRED,
 }  // end of enum
-of enum
+ end of enum
 
 pub const MIN_DIR_NLINK: C2RustUnnamed_3 = 2;
 #[derive(Copy, Clone)]
@@ -368,7 +369,7 @@ pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
@@ -377,13 +378,13 @@ pub type Fts_stat = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MIN_DIR_NLINK = 2,
+    MIN_DIR_NLINK,
 }  // end of enum
-NITIAL_SIZE: C2RustUnnamed_1 = 31;
+ HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
@@ -393,11 +394,11 @@ pub type C2RustUnnamed_3 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    DEV_TYPE_HT_INITIAL_SIZE = 13,
+    DEV_TYPE_HT_INITIAL_SIZE,
 }  // end of enum
-RED = 2,
+AT_REQUIRED,
 }  // end of enum
-of enum
+ end of enum
 
 pub const MIN_DIR_NLINK: C2RustUnnamed_3 = 2;
 #[derive(Copy, Clone)]
@@ -411,7 +412,7 @@ pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
@@ -420,13 +421,13 @@ pub type Fts_stat = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MIN_DIR_NLINK = 2,
+    MIN_DIR_NLINK,
 }  // end of enum
-NITIAL_SIZE: C2RustUnnamed_1 = 31;
+ HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
+    HT_INITIAL_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;

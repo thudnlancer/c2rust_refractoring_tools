@@ -64,18 +64,18 @@ pub type __off64_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type va_list = __builtin_va_list;
@@ -120,18 +120,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    TCPAREN = 12,
-    TDOT = 11,
-    TNIL = 10,
-    TTRUE = 9,
-    TMOVED = 8,
-    TENV = 7,
-    TMACRO = 6,
-    TFUNCTION = 5,
-    TPRIMITIVE = 4,
-    TSYMBOL = 3,
-    TCELL = 2,
-    TINT = 1,
+    TCPAREN,
+    TDOT,
+    TNIL,
+    TTRUE,
+    TMOVED,
+    TENV,
+    TMACRO,
+    TFUNCTION,
+    TPRIMITIVE,
+    TSYMBOL,
+    TCELL,
+    TINT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

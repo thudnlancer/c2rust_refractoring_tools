@@ -14,12 +14,12 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum kwsub {
-    kwsub_b = 5,
-    kwsub_o = 4,
-    kwsub_v = 3,
-    kwsub_k = 2,
-    kwsub_kvl = 1,
-    kwsub_kv = 0,
+    kwsub_b,
+    kwsub_o,
+    kwsub_v,
+    kwsub_k,
+    kwsub_kvl,
+    kwsub_kv,
 }  // end of enum
 
 #[derive(Copy, Clone)]

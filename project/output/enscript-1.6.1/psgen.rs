@@ -283,18 +283,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -325,50 +325,50 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum HeaderType {
-    HDR_FANCY = 2,
-    HDR_SIMPLE = 1,
-    HDR_NONE = 0,
+    HDR_FANCY,
+    HDR_SIMPLE,
+    HDR_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
-    LABEL_LONG = 1,
-    LABEL_SHORT = 0,
+    LABEL_LONG,
+    LABEL_SHORT,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum MarkWrappedLinesStyle {
-    MWLS_ARROW = 3,
-    MWLS_BOX = 2,
-    MWLS_PLUS = 1,
-    MWLS_NONE = 0,
+    MWLS_ARROW,
+    MWLS_BOX,
+    MWLS_PLUS,
+    MWLS_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NonPrintableFormat {
-    NPF_OCTAL = 3,
-    NPF_CARET = 2,
-    NPF_QUESTIONMARK = 1,
-    NPF_SPACE = 0,
+    NPF_OCTAL,
+    NPF_CARET,
+    NPF_QUESTIONMARK,
+    NPF_SPACE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN = 2,
-    FORMFEED_PAGE = 1,
-    FORMFEED_COLUMN = 0,
+    FORMFEED_HCOLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_COLUMN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LineEndType {
-    LE_WORD_WRAP = 2,
-    LE_CHAR_WRAP = 1,
-    LE_TRUNCATE = 0,
+    LE_WORD_WRAP,
+    LE_CHAR_WRAP,
+    LE_TRUNCATE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -424,20 +424,20 @@ pub type Color = color_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum TokenType {
-    tPS = 13,
-    tCOLOR = 12,
-    tFONT = 11,
-    tNEWPAGE = 10,
-    tSETPAGENUMBER = 9,
-    tSETFILENAME = 8,
-    tEPSF = 7,
-    tWRAPPED_NEWLINE = 6,
-    tCARRIAGE_RETURN = 5,
-    tNEWLINE = 4,
-    tFORMFEED = 3,
-    tSTRING = 2,
-    tEOF = 1,
-    tNONE = 0,
+    tPS,
+    tCOLOR,
+    tFONT,
+    tNEWPAGE,
+    tSETPAGENUMBER,
+    tSETFILENAME,
+    tEPSF,
+    tWRAPPED_NEWLINE,
+    tCARRIAGE_RETURN,
+    tNEWLINE,
+    tFORMFEED,
+    tSTRING,
+    tEOF,
+    tNONE,
 }  // end of enum
 
 pub type Token = gs_token_st;
@@ -499,17 +499,17 @@ pub const ESC_FONT: SpecialEscape = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SpecialEscape {
-    ESC_PS = 10,
-    ESC_NEWPAGE = 4,
-    ESC_SETPAGENUMBER = 6,
-    ESC_SETFILENAME = 5,
-    ESC_ESCAPE = 9,
-    ESC_BGGRAY = 8,
-    ESC_SHADE = 7,
-    ESC_COLOR = 3,
-    ESC_FONT = 2,
-    ESC_EPSF = 1,
-    ESC_COMMENT = 0,
+    ESC_PS,
+    ESC_NEWPAGE,
+    ESC_SETPAGENUMBER,
+    ESC_SETFILENAME,
+    ESC_ESCAPE,
+    ESC_BGGRAY,
+    ESC_SHADE,
+    ESC_COLOR,
+    ESC_FONT,
+    ESC_EPSF,
+    ESC_COMMENT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -165,18 +165,18 @@ pub type int_fast16_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type XID = libc::c_ulong;
@@ -342,30 +342,30 @@ pub type time_ms_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wintype_t {
-    NUM_WINTYPES = 15,
-    WINTYPE_DND = 14,
-    WINTYPE_COMBO = 13,
-    WINTYPE_NOTIFY = 12,
-    WINTYPE_TOOLTIP = 11,
-    WINTYPE_POPUP_MENU = 10,
-    WINTYPE_DROPDOWN_MENU = 9,
-    WINTYPE_NORMAL = 8,
-    WINTYPE_DIALOG = 7,
-    WINTYPE_SPLASH = 6,
-    WINTYPE_UTILITY = 5,
-    WINTYPE_MENU = 4,
-    WINTYPE_TOOLBAR = 3,
-    WINTYPE_DOCK = 2,
-    WINTYPE_DESKTOP = 1,
-    WINTYPE_UNKNOWN = 0,
+    NUM_WINTYPES,
+    WINTYPE_DND,
+    WINTYPE_COMBO,
+    WINTYPE_NOTIFY,
+    WINTYPE_TOOLTIP,
+    WINTYPE_POPUP_MENU,
+    WINTYPE_DROPDOWN_MENU,
+    WINTYPE_NORMAL,
+    WINTYPE_DIALOG,
+    WINTYPE_SPLASH,
+    WINTYPE_UTILITY,
+    WINTYPE_MENU,
+    WINTYPE_TOOLBAR,
+    WINTYPE_DOCK,
+    WINTYPE_DESKTOP,
+    WINTYPE_UNKNOWN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
-    UNSET = 2,
-    ON = 1,
-    OFF = 0,
+    UNSET,
+    ON,
+    OFF,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -387,9 +387,9 @@ pub struct margin_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum winmode_t {
-    WMODE_ARGB = 2,
-    WMODE_SOLID = 1,
-    WMODE_TRANS = 0,
+    WMODE_ARGB,
+    WMODE_SOLID,
+    WMODE_TRANS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -417,22 +417,22 @@ pub type ignore_t = _ignore;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum vsync_t {
-    NUM_VSYNC = 6,
-    VSYNC_OPENGL_MSWC = 5,
-    VSYNC_OPENGL_SWC = 4,
-    VSYNC_OPENGL_OML = 3,
-    VSYNC_OPENGL = 2,
-    VSYNC_DRM = 1,
-    VSYNC_NONE = 0,
+    NUM_VSYNC,
+    VSYNC_OPENGL_MSWC,
+    VSYNC_OPENGL_SWC,
+    VSYNC_OPENGL_OML,
+    VSYNC_OPENGL,
+    VSYNC_DRM,
+    VSYNC_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
-    NUM_BKEND = 3,
-    BKEND_XR_GLX_HYBRID = 2,
-    BKEND_GLX = 1,
-    BKEND_XRENDER = 0,
+    NUM_BKEND,
+    BKEND_XR_GLX_HYBRID,
+    BKEND_GLX,
+    BKEND_XRENDER,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -813,71 +813,71 @@ pub type pcre = real_pcre;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    C2_L_PTINT = 2,
-    C2_L_PTSTRING = 1,
-    C2_L_PTUNDEFINED = 0,
+    C2_L_PTINT,
+    C2_L_PTSTRING,
+    C2_L_PTUNDEFINED,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_l_type {
-    C2_L_TDRAWABLE = 5,
-    C2_L_TATOM = 4,
-    C2_L_TWINDOW = 3,
-    C2_L_TCARDINAL = 2,
-    C2_L_TSTRING = 1,
-    C2_L_TUNDEFINED = 0,
+    C2_L_TDRAWABLE,
+    C2_L_TATOM,
+    C2_L_TWINDOW,
+    C2_L_TCARDINAL,
+    C2_L_TSTRING,
+    C2_L_TUNDEFINED,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    C2_L_PROLE = 24,
-    C2_L_PCLASSI = 23,
-    C2_L_PCLASSG = 22,
-    C2_L_PNAME = 21,
-    C2_L_PLEADER = 20,
-    C2_L_PWINDOWTYPE = 19,
-    C2_L_PCLIENT = 18,
-    C2_L_PROUNDED = 17,
-    C2_L_PBSHAPED = 16,
-    C2_L_PWMWIN = 15,
-    C2_L_PFOCUSED = 14,
-    C2_L_PARGB = 13,
-    C2_L_POVREDIR = 12,
-    C2_L_PFULLSCREEN = 11,
-    C2_L_PBDW = 10,
-    C2_L_PHEIGHTB = 9,
-    C2_L_PWIDTHB = 8,
-    C2_L_PHEIGHT = 7,
-    C2_L_PWIDTH = 6,
-    C2_L_PY2 = 5,
-    C2_L_PX2 = 4,
-    C2_L_PY = 3,
-    C2_L_PX = 2,
-    C2_L_PID = 1,
-    C2_L_PUNDEFINED = 0,
+    C2_L_PROLE,
+    C2_L_PCLASSI,
+    C2_L_PCLASSG,
+    C2_L_PNAME,
+    C2_L_PLEADER,
+    C2_L_PWINDOWTYPE,
+    C2_L_PCLIENT,
+    C2_L_PROUNDED,
+    C2_L_PBSHAPED,
+    C2_L_PWMWIN,
+    C2_L_PFOCUSED,
+    C2_L_PARGB,
+    C2_L_POVREDIR,
+    C2_L_PFULLSCREEN,
+    C2_L_PBDW,
+    C2_L_PHEIGHTB,
+    C2_L_PWIDTHB,
+    C2_L_PHEIGHT,
+    C2_L_PWIDTH,
+    C2_L_PY2,
+    C2_L_PX2,
+    C2_L_PY,
+    C2_L_PX,
+    C2_L_PID,
+    C2_L_PUNDEFINED,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    C2_L_MPCRE = 4,
-    C2_L_MWILDCARD = 3,
-    C2_L_MCONTAINS = 2,
-    C2_L_MSTART = 1,
-    C2_L_MEXACT = 0,
+    C2_L_MPCRE,
+    C2_L_MWILDCARD,
+    C2_L_MCONTAINS,
+    C2_L_MSTART,
+    C2_L_MEXACT,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C2_L_OLTEQ = 5,
-    C2_L_OLT = 4,
-    C2_L_OGTEQ = 3,
-    C2_L_OGT = 2,
-    C2_L_OEQ = 1,
-    C2_L_OEXISTS = 0,
+    C2_L_OLTEQ,
+    C2_L_OLT,
+    C2_L_OGTEQ,
+    C2_L_OGT,
+    C2_L_OEQ,
+    C2_L_OEXISTS,
 }  // end of enum
 
 pub type c2_b_t = _c2_b;
@@ -895,10 +895,10 @@ pub struct _c2_b {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_b_op_t {
-    C2_B_OXOR = 3,
-    C2_B_OOR = 2,
-    C2_B_OAND = 1,
-    C2_B_OUNDEFINED = 0,
+    C2_B_OXOR,
+    C2_B_OOR,
+    C2_B_OAND,
+    C2_B_OUNDEFINED,
 }  // end of enum
 
 pub type options_t = _options_t;

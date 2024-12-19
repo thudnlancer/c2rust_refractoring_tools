@@ -128,10 +128,10 @@ pub struct rpl_posix_spawn_file_actions_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum canonicalize_mode_t {
-    CAN_NOLINKS = 4,
-    CAN_MISSING = 2,
-    CAN_ALL_BUT_LAST = 1,
-    CAN_EXISTING = 0,
+    CAN_NOLINKS,
+    CAN_MISSING,
+    CAN_ALL_BUT_LAST,
+    CAN_EXISTING,
 }  // end of enum
 
 unsafe extern "C" fn nonintr_close(mut fd: libc::c_int) -> libc::c_int {

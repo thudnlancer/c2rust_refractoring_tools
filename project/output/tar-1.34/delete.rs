@@ -351,29 +351,29 @@ pub struct name {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE = 2,
-    ACCESS_WRITE = 1,
-    ACCESS_READ = 0,
+    ACCESS_UPDATE,
+    ACCESS_WRITE,
+    ACCESS_READ,
 }  // end of enum
 
 pub const HEADER_END_OF_FILE: read_header = 4;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_END_OF_FILE = 4,
-    HEADER_FAILURE = 5,
-    HEADER_ZERO_BLOCK = 3,
-    HEADER_SUCCESS_EXTENDED = 2,
-    HEADER_SUCCESS = 1,
-    HEADER_STILL_UNREAD = 0,
+    HEADER_END_OF_FILE,
+    HEADER_FAILURE,
+    HEADER_ZERO_BLOCK,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_SUCCESS,
+    HEADER_STILL_UNREAD,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global = 2,
-    read_header_x_raw = 1,
-    read_header_auto = 0,
+    read_header_x_global,
+    read_header_x_raw,
+    read_header_auto,
 }  // end of enum
 
 static mut new_record: *mut block = 0 as *const block as *mut block;

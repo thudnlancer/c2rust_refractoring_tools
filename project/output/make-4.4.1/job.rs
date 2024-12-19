@@ -277,70 +277,70 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _CS_V7_ENV = 1149,
-    _CS_V6_ENV = 1148,
-    _CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS = 1147,
-    _CS_POSIX_V7_LPBIG_OFFBIG_LIBS = 1146,
-    _CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS = 1145,
-    _CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS = 1144,
-    _CS_POSIX_V7_LP64_OFF64_LINTFLAGS = 1143,
-    _CS_POSIX_V7_LP64_OFF64_LIBS = 1142,
-    _CS_POSIX_V7_LP64_OFF64_LDFLAGS = 1141,
-    _CS_POSIX_V7_LP64_OFF64_CFLAGS = 1140,
-    _CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS = 1139,
-    _CS_POSIX_V7_ILP32_OFFBIG_LIBS = 1138,
-    _CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS = 1137,
-    _CS_POSIX_V7_ILP32_OFFBIG_CFLAGS = 1136,
-    _CS_POSIX_V7_ILP32_OFF32_LINTFLAGS = 1135,
-    _CS_POSIX_V7_ILP32_OFF32_LIBS = 1134,
-    _CS_POSIX_V7_ILP32_OFF32_LDFLAGS = 1133,
-    _CS_POSIX_V7_ILP32_OFF32_CFLAGS = 1132,
-    _CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS = 1131,
-    _CS_POSIX_V6_LPBIG_OFFBIG_LIBS = 1130,
-    _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS = 1129,
-    _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS = 1128,
-    _CS_POSIX_V6_LP64_OFF64_LINTFLAGS = 1127,
-    _CS_POSIX_V6_LP64_OFF64_LIBS = 1126,
-    _CS_POSIX_V6_LP64_OFF64_LDFLAGS = 1125,
-    _CS_POSIX_V6_LP64_OFF64_CFLAGS = 1124,
-    _CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS = 1123,
-    _CS_POSIX_V6_ILP32_OFFBIG_LIBS = 1122,
-    _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS = 1121,
-    _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS = 1120,
-    _CS_POSIX_V6_ILP32_OFF32_LINTFLAGS = 1119,
-    _CS_POSIX_V6_ILP32_OFF32_LIBS = 1118,
-    _CS_POSIX_V6_ILP32_OFF32_LDFLAGS = 1117,
-    _CS_POSIX_V6_ILP32_OFF32_CFLAGS = 1116,
-    _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS = 1115,
-    _CS_XBS5_LPBIG_OFFBIG_LIBS = 1114,
-    _CS_XBS5_LPBIG_OFFBIG_LDFLAGS = 1113,
-    _CS_XBS5_LPBIG_OFFBIG_CFLAGS = 1112,
-    _CS_XBS5_LP64_OFF64_LINTFLAGS = 1111,
-    _CS_XBS5_LP64_OFF64_LIBS = 1110,
-    _CS_XBS5_LP64_OFF64_LDFLAGS = 1109,
-    _CS_XBS5_LP64_OFF64_CFLAGS = 1108,
-    _CS_XBS5_ILP32_OFFBIG_LINTFLAGS = 1107,
-    _CS_XBS5_ILP32_OFFBIG_LIBS = 1106,
-    _CS_XBS5_ILP32_OFFBIG_LDFLAGS = 1105,
-    _CS_XBS5_ILP32_OFFBIG_CFLAGS = 1104,
-    _CS_XBS5_ILP32_OFF32_LINTFLAGS = 1103,
-    _CS_XBS5_ILP32_OFF32_LIBS = 1102,
-    _CS_XBS5_ILP32_OFF32_LDFLAGS = 1101,
-    _CS_XBS5_ILP32_OFF32_CFLAGS = 1100,
-    _CS_LFS64_LINTFLAGS = 1007,
-    _CS_LFS64_LIBS = 1006,
-    _CS_LFS64_LDFLAGS = 1005,
-    _CS_LFS64_CFLAGS = 1004,
-    _CS_LFS_LINTFLAGS = 1003,
-    _CS_LFS_LIBS = 1002,
-    _CS_LFS_LDFLAGS = 1001,
-    _CS_LFS_CFLAGS = 1000,
-    _CS_V7_WIDTH_RESTRICTED_ENVS = 5,
-    _CS_V5_WIDTH_RESTRICTED_ENVS = 4,
-    _CS_GNU_LIBPTHREAD_VERSION = 3,
-    _CS_GNU_LIBC_VERSION = 2,
-    _CS_V6_WIDTH_RESTRICTED_ENVS = 1,
-    _CS_PATH = 0,
+    _CS_V7_ENV,
+    _CS_V6_ENV,
+    _CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS,
+    _CS_POSIX_V7_LPBIG_OFFBIG_LIBS,
+    _CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS,
+    _CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS,
+    _CS_POSIX_V7_LP64_OFF64_LINTFLAGS,
+    _CS_POSIX_V7_LP64_OFF64_LIBS,
+    _CS_POSIX_V7_LP64_OFF64_LDFLAGS,
+    _CS_POSIX_V7_LP64_OFF64_CFLAGS,
+    _CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS,
+    _CS_POSIX_V7_ILP32_OFFBIG_LIBS,
+    _CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS,
+    _CS_POSIX_V7_ILP32_OFFBIG_CFLAGS,
+    _CS_POSIX_V7_ILP32_OFF32_LINTFLAGS,
+    _CS_POSIX_V7_ILP32_OFF32_LIBS,
+    _CS_POSIX_V7_ILP32_OFF32_LDFLAGS,
+    _CS_POSIX_V7_ILP32_OFF32_CFLAGS,
+    _CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS,
+    _CS_POSIX_V6_LPBIG_OFFBIG_LIBS,
+    _CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS,
+    _CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS,
+    _CS_POSIX_V6_LP64_OFF64_LINTFLAGS,
+    _CS_POSIX_V6_LP64_OFF64_LIBS,
+    _CS_POSIX_V6_LP64_OFF64_LDFLAGS,
+    _CS_POSIX_V6_LP64_OFF64_CFLAGS,
+    _CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS,
+    _CS_POSIX_V6_ILP32_OFFBIG_LIBS,
+    _CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS,
+    _CS_POSIX_V6_ILP32_OFFBIG_CFLAGS,
+    _CS_POSIX_V6_ILP32_OFF32_LINTFLAGS,
+    _CS_POSIX_V6_ILP32_OFF32_LIBS,
+    _CS_POSIX_V6_ILP32_OFF32_LDFLAGS,
+    _CS_POSIX_V6_ILP32_OFF32_CFLAGS,
+    _CS_XBS5_LPBIG_OFFBIG_LINTFLAGS,
+    _CS_XBS5_LPBIG_OFFBIG_LIBS,
+    _CS_XBS5_LPBIG_OFFBIG_LDFLAGS,
+    _CS_XBS5_LPBIG_OFFBIG_CFLAGS,
+    _CS_XBS5_LP64_OFF64_LINTFLAGS,
+    _CS_XBS5_LP64_OFF64_LIBS,
+    _CS_XBS5_LP64_OFF64_LDFLAGS,
+    _CS_XBS5_LP64_OFF64_CFLAGS,
+    _CS_XBS5_ILP32_OFFBIG_LINTFLAGS,
+    _CS_XBS5_ILP32_OFFBIG_LIBS,
+    _CS_XBS5_ILP32_OFFBIG_LDFLAGS,
+    _CS_XBS5_ILP32_OFFBIG_CFLAGS,
+    _CS_XBS5_ILP32_OFF32_LINTFLAGS,
+    _CS_XBS5_ILP32_OFF32_LIBS,
+    _CS_XBS5_ILP32_OFF32_LDFLAGS,
+    _CS_XBS5_ILP32_OFF32_CFLAGS,
+    _CS_LFS64_LINTFLAGS,
+    _CS_LFS64_LIBS,
+    _CS_LFS64_LDFLAGS,
+    _CS_LFS64_CFLAGS,
+    _CS_LFS_LINTFLAGS,
+    _CS_LFS_LIBS,
+    _CS_LFS_LDFLAGS,
+    _CS_LFS_CFLAGS,
+    _CS_V7_WIDTH_RESTRICTED_ENVS,
+    _CS_V5_WIDTH_RESTRICTED_ENVS,
+    _CS_GNU_LIBPTHREAD_VERSION,
+    _CS_GNU_LIBC_VERSION,
+    _CS_V6_WIDTH_RESTRICTED_ENVS,
+    _CS_PATH,
 }  // end of enum
 
 pub type uintmax_t = __uintmax_t;
@@ -395,19 +395,19 @@ pub struct file {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cmd_state {
-    cs_finished = 3,
-    cs_running = 2,
-    cs_deps_running = 1,
-    cs_not_started = 0,
+    cs_finished,
+    cs_running,
+    cs_deps_running,
+    cs_not_started,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
-    us_failed = 3,
-    us_question = 2,
-    us_none = 1,
-    us_success = 0,
+    us_failed,
+    us_question,
+    us_none,
+    us_success,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -516,25 +516,25 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset = 3,
-    v_noexport = 2,
-    v_export = 1,
-    v_default = 0,
+    v_ifset,
+    v_noexport,
+    v_export,
+    v_default,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_origin {
-    o_invalid = 7,
-    o_automatic = 6,
-    o_override = 5,
-    o_command = 4,
-    o_env_override = 3,
-    o_file = 2,
-    o_env = 1,
-    o_default = 0,
+    o_invalid,
+    o_automatic,
+    o_override,
+    o_command,
+    o_env_override,
+    o_file,
+    o_env,
+    o_default,
 }  // end of enum
-le_origin = 0;
+_default: variable_origin = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct variable {
@@ -559,24 +559,24 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset = 3,
-    v_noexport = 2,
-    v_export = 1,
-    v_default = 0,
+    v_ifset,
+    v_noexport,
+    v_export,
+    v_default,
 }  // end of enum
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_flavor {
-    f_append_value = 7,
-    f_shell = 6,
-    f_conditional = 5,
-    f_append = 4,
-    f_expand = 3,
-    f_recursive = 2,
-    f_simple = 1,
-    f_bogus = 0,
+    f_append_value,
+    f_shell,
+    f_conditional,
+    f_append,
+    f_expand,
+    f_recursive,
+    f_simple,
+    f_bogus,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]

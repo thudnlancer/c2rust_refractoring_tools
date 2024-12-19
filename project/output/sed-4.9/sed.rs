@@ -153,9 +153,9 @@ pub struct localeinfo {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exit_codes {
-    EXIT_PANIC = 4,
-    EXIT_BAD_INPUT = 2,
-    EXIT_BAD_USAGE = 1,
+    EXIT_PANIC,
+    EXIT_BAD_INPUT,
+    EXIT_BAD_USAGE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -224,16 +224,16 @@ pub struct replacement {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum replacement_types {
-    REPL_LOWERCASE_LOWERCASE = 10,
-    REPL_LOWERCASE_UPPERCASE = 9,
-    REPL_UPPERCASE_LOWERCASE = 6,
-    REPL_UPPERCASE_UPPERCASE = 5,
-    REPL_MODIFIERS = 12,
-    REPL_LOWERCASE_FIRST = 8,
-    REPL_UPPERCASE_FIRST = 4,
-    REPL_LOWERCASE = 2,
-    REPL_UPPERCASE = 1,
-    REPL_ASIS = 0,
+    REPL_LOWERCASE_LOWERCASE,
+    REPL_LOWERCASE_UPPERCASE,
+    REPL_UPPERCASE_LOWERCASE,
+    REPL_UPPERCASE_UPPERCASE,
+    REPL_MODIFIERS,
+    REPL_LOWERCASE_FIRST,
+    REPL_UPPERCASE_FIRST,
+    REPL_LOWERCASE,
+    REPL_UPPERCASE,
+    REPL_ASIS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -262,9 +262,9 @@ pub struct text_buf {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum addr_state {
-    RANGE_CLOSED = 2,
-    RANGE_ACTIVE = 1,
-    RANGE_INACTIVE = 0,
+    RANGE_CLOSED,
+    RANGE_ACTIVE,
+    RANGE_INACTIVE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -278,21 +278,21 @@ pub struct addr {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum addr_types {
-    ADDR_IS_LAST = 6,
-    ADDR_IS_STEP_MOD = 5,
-    ADDR_IS_STEP = 4,
-    ADDR_IS_NUM_MOD = 3,
-    ADDR_IS_NUM = 2,
-    ADDR_IS_REGEX = 1,
-    ADDR_IS_NULL = 0,
+    ADDR_IS_LAST,
+    ADDR_IS_STEP_MOD,
+    ADDR_IS_STEP,
+    ADDR_IS_NUM_MOD,
+    ADDR_IS_NUM,
+    ADDR_IS_REGEX,
+    ADDR_IS_NULL,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
-    POSIXLY_BASIC = 2,
-    POSIXLY_CORRECT = 1,
-    POSIXLY_EXTENDED = 0,
+    POSIXLY_BASIC,
+    POSIXLY_CORRECT,
+    POSIXLY_EXTENDED,
 }  // end of enum
 
 pub const DEBUG_OPTION: C2RustUnnamed_0 = 129;
@@ -308,8 +308,8 @@ pub struct option {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    DEBUG_OPTION = 129,
-    SANDBOX_OPTION = 128,
+    DEBUG_OPTION,
+    SANDBOX_OPTION,
 }  // end of enum
 
 #[derive(Copy, Clone)]

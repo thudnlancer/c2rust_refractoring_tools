@@ -124,12 +124,12 @@ pub struct localeinfo {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    DFA_PLUS_WARN = 32,
-    DFA_STAR_WARN = 16,
-    DFA_STRAY_BACKSLASH_WARN = 8,
-    DFA_CONFUSING_BRACKETS_ERROR = 4,
-    DFA_EOL_NUL = 2,
-    DFA_ANCHOR = 1,
+    DFA_PLUS_WARN,
+    DFA_STAR_WARN,
+    DFA_STRAY_BACKSLASH_WARN,
+    DFA_CONFUSING_BRACKETS_ERROR,
+    DFA_EOL_NUL,
+    DFA_ANCHOR,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -146,17 +146,17 @@ pub struct regex {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum text_types {
-    TEXT_REGEX = 2,
-    TEXT_REPLACEMENT = 1,
-    TEXT_BUFFER = 0,
+    TEXT_REGEX,
+    TEXT_REPLACEMENT,
+    TEXT_BUFFER,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
-    POSIXLY_BASIC = 2,
-    POSIXLY_CORRECT = 1,
-    POSIXLY_EXTENDED = 0,
+    POSIXLY_BASIC,
+    POSIXLY_CORRECT,
+    POSIXLY_EXTENDED,
 }  // end of enum
 
 static mut errors: [libc::c_char; 72] = unsafe {

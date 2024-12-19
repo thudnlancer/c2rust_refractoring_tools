@@ -281,20 +281,20 @@ pub struct C2RustUnnamed_8 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED = 2,
-    PTH_STATUS_OCCURRED = 1,
-    PTH_STATUS_PENDING = 0,
+    PTH_STATUS_FAILED,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_PENDING,
 }  // end of enum
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_state_en {
-    PTH_STATE_DEAD = 4,
-    PTH_STATE_WAITING = 3,
-    PTH_STATE_READY = 2,
-    PTH_STATE_NEW = 1,
-    PTH_STATE_SCHEDULER = 0,
+    PTH_STATE_DEAD,
+    PTH_STATE_WAITING,
+    PTH_STATE_READY,
+    PTH_STATE_NEW,
+    PTH_STATE_SCHEDULER,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -313,21 +313,21 @@ pub type pth_attr_t = *mut pth_attr_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
-    PTH_ATTR_BOUND = 14,
-    PTH_ATTR_EVENTS = 13,
-    PTH_ATTR_STATE = 12,
-    PTH_ATTR_START_ARG = 11,
-    PTH_ATTR_START_FUNC = 10,
-    PTH_ATTR_TIME_RAN = 9,
-    PTH_ATTR_TIME_LAST = 8,
-    PTH_ATTR_TIME_SPAWN = 7,
-    PTH_ATTR_DISPATCHES = 6,
-    PTH_ATTR_STACK_ADDR = 5,
-    PTH_ATTR_STACK_SIZE = 4,
-    PTH_ATTR_CANCEL_STATE = 3,
-    PTH_ATTR_JOINABLE = 2,
-    PTH_ATTR_NAME = 1,
-    PTH_ATTR_PRIO = 0,
+    PTH_ATTR_BOUND,
+    PTH_ATTR_EVENTS,
+    PTH_ATTR_STATE,
+    PTH_ATTR_START_ARG,
+    PTH_ATTR_START_FUNC,
+    PTH_ATTR_TIME_RAN,
+    PTH_ATTR_TIME_LAST,
+    PTH_ATTR_TIME_SPAWN,
+    PTH_ATTR_DISPATCHES,
+    PTH_ATTR_STACK_ADDR,
+    PTH_ATTR_STACK_SIZE,
+    PTH_ATTR_CANCEL_STATE,
+    PTH_ATTR_JOINABLE,
+    PTH_ATTR_NAME,
+    PTH_ATTR_PRIO,
 }  // end of enum
 
 pub const PTH_ATTR_SET: C2RustUnnamed_10 = 1;
@@ -335,8 +335,8 @@ pub const PTH_ATTR_GET: C2RustUnnamed_10 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    PTH_ATTR_SET = 1,
-    PTH_ATTR_GET = 0,
+    PTH_ATTR_SET,
+    PTH_ATTR_GET,
 }  // end of enum
 
 pub type C2RustUnnamed_10 = libc::c_uint;

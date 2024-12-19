@@ -223,9 +223,9 @@ pub struct C2RustUnnamed_2 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD = 2,
-    REDIS_CONN_UNIX = 1,
-    REDIS_CONN_TCP = 0,
+    REDIS_CONN_USERFD,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_TCP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -311,18 +311,18 @@ pub struct http_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum header_copy {
-    HEADER_CHECK_DUPE = 4,
-    HEADER_COPY_VALUE = 2,
-    HEADER_COPY_KEY = 1,
-    HEADER_COPY_NONE = 0,
+    HEADER_CHECK_DUPE,
+    HEADER_COPY_VALUE,
+    HEADER_COPY_KEY,
+    HEADER_COPY_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum last_cb_t {
-    LAST_CB_VAL = 2,
-    LAST_CB_KEY = 1,
-    LAST_CB_NONE = 0,
+    LAST_CB_VAL,
+    LAST_CB_KEY,
+    LAST_CB_NONE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -486,20 +486,20 @@ pub struct C2RustUnnamed_13 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_fsync_mode {
-    LOG_FSYNC_ALL = 2,
-    LOG_FSYNC_MILLIS = 1,
-    LOG_FSYNC_AUTO = 0,
+    LOG_FSYNC_ALL,
+    LOG_FSYNC_MILLIS,
+    LOG_FSYNC_AUTO,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
-    WEBDIS_TRACE = 8,
-    WEBDIS_DEBUG = 4,
-    WEBDIS_INFO = 3,
-    WEBDIS_NOTICE = 2,
-    WEBDIS_WARNING = 1,
-    WEBDIS_ERROR = 0,
+    WEBDIS_TRACE,
+    WEBDIS_DEBUG,
+    WEBDIS_INFO,
+    WEBDIS_NOTICE,
+    WEBDIS_WARNING,
+    WEBDIS_ERROR,
 }  // end of enum
 
 #[derive(Copy, Clone)]

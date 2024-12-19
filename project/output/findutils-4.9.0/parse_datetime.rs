@@ -303,18 +303,18 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    MERpm = 1,
-    MERam = 0,
-    MER24 = 2,
+    MERpm,
+    MERam,
+    MER24,
 }  // end of enum
-tval: intmax_t,
+pub intval: intmax_t,
     pub textintval: textint,
     pub timespec: timespec,
     pub rel: relative_time,
@@ -411,7 +411,7 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -419,15 +419,15 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
-E: yytokentype = 269;
+AL_ZONE: yytokentype = 269;
 pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -437,9 +437,9 @@ pub type yytokentype = libc::c_int;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    TM_YEAR_BASE = 1900,
+    TM_YEAR_BASE,
 }  // end of enum
- yysymbol_kind_t = 50;
+YMBOL_unsigned_seconds: yysymbol_kind_t = 50;
 pub const YYSYMBOL_signed_seconds: yysymbol_kind_t = 49;
 pub const YYSYMBOL_seconds: yysymbol_kind_t = 48;
 pub const YYSYMBOL_dayshift: yysymbol_kind_t = 47;
@@ -527,7 +527,7 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
@@ -535,15 +535,15 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
-E: yytokentype = 269;
+AL_ZONE: yytokentype = 269;
 pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
+    TZBUFSIZE,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

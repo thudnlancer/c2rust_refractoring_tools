@@ -41,25 +41,25 @@ pub type wchar_t = libc::c_int;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style = 10,
-    clocale_quoting_style = 9,
-    locale_quoting_style = 8,
-    escape_quoting_style = 7,
-    c_maybe_quoting_style = 6,
-    c_quoting_style = 5,
-    shell_escape_always_quoting_style = 4,
-    shell_escape_quoting_style = 3,
-    shell_always_quoting_style = 2,
-    shell_quoting_style = 1,
-    literal_quoting_style = 0,
+    custom_quoting_style,
+    clocale_quoting_style,
+    locale_quoting_style,
+    escape_quoting_style,
+    c_maybe_quoting_style,
+    c_quoting_style,
+    shell_escape_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_always_quoting_style,
+    shell_quoting_style,
+    literal_quoting_style,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_flags {
-    QA_SPLIT_TRIGRAPHS = 4,
-    QA_ELIDE_OUTER_QUOTES = 2,
-    QA_ELIDE_NULL_BYTES = 1,
+    QA_SPLIT_TRIGRAPHS,
+    QA_ELIDE_OUTER_QUOTES,
+    QA_ELIDE_NULL_BYTES,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -95,18 +95,18 @@ pub struct slotvec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    _ISprint = 16384,
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISprint,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[inline]

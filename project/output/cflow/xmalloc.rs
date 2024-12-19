@@ -23,17 +23,17 @@ pub const DEFAULT_MXFAST: C2RustUnnamed = 64;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    DEFAULT_MXFAST = 64,
+    DEFAULT_MXFAST,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    HAVE_GNU_CALLOC = 1,
+    HAVE_GNU_CALLOC,
 }  // end of enum
- {
-    DEFAULT_MXFAST = 64,
+named {
+    DEFAULT_MXFAST,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

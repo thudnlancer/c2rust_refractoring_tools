@@ -119,8 +119,8 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_bool {
-    awk_true = 1,
-    awk_false = 0,
+    awk_true,
+    awk_false,
 }  // end of enum
 
 pub type awk_bool_t = awk_bool;
@@ -234,8 +234,8 @@ pub type awk_two_way_processor_t = awk_two_way_processor;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    GAWK_API_MINOR_VERSION = 2,
-    GAWK_API_MAJOR_VERSION = 3,
+    GAWK_API_MINOR_VERSION,
+    GAWK_API_MAJOR_VERSION,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -248,9 +248,9 @@ pub type awk_string_t = awk_string;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AWK_NUMBER_TYPE {
-    AWK_NUMBER_TYPE_MPZ = 2,
-    AWK_NUMBER_TYPE_MPFR = 1,
-    AWK_NUMBER_TYPE_DOUBLE = 0,
+    AWK_NUMBER_TYPE_MPZ,
+    AWK_NUMBER_TYPE_MPFR,
+    AWK_NUMBER_TYPE_DOUBLE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -267,15 +267,15 @@ pub type awk_value_cookie_t = *mut libc::c_void;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_valtype_t {
-    AWK_BOOL = 8,
-    AWK_VALUE_COOKIE = 7,
-    AWK_SCALAR = 6,
-    AWK_ARRAY = 5,
-    AWK_STRNUM = 4,
-    AWK_REGEX = 3,
-    AWK_STRING = 2,
-    AWK_NUMBER = 1,
-    AWK_UNDEFINED = 0,
+    AWK_BOOL,
+    AWK_VALUE_COOKIE,
+    AWK_SCALAR,
+    AWK_ARRAY,
+    AWK_STRNUM,
+    AWK_REGEX,
+    AWK_STRING,
+    AWK_NUMBER,
+    AWK_UNDEFINED,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -306,8 +306,8 @@ pub struct awk_element {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    AWK_ELEMENT_DELETE = 1,
-    AWK_ELEMENT_DEFAULT = 0,
+    AWK_ELEMENT_DELETE,
+    AWK_ELEMENT_DEFAULT,
 }  // end of enum
 
 pub type awk_element_t = awk_element;

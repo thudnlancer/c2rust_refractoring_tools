@@ -26,11 +26,11 @@ extern "C" {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS = 4,
-    LOG_ALWAYS = 3,
-    LOG_NONVERBOSE = 2,
-    LOG_NOTQUIET = 1,
-    LOG_VERBOSE = 0,
+    LOG_PROGRESS,
+    LOG_ALWAYS,
+    LOG_NONVERBOSE,
+    LOG_NOTQUIET,
+    LOG_VERBOSE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

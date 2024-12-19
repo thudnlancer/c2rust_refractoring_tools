@@ -63,10 +63,10 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    MODE_DONE = 0,
-    MODE_COPY_EXISTING = 3,
-    MODE_X_IF_ANY_X = 2,
-    MODE_ORDINARY_CHANGE = 1,
+    MODE_DONE,
+    MODE_COPY_EXISTING,
+    MODE_X_IF_ANY_X,
+    MODE_ORDINARY_CHANGE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

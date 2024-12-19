@@ -760,18 +760,18 @@ pub union sigval {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type XID = libc::c_ulong;
@@ -1551,11 +1551,11 @@ pub struct XTextProperty {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum XICCEncodingStyle {
-    XUTF8StringStyle = 4,
-    XStdICCTextStyle = 3,
-    XTextStyle = 2,
-    XCompoundTextStyle = 1,
-    XStringStyle = 0,
+    XUTF8StringStyle,
+    XStdICCTextStyle,
+    XTextStyle,
+    XCompoundTextStyle,
+    XStringStyle,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1745,9 +1745,9 @@ pub struct config_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum config_error_t {
-    CONFIG_ERR_PARSE = 2,
-    CONFIG_ERR_FILE_IO = 1,
-    CONFIG_ERR_NONE = 0,
+    CONFIG_ERR_PARSE,
+    CONFIG_ERR_FILE_IO,
+    CONFIG_ERR_NONE,
 }  // end of enum
 
 pub type GLenum = libc::c_uint;
@@ -1765,30 +1765,30 @@ pub type time_ms_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wintype_t {
-    NUM_WINTYPES = 15,
-    WINTYPE_DND = 14,
-    WINTYPE_COMBO = 13,
-    WINTYPE_NOTIFY = 12,
-    WINTYPE_TOOLTIP = 11,
-    WINTYPE_POPUP_MENU = 10,
-    WINTYPE_DROPDOWN_MENU = 9,
-    WINTYPE_NORMAL = 8,
-    WINTYPE_DIALOG = 7,
-    WINTYPE_SPLASH = 6,
-    WINTYPE_UTILITY = 5,
-    WINTYPE_MENU = 4,
-    WINTYPE_TOOLBAR = 3,
-    WINTYPE_DOCK = 2,
-    WINTYPE_DESKTOP = 1,
-    WINTYPE_UNKNOWN = 0,
+    NUM_WINTYPES,
+    WINTYPE_DND,
+    WINTYPE_COMBO,
+    WINTYPE_NOTIFY,
+    WINTYPE_TOOLTIP,
+    WINTYPE_POPUP_MENU,
+    WINTYPE_DROPDOWN_MENU,
+    WINTYPE_NORMAL,
+    WINTYPE_DIALOG,
+    WINTYPE_SPLASH,
+    WINTYPE_UTILITY,
+    WINTYPE_MENU,
+    WINTYPE_TOOLBAR,
+    WINTYPE_DOCK,
+    WINTYPE_DESKTOP,
+    WINTYPE_UNKNOWN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
-    UNSET = 2,
-    ON = 1,
-    OFF = 0,
+    UNSET,
+    ON,
+    OFF,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1810,9 +1810,9 @@ pub struct margin_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum winmode_t {
-    WMODE_ARGB = 2,
-    WMODE_SOLID = 1,
-    WMODE_TRANS = 0,
+    WMODE_ARGB,
+    WMODE_SOLID,
+    WMODE_TRANS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1840,22 +1840,22 @@ pub type ignore_t = _ignore;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum vsync_t {
-    NUM_VSYNC = 6,
-    VSYNC_OPENGL_MSWC = 5,
-    VSYNC_OPENGL_SWC = 4,
-    VSYNC_OPENGL_OML = 3,
-    VSYNC_OPENGL = 2,
-    VSYNC_DRM = 1,
-    VSYNC_NONE = 0,
+    NUM_VSYNC,
+    VSYNC_OPENGL_MSWC,
+    VSYNC_OPENGL_SWC,
+    VSYNC_OPENGL_OML,
+    VSYNC_OPENGL,
+    VSYNC_DRM,
+    VSYNC_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
-    NUM_BKEND = 3,
-    BKEND_XR_GLX_HYBRID = 2,
-    BKEND_GLX = 1,
-    BKEND_XRENDER = 0,
+    NUM_BKEND,
+    BKEND_XR_GLX_HYBRID,
+    BKEND_GLX,
+    BKEND_XRENDER,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -2304,22 +2304,22 @@ pub type timeout_t = _timeout_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum win_evmode_t {
-    WIN_EVMODE_CLIENT = 2,
-    WIN_EVMODE_FRAME = 1,
-    WIN_EVMODE_UNKNOWN = 0,
+    WIN_EVMODE_CLIENT,
+    WIN_EVMODE_FRAME,
+    WIN_EVMODE_UNKNOWN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum drm_vblank_seq_type {
-    _DRM_VBLANK_SIGNAL = 1073741824,
-    _DRM_VBLANK_SECONDARY = 536870912,
-    _DRM_VBLANK_NEXTONMISS = 268435456,
-    _DRM_VBLANK_FLIP = 134217728,
-    _DRM_VBLANK_EVENT = 67108864,
-    _DRM_VBLANK_HIGH_CRTC_MASK = 62,
-    _DRM_VBLANK_RELATIVE = 1,
-    _DRM_VBLANK_ABSOLUTE = 0,
+    _DRM_VBLANK_SIGNAL,
+    _DRM_VBLANK_SECONDARY,
+    _DRM_VBLANK_NEXTONMISS,
+    _DRM_VBLANK_FLIP,
+    _DRM_VBLANK_EVENT,
+    _DRM_VBLANK_HIGH_CRTC_MASK,
+    _DRM_VBLANK_RELATIVE,
+    _DRM_VBLANK_ABSOLUTE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

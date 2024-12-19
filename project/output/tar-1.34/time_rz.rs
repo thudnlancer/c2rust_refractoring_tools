@@ -55,7 +55,7 @@ pub type idx_t = ptrdiff_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    ABBR_SIZE_MIN = 119,
+    ABBR_SIZE_MIN,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;

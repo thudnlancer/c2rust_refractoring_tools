@@ -232,9 +232,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective = 2,
-    real = 1,
-    notmade = 0,
+    effective,
+    real,
+    notmade,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -381,9 +381,9 @@ pub const ddc_commands: ddc_option_values = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ddc_option_values {
-    ddc_aliases = 2,
-    ddc_commands = 1,
-    ddc_unrecognized = 0,
+    ddc_aliases,
+    ddc_commands,
+    ddc_unrecognized,
 }  // end of enum
 
 static mut super_blurb: [libc::c_char; 25] = unsafe {

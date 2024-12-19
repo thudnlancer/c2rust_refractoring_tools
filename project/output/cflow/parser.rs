@@ -168,19 +168,19 @@ pub type linked_list_free_data_fp = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symtype {
-    SymIdentifier = 2,
-    SymToken = 1,
-    SymUndefined = 0,
+    SymIdentifier,
+    SymToken,
+    SymUndefined,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
-    AnyStorage = 4,
-    AutoStorage = 3,
-    StaticStorage = 2,
-    ExplicitExternStorage = 1,
-    ExternStorage = 0,
+    AnyStorage,
+    AutoStorage,
+    StaticStorage,
+    ExplicitExternStorage,
+    ExternStorage,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -192,10 +192,10 @@ pub struct Ref {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
-    symbol_alias = 3,
-    symbol_parm = 2,
-    symbol_temp = 1,
-    symbol_none = 0,
+    symbol_alias,
+    symbol_parm,
+    symbol_temp,
+    symbol_none,
 }  // end of enum
 
 #[derive(Copy, Clone)]

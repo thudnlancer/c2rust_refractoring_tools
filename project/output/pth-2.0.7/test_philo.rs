@@ -65,8 +65,8 @@ pub type pth_event_t = *mut pth_event_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    PTH_FREE_ALL = 1,
-    PTH_FREE_THIS = 0,
+    PTH_FREE_ALL,
+    PTH_FREE_THIS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -95,9 +95,9 @@ pub type pth_cond_t = pth_cond_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum philstat {
-    eating = 2,
-    hungry = 1,
-    thinking = 0,
+    eating,
+    hungry,
+    thinking,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -38,9 +38,9 @@ pub const N_REGEX_MAP_ENTRIES: C2RustUnnamed_1 = 13;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    CONTEXT_GENERIC = 2,
-    CONTEXT_ALL = 3,
-    CONTEXT_FINDUTILS = 1,
+    CONTEXT_GENERIC,
+    CONTEXT_ALL,
+    CONTEXT_FINDUTILS,
 }  // end of enum
 
 pub const N_REGEX_MAP_ENTRIES: C2RustUnnamed_1 = 13;
@@ -48,7 +48,7 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    N_REGEX_MAP_ENTRIES = 13,
+    N_REGEX_MAP_ENTRIES,
 }  // end of enum
 
 pub type C2RustUnnamed_0 = libc::c_uint;

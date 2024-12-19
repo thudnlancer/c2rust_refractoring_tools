@@ -86,8 +86,8 @@ pub const FAST: C2RustUnnamed = 4;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    SLOW = 2,
-    FAST = 4,
+    SLOW,
+    FAST,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

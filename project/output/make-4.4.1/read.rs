@@ -361,19 +361,19 @@ pub struct file {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cmd_state {
-    cs_finished = 3,
-    cs_running = 2,
-    cs_deps_running = 1,
-    cs_not_started = 0,
+    cs_finished,
+    cs_running,
+    cs_deps_running,
+    cs_not_started,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
-    us_failed = 3,
-    us_question = 2,
-    us_none = 1,
-    us_success = 0,
+    us_failed,
+    us_question,
+    us_none,
+    us_success,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -482,25 +482,25 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset = 3,
-    v_noexport = 2,
-    v_export = 1,
-    v_default = 0,
+    v_ifset,
+    v_noexport,
+    v_export,
+    v_default,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_origin {
-    o_invalid = 7,
-    o_automatic = 6,
-    o_override = 5,
-    o_command = 4,
-    o_env_override = 3,
-    o_file = 2,
-    o_env = 1,
-    o_default = 0,
+    o_invalid,
+    o_automatic,
+    o_override,
+    o_command,
+    o_env_override,
+    o_file,
+    o_env,
+    o_default,
 }  // end of enum
-le_origin = 0;
+_default: variable_origin = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct variable {
@@ -525,24 +525,24 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset = 3,
-    v_noexport = 2,
-    v_export = 1,
-    v_default = 0,
+    v_ifset,
+    v_noexport,
+    v_export,
+    v_default,
 }  // end of enum
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_flavor {
-    f_append_value = 7,
-    f_shell = 6,
-    f_conditional = 5,
-    f_append = 4,
-    f_expand = 3,
-    f_recursive = 2,
-    f_simple = 1,
-    f_bogus = 0,
+    f_append_value,
+    f_shell,
+    f_conditional,
+    f_append,
+    f_expand,
+    f_recursive,
+    f_simple,
+    f_bogus,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -628,28 +628,28 @@ pub const w_eol: make_word_type = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum make_word_type {
-    w_eol = 1,
-    w_ampdcolon = 9,
-    w_ampcolon = 8,
-    w_varassign = 7,
-    w_semicolon = 6,
-    w_dcolon = 5,
-    w_colon = 4,
-    w_variable = 3,
-    w_static = 2,
-    w_bogus = 0,
+    w_eol,
+    w_ampdcolon,
+    w_ampcolon,
+    w_varassign,
+    w_semicolon,
+    w_dcolon,
+    w_colon,
+    w_variable,
+    w_static,
+    w_bogus,
 }  // end of enum
 
 pub const c_ifneq: C2RustUnnamed = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    c_ifneq = 3,
-    c_endif = 5,
-    c_else = 4,
-    c_ifeq = 2,
-    c_ifndef = 1,
-    c_ifdef = 0,
+    c_ifneq,
+    c_endif,
+    c_else,
+    c_ifeq,
+    c_ifndef,
+    c_ifdef,
 }  // end of enum
 
 #[inline]

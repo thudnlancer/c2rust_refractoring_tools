@@ -49,10 +49,10 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
-    numbered_backups = 3,
-    numbered_existing_backups = 2,
-    simple_backups = 1,
-    no_backups = 0,
+    numbered_backups,
+    numbered_existing_backups,
+    simple_backups,
+    no_backups,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;
@@ -66,10 +66,10 @@ pub const BACKUP_IS_SAME_LENGTH: numbered_backup_result = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum numbered_backup_result {
-    BACKUP_NOMEM = 3,
-    BACKUP_IS_LONGER = 1,
-    BACKUP_IS_NEW = 2,
-    BACKUP_IS_SAME_LENGTH = 0,
+    BACKUP_NOMEM,
+    BACKUP_IS_LONGER,
+    BACKUP_IS_NEW,
+    BACKUP_IS_SAME_LENGTH,
 }  // end of enum
 
 pub type numbered_backup_result = libc::c_uint;
@@ -86,34 +86,34 @@ pub const GUESS: C2RustUnnamed = 9;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    GUESS = 9,
+    GUESS,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    _PC_NAME_MAX = 3,
-    _PC_2_SYMLINKS = 20,
-    _PC_SYMLINK_MAX = 19,
-    _PC_ALLOC_SIZE_MIN = 18,
-    _PC_REC_XFER_ALIGN = 17,
-    _PC_REC_MIN_XFER_SIZE = 16,
-    _PC_REC_MAX_XFER_SIZE = 15,
-    _PC_REC_INCR_XFER_SIZE = 14,
-    _PC_FILESIZEBITS = 13,
-    _PC_SOCK_MAXBUF = 12,
-    _PC_PRIO_IO = 11,
-    _PC_ASYNC_IO = 10,
-    _PC_SYNC_IO = 9,
-    _PC_VDISABLE = 8,
-    _PC_NO_TRUNC = 7,
-    _PC_CHOWN_RESTRICTED = 6,
-    _PC_PIPE_BUF = 5,
-    _PC_PATH_MAX = 4,
-    _PC_MAX_INPUT = 2,
-    _PC_MAX_CANON = 1,
-    _PC_LINK_MAX = 0,
+    _PC_NAME_MAX,
+    _PC_2_SYMLINKS,
+    _PC_SYMLINK_MAX,
+    _PC_ALLOC_SIZE_MIN,
+    _PC_REC_XFER_ALIGN,
+    _PC_REC_MIN_XFER_SIZE,
+    _PC_REC_MAX_XFER_SIZE,
+    _PC_REC_INCR_XFER_SIZE,
+    _PC_FILESIZEBITS,
+    _PC_SOCK_MAXBUF,
+    _PC_PRIO_IO,
+    _PC_ASYNC_IO,
+    _PC_SYNC_IO,
+    _PC_VDISABLE,
+    _PC_NO_TRUNC,
+    _PC_CHOWN_RESTRICTED,
+    _PC_PIPE_BUF,
+    _PC_PATH_MAX,
+    _PC_MAX_INPUT,
+    _PC_MAX_CANON,
+    _PC_LINK_MAX,
 }  // end of enum
 
 #[no_mangle]

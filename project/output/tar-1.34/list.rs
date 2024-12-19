@@ -184,18 +184,18 @@ pub struct timespec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -329,17 +329,17 @@ pub type DIR = __dirstream;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style = 10,
-    clocale_quoting_style = 9,
-    locale_quoting_style = 8,
-    escape_quoting_style = 7,
-    c_maybe_quoting_style = 6,
-    c_quoting_style = 5,
-    shell_escape_always_quoting_style = 4,
-    shell_escape_quoting_style = 3,
-    shell_always_quoting_style = 2,
-    shell_quoting_style = 1,
-    literal_quoting_style = 0,
+    custom_quoting_style,
+    clocale_quoting_style,
+    locale_quoting_style,
+    escape_quoting_style,
+    c_maybe_quoting_style,
+    c_quoting_style,
+    shell_escape_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_always_quoting_style,
+    shell_quoting_style,
+    literal_quoting_style,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -434,13 +434,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT = 6,
-    STAR_FORMAT = 5,
-    POSIX_FORMAT = 4,
-    USTAR_FORMAT = 3,
-    OLDGNU_FORMAT = 2,
-    V7_FORMAT = 1,
-    DEFAULT_FORMAT = 0,
+    GNU_FORMAT,
+    STAR_FORMAT,
+    POSIX_FORMAT,
+    USTAR_FORMAT,
+    OLDGNU_FORMAT,
+    V7_FORMAT,
+    DEFAULT_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -517,44 +517,44 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE = 2,
-    ACCESS_WRITE = 1,
-    ACCESS_READ = 0,
+    ACCESS_UPDATE,
+    ACCESS_WRITE,
+    ACCESS_READ,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
-    dump_status_not_implemented = 3,
-    dump_status_fail = 2,
-    dump_status_short = 1,
-    dump_status_ok = 0,
+    dump_status_not_implemented,
+    dump_status_fail,
+    dump_status_short,
+    dump_status_ok,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_FAILURE = 5,
-    HEADER_END_OF_FILE = 4,
-    HEADER_ZERO_BLOCK = 3,
-    HEADER_SUCCESS_EXTENDED = 2,
-    HEADER_SUCCESS = 1,
-    HEADER_STILL_UNREAD = 0,
+    HEADER_FAILURE,
+    HEADER_END_OF_FILE,
+    HEADER_ZERO_BLOCK,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_SUCCESS,
+    HEADER_STILL_UNREAD,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global = 2,
-    read_header_x_raw = 1,
-    read_header_auto = 0,
+    read_header_x_global,
+    read_header_x_raw,
+    read_header_auto,
 }  // end of enum
 
 pub const fraclen: C2RustUnnamed_3 = 10;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    fraclen = 10,
+    fraclen,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;

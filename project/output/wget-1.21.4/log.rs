@@ -255,60 +255,60 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compression_options {
-    compression_none = 2,
-    compression_gzip = 1,
-    compression_auto = 0,
+    compression_none,
+    compression_gzip,
+    compression_auto,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    prefer_none = 2,
-    prefer_ipv6 = 1,
-    prefer_ipv4 = 0,
+    prefer_none,
+    prefer_ipv6,
+    prefer_ipv4,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    restrict_uppercase = 2,
-    restrict_lowercase = 1,
-    restrict_no_case_restriction = 0,
+    restrict_uppercase,
+    restrict_lowercase,
+    restrict_no_case_restriction,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    restrict_windows = 2,
-    restrict_vms = 1,
-    restrict_unix = 0,
+    restrict_windows,
+    restrict_vms,
+    restrict_unix,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
-    keyfile_asn1 = 1,
-    keyfile_pem = 0,
+    keyfile_asn1,
+    keyfile_pem,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    secure_protocol_pfs = 7,
-    secure_protocol_tlsv1_3 = 6,
-    secure_protocol_tlsv1_2 = 5,
-    secure_protocol_tlsv1_1 = 4,
-    secure_protocol_tlsv1 = 3,
-    secure_protocol_sslv3 = 2,
-    secure_protocol_sslv2 = 1,
-    secure_protocol_auto = 0,
+    secure_protocol_pfs,
+    secure_protocol_tlsv1_3,
+    secure_protocol_tlsv1_2,
+    secure_protocol_tlsv1_1,
+    secure_protocol_tlsv1,
+    secure_protocol_sslv3,
+    secure_protocol_sslv2,
+    secure_protocol_auto,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    regex_type_posix = 1,
-    regex_type_pcre = 0,
+    regex_type_posix,
+    regex_type_pcre,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -357,11 +357,11 @@ pub type va_list = __builtin_va_list;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS = 4,
-    LOG_ALWAYS = 3,
-    LOG_NONVERBOSE = 2,
-    LOG_NOTQUIET = 1,
-    LOG_VERBOSE = 0,
+    LOG_PROGRESS,
+    LOG_ALWAYS,
+    LOG_NONVERBOSE,
+    LOG_NOTQUIET,
+    LOG_VERBOSE,
 }  // end of enum
 
 pub const WGET_EXIT_GENERIC_ERROR: C2RustUnnamed_4 = 1;
@@ -388,16 +388,16 @@ pub struct ringel {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    WGET_EXIT_GENERIC_ERROR = 1,
-    WGET_EXIT_UNKNOWN = 9,
-    WGET_EXIT_SERVER_ERROR = 8,
-    WGET_EXIT_PROTOCOL_ERROR = 7,
-    WGET_EXIT_SERVER_AUTH_FAIL = 6,
-    WGET_EXIT_SSL_AUTH_FAIL = 5,
-    WGET_EXIT_NETWORK_FAIL = 4,
-    WGET_EXIT_IO_FAIL = 3,
-    WGET_EXIT_PARSE_ERROR = 2,
-    WGET_EXIT_SUCCESS = 0,
+    WGET_EXIT_GENERIC_ERROR,
+    WGET_EXIT_UNKNOWN,
+    WGET_EXIT_SERVER_ERROR,
+    WGET_EXIT_PROTOCOL_ERROR,
+    WGET_EXIT_SERVER_AUTH_FAIL,
+    WGET_EXIT_SSL_AUTH_FAIL,
+    WGET_EXIT_NETWORK_FAIL,
+    WGET_EXIT_IO_FAIL,
+    WGET_EXIT_PARSE_ERROR,
+    WGET_EXIT_SUCCESS,
 }  // end of enum
 
 #[inline]

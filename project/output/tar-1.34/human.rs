@@ -35,26 +35,26 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID = 4,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW = 3,
-    LONGINT_INVALID_SUFFIX_CHAR = 2,
-    LONGINT_OVERFLOW = 1,
-    LONGINT_OK = 0,
+    LONGINT_INVALID,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OVERFLOW,
+    LONGINT_OK,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    human_B = 256,
-    human_SI = 128,
-    human_space_before_unit = 64,
-    human_base_1024 = 32,
-    human_autoscale = 16,
-    human_suppress_point_zero = 8,
-    human_group_digits = 4,
-    human_floor = 2,
-    human_round_to_nearest = 1,
-    human_ceiling = 0,
+    human_B,
+    human_SI,
+    human_space_before_unit,
+    human_base_1024,
+    human_autoscale,
+    human_suppress_point_zero,
+    human_group_digits,
+    human_floor,
+    human_round_to_nearest,
+    human_ceiling,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -265,9 +265,9 @@ pub struct C2RustUnnamed_0 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD = 2,
-    REDIS_CONN_UNIX = 1,
-    REDIS_CONN_TCP = 0,
+    REDIS_CONN_USERFD,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_TCP,
 }  // end of enum
 
 pub type redisFD = libc::c_int;
@@ -315,46 +315,46 @@ pub struct sockaddr_un {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum __socket_type {
-    SOCK_STREAM = 1,
-    SOCK_NONBLOCK = 2048,
-    SOCK_CLOEXEC = 524288,
-    SOCK_PACKET = 10,
-    SOCK_DCCP = 6,
-    SOCK_SEQPACKET = 5,
-    SOCK_RDM = 4,
-    SOCK_RAW = 3,
-    SOCK_DGRAM = 2,
+    SOCK_STREAM,
+    SOCK_NONBLOCK,
+    SOCK_CLOEXEC,
+    SOCK_PACKET,
+    SOCK_DCCP,
+    SOCK_SEQPACKET,
+    SOCK_RDM,
+    SOCK_RAW,
+    SOCK_DGRAM,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    IPPROTO_TCP = 6,
-    IPPROTO_MAX = 256,
-    IPPROTO_RAW = 255,
-    IPPROTO_MPLS = 137,
-    IPPROTO_UDPLITE = 136,
-    IPPROTO_SCTP = 132,
-    IPPROTO_COMP = 108,
-    IPPROTO_PIM = 103,
-    IPPROTO_ENCAP = 98,
-    IPPROTO_BEETPH = 94,
-    IPPROTO_MTP = 92,
-    IPPROTO_AH = 51,
-    IPPROTO_ESP = 50,
-    IPPROTO_GRE = 47,
-    IPPROTO_RSVP = 46,
-    IPPROTO_IPV6 = 41,
-    IPPROTO_DCCP = 33,
-    IPPROTO_TP = 29,
-    IPPROTO_IDP = 22,
-    IPPROTO_UDP = 17,
-    IPPROTO_PUP = 12,
-    IPPROTO_EGP = 8,
-    IPPROTO_IPIP = 4,
-    IPPROTO_IGMP = 2,
-    IPPROTO_ICMP = 1,
-    IPPROTO_IP = 0,
+    IPPROTO_TCP,
+    IPPROTO_MAX,
+    IPPROTO_RAW,
+    IPPROTO_MPLS,
+    IPPROTO_UDPLITE,
+    IPPROTO_SCTP,
+    IPPROTO_COMP,
+    IPPROTO_PIM,
+    IPPROTO_ENCAP,
+    IPPROTO_BEETPH,
+    IPPROTO_MTP,
+    IPPROTO_AH,
+    IPPROTO_ESP,
+    IPPROTO_GRE,
+    IPPROTO_RSVP,
+    IPPROTO_IPV6,
+    IPPROTO_DCCP,
+    IPPROTO_TP,
+    IPPROTO_IDP,
+    IPPROTO_UDP,
+    IPPROTO_PUP,
+    IPPROTO_EGP,
+    IPPROTO_IPIP,
+    IPPROTO_IGMP,
+    IPPROTO_ICMP,
+    IPPROTO_IP,
 }  // end of enum
 
 #[inline]

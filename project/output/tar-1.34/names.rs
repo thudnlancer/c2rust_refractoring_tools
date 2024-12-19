@@ -207,18 +207,18 @@ pub struct timespec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type error_t = libc::c_int;
@@ -539,25 +539,25 @@ pub struct tar_stat_info {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND = 9,
-    UPDATE_SUBCOMMAND = 8,
-    LIST_SUBCOMMAND = 7,
-    EXTRACT_SUBCOMMAND = 6,
-    DIFF_SUBCOMMAND = 5,
-    DELETE_SUBCOMMAND = 4,
-    CREATE_SUBCOMMAND = 3,
-    CAT_SUBCOMMAND = 2,
-    APPEND_SUBCOMMAND = 1,
-    UNKNOWN_SUBCOMMAND = 0,
+    TEST_LABEL_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    UNKNOWN_SUBCOMMAND,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
-    exclusion_tag_all = 3,
-    exclusion_tag_under = 2,
-    exclusion_tag_contents = 1,
-    exclusion_tag_none = 0,
+    exclusion_tag_all,
+    exclusion_tag_under,
+    exclusion_tag_contents,
+    exclusion_tag_none,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -580,9 +580,9 @@ pub struct name {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
-    FILES_MANY = 2,
-    FILES_ONE = 1,
-    FILES_NONE = 0,
+    FILES_MANY,
+    FILES_ONE,
+    FILES_NONE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -618,11 +618,11 @@ pub struct C2RustUnnamed_5 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nelt_type {
-    NELT_OPTION = 4,
-    NELT_NOOP = 3,
-    NELT_FILE = 2,
-    NELT_CHDIR = 1,
-    NELT_NAME = 0,
+    NELT_OPTION,
+    NELT_NOOP,
+    NELT_FILE,
+    NELT_CHDIR,
+    NELT_NAME,
 }  // end of enum
 
 pub const GRID_MATCH: C2RustUnnamed_7 = 3;
@@ -661,9 +661,9 @@ pub const GRH_LOCAL: C2RustUnnamed_7 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wildcards {
-    enable_wildcards = 2,
-    disable_wildcards = 1,
-    default_wildcards = 0,
+    enable_wildcards,
+    disable_wildcards,
+    default_wildcards,
 }  // end of enum
 
 pub const file_list_end: read_file_list_state = 1;
@@ -678,9 +678,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE = 2,
-    OPTS_COMMAND_LINE = 1,
-    OPTS_ENVIRON = 0,
+    OPTS_FILE,
+    OPTS_COMMAND_LINE,
+    OPTS_ENVIRON,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -689,10 +689,10 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end = 1,
-    file_list_success = 0,
-    file_list_zero = 2,
-    file_list_skip = 3,
+    file_list_end,
+    file_list_success,
+    file_list_zero,
+    file_list_skip,
 }  // end of enum
 
 pub type read_file_list_state = libc::c_uint;
@@ -718,37 +718,37 @@ pub struct tar_args {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_6 {
-    NO_WILDCARDS_MATCH_SLASH_OPTION = 278,
-    WILDCARDS_MATCH_SLASH_OPTION = 283,
-    NO_WILDCARDS_OPTION = 279,
-    WILDCARDS_OPTION = 284,
-    NO_IGNORE_CASE_OPTION = 270,
-    IGNORE_CASE_OPTION = 269,
-    NO_ANCHORED_OPTION = 272,
-    ANCHORED_OPTION = 271,
-    NO_RECURSION_OPTION = 274,
-    RECURSION_OPTION = 273,
-    EXCLUDE_BACKUPS_OPTION = 257,
-    EXCLUDE_VCS_IGNORES_OPTION = 268,
-    EXCLUDE_VCS_OPTION = 267,
-    EXCLUDE_TAG_ALL_OPTION = 266,
-    EXCLUDE_TAG_UNDER_OPTION = 265,
-    EXCLUDE_IGNORE_RECURSIVE_OPTION = 263,
-    EXCLUDE_IGNORE_OPTION = 262,
-    EXCLUDE_TAG_OPTION = 264,
-    EXCLUDE_CACHES_ALL_OPTION = 260,
-    EXCLUDE_CACHES_UNDER_OPTION = 259,
-    EXCLUDE_CACHES_OPTION = 258,
-    EXCLUDE_OPTION = 261,
-    NO_VERBATIM_FILES_FROM_OPTION = 277,
-    VERBATIM_FILES_FROM_OPTION = 282,
-    NO_UNQUOTE_OPTION = 276,
-    UNQUOTE_OPTION = 275,
-    NO_NULL_OPTION = 281,
-    NULL_OPTION = 280,
-    ADD_FILE_OPTION = 256,
+    NO_WILDCARDS_MATCH_SLASH_OPTION,
+    WILDCARDS_MATCH_SLASH_OPTION,
+    NO_WILDCARDS_OPTION,
+    WILDCARDS_OPTION,
+    NO_IGNORE_CASE_OPTION,
+    IGNORE_CASE_OPTION,
+    NO_ANCHORED_OPTION,
+    ANCHORED_OPTION,
+    NO_RECURSION_OPTION,
+    RECURSION_OPTION,
+    EXCLUDE_BACKUPS_OPTION,
+    EXCLUDE_VCS_IGNORES_OPTION,
+    EXCLUDE_VCS_OPTION,
+    EXCLUDE_TAG_ALL_OPTION,
+    EXCLUDE_TAG_UNDER_OPTION,
+    EXCLUDE_IGNORE_RECURSIVE_OPTION,
+    EXCLUDE_IGNORE_OPTION,
+    EXCLUDE_TAG_OPTION,
+    EXCLUDE_CACHES_ALL_OPTION,
+    EXCLUDE_CACHES_UNDER_OPTION,
+    EXCLUDE_CACHES_OPTION,
+    EXCLUDE_OPTION,
+    NO_VERBATIM_FILES_FROM_OPTION,
+    VERBATIM_FILES_FROM_OPTION,
+    NO_UNQUOTE_OPTION,
+    UNQUOTE_OPTION,
+    NO_NULL_OPTION,
+    NULL_OPTION,
+    ADD_FILE_OPTION,
 }  // end of enum
-d_file_list_state = 1;
+pub const file_list_end: read_file_list_state = 1;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option_locus {
@@ -760,9 +760,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE = 2,
-    OPTS_COMMAND_LINE = 1,
-    OPTS_ENVIRON = 0,
+    OPTS_FILE,
+    OPTS_COMMAND_LINE,
+    OPTS_ENVIRON,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -771,10 +771,10 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end = 1,
-    file_list_success = 0,
-    file_list_zero = 2,
-    file_list_skip = 3,
+    file_list_end,
+    file_list_success,
+    file_list_zero,
+    file_list_skip,
 }  // end of enum
 
 pub type read_file_list_state = libc::c_uint;
@@ -801,12 +801,13 @@ pub type C2RustUnnamed_6 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    GRID_MATCH = 3,
-    GRH_MATCH = 2,
-    GRID_LOCAL = 1,
-    GRH_LOCAL = 0,
+    GRID_MATCH,
+    GRH_MATCH,
+    GRID_LOCAL,
+    GRH_LOCAL,
 }  // end of enum
-e)]
+ate = 1;
+#[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option_locus {
     pub source: option_source,
@@ -817,9 +818,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE = 2,
-    OPTS_COMMAND_LINE = 1,
-    OPTS_ENVIRON = 0,
+    OPTS_FILE,
+    OPTS_COMMAND_LINE,
+    OPTS_ENVIRON,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -828,10 +829,10 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end = 1,
-    file_list_success = 0,
-    file_list_zero = 2,
-    file_list_skip = 3,
+    file_list_end,
+    file_list_success,
+    file_list_zero,
+    file_list_skip,
 }  // end of enum
 
 pub type read_file_list_state = libc::c_uint;

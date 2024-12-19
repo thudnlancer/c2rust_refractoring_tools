@@ -22,6 +22,37 @@ def remove_comments(code):
     
     return code_no_conditions
 
+def parse_enum_body(enum_body):
+    """
+    解析枚举主体字符串，支持检测十进制和十六进制值。
+    返回一个字典，包含枚举成员名、值、进制和显式标记。
+    """
+    # 正则表达式匹配枚举成员
+    member_pattern = re.compile(r'(\w+)\s*(?:=\s*(0x[0-9a-fA-F]+|\d+))?')
+    members = member_pattern.findall(enum_body)
+    
+    enum_members = {}
+    last_value = None  # 跟踪上一个成员的值
+    
+    for member, value in members:
+        if value:  # 如果有显式值
+            if value.startswith('0x') or value.startswith('0X'):  # 检测是否为十六进制
+                value = int(value, 16)  # 转换为整数
+                is_hex = True
+            else:
+                value = int(value)  # 转换为整数
+                is_hex = False
+            is_explicit = True  # 显式指定值
+        else:  # 如果没有显式值，自动递增
+            value = (last_value + 1) if last_value is not None else 0
+            is_hex = False
+            is_explicit = False
+        
+        last_value = value
+        enum_members[member] = (value, is_hex, is_explicit)
+    
+    return enum_members
+
 def extract_enum_info_c(filename):
     with open(filename, 'rb') as file:
         raw_data = file.read()
@@ -34,40 +65,13 @@ def extract_enum_info_c(filename):
     
     code = remove_comments(code)
     
-    # 匹配枚举的定义（包括匿名枚举）
-    enum_pattern = re.compile(r'\b(enum)\s*(\w*)\s*{(.*?)}', re.DOTALL)
-    
     enum_info = []
-    
-    for match in enum_pattern.finditer(code):
-        enum_body = match.group(3).strip()     # 枚举体
-        enum_name = match.group(2).strip()     # 枚举名称
-        start_idx = match.start()              # 起始位置
-        end_idx = match.end()                  # 结束位置
-        enum_members = {}
-        
-        # 提取枚举成员和它们的值
-        member_pattern = re.compile(r'(\w+)\s*(?:=\s*(\d+))?')
-        members = member_pattern.findall(enum_body)
-        
-        last_value = -1
-        for member, value in members:
-            if value:
-                value = int(value)
-            else:
-                value = last_value + 1
-            last_value = value
-            enum_members[member] = value
-        
-        enum_info.append({
-            'enum_name': enum_name,
-            'members': enum_members,
-            'start_pos': start_idx,
-            'end_pos': end_idx
-        })
+
+    # 匹配枚举的定义（包括匿名枚举）
+    enum_pattern = re.compile(r'enum\s*(\w*)\s*\{(.*?)\}\s*;', re.DOTALL)
 
     # 匹配枚举类型别名的定义
-    typedef_pattern = re.compile(r'typedef\s+enum\s*\{(.*?)\}\s*(\w+)')
+    typedef_pattern = re.compile(r'typedef\s+enum\s*\{(.*?)\}\s*(\w+)\s*;', re.DOTALL)
 
     for match in typedef_pattern.finditer(code):
         # 提取枚举内容和类型别名名称
@@ -77,18 +81,7 @@ def extract_enum_info_c(filename):
         end_idx = match.end()                  # 结束位置
         enum_members = {}
         
-        # 提取枚举成员和它们的值
-        member_pattern = re.compile(r'(\w+)\s*(?:=\s*(\d+))?')
-        members = member_pattern.findall(enum_body)
-        
-        last_value = -1
-        for member, value in members:
-            if value:
-                value = int(value)
-            else:
-                value = last_value + 1
-            last_value = value
-            enum_members[member] = value
+        enum_members = parse_enum_body(enum_body)
 
         # 保存结果
         enum_info.append({
@@ -97,6 +90,26 @@ def extract_enum_info_c(filename):
             'start_pos': start_idx,
             'end_pos': end_idx
         })
+
+    typedef_enum_pattern = r"typedef\s+enum\s*\{.*?\}\s+[A-Za-z_][A-Za-z0-9_]*\s*;"
+    code_without_typedef = re.sub(typedef_enum_pattern, "", code, flags=re.DOTALL)
+    
+    for match in enum_pattern.finditer(code_without_typedef):
+        enum_body = match.group(2).strip()     # 枚举体
+        enum_name = match.group(1).strip()     # 枚举名称
+        start_idx = match.start()              # 起始位置
+        end_idx = match.end()                  # 结束位置
+        enum_members = {}
+        
+        enum_members = parse_enum_body(enum_body)
+        
+        enum_info.append({
+            'enum_name': enum_name,
+            'members': enum_members,
+            'start_pos': start_idx,
+            'end_pos': end_idx
+        })
+
     
     # 查找枚举的使用位置
     # usage_pattern = re.compile(r'(\w+)\s*=\s*(\w+)\s*;\s*|\b(\w+)\b')
@@ -143,7 +156,7 @@ def extract_enum_info_rust(filename):
 
         for member_name, member_enum, member_value in enum_members:
             if member_enum == enum_name:
-                filtered_members[member_name] = (int(member_value), 10)
+                filtered_members[member_name] = (int(member_value), False, False)
                 member_code = f"pub const {member_name}: {enum_name} = {member_value};"
                 last_member_end_pos = code.find(member_code) + len(member_code)
         
@@ -177,7 +190,7 @@ def make_enum_code_c():
 
         for filename, enum_names in enums.items():
             filepath = find_file_in_directory(path_to_prog, filename)
-            result[filename] = extract_enum_info_c(filepath)
+            result[filepath] = extract_enum_info_c(filepath)
 
         if not os.path.exists('enum_code_c/' + prog):
             os.makedirs('enum_code_c/' + prog)
@@ -206,10 +219,107 @@ def make_enum_code_rust():
         with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
             json.dump(result, json_file)
 
-def convert_value(value, base):
+def find_file_references(project_path):
+    """
+    遍历给定的 C 项目路径，生成文件引用关系字典。
+    键为文件名，值为该文件引用的存在于项目内的所有文件（字符串数组）。
+    """
+    # 定义存储结果的字典
+    file_references = defaultdict(list)
+    
+    # 收集项目内的所有 .c 和 .h 文件
+    project_files = {}
+    for root, _, files in os.walk(project_path):
+        for file in files:
+            if file.endswith(('.c', '.h')):
+                full_path = os.path.join(root, file)
+                project_files[file] = full_path
+    
+    # 正则表达式匹配 #include 指令
+    include_pattern = re.compile(r'#include\s*[<"]([^">]+)[">]')
+    
+    # 遍历项目内的所有文件，提取引用关系
+    for file_name, full_path in project_files.items():
+        with open(full_path, 'r', encoding='utf-8', errors='ignore') as f:
+            content = f.read()
+        
+        # 查找所有的 #include 指令
+        includes = include_pattern.findall(content)
+        
+        # 检查引用的文件是否存在于项目内
+        for include in includes:
+            included_path = project_files.get(include)
+            if included_path:  # 仅记录项目内的文件
+                file_references[full_path].append(included_path)
+    
+    return dict(file_references)
+
+def check_enum(enum_name, enum_members, c_enums):
+    # 如果枚举名以 'C2RustUnnamed' 为前缀，根据成员名列表进行查找
+    if enum_name.startswith('C2RustUnnamed'):
+        for enum in c_enums:
+            # 如果枚举成员列表一致，返回对应枚举
+            if enum['members'].keys() == enum_members.keys():
+                return enum
+    else:
+        # 如果枚举名不以 'C2RustUnnamed' 为前缀，则直接比较枚举名
+        for enum in c_enums:
+            if enum['enum_name'] == enum_name:
+                return enum
+
+    # 如果没有找到匹配的枚举，返回 None
+    return None
+
+def find_enum_definition(enum_name, enum_members, c_file_path, file_references, c_enums):
+    """
+    根据枚举名称和 rs 文件路径，递归查找 C 文件中的同名枚举定义。
+    如果在当前 C 文件中未找到，则查找引用的 C 文件。
+    """
+
+    if c_file_path not in c_enums:
+        return None
+    # 在 C 文件中查找枚举定义
+    result = check_enum(enum_name, enum_members, c_enums[c_file_path])
+    if result:
+        return result
+
+    # 如果没有找到同名 C 文件，递归查找其引用的文件
+    for referenced_file in file_references[c_file_path]:
+        result = find_enum_definition(enum_name, enum_members, referenced_file, file_references, c_enums)
+        if result:
+            return result
+
+    # 如果找不到该枚举定义，返回 None
+    return None
+
+def transfer_enum_rust():
+    for prog in pre_process.prog_list:
+        path_to_enum_rust_json_file = 'enum_code_rust/' + prog + '/enum.json'
+        with open(path_to_enum_rust_json_file, 'r', encoding='utf-8') as f:
+            rust_enums = json.load(f)
+
+        path_to_enum_c_json_file = 'enum_code_c/' + prog + '/enum.json'
+        with open(path_to_enum_c_json_file, 'r', encoding='utf-8') as f:
+            c_enums = json.load(f)
+        
+        path_to_prog = pre_process.get_prog_path(prog)
+        c_include_reflection = find_file_references(path_to_prog)
+
+        for file_path, enums in rust_enums.items():
+            for enum in enums:
+                enum_name = enum['enum_name']
+                enum_members = enum['members']
+                c_file_path = file_path.replace('.rs', '.c')
+                c_enum = find_enum_definition(enum_name, enum_members, c_file_path, c_include_reflection, c_enums)
+                if c_enum:
+                    enum['enum_name'] = c_enum['enum_name']
+                    enum['members'] = c_enum['members']
+
+
+def convert_value(value, is_hex):
     """根据给定的进制将值转换为字符串"""
-    if base == 16:
-        return hex(value)  # 转换为十六进制
+    if is_hex:
+        return f"0x{value:X}"
     else:
         return str(value)  # 其他进制（默认为十进制）
     
@@ -219,12 +329,30 @@ def generate_enum_code(enum_name, members):
     enum_code += f"#[repr(C)]\n"
     enum_code += f"pub enum {enum_name} {{\n"
     
-    for member, (value, base) in members.items():
-        value_str = convert_value(value, base)  # 根据进制转换值
-        enum_code += f"    {member} = {value_str},\n"  # 添加枚举成员和对应的值
+    for member, (value, is_hex, is_explict) in members.items():
+        if is_explict:
+            value_str = convert_value(value, is_hex)  # 根据进制转换值
+            enum_code += f"    {member} = {value_str},\n"  # 添加枚举成员和对应的值
+        else:
+            enum_code += f"    {member},\n"
     
     enum_code += "}  // end of enum\n"
     return enum_code
+
+def get_indentation_at_position(content, position):
+    """获取给定位置所在行的缩进量"""
+    # 获取该位置所在行
+    line_start = content.rfind("\n", 0, position) + 1
+    line_end = content.find("\n", line_start)
+    line = content[line_start:line_end]
+    
+    # 计算缩进：前导空格或制表符数量
+    indentation = len(line) - len(line.lstrip())
+    return indentation
+
+def apply_indentation(line, indentation):
+    """根据指定的缩进量应用缩进"""
+    return ' ' * indentation + line
 
 def process_enum_in_file(file_path, enums_info):
     """处理指定文件中的枚举并替换为新的格式"""
@@ -240,16 +368,23 @@ def process_enum_in_file(file_path, enums_info):
         start_pos = enum_info['start_pos'] + offset
         end_pos = enum_info['end_pos'] + offset
         members = enum_info['members']
+
+        # 获取当前枚举起始位置所在行的缩进
+        indentation = get_indentation_at_position(content, start_pos)
         
         # 生成新的枚举代码块
         new_enum_code = generate_enum_code(enum_name, members)
+
+         # 按照缩进调整新枚举代码的每一行
+        new_enum_code_lines = new_enum_code.splitlines()
+        indented_enum_code = "\n".join([apply_indentation(line, indentation) for line in new_enum_code_lines]) + "\n"
         
         # 替换文件中的旧枚举代码块
-        content = content[:start_pos] + new_enum_code + content[end_pos:]
+        content = content[:start_pos] + indented_enum_code + content[end_pos:]
 
         # 计算替换后新的内容长度差异，更新偏移量
         old_enum_length = end_pos - start_pos
-        new_enum_length = len(new_enum_code)
+        new_enum_length = len(indented_enum_code)
         offset += (new_enum_length - old_enum_length)  # 更新偏移量
     
     return content
@@ -278,7 +413,6 @@ def process_json_file(json_file_path, output_dir):
         with open(output_file_path, 'w', encoding='utf-8') as f:
             f.write(modified_content)
         
-        print(f"Processed file saved to: {output_file_path}")
 
 def refactoring():
     if not os.path.exists('output'):
@@ -290,4 +424,5 @@ def refactoring():
 
 # make_enum_code_c()
 # make_enum_code_rust()
+transfer_enum_rust()
 refactoring()

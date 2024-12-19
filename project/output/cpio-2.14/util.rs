@@ -310,15 +310,15 @@ pub struct dynamic_string {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    arf_hpbinary = 8,
-    arf_hpoldascii = 7,
-    arf_ustar = 6,
-    arf_tar = 5,
-    arf_crcascii = 4,
-    arf_newascii = 3,
-    arf_oldascii = 2,
-    arf_binary = 1,
-    arf_unknown = 0,
+    arf_hpbinary,
+    arf_hpoldascii,
+    arf_ustar,
+    arf_tar,
+    arf_crcascii,
+    arf_newascii,
+    arf_oldascii,
+    arf_binary,
+    arf_unknown,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -331,9 +331,9 @@ pub const in_zeros: C2RustUnnamed = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    in_zeros = 1,
-    not_in_zeros = 2,
-    begin = 0,
+    in_zeros,
+    not_in_zeros,
+    begin,
 }  // end of enum
 
 #[derive(Copy, Clone)]

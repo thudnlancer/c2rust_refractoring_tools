@@ -293,60 +293,60 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compression_options {
-    compression_none = 2,
-    compression_gzip = 1,
-    compression_auto = 0,
+    compression_none,
+    compression_gzip,
+    compression_auto,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    prefer_none = 2,
-    prefer_ipv6 = 1,
-    prefer_ipv4 = 0,
+    prefer_none,
+    prefer_ipv6,
+    prefer_ipv4,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    restrict_uppercase = 2,
-    restrict_lowercase = 1,
-    restrict_no_case_restriction = 0,
+    restrict_uppercase,
+    restrict_lowercase,
+    restrict_no_case_restriction,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    restrict_windows = 2,
-    restrict_vms = 1,
-    restrict_unix = 0,
+    restrict_windows,
+    restrict_vms,
+    restrict_unix,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
-    keyfile_asn1 = 1,
-    keyfile_pem = 0,
+    keyfile_asn1,
+    keyfile_pem,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    secure_protocol_pfs = 7,
-    secure_protocol_tlsv1_3 = 6,
-    secure_protocol_tlsv1_2 = 5,
-    secure_protocol_tlsv1_1 = 4,
-    secure_protocol_tlsv1 = 3,
-    secure_protocol_sslv3 = 2,
-    secure_protocol_sslv2 = 1,
-    secure_protocol_auto = 0,
+    secure_protocol_pfs,
+    secure_protocol_tlsv1_3,
+    secure_protocol_tlsv1_2,
+    secure_protocol_tlsv1_1,
+    secure_protocol_tlsv1,
+    secure_protocol_sslv3,
+    secure_protocol_sslv2,
+    secure_protocol_auto,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    regex_type_posix = 1,
-    regex_type_pcre = 0,
+    regex_type_posix,
+    regex_type_pcre,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -394,11 +394,11 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS = 4,
-    LOG_ALWAYS = 3,
-    LOG_NONVERBOSE = 2,
-    LOG_NOTQUIET = 1,
-    LOG_VERBOSE = 0,
+    LOG_PROGRESS,
+    LOG_ALWAYS,
+    LOG_NONVERBOSE,
+    LOG_NOTQUIET,
+    LOG_VERBOSE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -412,11 +412,11 @@ pub struct iri {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum convert_options {
-    CO_NULLIFY_BASE = 4,
-    CO_CONVERT_TO_COMPLETE = 3,
-    CO_CONVERT_BASENAME_ONLY = 2,
-    CO_CONVERT_TO_RELATIVE = 1,
-    CO_NOCONVERT = 0,
+    CO_NULLIFY_BASE,
+    CO_CONVERT_TO_COMPLETE,
+    CO_CONVERT_BASENAME_ONLY,
+    CO_CONVERT_TO_RELATIVE,
+    CO_NOCONVERT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -438,11 +438,11 @@ pub struct url {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID = 4,
-    SCHEME_FTPS = 3,
-    SCHEME_FTP = 2,
-    SCHEME_HTTPS = 1,
-    SCHEME_HTTP = 0,
+    SCHEME_INVALID,
+    SCHEME_FTPS,
+    SCHEME_FTP,
+    SCHEME_HTTPS,
+    SCHEME_HTTP,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -472,10 +472,10 @@ pub struct urlpos {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum downloaded_file_t {
-    CHECK_FOR_FILE = 3,
-    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED = 2,
-    FILE_DOWNLOADED_NORMALLY = 1,
-    FILE_NOT_ALREADY_DOWNLOADED = 0,
+    CHECK_FOR_FILE,
+    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED,
+    FILE_DOWNLOADED_NORMALLY,
+    FILE_NOT_ALREADY_DOWNLOADED,
 }  // end of enum
 
 #[derive(Copy, Clone)]

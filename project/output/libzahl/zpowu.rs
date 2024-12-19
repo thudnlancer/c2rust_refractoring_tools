@@ -46,12 +46,12 @@ pub type z_t = [zahl; 1];
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zerror {
-    ZERROR_INVALID_RADIX = 5,
-    ZERROR_NEGATIVE = 4,
-    ZERROR_DIV_0 = 3,
-    ZERROR_0_DIV_0 = 2,
-    ZERROR_0_POW_0 = 1,
-    ZERROR_ERRNO_SET = 0,
+    ZERROR_INVALID_RADIX,
+    ZERROR_NEGATIVE,
+    ZERROR_DIV_0,
+    ZERROR_0_DIV_0,
+    ZERROR_0_POW_0,
+    ZERROR_ERRNO_SET,
 }  // end of enum
 
 #[inline]

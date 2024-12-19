@@ -247,12 +247,12 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum kwsub {
-    kwsub_b = 5,
-    kwsub_o = 4,
-    kwsub_v = 3,
-    kwsub_k = 2,
-    kwsub_kvl = 1,
-    kwsub_kv = 0,
+    kwsub_b,
+    kwsub_o,
+    kwsub_v,
+    kwsub_k,
+    kwsub_kvl,
+    kwsub_kv,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -319,9 +319,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO = 2,
-    RM_MEM = 1,
-    RM_MMAP = 0,
+    RM_STDIO,
+    RM_MEM,
+    RM_MMAP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -362,9 +362,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective = 2,
-    real = 1,
-    notmade = 0,
+    effective,
+    real,
+    notmade,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -488,11 +488,11 @@ pub struct top {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum stringwork {
-    edit_expand = 4,
-    expand = 3,
-    edit = 2,
-    copy = 1,
-    enter = 0,
+    edit_expand,
+    expand,
+    edit,
+    copy,
+    enter,
 }  // end of enum
 
 #[derive(Copy, Clone)]

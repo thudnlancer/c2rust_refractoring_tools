@@ -105,18 +105,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type reg_syntax_t = libc::c_ulong;
@@ -168,13 +168,13 @@ pub type List = list_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NodeType {
-    nARRAY = 6,
-    nSYMBOL = 5,
-    nREAL = 4,
-    nINTEGER = 3,
-    nREGEXP = 2,
-    nSTRING = 1,
-    nVOID = 0,
+    nARRAY,
+    nSYMBOL,
+    nREAL,
+    nINTEGER,
+    nREGEXP,
+    nSTRING,
+    nVOID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -228,37 +228,37 @@ pub type Cons = cons_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ExprType {
-    eLE = 30,
-    eGE = 29,
-    eNE = 28,
-    eEQ = 27,
-    eGT = 26,
-    eLT = 25,
-    eMINUS = 24,
-    ePLUS = 23,
-    eDIV = 22,
-    eMULT = 21,
-    eQUESTCOLON = 20,
-    eARRAYREF = 19,
-    eARRAYASSIGN = 18,
-    ePREFIXSUB = 17,
-    ePREFIXADD = 16,
-    ePOSTFIXSUB = 15,
-    ePOSTFIXADD = 14,
-    eDIVASSIGN = 13,
-    eMULASSIGN = 12,
-    eSUBASSIGN = 11,
-    eADDASSIGN = 10,
-    eASSIGN = 9,
-    eFCALL = 8,
-    eOR = 7,
-    eAND = 6,
-    eNOT = 5,
-    eSYMBOL = 4,
-    eREAL = 3,
-    eINTEGER = 2,
-    eREGEXP = 1,
-    eSTRING = 0,
+    eLE,
+    eGE,
+    eNE,
+    eEQ,
+    eGT,
+    eLT,
+    eMINUS,
+    ePLUS,
+    eDIV,
+    eMULT,
+    eQUESTCOLON,
+    eARRAYREF,
+    eARRAYASSIGN,
+    ePREFIXSUB,
+    ePREFIXADD,
+    ePOSTFIXSUB,
+    ePOSTFIXADD,
+    eDIVASSIGN,
+    eMULASSIGN,
+    eSUBASSIGN,
+    eADDASSIGN,
+    eASSIGN,
+    eFCALL,
+    eOR,
+    eAND,
+    eNOT,
+    eSYMBOL,
+    eREAL,
+    eINTEGER,
+    eREGEXP,
+    eSTRING,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -322,13 +322,13 @@ pub type Expr = expr_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum StmtType {
-    sFOR = 6,
-    sWHILE = 5,
-    sEXPR = 4,
-    sIF = 3,
-    sBLOCK = 2,
-    sDEFSUB = 1,
-    sRETURN = 0,
+    sFOR,
+    sWHILE,
+    sEXPR,
+    sIF,
+    sBLOCK,
+    sDEFSUB,
+    sRETURN,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -395,8 +395,8 @@ pub type Primitive = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum WarningLevel {
-    WARN_ALL = 100,
-    WARN_LIGHT = 10,
+    WARN_ALL,
+    WARN_LIGHT,
 }  // end of enum
 
 #[inline]

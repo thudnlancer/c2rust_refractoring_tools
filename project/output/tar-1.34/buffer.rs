@@ -258,18 +258,18 @@ pub struct timespec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -393,16 +393,16 @@ pub struct mtop {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    human_B = 256,
-    human_SI = 128,
-    human_space_before_unit = 64,
-    human_base_1024 = 32,
-    human_autoscale = 16,
-    human_suppress_point_zero = 8,
-    human_group_digits = 4,
-    human_floor = 2,
-    human_round_to_nearest = 1,
-    human_ceiling = 0,
+    human_B,
+    human_SI,
+    human_space_before_unit,
+    human_base_1024,
+    human_autoscale,
+    human_suppress_point_zero,
+    human_group_digits,
+    human_floor,
+    human_round_to_nearest,
+    human_ceiling,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -497,13 +497,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT = 6,
-    STAR_FORMAT = 5,
-    POSIX_FORMAT = 4,
-    USTAR_FORMAT = 3,
-    OLDGNU_FORMAT = 2,
-    V7_FORMAT = 1,
-    DEFAULT_FORMAT = 0,
+    GNU_FORMAT,
+    STAR_FORMAT,
+    POSIX_FORMAT,
+    USTAR_FORMAT,
+    OLDGNU_FORMAT,
+    V7_FORMAT,
+    DEFAULT_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -581,24 +581,24 @@ pub type tarlong = libc::c_double;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND = 9,
-    UPDATE_SUBCOMMAND = 8,
-    LIST_SUBCOMMAND = 7,
-    EXTRACT_SUBCOMMAND = 6,
-    DIFF_SUBCOMMAND = 5,
-    DELETE_SUBCOMMAND = 4,
-    CREATE_SUBCOMMAND = 3,
-    CAT_SUBCOMMAND = 2,
-    APPEND_SUBCOMMAND = 1,
-    UNKNOWN_SUBCOMMAND = 0,
+    TEST_LABEL_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    UNKNOWN_SUBCOMMAND,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE = 2,
-    ACCESS_WRITE = 1,
-    ACCESS_READ = 0,
+    ACCESS_UPDATE,
+    ACCESS_WRITE,
+    ACCESS_READ,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -616,16 +616,16 @@ pub const ct_none: compress_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compress_type {
-    ct_tar = 1,
-    ct_none = 0,
-    ct_zstd = 9,
-    ct_xz = 8,
-    ct_lzop = 7,
-    ct_lzma = 6,
-    ct_lzip = 5,
-    ct_bzip2 = 4,
-    ct_gzip = 3,
-    ct_compress = 2,
+    ct_tar,
+    ct_none,
+    ct_zstd,
+    ct_xz,
+    ct_lzop,
+    ct_lzma,
+    ct_lzip,
+    ct_bzip2,
+    ct_gzip,
+    ct_compress,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -639,12 +639,12 @@ pub const HEADER_SUCCESS: read_header = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_SUCCESS = 1,
-    HEADER_FAILURE = 5,
-    HEADER_END_OF_FILE = 4,
-    HEADER_ZERO_BLOCK = 3,
-    HEADER_SUCCESS_EXTENDED = 2,
-    HEADER_STILL_UNREAD = 0,
+    HEADER_SUCCESS,
+    HEADER_FAILURE,
+    HEADER_END_OF_FILE,
+    HEADER_ZERO_BLOCK,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_STILL_UNREAD,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -657,9 +657,9 @@ pub struct zip_program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global = 2,
-    read_header_x_raw = 1,
-    read_header_auto = 0,
+    read_header_x_global,
+    read_header_x_raw,
+    read_header_auto,
 }  // end of enum
 
 #[inline]

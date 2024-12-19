@@ -112,12 +112,12 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum kwsub {
-    kwsub_b = 5,
-    kwsub_o = 4,
-    kwsub_v = 3,
-    kwsub_k = 2,
-    kwsub_kvl = 1,
-    kwsub_kv = 0,
+    kwsub_b,
+    kwsub_o,
+    kwsub_v,
+    kwsub_k,
+    kwsub_kvl,
+    kwsub_kv,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -170,9 +170,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO = 2,
-    RM_MEM = 1,
-    RM_MMAP = 0,
+    RM_STDIO,
+    RM_MEM,
+    RM_MMAP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -190,17 +190,17 @@ pub struct pool_found {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum markers {
-    State = 10,
-    Source = 9,
-    Revision = 8,
-    RCSfile = 7,
-    Name = 6,
-    Log = 5,
-    Locker = 4,
-    Id = 3,
-    Header = 2,
-    Date = 1,
-    Author = 0,
+    State,
+    Source,
+    Revision,
+    RCSfile,
+    Name,
+    Log,
+    Locker,
+    Id,
+    Header,
+    Date,
+    Author,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -215,9 +215,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective = 2,
-    real = 1,
-    notmade = 0,
+    effective,
+    real,
+    notmade,
 }  // end of enum
 
 #[derive(Copy, Clone)]

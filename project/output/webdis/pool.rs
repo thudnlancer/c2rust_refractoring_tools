@@ -303,9 +303,9 @@ pub struct C2RustUnnamed_2 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD = 2,
-    REDIS_CONN_UNIX = 1,
-    REDIS_CONN_TCP = 0,
+    REDIS_CONN_USERFD,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_TCP,
 }  // end of enum
 
 pub type redisFD = libc::c_int;
@@ -370,20 +370,20 @@ pub struct C2RustUnnamed_4 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_fsync_mode {
-    LOG_FSYNC_ALL = 2,
-    LOG_FSYNC_MILLIS = 1,
-    LOG_FSYNC_AUTO = 0,
+    LOG_FSYNC_ALL,
+    LOG_FSYNC_MILLIS,
+    LOG_FSYNC_AUTO,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
-    WEBDIS_TRACE = 8,
-    WEBDIS_DEBUG = 4,
-    WEBDIS_INFO = 3,
-    WEBDIS_NOTICE = 2,
-    WEBDIS_WARNING = 1,
-    WEBDIS_ERROR = 0,
+    WEBDIS_TRACE,
+    WEBDIS_DEBUG,
+    WEBDIS_INFO,
+    WEBDIS_NOTICE,
+    WEBDIS_WARNING,
+    WEBDIS_ERROR,
 }  // end of enum
 
 #[derive(Copy, Clone)]

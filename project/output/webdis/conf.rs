@@ -137,14 +137,14 @@ pub struct group {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum json_type {
-    JSON_NULL = 7,
-    JSON_FALSE = 6,
-    JSON_TRUE = 5,
-    JSON_REAL = 4,
-    JSON_INTEGER = 3,
-    JSON_STRING = 2,
-    JSON_ARRAY = 1,
-    JSON_OBJECT = 0,
+    JSON_NULL,
+    JSON_FALSE,
+    JSON_TRUE,
+    JSON_REAL,
+    JSON_INTEGER,
+    JSON_STRING,
+    JSON_ARRAY,
+    JSON_OBJECT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -166,9 +166,9 @@ pub struct json_error_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum base64_encodestep {
-    step_C = 2,
-    step_B = 1,
-    step_A = 0,
+    step_C,
+    step_B,
+    step_A,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -181,20 +181,20 @@ pub struct base64_encodestate {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
-    WEBDIS_TRACE = 8,
-    WEBDIS_DEBUG = 4,
-    WEBDIS_INFO = 3,
-    WEBDIS_NOTICE = 2,
-    WEBDIS_WARNING = 1,
-    WEBDIS_ERROR = 0,
+    WEBDIS_TRACE,
+    WEBDIS_DEBUG,
+    WEBDIS_INFO,
+    WEBDIS_NOTICE,
+    WEBDIS_WARNING,
+    WEBDIS_ERROR,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_fsync_mode {
-    LOG_FSYNC_ALL = 2,
-    LOG_FSYNC_MILLIS = 1,
-    LOG_FSYNC_AUTO = 0,
+    LOG_FSYNC_ALL,
+    LOG_FSYNC_MILLIS,
+    LOG_FSYNC_AUTO,
 }  // end of enum
 
 #[derive(Copy, Clone)]

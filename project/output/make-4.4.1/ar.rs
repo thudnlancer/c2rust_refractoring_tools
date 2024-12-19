@@ -110,19 +110,19 @@ pub struct file {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cmd_state {
-    cs_finished = 3,
-    cs_running = 2,
-    cs_deps_running = 1,
-    cs_not_started = 0,
+    cs_finished,
+    cs_running,
+    cs_deps_running,
+    cs_not_started,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
-    us_failed = 3,
-    us_question = 2,
-    us_none = 1,
-    us_success = 0,
+    us_failed,
+    us_question,
+    us_none,
+    us_success,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]

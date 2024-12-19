@@ -19,7 +19,7 @@ pub const BILLION: C2RustUnnamed = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    BILLION = 1000000000,
+    BILLION,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

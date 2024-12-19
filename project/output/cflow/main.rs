@@ -170,28 +170,28 @@ pub type linked_list_free_data_fp = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symtype {
-    SymIdentifier = 2,
-    SymToken = 1,
-    SymUndefined = 0,
+    SymIdentifier,
+    SymToken,
+    SymUndefined,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
-    AnyStorage = 4,
-    AutoStorage = 3,
-    StaticStorage = 2,
-    ExplicitExternStorage = 1,
-    ExternStorage = 0,
+    AnyStorage,
+    AutoStorage,
+    StaticStorage,
+    ExplicitExternStorage,
+    ExternStorage,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
-    symbol_alias = 3,
-    symbol_parm = 2,
-    symbol_temp = 1,
-    symbol_none = 0,
+    symbol_alias,
+    symbol_parm,
+    symbol_temp,
+    symbol_none,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -223,30 +223,30 @@ pub type Symbol = symbol;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cflow_output_command {
-    cflow_output_text = 6,
-    cflow_output_symbol = 5,
-    cflow_output_separator = 4,
-    cflow_output_newline = 3,
-    cflow_output_end = 2,
-    cflow_output_begin = 1,
-    cflow_output_init = 0,
+    cflow_output_text,
+    cflow_output_symbol,
+    cflow_output_separator,
+    cflow_output_newline,
+    cflow_output_end,
+    cflow_output_begin,
+    cflow_output_init,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -308,25 +308,25 @@ pub struct argp_state {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_code {
-    OPT_NO_OMIT_SYMBOL_NAMES = 274,
-    OPT_OMIT_SYMBOL_NAMES = 273,
-    OPT_NO_OMIT_ARGUMENTS = 272,
-    OPT_OMIT_ARGUMENTS = 271,
-    OPT_NO_REVERSE = 270,
-    OPT_NO_PRINT_LEVEL = 269,
-    OPT_NO_NUMBER = 268,
-    OPT_NO_VERBOSE = 267,
-    OPT_NO_EMACS = 266,
-    OPT_NO_BRIEF = 265,
-    OPT_NO_TREE = 264,
-    OPT_NO_ANSI = 263,
-    OPT_NO_USE_INDENTATION = 262,
-    OPT_EMACS = 261,
-    OPT_NO_PREPROCESS = 260,
-    OPT_PREPROCESS = 259,
-    OPT_DEBUG = 258,
-    OPT_LEVEL_INDENT = 257,
-    OPT_DEFINES = 256,
+    OPT_NO_OMIT_SYMBOL_NAMES,
+    OPT_OMIT_SYMBOL_NAMES,
+    OPT_NO_OMIT_ARGUMENTS,
+    OPT_OMIT_ARGUMENTS,
+    OPT_NO_REVERSE,
+    OPT_NO_PRINT_LEVEL,
+    OPT_NO_NUMBER,
+    OPT_NO_VERBOSE,
+    OPT_NO_EMACS,
+    OPT_NO_BRIEF,
+    OPT_NO_TREE,
+    OPT_NO_ANSI,
+    OPT_NO_USE_INDENTATION,
+    OPT_EMACS,
+    OPT_NO_PREPROCESS,
+    OPT_PREPROCESS,
+    OPT_DEBUG,
+    OPT_LEVEL_INDENT,
+    OPT_DEFINES,
 }  // end of enum
 
 #[derive(Copy, Clone)]

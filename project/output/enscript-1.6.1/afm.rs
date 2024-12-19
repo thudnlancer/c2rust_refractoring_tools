@@ -165,8 +165,8 @@ pub type AFMInteger = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMBoolean {
-    AFMTrue = 1,
-    AFMFalse = 0,
+    AFMTrue,
+    AFMFalse,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -312,19 +312,19 @@ pub type AFMHandle = *mut afm_handle_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMEncoding {
-    AFM_ENCODING_KOI8 = 12,
-    AFM_ENCODING_HP8 = 11,
-    AFM_ENCODING_VMS = 10,
-    AFM_ENCODING_MAC = 9,
-    AFM_ENCODING_ASCII = 8,
-    AFM_ENCODING_IBMPC = 7,
-    AFM_ENCODING_ISO_8859_7 = 6,
-    AFM_ENCODING_ISO_8859_5 = 5,
-    AFM_ENCODING_ISO_8859_4 = 4,
-    AFM_ENCODING_ISO_8859_3 = 3,
-    AFM_ENCODING_ISO_8859_2 = 2,
-    AFM_ENCODING_ISO_8859_1 = 1,
-    AFM_ENCODING_DEFAULT = 0,
+    AFM_ENCODING_KOI8,
+    AFM_ENCODING_HP8,
+    AFM_ENCODING_VMS,
+    AFM_ENCODING_MAC,
+    AFM_ENCODING_ASCII,
+    AFM_ENCODING_IBMPC,
+    AFM_ENCODING_ISO_8859_7,
+    AFM_ENCODING_ISO_8859_5,
+    AFM_ENCODING_ISO_8859_4,
+    AFM_ENCODING_ISO_8859_3,
+    AFM_ENCODING_ISO_8859_2,
+    AFM_ENCODING_ISO_8859_1,
+    AFM_ENCODING_DEFAULT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

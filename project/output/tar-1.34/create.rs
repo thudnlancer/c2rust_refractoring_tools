@@ -355,10 +355,10 @@ pub type DIR = __dirstream;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum savedir_option {
-    SAVEDIR_SORT_FASTREAD = 2,
-    SAVEDIR_SORT_INODE = 2,
-    SAVEDIR_SORT_NAME = 1,
-    SAVEDIR_SORT_NONE = 0,
+    SAVEDIR_SORT_FASTREAD,
+    SAVEDIR_SORT_INODE,
+    SAVEDIR_SORT_NAME,
+    SAVEDIR_SORT_NONE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -453,13 +453,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT = 6,
-    STAR_FORMAT = 5,
-    POSIX_FORMAT = 4,
-    USTAR_FORMAT = 3,
-    OLDGNU_FORMAT = 2,
-    V7_FORMAT = 1,
-    DEFAULT_FORMAT = 0,
+    GNU_FORMAT,
+    STAR_FORMAT,
+    POSIX_FORMAT,
+    USTAR_FORMAT,
+    OLDGNU_FORMAT,
+    V7_FORMAT,
+    DEFAULT_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -536,26 +536,26 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum atime_preserve {
-    system_atime_preserve = 2,
-    replace_atime_preserve = 1,
-    no_atime_preserve = 0,
+    system_atime_preserve,
+    replace_atime_preserve,
+    no_atime_preserve,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
-    exclusion_tag_all = 3,
-    exclusion_tag_under = 2,
-    exclusion_tag_contents = 1,
-    exclusion_tag_none = 0,
+    exclusion_tag_all,
+    exclusion_tag_under,
+    exclusion_tag_contents,
+    exclusion_tag_none,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum set_mtime_option_mode {
-    CLAMP_MTIME = 2,
-    FORCE_MTIME = 1,
-    USE_FILE_MTIME = 0,
+    CLAMP_MTIME,
+    FORCE_MTIME,
+    USE_FILE_MTIME,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -578,18 +578,18 @@ pub struct name {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE = 2,
-    ACCESS_WRITE = 1,
-    ACCESS_READ = 0,
+    ACCESS_UPDATE,
+    ACCESS_WRITE,
+    ACCESS_READ,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
-    dump_status_not_implemented = 3,
-    dump_status_fail = 2,
-    dump_status_short = 1,
-    dump_status_ok = 0,
+    dump_status_not_implemented,
+    dump_status_fail,
+    dump_status_short,
+    dump_status_ok,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -632,22 +632,22 @@ pub const FILES_MANY: files_count = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
-    FILES_MANY = 2,
-    FILES_ONE = 1,
-    FILES_NONE = 0,
+    FILES_MANY,
+    FILES_ONE,
+    FILES_NONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    IMPOSTOR_ERRNO = 2,
+    IMPOSTOR_ERRNO,
 }  // end of enum
-Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
-    FILES_MANY = 2,
-    FILES_ONE = 1,
-    FILES_NONE = 0,
+    FILES_MANY,
+    FILES_ONE,
+    FILES_NONE,
 }  // end of enum
 
 pub type C2RustUnnamed_2 = libc::c_uint;

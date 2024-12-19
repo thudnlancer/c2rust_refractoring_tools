@@ -343,20 +343,20 @@ pub struct C2RustUnnamed_8 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED = 2,
-    PTH_STATUS_OCCURRED = 1,
-    PTH_STATUS_PENDING = 0,
+    PTH_STATUS_FAILED,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_PENDING,
 }  // end of enum
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_state_en {
-    PTH_STATE_DEAD = 4,
-    PTH_STATE_WAITING = 3,
-    PTH_STATE_READY = 2,
-    PTH_STATE_NEW = 1,
-    PTH_STATE_SCHEDULER = 0,
+    PTH_STATE_DEAD,
+    PTH_STATE_WAITING,
+    PTH_STATE_READY,
+    PTH_STATE_NEW,
+    PTH_STATE_SCHEDULER,
 }  // end of enum
 
 #[derive(Copy, Clone)]

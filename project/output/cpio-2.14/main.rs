@@ -282,15 +282,15 @@ pub struct argp_state {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    arf_hpbinary = 8,
-    arf_hpoldascii = 7,
-    arf_ustar = 6,
-    arf_tar = 5,
-    arf_crcascii = 4,
-    arf_newascii = 3,
-    arf_oldascii = 2,
-    arf_binary = 1,
-    arf_unknown = 0,
+    arf_hpbinary,
+    arf_hpoldascii,
+    arf_ustar,
+    arf_tar,
+    arf_crcascii,
+    arf_newascii,
+    arf_oldascii,
+    arf_binary,
+    arf_unknown,
 }  // end of enum
 
 pub const TO_STDOUT_OPTION: cpio_options = 267;
@@ -317,22 +317,22 @@ pub const BLOCK_SIZE_OPTION: cpio_options = 266;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cpio_options {
-    TO_STDOUT_OPTION = 267,
-    FORCE_LOCAL_OPTION = 264,
-    SPARSE_OPTION = 263,
-    QUIET_OPTION = 262,
-    RENAME_BATCH_FILE_OPTION = 260,
-    RSH_COMMAND_OPTION = 261,
-    DEVICE_INDEPENDENT_OPTION = 271,
-    IGNORE_DIRNLINK_OPTION = 270,
-    RENUMBER_INODES_OPTION = 268,
-    IGNORE_DEVNO_OPTION = 269,
-    ONLY_VERIFY_CRC_OPTION = 259,
-    NO_PRESERVE_OWNER_OPTION = 258,
-    ABSOLUTE_FILENAMES_OPTION = 257,
-    NO_ABSOLUTE_FILENAMES_OPTION = 256,
-    BLOCK_SIZE_OPTION = 266,
-    DEBUG_OPTION = 265,
+    TO_STDOUT_OPTION,
+    FORCE_LOCAL_OPTION,
+    SPARSE_OPTION,
+    QUIET_OPTION,
+    RENAME_BATCH_FILE_OPTION,
+    RSH_COMMAND_OPTION,
+    DEVICE_INDEPENDENT_OPTION,
+    IGNORE_DIRNLINK_OPTION,
+    RENUMBER_INODES_OPTION,
+    IGNORE_DEVNO_OPTION,
+    ONLY_VERIFY_CRC_OPTION,
+    NO_PRESERVE_OWNER_OPTION,
+    ABSOLUTE_FILENAMES_OPTION,
+    NO_ABSOLUTE_FILENAMES_OPTION,
+    BLOCK_SIZE_OPTION,
+    DEBUG_OPTION,
 }  // end of enum
 
 #[inline]

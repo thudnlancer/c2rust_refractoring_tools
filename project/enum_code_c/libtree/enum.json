@@ -1,1 +1,1 @@
-{"libtree.c": [{"enum_name": "", "members": {"INPUT": 0, "DIRECT": 1, "RPATH": 2, "LD_LIBRARY_PATH": 3, "RUNPATH": 4, "LD_SO_CONF": 5, "DEFAULT": 6}, "start_pos": 3921, "end_pos": 4025}]}
+{"../c_prog/libtree/libtree.c": [{"enum_name": "how_t", "members": {"INPUT": [0, false, false], "DIRECT": [1, false, false], "RPATH": [2, false, false], "LD_LIBRARY_PATH": [3, false, false], "RUNPATH": [4, false, false], "LD_SO_CONF": [5, false, false], "DEFAULT": [6, false, false]}, "start_pos": 3913, "end_pos": 4032}]}

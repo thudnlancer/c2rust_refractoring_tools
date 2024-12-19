@@ -180,11 +180,11 @@ pub union C2RustUnnamed_2 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum case_ctl_type {
-    ctl_locase = 4,
-    ctl_upcase = 3,
-    ctl_locase_next = 2,
-    ctl_upcase_next = 1,
-    ctl_stop = 0,
+    ctl_locase,
+    ctl_upcase,
+    ctl_locase_next,
+    ctl_upcase_next,
+    ctl_stop,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -196,16 +196,16 @@ pub struct C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum replace_segm_type {
-    segm_case_ctl = 2,
-    segm_backref = 1,
-    segm_literal = 0,
+    segm_case_ctl,
+    segm_backref,
+    segm_literal,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum transform_type {
-    transform_global = 1,
-    transform_first = 0,
+    transform_global,
+    transform_first,
 }  // end of enum
 
 #[inline]

@@ -230,7 +230,7 @@ pub struct rmt_kw {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    DEBUG_FILE_OPTION = 256,
+    DEBUG_FILE_OPTION,
 }  // end of enum
 
 #[inline]

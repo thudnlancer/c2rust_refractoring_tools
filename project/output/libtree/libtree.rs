@@ -146,18 +146,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type __size_t = libc::c_ulong;
@@ -296,13 +296,13 @@ pub struct compat_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum how_t {
-    DEFAULT = 6,
-    LD_SO_CONF = 5,
-    RUNPATH = 4,
-    LD_LIBRARY_PATH = 3,
-    RPATH = 2,
-    DIRECT = 1,
-    INPUT = 0,
+    DEFAULT,
+    LD_SO_CONF,
+    RUNPATH,
+    LD_LIBRARY_PATH,
+    RPATH,
+    DIRECT,
+    INPUT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

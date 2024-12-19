@@ -206,14 +206,14 @@ pub struct checkpoint_action {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum checkpoint_opcode {
-    cop_wait = 7,
-    cop_totals = 6,
-    cop_exec = 5,
-    cop_sleep = 4,
-    cop_ttyout = 3,
-    cop_echo = 2,
-    cop_bell = 1,
-    cop_dot = 0,
+    cop_wait,
+    cop_totals,
+    cop_exec,
+    cop_sleep,
+    cop_ttyout,
+    cop_echo,
+    cop_bell,
+    cop_dot,
 }  // end of enum
 
 pub const CHKP_COMPILE: C2RustUnnamed_0 = 1;
@@ -279,9 +279,9 @@ pub type wordsplit_t = wordsplit;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    CHKP_COMPILE = 1,
-    CHKP_INIT = 0,
-    CHKP_RUN = 2,
+    CHKP_COMPILE,
+    CHKP_INIT,
+    CHKP_RUN,
 }  // end of enum
 
 #[derive(Copy, Clone)]

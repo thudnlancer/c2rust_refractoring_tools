@@ -13,15 +13,15 @@ pub type uint32_t = __uint32_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    arf_hpbinary = 8,
-    arf_hpoldascii = 7,
-    arf_ustar = 6,
-    arf_tar = 5,
-    arf_crcascii = 4,
-    arf_newascii = 3,
-    arf_oldascii = 2,
-    arf_binary = 1,
-    arf_unknown = 0,
+    arf_hpbinary,
+    arf_hpoldascii,
+    arf_ustar,
+    arf_tar,
+    arf_crcascii,
+    arf_newascii,
+    arf_oldascii,
+    arf_binary,
+    arf_unknown,
 }  // end of enum
 
 #[no_mangle]

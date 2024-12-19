@@ -576,10 +576,10 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
-    exclusion_tag_all = 3,
-    exclusion_tag_under = 2,
-    exclusion_tag_contents = 1,
-    exclusion_tag_none = 0,
+    exclusion_tag_all,
+    exclusion_tag_under,
+    exclusion_tag_contents,
+    exclusion_tag_none,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -601,9 +601,9 @@ pub struct directory {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum children {
-    ALL_CHILDREN = 2,
-    CHANGED_CHILDREN = 1,
-    NO_CHILDREN = 0,
+    ALL_CHILDREN,
+    CHANGED_CHILDREN,
+    NO_CHILDREN,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -650,16 +650,16 @@ pub const BILLION: C2RustUnnamed_2 = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
-    WANT_DIRECTORY_REMOVE_OPTION = 2,
-    RECURSIVE_REMOVE_OPTION = 1,
-    ORDINARY_REMOVE_OPTION = 0,
+    WANT_DIRECTORY_REMOVE_OPTION,
+    RECURSIVE_REMOVE_OPTION,
+    ORDINARY_REMOVE_OPTION,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
 
 #[inline]

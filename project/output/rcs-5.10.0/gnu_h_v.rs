@@ -42,8 +42,8 @@ pub const hv_help: hv_option_values = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hv_option_values {
-    hv_version = 1,
-    hv_help = 0,
+    hv_version,
+    hv_help,
 }  // end of enum
 
 pub type hv_option_values = libc::c_uint;

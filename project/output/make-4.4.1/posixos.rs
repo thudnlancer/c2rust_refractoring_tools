@@ -182,9 +182,9 @@ pub const js_none: js_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum js_type {
-    js_none = 0,
-    js_fifo = 2,
-    js_pipe = 1,
+    js_none,
+    js_fifo,
+    js_pipe,
 }  // end of enum
 
 #[inline]

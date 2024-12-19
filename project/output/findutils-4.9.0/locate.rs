@@ -247,18 +247,18 @@ pub type __syscall_slong_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISspace,
+    _ISxdigit,
+    _ISdigit,
+    _ISalpha,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type gid_t = __gid_t;
@@ -393,67 +393,67 @@ pub type uintmax_t = __uintmax_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID = 4,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW = 3,
-    LONGINT_INVALID_SUFFIX_CHAR = 2,
-    LONGINT_OVERFLOW = 1,
-    LONGINT_OK = 0,
+    LONGINT_INVALID,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OVERFLOW,
+    LONGINT_OK,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    human_B = 256,
-    human_SI = 128,
-    human_space_before_unit = 64,
-    human_base_1024 = 32,
-    human_autoscale = 16,
-    human_suppress_point_zero = 8,
-    human_group_digits = 4,
-    human_floor = 2,
-    human_round_to_nearest = 1,
-    human_ceiling = 0,
+    human_B,
+    human_SI,
+    human_space_before_unit,
+    human_base_1024,
+    human_autoscale,
+    human_suppress_point_zero,
+    human_group_digits,
+    human_floor,
+    human_round_to_nearest,
+    human_ceiling,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style = 10,
-    clocale_quoting_style = 9,
-    locale_quoting_style = 8,
-    escape_quoting_style = 7,
-    c_maybe_quoting_style = 6,
-    c_quoting_style = 5,
-    shell_escape_always_quoting_style = 4,
-    shell_escape_quoting_style = 3,
-    shell_always_quoting_style = 2,
-    shell_quoting_style = 1,
-    literal_quoting_style = 0,
+    custom_quoting_style,
+    clocale_quoting_style,
+    locale_quoting_style,
+    escape_quoting_style,
+    c_maybe_quoting_style,
+    c_quoting_style,
+    shell_escape_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_always_quoting_style,
+    shell_quoting_style,
+    literal_quoting_style,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum GetwordEndianState {
-    GetwordEndianStateSwab = 2,
-    GetwordEndianStateNative = 1,
-    GetwordEndianStateInitial = 0,
+    GetwordEndianStateSwab,
+    GetwordEndianStateNative,
+    GetwordEndianStateInitial,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum visit_result {
-    VISIT_ABORT = 8,
-    VISIT_REJECTED = 4,
-    VISIT_ACCEPTED = 2,
-    VISIT_CONTINUE = 1,
+    VISIT_ABORT,
+    VISIT_REJECTED,
+    VISIT_ACCEPTED,
+    VISIT_CONTINUE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ExistenceCheckType {
-    ACCEPT_NON_EXISTING = 2,
-    ACCEPT_EXISTING = 1,
-    ACCEPT_EITHER = 0,
+    ACCEPT_NON_EXISTING,
+    ACCEPT_EXISTING,
+    ACCEPT_EITHER,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -491,7 +491,7 @@ pub const TIME_BUF_LEN: C2RustUnnamed_1 = 20;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    TIME_BUF_LEN = 20,
+    TIME_BUF_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
@@ -562,8 +562,8 @@ pub struct C2RustUnnamed_10 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    MAX_DB_AGE = 129,
-    REGEXTYPE_OPTION = 128,
+    MAX_DB_AGE,
+    REGEXTYPE_OPTION,
 }  // end of enum
 
 #[derive(Copy, Clone)]

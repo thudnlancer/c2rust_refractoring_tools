@@ -158,13 +158,13 @@ pub type List = list_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NodeType {
-    nARRAY = 6,
-    nSYMBOL = 5,
-    nREAL = 4,
-    nINTEGER = 3,
-    nREGEXP = 2,
-    nSTRING = 1,
-    nVOID = 0,
+    nARRAY,
+    nSYMBOL,
+    nREAL,
+    nINTEGER,
+    nREGEXP,
+    nSTRING,
+    nVOID,
 }  // end of enum
 
 #[derive(Copy, Clone)]

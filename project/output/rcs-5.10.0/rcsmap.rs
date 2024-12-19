@@ -5,21 +5,21 @@ extern "C" {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum tokens {
-    STRING = 14,
-    SEMI = 13,
-    NUM = 12,
-    ID = 11,
-    COLON = 10,
-    UNKN = 9,
-    SPACE = 8,
-    SBEGIN = 7,
-    PERIOD = 6,
-    Letter = 5,
-    LETTER = 4,
-    NEWLN = 3,
-    IDCHAR = 2,
-    DIGIT = 1,
-    DELIM = 0,
+    STRING,
+    SEMI,
+    NUM,
+    ID,
+    COLON,
+    UNKN,
+    SPACE,
+    SBEGIN,
+    PERIOD,
+    Letter,
+    LETTER,
+    NEWLN,
+    IDCHAR,
+    DIGIT,
+    DELIM,
 }  // end of enum
 
 #[no_mangle]

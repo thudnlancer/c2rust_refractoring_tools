@@ -157,7 +157,7 @@ pub type ptrdiff_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    EXIT_TROUBLE = 2,
+    EXIT_TROUBLE,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;
@@ -181,12 +181,12 @@ pub struct dfamust {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    DFA_PLUS_WARN = 32,
-    DFA_STAR_WARN = 16,
-    DFA_STRAY_BACKSLASH_WARN = 8,
-    DFA_CONFUSING_BRACKETS_ERROR = 4,
-    DFA_EOL_NUL = 2,
-    DFA_ANCHOR = 1,
+    DFA_PLUS_WARN,
+    DFA_STAR_WARN,
+    DFA_STRAY_BACKSLASH_WARN,
+    DFA_CONFUSING_BRACKETS_ERROR,
+    DFA_EOL_NUL,
+    DFA_ANCHOR,
 }  // end of enum
 
 #[derive(Copy, Clone)]

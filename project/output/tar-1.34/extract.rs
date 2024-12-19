@@ -493,22 +493,22 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum old_files {
-    KEEP_NEWER_FILES = 6,
-    SKIP_OLD_FILES = 5,
-    KEEP_OLD_FILES = 4,
-    UNLINK_FIRST_OLD_FILES = 3,
-    OVERWRITE_OLD_FILES = 2,
-    NO_OVERWRITE_DIR_OLD_FILES = 1,
-    DEFAULT_OLD_FILES = 0,
+    KEEP_NEWER_FILES,
+    SKIP_OLD_FILES,
+    KEEP_OLD_FILES,
+    UNLINK_FIRST_OLD_FILES,
+    OVERWRITE_OLD_FILES,
+    NO_OVERWRITE_DIR_OLD_FILES,
+    DEFAULT_OLD_FILES,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
-    dump_status_not_implemented = 3,
-    dump_status_fail = 2,
-    dump_status_short = 1,
-    dump_status_ok = 0,
+    dump_status_not_implemented,
+    dump_status_fail,
+    dump_status_short,
+    dump_status_ok,
 }  // end of enum
 
 pub type tar_extractor_t = Option::<
@@ -517,9 +517,9 @@ pub type tar_extractor_t = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
-    WANT_DIRECTORY_REMOVE_OPTION = 2,
-    RECURSIVE_REMOVE_OPTION = 1,
-    ORDINARY_REMOVE_OPTION = 0,
+    WANT_DIRECTORY_REMOVE_OPTION,
+    RECURSIVE_REMOVE_OPTION,
+    ORDINARY_REMOVE_OPTION,
 }  // end of enum
 
 pub const BILLION: C2RustUnnamed_2 = 1000000000;
@@ -583,8 +583,8 @@ pub struct delayed_link {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
+    BILLION,
+    LOG10_BILLION,
 }  // end of enum
 
 #[inline]

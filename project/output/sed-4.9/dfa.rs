@@ -254,12 +254,12 @@ pub struct mb_char_classes {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    DFA_PLUS_WARN = 32,
-    DFA_STAR_WARN = 16,
-    DFA_STRAY_BACKSLASH_WARN = 8,
-    DFA_CONFUSING_BRACKETS_ERROR = 4,
-    DFA_EOL_NUL = 2,
-    DFA_ANCHOR = 1,
+    DFA_PLUS_WARN,
+    DFA_STAR_WARN,
+    DFA_STRAY_BACKSLASH_WARN,
+    DFA_CONFUSING_BRACKETS_ERROR,
+    DFA_EOL_NUL,
+    DFA_ANCHOR,
 }  // end of enum
 
 pub const CHARCLASS_WORD_BITS: C2RustUnnamed_9 = 64;
@@ -279,14 +279,14 @@ pub const TRANSALLOC_SIZE: C2RustUnnamed_1 = 8192;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    TRANSALLOC_SIZE = 8192,
+    TRANSALLOC_SIZE,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    TRANSPTR_SIZE = 8,
+    TRANSPTR_SIZE,
 }  // end of enum
 
 pub const OR: C2RustUnnamed_13 = 262;
@@ -317,7 +317,7 @@ pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MAX_BRACKET_STRING_LEN = 32,
+    MAX_BRACKET_STRING_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;
@@ -347,10 +347,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -359,15 +359,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -405,26 +405,31 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
-    NOTCHAR = 256,
+    NOTCHAR,
 }  // end of enum
-amed_13 = 272;
+SIZE,
+}  // end of enum
+
+pub const OR: C2RustUnnamed_13 = 262;
+pub const NOTLIMWORD: C2RustUnnamed_13 = 273;
+pub const LIMWORD: C2RustUnnamed_13 = 272;
 pub const ENDWORD: C2RustUnnamed_13 = 271;
 pub const BEGWORD: C2RustUnnamed_13 = 270;
 pub const ENDLINE: C2RustUnnamed_13 = 269;
@@ -450,7 +455,7 @@ pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MAX_BRACKET_STRING_LEN = 32,
+    MAX_BRACKET_STRING_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;
@@ -480,10 +485,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -492,15 +497,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -538,37 +543,44 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
-    CHARCLASS_WORD_BITS = 64,
+    CHARCLASS_WORD_BITS,
 }  // end of enum
- _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+print,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
-    NOTCHAR = 256,
+    NOTCHAR,
 }  // end of enum
-amed_13 = 272;
+SIZE,
+}  // end of enum
+
+pub const OR: C2RustUnnamed_13 = 262;
+pub const NOTLIMWORD: C2RustUnnamed_13 = 273;
+pub const LIMWORD: C2RustUnnamed_13 = 272;
 pub const ENDWORD: C2RustUnnamed_13 = 271;
 pub const BEGWORD: C2RustUnnamed_13 = 270;
 pub const ENDLINE: C2RustUnnamed_13 = 269;
@@ -594,7 +606,7 @@ pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MAX_BRACKET_STRING_LEN = 32,
+    MAX_BRACKET_STRING_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;
@@ -624,10 +636,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -636,15 +648,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -682,18 +694,18 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -701,9 +713,12 @@ pub type C2RustUnnamed_9 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    CHARCLASS_WORDS = 4,
+    CHARCLASS_WORDS,
 }  // end of enum
-268;
+ed_13 = 271;
+pub const BEGWORD: C2RustUnnamed_13 = 270;
+pub const ENDLINE: C2RustUnnamed_13 = 269;
+pub const BEGLINE: C2RustUnnamed_13 = 268;
 pub const EMPTY: C2RustUnnamed_13 = 256;
 pub const CAT: C2RustUnnamed_13 = 261;
 pub const PLUS: C2RustUnnamed_13 = 259;
@@ -725,7 +740,7 @@ pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MAX_BRACKET_STRING_LEN = 32,
+    MAX_BRACKET_STRING_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;
@@ -755,10 +770,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -767,15 +782,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -813,18 +828,18 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -833,15 +848,18 @@ pub type C2RustUnnamed_10 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    CTX_NEWLINE = 4,
-    CTX_LETTER = 2,
-    CTX_NONE = 1,
-    CTX_ANY = 7,
+    CTX_NEWLINE,
+    CTX_LETTER,
+    CTX_NONE,
+    CTX_ANY,
 }  // end of enum
-_10 {
-    CHARCLASS_WORDS = 4,
+amed_10 {
+    CHARCLASS_WORDS,
 }  // end of enum
-268;
+ed_13 = 271;
+pub const BEGWORD: C2RustUnnamed_13 = 270;
+pub const ENDLINE: C2RustUnnamed_13 = 269;
+pub const BEGLINE: C2RustUnnamed_13 = 268;
 pub const EMPTY: C2RustUnnamed_13 = 256;
 pub const CAT: C2RustUnnamed_13 = 261;
 pub const PLUS: C2RustUnnamed_13 = 259;
@@ -863,7 +881,7 @@ pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    MAX_BRACKET_STRING_LEN = 32,
+    MAX_BRACKET_STRING_LEN,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;
@@ -893,10 +911,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -905,15 +923,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -951,18 +969,18 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -972,31 +990,32 @@ pub type C2RustUnnamed_11 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
-    NO_CONSTRAINT = 511,
-    NOTLIMWORD_CONSTRAINT = 341,
-    LIMWORD_CONSTRAINT = 170,
-    ENDWORD_CONSTRAINT = 130,
-    BEGWORD_CONSTRAINT = 40,
-    ENDLINE_CONSTRAINT = 448,
-    BEGLINE_CONSTRAINT = 292,
+    NO_CONSTRAINT,
+    NOTLIMWORD_CONSTRAINT,
+    LIMWORD_CONSTRAINT,
+    ENDWORD_CONSTRAINT,
+    BEGWORD_CONSTRAINT,
+    ENDLINE_CONSTRAINT,
+    BEGLINE_CONSTRAINT,
 }  // end of enum
-named_12 = 448;
+ONSTRAINT: C2RustUnnamed_12 = 40;
+pub const ENDLINE_CONSTRAINT: C2RustUnnamed_12 = 448;
 pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -1008,9 +1027,16 @@ pub type C2RustUnnamed_13 = libc::c_int;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_14 {
-    MAX_TRCOUNT = 1024,
+    MAX_TRCOUNT,
 }  // end of enum
-const LPAREN: C2RustUnnamed_13 = 263;
+r(C)]
+pub struct lexptr {
+    pub ptr: *const libc::c_char,
+    pub left: idx_t,
+}
+pub const _ISspace: C2RustUnnamed_7 = 8192;
+pub const RPAREN: C2RustUnnamed_13 = 264;
+pub const LPAREN: C2RustUnnamed_13 = 263;
 pub const REPMN: C2RustUnnamed_13 = 260;
 pub const C: C2RustUnnamed_5 = 2;
 pub const K: C2RustUnnamed_5 = 7;
@@ -1028,10 +1054,10 @@ pub const A: C2RustUnnamed_5 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    L_token = 244,
-    I_token = 240,
-    G_token = 237,
-    D_token = 224,
+    L_token,
+    I_token,
+    G_token,
+    D_token,
 }  // end of enum
 
 pub const B: C2RustUnnamed_5 = 1;
@@ -1040,15 +1066,15 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C = 2,
-    K = 7,
-    M = 8,
-    J = 6,
-    F = 4,
-    H = 5,
-    E = 3,
-    B = 1,
-    A = 0,
+    C,
+    K,
+    M,
+    J,
+    F,
+    H,
+    E,
+    B,
+    A,
 }  // end of enum
 
 pub type C2RustUnnamed_4 = libc::c_uint;
@@ -1086,18 +1112,18 @@ pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -1107,31 +1133,32 @@ pub type C2RustUnnamed_11 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
-    NO_CONSTRAINT = 511,
-    NOTLIMWORD_CONSTRAINT = 341,
-    LIMWORD_CONSTRAINT = 170,
-    ENDWORD_CONSTRAINT = 130,
-    BEGWORD_CONSTRAINT = 40,
-    ENDLINE_CONSTRAINT = 448,
-    BEGLINE_CONSTRAINT = 292,
+    NO_CONSTRAINT,
+    NOTLIMWORD_CONSTRAINT,
+    LIMWORD_CONSTRAINT,
+    ENDWORD_CONSTRAINT,
+    BEGWORD_CONSTRAINT,
+    ENDLINE_CONSTRAINT,
+    BEGLINE_CONSTRAINT,
 }  // end of enum
-named_12 = 448;
+ONSTRAINT: C2RustUnnamed_12 = 40;
+pub const ENDLINE_CONSTRAINT: C2RustUnnamed_12 = 448;
 pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;
@@ -1144,40 +1171,42 @@ pub type C2RustUnnamed_14 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_15 {
-    OPT_QUEUED = 16,
-    OPT_REPEAT = 1,
-    OPT_RPAREN = 4,
-    OPT_LPAREN = 2,
-    OPT_WALKED = 8,
+    OPT_QUEUED,
+    OPT_REPEAT,
+    OPT_RPAREN,
+    OPT_LPAREN,
+    OPT_WALKED,
 }  // end of enum
+ub type C2RustUnnamed_11 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
-    NO_CONSTRAINT = 511,
-    NOTLIMWORD_CONSTRAINT = 341,
-    LIMWORD_CONSTRAINT = 170,
-    ENDWORD_CONSTRAINT = 130,
-    BEGWORD_CONSTRAINT = 40,
-    ENDLINE_CONSTRAINT = 448,
-    BEGLINE_CONSTRAINT = 292,
+    NO_CONSTRAINT,
+    NOTLIMWORD_CONSTRAINT,
+    LIMWORD_CONSTRAINT,
+    ENDWORD_CONSTRAINT,
+    BEGWORD_CONSTRAINT,
+    ENDLINE_CONSTRAINT,
+    BEGLINE_CONSTRAINT,
 }  // end of enum
-named_12 = 448;
+ONSTRAINT: C2RustUnnamed_12 = 40;
+pub const ENDLINE_CONSTRAINT: C2RustUnnamed_12 = 448;
 pub const BEGLINE_CONSTRAINT: C2RustUnnamed_12 = 292;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
+    _ISalnum,
+    _ISalpha,
+    _ISspace,
+    _ISpunct,
+    _IScntrl,
+    _ISblank,
+    _ISgraph,
+    _ISprint,
+    _ISxdigit,
+    _ISdigit,
+    _ISlower,
+    _ISupper,
 }  // end of enum
 
 pub type C2RustUnnamed_8 = libc::c_uint;

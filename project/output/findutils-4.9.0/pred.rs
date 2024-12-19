@@ -316,17 +316,17 @@ pub struct buildcmd_control {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style = 10,
-    clocale_quoting_style = 9,
-    locale_quoting_style = 8,
-    escape_quoting_style = 7,
-    c_maybe_quoting_style = 6,
-    c_quoting_style = 5,
-    shell_escape_always_quoting_style = 4,
-    shell_escape_quoting_style = 3,
-    shell_always_quoting_style = 2,
-    shell_quoting_style = 1,
-    literal_quoting_style = 0,
+    custom_quoting_style,
+    clocale_quoting_style,
+    locale_quoting_style,
+    escape_quoting_style,
+    c_maybe_quoting_style,
+    c_quoting_style,
+    shell_escape_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_always_quoting_style,
+    shell_quoting_style,
+    literal_quoting_style,
 }  // end of enum
 
 pub type sharefile_handle = *mut libc::c_void;
@@ -375,13 +375,13 @@ pub type PARSE_FUNC = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum arg_type {
-    ARG_ACTION = 6,
-    ARG_PUNCTUATION = 5,
-    ARG_SPECIAL_PARSE = 4,
-    ARG_TEST = 3,
-    ARG_POSITIONAL_OPTION = 2,
-    ARG_NOOP = 1,
-    ARG_OPTION = 0,
+    ARG_ACTION,
+    ARG_PUNCTUATION,
+    ARG_SPECIAL_PARSE,
+    ARG_TEST,
+    ARG_POSITIONAL_OPTION,
+    ARG_NOOP,
+    ARG_OPTION,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -428,9 +428,9 @@ pub struct segment {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SegmentKind {
-    KIND_FORMAT = 2,
-    KIND_STOP = 1,
-    KIND_PLAIN = 0,
+    KIND_FORMAT,
+    KIND_STOP,
+    KIND_PLAIN,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -449,9 +449,9 @@ pub struct perm_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum permissions_type {
-    PERM_EXACT = 2,
-    PERM_ANY = 1,
-    PERM_AT_LEAST = 0,
+    PERM_EXACT,
+    PERM_ANY,
+    PERM_AT_LEAST,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -464,19 +464,19 @@ pub struct time_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum comparison_type {
-    COMP_EQ = 2,
-    COMP_LT = 1,
-    COMP_GT = 0,
+    COMP_EQ,
+    COMP_LT,
+    COMP_GT,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum xval {
-    XVAL_TIME = 4,
-    XVAL_MTIME = 3,
-    XVAL_CTIME = 2,
-    XVAL_BIRTHTIME = 1,
-    XVAL_ATIME = 0,
+    XVAL_TIME,
+    XVAL_MTIME,
+    XVAL_CTIME,
+    XVAL_BIRTHTIME,
+    XVAL_ATIME,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -508,40 +508,40 @@ pub struct exec_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum EvaluationCost {
-    NumEvaluationCosts = 11,
-    NeedsUnknown = 10,
-    NeedsUserInteraction = 9,
-    NeedsImmediateExec = 8,
-    NeedsEventualExec = 7,
-    NeedsSyncDiskHit = 6,
-    NeedsAccessInfo = 5,
-    NeedsLinkName = 4,
-    NeedsStatInfo = 3,
-    NeedsType = 2,
-    NeedsInodeNumber = 1,
-    NeedsNothing = 0,
+    NumEvaluationCosts,
+    NeedsUnknown,
+    NeedsUserInteraction,
+    NeedsImmediateExec,
+    NeedsEventualExec,
+    NeedsSyncDiskHit,
+    NeedsAccessInfo,
+    NeedsLinkName,
+    NeedsStatInfo,
+    NeedsType,
+    NeedsInodeNumber,
+    NeedsNothing,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_precedence {
-    MAX_PREC = 5,
-    NEGATE_PREC = 4,
-    AND_PREC = 3,
-    OR_PREC = 2,
-    COMMA_PREC = 1,
-    NO_PREC = 0,
+    MAX_PREC,
+    NEGATE_PREC,
+    AND_PREC,
+    OR_PREC,
+    COMMA_PREC,
+    NO_PREC,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_type {
-    CLOSE_PAREN = 5,
-    OPEN_PAREN = 4,
-    BI_OP = 3,
-    UNI_OP = 2,
-    PRIMARY_TYPE = 1,
-    NO_TYPE = 0,
+    CLOSE_PAREN,
+    OPEN_PAREN,
+    BI_OP,
+    UNI_OP,
+    PRIMARY_TYPE,
+    NO_TYPE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -583,22 +583,22 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SymlinkOption {
-    SYMLINK_DEREF_ARGSONLY = 2,
-    SYMLINK_ALWAYS_DEREF = 1,
-    SYMLINK_NEVER_DEREF = 0,
+    SYMLINK_DEREF_ARGSONLY,
+    SYMLINK_ALWAYS_DEREF,
+    SYMLINK_NEVER_DEREF,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum file_type {
-    FTYPE_COUNT = 7,
-    FTYPE_SOCK = 6,
-    FTYPE_FIFO = 5,
-    FTYPE_LNK = 4,
-    FTYPE_REG = 3,
-    FTYPE_DIR = 2,
-    FTYPE_CHR = 1,
-    FTYPE_BLK = 0,
+    FTYPE_COUNT,
+    FTYPE_SOCK,
+    FTYPE_FIFO,
+    FTYPE_LNK,
+    FTYPE_REG,
+    FTYPE_DIR,
+    FTYPE_CHR,
+    FTYPE_BLK,
 }  // end of enum
 
 #[derive(Copy, Clone)]

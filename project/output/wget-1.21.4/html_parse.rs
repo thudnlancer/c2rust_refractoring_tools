@@ -71,29 +71,30 @@ pub const AC_S_BACKOUT: C2RustUnnamed = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    AC_S_BACKOUT = 1,
-    AC_S_QUOTE2 = 12,
-    AC_S_IN_QUOTE = 11,
-    AC_S_QUOTE1 = 10,
-    AC_S_DASH4 = 9,
-    AC_S_DASH3 = 8,
-    AC_S_COMMENT = 7,
-    AC_S_DASH2 = 6,
-    AC_S_DASH1 = 5,
-    AC_S_DCLNAME = 4,
-    AC_S_DEFAULT = 3,
-    AC_S_BANG = 2,
-    AC_S_DONE = 0,
+    AC_S_BACKOUT,
+    AC_S_QUOTE2,
+    AC_S_IN_QUOTE,
+    AC_S_QUOTE1,
+    AC_S_DASH4,
+    AC_S_DASH3,
+    AC_S_COMMENT,
+    AC_S_DASH2,
+    AC_S_DASH1,
+    AC_S_DCLNAME,
+    AC_S_DEFAULT,
+    AC_S_BANG,
+    AC_S_DONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    AP_DOWNCASE = 1,
-    AP_TRIM_BLANKS = 4,
-    AP_DECODE_ENTITIES = 2,
+    AP_DOWNCASE,
+    AP_TRIM_BLANKS,
+    AP_DECODE_ENTITIES,
 }  // end of enum
-::c_int,
+ig_contents: *mut libc::c_char,
+    pub orig_size: libc::c_int,
 }
 pub const AP_DOWNCASE: C2RustUnnamed_0 = 1;
 pub const AP_TRIM_BLANKS: C2RustUnnamed_0 = 4;
@@ -102,19 +103,19 @@ pub const AC_S_BACKOUT: C2RustUnnamed = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    AC_S_BACKOUT = 1,
-    AC_S_QUOTE2 = 12,
-    AC_S_IN_QUOTE = 11,
-    AC_S_QUOTE1 = 10,
-    AC_S_DASH4 = 9,
-    AC_S_DASH3 = 8,
-    AC_S_COMMENT = 7,
-    AC_S_DASH2 = 6,
-    AC_S_DASH1 = 5,
-    AC_S_DCLNAME = 4,
-    AC_S_DEFAULT = 3,
-    AC_S_BANG = 2,
-    AC_S_DONE = 0,
+    AC_S_BACKOUT,
+    AC_S_QUOTE2,
+    AC_S_IN_QUOTE,
+    AC_S_QUOTE1,
+    AC_S_DASH4,
+    AC_S_DASH3,
+    AC_S_COMMENT,
+    AC_S_DASH2,
+    AC_S_DASH1,
+    AC_S_DCLNAME,
+    AC_S_DEFAULT,
+    AC_S_BANG,
+    AC_S_DONE,
 }  // end of enum
 
 pub type C2RustUnnamed_0 = libc::c_uint;

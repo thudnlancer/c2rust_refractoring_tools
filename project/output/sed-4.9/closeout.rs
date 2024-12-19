@@ -68,7 +68,7 @@ pub const SANITIZE_ADDRESS: C2RustUnnamed = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    SANITIZE_ADDRESS = 0,
+    SANITIZE_ADDRESS,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

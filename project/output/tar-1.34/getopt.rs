@@ -51,9 +51,9 @@ pub struct _getopt_data {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum __ord {
-    RETURN_IN_ORDER = 2,
-    PERMUTE = 1,
-    REQUIRE_ORDER = 0,
+    RETURN_IN_ORDER,
+    PERMUTE,
+    REQUIRE_ORDER,
 }  // end of enum
 
 #[derive(Copy, Clone)]

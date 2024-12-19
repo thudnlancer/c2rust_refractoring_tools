@@ -11,7 +11,7 @@ pub struct timespec {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TIMESPEC_HZ = 1000000000,
+    TIMESPEC_HZ,
 }  // end of enum
 
 #[inline]
