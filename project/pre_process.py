@@ -255,7 +255,118 @@ def make_candidate_rust_list():
         with open('candidate_rust/' + prog + '/enum.json', 'w') as json_file:
             json.dump(enum_list, json_file)
 
+def ensure_compile_arguments(compile_command):
+    """
+    检查并补全 compile_commands.json 的 arguments 列表。
+    """
+    arguments = compile_command['arguments']
+    directory = compile_command['directory']
+
+    arguments[0] = 'clang'
+
+    return arguments
+
+def get_included_files(file_path, compile_command):
+    """
+    提取 C 文件中所有的引用文件（#include 文件），包括条件编译后的结果。
+    """
+
+    index = clang.cindex.Index.create()
+
+     # 获取目录和参数
+    arguments = ensure_compile_arguments(compile_command)
+    
+    # 解析文件
+    try:
+        translation_unit = index.parse(file_path, args=arguments, unsaved_files=None, options=0)
+    except Exception as e:
+        print(f"Failed to parse {file_path}: {e}")
+        return None
+
+    # 收集引用文件
+    included_files = []
+    for inclusion in translation_unit.get_includes():
+        if inclusion.include:
+            included_files.append(str(inclusion.include))
+    
+    return included_files
+
+def analyze_project_with_compile_commands(project_path, compile_commands_path):
+    """
+    利用 compile_commands.json 分析 C 项目中每个文件的 #include 文件。
+    """
+    # 加载 compile_commands.json
+    compile_commands = load_compile_commands(compile_commands_path)
+    includes_map = {}
+
+    # 遍历项目目录
+    for root, _, files in os.walk(project_path):
+        for file in files:
+            if file.endswith('.c'):
+                file_path = os.path.abspath(os.path.join(root, file))
+                
+                # 获取对应的编译命令
+                compile_command = compile_commands.get(file_path)
+                if not compile_command:
+                    print(f"No compile command found for {file_path}")
+                    continue
+
+                print(f"Analyzing {file_path}...")
+                included_files = get_included_files(file_path, compile_command)
+                if included_files is not None:
+                    includes_map[file_path] = included_files
+
+    return includes_map
+
+def load_compile_commands(compile_commands_path):
+    """
+    加载 compile_commands.json 文件，返回文件路径到编译参数的映射。
+    """
+    with open(compile_commands_path, 'r') as f:
+        compile_commands = json.load(f)
+    
+    commands_map = {}
+    base_dir = os.path.dirname(compile_commands_path)
+
+    for entry in compile_commands:
+        file_path = os.path.abspath(os.path.join(base_dir, entry['file']))
+        directory = entry['directory']
+        command = entry['command'] if 'command' in entry else entry['arguments']
+        
+        # 将命令拆分为列表（如果是单个字符串）
+        if isinstance(command, str):
+            command = command.split()
+        
+        # 组合为绝对路径和完整参数
+        commands_map[file_path] = {
+            'directory': directory,
+            'arguments': command
+        }
+    return commands_map
+
+def make_c_include_list():
+    if not os.path.exists('c_include_list'):
+        os.makedirs('c_include_list')
+    
+    for prog in prog_list:
+        # 设置项目路径和 compile_commands.json 路径
+        project_path = get_prog_path(prog)
+        compile_commands_path = os.path.join(project_path, "compile_commands.json")
+
+        # 分析项目中的 #include 文件
+        project_includes = analyze_project_with_compile_commands(project_path, compile_commands_path)
+
+        if not os.path.exists('c_include_list/' + prog):
+            os.makedirs('c_include_list/' + prog)
+        
+        # 保存结果到指定路径
+        with open('c_include_list/' + prog + '/c_include_list.json', 'w') as f:
+            json.dump(project_includes, f, indent=4)
+
+
+
 # make_data_csv()
 # make_location_c_json()
-make_candidate_c_list()
-make_candidate_rust_list()
+# make_candidate_c_list()
+# make_candidate_rust_list()
+make_c_include_list()

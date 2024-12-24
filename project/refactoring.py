@@ -281,12 +281,14 @@ def find_enum_definition(enum_name, enum_members, c_file_path, file_references, 
     # 在 C 文件中查找枚举定义
     result = check_enum(enum_name, enum_members, c_enums[c_file_path])
     if result:
+        print(result)
         return result
 
     # 如果没有找到同名 C 文件，递归查找其引用的文件
     for referenced_file in file_references[c_file_path]:
         result = find_enum_definition(enum_name, enum_members, referenced_file, file_references, c_enums)
         if result:
+            print(result)
             return result
 
     # 如果找不到该枚举定义，返回 None

@@ -1,0 +1,1298 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "dirCache.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "dirCache.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "offset.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "offset.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "fat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "fat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mdel.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mdel.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "scsi_io.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "scsi_io.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "directory.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "directory.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mpartition.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mpartition.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "partition.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "partition.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "expand.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "expand.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "file.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "file.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "strtonum.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "strtonum.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "lba.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "lba.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "charsetConv.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "charsetConv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mainloop.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mainloop.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mmd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mmd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mshortname.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mshortname.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "signal.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "signal.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "remap.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "remap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mshowfat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mshowfat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mformat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mformat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "codepages.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "codepages.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "streamcache.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "streamcache.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "missFuncs.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "missFuncs.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "unixdir.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "unixdir.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "privileges.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "privileges.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "hash.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "hash.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "file_name.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "file_name.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mdir.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mdir.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "floppyd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "floppyd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "buffer.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "buffer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "misc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "misc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mattrib.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mattrib.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "device.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "device.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "floppyd_installtest.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "floppyd_installtest.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "xdf_io.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "xdf_io.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "swap.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "swap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mcd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mcd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "unix2dos.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "unix2dos.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mcat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mcat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "init.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "init.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "config.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "config.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mlabel.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mlabel.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "old_dos.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "old_dos.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "match.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "match.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "lockdev.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "lockdev.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mtools.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mtools.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "direntry.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "direntry.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mkmanifest.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mkmanifest.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "copyfile.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "copyfile.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "patchlevel.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "patchlevel.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "vfat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "vfat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "tty.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "tty.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "minfo.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "minfo.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "force_io.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "force_io.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "scsi.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "scsi.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "floppyd_io.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "floppyd_io.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "dos2unix.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "dos2unix.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mdoctorfat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mdoctorfat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mmount.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mmount.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "precmd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "precmd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "open_image.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "open_image.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mzip.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mzip.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "stream.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "stream.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "llong.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "llong.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mbadblocks.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mbadblocks.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mdu.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mdu.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mmove.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mmove.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "devices.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "devices.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "plain_io.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "plain_io.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mk_direntry.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mk_direntry.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "mcopy.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "mcopy.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-DCPU_x86_64",
+            "-DVENDOR_pc",
+            "-DOS_linux_gnu",
+            "-g",
+            "-O2",
+            "-I.",
+            "-I.",
+            "fat_free.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/mtools-4.0.45",
+        "file": "fat_free.c"
+    }
+]
