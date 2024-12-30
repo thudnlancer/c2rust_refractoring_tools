@@ -133,9 +133,9 @@ pub const OPT_HELP: C2RustUnnamed = 768;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    OPT_LIST,
-    OPT_RAW,
-    OPT_HELP,
+    OPT_LIST = 770,
+    OPT_RAW = 769,
+    OPT_HELP = 768,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

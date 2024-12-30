@@ -338,100 +338,100 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compression_options {
-    compression_none,
-    compression_gzip,
-    compression_auto,
+    compression_none = 2,
+    compression_gzip = 1,
+    compression_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    prefer_none,
-    prefer_ipv6,
-    prefer_ipv4,
+    prefer_none = 2,
+    prefer_ipv6 = 1,
+    prefer_ipv4 = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    restrict_uppercase,
-    restrict_lowercase,
-    restrict_no_case_restriction,
+    restrict_uppercase = 2,
+    restrict_lowercase = 1,
+    restrict_no_case_restriction = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    restrict_windows,
-    restrict_vms,
-    restrict_unix,
+    restrict_windows = 2,
+    restrict_vms = 1,
+    restrict_unix = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
-    keyfile_asn1,
-    keyfile_pem,
+    keyfile_asn1 = 1,
+    keyfile_pem = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    secure_protocol_pfs,
-    secure_protocol_tlsv1_3,
-    secure_protocol_tlsv1_2,
-    secure_protocol_tlsv1_1,
-    secure_protocol_tlsv1,
-    secure_protocol_sslv3,
-    secure_protocol_sslv2,
-    secure_protocol_auto,
+    secure_protocol_pfs = 7,
+    secure_protocol_tlsv1_3 = 6,
+    secure_protocol_tlsv1_2 = 5,
+    secure_protocol_tlsv1_1 = 4,
+    secure_protocol_tlsv1 = 3,
+    secure_protocol_sslv3 = 2,
+    secure_protocol_sslv2 = 1,
+    secure_protocol_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    regex_type_posix,
-    regex_type_pcre,
+    regex_type_posix = 1,
+    regex_type_pcre = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
+    WGET_EXIT_SUCCESS = 0,
+    WGET_EXIT_GENERIC_ERROR = 1,
+    WGET_EXIT_PARSE_ERROR = 2,
+    WGET_EXIT_IO_FAIL = 3,
+    WGET_EXIT_NETWORK_FAIL = 4,
+    WGET_EXIT_SSL_AUTH_FAIL = 5,
+    WGET_EXIT_SERVER_AUTH_FAIL = 6,
+    WGET_EXIT_PROTOCOL_ERROR = 7,
+    WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
-    WGET_EXIT_SERVER_ERROR,
-    WGET_EXIT_PROTOCOL_ERROR,
-    WGET_EXIT_SERVER_AUTH_FAIL,
-    WGET_EXIT_SSL_AUTH_FAIL,
-    WGET_EXIT_NETWORK_FAIL,
-    WGET_EXIT_IO_FAIL,
-    WGET_EXIT_PARSE_ERROR,
-    WGET_EXIT_GENERIC_ERROR,
-    WGET_EXIT_SUCCESS,
 }  // end of enum
 
 pub type socklen_t = __socklen_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum __socket_type {
-    SOCK_NONBLOCK,
-    SOCK_CLOEXEC,
-    SOCK_PACKET,
-    SOCK_DCCP,
-    SOCK_SEQPACKET,
-    SOCK_RDM,
-    SOCK_RAW,
-    SOCK_DGRAM,
-    SOCK_STREAM,
+    SOCK_NONBLOCK = 2048,
+    SOCK_CLOEXEC = 524288,
+    SOCK_PACKET = 10,
+    SOCK_DCCP = 6,
+    SOCK_SEQPACKET = 5,
+    SOCK_RDM = 4,
+    SOCK_RAW = 3,
+    SOCK_DGRAM = 2,
+    SOCK_STREAM = 1,
 }  // end of enum
 
 pub type sa_family_t = libc::c_ushort;
@@ -451,28 +451,28 @@ pub struct sockaddr_storage {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    MSG_CMSG_CLOEXEC,
-    MSG_FASTOPEN,
-    MSG_ZEROCOPY,
-    MSG_BATCH,
-    MSG_WAITFORONE,
-    MSG_MORE,
-    MSG_NOSIGNAL,
-    MSG_ERRQUEUE,
-    MSG_RST,
-    MSG_CONFIRM,
-    MSG_SYN,
-    MSG_FIN,
-    MSG_WAITALL,
-    MSG_EOR,
-    MSG_DONTWAIT,
-    MSG_TRUNC,
-    MSG_PROXY,
-    MSG_CTRUNC,
-    MSG_TRYHARD,
-    MSG_DONTROUTE,
-    MSG_PEEK,
-    MSG_OOB,
+    MSG_CMSG_CLOEXEC = 1073741824,
+    MSG_FASTOPEN = 536870912,
+    MSG_ZEROCOPY = 67108864,
+    MSG_BATCH = 262144,
+    MSG_WAITFORONE = 65536,
+    MSG_MORE = 32768,
+    MSG_NOSIGNAL = 16384,
+    MSG_ERRQUEUE = 8192,
+    MSG_RST = 4096,
+    MSG_CONFIRM = 2048,
+    MSG_SYN = 1024,
+    MSG_FIN = 512,
+    MSG_WAITALL = 256,
+    MSG_EOR = 128,
+    MSG_DONTWAIT = 64,
+    MSG_TRUNC = 32,
+    MSG_PROXY = 16,
+    MSG_CTRUNC = 8,
+    MSG_TRYHARD = 4,
+    MSG_DONTROUTE = 4,
+    MSG_PEEK = 2,
+    MSG_OOB = 1,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -548,32 +548,32 @@ pub union __CONST_SOCKADDR_ARG {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    IPPROTO_MAX,
-    IPPROTO_RAW,
-    IPPROTO_MPLS,
-    IPPROTO_UDPLITE,
-    IPPROTO_SCTP,
-    IPPROTO_COMP,
-    IPPROTO_PIM,
-    IPPROTO_ENCAP,
-    IPPROTO_BEETPH,
-    IPPROTO_MTP,
-    IPPROTO_AH,
-    IPPROTO_ESP,
-    IPPROTO_GRE,
-    IPPROTO_RSVP,
-    IPPROTO_IPV6,
-    IPPROTO_DCCP,
-    IPPROTO_TP,
-    IPPROTO_IDP,
-    IPPROTO_UDP,
-    IPPROTO_PUP,
-    IPPROTO_EGP,
-    IPPROTO_TCP,
-    IPPROTO_IPIP,
-    IPPROTO_IGMP,
-    IPPROTO_ICMP,
-    IPPROTO_IP,
+    IPPROTO_MAX = 256,
+    IPPROTO_RAW = 255,
+    IPPROTO_MPLS = 137,
+    IPPROTO_UDPLITE = 136,
+    IPPROTO_SCTP = 132,
+    IPPROTO_COMP = 108,
+    IPPROTO_PIM = 103,
+    IPPROTO_ENCAP = 98,
+    IPPROTO_BEETPH = 94,
+    IPPROTO_MTP = 92,
+    IPPROTO_AH = 51,
+    IPPROTO_ESP = 50,
+    IPPROTO_GRE = 47,
+    IPPROTO_RSVP = 46,
+    IPPROTO_IPV6 = 41,
+    IPPROTO_DCCP = 33,
+    IPPROTO_TP = 29,
+    IPPROTO_IDP = 22,
+    IPPROTO_UDP = 17,
+    IPPROTO_PUP = 12,
+    IPPROTO_EGP = 8,
+    IPPROTO_TCP = 6,
+    IPPROTO_IPIP = 4,
+    IPPROTO_IGMP = 2,
+    IPPROTO_ICMP = 1,
+    IPPROTO_IP = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -592,9 +592,9 @@ pub union C2RustUnnamed_8 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
-    LH_REFRESH,
-    LH_BIND,
-    LH_SILENT,
+    LH_SILENT = 1,
+    LH_BIND = 2,
+    LH_REFRESH = 4,
 }  // end of enum
 
 pub type C2RustUnnamed_10 = libc::c_int;
@@ -660,21 +660,21 @@ pub const WAIT_FOR_WRITE: C2RustUnnamed_12 = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    ENDPOINT_PEER,
     ENDPOINT_LOCAL,
+    ENDPOINT_PEER,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
-    WAIT_FOR_READ,
-    WAIT_FOR_WRITE,
+    WAIT_FOR_READ = 1,
+    WAIT_FOR_WRITE = 2,
 }  // end of enum
 q, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    ENDPOINT_PEER,
     ENDPOINT_LOCAL,
+    ENDPOINT_PEER,
 }  // end of enum
 
 pub type C2RustUnnamed_12 = libc::c_uint;

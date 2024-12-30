@@ -223,24 +223,24 @@ pub struct option {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_mode {
-    SEXP_TRANSPORT,
-    SEXP_ADVANCED,
-    SEXP_CANONICAL,
+    SEXP_TRANSPORT = 2,
+    SEXP_ADVANCED = 1,
+    SEXP_CANONICAL = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_token {
-    SEXP_CODING_END,
-    SEXP_TRANSPORT_START,
-    SEXP_DISPLAY_END,
-    SEXP_DISPLAY_START,
-    SEXP_EOF,
-    SEXP_LIST_END,
-    SEXP_LIST_START,
-    SEXP_COMMENT,
-    SEXP_DISPLAY,
-    SEXP_STRING,
+    SEXP_CODING_END = 9,
+    SEXP_TRANSPORT_START = 8,
+    SEXP_DISPLAY_END = 7,
+    SEXP_DISPLAY_START = 6,
+    SEXP_EOF = 5,
+    SEXP_LIST_END = 4,
+    SEXP_LIST_START = 3,
+    SEXP_COMMENT = 2,
+    SEXP_DISPLAY = 1,
+    SEXP_STRING = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -260,9 +260,9 @@ pub struct base64_decode_ctx {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_char_type {
-    SEXP_END_CHAR,
-    SEXP_EOF_CHAR,
-    SEXP_NORMAL_CHAR,
+    SEXP_END_CHAR = 2,
+    SEXP_EOF_CHAR = 1,
+    SEXP_NORMAL_CHAR = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -324,10 +324,10 @@ pub struct conv_options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    OPT_HELP,
-    OPT_LOCK,
-    OPT_HASH,
-    OPT_ONCE,
+    OPT_HELP = 303,
+    OPT_LOCK = 302,
+    OPT_HASH = 301,
+    OPT_ONCE = 300,
 }  // end of enum
 
 unsafe extern "C" fn sexp_convert_item(

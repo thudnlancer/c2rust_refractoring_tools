@@ -35,11 +35,11 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
-    LONGINT_INVALID_SUFFIX_CHAR,
-    LONGINT_OVERFLOW,
-    LONGINT_OK,
+    LONGINT_INVALID = 4,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW = 3,
+    LONGINT_INVALID_SUFFIX_CHAR = 2,
+    LONGINT_OVERFLOW = 1,
+    LONGINT_OK = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]

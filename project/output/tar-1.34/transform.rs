@@ -196,16 +196,16 @@ pub struct C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum replace_segm_type {
-    segm_case_ctl,
-    segm_backref,
-    segm_literal,
+    segm_case_ctl = 2,
+    segm_backref = 1,
+    segm_literal = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum transform_type {
-    transform_global,
-    transform_first,
+    transform_global = 1,
+    transform_first = 0,
 }  // end of enum
 
 #[inline]

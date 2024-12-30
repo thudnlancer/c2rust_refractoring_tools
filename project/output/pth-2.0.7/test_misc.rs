@@ -80,21 +80,21 @@ pub type pth_attr_t = *mut pth_attr_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    PTH_ATTR_BOUND,
-    PTH_ATTR_EVENTS,
-    PTH_ATTR_STATE,
-    PTH_ATTR_START_ARG,
-    PTH_ATTR_START_FUNC,
-    PTH_ATTR_TIME_RAN,
-    PTH_ATTR_TIME_LAST,
-    PTH_ATTR_TIME_SPAWN,
-    PTH_ATTR_DISPATCHES,
-    PTH_ATTR_STACK_ADDR,
-    PTH_ATTR_STACK_SIZE,
-    PTH_ATTR_CANCEL_STATE,
-    PTH_ATTR_JOINABLE,
-    PTH_ATTR_NAME,
-    PTH_ATTR_PRIO,
+    PTH_ATTR_BOUND = 14,
+    PTH_ATTR_EVENTS = 13,
+    PTH_ATTR_STATE = 12,
+    PTH_ATTR_START_ARG = 11,
+    PTH_ATTR_START_FUNC = 10,
+    PTH_ATTR_TIME_RAN = 9,
+    PTH_ATTR_TIME_LAST = 8,
+    PTH_ATTR_TIME_SPAWN = 7,
+    PTH_ATTR_DISPATCHES = 6,
+    PTH_ATTR_STACK_ADDR = 5,
+    PTH_ATTR_STACK_SIZE = 4,
+    PTH_ATTR_CANCEL_STATE = 3,
+    PTH_ATTR_JOINABLE = 2,
+    PTH_ATTR_NAME = 1,
+    PTH_ATTR_PRIO = 0,
 }  // end of enum
 
 pub type pth_event_t = *mut pth_event_st;

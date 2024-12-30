@@ -249,60 +249,60 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compression_options {
-    compression_none,
-    compression_gzip,
-    compression_auto,
+    compression_none = 2,
+    compression_gzip = 1,
+    compression_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    prefer_none,
-    prefer_ipv6,
-    prefer_ipv4,
+    prefer_none = 2,
+    prefer_ipv6 = 1,
+    prefer_ipv4 = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    restrict_uppercase,
-    restrict_lowercase,
-    restrict_no_case_restriction,
+    restrict_uppercase = 2,
+    restrict_lowercase = 1,
+    restrict_no_case_restriction = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    restrict_windows,
-    restrict_vms,
-    restrict_unix,
+    restrict_windows = 2,
+    restrict_vms = 1,
+    restrict_unix = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
-    keyfile_asn1,
-    keyfile_pem,
+    keyfile_asn1 = 1,
+    keyfile_pem = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    secure_protocol_pfs,
-    secure_protocol_tlsv1_3,
-    secure_protocol_tlsv1_2,
-    secure_protocol_tlsv1_1,
-    secure_protocol_tlsv1,
-    secure_protocol_sslv3,
-    secure_protocol_sslv2,
-    secure_protocol_auto,
+    secure_protocol_pfs = 7,
+    secure_protocol_tlsv1_3 = 6,
+    secure_protocol_tlsv1_2 = 5,
+    secure_protocol_tlsv1_1 = 4,
+    secure_protocol_tlsv1 = 3,
+    secure_protocol_sslv3 = 2,
+    secure_protocol_sslv2 = 1,
+    secure_protocol_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    regex_type_posix,
-    regex_type_pcre,
+    regex_type_posix = 1,
+    regex_type_pcre = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]

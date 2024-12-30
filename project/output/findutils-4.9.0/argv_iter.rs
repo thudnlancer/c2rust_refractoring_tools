@@ -70,10 +70,10 @@ pub struct argv_iterator {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum argv_iter_err {
-    AI_ERR_READ,
-    AI_ERR_MEM,
-    AI_ERR_EOF,
-    AI_ERR_OK,
+    AI_ERR_READ = 4,
+    AI_ERR_MEM = 3,
+    AI_ERR_EOF = 2,
+    AI_ERR_OK = 1,
 }  // end of enum
 
 #[no_mangle]

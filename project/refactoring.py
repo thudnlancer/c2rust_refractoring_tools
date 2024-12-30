@@ -156,7 +156,7 @@ def extract_enum_info_rust(filename):
 
         for member_name, member_enum, member_value in enum_members:
             if member_enum == enum_name:
-                filtered_members[member_name] = (int(member_value), False, False)
+                filtered_members[member_name] = (int(member_value), False, True)
                 member_code = f"pub const {member_name}: {enum_name} = {member_value};"
                 last_member_end_pos = code.find(member_code) + len(member_code)
         
@@ -190,7 +190,9 @@ def make_enum_code_c():
 
         for filename, enum_names in enums.items():
             filepath = find_file_in_directory(path_to_prog, filename)
-            result[filepath] = extract_enum_info_c(filepath)
+            res = extract_enum_info_c(filepath)
+            if len(res) > 0:
+                result[filepath] = extract_enum_info_c(filepath)
 
         if not os.path.exists('enum_code_c/' + prog):
             os.makedirs('enum_code_c/' + prog)
@@ -211,7 +213,8 @@ def make_enum_code_rust():
 
         for candidate_path in candidates:
             file_enums = extract_enum_info_rust(candidate_path)
-            result[os.path.abspath(candidate_path)] = file_enums
+            if len(file_enums) > 0:
+                result[os.path.abspath(candidate_path)] = file_enums
 
         if not os.path.exists('enum_code_rust/' + prog):
             os.makedirs('enum_code_rust/' + prog)
@@ -241,22 +244,24 @@ def find_enum_definition(enum_name, enum_members, c_file_path, file_references, 
     根据枚举名称和 rs 文件路径，递归查找 C 文件中的同名枚举定义。
     如果在当前 C 文件中未找到，则查找引用的 C 文件。
     """
+    if c_file_path not in c_enums and c_file_path not in file_references:
+        c_file_path = c_file_path.replace('_', '-')
 
-    if c_file_path not in c_enums:
-        return None
-    # 在 C 文件中查找枚举定义
-    result = check_enum(enum_name, enum_members, c_enums[c_file_path])
-    if result:
-        # print(result)
-        return result
+    if c_file_path in c_enums:
+        # 在 C 文件中查找枚举定义
+        result = check_enum(enum_name, enum_members, c_enums[c_file_path])
+        if result:
+            # print(result)
+            return result
 
-    # 如果没有找到同名 C 文件，递归查找其引用的文件
-    for referenced_file in file_references[c_file_path]:
-        if referenced_file in c_enums:
-            result = check_enum(enum_name, enum_members, c_enums[referenced_file])
-            if result:
-                # print(result)
-                return result
+    if c_file_path in file_references:
+        # 如果没有找到同名 C 文件，查找其引用的文件
+        for referenced_file in file_references[c_file_path]:
+            if referenced_file in c_enums:
+                result = check_enum(enum_name, enum_members, c_enums[referenced_file])
+                if result:
+                    # print(result)
+                    return result
 
     # 如果找不到该枚举定义，返回 None
     return None
@@ -405,5 +410,5 @@ def refactoring():
 
 # make_enum_code_c()
 # make_enum_code_rust()
-transfer_enum_rust()
+# transfer_enum_rust()
 refactoring()

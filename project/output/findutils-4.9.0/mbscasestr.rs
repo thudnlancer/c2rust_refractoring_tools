@@ -84,28 +84,28 @@ pub type mbchar_t = mbchar;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    _ISupper,
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISblank,
-    _ISgraph,
-    _ISprint,
-    _ISspace,
-    _ISxdigit,
-    _ISdigit,
-    _ISalpha,
-    _ISlower,
+    _ISupper = 256,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISspace = 8192,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    sa_alignment_max,
-    sa_alignment_longdouble,
-    sa_alignment_longlong,
-    sa_alignment_double,
-    sa_alignment_long,
+    sa_alignment_max = 16,
+    sa_alignment_longdouble = 16,
+    sa_alignment_longlong = 8,
+    sa_alignment_double = 8,
+    sa_alignment_long = 8,
 }  // end of enum
 
 #[inline]

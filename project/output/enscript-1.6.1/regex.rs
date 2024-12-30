@@ -194,18 +194,18 @@ pub struct C2RustUnnamed {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    _ISdigit,
-    _ISlower,
-    _ISupper,
-    _ISxdigit,
-    _ISspace,
-    _ISpunct,
-    _ISprint,
-    _ISgraph,
-    _IScntrl,
-    _ISblank,
-    _ISalpha,
-    _ISalnum,
+    _ISdigit = 2048,
+    _ISlower = 512,
+    _ISupper = 256,
+    _ISxdigit = 4096,
+    _ISspace = 8192,
+    _ISpunct = 4,
+    _ISprint = 16384,
+    _ISgraph = 32768,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISalpha = 1024,
+    _ISalnum = 8,
 }  // end of enum
 
 pub type fail_stack_elt_t = fail_stack_elt;

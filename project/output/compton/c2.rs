@@ -165,18 +165,18 @@ pub type int_fast16_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISblank,
-    _ISgraph,
-    _ISprint,
-    _ISspace,
-    _ISxdigit,
-    _ISdigit,
-    _ISalpha,
-    _ISlower,
-    _ISupper,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISspace = 8192,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
+    _ISupper = 256,
 }  // end of enum
 
 pub type XID = libc::c_ulong;
@@ -813,71 +813,71 @@ pub type pcre = real_pcre;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    C2_L_PTINT,
-    C2_L_PTSTRING,
-    C2_L_PTUNDEFINED,
+    C2_L_PTINT = 2,
+    C2_L_PTSTRING = 1,
+    C2_L_PTUNDEFINED = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_l_type {
-    C2_L_TDRAWABLE,
-    C2_L_TATOM,
-    C2_L_TWINDOW,
-    C2_L_TCARDINAL,
-    C2_L_TSTRING,
-    C2_L_TUNDEFINED,
+    C2_L_TDRAWABLE = 5,
+    C2_L_TATOM = 4,
+    C2_L_TWINDOW = 3,
+    C2_L_TCARDINAL = 2,
+    C2_L_TSTRING = 1,
+    C2_L_TUNDEFINED = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    C2_L_PROLE,
-    C2_L_PCLASSI,
-    C2_L_PCLASSG,
-    C2_L_PNAME,
-    C2_L_PLEADER,
-    C2_L_PWINDOWTYPE,
-    C2_L_PCLIENT,
-    C2_L_PROUNDED,
-    C2_L_PBSHAPED,
-    C2_L_PWMWIN,
-    C2_L_PFOCUSED,
-    C2_L_PARGB,
-    C2_L_POVREDIR,
-    C2_L_PFULLSCREEN,
-    C2_L_PBDW,
-    C2_L_PHEIGHTB,
-    C2_L_PWIDTHB,
-    C2_L_PHEIGHT,
-    C2_L_PWIDTH,
-    C2_L_PY2,
-    C2_L_PX2,
-    C2_L_PY,
-    C2_L_PX,
-    C2_L_PID,
-    C2_L_PUNDEFINED,
+    C2_L_PROLE = 24,
+    C2_L_PCLASSI = 23,
+    C2_L_PCLASSG = 22,
+    C2_L_PNAME = 21,
+    C2_L_PLEADER = 20,
+    C2_L_PWINDOWTYPE = 19,
+    C2_L_PCLIENT = 18,
+    C2_L_PROUNDED = 17,
+    C2_L_PBSHAPED = 16,
+    C2_L_PWMWIN = 15,
+    C2_L_PFOCUSED = 14,
+    C2_L_PARGB = 13,
+    C2_L_POVREDIR = 12,
+    C2_L_PFULLSCREEN = 11,
+    C2_L_PBDW = 10,
+    C2_L_PHEIGHTB = 9,
+    C2_L_PWIDTHB = 8,
+    C2_L_PHEIGHT = 7,
+    C2_L_PWIDTH = 6,
+    C2_L_PY2 = 5,
+    C2_L_PX2 = 4,
+    C2_L_PY = 3,
+    C2_L_PX = 2,
+    C2_L_PID = 1,
+    C2_L_PUNDEFINED = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    C2_L_MPCRE,
-    C2_L_MWILDCARD,
-    C2_L_MCONTAINS,
-    C2_L_MSTART,
-    C2_L_MEXACT,
+    C2_L_MPCRE = 4,
+    C2_L_MWILDCARD = 3,
+    C2_L_MCONTAINS = 2,
+    C2_L_MSTART = 1,
+    C2_L_MEXACT = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    C2_L_OLTEQ,
-    C2_L_OLT,
-    C2_L_OGTEQ,
-    C2_L_OGT,
-    C2_L_OEQ,
-    C2_L_OEXISTS,
+    C2_L_OLTEQ = 5,
+    C2_L_OLT = 4,
+    C2_L_OGTEQ = 3,
+    C2_L_OGT = 2,
+    C2_L_OEQ = 1,
+    C2_L_OEXISTS = 0,
 }  // end of enum
 
 pub type c2_b_t = _c2_b;

@@ -1,1 +1,1 @@
-{"/home/c2rust/Desktop/c_prog/gsl-2.7.1/cdf/exponential.rs": [], "/home/c2rust/Desktop/c_prog/gsl-2.7.1/bst/rb.rs": [{"enum_name": "rb_color", "start_pos": 4152, "end_pos": 4151, "members": {"RB_BLACK": [0, false, false], "RB_RED": [1, false, false]}}]}
+{"/home/c2rust/Desktop/c_prog/gsl-2.7.1/bst/rb.rs": [{"enum_name": "rb_color", "start_pos": 4152, "end_pos": 4151, "members": {"RB_BLACK": [0, false, false], "RB_RED": [1, false, false]}}]}

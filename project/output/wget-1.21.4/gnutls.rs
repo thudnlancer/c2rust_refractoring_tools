@@ -433,60 +433,60 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compression_options {
-    compression_none,
-    compression_gzip,
-    compression_auto,
+    compression_none = 2,
+    compression_gzip = 1,
+    compression_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    prefer_none,
-    prefer_ipv6,
-    prefer_ipv4,
+    prefer_none = 2,
+    prefer_ipv6 = 1,
+    prefer_ipv4 = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    restrict_uppercase,
-    restrict_lowercase,
-    restrict_no_case_restriction,
+    restrict_uppercase = 2,
+    restrict_lowercase = 1,
+    restrict_no_case_restriction = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    restrict_windows,
-    restrict_vms,
-    restrict_unix,
+    restrict_windows = 2,
+    restrict_vms = 1,
+    restrict_unix = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
-    keyfile_asn1,
-    keyfile_pem,
+    keyfile_asn1 = 1,
+    keyfile_pem = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    secure_protocol_pfs,
-    secure_protocol_tlsv1_3,
-    secure_protocol_tlsv1_2,
-    secure_protocol_tlsv1_1,
-    secure_protocol_tlsv1,
-    secure_protocol_sslv3,
-    secure_protocol_sslv2,
-    secure_protocol_auto,
+    secure_protocol_pfs = 7,
+    secure_protocol_tlsv1_3 = 6,
+    secure_protocol_tlsv1_2 = 5,
+    secure_protocol_tlsv1_1 = 4,
+    secure_protocol_tlsv1 = 3,
+    secure_protocol_sslv3 = 2,
+    secure_protocol_sslv2 = 1,
+    secure_protocol_auto = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    regex_type_posix,
-    regex_type_pcre,
+    regex_type_posix = 1,
+    regex_type_pcre = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -528,83 +528,83 @@ pub type DIR = __dirstream;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_credentials_type_t {
-    GNUTLS_CRD_IA,
-    GNUTLS_CRD_PSK,
-    GNUTLS_CRD_SRP,
-    GNUTLS_CRD_ANON,
-    GNUTLS_CRD_CERTIFICATE,
+    GNUTLS_CRD_IA = 5,
+    GNUTLS_CRD_PSK = 4,
+    GNUTLS_CRD_SRP = 3,
+    GNUTLS_CRD_ANON = 2,
+    GNUTLS_CRD_CERTIFICATE = 1,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_alert_description_t {
-    GNUTLS_A_NO_APPLICATION_PROTOCOL,
-    GNUTLS_A_UNKNOWN_PSK_IDENTITY,
-    GNUTLS_A_UNRECOGNIZED_NAME,
-    GNUTLS_A_CERTIFICATE_UNOBTAINABLE,
-    GNUTLS_A_UNSUPPORTED_EXTENSION,
-    GNUTLS_A_NO_RENEGOTIATION,
-    GNUTLS_A_USER_CANCELED,
-    GNUTLS_A_INAPPROPRIATE_FALLBACK,
-    GNUTLS_A_INTERNAL_ERROR,
-    GNUTLS_A_INSUFFICIENT_SECURITY,
-    GNUTLS_A_PROTOCOL_VERSION,
-    GNUTLS_A_EXPORT_RESTRICTION,
-    GNUTLS_A_DECRYPT_ERROR,
-    GNUTLS_A_DECODE_ERROR,
-    GNUTLS_A_ACCESS_DENIED,
-    GNUTLS_A_UNKNOWN_CA,
-    GNUTLS_A_ILLEGAL_PARAMETER,
-    GNUTLS_A_CERTIFICATE_UNKNOWN,
-    GNUTLS_A_CERTIFICATE_EXPIRED,
-    GNUTLS_A_CERTIFICATE_REVOKED,
-    GNUTLS_A_UNSUPPORTED_CERTIFICATE,
-    GNUTLS_A_BAD_CERTIFICATE,
-    GNUTLS_A_SSL3_NO_CERTIFICATE,
-    GNUTLS_A_HANDSHAKE_FAILURE,
-    GNUTLS_A_DECOMPRESSION_FAILURE,
-    GNUTLS_A_RECORD_OVERFLOW,
-    GNUTLS_A_DECRYPTION_FAILED,
-    GNUTLS_A_BAD_RECORD_MAC,
-    GNUTLS_A_UNEXPECTED_MESSAGE,
-    GNUTLS_A_CLOSE_NOTIFY,
+    GNUTLS_A_NO_APPLICATION_PROTOCOL = 120,
+    GNUTLS_A_UNKNOWN_PSK_IDENTITY = 115,
+    GNUTLS_A_UNRECOGNIZED_NAME = 112,
+    GNUTLS_A_CERTIFICATE_UNOBTAINABLE = 111,
+    GNUTLS_A_UNSUPPORTED_EXTENSION = 110,
+    GNUTLS_A_NO_RENEGOTIATION = 100,
+    GNUTLS_A_USER_CANCELED = 90,
+    GNUTLS_A_INAPPROPRIATE_FALLBACK = 86,
+    GNUTLS_A_INTERNAL_ERROR = 80,
+    GNUTLS_A_INSUFFICIENT_SECURITY = 71,
+    GNUTLS_A_PROTOCOL_VERSION = 70,
+    GNUTLS_A_EXPORT_RESTRICTION = 60,
+    GNUTLS_A_DECRYPT_ERROR = 51,
+    GNUTLS_A_DECODE_ERROR = 50,
+    GNUTLS_A_ACCESS_DENIED = 49,
+    GNUTLS_A_UNKNOWN_CA = 48,
+    GNUTLS_A_ILLEGAL_PARAMETER = 47,
+    GNUTLS_A_CERTIFICATE_UNKNOWN = 46,
+    GNUTLS_A_CERTIFICATE_EXPIRED = 45,
+    GNUTLS_A_CERTIFICATE_REVOKED = 44,
+    GNUTLS_A_UNSUPPORTED_CERTIFICATE = 43,
+    GNUTLS_A_BAD_CERTIFICATE = 42,
+    GNUTLS_A_SSL3_NO_CERTIFICATE = 41,
+    GNUTLS_A_HANDSHAKE_FAILURE = 40,
+    GNUTLS_A_DECOMPRESSION_FAILURE = 30,
+    GNUTLS_A_RECORD_OVERFLOW = 22,
+    GNUTLS_A_DECRYPTION_FAILED = 21,
+    GNUTLS_A_BAD_RECORD_MAC = 20,
+    GNUTLS_A_UNEXPECTED_MESSAGE = 10,
+    GNUTLS_A_CLOSE_NOTIFY = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    GNUTLS_CERT_INVALID_OCSP_STATUS,
-    GNUTLS_CERT_MISSING_OCSP_STATUS,
-    GNUTLS_CERT_PURPOSE_MISMATCH,
-    GNUTLS_CERT_MISMATCH,
-    GNUTLS_CERT_SIGNER_CONSTRAINTS_FAILURE,
-    GNUTLS_CERT_REVOCATION_DATA_ISSUED_IN_FUTURE,
-    GNUTLS_CERT_UNEXPECTED_OWNER,
-    GNUTLS_CERT_REVOCATION_DATA_SUPERSEDED,
-    GNUTLS_CERT_SIGNATURE_FAILURE,
-    GNUTLS_CERT_EXPIRED,
-    GNUTLS_CERT_NOT_ACTIVATED,
-    GNUTLS_CERT_INSECURE_ALGORITHM,
-    GNUTLS_CERT_SIGNER_NOT_CA,
-    GNUTLS_CERT_SIGNER_NOT_FOUND,
-    GNUTLS_CERT_REVOKED,
-    GNUTLS_CERT_INVALID,
+    GNUTLS_CERT_INVALID_OCSP_STATUS = 1048576,
+    GNUTLS_CERT_MISSING_OCSP_STATUS = 524288,
+    GNUTLS_CERT_PURPOSE_MISMATCH = 262144,
+    GNUTLS_CERT_MISMATCH = 131072,
+    GNUTLS_CERT_SIGNER_CONSTRAINTS_FAILURE = 65536,
+    GNUTLS_CERT_REVOCATION_DATA_ISSUED_IN_FUTURE = 32768,
+    GNUTLS_CERT_UNEXPECTED_OWNER = 16384,
+    GNUTLS_CERT_REVOCATION_DATA_SUPERSEDED = 4096,
+    GNUTLS_CERT_SIGNATURE_FAILURE = 2048,
+    GNUTLS_CERT_EXPIRED = 1024,
+    GNUTLS_CERT_NOT_ACTIVATED = 512,
+    GNUTLS_CERT_INSECURE_ALGORITHM = 256,
+    GNUTLS_CERT_SIGNER_NOT_CA = 128,
+    GNUTLS_CERT_SIGNER_NOT_FOUND = 64,
+    GNUTLS_CERT_REVOKED = 32,
+    GNUTLS_CERT_INVALID = 2,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_certificate_type_t {
-    GNUTLS_CRT_RAW,
-    GNUTLS_CRT_OPENPGP,
-    GNUTLS_CRT_X509,
-    GNUTLS_CRT_UNKNOWN,
+    GNUTLS_CRT_RAW = 3,
+    GNUTLS_CRT_OPENPGP = 2,
+    GNUTLS_CRT_X509 = 1,
+    GNUTLS_CRT_UNKNOWN = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_x509_crt_fmt_t {
-    GNUTLS_X509_FMT_PEM,
-    GNUTLS_X509_FMT_DER,
+    GNUTLS_X509_FMT_PEM = 1,
+    GNUTLS_X509_FMT_DER = 0,
 }  // end of enum
 
 pub type gnutls_transport_ptr_t = *mut libc::c_void;
@@ -618,7 +618,7 @@ pub struct gnutls_datum_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_server_name_type_t {
-    GNUTLS_NAME_DNS,
+    GNUTLS_NAME_DNS = 1,
 }  // end of enum
 
 pub type gnutls_pubkey_t = *mut gnutls_pubkey_st;

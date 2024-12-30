@@ -760,18 +760,18 @@ pub union sigval {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISblank,
-    _ISgraph,
-    _ISprint,
-    _ISspace,
-    _ISxdigit,
-    _ISdigit,
-    _ISalpha,
-    _ISlower,
-    _ISupper,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISspace = 8192,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
+    _ISupper = 256,
 }  // end of enum
 
 pub type XID = libc::c_ulong;
@@ -1551,11 +1551,11 @@ pub struct XTextProperty {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum XICCEncodingStyle {
-    XUTF8StringStyle,
-    XStdICCTextStyle,
-    XTextStyle,
-    XCompoundTextStyle,
-    XStringStyle,
+    XUTF8StringStyle = 4,
+    XStdICCTextStyle = 3,
+    XTextStyle = 2,
+    XCompoundTextStyle = 1,
+    XStringStyle = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1745,9 +1745,9 @@ pub struct config_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum config_error_t {
-    CONFIG_ERR_PARSE,
-    CONFIG_ERR_FILE_IO,
-    CONFIG_ERR_NONE,
+    CONFIG_ERR_PARSE = 2,
+    CONFIG_ERR_FILE_IO = 1,
+    CONFIG_ERR_NONE = 0,
 }  // end of enum
 
 pub type GLenum = libc::c_uint;
@@ -2312,14 +2312,14 @@ pub enum win_evmode_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum drm_vblank_seq_type {
-    _DRM_VBLANK_SIGNAL,
-    _DRM_VBLANK_SECONDARY,
-    _DRM_VBLANK_NEXTONMISS,
-    _DRM_VBLANK_FLIP,
-    _DRM_VBLANK_EVENT,
-    _DRM_VBLANK_HIGH_CRTC_MASK,
-    _DRM_VBLANK_RELATIVE,
-    _DRM_VBLANK_ABSOLUTE,
+    _DRM_VBLANK_SIGNAL = 1073741824,
+    _DRM_VBLANK_SECONDARY = 536870912,
+    _DRM_VBLANK_NEXTONMISS = 268435456,
+    _DRM_VBLANK_FLIP = 134217728,
+    _DRM_VBLANK_EVENT = 67108864,
+    _DRM_VBLANK_HIGH_CRTC_MASK = 62,
+    _DRM_VBLANK_RELATIVE = 1,
+    _DRM_VBLANK_ABSOLUTE = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]

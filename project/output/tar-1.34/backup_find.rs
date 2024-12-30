@@ -22,10 +22,10 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
-    numbered_backups,
-    numbered_existing_backups,
-    simple_backups,
-    no_backups,
+    numbered_backups = 3,
+    numbered_existing_backups = 2,
+    simple_backups = 1,
+    no_backups = 0,
 }  // end of enum
 
 pub type ptrdiff_t = libc::c_long;

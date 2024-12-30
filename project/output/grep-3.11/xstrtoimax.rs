@@ -33,18 +33,18 @@ pub const _ISspace: C2RustUnnamed = 8192;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    _ISspace,
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISblank,
-    _ISgraph,
-    _ISprint,
-    _ISxdigit,
-    _ISdigit,
-    _ISalpha,
-    _ISlower,
-    _ISupper,
+    _ISspace = 8192,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
+    _ISupper = 256,
 }  // end of enum
 
 #[no_mangle]

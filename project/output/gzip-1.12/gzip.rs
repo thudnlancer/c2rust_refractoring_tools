@@ -350,7 +350,7 @@ pub type ulg = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    TIMESPEC_RESOLUTION,
+    TIMESPEC_RESOLUTION = 1000000000,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -373,17 +373,17 @@ pub enum savedir_option {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    ENV_OPTION,
-    SYNCHRONOUS_OPTION,
-    RSYNCABLE_OPTION,
-    PRESUME_INPUT_TTY_OPTION,
+    ENV_OPTION = 131,
+    SYNCHRONOUS_OPTION = 130,
+    RSYNCABLE_OPTION = 129,
+    PRESUME_INPUT_TTY_OPTION = 128,
 }  // end of enum
 
 pub const try_opening_directories: C2RustUnnamed_12 = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
-    try_opening_directories,
+    try_opening_directories = 1,
 }  // end of enum
 
 pub type C2RustUnnamed_12 = libc::c_uint;

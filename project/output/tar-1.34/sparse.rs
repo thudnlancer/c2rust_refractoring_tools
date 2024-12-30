@@ -203,7 +203,7 @@ pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    DEFAULT_MXFAST,
+    DEFAULT_MXFAST = 128,
 }  // end of enum
 
 pub type C2RustUnnamed_2 = libc::c_uint;
@@ -433,9 +433,9 @@ pub struct tar_sparse_optab {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sparse_scan_state {
-    scan_end,
-    scan_block,
-    scan_begin,
+    scan_end = 2,
+    scan_block = 1,
+    scan_begin = 0,
 }  // end of enum
 
 pub const add_fail: oldgnu_add_status = 2;

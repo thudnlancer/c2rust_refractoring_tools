@@ -250,9 +250,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO,
-    RM_MEM,
-    RM_MMAP,
+    RM_STDIO = 2,
+    RM_MEM = 1,
+    RM_MMAP = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -275,9 +275,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
-    notmade,
+    effective = 2,
+    real = 1,
+    notmade = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -401,10 +401,10 @@ pub struct range {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum isr_actions {
-    ISR_CATCHMMAPINTS,
-    ISR_RESTOREINTS,
-    ISR_IGNOREINTS,
-    ISR_CATCHINTS,
+    ISR_CATCHMMAPINTS = 3,
+    ISR_RESTOREINTS = 2,
+    ISR_IGNOREINTS = 1,
+    ISR_CATCHINTS = 0,
 }  // end of enum
 
 #[inline]

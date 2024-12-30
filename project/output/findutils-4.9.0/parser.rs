@@ -977,8 +977,8 @@ pub const seen_prune: C2RustUnnamed_33 = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_33 {
-    seen_delete,
-    seen_prune,
+    seen_delete = 1,
+    seen_prune = 2,
 }  // end of enum
 
 pub type C2RustUnnamed_33 = libc::c_uint;

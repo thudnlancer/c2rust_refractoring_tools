@@ -10,7 +10,7 @@ pub const SYS_BUFSIZE_MAX: C2RustUnnamed = 2146435072;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    SYS_BUFSIZE_MAX,
+    SYS_BUFSIZE_MAX = 2146435072,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

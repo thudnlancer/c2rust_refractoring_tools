@@ -243,7 +243,7 @@ pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    DEFAULT_MXFAST,
+    DEFAULT_MXFAST = 128,
 }  // end of enum
 
 pub type C2RustUnnamed_2 = libc::c_uint;

@@ -234,8 +234,8 @@ pub type awk_two_way_processor_t = awk_two_way_processor;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    GAWK_API_MINOR_VERSION,
-    GAWK_API_MAJOR_VERSION,
+    GAWK_API_MINOR_VERSION = 2,
+    GAWK_API_MAJOR_VERSION = 3,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -306,8 +306,8 @@ pub struct awk_element {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    AWK_ELEMENT_DELETE,
-    AWK_ELEMENT_DEFAULT,
+    AWK_ELEMENT_DELETE = 1,
+    AWK_ELEMENT_DEFAULT = 0,
 }  // end of enum
 
 pub type awk_element_t = awk_element;

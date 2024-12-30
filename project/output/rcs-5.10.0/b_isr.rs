@@ -225,9 +225,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
-    notmade,
+    effective = 2,
+    real = 1,
+    notmade = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -469,10 +469,10 @@ pub struct stack_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum isr_actions {
-    ISR_CATCHMMAPINTS,
-    ISR_RESTOREINTS,
-    ISR_IGNOREINTS,
-    ISR_CATCHINTS,
+    ISR_CATCHMMAPINTS = 3,
+    ISR_RESTOREINTS = 2,
+    ISR_IGNOREINTS = 1,
+    ISR_CATCHINTS = 0,
 }  // end of enum
 
 #[no_mangle]

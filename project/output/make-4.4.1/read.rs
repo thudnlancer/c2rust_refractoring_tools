@@ -361,19 +361,19 @@ pub struct file {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cmd_state {
-    cs_finished,
-    cs_running,
-    cs_deps_running,
-    cs_not_started,
+    cs_finished = 3,
+    cs_running = 2,
+    cs_deps_running = 1,
+    cs_not_started = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
-    us_failed,
-    us_question,
-    us_none,
-    us_success,
+    us_failed = 3,
+    us_question = 2,
+    us_none = 1,
+    us_success = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -644,12 +644,12 @@ pub const c_ifneq: C2RustUnnamed = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    c_ifneq,
-    c_endif,
-    c_else,
-    c_ifeq,
-    c_ifndef,
-    c_ifdef,
+    c_ifneq = 3,
+    c_endif = 5,
+    c_else = 4,
+    c_ifeq = 2,
+    c_ifndef = 1,
+    c_ifdef = 0,
 }  // end of enum
 
 #[inline]

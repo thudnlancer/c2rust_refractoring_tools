@@ -226,9 +226,9 @@ pub struct _obstack_chunk {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exit_codes {
-    EXIT_PANIC,
-    EXIT_BAD_INPUT,
-    EXIT_BAD_USAGE,
+    EXIT_PANIC = 4,
+    EXIT_BAD_INPUT = 2,
+    EXIT_BAD_USAGE = 1,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -411,18 +411,18 @@ pub const _ISspace: C2RustUnnamed_4 = 8192;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    _ISblank,
-    _ISdigit,
-    _ISspace,
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISgraph,
-    _ISprint,
-    _ISxdigit,
-    _ISalpha,
-    _ISlower,
-    _ISupper,
+    _ISblank = 1,
+    _ISdigit = 2048,
+    _ISspace = 8192,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISxdigit = 4096,
+    _ISalpha = 1024,
+    _ISlower = 512,
+    _ISupper = 256,
 }  // end of enum
 
 #[inline]

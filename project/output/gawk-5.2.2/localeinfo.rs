@@ -40,7 +40,7 @@ pub const native_c_charset: C2RustUnnamed_0 = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    native_c_charset,
+    native_c_charset = 1,
 }  // end of enum
 
 pub type C2RustUnnamed_0 = libc::c_uint;

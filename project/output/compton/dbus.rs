@@ -475,18 +475,18 @@ pub struct DBusMessageIter {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum DBusBusType {
-    DBUS_BUS_STARTER,
-    DBUS_BUS_SYSTEM,
-    DBUS_BUS_SESSION,
+    DBUS_BUS_STARTER = 2,
+    DBUS_BUS_SYSTEM = 1,
+    DBUS_BUS_SESSION = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    DBUS_WATCH_HANGUP,
-    DBUS_WATCH_ERROR,
-    DBUS_WATCH_WRITABLE,
-    DBUS_WATCH_READABLE,
+    DBUS_WATCH_HANGUP = 8,
+    DBUS_WATCH_ERROR = 4,
+    DBUS_WATCH_WRITABLE = 2,
+    DBUS_WATCH_READABLE = 1,
 }  // end of enum
 
 pub type DBusAddWatchFunction = Option::<

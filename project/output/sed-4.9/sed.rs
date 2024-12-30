@@ -153,9 +153,9 @@ pub struct localeinfo {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exit_codes {
-    EXIT_PANIC,
-    EXIT_BAD_INPUT,
-    EXIT_BAD_USAGE,
+    EXIT_PANIC = 4,
+    EXIT_BAD_INPUT = 2,
+    EXIT_BAD_USAGE = 1,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -308,8 +308,8 @@ pub struct option {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    DEBUG_OPTION,
-    SANDBOX_OPTION,
+    DEBUG_OPTION = 129,
+    SANDBOX_OPTION = 128,
 }  // end of enum
 
 #[derive(Copy, Clone)]

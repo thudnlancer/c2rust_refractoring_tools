@@ -78,11 +78,11 @@ pub type mbchar_t = mbchar;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    sa_alignment_max,
-    sa_alignment_longdouble,
-    sa_alignment_longlong,
-    sa_alignment_double,
-    sa_alignment_long,
+    sa_alignment_max = 16,
+    sa_alignment_longdouble = 16,
+    sa_alignment_longlong = 8,
+    sa_alignment_double = 8,
+    sa_alignment_long = 8,
 }  // end of enum
 
 #[inline]

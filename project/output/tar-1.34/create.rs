@@ -640,7 +640,7 @@ pub enum files_count {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    IMPOSTOR_ERRNO,
+    IMPOSTOR_ERRNO = 2,
 }  // end of enum
 (PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]

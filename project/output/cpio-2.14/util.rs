@@ -331,9 +331,9 @@ pub const in_zeros: C2RustUnnamed = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    in_zeros,
-    not_in_zeros,
-    begin,
+    in_zeros = 1,
+    not_in_zeros = 2,
+    begin = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]

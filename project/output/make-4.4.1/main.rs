@@ -408,18 +408,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    _ISalnum,
-    _ISpunct,
-    _IScntrl,
-    _ISblank,
-    _ISgraph,
-    _ISprint,
-    _ISspace,
-    _ISxdigit,
-    _ISdigit,
-    _ISalpha,
-    _ISlower,
-    _ISupper,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISspace = 8192,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
+    _ISupper = 256,
 }  // end of enum
 
 pub type uintmax_t = __uintmax_t;
@@ -474,19 +474,19 @@ pub struct file {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cmd_state {
-    cs_finished,
-    cs_running,
-    cs_deps_running,
-    cs_not_started,
+    cs_finished = 3,
+    cs_running = 2,
+    cs_deps_running = 1,
+    cs_not_started = 0,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
-    us_failed,
-    us_question,
-    us_none,
-    us_success,
+    us_failed = 3,
+    us_question = 2,
+    us_none = 1,
+    us_success = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -693,14 +693,14 @@ pub struct command_switch {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
-    ignore,
-    floating,
-    positive_int,
-    filename,
-    strlist,
-    string,
-    flag_off,
-    flag,
+    ignore = 7,
+    floating = 6,
+    positive_int = 5,
+    filename = 4,
+    strlist = 3,
+    string = 2,
+    flag_off = 1,
+    flag = 0,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]

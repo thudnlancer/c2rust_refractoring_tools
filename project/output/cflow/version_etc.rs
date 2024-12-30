@@ -68,7 +68,7 @@ pub const COPYRIGHT_YEAR: C2RustUnnamed = 2009;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    COPYRIGHT_YEAR,
+    COPYRIGHT_YEAR = 2009,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

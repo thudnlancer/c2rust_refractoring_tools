@@ -83,13 +83,13 @@ pub type u64_0 = uint64_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    SHA384_DIGEST_SIZE,
+    SHA384_DIGEST_SIZE = 48,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    SHA512_DIGEST_SIZE,
+    SHA512_DIGEST_SIZE = 64,
 }  // end of enum
 
 #[derive(Copy, Clone)]

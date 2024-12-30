@@ -43,7 +43,7 @@ pub type ptrdiff_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    NCHAR,
+    NCHAR = 256,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;
