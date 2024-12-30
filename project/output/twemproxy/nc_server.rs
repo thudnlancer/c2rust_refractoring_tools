@@ -304,10 +304,10 @@ pub type yaml_encoding_t = yaml_encoding_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum yaml_encoding_e {
-    YAML_UTF16BE_ENCODING,
-    YAML_UTF16LE_ENCODING,
-    YAML_UTF8_ENCODING,
     YAML_ANY_ENCODING,
+    YAML_UTF8_ENCODING,
+    YAML_UTF16LE_ENCODING,
+    YAML_UTF16BE_ENCODING,
 }  // end of enum
 
 pub type yaml_token_type_t = yaml_token_type_e;
@@ -1099,10 +1099,10 @@ pub type msg_parse_result_t = msg_parse_result;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum msg_parse_result {
-    MSG_PARSE_AGAIN,
-    MSG_PARSE_REPAIR,
-    MSG_PARSE_ERROR,
     MSG_PARSE_OK,
+    MSG_PARSE_ERROR,
+    MSG_PARSE_REPAIR,
+    MSG_PARSE_AGAIN,
 }  // end of enum
 
 pub type msg_parse_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;

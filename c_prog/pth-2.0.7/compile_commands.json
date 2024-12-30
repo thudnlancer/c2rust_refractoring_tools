@@ -6,6 +6,236 @@
             "-I.",
             "-O2",
             "-pipe",
+            "-o",
+            "pth_util.o",
+            "pth_util.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_util.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_tcb.o",
+            "pth_tcb.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_tcb.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_debug.o",
+            "pth_debug.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_debug.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_fork.o",
+            "pth_fork.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_fork.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_high.o",
+            "pth_high.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_high.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_tcb.o",
+            "pth_tcb.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_tcb.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_clean.o",
+            "pth_clean.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_clean.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_lib.o",
+            "pth_lib.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_lib.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_sched.o",
+            "pth_sched.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_sched.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_syscall.o",
+            "pth_syscall.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_syscall.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_select.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_select.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_cancel.o",
+            "pth_cancel.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_cancel.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_attr.o",
+            "pth_attr.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_attr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_common.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_common.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_data.o",
+            "pth_data.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_data.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_syscall.o",
+            "pth_syscall.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_syscall.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
             "-fPIC",
             "-DPIC",
             "-o",
@@ -23,11 +253,25 @@
             "-O2",
             "-pipe",
             "-o",
-            "pth_errno.o",
-            "pth_errno.c"
+            "pth_high.o",
+            "pth_high.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_errno.c"
+        "file": "pth_high.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_uctx.o",
+            "pth_uctx.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_uctx.c"
     },
     {
         "arguments": [
@@ -52,14 +296,38 @@
             "-I.",
             "-O2",
             "-pipe",
+            "test_misc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_misc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
             "-fPIC",
             "-DPIC",
             "-o",
-            ".libs/pth_sync.o",
-            "pth_sync.c"
+            ".libs/pth_errno.o",
+            "pth_errno.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_sync.c"
+        "file": "pth_errno.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_philo.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_philo.c"
     },
     {
         "arguments": [
@@ -69,11 +337,103 @@
             "-O2",
             "-pipe",
             "-o",
-            "pth_attr.o",
-            "pth_attr.c"
+            "pth_event.o",
+            "pth_event.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_attr.c"
+        "file": "pth_event.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_string.o",
+            "pth_string.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_string.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_pqueue.o",
+            "pth_pqueue.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_pqueue.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_cancel.o",
+            "pth_cancel.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_cancel.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_event.o",
+            "pth_event.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_event.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_uctx.o",
+            "pth_uctx.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_uctx.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_errno.o",
+            "pth_errno.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_errno.c"
     },
     {
         "arguments": [
@@ -95,11 +455,209 @@
             "-O2",
             "-pipe",
             "-o",
+            "pth_compat.o",
+            "pth_compat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_compat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
             "pth_msg.o",
             "pth_msg.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
         "file": "pth_msg.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_debug.o",
+            "pth_debug.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_debug.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_data.o",
+            "pth_data.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_data.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_fork.o",
+            "pth_fork.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_fork.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_msg.o",
+            "pth_msg.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_msg.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_ext.o",
+            "pth_ext.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_ext.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_mctx.o",
+            "pth_mctx.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_mctx.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_ring.o",
+            "pth_ring.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_ring.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_httpd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_httpd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_sig.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_sig.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-o",
+            "pth_sync.o",
+            "pth_sync.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_sync.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_sfio.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_sfio.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_mctx.o",
+            "pth_mctx.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "pth_mctx.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-I.",
+            "-O2",
+            "-pipe",
+            "test_uctx.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
+        "file": "test_uctx.c"
     },
     {
         "arguments": [
@@ -138,112 +696,12 @@
             "-I.",
             "-O2",
             "-pipe",
-            "-fPIC",
-            "-DPIC",
             "-o",
-            ".libs/pth_uctx.o",
-            "pth_uctx.c"
+            "pth_pqueue.o",
+            "pth_pqueue.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_uctx.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_ring.o",
-            "pth_ring.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_ring.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_attr.o",
-            "pth_attr.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_attr.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "test_common.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_common.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_util.o",
-            "pth_util.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_util.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_high.o",
-            "pth_high.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_high.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "test_select.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_select.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_syscall.o",
-            "pth_syscall.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_syscall.c"
+        "file": "pth_pqueue.c"
     },
     {
         "arguments": [
@@ -271,263 +729,11 @@
             "-fPIC",
             "-DPIC",
             "-o",
-            ".libs/pth_string.o",
-            "pth_string.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_string.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_event.o",
-            "pth_event.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_event.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_syscall.o",
-            "pth_syscall.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_syscall.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_debug.o",
-            "pth_debug.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_debug.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_sync.o",
-            "pth_sync.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_sync.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_clean.o",
-            "pth_clean.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_clean.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_ring.o",
+            ".libs/pth_ring.o",
             "pth_ring.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
         "file": "pth_ring.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_tcb.o",
-            "pth_tcb.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_tcb.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_errno.o",
-            "pth_errno.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_errno.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "test_uctx.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_uctx.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_pqueue.o",
-            "pth_pqueue.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_pqueue.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_uctx.o",
-            "pth_uctx.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_uctx.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_high.o",
-            "pth_high.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_high.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_debug.o",
-            "pth_debug.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_debug.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_ext.o",
-            "pth_ext.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_ext.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_data.o",
-            "pth_data.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_data.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_event.o",
-            "pth_event.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_event.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_fork.o",
-            "pth_fork.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_fork.c"
     },
     {
         "arguments": [
@@ -550,212 +756,14 @@
             "-I.",
             "-O2",
             "-pipe",
-            "test_httpd.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_httpd.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "test_misc.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_misc.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
             "-fPIC",
             "-DPIC",
             "-o",
-            ".libs/pth_tcb.o",
-            "pth_tcb.c"
+            ".libs/pth_sync.o",
+            "pth_sync.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_tcb.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_sched.o",
-            "pth_sched.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_sched.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_msg.o",
-            "pth_msg.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_msg.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_compat.o",
-            "pth_compat.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_compat.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_lib.o",
-            "pth_lib.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_lib.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "test_sig.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_sig.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_fork.o",
-            "pth_fork.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_fork.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_string.o",
-            "pth_string.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_string.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_pqueue.o",
-            "pth_pqueue.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_pqueue.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_cancel.o",
-            "pth_cancel.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_cancel.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/pth_mctx.o",
-            "pth_mctx.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_mctx.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_data.o",
-            "pth_data.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_data.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
-            "-o",
-            "pth_mctx.o",
-            "pth_mctx.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_mctx.c"
+        "file": "pth_sync.c"
     },
     {
         "arguments": [
@@ -780,14 +788,12 @@
             "-I.",
             "-O2",
             "-pipe",
-            "-fPIC",
-            "-DPIC",
             "-o",
-            ".libs/pth_compat.o",
-            "pth_compat.c"
+            "pth_attr.o",
+            "pth_attr.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_compat.c"
+        "file": "pth_attr.c"
     },
     {
         "arguments": [
@@ -796,10 +802,14 @@
             "-I.",
             "-O2",
             "-pipe",
-            "test_sfio.c"
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/pth_string.o",
+            "pth_string.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_sfio.c"
+        "file": "pth_string.c"
     },
     {
         "arguments": [
@@ -820,23 +830,13 @@
             "-I.",
             "-O2",
             "-pipe",
-            "test_philo.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "test_philo.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-I.",
-            "-O2",
-            "-pipe",
+            "-fPIC",
+            "-DPIC",
             "-o",
-            "pth_cancel.o",
-            "pth_cancel.c"
+            ".libs/pth_compat.o",
+            "pth_compat.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/pth-2.0.7",
-        "file": "pth_cancel.c"
+        "file": "pth_compat.c"
     }
 ]

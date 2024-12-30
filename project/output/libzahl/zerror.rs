@@ -8,12 +8,12 @@ extern "C" {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zerror {
-    ZERROR_INVALID_RADIX,
-    ZERROR_NEGATIVE,
-    ZERROR_DIV_0,
-    ZERROR_0_DIV_0,
+    ZERROR_ERRNO_SET = 0,
     ZERROR_0_POW_0,
-    ZERROR_ERRNO_SET,
+    ZERROR_0_DIV_0,
+    ZERROR_DIV_0,
+    ZERROR_NEGATIVE,
+    ZERROR_INVALID_RADIX,
 }  // end of enum
 
 #[no_mangle]

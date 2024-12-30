@@ -1,2 +1,0 @@
-bug32271-2.sh: skipped test: requires a working valgrind
-SKIP testsuite/bug32271-2.sh (exit status: 77)

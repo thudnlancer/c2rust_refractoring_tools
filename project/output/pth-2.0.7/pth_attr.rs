@@ -281,20 +281,20 @@ pub struct C2RustUnnamed_8 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED,
-    PTH_STATUS_OCCURRED,
     PTH_STATUS_PENDING,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_FAILED,
 }  // end of enum
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_state_en {
-    PTH_STATE_DEAD,
-    PTH_STATE_WAITING,
-    PTH_STATE_READY,
+    PTH_STATE_SCHEDULER = 0,
     PTH_STATE_NEW,
-    PTH_STATE_SCHEDULER,
+    PTH_STATE_READY,
+    PTH_STATE_WAITING,
+    PTH_STATE_DEAD,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -335,8 +335,8 @@ pub const PTH_ATTR_GET: C2RustUnnamed_10 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    PTH_ATTR_SET,
     PTH_ATTR_GET,
+    PTH_ATTR_SET,
 }  // end of enum
 
 pub type C2RustUnnamed_10 = libc::c_uint;

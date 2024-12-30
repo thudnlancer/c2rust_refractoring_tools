@@ -365,11 +365,11 @@ pub enum C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -417,19 +417,19 @@ pub type file_stats_t = file_stat_s;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_auth_mode {
-    URL_AUTH_HIDE,
-    URL_AUTH_HIDE_PASSWD,
     URL_AUTH_SHOW,
+    URL_AUTH_HIDE_PASSWD,
+    URL_AUTH_HIDE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -876,10 +876,10 @@ pub enum C2RustUnnamed_5 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_6 {
-    scm_has_fragment,
-    scm_has_params,
-    scm_has_query,
-    scm_disabled,
+    scm_disabled = 1,
+    scm_has_params = 2,
+    scm_has_query = 4,
+    scm_has_fragment = 8,
 }  // end of enum
 c_char,
         __outbytesleft: *mut size_t,
@@ -1169,11 +1169,11 @@ pub enum C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1221,19 +1221,19 @@ pub type file_stats_t = file_stat_s;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_auth_mode {
-    URL_AUTH_HIDE,
-    URL_AUTH_HIDE_PASSWD,
     URL_AUTH_SHOW,
+    URL_AUTH_HIDE_PASSWD,
+    URL_AUTH_HIDE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -1681,10 +1681,10 @@ pub type C2RustUnnamed_6 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_7 {
-    urlchr_unsafe,
-    urlchr_reserved,
+    urlchr_reserved = 1,
+    urlchr_unsafe = 2,
 }  // end of enum
-TIME_ERA_ENTRIES,
+,
     _NL_TIME_ERA_NUM_ENTRIES,
     ERA_T_FMT,
     ERA_D_T_FMT,
@@ -1741,10 +1741,10 @@ TIME_ERA_ENTRIES,
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_6 {
-    scm_has_fragment,
-    scm_has_params,
-    scm_has_query,
-    scm_disabled,
+    scm_disabled = 1,
+    scm_has_params = 2,
+    scm_has_query = 4,
+    scm_has_fragment = 8,
 }  // end of enum
 c_char,
         __outbytesleft: *mut size_t,
@@ -2034,11 +2034,11 @@ pub enum C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -2086,19 +2086,19 @@ pub type file_stats_t = file_stat_s;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_auth_mode {
-    URL_AUTH_HIDE,
-    URL_AUTH_HIDE_PASSWD,
     URL_AUTH_SHOW,
+    URL_AUTH_HIDE_PASSWD,
+    URL_AUTH_HIDE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -2547,29 +2547,28 @@ pub type C2RustUnnamed_7 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
-    PE_INVALID_HOST_NAME,
-    PE_INVALID_USER_NAME,
-    PE_BAD_PORT_NUMBER,
-    PE_INVALID_IPV6_ADDRESS,
-    PE_UNTERMINATED_IPV6_ADDRESS,
+    PE_NO_ERROR = 0,
     PE_UNSUPPORTED_SCHEME,
-    PE_UNSUPPORTED_SCHEME_FTPS,
     PE_UNSUPPORTED_SCHEME_HTTPS,
+    PE_UNSUPPORTED_SCHEME_FTPS,
     PE_MISSING_SCHEME,
+    PE_INVALID_HOST_NAME,
+    PE_BAD_PORT_NUMBER,
+    PE_INVALID_USER_NAME,
+    PE_UNTERMINATED_IPV6_ADDRESS,
     PE_IPV6_NOT_SUPPORTED,
-    PE_NO_ERROR,
+    PE_INVALID_IPV6_ADDRESS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
-    filechr_control,
-    filechr_not_windows,
-    filechr_not_vms,
-    filechr_not_unix,
+    filechr_not_unix = 1,
+    filechr_not_vms = 2,
+    filechr_not_windows = 4,
+    filechr_control = 8,
 }  // end of enum
-
-#[repr(C)]
+epr(C)]
 pub struct timespec {
     pub tv_sec: __time_t,
     pub tv_nsec: __syscall_slong_t,
@@ -2834,11 +2833,11 @@ pub enum C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -2886,19 +2885,19 @@ pub type file_stats_t = file_stat_s;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_auth_mode {
-    URL_AUTH_HIDE,
-    URL_AUTH_HIDE_PASSWD,
     URL_AUTH_SHOW,
+    URL_AUTH_HIDE_PASSWD,
+    URL_AUTH_HIDE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -3347,17 +3346,17 @@ pub type C2RustUnnamed_7 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
-    PE_INVALID_HOST_NAME,
-    PE_INVALID_USER_NAME,
-    PE_BAD_PORT_NUMBER,
-    PE_INVALID_IPV6_ADDRESS,
-    PE_UNTERMINATED_IPV6_ADDRESS,
+    PE_NO_ERROR = 0,
     PE_UNSUPPORTED_SCHEME,
-    PE_UNSUPPORTED_SCHEME_FTPS,
     PE_UNSUPPORTED_SCHEME_HTTPS,
+    PE_UNSUPPORTED_SCHEME_FTPS,
     PE_MISSING_SCHEME,
+    PE_INVALID_HOST_NAME,
+    PE_BAD_PORT_NUMBER,
+    PE_INVALID_USER_NAME,
+    PE_UNTERMINATED_IPV6_ADDRESS,
     PE_IPV6_NOT_SUPPORTED,
-    PE_NO_ERROR,
+    PE_INVALID_IPV6_ADDRESS,
 }  // end of enum
 
 pub type C2RustUnnamed_9 = libc::c_uint;

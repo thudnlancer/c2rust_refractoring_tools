@@ -1,2 +1,0 @@
-inplace-selinux.sh: skipped test: this system lacks SELinux support
-SKIP testsuite/inplace-selinux.sh (exit status: 77)

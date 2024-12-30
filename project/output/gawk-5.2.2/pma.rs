@@ -404,9 +404,9 @@ pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    GROWN,
-    PIU,
-    IU,
+    IU = 0,
+    PIU = 1,
+    GROWN = 2,
 }  // end of enum
 
 pub type ul_t = libc::c_ulong;

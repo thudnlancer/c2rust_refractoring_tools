@@ -236,20 +236,20 @@ pub type http_data_cb = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum http_parser_type {
-    HTTP_BOTH,
-    HTTP_RESPONSE,
     HTTP_REQUEST,
+    HTTP_RESPONSE,
+    HTTP_BOTH,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum flags {
-    F_SKIPBODY,
-    F_UPGRADE,
-    F_TRAILING,
-    F_CONNECTION_CLOSE,
-    F_CONNECTION_KEEP_ALIVE,
-    F_CHUNKED,
+    F_CHUNKED = 1,
+    F_CONNECTION_KEEP_ALIVE = 2,
+    F_CONNECTION_CLOSE = 4,
+    F_TRAILING = 8,
+    F_UPGRADE = 16,
+    F_SKIPBODY = 32,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -415,9 +415,9 @@ pub struct C2RustUnnamed_11 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD,
-    REDIS_CONN_UNIX,
     REDIS_CONN_TCP,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_USERFD,
 }  // end of enum
 
 pub type redisFD = libc::c_int;
@@ -570,20 +570,20 @@ pub struct C2RustUnnamed_14 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_fsync_mode {
-    LOG_FSYNC_ALL,
+    LOG_FSYNC_AUTO = 0,
     LOG_FSYNC_MILLIS,
-    LOG_FSYNC_AUTO,
+    LOG_FSYNC_ALL,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
-    WEBDIS_TRACE,
-    WEBDIS_DEBUG,
-    WEBDIS_INFO,
-    WEBDIS_NOTICE,
+    WEBDIS_ERROR = 0,
     WEBDIS_WARNING,
-    WEBDIS_ERROR,
+    WEBDIS_NOTICE,
+    WEBDIS_INFO,
+    WEBDIS_DEBUG,
+    WEBDIS_TRACE = 8,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -605,18 +605,18 @@ pub struct http_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum header_copy {
-    HEADER_CHECK_DUPE,
-    HEADER_COPY_VALUE,
-    HEADER_COPY_KEY,
-    HEADER_COPY_NONE,
+    HEADER_COPY_NONE = 0,
+    HEADER_COPY_KEY = 1,
+    HEADER_COPY_VALUE = 2,
+    HEADER_CHECK_DUPE = 4,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum last_cb_t {
-    LAST_CB_VAL,
-    LAST_CB_KEY,
-    LAST_CB_NONE,
+    LAST_CB_NONE = 0,
+    LAST_CB_KEY = 1,
+    LAST_CB_VAL = 2,
 }  // end of enum
 
 pub type C2RustUnnamed_15 = libc::c_int;

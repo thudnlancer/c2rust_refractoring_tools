@@ -325,25 +325,25 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset,
-    v_noexport,
+    v_default = 0,
     v_export,
-    v_default,
+    v_noexport,
+    v_ifset,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_origin {
-    o_invalid,
-    o_automatic,
-    o_override,
-    o_command,
-    o_env_override,
-    o_file,
-    o_env,
     o_default,
+    o_env,
+    o_file,
+    o_env_override,
+    o_command,
+    o_override,
+    o_automatic,
+    o_invalid,
 }  // end of enum
-_default: variable_origin = 0;
+ault: variable_origin = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct variable {
@@ -368,24 +368,24 @@ pub struct variable {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_export {
-    v_ifset,
-    v_noexport,
+    v_default = 0,
     v_export,
-    v_default,
+    v_noexport,
+    v_ifset,
 }  // end of enum
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_flavor {
-    f_append_value,
-    f_shell,
-    f_conditional,
-    f_append,
-    f_expand,
-    f_recursive,
-    f_simple,
     f_bogus,
+    f_simple,
+    f_recursive,
+    f_expand,
+    f_append,
+    f_conditional,
+    f_shell,
+    f_append_value,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -1,2 +1,0 @@
-mb-charclass-non-utf8.sh: skipped test: ja_JP shift-jis locale not found
-SKIP testsuite/mb-charclass-non-utf8.sh (exit status: 77)

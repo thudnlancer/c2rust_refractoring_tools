@@ -571,17 +571,17 @@ pub enum C2RustUnnamed_11 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -624,9 +624,9 @@ pub struct buildcmd_control {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum BC_INIT_STATUS {
-    BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
+    BC_INIT_OK = 0,
     BC_INIT_ENV_TOO_BIG,
-    BC_INIT_OK,
+    BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -638,17 +638,17 @@ pub enum LongOptionIdentifier {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum XargsStatusValues {
-    XARGS_EXIT_COMMAND_NOT_FOUND,
-    XARGS_EXIT_COMMAND_CANNOT_BE_RUN,
-    XARGS_EXIT_CLIENT_FATAL_SIG,
-    XARGS_EXIT_CLIENT_EXIT_255,
-    XARGS_EXIT_CLIENT_EXIT_NONZERO,
+    XARGS_EXIT_CLIENT_EXIT_NONZERO = 123,
+    XARGS_EXIT_CLIENT_EXIT_255 = 124,
+    XARGS_EXIT_CLIENT_FATAL_SIG = 125,
+    XARGS_EXIT_COMMAND_CANNOT_BE_RUN = 126,
+    XARGS_EXIT_COMMAND_NOT_FOUND = 127,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ClientStatusValues {
-    CHILD_EXIT_PLEASE_STOP_IMMEDIATELY,
+    CHILD_EXIT_PLEASE_STOP_IMMEDIATELY = 255,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -659,10 +659,10 @@ pub struct C2RustUnnamed_12 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_line_state {
-    BACKSLASH,
-    QUOTE,
-    SPACE,
-    NORM,
+    NORM = 0,
+    SPACE = 1,
+    QUOTE = 2,
+    BACKSLASH = 3,
 }  // end of enum
 
 #[derive(Copy, Clone)]

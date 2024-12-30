@@ -1,2 +1,0 @@
-./testsuite/execute-tests.sh: line 58: test: : integer expression expected
-PASS testsuite/execute-tests.sh (exit status: 0)

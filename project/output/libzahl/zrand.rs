@@ -61,32 +61,32 @@ pub type z_t = [zahl; 1];
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zranddev {
-    LIBC_RAND48_RANDOM,
-    LIBC_RANDOM_RANDOM,
-    LIBC_RAND_RANDOM,
-    FASTEST_RANDOM,
-    DEFAULT_RANDOM,
+    FAST_RANDOM = 0,
     SECURE_RANDOM,
-    FAST_RANDOM,
+    DEFAULT_RANDOM,
+    FASTEST_RANDOM,
+    LIBC_RAND_RANDOM,
+    LIBC_RANDOM_RANDOM,
+    LIBC_RAND48_RANDOM,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zranddist {
-    MODUNIFORM,
+    QUASIUNIFORM = 0,
     UNIFORM,
-    QUASIUNIFORM,
+    MODUNIFORM,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zerror {
-    ZERROR_INVALID_RADIX,
-    ZERROR_NEGATIVE,
-    ZERROR_DIV_0,
-    ZERROR_0_DIV_0,
+    ZERROR_ERRNO_SET = 0,
     ZERROR_0_POW_0,
-    ZERROR_ERRNO_SET,
+    ZERROR_0_DIV_0,
+    ZERROR_DIV_0,
+    ZERROR_NEGATIVE,
+    ZERROR_INVALID_RADIX,
 }  // end of enum
 
 pub type time_t = __time_t;

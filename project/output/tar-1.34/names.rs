@@ -539,25 +539,25 @@ pub struct tar_stat_info {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND,
-    UPDATE_SUBCOMMAND,
-    LIST_SUBCOMMAND,
-    EXTRACT_SUBCOMMAND,
-    DIFF_SUBCOMMAND,
-    DELETE_SUBCOMMAND,
-    CREATE_SUBCOMMAND,
-    CAT_SUBCOMMAND,
-    APPEND_SUBCOMMAND,
     UNKNOWN_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    TEST_LABEL_SUBCOMMAND,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
-    exclusion_tag_all,
-    exclusion_tag_under,
-    exclusion_tag_contents,
     exclusion_tag_none,
+    exclusion_tag_contents,
+    exclusion_tag_under,
+    exclusion_tag_all,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -580,9 +580,9 @@ pub struct name {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
-    FILES_MANY,
-    FILES_ONE,
     FILES_NONE,
+    FILES_ONE,
+    FILES_MANY,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -618,11 +618,11 @@ pub struct C2RustUnnamed_5 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nelt_type {
-    NELT_OPTION,
-    NELT_NOOP,
-    NELT_FILE,
-    NELT_CHDIR,
     NELT_NAME,
+    NELT_CHDIR,
+    NELT_FILE,
+    NELT_NOOP,
+    NELT_OPTION,
 }  // end of enum
 
 pub const GRID_MATCH: C2RustUnnamed_7 = 3;
@@ -661,9 +661,9 @@ pub const GRH_LOCAL: C2RustUnnamed_7 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wildcards {
-    enable_wildcards,
-    disable_wildcards,
     default_wildcards,
+    disable_wildcards,
+    enable_wildcards,
 }  // end of enum
 
 pub const file_list_end: read_file_list_state = 1;
@@ -678,9 +678,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE,
-    OPTS_COMMAND_LINE,
     OPTS_ENVIRON,
+    OPTS_COMMAND_LINE,
+    OPTS_FILE,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -689,8 +689,8 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end,
     file_list_success,
+    file_list_end,
     file_list_zero,
     file_list_skip,
 }  // end of enum
@@ -760,9 +760,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE,
-    OPTS_COMMAND_LINE,
     OPTS_ENVIRON,
+    OPTS_COMMAND_LINE,
+    OPTS_FILE,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -771,8 +771,8 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end,
     file_list_success,
+    file_list_end,
     file_list_zero,
     file_list_skip,
 }  // end of enum
@@ -818,9 +818,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE,
-    OPTS_COMMAND_LINE,
     OPTS_ENVIRON,
+    OPTS_COMMAND_LINE,
+    OPTS_FILE,
 }  // end of enum
 
 pub const file_list_success: read_file_list_state = 0;
@@ -829,8 +829,8 @@ pub const file_list_skip: read_file_list_state = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_file_list_state {
-    file_list_end,
     file_list_success,
+    file_list_end,
     file_list_zero,
     file_list_skip,
 }  // end of enum

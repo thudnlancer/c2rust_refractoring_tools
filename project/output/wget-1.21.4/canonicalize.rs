@@ -92,10 +92,10 @@ pub struct max_align_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum canonicalize_mode_t {
-    CAN_NOLINKS,
-    CAN_MISSING,
-    CAN_ALL_BUT_LAST,
-    CAN_EXISTING,
+    CAN_EXISTING = 0,
+    CAN_ALL_BUT_LAST = 1,
+    CAN_MISSING = 2,
+    CAN_NOLINKS = 4,
 }  // end of enum
 
 #[derive(Copy, Clone)]

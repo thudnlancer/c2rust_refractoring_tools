@@ -82,28 +82,28 @@ pub type linked_list_free_data_fp = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symtype {
-    SymIdentifier,
-    SymToken,
     SymUndefined,
+    SymToken,
+    SymIdentifier,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
-    AnyStorage,
-    AutoStorage,
-    StaticStorage,
-    ExplicitExternStorage,
     ExternStorage,
+    ExplicitExternStorage,
+    StaticStorage,
+    AutoStorage,
+    AnyStorage,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
-    symbol_alias,
-    symbol_parm,
-    symbol_temp,
     symbol_none,
+    symbol_temp,
+    symbol_parm,
+    symbol_alias,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -135,13 +135,13 @@ pub type Symbol = symbol;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cflow_output_command {
-    cflow_output_text,
-    cflow_output_symbol,
-    cflow_output_separator,
-    cflow_output_newline,
-    cflow_output_end,
-    cflow_output_begin,
     cflow_output_init,
+    cflow_output_begin,
+    cflow_output_end,
+    cflow_output_newline,
+    cflow_output_separator,
+    cflow_output_symbol,
+    cflow_output_text,
 }  // end of enum
 
 #[derive(Copy, Clone)]

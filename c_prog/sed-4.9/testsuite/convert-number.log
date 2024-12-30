@@ -1,4 +1,0 @@
-./testsuite/convert-number.sh: line 64: test: : integer expression expected
-./testsuite/convert-number.sh: line 111: test: : integer expression expected
-./testsuite/convert-number.sh: line 148: test: : integer expression expected
-PASS testsuite/convert-number.sh (exit status: 0)

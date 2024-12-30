@@ -116,21 +116,21 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum tokens {
-    STRING,
-    SEMI,
-    NUM,
-    ID,
-    COLON,
-    UNKN,
-    SPACE,
-    SBEGIN,
-    PERIOD,
-    Letter,
-    LETTER,
-    NEWLN,
-    IDCHAR,
-    DIGIT,
     DELIM,
+    DIGIT,
+    IDCHAR,
+    NEWLN,
+    LETTER,
+    Letter,
+    PERIOD,
+    SBEGIN,
+    SPACE,
+    UNKN,
+    COLON,
+    ID,
+    NUM,
+    SEMI,
+    STRING,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -169,9 +169,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
     notmade,
+    real,
+    effective,
 }  // end of enum
 
 #[derive(Copy, Clone)]

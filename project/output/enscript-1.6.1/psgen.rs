@@ -325,50 +325,50 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum HeaderType {
-    HDR_FANCY,
-    HDR_SIMPLE,
     HDR_NONE,
+    HDR_SIMPLE,
+    HDR_FANCY,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
-    LABEL_LONG,
     LABEL_SHORT,
+    LABEL_LONG,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum MarkWrappedLinesStyle {
-    MWLS_ARROW,
-    MWLS_BOX,
-    MWLS_PLUS,
-    MWLS_NONE,
+    MWLS_NONE = 0,
+    MWLS_PLUS = 1,
+    MWLS_BOX = 2,
+    MWLS_ARROW = 3,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NonPrintableFormat {
-    NPF_OCTAL,
-    NPF_CARET,
-    NPF_QUESTIONMARK,
     NPF_SPACE,
+    NPF_QUESTIONMARK,
+    NPF_CARET,
+    NPF_OCTAL,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN,
-    FORMFEED_PAGE,
     FORMFEED_COLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_HCOLUMN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LineEndType {
-    LE_WORD_WRAP,
-    LE_CHAR_WRAP,
     LE_TRUNCATE,
+    LE_CHAR_WRAP,
+    LE_WORD_WRAP,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -424,20 +424,20 @@ pub type Color = color_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum TokenType {
-    tPS,
-    tCOLOR,
-    tFONT,
-    tNEWPAGE,
-    tSETPAGENUMBER,
-    tSETFILENAME,
-    tEPSF,
-    tWRAPPED_NEWLINE,
-    tCARRIAGE_RETURN,
-    tNEWLINE,
-    tFORMFEED,
-    tSTRING,
-    tEOF,
     tNONE,
+    tEOF,
+    tSTRING,
+    tFORMFEED,
+    tNEWLINE,
+    tCARRIAGE_RETURN,
+    tWRAPPED_NEWLINE,
+    tEPSF,
+    tSETFILENAME,
+    tSETPAGENUMBER,
+    tNEWPAGE,
+    tFONT,
+    tCOLOR,
+    tPS,
 }  // end of enum
 
 pub type Token = gs_token_st;
@@ -499,17 +499,17 @@ pub const ESC_FONT: SpecialEscape = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SpecialEscape {
-    ESC_PS,
-    ESC_NEWPAGE,
-    ESC_SETPAGENUMBER,
-    ESC_SETFILENAME,
-    ESC_ESCAPE,
-    ESC_BGGRAY,
-    ESC_SHADE,
-    ESC_COLOR,
-    ESC_FONT,
-    ESC_EPSF,
     ESC_COMMENT,
+    ESC_EPSF,
+    ESC_FONT,
+    ESC_COLOR,
+    ESC_NEWPAGE,
+    ESC_SETFILENAME,
+    ESC_SETPAGENUMBER,
+    ESC_SHADE,
+    ESC_BGGRAY,
+    ESC_ESCAPE,
+    ESC_PS,
 }  // end of enum
 
 #[derive(Copy, Clone)]

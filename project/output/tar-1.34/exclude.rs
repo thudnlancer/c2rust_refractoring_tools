@@ -249,8 +249,8 @@ pub type Hash_table = hash_table;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclude_type {
-    exclude_pattern,
     exclude_hash,
+    exclude_pattern,
 }  // end of enum
 
 pub type mbchar_t = mbchar;

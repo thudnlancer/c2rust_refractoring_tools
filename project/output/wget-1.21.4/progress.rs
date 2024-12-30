@@ -362,11 +362,11 @@ pub union C2RustUnnamed_4 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 pub type sig_atomic_t = __sig_atomic_t;

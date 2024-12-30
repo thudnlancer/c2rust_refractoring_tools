@@ -296,13 +296,13 @@ pub struct compat_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum how_t {
-    DEFAULT,
-    LD_SO_CONF,
-    RUNPATH,
-    LD_LIBRARY_PATH,
-    RPATH,
-    DIRECT,
     INPUT,
+    DIRECT,
+    RPATH,
+    LD_LIBRARY_PATH,
+    RUNPATH,
+    LD_SO_CONF,
+    DEFAULT,
 }  // end of enum
 
 #[derive(Copy, Clone)]

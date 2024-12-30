@@ -392,13 +392,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT,
-    STAR_FORMAT,
-    POSIX_FORMAT,
-    USTAR_FORMAT,
-    OLDGNU_FORMAT,
-    V7_FORMAT,
     DEFAULT_FORMAT,
+    V7_FORMAT,
+    OLDGNU_FORMAT,
+    USTAR_FORMAT,
+    POSIX_FORMAT,
+    STAR_FORMAT,
+    GNU_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -475,16 +475,16 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND,
-    UPDATE_SUBCOMMAND,
-    LIST_SUBCOMMAND,
-    EXTRACT_SUBCOMMAND,
-    DIFF_SUBCOMMAND,
-    DELETE_SUBCOMMAND,
-    CREATE_SUBCOMMAND,
-    CAT_SUBCOMMAND,
-    APPEND_SUBCOMMAND,
     UNKNOWN_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    TEST_LABEL_SUBCOMMAND,
 }  // end of enum
 
 #[derive(Copy, Clone)]

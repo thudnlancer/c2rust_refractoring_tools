@@ -393,67 +393,67 @@ pub type uintmax_t = __uintmax_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
-    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OK = 0,
     LONGINT_OVERFLOW,
-    LONGINT_OK,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID = 4,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    human_B,
-    human_SI,
-    human_space_before_unit,
-    human_base_1024,
-    human_autoscale,
-    human_suppress_point_zero,
-    human_group_digits,
-    human_floor,
-    human_round_to_nearest,
-    human_ceiling,
+    human_ceiling = 0,
+    human_round_to_nearest = 1,
+    human_floor = 2,
+    human_group_digits = 4,
+    human_suppress_point_zero = 8,
+    human_autoscale = 16,
+    human_base_1024 = 32,
+    human_space_before_unit = 64,
+    human_SI = 128,
+    human_B = 256,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum GetwordEndianState {
-    GetwordEndianStateSwab,
-    GetwordEndianStateNative,
-    GetwordEndianStateInitial,
+    GetwordEndianStateInitial = 0,
+    GetwordEndianStateNative = 1,
+    GetwordEndianStateSwab = 2,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum visit_result {
-    VISIT_ABORT,
-    VISIT_REJECTED,
-    VISIT_ACCEPTED,
-    VISIT_CONTINUE,
+    VISIT_CONTINUE = 1,
+    VISIT_ACCEPTED = 2,
+    VISIT_REJECTED = 4,
+    VISIT_ABORT = 8,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ExistenceCheckType {
-    ACCEPT_NON_EXISTING,
-    ACCEPT_EXISTING,
     ACCEPT_EITHER,
+    ACCEPT_EXISTING,
+    ACCEPT_NON_EXISTING,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -491,7 +491,7 @@ pub const TIME_BUF_LEN: C2RustUnnamed_1 = 20;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    TIME_BUF_LEN,
+    TIME_BUF_LEN = 20,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;

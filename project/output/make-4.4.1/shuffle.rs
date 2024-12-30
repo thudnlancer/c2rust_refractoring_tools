@@ -127,10 +127,10 @@ pub struct C2RustUnnamed {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum shuffle_mode {
-    sm_identity,
-    sm_reverse,
-    sm_random,
     sm_none,
+    sm_random,
+    sm_reverse,
+    sm_identity,
 }  // end of enum
 
 static mut config: C2RustUnnamed = unsafe {

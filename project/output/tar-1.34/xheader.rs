@@ -445,8 +445,8 @@ pub const pax_file_header: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    pax_global_header,
     pax_file_header,
+    pax_global_header,
 }  // end of enum
 
 pub type C2RustUnnamed_3 = libc::c_uint;

@@ -316,10 +316,10 @@ pub type yaml_encoding_t = yaml_encoding_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum yaml_encoding_e {
-    YAML_UTF16BE_ENCODING,
-    YAML_UTF16LE_ENCODING,
-    YAML_UTF8_ENCODING,
     YAML_ANY_ENCODING,
+    YAML_UTF8_ENCODING,
+    YAML_UTF16LE_ENCODING,
+    YAML_UTF16BE_ENCODING,
 }  // end of enum
 
 pub type yaml_token_type_t = yaml_token_type_e;

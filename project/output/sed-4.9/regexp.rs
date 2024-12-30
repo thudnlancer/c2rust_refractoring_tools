@@ -146,17 +146,17 @@ pub struct regex {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum text_types {
-    TEXT_REGEX,
-    TEXT_REPLACEMENT,
     TEXT_BUFFER,
+    TEXT_REPLACEMENT,
+    TEXT_REGEX,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
-    POSIXLY_BASIC,
-    POSIXLY_CORRECT,
     POSIXLY_EXTENDED,
+    POSIXLY_CORRECT,
+    POSIXLY_BASIC,
 }  // end of enum
 
 static mut errors: [libc::c_char; 72] = unsafe {

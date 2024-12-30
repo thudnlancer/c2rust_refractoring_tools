@@ -299,13 +299,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT,
-    STAR_FORMAT,
-    POSIX_FORMAT,
-    USTAR_FORMAT,
-    OLDGNU_FORMAT,
-    V7_FORMAT,
     DEFAULT_FORMAT,
+    V7_FORMAT,
+    OLDGNU_FORMAT,
+    USTAR_FORMAT,
+    POSIX_FORMAT,
+    STAR_FORMAT,
+    GNU_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -382,18 +382,18 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hole_detection_method {
-    HOLE_DETECTION_SEEK,
-    HOLE_DETECTION_RAW,
     HOLE_DETECTION_DEFAULT,
+    HOLE_DETECTION_RAW,
+    HOLE_DETECTION_SEEK,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
-    dump_status_not_implemented,
-    dump_status_fail,
-    dump_status_short,
     dump_status_ok,
+    dump_status_short,
+    dump_status_fail,
+    dump_status_not_implemented,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -442,9 +442,9 @@ pub const add_fail: oldgnu_add_status = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum oldgnu_add_status {
-    add_fail,
-    add_finish,
     add_ok,
+    add_finish,
+    add_fail,
 }  // end of enum
 
 #[inline]

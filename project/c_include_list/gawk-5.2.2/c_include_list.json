@@ -1,1 +1,536 @@
-{}
+{
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/array.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/cint_array.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/profile.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/node.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/ext.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/debug.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/cmd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/str_array.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/io.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/version.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/int_array.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/field.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/main.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awkgram.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/eval.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/interpret.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/msg.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatcomp.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/builtin.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/random.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/command.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/cmd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/mpfr.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/replace.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/symbol.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkmisc.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/posix/gawkmisc.c"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/re.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awk.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/protos.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/floatmagic.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/localeinfo.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awklib/pwcat.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awklib/grcat.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex_internal.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops-internal.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/verify.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/attribute.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex_internal.c",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regcomp.c",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regexec.c",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray-skeleton.c"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dfa.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/idx.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/regex.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/flexmember.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/verify.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops-internal.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/localeinfo.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/random.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/random.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt1.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt_int.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/localeinfo.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/localeinfo.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/verify.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/getopt_int.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray_resize_clear.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray_at_failure.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray_finalize.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray_emplace_enlarge.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops-internal.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray_resize.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/libc-config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/pma.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/cdefs.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/malloc/dynarray.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support/intprops-internal.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/readdir.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkdirfd.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/nonposix.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/inplace.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkfts.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkfts.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkdirfd.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/nonposix.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/revoutput.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/time.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/readfile.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/intdiv.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/fnmatch.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/stack.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/stack.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/readdir_test.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkdirfd.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/nonposix.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/filefuncs.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/gawkfts.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/stack.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ordchr.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/revtwoway.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/fork.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/testext.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/rwarray.c": [
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/config.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension/ext_custom.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gawkapi.h",
+        "/home/c2rust/Desktop/c_prog/gawk-5.2.2/gettext.h"
+    ]
+}

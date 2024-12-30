@@ -552,109 +552,109 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    METALINK_METADATA,
-    IF_MODIFIED_SINCE,
-    TEXTCSS,
-    ADDED_HTML_EXTENSION,
-    ACCEPTRANGES,
-    SEND_NOCACHE,
-    HEAD_ONLY,
-    RETROKF,
-    TEXTHTML,
+    TEXTHTML = 0x1,
+    RETROKF = 0x2,
+    HEAD_ONLY = 0x4,
+    SEND_NOCACHE = 0x8,
+    ACCEPTRANGES = 0x10,
+    ADDED_HTML_EXTENSION = 0x20,
+    TEXTCSS = 0x40,
+    IF_MODIFIED_SINCE = 0x80,
+    METALINK_METADATA = 0x100,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum uerr_t {
-    METALINK_SIZE_ERROR,
-    RETR_WITH_METALINK,
-    METALINK_MISSING_RESOURCE,
-    METALINK_SIG_ERROR,
-    METALINK_CHKSUM_ERROR,
-    METALINK_RETR_ERROR,
-    METALINK_PARSE_ERROR,
-    TIMECONV_ERR,
-    WARC_TMP_FWRITEERR,
-    WARC_TMP_FOPENERR,
-    WARC_ERR,
-    UNKNOWNATTR,
-    ATTRMISSING,
-    CLOSEFAILED,
-    NEWLOCATION_KEEP_POST,
-    UNLINKERR,
-    VERIFCERTERR,
-    SSLINITFAILED,
-    WRITEFAILED,
-    QUOTEXC,
-    AUTHFAILED,
-    PROXERR,
-    RETRBADPATTERN,
-    RANGEERR,
-    FILEBADFILE,
-    TRYLIMEXC,
-    READERR,
-    RETRFINISHED,
-    RETRUNNEEDED,
-    CONTNOTSUPPORTED,
-    FTPNOAUTH,
-    FTPNOPROT,
-    FTPNOPBSZ,
-    FTPNOPASV,
-    FTPINVPASV,
-    WRONGCODE,
-    RECLEVELEXC,
-    RETROK,
-    HERR,
-    GATEWAYTIMEOUT,
-    HEOF,
-    FWRITEERR,
-    FOPEN_EXCL_ERR,
-    FOPENERR,
-    URLERROR,
-    FTPRESTFAIL,
-    FTPRETRINT,
-    FTPSRVERR,
-    FTPRERR,
-    FTPUNKNOWNTYPE,
-    FTPNSFOD,
-    FTPSYSERR,
-    FTPPORTERR,
-    FTPLOGREFUSED,
-    FTPLOGINC,
-    FTPOK,
-    NEWLOCATION,
-    CONIMPOSSIBLE,
-    CONSSLERR,
-    CONERROR,
-    CONSOCKERR,
-    HOSTERR,
     NOCONERROR,
+    HOSTERR,
+    CONSOCKERR,
+    CONERROR,
+    CONSSLERR,
+    CONIMPOSSIBLE,
+    NEWLOCATION,
+    FTPOK,
+    FTPLOGINC,
+    FTPLOGREFUSED,
+    FTPPORTERR,
+    FTPSYSERR,
+    FTPNSFOD,
+    FTPUNKNOWNTYPE,
+    FTPRERR,
+    FTPSRVERR,
+    FTPRETRINT,
+    FTPRESTFAIL,
+    URLERROR,
+    FOPENERR,
+    FOPEN_EXCL_ERR,
+    FWRITEERR,
+    HEOF,
+    GATEWAYTIMEOUT,
+    HERR,
+    RETROK,
+    RECLEVELEXC,
+    WRONGCODE,
+    FTPINVPASV,
+    FTPNOPASV,
+    FTPNOPBSZ,
+    FTPNOPROT,
+    FTPNOAUTH,
+    CONTNOTSUPPORTED,
+    RETRUNNEEDED,
+    RETRFINISHED,
+    READERR,
+    TRYLIMEXC,
+    FILEBADFILE,
+    RANGEERR,
+    RETRBADPATTERN,
+    PROXERR,
+    AUTHFAILED,
+    QUOTEXC,
+    WRITEFAILED,
+    SSLINITFAILED,
+    VERIFCERTERR,
+    UNLINKERR,
+    NEWLOCATION_KEEP_POST,
+    CLOSEFAILED,
+    ATTRMISSING,
+    UNKNOWNATTR,
+    WARC_ERR,
+    WARC_TMP_FOPENERR,
+    WARC_TMP_FWRITEERR,
+    TIMECONV_ERR,
+    METALINK_PARSE_ERROR,
+    METALINK_RETR_ERROR,
+    METALINK_CHKSUM_ERROR,
+    METALINK_SIG_ERROR,
+    METALINK_MISSING_RESOURCE,
+    RETR_WITH_METALINK,
+    METALINK_SIZE_ERROR,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -668,19 +668,19 @@ pub type file_stats_t = file_stat_s;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_auth_mode {
-    URL_AUTH_HIDE,
-    URL_AUTH_HIDE_PASSWD,
     URL_AUTH_SHOW,
+    URL_AUTH_HIDE_PASSWD,
+    URL_AUTH_HIDE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -702,10 +702,10 @@ pub struct url {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    rb_compressed_gzip,
-    rb_chunked_transfer_encoding,
-    rb_skip_startpos,
-    rb_read_exactly,
+    rb_read_exactly = 1,
+    rb_skip_startpos = 2,
+    rb_chunked_transfer_encoding = 4,
+    rb_compressed_gzip = 8,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -742,53 +742,53 @@ pub union C2RustUnnamed_7 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum stype {
-    ST_OTHER,
-    ST_OS400,
-    ST_MACOS,
-    ST_WINNT,
-    ST_VMS,
     ST_UNIX,
+    ST_VMS,
+    ST_WINNT,
+    ST_MACOS,
+    ST_OS400,
+    ST_OTHER,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ustype {
-    UST_OTHER,
-    UST_MULTINET,
     UST_TYPE_L8,
+    UST_MULTINET,
+    UST_OTHER,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum prot_level {
-    PROT_PRIVATE,
-    PROT_CONFIDENTIAL,
-    PROT_SAFE,
     PROT_CLEAR,
+    PROT_SAFE,
+    PROT_CONFIDENTIAL,
+    PROT_PRIVATE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ftype {
-    FT_UNKNOWN,
-    FT_SYMLINK,
-    FT_DIRECTORY,
     FT_PLAINFILE,
+    FT_DIRECTORY,
+    FT_SYMLINK,
+    FT_UNKNOWN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
-    GLOB_GETONE,
-    GLOB_GETALL,
     GLOB_GLOBALL,
+    GLOB_GETALL,
+    GLOB_GETONE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum parsetype {
-    TT_DAY,
     TT_HOUR_MIN,
+    TT_DAY,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -807,23 +807,23 @@ pub struct fileinfo {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wget_ftp_command {
-    LEAVE_PENDING,
-    DO_LIST,
-    DO_RETR,
-    DO_CWD,
-    DO_LOGIN,
+    DO_LOGIN = 0x1,
+    DO_CWD = 0x2,
+    DO_RETR = 0x4,
+    DO_LIST = 0x8,
+    LEAVE_PENDING = 0x10,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wget_ftp_fstatus {
-    DATA_CHANNEL_SECURITY,
-    LIST_AFTER_LIST_A_CHECK_DONE,
-    AVOID_LIST,
-    AVOID_LIST_A,
-    DONE_CWD,
-    ON_YOUR_OWN,
-    NOTHING,
+    NOTHING = 0x0,
+    ON_YOUR_OWN = 0x1,
+    DONE_CWD = 0x2,
+    AVOID_LIST_A = 0x4,
+    AVOID_LIST = 0x8,
+    LIST_AFTER_LIST_A_CHECK_DONE = 0x10,
+    DATA_CHANNEL_SECURITY = 0x20,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -842,10 +842,10 @@ pub struct ccon {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum downloaded_file_t {
-    CHECK_FOR_FILE,
-    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED,
+    FILE_NOT_ALREADY_DOWNLOADED = 0,
     FILE_DOWNLOADED_NORMALLY,
-    FILE_NOT_ALREADY_DOWNLOADED,
+    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED,
+    CHECK_FOR_FILE,
 }  // end of enum
 
 pub const ENDPOINT_PEER: C2RustUnnamed_10 = 1;
@@ -854,8 +854,8 @@ pub type C2RustUnnamed_9 = libc::c_int;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
-    ENDPOINT_PEER,
     ENDPOINT_LOCAL,
+    ENDPOINT_PEER,
 }  // end of enum
 
 #[inline]

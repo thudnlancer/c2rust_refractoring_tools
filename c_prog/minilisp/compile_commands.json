@@ -1,17 +1,17 @@
 [
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-std=gnu99", 
-            "-g", 
-            "-O2", 
-            "-Wall", 
-            "-o", 
-            "minilisp", 
+            "cc",
+            "-c",
+            "-std=gnu99",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-o",
+            "minilisp",
             "minilisp.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/minilisp", 
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/minilisp",
         "file": "minilisp.c"
     }
 ]

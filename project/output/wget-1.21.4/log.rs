@@ -357,11 +357,11 @@ pub type va_list = __builtin_va_list;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 pub const WGET_EXIT_GENERIC_ERROR: C2RustUnnamed_4 = 1;
@@ -388,16 +388,16 @@ pub struct ringel {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
-    WGET_EXIT_GENERIC_ERROR,
+    WGET_EXIT_SUCCESS = 0,
+    WGET_EXIT_GENERIC_ERROR = 1,
+    WGET_EXIT_PARSE_ERROR = 2,
+    WGET_EXIT_IO_FAIL = 3,
+    WGET_EXIT_NETWORK_FAIL = 4,
+    WGET_EXIT_SSL_AUTH_FAIL = 5,
+    WGET_EXIT_SERVER_AUTH_FAIL = 6,
+    WGET_EXIT_PROTOCOL_ERROR = 7,
+    WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
-    WGET_EXIT_SERVER_ERROR,
-    WGET_EXIT_PROTOCOL_ERROR,
-    WGET_EXIT_SERVER_AUTH_FAIL,
-    WGET_EXIT_SSL_AUTH_FAIL,
-    WGET_EXIT_NETWORK_FAIL,
-    WGET_EXIT_IO_FAIL,
-    WGET_EXIT_PARSE_ERROR,
-    WGET_EXIT_SUCCESS,
 }  // end of enum
 
 #[inline]

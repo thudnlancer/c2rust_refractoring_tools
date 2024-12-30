@@ -287,70 +287,70 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum HeaderType {
-    HDR_FANCY,
-    HDR_SIMPLE,
     HDR_NONE,
+    HDR_SIMPLE,
+    HDR_FANCY,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum InputEncoding {
-    ENC_PS,
-    ENC_KOI8,
-    ENC_HP8,
-    ENC_VMS,
-    ENC_MAC,
-    ENC_IBMPC,
-    ENC_ASCII_DKNO,
-    ENC_ASCII_FISE,
-    ENC_ASCII,
-    ENC_ISO_8859_7,
-    ENC_ISO_8859_5,
-    ENC_ISO_8859_4,
-    ENC_ISO_8859_3,
-    ENC_ISO_8859_2,
     ENC_ISO_8859_1,
+    ENC_ISO_8859_2,
+    ENC_ISO_8859_3,
+    ENC_ISO_8859_4,
+    ENC_ISO_8859_5,
+    ENC_ISO_8859_7,
+    ENC_ASCII,
+    ENC_ASCII_FISE,
+    ENC_ASCII_DKNO,
+    ENC_IBMPC,
+    ENC_MAC,
+    ENC_VMS,
+    ENC_HP8,
+    ENC_KOI8,
+    ENC_PS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
-    LABEL_LONG,
     LABEL_SHORT,
+    LABEL_LONG,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum MarkWrappedLinesStyle {
-    MWLS_ARROW,
-    MWLS_BOX,
-    MWLS_PLUS,
-    MWLS_NONE,
+    MWLS_NONE = 0,
+    MWLS_PLUS = 1,
+    MWLS_BOX = 2,
+    MWLS_ARROW = 3,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NonPrintableFormat {
-    NPF_OCTAL,
-    NPF_CARET,
-    NPF_QUESTIONMARK,
     NPF_SPACE,
+    NPF_QUESTIONMARK,
+    NPF_CARET,
+    NPF_OCTAL,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN,
-    FORMFEED_PAGE,
     FORMFEED_COLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_HCOLUMN,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LineEndType {
-    LE_WORD_WRAP,
-    LE_CHAR_WRAP,
     LE_TRUNCATE,
+    LE_CHAR_WRAP,
+    LE_WORD_WRAP,
 }  // end of enum
 
 #[derive(Copy, Clone)]

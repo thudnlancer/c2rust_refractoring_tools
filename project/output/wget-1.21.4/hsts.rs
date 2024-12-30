@@ -160,21 +160,21 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -234,9 +234,9 @@ pub const CONGRUENT_MATCH: hsts_kh_match = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hsts_kh_match {
-    CONGRUENT_MATCH,
-    SUPERDOMAIN_MATCH,
     NO_MATCH,
+    SUPERDOMAIN_MATCH,
+    CONGRUENT_MATCH,
 }  // end of enum
 
 #[inline]

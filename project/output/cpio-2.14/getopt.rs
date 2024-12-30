@@ -55,9 +55,9 @@ pub struct _getopt_data {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum __ord {
-    RETURN_IN_ORDER,
-    PERMUTE,
     REQUIRE_ORDER,
+    PERMUTE,
+    RETURN_IN_ORDER,
 }  // end of enum
 
 pub type FILE = _IO_FILE;

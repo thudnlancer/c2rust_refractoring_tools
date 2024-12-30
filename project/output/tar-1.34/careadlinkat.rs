@@ -25,7 +25,7 @@ pub const STACK_BUF_SIZE: C2RustUnnamed = 1024;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    STACK_BUF_SIZE,
+    STACK_BUF_SIZE = 1024,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

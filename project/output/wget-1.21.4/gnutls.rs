@@ -247,9 +247,9 @@ pub type wgint = int64_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum CHECK_CERT_MODES {
-    CHECK_CERT_QUIET,
-    CHECK_CERT_ON,
     CHECK_CERT_OFF,
+    CHECK_CERT_ON,
+    CHECK_CERT_QUIET,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -492,27 +492,27 @@ pub enum C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -628,8 +628,8 @@ pub type gnutls_free_function = Option::<unsafe extern "C" fn(*mut libc::c_void)
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    WAIT_FOR_WRITE,
-    WAIT_FOR_READ,
+    WAIT_FOR_READ = 1,
+    WAIT_FOR_WRITE = 2,
 }  // end of enum
 
 #[derive(Copy, Clone)]

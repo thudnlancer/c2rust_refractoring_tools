@@ -13,611 +13,11 @@
             "-Wno-pragmas",
             "-O3",
             "-o",
-            "src/pool.o",
-            "src/pool.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/pool.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/conf.o",
-            "src/conf.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/conf.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/hashtable_seed.o",
-            "src/jansson/src/hashtable_seed.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/hashtable_seed.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/acl.o",
-            "src/acl.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/acl.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/client.o",
-            "src/client.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/client.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/utf.o",
-            "src/jansson/src/utf.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/utf.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/read.o",
-            "src/hiredis/read.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/read.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/md5/md5.o",
-            "src/md5/md5.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/md5/md5.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/value.o",
-            "src/jansson/src/value.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/value.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/http-parser/http_parser.o",
-            "src/http-parser/http_parser.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/http-parser/http_parser.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/load.o",
-            "src/jansson/src/load.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/load.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/async.o",
-            "src/hiredis/async.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/async.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/slog.o",
-            "src/slog.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/slog.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/memory.o",
-            "src/jansson/src/memory.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/memory.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
             "src/webdis.o",
             "src/webdis.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/webdis",
         "file": "src/webdis.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/strconv.o",
-            "src/jansson/src/strconv.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/strconv.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/pack_unpack.o",
-            "src/jansson/src/pack_unpack.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/pack_unpack.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/hashtable.o",
-            "src/jansson/src/hashtable.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/hashtable.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/formats/custom-type.o",
-            "src/formats/custom-type.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/formats/custom-type.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/sockcompat.o",
-            "src/hiredis/sockcompat.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/sockcompat.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/websocket.o",
-            "src/websocket.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/websocket.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/cmd.o",
-            "src/cmd.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/cmd.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/formats/raw.o",
-            "src/formats/raw.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/formats/raw.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/worker.o",
-            "src/worker.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/worker.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/hiredis.o",
-            "src/hiredis/hiredis.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/hiredis.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/net.o",
-            "src/hiredis/net.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/net.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/dump.o",
-            "src/jansson/src/dump.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/dump.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/sds.o",
-            "src/hiredis/sds.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/sds.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/jansson/src/error.o",
-            "src/jansson/src/error.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/jansson/src/error.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/sha1/sha1.o",
-            "src/sha1/sha1.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/sha1/sha1.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/hiredis/alloc.o",
-            "src/hiredis/alloc.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/alloc.c"
     },
     {
         "arguments": [
@@ -653,11 +53,11 @@
             "-Wno-pragmas",
             "-O3",
             "-o",
-            "src/hiredis/dict.o",
-            "src/hiredis/dict.c"
+            "src/http-parser/http_parser.o",
+            "src/http-parser/http_parser.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/hiredis/dict.c"
+        "file": "src/http-parser/http_parser.c"
     },
     {
         "arguments": [
@@ -673,51 +73,11 @@
             "-Wno-pragmas",
             "-O3",
             "-o",
-            "src/formats/json.o",
-            "src/formats/json.c"
+            "src/websocket.o",
+            "src/websocket.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/formats/json.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/b64/cencode.o",
-            "src/b64/cencode.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/b64/cencode.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-std=c99",
-            "-Wall",
-            "-Wextra",
-            "-Isrc",
-            "-Isrc/jansson/src",
-            "-Isrc/http-parser",
-            "-D_POSIX_C_SOURCE=200809L",
-            "-Wno-pragmas",
-            "-O3",
-            "-o",
-            "src/server.o",
-            "src/server.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/webdis",
-        "file": "src/server.c"
+        "file": "src/websocket.c"
     },
     {
         "arguments": [
@@ -753,10 +113,650 @@
             "-Wno-pragmas",
             "-O3",
             "-o",
+            "src/cmd.o",
+            "src/cmd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/cmd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/formats/json.o",
+            "src/formats/json.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/formats/json.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/hashtable.o",
+            "src/jansson/src/hashtable.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/hashtable.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/hiredis.o",
+            "src/hiredis/hiredis.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/hiredis.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/async.o",
+            "src/hiredis/async.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/async.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/conf.o",
+            "src/conf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/conf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/sockcompat.o",
+            "src/hiredis/sockcompat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/sockcompat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/load.o",
+            "src/jansson/src/load.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/load.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/memory.o",
+            "src/jansson/src/memory.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/memory.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/utf.o",
+            "src/jansson/src/utf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/utf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/acl.o",
+            "src/acl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/acl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/dump.o",
+            "src/jansson/src/dump.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/dump.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/client.o",
+            "src/client.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/client.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/read.o",
+            "src/hiredis/read.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/read.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/server.o",
+            "src/server.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/server.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/strconv.o",
+            "src/jansson/src/strconv.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/strconv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/formats/custom-type.o",
+            "src/formats/custom-type.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/formats/custom-type.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
             "src/formats/common.o",
             "src/formats/common.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/webdis",
         "file": "src/formats/common.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/slog.o",
+            "src/slog.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/slog.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/sds.o",
+            "src/hiredis/sds.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/sds.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/pool.o",
+            "src/pool.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/pool.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/pack_unpack.o",
+            "src/jansson/src/pack_unpack.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/pack_unpack.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/b64/cencode.o",
+            "src/b64/cencode.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/b64/cencode.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/dict.o",
+            "src/hiredis/dict.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/dict.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/hashtable_seed.o",
+            "src/jansson/src/hashtable_seed.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/hashtable_seed.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/net.o",
+            "src/hiredis/net.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/net.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/hiredis/alloc.o",
+            "src/hiredis/alloc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/hiredis/alloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/md5/md5.o",
+            "src/md5/md5.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/md5/md5.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/sha1/sha1.o",
+            "src/sha1/sha1.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/sha1/sha1.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/worker.o",
+            "src/worker.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/worker.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/error.o",
+            "src/jansson/src/error.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/error.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/formats/raw.o",
+            "src/formats/raw.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/formats/raw.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-Wall",
+            "-Wextra",
+            "-Isrc",
+            "-Isrc/jansson/src",
+            "-Isrc/http-parser",
+            "-D_POSIX_C_SOURCE=200809L",
+            "-Wno-pragmas",
+            "-O3",
+            "-o",
+            "src/jansson/src/value.o",
+            "src/jansson/src/value.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/webdis",
+        "file": "src/jansson/src/value.c"
     }
 ]

@@ -401,10 +401,10 @@ pub type DIR = __dirstream;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum savedir_option {
-    SAVEDIR_SORT_FASTREAD,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_NONE,
+    SAVEDIR_SORT_NAME,
+    SAVEDIR_SORT_INODE,
+    SAVEDIR_SORT_FASTREAD,
 }  // end of enum
 
 pub const DEFAULT_MXFAST: C2RustUnnamed_3 = 128;
@@ -563,13 +563,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT,
-    STAR_FORMAT,
-    POSIX_FORMAT,
-    USTAR_FORMAT,
-    OLDGNU_FORMAT,
-    V7_FORMAT,
     DEFAULT_FORMAT,
+    V7_FORMAT,
+    OLDGNU_FORMAT,
+    USTAR_FORMAT,
+    POSIX_FORMAT,
+    STAR_FORMAT,
+    GNU_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -647,69 +647,69 @@ pub type tarlong = libc::c_double;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
-    numbered_backups,
-    numbered_existing_backups,
-    simple_backups,
     no_backups,
+    simple_backups,
+    numbered_existing_backups,
+    numbered_backups,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND,
-    UPDATE_SUBCOMMAND,
-    LIST_SUBCOMMAND,
-    EXTRACT_SUBCOMMAND,
-    DIFF_SUBCOMMAND,
-    DELETE_SUBCOMMAND,
-    CREATE_SUBCOMMAND,
-    CAT_SUBCOMMAND,
-    APPEND_SUBCOMMAND,
     UNKNOWN_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    TEST_LABEL_SUBCOMMAND,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum atime_preserve {
-    system_atime_preserve,
-    replace_atime_preserve,
     no_atime_preserve,
+    replace_atime_preserve,
+    system_atime_preserve,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum old_files {
-    KEEP_NEWER_FILES,
-    SKIP_OLD_FILES,
-    KEEP_OLD_FILES,
-    UNLINK_FIRST_OLD_FILES,
-    OVERWRITE_OLD_FILES,
-    NO_OVERWRITE_DIR_OLD_FILES,
     DEFAULT_OLD_FILES,
+    NO_OVERWRITE_DIR_OLD_FILES,
+    OVERWRITE_OLD_FILES,
+    UNLINK_FIRST_OLD_FILES,
+    KEEP_OLD_FILES,
+    SKIP_OLD_FILES,
+    KEEP_NEWER_FILES,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum set_mtime_option_mode {
-    CLAMP_MTIME,
-    FORCE_MTIME,
     USE_FILE_MTIME,
+    FORCE_MTIME,
+    CLAMP_MTIME,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hole_detection_method {
-    HOLE_DETECTION_SEEK,
-    HOLE_DETECTION_RAW,
     HOLE_DETECTION_DEFAULT,
+    HOLE_DETECTION_RAW,
+    HOLE_DETECTION_SEEK,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
-    FILES_MANY,
-    FILES_ONE,
     FILES_NONE,
+    FILES_ONE,
+    FILES_MANY,
 }  // end of enum
 
 pub const escape_quoting_style: quoting_style = 7;
@@ -735,9 +735,9 @@ pub struct option_locus {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_source {
-    OPTS_FILE,
-    OPTS_COMMAND_LINE,
     OPTS_ENVIRON,
+    OPTS_COMMAND_LINE,
+    OPTS_FILE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -810,17 +810,17 @@ pub const PAX_OPTION: C2RustUnnamed_4 = 175;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    escape_quoting_style,
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 pub const QUOTING_STYLE_OPTION: C2RustUnnamed_4 = 178;
@@ -1128,38 +1128,38 @@ pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
-    GRID_FILE_NAME,
-    GRH_OTHER,
-    GRID_COMPAT,
-    GRH_COMPAT,
-    GRID_INFORMATIVE,
-    GRH_INFORMATIVE,
-    GRID_NAME_XFORM,
-    GRH_NAME_XFORM,
-    GRID_FILE,
-    GRH_FILE,
-    GRID_COMPRESS,
-    GRH_COMPRESS,
-    GRID_FORMAT_OPT,
-    GRDOC_FORMAT,
-    GRID_FORMAT,
-    GRH_FORMAT,
-    GRID_BLOCKING,
-    GRH_BLOCKING,
-    GRID_DEVICE,
-    GRH_DEVICE,
-    GRID_XATTR,
-    GRH_XATTR,
-    GRID_FATTR,
-    GRH_FATTR,
-    GRID_OUTPUT,
-    GRH_OUTPUT,
-    GRID_OVERWRITE,
-    GRH_OVERWRITE,
-    GRID_MODIFIER,
-    GRH_MODIFIER,
-    GRID_COMMAND,
     GRH_COMMAND,
+    GRID_COMMAND,
+    GRH_MODIFIER,
+    GRID_MODIFIER,
+    GRID_FILE_NAME,
+    GRH_OVERWRITE,
+    GRID_OVERWRITE,
+    GRH_OUTPUT,
+    GRID_OUTPUT,
+    GRH_FATTR,
+    GRID_FATTR,
+    GRH_XATTR,
+    GRID_XATTR,
+    GRH_DEVICE,
+    GRID_DEVICE,
+    GRH_BLOCKING,
+    GRID_BLOCKING,
+    GRH_FORMAT,
+    GRID_FORMAT,
+    GRDOC_FORMAT,
+    GRID_FORMAT_OPT,
+    GRH_COMPRESS,
+    GRID_COMPRESS,
+    GRH_FILE,
+    GRID_FILE,
+    GRH_NAME_XFORM,
+    GRID_NAME_XFORM,
+    GRH_INFORMATIVE,
+    GRID_INFORMATIVE,
+    GRH_COMPAT,
+    GRID_COMPAT,
+    GRH_OTHER,
     GRID_OTHER,
 }  // end of enum
 
@@ -1167,15 +1167,15 @@ pub enum C2RustUnnamed_5 {
 #[repr(C)]
 pub enum option_class {
     OC_COMPRESS,
-    OC_OLD_FILES,
     OC_OCCURRENCE,
-    OC_VERIFY,
-    OC_SAME_ORDER,
-    OC_ABSOLUTE_NAMES,
-    OC_NEWER,
-    OC_ONE_TOP_LEVEL,
-    OC_STARTING_FILE,
     OC_LISTED_INCREMENTAL,
+    OC_NEWER,
+    OC_VERIFY,
+    OC_STARTING_FILE,
+    OC_SAME_ORDER,
+    OC_ONE_TOP_LEVEL,
+    OC_ABSOLUTE_NAMES,
+    OC_OLD_FILES,
     OC_MAX,
 }  // end of enum
 

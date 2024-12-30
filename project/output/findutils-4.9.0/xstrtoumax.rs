@@ -22,11 +22,11 @@ pub type uintmax_t = __uintmax_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
-    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OK = 0,
     LONGINT_OVERFLOW,
-    LONGINT_OK,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID = 4,
 }  // end of enum
 
 pub const _ISspace: C2RustUnnamed = 8192;

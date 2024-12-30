@@ -279,9 +279,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
     notmade,
+    real,
+    effective,
 }  // end of enum
 
 #[derive(Copy, Clone)]

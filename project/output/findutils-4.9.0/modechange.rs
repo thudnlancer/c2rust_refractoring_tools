@@ -64,9 +64,9 @@ pub struct stat {
 #[repr(C)]
 pub enum C2RustUnnamed {
     MODE_DONE,
-    MODE_COPY_EXISTING,
-    MODE_X_IF_ANY_X,
     MODE_ORDINARY_CHANGE,
+    MODE_X_IF_ANY_X,
+    MODE_COPY_EXISTING,
 }  // end of enum
 
 #[derive(Copy, Clone)]

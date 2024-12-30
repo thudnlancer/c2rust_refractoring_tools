@@ -258,8 +258,8 @@ pub struct Regexp {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_bool {
+    awk_false = 0,
     awk_true,
-    awk_false,
 }  // end of enum
 
 pub type awk_bool_t = awk_bool;
@@ -273,9 +273,9 @@ pub type awk_string_t = awk_string;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AWK_NUMBER_TYPE {
-    AWK_NUMBER_TYPE_MPZ,
-    AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_DOUBLE,
+    AWK_NUMBER_TYPE_MPFR,
+    AWK_NUMBER_TYPE_MPZ,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -292,15 +292,15 @@ pub type awk_value_cookie_t = *mut libc::c_void;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_valtype_t {
-    AWK_BOOL,
-    AWK_VALUE_COOKIE,
-    AWK_SCALAR,
-    AWK_ARRAY,
-    AWK_STRNUM,
-    AWK_REGEX,
-    AWK_STRING,
-    AWK_NUMBER,
     AWK_UNDEFINED,
+    AWK_NUMBER,
+    AWK_STRING,
+    AWK_REGEX,
+    AWK_STRNUM,
+    AWK_ARRAY,
+    AWK_SCALAR,
+    AWK_VALUE_COOKIE,
+    AWK_BOOL,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -340,26 +340,26 @@ pub type awk_ext_func_t = awk_ext_func;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nodevals {
-    Node_final,
-    Node_instruction,
-    Node_frame,
-    Node_arrayfor,
-    Node_dump_array,
-    Node_array_leaf,
-    Node_array_tree,
-    Node_array_ref,
-    Node_builtin_func,
-    Node_ext_func,
-    Node_func,
-    Node_param_list,
-    Node_elem_new,
-    Node_var_new,
-    Node_var_array,
-    Node_var,
-    Node_dynregex,
-    Node_regex,
-    Node_val,
     Node_illegal,
+    Node_val,
+    Node_regex,
+    Node_dynregex,
+    Node_var,
+    Node_var_array,
+    Node_var_new,
+    Node_elem_new,
+    Node_param_list,
+    Node_func,
+    Node_ext_func,
+    Node_builtin_func,
+    Node_array_ref,
+    Node_array_tree,
+    Node_array_leaf,
+    Node_dump_array,
+    Node_arrayfor,
+    Node_frame,
+    Node_instruction,
+    Node_final,
 }  // end of enum
 
 pub type NODETYPE = nodevals;
@@ -437,8 +437,8 @@ pub struct C2RustUnnamed_3 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum reflagvals {
-    FS_DFLT,
-    CONSTANT,
+    CONSTANT = 1,
+    FS_DFLT = 2,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -695,86 +695,86 @@ pub struct block_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum block_id {
-    BLOCK_MAX,
+    BLOCK_NODE = 0,
     BLOCK_BUCKET,
-    BLOCK_NODE,
+    BLOCK_MAX,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum argtype {
-    D_range,
-    D_func,
-    D_subscript,
-    D_array,
-    D_field,
-    D_node,
-    D_variable,
-    D_string,
-    D_int,
-    D_argument,
-    D_watch,
-    D_up,
-    D_unwatch,
-    D_until,
-    D_undisplay,
-    D_trace,
-    D_tbreak,
-    D_stepi,
-    D_step,
-    D_source,
-    D_silent,
-    D_set,
-    D_save,
-    D_run,
-    D_return,
-    D_quit,
-    D_printf,
-    D_print,
-    D_option,
-    D_nexti,
-    D_next,
-    D_list,
-    D_info,
-    D_ignore,
-    D_help,
-    D_frame,
-    D_finish,
-    D_eval,
-    D_end,
-    D_enable,
-    D_dump,
-    D_down,
-    D_display,
-    D_disable,
-    D_delete,
-    D_continue,
-    D_condition,
-    D_commands,
-    D_clear,
-    D_break,
-    D_backtrace,
     D_illegal,
+    D_backtrace,
+    D_break,
+    D_clear,
+    D_commands,
+    D_condition,
+    D_continue,
+    D_delete,
+    D_disable,
+    D_display,
+    D_down,
+    D_dump,
+    D_enable,
+    D_end,
+    D_eval,
+    D_finish,
+    D_frame,
+    D_help,
+    D_ignore,
+    D_info,
+    D_list,
+    D_next,
+    D_nexti,
+    D_option,
+    D_print,
+    D_printf,
+    D_quit,
+    D_return,
+    D_run,
+    D_save,
+    D_set,
+    D_silent,
+    D_source,
+    D_step,
+    D_stepi,
+    D_tbreak,
+    D_trace,
+    D_undisplay,
+    D_until,
+    D_unwatch,
+    D_up,
+    D_watch,
+    D_argument,
+    D_int,
+    D_string,
+    D_variable,
+    D_node,
+    D_field,
+    D_array,
+    D_subscript,
+    D_func,
+    D_range,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nametypeval {
-    A_WATCH,
-    A_VARIABLES,
-    A_TRACE_OFF,
-    A_TRACE_ON,
-    A_SOURCES,
-    A_SOURCE,
-    A_ONCE,
-    A_LOCALS,
-    A_FUNCTIONS,
-    A_FRAME,
-    A_DISPLAY,
-    A_DEL,
-    A_BREAK,
+    A_NONE = 0,
     A_ARGS,
-    A_NONE,
+    A_BREAK,
+    A_DEL,
+    A_DISPLAY,
+    A_FRAME,
+    A_FUNCTIONS,
+    A_LOCALS,
+    A_ONCE,
+    A_SOURCE,
+    A_SOURCES,
+    A_TRACE_ON,
+    A_TRACE_OFF,
+    A_VARIABLES,
+    A_WATCH,
 }  // end of enum
 
 #[derive(Copy, Clone)]

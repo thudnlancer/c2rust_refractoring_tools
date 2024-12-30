@@ -1,8 +1,0 @@
-Starting recursion pass 1.
-Stack overflow 1 caught.
-Starting recursion pass 2.
-Stack overflow 2 caught.
-Segmentation violation correctly detected.
-Segmentation violation correctly detected.
-Test passed.
-PASS test-sigsegv-catch-stackoverflow2 (exit status: 0)

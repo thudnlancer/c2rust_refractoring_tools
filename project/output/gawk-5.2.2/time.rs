@@ -119,8 +119,8 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_bool {
+    awk_false = 0,
     awk_true,
-    awk_false,
 }  // end of enum
 
 pub type awk_bool_t = awk_bool;
@@ -248,9 +248,9 @@ pub type awk_string_t = awk_string;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AWK_NUMBER_TYPE {
-    AWK_NUMBER_TYPE_MPZ,
-    AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_DOUBLE,
+    AWK_NUMBER_TYPE_MPFR,
+    AWK_NUMBER_TYPE_MPZ,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -267,15 +267,15 @@ pub type awk_value_cookie_t = *mut libc::c_void;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_valtype_t {
-    AWK_BOOL,
-    AWK_VALUE_COOKIE,
-    AWK_SCALAR,
-    AWK_ARRAY,
-    AWK_STRNUM,
-    AWK_REGEX,
-    AWK_STRING,
-    AWK_NUMBER,
     AWK_UNDEFINED,
+    AWK_NUMBER,
+    AWK_STRING,
+    AWK_REGEX,
+    AWK_STRNUM,
+    AWK_ARRAY,
+    AWK_SCALAR,
+    AWK_VALUE_COOKIE,
+    AWK_BOOL,
 }  // end of enum
 
 #[derive(Copy, Clone)]

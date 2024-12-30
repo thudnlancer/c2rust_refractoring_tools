@@ -1,1 +1,67 @@
-{}
+{
+    "/home/c2rust/Desktop/c_prog/hiredis/sockcompat.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/sockcompat.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/sds.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sdsalloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/async.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/async.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/read.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/net.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/dict.c",
+        "/home/c2rust/Desktop/c_prog/hiredis/dict.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/win32.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/async_private.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/hiredis.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/read.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/net.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/async.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/win32.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/read.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/read.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/win32.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/test.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sockcompat.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/read.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/async.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/adapters/poll.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/net.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/win32.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/alloc.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/hiredis/net.c": [
+        "/home/c2rust/Desktop/c_prog/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/net.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/read.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sds.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/alloc.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/sockcompat.h",
+        "/home/c2rust/Desktop/c_prog/hiredis/win32.h"
+    ]
+}

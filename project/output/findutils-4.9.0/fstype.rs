@@ -81,17 +81,17 @@ pub struct mount_entry {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -133,9 +133,9 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SymlinkOption {
-    SYMLINK_DEREF_ARGSONLY,
-    SYMLINK_ALWAYS_DEREF,
     SYMLINK_NEVER_DEREF,
+    SYMLINK_ALWAYS_DEREF,
+    SYMLINK_DEREF_ARGSONLY,
 }  // end of enum
 
 #[derive(Copy, Clone)]

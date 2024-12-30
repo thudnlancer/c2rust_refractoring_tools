@@ -1,2 +1,0 @@
-Skipping test: multithreading not enabled
-SKIP test-nl_langinfo-mt (exit status: 77)

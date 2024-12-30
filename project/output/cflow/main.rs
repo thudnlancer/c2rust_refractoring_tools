@@ -170,28 +170,28 @@ pub type linked_list_free_data_fp = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symtype {
-    SymIdentifier,
-    SymToken,
     SymUndefined,
+    SymToken,
+    SymIdentifier,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
-    AnyStorage,
-    AutoStorage,
-    StaticStorage,
-    ExplicitExternStorage,
     ExternStorage,
+    ExplicitExternStorage,
+    StaticStorage,
+    AutoStorage,
+    AnyStorage,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
-    symbol_alias,
-    symbol_parm,
-    symbol_temp,
     symbol_none,
+    symbol_temp,
+    symbol_parm,
+    symbol_alias,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -223,13 +223,13 @@ pub type Symbol = symbol;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cflow_output_command {
-    cflow_output_text,
-    cflow_output_symbol,
-    cflow_output_separator,
-    cflow_output_newline,
-    cflow_output_end,
-    cflow_output_begin,
     cflow_output_init,
+    cflow_output_begin,
+    cflow_output_end,
+    cflow_output_newline,
+    cflow_output_separator,
+    cflow_output_symbol,
+    cflow_output_text,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -308,25 +308,25 @@ pub struct argp_state {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum option_code {
-    OPT_NO_OMIT_SYMBOL_NAMES,
-    OPT_OMIT_SYMBOL_NAMES,
-    OPT_NO_OMIT_ARGUMENTS,
-    OPT_OMIT_ARGUMENTS,
-    OPT_NO_REVERSE,
-    OPT_NO_PRINT_LEVEL,
-    OPT_NO_NUMBER,
-    OPT_NO_VERBOSE,
-    OPT_NO_EMACS,
-    OPT_NO_BRIEF,
-    OPT_NO_TREE,
-    OPT_NO_ANSI,
-    OPT_NO_USE_INDENTATION,
-    OPT_EMACS,
-    OPT_NO_PREPROCESS,
-    OPT_PREPROCESS,
-    OPT_DEBUG,
+    OPT_DEFINES = 256,
     OPT_LEVEL_INDENT,
-    OPT_DEFINES,
+    OPT_DEBUG,
+    OPT_PREPROCESS,
+    OPT_NO_PREPROCESS,
+    OPT_EMACS,
+    OPT_NO_USE_INDENTATION,
+    OPT_NO_ANSI,
+    OPT_NO_TREE,
+    OPT_NO_BRIEF,
+    OPT_NO_EMACS,
+    OPT_NO_VERBOSE,
+    OPT_NO_NUMBER,
+    OPT_NO_PRINT_LEVEL,
+    OPT_NO_REVERSE,
+    OPT_OMIT_ARGUMENTS,
+    OPT_NO_OMIT_ARGUMENTS,
+    OPT_OMIT_SYMBOL_NAMES,
+    OPT_NO_OMIT_SYMBOL_NAMES,
 }  // end of enum
 
 #[derive(Copy, Clone)]

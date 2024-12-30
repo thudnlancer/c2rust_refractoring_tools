@@ -1,6 +1,0 @@
-Starting recursion pass 1.
-Stack overflow 1 caught.
-Starting recursion pass 2.
-Stack overflow 2 caught.
-Test passed.
-PASS test-sigsegv-catch-stackoverflow1 (exit status: 0)

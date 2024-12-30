@@ -354,16 +354,16 @@ pub struct replacement {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum replacement_types {
-    REPL_LOWERCASE_LOWERCASE,
-    REPL_LOWERCASE_UPPERCASE,
-    REPL_UPPERCASE_LOWERCASE,
-    REPL_UPPERCASE_UPPERCASE,
-    REPL_MODIFIERS,
-    REPL_LOWERCASE_FIRST,
-    REPL_UPPERCASE_FIRST,
-    REPL_LOWERCASE,
+    REPL_ASIS = 0,
     REPL_UPPERCASE,
-    REPL_ASIS,
+    REPL_LOWERCASE,
+    REPL_UPPERCASE_FIRST,
+    REPL_LOWERCASE_FIRST,
+    REPL_MODIFIERS,
+    REPL_UPPERCASE_UPPERCASE,
+    REPL_UPPERCASE_LOWERCASE,
+    REPL_LOWERCASE_UPPERCASE,
+    REPL_LOWERCASE_LOWERCASE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -392,9 +392,9 @@ pub struct text_buf {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum addr_state {
-    RANGE_CLOSED,
-    RANGE_ACTIVE,
     RANGE_INACTIVE,
+    RANGE_ACTIVE,
+    RANGE_CLOSED,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -408,21 +408,21 @@ pub struct addr {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum addr_types {
-    ADDR_IS_LAST,
-    ADDR_IS_STEP_MOD,
-    ADDR_IS_STEP,
-    ADDR_IS_NUM_MOD,
-    ADDR_IS_NUM,
-    ADDR_IS_REGEX,
     ADDR_IS_NULL,
+    ADDR_IS_REGEX,
+    ADDR_IS_NUM,
+    ADDR_IS_NUM_MOD,
+    ADDR_IS_STEP,
+    ADDR_IS_STEP_MOD,
+    ADDR_IS_LAST,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
-    POSIXLY_BASIC,
-    POSIXLY_CORRECT,
     POSIXLY_EXTENDED,
+    POSIXLY_CORRECT,
+    POSIXLY_BASIC,
 }  // end of enum
 
 #[derive(Copy, Clone)]

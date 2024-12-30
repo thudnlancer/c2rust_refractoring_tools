@@ -304,12 +304,12 @@ pub struct stat {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum kwsub {
-    kwsub_b,
-    kwsub_o,
-    kwsub_v,
-    kwsub_k,
-    kwsub_kvl,
     kwsub_kv,
+    kwsub_kvl,
+    kwsub_k,
+    kwsub_v,
+    kwsub_o,
+    kwsub_b,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -368,9 +368,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO,
-    RM_MEM,
     RM_MMAP,
+    RM_MEM,
+    RM_STDIO,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -423,9 +423,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
     notmade,
+    real,
+    effective,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -579,8 +579,8 @@ pub struct u_state {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum changeaccess {
-    erase,
     append,
+    erase,
 }  // end of enum
 
 #[derive(Copy, Clone)]

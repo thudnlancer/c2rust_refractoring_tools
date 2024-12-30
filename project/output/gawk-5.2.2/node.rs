@@ -188,8 +188,8 @@ pub struct Regexp {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_bool {
+    awk_false = 0,
     awk_true,
-    awk_false,
 }  // end of enum
 
 pub type awk_bool_t = awk_bool;
@@ -203,9 +203,9 @@ pub type awk_string_t = awk_string;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AWK_NUMBER_TYPE {
-    AWK_NUMBER_TYPE_MPZ,
-    AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_DOUBLE,
+    AWK_NUMBER_TYPE_MPFR,
+    AWK_NUMBER_TYPE_MPZ,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -222,15 +222,15 @@ pub type awk_value_cookie_t = *mut libc::c_void;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum awk_valtype_t {
-    AWK_BOOL,
-    AWK_VALUE_COOKIE,
-    AWK_SCALAR,
-    AWK_ARRAY,
-    AWK_STRNUM,
-    AWK_REGEX,
-    AWK_STRING,
-    AWK_NUMBER,
     AWK_UNDEFINED,
+    AWK_NUMBER,
+    AWK_STRING,
+    AWK_REGEX,
+    AWK_STRNUM,
+    AWK_ARRAY,
+    AWK_SCALAR,
+    AWK_VALUE_COOKIE,
+    AWK_BOOL,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -270,26 +270,26 @@ pub type awk_ext_func_t = awk_ext_func;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nodevals {
-    Node_final,
-    Node_instruction,
-    Node_frame,
-    Node_arrayfor,
-    Node_dump_array,
-    Node_array_leaf,
-    Node_array_tree,
-    Node_array_ref,
-    Node_builtin_func,
-    Node_ext_func,
-    Node_func,
-    Node_param_list,
-    Node_elem_new,
-    Node_var_new,
-    Node_var_array,
-    Node_var,
-    Node_dynregex,
-    Node_regex,
-    Node_val,
     Node_illegal,
+    Node_val,
+    Node_regex,
+    Node_dynregex,
+    Node_var,
+    Node_var_array,
+    Node_var_new,
+    Node_elem_new,
+    Node_param_list,
+    Node_func,
+    Node_ext_func,
+    Node_builtin_func,
+    Node_array_ref,
+    Node_array_tree,
+    Node_array_leaf,
+    Node_dump_array,
+    Node_arrayfor,
+    Node_frame,
+    Node_instruction,
+    Node_final,
 }  // end of enum
 
 pub type NODETYPE = nodevals;
@@ -367,8 +367,8 @@ pub struct C2RustUnnamed_4 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum reflagvals {
-    FS_DFLT,
-    CONSTANT,
+    CONSTANT = 1,
+    FS_DFLT = 2,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -625,9 +625,9 @@ pub struct block_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum block_id {
-    BLOCK_MAX,
+    BLOCK_NODE = 0,
     BLOCK_BUCKET,
-    BLOCK_NODE,
+    BLOCK_MAX,
 }  // end of enum
 
 pub const DO_TRADITIONAL: do_flag_values = 16;

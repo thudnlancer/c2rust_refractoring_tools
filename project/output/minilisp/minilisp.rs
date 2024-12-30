@@ -120,18 +120,18 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    TCPAREN,
-    TDOT,
-    TNIL,
-    TTRUE,
-    TMOVED,
-    TENV,
-    TMACRO,
-    TFUNCTION,
-    TPRIMITIVE,
-    TSYMBOL,
+    TINT = 1,
     TCELL,
-    TINT,
+    TSYMBOL,
+    TPRIMITIVE,
+    TFUNCTION,
+    TMACRO,
+    TENV,
+    TMOVED,
+    TTRUE,
+    TNIL,
+    TDOT,
+    TCPAREN,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -30,7 +30,7 @@ pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    HAVE_GNU_CALLOC,
+    HAVE_GNU_CALLOC = 1,
 }  // end of enum
 named {
     DEFAULT_MXFAST,

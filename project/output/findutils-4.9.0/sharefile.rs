@@ -162,7 +162,7 @@ pub const DefaultHashTableSize: C2RustUnnamed = 11;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    DefaultHashTableSize,
+    DefaultHashTableSize = 11,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

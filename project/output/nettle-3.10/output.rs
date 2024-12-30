@@ -64,9 +64,9 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_mode {
-    SEXP_TRANSPORT,
-    SEXP_ADVANCED,
-    SEXP_CANONICAL,
+    SEXP_CANONICAL = 0,
+    SEXP_ADVANCED = 1,
+    SEXP_TRANSPORT = 2,
 }  // end of enum
 
 pub type uint8_t = __uint8_t;

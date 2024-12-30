@@ -1,2 +1,0 @@
-sed: couldn't follow symlink la-loop: Too many levels of symbolic links
-PASS testsuite/follow-symlinks.sh (exit status: 0)

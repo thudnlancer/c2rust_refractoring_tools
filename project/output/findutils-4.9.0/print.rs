@@ -273,32 +273,32 @@ pub type uintmax_t = __uintmax_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    human_B,
-    human_SI,
-    human_space_before_unit,
-    human_base_1024,
-    human_autoscale,
-    human_suppress_point_zero,
-    human_group_digits,
-    human_floor,
-    human_round_to_nearest,
-    human_ceiling,
+    human_ceiling = 0,
+    human_round_to_nearest = 1,
+    human_floor = 2,
+    human_group_digits = 4,
+    human_suppress_point_zero = 8,
+    human_autoscale = 16,
+    human_base_1024 = 32,
+    human_space_before_unit = 64,
+    human_SI = 128,
+    human_B = 256,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 pub type __re_long_size_t = size_t;
@@ -407,13 +407,13 @@ pub type PARSE_FUNC = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum arg_type {
-    ARG_ACTION,
-    ARG_PUNCTUATION,
-    ARG_SPECIAL_PARSE,
-    ARG_TEST,
-    ARG_POSITIONAL_OPTION,
-    ARG_NOOP,
     ARG_OPTION,
+    ARG_NOOP,
+    ARG_POSITIONAL_OPTION,
+    ARG_TEST,
+    ARG_SPECIAL_PARSE,
+    ARG_PUNCTUATION,
+    ARG_ACTION,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -460,9 +460,9 @@ pub struct segment {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SegmentKind {
+    KIND_PLAIN = 0,
+    KIND_STOP = 1,
     KIND_FORMAT,
-    KIND_STOP,
-    KIND_PLAIN,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -481,9 +481,9 @@ pub struct perm_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum permissions_type {
-    PERM_EXACT,
-    PERM_ANY,
     PERM_AT_LEAST,
+    PERM_ANY,
+    PERM_EXACT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -496,19 +496,19 @@ pub struct time_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum comparison_type {
-    COMP_EQ,
-    COMP_LT,
     COMP_GT,
+    COMP_LT,
+    COMP_EQ,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum xval {
-    XVAL_TIME,
-    XVAL_MTIME,
-    XVAL_CTIME,
-    XVAL_BIRTHTIME,
     XVAL_ATIME,
+    XVAL_BIRTHTIME,
+    XVAL_CTIME,
+    XVAL_MTIME,
+    XVAL_TIME,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -540,40 +540,40 @@ pub struct exec_val {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum EvaluationCost {
-    NumEvaluationCosts,
-    NeedsUnknown,
-    NeedsUserInteraction,
-    NeedsImmediateExec,
-    NeedsEventualExec,
-    NeedsSyncDiskHit,
-    NeedsAccessInfo,
-    NeedsLinkName,
-    NeedsStatInfo,
-    NeedsType,
-    NeedsInodeNumber,
     NeedsNothing,
+    NeedsInodeNumber,
+    NeedsType,
+    NeedsStatInfo,
+    NeedsLinkName,
+    NeedsAccessInfo,
+    NeedsSyncDiskHit,
+    NeedsEventualExec,
+    NeedsImmediateExec,
+    NeedsUserInteraction,
+    NeedsUnknown,
+    NumEvaluationCosts,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_precedence {
-    MAX_PREC,
-    NEGATE_PREC,
-    AND_PREC,
-    OR_PREC,
-    COMMA_PREC,
     NO_PREC,
+    COMMA_PREC,
+    OR_PREC,
+    AND_PREC,
+    NEGATE_PREC,
+    MAX_PREC,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_type {
-    CLOSE_PAREN,
-    OPEN_PAREN,
-    BI_OP,
-    UNI_OP,
-    PRIMARY_TYPE,
     NO_TYPE,
+    PRIMARY_TYPE,
+    UNI_OP,
+    BI_OP,
+    OPEN_PAREN,
+    CLOSE_PAREN,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -615,9 +615,9 @@ pub struct options {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum SymlinkOption {
-    SYMLINK_DEREF_ARGSONLY,
-    SYMLINK_ALWAYS_DEREF,
     SYMLINK_NEVER_DEREF,
+    SYMLINK_ALWAYS_DEREF,
+    SYMLINK_DEREF_ARGSONLY,
 }  // end of enum
 
 pub type PREDICATEFUNCTION = unsafe extern "C" fn(
@@ -650,8 +650,8 @@ pub const NS_BUF_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    NS_BUF_LEN,
-    DATE_LEN_PERCENT_APLUS,
+    NS_BUF_LEN = 32,
+    DATE_LEN_PERCENT_APLUS = 21,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -117,13 +117,13 @@ pub type List = list_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum NodeType {
-    nARRAY,
-    nSYMBOL,
-    nREAL,
-    nINTEGER,
-    nREGEXP,
-    nSTRING,
     nVOID,
+    nSTRING,
+    nREGEXP,
+    nINTEGER,
+    nREAL,
+    nSYMBOL,
+    nARRAY,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -177,37 +177,37 @@ pub type Cons = cons_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ExprType {
-    eLE,
-    eGE,
-    eNE,
-    eEQ,
-    eGT,
-    eLT,
-    eMINUS,
-    ePLUS,
-    eDIV,
-    eMULT,
-    eQUESTCOLON,
-    eARRAYREF,
-    eARRAYASSIGN,
-    ePREFIXSUB,
-    ePREFIXADD,
-    ePOSTFIXSUB,
-    ePOSTFIXADD,
-    eDIVASSIGN,
-    eMULASSIGN,
-    eSUBASSIGN,
-    eADDASSIGN,
-    eASSIGN,
-    eFCALL,
-    eOR,
-    eAND,
-    eNOT,
-    eSYMBOL,
-    eREAL,
-    eINTEGER,
-    eREGEXP,
     eSTRING,
+    eREGEXP,
+    eINTEGER,
+    eREAL,
+    eSYMBOL,
+    eNOT,
+    eAND,
+    eOR,
+    eFCALL,
+    eASSIGN,
+    eADDASSIGN,
+    eSUBASSIGN,
+    eMULASSIGN,
+    eDIVASSIGN,
+    ePOSTFIXADD,
+    ePOSTFIXSUB,
+    ePREFIXADD,
+    ePREFIXSUB,
+    eARRAYASSIGN,
+    eARRAYREF,
+    eQUESTCOLON,
+    eMULT,
+    eDIV,
+    ePLUS,
+    eMINUS,
+    eLT,
+    eGT,
+    eEQ,
+    eNE,
+    eGE,
+    eLE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -271,13 +271,13 @@ pub type Expr = expr_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum StmtType {
-    sFOR,
-    sWHILE,
-    sEXPR,
-    sIF,
-    sBLOCK,
-    sDEFSUB,
     sRETURN,
+    sDEFSUB,
+    sBLOCK,
+    sIF,
+    sEXPR,
+    sWHILE,
+    sFOR,
 }  // end of enum
 
 #[derive(Copy, Clone)]

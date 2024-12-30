@@ -601,7 +601,7 @@ pub enum C2RustUnnamed_0 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    EXIT_TROUBLE,
+    EXIT_TROUBLE = 2,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -718,11 +718,11 @@ pub struct localeinfo {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
-    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OK = 0,
     LONGINT_OVERFLOW,
-    LONGINT_OK,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID = 4,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -762,9 +762,9 @@ pub enum C2RustUnnamed_6 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum directories_type {
-    SKIP_DIRECTORIES,
+    READ_DIRECTORIES = 2,
     RECURSE_DIRECTORIES,
-    READ_DIRECTORIES,
+    SKIP_DIRECTORIES,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -922,9 +922,9 @@ pub struct C2RustUnnamed_16 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_17 {
-    G_MATCHER_INDEX,
-    F_MATCHER_INDEX,
-    E_MATCHER_INDEX,
+    E_MATCHER_INDEX = 1,
+    F_MATCHER_INDEX = 2,
+    G_MATCHER_INDEX = 0,
 }  // end of enum
 
 #[derive(Copy, Clone)]

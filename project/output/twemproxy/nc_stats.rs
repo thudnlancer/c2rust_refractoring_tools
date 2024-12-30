@@ -594,10 +594,10 @@ pub type msg_parse_result_t = msg_parse_result;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum msg_parse_result {
-    MSG_PARSE_AGAIN,
-    MSG_PARSE_REPAIR,
-    MSG_PARSE_ERROR,
     MSG_PARSE_OK,
+    MSG_PARSE_ERROR,
+    MSG_PARSE_REPAIR,
+    MSG_PARSE_AGAIN,
 }  // end of enum
 
 pub type msg_parse_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;
@@ -776,11 +776,11 @@ pub type event_stats_cb_t = Option::<
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum stats_type {
-    STATS_SENTINEL,
-    STATS_TIMESTAMP,
-    STATS_GAUGE,
-    STATS_COUNTER,
     STATS_INVALID,
+    STATS_COUNTER,
+    STATS_GAUGE,
+    STATS_TIMESTAMP,
+    STATS_SENTINEL,
 }  // end of enum
 
 pub type stats_type_t = stats_type;

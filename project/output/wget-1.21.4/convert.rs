@@ -394,11 +394,11 @@ pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
-    LOG_PROGRESS,
-    LOG_ALWAYS,
-    LOG_NONVERBOSE,
-    LOG_NOTQUIET,
     LOG_VERBOSE,
+    LOG_NOTQUIET,
+    LOG_NONVERBOSE,
+    LOG_ALWAYS,
+    LOG_PROGRESS,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -412,11 +412,10 @@ pub struct iri {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum convert_options {
-    CO_NULLIFY_BASE,
-    CO_CONVERT_TO_COMPLETE,
-    CO_CONVERT_BASENAME_ONLY,
+    CO_NOCONVERT = 0,
     CO_CONVERT_TO_RELATIVE,
-    CO_NOCONVERT,
+    CO_CONVERT_BASENAME_ONLY,
+    CO_CONVERT_TO_COMPLETE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -438,11 +437,11 @@ pub struct url {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
-    SCHEME_INVALID,
-    SCHEME_FTPS,
-    SCHEME_FTP,
-    SCHEME_HTTPS,
     SCHEME_HTTP,
+    SCHEME_HTTPS,
+    SCHEME_FTP,
+    SCHEME_FTPS,
+    SCHEME_INVALID,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -472,10 +471,10 @@ pub struct urlpos {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum downloaded_file_t {
-    CHECK_FOR_FILE,
-    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED,
+    FILE_NOT_ALREADY_DOWNLOADED = 0,
     FILE_DOWNLOADED_NORMALLY,
-    FILE_NOT_ALREADY_DOWNLOADED,
+    FILE_DOWNLOADED_AND_HTML_EXTENSION_ADDED,
+    CHECK_FOR_FILE,
 }  // end of enum
 
 #[derive(Copy, Clone)]

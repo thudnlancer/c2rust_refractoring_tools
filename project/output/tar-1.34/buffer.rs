@@ -393,16 +393,16 @@ pub struct mtop {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
-    human_B,
-    human_SI,
-    human_space_before_unit,
-    human_base_1024,
-    human_autoscale,
-    human_suppress_point_zero,
-    human_group_digits,
-    human_floor,
-    human_round_to_nearest,
-    human_ceiling,
+    human_ceiling = 0,
+    human_round_to_nearest = 1,
+    human_floor = 2,
+    human_group_digits = 4,
+    human_suppress_point_zero = 8,
+    human_autoscale = 16,
+    human_base_1024 = 32,
+    human_space_before_unit = 64,
+    human_SI = 128,
+    human_B = 256,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -497,13 +497,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT,
-    STAR_FORMAT,
-    POSIX_FORMAT,
-    USTAR_FORMAT,
-    OLDGNU_FORMAT,
-    V7_FORMAT,
     DEFAULT_FORMAT,
+    V7_FORMAT,
+    OLDGNU_FORMAT,
+    USTAR_FORMAT,
+    POSIX_FORMAT,
+    STAR_FORMAT,
+    GNU_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -581,24 +581,24 @@ pub type tarlong = libc::c_double;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
-    TEST_LABEL_SUBCOMMAND,
-    UPDATE_SUBCOMMAND,
-    LIST_SUBCOMMAND,
-    EXTRACT_SUBCOMMAND,
-    DIFF_SUBCOMMAND,
-    DELETE_SUBCOMMAND,
-    CREATE_SUBCOMMAND,
-    CAT_SUBCOMMAND,
-    APPEND_SUBCOMMAND,
     UNKNOWN_SUBCOMMAND,
+    APPEND_SUBCOMMAND,
+    CAT_SUBCOMMAND,
+    CREATE_SUBCOMMAND,
+    DELETE_SUBCOMMAND,
+    DIFF_SUBCOMMAND,
+    EXTRACT_SUBCOMMAND,
+    LIST_SUBCOMMAND,
+    UPDATE_SUBCOMMAND,
+    TEST_LABEL_SUBCOMMAND,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE,
-    ACCESS_WRITE,
     ACCESS_READ,
+    ACCESS_WRITE,
+    ACCESS_UPDATE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -616,16 +616,16 @@ pub const ct_none: compress_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compress_type {
-    ct_tar,
     ct_none,
-    ct_zstd,
-    ct_xz,
-    ct_lzop,
-    ct_lzma,
-    ct_lzip,
-    ct_bzip2,
-    ct_gzip,
+    ct_tar,
     ct_compress,
+    ct_gzip,
+    ct_bzip2,
+    ct_lzip,
+    ct_lzma,
+    ct_lzop,
+    ct_xz,
+    ct_zstd,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -639,12 +639,12 @@ pub const HEADER_SUCCESS: read_header = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_SUCCESS,
-    HEADER_FAILURE,
-    HEADER_END_OF_FILE,
-    HEADER_ZERO_BLOCK,
-    HEADER_SUCCESS_EXTENDED,
     HEADER_STILL_UNREAD,
+    HEADER_SUCCESS,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_ZERO_BLOCK,
+    HEADER_END_OF_FILE,
+    HEADER_FAILURE,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -657,9 +657,9 @@ pub struct zip_program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global,
-    read_header_x_raw,
     read_header_auto,
+    read_header_x_raw,
+    read_header_x_global,
 }  // end of enum
 
 #[inline]

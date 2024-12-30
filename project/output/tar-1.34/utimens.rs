@@ -80,7 +80,7 @@ pub const TIMESPEC_HZ: C2RustUnnamed = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
-    TIMESPEC_HZ,
+    TIMESPEC_HZ = 1000000000,
 }  // end of enum
 
 pub type C2RustUnnamed = libc::c_uint;

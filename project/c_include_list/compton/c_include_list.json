@@ -1,1 +1,18 @@
-{}
+{
+    "/home/c2rust/Desktop/c_prog/compton/src/opengl.c": [
+        "/home/c2rust/Desktop/c_prog/compton/src/opengl.h",
+        "/home/c2rust/Desktop/c_prog/compton/src/common.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/compton/src/c2.c": [
+        "/home/c2rust/Desktop/c_prog/compton/src/c2.h",
+        "/home/c2rust/Desktop/c_prog/compton/src/common.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/compton/src/dbus.c": [
+        "/home/c2rust/Desktop/c_prog/compton/src/dbus.h",
+        "/home/c2rust/Desktop/c_prog/compton/src/common.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/compton/src/compton.c": [
+        "/home/c2rust/Desktop/c_prog/compton/src/compton.h",
+        "/home/c2rust/Desktop/c_prog/compton/src/common.h"
+    ]
+}

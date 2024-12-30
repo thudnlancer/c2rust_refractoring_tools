@@ -218,9 +218,9 @@ pub struct fro {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum readmethod {
-    RM_STDIO,
-    RM_MEM,
     RM_MMAP,
+    RM_MEM,
+    RM_STDIO,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -249,9 +249,9 @@ pub struct program {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum maker {
-    effective,
-    real,
     notmade,
+    real,
+    effective,
 }  // end of enum
 
 #[derive(Copy, Clone)]

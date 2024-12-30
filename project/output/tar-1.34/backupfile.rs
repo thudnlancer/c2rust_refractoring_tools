@@ -49,10 +49,10 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
-    numbered_backups,
-    numbered_existing_backups,
-    simple_backups,
     no_backups,
+    simple_backups,
+    numbered_existing_backups,
+    numbered_backups,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;
@@ -66,10 +66,10 @@ pub const BACKUP_IS_SAME_LENGTH: numbered_backup_result = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum numbered_backup_result {
-    BACKUP_NOMEM,
+    BACKUP_IS_SAME_LENGTH,
     BACKUP_IS_LONGER,
     BACKUP_IS_NEW,
-    BACKUP_IS_SAME_LENGTH,
+    BACKUP_NOMEM,
 }  // end of enum
 
 pub type numbered_backup_result = libc::c_uint;

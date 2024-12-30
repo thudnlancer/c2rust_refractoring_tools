@@ -396,13 +396,13 @@ pub struct star_ext_header {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum archive_format {
-    GNU_FORMAT,
-    STAR_FORMAT,
-    POSIX_FORMAT,
-    USTAR_FORMAT,
-    OLDGNU_FORMAT,
-    V7_FORMAT,
     DEFAULT_FORMAT,
+    V7_FORMAT,
+    OLDGNU_FORMAT,
+    USTAR_FORMAT,
+    POSIX_FORMAT,
+    STAR_FORMAT,
+    GNU_FORMAT,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -479,17 +479,17 @@ pub union block {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum atime_preserve {
-    system_atime_preserve,
-    replace_atime_preserve,
     no_atime_preserve,
+    replace_atime_preserve,
+    system_atime_preserve,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
-    ACCESS_UPDATE,
-    ACCESS_WRITE,
     ACCESS_READ,
+    ACCESS_WRITE,
+    ACCESS_UPDATE,
 }  // end of enum
 
 pub const QUOTE_NAME: C2RustUnnamed_2 = 1;
@@ -498,47 +498,47 @@ pub const HEADER_ZERO_BLOCK: read_header = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_ZERO_BLOCK,
-    HEADER_FAILURE,
-    HEADER_END_OF_FILE,
-    HEADER_SUCCESS_EXTENDED,
-    HEADER_SUCCESS,
     HEADER_STILL_UNREAD,
+    HEADER_SUCCESS,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_ZERO_BLOCK,
+    HEADER_END_OF_FILE,
+    HEADER_FAILURE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global,
-    read_header_x_raw,
     read_header_auto,
+    read_header_x_raw,
+    read_header_x_global,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
-    QUOTE_NAME,
     QUOTE_ARG,
+    QUOTE_NAME,
 }  // end of enum
 C2RustUnnamed_2 = 0;
 pub const HEADER_ZERO_BLOCK: read_header = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
-    HEADER_ZERO_BLOCK,
-    HEADER_FAILURE,
-    HEADER_END_OF_FILE,
-    HEADER_SUCCESS_EXTENDED,
-    HEADER_SUCCESS,
     HEADER_STILL_UNREAD,
+    HEADER_SUCCESS,
+    HEADER_SUCCESS_EXTENDED,
+    HEADER_ZERO_BLOCK,
+    HEADER_END_OF_FILE,
+    HEADER_FAILURE,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
-    read_header_x_global,
-    read_header_x_raw,
     read_header_auto,
+    read_header_x_raw,
+    read_header_x_global,
 }  // end of enum
 
 pub type C2RustUnnamed_2 = libc::c_uint;

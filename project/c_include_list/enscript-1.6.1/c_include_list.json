@@ -1,1 +1,169 @@
-{}
+{
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/psgen.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/gsint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/main.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/gsint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/util.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/gsint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/mkafmmap.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/prt_lpr.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src/gsint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/lex.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/gram.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/process.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/prims.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/main.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/gram.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/utils.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states/defs.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_hp8.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88593.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88592.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmparse.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88595.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_pc.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_vms.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/deffont.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_koi8.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88591.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88594.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_mac.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/e_88597.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afmint.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/afm.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib/strhash.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/regex.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/xalloc.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt1.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h",
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat/getopt.c": [
+        "/home/c2rust/Desktop/c_prog/enscript-1.6.1/config.h"
+    ]
+}

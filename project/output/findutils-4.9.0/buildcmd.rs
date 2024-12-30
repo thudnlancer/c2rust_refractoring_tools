@@ -268,11 +268,11 @@ pub enum C2RustUnnamed {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
-    LONGINT_INVALID,
-    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
-    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_OK = 0,
     LONGINT_OVERFLOW,
-    LONGINT_OK,
+    LONGINT_INVALID_SUFFIX_CHAR,
+    LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+    LONGINT_INVALID = 4,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -315,9 +315,9 @@ pub struct buildcmd_control {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum BC_INIT_STATUS {
-    BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
+    BC_INIT_OK = 0,
     BC_INIT_ENV_TOO_BIG,
-    BC_INIT_OK,
+    BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
 }  // end of enum
 
 #[derive(Copy, Clone)]

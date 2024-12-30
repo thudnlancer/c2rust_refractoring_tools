@@ -342,30 +342,30 @@ pub type time_ms_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wintype_t {
-    NUM_WINTYPES,
-    WINTYPE_DND,
-    WINTYPE_COMBO,
-    WINTYPE_NOTIFY,
-    WINTYPE_TOOLTIP,
-    WINTYPE_POPUP_MENU,
-    WINTYPE_DROPDOWN_MENU,
-    WINTYPE_NORMAL,
-    WINTYPE_DIALOG,
-    WINTYPE_SPLASH,
-    WINTYPE_UTILITY,
-    WINTYPE_MENU,
-    WINTYPE_TOOLBAR,
-    WINTYPE_DOCK,
-    WINTYPE_DESKTOP,
     WINTYPE_UNKNOWN,
+    WINTYPE_DESKTOP,
+    WINTYPE_DOCK,
+    WINTYPE_TOOLBAR,
+    WINTYPE_MENU,
+    WINTYPE_UTILITY,
+    WINTYPE_SPLASH,
+    WINTYPE_DIALOG,
+    WINTYPE_NORMAL,
+    WINTYPE_DROPDOWN_MENU,
+    WINTYPE_POPUP_MENU,
+    WINTYPE_TOOLTIP,
+    WINTYPE_NOTIFY,
+    WINTYPE_COMBO,
+    WINTYPE_DND,
+    NUM_WINTYPES,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
-    UNSET,
-    ON,
     OFF,
+    ON,
+    UNSET,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -387,9 +387,9 @@ pub struct margin_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum winmode_t {
-    WMODE_ARGB,
-    WMODE_SOLID,
     WMODE_TRANS,
+    WMODE_SOLID,
+    WMODE_ARGB,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -417,22 +417,22 @@ pub type ignore_t = _ignore;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum vsync_t {
-    NUM_VSYNC,
-    VSYNC_OPENGL_MSWC,
-    VSYNC_OPENGL_SWC,
-    VSYNC_OPENGL_OML,
-    VSYNC_OPENGL,
-    VSYNC_DRM,
     VSYNC_NONE,
+    VSYNC_DRM,
+    VSYNC_OPENGL,
+    VSYNC_OPENGL_OML,
+    VSYNC_OPENGL_SWC,
+    VSYNC_OPENGL_MSWC,
+    NUM_VSYNC,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
-    NUM_BKEND,
-    BKEND_XR_GLX_HYBRID,
-    BKEND_GLX,
     BKEND_XRENDER,
+    BKEND_GLX,
+    BKEND_XR_GLX_HYBRID,
+    NUM_BKEND,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -895,10 +895,10 @@ pub struct _c2_b {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_b_op_t {
-    C2_B_OXOR,
-    C2_B_OOR,
-    C2_B_OAND,
     C2_B_OUNDEFINED,
+    C2_B_OAND,
+    C2_B_OOR,
+    C2_B_OXOR,
 }  // end of enum
 
 pub type options_t = _options_t;

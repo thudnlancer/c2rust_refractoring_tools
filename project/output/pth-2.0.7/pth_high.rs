@@ -566,20 +566,20 @@ pub struct C2RustUnnamed_20 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED,
-    PTH_STATUS_OCCURRED,
     PTH_STATUS_PENDING,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_FAILED,
 }  // end of enum
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_state_en {
-    PTH_STATE_DEAD,
-    PTH_STATE_WAITING,
-    PTH_STATE_READY,
+    PTH_STATE_SCHEDULER = 0,
     PTH_STATE_NEW,
-    PTH_STATE_SCHEDULER,
+    PTH_STATE_READY,
+    PTH_STATE_WAITING,
+    PTH_STATE_DEAD,
 }  // end of enum
 
 pub type pth_key_t = libc::c_int;

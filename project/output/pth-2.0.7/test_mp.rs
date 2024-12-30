@@ -135,16 +135,16 @@ pub type pth_event_t = *mut pth_event_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    PTH_FREE_ALL,
     PTH_FREE_THIS,
+    PTH_FREE_ALL,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum pth_status_t {
-    PTH_STATUS_FAILED,
-    PTH_STATUS_OCCURRED,
     PTH_STATUS_PENDING,
+    PTH_STATUS_OCCURRED,
+    PTH_STATUS_FAILED,
 }  // end of enum
 
 #[derive(Copy, Clone)]

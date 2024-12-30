@@ -1,3 +1,0 @@
-test_heap: address range is still mapped after free().
-test_stack: count = 0
-PASS test-explicit_bzero (exit status: 0)

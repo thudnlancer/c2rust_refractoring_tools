@@ -180,11 +180,11 @@ pub union C2RustUnnamed_2 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum case_ctl_type {
-    ctl_locase,
-    ctl_upcase,
-    ctl_locase_next,
-    ctl_upcase_next,
     ctl_stop,
+    ctl_upcase_next,
+    ctl_locase_next,
+    ctl_upcase,
+    ctl_locase,
 }  // end of enum
 
 #[derive(Copy, Clone)]

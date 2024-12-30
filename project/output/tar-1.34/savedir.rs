@@ -43,10 +43,10 @@ pub type size_t = libc::c_ulong;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum savedir_option {
-    SAVEDIR_SORT_FASTREAD,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_NONE,
+    SAVEDIR_SORT_NAME,
+    SAVEDIR_SORT_INODE,
+    SAVEDIR_SORT_FASTREAD,
 }  // end of enum
 
 #[derive(Copy, Clone)]

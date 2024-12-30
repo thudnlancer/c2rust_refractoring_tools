@@ -1,2 +1,0 @@
-Skipping test: no french Unicode locale is installed
-SKIP test-btowc2.sh (exit status: 77)

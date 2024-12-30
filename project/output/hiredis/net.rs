@@ -265,9 +265,9 @@ pub struct C2RustUnnamed_0 {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redisConnectionType {
-    REDIS_CONN_USERFD,
-    REDIS_CONN_UNIX,
     REDIS_CONN_TCP,
+    REDIS_CONN_UNIX,
+    REDIS_CONN_USERFD,
 }  // end of enum
 
 pub type redisFD = libc::c_int;

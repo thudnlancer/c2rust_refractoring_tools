@@ -53,10 +53,10 @@ pub type ptrdiff_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum savedir_option {
-    SAVEDIR_SORT_FASTREAD,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_NONE,
+    SAVEDIR_SORT_NAME,
+    SAVEDIR_SORT_INODE,
+    SAVEDIR_SORT_FASTREAD,
 }  // end of enum
 
 pub type idx_t = ptrdiff_t;

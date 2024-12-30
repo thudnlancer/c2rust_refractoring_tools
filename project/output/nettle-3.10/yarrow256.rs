@@ -52,8 +52,8 @@ pub struct sha256_ctx {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum yarrow_pool_id {
-    YARROW_SLOW,
-    YARROW_FAST,
+    YARROW_FAST = 0,
+    YARROW_SLOW = 1,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -363,8 +363,8 @@ pub type AFMInteger = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMBoolean {
-    AFMTrue,
-    AFMFalse,
+    AFMFalse = 0,
+    AFMTrue = 1,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -501,19 +501,19 @@ pub type AFMHandle = *mut afm_handle_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum AFMEncoding {
-    AFM_ENCODING_KOI8,
-    AFM_ENCODING_HP8,
-    AFM_ENCODING_VMS,
-    AFM_ENCODING_MAC,
-    AFM_ENCODING_ASCII,
-    AFM_ENCODING_IBMPC,
-    AFM_ENCODING_ISO_8859_7,
-    AFM_ENCODING_ISO_8859_5,
-    AFM_ENCODING_ISO_8859_4,
-    AFM_ENCODING_ISO_8859_3,
-    AFM_ENCODING_ISO_8859_2,
-    AFM_ENCODING_ISO_8859_1,
     AFM_ENCODING_DEFAULT,
+    AFM_ENCODING_ISO_8859_1,
+    AFM_ENCODING_ISO_8859_2,
+    AFM_ENCODING_ISO_8859_3,
+    AFM_ENCODING_ISO_8859_4,
+    AFM_ENCODING_ISO_8859_5,
+    AFM_ENCODING_ISO_8859_7,
+    AFM_ENCODING_IBMPC,
+    AFM_ENCODING_ASCII,
+    AFM_ENCODING_MAC,
+    AFM_ENCODING_VMS,
+    AFM_ENCODING_HP8,
+    AFM_ENCODING_KOI8,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -552,29 +552,29 @@ pub type MediaEntry = media_entry_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum InputEncoding {
-    ENC_PS,
-    ENC_KOI8,
-    ENC_HP8,
-    ENC_VMS,
-    ENC_MAC,
-    ENC_IBMPC,
-    ENC_ASCII_DKNO,
-    ENC_ASCII_FISE,
-    ENC_ASCII,
-    ENC_ISO_8859_7,
-    ENC_ISO_8859_5,
-    ENC_ISO_8859_4,
-    ENC_ISO_8859_3,
-    ENC_ISO_8859_2,
     ENC_ISO_8859_1,
+    ENC_ISO_8859_2,
+    ENC_ISO_8859_3,
+    ENC_ISO_8859_4,
+    ENC_ISO_8859_5,
+    ENC_ISO_8859_7,
+    ENC_ASCII,
+    ENC_ASCII_FISE,
+    ENC_ASCII_DKNO,
+    ENC_IBMPC,
+    ENC_MAC,
+    ENC_VMS,
+    ENC_HP8,
+    ENC_KOI8,
+    ENC_PS,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum FormFeedType {
-    FORMFEED_HCOLUMN,
-    FORMFEED_PAGE,
     FORMFEED_COLUMN,
+    FORMFEED_PAGE,
+    FORMFEED_HCOLUMN,
 }  // end of enum
 
 #[derive(Copy, Clone)]

@@ -279,8 +279,8 @@ pub type wordsplit_t = wordsplit;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    CHKP_COMPILE,
     CHKP_INIT,
+    CHKP_COMPILE,
     CHKP_RUN,
 }  // end of enum
 

@@ -243,10 +243,10 @@ pub type DIR = __dirstream;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum savedir_option {
-    SAVEDIR_SORT_FASTREAD,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_NONE,
+    SAVEDIR_SORT_NAME,
+    SAVEDIR_SORT_INODE,
+    SAVEDIR_SORT_FASTREAD,
 }  // end of enum
 
 pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
@@ -260,26 +260,26 @@ pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
-    numbered_backups,
-    numbered_existing_backups,
-    simple_backups,
     no_backups,
+    simple_backups,
+    numbered_existing_backups,
+    numbered_backups,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
-    custom_quoting_style,
-    clocale_quoting_style,
-    locale_quoting_style,
-    escape_quoting_style,
-    c_maybe_quoting_style,
-    c_quoting_style,
-    shell_escape_always_quoting_style,
-    shell_escape_quoting_style,
-    shell_always_quoting_style,
-    shell_quoting_style,
     literal_quoting_style,
+    shell_quoting_style,
+    shell_always_quoting_style,
+    shell_escape_quoting_style,
+    shell_escape_always_quoting_style,
+    c_quoting_style,
+    c_maybe_quoting_style,
+    escape_quoting_style,
+    locale_quoting_style,
+    clocale_quoting_style,
+    custom_quoting_style,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -302,25 +302,24 @@ pub const BILLION: C2RustUnnamed_0 = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    BILLION,
-    LOG10_BILLION,
+    BILLION = 1000000000,
+    LOG10_BILLION = 9,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
-    WANT_DIRECTORY_REMOVE_OPTION,
-    RECURSIVE_REMOVE_OPTION,
     ORDINARY_REMOVE_OPTION,
+    RECURSIVE_REMOVE_OPTION,
+    WANT_DIRECTORY_REMOVE_OPTION,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
-    CHDIR_CACHE_SIZE,
+    CHDIR_CACHE_SIZE = 16,
 }  // end of enum
-)]
-pub struct namebuf {
+ebuf {
     pub buffer: *mut libc::c_char,
     pub buffer_size: size_t,
     pub dir_length: size_t,
@@ -329,16 +328,16 @@ pub const BILLION: C2RustUnnamed_0 = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    BILLION,
-    LOG10_BILLION,
+    BILLION = 1000000000,
+    LOG10_BILLION = 9,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
-    WANT_DIRECTORY_REMOVE_OPTION,
-    RECURSIVE_REMOVE_OPTION,
     ORDINARY_REMOVE_OPTION,
+    RECURSIVE_REMOVE_OPTION,
+    WANT_DIRECTORY_REMOVE_OPTION,
 }  // end of enum
 
 pub type C2RustUnnamed_1 = libc::c_uint;

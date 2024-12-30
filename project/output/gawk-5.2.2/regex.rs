@@ -183,40 +183,40 @@ pub struct re_token_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum re_token_type_t {
-    BACK_SLASH,
-    OP_NOTSPACE,
-    OP_SPACE,
-    OP_NOTWORD,
-    OP_WORD,
-    OP_CLOSE_CHAR_CLASS,
-    OP_OPEN_CHAR_CLASS,
-    OP_CLOSE_EQUIV_CLASS,
-    OP_OPEN_EQUIV_CLASS,
-    OP_CLOSE_COLL_ELEM,
-    OP_OPEN_COLL_ELEM,
-    OP_NON_MATCH_LIST,
-    OP_CLOSE_DUP_NUM,
-    OP_OPEN_DUP_NUM,
-    OP_CHARSET_RANGE,
-    OP_CLOSE_BRACKET,
-    OP_OPEN_BRACKET,
-    OP_DUP_QUESTION,
-    OP_DUP_PLUS,
-    SUBEXP,
-    CONCAT,
-    ANCHOR,
-    OP_DUP_ASTERISK,
-    OP_ALT,
-    OP_CLOSE_SUBEXP,
+    NON_TYPE = 0,
+    CHARACTER = 1,
+    END_OF_RE = 2,
+    SIMPLE_BRACKET = 3,
+    OP_BACK_REF = 4,
+    OP_PERIOD = 5,
+    COMPLEX_BRACKET = 6,
+    OP_UTF8_PERIOD = 7,
     OP_OPEN_SUBEXP,
-    OP_UTF8_PERIOD,
-    COMPLEX_BRACKET,
-    OP_PERIOD,
-    OP_BACK_REF,
-    SIMPLE_BRACKET,
-    END_OF_RE,
-    CHARACTER,
-    NON_TYPE,
+    OP_CLOSE_SUBEXP,
+    OP_ALT,
+    OP_DUP_ASTERISK,
+    ANCHOR,
+    CONCAT = 16,
+    SUBEXP = 17,
+    OP_DUP_PLUS = 18,
+    OP_DUP_QUESTION,
+    OP_OPEN_BRACKET,
+    OP_CLOSE_BRACKET,
+    OP_CHARSET_RANGE,
+    OP_OPEN_DUP_NUM,
+    OP_CLOSE_DUP_NUM,
+    OP_NON_MATCH_LIST,
+    OP_OPEN_COLL_ELEM,
+    OP_CLOSE_COLL_ELEM,
+    OP_OPEN_EQUIV_CLASS,
+    OP_CLOSE_EQUIV_CLASS,
+    OP_OPEN_CHAR_CLASS,
+    OP_CLOSE_CHAR_CLASS,
+    OP_WORD,
+    OP_NOTWORD,
+    OP_SPACE,
+    OP_NOTSPACE,
+    BACK_SLASH,
 }  // end of enum
 
 #[derive(Copy, Clone)]
@@ -231,16 +231,16 @@ pub union C2RustUnnamed {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum re_context_type {
-    NOT_WORD_DELIM,
-    WORD_DELIM,
-    BUF_LAST,
-    BUF_FIRST,
-    LINE_LAST,
-    LINE_FIRST,
-    INSIDE_NOTWORD,
-    WORD_LAST,
-    WORD_FIRST,
     INSIDE_WORD,
+    WORD_FIRST,
+    WORD_LAST,
+    INSIDE_NOTWORD,
+    LINE_FIRST,
+    LINE_LAST,
+    BUF_FIRST,
+    BUF_LAST,
+    WORD_DELIM,
+    NOT_WORD_DELIM,
 }  // end of enum
 
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -381,11 +381,11 @@ pub struct bracket_elem_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum bracket_elem_type {
-    CHAR_CLASS,
-    COLL_SYM,
-    EQUIV_CLASS,
-    MB_CHAR,
     SB_CHAR,
+    MB_CHAR,
+    EQUIV_CLASS,
+    COLL_SYM,
+    CHAR_CLASS,
 }  // end of enum
 
 pub type int_fast32_t = libc::c_long;
@@ -528,11 +528,11 @@ pub struct bracket_elem_t {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum bracket_elem_type {
-    CHAR_CLASS,
-    COLL_SYM,
-    EQUIV_CLASS,
-    MB_CHAR,
     SB_CHAR,
+    MB_CHAR,
+    EQUIV_CLASS,
+    COLL_SYM,
+    CHAR_CLASS,
 }  // end of enum
 
 pub type int_fast32_t = libc::c_long;

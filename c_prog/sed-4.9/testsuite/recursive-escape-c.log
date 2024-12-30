@@ -1,2 +1,0 @@
-./testsuite/recursive-escape-c.sh: line 54: test: : integer expression expected
-PASS testsuite/recursive-escape-c.sh (exit status: 0)

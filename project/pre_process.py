@@ -262,14 +262,16 @@ def ensure_compile_arguments(compile_command):
     arguments = compile_command['arguments']
     directory = compile_command['directory']
 
-    arguments[0] = 'clang'
+    return arguments[2:-4]
 
-    return arguments
-
-def get_included_files(file_path, compile_command):
+def get_included_files(file_path, compile_command, prog_path):
     """
     提取 C 文件中所有的引用文件（#include 文件），包括条件编译后的结果。
     """
+
+    saved_cwd = os.getcwd()
+    directory = compile_command['directory']
+    os.chdir(directory)
 
     index = clang.cindex.Index.create()
 
@@ -282,12 +284,18 @@ def get_included_files(file_path, compile_command):
     except Exception as e:
         print(f"Failed to parse {file_path}: {e}")
         return None
+    
+    os.chdir(saved_cwd)
 
     # 收集引用文件
     included_files = []
+    prog_path = os.path.abspath(prog_path)
     for inclusion in translation_unit.get_includes():
         if inclusion.include:
-            included_files.append(str(inclusion.include))
+            include_path = os.path.join(directory, str(inclusion.include))
+            include_path = os.path.abspath(include_path)
+            if include_path.startswith(prog_path) and include_path not in included_files:
+                included_files.append(include_path)
     
     return included_files
 
@@ -308,11 +316,11 @@ def analyze_project_with_compile_commands(project_path, compile_commands_path):
                 # 获取对应的编译命令
                 compile_command = compile_commands.get(file_path)
                 if not compile_command:
-                    print(f"No compile command found for {file_path}")
+                    # print(f"No compile command found for {file_path}")
                     continue
 
                 print(f"Analyzing {file_path}...")
-                included_files = get_included_files(file_path, compile_command)
+                included_files = get_included_files(file_path, compile_command, project_path)
                 if included_files is not None:
                     includes_map[file_path] = included_files
 
@@ -326,11 +334,10 @@ def load_compile_commands(compile_commands_path):
         compile_commands = json.load(f)
     
     commands_map = {}
-    base_dir = os.path.dirname(compile_commands_path)
 
     for entry in compile_commands:
-        file_path = os.path.abspath(os.path.join(base_dir, entry['file']))
         directory = entry['directory']
+        file_path = os.path.abspath(os.path.join(directory, entry['file']))
         command = entry['command'] if 'command' in entry else entry['arguments']
         
         # 将命令拆分为列表（如果是单个字符串）
@@ -363,10 +370,20 @@ def make_c_include_list():
         with open('c_include_list/' + prog + '/c_include_list.json', 'w') as f:
             json.dump(project_includes, f, indent=4)
 
+def setup_c2rust():
+    for prog in prog_list:
+        project_path = get_prog_path(prog)
+        saved_cwd = os.getcwd()
+        os.chdir(project_path)
+        os.system("make clean")
+        os.system("rm -f compile_commands.json")
+        os.system("bear make")
+        os.system("c2rust transpile compile_commands.json")
+        os.chdir(saved_cwd)
 
-
+# setup_c2rust()
 # make_data_csv()
 # make_location_c_json()
 # make_candidate_c_list()
 # make_candidate_rust_list()
-make_c_include_list()
+# make_c_include_list()

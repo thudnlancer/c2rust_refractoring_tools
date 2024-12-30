@@ -128,8 +128,8 @@ pub type pth_event_t = *mut pth_event_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
-    PTH_FREE_ALL,
     PTH_FREE_THIS,
+    PTH_FREE_ALL,
 }  // end of enum
 
 unsafe extern "C" fn ticker(mut _arg: *mut libc::c_void) -> *mut libc::c_void {

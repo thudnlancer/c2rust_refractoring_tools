@@ -1,638 +1,638 @@
 [
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-pin.o", 
-            "argp-pin.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-pin.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "asnprintf.o", 
-            "asnprintf.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "asnprintf.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-fs-xinl.o", 
-            "argp-fs-xinl.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-fs-xinl.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-pvh.o", 
-            "argp-pvh.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-pvh.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "xmalloc.o", 
-            "xmalloc.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "xmalloc.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "printf-args.o", 
-            "printf-args.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "printf-args.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "symbol.o", 
-            "symbol.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "symbol.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "vasnprintf.o", 
-            "vasnprintf.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "vasnprintf.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "depmap.o", 
-            "depmap.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "depmap.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-parse.o", 
-            "argp-parse.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-parse.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "rc.o", 
-            "rc.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "rc.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-ba.o", 
-            "argp-ba.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-ba.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "linked-list.o", 
-            "linked-list.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "linked-list.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-pv.o", 
-            "argp-pv.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-pv.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "xalloc-die.o", 
-            "xalloc-die.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "xalloc-die.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-eexst.o", 
-            "argp-eexst.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-eexst.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "getopt1.o", 
-            "getopt1.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "getopt1.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "exitfail.o", 
-            "exitfail.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "exitfail.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-help.o", 
-            "argp-help.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-help.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-fmtstream.o", 
-            "argp-fmtstream.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-fmtstream.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "parser.o", 
-            "parser.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "parser.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "stripslash.o", 
-            "stripslash.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "stripslash.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "getopt.o", 
-            "getopt.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "getopt.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argcv.o", 
-            "argcv.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "argcv.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "main.o", 
-            "main.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "main.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "progname.o", 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "progname.o",
             "progname.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
         "file": "progname.c"
-    }, 
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "version-etc.o", 
-            "version-etc.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "version-etc.c"
-    }, 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "vasnprintf.o",
+            "vasnprintf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "vasnprintf.c"
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-xinl.o", 
-            "argp-xinl.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-xinl.c"
-    }, 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "linked-list.o",
+            "linked-list.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "linked-list.c"
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "argp-version-etc.o", 
-            "argp-version-etc.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "argp-version-etc.c"
-    }, 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "exitfail.o",
+            "exitfail.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "exitfail.c"
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "dirname-lgpl.o", 
-            "dirname-lgpl.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "dirname-lgpl.c"
-    }, 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "rc.o",
+            "rc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "rc.c"
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "c.o", 
-            "c.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "c.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "output.o", 
-            "output.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "output.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "hash.o", 
-            "hash.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "hash.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "posix.o", 
-            "posix.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
-        "file": "posix.c"
-    }, 
-    {
-        "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "basename-lgpl.o", 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "basename-lgpl.o",
             "basename-lgpl.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
         "file": "basename-lgpl.c"
-    }, 
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "printf-parse.o", 
-            "printf-parse.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/gnu", 
-        "file": "printf-parse.c"
-    }, 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "stripslash.o",
+            "stripslash.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "stripslash.c"
+    },
     {
         "arguments": [
-            "cc", 
-            "-c", 
-            "-DHAVE_CONFIG_H", 
-            "-I.", 
-            "-I..", 
-            "-I../gnu", 
-            "-I../", 
-            "-I../gnu", 
-            "-DLOCALEDIR=\"/usr/local/share/locale\"", 
-            "-g", 
-            "-O2", 
-            "-o", 
-            "gnu.o", 
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-fmtstream.o",
+            "argp-fmtstream.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-fmtstream.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-parse.o",
+            "argp-parse.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-parse.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "version-etc.o",
+            "version-etc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "version-etc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "c.o",
+            "c.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "c.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-pv.o",
+            "argp-pv.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-pv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-ba.o",
+            "argp-ba.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-ba.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "symbol.o",
+            "symbol.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "symbol.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "depmap.o",
+            "depmap.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "depmap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-eexst.o",
+            "argp-eexst.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-eexst.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "parser.o",
+            "parser.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "parser.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-version-etc.o",
+            "argp-version-etc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-version-etc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "xalloc-die.o",
+            "xalloc-die.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "xalloc-die.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "dirname-lgpl.o",
+            "dirname-lgpl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "dirname-lgpl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-xinl.o",
+            "argp-xinl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-xinl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "getopt1.o",
+            "getopt1.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "getopt1.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "posix.o",
+            "posix.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "posix.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "argcv.o",
+            "argcv.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "argcv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-pin.o",
+            "argp-pin.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-pin.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "xmalloc.o",
+            "xmalloc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "xmalloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "output.o",
+            "output.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "output.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-pvh.o",
+            "argp-pvh.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-pvh.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "gnu.o",
             "gnu.c"
-        ], 
-        "directory": "/home/thundlancer/Desktop/c_progs/cflow/src", 
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
         "file": "gnu.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "getopt.o",
+            "getopt.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "getopt.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-parse.o",
+            "printf-parse.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "printf-parse.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-args.o",
+            "printf-args.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "printf-args.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "hash.o",
+            "hash.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "hash.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "asnprintf.o",
+            "asnprintf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "asnprintf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-help.o",
+            "argp-help.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-help.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-o",
+            "argp-fs-xinl.o",
+            "argp-fs-xinl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/gnu",
+        "file": "argp-fs-xinl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I../gnu",
+            "-I../",
+            "-I../gnu",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-g",
+            "-O2",
+            "-o",
+            "main.o",
+            "main.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/cflow/src",
+        "file": "main.c"
     }
 ]

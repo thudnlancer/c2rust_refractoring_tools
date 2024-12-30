@@ -24,24 +24,24 @@ pub type __off64_t = libc::c_long;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_mode {
-    SEXP_TRANSPORT,
-    SEXP_ADVANCED,
-    SEXP_CANONICAL,
+    SEXP_CANONICAL = 0,
+    SEXP_ADVANCED = 1,
+    SEXP_TRANSPORT = 2,
 }  // end of enum
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_token {
-    SEXP_CODING_END,
-    SEXP_TRANSPORT_START,
-    SEXP_DISPLAY_END,
-    SEXP_DISPLAY_START,
-    SEXP_EOF,
-    SEXP_LIST_END,
-    SEXP_LIST_START,
-    SEXP_COMMENT,
-    SEXP_DISPLAY,
     SEXP_STRING,
+    SEXP_DISPLAY,
+    SEXP_COMMENT,
+    SEXP_LIST_START,
+    SEXP_LIST_END,
+    SEXP_EOF,
+    SEXP_DISPLAY_START,
+    SEXP_DISPLAY_END,
+    SEXP_TRANSPORT_START,
+    SEXP_CODING_END,
 }  // end of enum
 
 pub type uint8_t = __uint8_t;
@@ -146,9 +146,9 @@ pub struct nettle_armor {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_char_type {
-    SEXP_END_CHAR,
+    SEXP_NORMAL_CHAR = 0,
     SEXP_EOF_CHAR,
-    SEXP_NORMAL_CHAR,
+    SEXP_END_CHAR,
 }  // end of enum
 
 pub type FILE = _IO_FILE;

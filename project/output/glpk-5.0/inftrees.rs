@@ -9,9 +9,9 @@ pub struct code {
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum codetype {
-    DISTS,
-    LENS,
     CODES,
+    LENS,
+    DISTS,
 }  // end of enum
 
 #[no_mangle]

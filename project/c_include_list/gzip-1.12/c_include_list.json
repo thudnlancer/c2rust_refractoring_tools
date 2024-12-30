@@ -1,1 +1,637 @@
-{}
+{
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/zip.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/trees.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/unlzw.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lzw.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/version.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/unlzh.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lzw.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/unpack.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/util.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/unzip.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/inflate.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/bits.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/signal.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/stat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lzw.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/revision.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/timespec.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/arg-nonnull.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dosname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl--.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/ignore-value.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stat-time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/version.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/yesno.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/savedir.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/utimens.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/deflate.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/tailor.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/gzip.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lzw.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/verify.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dup-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/asnprintf.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vasnprintf.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/getprogname.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/getprogname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-parse.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-parse.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-args.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/wchar.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xsize.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/attribute.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fprintf.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseterr.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vasnprintf.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fclose.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/freading.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/opendir-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-frexpl.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-frexp.c",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-frexpl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/math.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fpucw.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fpurge.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio-impl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xsize.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xsize.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/attribute.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/cloexec.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/cloexec.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stat-time.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stat-time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/stat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/yesno.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/yesno.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseeko.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio-impl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/free.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/exitfail.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/exitfail.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/open-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/openat-proc.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/openat-priv.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/stat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/utimens.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/utimens.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/stat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/utime.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stat-time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/timespec.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/arg-nonnull.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirname-lgpl.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/pipe-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/save-cwd.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/save-cwd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/chdir-long.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/pathmax.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd--.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl--.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl-safer.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/savedir.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/savedir.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent--.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirent-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/malloca.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/malloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc-oversized.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/verify.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-frexp.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-frexp.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/math.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vfprintf.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseterr.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vasnprintf.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/math.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/math.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/openat-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseek.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/freading.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/freading.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio-impl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fflush.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/freading.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio-impl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseterr.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fseterr.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio-impl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/creat-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xmalloc.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/ialloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/minmax.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/signal.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/openat-die.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/openat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/stat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/error.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/exitfail.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filenamecat-lgpl.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filenamecat.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fd-safer.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stripslash.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dirname.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc-die.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xalloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/intprops.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/error.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/exitfail.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/gettext.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sig-handler.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sig-handler.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/signal.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fd-safer-flag.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/gettime.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/timespec.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/arg-nonnull.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/time.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/timespec.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/timespec.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/arg-nonnull.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/basename-lgpl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/filename.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/dup-safer-flag.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd-safer.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vasnprintf.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/vasnprintf.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-parse.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-args.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/wchar.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/xsize.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/attribute.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/verify.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fd-hook.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fd-hook.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/ialloc.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/ialloc.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/idx.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-args.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/printf-args.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/wchar.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/chdir-long.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/chdir-long.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/unistd.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/limits.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/pathmax.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/fcntl.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/assure.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/verify.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/strerror_r.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/string.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdio.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/strerror-override.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/glthread/threadlib.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h"
+    ],
+    "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/glthread/lock.c": [
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/config.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/glthread/lock.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/stdlib.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/sys/types.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/alloca.h",
+        "/home/c2rust/Desktop/c_prog/gzip-1.12/lib/time.h"
+    ]
+}

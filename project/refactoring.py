@@ -8,7 +8,7 @@ from collections import defaultdict
 def find_file_in_directory(root_dir, filename):
     for root, dirs, files in os.walk(root_dir):
         if filename in files:
-            return os.path.join(root, filename)
+            return os.path.abspath(os.path.join(root, filename))
     return None
 
 def remove_comments(code):
@@ -211,7 +211,7 @@ def make_enum_code_rust():
 
         for candidate_path in candidates:
             file_enums = extract_enum_info_rust(candidate_path)
-            result[candidate_path] = file_enums
+            result[os.path.abspath(candidate_path)] = file_enums
 
         if not os.path.exists('enum_code_rust/' + prog):
             os.makedirs('enum_code_rust/' + prog)
@@ -219,40 +219,6 @@ def make_enum_code_rust():
         with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
             json.dump(result, json_file)
 
-def find_file_references(project_path):
-    """
-    遍历给定的 C 项目路径，生成文件引用关系字典。
-    键为文件名，值为该文件引用的存在于项目内的所有文件（字符串数组）。
-    """
-    # 定义存储结果的字典
-    file_references = defaultdict(list)
-    
-    # 收集项目内的所有 .c 和 .h 文件
-    project_files = {}
-    for root, _, files in os.walk(project_path):
-        for file in files:
-            if file.endswith(('.c', '.h')):
-                full_path = os.path.join(root, file)
-                project_files[file] = full_path
-    
-    # 正则表达式匹配 #include 指令
-    include_pattern = re.compile(r'#include\s*[<"]([^">]+)[">]')
-    
-    # 遍历项目内的所有文件，提取引用关系
-    for file_name, full_path in project_files.items():
-        with open(full_path, 'r', encoding='utf-8', errors='ignore') as f:
-            content = f.read()
-        
-        # 查找所有的 #include 指令
-        includes = include_pattern.findall(content)
-        
-        # 检查引用的文件是否存在于项目内
-        for include in includes:
-            included_path = project_files.get(include)
-            if included_path:  # 仅记录项目内的文件
-                file_references[full_path].append(included_path)
-    
-    return dict(file_references)
 
 def check_enum(enum_name, enum_members, c_enums):
     # 如果枚举名以 'C2RustUnnamed' 为前缀，根据成员名列表进行查找
@@ -281,15 +247,16 @@ def find_enum_definition(enum_name, enum_members, c_file_path, file_references, 
     # 在 C 文件中查找枚举定义
     result = check_enum(enum_name, enum_members, c_enums[c_file_path])
     if result:
-        print(result)
+        # print(result)
         return result
 
     # 如果没有找到同名 C 文件，递归查找其引用的文件
     for referenced_file in file_references[c_file_path]:
-        result = find_enum_definition(enum_name, enum_members, referenced_file, file_references, c_enums)
-        if result:
-            print(result)
-            return result
+        if referenced_file in c_enums:
+            result = check_enum(enum_name, enum_members, c_enums[referenced_file])
+            if result:
+                # print(result)
+                return result
 
     # 如果找不到该枚举定义，返回 None
     return None
@@ -304,18 +271,30 @@ def transfer_enum_rust():
         with open(path_to_enum_c_json_file, 'r', encoding='utf-8') as f:
             c_enums = json.load(f)
         
-        path_to_prog = pre_process.get_prog_path(prog)
-        c_include_reflection = find_file_references(path_to_prog)
+        path_to_c_include_list = 'c_include_list/' + prog + '/c_include_list.json'
+        with open(path_to_c_include_list, 'r', encoding='utf-8') as f:
+            c_include_list = json.load(f)
 
         for file_path, enums in rust_enums.items():
             for enum in enums:
                 enum_name = enum['enum_name']
                 enum_members = enum['members']
                 c_file_path = file_path.replace('.rs', '.c')
-                c_enum = find_enum_definition(enum_name, enum_members, c_file_path, c_include_reflection, c_enums)
+                c_enum = find_enum_definition(enum_name, enum_members, c_file_path, c_include_list, c_enums)
                 if c_enum:
-                    enum['enum_name'] = c_enum['enum_name']
-                    enum['members'] = c_enum['members']
+                    if c_enum['enum_name']:
+                        enum['enum_name'] = c_enum['enum_name']
+                    members = enum['members']
+                    c_members = c_enum['members']
+                    tmp_members = {}
+                    for member_name in c_members.keys():
+                        if member_name in members:
+                            tmp_members[member_name] = c_members[member_name]
+                            tmp_members[member_name][0] = members[member_name][0]
+                    enum['members'] = tmp_members
+        
+        with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
+            json.dump(rust_enums, json_file)
 
 
 def convert_value(value, is_hex):
