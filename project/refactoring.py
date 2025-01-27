@@ -3,6 +3,7 @@ import os
 import json
 import pre_process
 import chardet
+import sys
 from collections import defaultdict
 
 def find_file_in_directory(root_dir, filename):
@@ -176,51 +177,52 @@ def extract_enum_info_rust(filename):
 
     return enum_info_list
 
-def make_enum_code_c():
+def make_enum_code_c(proj_path):
     if not os.path.exists('enum_code_c'):
         os.makedirs('enum_code_c')
-    for prog in pre_process.prog_list:
-        path_to_candidate = pre_process.get_candidate_path(prog)
-        path_to_prog = pre_process.get_prog_path(prog)
-        enum_json_file = path_to_candidate + '/enum.json'
-        with open(enum_json_file, 'r', encoding='utf-8') as f:
-            enums = json.load(f)
+
+    prog = os.path.basename(proj_path)
+    path_to_candidate = pre_process.get_candidate_path(prog)
+    enum_json_file = path_to_candidate + '/enum.json'
+    with open(enum_json_file, 'r', encoding='utf-8') as f:
+        enums = json.load(f)
         
-        result = {}
+    result = {}
 
-        for filename, enum_names in enums.items():
-            filepath = find_file_in_directory(path_to_prog, filename)
-            res = extract_enum_info_c(filepath)
-            if len(res) > 0:
-                result[filepath] = extract_enum_info_c(filepath)
+    for filename, enum_names in enums.items():
+        filepath = find_file_in_directory(proj_path, filename)
+        res = extract_enum_info_c(filepath)
+        if len(res) > 0:
+            result[filepath] = extract_enum_info_c(filepath)
 
-        if not os.path.exists('enum_code_c/' + prog):
-            os.makedirs('enum_code_c/' + prog)
+    if not os.path.exists('enum_code_c/' + prog):
+        os.makedirs('enum_code_c/' + prog)
 
-        with open('enum_code_c/' + prog + '/enum.json', 'w') as json_file:
-            json.dump(result, json_file)
+    with open('enum_code_c/' + prog + '/enum.json', 'w') as json_file:
+        json.dump(result, json_file)
 
-def make_enum_code_rust():
+def make_enum_code_rust(proj_path):
     if not os.path.exists('enum_code_rust'):
         os.makedirs('enum_code_rust')
-    for prog in pre_process.prog_list:
-        path_to_candidate = 'candidate_rust/' + prog
-        candidate_json_file = path_to_candidate + '/enum.json'
-        with open(candidate_json_file, 'r', encoding='utf-8') as f:
-            candidates = json.load(f)
+
+    prog = os.path.basename(proj_path)
+    path_to_candidate = 'candidate_rust/' + prog
+    candidate_json_file = path_to_candidate + '/enum.json'
+    with open(candidate_json_file, 'r', encoding='utf-8') as f:
+        candidates = json.load(f)
         
-        result = {}
+    result = {}
 
-        for candidate_path in candidates:
-            file_enums = extract_enum_info_rust(candidate_path)
-            if len(file_enums) > 0:
-                result[os.path.abspath(candidate_path)] = file_enums
+    for candidate_path in candidates:
+        file_enums = extract_enum_info_rust(candidate_path)
+        if len(file_enums) > 0:
+            result[os.path.abspath(candidate_path)] = file_enums
 
-        if not os.path.exists('enum_code_rust/' + prog):
-            os.makedirs('enum_code_rust/' + prog)
+    if not os.path.exists('enum_code_rust/' + prog):
+        os.makedirs('enum_code_rust/' + prog)
 
-        with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
-            json.dump(result, json_file)
+    with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
+        json.dump(result, json_file)
 
 
 def check_enum(enum_name, enum_members, c_enums):
@@ -266,40 +268,41 @@ def find_enum_definition(enum_name, enum_members, c_file_path, file_references, 
     # 如果找不到该枚举定义，返回 None
     return None
 
-def transfer_enum_rust():
-    for prog in pre_process.prog_list:
-        path_to_enum_rust_json_file = 'enum_code_rust/' + prog + '/enum.json'
-        with open(path_to_enum_rust_json_file, 'r', encoding='utf-8') as f:
-            rust_enums = json.load(f)
+def transfer_enum_rust(proj_path):
 
-        path_to_enum_c_json_file = 'enum_code_c/' + prog + '/enum.json'
-        with open(path_to_enum_c_json_file, 'r', encoding='utf-8') as f:
-            c_enums = json.load(f)
-        
-        path_to_c_include_list = 'c_include_list/' + prog + '/c_include_list.json'
-        with open(path_to_c_include_list, 'r', encoding='utf-8') as f:
-            c_include_list = json.load(f)
+    prog = os.path.basename(proj_path)
+    path_to_enum_rust_json_file = 'enum_code_rust/' + prog + '/enum.json'
+    with open(path_to_enum_rust_json_file, 'r', encoding='utf-8') as f:
+        rust_enums = json.load(f)
 
-        for file_path, enums in rust_enums.items():
-            for enum in enums:
-                enum_name = enum['enum_name']
-                enum_members = enum['members']
-                c_file_path = file_path.replace('.rs', '.c')
-                c_enum = find_enum_definition(enum_name, enum_members, c_file_path, c_include_list, c_enums)
-                if c_enum:
-                    if c_enum['enum_name']:
-                        enum['enum_name'] = c_enum['enum_name']
-                    members = enum['members']
-                    c_members = c_enum['members']
-                    tmp_members = {}
-                    for member_name in c_members.keys():
-                        if member_name in members:
-                            tmp_members[member_name] = c_members[member_name]
-                            tmp_members[member_name][0] = members[member_name][0]
-                    enum['members'] = tmp_members
+    path_to_enum_c_json_file = 'enum_code_c/' + prog + '/enum.json'
+    with open(path_to_enum_c_json_file, 'r', encoding='utf-8') as f:
+        c_enums = json.load(f)
         
-        with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
-            json.dump(rust_enums, json_file)
+    path_to_c_include_list = 'c_include_list/' + prog + '/c_include_list.json'
+    with open(path_to_c_include_list, 'r', encoding='utf-8') as f:
+        c_include_list = json.load(f)
+
+    for file_path, enums in rust_enums.items():
+        for enum in enums:
+            enum_name = enum['enum_name']
+            enum_members = enum['members']
+            c_file_path = file_path.replace('.rs', '.c')
+            c_enum = find_enum_definition(enum_name, enum_members, c_file_path, c_include_list, c_enums)
+            if c_enum:
+                if c_enum['enum_name']:
+                    enum['enum_name'] = c_enum['enum_name']
+                members = enum['members']
+                c_members = c_enum['members']
+                tmp_members = {}
+                for member_name in c_members.keys():
+                    if member_name in members:
+                        tmp_members[member_name] = c_members[member_name]
+                        tmp_members[member_name][0] = members[member_name][0]
+                enum['members'] = tmp_members
+        
+    with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
+        json.dump(rust_enums, json_file)
 
 
 def convert_value(value, is_hex):
@@ -323,6 +326,17 @@ def generate_enum_code(enum_name, members):
             enum_code += f"    {member},\n"
     
     enum_code += "}  // end of enum\n"
+
+    enum_code += f"impl {enum_name} {{\n"
+
+    enum_code += f"    fn to_libc_c_uint(self) -> libc::c_uint {{\n"
+    enum_code += f"        match self {{\n"
+    for member, (value, is_hex, is_explict) in members.items():
+        value_str = convert_value(value, is_hex)
+        enum_code += f"            {enum_name}::{member} => {value_str},\n"
+    enum_code += f"        }}\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
     return enum_code
 
 def get_indentation_at_position(content, position):
@@ -400,15 +414,32 @@ def process_json_file(json_file_path, output_dir):
             f.write(modified_content)
         
 
-def refactoring():
+def refactoring(proj_path):
     if not os.path.exists('output'):
         os.makedirs('output')
-    for prog in pre_process.prog_list:
-        path_to_json = 'enum_code_rust/' + prog + '/enum.json'
-        path_to_output = 'output/' + prog
-        process_json_file(path_to_json, path_to_output)
+    
+    make_enum_code_c(proj_path)
+    make_enum_code_rust(proj_path)
+    transfer_enum_rust(proj_path)
+
+    prog = os.path.basename(proj_path)
+    path_to_json = 'enum_code_rust/' + prog + '/enum.json'
+    path_to_output = 'output/' + prog
+    process_json_file(path_to_json, path_to_output)
 
 # make_enum_code_c()
 # make_enum_code_rust()
 # transfer_enum_rust()
-refactoring()
+# refactoring()
+
+if __name__ == "__main__":
+    if len(sys.argv) > 1:
+        print("usage: refactoring program path or default path: ../c_prog/")
+    if len(sys.argv) == 1:
+        proj_path = sys.argv[0]
+        refactoring(proj_path)
+
+    else:
+        for prog in pre_process.prog_list:
+            proj_path = pre_process.get_prog_path(prog)
+            refactoring(proj_path)
