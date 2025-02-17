@@ -130,7 +130,18 @@ pub enum C2RustUnnamed {
     DFA_CONFUSING_BRACKETS_ERROR = 4,
     DFA_EOL_NUL = 2,
     DFA_ANCHOR = 1,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::DFA_PLUS_WARN => 32,
+            C2RustUnnamed::DFA_STAR_WARN => 16,
+            C2RustUnnamed::DFA_STRAY_BACKSLASH_WARN => 8,
+            C2RustUnnamed::DFA_CONFUSING_BRACKETS_ERROR => 4,
+            C2RustUnnamed::DFA_EOL_NUL => 2,
+            C2RustUnnamed::DFA_ANCHOR => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -149,7 +160,15 @@ pub enum text_types {
     TEXT_BUFFER,
     TEXT_REPLACEMENT,
     TEXT_REGEX,
-}  // end of enum
+impl text_types {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            text_types::TEXT_BUFFER => 0,
+            text_types::TEXT_REPLACEMENT => 1,
+            text_types::TEXT_REGEX => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -157,7 +176,15 @@ pub enum posixicity_types {
     POSIXLY_EXTENDED,
     POSIXLY_CORRECT,
     POSIXLY_BASIC,
-}  // end of enum
+impl posixicity_types {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            posixicity_types::POSIXLY_EXTENDED => 0,
+            posixicity_types::POSIXLY_CORRECT => 1,
+            posixicity_types::POSIXLY_BASIC => 2,
+        }
+    }
+}
 
 static mut errors: [libc::c_char; 72] = unsafe {
     *::core::mem::transmute::<

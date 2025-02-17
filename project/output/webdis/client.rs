@@ -239,7 +239,15 @@ pub enum http_parser_type {
     HTTP_REQUEST,
     HTTP_RESPONSE,
     HTTP_BOTH,
-}  // end of enum
+impl http_parser_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            http_parser_type::HTTP_REQUEST => 0,
+            http_parser_type::HTTP_RESPONSE => 1,
+            http_parser_type::HTTP_BOTH => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -250,7 +258,18 @@ pub enum flags {
     F_TRAILING = 8,
     F_UPGRADE = 16,
     F_SKIPBODY = 32,
-}  // end of enum
+impl flags {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            flags::F_CHUNKED => 1,
+            flags::F_CONNECTION_KEEP_ALIVE => 2,
+            flags::F_CONNECTION_CLOSE => 4,
+            flags::F_TRAILING => 8,
+            flags::F_UPGRADE => 16,
+            flags::F_SKIPBODY => 32,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -418,7 +437,15 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
-}  // end of enum
+impl redisConnectionType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            redisConnectionType::REDIS_CONN_TCP => 0,
+            redisConnectionType::REDIS_CONN_UNIX => 1,
+            redisConnectionType::REDIS_CONN_USERFD => 2,
+        }
+    }
+}
 
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
@@ -573,7 +600,15 @@ pub enum log_fsync_mode {
     LOG_FSYNC_AUTO = 0,
     LOG_FSYNC_MILLIS,
     LOG_FSYNC_ALL,
-}  // end of enum
+impl log_fsync_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_fsync_mode::LOG_FSYNC_AUTO => 0,
+            log_fsync_mode::LOG_FSYNC_MILLIS => 1,
+            log_fsync_mode::LOG_FSYNC_ALL => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -584,7 +619,18 @@ pub enum log_level {
     WEBDIS_INFO,
     WEBDIS_DEBUG,
     WEBDIS_TRACE = 8,
-}  // end of enum
+impl log_level {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_level::WEBDIS_ERROR => 0,
+            log_level::WEBDIS_WARNING => 1,
+            log_level::WEBDIS_NOTICE => 2,
+            log_level::WEBDIS_INFO => 3,
+            log_level::WEBDIS_DEBUG => 4,
+            log_level::WEBDIS_TRACE => 8,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -609,7 +655,16 @@ pub enum header_copy {
     HEADER_COPY_KEY = 1,
     HEADER_COPY_VALUE = 2,
     HEADER_CHECK_DUPE = 4,
-}  // end of enum
+impl header_copy {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            header_copy::HEADER_COPY_NONE => 0,
+            header_copy::HEADER_COPY_KEY => 1,
+            header_copy::HEADER_COPY_VALUE => 2,
+            header_copy::HEADER_CHECK_DUPE => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -617,7 +672,15 @@ pub enum last_cb_t {
     LAST_CB_NONE = 0,
     LAST_CB_KEY = 1,
     LAST_CB_VAL = 2,
-}  // end of enum
+impl last_cb_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            last_cb_t::LAST_CB_NONE => 0,
+            last_cb_t::LAST_CB_KEY => 1,
+            last_cb_t::LAST_CB_VAL => 2,
+        }
+    }
+}
 
 pub type C2RustUnnamed_15 = libc::c_int;
 pub const CLIENT_OOM: C2RustUnnamed_15 = -2;

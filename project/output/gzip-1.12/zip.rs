@@ -88,7 +88,14 @@ pub const FAST: C2RustUnnamed = 4;
 pub enum C2RustUnnamed {
     SLOW = 2,
     FAST = 4,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::SLOW => 2,
+            C2RustUnnamed::FAST => 4,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]

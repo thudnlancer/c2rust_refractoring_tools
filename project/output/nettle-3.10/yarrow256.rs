@@ -54,7 +54,14 @@ pub struct sha256_ctx {
 pub enum yarrow_pool_id {
     YARROW_FAST = 0,
     YARROW_SLOW = 1,
-}  // end of enum
+impl yarrow_pool_id {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yarrow_pool_id::YARROW_FAST => 0,
+            yarrow_pool_id::YARROW_SLOW => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

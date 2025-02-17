@@ -44,7 +44,13 @@ pub type ptrdiff_t = libc::c_long;
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     NCHAR = 256,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::NCHAR => 256,
+        }
+    }
+}
 
 pub type idx_t = ptrdiff_t;
 #[derive(Copy, Clone)]

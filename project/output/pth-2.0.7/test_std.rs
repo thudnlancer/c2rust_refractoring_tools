@@ -86,7 +86,27 @@ pub enum C2RustUnnamed {
     PTH_ATTR_JOINABLE = 2,
     PTH_ATTR_NAME = 1,
     PTH_ATTR_PRIO = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::PTH_ATTR_BOUND => 14,
+            C2RustUnnamed::PTH_ATTR_EVENTS => 13,
+            C2RustUnnamed::PTH_ATTR_STATE => 12,
+            C2RustUnnamed::PTH_ATTR_START_ARG => 11,
+            C2RustUnnamed::PTH_ATTR_START_FUNC => 10,
+            C2RustUnnamed::PTH_ATTR_TIME_RAN => 9,
+            C2RustUnnamed::PTH_ATTR_TIME_LAST => 8,
+            C2RustUnnamed::PTH_ATTR_TIME_SPAWN => 7,
+            C2RustUnnamed::PTH_ATTR_DISPATCHES => 6,
+            C2RustUnnamed::PTH_ATTR_STACK_ADDR => 5,
+            C2RustUnnamed::PTH_ATTR_STACK_SIZE => 4,
+            C2RustUnnamed::PTH_ATTR_CANCEL_STATE => 3,
+            C2RustUnnamed::PTH_ATTR_JOINABLE => 2,
+            C2RustUnnamed::PTH_ATTR_NAME => 1,
+            C2RustUnnamed::PTH_ATTR_PRIO => 0,
+        }
+    }
+}
 
 unsafe extern "C" fn t1_func(mut arg: *mut libc::c_void) -> *mut libc::c_void {
     let mut i: libc::c_int = 0;

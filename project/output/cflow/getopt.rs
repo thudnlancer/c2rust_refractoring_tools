@@ -50,7 +50,15 @@ pub enum C2RustUnnamed {
     RETURN_IN_ORDER = 2,
     PERMUTE = 1,
     REQUIRE_ORDER = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::RETURN_IN_ORDER => 2,
+            C2RustUnnamed::PERMUTE => 1,
+            C2RustUnnamed::REQUIRE_ORDER => 0,
+        }
+    }
+}
 
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
@@ -94,16 +102,14 @@ pub type __off_t = libc::c_long;
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     POSIXLY_CORRECT = 1,
-}  // end of enum
- Clone)]
-#[repr(C)]
-pub struct _getopt_data {
-    pub rpl_optind: libc::c_int,
-    pub rpl_opterr: libc::c_int,
-    pub rpl_optopt: libc::c_int,
-    pub rpl_optarg: *mut libc::c_char,
-    pub __initialized: libc::c_int,
-    pub __nextchar: *mut libc::c_char,
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::POSIXLY_CORRECT => 1,
+        }
+    }
+}
+ub __nextchar: *mut libc::c_char,
     pub __ordering: C2RustUnnamed,
     pub __posixly_correct: libc::c_int,
     pub __first_nonopt: libc::c_int,
@@ -115,7 +121,15 @@ pub enum C2RustUnnamed {
     RETURN_IN_ORDER = 2,
     PERMUTE = 1,
     REQUIRE_ORDER = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::RETURN_IN_ORDER => 2,
+            C2RustUnnamed::PERMUTE => 1,
+            C2RustUnnamed::REQUIRE_ORDER => 0,
+        }
+    }
+}
 
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]

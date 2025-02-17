@@ -112,7 +112,21 @@ pub enum __socket_type {
     SOCK_RAW = 3,
     SOCK_DGRAM = 2,
     SOCK_STREAM = 1,
-}  // end of enum
+impl __socket_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __socket_type::SOCK_NONBLOCK => 2048,
+            __socket_type::SOCK_CLOEXEC => 524288,
+            __socket_type::SOCK_PACKET => 10,
+            __socket_type::SOCK_DCCP => 6,
+            __socket_type::SOCK_SEQPACKET => 5,
+            __socket_type::SOCK_RDM => 4,
+            __socket_type::SOCK_RAW => 3,
+            __socket_type::SOCK_DGRAM => 2,
+            __socket_type::SOCK_STREAM => 1,
+        }
+    }
+}
 
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
@@ -166,7 +180,27 @@ pub enum C2RustUnnamed {
     PTH_ATTR_JOINABLE = 2,
     PTH_ATTR_NAME = 1,
     PTH_ATTR_PRIO = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::PTH_ATTR_BOUND => 14,
+            C2RustUnnamed::PTH_ATTR_EVENTS => 13,
+            C2RustUnnamed::PTH_ATTR_STATE => 12,
+            C2RustUnnamed::PTH_ATTR_START_ARG => 11,
+            C2RustUnnamed::PTH_ATTR_START_FUNC => 10,
+            C2RustUnnamed::PTH_ATTR_TIME_RAN => 9,
+            C2RustUnnamed::PTH_ATTR_TIME_LAST => 8,
+            C2RustUnnamed::PTH_ATTR_TIME_SPAWN => 7,
+            C2RustUnnamed::PTH_ATTR_DISPATCHES => 6,
+            C2RustUnnamed::PTH_ATTR_STACK_ADDR => 5,
+            C2RustUnnamed::PTH_ATTR_STACK_SIZE => 4,
+            C2RustUnnamed::PTH_ATTR_CANCEL_STATE => 3,
+            C2RustUnnamed::PTH_ATTR_JOINABLE => 2,
+            C2RustUnnamed::PTH_ATTR_NAME => 1,
+            C2RustUnnamed::PTH_ATTR_PRIO => 0,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {

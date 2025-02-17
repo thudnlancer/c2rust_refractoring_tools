@@ -228,7 +228,15 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::effective => 2,
+            maker::real => 1,
+            maker::notmade => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -473,7 +481,16 @@ pub enum isr_actions {
     ISR_RESTOREINTS = 2,
     ISR_IGNOREINTS = 1,
     ISR_CATCHINTS = 0,
-}  // end of enum
+impl isr_actions {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            isr_actions::ISR_CATCHMMAPINTS => 3,
+            isr_actions::ISR_RESTOREINTS => 2,
+            isr_actions::ISR_IGNOREINTS => 1,
+            isr_actions::ISR_CATCHINTS => 0,
+        }
+    }
+}
 
 #[no_mangle]
 pub unsafe extern "C" fn maybe_reset_sigchld() {

@@ -83,13 +83,25 @@ pub type uint32_t = __uint32_t;
 #[repr(C)]
 pub enum C2RustUnnamed {
     SHA224_DIGEST_SIZE = 28,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::SHA224_DIGEST_SIZE => 28,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     SHA256_DIGEST_SIZE = 32,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::SHA256_DIGEST_SIZE => 32,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

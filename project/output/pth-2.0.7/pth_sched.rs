@@ -501,7 +501,15 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
-}  // end of enum
+impl pth_status_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            pth_status_t::PTH_STATUS_PENDING => 0,
+            pth_status_t::PTH_STATUS_OCCURRED => 1,
+            pth_status_t::PTH_STATUS_FAILED => 2,
+        }
+    }
+}
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -512,7 +520,17 @@ pub enum pth_state_en {
     PTH_STATE_READY,
     PTH_STATE_WAITING,
     PTH_STATE_DEAD,
-}  // end of enum
+impl pth_state_en {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            pth_state_en::PTH_STATE_SCHEDULER => 0,
+            pth_state_en::PTH_STATE_NEW => 1,
+            pth_state_en::PTH_STATE_READY => 2,
+            pth_state_en::PTH_STATE_WAITING => 3,
+            pth_state_en::PTH_STATE_DEAD => 4,
+        }
+    }
+}
 
 pub type C2RustUnnamed_20 = libc::c_int;
 pub const PTH_FDMODE_NONBLOCK: C2RustUnnamed_20 = 2;

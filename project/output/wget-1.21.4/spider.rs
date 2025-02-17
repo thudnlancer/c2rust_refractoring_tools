@@ -31,7 +31,17 @@ pub enum log_options {
     LOG_NONVERBOSE,
     LOG_ALWAYS,
     LOG_PROGRESS,
-}  // end of enum
+impl log_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_options::LOG_VERBOSE => 0,
+            log_options::LOG_NOTQUIET => 1,
+            log_options::LOG_NONVERBOSE => 2,
+            log_options::LOG_ALWAYS => 3,
+            log_options::LOG_PROGRESS => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

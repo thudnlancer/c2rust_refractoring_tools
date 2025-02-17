@@ -158,7 +158,13 @@ pub type ptrdiff_t = libc::c_long;
 #[repr(C)]
 pub enum C2RustUnnamed {
     EXIT_TROUBLE = 2,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::EXIT_TROUBLE => 2,
+        }
+    }
+}
 
 pub type idx_t = ptrdiff_t;
 #[derive(Copy, Clone)]
@@ -187,7 +193,18 @@ pub enum C2RustUnnamed_0 {
     DFA_CONFUSING_BRACKETS_ERROR = 4,
     DFA_EOL_NUL = 2,
     DFA_ANCHOR = 1,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::DFA_PLUS_WARN => 32,
+            C2RustUnnamed_0::DFA_STAR_WARN => 16,
+            C2RustUnnamed_0::DFA_STRAY_BACKSLASH_WARN => 8,
+            C2RustUnnamed_0::DFA_CONFUSING_BRACKETS_ERROR => 4,
+            C2RustUnnamed_0::DFA_EOL_NUL => 2,
+            C2RustUnnamed_0::DFA_ANCHOR => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

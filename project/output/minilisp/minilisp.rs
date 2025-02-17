@@ -76,7 +76,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type va_list = __builtin_va_list;
 pub type ptrdiff_t = libc::c_long;
@@ -132,7 +149,24 @@ pub enum C2RustUnnamed_0 {
     TNIL,
     TDOT,
     TCPAREN,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::TINT => 1,
+            C2RustUnnamed_0::TCELL => 2,
+            C2RustUnnamed_0::TSYMBOL => 3,
+            C2RustUnnamed_0::TPRIMITIVE => 4,
+            C2RustUnnamed_0::TFUNCTION => 5,
+            C2RustUnnamed_0::TMACRO => 6,
+            C2RustUnnamed_0::TENV => 7,
+            C2RustUnnamed_0::TMOVED => 8,
+            C2RustUnnamed_0::TTRUE => 9,
+            C2RustUnnamed_0::TNIL => 10,
+            C2RustUnnamed_0::TDOT => 11,
+            C2RustUnnamed_0::TCPAREN => 12,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

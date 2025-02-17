@@ -244,7 +244,13 @@ pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(Copy, Clone)]

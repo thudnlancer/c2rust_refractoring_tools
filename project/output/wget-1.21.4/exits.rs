@@ -65,7 +65,75 @@ pub enum uerr_t {
     METALINK_MISSING_RESOURCE,
     RETR_WITH_METALINK,
     METALINK_SIZE_ERROR,
-}  // end of enum
+impl uerr_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            uerr_t::NOCONERROR => 0,
+            uerr_t::HOSTERR => 1,
+            uerr_t::CONSOCKERR => 2,
+            uerr_t::CONERROR => 3,
+            uerr_t::CONSSLERR => 4,
+            uerr_t::CONIMPOSSIBLE => 5,
+            uerr_t::NEWLOCATION => 6,
+            uerr_t::FTPOK => 7,
+            uerr_t::FTPLOGINC => 8,
+            uerr_t::FTPLOGREFUSED => 9,
+            uerr_t::FTPPORTERR => 10,
+            uerr_t::FTPSYSERR => 11,
+            uerr_t::FTPNSFOD => 12,
+            uerr_t::FTPUNKNOWNTYPE => 13,
+            uerr_t::FTPRERR => 14,
+            uerr_t::FTPSRVERR => 15,
+            uerr_t::FTPRETRINT => 16,
+            uerr_t::FTPRESTFAIL => 17,
+            uerr_t::URLERROR => 18,
+            uerr_t::FOPENERR => 19,
+            uerr_t::FOPEN_EXCL_ERR => 20,
+            uerr_t::FWRITEERR => 21,
+            uerr_t::HEOF => 22,
+            uerr_t::GATEWAYTIMEOUT => 23,
+            uerr_t::HERR => 24,
+            uerr_t::RETROK => 25,
+            uerr_t::RECLEVELEXC => 26,
+            uerr_t::WRONGCODE => 27,
+            uerr_t::FTPINVPASV => 28,
+            uerr_t::FTPNOPASV => 29,
+            uerr_t::FTPNOPBSZ => 30,
+            uerr_t::FTPNOPROT => 31,
+            uerr_t::FTPNOAUTH => 32,
+            uerr_t::CONTNOTSUPPORTED => 33,
+            uerr_t::RETRUNNEEDED => 34,
+            uerr_t::RETRFINISHED => 35,
+            uerr_t::READERR => 36,
+            uerr_t::TRYLIMEXC => 37,
+            uerr_t::FILEBADFILE => 38,
+            uerr_t::RANGEERR => 39,
+            uerr_t::RETRBADPATTERN => 40,
+            uerr_t::PROXERR => 41,
+            uerr_t::AUTHFAILED => 42,
+            uerr_t::QUOTEXC => 43,
+            uerr_t::WRITEFAILED => 44,
+            uerr_t::SSLINITFAILED => 45,
+            uerr_t::VERIFCERTERR => 46,
+            uerr_t::UNLINKERR => 47,
+            uerr_t::NEWLOCATION_KEEP_POST => 48,
+            uerr_t::CLOSEFAILED => 49,
+            uerr_t::ATTRMISSING => 50,
+            uerr_t::UNKNOWNATTR => 51,
+            uerr_t::WARC_ERR => 52,
+            uerr_t::WARC_TMP_FOPENERR => 53,
+            uerr_t::WARC_TMP_FWRITEERR => 54,
+            uerr_t::TIMECONV_ERR => 55,
+            uerr_t::METALINK_PARSE_ERROR => 56,
+            uerr_t::METALINK_RETR_ERROR => 57,
+            uerr_t::METALINK_CHKSUM_ERROR => 58,
+            uerr_t::METALINK_SIG_ERROR => 59,
+            uerr_t::METALINK_MISSING_RESOURCE => 60,
+            uerr_t::RETR_WITH_METALINK => 61,
+            uerr_t::METALINK_SIZE_ERROR => 62,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -80,7 +148,22 @@ pub enum C2RustUnnamed {
     WGET_EXIT_PROTOCOL_ERROR = 7,
     WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::WGET_EXIT_SUCCESS => 0,
+            C2RustUnnamed::WGET_EXIT_GENERIC_ERROR => 1,
+            C2RustUnnamed::WGET_EXIT_PARSE_ERROR => 2,
+            C2RustUnnamed::WGET_EXIT_IO_FAIL => 3,
+            C2RustUnnamed::WGET_EXIT_NETWORK_FAIL => 4,
+            C2RustUnnamed::WGET_EXIT_SSL_AUTH_FAIL => 5,
+            C2RustUnnamed::WGET_EXIT_SERVER_AUTH_FAIL => 6,
+            C2RustUnnamed::WGET_EXIT_PROTOCOL_ERROR => 7,
+            C2RustUnnamed::WGET_EXIT_SERVER_ERROR => 8,
+            C2RustUnnamed::WGET_EXIT_UNKNOWN => 9,
+        }
+    }
+}
 
 static mut final_exit_status: libc::c_int = WGET_EXIT_SUCCESS as libc::c_int;
 unsafe extern "C" fn get_status_for_err(mut err: uerr_t) -> libc::c_int {

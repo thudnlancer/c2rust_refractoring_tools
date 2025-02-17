@@ -41,7 +41,15 @@ pub enum C2RustUnnamed_0 {
     CONTEXT_GENERIC = 2,
     CONTEXT_ALL = 3,
     CONTEXT_FINDUTILS = 1,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::CONTEXT_GENERIC => 2,
+            C2RustUnnamed_0::CONTEXT_ALL => 3,
+            C2RustUnnamed_0::CONTEXT_FINDUTILS => 1,
+        }
+    }
+}
 
 pub const N_REGEX_MAP_ENTRIES: C2RustUnnamed_1 = 13;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -49,7 +57,13 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     N_REGEX_MAP_ENTRIES = 13,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::N_REGEX_MAP_ENTRIES => 13,
+        }
+    }
+}
 
 pub type C2RustUnnamed_0 = libc::c_uint;
 pub type C2RustUnnamed_1 = libc::c_uint;

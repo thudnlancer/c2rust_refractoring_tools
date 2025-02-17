@@ -253,7 +253,15 @@ pub enum readmethod {
     RM_STDIO = 2,
     RM_MEM = 1,
     RM_MMAP = 0,
-}  // end of enum
+impl readmethod {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            readmethod::RM_STDIO => 2,
+            readmethod::RM_MEM => 1,
+            readmethod::RM_MMAP => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -278,7 +286,15 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::effective => 2,
+            maker::real => 1,
+            maker::notmade => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -405,7 +421,16 @@ pub enum isr_actions {
     ISR_RESTOREINTS = 2,
     ISR_IGNOREINTS = 1,
     ISR_CATCHINTS = 0,
-}  // end of enum
+impl isr_actions {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            isr_actions::ISR_CATCHMMAPINTS => 3,
+            isr_actions::ISR_RESTOREINTS => 2,
+            isr_actions::ISR_IGNOREINTS => 1,
+            isr_actions::ISR_CATCHINTS => 0,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

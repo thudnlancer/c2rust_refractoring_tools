@@ -167,7 +167,14 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
-}  // end of enum
+impl AFMBoolean {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMBoolean::AFMFalse => 0,
+            AFMBoolean::AFMTrue => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -325,7 +332,25 @@ pub enum AFMEncoding {
     AFM_ENCODING_VMS,
     AFM_ENCODING_HP8,
     AFM_ENCODING_KOI8,
-}  // end of enum
+impl AFMEncoding {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMEncoding::AFM_ENCODING_DEFAULT => 0,
+            AFMEncoding::AFM_ENCODING_ISO_8859_1 => 1,
+            AFMEncoding::AFM_ENCODING_ISO_8859_2 => 2,
+            AFMEncoding::AFM_ENCODING_ISO_8859_3 => 3,
+            AFMEncoding::AFM_ENCODING_ISO_8859_4 => 4,
+            AFMEncoding::AFM_ENCODING_ISO_8859_5 => 5,
+            AFMEncoding::AFM_ENCODING_ISO_8859_7 => 6,
+            AFMEncoding::AFM_ENCODING_IBMPC => 7,
+            AFMEncoding::AFM_ENCODING_ASCII => 8,
+            AFMEncoding::AFM_ENCODING_MAC => 9,
+            AFMEncoding::AFM_ENCODING_VMS => 10,
+            AFMEncoding::AFM_ENCODING_HP8 => 11,
+            AFMEncoding::AFM_ENCODING_KOI8 => 12,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

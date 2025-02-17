@@ -243,7 +243,15 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
-}  // end of enum
+impl compression_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            compression_options::compression_none => 2,
+            compression_options::compression_gzip => 1,
+            compression_options::compression_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -251,7 +259,15 @@ pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::prefer_none => 2,
+            C2RustUnnamed::prefer_ipv6 => 1,
+            C2RustUnnamed::prefer_ipv4 => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -259,7 +275,15 @@ pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::restrict_uppercase => 2,
+            C2RustUnnamed_0::restrict_lowercase => 1,
+            C2RustUnnamed_0::restrict_no_case_restriction => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -267,14 +291,29 @@ pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::restrict_windows => 2,
+            C2RustUnnamed_1::restrict_vms => 1,
+            C2RustUnnamed_1::restrict_unix => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
-}  // end of enum
+impl keyfile_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            keyfile_type::keyfile_asn1 => 1,
+            keyfile_type::keyfile_pem => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -287,14 +326,34 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::secure_protocol_pfs => 7,
+            C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
+            C2RustUnnamed_2::secure_protocol_tlsv1_2 => 5,
+            C2RustUnnamed_2::secure_protocol_tlsv1_1 => 4,
+            C2RustUnnamed_2::secure_protocol_tlsv1 => 3,
+            C2RustUnnamed_2::secure_protocol_sslv3 => 2,
+            C2RustUnnamed_2::secure_protocol_sslv2 => 1,
+            C2RustUnnamed_2::secure_protocol_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::regex_type_posix => 1,
+            C2RustUnnamed_3::regex_type_pcre => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -304,7 +363,17 @@ pub enum wgetntlm {
     NTLMSTATE_TYPE2 = 2,
     NTLMSTATE_TYPE1 = 1,
     NTLMSTATE_NONE = 0,
-}  // end of enum
+impl wgetntlm {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wgetntlm::NTLMSTATE_LAST => 4,
+            wgetntlm::NTLMSTATE_TYPE3 => 3,
+            wgetntlm::NTLMSTATE_TYPE2 => 2,
+            wgetntlm::NTLMSTATE_TYPE1 => 1,
+            wgetntlm::NTLMSTATE_NONE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

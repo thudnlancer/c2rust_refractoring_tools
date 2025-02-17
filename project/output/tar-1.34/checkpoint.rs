@@ -214,7 +214,20 @@ pub enum checkpoint_opcode {
     cop_echo = 2,
     cop_bell = 1,
     cop_dot = 0,
-}  // end of enum
+impl checkpoint_opcode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            checkpoint_opcode::cop_wait => 7,
+            checkpoint_opcode::cop_totals => 6,
+            checkpoint_opcode::cop_exec => 5,
+            checkpoint_opcode::cop_sleep => 4,
+            checkpoint_opcode::cop_ttyout => 3,
+            checkpoint_opcode::cop_echo => 2,
+            checkpoint_opcode::cop_bell => 1,
+            checkpoint_opcode::cop_dot => 0,
+        }
+    }
+}
 
 pub const CHKP_COMPILE: C2RustUnnamed_0 = 1;
 pub const CHKP_INIT: C2RustUnnamed_0 = 0;
@@ -282,7 +295,15 @@ pub enum C2RustUnnamed_0 {
     CHKP_INIT,
     CHKP_COMPILE,
     CHKP_RUN,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::CHKP_INIT => 0,
+            C2RustUnnamed_0::CHKP_COMPILE => 1,
+            C2RustUnnamed_0::CHKP_RUN => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -179,7 +179,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type pid_t = __pid_t;
 pub type ssize_t = __ssize_t;
@@ -566,7 +583,227 @@ pub enum C2RustUnnamed_11 {
     _SC_CLK_TCK = 2,
     _SC_CHILD_MAX = 1,
     _SC_ARG_MAX = 0,
-}  // end of enum
+impl C2RustUnnamed_11 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_11::_SC_THREAD_ROBUST_PRIO_PROTECT => 248,
+            C2RustUnnamed_11::_SC_THREAD_ROBUST_PRIO_INHERIT => 247,
+            C2RustUnnamed_11::_SC_XOPEN_STREAMS => 246,
+            C2RustUnnamed_11::_SC_TRACE_USER_EVENT_MAX => 245,
+            C2RustUnnamed_11::_SC_TRACE_SYS_MAX => 244,
+            C2RustUnnamed_11::_SC_TRACE_NAME_MAX => 243,
+            C2RustUnnamed_11::_SC_TRACE_EVENT_NAME_MAX => 242,
+            C2RustUnnamed_11::_SC_SS_REPL_MAX => 241,
+            C2RustUnnamed_11::_SC_V7_LPBIG_OFFBIG => 240,
+            C2RustUnnamed_11::_SC_V7_LP64_OFF64 => 239,
+            C2RustUnnamed_11::_SC_V7_ILP32_OFFBIG => 238,
+            C2RustUnnamed_11::_SC_V7_ILP32_OFF32 => 237,
+            C2RustUnnamed_11::_SC_RAW_SOCKETS => 236,
+            C2RustUnnamed_11::_SC_IPV6 => 235,
+            C2RustUnnamed_11::_SC_LEVEL4_CACHE_LINESIZE => 199,
+            C2RustUnnamed_11::_SC_LEVEL4_CACHE_ASSOC => 198,
+            C2RustUnnamed_11::_SC_LEVEL4_CACHE_SIZE => 197,
+            C2RustUnnamed_11::_SC_LEVEL3_CACHE_LINESIZE => 196,
+            C2RustUnnamed_11::_SC_LEVEL3_CACHE_ASSOC => 195,
+            C2RustUnnamed_11::_SC_LEVEL3_CACHE_SIZE => 194,
+            C2RustUnnamed_11::_SC_LEVEL2_CACHE_LINESIZE => 193,
+            C2RustUnnamed_11::_SC_LEVEL2_CACHE_ASSOC => 192,
+            C2RustUnnamed_11::_SC_LEVEL2_CACHE_SIZE => 191,
+            C2RustUnnamed_11::_SC_LEVEL1_DCACHE_LINESIZE => 190,
+            C2RustUnnamed_11::_SC_LEVEL1_DCACHE_ASSOC => 189,
+            C2RustUnnamed_11::_SC_LEVEL1_DCACHE_SIZE => 188,
+            C2RustUnnamed_11::_SC_LEVEL1_ICACHE_LINESIZE => 187,
+            C2RustUnnamed_11::_SC_LEVEL1_ICACHE_ASSOC => 186,
+            C2RustUnnamed_11::_SC_LEVEL1_ICACHE_SIZE => 185,
+            C2RustUnnamed_11::_SC_TRACE_LOG => 184,
+            C2RustUnnamed_11::_SC_TRACE_INHERIT => 183,
+            C2RustUnnamed_11::_SC_TRACE_EVENT_FILTER => 182,
+            C2RustUnnamed_11::_SC_TRACE => 181,
+            C2RustUnnamed_11::_SC_HOST_NAME_MAX => 180,
+            C2RustUnnamed_11::_SC_V6_LPBIG_OFFBIG => 179,
+            C2RustUnnamed_11::_SC_V6_LP64_OFF64 => 178,
+            C2RustUnnamed_11::_SC_V6_ILP32_OFFBIG => 177,
+            C2RustUnnamed_11::_SC_V6_ILP32_OFF32 => 176,
+            C2RustUnnamed_11::_SC_2_PBS_CHECKPOINT => 175,
+            C2RustUnnamed_11::_SC_STREAMS => 174,
+            C2RustUnnamed_11::_SC_SYMLOOP_MAX => 173,
+            C2RustUnnamed_11::_SC_2_PBS_TRACK => 172,
+            C2RustUnnamed_11::_SC_2_PBS_MESSAGE => 171,
+            C2RustUnnamed_11::_SC_2_PBS_LOCATE => 170,
+            C2RustUnnamed_11::_SC_2_PBS_ACCOUNTING => 169,
+            C2RustUnnamed_11::_SC_2_PBS => 168,
+            C2RustUnnamed_11::_SC_USER_GROUPS_R => 167,
+            C2RustUnnamed_11::_SC_USER_GROUPS => 166,
+            C2RustUnnamed_11::_SC_TYPED_MEMORY_OBJECTS => 165,
+            C2RustUnnamed_11::_SC_TIMEOUTS => 164,
+            C2RustUnnamed_11::_SC_SYSTEM_DATABASE_R => 163,
+            C2RustUnnamed_11::_SC_SYSTEM_DATABASE => 162,
+            C2RustUnnamed_11::_SC_THREAD_SPORADIC_SERVER => 161,
+            C2RustUnnamed_11::_SC_SPORADIC_SERVER => 160,
+            C2RustUnnamed_11::_SC_SPAWN => 159,
+            C2RustUnnamed_11::_SC_SIGNALS => 158,
+            C2RustUnnamed_11::_SC_SHELL => 157,
+            C2RustUnnamed_11::_SC_REGEX_VERSION => 156,
+            C2RustUnnamed_11::_SC_REGEXP => 155,
+            C2RustUnnamed_11::_SC_SPIN_LOCKS => 154,
+            C2RustUnnamed_11::_SC_READER_WRITER_LOCKS => 153,
+            C2RustUnnamed_11::_SC_NETWORKING => 152,
+            C2RustUnnamed_11::_SC_SINGLE_PROCESS => 151,
+            C2RustUnnamed_11::_SC_MULTI_PROCESS => 150,
+            C2RustUnnamed_11::_SC_MONOTONIC_CLOCK => 149,
+            C2RustUnnamed_11::_SC_FILE_SYSTEM => 148,
+            C2RustUnnamed_11::_SC_FILE_LOCKING => 147,
+            C2RustUnnamed_11::_SC_FILE_ATTRIBUTES => 146,
+            C2RustUnnamed_11::_SC_PIPE => 145,
+            C2RustUnnamed_11::_SC_FIFO => 144,
+            C2RustUnnamed_11::_SC_FD_MGMT => 143,
+            C2RustUnnamed_11::_SC_DEVICE_SPECIFIC_R => 142,
+            C2RustUnnamed_11::_SC_DEVICE_SPECIFIC => 141,
+            C2RustUnnamed_11::_SC_DEVICE_IO => 140,
+            C2RustUnnamed_11::_SC_THREAD_CPUTIME => 139,
+            C2RustUnnamed_11::_SC_CPUTIME => 138,
+            C2RustUnnamed_11::_SC_CLOCK_SELECTION => 137,
+            C2RustUnnamed_11::_SC_C_LANG_SUPPORT_R => 136,
+            C2RustUnnamed_11::_SC_C_LANG_SUPPORT => 135,
+            C2RustUnnamed_11::_SC_BASE => 134,
+            C2RustUnnamed_11::_SC_BARRIERS => 133,
+            C2RustUnnamed_11::_SC_ADVISORY_INFO => 132,
+            C2RustUnnamed_11::_SC_XOPEN_REALTIME_THREADS => 131,
+            C2RustUnnamed_11::_SC_XOPEN_REALTIME => 130,
+            C2RustUnnamed_11::_SC_XOPEN_LEGACY => 129,
+            C2RustUnnamed_11::_SC_XBS5_LPBIG_OFFBIG => 128,
+            C2RustUnnamed_11::_SC_XBS5_LP64_OFF64 => 127,
+            C2RustUnnamed_11::_SC_XBS5_ILP32_OFFBIG => 126,
+            C2RustUnnamed_11::_SC_XBS5_ILP32_OFF32 => 125,
+            C2RustUnnamed_11::_SC_NL_TEXTMAX => 124,
+            C2RustUnnamed_11::_SC_NL_SETMAX => 123,
+            C2RustUnnamed_11::_SC_NL_NMAX => 122,
+            C2RustUnnamed_11::_SC_NL_MSGMAX => 121,
+            C2RustUnnamed_11::_SC_NL_LANGMAX => 120,
+            C2RustUnnamed_11::_SC_NL_ARGMAX => 119,
+            C2RustUnnamed_11::_SC_USHRT_MAX => 118,
+            C2RustUnnamed_11::_SC_ULONG_MAX => 117,
+            C2RustUnnamed_11::_SC_UINT_MAX => 116,
+            C2RustUnnamed_11::_SC_UCHAR_MAX => 115,
+            C2RustUnnamed_11::_SC_SHRT_MIN => 114,
+            C2RustUnnamed_11::_SC_SHRT_MAX => 113,
+            C2RustUnnamed_11::_SC_SCHAR_MIN => 112,
+            C2RustUnnamed_11::_SC_SCHAR_MAX => 111,
+            C2RustUnnamed_11::_SC_SSIZE_MAX => 110,
+            C2RustUnnamed_11::_SC_NZERO => 109,
+            C2RustUnnamed_11::_SC_MB_LEN_MAX => 108,
+            C2RustUnnamed_11::_SC_WORD_BIT => 107,
+            C2RustUnnamed_11::_SC_LONG_BIT => 106,
+            C2RustUnnamed_11::_SC_INT_MIN => 105,
+            C2RustUnnamed_11::_SC_INT_MAX => 104,
+            C2RustUnnamed_11::_SC_CHAR_MIN => 103,
+            C2RustUnnamed_11::_SC_CHAR_MAX => 102,
+            C2RustUnnamed_11::_SC_CHAR_BIT => 101,
+            C2RustUnnamed_11::_SC_XOPEN_XPG4 => 100,
+            C2RustUnnamed_11::_SC_XOPEN_XPG3 => 99,
+            C2RustUnnamed_11::_SC_XOPEN_XPG2 => 98,
+            C2RustUnnamed_11::_SC_2_UPE => 97,
+            C2RustUnnamed_11::_SC_2_C_VERSION => 96,
+            C2RustUnnamed_11::_SC_2_CHAR_TERM => 95,
+            C2RustUnnamed_11::_SC_XOPEN_SHM => 94,
+            C2RustUnnamed_11::_SC_XOPEN_ENH_I18N => 93,
+            C2RustUnnamed_11::_SC_XOPEN_CRYPT => 92,
+            C2RustUnnamed_11::_SC_XOPEN_UNIX => 91,
+            C2RustUnnamed_11::_SC_XOPEN_XCU_VERSION => 90,
+            C2RustUnnamed_11::_SC_XOPEN_VERSION => 89,
+            C2RustUnnamed_11::_SC_PASS_MAX => 88,
+            C2RustUnnamed_11::_SC_ATEXIT_MAX => 87,
+            C2RustUnnamed_11::_SC_AVPHYS_PAGES => 86,
+            C2RustUnnamed_11::_SC_PHYS_PAGES => 85,
+            C2RustUnnamed_11::_SC_NPROCESSORS_ONLN => 84,
+            C2RustUnnamed_11::_SC_NPROCESSORS_CONF => 83,
+            C2RustUnnamed_11::_SC_THREAD_PROCESS_SHARED => 82,
+            C2RustUnnamed_11::_SC_THREAD_PRIO_PROTECT => 81,
+            C2RustUnnamed_11::_SC_THREAD_PRIO_INHERIT => 80,
+            C2RustUnnamed_11::_SC_THREAD_PRIORITY_SCHEDULING => 79,
+            C2RustUnnamed_11::_SC_THREAD_ATTR_STACKSIZE => 78,
+            C2RustUnnamed_11::_SC_THREAD_ATTR_STACKADDR => 77,
+            C2RustUnnamed_11::_SC_THREAD_THREADS_MAX => 76,
+            C2RustUnnamed_11::_SC_THREAD_STACK_MIN => 75,
+            C2RustUnnamed_11::_SC_THREAD_KEYS_MAX => 74,
+            C2RustUnnamed_11::_SC_THREAD_DESTRUCTOR_ITERATIONS => 73,
+            C2RustUnnamed_11::_SC_TTY_NAME_MAX => 72,
+            C2RustUnnamed_11::_SC_LOGIN_NAME_MAX => 71,
+            C2RustUnnamed_11::_SC_GETPW_R_SIZE_MAX => 70,
+            C2RustUnnamed_11::_SC_GETGR_R_SIZE_MAX => 69,
+            C2RustUnnamed_11::_SC_THREAD_SAFE_FUNCTIONS => 68,
+            C2RustUnnamed_11::_SC_THREADS => 67,
+            C2RustUnnamed_11::_SC_T_IOV_MAX => 66,
+            C2RustUnnamed_11::_SC_PII_OSI_M => 65,
+            C2RustUnnamed_11::_SC_PII_OSI_CLTS => 64,
+            C2RustUnnamed_11::_SC_PII_OSI_COTS => 63,
+            C2RustUnnamed_11::_SC_PII_INTERNET_DGRAM => 62,
+            C2RustUnnamed_11::_SC_PII_INTERNET_STREAM => 61,
+            C2RustUnnamed_11::_SC_IOV_MAX => 60,
+            C2RustUnnamed_11::_SC_UIO_MAXIOV => 60,
+            C2RustUnnamed_11::_SC_SELECT => 59,
+            C2RustUnnamed_11::_SC_POLL => 58,
+            C2RustUnnamed_11::_SC_PII_OSI => 57,
+            C2RustUnnamed_11::_SC_PII_INTERNET => 56,
+            C2RustUnnamed_11::_SC_PII_SOCKET => 55,
+            C2RustUnnamed_11::_SC_PII_XTI => 54,
+            C2RustUnnamed_11::_SC_PII => 53,
+            C2RustUnnamed_11::_SC_2_LOCALEDEF => 52,
+            C2RustUnnamed_11::_SC_2_SW_DEV => 51,
+            C2RustUnnamed_11::_SC_2_FORT_RUN => 50,
+            C2RustUnnamed_11::_SC_2_FORT_DEV => 49,
+            C2RustUnnamed_11::_SC_2_C_DEV => 48,
+            C2RustUnnamed_11::_SC_2_C_BIND => 47,
+            C2RustUnnamed_11::_SC_2_VERSION => 46,
+            C2RustUnnamed_11::_SC_CHARCLASS_NAME_MAX => 45,
+            C2RustUnnamed_11::_SC_RE_DUP_MAX => 44,
+            C2RustUnnamed_11::_SC_LINE_MAX => 43,
+            C2RustUnnamed_11::_SC_EXPR_NEST_MAX => 42,
+            C2RustUnnamed_11::_SC_EQUIV_CLASS_MAX => 41,
+            C2RustUnnamed_11::_SC_COLL_WEIGHTS_MAX => 40,
+            C2RustUnnamed_11::_SC_BC_STRING_MAX => 39,
+            C2RustUnnamed_11::_SC_BC_SCALE_MAX => 38,
+            C2RustUnnamed_11::_SC_BC_DIM_MAX => 37,
+            C2RustUnnamed_11::_SC_BC_BASE_MAX => 36,
+            C2RustUnnamed_11::_SC_TIMER_MAX => 35,
+            C2RustUnnamed_11::_SC_SIGQUEUE_MAX => 34,
+            C2RustUnnamed_11::_SC_SEM_VALUE_MAX => 33,
+            C2RustUnnamed_11::_SC_SEM_NSEMS_MAX => 32,
+            C2RustUnnamed_11::_SC_RTSIG_MAX => 31,
+            C2RustUnnamed_11::_SC_PAGESIZE => 30,
+            C2RustUnnamed_11::_SC_VERSION => 29,
+            C2RustUnnamed_11::_SC_MQ_PRIO_MAX => 28,
+            C2RustUnnamed_11::_SC_MQ_OPEN_MAX => 27,
+            C2RustUnnamed_11::_SC_DELAYTIMER_MAX => 26,
+            C2RustUnnamed_11::_SC_AIO_PRIO_DELTA_MAX => 25,
+            C2RustUnnamed_11::_SC_AIO_MAX => 24,
+            C2RustUnnamed_11::_SC_AIO_LISTIO_MAX => 23,
+            C2RustUnnamed_11::_SC_SHARED_MEMORY_OBJECTS => 22,
+            C2RustUnnamed_11::_SC_SEMAPHORES => 21,
+            C2RustUnnamed_11::_SC_MESSAGE_PASSING => 20,
+            C2RustUnnamed_11::_SC_MEMORY_PROTECTION => 19,
+            C2RustUnnamed_11::_SC_MEMLOCK_RANGE => 18,
+            C2RustUnnamed_11::_SC_MEMLOCK => 17,
+            C2RustUnnamed_11::_SC_MAPPED_FILES => 16,
+            C2RustUnnamed_11::_SC_FSYNC => 15,
+            C2RustUnnamed_11::_SC_SYNCHRONIZED_IO => 14,
+            C2RustUnnamed_11::_SC_PRIORITIZED_IO => 13,
+            C2RustUnnamed_11::_SC_ASYNCHRONOUS_IO => 12,
+            C2RustUnnamed_11::_SC_TIMERS => 11,
+            C2RustUnnamed_11::_SC_PRIORITY_SCHEDULING => 10,
+            C2RustUnnamed_11::_SC_REALTIME_SIGNALS => 9,
+            C2RustUnnamed_11::_SC_SAVED_IDS => 8,
+            C2RustUnnamed_11::_SC_JOB_CONTROL => 7,
+            C2RustUnnamed_11::_SC_TZNAME_MAX => 6,
+            C2RustUnnamed_11::_SC_STREAM_MAX => 5,
+            C2RustUnnamed_11::_SC_OPEN_MAX => 4,
+            C2RustUnnamed_11::_SC_NGROUPS_MAX => 3,
+            C2RustUnnamed_11::_SC_CLK_TCK => 2,
+            C2RustUnnamed_11::_SC_CHILD_MAX => 1,
+            C2RustUnnamed_11::_SC_ARG_MAX => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -582,7 +819,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -627,13 +880,27 @@ pub enum BC_INIT_STATUS {
     BC_INIT_OK = 0,
     BC_INIT_ENV_TOO_BIG,
     BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
-}  // end of enum
+impl BC_INIT_STATUS {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            BC_INIT_STATUS::BC_INIT_OK => 0,
+            BC_INIT_STATUS::BC_INIT_ENV_TOO_BIG => 1,
+            BC_INIT_STATUS::BC_INIT_CANNOT_ACCOMODATE_HEADROOM => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LongOptionIdentifier {
     PROCESS_SLOT_VAR,
-}  // end of enum
+impl LongOptionIdentifier {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            LongOptionIdentifier::PROCESS_SLOT_VAR => 128,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -643,13 +910,29 @@ pub enum XargsStatusValues {
     XARGS_EXIT_CLIENT_FATAL_SIG = 125,
     XARGS_EXIT_COMMAND_CANNOT_BE_RUN = 126,
     XARGS_EXIT_COMMAND_NOT_FOUND = 127,
-}  // end of enum
+impl XargsStatusValues {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            XargsStatusValues::XARGS_EXIT_CLIENT_EXIT_NONZERO => 123,
+            XargsStatusValues::XARGS_EXIT_CLIENT_EXIT_255 => 124,
+            XargsStatusValues::XARGS_EXIT_CLIENT_FATAL_SIG => 125,
+            XargsStatusValues::XARGS_EXIT_COMMAND_CANNOT_BE_RUN => 126,
+            XargsStatusValues::XARGS_EXIT_COMMAND_NOT_FOUND => 127,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ClientStatusValues {
     CHILD_EXIT_PLEASE_STOP_IMMEDIATELY = 255,
-}  // end of enum
+impl ClientStatusValues {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            ClientStatusValues::CHILD_EXIT_PLEASE_STOP_IMMEDIATELY => 255,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -663,7 +946,16 @@ pub enum read_line_state {
     SPACE = 1,
     QUOTE = 2,
     BACKSLASH = 3,
-}  // end of enum
+impl read_line_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_line_state::NORM => 0,
+            read_line_state::SPACE => 1,
+            read_line_state::QUOTE => 2,
+            read_line_state::BACKSLASH => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -785,7 +1077,13 @@ pub struct C2RustUnnamed_35 {
 #[repr(C)]
 pub enum C2RustUnnamed_36 {
     XARGS_POSIX_HEADROOM = 2048,
-}  // end of enum
+impl C2RustUnnamed_36 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_36::XARGS_POSIX_HEADROOM => 2048,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

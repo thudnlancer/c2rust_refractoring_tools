@@ -165,7 +165,17 @@ pub enum log_options {
     LOG_NONVERBOSE,
     LOG_ALWAYS,
     LOG_PROGRESS,
-}  // end of enum
+impl log_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_options::LOG_VERBOSE => 0,
+            log_options::LOG_NOTQUIET => 1,
+            log_options::LOG_NONVERBOSE => 2,
+            log_options::LOG_ALWAYS => 3,
+            log_options::LOG_PROGRESS => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -175,7 +185,17 @@ pub enum url_scheme {
     SCHEME_FTP,
     SCHEME_FTPS,
     SCHEME_INVALID,
-}  // end of enum
+impl url_scheme {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            url_scheme::SCHEME_HTTP => 0,
+            url_scheme::SCHEME_HTTPS => 1,
+            url_scheme::SCHEME_FTP => 2,
+            url_scheme::SCHEME_FTPS => 3,
+            url_scheme::SCHEME_INVALID => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -237,7 +257,15 @@ pub enum hsts_kh_match {
     NO_MATCH,
     SUPERDOMAIN_MATCH,
     CONGRUENT_MATCH,
-}  // end of enum
+impl hsts_kh_match {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            hsts_kh_match::NO_MATCH => 0,
+            hsts_kh_match::SUPERDOMAIN_MATCH => 1,
+            hsts_kh_match::CONGRUENT_MATCH => 2,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn stat(

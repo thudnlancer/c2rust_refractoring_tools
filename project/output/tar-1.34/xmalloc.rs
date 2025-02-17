@@ -22,19 +22,32 @@ pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     HAVE_GNU_CALLOC = 1,
-}  // end of enum
-, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::HAVE_GNU_CALLOC => 1,
+        }
+    }
+}
+uint {
+        match self {
+            C2RustUnnamed::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -42,15 +55,23 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     HAVE_GNU_MALLOC = 1,
-}  // end of enum
-_0 {
-    HAVE_GNU_CALLOC = 1,
-}  // end of enum
-, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::HAVE_GNU_MALLOC => 1,
+        }
+    }
+}
+amed_0::HAVE_GNU_CALLOC => 1,
+        }
+    }
+}
+uint {
+        match self {
+            C2RustUnnamed::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -59,10 +80,17 @@ pub type C2RustUnnamed_1 = libc::c_uint;
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     HAVE_GNU_REALLOC = 1,
-}  // end of enum
- {
-    DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::HAVE_GNU_REALLOC => 1,
+        }
+    }
+}
+amed::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;

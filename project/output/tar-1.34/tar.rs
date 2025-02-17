@@ -281,7 +281,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type ptrdiff_t = libc::c_long;
 pub type error_t = libc::c_int;
@@ -405,14 +422,29 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
-}  // end of enum
+impl savedir_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            savedir_option::SAVEDIR_SORT_NONE => 0,
+            savedir_option::SAVEDIR_SORT_NAME => 1,
+            savedir_option::SAVEDIR_SORT_INODE => 2,
+            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
+        }
+    }
+}
 
 pub const DEFAULT_MXFAST: C2RustUnnamed_3 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed_3 = libc::c_uint;
 #[derive(Copy, Clone)]
@@ -570,7 +602,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -651,7 +695,16 @@ pub enum backup_type {
     simple_backups,
     numbered_existing_backups,
     numbered_backups,
-}  // end of enum
+impl backup_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backup_type::no_backups => 0,
+            backup_type::simple_backups => 1,
+            backup_type::numbered_existing_backups => 2,
+            backup_type::numbered_backups => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -666,7 +719,22 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
-}  // end of enum
+impl subcommand {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            subcommand::UNKNOWN_SUBCOMMAND => 0,
+            subcommand::APPEND_SUBCOMMAND => 1,
+            subcommand::CAT_SUBCOMMAND => 2,
+            subcommand::CREATE_SUBCOMMAND => 3,
+            subcommand::DELETE_SUBCOMMAND => 4,
+            subcommand::DIFF_SUBCOMMAND => 5,
+            subcommand::EXTRACT_SUBCOMMAND => 6,
+            subcommand::LIST_SUBCOMMAND => 7,
+            subcommand::UPDATE_SUBCOMMAND => 8,
+            subcommand::TEST_LABEL_SUBCOMMAND => 9,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -674,7 +742,15 @@ pub enum atime_preserve {
     no_atime_preserve,
     replace_atime_preserve,
     system_atime_preserve,
-}  // end of enum
+impl atime_preserve {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            atime_preserve::no_atime_preserve => 0,
+            atime_preserve::replace_atime_preserve => 1,
+            atime_preserve::system_atime_preserve => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -686,7 +762,19 @@ pub enum old_files {
     KEEP_OLD_FILES,
     SKIP_OLD_FILES,
     KEEP_NEWER_FILES,
-}  // end of enum
+impl old_files {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            old_files::DEFAULT_OLD_FILES => 0,
+            old_files::NO_OVERWRITE_DIR_OLD_FILES => 1,
+            old_files::OVERWRITE_OLD_FILES => 2,
+            old_files::UNLINK_FIRST_OLD_FILES => 3,
+            old_files::KEEP_OLD_FILES => 4,
+            old_files::SKIP_OLD_FILES => 5,
+            old_files::KEEP_NEWER_FILES => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -694,7 +782,15 @@ pub enum set_mtime_option_mode {
     USE_FILE_MTIME,
     FORCE_MTIME,
     CLAMP_MTIME,
-}  // end of enum
+impl set_mtime_option_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            set_mtime_option_mode::USE_FILE_MTIME => 0,
+            set_mtime_option_mode::FORCE_MTIME => 1,
+            set_mtime_option_mode::CLAMP_MTIME => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -702,7 +798,15 @@ pub enum hole_detection_method {
     HOLE_DETECTION_DEFAULT,
     HOLE_DETECTION_RAW,
     HOLE_DETECTION_SEEK,
-}  // end of enum
+impl hole_detection_method {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            hole_detection_method::HOLE_DETECTION_DEFAULT => 0,
+            hole_detection_method::HOLE_DETECTION_RAW => 1,
+            hole_detection_method::HOLE_DETECTION_SEEK => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -710,7 +814,15 @@ pub enum files_count {
     FILES_NONE,
     FILES_ONE,
     FILES_MANY,
-}  // end of enum
+impl files_count {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            files_count::FILES_NONE => 0,
+            files_count::FILES_ONE => 1,
+            files_count::FILES_MANY => 2,
+        }
+    }
+}
 
 pub const escape_quoting_style: quoting_style = 7;
 #[derive(Copy, Clone)]
@@ -738,7 +850,15 @@ pub enum option_source {
     OPTS_ENVIRON,
     OPTS_COMMAND_LINE,
     OPTS_FILE,
-}  // end of enum
+impl option_source {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            option_source::OPTS_ENVIRON => 0,
+            option_source::OPTS_COMMAND_LINE => 1,
+            option_source::OPTS_FILE => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -794,7 +914,17 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW = 3,
     LONGINT_INVALID_SUFFIX_CHAR = 2,
     LONGINT_OVERFLOW = 1,
-}  // end of enum
+impl strtol_error {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            strtol_error::LONGINT_OK => 0,
+            strtol_error::LONGINT_INVALID => 4,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW => 3,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR => 2,
+            strtol_error::LONGINT_OVERFLOW => 1,
+        }
+    }
+}
 
 pub const STRIP_COMPONENTS_OPTION: C2RustUnnamed_4 = 195;
 pub const SHOW_SNAPSHOT_FIELD_RANGES_OPTION: C2RustUnnamed_4 = 189;
@@ -821,7 +951,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 pub const QUOTING_STYLE_OPTION: C2RustUnnamed_4 = 178;
 pub const QUOTE_CHARS_OPTION: C2RustUnnamed_4 = 177;
@@ -1042,7 +1188,92 @@ pub enum C2RustUnnamed_4 {
     FULL_TIME_OPTION = 139,
     CLAMP_MTIME_OPTION = 134,
     NO_AUTO_COMPRESS_OPTION = 155,
-}  // end of enum
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::ZSTD_OPTION => 207,
+            C2RustUnnamed_4::LZOP_OPTION => 150,
+            C2RustUnnamed_4::LZMA_OPTION => 149,
+            C2RustUnnamed_4::LZIP_OPTION => 148,
+            C2RustUnnamed_4::SAME_OWNER_OPTION => 185,
+            C2RustUnnamed_4::XATTR_INCLUDE => 206,
+            C2RustUnnamed_4::XATTR_EXCLUDE => 205,
+            C2RustUnnamed_4::NO_XATTR_OPTION => 165,
+            C2RustUnnamed_4::XATTR_OPTION => 204,
+            C2RustUnnamed_4::NO_SELINUX_CONTEXT_OPTION => 164,
+            C2RustUnnamed_4::SELINUX_CONTEXT_OPTION => 186,
+            C2RustUnnamed_4::NO_ACLS_OPTION => 154,
+            C2RustUnnamed_4::ACLS_OPTION => 128,
+            C2RustUnnamed_4::NO_SAME_PERMISSIONS_OPTION => 162,
+            C2RustUnnamed_4::NO_SAME_OWNER_OPTION => 161,
+            C2RustUnnamed_4::VOLNO_FILE_OPTION => 202,
+            C2RustUnnamed_4::TOTALS_OPTION => 198,
+            C2RustUnnamed_4::TO_COMMAND_OPTION => 199,
+            C2RustUnnamed_4::SUFFIX_OPTION => 196,
+            C2RustUnnamed_4::SORT_OPTION => 192,
+            C2RustUnnamed_4::SHOW_TRANSFORMED_NAMES_OPTION => 190,
+            C2RustUnnamed_4::SHOW_OMITTED_DIRS_OPTION => 188,
+            C2RustUnnamed_4::STRIP_COMPONENTS_OPTION => 195,
+            C2RustUnnamed_4::SHOW_SNAPSHOT_FIELD_RANGES_OPTION => 189,
+            C2RustUnnamed_4::SHOW_DEFAULTS_OPTION => 187,
+            C2RustUnnamed_4::RSH_COMMAND_OPTION => 184,
+            C2RustUnnamed_4::RMT_COMMAND_OPTION => 183,
+            C2RustUnnamed_4::RESTRICT_OPTION => 182,
+            C2RustUnnamed_4::REMOVE_FILES_OPTION => 181,
+            C2RustUnnamed_4::RECURSIVE_UNLINK_OPTION => 180,
+            C2RustUnnamed_4::RECORD_SIZE_OPTION => 179,
+            C2RustUnnamed_4::POSIX_OPTION => 176,
+            C2RustUnnamed_4::PAX_OPTION => 175,
+            C2RustUnnamed_4::QUOTING_STYLE_OPTION => 178,
+            C2RustUnnamed_4::QUOTE_CHARS_OPTION => 177,
+            C2RustUnnamed_4::OWNER_MAP_OPTION => 174,
+            C2RustUnnamed_4::OWNER_OPTION => 173,
+            C2RustUnnamed_4::OVERWRITE_OPTION => 172,
+            C2RustUnnamed_4::OVERWRITE_DIR_OPTION => 171,
+            C2RustUnnamed_4::OLD_ARCHIVE_OPTION => 168,
+            C2RustUnnamed_4::OCCURRENCE_OPTION => 167,
+            C2RustUnnamed_4::NUMERIC_OWNER_OPTION => 166,
+            C2RustUnnamed_4::NO_QUOTE_CHARS_OPTION => 160,
+            C2RustUnnamed_4::NO_OVERWRITE_DIR_OPTION => 159,
+            C2RustUnnamed_4::NO_IGNORE_COMMAND_ERROR_OPTION => 158,
+            C2RustUnnamed_4::MODE_OPTION => 151,
+            C2RustUnnamed_4::GROUP_MAP_OPTION => 141,
+            C2RustUnnamed_4::GROUP_OPTION => 140,
+            C2RustUnnamed_4::KEEP_NEWER_FILES_OPTION => 146,
+            C2RustUnnamed_4::KEEP_DIRECTORY_SYMLINK_OPTION => 145,
+            C2RustUnnamed_4::IGNORE_FAILED_READ_OPTION => 143,
+            C2RustUnnamed_4::IGNORE_COMMAND_ERROR_OPTION => 142,
+            C2RustUnnamed_4::INDEX_FILE_OPTION => 144,
+            C2RustUnnamed_4::FORCE_LOCAL_OPTION => 138,
+            C2RustUnnamed_4::DELETE_OPTION => 137,
+            C2RustUnnamed_4::NO_DELAY_DIRECTORY_RESTORE_OPTION => 157,
+            C2RustUnnamed_4::DELAY_DIRECTORY_RESTORE_OPTION => 135,
+            C2RustUnnamed_4::BACKUP_OPTION => 130,
+            C2RustUnnamed_4::CHECKPOINT_ACTION_OPTION => 133,
+            C2RustUnnamed_4::CHECKPOINT_OPTION => 132,
+            C2RustUnnamed_4::NO_CHECK_DEVICE_OPTION => 156,
+            C2RustUnnamed_4::CHECK_DEVICE_OPTION => 131,
+            C2RustUnnamed_4::ATIME_PRESERVE_OPTION => 129,
+            C2RustUnnamed_4::WARNING_OPTION => 203,
+            C2RustUnnamed_4::UTC_OPTION => 201,
+            C2RustUnnamed_4::TRANSFORM_OPTION => 200,
+            C2RustUnnamed_4::TEST_LABEL_OPTION => 197,
+            C2RustUnnamed_4::SPARSE_VERSION_OPTION => 194,
+            C2RustUnnamed_4::HOLE_DETECTION_OPTION => 193,
+            C2RustUnnamed_4::SKIP_OLD_FILES_OPTION => 191,
+            C2RustUnnamed_4::NEWER_MTIME_OPTION => 153,
+            C2RustUnnamed_4::NO_SEEK_OPTION => 163,
+            C2RustUnnamed_4::MTIME_OPTION => 152,
+            C2RustUnnamed_4::LEVEL_OPTION => 147,
+            C2RustUnnamed_4::ONE_TOP_LEVEL_OPTION => 170,
+            C2RustUnnamed_4::ONE_FILE_SYSTEM_OPTION => 169,
+            C2RustUnnamed_4::HARD_DEREFERENCE_OPTION => 136,
+            C2RustUnnamed_4::FULL_TIME_OPTION => 139,
+            C2RustUnnamed_4::CLAMP_MTIME_OPTION => 134,
+            C2RustUnnamed_4::NO_AUTO_COMPRESS_OPTION => 155,
+        }
+    }
+}
 
 pub const GRH_OTHER: C2RustUnnamed_5 = 31;
 pub const GRID_COMPAT: C2RustUnnamed_5 = 30;
@@ -1161,7 +1392,45 @@ pub enum C2RustUnnamed_5 {
     GRID_COMPAT,
     GRH_OTHER,
     GRID_OTHER,
-}  // end of enum
+impl C2RustUnnamed_5 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_5::GRH_COMMAND => 0,
+            C2RustUnnamed_5::GRID_COMMAND => 1,
+            C2RustUnnamed_5::GRH_MODIFIER => 2,
+            C2RustUnnamed_5::GRID_MODIFIER => 3,
+            C2RustUnnamed_5::GRID_FILE_NAME => 4,
+            C2RustUnnamed_5::GRH_OVERWRITE => 5,
+            C2RustUnnamed_5::GRID_OVERWRITE => 6,
+            C2RustUnnamed_5::GRH_OUTPUT => 7,
+            C2RustUnnamed_5::GRID_OUTPUT => 8,
+            C2RustUnnamed_5::GRH_FATTR => 9,
+            C2RustUnnamed_5::GRID_FATTR => 10,
+            C2RustUnnamed_5::GRH_XATTR => 11,
+            C2RustUnnamed_5::GRID_XATTR => 12,
+            C2RustUnnamed_5::GRH_DEVICE => 13,
+            C2RustUnnamed_5::GRID_DEVICE => 14,
+            C2RustUnnamed_5::GRH_BLOCKING => 15,
+            C2RustUnnamed_5::GRID_BLOCKING => 16,
+            C2RustUnnamed_5::GRH_FORMAT => 17,
+            C2RustUnnamed_5::GRID_FORMAT => 18,
+            C2RustUnnamed_5::GRDOC_FORMAT => 19,
+            C2RustUnnamed_5::GRID_FORMAT_OPT => 20,
+            C2RustUnnamed_5::GRH_COMPRESS => 21,
+            C2RustUnnamed_5::GRID_COMPRESS => 22,
+            C2RustUnnamed_5::GRH_FILE => 23,
+            C2RustUnnamed_5::GRID_FILE => 24,
+            C2RustUnnamed_5::GRH_NAME_XFORM => 25,
+            C2RustUnnamed_5::GRID_NAME_XFORM => 26,
+            C2RustUnnamed_5::GRH_INFORMATIVE => 27,
+            C2RustUnnamed_5::GRID_INFORMATIVE => 28,
+            C2RustUnnamed_5::GRH_COMPAT => 29,
+            C2RustUnnamed_5::GRID_COMPAT => 30,
+            C2RustUnnamed_5::GRH_OTHER => 31,
+            C2RustUnnamed_5::GRID_OTHER => 32,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1177,7 +1446,23 @@ pub enum option_class {
     OC_ABSOLUTE_NAMES,
     OC_OLD_FILES,
     OC_MAX,
-}  // end of enum
+impl option_class {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            option_class::OC_COMPRESS => 0,
+            option_class::OC_OCCURRENCE => 1,
+            option_class::OC_LISTED_INCREMENTAL => 2,
+            option_class::OC_NEWER => 3,
+            option_class::OC_VERIFY => 4,
+            option_class::OC_STARTING_FILE => 5,
+            option_class::OC_SAME_ORDER => 6,
+            option_class::OC_ONE_TOP_LEVEL => 7,
+            option_class::OC_ABSOLUTE_NAMES => 8,
+            option_class::OC_OLD_FILES => 9,
+            option_class::OC_MAX => 10,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn stat(

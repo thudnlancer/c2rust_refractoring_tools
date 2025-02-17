@@ -155,7 +155,21 @@ pub enum __socket_type {
     SOCK_RAW = 3,
     SOCK_DGRAM = 2,
     SOCK_STREAM = 1,
-}  // end of enum
+impl __socket_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __socket_type::SOCK_NONBLOCK => 2048,
+            __socket_type::SOCK_CLOEXEC => 524288,
+            __socket_type::SOCK_PACKET => 10,
+            __socket_type::SOCK_DCCP => 6,
+            __socket_type::SOCK_SEQPACKET => 5,
+            __socket_type::SOCK_RDM => 4,
+            __socket_type::SOCK_RAW => 3,
+            __socket_type::SOCK_DGRAM => 2,
+            __socket_type::SOCK_STREAM => 1,
+        }
+    }
+}
 
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
@@ -258,7 +272,38 @@ pub enum C2RustUnnamed_0 {
     IPPROTO_IGMP = 2,
     IPPROTO_ICMP = 1,
     IPPROTO_IP = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::IPPROTO_MAX => 256,
+            C2RustUnnamed_0::IPPROTO_RAW => 255,
+            C2RustUnnamed_0::IPPROTO_MPLS => 137,
+            C2RustUnnamed_0::IPPROTO_UDPLITE => 136,
+            C2RustUnnamed_0::IPPROTO_SCTP => 132,
+            C2RustUnnamed_0::IPPROTO_COMP => 108,
+            C2RustUnnamed_0::IPPROTO_PIM => 103,
+            C2RustUnnamed_0::IPPROTO_ENCAP => 98,
+            C2RustUnnamed_0::IPPROTO_BEETPH => 94,
+            C2RustUnnamed_0::IPPROTO_MTP => 92,
+            C2RustUnnamed_0::IPPROTO_AH => 51,
+            C2RustUnnamed_0::IPPROTO_ESP => 50,
+            C2RustUnnamed_0::IPPROTO_GRE => 47,
+            C2RustUnnamed_0::IPPROTO_RSVP => 46,
+            C2RustUnnamed_0::IPPROTO_IPV6 => 41,
+            C2RustUnnamed_0::IPPROTO_DCCP => 33,
+            C2RustUnnamed_0::IPPROTO_TP => 29,
+            C2RustUnnamed_0::IPPROTO_IDP => 22,
+            C2RustUnnamed_0::IPPROTO_UDP => 17,
+            C2RustUnnamed_0::IPPROTO_PUP => 12,
+            C2RustUnnamed_0::IPPROTO_EGP => 8,
+            C2RustUnnamed_0::IPPROTO_TCP => 6,
+            C2RustUnnamed_0::IPPROTO_IPIP => 4,
+            C2RustUnnamed_0::IPPROTO_IGMP => 2,
+            C2RustUnnamed_0::IPPROTO_ICMP => 1,
+            C2RustUnnamed_0::IPPROTO_IP => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

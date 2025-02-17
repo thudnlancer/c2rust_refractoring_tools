@@ -129,7 +129,27 @@ pub enum C2RustUnnamed {
     PTH_ATTR_JOINABLE = 2,
     PTH_ATTR_NAME = 1,
     PTH_ATTR_PRIO = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::PTH_ATTR_BOUND => 14,
+            C2RustUnnamed::PTH_ATTR_EVENTS => 13,
+            C2RustUnnamed::PTH_ATTR_STATE => 12,
+            C2RustUnnamed::PTH_ATTR_START_ARG => 11,
+            C2RustUnnamed::PTH_ATTR_START_FUNC => 10,
+            C2RustUnnamed::PTH_ATTR_TIME_RAN => 9,
+            C2RustUnnamed::PTH_ATTR_TIME_LAST => 8,
+            C2RustUnnamed::PTH_ATTR_TIME_SPAWN => 7,
+            C2RustUnnamed::PTH_ATTR_DISPATCHES => 6,
+            C2RustUnnamed::PTH_ATTR_STACK_ADDR => 5,
+            C2RustUnnamed::PTH_ATTR_STACK_SIZE => 4,
+            C2RustUnnamed::PTH_ATTR_CANCEL_STATE => 3,
+            C2RustUnnamed::PTH_ATTR_JOINABLE => 2,
+            C2RustUnnamed::PTH_ATTR_NAME => 1,
+            C2RustUnnamed::PTH_ATTR_PRIO => 0,
+        }
+    }
+}
 
 pub type pth_event_t = *mut pth_event_st;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -137,7 +157,14 @@ pub type pth_event_t = *mut pth_event_st;
 pub enum C2RustUnnamed_0 {
     PTH_FREE_THIS,
     PTH_FREE_ALL,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::PTH_FREE_THIS => 0,
+            C2RustUnnamed_0::PTH_FREE_ALL => 1,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -145,7 +172,15 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
-}  // end of enum
+impl pth_status_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            pth_status_t::PTH_STATUS_PENDING => 0,
+            pth_status_t::PTH_STATUS_OCCURRED => 1,
+            pth_status_t::PTH_STATUS_FAILED => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

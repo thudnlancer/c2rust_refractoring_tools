@@ -104,7 +104,15 @@ pub enum CHECK_CERT_MODES {
     CHECK_CERT_OFF,
     CHECK_CERT_ON,
     CHECK_CERT_QUIET,
-}  // end of enum
+impl CHECK_CERT_MODES {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            CHECK_CERT_MODES::CHECK_CERT_OFF => 0,
+            CHECK_CERT_MODES::CHECK_CERT_ON => 1,
+            CHECK_CERT_MODES::CHECK_CERT_QUIET => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -290,7 +298,15 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
-}  // end of enum
+impl compression_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            compression_options::compression_none => 2,
+            compression_options::compression_gzip => 1,
+            compression_options::compression_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -298,7 +314,15 @@ pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::prefer_none => 2,
+            C2RustUnnamed::prefer_ipv6 => 1,
+            C2RustUnnamed::prefer_ipv4 => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -306,7 +330,15 @@ pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::restrict_uppercase => 2,
+            C2RustUnnamed_0::restrict_lowercase => 1,
+            C2RustUnnamed_0::restrict_no_case_restriction => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -314,14 +346,29 @@ pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::restrict_windows => 2,
+            C2RustUnnamed_1::restrict_vms => 1,
+            C2RustUnnamed_1::restrict_unix => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
-}  // end of enum
+impl keyfile_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            keyfile_type::keyfile_asn1 => 1,
+            keyfile_type::keyfile_pem => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -334,14 +381,34 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::secure_protocol_pfs => 7,
+            C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
+            C2RustUnnamed_2::secure_protocol_tlsv1_2 => 5,
+            C2RustUnnamed_2::secure_protocol_tlsv1_1 => 4,
+            C2RustUnnamed_2::secure_protocol_tlsv1 => 3,
+            C2RustUnnamed_2::secure_protocol_sslv3 => 2,
+            C2RustUnnamed_2::secure_protocol_sslv2 => 1,
+            C2RustUnnamed_2::secure_protocol_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::regex_type_posix => 1,
+            C2RustUnnamed_3::regex_type_pcre => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -451,7 +518,75 @@ pub enum uerr_t {
     METALINK_MISSING_RESOURCE,
     RETR_WITH_METALINK,
     METALINK_SIZE_ERROR,
-}  // end of enum
+impl uerr_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            uerr_t::NOCONERROR => 0,
+            uerr_t::HOSTERR => 1,
+            uerr_t::CONSOCKERR => 2,
+            uerr_t::CONERROR => 3,
+            uerr_t::CONSSLERR => 4,
+            uerr_t::CONIMPOSSIBLE => 5,
+            uerr_t::NEWLOCATION => 6,
+            uerr_t::FTPOK => 7,
+            uerr_t::FTPLOGINC => 8,
+            uerr_t::FTPLOGREFUSED => 9,
+            uerr_t::FTPPORTERR => 10,
+            uerr_t::FTPSYSERR => 11,
+            uerr_t::FTPNSFOD => 12,
+            uerr_t::FTPUNKNOWNTYPE => 13,
+            uerr_t::FTPRERR => 14,
+            uerr_t::FTPSRVERR => 15,
+            uerr_t::FTPRETRINT => 16,
+            uerr_t::FTPRESTFAIL => 17,
+            uerr_t::URLERROR => 18,
+            uerr_t::FOPENERR => 19,
+            uerr_t::FOPEN_EXCL_ERR => 20,
+            uerr_t::FWRITEERR => 21,
+            uerr_t::HEOF => 22,
+            uerr_t::GATEWAYTIMEOUT => 23,
+            uerr_t::HERR => 24,
+            uerr_t::RETROK => 25,
+            uerr_t::RECLEVELEXC => 26,
+            uerr_t::WRONGCODE => 27,
+            uerr_t::FTPINVPASV => 28,
+            uerr_t::FTPNOPASV => 29,
+            uerr_t::FTPNOPBSZ => 30,
+            uerr_t::FTPNOPROT => 31,
+            uerr_t::FTPNOAUTH => 32,
+            uerr_t::CONTNOTSUPPORTED => 33,
+            uerr_t::RETRUNNEEDED => 34,
+            uerr_t::RETRFINISHED => 35,
+            uerr_t::READERR => 36,
+            uerr_t::TRYLIMEXC => 37,
+            uerr_t::FILEBADFILE => 38,
+            uerr_t::RANGEERR => 39,
+            uerr_t::RETRBADPATTERN => 40,
+            uerr_t::PROXERR => 41,
+            uerr_t::AUTHFAILED => 42,
+            uerr_t::QUOTEXC => 43,
+            uerr_t::WRITEFAILED => 44,
+            uerr_t::SSLINITFAILED => 45,
+            uerr_t::VERIFCERTERR => 46,
+            uerr_t::UNLINKERR => 47,
+            uerr_t::NEWLOCATION_KEEP_POST => 48,
+            uerr_t::CLOSEFAILED => 49,
+            uerr_t::ATTRMISSING => 50,
+            uerr_t::UNKNOWNATTR => 51,
+            uerr_t::WARC_ERR => 52,
+            uerr_t::WARC_TMP_FOPENERR => 53,
+            uerr_t::WARC_TMP_FWRITEERR => 54,
+            uerr_t::TIMECONV_ERR => 55,
+            uerr_t::METALINK_PARSE_ERROR => 56,
+            uerr_t::METALINK_RETR_ERROR => 57,
+            uerr_t::METALINK_CHKSUM_ERROR => 58,
+            uerr_t::METALINK_SIG_ERROR => 59,
+            uerr_t::METALINK_MISSING_RESOURCE => 60,
+            uerr_t::RETR_WITH_METALINK => 61,
+            uerr_t::METALINK_SIZE_ERROR => 62,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -466,7 +601,22 @@ pub enum C2RustUnnamed_4 {
     WGET_EXIT_PROTOCOL_ERROR = 7,
     WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
-}  // end of enum
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::WGET_EXIT_SUCCESS => 0,
+            C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR => 1,
+            C2RustUnnamed_4::WGET_EXIT_PARSE_ERROR => 2,
+            C2RustUnnamed_4::WGET_EXIT_IO_FAIL => 3,
+            C2RustUnnamed_4::WGET_EXIT_NETWORK_FAIL => 4,
+            C2RustUnnamed_4::WGET_EXIT_SSL_AUTH_FAIL => 5,
+            C2RustUnnamed_4::WGET_EXIT_SERVER_AUTH_FAIL => 6,
+            C2RustUnnamed_4::WGET_EXIT_PROTOCOL_ERROR => 7,
+            C2RustUnnamed_4::WGET_EXIT_SERVER_ERROR => 8,
+            C2RustUnnamed_4::WGET_EXIT_UNKNOWN => 9,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -517,7 +667,16 @@ pub enum parse_line {
     line_empty,
     line_syntax_error,
     line_unknown_command,
-}  // end of enum
+impl parse_line {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            parse_line::line_ok => 0,
+            parse_line::line_empty => 1,
+            parse_line::line_syntax_error => 2,
+            parse_line::line_unknown_command => 3,
+        }
+    }
+}
 
 pub type parse_line = libc::c_uint;
 #[inline]

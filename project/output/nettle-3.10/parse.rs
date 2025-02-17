@@ -27,7 +27,15 @@ pub enum sexp_mode {
     SEXP_CANONICAL = 0,
     SEXP_ADVANCED = 1,
     SEXP_TRANSPORT = 2,
-}  // end of enum
+impl sexp_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            sexp_mode::SEXP_CANONICAL => 0,
+            sexp_mode::SEXP_ADVANCED => 1,
+            sexp_mode::SEXP_TRANSPORT => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -42,7 +50,22 @@ pub enum sexp_token {
     SEXP_DISPLAY_END,
     SEXP_TRANSPORT_START,
     SEXP_CODING_END,
-}  // end of enum
+impl sexp_token {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            sexp_token::SEXP_STRING => 0,
+            sexp_token::SEXP_DISPLAY => 1,
+            sexp_token::SEXP_COMMENT => 2,
+            sexp_token::SEXP_LIST_START => 3,
+            sexp_token::SEXP_LIST_END => 4,
+            sexp_token::SEXP_EOF => 5,
+            sexp_token::SEXP_DISPLAY_START => 6,
+            sexp_token::SEXP_DISPLAY_END => 7,
+            sexp_token::SEXP_TRANSPORT_START => 8,
+            sexp_token::SEXP_CODING_END => 9,
+        }
+    }
+}
 
 pub type uint8_t = __uint8_t;
 pub type nettle_realloc_func = unsafe extern "C" fn(
@@ -149,7 +172,15 @@ pub enum sexp_char_type {
     SEXP_NORMAL_CHAR = 0,
     SEXP_EOF_CHAR,
     SEXP_END_CHAR,
-}  // end of enum
+impl sexp_char_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            sexp_char_type::SEXP_NORMAL_CHAR => 0,
+            sexp_char_type::SEXP_EOF_CHAR => 1,
+            sexp_char_type::SEXP_END_CHAR => 2,
+        }
+    }
+}
 
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]

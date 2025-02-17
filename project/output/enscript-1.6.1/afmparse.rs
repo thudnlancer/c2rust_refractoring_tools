@@ -115,7 +115,14 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
-}  // end of enum
+impl AFMBoolean {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMBoolean::AFMFalse => 0,
+            AFMBoolean::AFMTrue => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -367,7 +374,93 @@ pub enum AFMKey {
     kAxisLabel,
     kStartMaster,
     kEndMaster,
-}  // end of enum
+impl AFMKey {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMKey::kComment => 0,
+            AFMKey::kStartFontMetrics => 1,
+            AFMKey::kEndFontMetrics => 2,
+            AFMKey::kStartCompFontMetrics => 3,
+            AFMKey::kEndCompFontMetrics => 4,
+            AFMKey::kStartDescendent => 5,
+            AFMKey::kEndDescendent => 6,
+            AFMKey::kStartMasterFontMetrics => 7,
+            AFMKey::kEndMasterFontMetrics => 8,
+            AFMKey::kMetricsSets => 9,
+            AFMKey::kDescendents => 10,
+            AFMKey::kMasters => 11,
+            AFMKey::kAxes => 12,
+            AFMKey::kFontName => 13,
+            AFMKey::kFullName => 14,
+            AFMKey::kFamilyName => 15,
+            AFMKey::kWeight => 16,
+            AFMKey::kFontBBox => 17,
+            AFMKey::kVersion => 18,
+            AFMKey::kNotice => 19,
+            AFMKey::kEncodingScheme => 20,
+            AFMKey::kMappingScheme => 21,
+            AFMKey::kEscChar => 22,
+            AFMKey::kCharacterSet => 23,
+            AFMKey::kCharacters => 24,
+            AFMKey::kIsBaseFont => 25,
+            AFMKey::kVVector => 26,
+            AFMKey::kIsFixedV => 27,
+            AFMKey::kCapHeight => 28,
+            AFMKey::kXHeight => 29,
+            AFMKey::kAscender => 30,
+            AFMKey::kDescender => 31,
+            AFMKey::kWeightVector => 32,
+            AFMKey::kBlendDesignPositions => 33,
+            AFMKey::kBlendDesignMap => 34,
+            AFMKey::kBlendAxisTypes => 35,
+            AFMKey::kStartDirection => 36,
+            AFMKey::kEndDirection => 37,
+            AFMKey::kUnderlinePosition => 38,
+            AFMKey::kUnderlineThickness => 39,
+            AFMKey::kItalicAngle => 40,
+            AFMKey::kCharWidth => 41,
+            AFMKey::kIsFixedPitch => 42,
+            AFMKey::kStartCharMetrics => 43,
+            AFMKey::kEndCharMetrics => 44,
+            AFMKey::kC => 45,
+            AFMKey::kCH => 46,
+            AFMKey::kWX => 47,
+            AFMKey::kW0X => 48,
+            AFMKey::kW1X => 49,
+            AFMKey::kWY => 50,
+            AFMKey::kW0Y => 51,
+            AFMKey::kW1Y => 52,
+            AFMKey::kW => 53,
+            AFMKey::kW0 => 54,
+            AFMKey::kW1 => 55,
+            AFMKey::kVV => 56,
+            AFMKey::kN => 57,
+            AFMKey::kB => 58,
+            AFMKey::kL => 59,
+            AFMKey::kStartKernData => 60,
+            AFMKey::kEndKernData => 61,
+            AFMKey::kStartTrackKern => 62,
+            AFMKey::kEndTrackKern => 63,
+            AFMKey::kTrackKern => 64,
+            AFMKey::kStartKernPairs => 65,
+            AFMKey::kEndKernPairs => 66,
+            AFMKey::kKP => 67,
+            AFMKey::kKPH => 68,
+            AFMKey::kKPX => 69,
+            AFMKey::kKPY => 70,
+            AFMKey::kStartComposites => 71,
+            AFMKey::kEndComposites => 72,
+            AFMKey::kCC => 73,
+            AFMKey::kPCC => 74,
+            AFMKey::kStartAxis => 75,
+            AFMKey::kEndAxis => 76,
+            AFMKey::kAxisType => 77,
+            AFMKey::kAxisLabel => 78,
+            AFMKey::kStartMaster => 79,
+            AFMKey::kEndMaster => 80,
+        }
+    }
+}
 
 pub type ParseCtx = parse_ctx_st;
 #[derive(Copy, Clone)]

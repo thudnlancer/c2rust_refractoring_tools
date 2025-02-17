@@ -359,7 +359,16 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
-}  // end of enum
+impl savedir_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            savedir_option::SAVEDIR_SORT_NONE => 0,
+            savedir_option::SAVEDIR_SORT_NAME => 1,
+            savedir_option::SAVEDIR_SORT_INODE => 2,
+            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -460,7 +469,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -539,7 +560,15 @@ pub enum atime_preserve {
     no_atime_preserve,
     replace_atime_preserve,
     system_atime_preserve,
-}  // end of enum
+impl atime_preserve {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            atime_preserve::no_atime_preserve => 0,
+            atime_preserve::replace_atime_preserve => 1,
+            atime_preserve::system_atime_preserve => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -548,7 +577,16 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
-}  // end of enum
+impl exclusion_tag_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            exclusion_tag_type::exclusion_tag_none => 0,
+            exclusion_tag_type::exclusion_tag_contents => 1,
+            exclusion_tag_type::exclusion_tag_under => 2,
+            exclusion_tag_type::exclusion_tag_all => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -556,7 +594,15 @@ pub enum set_mtime_option_mode {
     USE_FILE_MTIME,
     FORCE_MTIME,
     CLAMP_MTIME,
-}  // end of enum
+impl set_mtime_option_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            set_mtime_option_mode::USE_FILE_MTIME => 0,
+            set_mtime_option_mode::FORCE_MTIME => 1,
+            set_mtime_option_mode::CLAMP_MTIME => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -581,7 +627,15 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
-}  // end of enum
+impl access_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            access_mode::ACCESS_READ => 0,
+            access_mode::ACCESS_WRITE => 1,
+            access_mode::ACCESS_UPDATE => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -590,7 +644,16 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
-}  // end of enum
+impl dump_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            dump_status::dump_status_ok => 0,
+            dump_status::dump_status_short => 1,
+            dump_status::dump_status_fail => 2,
+            dump_status::dump_status_not_implemented => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -635,20 +698,34 @@ pub enum files_count {
     FILES_NONE,
     FILES_ONE,
     FILES_MANY,
-}  // end of enum
+impl files_count {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            files_count::FILES_NONE => 0,
+            files_count::FILES_ONE => 1,
+            files_count::FILES_MANY => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     IMPOSTOR_ERRNO = 2,
-}  // end of enum
-(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum files_count {
-    FILES_NONE,
-    FILES_ONE,
-    FILES_MANY,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::IMPOSTOR_ERRNO => 2,
+        }
+    }
+}
+ch self {
+            files_count::FILES_NONE => 0,
+            files_count::FILES_ONE => 1,
+            files_count::FILES_MANY => 2,
+        }
+    }
+}
 
 pub type C2RustUnnamed_2 = libc::c_uint;
 #[inline]

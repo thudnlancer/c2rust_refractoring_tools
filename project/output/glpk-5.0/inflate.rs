@@ -107,7 +107,44 @@ pub enum inflate_mode {
     BAD,
     MEM,
     SYNC,
-}  // end of enum
+impl inflate_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            inflate_mode::HEAD => 0,
+            inflate_mode::FLAGS => 1,
+            inflate_mode::TIME => 2,
+            inflate_mode::OS => 3,
+            inflate_mode::EXLEN => 4,
+            inflate_mode::EXTRA => 5,
+            inflate_mode::NAME => 6,
+            inflate_mode::COMMENT => 7,
+            inflate_mode::HCRC => 8,
+            inflate_mode::DICTID => 9,
+            inflate_mode::DICT => 10,
+            inflate_mode::TYPE => 11,
+            inflate_mode::TYPEDO => 12,
+            inflate_mode::STORED => 13,
+            inflate_mode::COPY_ => 14,
+            inflate_mode::COPY => 15,
+            inflate_mode::TABLE => 16,
+            inflate_mode::LENLENS => 17,
+            inflate_mode::CODELENS => 18,
+            inflate_mode::LEN_ => 19,
+            inflate_mode::LEN => 20,
+            inflate_mode::LENEXT => 21,
+            inflate_mode::DIST => 22,
+            inflate_mode::DISTEXT => 23,
+            inflate_mode::MATCH => 24,
+            inflate_mode::LIT => 25,
+            inflate_mode::CHECK => 26,
+            inflate_mode::LENGTH => 27,
+            inflate_mode::DONE => 28,
+            inflate_mode::BAD => 29,
+            inflate_mode::MEM => 30,
+            inflate_mode::SYNC => 31,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -160,7 +197,15 @@ pub enum codetype {
     CODES,
     LENS,
     DISTS,
-}  // end of enum
+impl codetype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            codetype::CODES => 0,
+            codetype::LENS => 1,
+            codetype::DISTS => 2,
+        }
+    }
+}
 
 #[no_mangle]
 pub unsafe extern "C" fn _glp_zlib_inflateReset(mut strm: z_streamp) -> libc::c_int {

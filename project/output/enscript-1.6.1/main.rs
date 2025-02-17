@@ -255,7 +255,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -290,7 +307,15 @@ pub enum HeaderType {
     HDR_NONE,
     HDR_SIMPLE,
     HDR_FANCY,
-}  // end of enum
+impl HeaderType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            HeaderType::HDR_NONE => 0,
+            HeaderType::HDR_SIMPLE => 1,
+            HeaderType::HDR_FANCY => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -310,14 +335,41 @@ pub enum InputEncoding {
     ENC_HP8,
     ENC_KOI8,
     ENC_PS,
-}  // end of enum
+impl InputEncoding {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            InputEncoding::ENC_ISO_8859_1 => 0,
+            InputEncoding::ENC_ISO_8859_2 => 1,
+            InputEncoding::ENC_ISO_8859_3 => 2,
+            InputEncoding::ENC_ISO_8859_4 => 3,
+            InputEncoding::ENC_ISO_8859_5 => 4,
+            InputEncoding::ENC_ISO_8859_7 => 5,
+            InputEncoding::ENC_ASCII => 6,
+            InputEncoding::ENC_ASCII_FISE => 7,
+            InputEncoding::ENC_ASCII_DKNO => 8,
+            InputEncoding::ENC_IBMPC => 9,
+            InputEncoding::ENC_MAC => 10,
+            InputEncoding::ENC_VMS => 11,
+            InputEncoding::ENC_HP8 => 12,
+            InputEncoding::ENC_KOI8 => 13,
+            InputEncoding::ENC_PS => 14,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
     LABEL_SHORT,
     LABEL_LONG,
-}  // end of enum
+impl PageLabelFormat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            PageLabelFormat::LABEL_SHORT => 0,
+            PageLabelFormat::LABEL_LONG => 1,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -326,7 +378,16 @@ pub enum MarkWrappedLinesStyle {
     MWLS_PLUS = 1,
     MWLS_BOX = 2,
     MWLS_ARROW = 3,
-}  // end of enum
+impl MarkWrappedLinesStyle {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            MarkWrappedLinesStyle::MWLS_NONE => 0,
+            MarkWrappedLinesStyle::MWLS_PLUS => 1,
+            MarkWrappedLinesStyle::MWLS_BOX => 2,
+            MarkWrappedLinesStyle::MWLS_ARROW => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -335,7 +396,16 @@ pub enum NonPrintableFormat {
     NPF_QUESTIONMARK,
     NPF_CARET,
     NPF_OCTAL,
-}  // end of enum
+impl NonPrintableFormat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            NonPrintableFormat::NPF_SPACE => 0,
+            NonPrintableFormat::NPF_QUESTIONMARK => 1,
+            NonPrintableFormat::NPF_CARET => 2,
+            NonPrintableFormat::NPF_OCTAL => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -343,7 +413,15 @@ pub enum FormFeedType {
     FORMFEED_COLUMN,
     FORMFEED_PAGE,
     FORMFEED_HCOLUMN,
-}  // end of enum
+impl FormFeedType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            FormFeedType::FORMFEED_COLUMN => 0,
+            FormFeedType::FORMFEED_PAGE => 1,
+            FormFeedType::FORMFEED_HCOLUMN => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -351,7 +429,15 @@ pub enum LineEndType {
     LE_TRUNCATE,
     LE_CHAR_WRAP,
     LE_WORD_WRAP,
-}  // end of enum
+impl LineEndType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            LineEndType::LE_TRUNCATE => 0,
+            LineEndType::LE_CHAR_WRAP => 1,
+            LineEndType::LE_WORD_WRAP => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

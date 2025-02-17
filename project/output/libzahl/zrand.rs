@@ -68,7 +68,19 @@ pub enum zranddev {
     LIBC_RAND_RANDOM,
     LIBC_RANDOM_RANDOM,
     LIBC_RAND48_RANDOM,
-}  // end of enum
+impl zranddev {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zranddev::FAST_RANDOM => 0,
+            zranddev::SECURE_RANDOM => 1,
+            zranddev::DEFAULT_RANDOM => 2,
+            zranddev::FASTEST_RANDOM => 3,
+            zranddev::LIBC_RAND_RANDOM => 4,
+            zranddev::LIBC_RANDOM_RANDOM => 5,
+            zranddev::LIBC_RAND48_RANDOM => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -76,7 +88,15 @@ pub enum zranddist {
     QUASIUNIFORM = 0,
     UNIFORM,
     MODUNIFORM,
-}  // end of enum
+impl zranddist {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zranddist::QUASIUNIFORM => 0,
+            zranddist::UNIFORM => 1,
+            zranddist::MODUNIFORM => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -87,7 +107,18 @@ pub enum zerror {
     ZERROR_DIV_0,
     ZERROR_NEGATIVE,
     ZERROR_INVALID_RADIX,
-}  // end of enum
+impl zerror {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zerror::ZERROR_ERRNO_SET => 0,
+            zerror::ZERROR_0_POW_0 => 1,
+            zerror::ZERROR_0_DIV_0 => 2,
+            zerror::ZERROR_DIV_0 => 3,
+            zerror::ZERROR_NEGATIVE => 4,
+            zerror::ZERROR_INVALID_RADIX => 5,
+        }
+    }
+}
 
 pub type time_t = __time_t;
 #[inline]

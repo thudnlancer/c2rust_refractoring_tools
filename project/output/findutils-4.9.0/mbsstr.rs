@@ -83,7 +83,17 @@ pub enum C2RustUnnamed_0 {
     sa_alignment_longlong = 8,
     sa_alignment_double = 8,
     sa_alignment_long = 8,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::sa_alignment_max => 16,
+            C2RustUnnamed_0::sa_alignment_longdouble => 16,
+            C2RustUnnamed_0::sa_alignment_longlong => 8,
+            C2RustUnnamed_0::sa_alignment_double => 8,
+            C2RustUnnamed_0::sa_alignment_long => 8,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn is_basic(mut c: libc::c_char) -> bool {

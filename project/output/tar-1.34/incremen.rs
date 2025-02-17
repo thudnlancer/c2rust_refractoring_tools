@@ -580,7 +580,16 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
-}  // end of enum
+impl exclusion_tag_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            exclusion_tag_type::exclusion_tag_none => 0,
+            exclusion_tag_type::exclusion_tag_contents => 1,
+            exclusion_tag_type::exclusion_tag_under => 2,
+            exclusion_tag_type::exclusion_tag_all => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -604,7 +613,15 @@ pub enum children {
     NO_CHILDREN,
     CHANGED_CHILDREN,
     ALL_CHILDREN,
-}  // end of enum
+impl children {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            children::NO_CHILDREN => 0,
+            children::CHANGED_CHILDREN => 1,
+            children::ALL_CHILDREN => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -653,14 +670,29 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
-}  // end of enum
+impl remove_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            remove_option::ORDINARY_REMOVE_OPTION => 0,
+            remove_option::RECURSIVE_REMOVE_OPTION => 1,
+            remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::BILLION => 1000000000,
+            C2RustUnnamed_2::LOG10_BILLION => 9,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

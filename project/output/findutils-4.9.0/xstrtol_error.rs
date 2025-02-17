@@ -22,7 +22,17 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR = 2,
     LONGINT_OVERFLOW = 1,
     LONGINT_OK = 0,
-}  // end of enum
+impl strtol_error {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            strtol_error::LONGINT_INVALID => 4,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW => 3,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR => 2,
+            strtol_error::LONGINT_OVERFLOW => 1,
+            strtol_error::LONGINT_OK => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

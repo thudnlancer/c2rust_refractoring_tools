@@ -357,7 +357,24 @@ pub enum C2RustUnnamed_0 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISalnum => 8,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISlower => 512,
+            C2RustUnnamed_0::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -472,7 +489,14 @@ pub struct Regexp {
 pub enum awk_bool {
     awk_false = 0,
     awk_true,
-}  // end of enum
+impl awk_bool {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            awk_bool::awk_false => 0,
+            awk_bool::awk_true => 1,
+        }
+    }
+}
 
 pub type awk_bool_t = awk_bool;
 #[derive(Copy, Clone)]
@@ -552,7 +576,15 @@ pub enum AWK_NUMBER_TYPE {
     AWK_NUMBER_TYPE_DOUBLE,
     AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_MPZ,
-}  // end of enum
+impl AWK_NUMBER_TYPE {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE => 0,
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR => 1,
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -577,7 +609,21 @@ pub enum awk_valtype_t {
     AWK_SCALAR,
     AWK_VALUE_COOKIE,
     AWK_BOOL,
-}  // end of enum
+impl awk_valtype_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            awk_valtype_t::AWK_UNDEFINED => 0,
+            awk_valtype_t::AWK_NUMBER => 1,
+            awk_valtype_t::AWK_STRING => 2,
+            awk_valtype_t::AWK_REGEX => 3,
+            awk_valtype_t::AWK_STRNUM => 4,
+            awk_valtype_t::AWK_ARRAY => 5,
+            awk_valtype_t::AWK_SCALAR => 6,
+            awk_valtype_t::AWK_VALUE_COOKIE => 7,
+            awk_valtype_t::AWK_BOOL => 8,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -636,7 +682,32 @@ pub enum nodevals {
     Node_frame,
     Node_instruction,
     Node_final,
-}  // end of enum
+impl nodevals {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            nodevals::Node_illegal => 0,
+            nodevals::Node_val => 1,
+            nodevals::Node_regex => 2,
+            nodevals::Node_dynregex => 3,
+            nodevals::Node_var => 4,
+            nodevals::Node_var_array => 5,
+            nodevals::Node_var_new => 6,
+            nodevals::Node_elem_new => 7,
+            nodevals::Node_param_list => 8,
+            nodevals::Node_func => 9,
+            nodevals::Node_ext_func => 10,
+            nodevals::Node_builtin_func => 11,
+            nodevals::Node_array_ref => 12,
+            nodevals::Node_array_tree => 13,
+            nodevals::Node_array_leaf => 14,
+            nodevals::Node_dump_array => 15,
+            nodevals::Node_arrayfor => 16,
+            nodevals::Node_frame => 17,
+            nodevals::Node_instruction => 18,
+            nodevals::Node_final => 19,
+        }
+    }
+}
 
 pub type NODETYPE = nodevals;
 #[derive(Copy, Clone)]
@@ -670,7 +741,32 @@ pub enum flagvals {
     STRCUR = 4,
     STRING = 2,
     MALLOC = 1,
-}  // end of enum
+impl flagvals {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            flagvals::REGEX => 524288,
+            flagvals::NUMCONSTSTR => 262144,
+            flagvals::XARRAY => 131072,
+            flagvals::HALFHAT => 65536,
+            flagvals::ARRAYMAXED => 32768,
+            flagvals::NULL_FIELD => 16384,
+            flagvals::NO_EXT_SET => 8192,
+            flagvals::MPZN => 4096,
+            flagvals::MPFN => 2048,
+            flagvals::WSTRCUR => 1024,
+            flagvals::INTIND => 512,
+            flagvals::NUMINT => 256,
+            flagvals::INTLSTR => 128,
+            flagvals::BOOLVAL => 64,
+            flagvals::USER_INPUT => 32,
+            flagvals::NUMBER => 16,
+            flagvals::NUMCUR => 8,
+            flagvals::STRCUR => 4,
+            flagvals::STRING => 2,
+            flagvals::MALLOC => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -696,7 +792,15 @@ pub enum commenttype {
     FOR_COMMENT = 3,
     BLOCK_COMMENT = 2,
     EOL_COMMENT = 1,
-}  // end of enum
+impl commenttype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            commenttype::FOR_COMMENT => 3,
+            commenttype::BLOCK_COMMENT => 2,
+            commenttype::EOL_COMMENT => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -715,7 +819,14 @@ pub struct C2RustUnnamed_4 {
 pub enum reflagvals {
     CONSTANT = 1,
     FS_DFLT = 2,
-}  // end of enum
+impl reflagvals {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            reflagvals::CONSTANT => 1,
+            reflagvals::FS_DFLT => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -873,7 +984,135 @@ pub enum opcodeval {
     Op_times_i = 2,
     Op_times = 1,
     Op_illegal = 0,
-}  // end of enum
+impl opcodeval {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            opcodeval::Op_final => 122,
+            opcodeval::Op_parens => 121,
+            opcodeval::Op_cond_exp => 120,
+            opcodeval::Op_K_function => 119,
+            opcodeval::Op_K_else => 118,
+            opcodeval::Op_K_if => 117,
+            opcodeval::Op_K_switch => 116,
+            opcodeval::Op_K_while => 115,
+            opcodeval::Op_K_arrayfor => 114,
+            opcodeval::Op_K_for => 113,
+            opcodeval::Op_K_do => 112,
+            opcodeval::Op_list => 111,
+            opcodeval::Op_symbol => 110,
+            opcodeval::Op_token => 109,
+            opcodeval::Op_stop => 108,
+            opcodeval::Op_atexit => 107,
+            opcodeval::Op_lint_plus => 106,
+            opcodeval::Op_lint => 105,
+            opcodeval::Op_breakpoint => 104,
+            opcodeval::Op_exec_count => 103,
+            opcodeval::Op_comment => 102,
+            opcodeval::Op_func => 101,
+            opcodeval::Op_after_endfile => 100,
+            opcodeval::Op_after_beginfile => 99,
+            opcodeval::Op_subscript_assign => 98,
+            opcodeval::Op_field_assign => 97,
+            opcodeval::Op_var_assign => 96,
+            opcodeval::Op_var_update => 95,
+            opcodeval::Op_arrayfor_final => 94,
+            opcodeval::Op_arrayfor_incr => 93,
+            opcodeval::Op_arrayfor_init => 92,
+            opcodeval::Op_newfile => 91,
+            opcodeval::Op_get_record => 90,
+            opcodeval::Op_jmp_false => 89,
+            opcodeval::Op_jmp_true => 88,
+            opcodeval::Op_jmp => 87,
+            opcodeval::Op_pop => 86,
+            opcodeval::Op_no_op => 85,
+            opcodeval::Op_field_spec_lhs => 84,
+            opcodeval::Op_subscript_lhs => 83,
+            opcodeval::Op_push_lhs => 82,
+            opcodeval::Op_push_param => 81,
+            opcodeval::Op_push_array => 80,
+            opcodeval::Op_push_re => 79,
+            opcodeval::Op_push_i => 78,
+            opcodeval::Op_push_arg_untyped => 77,
+            opcodeval::Op_push_arg => 76,
+            opcodeval::Op_push => 75,
+            opcodeval::Op_indirect_func_call => 74,
+            opcodeval::Op_func_call => 73,
+            opcodeval::Op_in_array => 72,
+            opcodeval::Op_ext_builtin => 71,
+            opcodeval::Op_sub_builtin => 70,
+            opcodeval::Op_builtin => 69,
+            opcodeval::Op_K_namespace => 68,
+            opcodeval::Op_K_nextfile => 67,
+            opcodeval::Op_K_getline => 66,
+            opcodeval::Op_K_getline_redir => 65,
+            opcodeval::Op_K_delete_loop => 64,
+            opcodeval::Op_K_delete => 63,
+            opcodeval::Op_K_return_from_eval => 62,
+            opcodeval::Op_K_return => 61,
+            opcodeval::Op_K_exit => 60,
+            opcodeval::Op_K_next => 59,
+            opcodeval::Op_K_printf => 58,
+            opcodeval::Op_K_print_rec => 57,
+            opcodeval::Op_K_print => 56,
+            opcodeval::Op_K_continue => 55,
+            opcodeval::Op_K_break => 54,
+            opcodeval::Op_K_default => 53,
+            opcodeval::Op_K_case => 52,
+            opcodeval::Op_rule => 51,
+            opcodeval::Op_nomatch => 50,
+            opcodeval::Op_match_rec => 49,
+            opcodeval::Op_match => 48,
+            opcodeval::Op_geq => 47,
+            opcodeval::Op_leq => 46,
+            opcodeval::Op_greater => 45,
+            opcodeval::Op_less => 44,
+            opcodeval::Op_notequal => 43,
+            opcodeval::Op_equal => 42,
+            opcodeval::Op_or_final => 41,
+            opcodeval::Op_or => 40,
+            opcodeval::Op_and_final => 39,
+            opcodeval::Op_and => 38,
+            opcodeval::Op_assign_concat => 37,
+            opcodeval::Op_assign_exp => 36,
+            opcodeval::Op_assign_minus => 35,
+            opcodeval::Op_assign_plus => 34,
+            opcodeval::Op_assign_mod => 33,
+            opcodeval::Op_assign_quotient => 32,
+            opcodeval::Op_assign_times => 31,
+            opcodeval::Op_store_field_exp => 30,
+            opcodeval::Op_store_field => 29,
+            opcodeval::Op_store_sub => 28,
+            opcodeval::Op_store_var => 27,
+            opcodeval::Op_assign => 26,
+            opcodeval::Op_not => 25,
+            opcodeval::Op_field_spec => 24,
+            opcodeval::Op_unary_plus => 23,
+            opcodeval::Op_unary_minus => 22,
+            opcodeval::Op_postdecrement => 21,
+            opcodeval::Op_postincrement => 20,
+            opcodeval::Op_predecrement => 19,
+            opcodeval::Op_preincrement => 18,
+            opcodeval::Op_sub_array => 17,
+            opcodeval::Op_subscript => 16,
+            opcodeval::Op_cond_pair => 15,
+            opcodeval::Op_line_range => 14,
+            opcodeval::Op_concat => 13,
+            opcodeval::Op_exp_i => 12,
+            opcodeval::Op_exp => 11,
+            opcodeval::Op_minus_i => 10,
+            opcodeval::Op_minus => 9,
+            opcodeval::Op_plus_i => 8,
+            opcodeval::Op_plus => 7,
+            opcodeval::Op_mod_i => 6,
+            opcodeval::Op_mod => 5,
+            opcodeval::Op_quotient_i => 4,
+            opcodeval::Op_quotient => 3,
+            opcodeval::Op_times_i => 2,
+            opcodeval::Op_times => 1,
+            opcodeval::Op_illegal => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -978,7 +1217,16 @@ pub enum iobuf_flags {
     IOP_AT_EOF = 2,
     IOP_CLOSED = 4,
     IOP_AT_START = 8,
-}  // end of enum
+impl iobuf_flags {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            iobuf_flags::IOP_IS_TTY => 1,
+            iobuf_flags::IOP_AT_EOF => 2,
+            iobuf_flags::IOP_CLOSED => 4,
+            iobuf_flags::IOP_AT_START => 8,
+        }
+    }
+}
 
 pub type IOBUF = iobuf;
 pub type Func_ptr = Option::<unsafe extern "C" fn() -> ()>;
@@ -1012,7 +1260,25 @@ pub enum redirect_flags {
     RED_PIPE = 2,
     RED_FILE = 1,
     RED_NONE = 0,
-}  // end of enum
+impl redirect_flags {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            redirect_flags::RED_TCP => 2048,
+            redirect_flags::RED_SOCKET => 1024,
+            redirect_flags::RED_PTY => 512,
+            redirect_flags::RED_TWOWAY => 256,
+            redirect_flags::RED_EOF => 128,
+            redirect_flags::RED_USED => 64,
+            redirect_flags::RED_FLUSH => 32,
+            redirect_flags::RED_APPEND => 16,
+            redirect_flags::RED_WRITE => 8,
+            redirect_flags::RED_READ => 4,
+            redirect_flags::RED_PIPE => 2,
+            redirect_flags::RED_FILE => 1,
+            redirect_flags::RED_NONE => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1021,7 +1287,16 @@ pub enum binmode_values {
     BINMODE_INPUT = 1,
     BINMODE_OUTPUT = 2,
     BINMODE_BOTH = 3,
-}  // end of enum
+impl binmode_values {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            binmode_values::TEXT_TRANSLATE => 0,
+            binmode_values::BINMODE_INPUT => 1,
+            binmode_values::BINMODE_OUTPUT => 2,
+            binmode_values::BINMODE_BOTH => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1042,7 +1317,15 @@ pub enum block_id {
     BLOCK_NODE = 0,
     BLOCK_BUCKET,
     BLOCK_MAX,
-}  // end of enum
+impl block_id {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            block_id::BLOCK_NODE => 0,
+            block_id::BLOCK_BUCKET => 1,
+            block_id::BLOCK_MAX => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1064,7 +1347,29 @@ pub enum do_flag_values {
     DO_LINT_EXTENSIONS = 2,
     DO_LINT_INVALID = 1,
     DO_FLAG_NONE = 0,
-}  // end of enum
+impl do_flag_values {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            do_flag_values::DO_MPFR => 32768,
+            do_flag_values::DO_DEBUG => 16384,
+            do_flag_values::DO_PROFILE => 8192,
+            do_flag_values::DO_SANDBOX => 4096,
+            do_flag_values::DO_TIDY_MEM => 2048,
+            do_flag_values::DO_DUMP_VARS => 1024,
+            do_flag_values::DO_PRETTY_PRINT => 512,
+            do_flag_values::DO_INTERVALS => 256,
+            do_flag_values::DO_NON_DEC_DATA => 128,
+            do_flag_values::DO_INTL => 64,
+            do_flag_values::DO_POSIX => 32,
+            do_flag_values::DO_TRADITIONAL => 16,
+            do_flag_values::DO_LINT_OLD => 8,
+            do_flag_values::DO_LINT_ALL => 4,
+            do_flag_values::DO_LINT_EXTENSIONS => 2,
+            do_flag_values::DO_LINT_INVALID => 1,
+            do_flag_values::DO_FLAG_NONE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1087,7 +1392,16 @@ pub enum C2RustUnnamed_13 {
     MP_INT_WITHOUT_PREC = 2,
     MP_INT_WITH_PREC = 1,
     MP_NONE = 0,
-}  // end of enum
+impl C2RustUnnamed_13 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_13::MP_FLOAT => 3,
+            C2RustUnnamed_13::MP_INT_WITHOUT_PREC => 2,
+            C2RustUnnamed_13::MP_INT_WITH_PREC => 1,
+            C2RustUnnamed_13::MP_NONE => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1095,7 +1409,15 @@ pub enum two_way_close_type {
     CLOSE_ALL,
     CLOSE_TO,
     CLOSE_FROM,
-}  // end of enum
+impl two_way_close_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            two_way_close_type::CLOSE_ALL => 0,
+            two_way_close_type::CLOSE_TO => 1,
+            two_way_close_type::CLOSE_FROM => 2,
+        }
+    }
+}
 
 pub type gawk_uint32_t = libc::c_uint;
 #[derive(Copy, Clone)]

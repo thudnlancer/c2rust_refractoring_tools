@@ -250,7 +250,15 @@ pub enum CHECK_CERT_MODES {
     CHECK_CERT_OFF,
     CHECK_CERT_ON,
     CHECK_CERT_QUIET,
-}  // end of enum
+impl CHECK_CERT_MODES {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            CHECK_CERT_MODES::CHECK_CERT_OFF => 0,
+            CHECK_CERT_MODES::CHECK_CERT_ON => 1,
+            CHECK_CERT_MODES::CHECK_CERT_QUIET => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -436,7 +444,15 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
-}  // end of enum
+impl compression_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            compression_options::compression_none => 2,
+            compression_options::compression_gzip => 1,
+            compression_options::compression_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -444,7 +460,15 @@ pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::prefer_none => 2,
+            C2RustUnnamed::prefer_ipv6 => 1,
+            C2RustUnnamed::prefer_ipv4 => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -452,7 +476,15 @@ pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::restrict_uppercase => 2,
+            C2RustUnnamed_0::restrict_lowercase => 1,
+            C2RustUnnamed_0::restrict_no_case_restriction => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -460,14 +492,29 @@ pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::restrict_windows => 2,
+            C2RustUnnamed_1::restrict_vms => 1,
+            C2RustUnnamed_1::restrict_unix => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
-}  // end of enum
+impl keyfile_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            keyfile_type::keyfile_asn1 => 1,
+            keyfile_type::keyfile_pem => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -480,14 +527,34 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::secure_protocol_pfs => 7,
+            C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
+            C2RustUnnamed_2::secure_protocol_tlsv1_2 => 5,
+            C2RustUnnamed_2::secure_protocol_tlsv1_1 => 4,
+            C2RustUnnamed_2::secure_protocol_tlsv1 => 3,
+            C2RustUnnamed_2::secure_protocol_sslv3 => 2,
+            C2RustUnnamed_2::secure_protocol_sslv2 => 1,
+            C2RustUnnamed_2::secure_protocol_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::regex_type_posix => 1,
+            C2RustUnnamed_3::regex_type_pcre => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -497,7 +564,17 @@ pub enum log_options {
     LOG_NONVERBOSE,
     LOG_ALWAYS,
     LOG_PROGRESS,
-}  // end of enum
+impl log_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_options::LOG_VERBOSE => 0,
+            log_options::LOG_NOTQUIET => 1,
+            log_options::LOG_NONVERBOSE => 2,
+            log_options::LOG_ALWAYS => 3,
+            log_options::LOG_PROGRESS => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -513,7 +590,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -533,7 +626,17 @@ pub enum gnutls_credentials_type_t {
     GNUTLS_CRD_SRP = 3,
     GNUTLS_CRD_ANON = 2,
     GNUTLS_CRD_CERTIFICATE = 1,
-}  // end of enum
+impl gnutls_credentials_type_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            gnutls_credentials_type_t::GNUTLS_CRD_IA => 5,
+            gnutls_credentials_type_t::GNUTLS_CRD_PSK => 4,
+            gnutls_credentials_type_t::GNUTLS_CRD_SRP => 3,
+            gnutls_credentials_type_t::GNUTLS_CRD_ANON => 2,
+            gnutls_credentials_type_t::GNUTLS_CRD_CERTIFICATE => 1,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -568,7 +671,42 @@ pub enum gnutls_alert_description_t {
     GNUTLS_A_BAD_RECORD_MAC = 20,
     GNUTLS_A_UNEXPECTED_MESSAGE = 10,
     GNUTLS_A_CLOSE_NOTIFY = 0,
-}  // end of enum
+impl gnutls_alert_description_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            gnutls_alert_description_t::GNUTLS_A_NO_APPLICATION_PROTOCOL => 120,
+            gnutls_alert_description_t::GNUTLS_A_UNKNOWN_PSK_IDENTITY => 115,
+            gnutls_alert_description_t::GNUTLS_A_UNRECOGNIZED_NAME => 112,
+            gnutls_alert_description_t::GNUTLS_A_CERTIFICATE_UNOBTAINABLE => 111,
+            gnutls_alert_description_t::GNUTLS_A_UNSUPPORTED_EXTENSION => 110,
+            gnutls_alert_description_t::GNUTLS_A_NO_RENEGOTIATION => 100,
+            gnutls_alert_description_t::GNUTLS_A_USER_CANCELED => 90,
+            gnutls_alert_description_t::GNUTLS_A_INAPPROPRIATE_FALLBACK => 86,
+            gnutls_alert_description_t::GNUTLS_A_INTERNAL_ERROR => 80,
+            gnutls_alert_description_t::GNUTLS_A_INSUFFICIENT_SECURITY => 71,
+            gnutls_alert_description_t::GNUTLS_A_PROTOCOL_VERSION => 70,
+            gnutls_alert_description_t::GNUTLS_A_EXPORT_RESTRICTION => 60,
+            gnutls_alert_description_t::GNUTLS_A_DECRYPT_ERROR => 51,
+            gnutls_alert_description_t::GNUTLS_A_DECODE_ERROR => 50,
+            gnutls_alert_description_t::GNUTLS_A_ACCESS_DENIED => 49,
+            gnutls_alert_description_t::GNUTLS_A_UNKNOWN_CA => 48,
+            gnutls_alert_description_t::GNUTLS_A_ILLEGAL_PARAMETER => 47,
+            gnutls_alert_description_t::GNUTLS_A_CERTIFICATE_UNKNOWN => 46,
+            gnutls_alert_description_t::GNUTLS_A_CERTIFICATE_EXPIRED => 45,
+            gnutls_alert_description_t::GNUTLS_A_CERTIFICATE_REVOKED => 44,
+            gnutls_alert_description_t::GNUTLS_A_UNSUPPORTED_CERTIFICATE => 43,
+            gnutls_alert_description_t::GNUTLS_A_BAD_CERTIFICATE => 42,
+            gnutls_alert_description_t::GNUTLS_A_SSL3_NO_CERTIFICATE => 41,
+            gnutls_alert_description_t::GNUTLS_A_HANDSHAKE_FAILURE => 40,
+            gnutls_alert_description_t::GNUTLS_A_DECOMPRESSION_FAILURE => 30,
+            gnutls_alert_description_t::GNUTLS_A_RECORD_OVERFLOW => 22,
+            gnutls_alert_description_t::GNUTLS_A_DECRYPTION_FAILED => 21,
+            gnutls_alert_description_t::GNUTLS_A_BAD_RECORD_MAC => 20,
+            gnutls_alert_description_t::GNUTLS_A_UNEXPECTED_MESSAGE => 10,
+            gnutls_alert_description_t::GNUTLS_A_CLOSE_NOTIFY => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -589,7 +727,28 @@ pub enum C2RustUnnamed_4 {
     GNUTLS_CERT_SIGNER_NOT_FOUND = 64,
     GNUTLS_CERT_REVOKED = 32,
     GNUTLS_CERT_INVALID = 2,
-}  // end of enum
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::GNUTLS_CERT_INVALID_OCSP_STATUS => 1048576,
+            C2RustUnnamed_4::GNUTLS_CERT_MISSING_OCSP_STATUS => 524288,
+            C2RustUnnamed_4::GNUTLS_CERT_PURPOSE_MISMATCH => 262144,
+            C2RustUnnamed_4::GNUTLS_CERT_MISMATCH => 131072,
+            C2RustUnnamed_4::GNUTLS_CERT_SIGNER_CONSTRAINTS_FAILURE => 65536,
+            C2RustUnnamed_4::GNUTLS_CERT_REVOCATION_DATA_ISSUED_IN_FUTURE => 32768,
+            C2RustUnnamed_4::GNUTLS_CERT_UNEXPECTED_OWNER => 16384,
+            C2RustUnnamed_4::GNUTLS_CERT_REVOCATION_DATA_SUPERSEDED => 4096,
+            C2RustUnnamed_4::GNUTLS_CERT_SIGNATURE_FAILURE => 2048,
+            C2RustUnnamed_4::GNUTLS_CERT_EXPIRED => 1024,
+            C2RustUnnamed_4::GNUTLS_CERT_NOT_ACTIVATED => 512,
+            C2RustUnnamed_4::GNUTLS_CERT_INSECURE_ALGORITHM => 256,
+            C2RustUnnamed_4::GNUTLS_CERT_SIGNER_NOT_CA => 128,
+            C2RustUnnamed_4::GNUTLS_CERT_SIGNER_NOT_FOUND => 64,
+            C2RustUnnamed_4::GNUTLS_CERT_REVOKED => 32,
+            C2RustUnnamed_4::GNUTLS_CERT_INVALID => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -598,14 +757,30 @@ pub enum gnutls_certificate_type_t {
     GNUTLS_CRT_OPENPGP = 2,
     GNUTLS_CRT_X509 = 1,
     GNUTLS_CRT_UNKNOWN = 0,
-}  // end of enum
+impl gnutls_certificate_type_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            gnutls_certificate_type_t::GNUTLS_CRT_RAW => 3,
+            gnutls_certificate_type_t::GNUTLS_CRT_OPENPGP => 2,
+            gnutls_certificate_type_t::GNUTLS_CRT_X509 => 1,
+            gnutls_certificate_type_t::GNUTLS_CRT_UNKNOWN => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum gnutls_x509_crt_fmt_t {
     GNUTLS_X509_FMT_PEM = 1,
     GNUTLS_X509_FMT_DER = 0,
-}  // end of enum
+impl gnutls_x509_crt_fmt_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            gnutls_x509_crt_fmt_t::GNUTLS_X509_FMT_PEM => 1,
+            gnutls_x509_crt_fmt_t::GNUTLS_X509_FMT_DER => 0,
+        }
+    }
+}
 
 pub type gnutls_transport_ptr_t = *mut libc::c_void;
 pub type gnutls_session_t = *mut gnutls_session_int;
@@ -619,7 +794,13 @@ pub struct gnutls_datum_t {
 #[repr(C)]
 pub enum gnutls_server_name_type_t {
     GNUTLS_NAME_DNS = 1,
-}  // end of enum
+impl gnutls_server_name_type_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            gnutls_server_name_type_t::GNUTLS_NAME_DNS => 1,
+        }
+    }
+}
 
 pub type gnutls_pubkey_t = *mut gnutls_pubkey_st;
 pub type gnutls_x509_crt_t = *mut gnutls_x509_crt_int;
@@ -630,7 +811,14 @@ pub type gnutls_free_function = Option::<unsafe extern "C" fn(*mut libc::c_void)
 pub enum C2RustUnnamed_5 {
     WAIT_FOR_READ = 1,
     WAIT_FOR_WRITE = 2,
-}  // end of enum
+impl C2RustUnnamed_5 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_5::WAIT_FOR_READ => 1,
+            C2RustUnnamed_5::WAIT_FOR_WRITE => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

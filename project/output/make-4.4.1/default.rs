@@ -92,7 +92,16 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
-}  // end of enum
+impl cmd_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cmd_state::cs_finished => 3,
+            cmd_state::cs_running => 2,
+            cmd_state::cs_deps_running => 1,
+            cmd_state::cs_not_started => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -101,7 +110,16 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
-}  // end of enum
+impl update_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            update_status::us_failed => 3,
+            update_status::us_question => 2,
+            update_status::us_none => 1,
+            update_status::us_success => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -213,7 +231,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -226,16 +253,21 @@ pub enum variable_origin {
     o_override,
     o_automatic,
     o_invalid,
-}  // end of enum
-ault: variable_origin = 0;
-#[derive(Copy, Clone, BitfieldStruct)]
-#[repr(C)]
-pub struct variable {
-    pub name: *mut libc::c_char,
-    pub value: *mut libc::c_char,
-    pub fileinfo: floc,
-    pub length: libc::c_uint,
-    #[bitfield(name = "recursive", ty = "libc::c_uint", bits = "0..=0")]
+impl variable_origin {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_origin::o_default => 0,
+            variable_origin::o_env => 1,
+            variable_origin::o_file => 2,
+            variable_origin::o_env_override => 3,
+            variable_origin::o_command => 4,
+            variable_origin::o_override => 5,
+            variable_origin::o_automatic => 6,
+            variable_origin::o_invalid => 7,
+        }
+    }
+}
+_uint", bits = "0..=0")]
     #[bitfield(name = "append", ty = "libc::c_uint", bits = "1..=1")]
     #[bitfield(name = "conditional", ty = "libc::c_uint", bits = "2..=2")]
     #[bitfield(name = "per_target", ty = "libc::c_uint", bits = "3..=3")]
@@ -256,7 +288,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -270,7 +311,20 @@ pub enum variable_flavor {
     f_conditional,
     f_shell,
     f_append_value,
-}  // end of enum
+impl variable_flavor {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_flavor::f_bogus => 0,
+            variable_flavor::f_simple => 1,
+            variable_flavor::f_recursive => 2,
+            variable_flavor::f_expand => 3,
+            variable_flavor::f_append => 4,
+            variable_flavor::f_conditional => 5,
+            variable_flavor::f_shell => 6,
+            variable_flavor::f_append_value => 7,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

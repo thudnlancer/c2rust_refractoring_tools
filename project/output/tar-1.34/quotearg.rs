@@ -52,7 +52,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -60,7 +76,15 @@ pub enum quoting_flags {
     QA_ELIDE_NULL_BYTES = 0x1,
     QA_ELIDE_OUTER_QUOTES = 0x2,
     QA_SPLIT_TRIGRAPHS = 0x4,
-}  // end of enum
+impl quoting_flags {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_flags::QA_ELIDE_NULL_BYTES => 0x1,
+            quoting_flags::QA_ELIDE_OUTER_QUOTES => 0x2,
+            quoting_flags::QA_SPLIT_TRIGRAPHS => 0x4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -107,7 +131,24 @@ pub enum C2RustUnnamed_0 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISalnum => 8,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISlower => 512,
+            C2RustUnnamed_0::_ISupper => 256,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn xcharalloc(mut n: size_t) -> *mut libc::c_char {

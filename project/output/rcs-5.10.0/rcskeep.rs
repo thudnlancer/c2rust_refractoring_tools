@@ -227,7 +227,15 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
-}  // end of enum
+impl readmethod {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            readmethod::RM_MMAP => 0,
+            readmethod::RM_MEM => 1,
+            readmethod::RM_STDIO => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -255,7 +263,23 @@ pub enum markers {
     Revision,
     Source,
     State,
-}  // end of enum
+impl markers {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            markers::Author => 0,
+            markers::Date => 1,
+            markers::Header => 2,
+            markers::Id => 3,
+            markers::Locker => 4,
+            markers::Log => 5,
+            markers::Name => 6,
+            markers::RCSfile => 7,
+            markers::Revision => 8,
+            markers::Source => 9,
+            markers::State => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -280,7 +304,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -410,7 +442,24 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::_ISdigit => 2048,
+            C2RustUnnamed_3::_ISalnum => 8,
+            C2RustUnnamed_3::_ISpunct => 4,
+            C2RustUnnamed_3::_IScntrl => 2,
+            C2RustUnnamed_3::_ISblank => 1,
+            C2RustUnnamed_3::_ISgraph => 32768,
+            C2RustUnnamed_3::_ISprint => 16384,
+            C2RustUnnamed_3::_ISspace => 8192,
+            C2RustUnnamed_3::_ISxdigit => 4096,
+            C2RustUnnamed_3::_ISalpha => 1024,
+            C2RustUnnamed_3::_ISlower => 512,
+            C2RustUnnamed_3::_ISupper => 256,
+        }
+    }
+}
 
 unsafe extern "C" fn sorry(
     mut save: bool,

@@ -219,7 +219,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type error_t = libc::c_int;
 #[derive(Copy, Clone)]
@@ -549,7 +566,22 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
-}  // end of enum
+impl subcommand {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            subcommand::UNKNOWN_SUBCOMMAND => 0,
+            subcommand::APPEND_SUBCOMMAND => 1,
+            subcommand::CAT_SUBCOMMAND => 2,
+            subcommand::CREATE_SUBCOMMAND => 3,
+            subcommand::DELETE_SUBCOMMAND => 4,
+            subcommand::DIFF_SUBCOMMAND => 5,
+            subcommand::EXTRACT_SUBCOMMAND => 6,
+            subcommand::LIST_SUBCOMMAND => 7,
+            subcommand::UPDATE_SUBCOMMAND => 8,
+            subcommand::TEST_LABEL_SUBCOMMAND => 9,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -558,7 +590,16 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
-}  // end of enum
+impl exclusion_tag_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            exclusion_tag_type::exclusion_tag_none => 0,
+            exclusion_tag_type::exclusion_tag_contents => 1,
+            exclusion_tag_type::exclusion_tag_under => 2,
+            exclusion_tag_type::exclusion_tag_all => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -583,7 +624,15 @@ pub enum files_count {
     FILES_NONE,
     FILES_ONE,
     FILES_MANY,
-}  // end of enum
+impl files_count {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            files_count::FILES_NONE => 0,
+            files_count::FILES_ONE => 1,
+            files_count::FILES_MANY => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -623,7 +672,17 @@ pub enum nelt_type {
     NELT_FILE,
     NELT_NOOP,
     NELT_OPTION,
-}  // end of enum
+impl nelt_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            nelt_type::NELT_NAME => 0,
+            nelt_type::NELT_CHDIR => 1,
+            nelt_type::NELT_FILE => 2,
+            nelt_type::NELT_NOOP => 3,
+            nelt_type::NELT_OPTION => 4,
+        }
+    }
+}
 
 pub const GRID_MATCH: C2RustUnnamed_7 = 3;
 pub const NO_WILDCARDS_MATCH_SLASH_OPTION: C2RustUnnamed_6 = 278;
@@ -664,7 +723,15 @@ pub enum wildcards {
     default_wildcards,
     disable_wildcards,
     enable_wildcards,
-}  // end of enum
+impl wildcards {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wildcards::default_wildcards => 0,
+            wildcards::disable_wildcards => 1,
+            wildcards::enable_wildcards => 2,
+        }
+    }
+}
 
 pub const file_list_end: read_file_list_state = 1;
 #[derive(Copy, Clone)]
@@ -681,7 +748,15 @@ pub enum option_source {
     OPTS_ENVIRON,
     OPTS_COMMAND_LINE,
     OPTS_FILE,
-}  // end of enum
+impl option_source {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            option_source::OPTS_ENVIRON => 0,
+            option_source::OPTS_COMMAND_LINE => 1,
+            option_source::OPTS_FILE => 2,
+        }
+    }
+}
 
 pub const file_list_success: read_file_list_state = 0;
 pub const file_list_zero: read_file_list_state = 2;
@@ -693,7 +768,16 @@ pub enum read_file_list_state {
     file_list_end,
     file_list_zero,
     file_list_skip,
-}  // end of enum
+impl read_file_list_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_file_list_state::file_list_success => 0,
+            read_file_list_state::file_list_end => 1,
+            read_file_list_state::file_list_zero => 2,
+            read_file_list_state::file_list_skip => 3,
+        }
+    }
+}
 
 pub type read_file_list_state = libc::c_uint;
 #[derive(Copy, Clone)]
@@ -747,23 +831,46 @@ pub enum C2RustUnnamed_6 {
     NO_NULL_OPTION = 281,
     NULL_OPTION = 280,
     ADD_FILE_OPTION = 256,
-}  // end of enum
-pub const file_list_end: read_file_list_state = 1;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct option_locus {
-    pub source: option_source,
-    pub name: *const libc::c_char,
-    pub line: size_t,
-    pub prev: *mut option_locus,
+impl C2RustUnnamed_6 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_6::NO_WILDCARDS_MATCH_SLASH_OPTION => 278,
+            C2RustUnnamed_6::WILDCARDS_MATCH_SLASH_OPTION => 283,
+            C2RustUnnamed_6::NO_WILDCARDS_OPTION => 279,
+            C2RustUnnamed_6::WILDCARDS_OPTION => 284,
+            C2RustUnnamed_6::NO_IGNORE_CASE_OPTION => 270,
+            C2RustUnnamed_6::IGNORE_CASE_OPTION => 269,
+            C2RustUnnamed_6::NO_ANCHORED_OPTION => 272,
+            C2RustUnnamed_6::ANCHORED_OPTION => 271,
+            C2RustUnnamed_6::NO_RECURSION_OPTION => 274,
+            C2RustUnnamed_6::RECURSION_OPTION => 273,
+            C2RustUnnamed_6::EXCLUDE_BACKUPS_OPTION => 257,
+            C2RustUnnamed_6::EXCLUDE_VCS_IGNORES_OPTION => 268,
+            C2RustUnnamed_6::EXCLUDE_VCS_OPTION => 267,
+            C2RustUnnamed_6::EXCLUDE_TAG_ALL_OPTION => 266,
+            C2RustUnnamed_6::EXCLUDE_TAG_UNDER_OPTION => 265,
+            C2RustUnnamed_6::EXCLUDE_IGNORE_RECURSIVE_OPTION => 263,
+            C2RustUnnamed_6::EXCLUDE_IGNORE_OPTION => 262,
+            C2RustUnnamed_6::EXCLUDE_TAG_OPTION => 264,
+            C2RustUnnamed_6::EXCLUDE_CACHES_ALL_OPTION => 260,
+            C2RustUnnamed_6::EXCLUDE_CACHES_UNDER_OPTION => 259,
+            C2RustUnnamed_6::EXCLUDE_CACHES_OPTION => 258,
+            C2RustUnnamed_6::EXCLUDE_OPTION => 261,
+            C2RustUnnamed_6::NO_VERBATIM_FILES_FROM_OPTION => 277,
+            C2RustUnnamed_6::VERBATIM_FILES_FROM_OPTION => 282,
+            C2RustUnnamed_6::NO_UNQUOTE_OPTION => 276,
+            C2RustUnnamed_6::UNQUOTE_OPTION => 275,
+            C2RustUnnamed_6::NO_NULL_OPTION => 281,
+            C2RustUnnamed_6::NULL_OPTION => 280,
+            C2RustUnnamed_6::ADD_FILE_OPTION => 256,
+        }
+    }
 }
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum option_source {
-    OPTS_ENVIRON,
-    OPTS_COMMAND_LINE,
-    OPTS_FILE,
-}  // end of enum
+ce::OPTS_COMMAND_LINE => 1,
+            option_source::OPTS_FILE => 2,
+        }
+    }
+}
 
 pub const file_list_success: read_file_list_state = 0;
 pub const file_list_zero: read_file_list_state = 2;
@@ -775,7 +882,16 @@ pub enum read_file_list_state {
     file_list_end,
     file_list_zero,
     file_list_skip,
-}  // end of enum
+impl read_file_list_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_file_list_state::file_list_success => 0,
+            read_file_list_state::file_list_end => 1,
+            read_file_list_state::file_list_zero => 2,
+            read_file_list_state::file_list_skip => 3,
+        }
+    }
+}
 
 pub type read_file_list_state = libc::c_uint;
 #[derive(Copy, Clone)]
@@ -805,23 +921,20 @@ pub enum C2RustUnnamed_7 {
     GRH_MATCH = 2,
     GRID_LOCAL = 1,
     GRH_LOCAL = 0,
-}  // end of enum
-ate = 1;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct option_locus {
-    pub source: option_source,
-    pub name: *const libc::c_char,
-    pub line: size_t,
-    pub prev: *mut option_locus,
+impl C2RustUnnamed_7 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_7::GRID_MATCH => 3,
+            C2RustUnnamed_7::GRH_MATCH => 2,
+            C2RustUnnamed_7::GRID_LOCAL => 1,
+            C2RustUnnamed_7::GRH_LOCAL => 0,
+        }
+    }
 }
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum option_source {
-    OPTS_ENVIRON,
-    OPTS_COMMAND_LINE,
-    OPTS_FILE,
-}  // end of enum
+tion_source::OPTS_FILE => 2,
+        }
+    }
+}
 
 pub const file_list_success: read_file_list_state = 0;
 pub const file_list_zero: read_file_list_state = 2;
@@ -833,7 +946,16 @@ pub enum read_file_list_state {
     file_list_end,
     file_list_zero,
     file_list_skip,
-}  // end of enum
+impl read_file_list_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_file_list_state::file_list_success => 0,
+            read_file_list_state::file_list_end => 1,
+            read_file_list_state::file_list_zero => 2,
+            read_file_list_state::file_list_skip => 3,
+        }
+    }
+}
 
 pub type read_file_list_state = libc::c_uint;
 #[derive(Copy, Clone)]

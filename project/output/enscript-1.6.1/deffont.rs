@@ -39,7 +39,14 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
-}  // end of enum
+impl AFMBoolean {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMBoolean::AFMFalse => 0,
+            AFMBoolean::AFMTrue => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -181,7 +181,18 @@ pub enum kwsub {
     kwsub_k = 2,
     kwsub_kvl = 1,
     kwsub_kv = 0,
-}  // end of enum
+impl kwsub {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            kwsub::kwsub_b => 5,
+            kwsub::kwsub_o => 4,
+            kwsub::kwsub_v => 3,
+            kwsub::kwsub_k => 2,
+            kwsub::kwsub_kvl => 1,
+            kwsub::kwsub_kv => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -201,7 +212,27 @@ pub enum tokens {
     IDCHAR = 2,
     DIGIT = 1,
     DELIM = 0,
-}  // end of enum
+impl tokens {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            tokens::STRING => 14,
+            tokens::SEMI => 13,
+            tokens::NUM => 12,
+            tokens::ID => 11,
+            tokens::COLON => 10,
+            tokens::UNKN => 9,
+            tokens::SPACE => 8,
+            tokens::SBEGIN => 7,
+            tokens::PERIOD => 6,
+            tokens::Letter => 5,
+            tokens::LETTER => 4,
+            tokens::NEWLN => 3,
+            tokens::IDCHAR => 2,
+            tokens::DIGIT => 1,
+            tokens::DELIM => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -256,7 +287,15 @@ pub enum readmethod {
     RM_STDIO = 2,
     RM_MEM = 1,
     RM_MMAP = 0,
-}  // end of enum
+impl readmethod {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            readmethod::RM_STDIO => 2,
+            readmethod::RM_MEM => 1,
+            readmethod::RM_MMAP => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -284,7 +323,23 @@ pub enum markers {
     Header = 2,
     Date = 1,
     Author = 0,
-}  // end of enum
+impl markers {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            markers::State => 10,
+            markers::Source => 9,
+            markers::Revision => 8,
+            markers::RCSfile => 7,
+            markers::Name => 6,
+            markers::Log => 5,
+            markers::Locker => 4,
+            markers::Id => 3,
+            markers::Header => 2,
+            markers::Date => 1,
+            markers::Author => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -309,7 +364,15 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::effective => 2,
+            maker::real => 1,
+            maker::notmade => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

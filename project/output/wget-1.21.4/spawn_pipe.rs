@@ -132,7 +132,16 @@ pub enum canonicalize_mode_t {
     CAN_MISSING = 2,
     CAN_ALL_BUT_LAST = 1,
     CAN_EXISTING = 0,
-}  // end of enum
+impl canonicalize_mode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            canonicalize_mode_t::CAN_NOLINKS => 4,
+            canonicalize_mode_t::CAN_MISSING => 2,
+            canonicalize_mode_t::CAN_ALL_BUT_LAST => 1,
+            canonicalize_mode_t::CAN_EXISTING => 0,
+        }
+    }
+}
 
 unsafe extern "C" fn nonintr_close(mut fd: libc::c_int) -> libc::c_int {
     let mut retval: libc::c_int = 0;

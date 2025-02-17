@@ -348,7 +348,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type XID = libc::c_ulong;
 pub type Atom = libc::c_ulong;
@@ -553,7 +570,28 @@ pub enum wintype_t {
     WINTYPE_COMBO,
     WINTYPE_DND,
     NUM_WINTYPES,
-}  // end of enum
+impl wintype_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wintype_t::WINTYPE_UNKNOWN => 0,
+            wintype_t::WINTYPE_DESKTOP => 1,
+            wintype_t::WINTYPE_DOCK => 2,
+            wintype_t::WINTYPE_TOOLBAR => 3,
+            wintype_t::WINTYPE_MENU => 4,
+            wintype_t::WINTYPE_UTILITY => 5,
+            wintype_t::WINTYPE_SPLASH => 6,
+            wintype_t::WINTYPE_DIALOG => 7,
+            wintype_t::WINTYPE_NORMAL => 8,
+            wintype_t::WINTYPE_DROPDOWN_MENU => 9,
+            wintype_t::WINTYPE_POPUP_MENU => 10,
+            wintype_t::WINTYPE_TOOLTIP => 11,
+            wintype_t::WINTYPE_NOTIFY => 12,
+            wintype_t::WINTYPE_COMBO => 13,
+            wintype_t::WINTYPE_DND => 14,
+            wintype_t::NUM_WINTYPES => 15,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -561,7 +599,15 @@ pub enum switch_t {
     OFF,
     ON,
     UNSET,
-}  // end of enum
+impl switch_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            switch_t::OFF => 0,
+            switch_t::ON => 1,
+            switch_t::UNSET => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -585,7 +631,15 @@ pub enum winmode_t {
     WMODE_TRANS,
     WMODE_SOLID,
     WMODE_ARGB,
-}  // end of enum
+impl winmode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            winmode_t::WMODE_TRANS => 0,
+            winmode_t::WMODE_SOLID => 1,
+            winmode_t::WMODE_ARGB => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -604,7 +658,19 @@ pub enum vsync_t {
     VSYNC_OPENGL_SWC,
     VSYNC_OPENGL_MSWC,
     NUM_VSYNC,
-}  // end of enum
+impl vsync_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            vsync_t::VSYNC_NONE => 0,
+            vsync_t::VSYNC_DRM => 1,
+            vsync_t::VSYNC_OPENGL => 2,
+            vsync_t::VSYNC_OPENGL_OML => 3,
+            vsync_t::VSYNC_OPENGL_SWC => 4,
+            vsync_t::VSYNC_OPENGL_MSWC => 5,
+            vsync_t::NUM_VSYNC => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -613,7 +679,16 @@ pub enum backend {
     BKEND_GLX,
     BKEND_XR_GLX_HYBRID,
     NUM_BKEND,
-}  // end of enum
+impl backend {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backend::BKEND_XRENDER => 0,
+            backend::BKEND_GLX => 1,
+            backend::BKEND_XR_GLX_HYBRID => 2,
+            backend::NUM_BKEND => 3,
+        }
+    }
+}
 
 pub type C2RustUnnamed_0 = libc::c_int;
 pub const SWAPM_EXCHANGE: C2RustUnnamed_0 = 2;

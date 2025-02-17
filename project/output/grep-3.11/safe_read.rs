@@ -11,7 +11,13 @@ pub const SYS_BUFSIZE_MAX: C2RustUnnamed = 2146435072;
 #[repr(C)]
 pub enum C2RustUnnamed {
     SYS_BUFSIZE_MAX = 2146435072,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::SYS_BUFSIZE_MAX => 2146435072,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]

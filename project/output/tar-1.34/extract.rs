@@ -500,7 +500,19 @@ pub enum old_files {
     KEEP_OLD_FILES,
     SKIP_OLD_FILES,
     KEEP_NEWER_FILES,
-}  // end of enum
+impl old_files {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            old_files::DEFAULT_OLD_FILES => 0,
+            old_files::NO_OVERWRITE_DIR_OLD_FILES => 1,
+            old_files::OVERWRITE_OLD_FILES => 2,
+            old_files::UNLINK_FIRST_OLD_FILES => 3,
+            old_files::KEEP_OLD_FILES => 4,
+            old_files::SKIP_OLD_FILES => 5,
+            old_files::KEEP_NEWER_FILES => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -509,7 +521,16 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
-}  // end of enum
+impl dump_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            dump_status::dump_status_ok => 0,
+            dump_status::dump_status_short => 1,
+            dump_status::dump_status_fail => 2,
+            dump_status::dump_status_not_implemented => 3,
+        }
+    }
+}
 
 pub type tar_extractor_t = Option::<
     unsafe extern "C" fn(*mut libc::c_char, libc::c_int) -> libc::c_int,
@@ -520,7 +541,15 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
-}  // end of enum
+impl remove_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            remove_option::ORDINARY_REMOVE_OPTION => 0,
+            remove_option::RECURSIVE_REMOVE_OPTION => 1,
+            remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
+        }
+    }
+}
 
 pub const BILLION: C2RustUnnamed_2 = 1000000000;
 #[derive(Copy, Clone)]
@@ -585,7 +614,14 @@ pub struct delayed_link {
 pub enum C2RustUnnamed_2 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::BILLION => 1000000000,
+            C2RustUnnamed_2::LOG10_BILLION => 9,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

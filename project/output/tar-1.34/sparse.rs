@@ -204,7 +204,13 @@ pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(Copy, Clone)]
@@ -306,7 +312,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -385,7 +403,15 @@ pub enum hole_detection_method {
     HOLE_DETECTION_DEFAULT,
     HOLE_DETECTION_RAW,
     HOLE_DETECTION_SEEK,
-}  // end of enum
+impl hole_detection_method {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            hole_detection_method::HOLE_DETECTION_DEFAULT => 0,
+            hole_detection_method::HOLE_DETECTION_RAW => 1,
+            hole_detection_method::HOLE_DETECTION_SEEK => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -394,7 +420,16 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
-}  // end of enum
+impl dump_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            dump_status::dump_status_ok => 0,
+            dump_status::dump_status_short => 1,
+            dump_status::dump_status_fail => 2,
+            dump_status::dump_status_not_implemented => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -436,7 +471,15 @@ pub enum sparse_scan_state {
     scan_end = 2,
     scan_block = 1,
     scan_begin = 0,
-}  // end of enum
+impl sparse_scan_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            sparse_scan_state::scan_end => 2,
+            sparse_scan_state::scan_block => 1,
+            sparse_scan_state::scan_begin => 0,
+        }
+    }
+}
 
 pub const add_fail: oldgnu_add_status = 2;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -445,7 +488,15 @@ pub enum oldgnu_add_status {
     add_ok,
     add_finish,
     add_fail,
-}  // end of enum
+impl oldgnu_add_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            oldgnu_add_status::add_ok => 0,
+            oldgnu_add_status::add_finish => 1,
+            oldgnu_add_status::add_fail => 2,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

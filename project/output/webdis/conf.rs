@@ -145,7 +145,20 @@ pub enum json_type {
     JSON_TRUE,
     JSON_FALSE,
     JSON_NULL,
-}  // end of enum
+impl json_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            json_type::JSON_OBJECT => 0,
+            json_type::JSON_ARRAY => 1,
+            json_type::JSON_STRING => 2,
+            json_type::JSON_INTEGER => 3,
+            json_type::JSON_REAL => 4,
+            json_type::JSON_TRUE => 5,
+            json_type::JSON_FALSE => 6,
+            json_type::JSON_NULL => 7,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -169,7 +182,15 @@ pub enum base64_encodestep {
     step_A,
     step_B,
     step_C,
-}  // end of enum
+impl base64_encodestep {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            base64_encodestep::step_A => 0,
+            base64_encodestep::step_B => 1,
+            base64_encodestep::step_C => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -187,7 +208,18 @@ pub enum log_level {
     WEBDIS_INFO,
     WEBDIS_DEBUG,
     WEBDIS_TRACE = 8,
-}  // end of enum
+impl log_level {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_level::WEBDIS_ERROR => 0,
+            log_level::WEBDIS_WARNING => 1,
+            log_level::WEBDIS_NOTICE => 2,
+            log_level::WEBDIS_INFO => 3,
+            log_level::WEBDIS_DEBUG => 4,
+            log_level::WEBDIS_TRACE => 8,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -195,7 +227,15 @@ pub enum log_fsync_mode {
     LOG_FSYNC_AUTO = 0,
     LOG_FSYNC_MILLIS,
     LOG_FSYNC_ALL,
-}  // end of enum
+impl log_fsync_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_fsync_mode::LOG_FSYNC_AUTO => 0,
+            log_fsync_mode::LOG_FSYNC_MILLIS => 1,
+            log_fsync_mode::LOG_FSYNC_ALL => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

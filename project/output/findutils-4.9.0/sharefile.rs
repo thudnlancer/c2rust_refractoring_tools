@@ -163,7 +163,13 @@ pub const DefaultHashTableSize: C2RustUnnamed = 11;
 #[repr(C)]
 pub enum C2RustUnnamed {
     DefaultHashTableSize = 11,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::DefaultHashTableSize => 11,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[inline]

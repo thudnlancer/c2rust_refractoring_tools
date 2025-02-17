@@ -289,7 +289,18 @@ pub enum yaml_scalar_style_e {
     YAML_SINGLE_QUOTED_SCALAR_STYLE = 2,
     YAML_PLAIN_SCALAR_STYLE = 1,
     YAML_ANY_SCALAR_STYLE = 0,
-}  // end of enum
+impl yaml_scalar_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_scalar_style_e::YAML_FOLDED_SCALAR_STYLE => 5,
+            yaml_scalar_style_e::YAML_LITERAL_SCALAR_STYLE => 4,
+            yaml_scalar_style_e::YAML_DOUBLE_QUOTED_SCALAR_STYLE => 3,
+            yaml_scalar_style_e::YAML_SINGLE_QUOTED_SCALAR_STYLE => 2,
+            yaml_scalar_style_e::YAML_PLAIN_SCALAR_STYLE => 1,
+            yaml_scalar_style_e::YAML_ANY_SCALAR_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -320,7 +331,16 @@ pub enum yaml_encoding_e {
     YAML_UTF8_ENCODING,
     YAML_UTF16LE_ENCODING,
     YAML_UTF16BE_ENCODING,
-}  // end of enum
+impl yaml_encoding_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_encoding_e::YAML_ANY_ENCODING => 0,
+            yaml_encoding_e::YAML_UTF8_ENCODING => 1,
+            yaml_encoding_e::YAML_UTF16LE_ENCODING => 2,
+            yaml_encoding_e::YAML_UTF16BE_ENCODING => 3,
+        }
+    }
+}
 
 pub type yaml_token_type_t = yaml_token_type_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -348,7 +368,34 @@ pub enum yaml_token_type_e {
     YAML_STREAM_END_TOKEN = 2,
     YAML_STREAM_START_TOKEN = 1,
     YAML_NO_TOKEN = 0,
-}  // end of enum
+impl yaml_token_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_token_type_e::YAML_SCALAR_TOKEN => 21,
+            yaml_token_type_e::YAML_TAG_TOKEN => 20,
+            yaml_token_type_e::YAML_ANCHOR_TOKEN => 19,
+            yaml_token_type_e::YAML_ALIAS_TOKEN => 18,
+            yaml_token_type_e::YAML_VALUE_TOKEN => 17,
+            yaml_token_type_e::YAML_KEY_TOKEN => 16,
+            yaml_token_type_e::YAML_FLOW_ENTRY_TOKEN => 15,
+            yaml_token_type_e::YAML_BLOCK_ENTRY_TOKEN => 14,
+            yaml_token_type_e::YAML_FLOW_MAPPING_END_TOKEN => 13,
+            yaml_token_type_e::YAML_FLOW_MAPPING_START_TOKEN => 12,
+            yaml_token_type_e::YAML_FLOW_SEQUENCE_END_TOKEN => 11,
+            yaml_token_type_e::YAML_FLOW_SEQUENCE_START_TOKEN => 10,
+            yaml_token_type_e::YAML_BLOCK_END_TOKEN => 9,
+            yaml_token_type_e::YAML_BLOCK_MAPPING_START_TOKEN => 8,
+            yaml_token_type_e::YAML_BLOCK_SEQUENCE_START_TOKEN => 7,
+            yaml_token_type_e::YAML_DOCUMENT_END_TOKEN => 6,
+            yaml_token_type_e::YAML_DOCUMENT_START_TOKEN => 5,
+            yaml_token_type_e::YAML_TAG_DIRECTIVE_TOKEN => 4,
+            yaml_token_type_e::YAML_VERSION_DIRECTIVE_TOKEN => 3,
+            yaml_token_type_e::YAML_STREAM_END_TOKEN => 2,
+            yaml_token_type_e::YAML_STREAM_START_TOKEN => 1,
+            yaml_token_type_e::YAML_NO_TOKEN => 0,
+        }
+    }
+}
 
 pub type yaml_event_t = yaml_event_s;
 #[derive(Copy, Clone)]
@@ -385,7 +432,15 @@ pub enum yaml_mapping_style_e {
     YAML_FLOW_MAPPING_STYLE = 2,
     YAML_BLOCK_MAPPING_STYLE = 1,
     YAML_ANY_MAPPING_STYLE = 0,
-}  // end of enum
+impl yaml_mapping_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_mapping_style_e::YAML_FLOW_MAPPING_STYLE => 2,
+            yaml_mapping_style_e::YAML_BLOCK_MAPPING_STYLE => 1,
+            yaml_mapping_style_e::YAML_ANY_MAPPING_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -402,7 +457,15 @@ pub enum yaml_sequence_style_e {
     YAML_FLOW_SEQUENCE_STYLE = 2,
     YAML_BLOCK_SEQUENCE_STYLE = 1,
     YAML_ANY_SEQUENCE_STYLE = 0,
-}  // end of enum
+impl yaml_sequence_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_sequence_style_e::YAML_FLOW_SEQUENCE_STYLE => 2,
+            yaml_sequence_style_e::YAML_BLOCK_SEQUENCE_STYLE => 1,
+            yaml_sequence_style_e::YAML_ANY_SEQUENCE_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -472,7 +535,23 @@ pub enum yaml_event_type_e {
     YAML_STREAM_END_EVENT = 2,
     YAML_STREAM_START_EVENT = 1,
     YAML_NO_EVENT = 0,
-}  // end of enum
+impl yaml_event_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_event_type_e::YAML_MAPPING_END_EVENT => 10,
+            yaml_event_type_e::YAML_MAPPING_START_EVENT => 9,
+            yaml_event_type_e::YAML_SEQUENCE_END_EVENT => 8,
+            yaml_event_type_e::YAML_SEQUENCE_START_EVENT => 7,
+            yaml_event_type_e::YAML_SCALAR_EVENT => 6,
+            yaml_event_type_e::YAML_ALIAS_EVENT => 5,
+            yaml_event_type_e::YAML_DOCUMENT_END_EVENT => 4,
+            yaml_event_type_e::YAML_DOCUMENT_START_EVENT => 3,
+            yaml_event_type_e::YAML_STREAM_END_EVENT => 2,
+            yaml_event_type_e::YAML_STREAM_START_EVENT => 1,
+            yaml_event_type_e::YAML_NO_EVENT => 0,
+        }
+    }
+}
 
 pub type yaml_parser_t = yaml_parser_s;
 #[derive(Copy, Clone)]
@@ -603,7 +682,16 @@ pub enum yaml_node_type_e {
     YAML_SEQUENCE_NODE = 2,
     YAML_SCALAR_NODE = 1,
     YAML_NO_NODE = 0,
-}  // end of enum
+impl yaml_node_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_node_type_e::YAML_MAPPING_NODE => 3,
+            yaml_node_type_e::YAML_SEQUENCE_NODE => 2,
+            yaml_node_type_e::YAML_SCALAR_NODE => 1,
+            yaml_node_type_e::YAML_NO_NODE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -662,7 +750,36 @@ pub enum yaml_parser_state_e {
     YAML_PARSE_DOCUMENT_START_STATE = 2,
     YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE = 1,
     YAML_PARSE_STREAM_START_STATE = 0,
-}  // end of enum
+impl yaml_parser_state_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_parser_state_e::YAML_PARSE_END_STATE => 23,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_EMPTY_VALUE_STATE => 22,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_VALUE_STATE => 21,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_KEY_STATE => 20,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_FIRST_KEY_STATE => 19,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_END_STATE => 18,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_VALUE_STATE => 17,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_KEY_STATE => 16,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_STATE => 15,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_FIRST_ENTRY_STATE => 14,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_VALUE_STATE => 13,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_KEY_STATE => 12,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_FIRST_KEY_STATE => 11,
+            yaml_parser_state_e::YAML_PARSE_INDENTLESS_SEQUENCE_ENTRY_STATE => 10,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_ENTRY_STATE => 9,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_FIRST_ENTRY_STATE => 8,
+            yaml_parser_state_e::YAML_PARSE_FLOW_NODE_STATE => 7,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_OR_INDENTLESS_SEQUENCE_STATE => 6,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_STATE => 5,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_END_STATE => 4,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_CONTENT_STATE => 3,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_START_STATE => 2,
+            yaml_parser_state_e::YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE => 1,
+            yaml_parser_state_e::YAML_PARSE_STREAM_START_STATE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -749,7 +866,20 @@ pub enum yaml_error_type_e {
     YAML_READER_ERROR = 2,
     YAML_MEMORY_ERROR = 1,
     YAML_NO_ERROR = 0,
-}  // end of enum
+impl yaml_error_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_error_type_e::YAML_EMITTER_ERROR => 7,
+            yaml_error_type_e::YAML_WRITER_ERROR => 6,
+            yaml_error_type_e::YAML_COMPOSER_ERROR => 5,
+            yaml_error_type_e::YAML_PARSER_ERROR => 4,
+            yaml_error_type_e::YAML_SCANNER_ERROR => 3,
+            yaml_error_type_e::YAML_READER_ERROR => 2,
+            yaml_error_type_e::YAML_MEMORY_ERROR => 1,
+            yaml_error_type_e::YAML_NO_ERROR => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]

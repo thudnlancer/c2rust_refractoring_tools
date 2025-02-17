@@ -12,7 +12,13 @@ pub struct timespec {
 #[repr(C)]
 pub enum C2RustUnnamed {
     TIMESPEC_HZ = 1000000000,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TIMESPEC_HZ => 1000000000,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn make_timespec(mut s: time_t, mut ns: libc::c_long) -> timespec {

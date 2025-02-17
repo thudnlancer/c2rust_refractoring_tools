@@ -57,7 +57,16 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
-}  // end of enum
+impl savedir_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            savedir_option::SAVEDIR_SORT_NONE => 0,
+            savedir_option::SAVEDIR_SORT_NAME => 1,
+            savedir_option::SAVEDIR_SORT_INODE => 2,
+            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
+        }
+    }
+}
 
 pub type idx_t = ptrdiff_t;
 #[derive(Copy, Clone)]

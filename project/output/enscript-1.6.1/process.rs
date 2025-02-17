@@ -165,7 +165,19 @@ pub enum NodeType {
     nREAL,
     nSYMBOL,
     nARRAY,
-}  // end of enum
+impl NodeType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            NodeType::nVOID => 0,
+            NodeType::nSTRING => 1,
+            NodeType::nREGEXP => 2,
+            NodeType::nINTEGER => 3,
+            NodeType::nREAL => 4,
+            NodeType::nSYMBOL => 5,
+            NodeType::nARRAY => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

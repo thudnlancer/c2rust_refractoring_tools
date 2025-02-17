@@ -136,7 +136,15 @@ pub enum C2RustUnnamed {
     OPT_LIST = 770,
     OPT_RAW = 769,
     OPT_HELP = 768,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::OPT_LIST => 770,
+            C2RustUnnamed::OPT_RAW => 769,
+            C2RustUnnamed::OPT_HELP => 768,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[inline]

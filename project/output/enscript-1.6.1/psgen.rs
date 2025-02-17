@@ -295,7 +295,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -328,14 +345,29 @@ pub enum HeaderType {
     HDR_NONE,
     HDR_SIMPLE,
     HDR_FANCY,
-}  // end of enum
+impl HeaderType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            HeaderType::HDR_NONE => 0,
+            HeaderType::HDR_SIMPLE => 1,
+            HeaderType::HDR_FANCY => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum PageLabelFormat {
     LABEL_SHORT,
     LABEL_LONG,
-}  // end of enum
+impl PageLabelFormat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            PageLabelFormat::LABEL_SHORT => 0,
+            PageLabelFormat::LABEL_LONG => 1,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -344,7 +376,16 @@ pub enum MarkWrappedLinesStyle {
     MWLS_PLUS = 1,
     MWLS_BOX = 2,
     MWLS_ARROW = 3,
-}  // end of enum
+impl MarkWrappedLinesStyle {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            MarkWrappedLinesStyle::MWLS_NONE => 0,
+            MarkWrappedLinesStyle::MWLS_PLUS => 1,
+            MarkWrappedLinesStyle::MWLS_BOX => 2,
+            MarkWrappedLinesStyle::MWLS_ARROW => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -353,7 +394,16 @@ pub enum NonPrintableFormat {
     NPF_QUESTIONMARK,
     NPF_CARET,
     NPF_OCTAL,
-}  // end of enum
+impl NonPrintableFormat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            NonPrintableFormat::NPF_SPACE => 0,
+            NonPrintableFormat::NPF_QUESTIONMARK => 1,
+            NonPrintableFormat::NPF_CARET => 2,
+            NonPrintableFormat::NPF_OCTAL => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -361,7 +411,15 @@ pub enum FormFeedType {
     FORMFEED_COLUMN,
     FORMFEED_PAGE,
     FORMFEED_HCOLUMN,
-}  // end of enum
+impl FormFeedType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            FormFeedType::FORMFEED_COLUMN => 0,
+            FormFeedType::FORMFEED_PAGE => 1,
+            FormFeedType::FORMFEED_HCOLUMN => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -369,7 +427,15 @@ pub enum LineEndType {
     LE_TRUNCATE,
     LE_CHAR_WRAP,
     LE_WORD_WRAP,
-}  // end of enum
+impl LineEndType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            LineEndType::LE_TRUNCATE => 0,
+            LineEndType::LE_CHAR_WRAP => 1,
+            LineEndType::LE_WORD_WRAP => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -438,7 +504,26 @@ pub enum TokenType {
     tFONT,
     tCOLOR,
     tPS,
-}  // end of enum
+impl TokenType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            TokenType::tNONE => 0,
+            TokenType::tEOF => 1,
+            TokenType::tSTRING => 2,
+            TokenType::tFORMFEED => 3,
+            TokenType::tNEWLINE => 4,
+            TokenType::tCARRIAGE_RETURN => 5,
+            TokenType::tWRAPPED_NEWLINE => 6,
+            TokenType::tEPSF => 7,
+            TokenType::tSETFILENAME => 8,
+            TokenType::tSETPAGENUMBER => 9,
+            TokenType::tNEWPAGE => 10,
+            TokenType::tFONT => 11,
+            TokenType::tCOLOR => 12,
+            TokenType::tPS => 13,
+        }
+    }
+}
 
 pub type Token = gs_token_st;
 #[derive(Copy, Clone)]
@@ -510,7 +595,23 @@ pub enum SpecialEscape {
     ESC_BGGRAY,
     ESC_ESCAPE,
     ESC_PS,
-}  // end of enum
+impl SpecialEscape {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            SpecialEscape::ESC_COMMENT => 0,
+            SpecialEscape::ESC_EPSF => 1,
+            SpecialEscape::ESC_FONT => 2,
+            SpecialEscape::ESC_COLOR => 3,
+            SpecialEscape::ESC_NEWPAGE => 4,
+            SpecialEscape::ESC_SETFILENAME => 5,
+            SpecialEscape::ESC_SETPAGENUMBER => 6,
+            SpecialEscape::ESC_SHADE => 7,
+            SpecialEscape::ESC_BGGRAY => 8,
+            SpecialEscape::ESC_ESCAPE => 9,
+            SpecialEscape::ESC_PS => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

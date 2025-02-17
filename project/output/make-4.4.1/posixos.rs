@@ -185,7 +185,15 @@ pub enum js_type {
     js_none = 0,
     js_pipe,
     js_fifo,
-}  // end of enum
+impl js_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            js_type::js_none => 0,
+            js_type::js_pipe => 1,
+            js_type::js_fifo => 2,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

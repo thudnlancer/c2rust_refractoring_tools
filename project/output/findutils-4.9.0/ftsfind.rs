@@ -213,7 +213,16 @@ pub enum argv_iter_err {
     AI_ERR_EOF,
     AI_ERR_MEM,
     AI_ERR_READ,
-}  // end of enum
+impl argv_iter_err {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            argv_iter_err::AI_ERR_OK => 1,
+            argv_iter_err::AI_ERR_EOF => 2,
+            argv_iter_err::AI_ERR_MEM => 3,
+            argv_iter_err::AI_ERR_READ => 4,
+        }
+    }
+}
 
 pub type DIR = __dirstream;
 #[derive(Copy, Clone)]
@@ -289,7 +298,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -410,7 +435,19 @@ pub enum arg_type {
     ARG_SPECIAL_PARSE,
     ARG_PUNCTUATION,
     ARG_ACTION,
-}  // end of enum
+impl arg_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            arg_type::ARG_OPTION => 0,
+            arg_type::ARG_NOOP => 1,
+            arg_type::ARG_POSITIONAL_OPTION => 2,
+            arg_type::ARG_TEST => 3,
+            arg_type::ARG_SPECIAL_PARSE => 4,
+            arg_type::ARG_PUNCTUATION => 5,
+            arg_type::ARG_ACTION => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -459,7 +496,15 @@ pub enum SegmentKind {
     KIND_PLAIN = 0,
     KIND_STOP = 1,
     KIND_FORMAT,
-}  // end of enum
+impl SegmentKind {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            SegmentKind::KIND_PLAIN => 0,
+            SegmentKind::KIND_STOP => 1,
+            SegmentKind::KIND_FORMAT => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -480,7 +525,15 @@ pub enum permissions_type {
     PERM_AT_LEAST,
     PERM_ANY,
     PERM_EXACT,
-}  // end of enum
+impl permissions_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            permissions_type::PERM_AT_LEAST => 0,
+            permissions_type::PERM_ANY => 1,
+            permissions_type::PERM_EXACT => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -495,7 +548,15 @@ pub enum comparison_type {
     COMP_GT,
     COMP_LT,
     COMP_EQ,
-}  // end of enum
+impl comparison_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            comparison_type::COMP_GT => 0,
+            comparison_type::COMP_LT => 1,
+            comparison_type::COMP_EQ => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -505,7 +566,17 @@ pub enum xval {
     XVAL_CTIME,
     XVAL_MTIME,
     XVAL_TIME,
-}  // end of enum
+impl xval {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            xval::XVAL_ATIME => 0,
+            xval::XVAL_BIRTHTIME => 1,
+            xval::XVAL_CTIME => 2,
+            xval::XVAL_MTIME => 3,
+            xval::XVAL_TIME => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -548,7 +619,24 @@ pub enum EvaluationCost {
     NeedsUserInteraction,
     NeedsUnknown,
     NumEvaluationCosts,
-}  // end of enum
+impl EvaluationCost {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            EvaluationCost::NeedsNothing => 0,
+            EvaluationCost::NeedsInodeNumber => 1,
+            EvaluationCost::NeedsType => 2,
+            EvaluationCost::NeedsStatInfo => 3,
+            EvaluationCost::NeedsLinkName => 4,
+            EvaluationCost::NeedsAccessInfo => 5,
+            EvaluationCost::NeedsSyncDiskHit => 6,
+            EvaluationCost::NeedsEventualExec => 7,
+            EvaluationCost::NeedsImmediateExec => 8,
+            EvaluationCost::NeedsUserInteraction => 9,
+            EvaluationCost::NeedsUnknown => 10,
+            EvaluationCost::NumEvaluationCosts => 11,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -559,7 +647,18 @@ pub enum predicate_precedence {
     AND_PREC,
     NEGATE_PREC,
     MAX_PREC,
-}  // end of enum
+impl predicate_precedence {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            predicate_precedence::NO_PREC => 0,
+            predicate_precedence::COMMA_PREC => 1,
+            predicate_precedence::OR_PREC => 2,
+            predicate_precedence::AND_PREC => 3,
+            predicate_precedence::NEGATE_PREC => 4,
+            predicate_precedence::MAX_PREC => 5,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -570,7 +669,18 @@ pub enum predicate_type {
     BI_OP,
     OPEN_PAREN,
     CLOSE_PAREN,
-}  // end of enum
+impl predicate_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            predicate_type::NO_TYPE => 0,
+            predicate_type::PRIMARY_TYPE => 1,
+            predicate_type::UNI_OP => 2,
+            predicate_type::BI_OP => 3,
+            predicate_type::OPEN_PAREN => 4,
+            predicate_type::CLOSE_PAREN => 5,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -614,7 +724,15 @@ pub enum SymlinkOption {
     SYMLINK_NEVER_DEREF,
     SYMLINK_ALWAYS_DEREF,
     SYMLINK_DEREF_ARGSONLY,
-}  // end of enum
+impl SymlinkOption {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            SymlinkOption::SYMLINK_NEVER_DEREF => 0,
+            SymlinkOption::SYMLINK_ALWAYS_DEREF => 1,
+            SymlinkOption::SYMLINK_DEREF_ARGSONLY => 2,
+        }
+    }
+}
 
 pub type DebugOption = libc::c_int;
 pub const DebugAll: DebugOption = -17;

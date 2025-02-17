@@ -221,7 +221,15 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
-}  // end of enum
+impl readmethod {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            readmethod::RM_MMAP => 0,
+            readmethod::RM_MEM => 1,
+            readmethod::RM_STDIO => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -252,7 +260,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

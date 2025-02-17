@@ -53,7 +53,16 @@ pub enum backup_type {
     simple_backups,
     numbered_existing_backups,
     numbered_backups,
-}  // end of enum
+impl backup_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backup_type::no_backups => 0,
+            backup_type::simple_backups => 1,
+            backup_type::numbered_existing_backups => 2,
+            backup_type::numbered_backups => 3,
+        }
+    }
+}
 
 pub type idx_t = ptrdiff_t;
 pub type ptrdiff_t = libc::c_long;
@@ -70,7 +79,16 @@ pub enum numbered_backup_result {
     BACKUP_IS_LONGER,
     BACKUP_IS_NEW,
     BACKUP_NOMEM,
-}  // end of enum
+impl numbered_backup_result {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            numbered_backup_result::BACKUP_IS_SAME_LENGTH => 0,
+            numbered_backup_result::BACKUP_IS_LONGER => 1,
+            numbered_backup_result::BACKUP_IS_NEW => 2,
+            numbered_backup_result::BACKUP_NOMEM => 3,
+        }
+    }
+}
 
 pub type numbered_backup_result = libc::c_uint;
 #[derive(Copy, Clone)]
@@ -87,7 +105,13 @@ pub const GUESS: C2RustUnnamed = 9;
 #[repr(C)]
 pub enum C2RustUnnamed {
     GUESS = 9,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::GUESS => 9,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -114,7 +138,33 @@ pub enum C2RustUnnamed_0 {
     _PC_MAX_INPUT = 2,
     _PC_MAX_CANON = 1,
     _PC_LINK_MAX = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_PC_NAME_MAX => 3,
+            C2RustUnnamed_0::_PC_2_SYMLINKS => 20,
+            C2RustUnnamed_0::_PC_SYMLINK_MAX => 19,
+            C2RustUnnamed_0::_PC_ALLOC_SIZE_MIN => 18,
+            C2RustUnnamed_0::_PC_REC_XFER_ALIGN => 17,
+            C2RustUnnamed_0::_PC_REC_MIN_XFER_SIZE => 16,
+            C2RustUnnamed_0::_PC_REC_MAX_XFER_SIZE => 15,
+            C2RustUnnamed_0::_PC_REC_INCR_XFER_SIZE => 14,
+            C2RustUnnamed_0::_PC_FILESIZEBITS => 13,
+            C2RustUnnamed_0::_PC_SOCK_MAXBUF => 12,
+            C2RustUnnamed_0::_PC_PRIO_IO => 11,
+            C2RustUnnamed_0::_PC_ASYNC_IO => 10,
+            C2RustUnnamed_0::_PC_SYNC_IO => 9,
+            C2RustUnnamed_0::_PC_VDISABLE => 8,
+            C2RustUnnamed_0::_PC_NO_TRUNC => 7,
+            C2RustUnnamed_0::_PC_CHOWN_RESTRICTED => 6,
+            C2RustUnnamed_0::_PC_PIPE_BUF => 5,
+            C2RustUnnamed_0::_PC_PATH_MAX => 4,
+            C2RustUnnamed_0::_PC_MAX_INPUT => 2,
+            C2RustUnnamed_0::_PC_MAX_CANON => 1,
+            C2RustUnnamed_0::_PC_LINK_MAX => 0,
+        }
+    }
+}
 
 #[no_mangle]
 pub static mut simple_backup_suffix: *const libc::c_char = 0 as *const libc::c_char;

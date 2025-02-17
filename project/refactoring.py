@@ -324,8 +324,6 @@ def generate_enum_code(enum_name, members):
             enum_code += f"    {member} = {value_str},\n"  # 添加枚举成员和对应的值
         else:
             enum_code += f"    {member},\n"
-    
-    enum_code += "}  // end of enum\n"
 
     enum_code += f"impl {enum_name} {{\n"
 
@@ -337,6 +335,8 @@ def generate_enum_code(enum_name, members):
     enum_code += f"        }}\n"
     enum_code += f"    }}\n"
     enum_code += f"}}\n"
+
+    # enum_code += "// end of enum replacement\n"
     return enum_code
 
 def get_indentation_at_position(content, position):
@@ -386,8 +386,119 @@ def process_enum_in_file(file_path, enums_info):
         old_enum_length = end_pos - start_pos
         new_enum_length = len(indented_enum_code)
         offset += (new_enum_length - old_enum_length)  # 更新偏移量
+
+    content = process_enum_use(content, enums_info)
     
     return content
+
+def process_enum_use(content, enums_info):
+    """处理内容中的枚举使用并替换内容"""
+    for enum_info in enums_info:
+        enum_name = enum_info['enum_name']
+        members = enum_info['members']
+        value_names = extract_keywords(content, enum_name)
+        # 替换变量形式
+        for value_name in value_names:
+            content = process_value_switch(content, value_name, enum_name, members)
+            content = process_value_definition(content, value_name, enum_name)
+            content = process_value_cast(content, value_name)
+
+    return content
+
+def process_value_switch(content, value_name, enum_name, members):
+    # 构建值到成员名的反向映射字典（考虑十进制和十六进制）
+    value_to_member = {}
+    for member, (value, is_hex, *_) in members.items():
+        # 记录十进制和可能的十六进制形式
+        value_to_member[str(value)] = member
+        if is_hex:
+            value_to_member[f"0x{value:x}"] = member
+            value_to_member[f"0x{value:X}"] = member  # 大写形式
+
+    # 匹配整个 match 语句块
+    pattern = (
+        r"(match\s+" + re.escape(value_name) + r"\s*\{)"  # 匹配 match 头部
+        r"([^}]*(?:\{[^{}]*\}[^}]*)*)"  # 匹配 match 主体（支持嵌套）
+        r"(\})"  # 匹配右花括号
+    )
+    match = re.search(pattern, content, re.DOTALL)
+    if not match:
+        return content  # 未找到 match 块
+
+    # 提取原始 match 头和尾
+    match_head = match.group(1)
+    original_body = match.group(2)
+    match_tail = match.group(3)
+
+    # 分割每个分支（处理可能存在的注释和格式）
+    branch_pattern = re.compile(
+        r"(\s*)(.*?)\s*=>\s*(.*?)(,?)(\s*(//.*?)?)$", 
+        re.DOTALL | re.MULTILINE
+    )
+    new_branches = []
+    for branch in re.split(r"(?<=},\n)", original_body):  # 按分支分割
+        branch = branch.strip()
+        if not branch:
+            continue
+
+        # 解析分支结构
+        m = branch_pattern.match(branch)
+        if not m:
+            new_branches.append(branch)  # 保留无法解析的分支
+            continue
+
+        indent = m.group(1)
+        pattern = m.group(2)
+        execution = m.group(3).rstrip()  # 保留执行语句（包括可能的表达式）
+        comma = m.group(4)
+        comment = m.group(5) or ""
+
+        # 提取原值并替换为成员名
+        value_match = re.search(r"\b(\d+|0x[0-9a-fA-F]+)\b", pattern)
+        if value_match:
+            original_value = value_match.group(1)
+            member = value_to_member.get(original_value)
+            if member:
+                # 替换值部分（保留原有格式）
+                new_pattern = re.sub(
+                    r"\b{}\b".format(re.escape(original_value)),
+                    f"{enum_name}::{member}",
+                    pattern,
+                    count=1
+                )
+                branch = f"{indent}{new_pattern} => {execution}{comma}{comment}"
+
+        new_branches.append(branch)
+
+    # 重建 match 语句块
+    new_body = ",\n".join(new_branches)
+    match_tail += "// end of enum replacement\n"
+    new_content = pattern.sub(f"{match_head}{new_body}{match_tail}", content, count=1)
+    return new_content
+
+def process_value_definition(content, value_name, enum_name):
+    pattern = r"let mut " + re.escape(value_name) + r" : " + re.escape(enum_name) + r" = \w+;"
+    replacement = f"let mut {value_name} : {enum_name} = {enum_name}::{value_name}; // end of enum replacement\n"
+
+    new_content = re.sub(pattern, replacement, content)
+    return new_content
+
+def process_value_cast(content, value_name):
+    pattern = r"\{" + re.escape(value_name) + r"\} as libc::c_uint"
+    replacement = r"\g<0>.to_libc_c_uint()"
+        
+    new_content = re.sub(pattern, replacement, content)
+    return new_content
+
+def extract_keywords(content, enum_name):
+    # 构建正则表达式，匹配 mut {value_name} : {enum_name}，包含变量定义和函数参数
+    pattern = r"mut (\w+) : " + re.escape(enum_name)
+    
+    # 查找所有匹配的变量名 (value_name)
+    matches = re.findall(pattern, content)
+    
+    # 返回匹配的关键词数组
+    return matches
 
 def process_json_file(json_file_path, output_dir):
     """处理给定的 JSON 文件，并生成新的 Rust 文件"""
@@ -433,10 +544,10 @@ def refactoring(proj_path):
 # refactoring()
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         print("usage: refactoring program path or default path: ../c_prog/")
-    if len(sys.argv) == 1:
-        proj_path = sys.argv[0]
+    if len(sys.argv) == 2:
+        proj_path = sys.argv[1]
         refactoring(proj_path)
 
     else:

@@ -69,7 +69,13 @@ pub const COPYRIGHT_YEAR: C2RustUnnamed = 2009;
 #[repr(C)]
 pub enum C2RustUnnamed {
     COPYRIGHT_YEAR = 2009,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::COPYRIGHT_YEAR => 2009,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]

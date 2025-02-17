@@ -67,7 +67,16 @@ pub enum C2RustUnnamed {
     MODE_ORDINARY_CHANGE,
     MODE_X_IF_ANY_X,
     MODE_COPY_EXISTING,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::MODE_DONE => 0,
+            C2RustUnnamed::MODE_ORDINARY_CHANGE => 1,
+            C2RustUnnamed::MODE_X_IF_ANY_X => 2,
+            C2RustUnnamed::MODE_COPY_EXISTING => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -150,7 +150,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

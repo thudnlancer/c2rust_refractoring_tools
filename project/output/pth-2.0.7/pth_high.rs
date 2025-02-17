@@ -390,7 +390,33 @@ pub enum C2RustUnnamed_10 {
     MSG_DONTROUTE = 4,
     MSG_PEEK = 2,
     MSG_OOB = 1,
-}  // end of enum
+impl C2RustUnnamed_10 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_10::MSG_CMSG_CLOEXEC => 1073741824,
+            C2RustUnnamed_10::MSG_FASTOPEN => 536870912,
+            C2RustUnnamed_10::MSG_ZEROCOPY => 67108864,
+            C2RustUnnamed_10::MSG_BATCH => 262144,
+            C2RustUnnamed_10::MSG_WAITFORONE => 65536,
+            C2RustUnnamed_10::MSG_MORE => 32768,
+            C2RustUnnamed_10::MSG_NOSIGNAL => 16384,
+            C2RustUnnamed_10::MSG_ERRQUEUE => 8192,
+            C2RustUnnamed_10::MSG_RST => 4096,
+            C2RustUnnamed_10::MSG_CONFIRM => 2048,
+            C2RustUnnamed_10::MSG_SYN => 1024,
+            C2RustUnnamed_10::MSG_FIN => 512,
+            C2RustUnnamed_10::MSG_WAITALL => 256,
+            C2RustUnnamed_10::MSG_EOR => 128,
+            C2RustUnnamed_10::MSG_DONTWAIT => 64,
+            C2RustUnnamed_10::MSG_TRUNC => 32,
+            C2RustUnnamed_10::MSG_PROXY => 16,
+            C2RustUnnamed_10::MSG_CTRUNC => 8,
+            C2RustUnnamed_10::MSG_DONTROUTE => 4,
+            C2RustUnnamed_10::MSG_PEEK => 2,
+            C2RustUnnamed_10::MSG_OOB => 1,
+        }
+    }
+}
 
 pub type pth_time_t = timeval;
 #[derive(Copy, Clone)]
@@ -569,7 +595,15 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
-}  // end of enum
+impl pth_status_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            pth_status_t::PTH_STATUS_PENDING => 0,
+            pth_status_t::PTH_STATUS_OCCURRED => 1,
+            pth_status_t::PTH_STATUS_FAILED => 2,
+        }
+    }
+}
 
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -580,7 +614,17 @@ pub enum pth_state_en {
     PTH_STATE_READY,
     PTH_STATE_WAITING,
     PTH_STATE_DEAD,
-}  // end of enum
+impl pth_state_en {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            pth_state_en::PTH_STATE_SCHEDULER => 0,
+            pth_state_en::PTH_STATE_NEW => 1,
+            pth_state_en::PTH_STATE_READY => 2,
+            pth_state_en::PTH_STATE_WAITING => 3,
+            pth_state_en::PTH_STATE_DEAD => 4,
+        }
+    }
+}
 
 pub type pth_key_t = libc::c_int;
 pub type C2RustUnnamed_21 = libc::c_int;

@@ -305,7 +305,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -391,7 +403,22 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
-}  // end of enum
+impl subcommand {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            subcommand::UNKNOWN_SUBCOMMAND => 0,
+            subcommand::APPEND_SUBCOMMAND => 1,
+            subcommand::CAT_SUBCOMMAND => 2,
+            subcommand::CREATE_SUBCOMMAND => 3,
+            subcommand::DELETE_SUBCOMMAND => 4,
+            subcommand::DIFF_SUBCOMMAND => 5,
+            subcommand::EXTRACT_SUBCOMMAND => 6,
+            subcommand::LIST_SUBCOMMAND => 7,
+            subcommand::UPDATE_SUBCOMMAND => 8,
+            subcommand::TEST_LABEL_SUBCOMMAND => 9,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -416,7 +443,15 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
-}  // end of enum
+impl access_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            access_mode::ACCESS_READ => 0,
+            access_mode::ACCESS_WRITE => 1,
+            access_mode::ACCESS_UPDATE => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -427,7 +462,18 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
-}  // end of enum
+impl read_header {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header::HEADER_STILL_UNREAD => 0,
+            read_header::HEADER_SUCCESS => 1,
+            read_header::HEADER_SUCCESS_EXTENDED => 2,
+            read_header::HEADER_ZERO_BLOCK => 3,
+            read_header::HEADER_END_OF_FILE => 4,
+            read_header::HEADER_FAILURE => 5,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -435,7 +481,15 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
-}  // end of enum
+impl read_header_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header_mode::read_header_auto => 0,
+            read_header_mode::read_header_x_raw => 1,
+            read_header_mode::read_header_x_global => 2,
+        }
+    }
+}
 
 pub type namebuf_t = *mut namebuf;
 #[inline]

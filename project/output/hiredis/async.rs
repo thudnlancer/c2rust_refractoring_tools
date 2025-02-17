@@ -365,7 +365,15 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
-}  // end of enum
+impl redisConnectionType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            redisConnectionType::REDIS_CONN_TCP => 0,
+            redisConnectionType::REDIS_CONN_UNIX => 1,
+            redisConnectionType::REDIS_CONN_USERFD => 2,
+        }
+    }
+}
 
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]

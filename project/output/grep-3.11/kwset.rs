@@ -137,14 +137,27 @@ pub const L: C2RustUnnamed_2 = 0;
 pub enum C2RustUnnamed_2 {
     L = 0,
     R = 1,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::L => 0,
+            C2RustUnnamed_2::R => 1,
+        }
+    }
+}
 
 pub const NCHAR: C2RustUnnamed_3 = 256;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     NCHAR = 256,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::NCHAR => 256,
+        }
+    }
+}
 
 pub type C2RustUnnamed_3 = libc::c_uint;
 #[inline]

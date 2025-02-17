@@ -195,7 +195,16 @@ pub enum block_state {
     block_done,
     finish_started,
     finish_done,
-}  // end of enum
+impl block_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            block_state::need_more => 0,
+            block_state::block_done => 1,
+            block_state::finish_started => 2,
+            block_state::finish_done => 3,
+        }
+    }
+}
 
 pub type compress_func = Option::<
     unsafe extern "C" fn(*mut deflate_state, libc::c_int) -> block_state,

@@ -253,7 +253,18 @@ pub enum kwsub {
     kwsub_v,
     kwsub_o,
     kwsub_b,
-}  // end of enum
+impl kwsub {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            kwsub::kwsub_kv => 0,
+            kwsub::kwsub_kvl => 1,
+            kwsub::kwsub_k => 2,
+            kwsub::kwsub_v => 3,
+            kwsub::kwsub_o => 4,
+            kwsub::kwsub_b => 5,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -322,7 +333,15 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
-}  // end of enum
+impl readmethod {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            readmethod::RM_MMAP => 0,
+            readmethod::RM_MEM => 1,
+            readmethod::RM_STDIO => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -365,7 +384,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -493,7 +520,17 @@ pub enum stringwork {
     edit,
     expand,
     edit_expand,
-}  // end of enum
+impl stringwork {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            stringwork::enter => 0,
+            stringwork::copy => 1,
+            stringwork::edit => 2,
+            stringwork::expand => 3,
+            stringwork::edit_expand => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

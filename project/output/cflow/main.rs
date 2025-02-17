@@ -173,7 +173,15 @@ pub enum symtype {
     SymUndefined,
     SymToken,
     SymIdentifier,
-}  // end of enum
+impl symtype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symtype::SymUndefined => 0,
+            symtype::SymToken => 1,
+            symtype::SymIdentifier => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -183,7 +191,17 @@ pub enum storage {
     StaticStorage,
     AutoStorage,
     AnyStorage,
-}  // end of enum
+impl storage {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            storage::ExternStorage => 0,
+            storage::ExplicitExternStorage => 1,
+            storage::StaticStorage => 2,
+            storage::AutoStorage => 3,
+            storage::AnyStorage => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -192,7 +210,16 @@ pub enum symbol_flag {
     symbol_temp,
     symbol_parm,
     symbol_alias,
-}  // end of enum
+impl symbol_flag {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symbol_flag::symbol_none => 0,
+            symbol_flag::symbol_temp => 1,
+            symbol_flag::symbol_parm => 2,
+            symbol_flag::symbol_alias => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -230,7 +257,19 @@ pub enum cflow_output_command {
     cflow_output_separator,
     cflow_output_symbol,
     cflow_output_text,
-}  // end of enum
+impl cflow_output_command {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cflow_output_command::cflow_output_init => 0,
+            cflow_output_command::cflow_output_begin => 1,
+            cflow_output_command::cflow_output_end => 2,
+            cflow_output_command::cflow_output_newline => 3,
+            cflow_output_command::cflow_output_separator => 4,
+            cflow_output_command::cflow_output_symbol => 5,
+            cflow_output_command::cflow_output_text => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -247,7 +286,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -327,7 +383,31 @@ pub enum option_code {
     OPT_NO_OMIT_ARGUMENTS,
     OPT_OMIT_SYMBOL_NAMES,
     OPT_NO_OMIT_SYMBOL_NAMES,
-}  // end of enum
+impl option_code {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            option_code::OPT_DEFINES => 256,
+            option_code::OPT_LEVEL_INDENT => 257,
+            option_code::OPT_DEBUG => 258,
+            option_code::OPT_PREPROCESS => 259,
+            option_code::OPT_NO_PREPROCESS => 260,
+            option_code::OPT_EMACS => 261,
+            option_code::OPT_NO_USE_INDENTATION => 262,
+            option_code::OPT_NO_ANSI => 263,
+            option_code::OPT_NO_TREE => 264,
+            option_code::OPT_NO_BRIEF => 265,
+            option_code::OPT_NO_EMACS => 266,
+            option_code::OPT_NO_VERBOSE => 267,
+            option_code::OPT_NO_NUMBER => 268,
+            option_code::OPT_NO_PRINT_LEVEL => 269,
+            option_code::OPT_NO_REVERSE => 270,
+            option_code::OPT_OMIT_ARGUMENTS => 271,
+            option_code::OPT_NO_OMIT_ARGUMENTS => 272,
+            option_code::OPT_OMIT_SYMBOL_NAMES => 273,
+            option_code::OPT_NO_OMIT_SYMBOL_NAMES => 274,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

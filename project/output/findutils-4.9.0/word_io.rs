@@ -94,7 +94,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -102,7 +118,15 @@ pub enum GetwordEndianState {
     GetwordEndianStateInitial = 0,
     GetwordEndianStateNative = 1,
     GetwordEndianStateSwab = 2,
-}  // end of enum
+impl GetwordEndianState {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            GetwordEndianState::GetwordEndianStateInitial => 0,
+            GetwordEndianState::GetwordEndianStateNative => 1,
+            GetwordEndianState::GetwordEndianStateSwab => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -125,7 +149,13 @@ pub struct C2RustUnnamed_1 {
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     WORDBYTES = 4,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::WORDBYTES => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -282,7 +282,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -421,7 +429,24 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::_ISdigit => 2048,
+            C2RustUnnamed_3::_ISalnum => 8,
+            C2RustUnnamed_3::_ISpunct => 4,
+            C2RustUnnamed_3::_IScntrl => 2,
+            C2RustUnnamed_3::_ISblank => 1,
+            C2RustUnnamed_3::_ISgraph => 32768,
+            C2RustUnnamed_3::_ISprint => 16384,
+            C2RustUnnamed_3::_ISspace => 8192,
+            C2RustUnnamed_3::_ISxdigit => 4096,
+            C2RustUnnamed_3::_ISalpha => 1024,
+            C2RustUnnamed_3::_ISlower => 512,
+            C2RustUnnamed_3::_ISupper => 256,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn make_timespec(mut s: time_t, mut ns: libc::c_long) -> timespec {

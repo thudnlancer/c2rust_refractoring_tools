@@ -403,7 +403,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -482,7 +494,15 @@ pub enum atime_preserve {
     no_atime_preserve,
     replace_atime_preserve,
     system_atime_preserve,
-}  // end of enum
+impl atime_preserve {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            atime_preserve::no_atime_preserve => 0,
+            atime_preserve::replace_atime_preserve => 1,
+            atime_preserve::system_atime_preserve => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -490,7 +510,15 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
-}  // end of enum
+impl access_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            access_mode::ACCESS_READ => 0,
+            access_mode::ACCESS_WRITE => 1,
+            access_mode::ACCESS_UPDATE => 2,
+        }
+    }
+}
 
 pub const QUOTE_NAME: C2RustUnnamed_2 = 1;
 pub const QUOTE_ARG: C2RustUnnamed_2 = 0;
@@ -504,7 +532,18 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
-}  // end of enum
+impl read_header {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header::HEADER_STILL_UNREAD => 0,
+            read_header::HEADER_SUCCESS => 1,
+            read_header::HEADER_SUCCESS_EXTENDED => 2,
+            read_header::HEADER_ZERO_BLOCK => 3,
+            read_header::HEADER_END_OF_FILE => 4,
+            read_header::HEADER_FAILURE => 5,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -512,26 +551,34 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
-}  // end of enum
+impl read_header_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header_mode::read_header_auto => 0,
+            read_header_mode::read_header_x_raw => 1,
+            read_header_mode::read_header_x_global => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     QUOTE_ARG,
     QUOTE_NAME,
-}  // end of enum
-C2RustUnnamed_2 = 0;
-pub const HEADER_ZERO_BLOCK: read_header = 3;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum read_header {
-    HEADER_STILL_UNREAD,
-    HEADER_SUCCESS,
-    HEADER_SUCCESS_EXTENDED,
-    HEADER_ZERO_BLOCK,
-    HEADER_END_OF_FILE,
-    HEADER_FAILURE,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::QUOTE_ARG => 0,
+            C2RustUnnamed_2::QUOTE_NAME => 1,
+        }
+    }
+}
+4,
+            read_header::HEADER_FAILURE => 5,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -539,7 +586,15 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
-}  // end of enum
+impl read_header_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header_mode::read_header_auto => 0,
+            read_header_mode::read_header_x_raw => 1,
+            read_header_mode::read_header_x_global => 2,
+        }
+    }
+}
 
 pub type C2RustUnnamed_2 = libc::c_uint;
 #[inline]

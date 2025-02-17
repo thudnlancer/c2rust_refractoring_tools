@@ -341,7 +341,76 @@ pub enum C2RustUnnamed {
     _CS_GNU_LIBC_VERSION = 2,
     _CS_V6_WIDTH_RESTRICTED_ENVS = 1,
     _CS_PATH = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_CS_V7_ENV => 1149,
+            C2RustUnnamed::_CS_V6_ENV => 1148,
+            C2RustUnnamed::_CS_POSIX_V7_LPBIG_OFFBIG_LINTFLAGS => 1147,
+            C2RustUnnamed::_CS_POSIX_V7_LPBIG_OFFBIG_LIBS => 1146,
+            C2RustUnnamed::_CS_POSIX_V7_LPBIG_OFFBIG_LDFLAGS => 1145,
+            C2RustUnnamed::_CS_POSIX_V7_LPBIG_OFFBIG_CFLAGS => 1144,
+            C2RustUnnamed::_CS_POSIX_V7_LP64_OFF64_LINTFLAGS => 1143,
+            C2RustUnnamed::_CS_POSIX_V7_LP64_OFF64_LIBS => 1142,
+            C2RustUnnamed::_CS_POSIX_V7_LP64_OFF64_LDFLAGS => 1141,
+            C2RustUnnamed::_CS_POSIX_V7_LP64_OFF64_CFLAGS => 1140,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFFBIG_LINTFLAGS => 1139,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFFBIG_LIBS => 1138,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFFBIG_LDFLAGS => 1137,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFFBIG_CFLAGS => 1136,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFF32_LINTFLAGS => 1135,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFF32_LIBS => 1134,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFF32_LDFLAGS => 1133,
+            C2RustUnnamed::_CS_POSIX_V7_ILP32_OFF32_CFLAGS => 1132,
+            C2RustUnnamed::_CS_POSIX_V6_LPBIG_OFFBIG_LINTFLAGS => 1131,
+            C2RustUnnamed::_CS_POSIX_V6_LPBIG_OFFBIG_LIBS => 1130,
+            C2RustUnnamed::_CS_POSIX_V6_LPBIG_OFFBIG_LDFLAGS => 1129,
+            C2RustUnnamed::_CS_POSIX_V6_LPBIG_OFFBIG_CFLAGS => 1128,
+            C2RustUnnamed::_CS_POSIX_V6_LP64_OFF64_LINTFLAGS => 1127,
+            C2RustUnnamed::_CS_POSIX_V6_LP64_OFF64_LIBS => 1126,
+            C2RustUnnamed::_CS_POSIX_V6_LP64_OFF64_LDFLAGS => 1125,
+            C2RustUnnamed::_CS_POSIX_V6_LP64_OFF64_CFLAGS => 1124,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFFBIG_LINTFLAGS => 1123,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFFBIG_LIBS => 1122,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFFBIG_LDFLAGS => 1121,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFFBIG_CFLAGS => 1120,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFF32_LINTFLAGS => 1119,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFF32_LIBS => 1118,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFF32_LDFLAGS => 1117,
+            C2RustUnnamed::_CS_POSIX_V6_ILP32_OFF32_CFLAGS => 1116,
+            C2RustUnnamed::_CS_XBS5_LPBIG_OFFBIG_LINTFLAGS => 1115,
+            C2RustUnnamed::_CS_XBS5_LPBIG_OFFBIG_LIBS => 1114,
+            C2RustUnnamed::_CS_XBS5_LPBIG_OFFBIG_LDFLAGS => 1113,
+            C2RustUnnamed::_CS_XBS5_LPBIG_OFFBIG_CFLAGS => 1112,
+            C2RustUnnamed::_CS_XBS5_LP64_OFF64_LINTFLAGS => 1111,
+            C2RustUnnamed::_CS_XBS5_LP64_OFF64_LIBS => 1110,
+            C2RustUnnamed::_CS_XBS5_LP64_OFF64_LDFLAGS => 1109,
+            C2RustUnnamed::_CS_XBS5_LP64_OFF64_CFLAGS => 1108,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFFBIG_LINTFLAGS => 1107,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFFBIG_LIBS => 1106,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFFBIG_LDFLAGS => 1105,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFFBIG_CFLAGS => 1104,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFF32_LINTFLAGS => 1103,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFF32_LIBS => 1102,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFF32_LDFLAGS => 1101,
+            C2RustUnnamed::_CS_XBS5_ILP32_OFF32_CFLAGS => 1100,
+            C2RustUnnamed::_CS_LFS64_LINTFLAGS => 1007,
+            C2RustUnnamed::_CS_LFS64_LIBS => 1006,
+            C2RustUnnamed::_CS_LFS64_LDFLAGS => 1005,
+            C2RustUnnamed::_CS_LFS64_CFLAGS => 1004,
+            C2RustUnnamed::_CS_LFS_LINTFLAGS => 1003,
+            C2RustUnnamed::_CS_LFS_LIBS => 1002,
+            C2RustUnnamed::_CS_LFS_LDFLAGS => 1001,
+            C2RustUnnamed::_CS_LFS_CFLAGS => 1000,
+            C2RustUnnamed::_CS_V7_WIDTH_RESTRICTED_ENVS => 5,
+            C2RustUnnamed::_CS_V5_WIDTH_RESTRICTED_ENVS => 4,
+            C2RustUnnamed::_CS_GNU_LIBPTHREAD_VERSION => 3,
+            C2RustUnnamed::_CS_GNU_LIBC_VERSION => 2,
+            C2RustUnnamed::_CS_V6_WIDTH_RESTRICTED_ENVS => 1,
+            C2RustUnnamed::_CS_PATH => 0,
+        }
+    }
+}
 
 pub type uintmax_t = __uintmax_t;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -399,7 +468,16 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
-}  // end of enum
+impl cmd_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cmd_state::cs_finished => 3,
+            cmd_state::cs_running => 2,
+            cmd_state::cs_deps_running => 1,
+            cmd_state::cs_not_started => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -408,7 +486,16 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
-}  // end of enum
+impl update_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            update_status::us_failed => 3,
+            update_status::us_question => 2,
+            update_status::us_none => 1,
+            update_status::us_success => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -520,7 +607,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -533,16 +629,21 @@ pub enum variable_origin {
     o_override,
     o_automatic,
     o_invalid,
-}  // end of enum
-ault: variable_origin = 0;
-#[derive(Copy, Clone, BitfieldStruct)]
-#[repr(C)]
-pub struct variable {
-    pub name: *mut libc::c_char,
-    pub value: *mut libc::c_char,
-    pub fileinfo: floc,
-    pub length: libc::c_uint,
-    #[bitfield(name = "recursive", ty = "libc::c_uint", bits = "0..=0")]
+impl variable_origin {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_origin::o_default => 0,
+            variable_origin::o_env => 1,
+            variable_origin::o_file => 2,
+            variable_origin::o_env_override => 3,
+            variable_origin::o_command => 4,
+            variable_origin::o_override => 5,
+            variable_origin::o_automatic => 6,
+            variable_origin::o_invalid => 7,
+        }
+    }
+}
+_uint", bits = "0..=0")]
     #[bitfield(name = "append", ty = "libc::c_uint", bits = "1..=1")]
     #[bitfield(name = "conditional", ty = "libc::c_uint", bits = "2..=2")]
     #[bitfield(name = "per_target", ty = "libc::c_uint", bits = "3..=3")]
@@ -563,7 +664,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -577,7 +687,20 @@ pub enum variable_flavor {
     f_conditional,
     f_shell,
     f_append_value,
-}  // end of enum
+impl variable_flavor {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_flavor::f_bogus => 0,
+            variable_flavor::f_simple => 1,
+            variable_flavor::f_recursive => 2,
+            variable_flavor::f_expand => 3,
+            variable_flavor::f_append => 4,
+            variable_flavor::f_conditional => 5,
+            variable_flavor::f_shell => 6,
+            variable_flavor::f_append_value => 7,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]

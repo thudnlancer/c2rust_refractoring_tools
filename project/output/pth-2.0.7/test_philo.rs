@@ -67,7 +67,14 @@ pub type pth_event_t = *mut pth_event_st;
 pub enum C2RustUnnamed {
     PTH_FREE_THIS,
     PTH_FREE_ALL,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::PTH_FREE_THIS => 0,
+            C2RustUnnamed::PTH_FREE_ALL => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -98,7 +105,15 @@ pub enum philstat {
     thinking,
     hungry,
     eating,
-}  // end of enum
+impl philstat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            philstat::thinking => 0,
+            philstat::hungry => 1,
+            philstat::eating => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

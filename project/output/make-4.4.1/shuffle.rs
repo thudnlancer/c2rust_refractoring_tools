@@ -78,7 +78,16 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
-}  // end of enum
+impl cmd_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cmd_state::cs_finished => 3,
+            cmd_state::cs_running => 2,
+            cmd_state::cs_deps_running => 1,
+            cmd_state::cs_not_started => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -87,7 +96,16 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
-}  // end of enum
+impl update_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            update_status::us_failed => 3,
+            update_status::us_question => 2,
+            update_status::us_none => 1,
+            update_status::us_success => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -131,7 +149,16 @@ pub enum shuffle_mode {
     sm_random,
     sm_reverse,
     sm_identity,
-}  // end of enum
+impl shuffle_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            shuffle_mode::sm_none => 0,
+            shuffle_mode::sm_random => 1,
+            shuffle_mode::sm_reverse => 2,
+            shuffle_mode::sm_identity => 3,
+        }
+    }
+}
 
 static mut config: C2RustUnnamed = unsafe {
     {

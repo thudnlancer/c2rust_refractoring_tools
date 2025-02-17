@@ -270,7 +270,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -403,7 +420,22 @@ pub enum C2RustUnnamed_3 {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::human_ceiling => 0,
+            C2RustUnnamed_3::human_round_to_nearest => 1,
+            C2RustUnnamed_3::human_floor => 2,
+            C2RustUnnamed_3::human_group_digits => 4,
+            C2RustUnnamed_3::human_suppress_point_zero => 8,
+            C2RustUnnamed_3::human_autoscale => 16,
+            C2RustUnnamed_3::human_base_1024 => 32,
+            C2RustUnnamed_3::human_space_before_unit => 64,
+            C2RustUnnamed_3::human_SI => 128,
+            C2RustUnnamed_3::human_B => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -504,7 +536,19 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::DEFAULT_FORMAT => 0,
+            archive_format::V7_FORMAT => 1,
+            archive_format::OLDGNU_FORMAT => 2,
+            archive_format::USTAR_FORMAT => 3,
+            archive_format::POSIX_FORMAT => 4,
+            archive_format::STAR_FORMAT => 5,
+            archive_format::GNU_FORMAT => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -591,7 +635,22 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
-}  // end of enum
+impl subcommand {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            subcommand::UNKNOWN_SUBCOMMAND => 0,
+            subcommand::APPEND_SUBCOMMAND => 1,
+            subcommand::CAT_SUBCOMMAND => 2,
+            subcommand::CREATE_SUBCOMMAND => 3,
+            subcommand::DELETE_SUBCOMMAND => 4,
+            subcommand::DIFF_SUBCOMMAND => 5,
+            subcommand::EXTRACT_SUBCOMMAND => 6,
+            subcommand::LIST_SUBCOMMAND => 7,
+            subcommand::UPDATE_SUBCOMMAND => 8,
+            subcommand::TEST_LABEL_SUBCOMMAND => 9,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -599,7 +658,15 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
-}  // end of enum
+impl access_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            access_mode::ACCESS_READ => 0,
+            access_mode::ACCESS_WRITE => 1,
+            access_mode::ACCESS_UPDATE => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -626,7 +693,22 @@ pub enum compress_type {
     ct_lzop,
     ct_xz,
     ct_zstd,
-}  // end of enum
+impl compress_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            compress_type::ct_none => 0,
+            compress_type::ct_tar => 1,
+            compress_type::ct_compress => 2,
+            compress_type::ct_gzip => 3,
+            compress_type::ct_bzip2 => 4,
+            compress_type::ct_lzip => 5,
+            compress_type::ct_lzma => 6,
+            compress_type::ct_lzop => 7,
+            compress_type::ct_xz => 8,
+            compress_type::ct_zstd => 9,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -645,7 +727,18 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
-}  // end of enum
+impl read_header {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header::HEADER_STILL_UNREAD => 0,
+            read_header::HEADER_SUCCESS => 1,
+            read_header::HEADER_SUCCESS_EXTENDED => 2,
+            read_header::HEADER_ZERO_BLOCK => 3,
+            read_header::HEADER_END_OF_FILE => 4,
+            read_header::HEADER_FAILURE => 5,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -660,7 +753,15 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
-}  // end of enum
+impl read_header_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header_mode::read_header_auto => 0,
+            read_header_mode::read_header_x_raw => 1,
+            read_header_mode::read_header_x_global => 2,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn fstat(

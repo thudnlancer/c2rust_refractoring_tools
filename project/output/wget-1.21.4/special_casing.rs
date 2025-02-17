@@ -16,7 +16,18 @@ pub enum C2RustUnnamed {
     SCC_AFTER_SOFT_DOTTED = 2,
     SCC_FINAL_SIGMA = 1,
     SCC_ALWAYS = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::SCC_AFTER_I => 5,
+            C2RustUnnamed::SCC_BEFORE_DOT => 4,
+            C2RustUnnamed::SCC_MORE_ABOVE => 3,
+            C2RustUnnamed::SCC_AFTER_SOFT_DOTTED => 2,
+            C2RustUnnamed::SCC_FINAL_SIGMA => 1,
+            C2RustUnnamed::SCC_ALWAYS => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]

@@ -235,7 +235,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -384,7 +392,15 @@ pub enum ddc_option_values {
     ddc_unrecognized = 0,
     ddc_commands,
     ddc_aliases,
-}  // end of enum
+impl ddc_option_values {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            ddc_option_values::ddc_unrecognized => 0,
+            ddc_option_values::ddc_commands => 1,
+            ddc_option_values::ddc_aliases => 2,
+        }
+    }
+}
 
 static mut super_blurb: [libc::c_char; 25] = unsafe {
     *::core::mem::transmute::<

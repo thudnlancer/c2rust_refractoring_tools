@@ -197,7 +197,15 @@ pub enum symtype {
     SymUndefined,
     SymToken,
     SymIdentifier,
-}  // end of enum
+impl symtype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symtype::SymUndefined => 0,
+            symtype::SymToken => 1,
+            symtype::SymIdentifier => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -207,7 +215,17 @@ pub enum storage {
     StaticStorage,
     AutoStorage,
     AnyStorage,
-}  // end of enum
+impl storage {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            storage::ExternStorage => 0,
+            storage::ExplicitExternStorage => 1,
+            storage::StaticStorage => 2,
+            storage::AutoStorage => 3,
+            storage::AnyStorage => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -216,7 +234,16 @@ pub enum symbol_flag {
     symbol_temp,
     symbol_parm,
     symbol_alias,
-}  // end of enum
+impl symbol_flag {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symbol_flag::symbol_none => 0,
+            symbol_flag::symbol_temp => 1,
+            symbol_flag::symbol_parm => 2,
+            symbol_flag::symbol_alias => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -287,7 +314,24 @@ pub enum C2RustUnnamed_0 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISalnum => 8,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISlower => 512,
+            C2RustUnnamed_0::_ISupper => 256,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn toupper(mut __c: libc::c_int) -> libc::c_int {

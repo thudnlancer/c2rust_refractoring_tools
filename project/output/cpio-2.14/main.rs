@@ -291,7 +291,21 @@ pub enum archive_format {
     arf_ustar,
     arf_hpoldascii,
     arf_hpbinary,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::arf_unknown => 0,
+            archive_format::arf_binary => 1,
+            archive_format::arf_oldascii => 2,
+            archive_format::arf_newascii => 3,
+            archive_format::arf_crcascii => 4,
+            archive_format::arf_tar => 5,
+            archive_format::arf_ustar => 6,
+            archive_format::arf_hpoldascii => 7,
+            archive_format::arf_hpbinary => 8,
+        }
+    }
+}
 
 pub const TO_STDOUT_OPTION: cpio_options = 267;
 pub const FORCE_LOCAL_OPTION: cpio_options = 264;
@@ -333,7 +347,28 @@ pub enum cpio_options {
     IGNORE_DEVNO_OPTION,
     IGNORE_DIRNLINK_OPTION,
     DEVICE_INDEPENDENT_OPTION,
-}  // end of enum
+impl cpio_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cpio_options::NO_ABSOLUTE_FILENAMES_OPTION => 256,
+            cpio_options::ABSOLUTE_FILENAMES_OPTION => 257,
+            cpio_options::NO_PRESERVE_OWNER_OPTION => 258,
+            cpio_options::ONLY_VERIFY_CRC_OPTION => 259,
+            cpio_options::RENAME_BATCH_FILE_OPTION => 260,
+            cpio_options::RSH_COMMAND_OPTION => 261,
+            cpio_options::QUIET_OPTION => 262,
+            cpio_options::SPARSE_OPTION => 263,
+            cpio_options::FORCE_LOCAL_OPTION => 264,
+            cpio_options::DEBUG_OPTION => 265,
+            cpio_options::BLOCK_SIZE_OPTION => 266,
+            cpio_options::TO_STDOUT_OPTION => 267,
+            cpio_options::RENUMBER_INODES_OPTION => 268,
+            cpio_options::IGNORE_DEVNO_OPTION => 269,
+            cpio_options::IGNORE_DIRNLINK_OPTION => 270,
+            cpio_options::DEVICE_INDEPENDENT_OPTION => 271,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {

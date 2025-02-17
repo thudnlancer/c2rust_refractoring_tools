@@ -75,7 +75,15 @@ pub enum symtype {
     SymUndefined,
     SymToken,
     SymIdentifier,
-}  // end of enum
+impl symtype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symtype::SymUndefined => 0,
+            symtype::SymToken => 1,
+            symtype::SymIdentifier => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -85,7 +93,17 @@ pub enum storage {
     StaticStorage,
     AutoStorage,
     AnyStorage,
-}  // end of enum
+impl storage {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            storage::ExternStorage => 0,
+            storage::ExplicitExternStorage => 1,
+            storage::StaticStorage => 2,
+            storage::AutoStorage => 3,
+            storage::AnyStorage => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -94,7 +112,16 @@ pub enum symbol_flag {
     symbol_temp,
     symbol_parm,
     symbol_alias,
-}  // end of enum
+impl symbol_flag {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            symbol_flag::symbol_none => 0,
+            symbol_flag::symbol_temp => 1,
+            symbol_flag::symbol_parm => 2,
+            symbol_flag::symbol_alias => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -132,7 +159,19 @@ pub enum cflow_output_command {
     cflow_output_separator,
     cflow_output_symbol,
     cflow_output_text,
-}  // end of enum
+impl cflow_output_command {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cflow_output_command::cflow_output_init => 0,
+            cflow_output_command::cflow_output_begin => 1,
+            cflow_output_command::cflow_output_end => 2,
+            cflow_output_command::cflow_output_newline => 3,
+            cflow_output_command::cflow_output_separator => 4,
+            cflow_output_command::cflow_output_symbol => 5,
+            cflow_output_command::cflow_output_text => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

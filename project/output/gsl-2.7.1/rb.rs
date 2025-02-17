@@ -130,7 +130,14 @@ pub const RB_RED: rb_color = 1;
 pub enum rb_color {
     RB_BLACK,
     RB_RED,
-}  // end of enum
+impl rb_color {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            rb_color::RB_BLACK => 0,
+            rb_color::RB_RED => 1,
+        }
+    }
+}
 
 pub type rb_color = libc::c_uint;
 pub type C2RustUnnamed = libc::c_int;

@@ -41,7 +41,13 @@ pub const native_c_charset: C2RustUnnamed_0 = 1;
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     native_c_charset = 1,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::native_c_charset => 1,
+        }
+    }
+}
 
 pub type C2RustUnnamed_0 = libc::c_uint;
 unsafe extern "C" fn is_using_utf8() -> bool {

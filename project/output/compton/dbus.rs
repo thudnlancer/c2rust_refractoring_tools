@@ -478,7 +478,15 @@ pub enum DBusBusType {
     DBUS_BUS_STARTER = 2,
     DBUS_BUS_SYSTEM = 1,
     DBUS_BUS_SESSION = 0,
-}  // end of enum
+impl DBusBusType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            DBusBusType::DBUS_BUS_STARTER => 2,
+            DBusBusType::DBUS_BUS_SYSTEM => 1,
+            DBusBusType::DBUS_BUS_SESSION => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -487,7 +495,16 @@ pub enum C2RustUnnamed_0 {
     DBUS_WATCH_ERROR = 4,
     DBUS_WATCH_WRITABLE = 2,
     DBUS_WATCH_READABLE = 1,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::DBUS_WATCH_HANGUP => 8,
+            C2RustUnnamed_0::DBUS_WATCH_ERROR => 4,
+            C2RustUnnamed_0::DBUS_WATCH_WRITABLE => 2,
+            C2RustUnnamed_0::DBUS_WATCH_READABLE => 1,
+        }
+    }
+}
 
 pub type DBusAddWatchFunction = Option::<
     unsafe extern "C" fn(*mut DBusWatch, *mut libc::c_void) -> dbus_bool_t,
@@ -535,7 +552,28 @@ pub enum wintype_t {
     WINTYPE_COMBO,
     WINTYPE_DND,
     NUM_WINTYPES,
-}  // end of enum
+impl wintype_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wintype_t::WINTYPE_UNKNOWN => 0,
+            wintype_t::WINTYPE_DESKTOP => 1,
+            wintype_t::WINTYPE_DOCK => 2,
+            wintype_t::WINTYPE_TOOLBAR => 3,
+            wintype_t::WINTYPE_MENU => 4,
+            wintype_t::WINTYPE_UTILITY => 5,
+            wintype_t::WINTYPE_SPLASH => 6,
+            wintype_t::WINTYPE_DIALOG => 7,
+            wintype_t::WINTYPE_NORMAL => 8,
+            wintype_t::WINTYPE_DROPDOWN_MENU => 9,
+            wintype_t::WINTYPE_POPUP_MENU => 10,
+            wintype_t::WINTYPE_TOOLTIP => 11,
+            wintype_t::WINTYPE_NOTIFY => 12,
+            wintype_t::WINTYPE_COMBO => 13,
+            wintype_t::WINTYPE_DND => 14,
+            wintype_t::NUM_WINTYPES => 15,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -543,7 +581,15 @@ pub enum switch_t {
     OFF,
     ON,
     UNSET,
-}  // end of enum
+impl switch_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            switch_t::OFF => 0,
+            switch_t::ON => 1,
+            switch_t::UNSET => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -567,7 +613,15 @@ pub enum winmode_t {
     WMODE_TRANS,
     WMODE_SOLID,
     WMODE_ARGB,
-}  // end of enum
+impl winmode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            winmode_t::WMODE_TRANS => 0,
+            winmode_t::WMODE_SOLID => 1,
+            winmode_t::WMODE_ARGB => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -586,7 +640,19 @@ pub enum vsync_t {
     VSYNC_OPENGL_SWC,
     VSYNC_OPENGL_MSWC,
     NUM_VSYNC,
-}  // end of enum
+impl vsync_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            vsync_t::VSYNC_NONE => 0,
+            vsync_t::VSYNC_DRM => 1,
+            vsync_t::VSYNC_OPENGL => 2,
+            vsync_t::VSYNC_OPENGL_OML => 3,
+            vsync_t::VSYNC_OPENGL_SWC => 4,
+            vsync_t::VSYNC_OPENGL_MSWC => 5,
+            vsync_t::NUM_VSYNC => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -595,7 +661,16 @@ pub enum backend {
     BKEND_GLX,
     BKEND_XR_GLX_HYBRID,
     NUM_BKEND,
-}  // end of enum
+impl backend {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backend::BKEND_XRENDER => 0,
+            backend::BKEND_GLX => 1,
+            backend::BKEND_XR_GLX_HYBRID => 2,
+            backend::NUM_BKEND => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

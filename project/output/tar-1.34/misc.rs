@@ -247,14 +247,29 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
-}  // end of enum
+impl savedir_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            savedir_option::SAVEDIR_SORT_NONE => 0,
+            savedir_option::SAVEDIR_SORT_NAME => 1,
+            savedir_option::SAVEDIR_SORT_INODE => 2,
+            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
+        }
+    }
+}
 
 pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::DEFAULT_MXFAST => 128,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -264,7 +279,16 @@ pub enum backup_type {
     simple_backups,
     numbered_existing_backups,
     numbered_backups,
-}  // end of enum
+impl backup_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backup_type::no_backups => 0,
+            backup_type::simple_backups => 1,
+            backup_type::numbered_existing_backups => 2,
+            backup_type::numbered_backups => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -280,7 +304,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -304,7 +344,14 @@ pub const BILLION: C2RustUnnamed_0 = 1000000000;
 pub enum C2RustUnnamed_0 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::BILLION => 1000000000,
+            C2RustUnnamed_0::LOG10_BILLION => 9,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -312,25 +359,31 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
-}  // end of enum
+impl remove_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            remove_option::ORDINARY_REMOVE_OPTION => 0,
+            remove_option::RECURSIVE_REMOVE_OPTION => 1,
+            remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     CHDIR_CACHE_SIZE = 16,
-}  // end of enum
-ebuf {
-    pub buffer: *mut libc::c_char,
-    pub buffer_size: size_t,
-    pub dir_length: size_t,
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::CHDIR_CACHE_SIZE => 16,
+        }
+    }
 }
-pub const BILLION: C2RustUnnamed_0 = 1000000000;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
-}  // end of enum
+2RustUnnamed_0::LOG10_BILLION => 9,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -338,7 +391,15 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
-}  // end of enum
+impl remove_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            remove_option::ORDINARY_REMOVE_OPTION => 0,
+            remove_option::RECURSIVE_REMOVE_OPTION => 1,
+            remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
+        }
+    }
+}
 
 pub type C2RustUnnamed_1 = libc::c_uint;
 #[inline]

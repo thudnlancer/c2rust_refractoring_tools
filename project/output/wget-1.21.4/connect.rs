@@ -341,7 +341,15 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
-}  // end of enum
+impl compression_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            compression_options::compression_none => 2,
+            compression_options::compression_gzip => 1,
+            compression_options::compression_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -349,7 +357,15 @@ pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::prefer_none => 2,
+            C2RustUnnamed::prefer_ipv6 => 1,
+            C2RustUnnamed::prefer_ipv4 => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -357,7 +373,15 @@ pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::restrict_uppercase => 2,
+            C2RustUnnamed_0::restrict_lowercase => 1,
+            C2RustUnnamed_0::restrict_no_case_restriction => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -365,14 +389,29 @@ pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::restrict_windows => 2,
+            C2RustUnnamed_1::restrict_vms => 1,
+            C2RustUnnamed_1::restrict_unix => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
-}  // end of enum
+impl keyfile_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            keyfile_type::keyfile_asn1 => 1,
+            keyfile_type::keyfile_pem => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -385,14 +424,34 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::secure_protocol_pfs => 7,
+            C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
+            C2RustUnnamed_2::secure_protocol_tlsv1_2 => 5,
+            C2RustUnnamed_2::secure_protocol_tlsv1_1 => 4,
+            C2RustUnnamed_2::secure_protocol_tlsv1 => 3,
+            C2RustUnnamed_2::secure_protocol_sslv3 => 2,
+            C2RustUnnamed_2::secure_protocol_sslv2 => 1,
+            C2RustUnnamed_2::secure_protocol_auto => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::regex_type_posix => 1,
+            C2RustUnnamed_3::regex_type_pcre => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -402,7 +461,17 @@ pub enum log_options {
     LOG_NONVERBOSE,
     LOG_ALWAYS,
     LOG_PROGRESS,
-}  // end of enum
+impl log_options {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            log_options::LOG_VERBOSE => 0,
+            log_options::LOG_NOTQUIET => 1,
+            log_options::LOG_NONVERBOSE => 2,
+            log_options::LOG_ALWAYS => 3,
+            log_options::LOG_PROGRESS => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -417,7 +486,22 @@ pub enum C2RustUnnamed_4 {
     WGET_EXIT_PROTOCOL_ERROR = 7,
     WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
-}  // end of enum
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::WGET_EXIT_SUCCESS => 0,
+            C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR => 1,
+            C2RustUnnamed_4::WGET_EXIT_PARSE_ERROR => 2,
+            C2RustUnnamed_4::WGET_EXIT_IO_FAIL => 3,
+            C2RustUnnamed_4::WGET_EXIT_NETWORK_FAIL => 4,
+            C2RustUnnamed_4::WGET_EXIT_SSL_AUTH_FAIL => 5,
+            C2RustUnnamed_4::WGET_EXIT_SERVER_AUTH_FAIL => 6,
+            C2RustUnnamed_4::WGET_EXIT_PROTOCOL_ERROR => 7,
+            C2RustUnnamed_4::WGET_EXIT_SERVER_ERROR => 8,
+            C2RustUnnamed_4::WGET_EXIT_UNKNOWN => 9,
+        }
+    }
+}
 
 pub type socklen_t = __socklen_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -432,7 +516,21 @@ pub enum __socket_type {
     SOCK_RAW = 3,
     SOCK_DGRAM = 2,
     SOCK_STREAM = 1,
-}  // end of enum
+impl __socket_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __socket_type::SOCK_NONBLOCK => 2048,
+            __socket_type::SOCK_CLOEXEC => 524288,
+            __socket_type::SOCK_PACKET => 10,
+            __socket_type::SOCK_DCCP => 6,
+            __socket_type::SOCK_SEQPACKET => 5,
+            __socket_type::SOCK_RDM => 4,
+            __socket_type::SOCK_RAW => 3,
+            __socket_type::SOCK_DGRAM => 2,
+            __socket_type::SOCK_STREAM => 1,
+        }
+    }
+}
 
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
@@ -473,7 +571,34 @@ pub enum C2RustUnnamed_5 {
     MSG_DONTROUTE = 4,
     MSG_PEEK = 2,
     MSG_OOB = 1,
-}  // end of enum
+impl C2RustUnnamed_5 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_5::MSG_CMSG_CLOEXEC => 1073741824,
+            C2RustUnnamed_5::MSG_FASTOPEN => 536870912,
+            C2RustUnnamed_5::MSG_ZEROCOPY => 67108864,
+            C2RustUnnamed_5::MSG_BATCH => 262144,
+            C2RustUnnamed_5::MSG_WAITFORONE => 65536,
+            C2RustUnnamed_5::MSG_MORE => 32768,
+            C2RustUnnamed_5::MSG_NOSIGNAL => 16384,
+            C2RustUnnamed_5::MSG_ERRQUEUE => 8192,
+            C2RustUnnamed_5::MSG_RST => 4096,
+            C2RustUnnamed_5::MSG_CONFIRM => 2048,
+            C2RustUnnamed_5::MSG_SYN => 1024,
+            C2RustUnnamed_5::MSG_FIN => 512,
+            C2RustUnnamed_5::MSG_WAITALL => 256,
+            C2RustUnnamed_5::MSG_EOR => 128,
+            C2RustUnnamed_5::MSG_DONTWAIT => 64,
+            C2RustUnnamed_5::MSG_TRUNC => 32,
+            C2RustUnnamed_5::MSG_PROXY => 16,
+            C2RustUnnamed_5::MSG_CTRUNC => 8,
+            C2RustUnnamed_5::MSG_TRYHARD => 4,
+            C2RustUnnamed_5::MSG_DONTROUTE => 4,
+            C2RustUnnamed_5::MSG_PEEK => 2,
+            C2RustUnnamed_5::MSG_OOB => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -574,7 +699,38 @@ pub enum C2RustUnnamed_7 {
     IPPROTO_IGMP = 2,
     IPPROTO_ICMP = 1,
     IPPROTO_IP = 0,
-}  // end of enum
+impl C2RustUnnamed_7 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_7::IPPROTO_MAX => 256,
+            C2RustUnnamed_7::IPPROTO_RAW => 255,
+            C2RustUnnamed_7::IPPROTO_MPLS => 137,
+            C2RustUnnamed_7::IPPROTO_UDPLITE => 136,
+            C2RustUnnamed_7::IPPROTO_SCTP => 132,
+            C2RustUnnamed_7::IPPROTO_COMP => 108,
+            C2RustUnnamed_7::IPPROTO_PIM => 103,
+            C2RustUnnamed_7::IPPROTO_ENCAP => 98,
+            C2RustUnnamed_7::IPPROTO_BEETPH => 94,
+            C2RustUnnamed_7::IPPROTO_MTP => 92,
+            C2RustUnnamed_7::IPPROTO_AH => 51,
+            C2RustUnnamed_7::IPPROTO_ESP => 50,
+            C2RustUnnamed_7::IPPROTO_GRE => 47,
+            C2RustUnnamed_7::IPPROTO_RSVP => 46,
+            C2RustUnnamed_7::IPPROTO_IPV6 => 41,
+            C2RustUnnamed_7::IPPROTO_DCCP => 33,
+            C2RustUnnamed_7::IPPROTO_TP => 29,
+            C2RustUnnamed_7::IPPROTO_IDP => 22,
+            C2RustUnnamed_7::IPPROTO_UDP => 17,
+            C2RustUnnamed_7::IPPROTO_PUP => 12,
+            C2RustUnnamed_7::IPPROTO_EGP => 8,
+            C2RustUnnamed_7::IPPROTO_TCP => 6,
+            C2RustUnnamed_7::IPPROTO_IPIP => 4,
+            C2RustUnnamed_7::IPPROTO_IGMP => 2,
+            C2RustUnnamed_7::IPPROTO_ICMP => 1,
+            C2RustUnnamed_7::IPPROTO_IP => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -595,7 +751,15 @@ pub enum C2RustUnnamed_9 {
     LH_SILENT = 1,
     LH_BIND = 2,
     LH_REFRESH = 4,
-}  // end of enum
+impl C2RustUnnamed_9 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_9::LH_SILENT => 1,
+            C2RustUnnamed_9::LH_BIND => 2,
+            C2RustUnnamed_9::LH_REFRESH => 4,
+        }
+    }
+}
 
 pub type C2RustUnnamed_10 = libc::c_int;
 pub const E_HOST: C2RustUnnamed_10 = -100;
@@ -662,20 +826,34 @@ pub const WAIT_FOR_WRITE: C2RustUnnamed_12 = 2;
 pub enum C2RustUnnamed_11 {
     ENDPOINT_LOCAL,
     ENDPOINT_PEER,
-}  // end of enum
+impl C2RustUnnamed_11 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_11::ENDPOINT_LOCAL => 0,
+            C2RustUnnamed_11::ENDPOINT_PEER => 1,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
     WAIT_FOR_READ = 1,
     WAIT_FOR_WRITE = 2,
-}  // end of enum
-q, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_11 {
-    ENDPOINT_LOCAL,
-    ENDPOINT_PEER,
-}  // end of enum
+impl C2RustUnnamed_12 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_12::WAIT_FOR_READ => 1,
+            C2RustUnnamed_12::WAIT_FOR_WRITE => 2,
+        }
+    }
+}
+     match self {
+            C2RustUnnamed_11::ENDPOINT_LOCAL => 0,
+            C2RustUnnamed_11::ENDPOINT_PEER => 1,
+        }
+    }
+}
 
 pub type C2RustUnnamed_12 = libc::c_uint;
 unsafe extern "C" fn sockaddr_set_data(

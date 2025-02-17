@@ -420,7 +420,24 @@ pub enum C2RustUnnamed_10 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_10 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_10::_ISalnum => 8,
+            C2RustUnnamed_10::_ISpunct => 4,
+            C2RustUnnamed_10::_IScntrl => 2,
+            C2RustUnnamed_10::_ISblank => 1,
+            C2RustUnnamed_10::_ISgraph => 32768,
+            C2RustUnnamed_10::_ISprint => 16384,
+            C2RustUnnamed_10::_ISspace => 8192,
+            C2RustUnnamed_10::_ISxdigit => 4096,
+            C2RustUnnamed_10::_ISdigit => 2048,
+            C2RustUnnamed_10::_ISalpha => 1024,
+            C2RustUnnamed_10::_ISlower => 512,
+            C2RustUnnamed_10::_ISupper => 256,
+        }
+    }
+}
 
 pub type uintmax_t = __uintmax_t;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -478,7 +495,16 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
-}  // end of enum
+impl cmd_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            cmd_state::cs_finished => 3,
+            cmd_state::cs_running => 2,
+            cmd_state::cs_deps_running => 1,
+            cmd_state::cs_not_started => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -487,7 +513,16 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
-}  // end of enum
+impl update_status {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            update_status::us_failed => 3,
+            update_status::us_question => 2,
+            update_status::us_none => 1,
+            update_status::us_success => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -599,7 +634,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -612,16 +656,21 @@ pub enum variable_origin {
     o_override,
     o_automatic,
     o_invalid,
-}  // end of enum
-ault: variable_origin = 0;
-#[derive(Copy, Clone, BitfieldStruct)]
-#[repr(C)]
-pub struct variable {
-    pub name: *mut libc::c_char,
-    pub value: *mut libc::c_char,
-    pub fileinfo: floc,
-    pub length: libc::c_uint,
-    #[bitfield(name = "recursive", ty = "libc::c_uint", bits = "0..=0")]
+impl variable_origin {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_origin::o_default => 0,
+            variable_origin::o_env => 1,
+            variable_origin::o_file => 2,
+            variable_origin::o_env_override => 3,
+            variable_origin::o_command => 4,
+            variable_origin::o_override => 5,
+            variable_origin::o_automatic => 6,
+            variable_origin::o_invalid => 7,
+        }
+    }
+}
+_uint", bits = "0..=0")]
     #[bitfield(name = "append", ty = "libc::c_uint", bits = "1..=1")]
     #[bitfield(name = "conditional", ty = "libc::c_uint", bits = "2..=2")]
     #[bitfield(name = "per_target", ty = "libc::c_uint", bits = "3..=3")]
@@ -642,7 +691,16 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
-}  // end of enum
+impl variable_export {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_export::v_default => 0,
+            variable_export::v_export => 1,
+            variable_export::v_noexport => 2,
+            variable_export::v_ifset => 3,
+        }
+    }
+}
 
 pub type variable_origin = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -656,7 +714,20 @@ pub enum variable_flavor {
     f_conditional,
     f_shell,
     f_append_value,
-}  // end of enum
+impl variable_flavor {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_flavor::f_bogus => 0,
+            variable_flavor::f_simple => 1,
+            variable_flavor::f_recursive => 2,
+            variable_flavor::f_expand => 3,
+            variable_flavor::f_append => 4,
+            variable_flavor::f_conditional => 5,
+            variable_flavor::f_shell => 6,
+            variable_flavor::f_append_value => 7,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -701,7 +772,20 @@ pub enum C2RustUnnamed_11 {
     string = 2,
     flag_off = 1,
     flag = 0,
-}  // end of enum
+impl C2RustUnnamed_11 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_11::ignore => 7,
+            C2RustUnnamed_11::floating => 6,
+            C2RustUnnamed_11::positive_int => 5,
+            C2RustUnnamed_11::filename => 4,
+            C2RustUnnamed_11::strlist => 3,
+            C2RustUnnamed_11::string => 2,
+            C2RustUnnamed_11::flag_off => 1,
+            C2RustUnnamed_11::flag => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]

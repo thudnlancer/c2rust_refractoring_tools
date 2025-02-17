@@ -343,7 +343,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -365,7 +382,14 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
-}  // end of enum
+impl AFMBoolean {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMBoolean::AFMFalse => 0,
+            AFMBoolean::AFMTrue => 1,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -514,7 +538,25 @@ pub enum AFMEncoding {
     AFM_ENCODING_VMS,
     AFM_ENCODING_HP8,
     AFM_ENCODING_KOI8,
-}  // end of enum
+impl AFMEncoding {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AFMEncoding::AFM_ENCODING_DEFAULT => 0,
+            AFMEncoding::AFM_ENCODING_ISO_8859_1 => 1,
+            AFMEncoding::AFM_ENCODING_ISO_8859_2 => 2,
+            AFMEncoding::AFM_ENCODING_ISO_8859_3 => 3,
+            AFMEncoding::AFM_ENCODING_ISO_8859_4 => 4,
+            AFMEncoding::AFM_ENCODING_ISO_8859_5 => 5,
+            AFMEncoding::AFM_ENCODING_ISO_8859_7 => 6,
+            AFMEncoding::AFM_ENCODING_IBMPC => 7,
+            AFMEncoding::AFM_ENCODING_ASCII => 8,
+            AFMEncoding::AFM_ENCODING_MAC => 9,
+            AFMEncoding::AFM_ENCODING_VMS => 10,
+            AFMEncoding::AFM_ENCODING_HP8 => 11,
+            AFMEncoding::AFM_ENCODING_KOI8 => 12,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -567,7 +609,27 @@ pub enum InputEncoding {
     ENC_HP8,
     ENC_KOI8,
     ENC_PS,
-}  // end of enum
+impl InputEncoding {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            InputEncoding::ENC_ISO_8859_1 => 0,
+            InputEncoding::ENC_ISO_8859_2 => 1,
+            InputEncoding::ENC_ISO_8859_3 => 2,
+            InputEncoding::ENC_ISO_8859_4 => 3,
+            InputEncoding::ENC_ISO_8859_5 => 4,
+            InputEncoding::ENC_ISO_8859_7 => 5,
+            InputEncoding::ENC_ASCII => 6,
+            InputEncoding::ENC_ASCII_FISE => 7,
+            InputEncoding::ENC_ASCII_DKNO => 8,
+            InputEncoding::ENC_IBMPC => 9,
+            InputEncoding::ENC_MAC => 10,
+            InputEncoding::ENC_VMS => 11,
+            InputEncoding::ENC_HP8 => 12,
+            InputEncoding::ENC_KOI8 => 13,
+            InputEncoding::ENC_PS => 14,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -575,7 +637,15 @@ pub enum FormFeedType {
     FORMFEED_COLUMN,
     FORMFEED_PAGE,
     FORMFEED_HCOLUMN,
-}  // end of enum
+impl FormFeedType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            FormFeedType::FORMFEED_COLUMN => 0,
+            FormFeedType::FORMFEED_PAGE => 1,
+            FormFeedType::FORMFEED_HCOLUMN => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

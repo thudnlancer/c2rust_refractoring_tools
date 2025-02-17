@@ -74,7 +74,16 @@ pub enum argv_iter_err {
     AI_ERR_MEM = 3,
     AI_ERR_EOF = 2,
     AI_ERR_OK = 1,
-}  // end of enum
+impl argv_iter_err {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            argv_iter_err::AI_ERR_READ => 4,
+            argv_iter_err::AI_ERR_MEM => 3,
+            argv_iter_err::AI_ERR_EOF => 2,
+            argv_iter_err::AI_ERR_OK => 1,
+        }
+    }
+}
 
 #[no_mangle]
 pub unsafe extern "C" fn argv_iter_init_argv(

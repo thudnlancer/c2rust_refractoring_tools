@@ -12,7 +12,15 @@ pub enum codetype {
     CODES,
     LENS,
     DISTS,
-}  // end of enum
+impl codetype {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            codetype::CODES => 0,
+            codetype::LENS => 1,
+            codetype::DISTS => 2,
+        }
+    }
+}
 
 #[no_mangle]
 pub static mut _glp_zlib_inflate_copyright: [libc::c_char; 47] = unsafe {

@@ -131,7 +131,27 @@ pub enum tokens {
     NUM,
     SEMI,
     STRING,
-}  // end of enum
+impl tokens {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            tokens::DELIM => 0,
+            tokens::DIGIT => 1,
+            tokens::IDCHAR => 2,
+            tokens::NEWLN => 3,
+            tokens::LETTER => 4,
+            tokens::Letter => 5,
+            tokens::PERIOD => 6,
+            tokens::SBEGIN => 7,
+            tokens::SPACE => 8,
+            tokens::UNKN => 9,
+            tokens::COLON => 10,
+            tokens::ID => 11,
+            tokens::NUM => 12,
+            tokens::SEMI => 13,
+            tokens::STRING => 14,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -172,7 +192,15 @@ pub enum maker {
     notmade,
     real,
     effective,
-}  // end of enum
+impl maker {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            maker::notmade => 0,
+            maker::real => 1,
+            maker::effective => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

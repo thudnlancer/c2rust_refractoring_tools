@@ -67,7 +67,15 @@ pub enum sexp_mode {
     SEXP_CANONICAL = 0,
     SEXP_ADVANCED = 1,
     SEXP_TRANSPORT = 2,
-}  // end of enum
+impl sexp_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            sexp_mode::SEXP_CANONICAL => 0,
+            sexp_mode::SEXP_ADVANCED => 1,
+            sexp_mode::SEXP_TRANSPORT => 2,
+        }
+    }
+}
 
 pub type uint8_t = __uint8_t;
 pub type nettle_realloc_func = unsafe extern "C" fn(

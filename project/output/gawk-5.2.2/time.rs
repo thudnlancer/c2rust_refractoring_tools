@@ -121,7 +121,14 @@ pub struct stat {
 pub enum awk_bool {
     awk_false = 0,
     awk_true,
-}  // end of enum
+impl awk_bool {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            awk_bool::awk_false => 0,
+            awk_bool::awk_true => 1,
+        }
+    }
+}
 
 pub type awk_bool_t = awk_bool;
 #[derive(Copy, Clone)]
@@ -236,7 +243,14 @@ pub type awk_two_way_processor_t = awk_two_way_processor;
 pub enum C2RustUnnamed {
     GAWK_API_MINOR_VERSION = 2,
     GAWK_API_MAJOR_VERSION = 3,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::GAWK_API_MINOR_VERSION => 2,
+            C2RustUnnamed::GAWK_API_MAJOR_VERSION => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -251,7 +265,15 @@ pub enum AWK_NUMBER_TYPE {
     AWK_NUMBER_TYPE_DOUBLE,
     AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_MPZ,
-}  // end of enum
+impl AWK_NUMBER_TYPE {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE => 0,
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR => 1,
+            AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -276,7 +298,21 @@ pub enum awk_valtype_t {
     AWK_SCALAR,
     AWK_VALUE_COOKIE,
     AWK_BOOL,
-}  // end of enum
+impl awk_valtype_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            awk_valtype_t::AWK_UNDEFINED => 0,
+            awk_valtype_t::AWK_NUMBER => 1,
+            awk_valtype_t::AWK_STRING => 2,
+            awk_valtype_t::AWK_REGEX => 3,
+            awk_valtype_t::AWK_STRNUM => 4,
+            awk_valtype_t::AWK_ARRAY => 5,
+            awk_valtype_t::AWK_SCALAR => 6,
+            awk_valtype_t::AWK_VALUE_COOKIE => 7,
+            awk_valtype_t::AWK_BOOL => 8,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -308,7 +344,14 @@ pub struct awk_element {
 pub enum C2RustUnnamed_1 {
     AWK_ELEMENT_DELETE = 1,
     AWK_ELEMENT_DEFAULT = 0,
-}  // end of enum
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::AWK_ELEMENT_DELETE => 1,
+            C2RustUnnamed_1::AWK_ELEMENT_DEFAULT => 0,
+        }
+    }
+}
 
 pub type awk_element_t = awk_element;
 #[derive(Copy, Clone)]

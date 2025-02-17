@@ -58,7 +58,15 @@ pub enum __ord {
     REQUIRE_ORDER,
     PERMUTE,
     RETURN_IN_ORDER,
-}  // end of enum
+impl __ord {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __ord::REQUIRE_ORDER => 0,
+            __ord::PERMUTE => 1,
+            __ord::RETURN_IN_ORDER => 2,
+        }
+    }
+}
 
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]

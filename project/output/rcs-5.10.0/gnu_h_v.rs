@@ -44,7 +44,14 @@ pub const hv_help: hv_option_values = 0;
 pub enum hv_option_values {
     hv_version = 1,
     hv_help = 0,
-}  // end of enum
+impl hv_option_values {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            hv_option_values::hv_version => 1,
+            hv_option_values::hv_help => 0,
+        }
+    }
+}
 
 pub type hv_option_values = libc::c_uint;
 #[no_mangle]

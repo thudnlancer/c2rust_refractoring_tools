@@ -354,7 +354,15 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
-}  // end of enum
+impl access_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            access_mode::ACCESS_READ => 0,
+            access_mode::ACCESS_WRITE => 1,
+            access_mode::ACCESS_UPDATE => 2,
+        }
+    }
+}
 
 pub const HEADER_END_OF_FILE: read_header = 4;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -366,7 +374,18 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
-}  // end of enum
+impl read_header {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header::HEADER_STILL_UNREAD => 0,
+            read_header::HEADER_SUCCESS => 1,
+            read_header::HEADER_SUCCESS_EXTENDED => 2,
+            read_header::HEADER_ZERO_BLOCK => 3,
+            read_header::HEADER_END_OF_FILE => 4,
+            read_header::HEADER_FAILURE => 5,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -374,7 +393,15 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
-}  // end of enum
+impl read_header_mode {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_header_mode::read_header_auto => 0,
+            read_header_mode::read_header_x_raw => 1,
+            read_header_mode::read_header_x_global => 2,
+        }
+    }
+}
 
 static mut new_record: *mut block = 0 as *const block as *mut block;
 static mut new_blocks: libc::c_int = 0;

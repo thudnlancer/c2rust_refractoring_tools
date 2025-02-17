@@ -28,7 +28,13 @@ pub const STACK_BUF_SIZE: C2RustUnnamed = 1024;
 #[repr(C)]
 pub enum C2RustUnnamed {
     STACK_BUF_SIZE = 1024,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::STACK_BUF_SIZE => 1024,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 unsafe extern "C" fn readlink_stk(

@@ -232,7 +232,18 @@ pub enum yaml_scalar_style_e {
     YAML_SINGLE_QUOTED_SCALAR_STYLE = 2,
     YAML_PLAIN_SCALAR_STYLE = 1,
     YAML_ANY_SCALAR_STYLE = 0,
-}  // end of enum
+impl yaml_scalar_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_scalar_style_e::YAML_FOLDED_SCALAR_STYLE => 5,
+            yaml_scalar_style_e::YAML_LITERAL_SCALAR_STYLE => 4,
+            yaml_scalar_style_e::YAML_DOUBLE_QUOTED_SCALAR_STYLE => 3,
+            yaml_scalar_style_e::YAML_SINGLE_QUOTED_SCALAR_STYLE => 2,
+            yaml_scalar_style_e::YAML_PLAIN_SCALAR_STYLE => 1,
+            yaml_scalar_style_e::YAML_ANY_SCALAR_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -263,7 +274,16 @@ pub enum yaml_encoding_e {
     YAML_UTF8_ENCODING,
     YAML_UTF16LE_ENCODING,
     YAML_UTF16BE_ENCODING,
-}  // end of enum
+impl yaml_encoding_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_encoding_e::YAML_ANY_ENCODING => 0,
+            yaml_encoding_e::YAML_UTF8_ENCODING => 1,
+            yaml_encoding_e::YAML_UTF16LE_ENCODING => 2,
+            yaml_encoding_e::YAML_UTF16BE_ENCODING => 3,
+        }
+    }
+}
 
 pub type yaml_token_type_t = yaml_token_type_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -291,7 +311,34 @@ pub enum yaml_token_type_e {
     YAML_STREAM_END_TOKEN = 2,
     YAML_STREAM_START_TOKEN = 1,
     YAML_NO_TOKEN = 0,
-}  // end of enum
+impl yaml_token_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_token_type_e::YAML_SCALAR_TOKEN => 21,
+            yaml_token_type_e::YAML_TAG_TOKEN => 20,
+            yaml_token_type_e::YAML_ANCHOR_TOKEN => 19,
+            yaml_token_type_e::YAML_ALIAS_TOKEN => 18,
+            yaml_token_type_e::YAML_VALUE_TOKEN => 17,
+            yaml_token_type_e::YAML_KEY_TOKEN => 16,
+            yaml_token_type_e::YAML_FLOW_ENTRY_TOKEN => 15,
+            yaml_token_type_e::YAML_BLOCK_ENTRY_TOKEN => 14,
+            yaml_token_type_e::YAML_FLOW_MAPPING_END_TOKEN => 13,
+            yaml_token_type_e::YAML_FLOW_MAPPING_START_TOKEN => 12,
+            yaml_token_type_e::YAML_FLOW_SEQUENCE_END_TOKEN => 11,
+            yaml_token_type_e::YAML_FLOW_SEQUENCE_START_TOKEN => 10,
+            yaml_token_type_e::YAML_BLOCK_END_TOKEN => 9,
+            yaml_token_type_e::YAML_BLOCK_MAPPING_START_TOKEN => 8,
+            yaml_token_type_e::YAML_BLOCK_SEQUENCE_START_TOKEN => 7,
+            yaml_token_type_e::YAML_DOCUMENT_END_TOKEN => 6,
+            yaml_token_type_e::YAML_DOCUMENT_START_TOKEN => 5,
+            yaml_token_type_e::YAML_TAG_DIRECTIVE_TOKEN => 4,
+            yaml_token_type_e::YAML_VERSION_DIRECTIVE_TOKEN => 3,
+            yaml_token_type_e::YAML_STREAM_END_TOKEN => 2,
+            yaml_token_type_e::YAML_STREAM_START_TOKEN => 1,
+            yaml_token_type_e::YAML_NO_TOKEN => 0,
+        }
+    }
+}
 
 pub type yaml_event_t = yaml_event_s;
 #[derive(Copy, Clone)]
@@ -328,7 +375,15 @@ pub enum yaml_mapping_style_e {
     YAML_FLOW_MAPPING_STYLE = 2,
     YAML_BLOCK_MAPPING_STYLE = 1,
     YAML_ANY_MAPPING_STYLE = 0,
-}  // end of enum
+impl yaml_mapping_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_mapping_style_e::YAML_FLOW_MAPPING_STYLE => 2,
+            yaml_mapping_style_e::YAML_BLOCK_MAPPING_STYLE => 1,
+            yaml_mapping_style_e::YAML_ANY_MAPPING_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -345,7 +400,15 @@ pub enum yaml_sequence_style_e {
     YAML_FLOW_SEQUENCE_STYLE = 2,
     YAML_BLOCK_SEQUENCE_STYLE = 1,
     YAML_ANY_SEQUENCE_STYLE = 0,
-}  // end of enum
+impl yaml_sequence_style_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_sequence_style_e::YAML_FLOW_SEQUENCE_STYLE => 2,
+            yaml_sequence_style_e::YAML_BLOCK_SEQUENCE_STYLE => 1,
+            yaml_sequence_style_e::YAML_ANY_SEQUENCE_STYLE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -415,7 +478,23 @@ pub enum yaml_event_type_e {
     YAML_STREAM_END_EVENT = 2,
     YAML_STREAM_START_EVENT = 1,
     YAML_NO_EVENT = 0,
-}  // end of enum
+impl yaml_event_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_event_type_e::YAML_MAPPING_END_EVENT => 10,
+            yaml_event_type_e::YAML_MAPPING_START_EVENT => 9,
+            yaml_event_type_e::YAML_SEQUENCE_END_EVENT => 8,
+            yaml_event_type_e::YAML_SEQUENCE_START_EVENT => 7,
+            yaml_event_type_e::YAML_SCALAR_EVENT => 6,
+            yaml_event_type_e::YAML_ALIAS_EVENT => 5,
+            yaml_event_type_e::YAML_DOCUMENT_END_EVENT => 4,
+            yaml_event_type_e::YAML_DOCUMENT_START_EVENT => 3,
+            yaml_event_type_e::YAML_STREAM_END_EVENT => 2,
+            yaml_event_type_e::YAML_STREAM_START_EVENT => 1,
+            yaml_event_type_e::YAML_NO_EVENT => 0,
+        }
+    }
+}
 
 pub type yaml_parser_t = yaml_parser_s;
 #[derive(Copy, Clone)]
@@ -546,7 +625,16 @@ pub enum yaml_node_type_e {
     YAML_SEQUENCE_NODE = 2,
     YAML_SCALAR_NODE = 1,
     YAML_NO_NODE = 0,
-}  // end of enum
+impl yaml_node_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_node_type_e::YAML_MAPPING_NODE => 3,
+            yaml_node_type_e::YAML_SEQUENCE_NODE => 2,
+            yaml_node_type_e::YAML_SCALAR_NODE => 1,
+            yaml_node_type_e::YAML_NO_NODE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -605,7 +693,36 @@ pub enum yaml_parser_state_e {
     YAML_PARSE_DOCUMENT_START_STATE = 2,
     YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE = 1,
     YAML_PARSE_STREAM_START_STATE = 0,
-}  // end of enum
+impl yaml_parser_state_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_parser_state_e::YAML_PARSE_END_STATE => 23,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_EMPTY_VALUE_STATE => 22,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_VALUE_STATE => 21,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_KEY_STATE => 20,
+            yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_FIRST_KEY_STATE => 19,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_END_STATE => 18,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_VALUE_STATE => 17,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_KEY_STATE => 16,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_STATE => 15,
+            yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_FIRST_ENTRY_STATE => 14,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_VALUE_STATE => 13,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_KEY_STATE => 12,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_FIRST_KEY_STATE => 11,
+            yaml_parser_state_e::YAML_PARSE_INDENTLESS_SEQUENCE_ENTRY_STATE => 10,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_ENTRY_STATE => 9,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_FIRST_ENTRY_STATE => 8,
+            yaml_parser_state_e::YAML_PARSE_FLOW_NODE_STATE => 7,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_OR_INDENTLESS_SEQUENCE_STATE => 6,
+            yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_STATE => 5,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_END_STATE => 4,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_CONTENT_STATE => 3,
+            yaml_parser_state_e::YAML_PARSE_DOCUMENT_START_STATE => 2,
+            yaml_parser_state_e::YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE => 1,
+            yaml_parser_state_e::YAML_PARSE_STREAM_START_STATE => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -734,7 +851,20 @@ pub enum yaml_error_type_e {
     YAML_READER_ERROR = 2,
     YAML_MEMORY_ERROR = 1,
     YAML_NO_ERROR = 0,
-}  // end of enum
+impl yaml_error_type_e {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            yaml_error_type_e::YAML_EMITTER_ERROR => 7,
+            yaml_error_type_e::YAML_WRITER_ERROR => 6,
+            yaml_error_type_e::YAML_COMPOSER_ERROR => 5,
+            yaml_error_type_e::YAML_PARSER_ERROR => 4,
+            yaml_error_type_e::YAML_SCANNER_ERROR => 3,
+            yaml_error_type_e::YAML_READER_ERROR => 2,
+            yaml_error_type_e::YAML_MEMORY_ERROR => 1,
+            yaml_error_type_e::YAML_NO_ERROR => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -1033,7 +1163,197 @@ pub enum msg_type {
     MSG_REQ_MC_GETS = 2,
     MSG_REQ_MC_GET = 1,
     MSG_UNKNOWN = 0,
-}  // end of enum
+impl msg_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            msg_type::MSG_SENTINEL => 184,
+            msg_type::MSG_RSP_REDIS_MULTIBULK => 183,
+            msg_type::MSG_RSP_REDIS_BULK => 182,
+            msg_type::MSG_RSP_REDIS_INTEGER => 181,
+            msg_type::MSG_RSP_REDIS_ERROR_NOREPLICAS => 180,
+            msg_type::MSG_RSP_REDIS_ERROR_MASTERDOWN => 179,
+            msg_type::MSG_RSP_REDIS_ERROR_EXECABORT => 178,
+            msg_type::MSG_RSP_REDIS_ERROR_WRONGTYPE => 177,
+            msg_type::MSG_RSP_REDIS_ERROR_READONLY => 176,
+            msg_type::MSG_RSP_REDIS_ERROR_NOSCRIPT => 175,
+            msg_type::MSG_RSP_REDIS_ERROR_MISCONF => 174,
+            msg_type::MSG_RSP_REDIS_ERROR_BUSYKEY => 173,
+            msg_type::MSG_RSP_REDIS_ERROR_LOADING => 172,
+            msg_type::MSG_RSP_REDIS_ERROR_NOAUTH => 171,
+            msg_type::MSG_RSP_REDIS_ERROR_BUSY => 170,
+            msg_type::MSG_RSP_REDIS_ERROR_OOM => 169,
+            msg_type::MSG_RSP_REDIS_ERROR_ERR => 168,
+            msg_type::MSG_RSP_REDIS_ERROR => 167,
+            msg_type::MSG_RSP_REDIS_STATUS => 166,
+            msg_type::MSG_REQ_REDIS_LOLWUT => 165,
+            msg_type::MSG_REQ_REDIS_COMMAND => 164,
+            msg_type::MSG_REQ_REDIS_SELECT => 163,
+            msg_type::MSG_REQ_REDIS_AUTH => 162,
+            msg_type::MSG_REQ_REDIS_QUIT => 161,
+            msg_type::MSG_REQ_REDIS_PING => 160,
+            msg_type::MSG_REQ_REDIS_EVALSHA => 159,
+            msg_type::MSG_REQ_REDIS_EVAL => 158,
+            msg_type::MSG_REQ_REDIS_GEOSEARCHSTORE => 157,
+            msg_type::MSG_REQ_REDIS_GEOSEARCH => 156,
+            msg_type::MSG_REQ_REDIS_GEOPOS => 155,
+            msg_type::MSG_REQ_REDIS_GEORADIUSBYMEMBER => 154,
+            msg_type::MSG_REQ_REDIS_GEORADIUS => 153,
+            msg_type::MSG_REQ_REDIS_GEOHASH => 152,
+            msg_type::MSG_REQ_REDIS_GEODIST => 151,
+            msg_type::MSG_REQ_REDIS_GEOADD => 150,
+            msg_type::MSG_REQ_REDIS_ZUNIONSTORE => 149,
+            msg_type::MSG_REQ_REDIS_ZSCORE => 148,
+            msg_type::MSG_REQ_REDIS_ZSCAN => 147,
+            msg_type::MSG_REQ_REDIS_ZUNION => 146,
+            msg_type::MSG_REQ_REDIS_ZREVRANK => 145,
+            msg_type::MSG_REQ_REDIS_ZREVRANGEBYSCORE => 144,
+            msg_type::MSG_REQ_REDIS_ZREVRANGEBYLEX => 143,
+            msg_type::MSG_REQ_REDIS_ZREVRANGE => 142,
+            msg_type::MSG_REQ_REDIS_ZREMRANGEBYSCORE => 141,
+            msg_type::MSG_REQ_REDIS_ZREMRANGEBYLEX => 140,
+            msg_type::MSG_REQ_REDIS_ZREMRANGEBYRANK => 139,
+            msg_type::MSG_REQ_REDIS_ZREM => 138,
+            msg_type::MSG_REQ_REDIS_ZRANK => 137,
+            msg_type::MSG_REQ_REDIS_ZRANGESTORE => 136,
+            msg_type::MSG_REQ_REDIS_ZRANGEBYSCORE => 135,
+            msg_type::MSG_REQ_REDIS_ZRANGEBYLEX => 134,
+            msg_type::MSG_REQ_REDIS_ZRANGE => 133,
+            msg_type::MSG_REQ_REDIS_ZRANDMEMBER => 132,
+            msg_type::MSG_REQ_REDIS_ZPOPMAX => 131,
+            msg_type::MSG_REQ_REDIS_ZPOPMIN => 130,
+            msg_type::MSG_REQ_REDIS_ZMSCORE => 129,
+            msg_type::MSG_REQ_REDIS_ZLEXCOUNT => 128,
+            msg_type::MSG_REQ_REDIS_ZINTERSTORE => 127,
+            msg_type::MSG_REQ_REDIS_ZINTER => 126,
+            msg_type::MSG_REQ_REDIS_ZINCRBY => 125,
+            msg_type::MSG_REQ_REDIS_ZDIFFSTORE => 124,
+            msg_type::MSG_REQ_REDIS_ZDIFF => 123,
+            msg_type::MSG_REQ_REDIS_ZCOUNT => 122,
+            msg_type::MSG_REQ_REDIS_ZCARD => 121,
+            msg_type::MSG_REQ_REDIS_ZADD => 120,
+            msg_type::MSG_REQ_REDIS_SSCAN => 119,
+            msg_type::MSG_REQ_REDIS_SUNIONSTORE => 118,
+            msg_type::MSG_REQ_REDIS_SUNION => 117,
+            msg_type::MSG_REQ_REDIS_SREM => 116,
+            msg_type::MSG_REQ_REDIS_SRANDMEMBER => 115,
+            msg_type::MSG_REQ_REDIS_SPOP => 114,
+            msg_type::MSG_REQ_REDIS_SMOVE => 113,
+            msg_type::MSG_REQ_REDIS_SMEMBERS => 112,
+            msg_type::MSG_REQ_REDIS_SMISMEMBER => 111,
+            msg_type::MSG_REQ_REDIS_SISMEMBER => 110,
+            msg_type::MSG_REQ_REDIS_SINTERSTORE => 109,
+            msg_type::MSG_REQ_REDIS_SINTER => 108,
+            msg_type::MSG_REQ_REDIS_SDIFFSTORE => 107,
+            msg_type::MSG_REQ_REDIS_SDIFF => 106,
+            msg_type::MSG_REQ_REDIS_SCARD => 105,
+            msg_type::MSG_REQ_REDIS_SADD => 104,
+            msg_type::MSG_REQ_REDIS_RPUSHX => 103,
+            msg_type::MSG_REQ_REDIS_RPUSH => 102,
+            msg_type::MSG_REQ_REDIS_RPOPLPUSH => 101,
+            msg_type::MSG_REQ_REDIS_RPOP => 100,
+            msg_type::MSG_REQ_REDIS_PFMERGE => 99,
+            msg_type::MSG_REQ_REDIS_PFCOUNT => 98,
+            msg_type::MSG_REQ_REDIS_PFADD => 97,
+            msg_type::MSG_REQ_REDIS_LTRIM => 96,
+            msg_type::MSG_REQ_REDIS_LSET => 95,
+            msg_type::MSG_REQ_REDIS_LREM => 94,
+            msg_type::MSG_REQ_REDIS_LRANGE => 93,
+            msg_type::MSG_REQ_REDIS_LPUSHX => 92,
+            msg_type::MSG_REQ_REDIS_LPUSH => 91,
+            msg_type::MSG_REQ_REDIS_LPOS => 90,
+            msg_type::MSG_REQ_REDIS_LPOP => 89,
+            msg_type::MSG_REQ_REDIS_LMOVE => 88,
+            msg_type::MSG_REQ_REDIS_LLEN => 87,
+            msg_type::MSG_REQ_REDIS_LINSERT => 86,
+            msg_type::MSG_REQ_REDIS_LINDEX => 85,
+            msg_type::MSG_REQ_REDIS_HVALS => 84,
+            msg_type::MSG_REQ_REDIS_HSTRLEN => 83,
+            msg_type::MSG_REQ_REDIS_HSCAN => 82,
+            msg_type::MSG_REQ_REDIS_HSETNX => 81,
+            msg_type::MSG_REQ_REDIS_HSET => 80,
+            msg_type::MSG_REQ_REDIS_HRANDFIELD => 79,
+            msg_type::MSG_REQ_REDIS_HMSET => 78,
+            msg_type::MSG_REQ_REDIS_HMGET => 77,
+            msg_type::MSG_REQ_REDIS_HLEN => 76,
+            msg_type::MSG_REQ_REDIS_HKEYS => 75,
+            msg_type::MSG_REQ_REDIS_HINCRBYFLOAT => 74,
+            msg_type::MSG_REQ_REDIS_HINCRBY => 73,
+            msg_type::MSG_REQ_REDIS_HGETALL => 72,
+            msg_type::MSG_REQ_REDIS_HGET => 71,
+            msg_type::MSG_REQ_REDIS_HEXISTS => 70,
+            msg_type::MSG_REQ_REDIS_HDEL => 69,
+            msg_type::MSG_REQ_REDIS_STRLEN => 68,
+            msg_type::MSG_REQ_REDIS_SETRANGE => 67,
+            msg_type::MSG_REQ_REDIS_SETNX => 66,
+            msg_type::MSG_REQ_REDIS_SETEX => 65,
+            msg_type::MSG_REQ_REDIS_SETBIT => 64,
+            msg_type::MSG_REQ_REDIS_SET => 63,
+            msg_type::MSG_REQ_REDIS_RESTORE => 62,
+            msg_type::MSG_REQ_REDIS_PSETEX => 61,
+            msg_type::MSG_REQ_REDIS_MSET => 60,
+            msg_type::MSG_REQ_REDIS_MGET => 59,
+            msg_type::MSG_REQ_REDIS_INCRBYFLOAT => 58,
+            msg_type::MSG_REQ_REDIS_INCRBY => 57,
+            msg_type::MSG_REQ_REDIS_INCR => 56,
+            msg_type::MSG_REQ_REDIS_GETSET => 55,
+            msg_type::MSG_REQ_REDIS_GETRANGE => 54,
+            msg_type::MSG_REQ_REDIS_GETEX => 53,
+            msg_type::MSG_REQ_REDIS_GETDEL => 52,
+            msg_type::MSG_REQ_REDIS_GETBIT => 51,
+            msg_type::MSG_REQ_REDIS_GET => 50,
+            msg_type::MSG_REQ_REDIS_DUMP => 49,
+            msg_type::MSG_REQ_REDIS_DECRBY => 48,
+            msg_type::MSG_REQ_REDIS_DECR => 47,
+            msg_type::MSG_REQ_REDIS_BITPOS => 46,
+            msg_type::MSG_REQ_REDIS_BITFIELD => 45,
+            msg_type::MSG_REQ_REDIS_BITCOUNT => 44,
+            msg_type::MSG_REQ_REDIS_APPEND => 43,
+            msg_type::MSG_REQ_REDIS_UNLINK => 42,
+            msg_type::MSG_REQ_REDIS_TYPE => 41,
+            msg_type::MSG_REQ_REDIS_TTL => 40,
+            msg_type::MSG_REQ_REDIS_TOUCH => 39,
+            msg_type::MSG_REQ_REDIS_SORT => 38,
+            msg_type::MSG_REQ_REDIS_PTTL => 37,
+            msg_type::MSG_REQ_REDIS_PERSIST => 36,
+            msg_type::MSG_REQ_REDIS_PEXPIREAT => 35,
+            msg_type::MSG_REQ_REDIS_PEXPIRE => 34,
+            msg_type::MSG_REQ_REDIS_MOVE => 33,
+            msg_type::MSG_REQ_REDIS_EXPIREAT => 32,
+            msg_type::MSG_REQ_REDIS_EXPIRE => 31,
+            msg_type::MSG_REQ_REDIS_EXISTS => 30,
+            msg_type::MSG_REQ_REDIS_DEL => 29,
+            msg_type::MSG_REQ_REDIS_COPY => 28,
+            msg_type::MSG_RSP_MC_SERVER_ERROR => 27,
+            msg_type::MSG_RSP_MC_CLIENT_ERROR => 26,
+            msg_type::MSG_RSP_MC_ERROR => 25,
+            msg_type::MSG_RSP_MC_VERSION => 24,
+            msg_type::MSG_RSP_MC_TOUCHED => 23,
+            msg_type::MSG_RSP_MC_DELETED => 22,
+            msg_type::MSG_RSP_MC_VALUE => 21,
+            msg_type::MSG_RSP_MC_END => 20,
+            msg_type::MSG_RSP_MC_NOT_FOUND => 19,
+            msg_type::MSG_RSP_MC_EXISTS => 18,
+            msg_type::MSG_RSP_MC_NOT_STORED => 17,
+            msg_type::MSG_RSP_MC_STORED => 16,
+            msg_type::MSG_RSP_MC_NUM => 15,
+            msg_type::MSG_REQ_MC_VERSION => 14,
+            msg_type::MSG_REQ_MC_QUIT => 13,
+            msg_type::MSG_REQ_MC_TOUCH => 12,
+            msg_type::MSG_REQ_MC_DECR => 11,
+            msg_type::MSG_REQ_MC_INCR => 10,
+            msg_type::MSG_REQ_MC_PREPEND => 9,
+            msg_type::MSG_REQ_MC_APPEND => 8,
+            msg_type::MSG_REQ_MC_REPLACE => 7,
+            msg_type::MSG_REQ_MC_ADD => 6,
+            msg_type::MSG_REQ_MC_SET => 5,
+            msg_type::MSG_REQ_MC_CAS => 4,
+            msg_type::MSG_REQ_MC_DELETE => 3,
+            msg_type::MSG_REQ_MC_GETS => 2,
+            msg_type::MSG_REQ_MC_GET => 1,
+            msg_type::MSG_UNKNOWN => 0,
+        }
+    }
+}
 
 pub type msg_coalesce_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;
 pub type msg_failure_t = Option::<unsafe extern "C" fn(*const msg) -> bool>;
@@ -1058,7 +1378,16 @@ pub enum msg_parse_result {
     MSG_PARSE_ERROR,
     MSG_PARSE_REPAIR,
     MSG_PARSE_AGAIN,
-}  // end of enum
+impl msg_parse_result {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            msg_parse_result::MSG_PARSE_OK => 0,
+            msg_parse_result::MSG_PARSE_ERROR => 1,
+            msg_parse_result::MSG_PARSE_REPAIR => 2,
+            msg_parse_result::MSG_PARSE_AGAIN => 3,
+        }
+    }
+}
 
 pub type msg_parse_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;
 #[derive(Copy, Clone)]
@@ -1320,7 +1649,31 @@ pub enum __rlimit_resource {
     RLIMIT_DATA = 2,
     RLIMIT_FSIZE = 1,
     RLIMIT_CPU = 0,
-}  // end of enum
+impl __rlimit_resource {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __rlimit_resource::__RLIM_NLIMITS => 16,
+            __rlimit_resource::__RLIMIT_NLIMITS => 16,
+            __rlimit_resource::__RLIMIT_RTTIME => 15,
+            __rlimit_resource::__RLIMIT_RTPRIO => 14,
+            __rlimit_resource::__RLIMIT_NICE => 13,
+            __rlimit_resource::__RLIMIT_MSGQUEUE => 12,
+            __rlimit_resource::__RLIMIT_SIGPENDING => 11,
+            __rlimit_resource::__RLIMIT_LOCKS => 10,
+            __rlimit_resource::__RLIMIT_MEMLOCK => 8,
+            __rlimit_resource::__RLIMIT_NPROC => 6,
+            __rlimit_resource::RLIMIT_AS => 9,
+            __rlimit_resource::__RLIMIT_OFILE => 7,
+            __rlimit_resource::RLIMIT_NOFILE => 7,
+            __rlimit_resource::__RLIMIT_RSS => 5,
+            __rlimit_resource::RLIMIT_CORE => 4,
+            __rlimit_resource::RLIMIT_STACK => 3,
+            __rlimit_resource::RLIMIT_DATA => 2,
+            __rlimit_resource::RLIMIT_FSIZE => 1,
+            __rlimit_resource::RLIMIT_CPU => 0,
+        }
+    }
+}
 
 pub type rlim_t = __rlim_t;
 #[derive(Copy, Clone)]

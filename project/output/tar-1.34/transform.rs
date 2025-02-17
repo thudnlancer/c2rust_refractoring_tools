@@ -185,7 +185,17 @@ pub enum case_ctl_type {
     ctl_locase_next,
     ctl_upcase,
     ctl_locase,
-}  // end of enum
+impl case_ctl_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            case_ctl_type::ctl_stop => 0,
+            case_ctl_type::ctl_upcase_next => 1,
+            case_ctl_type::ctl_locase_next => 2,
+            case_ctl_type::ctl_upcase => 3,
+            case_ctl_type::ctl_locase => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -199,14 +209,29 @@ pub enum replace_segm_type {
     segm_case_ctl = 2,
     segm_backref = 1,
     segm_literal = 0,
-}  // end of enum
+impl replace_segm_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            replace_segm_type::segm_case_ctl => 2,
+            replace_segm_type::segm_backref => 1,
+            replace_segm_type::segm_literal => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum transform_type {
     transform_global = 1,
     transform_first = 0,
-}  // end of enum
+impl transform_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            transform_type::transform_global => 1,
+            transform_type::transform_first => 0,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {

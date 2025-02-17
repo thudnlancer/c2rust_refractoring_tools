@@ -169,7 +169,22 @@ pub enum replacement_types {
     REPL_UPPERCASE_LOWERCASE,
     REPL_LOWERCASE_UPPERCASE,
     REPL_LOWERCASE_LOWERCASE,
-}  // end of enum
+impl replacement_types {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            replacement_types::REPL_ASIS => 0,
+            replacement_types::REPL_UPPERCASE => 1,
+            replacement_types::REPL_LOWERCASE => 2,
+            replacement_types::REPL_UPPERCASE_FIRST => 4,
+            replacement_types::REPL_LOWERCASE_FIRST => 8,
+            replacement_types::REPL_MODIFIERS => 12,
+            replacement_types::REPL_UPPERCASE_UPPERCASE => 5,
+            replacement_types::REPL_UPPERCASE_LOWERCASE => 6,
+            replacement_types::REPL_LOWERCASE_UPPERCASE => 9,
+            replacement_types::REPL_LOWERCASE_LOWERCASE => 10,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -200,7 +215,15 @@ pub enum addr_state {
     RANGE_INACTIVE,
     RANGE_ACTIVE,
     RANGE_CLOSED,
-}  // end of enum
+impl addr_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            addr_state::RANGE_INACTIVE => 0,
+            addr_state::RANGE_ACTIVE => 1,
+            addr_state::RANGE_CLOSED => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -220,7 +243,19 @@ pub enum addr_types {
     ADDR_IS_STEP,
     ADDR_IS_STEP_MOD,
     ADDR_IS_LAST,
-}  // end of enum
+impl addr_types {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            addr_types::ADDR_IS_NULL => 0,
+            addr_types::ADDR_IS_REGEX => 1,
+            addr_types::ADDR_IS_NUM => 2,
+            addr_types::ADDR_IS_NUM_MOD => 3,
+            addr_types::ADDR_IS_STEP => 4,
+            addr_types::ADDR_IS_STEP_MOD => 5,
+            addr_types::ADDR_IS_LAST => 6,
+        }
+    }
+}
 
 pub const _ISprint: C2RustUnnamed_0 = 16384;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -238,7 +273,24 @@ pub enum C2RustUnnamed_0 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISalnum => 8,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISlower => 512,
+            C2RustUnnamed_0::_ISupper => 256,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn putchar_unlocked(mut __c: libc::c_int) -> libc::c_int {

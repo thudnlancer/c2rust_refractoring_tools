@@ -304,7 +304,13 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[repr(C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TZBUFSIZE => 100,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -313,13 +319,16 @@ pub enum C2RustUnnamed_0 {
     MERpm = 1,
     MERam = 0,
     MER24 = 2,
-}  // end of enum
-tval: intmax_t,
-    pub textintval: textint,
-    pub timespec: timespec,
-    pub rel: relative_time,
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::MERpm => 1,
+            C2RustUnnamed_0::MERam => 0,
+            C2RustUnnamed_0::MER24 => 2,
+        }
+    }
 }
-pub type yysymbol_kind_t = libc::c_int;
+c::c_int;
 pub const YYSYMBOL_o_colon_minutes: yysymbol_kind_t = 53;
 pub const YYSYMBOL_hybrid: yysymbol_kind_t = 52;
 pub const YYSYMBOL_number: yysymbol_kind_t = 51;
@@ -412,7 +421,13 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[repr(C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TZBUFSIZE => 100,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -421,14 +436,24 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 pub enum C2RustUnnamed_1 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
-}  // end of enum
-E: yytokentype = 269;
-pub const TZBUFSIZE: C2RustUnnamed = 100;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::BILLION => 1000000000,
+            C2RustUnnamed_1::LOG10_BILLION => 9,
+        }
+    }
+}
+C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TZBUFSIZE => 100,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -438,14 +463,14 @@ pub type yytokentype = libc::c_int;
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     TM_YEAR_BASE = 1900,
-}  // end of enum
- yysymbol_kind_t = 50;
-pub const YYSYMBOL_signed_seconds: yysymbol_kind_t = 49;
-pub const YYSYMBOL_seconds: yysymbol_kind_t = 48;
-pub const YYSYMBOL_dayshift: yysymbol_kind_t = 47;
-pub const YYSYMBOL_relunit_snumber: yysymbol_kind_t = 46;
-pub const YYSYMBOL_relunit: yysymbol_kind_t = 45;
-pub const YYSYMBOL_rel: yysymbol_kind_t = 44;
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::TM_YEAR_BASE => 1900,
+        }
+    }
+}
+nd_t = 44;
 pub const YYSYMBOL_iso_8601_date: yysymbol_kind_t = 43;
 pub const YYSYMBOL_date: yysymbol_kind_t = 42;
 pub const YYSYMBOL_day: yysymbol_kind_t = 41;
@@ -528,7 +553,13 @@ pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[repr(C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TZBUFSIZE => 100,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;
@@ -537,14 +568,24 @@ pub type C2RustUnnamed_0 = libc::c_uint;
 pub enum C2RustUnnamed_1 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
-}  // end of enum
-E: yytokentype = 269;
-pub const TZBUFSIZE: C2RustUnnamed = 100;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::BILLION => 1000000000,
+            C2RustUnnamed_1::LOG10_BILLION => 9,
+        }
+    }
+}
+C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::TZBUFSIZE => 100,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 pub type C2RustUnnamed_0 = libc::c_uint;

@@ -124,7 +124,19 @@ pub enum NodeType {
     nREAL,
     nSYMBOL,
     nARRAY,
-}  // end of enum
+impl NodeType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            NodeType::nVOID => 0,
+            NodeType::nSTRING => 1,
+            NodeType::nREGEXP => 2,
+            NodeType::nINTEGER => 3,
+            NodeType::nREAL => 4,
+            NodeType::nSYMBOL => 5,
+            NodeType::nARRAY => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -208,7 +220,43 @@ pub enum ExprType {
     eNE,
     eGE,
     eLE,
-}  // end of enum
+impl ExprType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            ExprType::eSTRING => 0,
+            ExprType::eREGEXP => 1,
+            ExprType::eINTEGER => 2,
+            ExprType::eREAL => 3,
+            ExprType::eSYMBOL => 4,
+            ExprType::eNOT => 5,
+            ExprType::eAND => 6,
+            ExprType::eOR => 7,
+            ExprType::eFCALL => 8,
+            ExprType::eASSIGN => 9,
+            ExprType::eADDASSIGN => 10,
+            ExprType::eSUBASSIGN => 11,
+            ExprType::eMULASSIGN => 12,
+            ExprType::eDIVASSIGN => 13,
+            ExprType::ePOSTFIXADD => 14,
+            ExprType::ePOSTFIXSUB => 15,
+            ExprType::ePREFIXADD => 16,
+            ExprType::ePREFIXSUB => 17,
+            ExprType::eARRAYASSIGN => 18,
+            ExprType::eARRAYREF => 19,
+            ExprType::eQUESTCOLON => 20,
+            ExprType::eMULT => 21,
+            ExprType::eDIV => 22,
+            ExprType::ePLUS => 23,
+            ExprType::eMINUS => 24,
+            ExprType::eLT => 25,
+            ExprType::eGT => 26,
+            ExprType::eEQ => 27,
+            ExprType::eNE => 28,
+            ExprType::eGE => 29,
+            ExprType::eLE => 30,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -278,7 +326,19 @@ pub enum StmtType {
     sEXPR,
     sWHILE,
     sFOR,
-}  // end of enum
+impl StmtType {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            StmtType::sRETURN => 0,
+            StmtType::sDEFSUB => 1,
+            StmtType::sBLOCK => 2,
+            StmtType::sIF => 3,
+            StmtType::sEXPR => 4,
+            StmtType::sWHILE => 5,
+            StmtType::sFOR => 6,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -405,7 +405,21 @@ pub enum archive_format {
     arf_ustar,
     arf_hpoldascii,
     arf_hpbinary,
-}  // end of enum
+impl archive_format {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            archive_format::arf_unknown => 0,
+            archive_format::arf_binary => 1,
+            archive_format::arf_oldascii => 2,
+            archive_format::arf_newascii => 3,
+            archive_format::arf_crcascii => 4,
+            archive_format::arf_tar => 5,
+            archive_format::arf_ustar => 6,
+            archive_format::arf_hpoldascii => 7,
+            archive_format::arf_hpbinary => 8,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

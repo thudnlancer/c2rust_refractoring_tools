@@ -20,7 +20,18 @@ pub enum kwsub {
     kwsub_k = 2,
     kwsub_kvl = 1,
     kwsub_kv = 0,
-}  // end of enum
+impl kwsub {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            kwsub::kwsub_b => 5,
+            kwsub::kwsub_o => 4,
+            kwsub::kwsub_v => 3,
+            kwsub::kwsub_k => 2,
+            kwsub::kwsub_kvl => 1,
+            kwsub::kwsub_kv => 0,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -40,7 +40,17 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR,
     LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
     LONGINT_INVALID = 4,
-}  // end of enum
+impl strtol_error {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            strtol_error::LONGINT_OK => 0,
+            strtol_error::LONGINT_OVERFLOW => 1,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR => 2,
+            strtol_error::LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW => 3,
+            strtol_error::LONGINT_INVALID => 4,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -55,7 +65,22 @@ pub enum C2RustUnnamed {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::human_ceiling => 0,
+            C2RustUnnamed::human_round_to_nearest => 1,
+            C2RustUnnamed::human_floor => 2,
+            C2RustUnnamed::human_group_digits => 4,
+            C2RustUnnamed::human_suppress_point_zero => 8,
+            C2RustUnnamed::human_autoscale => 16,
+            C2RustUnnamed::human_base_1024 => 32,
+            C2RustUnnamed::human_space_before_unit => 64,
+            C2RustUnnamed::human_SI => 128,
+            C2RustUnnamed::human_B => 256,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

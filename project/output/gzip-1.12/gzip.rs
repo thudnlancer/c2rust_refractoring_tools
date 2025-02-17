@@ -351,7 +351,13 @@ pub type ulg = libc::c_ulong;
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
     TIMESPEC_RESOLUTION = 1000000000,
-}  // end of enum
+impl C2RustUnnamed_10 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_10::TIMESPEC_RESOLUTION => 1000000000,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -368,7 +374,15 @@ pub enum savedir_option {
     SAVEDIR_SORT_NONE,
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_FASTREAD,
-}  // end of enum
+impl savedir_option {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            savedir_option::SAVEDIR_SORT_NONE => 0,
+            savedir_option::SAVEDIR_SORT_NAME => 1,
+            savedir_option::SAVEDIR_SORT_FASTREAD => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -377,14 +391,29 @@ pub enum C2RustUnnamed_11 {
     SYNCHRONOUS_OPTION = 130,
     RSYNCABLE_OPTION = 129,
     PRESUME_INPUT_TTY_OPTION = 128,
-}  // end of enum
+impl C2RustUnnamed_11 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_11::ENV_OPTION => 131,
+            C2RustUnnamed_11::SYNCHRONOUS_OPTION => 130,
+            C2RustUnnamed_11::RSYNCABLE_OPTION => 129,
+            C2RustUnnamed_11::PRESUME_INPUT_TTY_OPTION => 128,
+        }
+    }
+}
 
 pub const try_opening_directories: C2RustUnnamed_12 = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
     try_opening_directories = 1,
-}  // end of enum
+impl C2RustUnnamed_12 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_12::try_opening_directories => 1,
+        }
+    }
+}
 
 pub type C2RustUnnamed_12 = libc::c_uint;
 static mut license_msg: [*const libc::c_char; 6] = [

@@ -38,7 +38,15 @@ pub enum zprimality {
     NONPRIME = 0,
     PROBABLY_PRIME,
     PRIME,
-}  // end of enum
+impl zprimality {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zprimality::NONPRIME => 0,
+            zprimality::PROBABLY_PRIME => 1,
+            zprimality::PRIME => 2,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -50,7 +58,19 @@ pub enum zranddev {
     LIBC_RAND_RANDOM,
     LIBC_RANDOM_RANDOM,
     LIBC_RAND48_RANDOM,
-}  // end of enum
+impl zranddev {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zranddev::FAST_RANDOM => 0,
+            zranddev::SECURE_RANDOM => 1,
+            zranddev::DEFAULT_RANDOM => 2,
+            zranddev::FASTEST_RANDOM => 3,
+            zranddev::LIBC_RAND_RANDOM => 4,
+            zranddev::LIBC_RANDOM_RANDOM => 5,
+            zranddev::LIBC_RAND48_RANDOM => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -58,7 +78,15 @@ pub enum zranddist {
     QUASIUNIFORM = 0,
     UNIFORM,
     MODUNIFORM,
-}  // end of enum
+impl zranddist {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zranddist::QUASIUNIFORM => 0,
+            zranddist::UNIFORM => 1,
+            zranddist::MODUNIFORM => 2,
+        }
+    }
+}
 
 #[inline]
 unsafe extern "C" fn libzahl_memcpy(

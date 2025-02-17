@@ -14,7 +14,18 @@ pub enum zerror {
     ZERROR_DIV_0,
     ZERROR_NEGATIVE,
     ZERROR_INVALID_RADIX,
-}  // end of enum
+impl zerror {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            zerror::ZERROR_ERRNO_SET => 0,
+            zerror::ZERROR_0_POW_0 => 1,
+            zerror::ZERROR_0_DIV_0 => 2,
+            zerror::ZERROR_DIV_0 => 3,
+            zerror::ZERROR_NEGATIVE => 4,
+            zerror::ZERROR_INVALID_RADIX => 5,
+        }
+    }
+}
 
 #[no_mangle]
 pub unsafe extern "C" fn zerror(mut desc: *mut *const libc::c_char) -> zerror {

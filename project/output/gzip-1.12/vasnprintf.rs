@@ -93,7 +93,35 @@ pub enum arg_type {
     TYPE_COUNT_INT_POINTER,
     TYPE_COUNT_LONGINT_POINTER,
     TYPE_COUNT_LONGLONGINT_POINTER,
-}  // end of enum
+impl arg_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            arg_type::TYPE_NONE => 0,
+            arg_type::TYPE_SCHAR => 1,
+            arg_type::TYPE_UCHAR => 2,
+            arg_type::TYPE_SHORT => 3,
+            arg_type::TYPE_USHORT => 4,
+            arg_type::TYPE_INT => 5,
+            arg_type::TYPE_UINT => 6,
+            arg_type::TYPE_LONGINT => 7,
+            arg_type::TYPE_ULONGINT => 8,
+            arg_type::TYPE_LONGLONGINT => 9,
+            arg_type::TYPE_ULONGLONGINT => 10,
+            arg_type::TYPE_DOUBLE => 11,
+            arg_type::TYPE_LONGDOUBLE => 12,
+            arg_type::TYPE_CHAR => 13,
+            arg_type::TYPE_WIDE_CHAR => 14,
+            arg_type::TYPE_STRING => 15,
+            arg_type::TYPE_WIDE_STRING => 16,
+            arg_type::TYPE_POINTER => 17,
+            arg_type::TYPE_COUNT_SCHAR_POINTER => 18,
+            arg_type::TYPE_COUNT_SHORT_POINTER => 19,
+            arg_type::TYPE_COUNT_INT_POINTER => 20,
+            arg_type::TYPE_COUNT_LONGINT_POINTER => 21,
+            arg_type::TYPE_COUNT_LONGLONGINT_POINTER => 22,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

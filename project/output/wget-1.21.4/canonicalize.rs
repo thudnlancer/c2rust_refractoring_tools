@@ -96,7 +96,16 @@ pub enum canonicalize_mode_t {
     CAN_ALL_BUT_LAST = 1,
     CAN_MISSING = 2,
     CAN_NOLINKS = 4,
-}  // end of enum
+impl canonicalize_mode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            canonicalize_mode_t::CAN_EXISTING => 0,
+            canonicalize_mode_t::CAN_ALL_BUT_LAST => 1,
+            canonicalize_mode_t::CAN_MISSING => 2,
+            canonicalize_mode_t::CAN_NOLINKS => 4,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]

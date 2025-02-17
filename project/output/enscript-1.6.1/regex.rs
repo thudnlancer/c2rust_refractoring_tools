@@ -55,7 +55,29 @@ pub enum reg_errcode_t {
     REG_EEND,
     REG_ESIZE,
     REG_ERPAREN,
-}  // end of enum
+impl reg_errcode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            reg_errcode_t::REG_NOERROR => 0,
+            reg_errcode_t::REG_NOMATCH => 1,
+            reg_errcode_t::REG_BADPAT => 2,
+            reg_errcode_t::REG_ECOLLATE => 3,
+            reg_errcode_t::REG_ECTYPE => 4,
+            reg_errcode_t::REG_EESCAPE => 5,
+            reg_errcode_t::REG_ESUBREG => 6,
+            reg_errcode_t::REG_EBRACK => 7,
+            reg_errcode_t::REG_EPAREN => 8,
+            reg_errcode_t::REG_EBRACE => 9,
+            reg_errcode_t::REG_BADBR => 10,
+            reg_errcode_t::REG_ERANGE => 11,
+            reg_errcode_t::REG_ESPACE => 12,
+            reg_errcode_t::REG_BADRPT => 13,
+            reg_errcode_t::REG_EEND => 14,
+            reg_errcode_t::REG_ESIZE => 15,
+            reg_errcode_t::REG_ERPAREN => 16,
+        }
+    }
+}
 
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -145,7 +167,42 @@ pub enum re_opcode_t {
     wordend,
     wordbound,
     notwordbound,
-}  // end of enum
+impl re_opcode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            re_opcode_t::no_op => 0,
+            re_opcode_t::succeed => 1,
+            re_opcode_t::exactn => 2,
+            re_opcode_t::anychar => 3,
+            re_opcode_t::charset => 4,
+            re_opcode_t::charset_not => 5,
+            re_opcode_t::start_memory => 6,
+            re_opcode_t::stop_memory => 7,
+            re_opcode_t::duplicate => 8,
+            re_opcode_t::begline => 9,
+            re_opcode_t::endline => 10,
+            re_opcode_t::begbuf => 11,
+            re_opcode_t::endbuf => 12,
+            re_opcode_t::jump => 13,
+            re_opcode_t::jump_past_alt => 14,
+            re_opcode_t::on_failure_jump => 15,
+            re_opcode_t::on_failure_keep_string_jump => 16,
+            re_opcode_t::pop_failure_jump => 17,
+            re_opcode_t::maybe_pop_jump => 18,
+            re_opcode_t::dummy_failure_jump => 19,
+            re_opcode_t::push_dummy_failure => 20,
+            re_opcode_t::succeed_n => 21,
+            re_opcode_t::jump_n => 22,
+            re_opcode_t::set_number_at => 23,
+            re_opcode_t::wordchar => 24,
+            re_opcode_t::notwordchar => 25,
+            re_opcode_t::wordbeg => 26,
+            re_opcode_t::wordend => 27,
+            re_opcode_t::wordbound => 28,
+            re_opcode_t::notwordbound => 29,
+        }
+    }
+}
 
 pub type boolean = libc::c_char;
 pub const _ISdigit: C2RustUnnamed_0 = 2048;
@@ -206,7 +263,24 @@ pub enum C2RustUnnamed_0 {
     _ISblank = 1,
     _ISalpha = 1024,
     _ISalnum = 8,
-}  // end of enum
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISlower => 512,
+            C2RustUnnamed_0::_ISupper => 256,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISalnum => 8,
+        }
+    }
+}
 
 pub type fail_stack_elt_t = fail_stack_elt;
 #[derive(Copy, Clone)]

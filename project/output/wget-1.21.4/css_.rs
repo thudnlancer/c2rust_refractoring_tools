@@ -133,7 +133,40 @@ pub enum C2RustUnnamed {
     BAD_URI = 25,
     FUNCTION = 26,
     COMMENT = 27,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::CSSEOF => 0,
+            C2RustUnnamed::S => 1,
+            C2RustUnnamed::CDO => 2,
+            C2RustUnnamed::CDC => 3,
+            C2RustUnnamed::INCLUDES => 4,
+            C2RustUnnamed::DASHMATCH => 5,
+            C2RustUnnamed::STRING => 6,
+            C2RustUnnamed::BAD_STRING => 7,
+            C2RustUnnamed::IDENT => 8,
+            C2RustUnnamed::HASH => 9,
+            C2RustUnnamed::IMPORT_SYM => 10,
+            C2RustUnnamed::PAGE_SYM => 11,
+            C2RustUnnamed::MEDIA_SYM => 12,
+            C2RustUnnamed::CHARSET_SYM => 13,
+            C2RustUnnamed::IMPORTANT_SYM => 14,
+            C2RustUnnamed::EMS => 15,
+            C2RustUnnamed::EXS => 16,
+            C2RustUnnamed::LENGTH => 17,
+            C2RustUnnamed::ANGLE => 18,
+            C2RustUnnamed::TIME => 19,
+            C2RustUnnamed::FREQ => 20,
+            C2RustUnnamed::DIMENSION => 21,
+            C2RustUnnamed::PERCENTAGE => 22,
+            C2RustUnnamed::NUMBER => 23,
+            C2RustUnnamed::URI => 24,
+            C2RustUnnamed::BAD_URI => 25,
+            C2RustUnnamed::FUNCTION => 26,
+            C2RustUnnamed::COMMENT => 27,
+        }
+    }
+}
 
 static mut yy_buffer_stack_top: size_t = 0 as libc::c_int as size_t;
 static mut yy_buffer_stack_max: size_t = 0 as libc::c_int as size_t;

@@ -177,7 +177,24 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::_ISalnum => 8,
+            C2RustUnnamed::_ISpunct => 4,
+            C2RustUnnamed::_IScntrl => 2,
+            C2RustUnnamed::_ISblank => 1,
+            C2RustUnnamed::_ISgraph => 32768,
+            C2RustUnnamed::_ISprint => 16384,
+            C2RustUnnamed::_ISspace => 8192,
+            C2RustUnnamed::_ISxdigit => 4096,
+            C2RustUnnamed::_ISdigit => 2048,
+            C2RustUnnamed::_ISalpha => 1024,
+            C2RustUnnamed::_ISlower => 512,
+            C2RustUnnamed::_ISupper => 256,
+        }
+    }
+}
 
 pub type XID = libc::c_ulong;
 pub type Atom = libc::c_ulong;
@@ -358,7 +375,28 @@ pub enum wintype_t {
     WINTYPE_COMBO,
     WINTYPE_DND,
     NUM_WINTYPES,
-}  // end of enum
+impl wintype_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wintype_t::WINTYPE_UNKNOWN => 0,
+            wintype_t::WINTYPE_DESKTOP => 1,
+            wintype_t::WINTYPE_DOCK => 2,
+            wintype_t::WINTYPE_TOOLBAR => 3,
+            wintype_t::WINTYPE_MENU => 4,
+            wintype_t::WINTYPE_UTILITY => 5,
+            wintype_t::WINTYPE_SPLASH => 6,
+            wintype_t::WINTYPE_DIALOG => 7,
+            wintype_t::WINTYPE_NORMAL => 8,
+            wintype_t::WINTYPE_DROPDOWN_MENU => 9,
+            wintype_t::WINTYPE_POPUP_MENU => 10,
+            wintype_t::WINTYPE_TOOLTIP => 11,
+            wintype_t::WINTYPE_NOTIFY => 12,
+            wintype_t::WINTYPE_COMBO => 13,
+            wintype_t::WINTYPE_DND => 14,
+            wintype_t::NUM_WINTYPES => 15,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -366,7 +404,15 @@ pub enum switch_t {
     OFF,
     ON,
     UNSET,
-}  // end of enum
+impl switch_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            switch_t::OFF => 0,
+            switch_t::ON => 1,
+            switch_t::UNSET => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -390,7 +436,15 @@ pub enum winmode_t {
     WMODE_TRANS,
     WMODE_SOLID,
     WMODE_ARGB,
-}  // end of enum
+impl winmode_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            winmode_t::WMODE_TRANS => 0,
+            winmode_t::WMODE_SOLID => 1,
+            winmode_t::WMODE_ARGB => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -424,7 +478,19 @@ pub enum vsync_t {
     VSYNC_OPENGL_SWC,
     VSYNC_OPENGL_MSWC,
     NUM_VSYNC,
-}  // end of enum
+impl vsync_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            vsync_t::VSYNC_NONE => 0,
+            vsync_t::VSYNC_DRM => 1,
+            vsync_t::VSYNC_OPENGL => 2,
+            vsync_t::VSYNC_OPENGL_OML => 3,
+            vsync_t::VSYNC_OPENGL_SWC => 4,
+            vsync_t::VSYNC_OPENGL_MSWC => 5,
+            vsync_t::NUM_VSYNC => 6,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -433,7 +499,16 @@ pub enum backend {
     BKEND_GLX,
     BKEND_XR_GLX_HYBRID,
     NUM_BKEND,
-}  // end of enum
+impl backend {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backend::BKEND_XRENDER => 0,
+            backend::BKEND_GLX => 1,
+            backend::BKEND_XR_GLX_HYBRID => 2,
+            backend::NUM_BKEND => 3,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -816,7 +891,15 @@ pub enum C2RustUnnamed_2 {
     C2_L_PTINT = 2,
     C2_L_PTSTRING = 1,
     C2_L_PTUNDEFINED = 0,
-}  // end of enum
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::C2_L_PTINT => 2,
+            C2RustUnnamed_2::C2_L_PTSTRING => 1,
+            C2RustUnnamed_2::C2_L_PTUNDEFINED => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -827,7 +910,18 @@ pub enum c2_l_type {
     C2_L_TCARDINAL = 2,
     C2_L_TSTRING = 1,
     C2_L_TUNDEFINED = 0,
-}  // end of enum
+impl c2_l_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            c2_l_type::C2_L_TDRAWABLE => 5,
+            c2_l_type::C2_L_TATOM => 4,
+            c2_l_type::C2_L_TWINDOW => 3,
+            c2_l_type::C2_L_TCARDINAL => 2,
+            c2_l_type::C2_L_TSTRING => 1,
+            c2_l_type::C2_L_TUNDEFINED => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -857,7 +951,37 @@ pub enum C2RustUnnamed_3 {
     C2_L_PX = 2,
     C2_L_PID = 1,
     C2_L_PUNDEFINED = 0,
-}  // end of enum
+impl C2RustUnnamed_3 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_3::C2_L_PROLE => 24,
+            C2RustUnnamed_3::C2_L_PCLASSI => 23,
+            C2RustUnnamed_3::C2_L_PCLASSG => 22,
+            C2RustUnnamed_3::C2_L_PNAME => 21,
+            C2RustUnnamed_3::C2_L_PLEADER => 20,
+            C2RustUnnamed_3::C2_L_PWINDOWTYPE => 19,
+            C2RustUnnamed_3::C2_L_PCLIENT => 18,
+            C2RustUnnamed_3::C2_L_PROUNDED => 17,
+            C2RustUnnamed_3::C2_L_PBSHAPED => 16,
+            C2RustUnnamed_3::C2_L_PWMWIN => 15,
+            C2RustUnnamed_3::C2_L_PFOCUSED => 14,
+            C2RustUnnamed_3::C2_L_PARGB => 13,
+            C2RustUnnamed_3::C2_L_POVREDIR => 12,
+            C2RustUnnamed_3::C2_L_PFULLSCREEN => 11,
+            C2RustUnnamed_3::C2_L_PBDW => 10,
+            C2RustUnnamed_3::C2_L_PHEIGHTB => 9,
+            C2RustUnnamed_3::C2_L_PWIDTHB => 8,
+            C2RustUnnamed_3::C2_L_PHEIGHT => 7,
+            C2RustUnnamed_3::C2_L_PWIDTH => 6,
+            C2RustUnnamed_3::C2_L_PY2 => 5,
+            C2RustUnnamed_3::C2_L_PX2 => 4,
+            C2RustUnnamed_3::C2_L_PY => 3,
+            C2RustUnnamed_3::C2_L_PX => 2,
+            C2RustUnnamed_3::C2_L_PID => 1,
+            C2RustUnnamed_3::C2_L_PUNDEFINED => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -867,7 +991,17 @@ pub enum C2RustUnnamed_4 {
     C2_L_MCONTAINS = 2,
     C2_L_MSTART = 1,
     C2_L_MEXACT = 0,
-}  // end of enum
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::C2_L_MPCRE => 4,
+            C2RustUnnamed_4::C2_L_MWILDCARD => 3,
+            C2RustUnnamed_4::C2_L_MCONTAINS => 2,
+            C2RustUnnamed_4::C2_L_MSTART => 1,
+            C2RustUnnamed_4::C2_L_MEXACT => 0,
+        }
+    }
+}
 
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -878,7 +1012,18 @@ pub enum C2RustUnnamed_5 {
     C2_L_OGT = 2,
     C2_L_OEQ = 1,
     C2_L_OEXISTS = 0,
-}  // end of enum
+impl C2RustUnnamed_5 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_5::C2_L_OLTEQ => 5,
+            C2RustUnnamed_5::C2_L_OLT => 4,
+            C2RustUnnamed_5::C2_L_OGTEQ => 3,
+            C2RustUnnamed_5::C2_L_OGT => 2,
+            C2RustUnnamed_5::C2_L_OEQ => 1,
+            C2RustUnnamed_5::C2_L_OEXISTS => 0,
+        }
+    }
+}
 
 pub type c2_b_t = _c2_b;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -899,7 +1044,16 @@ pub enum c2_b_op_t {
     C2_B_OAND,
     C2_B_OOR,
     C2_B_OXOR,
-}  // end of enum
+impl c2_b_op_t {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            c2_b_op_t::C2_B_OUNDEFINED => 0,
+            c2_b_op_t::C2_B_OAND => 1,
+            c2_b_op_t::C2_B_OOR => 2,
+            c2_b_op_t::C2_B_OXOR => 3,
+        }
+    }
+}
 
 pub type options_t = _options_t;
 #[derive(Copy, Clone)]

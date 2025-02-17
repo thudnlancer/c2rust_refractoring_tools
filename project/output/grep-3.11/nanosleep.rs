@@ -20,7 +20,13 @@ pub const BILLION: C2RustUnnamed = 1000000000;
 #[repr(C)]
 pub enum C2RustUnnamed {
     BILLION = 1000000000,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::BILLION => 1000000000,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]

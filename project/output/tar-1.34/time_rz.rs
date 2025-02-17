@@ -56,7 +56,13 @@ pub type idx_t = ptrdiff_t;
 #[repr(C)]
 pub enum C2RustUnnamed {
     ABBR_SIZE_MIN = 119,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::ABBR_SIZE_MIN => 119,
+        }
+    }
+}
 
 pub type idx_t = ptrdiff_t;
 pub type C2RustUnnamed = libc::c_uint;

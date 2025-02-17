@@ -26,7 +26,16 @@ pub enum backup_type {
     numbered_existing_backups = 2,
     simple_backups = 1,
     no_backups = 0,
-}  // end of enum
+impl backup_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            backup_type::numbered_backups => 3,
+            backup_type::numbered_existing_backups => 2,
+            backup_type::simple_backups => 1,
+            backup_type::no_backups => 0,
+        }
+    }
+}
 
 pub type ptrdiff_t = libc::c_long;
 pub type argmatch_exit_fn = Option::<unsafe extern "C" fn() -> ()>;

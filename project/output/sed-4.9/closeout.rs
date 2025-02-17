@@ -69,7 +69,13 @@ pub const SANITIZE_ADDRESS: C2RustUnnamed = 0;
 #[repr(C)]
 pub enum C2RustUnnamed {
     SANITIZE_ADDRESS = 0,
-}  // end of enum
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::SANITIZE_ADDRESS => 0,
+        }
+    }
+}
 
 pub type C2RustUnnamed = libc::c_uint;
 static mut file_name: *const libc::c_char = 0 as *const libc::c_char;

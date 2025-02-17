@@ -56,7 +56,23 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
-}  // end of enum
+impl quoting_style {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            quoting_style::literal_quoting_style => 0,
+            quoting_style::shell_quoting_style => 1,
+            quoting_style::shell_always_quoting_style => 2,
+            quoting_style::shell_escape_quoting_style => 3,
+            quoting_style::shell_escape_always_quoting_style => 4,
+            quoting_style::c_quoting_style => 5,
+            quoting_style::c_maybe_quoting_style => 6,
+            quoting_style::escape_quoting_style => 7,
+            quoting_style::locale_quoting_style => 8,
+            quoting_style::clocale_quoting_style => 9,
+            quoting_style::custom_quoting_style => 10,
+        }
+    }
+}
 
 pub type sharefile_handle = *mut libc::c_void;
 #[derive(Copy, Clone)]
@@ -101,7 +117,15 @@ pub enum SymlinkOption {
     SYMLINK_NEVER_DEREF,
     SYMLINK_ALWAYS_DEREF,
     SYMLINK_DEREF_ARGSONLY,
-}  // end of enum
+impl SymlinkOption {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            SymlinkOption::SYMLINK_NEVER_DEREF => 0,
+            SymlinkOption::SYMLINK_ALWAYS_DEREF => 1,
+            SymlinkOption::SYMLINK_DEREF_ARGSONLY => 2,
+        }
+    }
+}
 
 #[derive(Copy, Clone)]
 #[repr(C)]
