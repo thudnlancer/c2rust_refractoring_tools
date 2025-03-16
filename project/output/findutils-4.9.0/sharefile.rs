@@ -158,11 +158,11 @@ pub struct SharefileEntry {
     pub name: *mut libc::c_char,
     pub fp: *mut FILE,
 }
-pub const DefaultHashTableSize: C2RustUnnamed = 11;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     DefaultHashTableSize = 11,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -171,7 +171,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,

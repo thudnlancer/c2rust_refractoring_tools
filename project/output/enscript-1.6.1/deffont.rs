@@ -39,6 +39,7 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
+}
 impl AFMBoolean {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -48,6 +49,8 @@ impl AFMBoolean {
     }
 }
 
+pub const AFMTrue: AFMBoolean = 1;
+pub const AFMFalse: AFMBoolean = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct afm_array_st {

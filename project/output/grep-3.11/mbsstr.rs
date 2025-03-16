@@ -42,7 +42,27 @@ extern "C" {
 pub type size_t = libc::c_ulong;
 pub type wchar_t = libc::c_int;
 pub type uintptr_t = libc::c_ulong;
-pub const sa_alignment_max: C2RustUnnamed_0 = 16;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    sa_alignment_max = 16,
+    sa_alignment_longdouble = 16,
+    sa_alignment_longlong = 8,
+    sa_alignment_double = 8,
+    sa_alignment_long = 8,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::sa_alignment_max => 16,
+            C2RustUnnamed_0::sa_alignment_longdouble => 16,
+            C2RustUnnamed_0::sa_alignment_longlong => 8,
+            C2RustUnnamed_0::sa_alignment_double => 8,
+            C2RustUnnamed_0::sa_alignment_long => 8,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct mbchar {
@@ -75,26 +95,6 @@ pub union C2RustUnnamed {
     pub __wchb: [libc::c_char; 4],
 }
 pub type mbchar_t = mbchar;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    sa_alignment_max = 16,
-    sa_alignment_longdouble = 16,
-    sa_alignment_longlong = 8,
-    sa_alignment_double = 8,
-    sa_alignment_long = 8,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::sa_alignment_max => 16,
-            C2RustUnnamed_0::sa_alignment_longdouble => 16,
-            C2RustUnnamed_0::sa_alignment_longlong => 8,
-            C2RustUnnamed_0::sa_alignment_double => 8,
-            C2RustUnnamed_0::sa_alignment_long => 8,
-        }
-    }
-}
-
 #[inline]
 unsafe extern "C" fn mbuiter_multi_next(mut iter: *mut mbuiter_multi) {
     let mut current_block: u64;

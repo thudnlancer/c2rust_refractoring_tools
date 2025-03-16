@@ -167,6 +167,7 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
+}
 impl AFMBoolean {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -176,6 +177,8 @@ impl AFMBoolean {
     }
 }
 
+pub const AFMTrue: AFMBoolean = 1;
+pub const AFMFalse: AFMBoolean = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct afm_array_st {
@@ -332,6 +335,7 @@ pub enum AFMEncoding {
     AFM_ENCODING_VMS,
     AFM_ENCODING_HP8,
     AFM_ENCODING_KOI8,
+}
 impl AFMEncoding {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -352,6 +356,19 @@ impl AFMEncoding {
     }
 }
 
+pub const AFM_ENCODING_KOI8: AFMEncoding = 12;
+pub const AFM_ENCODING_HP8: AFMEncoding = 11;
+pub const AFM_ENCODING_VMS: AFMEncoding = 10;
+pub const AFM_ENCODING_MAC: AFMEncoding = 9;
+pub const AFM_ENCODING_ASCII: AFMEncoding = 8;
+pub const AFM_ENCODING_IBMPC: AFMEncoding = 7;
+pub const AFM_ENCODING_ISO_8859_7: AFMEncoding = 6;
+pub const AFM_ENCODING_ISO_8859_5: AFMEncoding = 5;
+pub const AFM_ENCODING_ISO_8859_4: AFMEncoding = 4;
+pub const AFM_ENCODING_ISO_8859_3: AFMEncoding = 3;
+pub const AFM_ENCODING_ISO_8859_2: AFMEncoding = 2;
+pub const AFM_ENCODING_ISO_8859_1: AFMEncoding = 1;
+pub const AFM_ENCODING_DEFAULT: AFMEncoding = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct afm_font_st {

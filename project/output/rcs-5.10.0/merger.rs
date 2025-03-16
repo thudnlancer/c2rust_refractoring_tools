@@ -221,6 +221,7 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -231,6 +232,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct symdef {
@@ -260,6 +264,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -270,6 +275,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {

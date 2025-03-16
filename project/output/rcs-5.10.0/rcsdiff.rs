@@ -222,6 +222,7 @@ pub enum kwsub {
     kwsub_v,
     kwsub_o,
     kwsub_b,
+}
 impl kwsub {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -235,6 +236,12 @@ impl kwsub {
     }
 }
 
+pub const kwsub_b: kwsub = 5;
+pub const kwsub_o: kwsub = 4;
+pub const kwsub_v: kwsub = 3;
+pub const kwsub_k: kwsub = 2;
+pub const kwsub_kvl: kwsub = 1;
+pub const kwsub_kv: kwsub = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -288,6 +295,7 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -298,6 +306,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct symdef {
@@ -339,6 +350,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -349,6 +361,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {

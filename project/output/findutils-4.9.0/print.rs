@@ -158,6 +158,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -177,6 +178,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type size_t = libc::c_ulong;
 pub type gid_t = __gid_t;
 #[derive(Copy, Clone)]
@@ -300,6 +313,7 @@ pub enum C2RustUnnamed_0 {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -317,6 +331,16 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const human_B: C2RustUnnamed_0 = 256;
+pub const human_SI: C2RustUnnamed_0 = 128;
+pub const human_space_before_unit: C2RustUnnamed_0 = 64;
+pub const human_base_1024: C2RustUnnamed_0 = 32;
+pub const human_autoscale: C2RustUnnamed_0 = 16;
+pub const human_suppress_point_zero: C2RustUnnamed_0 = 8;
+pub const human_group_digits: C2RustUnnamed_0 = 4;
+pub const human_floor: C2RustUnnamed_0 = 2;
+pub const human_round_to_nearest: C2RustUnnamed_0 = 1;
+pub const human_ceiling: C2RustUnnamed_0 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -331,6 +355,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -349,6 +374,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 pub type __re_long_size_t = size_t;
 pub type reg_syntax_t = libc::c_ulong;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -462,6 +498,7 @@ pub enum arg_type {
     ARG_SPECIAL_PARSE,
     ARG_PUNCTUATION,
     ARG_ACTION,
+}
 impl arg_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -476,6 +513,13 @@ impl arg_type {
     }
 }
 
+pub const ARG_ACTION: arg_type = 6;
+pub const ARG_PUNCTUATION: arg_type = 5;
+pub const ARG_SPECIAL_PARSE: arg_type = 4;
+pub const ARG_TEST: arg_type = 3;
+pub const ARG_POSITIONAL_OPTION: arg_type = 2;
+pub const ARG_NOOP: arg_type = 1;
+pub const ARG_OPTION: arg_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct predicate_performance_info {
@@ -523,6 +567,7 @@ pub enum SegmentKind {
     KIND_PLAIN = 0,
     KIND_STOP = 1,
     KIND_FORMAT,
+}
 impl SegmentKind {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -533,6 +578,9 @@ impl SegmentKind {
     }
 }
 
+pub const KIND_FORMAT: SegmentKind = 2;
+pub const KIND_STOP: SegmentKind = 1;
+pub const KIND_PLAIN: SegmentKind = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct samefile_file_id {
@@ -552,6 +600,7 @@ pub enum permissions_type {
     PERM_AT_LEAST,
     PERM_ANY,
     PERM_EXACT,
+}
 impl permissions_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -562,6 +611,9 @@ impl permissions_type {
     }
 }
 
+pub const PERM_EXACT: permissions_type = 2;
+pub const PERM_ANY: permissions_type = 1;
+pub const PERM_AT_LEAST: permissions_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct time_val {
@@ -575,6 +627,7 @@ pub enum comparison_type {
     COMP_GT,
     COMP_LT,
     COMP_EQ,
+}
 impl comparison_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -585,6 +638,9 @@ impl comparison_type {
     }
 }
 
+pub const COMP_EQ: comparison_type = 2;
+pub const COMP_LT: comparison_type = 1;
+pub const COMP_GT: comparison_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum xval {
@@ -593,6 +649,7 @@ pub enum xval {
     XVAL_CTIME,
     XVAL_MTIME,
     XVAL_TIME,
+}
 impl xval {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -605,6 +662,11 @@ impl xval {
     }
 }
 
+pub const XVAL_TIME: xval = 4;
+pub const XVAL_MTIME: xval = 3;
+pub const XVAL_CTIME: xval = 2;
+pub const XVAL_BIRTHTIME: xval = 1;
+pub const XVAL_ATIME: xval = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct size_val {
@@ -646,6 +708,7 @@ pub enum EvaluationCost {
     NeedsUserInteraction,
     NeedsUnknown,
     NumEvaluationCosts,
+}
 impl EvaluationCost {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -665,6 +728,18 @@ impl EvaluationCost {
     }
 }
 
+pub const NumEvaluationCosts: EvaluationCost = 11;
+pub const NeedsUnknown: EvaluationCost = 10;
+pub const NeedsUserInteraction: EvaluationCost = 9;
+pub const NeedsImmediateExec: EvaluationCost = 8;
+pub const NeedsEventualExec: EvaluationCost = 7;
+pub const NeedsSyncDiskHit: EvaluationCost = 6;
+pub const NeedsAccessInfo: EvaluationCost = 5;
+pub const NeedsLinkName: EvaluationCost = 4;
+pub const NeedsStatInfo: EvaluationCost = 3;
+pub const NeedsType: EvaluationCost = 2;
+pub const NeedsInodeNumber: EvaluationCost = 1;
+pub const NeedsNothing: EvaluationCost = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_precedence {
@@ -674,6 +749,7 @@ pub enum predicate_precedence {
     AND_PREC,
     NEGATE_PREC,
     MAX_PREC,
+}
 impl predicate_precedence {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -687,6 +763,12 @@ impl predicate_precedence {
     }
 }
 
+pub const MAX_PREC: predicate_precedence = 5;
+pub const NEGATE_PREC: predicate_precedence = 4;
+pub const AND_PREC: predicate_precedence = 3;
+pub const OR_PREC: predicate_precedence = 2;
+pub const COMMA_PREC: predicate_precedence = 1;
+pub const NO_PREC: predicate_precedence = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_type {
@@ -696,6 +778,7 @@ pub enum predicate_type {
     BI_OP,
     OPEN_PAREN,
     CLOSE_PAREN,
+}
 impl predicate_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -709,6 +792,12 @@ impl predicate_type {
     }
 }
 
+pub const CLOSE_PAREN: predicate_type = 5;
+pub const OPEN_PAREN: predicate_type = 4;
+pub const BI_OP: predicate_type = 3;
+pub const UNI_OP: predicate_type = 2;
+pub const PRIMARY_TYPE: predicate_type = 1;
+pub const NO_TYPE: predicate_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
@@ -751,6 +840,7 @@ pub enum SymlinkOption {
     SYMLINK_NEVER_DEREF,
     SYMLINK_ALWAYS_DEREF,
     SYMLINK_DEREF_ARGSONLY,
+}
 impl SymlinkOption {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -761,6 +851,9 @@ impl SymlinkOption {
     }
 }
 
+pub const SYMLINK_DEREF_ARGSONLY: SymlinkOption = 2;
+pub const SYMLINK_ALWAYS_DEREF: SymlinkOption = 1;
+pub const SYMLINK_NEVER_DEREF: SymlinkOption = 0;
 pub type PREDICATEFUNCTION = unsafe extern "C" fn(
     *const libc::c_char,
     *mut stat,
@@ -787,12 +880,12 @@ pub struct state {
     pub shared_files: sharefile_handle,
     pub already_issued_stat_error_msg: bool,
 }
-pub const NS_BUF_LEN: C2RustUnnamed_3 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     NS_BUF_LEN = 32,
     DATE_LEN_PERCENT_APLUS = 21,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

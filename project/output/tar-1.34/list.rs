@@ -196,6 +196,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -215,6 +216,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stat {
@@ -357,6 +370,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -375,6 +389,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -474,6 +499,7 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -488,6 +514,13 @@ impl archive_format {
     }
 }
 
+pub const GNU_FORMAT: archive_format = 6;
+pub const STAR_FORMAT: archive_format = 5;
+pub const POSIX_FORMAT: archive_format = 4;
+pub const USTAR_FORMAT: archive_format = 3;
+pub const OLDGNU_FORMAT: archive_format = 2;
+pub const V7_FORMAT: archive_format = 1;
+pub const DEFAULT_FORMAT: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -565,6 +598,7 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
+}
 impl access_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -575,6 +609,9 @@ impl access_mode {
     }
 }
 
+pub const ACCESS_UPDATE: access_mode = 2;
+pub const ACCESS_WRITE: access_mode = 1;
+pub const ACCESS_READ: access_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
@@ -582,6 +619,7 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
+}
 impl dump_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -593,6 +631,10 @@ impl dump_status {
     }
 }
 
+pub const dump_status_not_implemented: dump_status = 3;
+pub const dump_status_fail: dump_status = 2;
+pub const dump_status_short: dump_status = 1;
+pub const dump_status_ok: dump_status = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
@@ -602,6 +644,7 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
+}
 impl read_header {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -615,12 +658,19 @@ impl read_header {
     }
 }
 
+pub const HEADER_FAILURE: read_header = 5;
+pub const HEADER_END_OF_FILE: read_header = 4;
+pub const HEADER_ZERO_BLOCK: read_header = 3;
+pub const HEADER_SUCCESS_EXTENDED: read_header = 2;
+pub const HEADER_SUCCESS: read_header = 1;
+pub const HEADER_STILL_UNREAD: read_header = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
+}
 impl read_header_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -631,11 +681,14 @@ impl read_header_mode {
     }
 }
 
-pub const fraclen: C2RustUnnamed_3 = 10;
+pub const read_header_x_global: read_header_mode = 2;
+pub const read_header_x_raw: read_header_mode = 1;
+pub const read_header_auto: read_header_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     fraclen = 10,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -644,7 +697,6 @@ impl C2RustUnnamed_3 {
     }
 }
 
-pub type C2RustUnnamed_3 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn gnu_dev_major(mut __dev: __dev_t) -> libc::c_uint {
     let mut __major: libc::c_uint = 0;

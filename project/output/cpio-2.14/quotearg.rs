@@ -58,6 +58,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -76,12 +77,24 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_flags {
     QA_ELIDE_NULL_BYTES = 0x1,
     QA_ELIDE_OUTER_QUOTES = 0x2,
     QA_SPLIT_TRIGRAPHS = 0x4,
+}
 impl quoting_flags {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -92,6 +105,9 @@ impl quoting_flags {
     }
 }
 
+pub const QA_SPLIT_TRIGRAPHS: quoting_flags = 4;
+pub const QA_ELIDE_OUTER_QUOTES: quoting_flags = 2;
+pub const QA_ELIDE_NULL_BYTES: quoting_flags = 1;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct quoting_options {
@@ -115,14 +131,6 @@ pub union C2RustUnnamed {
     pub __wchb: [libc::c_char; 4],
 }
 pub type wint_t = libc::c_uint;
-pub const _ISprint: C2RustUnnamed_0 = 16384;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct slotvec {
-    pub size: size_t,
-    pub val: *mut libc::c_char,
-}
-pub type idx_t = ptrdiff_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -138,6 +146,7 @@ pub enum C2RustUnnamed_0 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -157,6 +166,13 @@ impl C2RustUnnamed_0 {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct slotvec {
+    pub size: size_t,
+    pub val: *mut libc::c_char,
+}
+pub type idx_t = ptrdiff_t;
 #[inline]
 unsafe extern "C" fn strcaseeq5(
     mut s1: *const libc::c_char,

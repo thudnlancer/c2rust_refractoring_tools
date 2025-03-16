@@ -390,6 +390,7 @@ pub enum C2RustUnnamed_10 {
     MSG_DONTROUTE = 4,
     MSG_PEEK = 2,
     MSG_OOB = 1,
+}
 impl C2RustUnnamed_10 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -418,6 +419,27 @@ impl C2RustUnnamed_10 {
     }
 }
 
+pub const MSG_CMSG_CLOEXEC: C2RustUnnamed_10 = 1073741824;
+pub const MSG_FASTOPEN: C2RustUnnamed_10 = 536870912;
+pub const MSG_ZEROCOPY: C2RustUnnamed_10 = 67108864;
+pub const MSG_BATCH: C2RustUnnamed_10 = 262144;
+pub const MSG_WAITFORONE: C2RustUnnamed_10 = 65536;
+pub const MSG_MORE: C2RustUnnamed_10 = 32768;
+pub const MSG_NOSIGNAL: C2RustUnnamed_10 = 16384;
+pub const MSG_ERRQUEUE: C2RustUnnamed_10 = 8192;
+pub const MSG_RST: C2RustUnnamed_10 = 4096;
+pub const MSG_CONFIRM: C2RustUnnamed_10 = 2048;
+pub const MSG_SYN: C2RustUnnamed_10 = 1024;
+pub const MSG_FIN: C2RustUnnamed_10 = 512;
+pub const MSG_WAITALL: C2RustUnnamed_10 = 256;
+pub const MSG_EOR: C2RustUnnamed_10 = 128;
+pub const MSG_DONTWAIT: C2RustUnnamed_10 = 64;
+pub const MSG_TRUNC: C2RustUnnamed_10 = 32;
+pub const MSG_PROXY: C2RustUnnamed_10 = 16;
+pub const MSG_CTRUNC: C2RustUnnamed_10 = 8;
+pub const MSG_DONTROUTE: C2RustUnnamed_10 = 4;
+pub const MSG_PEEK: C2RustUnnamed_10 = 2;
+pub const MSG_OOB: C2RustUnnamed_10 = 1;
 pub type pth_time_t = timeval;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -595,6 +617,7 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
+}
 impl pth_status_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -605,6 +628,9 @@ impl pth_status_t {
     }
 }
 
+pub const PTH_STATUS_FAILED: pth_status_t = 2;
+pub const PTH_STATUS_OCCURRED: pth_status_t = 1;
+pub const PTH_STATUS_PENDING: pth_status_t = 0;
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -614,6 +640,7 @@ pub enum pth_state_en {
     PTH_STATE_READY,
     PTH_STATE_WAITING,
     PTH_STATE_DEAD,
+}
 impl pth_state_en {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -626,6 +653,11 @@ impl pth_state_en {
     }
 }
 
+pub const PTH_STATE_DEAD: pth_state_en = 4;
+pub const PTH_STATE_WAITING: pth_state_en = 3;
+pub const PTH_STATE_READY: pth_state_en = 2;
+pub const PTH_STATE_NEW: pth_state_en = 1;
+pub const PTH_STATE_SCHEDULER: pth_state_en = 0;
 pub type pth_key_t = libc::c_int;
 pub type C2RustUnnamed_21 = libc::c_int;
 pub const PTH_FDMODE_NONBLOCK: C2RustUnnamed_21 = 2;

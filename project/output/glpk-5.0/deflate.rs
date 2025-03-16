@@ -187,7 +187,6 @@ pub struct z_stream_s {
     pub reserved: uLong,
 }
 pub type deflate_state = internal_state;
-pub const block_done: block_state = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum block_state {
@@ -195,6 +194,7 @@ pub enum block_state {
     block_done,
     finish_started,
     finish_done,
+}
 impl block_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

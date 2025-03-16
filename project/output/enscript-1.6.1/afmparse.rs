@@ -115,6 +115,7 @@ pub type AFMInteger = libc::c_long;
 pub enum AFMBoolean {
     AFMFalse = 0,
     AFMTrue = 1,
+}
 impl AFMBoolean {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -124,6 +125,8 @@ impl AFMBoolean {
     }
 }
 
+pub const AFMTrue: AFMBoolean = 1;
+pub const AFMFalse: AFMBoolean = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct afm_array_st {
@@ -374,6 +377,7 @@ pub enum AFMKey {
     kAxisLabel,
     kStartMaster,
     kEndMaster,
+}
 impl AFMKey {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -462,6 +466,87 @@ impl AFMKey {
     }
 }
 
+pub const kEndMaster: AFMKey = 80;
+pub const kStartMaster: AFMKey = 79;
+pub const kAxisLabel: AFMKey = 78;
+pub const kAxisType: AFMKey = 77;
+pub const kEndAxis: AFMKey = 76;
+pub const kStartAxis: AFMKey = 75;
+pub const kPCC: AFMKey = 74;
+pub const kCC: AFMKey = 73;
+pub const kEndComposites: AFMKey = 72;
+pub const kStartComposites: AFMKey = 71;
+pub const kKPY: AFMKey = 70;
+pub const kKPX: AFMKey = 69;
+pub const kKPH: AFMKey = 68;
+pub const kKP: AFMKey = 67;
+pub const kEndKernPairs: AFMKey = 66;
+pub const kStartKernPairs: AFMKey = 65;
+pub const kTrackKern: AFMKey = 64;
+pub const kEndTrackKern: AFMKey = 63;
+pub const kStartTrackKern: AFMKey = 62;
+pub const kEndKernData: AFMKey = 61;
+pub const kStartKernData: AFMKey = 60;
+pub const kL: AFMKey = 59;
+pub const kB: AFMKey = 58;
+pub const kN: AFMKey = 57;
+pub const kVV: AFMKey = 56;
+pub const kW1: AFMKey = 55;
+pub const kW0: AFMKey = 54;
+pub const kW: AFMKey = 53;
+pub const kW1Y: AFMKey = 52;
+pub const kW0Y: AFMKey = 51;
+pub const kWY: AFMKey = 50;
+pub const kW1X: AFMKey = 49;
+pub const kW0X: AFMKey = 48;
+pub const kWX: AFMKey = 47;
+pub const kCH: AFMKey = 46;
+pub const kC: AFMKey = 45;
+pub const kEndCharMetrics: AFMKey = 44;
+pub const kStartCharMetrics: AFMKey = 43;
+pub const kIsFixedPitch: AFMKey = 42;
+pub const kCharWidth: AFMKey = 41;
+pub const kItalicAngle: AFMKey = 40;
+pub const kUnderlineThickness: AFMKey = 39;
+pub const kUnderlinePosition: AFMKey = 38;
+pub const kEndDirection: AFMKey = 37;
+pub const kStartDirection: AFMKey = 36;
+pub const kBlendAxisTypes: AFMKey = 35;
+pub const kBlendDesignMap: AFMKey = 34;
+pub const kBlendDesignPositions: AFMKey = 33;
+pub const kWeightVector: AFMKey = 32;
+pub const kDescender: AFMKey = 31;
+pub const kAscender: AFMKey = 30;
+pub const kXHeight: AFMKey = 29;
+pub const kCapHeight: AFMKey = 28;
+pub const kIsFixedV: AFMKey = 27;
+pub const kVVector: AFMKey = 26;
+pub const kIsBaseFont: AFMKey = 25;
+pub const kCharacters: AFMKey = 24;
+pub const kCharacterSet: AFMKey = 23;
+pub const kEscChar: AFMKey = 22;
+pub const kMappingScheme: AFMKey = 21;
+pub const kEncodingScheme: AFMKey = 20;
+pub const kNotice: AFMKey = 19;
+pub const kVersion: AFMKey = 18;
+pub const kFontBBox: AFMKey = 17;
+pub const kWeight: AFMKey = 16;
+pub const kFamilyName: AFMKey = 15;
+pub const kFullName: AFMKey = 14;
+pub const kFontName: AFMKey = 13;
+pub const kAxes: AFMKey = 12;
+pub const kMasters: AFMKey = 11;
+pub const kDescendents: AFMKey = 10;
+pub const kMetricsSets: AFMKey = 9;
+pub const kEndMasterFontMetrics: AFMKey = 8;
+pub const kStartMasterFontMetrics: AFMKey = 7;
+pub const kEndDescendent: AFMKey = 6;
+pub const kStartDescendent: AFMKey = 5;
+pub const kEndCompFontMetrics: AFMKey = 4;
+pub const kStartCompFontMetrics: AFMKey = 3;
+pub const kEndFontMetrics: AFMKey = 2;
+pub const kStartFontMetrics: AFMKey = 1;
+pub const kComment: AFMKey = 0;
 pub type ParseCtx = parse_ctx_st;
 #[derive(Copy, Clone)]
 #[repr(C)]

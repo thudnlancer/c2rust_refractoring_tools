@@ -67,6 +67,7 @@ pub enum sexp_mode {
     SEXP_CANONICAL = 0,
     SEXP_ADVANCED = 1,
     SEXP_TRANSPORT = 2,
+}
 impl sexp_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -77,6 +78,9 @@ impl sexp_mode {
     }
 }
 
+pub const SEXP_TRANSPORT: sexp_mode = 2;
+pub const SEXP_ADVANCED: sexp_mode = 1;
+pub const SEXP_CANONICAL: sexp_mode = 0;
 pub type uint8_t = __uint8_t;
 pub type nettle_realloc_func = unsafe extern "C" fn(
     *mut libc::c_void,

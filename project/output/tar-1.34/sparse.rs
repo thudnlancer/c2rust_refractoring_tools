@@ -199,11 +199,11 @@ pub struct _obstack_chunk {
 }
 pub type uintmax_t = __uintmax_t;
 pub type DIR = __dirstream;
-pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -212,7 +212,6 @@ impl C2RustUnnamed_2 {
     }
 }
 
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -312,6 +311,7 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -326,6 +326,13 @@ impl archive_format {
     }
 }
 
+pub const GNU_FORMAT: archive_format = 6;
+pub const STAR_FORMAT: archive_format = 5;
+pub const POSIX_FORMAT: archive_format = 4;
+pub const USTAR_FORMAT: archive_format = 3;
+pub const OLDGNU_FORMAT: archive_format = 2;
+pub const V7_FORMAT: archive_format = 1;
+pub const DEFAULT_FORMAT: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -403,6 +410,7 @@ pub enum hole_detection_method {
     HOLE_DETECTION_DEFAULT,
     HOLE_DETECTION_RAW,
     HOLE_DETECTION_SEEK,
+}
 impl hole_detection_method {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -413,6 +421,9 @@ impl hole_detection_method {
     }
 }
 
+pub const HOLE_DETECTION_SEEK: hole_detection_method = 2;
+pub const HOLE_DETECTION_RAW: hole_detection_method = 1;
+pub const HOLE_DETECTION_DEFAULT: hole_detection_method = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
@@ -420,6 +431,7 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
+}
 impl dump_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -431,6 +443,10 @@ impl dump_status {
     }
 }
 
+pub const dump_status_not_implemented: dump_status = 3;
+pub const dump_status_fail: dump_status = 2;
+pub const dump_status_short: dump_status = 1;
+pub const dump_status_ok: dump_status = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tar_sparse_file {
@@ -471,6 +487,7 @@ pub enum sparse_scan_state {
     scan_end = 2,
     scan_block = 1,
     scan_begin = 0,
+}
 impl sparse_scan_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -481,13 +498,16 @@ impl sparse_scan_state {
     }
 }
 
-pub const add_fail: oldgnu_add_status = 2;
+pub const scan_end: sparse_scan_state = 2;
+pub const scan_block: sparse_scan_state = 1;
+pub const scan_begin: sparse_scan_state = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum oldgnu_add_status {
     add_ok,
     add_finish,
     add_fail,
+}
 impl oldgnu_add_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

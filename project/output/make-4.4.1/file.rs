@@ -272,6 +272,7 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
+}
 impl cmd_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -283,6 +284,10 @@ impl cmd_state {
     }
 }
 
+pub const cs_finished: cmd_state = 3;
+pub const cs_running: cmd_state = 2;
+pub const cs_deps_running: cmd_state = 1;
+pub const cs_not_started: cmd_state = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -290,6 +295,7 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
+}
 impl update_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -301,6 +307,10 @@ impl update_status {
     }
 }
 
+pub const us_failed: update_status = 3;
+pub const us_question: update_status = 2;
+pub const us_none: update_status = 1;
+pub const us_success: update_status = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct variable_set_list {
@@ -375,14 +385,33 @@ pub struct floc {
     pub lineno: libc::c_ulong,
     pub offset: libc::c_ulong,
 }
-pub const o_invalid: variable_origin = 7;
-pub const o_automatic: variable_origin = 6;
-pub const o_override: variable_origin = 5;
-pub const o_command: variable_origin = 4;
-pub const o_env_override: variable_origin = 3;
-pub const o_file: variable_origin = 2;
-pub const o_env: variable_origin = 1;
-pub const o_default: variable_origin = 0;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum variable_origin {
+    o_default,
+    o_env,
+    o_file,
+    o_env_override,
+    o_command,
+    o_override,
+    o_automatic,
+    o_invalid,
+}
+impl variable_origin {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            variable_origin::o_default => 0,
+            variable_origin::o_env => 1,
+            variable_origin::o_file => 2,
+            variable_origin::o_env_override => 3,
+            variable_origin::o_command => 4,
+            variable_origin::o_override => 5,
+            variable_origin::o_automatic => 6,
+            variable_origin::o_invalid => 7,
+        }
+    }
+}
+
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct variable {
@@ -411,6 +440,7 @@ pub enum variable_export {
     v_export,
     v_noexport,
     v_ifset,
+}
 impl variable_export {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -422,64 +452,10 @@ impl variable_export {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum variable_origin {
-    o_default,
-    o_env,
-    o_file,
-    o_env_override,
-    o_command,
-    o_override,
-    o_automatic,
-    o_invalid,
-impl variable_origin {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            variable_origin::o_default => 0,
-            variable_origin::o_env => 1,
-            variable_origin::o_file => 2,
-            variable_origin::o_env_override => 3,
-            variable_origin::o_command => 4,
-            variable_origin::o_override => 5,
-            variable_origin::o_automatic => 6,
-            variable_origin::o_invalid => 7,
-        }
-    }
-}
-_uint", bits = "0..=0")]
-    #[bitfield(name = "append", ty = "libc::c_uint", bits = "1..=1")]
-    #[bitfield(name = "conditional", ty = "libc::c_uint", bits = "2..=2")]
-    #[bitfield(name = "per_target", ty = "libc::c_uint", bits = "3..=3")]
-    #[bitfield(name = "special", ty = "libc::c_uint", bits = "4..=4")]
-    #[bitfield(name = "exportable", ty = "libc::c_uint", bits = "5..=5")]
-    #[bitfield(name = "expanding", ty = "libc::c_uint", bits = "6..=6")]
-    #[bitfield(name = "private_var", ty = "libc::c_uint", bits = "7..=7")]
-    #[bitfield(name = "exp_count", ty = "libc::c_uint", bits = "8..=22")]
-    #[bitfield(name = "flavor", ty = "variable_flavor", bits = "23..=25")]
-    #[bitfield(name = "origin", ty = "variable_origin", bits = "26..=28")]
-    #[bitfield(name = "export", ty = "variable_export", bits = "29..=30")]
-    pub recursive_append_conditional_per_target_special_exportable_expanding_private_var_exp_count_flavor_origin_export: [u8; 4],
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum variable_export {
-    v_default = 0,
-    v_export,
-    v_noexport,
-    v_ifset,
-impl variable_export {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            variable_export::v_default => 0,
-            variable_export::v_export => 1,
-            variable_export::v_noexport => 2,
-            variable_export::v_ifset => 3,
-        }
-    }
-}
-
-pub type variable_origin = libc::c_uint;
+pub const v_ifset: variable_export = 3;
+pub const v_noexport: variable_export = 2;
+pub const v_export: variable_export = 1;
+pub const v_default: variable_export = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_flavor {
@@ -491,6 +467,7 @@ pub enum variable_flavor {
     f_conditional,
     f_shell,
     f_append_value,
+}
 impl variable_flavor {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -506,6 +483,14 @@ impl variable_flavor {
     }
 }
 
+pub const f_append_value: variable_flavor = 7;
+pub const f_shell: variable_flavor = 6;
+pub const f_conditional: variable_flavor = 5;
+pub const f_append: variable_flavor = 4;
+pub const f_expand: variable_flavor = 3;
+pub const f_recursive: variable_flavor = 2;
+pub const f_simple: variable_flavor = 1;
+pub const f_bogus: variable_flavor = 0;
 pub type hash_map_func_t = Option::<unsafe extern "C" fn(*const libc::c_void) -> ()>;
 pub type hash_map_arg_func_t = Option::<
     unsafe extern "C" fn(*const libc::c_void, *mut libc::c_void) -> (),

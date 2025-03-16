@@ -37,29 +37,6 @@ pub struct mode_change {
     pub value: mode_t,
     pub mentioned: mode_t,
 }
-pub const MODE_DONE: C2RustUnnamed = 0;
-pub const MODE_COPY_EXISTING: C2RustUnnamed = 3;
-pub const MODE_X_IF_ANY_X: C2RustUnnamed = 2;
-pub const MODE_ORDINARY_CHANGE: C2RustUnnamed = 1;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct stat {
-    pub st_dev: __dev_t,
-    pub st_ino: __ino_t,
-    pub st_nlink: __nlink_t,
-    pub st_mode: __mode_t,
-    pub st_uid: __uid_t,
-    pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
-    pub st_rdev: __dev_t,
-    pub st_size: __off_t,
-    pub st_blksize: __blksize_t,
-    pub st_blocks: __blkcnt_t,
-    pub st_atim: timespec,
-    pub st_mtim: timespec,
-    pub st_ctim: timespec,
-    pub __glibc_reserved: [__syscall_slong_t; 3],
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -67,6 +44,7 @@ pub enum C2RustUnnamed {
     MODE_ORDINARY_CHANGE,
     MODE_X_IF_ANY_X,
     MODE_COPY_EXISTING,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -97,7 +75,6 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub type C2RustUnnamed = libc::c_uint;
 #[inline]
 unsafe extern "C" fn stat(
     mut __path: *const libc::c_char,

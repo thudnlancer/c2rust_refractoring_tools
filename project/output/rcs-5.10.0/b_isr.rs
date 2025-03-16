@@ -228,6 +228,7 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -238,6 +239,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -481,6 +485,7 @@ pub enum isr_actions {
     ISR_RESTOREINTS = 2,
     ISR_IGNOREINTS = 1,
     ISR_CATCHINTS = 0,
+}
 impl isr_actions {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -492,6 +497,10 @@ impl isr_actions {
     }
 }
 
+pub const ISR_CATCHMMAPINTS: isr_actions = 3;
+pub const ISR_RESTOREINTS: isr_actions = 2;
+pub const ISR_IGNOREINTS: isr_actions = 1;
+pub const ISR_CATCHINTS: isr_actions = 0;
 #[no_mangle]
 pub unsafe extern "C" fn maybe_reset_sigchld() {
     signal(17 as libc::c_int, None);

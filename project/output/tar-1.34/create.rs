@@ -359,6 +359,7 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
+}
 impl savedir_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -370,6 +371,10 @@ impl savedir_option {
     }
 }
 
+pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
+pub const SAVEDIR_SORT_INODE: savedir_option = 2;
+pub const SAVEDIR_SORT_NAME: savedir_option = 1;
+pub const SAVEDIR_SORT_NONE: savedir_option = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -469,6 +474,7 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -483,6 +489,13 @@ impl archive_format {
     }
 }
 
+pub const GNU_FORMAT: archive_format = 6;
+pub const STAR_FORMAT: archive_format = 5;
+pub const POSIX_FORMAT: archive_format = 4;
+pub const USTAR_FORMAT: archive_format = 3;
+pub const OLDGNU_FORMAT: archive_format = 2;
+pub const V7_FORMAT: archive_format = 1;
+pub const DEFAULT_FORMAT: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -560,6 +573,7 @@ pub enum atime_preserve {
     no_atime_preserve,
     replace_atime_preserve,
     system_atime_preserve,
+}
 impl atime_preserve {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -570,6 +584,9 @@ impl atime_preserve {
     }
 }
 
+pub const system_atime_preserve: atime_preserve = 2;
+pub const replace_atime_preserve: atime_preserve = 1;
+pub const no_atime_preserve: atime_preserve = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
@@ -577,6 +594,7 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
+}
 impl exclusion_tag_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -588,12 +606,17 @@ impl exclusion_tag_type {
     }
 }
 
+pub const exclusion_tag_all: exclusion_tag_type = 3;
+pub const exclusion_tag_under: exclusion_tag_type = 2;
+pub const exclusion_tag_contents: exclusion_tag_type = 1;
+pub const exclusion_tag_none: exclusion_tag_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum set_mtime_option_mode {
     USE_FILE_MTIME,
     FORCE_MTIME,
     CLAMP_MTIME,
+}
 impl set_mtime_option_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -604,6 +627,9 @@ impl set_mtime_option_mode {
     }
 }
 
+pub const CLAMP_MTIME: set_mtime_option_mode = 2;
+pub const FORCE_MTIME: set_mtime_option_mode = 1;
+pub const USE_FILE_MTIME: set_mtime_option_mode = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct name {
@@ -627,6 +653,7 @@ pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
+}
 impl access_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -637,6 +664,9 @@ impl access_mode {
     }
 }
 
+pub const ACCESS_UPDATE: access_mode = 2;
+pub const ACCESS_WRITE: access_mode = 1;
+pub const ACCESS_READ: access_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
@@ -644,6 +674,7 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
+}
 impl dump_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -655,6 +686,10 @@ impl dump_status {
     }
 }
 
+pub const dump_status_not_implemented: dump_status = 3;
+pub const dump_status_fail: dump_status = 2;
+pub const dump_status_short: dump_status = 1;
+pub const dump_status_ok: dump_status = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct exclusion_tag {
@@ -690,14 +725,26 @@ pub type Hash_comparator = Option::<
 pub type Hash_hasher = Option::<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
-pub const IMPOSTOR_ERRNO: C2RustUnnamed_2 = 2;
-pub const FILES_MANY: files_count = 2;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    IMPOSTOR_ERRNO = 2,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::IMPOSTOR_ERRNO => 2,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
     FILES_NONE,
     FILES_ONE,
     FILES_MANY,
+}
 impl files_count {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -708,26 +755,6 @@ impl files_count {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    IMPOSTOR_ERRNO = 2,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::IMPOSTOR_ERRNO => 2,
-        }
-    }
-}
-ch self {
-            files_count::FILES_NONE => 0,
-            files_count::FILES_ONE => 1,
-            files_count::FILES_MANY => 2,
-        }
-    }
-}
-
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn gnu_dev_major(mut __dev: __dev_t) -> libc::c_uint {
     let mut __major: libc::c_uint = 0;

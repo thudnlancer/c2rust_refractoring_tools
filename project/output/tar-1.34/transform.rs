@@ -185,6 +185,7 @@ pub enum case_ctl_type {
     ctl_locase_next,
     ctl_upcase,
     ctl_locase,
+}
 impl case_ctl_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -197,6 +198,11 @@ impl case_ctl_type {
     }
 }
 
+pub const ctl_locase: case_ctl_type = 4;
+pub const ctl_upcase: case_ctl_type = 3;
+pub const ctl_locase_next: case_ctl_type = 2;
+pub const ctl_upcase_next: case_ctl_type = 1;
+pub const ctl_stop: case_ctl_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_3 {
@@ -209,6 +215,7 @@ pub enum replace_segm_type {
     segm_case_ctl = 2,
     segm_backref = 1,
     segm_literal = 0,
+}
 impl replace_segm_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -219,11 +226,15 @@ impl replace_segm_type {
     }
 }
 
+pub const segm_case_ctl: replace_segm_type = 2;
+pub const segm_backref: replace_segm_type = 1;
+pub const segm_literal: replace_segm_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum transform_type {
     transform_global = 1,
     transform_first = 0,
+}
 impl transform_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -233,6 +244,8 @@ impl transform_type {
     }
 }
 
+pub const transform_global: transform_type = 1;
+pub const transform_first: transform_type = 0;
 #[inline]
 unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {
     return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {

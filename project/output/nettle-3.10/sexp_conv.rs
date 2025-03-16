@@ -226,6 +226,7 @@ pub enum sexp_mode {
     SEXP_TRANSPORT = 2,
     SEXP_ADVANCED = 1,
     SEXP_CANONICAL = 0,
+}
 impl sexp_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -236,6 +237,9 @@ impl sexp_mode {
     }
 }
 
+pub const SEXP_TRANSPORT: sexp_mode = 2;
+pub const SEXP_ADVANCED: sexp_mode = 1;
+pub const SEXP_CANONICAL: sexp_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_token {
@@ -249,6 +253,7 @@ pub enum sexp_token {
     SEXP_COMMENT = 2,
     SEXP_DISPLAY = 1,
     SEXP_STRING = 0,
+}
 impl sexp_token {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -266,6 +271,16 @@ impl sexp_token {
     }
 }
 
+pub const SEXP_CODING_END: sexp_token = 9;
+pub const SEXP_TRANSPORT_START: sexp_token = 8;
+pub const SEXP_DISPLAY_END: sexp_token = 7;
+pub const SEXP_DISPLAY_START: sexp_token = 6;
+pub const SEXP_EOF: sexp_token = 5;
+pub const SEXP_LIST_END: sexp_token = 4;
+pub const SEXP_LIST_START: sexp_token = 3;
+pub const SEXP_COMMENT: sexp_token = 2;
+pub const SEXP_DISPLAY: sexp_token = 1;
+pub const SEXP_STRING: sexp_token = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base16_decode_ctx {
@@ -286,6 +301,7 @@ pub enum sexp_char_type {
     SEXP_END_CHAR = 2,
     SEXP_EOF_CHAR = 1,
     SEXP_NORMAL_CHAR = 0,
+}
 impl sexp_char_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -296,6 +312,9 @@ impl sexp_char_type {
     }
 }
 
+pub const SEXP_END_CHAR: sexp_char_type = 2;
+pub const SEXP_EOF_CHAR: sexp_char_type = 1;
+pub const SEXP_NORMAL_CHAR: sexp_char_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sexp_input {
@@ -359,6 +378,7 @@ pub enum C2RustUnnamed_0 {
     OPT_LOCK = 302,
     OPT_HASH = 301,
     OPT_ONCE = 300,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -370,6 +390,10 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const OPT_HELP: C2RustUnnamed_0 = 303;
+pub const OPT_LOCK: C2RustUnnamed_0 = 302;
+pub const OPT_HASH: C2RustUnnamed_0 = 301;
+pub const OPT_ONCE: C2RustUnnamed_0 = 300;
 unsafe extern "C" fn sexp_convert_item(
     mut parser: *mut sexp_parser,
     mut token: *mut sexp_compound_token,

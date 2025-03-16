@@ -159,6 +159,7 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -169,6 +170,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {

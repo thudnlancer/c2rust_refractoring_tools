@@ -131,6 +131,7 @@ pub enum tokens {
     NUM,
     SEMI,
     STRING,
+}
 impl tokens {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -153,6 +154,21 @@ impl tokens {
     }
 }
 
+pub const STRING: tokens = 14;
+pub const SEMI: tokens = 13;
+pub const NUM: tokens = 12;
+pub const ID: tokens = 11;
+pub const COLON: tokens = 10;
+pub const UNKN: tokens = 9;
+pub const SPACE: tokens = 8;
+pub const SBEGIN: tokens = 7;
+pub const PERIOD: tokens = 6;
+pub const Letter: tokens = 5;
+pub const LETTER: tokens = 4;
+pub const NEWLN: tokens = 3;
+pub const IDCHAR: tokens = 2;
+pub const DIGIT: tokens = 1;
+pub const DELIM: tokens = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -192,6 +208,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -202,6 +219,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {

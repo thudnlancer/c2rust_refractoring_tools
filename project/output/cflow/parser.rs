@@ -171,6 +171,7 @@ pub enum symtype {
     SymUndefined,
     SymToken,
     SymIdentifier,
+}
 impl symtype {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -181,6 +182,9 @@ impl symtype {
     }
 }
 
+pub const SymIdentifier: symtype = 2;
+pub const SymToken: symtype = 1;
+pub const SymUndefined: symtype = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
@@ -189,6 +193,7 @@ pub enum storage {
     StaticStorage,
     AutoStorage,
     AnyStorage,
+}
 impl storage {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -201,6 +206,11 @@ impl storage {
     }
 }
 
+pub const AnyStorage: storage = 4;
+pub const AutoStorage: storage = 3;
+pub const StaticStorage: storage = 2;
+pub const ExplicitExternStorage: storage = 1;
+pub const ExternStorage: storage = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct Ref {
@@ -214,6 +224,7 @@ pub enum symbol_flag {
     symbol_temp,
     symbol_parm,
     symbol_alias,
+}
 impl symbol_flag {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -225,6 +236,10 @@ impl symbol_flag {
     }
 }
 
+pub const symbol_alias: symbol_flag = 3;
+pub const symbol_parm: symbol_flag = 2;
+pub const symbol_temp: symbol_flag = 1;
+pub const symbol_none: symbol_flag = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct symbol {

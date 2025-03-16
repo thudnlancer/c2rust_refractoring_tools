@@ -242,6 +242,7 @@ pub enum C2RustUnnamed_0 {
     DFA_CONFUSING_BRACKETS_ERROR = 4,
     DFA_EOL_NUL = 2,
     DFA_ANCHOR = 1,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -255,17 +256,97 @@ impl C2RustUnnamed_0 {
     }
 }
 
-pub const CHARCLASS_WORD_BITS: C2RustUnnamed_10 = 64;
-pub const CTX_NEWLINE: C2RustUnnamed_12 = 4;
-pub const CTX_LETTER: C2RustUnnamed_12 = 2;
-pub const CTX_NONE: C2RustUnnamed_12 = 1;
-pub const _ISalnum: C2RustUnnamed_8 = 8;
-pub const NOTCHAR: C2RustUnnamed_9 = 256;
-pub const DEFAULT_MXFAST: C2RustUnnamed_1 = 128;
+pub const DFA_PLUS_WARN: C2RustUnnamed_0 = 32;
+pub const DFA_STAR_WARN: C2RustUnnamed_0 = 16;
+pub const DFA_STRAY_BACKSLASH_WARN: C2RustUnnamed_0 = 8;
+pub const DFA_CONFUSING_BRACKETS_ERROR: C2RustUnnamed_0 = 4;
+pub const DFA_EOL_NUL: C2RustUnnamed_0 = 2;
+pub const DFA_ANCHOR: C2RustUnnamed_0 = 1;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_10 {
+    CHARCLASS_WORD_BITS = 64,
+}
+impl C2RustUnnamed_10 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_10::CHARCLASS_WORD_BITS => 64,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_12 {
+    CTX_NONE = 1,
+    CTX_LETTER = 2,
+    CTX_NEWLINE = 4,
+    CTX_ANY = 7,
+}
+impl C2RustUnnamed_12 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_12::CTX_NONE => 1,
+            C2RustUnnamed_12::CTX_LETTER => 2,
+            C2RustUnnamed_12::CTX_NEWLINE => 4,
+            C2RustUnnamed_12::CTX_ANY => 7,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_8 {
+    _ISalnum = 8,
+    _ISalpha = 1024,
+    _ISspace = 8192,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISlower = 512,
+    _ISupper = 256,
+}
+impl C2RustUnnamed_8 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_8::_ISalnum => 8,
+            C2RustUnnamed_8::_ISalpha => 1024,
+            C2RustUnnamed_8::_ISspace => 8192,
+            C2RustUnnamed_8::_ISpunct => 4,
+            C2RustUnnamed_8::_IScntrl => 2,
+            C2RustUnnamed_8::_ISblank => 1,
+            C2RustUnnamed_8::_ISgraph => 32768,
+            C2RustUnnamed_8::_ISprint => 16384,
+            C2RustUnnamed_8::_ISxdigit => 4096,
+            C2RustUnnamed_8::_ISdigit => 2048,
+            C2RustUnnamed_8::_ISlower => 512,
+            C2RustUnnamed_8::_ISupper => 256,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_9 {
+    NOTCHAR = 256,
+}
+impl C2RustUnnamed_9 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_9::NOTCHAR => 256,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -274,19 +355,65 @@ impl C2RustUnnamed_1 {
     }
 }
 
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub const NO_CONSTRAINT: C2RustUnnamed_13 = 511;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_13 {
+    NO_CONSTRAINT = 511,
+    BEGLINE_CONSTRAINT = 292,
+    ENDLINE_CONSTRAINT = 448,
+    BEGWORD_CONSTRAINT = 40,
+    ENDWORD_CONSTRAINT = 130,
+    LIMWORD_CONSTRAINT = 170,
+    NOTLIMWORD_CONSTRAINT = 341,
+}
+impl C2RustUnnamed_13 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_13::NO_CONSTRAINT => 511,
+            C2RustUnnamed_13::BEGLINE_CONSTRAINT => 292,
+            C2RustUnnamed_13::ENDLINE_CONSTRAINT => 448,
+            C2RustUnnamed_13::BEGWORD_CONSTRAINT => 40,
+            C2RustUnnamed_13::ENDWORD_CONSTRAINT => 130,
+            C2RustUnnamed_13::LIMWORD_CONSTRAINT => 170,
+            C2RustUnnamed_13::NOTLIMWORD_CONSTRAINT => 341,
+        }
+    }
+}
+
 pub const BACKREF: C2RustUnnamed_14 = 274;
-pub const CTX_ANY: C2RustUnnamed_12 = 7;
-pub const CHARCLASS_WORDS: C2RustUnnamed_11 = 4;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_11 {
+    CHARCLASS_WORDS = 4,
+}
+impl C2RustUnnamed_11 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_11::CHARCLASS_WORDS => 4,
+        }
+    }
+}
+
 pub const ANYCHAR: C2RustUnnamed_14 = 266;
 pub const CSET: C2RustUnnamed_14 = 276;
-pub const MAX_TRCOUNT: C2RustUnnamed_15 = 1024;
-pub const TRANSALLOC_SIZE: C2RustUnnamed_2 = 8192;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_15 {
+    MAX_TRCOUNT = 1024,
+}
+impl C2RustUnnamed_15 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_15::MAX_TRCOUNT => 1024,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     TRANSALLOC_SIZE = 8192,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -295,11 +422,11 @@ impl C2RustUnnamed_2 {
     }
 }
 
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     TRANSPTR_SIZE = 8,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -308,6 +435,7 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const TRANSPTR_SIZE: C2RustUnnamed_3 = 8;
 pub const OR: C2RustUnnamed_14 = 262;
 pub const NOTLIMWORD: C2RustUnnamed_14 = 273;
 pub const LIMWORD: C2RustUnnamed_14 = 272;
@@ -322,7 +450,6 @@ pub const STAR: C2RustUnnamed_14 = 258;
 pub const QMARK: C2RustUnnamed_14 = 257;
 pub const MBCSET: C2RustUnnamed_14 = 275;
 pub const END: C2RustUnnamed_14 = -1;
-pub const _ISalpha: C2RustUnnamed_8 = 1024;
 pub const WCHAR: C2RustUnnamed_14 = 265;
 pub type predicate = unsafe extern "C" fn(libc::c_int) -> libc::c_int;
 #[derive(Copy, Clone)]
@@ -332,11 +459,11 @@ pub struct dfa_ctype {
     pub func: Option::<predicate>,
     pub single_byte_only: bool,
 }
-pub const MAX_BRACKET_STRING_LEN: C2RustUnnamed_4 = 32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
     MAX_BRACKET_STRING_LEN = 32,
+}
 impl C2RustUnnamed_4 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -345,51 +472,15 @@ impl C2RustUnnamed_4 {
     }
 }
 
-pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct lexptr {
     pub ptr: *const libc::c_char,
     pub left: idx_t,
 }
-pub const _ISspace: C2RustUnnamed_8 = 8192;
 pub const RPAREN: C2RustUnnamed_14 = 264;
 pub const LPAREN: C2RustUnnamed_14 = 263;
 pub const REPMN: C2RustUnnamed_14 = 260;
-pub const C: C2RustUnnamed_6 = 2;
-pub const K: C2RustUnnamed_6 = 7;
-pub const M: C2RustUnnamed_6 = 8;
-pub const L_token: C2RustUnnamed_5 = 244;
-pub const J: C2RustUnnamed_6 = 6;
-pub const I_token: C2RustUnnamed_5 = 240;
-pub const F: C2RustUnnamed_6 = 4;
-pub const H: C2RustUnnamed_6 = 5;
-pub const G_token: C2RustUnnamed_5 = 237;
-pub const E: C2RustUnnamed_6 = 3;
-pub const D_token: C2RustUnnamed_5 = 224;
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    D_token = 0xE0,
-    G_token = 0xED,
-    I_token = 0xF0,
-    L_token = 0xF4,
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::D_token => 0xE0,
-            C2RustUnnamed_5::G_token => 0xED,
-            C2RustUnnamed_5::I_token => 0xF0,
-            C2RustUnnamed_5::L_token => 0xF4,
-        }
-    }
-}
-
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-pub type C2RustUnnamed_5 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_6 {
@@ -402,6 +493,7 @@ pub enum C2RustUnnamed_6 {
     J,
     K,
     M,
+}
 impl C2RustUnnamed_6 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -418,99 +510,6 @@ impl C2RustUnnamed_6 {
     }
 }
 
-pub type C2RustUnnamed_5 = libc::c_uint;
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub const BEG: C2RustUnnamed_14 = 267;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct must {
-    pub in_0: *mut *mut libc::c_char,
-    pub left: *mut libc::c_char,
-    pub right: *mut libc::c_char,
-    pub is: *mut libc::c_char,
-    pub begline: bool,
-    pub endline: bool,
-    pub prev: *mut must,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub nullable: bool,
-    pub nfirstpos: idx_t,
-    pub nlastpos: idx_t,
-}
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_9 {
-    NOTCHAR = 256,
-impl C2RustUnnamed_9 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_9::NOTCHAR => 256,
-        }
-    }
-}
-ed_14 = 264;
-pub const LPAREN: C2RustUnnamed_14 = 263;
-pub const REPMN: C2RustUnnamed_14 = 260;
-pub const C: C2RustUnnamed_6 = 2;
-pub const K: C2RustUnnamed_6 = 7;
-pub const M: C2RustUnnamed_6 = 8;
-pub const L_token: C2RustUnnamed_5 = 244;
-pub const J: C2RustUnnamed_6 = 6;
-pub const I_token: C2RustUnnamed_5 = 240;
-pub const F: C2RustUnnamed_6 = 4;
-pub const H: C2RustUnnamed_6 = 5;
-pub const G_token: C2RustUnnamed_5 = 237;
-pub const E: C2RustUnnamed_6 = 3;
-pub const D_token: C2RustUnnamed_5 = 224;
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -518,6 +517,7 @@ pub enum C2RustUnnamed_5 {
     G_token = 0xED,
     I_token = 0xF0,
     L_token = 0xF4,
+}
 impl C2RustUnnamed_5 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -529,39 +529,6 @@ impl C2RustUnnamed_5 {
     }
 }
 
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-pub type C2RustUnnamed_5 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    A,
-    B,
-    C,
-    E,
-    F,
-    H,
-    J,
-    K,
-    M,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::A => 0,
-            C2RustUnnamed_6::B => 1,
-            C2RustUnnamed_6::C => 2,
-            C2RustUnnamed_6::E => 3,
-            C2RustUnnamed_6::F => 4,
-            C2RustUnnamed_6::H => 5,
-            C2RustUnnamed_6::J => 6,
-            C2RustUnnamed_6::K => 7,
-            C2RustUnnamed_6::M => 8,
-        }
-    }
-}
-
-pub type C2RustUnnamed_5 = libc::c_uint;
-pub type C2RustUnnamed_6 = libc::c_uint;
 pub const BEG: C2RustUnnamed_14 = 267;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -581,659 +548,6 @@ pub struct C2RustUnnamed_7 {
     pub nfirstpos: idx_t,
     pub nlastpos: idx_t,
 }
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_10 {
-    CHARCLASS_WORD_BITS = 64,
-impl C2RustUnnamed_10 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_10::CHARCLASS_WORD_BITS => 64,
-        }
-    }
-}
-y)]
-#[repr(C)]
-pub enum C2RustUnnamed_9 {
-    NOTCHAR = 256,
-impl C2RustUnnamed_9 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_9::NOTCHAR => 256,
-        }
-    }
-}
-ed_14 = 264;
-pub const LPAREN: C2RustUnnamed_14 = 263;
-pub const REPMN: C2RustUnnamed_14 = 260;
-pub const C: C2RustUnnamed_6 = 2;
-pub const K: C2RustUnnamed_6 = 7;
-pub const M: C2RustUnnamed_6 = 8;
-pub const L_token: C2RustUnnamed_5 = 244;
-pub const J: C2RustUnnamed_6 = 6;
-pub const I_token: C2RustUnnamed_5 = 240;
-pub const F: C2RustUnnamed_6 = 4;
-pub const H: C2RustUnnamed_6 = 5;
-pub const G_token: C2RustUnnamed_5 = 237;
-pub const E: C2RustUnnamed_6 = 3;
-pub const D_token: C2RustUnnamed_5 = 224;
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    D_token = 0xE0,
-    G_token = 0xED,
-    I_token = 0xF0,
-    L_token = 0xF4,
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::D_token => 0xE0,
-            C2RustUnnamed_5::G_token => 0xED,
-            C2RustUnnamed_5::I_token => 0xF0,
-            C2RustUnnamed_5::L_token => 0xF4,
-        }
-    }
-}
-
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-pub type C2RustUnnamed_5 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    A,
-    B,
-    C,
-    E,
-    F,
-    H,
-    J,
-    K,
-    M,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::A => 0,
-            C2RustUnnamed_6::B => 1,
-            C2RustUnnamed_6::C => 2,
-            C2RustUnnamed_6::E => 3,
-            C2RustUnnamed_6::F => 4,
-            C2RustUnnamed_6::H => 5,
-            C2RustUnnamed_6::J => 6,
-            C2RustUnnamed_6::K => 7,
-            C2RustUnnamed_6::M => 8,
-        }
-    }
-}
-
-pub type C2RustUnnamed_5 = libc::c_uint;
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub const BEG: C2RustUnnamed_14 = 267;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct must {
-    pub in_0: *mut *mut libc::c_char,
-    pub left: *mut libc::c_char,
-    pub right: *mut libc::c_char,
-    pub is: *mut libc::c_char,
-    pub begline: bool,
-    pub endline: bool,
-    pub prev: *mut must,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub nullable: bool,
-    pub nfirstpos: idx_t,
-    pub nlastpos: idx_t,
-}
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_11 {
-    CHARCLASS_WORDS = 4,
-impl C2RustUnnamed_11 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_11::CHARCLASS_WORDS => 4,
-        }
-    }
-}
-;
-pub const I_token: C2RustUnnamed_5 = 240;
-pub const F: C2RustUnnamed_6 = 4;
-pub const H: C2RustUnnamed_6 = 5;
-pub const G_token: C2RustUnnamed_5 = 237;
-pub const E: C2RustUnnamed_6 = 3;
-pub const D_token: C2RustUnnamed_5 = 224;
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    D_token = 0xE0,
-    G_token = 0xED,
-    I_token = 0xF0,
-    L_token = 0xF4,
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::D_token => 0xE0,
-            C2RustUnnamed_5::G_token => 0xED,
-            C2RustUnnamed_5::I_token => 0xF0,
-            C2RustUnnamed_5::L_token => 0xF4,
-        }
-    }
-}
-
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-pub type C2RustUnnamed_5 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    A,
-    B,
-    C,
-    E,
-    F,
-    H,
-    J,
-    K,
-    M,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::A => 0,
-            C2RustUnnamed_6::B => 1,
-            C2RustUnnamed_6::C => 2,
-            C2RustUnnamed_6::E => 3,
-            C2RustUnnamed_6::F => 4,
-            C2RustUnnamed_6::H => 5,
-            C2RustUnnamed_6::J => 6,
-            C2RustUnnamed_6::K => 7,
-            C2RustUnnamed_6::M => 8,
-        }
-    }
-}
-
-pub type C2RustUnnamed_5 = libc::c_uint;
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub const BEG: C2RustUnnamed_14 = 267;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct must {
-    pub in_0: *mut *mut libc::c_char,
-    pub left: *mut libc::c_char,
-    pub right: *mut libc::c_char,
-    pub is: *mut libc::c_char,
-    pub begline: bool,
-    pub endline: bool,
-    pub prev: *mut must,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub nullable: bool,
-    pub nfirstpos: idx_t,
-    pub nlastpos: idx_t,
-}
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_12 {
-    CTX_NONE = 1,
-    CTX_LETTER = 2,
-    CTX_NEWLINE = 4,
-    CTX_ANY = 7,
-impl C2RustUnnamed_12 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_12::CTX_NONE => 1,
-            C2RustUnnamed_12::CTX_LETTER => 2,
-            C2RustUnnamed_12::CTX_NEWLINE => 4,
-            C2RustUnnamed_12::CTX_ANY => 7,
-        }
-    }
-}
-amed_11::CHARCLASS_WORDS => 4,
-        }
-    }
-}
-;
-pub const I_token: C2RustUnnamed_5 = 240;
-pub const F: C2RustUnnamed_6 = 4;
-pub const H: C2RustUnnamed_6 = 5;
-pub const G_token: C2RustUnnamed_5 = 237;
-pub const E: C2RustUnnamed_6 = 3;
-pub const D_token: C2RustUnnamed_5 = 224;
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    D_token = 0xE0,
-    G_token = 0xED,
-    I_token = 0xF0,
-    L_token = 0xF4,
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::D_token => 0xE0,
-            C2RustUnnamed_5::G_token => 0xED,
-            C2RustUnnamed_5::I_token => 0xF0,
-            C2RustUnnamed_5::L_token => 0xF4,
-        }
-    }
-}
-
-pub const B: C2RustUnnamed_6 = 1;
-pub const A: C2RustUnnamed_6 = 0;
-pub type C2RustUnnamed_5 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    A,
-    B,
-    C,
-    E,
-    F,
-    H,
-    J,
-    K,
-    M,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::A => 0,
-            C2RustUnnamed_6::B => 1,
-            C2RustUnnamed_6::C => 2,
-            C2RustUnnamed_6::E => 3,
-            C2RustUnnamed_6::F => 4,
-            C2RustUnnamed_6::H => 5,
-            C2RustUnnamed_6::J => 6,
-            C2RustUnnamed_6::K => 7,
-            C2RustUnnamed_6::M => 8,
-        }
-    }
-}
-
-pub type C2RustUnnamed_5 = libc::c_uint;
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub const BEG: C2RustUnnamed_14 = 267;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct must {
-    pub in_0: *mut *mut libc::c_char,
-    pub left: *mut libc::c_char,
-    pub right: *mut libc::c_char,
-    pub is: *mut libc::c_char,
-    pub begline: bool,
-    pub endline: bool,
-    pub prev: *mut must,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub nullable: bool,
-    pub nfirstpos: idx_t,
-    pub nlastpos: idx_t,
-}
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-pub type C2RustUnnamed_12 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_13 {
-    NO_CONSTRAINT = 511,
-    BEGLINE_CONSTRAINT = 292,
-    ENDLINE_CONSTRAINT = 448,
-    BEGWORD_CONSTRAINT = 40,
-    ENDWORD_CONSTRAINT = 130,
-    LIMWORD_CONSTRAINT = 170,
-    NOTLIMWORD_CONSTRAINT = 341,
-impl C2RustUnnamed_13 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_13::NO_CONSTRAINT => 511,
-            C2RustUnnamed_13::BEGLINE_CONSTRAINT => 292,
-            C2RustUnnamed_13::ENDLINE_CONSTRAINT => 448,
-            C2RustUnnamed_13::BEGWORD_CONSTRAINT => 40,
-            C2RustUnnamed_13::ENDWORD_CONSTRAINT => 130,
-            C2RustUnnamed_13::LIMWORD_CONSTRAINT => 170,
-            C2RustUnnamed_13::NOTLIMWORD_CONSTRAINT => 341,
-        }
-    }
-}
-        C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-pub type C2RustUnnamed_12 = libc::c_uint;
-pub type C2RustUnnamed_13 = libc::c_uint;
-pub type C2RustUnnamed_14 = libc::c_int;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_15 {
-    MAX_TRCOUNT = 1024,
-impl C2RustUnnamed_15 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_15::MAX_TRCOUNT => 1024,
-        }
-    }
-}
-Unnamed_6 = libc::c_uint;
-pub const BEG: C2RustUnnamed_14 = 267;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct must {
-    pub in_0: *mut *mut libc::c_char,
-    pub left: *mut libc::c_char,
-    pub right: *mut libc::c_char,
-    pub is: *mut libc::c_char,
-    pub begline: bool,
-    pub endline: bool,
-    pub prev: *mut must,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub nullable: bool,
-    pub nfirstpos: idx_t,
-    pub nlastpos: idx_t,
-}
-pub const OPT_QUEUED: C2RustUnnamed_16 = 16;
-pub const OPT_REPEAT: C2RustUnnamed_16 = 1;
-pub const OPT_RPAREN: C2RustUnnamed_16 = 4;
-pub const OPT_LPAREN: C2RustUnnamed_16 = 2;
-pub const OPT_WALKED: C2RustUnnamed_16 = 8;
-pub const NOTLIMWORD_CONSTRAINT: C2RustUnnamed_13 = 341;
-pub const LIMWORD_CONSTRAINT: C2RustUnnamed_13 = 170;
-pub const ENDWORD_CONSTRAINT: C2RustUnnamed_13 = 130;
-pub const BEGWORD_CONSTRAINT: C2RustUnnamed_13 = 40;
-pub const ENDLINE_CONSTRAINT: C2RustUnnamed_13 = 448;
-pub const BEGLINE_CONSTRAINT: C2RustUnnamed_13 = 292;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    _ISalnum = 8,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISlower = 512,
-    _ISupper = 256,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::_ISalnum => 8,
-            C2RustUnnamed_8::_ISalpha => 1024,
-            C2RustUnnamed_8::_ISspace => 8192,
-            C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-pub type C2RustUnnamed_12 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_13 {
-    NO_CONSTRAINT = 511,
-    BEGLINE_CONSTRAINT = 292,
-    ENDLINE_CONSTRAINT = 448,
-    BEGWORD_CONSTRAINT = 40,
-    ENDWORD_CONSTRAINT = 130,
-    LIMWORD_CONSTRAINT = 170,
-    NOTLIMWORD_CONSTRAINT = 341,
-impl C2RustUnnamed_13 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_13::NO_CONSTRAINT => 511,
-            C2RustUnnamed_13::BEGLINE_CONSTRAINT => 292,
-            C2RustUnnamed_13::ENDLINE_CONSTRAINT => 448,
-            C2RustUnnamed_13::BEGWORD_CONSTRAINT => 40,
-            C2RustUnnamed_13::ENDWORD_CONSTRAINT => 130,
-            C2RustUnnamed_13::LIMWORD_CONSTRAINT => 170,
-            C2RustUnnamed_13::NOTLIMWORD_CONSTRAINT => 341,
-        }
-    }
-}
-        C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-pub type C2RustUnnamed_12 = libc::c_uint;
-pub type C2RustUnnamed_13 = libc::c_uint;
-pub type C2RustUnnamed_14 = libc::c_int;
-pub type C2RustUnnamed_15 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_16 {
@@ -1242,6 +556,7 @@ pub enum C2RustUnnamed_16 {
     OPT_RPAREN = 4,
     OPT_LPAREN = 2,
     OPT_WALKED = 8,
+}
 impl C2RustUnnamed_16 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1253,36 +568,8 @@ impl C2RustUnnamed_16 {
         }
     }
 }
-E_CONSTRAINT => 292,
-            C2RustUnnamed_13::ENDLINE_CONSTRAINT => 448,
-            C2RustUnnamed_13::BEGWORD_CONSTRAINT => 40,
-            C2RustUnnamed_13::ENDWORD_CONSTRAINT => 130,
-            C2RustUnnamed_13::LIMWORD_CONSTRAINT => 170,
-            C2RustUnnamed_13::NOTLIMWORD_CONSTRAINT => 341,
-        }
-    }
-}
-        C2RustUnnamed_8::_ISpunct => 4,
-            C2RustUnnamed_8::_IScntrl => 2,
-            C2RustUnnamed_8::_ISblank => 1,
-            C2RustUnnamed_8::_ISgraph => 32768,
-            C2RustUnnamed_8::_ISprint => 16384,
-            C2RustUnnamed_8::_ISxdigit => 4096,
-            C2RustUnnamed_8::_ISdigit => 2048,
-            C2RustUnnamed_8::_ISlower => 512,
-            C2RustUnnamed_8::_ISupper => 256,
-        }
-    }
-}
 
-pub type C2RustUnnamed_9 = libc::c_uint;
-pub type C2RustUnnamed_10 = libc::c_uint;
-pub type C2RustUnnamed_11 = libc::c_uint;
-pub type C2RustUnnamed_12 = libc::c_uint;
-pub type C2RustUnnamed_13 = libc::c_uint;
 pub type C2RustUnnamed_14 = libc::c_int;
-pub type C2RustUnnamed_15 = libc::c_uint;
-pub type C2RustUnnamed_16 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn toupper(mut __c: libc::c_int) -> libc::c_int {
     return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {

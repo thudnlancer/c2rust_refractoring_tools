@@ -178,13 +178,13 @@ pub struct flock {
     pub l_len: __off_t,
     pub l_pid: __pid_t,
 }
-pub const js_none: js_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum js_type {
     js_none = 0,
     js_pipe,
     js_fifo,
+}
 impl js_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

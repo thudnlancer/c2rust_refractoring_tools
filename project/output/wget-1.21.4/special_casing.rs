@@ -16,6 +16,7 @@ pub enum C2RustUnnamed {
     SCC_AFTER_SOFT_DOTTED = 2,
     SCC_FINAL_SIGMA = 1,
     SCC_ALWAYS = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -29,6 +30,12 @@ impl C2RustUnnamed {
     }
 }
 
+pub const SCC_AFTER_I: C2RustUnnamed = 5;
+pub const SCC_BEFORE_DOT: C2RustUnnamed = 4;
+pub const SCC_MORE_ABOVE: C2RustUnnamed = 3;
+pub const SCC_AFTER_SOFT_DOTTED: C2RustUnnamed = 2;
+pub const SCC_FINAL_SIGMA: C2RustUnnamed = 1;
+pub const SCC_ALWAYS: C2RustUnnamed = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct special_casing_rule {

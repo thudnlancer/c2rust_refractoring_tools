@@ -153,20 +153,27 @@ def extract_enum_info_rust(filename):
 
         # 过滤出符合当前枚举名称的成员
         filtered_members = {}
-        last_member_end_pos = -1  # 记录最后一个成员定义的结束位置
+        first_member_end_pos = -1  # 记录最后一个成员定义的结束位置
+        first_member_start_pos = -1  # 记录第一个成员定义的开始位置
 
         for member_name, member_enum, member_value in enum_members:
             if member_enum == enum_name:
                 filtered_members[member_name] = (int(member_value), False, True)
                 member_code = f"pub const {member_name}: {enum_name} = {member_value};"
-                last_member_end_pos = code.find(member_code) + len(member_code)
+                if first_member_start_pos == -1:
+                    first_member_start_pos = code.find(member_code)
+                    first_member_end_pos = code.find(member_code) + len(member_code)
         
         if not filtered_members:
             continue
         
         # 记录每个枚举的位置信息
-        start_pos = code.find(f'pub type {enum_name} = libc::c_uint;')
-        end_pos = last_member_end_pos
+        if first_member_start_pos < code.find(f'pub type {enum_name} = libc::c_uint;'):
+            start_pos = first_member_start_pos
+            end_pos = first_member_end_pos
+        else:
+            start_pos = code.find(f'pub type {enum_name} = libc::c_uint;')
+            end_pos = start_pos + len(f'pub type {enum_name} = libc::c_uint;')
 
         enum_info_list.append({
             'enum_name': enum_name,
@@ -175,7 +182,10 @@ def extract_enum_info_rust(filename):
             'members': filtered_members
         })
 
-    return enum_info_list
+    # 根据 start_pos 对 enum_info_list 进行升序排序
+    enum_info_list_sorted = sorted(enum_info_list, key=lambda x: x['start_pos'])
+
+    return enum_info_list_sorted
 
 def make_enum_code_c(proj_path):
     if not os.path.exists('enum_code_c'):
@@ -324,7 +334,8 @@ def generate_enum_code(enum_name, members):
             enum_code += f"    {member} = {value_str},\n"  # 添加枚举成员和对应的值
         else:
             enum_code += f"    {member},\n"
-
+    
+    enum_code += f"}}\n"
     enum_code += f"impl {enum_name} {{\n"
 
     enum_code += f"    fn to_libc_c_uint(self) -> libc::c_uint {{\n"
@@ -388,7 +399,44 @@ def process_enum_in_file(file_path, enums_info):
         offset += (new_enum_length - old_enum_length)  # 更新偏移量
 
     content = process_enum_use(content, enums_info)
+
+    content = clean_enum_definition(content, enums_info)
     
+    return content
+
+def clean_enum_definition(content, enums_info):
+    """清理枚举定义中的多余内容"""
+    for enum_info in enums_info:
+
+        # 匹配枚举定义的正则表达式
+        pattern = r"pub type\s+" + re.escape(enum_info['enum_name']) + r"\s*=\s*libc::c_uint;"
+        match = re.search(pattern, content)
+        if not match:
+            continue
+
+        # 提取枚举定义的缩进
+        indentation = get_indentation_at_position(content, match.start())
+
+        # 删除枚举定义
+        enum_definition = match.group()
+        enum_definition_lines = enum_definition.splitlines()
+        cleaned_enum_definition = "\n".join([apply_indentation(line, indentation) for line in enum_definition_lines]) + "\n"
+        content = content.replace(cleaned_enum_definition, "")
+
+        # 匹配枚举成员定义的正则表达式
+        member_pattern = r"pub const\s+(\w+)\s*:\s*" + re.escape(enum_info['enum_name']) + r"\s*=\s*[^;]+;"
+        member_matches = list(re.finditer(member_pattern, content))
+
+        for match in reversed(member_matches):  # 从后往前删除，避免位置偏移
+            # 提取成员定义的缩进
+            indentation = get_indentation_at_position(content, match.start())
+
+            # 删除成员定义
+            member_definition = match.group()
+            member_definition_lines = member_definition.splitlines()
+            cleaned_member_definition = "\n".join([apply_indentation(line, indentation) for line in member_definition_lines]) + "\n"
+            content = content.replace(cleaned_member_definition, "")
+
     return content
 
 def process_enum_use(content, enums_info):

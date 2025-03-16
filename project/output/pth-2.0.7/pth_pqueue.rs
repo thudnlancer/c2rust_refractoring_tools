@@ -254,6 +254,7 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
+}
 impl pth_status_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -264,6 +265,9 @@ impl pth_status_t {
     }
 }
 
+pub const PTH_STATUS_FAILED: pth_status_t = 2;
+pub const PTH_STATUS_OCCURRED: pth_status_t = 1;
+pub const PTH_STATUS_PENDING: pth_status_t = 0;
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -273,6 +277,7 @@ pub enum pth_state_en {
     PTH_STATE_READY,
     PTH_STATE_WAITING,
     PTH_STATE_DEAD,
+}
 impl pth_state_en {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -285,6 +290,11 @@ impl pth_state_en {
     }
 }
 
+pub const PTH_STATE_DEAD: pth_state_en = 4;
+pub const PTH_STATE_WAITING: pth_state_en = 3;
+pub const PTH_STATE_READY: pth_state_en = 2;
+pub const PTH_STATE_NEW: pth_state_en = 1;
+pub const PTH_STATE_SCHEDULER: pth_state_en = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct pth_pqueue_st {

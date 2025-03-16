@@ -399,6 +399,7 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -413,6 +414,13 @@ impl archive_format {
     }
 }
 
+pub const GNU_FORMAT: archive_format = 6;
+pub const STAR_FORMAT: archive_format = 5;
+pub const POSIX_FORMAT: archive_format = 4;
+pub const USTAR_FORMAT: archive_format = 3;
+pub const OLDGNU_FORMAT: archive_format = 2;
+pub const V7_FORMAT: archive_format = 1;
+pub const DEFAULT_FORMAT: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -497,6 +505,7 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
+}
 impl subcommand {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -514,6 +523,16 @@ impl subcommand {
     }
 }
 
+pub const TEST_LABEL_SUBCOMMAND: subcommand = 9;
+pub const UPDATE_SUBCOMMAND: subcommand = 8;
+pub const LIST_SUBCOMMAND: subcommand = 7;
+pub const EXTRACT_SUBCOMMAND: subcommand = 6;
+pub const DIFF_SUBCOMMAND: subcommand = 5;
+pub const DELETE_SUBCOMMAND: subcommand = 4;
+pub const CREATE_SUBCOMMAND: subcommand = 3;
+pub const CAT_SUBCOMMAND: subcommand = 2;
+pub const APPEND_SUBCOMMAND: subcommand = 1;
+pub const UNKNOWN_SUBCOMMAND: subcommand = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct wordsplit {

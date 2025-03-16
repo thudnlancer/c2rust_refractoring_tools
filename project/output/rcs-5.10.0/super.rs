@@ -235,6 +235,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -245,6 +246,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -384,14 +388,13 @@ pub struct dynamic_root {
     pub single: *mut divvy,
     pub plexus: *mut divvy,
 }
-pub const ddc_aliases: ddc_option_values = 2;
-pub const ddc_commands: ddc_option_values = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ddc_option_values {
     ddc_unrecognized = 0,
     ddc_commands,
     ddc_aliases,
+}
 impl ddc_option_values {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

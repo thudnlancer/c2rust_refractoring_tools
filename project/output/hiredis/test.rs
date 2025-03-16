@@ -474,6 +474,7 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
+}
 impl redisConnectionType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -484,6 +485,9 @@ impl redisConnectionType {
     }
 }
 
+pub const REDIS_CONN_USERFD: redisConnectionType = 2;
+pub const REDIS_CONN_UNIX: redisConnectionType = 1;
+pub const REDIS_CONN_TCP: redisConnectionType = 0;
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -554,6 +558,7 @@ pub enum connection_type {
     CONN_UNIX,
     CONN_FD,
     CONN_SSL,
+}
 impl connection_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -565,6 +570,10 @@ impl connection_type {
     }
 }
 
+pub const CONN_SSL: connection_type = 3;
+pub const CONN_FD: connection_type = 2;
+pub const CONN_UNIX: connection_type = 1;
+pub const CONN_TCP: connection_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct config {
@@ -614,6 +623,7 @@ pub enum astest_no {
     ASTEST_PINGPONG_TIMEOUT,
     ASTEST_ISSUE_931,
     ASTEST_ISSUE_931_PING,
+}
 impl astest_no {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -627,6 +637,12 @@ impl astest_no {
     }
 }
 
+pub const ASTEST_ISSUE_931_PING: astest_no = 5;
+pub const ASTEST_ISSUE_931: astest_no = 4;
+pub const ASTEST_PINGPONG_TIMEOUT: astest_no = 3;
+pub const ASTEST_PINGPONG: astest_no = 2;
+pub const ASTEST_CONN_TIMEOUT: astest_no = 1;
+pub const ASTEST_CONNECT: astest_no = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _astest {

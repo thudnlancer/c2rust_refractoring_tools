@@ -84,6 +84,7 @@ pub enum arg_type {
     TYPE_UCHAR = 2,
     TYPE_SCHAR = 1,
     TYPE_NONE = 0,
+}
 impl arg_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -138,6 +139,53 @@ impl arg_type {
     }
 }
 
+pub const TYPE_COUNT_INT_FAST64_T_POINTER: arg_type = 46;
+pub const TYPE_COUNT_INT_FAST32_T_POINTER: arg_type = 45;
+pub const TYPE_COUNT_INT_FAST16_T_POINTER: arg_type = 44;
+pub const TYPE_COUNT_INT_FAST8_T_POINTER: arg_type = 43;
+pub const TYPE_COUNT_INT64_T_POINTER: arg_type = 42;
+pub const TYPE_COUNT_INT32_T_POINTER: arg_type = 41;
+pub const TYPE_COUNT_INT16_T_POINTER: arg_type = 40;
+pub const TYPE_COUNT_INT8_T_POINTER: arg_type = 39;
+pub const TYPE_COUNT_LONGLONGINT_POINTER: arg_type = 38;
+pub const TYPE_COUNT_LONGINT_POINTER: arg_type = 37;
+pub const TYPE_COUNT_INT_POINTER: arg_type = 36;
+pub const TYPE_COUNT_SHORT_POINTER: arg_type = 35;
+pub const TYPE_COUNT_SCHAR_POINTER: arg_type = 34;
+pub const TYPE_POINTER: arg_type = 33;
+pub const TYPE_WIDE_STRING: arg_type = 32;
+pub const TYPE_STRING: arg_type = 31;
+pub const TYPE_WIDE_CHAR: arg_type = 30;
+pub const TYPE_CHAR: arg_type = 29;
+pub const TYPE_LONGDOUBLE: arg_type = 28;
+pub const TYPE_DOUBLE: arg_type = 27;
+pub const TYPE_UINT_FAST64_T: arg_type = 26;
+pub const TYPE_INT_FAST64_T: arg_type = 25;
+pub const TYPE_UINT_FAST32_T: arg_type = 24;
+pub const TYPE_INT_FAST32_T: arg_type = 23;
+pub const TYPE_UINT_FAST16_T: arg_type = 22;
+pub const TYPE_INT_FAST16_T: arg_type = 21;
+pub const TYPE_UINT_FAST8_T: arg_type = 20;
+pub const TYPE_INT_FAST8_T: arg_type = 19;
+pub const TYPE_UINT64_T: arg_type = 18;
+pub const TYPE_INT64_T: arg_type = 17;
+pub const TYPE_UINT32_T: arg_type = 16;
+pub const TYPE_INT32_T: arg_type = 15;
+pub const TYPE_UINT16_T: arg_type = 14;
+pub const TYPE_INT16_T: arg_type = 13;
+pub const TYPE_UINT8_T: arg_type = 12;
+pub const TYPE_INT8_T: arg_type = 11;
+pub const TYPE_ULONGLONGINT: arg_type = 10;
+pub const TYPE_LONGLONGINT: arg_type = 9;
+pub const TYPE_ULONGINT: arg_type = 8;
+pub const TYPE_LONGINT: arg_type = 7;
+pub const TYPE_UINT: arg_type = 6;
+pub const TYPE_INT: arg_type = 5;
+pub const TYPE_USHORT: arg_type = 4;
+pub const TYPE_SHORT: arg_type = 3;
+pub const TYPE_UCHAR: arg_type = 2;
+pub const TYPE_SCHAR: arg_type = 1;
+pub const TYPE_NONE: arg_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct argument {

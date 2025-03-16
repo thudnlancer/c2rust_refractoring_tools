@@ -64,11 +64,11 @@ pub struct _IO_marker {
     pub _pos: libc::c_int,
 }
 pub type FILE = _IO_FILE;
-pub const SANITIZE_ADDRESS: C2RustUnnamed = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     SANITIZE_ADDRESS = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -77,7 +77,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 static mut file_name: *const libc::c_char = 0 as *const libc::c_char;
 #[no_mangle]
 pub unsafe extern "C" fn close_stdout_set_file_name(mut file: *const libc::c_char) {

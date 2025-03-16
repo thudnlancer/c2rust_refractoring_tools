@@ -211,6 +211,7 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
+}
 impl compression_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -221,12 +222,16 @@ impl compression_options {
     }
 }
 
+pub const compression_none: compression_options = 2;
+pub const compression_gzip: compression_options = 1;
+pub const compression_auto: compression_options = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -237,12 +242,16 @@ impl C2RustUnnamed {
     }
 }
 
+pub const prefer_none: C2RustUnnamed = 2;
+pub const prefer_ipv6: C2RustUnnamed = 1;
+pub const prefer_ipv4: C2RustUnnamed = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -253,12 +262,16 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const restrict_uppercase: C2RustUnnamed_0 = 2;
+pub const restrict_lowercase: C2RustUnnamed_0 = 1;
+pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -269,11 +282,15 @@ impl C2RustUnnamed_1 {
     }
 }
 
+pub const restrict_windows: C2RustUnnamed_1 = 2;
+pub const restrict_vms: C2RustUnnamed_1 = 1;
+pub const restrict_unix: C2RustUnnamed_1 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
+}
 impl keyfile_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -283,6 +300,8 @@ impl keyfile_type {
     }
 }
 
+pub const keyfile_asn1: keyfile_type = 1;
+pub const keyfile_pem: keyfile_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -294,6 +313,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -309,11 +329,20 @@ impl C2RustUnnamed_2 {
     }
 }
 
+pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
+pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
+pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
+pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
+pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
+pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
+pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
+pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -323,6 +352,8 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const regex_type_posix: C2RustUnnamed_3 = 1;
+pub const regex_type_pcre: C2RustUnnamed_3 = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
@@ -371,6 +402,7 @@ pub enum url_auth_mode {
     URL_AUTH_SHOW,
     URL_AUTH_HIDE_PASSWD,
     URL_AUTH_HIDE,
+}
 impl url_auth_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -381,6 +413,9 @@ impl url_auth_mode {
     }
 }
 
+pub const URL_AUTH_HIDE: url_auth_mode = 2;
+pub const URL_AUTH_HIDE_PASSWD: url_auth_mode = 1;
+pub const URL_AUTH_SHOW: url_auth_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
@@ -389,6 +424,7 @@ pub enum url_scheme {
     SCHEME_FTP,
     SCHEME_FTPS,
     SCHEME_INVALID,
+}
 impl url_scheme {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -401,6 +437,11 @@ impl url_scheme {
     }
 }
 
+pub const SCHEME_INVALID: url_scheme = 4;
+pub const SCHEME_FTPS: url_scheme = 3;
+pub const SCHEME_FTP: url_scheme = 2;
+pub const SCHEME_HTTPS: url_scheme = 1;
+pub const SCHEME_HTTP: url_scheme = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct url {

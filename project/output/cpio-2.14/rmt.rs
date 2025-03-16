@@ -231,6 +231,7 @@ pub struct rmt_kw {
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEBUG_FILE_OPTION = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -239,6 +240,7 @@ impl C2RustUnnamed {
     }
 }
 
+pub const DEBUG_FILE_OPTION: C2RustUnnamed = 256;
 #[inline]
 unsafe extern "C" fn getc_unlocked(mut __fp: *mut FILE) -> libc::c_int {
     return if ((*__fp)._IO_read_ptr >= (*__fp)._IO_read_end) as libc::c_int

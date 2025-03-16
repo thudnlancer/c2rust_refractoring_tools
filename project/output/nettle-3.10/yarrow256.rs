@@ -54,6 +54,7 @@ pub struct sha256_ctx {
 pub enum yarrow_pool_id {
     YARROW_FAST = 0,
     YARROW_SLOW = 1,
+}
 impl yarrow_pool_id {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -63,6 +64,8 @@ impl yarrow_pool_id {
     }
 }
 
+pub const YARROW_SLOW: yarrow_pool_id = 1;
+pub const YARROW_FAST: yarrow_pool_id = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yarrow_source {

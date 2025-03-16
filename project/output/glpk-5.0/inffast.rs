@@ -91,6 +91,7 @@ pub enum inflate_mode {
     BAD,
     MEM,
     SYNC,
+}
 impl inflate_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -130,6 +131,38 @@ impl inflate_mode {
     }
 }
 
+pub const SYNC: inflate_mode = 31;
+pub const MEM: inflate_mode = 30;
+pub const BAD: inflate_mode = 29;
+pub const DONE: inflate_mode = 28;
+pub const LENGTH: inflate_mode = 27;
+pub const CHECK: inflate_mode = 26;
+pub const LIT: inflate_mode = 25;
+pub const MATCH: inflate_mode = 24;
+pub const DISTEXT: inflate_mode = 23;
+pub const DIST: inflate_mode = 22;
+pub const LENEXT: inflate_mode = 21;
+pub const LEN: inflate_mode = 20;
+pub const LEN_: inflate_mode = 19;
+pub const CODELENS: inflate_mode = 18;
+pub const LENLENS: inflate_mode = 17;
+pub const TABLE: inflate_mode = 16;
+pub const COPY: inflate_mode = 15;
+pub const COPY_: inflate_mode = 14;
+pub const STORED: inflate_mode = 13;
+pub const TYPEDO: inflate_mode = 12;
+pub const TYPE: inflate_mode = 11;
+pub const DICT: inflate_mode = 10;
+pub const DICTID: inflate_mode = 9;
+pub const HCRC: inflate_mode = 8;
+pub const COMMENT: inflate_mode = 7;
+pub const NAME: inflate_mode = 6;
+pub const EXTRA: inflate_mode = 5;
+pub const EXLEN: inflate_mode = 4;
+pub const OS: inflate_mode = 3;
+pub const TIME: inflate_mode = 2;
+pub const FLAGS: inflate_mode = 1;
+pub const HEAD: inflate_mode = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct inflate_state {

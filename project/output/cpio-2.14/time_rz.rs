@@ -50,12 +50,11 @@ pub struct tm_zone {
     pub abbrs: [libc::c_char; 0],
 }
 pub type timezone_t = *mut tm_zone;
-pub const ABBR_SIZE_MIN: C2RustUnnamed = 119;
-pub type idx_t = ptrdiff_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     ABBR_SIZE_MIN = 119,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -65,7 +64,6 @@ impl C2RustUnnamed {
 }
 
 pub type idx_t = ptrdiff_t;
-pub type C2RustUnnamed = libc::c_uint;
 static mut local_tz: timezone_t = unsafe { 1 as libc::c_int as timezone_t };
 unsafe extern "C" fn extend_abbrs(
     mut abbrs: *mut libc::c_char,

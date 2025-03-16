@@ -319,6 +319,7 @@ pub enum archive_format {
     arf_ustar,
     arf_hpoldascii,
     arf_hpbinary,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -335,19 +336,28 @@ impl archive_format {
     }
 }
 
+pub const arf_hpbinary: archive_format = 8;
+pub const arf_hpoldascii: archive_format = 7;
+pub const arf_ustar: archive_format = 6;
+pub const arf_tar: archive_format = 5;
+pub const arf_crcascii: archive_format = 4;
+pub const arf_newascii: archive_format = 3;
+pub const arf_oldascii: archive_format = 2;
+pub const arf_binary: archive_format = 1;
+pub const arf_unknown: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct mtop {
     pub mt_op: libc::c_short,
     pub mt_count: libc::c_int,
 }
-pub const in_zeros: C2RustUnnamed = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     in_zeros = 1,
     not_in_zeros = 2,
     begin = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

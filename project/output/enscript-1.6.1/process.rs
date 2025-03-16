@@ -165,6 +165,7 @@ pub enum NodeType {
     nREAL,
     nSYMBOL,
     nARRAY,
+}
 impl NodeType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -179,6 +180,13 @@ impl NodeType {
     }
 }
 
+pub const nARRAY: NodeType = 6;
+pub const nSYMBOL: NodeType = 5;
+pub const nREAL: NodeType = 4;
+pub const nINTEGER: NodeType = 3;
+pub const nREGEXP: NodeType = 2;
+pub const nSTRING: NodeType = 1;
+pub const nVOID: NodeType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {

@@ -6,11 +6,11 @@ extern "C" {
 pub type size_t = libc::c_ulong;
 pub type ssize_t = __ssize_t;
 pub type __ssize_t = libc::c_long;
-pub const SYS_BUFSIZE_MAX: C2RustUnnamed = 2146435072;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     SYS_BUFSIZE_MAX = 2146435072,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -19,7 +19,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]
 pub unsafe extern "C" fn safe_write(
     mut fd: libc::c_int,

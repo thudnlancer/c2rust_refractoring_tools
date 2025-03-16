@@ -270,6 +270,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -289,6 +290,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stat {
@@ -420,6 +433,7 @@ pub enum C2RustUnnamed_3 {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -437,6 +451,16 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const human_B: C2RustUnnamed_3 = 256;
+pub const human_SI: C2RustUnnamed_3 = 128;
+pub const human_space_before_unit: C2RustUnnamed_3 = 64;
+pub const human_base_1024: C2RustUnnamed_3 = 32;
+pub const human_autoscale: C2RustUnnamed_3 = 16;
+pub const human_suppress_point_zero: C2RustUnnamed_3 = 8;
+pub const human_group_digits: C2RustUnnamed_3 = 4;
+pub const human_floor: C2RustUnnamed_3 = 2;
+pub const human_round_to_nearest: C2RustUnnamed_3 = 1;
+pub const human_ceiling: C2RustUnnamed_3 = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -536,6 +560,7 @@ pub enum archive_format {
     POSIX_FORMAT,
     STAR_FORMAT,
     GNU_FORMAT,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -550,6 +575,13 @@ impl archive_format {
     }
 }
 
+pub const GNU_FORMAT: archive_format = 6;
+pub const STAR_FORMAT: archive_format = 5;
+pub const POSIX_FORMAT: archive_format = 4;
+pub const USTAR_FORMAT: archive_format = 3;
+pub const OLDGNU_FORMAT: archive_format = 2;
+pub const V7_FORMAT: archive_format = 1;
+pub const DEFAULT_FORMAT: archive_format = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -635,6 +667,7 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
+}
 impl subcommand {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -652,12 +685,23 @@ impl subcommand {
     }
 }
 
+pub const TEST_LABEL_SUBCOMMAND: subcommand = 9;
+pub const UPDATE_SUBCOMMAND: subcommand = 8;
+pub const LIST_SUBCOMMAND: subcommand = 7;
+pub const EXTRACT_SUBCOMMAND: subcommand = 6;
+pub const DIFF_SUBCOMMAND: subcommand = 5;
+pub const DELETE_SUBCOMMAND: subcommand = 4;
+pub const CREATE_SUBCOMMAND: subcommand = 3;
+pub const CAT_SUBCOMMAND: subcommand = 2;
+pub const APPEND_SUBCOMMAND: subcommand = 1;
+pub const UNKNOWN_SUBCOMMAND: subcommand = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum access_mode {
     ACCESS_READ,
     ACCESS_WRITE,
     ACCESS_UPDATE,
+}
 impl access_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -668,6 +712,9 @@ impl access_mode {
     }
 }
 
+pub const ACCESS_UPDATE: access_mode = 2;
+pub const ACCESS_WRITE: access_mode = 1;
+pub const ACCESS_READ: access_mode = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct bufmap {
@@ -678,8 +725,6 @@ pub struct bufmap {
     pub sizeleft: off_t,
     pub nblocks: size_t,
 }
-pub const ct_tar: compress_type = 1;
-pub const ct_none: compress_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum compress_type {
@@ -693,6 +738,7 @@ pub enum compress_type {
     ct_lzop,
     ct_xz,
     ct_zstd,
+}
 impl compress_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -717,7 +763,6 @@ pub struct zip_magic {
     pub length: size_t,
     pub magic: *const libc::c_char,
 }
-pub const HEADER_SUCCESS: read_header = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum read_header {
@@ -727,6 +772,7 @@ pub enum read_header {
     HEADER_ZERO_BLOCK,
     HEADER_END_OF_FILE,
     HEADER_FAILURE,
+}
 impl read_header {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -753,6 +799,7 @@ pub enum read_header_mode {
     read_header_auto,
     read_header_x_raw,
     read_header_x_global,
+}
 impl read_header_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -763,6 +810,9 @@ impl read_header_mode {
     }
 }
 
+pub const read_header_x_global: read_header_mode = 2;
+pub const read_header_x_raw: read_header_mode = 1;
+pub const read_header_auto: read_header_mode = 0;
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,

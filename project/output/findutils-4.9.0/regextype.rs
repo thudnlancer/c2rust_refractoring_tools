@@ -31,16 +31,13 @@ pub struct tagRegexTypeMap {
     pub context: libc::c_int,
     pub option_val: libc::c_int,
 }
-pub const CONTEXT_GENERIC: C2RustUnnamed_0 = 2;
-pub const CONTEXT_ALL: C2RustUnnamed_0 = 3;
-pub const CONTEXT_FINDUTILS: C2RustUnnamed_0 = 1;
-pub const N_REGEX_MAP_ENTRIES: C2RustUnnamed_1 = 13;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     CONTEXT_GENERIC = 2,
     CONTEXT_ALL = 3,
     CONTEXT_FINDUTILS = 1,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -51,12 +48,11 @@ impl C2RustUnnamed_0 {
     }
 }
 
-pub const N_REGEX_MAP_ENTRIES: C2RustUnnamed_1 = 13;
-pub type C2RustUnnamed_0 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     N_REGEX_MAP_ENTRIES = 13,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -65,8 +61,6 @@ impl C2RustUnnamed_1 {
     }
 }
 
-pub type C2RustUnnamed_0 = libc::c_uint;
-pub type C2RustUnnamed_1 = libc::c_uint;
 static mut regex_map: [tagRegexTypeMap; 13] = [
     {
         let mut init = tagRegexTypeMap {

@@ -53,6 +53,7 @@ pub enum backup_type {
     simple_backups,
     numbered_existing_backups,
     numbered_backups,
+}
 impl backup_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -64,14 +65,13 @@ impl backup_type {
     }
 }
 
+pub const numbered_backups: backup_type = 3;
+pub const numbered_existing_backups: backup_type = 2;
+pub const simple_backups: backup_type = 1;
+pub const no_backups: backup_type = 0;
 pub type idx_t = ptrdiff_t;
 pub type ptrdiff_t = libc::c_long;
 pub type DIR = __dirstream;
-pub const BACKUP_NOMEM: numbered_backup_result = 3;
-pub const _PC_NAME_MAX: C2RustUnnamed_0 = 3;
-pub const BACKUP_IS_LONGER: numbered_backup_result = 1;
-pub const BACKUP_IS_NEW: numbered_backup_result = 2;
-pub const BACKUP_IS_SAME_LENGTH: numbered_backup_result = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum numbered_backup_result {
@@ -79,6 +79,7 @@ pub enum numbered_backup_result {
     BACKUP_IS_LONGER,
     BACKUP_IS_NEW,
     BACKUP_NOMEM,
+}
 impl numbered_backup_result {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -90,30 +91,6 @@ impl numbered_backup_result {
     }
 }
 
-pub type numbered_backup_result = libc::c_uint;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct dirent {
-    pub d_ino: __ino_t,
-    pub d_off: __off_t,
-    pub d_reclen: libc::c_ushort,
-    pub d_type: libc::c_uchar,
-    pub d_name: [libc::c_char; 256],
-}
-pub const GUESS: C2RustUnnamed = 9;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    GUESS = 9,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::GUESS => 9,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -138,6 +115,7 @@ pub enum C2RustUnnamed_0 {
     _PC_MAX_INPUT = 2,
     _PC_MAX_CANON = 1,
     _PC_LINK_MAX = 0,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -162,6 +140,28 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::_PC_MAX_INPUT => 2,
             C2RustUnnamed_0::_PC_MAX_CANON => 1,
             C2RustUnnamed_0::_PC_LINK_MAX => 0,
+        }
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct dirent {
+    pub d_ino: __ino_t,
+    pub d_off: __off_t,
+    pub d_reclen: libc::c_ushort,
+    pub d_type: libc::c_uchar,
+    pub d_name: [libc::c_char; 256],
+}
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed {
+    GUESS = 9,
+}
+impl C2RustUnnamed {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed::GUESS => 9,
         }
     }
 }

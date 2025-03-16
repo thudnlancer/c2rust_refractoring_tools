@@ -271,6 +271,7 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
+}
 impl compression_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -281,12 +282,16 @@ impl compression_options {
     }
 }
 
+pub const compression_none: compression_options = 2;
+pub const compression_gzip: compression_options = 1;
+pub const compression_auto: compression_options = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -297,12 +302,16 @@ impl C2RustUnnamed {
     }
 }
 
+pub const prefer_none: C2RustUnnamed = 2;
+pub const prefer_ipv6: C2RustUnnamed = 1;
+pub const prefer_ipv4: C2RustUnnamed = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -313,12 +322,16 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const restrict_uppercase: C2RustUnnamed_0 = 2;
+pub const restrict_lowercase: C2RustUnnamed_0 = 1;
+pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -329,11 +342,15 @@ impl C2RustUnnamed_1 {
     }
 }
 
+pub const restrict_windows: C2RustUnnamed_1 = 2;
+pub const restrict_vms: C2RustUnnamed_1 = 1;
+pub const restrict_unix: C2RustUnnamed_1 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
+}
 impl keyfile_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -343,6 +360,8 @@ impl keyfile_type {
     }
 }
 
+pub const keyfile_asn1: keyfile_type = 1;
+pub const keyfile_pem: keyfile_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -354,6 +373,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -369,11 +389,20 @@ impl C2RustUnnamed_2 {
     }
 }
 
+pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
+pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
+pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
+pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
+pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
+pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
+pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
+pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -383,6 +412,8 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const regex_type_posix: C2RustUnnamed_3 = 1;
+pub const regex_type_pcre: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -391,6 +422,7 @@ pub enum log_options {
     LOG_NONVERBOSE = 2,
     LOG_NOTQUIET = 1,
     LOG_VERBOSE = 0,
+}
 impl log_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -403,6 +435,11 @@ impl log_options {
     }
 }
 
+pub const LOG_PROGRESS: log_options = 4;
+pub const LOG_ALWAYS: log_options = 3;
+pub const LOG_NONVERBOSE: log_options = 2;
+pub const LOG_NOTQUIET: log_options = 1;
+pub const LOG_VERBOSE: log_options = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -417,6 +454,7 @@ pub enum quoting_style {
     shell_always_quoting_style = 2,
     shell_quoting_style = 1,
     literal_quoting_style = 0,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -435,6 +473,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct iri {
@@ -509,6 +558,7 @@ pub enum uerr_t {
     CONSOCKERR = 2,
     HOSTERR = 1,
     NOCONERROR = 0,
+}
 impl uerr_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -579,6 +629,69 @@ impl uerr_t {
     }
 }
 
+pub const METALINK_SIZE_ERROR: uerr_t = 62;
+pub const RETR_WITH_METALINK: uerr_t = 61;
+pub const METALINK_MISSING_RESOURCE: uerr_t = 60;
+pub const METALINK_SIG_ERROR: uerr_t = 59;
+pub const METALINK_CHKSUM_ERROR: uerr_t = 58;
+pub const METALINK_RETR_ERROR: uerr_t = 57;
+pub const METALINK_PARSE_ERROR: uerr_t = 56;
+pub const TIMECONV_ERR: uerr_t = 55;
+pub const WARC_TMP_FWRITEERR: uerr_t = 54;
+pub const WARC_TMP_FOPENERR: uerr_t = 53;
+pub const WARC_ERR: uerr_t = 52;
+pub const UNKNOWNATTR: uerr_t = 51;
+pub const ATTRMISSING: uerr_t = 50;
+pub const CLOSEFAILED: uerr_t = 49;
+pub const NEWLOCATION_KEEP_POST: uerr_t = 48;
+pub const UNLINKERR: uerr_t = 47;
+pub const VERIFCERTERR: uerr_t = 46;
+pub const SSLINITFAILED: uerr_t = 45;
+pub const WRITEFAILED: uerr_t = 44;
+pub const QUOTEXC: uerr_t = 43;
+pub const AUTHFAILED: uerr_t = 42;
+pub const PROXERR: uerr_t = 41;
+pub const RETRBADPATTERN: uerr_t = 40;
+pub const RANGEERR: uerr_t = 39;
+pub const FILEBADFILE: uerr_t = 38;
+pub const TRYLIMEXC: uerr_t = 37;
+pub const READERR: uerr_t = 36;
+pub const RETRFINISHED: uerr_t = 35;
+pub const RETRUNNEEDED: uerr_t = 34;
+pub const CONTNOTSUPPORTED: uerr_t = 33;
+pub const FTPNOAUTH: uerr_t = 32;
+pub const FTPNOPROT: uerr_t = 31;
+pub const FTPNOPBSZ: uerr_t = 30;
+pub const FTPNOPASV: uerr_t = 29;
+pub const FTPINVPASV: uerr_t = 28;
+pub const WRONGCODE: uerr_t = 27;
+pub const RECLEVELEXC: uerr_t = 26;
+pub const RETROK: uerr_t = 25;
+pub const HERR: uerr_t = 24;
+pub const GATEWAYTIMEOUT: uerr_t = 23;
+pub const HEOF: uerr_t = 22;
+pub const FWRITEERR: uerr_t = 21;
+pub const FOPEN_EXCL_ERR: uerr_t = 20;
+pub const FOPENERR: uerr_t = 19;
+pub const URLERROR: uerr_t = 18;
+pub const FTPRESTFAIL: uerr_t = 17;
+pub const FTPRETRINT: uerr_t = 16;
+pub const FTPSRVERR: uerr_t = 15;
+pub const FTPRERR: uerr_t = 14;
+pub const FTPUNKNOWNTYPE: uerr_t = 13;
+pub const FTPNSFOD: uerr_t = 12;
+pub const FTPSYSERR: uerr_t = 11;
+pub const FTPPORTERR: uerr_t = 10;
+pub const FTPLOGREFUSED: uerr_t = 9;
+pub const FTPLOGINC: uerr_t = 8;
+pub const FTPOK: uerr_t = 7;
+pub const NEWLOCATION: uerr_t = 6;
+pub const CONIMPOSSIBLE: uerr_t = 5;
+pub const CONSSLERR: uerr_t = 4;
+pub const CONERROR: uerr_t = 3;
+pub const CONSOCKERR: uerr_t = 2;
+pub const HOSTERR: uerr_t = 1;
+pub const NOCONERROR: uerr_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct attr_pair {
@@ -609,6 +722,7 @@ pub enum url_scheme {
     SCHEME_FTP = 2,
     SCHEME_HTTPS = 1,
     SCHEME_HTTP = 0,
+}
 impl url_scheme {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -621,6 +735,11 @@ impl url_scheme {
     }
 }
 
+pub const SCHEME_INVALID: url_scheme = 4;
+pub const SCHEME_FTPS: url_scheme = 3;
+pub const SCHEME_FTP: url_scheme = 2;
+pub const SCHEME_HTTPS: url_scheme = 1;
+pub const SCHEME_HTTP: url_scheme = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct url {
@@ -652,6 +771,7 @@ pub enum convert_options {
     CO_CONVERT_BASENAME_ONLY = 2,
     CO_CONVERT_TO_RELATIVE = 1,
     CO_NOCONVERT = 0,
+}
 impl convert_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -664,6 +784,11 @@ impl convert_options {
     }
 }
 
+pub const CO_NULLIFY_BASE: convert_options = 4;
+pub const CO_CONVERT_TO_COMPLETE: convert_options = 3;
+pub const CO_CONVERT_BASENAME_ONLY: convert_options = 2;
+pub const CO_CONVERT_TO_RELATIVE: convert_options = 1;
+pub const CO_NOCONVERT: convert_options = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct urlpos {
@@ -715,31 +840,6 @@ pub struct C2RustUnnamed_4 {
     pub attr_name: *const libc::c_char,
     pub flags: libc::c_int,
 }
-pub const TAG_SOURCE: C2RustUnnamed_5 = 24;
-pub const TAG_AUDIO: C2RustUnnamed_5 = 23;
-pub const TAG_VIDEO: C2RustUnnamed_5 = 22;
-pub const TAG_TH: C2RustUnnamed_5 = 21;
-pub const TAG_TD: C2RustUnnamed_5 = 20;
-pub const TAG_TABLE: C2RustUnnamed_5 = 19;
-pub const TAG_SCRIPT: C2RustUnnamed_5 = 18;
-pub const TAG_OVERLAY: C2RustUnnamed_5 = 17;
-pub const TAG_OBJECT: C2RustUnnamed_5 = 16;
-pub const TAG_LAYER: C2RustUnnamed_5 = 13;
-pub const TAG_INPUT: C2RustUnnamed_5 = 12;
-pub const TAG_IMG: C2RustUnnamed_5 = 11;
-pub const TAG_IFRAME: C2RustUnnamed_5 = 10;
-pub const TAG_FRAME: C2RustUnnamed_5 = 9;
-pub const TAG_FIG: C2RustUnnamed_5 = 7;
-pub const TAG_EMBED: C2RustUnnamed_5 = 6;
-pub const TAG_BODY: C2RustUnnamed_5 = 5;
-pub const TAG_BGSOUND: C2RustUnnamed_5 = 4;
-pub const TAG_AREA: C2RustUnnamed_5 = 2;
-pub const TAG_APPLET: C2RustUnnamed_5 = 1;
-pub const TAG_A: C2RustUnnamed_5 = 0;
-pub const TAG_META: C2RustUnnamed_5 = 15;
-pub const TAG_LINK: C2RustUnnamed_5 = 14;
-pub const TAG_FORM: C2RustUnnamed_5 = 8;
-pub const TAG_BASE: C2RustUnnamed_5 = 3;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -768,6 +868,7 @@ pub enum C2RustUnnamed_5 {
     TAG_LINK = 14,
     TAG_FORM = 8,
     TAG_BASE = 3,
+}
 impl C2RustUnnamed_5 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -800,7 +901,6 @@ impl C2RustUnnamed_5 {
     }
 }
 
-pub type C2RustUnnamed_5 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn c_isspace(mut c: libc::c_int) -> bool {
     match c {

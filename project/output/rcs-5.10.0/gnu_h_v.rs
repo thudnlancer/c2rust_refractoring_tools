@@ -37,13 +37,12 @@ pub struct option {
     pub flag: *mut libc::c_int,
     pub val: libc::c_int,
 }
-pub const hv_version: hv_option_values = 1;
-pub const hv_help: hv_option_values = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hv_option_values {
     hv_version = 1,
     hv_help = 0,
+}
 impl hv_option_values {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -53,7 +52,6 @@ impl hv_option_values {
     }
 }
 
-pub type hv_option_values = libc::c_uint;
 #[no_mangle]
 pub unsafe extern "C" fn nice_getopt(
     mut argc: libc::c_int,

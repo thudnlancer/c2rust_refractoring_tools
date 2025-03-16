@@ -6,6 +6,7 @@ extern "C" {
 #[repr(C)]
 pub enum C2RustUnnamed {
     I_RING_SIZE = 4,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -14,6 +15,7 @@ impl C2RustUnnamed {
     }
 }
 
+pub const I_RING_SIZE: C2RustUnnamed = 4;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct I_ring {

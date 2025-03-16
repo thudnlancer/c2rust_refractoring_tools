@@ -64,10 +64,23 @@ pub struct pool {
     pub orig_contents: *mut libc::c_char,
     pub orig_size: libc::c_int,
 }
-pub const AP_DOWNCASE: C2RustUnnamed_0 = 1;
-pub const AP_TRIM_BLANKS: C2RustUnnamed_0 = 4;
-pub const AP_DECODE_ENTITIES: C2RustUnnamed_0 = 2;
-pub const AC_S_BACKOUT: C2RustUnnamed = 1;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    AP_DOWNCASE = 1,
+    AP_TRIM_BLANKS = 4,
+    AP_DECODE_ENTITIES = 2,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::AP_DOWNCASE => 1,
+            C2RustUnnamed_0::AP_TRIM_BLANKS => 4,
+            C2RustUnnamed_0::AP_DECODE_ENTITIES => 2,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -84,6 +97,7 @@ pub enum C2RustUnnamed {
     AC_S_DEFAULT = 3,
     AC_S_BANG = 2,
     AC_S_DONE = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -104,39 +118,6 @@ impl C2RustUnnamed {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    AP_DOWNCASE = 1,
-    AP_TRIM_BLANKS = 4,
-    AP_DECODE_ENTITIES = 2,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::AP_DOWNCASE => 1,
-            C2RustUnnamed_0::AP_TRIM_BLANKS => 4,
-            C2RustUnnamed_0::AP_DECODE_ENTITIES => 2,
-        }
-    }
-}
-Unnamed::AC_S_BACKOUT => 1,
-            C2RustUnnamed::AC_S_QUOTE2 => 12,
-            C2RustUnnamed::AC_S_IN_QUOTE => 11,
-            C2RustUnnamed::AC_S_QUOTE1 => 10,
-            C2RustUnnamed::AC_S_DASH4 => 9,
-            C2RustUnnamed::AC_S_DASH3 => 8,
-            C2RustUnnamed::AC_S_COMMENT => 7,
-            C2RustUnnamed::AC_S_DASH2 => 6,
-            C2RustUnnamed::AC_S_DASH1 => 5,
-            C2RustUnnamed::AC_S_DCLNAME => 4,
-            C2RustUnnamed::AC_S_DEFAULT => 3,
-            C2RustUnnamed::AC_S_BANG => 2,
-            C2RustUnnamed::AC_S_DONE => 0,
-        }
-    }
-}
-
-pub type C2RustUnnamed_0 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn c_isalnum(mut c: libc::c_int) -> bool {
     match c {

@@ -196,11 +196,51 @@ pub struct _IO_marker {
     pub _pos: libc::c_int,
 }
 pub type FILE = _IO_FILE;
-pub const BILLION: C2RustUnnamed_1 = 1000000000;
-pub const TM_YEAR_BASE: C2RustUnnamed_2 = 1900;
-pub const MERpm: C2RustUnnamed_0 = 1;
-pub const MERam: C2RustUnnamed_0 = 0;
-pub const MER24: C2RustUnnamed_0 = 2;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_1 {
+    BILLION = 1000000000,
+    LOG10_BILLION = 9,
+}
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::BILLION => 1000000000,
+            C2RustUnnamed_1::LOG10_BILLION => 9,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    TM_YEAR_BASE = 1900,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::TM_YEAR_BASE => 1900,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    MERpm = 1,
+    MERam = 0,
+    MER24 = 2,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::MERpm => 1,
+            C2RustUnnamed_0::MERam => 0,
+            C2RustUnnamed_0::MER24 => 2,
+        }
+    }
+}
+
 pub type yy_state_t = yytype_int8;
 pub type yytype_int8 = libc::c_schar;
 #[derive(Copy, Clone)]
@@ -291,7 +331,6 @@ pub const tUNUMBER: yytokentype = 275;
 pub const tSNUMBER: yytokentype = 274;
 pub const tUDECIMAL_NUMBER: yytokentype = 277;
 pub const tSDECIMAL_NUMBER: yytokentype = 276;
-pub const LOG10_BILLION: C2RustUnnamed_1 = 9;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union yyalloc {
@@ -299,11 +338,11 @@ pub union yyalloc {
     pub yyvs_alloc: YYSTYPE,
 }
 pub const tLOCAL_ZONE: yytokentype = 269;
-pub const TZBUFSIZE: C2RustUnnamed = 100;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     TZBUFSIZE = 100,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -312,286 +351,7 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    MERpm = 1,
-    MERam = 0,
-    MER24 = 2,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::MERpm => 1,
-            C2RustUnnamed_0::MERam => 0,
-            C2RustUnnamed_0::MER24 => 2,
-        }
-    }
-}
-c::c_int;
-pub const YYSYMBOL_o_colon_minutes: yysymbol_kind_t = 53;
-pub const YYSYMBOL_hybrid: yysymbol_kind_t = 52;
-pub const YYSYMBOL_number: yysymbol_kind_t = 51;
-pub const YYSYMBOL_unsigned_seconds: yysymbol_kind_t = 50;
-pub const YYSYMBOL_signed_seconds: yysymbol_kind_t = 49;
-pub const YYSYMBOL_seconds: yysymbol_kind_t = 48;
-pub const YYSYMBOL_dayshift: yysymbol_kind_t = 47;
-pub const YYSYMBOL_relunit_snumber: yysymbol_kind_t = 46;
-pub const YYSYMBOL_relunit: yysymbol_kind_t = 45;
-pub const YYSYMBOL_rel: yysymbol_kind_t = 44;
-pub const YYSYMBOL_iso_8601_date: yysymbol_kind_t = 43;
-pub const YYSYMBOL_date: yysymbol_kind_t = 42;
-pub const YYSYMBOL_day: yysymbol_kind_t = 41;
-pub const YYSYMBOL_zone: yysymbol_kind_t = 40;
-pub const YYSYMBOL_local_zone: yysymbol_kind_t = 39;
-pub const YYSYMBOL_zone_offset: yysymbol_kind_t = 38;
-pub const YYSYMBOL_o_zone_offset: yysymbol_kind_t = 37;
-pub const YYSYMBOL_iso_8601_time: yysymbol_kind_t = 36;
-pub const YYSYMBOL_time: yysymbol_kind_t = 35;
-pub const YYSYMBOL_iso_8601_datetime: yysymbol_kind_t = 34;
-pub const YYSYMBOL_datetime: yysymbol_kind_t = 33;
-pub const YYSYMBOL_item: yysymbol_kind_t = 32;
-pub const YYSYMBOL_items: yysymbol_kind_t = 31;
-pub const YYSYMBOL_timespec: yysymbol_kind_t = 30;
-pub const YYSYMBOL_spec: yysymbol_kind_t = 29;
-pub const YYSYMBOL_YYACCEPT: yysymbol_kind_t = 28;
-pub const YYSYMBOL_27_: yysymbol_kind_t = 27;
-pub const YYSYMBOL_26_: yysymbol_kind_t = 26;
-pub const YYSYMBOL_25_: yysymbol_kind_t = 25;
-pub const YYSYMBOL_24_T_: yysymbol_kind_t = 24;
-pub const YYSYMBOL_23_: yysymbol_kind_t = 23;
-pub const YYSYMBOL_tUDECIMAL_NUMBER: yysymbol_kind_t = 22;
-pub const YYSYMBOL_tSDECIMAL_NUMBER: yysymbol_kind_t = 21;
-pub const YYSYMBOL_tUNUMBER: yysymbol_kind_t = 20;
-pub const YYSYMBOL_tSNUMBER: yysymbol_kind_t = 19;
-pub const YYSYMBOL_tZONE: yysymbol_kind_t = 18;
-pub const YYSYMBOL_tORDINAL: yysymbol_kind_t = 17;
-pub const YYSYMBOL_tMONTH: yysymbol_kind_t = 16;
-pub const YYSYMBOL_tMERIDIAN: yysymbol_kind_t = 15;
-pub const YYSYMBOL_tLOCAL_ZONE: yysymbol_kind_t = 14;
-pub const YYSYMBOL_tDAYZONE: yysymbol_kind_t = 13;
-pub const YYSYMBOL_tDAY: yysymbol_kind_t = 12;
-pub const YYSYMBOL_tDAY_SHIFT: yysymbol_kind_t = 11;
-pub const YYSYMBOL_tDAY_UNIT: yysymbol_kind_t = 10;
-pub const YYSYMBOL_tSEC_UNIT: yysymbol_kind_t = 9;
-pub const YYSYMBOL_tMINUTE_UNIT: yysymbol_kind_t = 8;
-pub const YYSYMBOL_tHOUR_UNIT: yysymbol_kind_t = 7;
-pub const YYSYMBOL_tMONTH_UNIT: yysymbol_kind_t = 6;
-pub const YYSYMBOL_tYEAR_UNIT: yysymbol_kind_t = 5;
-pub const YYSYMBOL_tDST: yysymbol_kind_t = 4;
-pub const YYSYMBOL_tAGO: yysymbol_kind_t = 3;
-pub const YYSYMBOL_YYUNDEF: yysymbol_kind_t = 2;
-pub const YYSYMBOL_YYerror: yysymbol_kind_t = 1;
-pub const YYSYMBOL_YYEOF: yysymbol_kind_t = 0;
-pub const YYSYMBOL_YYEMPTY: yysymbol_kind_t = -2;
-pub const YYEMPTY: yytokentype = -2;
-pub type yy_state_fast_t = libc::c_int;
-pub const YYEOF: yytokentype = 0;
-pub const YYUNDEF: yytokentype = 257;
-pub const YYerror: yytokentype = 256;
-pub const tDAYZONE: yytokentype = 268;
-pub const tZONE: yytokentype = 273;
-pub const tAGO: yytokentype = 258;
-pub const tORDINAL: yytokentype = 272;
-pub const tDAY_SHIFT: yytokentype = 266;
-pub const tSEC_UNIT: yytokentype = 264;
-pub const tMINUTE_UNIT: yytokentype = 263;
-pub const tHOUR_UNIT: yytokentype = 262;
-pub const tDAY_UNIT: yytokentype = 265;
-pub const tMONTH_UNIT: yytokentype = 261;
-pub const tYEAR_UNIT: yytokentype = 260;
-pub const tDST: yytokentype = 259;
-pub const tDAY: yytokentype = 267;
-pub const tMONTH: yytokentype = 271;
-pub const tMERIDIAN: yytokentype = 270;
-pub const tUNUMBER: yytokentype = 275;
-pub const tSNUMBER: yytokentype = 274;
-pub const tUDECIMAL_NUMBER: yytokentype = 277;
-pub const tSDECIMAL_NUMBER: yytokentype = 276;
-pub const LOG10_BILLION: C2RustUnnamed_1 = 9;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union yyalloc {
-    pub yyss_alloc: yy_state_t,
-    pub yyvs_alloc: YYSTYPE,
-}
-pub const tLOCAL_ZONE: yytokentype = 269;
-pub const TZBUFSIZE: C2RustUnnamed = 100;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::TZBUFSIZE => 100,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::BILLION => 1000000000,
-            C2RustUnnamed_1::LOG10_BILLION => 9,
-        }
-    }
-}
-C)]
-pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::TZBUFSIZE => 100,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-pub type C2RustUnnamed_1 = libc::c_uint;
 pub type yytokentype = libc::c_int;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    TM_YEAR_BASE = 1900,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::TM_YEAR_BASE => 1900,
-        }
-    }
-}
-nd_t = 44;
-pub const YYSYMBOL_iso_8601_date: yysymbol_kind_t = 43;
-pub const YYSYMBOL_date: yysymbol_kind_t = 42;
-pub const YYSYMBOL_day: yysymbol_kind_t = 41;
-pub const YYSYMBOL_zone: yysymbol_kind_t = 40;
-pub const YYSYMBOL_local_zone: yysymbol_kind_t = 39;
-pub const YYSYMBOL_zone_offset: yysymbol_kind_t = 38;
-pub const YYSYMBOL_o_zone_offset: yysymbol_kind_t = 37;
-pub const YYSYMBOL_iso_8601_time: yysymbol_kind_t = 36;
-pub const YYSYMBOL_time: yysymbol_kind_t = 35;
-pub const YYSYMBOL_iso_8601_datetime: yysymbol_kind_t = 34;
-pub const YYSYMBOL_datetime: yysymbol_kind_t = 33;
-pub const YYSYMBOL_item: yysymbol_kind_t = 32;
-pub const YYSYMBOL_items: yysymbol_kind_t = 31;
-pub const YYSYMBOL_timespec: yysymbol_kind_t = 30;
-pub const YYSYMBOL_spec: yysymbol_kind_t = 29;
-pub const YYSYMBOL_YYACCEPT: yysymbol_kind_t = 28;
-pub const YYSYMBOL_27_: yysymbol_kind_t = 27;
-pub const YYSYMBOL_26_: yysymbol_kind_t = 26;
-pub const YYSYMBOL_25_: yysymbol_kind_t = 25;
-pub const YYSYMBOL_24_T_: yysymbol_kind_t = 24;
-pub const YYSYMBOL_23_: yysymbol_kind_t = 23;
-pub const YYSYMBOL_tUDECIMAL_NUMBER: yysymbol_kind_t = 22;
-pub const YYSYMBOL_tSDECIMAL_NUMBER: yysymbol_kind_t = 21;
-pub const YYSYMBOL_tUNUMBER: yysymbol_kind_t = 20;
-pub const YYSYMBOL_tSNUMBER: yysymbol_kind_t = 19;
-pub const YYSYMBOL_tZONE: yysymbol_kind_t = 18;
-pub const YYSYMBOL_tORDINAL: yysymbol_kind_t = 17;
-pub const YYSYMBOL_tMONTH: yysymbol_kind_t = 16;
-pub const YYSYMBOL_tMERIDIAN: yysymbol_kind_t = 15;
-pub const YYSYMBOL_tLOCAL_ZONE: yysymbol_kind_t = 14;
-pub const YYSYMBOL_tDAYZONE: yysymbol_kind_t = 13;
-pub const YYSYMBOL_tDAY: yysymbol_kind_t = 12;
-pub const YYSYMBOL_tDAY_SHIFT: yysymbol_kind_t = 11;
-pub const YYSYMBOL_tDAY_UNIT: yysymbol_kind_t = 10;
-pub const YYSYMBOL_tSEC_UNIT: yysymbol_kind_t = 9;
-pub const YYSYMBOL_tMINUTE_UNIT: yysymbol_kind_t = 8;
-pub const YYSYMBOL_tHOUR_UNIT: yysymbol_kind_t = 7;
-pub const YYSYMBOL_tMONTH_UNIT: yysymbol_kind_t = 6;
-pub const YYSYMBOL_tYEAR_UNIT: yysymbol_kind_t = 5;
-pub const YYSYMBOL_tDST: yysymbol_kind_t = 4;
-pub const YYSYMBOL_tAGO: yysymbol_kind_t = 3;
-pub const YYSYMBOL_YYUNDEF: yysymbol_kind_t = 2;
-pub const YYSYMBOL_YYerror: yysymbol_kind_t = 1;
-pub const YYSYMBOL_YYEOF: yysymbol_kind_t = 0;
-pub const YYSYMBOL_YYEMPTY: yysymbol_kind_t = -2;
-pub const YYEMPTY: yytokentype = -2;
-pub type yy_state_fast_t = libc::c_int;
-pub const YYEOF: yytokentype = 0;
-pub const YYUNDEF: yytokentype = 257;
-pub const YYerror: yytokentype = 256;
-pub const tDAYZONE: yytokentype = 268;
-pub const tZONE: yytokentype = 273;
-pub const tAGO: yytokentype = 258;
-pub const tORDINAL: yytokentype = 272;
-pub const tDAY_SHIFT: yytokentype = 266;
-pub const tSEC_UNIT: yytokentype = 264;
-pub const tMINUTE_UNIT: yytokentype = 263;
-pub const tHOUR_UNIT: yytokentype = 262;
-pub const tDAY_UNIT: yytokentype = 265;
-pub const tMONTH_UNIT: yytokentype = 261;
-pub const tYEAR_UNIT: yytokentype = 260;
-pub const tDST: yytokentype = 259;
-pub const tDAY: yytokentype = 267;
-pub const tMONTH: yytokentype = 271;
-pub const tMERIDIAN: yytokentype = 270;
-pub const tUNUMBER: yytokentype = 275;
-pub const tSNUMBER: yytokentype = 274;
-pub const tUDECIMAL_NUMBER: yytokentype = 277;
-pub const tSDECIMAL_NUMBER: yytokentype = 276;
-pub const LOG10_BILLION: C2RustUnnamed_1 = 9;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union yyalloc {
-    pub yyss_alloc: yy_state_t,
-    pub yyvs_alloc: YYSTYPE,
-}
-pub const tLOCAL_ZONE: yytokentype = 269;
-pub const TZBUFSIZE: C2RustUnnamed = 100;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::TZBUFSIZE => 100,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::BILLION => 1000000000,
-            C2RustUnnamed_1::LOG10_BILLION => 9,
-        }
-    }
-}
-C)]
-pub enum C2RustUnnamed {
-    TZBUFSIZE = 100,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::TZBUFSIZE => 100,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type yytokentype = libc::c_int;
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn c_isalpha(mut c: libc::c_int) -> bool {
     match c {

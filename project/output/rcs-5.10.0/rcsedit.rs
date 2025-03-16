@@ -318,6 +318,7 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -328,6 +329,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rcslock {
@@ -381,6 +385,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -391,6 +396,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -540,25 +548,6 @@ pub struct finctx {
     pub ctx: expctx,
     pub script_lno: size_t,
 }
-pub const _ISdigit: C2RustUnnamed_3 = 2048;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum isr_actions {
-    ISR_CATCHINTS,
-    ISR_IGNOREINTS,
-    ISR_RESTOREINTS,
-    ISR_CATCHMMAPINTS,
-impl isr_actions {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            isr_actions::ISR_CATCHINTS => 0,
-            isr_actions::ISR_IGNOREINTS => 1,
-            isr_actions::ISR_RESTOREINTS => 2,
-            isr_actions::ISR_CATCHMMAPINTS => 3,
-        }
-    }
-}
-
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -574,6 +563,7 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -593,6 +583,29 @@ impl C2RustUnnamed_3 {
     }
 }
 
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum isr_actions {
+    ISR_CATCHINTS,
+    ISR_IGNOREINTS,
+    ISR_RESTOREINTS,
+    ISR_CATCHMMAPINTS,
+}
+impl isr_actions {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            isr_actions::ISR_CATCHINTS => 0,
+            isr_actions::ISR_IGNOREINTS => 1,
+            isr_actions::ISR_RESTOREINTS => 2,
+            isr_actions::ISR_CATCHMMAPINTS => 3,
+        }
+    }
+}
+
+pub const ISR_CATCHMMAPINTS: isr_actions = 3;
+pub const ISR_RESTOREINTS: isr_actions = 2;
+pub const ISR_IGNOREINTS: isr_actions = 1;
+pub const ISR_CATCHINTS: isr_actions = 0;
 #[inline]
 unsafe extern "C" fn stat(
     mut __path: *const libc::c_char,

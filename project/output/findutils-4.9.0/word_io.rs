@@ -94,6 +94,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -112,12 +113,24 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum GetwordEndianState {
     GetwordEndianStateInitial = 0,
     GetwordEndianStateNative = 1,
     GetwordEndianStateSwab = 2,
+}
 impl GetwordEndianState {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -128,27 +141,20 @@ impl GetwordEndianState {
     }
 }
 
+pub const GetwordEndianStateSwab: GetwordEndianState = 2;
+pub const GetwordEndianStateNative: GetwordEndianState = 1;
+pub const GetwordEndianStateInitial: GetwordEndianState = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
     pub ival: libc::c_int,
     pub data: [libc::c_uchar; 4],
 }
-pub const WORDBYTES: C2RustUnnamed_2 = 4;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_0 {
-    pub _gl_dummy: libc::c_int,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_1 {
-    pub _gl_dummy: libc::c_int,
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     WORDBYTES = 4,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -167,7 +173,6 @@ pub struct C2RustUnnamed_0 {
 pub struct C2RustUnnamed_1 {
     pub _gl_dummy: libc::c_int,
 }
-pub type C2RustUnnamed_2 = libc::c_uint;
 unsafe extern "C" fn decode_value(
     mut data: *const libc::c_uchar,
     mut limit: libc::c_int,

@@ -118,6 +118,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -137,6 +138,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type ptrdiff_t = libc::c_long;
 pub type size_t = libc::c_ulong;
 pub type wchar_t = libc::c_int;
@@ -273,6 +286,7 @@ pub type Hash_table = hash_table;
 pub enum exclude_type {
     exclude_hash,
     exclude_pattern,
+}
 impl exclude_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -282,6 +296,8 @@ impl exclude_type {
     }
 }
 
+pub const exclude_pattern: exclude_type = 1;
+pub const exclude_hash: exclude_type = 0;
 pub type mbchar_t = mbchar;
 #[derive(Copy, Clone)]
 #[repr(C)]

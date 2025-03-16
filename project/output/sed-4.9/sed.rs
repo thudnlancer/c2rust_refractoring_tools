@@ -156,6 +156,7 @@ pub enum exit_codes {
     EXIT_PANIC = 4,
     EXIT_BAD_INPUT = 2,
     EXIT_BAD_USAGE = 1,
+}
 impl exit_codes {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -166,6 +167,9 @@ impl exit_codes {
     }
 }
 
+pub const EXIT_PANIC: exit_codes = 4;
+pub const EXIT_BAD_INPUT: exit_codes = 2;
+pub const EXIT_BAD_USAGE: exit_codes = 1;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct vector {
@@ -242,6 +246,7 @@ pub enum replacement_types {
     REPL_UPPERCASE_LOWERCASE,
     REPL_LOWERCASE_UPPERCASE,
     REPL_LOWERCASE_LOWERCASE,
+}
 impl replacement_types {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -259,6 +264,16 @@ impl replacement_types {
     }
 }
 
+pub const REPL_LOWERCASE_LOWERCASE: replacement_types = 10;
+pub const REPL_LOWERCASE_UPPERCASE: replacement_types = 9;
+pub const REPL_UPPERCASE_LOWERCASE: replacement_types = 6;
+pub const REPL_UPPERCASE_UPPERCASE: replacement_types = 5;
+pub const REPL_MODIFIERS: replacement_types = 12;
+pub const REPL_LOWERCASE_FIRST: replacement_types = 8;
+pub const REPL_UPPERCASE_FIRST: replacement_types = 4;
+pub const REPL_LOWERCASE: replacement_types = 2;
+pub const REPL_UPPERCASE: replacement_types = 1;
+pub const REPL_ASIS: replacement_types = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct regex {
@@ -288,6 +303,7 @@ pub enum addr_state {
     RANGE_INACTIVE,
     RANGE_ACTIVE,
     RANGE_CLOSED,
+}
 impl addr_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -298,6 +314,9 @@ impl addr_state {
     }
 }
 
+pub const RANGE_CLOSED: addr_state = 2;
+pub const RANGE_ACTIVE: addr_state = 1;
+pub const RANGE_INACTIVE: addr_state = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct addr {
@@ -316,6 +335,7 @@ pub enum addr_types {
     ADDR_IS_STEP,
     ADDR_IS_STEP_MOD,
     ADDR_IS_LAST,
+}
 impl addr_types {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -330,12 +350,20 @@ impl addr_types {
     }
 }
 
+pub const ADDR_IS_LAST: addr_types = 6;
+pub const ADDR_IS_STEP_MOD: addr_types = 5;
+pub const ADDR_IS_STEP: addr_types = 4;
+pub const ADDR_IS_NUM_MOD: addr_types = 3;
+pub const ADDR_IS_NUM: addr_types = 2;
+pub const ADDR_IS_REGEX: addr_types = 1;
+pub const ADDR_IS_NULL: addr_types = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
     POSIXLY_EXTENDED,
     POSIXLY_CORRECT,
     POSIXLY_BASIC,
+}
 impl posixicity_types {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -346,21 +374,15 @@ impl posixicity_types {
     }
 }
 
-pub const DEBUG_OPTION: C2RustUnnamed_0 = 129;
-pub const SANDBOX_OPTION: C2RustUnnamed_0 = 128;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct option {
-    pub name: *const libc::c_char,
-    pub has_arg: libc::c_int,
-    pub flag: *mut libc::c_int,
-    pub val: libc::c_int,
-}
+pub const POSIXLY_BASIC: posixicity_types = 2;
+pub const POSIXLY_CORRECT: posixicity_types = 1;
+pub const POSIXLY_EXTENDED: posixicity_types = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     DEBUG_OPTION = 129,
     SANDBOX_OPTION = 128,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -378,7 +400,6 @@ pub struct option {
     pub flag: *mut libc::c_int,
     pub val: libc::c_int,
 }
-pub type C2RustUnnamed_0 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
     return strtol(

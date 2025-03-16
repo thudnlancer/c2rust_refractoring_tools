@@ -219,6 +219,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -238,6 +239,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type error_t = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -566,6 +579,7 @@ pub enum subcommand {
     LIST_SUBCOMMAND,
     UPDATE_SUBCOMMAND,
     TEST_LABEL_SUBCOMMAND,
+}
 impl subcommand {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -583,6 +597,16 @@ impl subcommand {
     }
 }
 
+pub const TEST_LABEL_SUBCOMMAND: subcommand = 9;
+pub const UPDATE_SUBCOMMAND: subcommand = 8;
+pub const LIST_SUBCOMMAND: subcommand = 7;
+pub const EXTRACT_SUBCOMMAND: subcommand = 6;
+pub const DIFF_SUBCOMMAND: subcommand = 5;
+pub const DELETE_SUBCOMMAND: subcommand = 4;
+pub const CREATE_SUBCOMMAND: subcommand = 3;
+pub const CAT_SUBCOMMAND: subcommand = 2;
+pub const APPEND_SUBCOMMAND: subcommand = 1;
+pub const UNKNOWN_SUBCOMMAND: subcommand = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum exclusion_tag_type {
@@ -590,6 +614,7 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
+}
 impl exclusion_tag_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -601,6 +626,10 @@ impl exclusion_tag_type {
     }
 }
 
+pub const exclusion_tag_all: exclusion_tag_type = 3;
+pub const exclusion_tag_under: exclusion_tag_type = 2;
+pub const exclusion_tag_contents: exclusion_tag_type = 1;
+pub const exclusion_tag_none: exclusion_tag_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct name {
@@ -624,6 +653,7 @@ pub enum files_count {
     FILES_NONE,
     FILES_ONE,
     FILES_MANY,
+}
 impl files_count {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -634,6 +664,9 @@ impl files_count {
     }
 }
 
+pub const FILES_MANY: files_count = 2;
+pub const FILES_ONE: files_count = 1;
+pub const FILES_NONE: files_count = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct name_elt {
@@ -672,6 +705,7 @@ pub enum nelt_type {
     NELT_FILE,
     NELT_NOOP,
     NELT_OPTION,
+}
 impl nelt_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -684,121 +718,30 @@ impl nelt_type {
     }
 }
 
-pub const GRID_MATCH: C2RustUnnamed_7 = 3;
-pub const NO_WILDCARDS_MATCH_SLASH_OPTION: C2RustUnnamed_6 = 278;
-pub const WILDCARDS_MATCH_SLASH_OPTION: C2RustUnnamed_6 = 283;
-pub const NO_WILDCARDS_OPTION: C2RustUnnamed_6 = 279;
-pub const WILDCARDS_OPTION: C2RustUnnamed_6 = 284;
-pub const NO_IGNORE_CASE_OPTION: C2RustUnnamed_6 = 270;
-pub const IGNORE_CASE_OPTION: C2RustUnnamed_6 = 269;
-pub const NO_ANCHORED_OPTION: C2RustUnnamed_6 = 272;
-pub const ANCHORED_OPTION: C2RustUnnamed_6 = 271;
-pub const GRH_MATCH: C2RustUnnamed_7 = 2;
-pub const GRID_LOCAL: C2RustUnnamed_7 = 1;
-pub const NO_RECURSION_OPTION: C2RustUnnamed_6 = 274;
-pub const RECURSION_OPTION: C2RustUnnamed_6 = 273;
-pub const EXCLUDE_BACKUPS_OPTION: C2RustUnnamed_6 = 257;
-pub const EXCLUDE_VCS_IGNORES_OPTION: C2RustUnnamed_6 = 268;
-pub const EXCLUDE_VCS_OPTION: C2RustUnnamed_6 = 267;
-pub const EXCLUDE_TAG_ALL_OPTION: C2RustUnnamed_6 = 266;
-pub const EXCLUDE_TAG_UNDER_OPTION: C2RustUnnamed_6 = 265;
-pub const EXCLUDE_IGNORE_RECURSIVE_OPTION: C2RustUnnamed_6 = 263;
-pub const EXCLUDE_IGNORE_OPTION: C2RustUnnamed_6 = 262;
-pub const EXCLUDE_TAG_OPTION: C2RustUnnamed_6 = 264;
-pub const EXCLUDE_CACHES_ALL_OPTION: C2RustUnnamed_6 = 260;
-pub const EXCLUDE_CACHES_UNDER_OPTION: C2RustUnnamed_6 = 259;
-pub const EXCLUDE_CACHES_OPTION: C2RustUnnamed_6 = 258;
-pub const EXCLUDE_OPTION: C2RustUnnamed_6 = 261;
-pub const NO_VERBATIM_FILES_FROM_OPTION: C2RustUnnamed_6 = 277;
-pub const VERBATIM_FILES_FROM_OPTION: C2RustUnnamed_6 = 282;
-pub const NO_UNQUOTE_OPTION: C2RustUnnamed_6 = 276;
-pub const UNQUOTE_OPTION: C2RustUnnamed_6 = 275;
-pub const NO_NULL_OPTION: C2RustUnnamed_6 = 281;
-pub const NULL_OPTION: C2RustUnnamed_6 = 280;
-pub const ADD_FILE_OPTION: C2RustUnnamed_6 = 256;
-pub const GRH_LOCAL: C2RustUnnamed_7 = 0;
+pub const NELT_OPTION: nelt_type = 4;
+pub const NELT_NOOP: nelt_type = 3;
+pub const NELT_FILE: nelt_type = 2;
+pub const NELT_CHDIR: nelt_type = 1;
+pub const NELT_NAME: nelt_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
-pub enum wildcards {
-    default_wildcards,
-    disable_wildcards,
-    enable_wildcards,
-impl wildcards {
+pub enum C2RustUnnamed_7 {
+    GRID_MATCH = 3,
+    GRH_MATCH = 2,
+    GRID_LOCAL = 1,
+    GRH_LOCAL = 0,
+}
+impl C2RustUnnamed_7 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
-            wildcards::default_wildcards => 0,
-            wildcards::disable_wildcards => 1,
-            wildcards::enable_wildcards => 2,
+            C2RustUnnamed_7::GRID_MATCH => 3,
+            C2RustUnnamed_7::GRH_MATCH => 2,
+            C2RustUnnamed_7::GRID_LOCAL => 1,
+            C2RustUnnamed_7::GRH_LOCAL => 0,
         }
     }
 }
 
-pub const file_list_end: read_file_list_state = 1;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct option_locus {
-    pub source: option_source,
-    pub name: *const libc::c_char,
-    pub line: size_t,
-    pub prev: *mut option_locus,
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum option_source {
-    OPTS_ENVIRON,
-    OPTS_COMMAND_LINE,
-    OPTS_FILE,
-impl option_source {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            option_source::OPTS_ENVIRON => 0,
-            option_source::OPTS_COMMAND_LINE => 1,
-            option_source::OPTS_FILE => 2,
-        }
-    }
-}
-
-pub const file_list_success: read_file_list_state = 0;
-pub const file_list_zero: read_file_list_state = 2;
-pub const file_list_skip: read_file_list_state = 3;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum read_file_list_state {
-    file_list_success,
-    file_list_end,
-    file_list_zero,
-    file_list_skip,
-impl read_file_list_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            read_file_list_state::file_list_success => 0,
-            read_file_list_state::file_list_end => 1,
-            read_file_list_state::file_list_zero => 2,
-            read_file_list_state::file_list_skip => 3,
-        }
-    }
-}
-
-pub type read_file_list_state = libc::c_uint;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct file_id_list {
-    pub next: *mut file_id_list,
-    pub ino: ino_t,
-    pub dev: dev_t,
-    pub from_file: *const libc::c_char,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct tar_args {
-    pub loc: *mut option_locus,
-    pub textual_date: *mut textual_date,
-    pub o_option: bool,
-    pub pax_option: bool,
-    pub compress_autodetect: bool,
-    pub backup_suffix_string: *const libc::c_char,
-    pub version_control_string: *const libc::c_char,
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_6 {
@@ -831,6 +774,7 @@ pub enum C2RustUnnamed_6 {
     NO_NULL_OPTION = 281,
     NULL_OPTION = 280,
     ADD_FILE_OPTION = 256,
+}
 impl C2RustUnnamed_6 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -866,34 +810,74 @@ impl C2RustUnnamed_6 {
         }
     }
 }
-ce::OPTS_COMMAND_LINE => 1,
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum wildcards {
+    default_wildcards,
+    disable_wildcards,
+    enable_wildcards,
+}
+impl wildcards {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            wildcards::default_wildcards => 0,
+            wildcards::disable_wildcards => 1,
+            wildcards::enable_wildcards => 2,
+        }
+    }
+}
+
+pub const enable_wildcards: wildcards = 2;
+pub const disable_wildcards: wildcards = 1;
+pub const default_wildcards: wildcards = 0;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum read_file_list_state {
+    file_list_success,
+    file_list_end,
+    file_list_zero,
+    file_list_skip,
+}
+impl read_file_list_state {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            read_file_list_state::file_list_success => 0,
+            read_file_list_state::file_list_end => 1,
+            read_file_list_state::file_list_zero => 2,
+            read_file_list_state::file_list_skip => 3,
+        }
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct option_locus {
+    pub source: option_source,
+    pub name: *const libc::c_char,
+    pub line: size_t,
+    pub prev: *mut option_locus,
+}
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum option_source {
+    OPTS_ENVIRON,
+    OPTS_COMMAND_LINE,
+    OPTS_FILE,
+}
+impl option_source {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            option_source::OPTS_ENVIRON => 0,
+            option_source::OPTS_COMMAND_LINE => 1,
             option_source::OPTS_FILE => 2,
         }
     }
 }
 
-pub const file_list_success: read_file_list_state = 0;
-pub const file_list_zero: read_file_list_state = 2;
-pub const file_list_skip: read_file_list_state = 3;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum read_file_list_state {
-    file_list_success,
-    file_list_end,
-    file_list_zero,
-    file_list_skip,
-impl read_file_list_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            read_file_list_state::file_list_success => 0,
-            read_file_list_state::file_list_end => 1,
-            read_file_list_state::file_list_zero => 2,
-            read_file_list_state::file_list_skip => 3,
-        }
-    }
-}
-
-pub type read_file_list_state = libc::c_uint;
+pub const OPTS_FILE: option_source = 2;
+pub const OPTS_COMMAND_LINE: option_source = 1;
+pub const OPTS_ENVIRON: option_source = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct file_id_list {
@@ -913,72 +897,6 @@ pub struct tar_args {
     pub backup_suffix_string: *const libc::c_char,
     pub version_control_string: *const libc::c_char,
 }
-pub type C2RustUnnamed_6 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_7 {
-    GRID_MATCH = 3,
-    GRH_MATCH = 2,
-    GRID_LOCAL = 1,
-    GRH_LOCAL = 0,
-impl C2RustUnnamed_7 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_7::GRID_MATCH => 3,
-            C2RustUnnamed_7::GRH_MATCH => 2,
-            C2RustUnnamed_7::GRID_LOCAL => 1,
-            C2RustUnnamed_7::GRH_LOCAL => 0,
-        }
-    }
-}
-tion_source::OPTS_FILE => 2,
-        }
-    }
-}
-
-pub const file_list_success: read_file_list_state = 0;
-pub const file_list_zero: read_file_list_state = 2;
-pub const file_list_skip: read_file_list_state = 3;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum read_file_list_state {
-    file_list_success,
-    file_list_end,
-    file_list_zero,
-    file_list_skip,
-impl read_file_list_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            read_file_list_state::file_list_success => 0,
-            read_file_list_state::file_list_end => 1,
-            read_file_list_state::file_list_zero => 2,
-            read_file_list_state::file_list_skip => 3,
-        }
-    }
-}
-
-pub type read_file_list_state = libc::c_uint;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct file_id_list {
-    pub next: *mut file_id_list,
-    pub ino: ino_t,
-    pub dev: dev_t,
-    pub from_file: *const libc::c_char,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct tar_args {
-    pub loc: *mut option_locus,
-    pub textual_date: *mut textual_date,
-    pub o_option: bool,
-    pub pax_option: bool,
-    pub compress_autodetect: bool,
-    pub backup_suffix_string: *const libc::c_char,
-    pub version_control_string: *const libc::c_char,
-}
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub type C2RustUnnamed_7 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn stat(
     mut __path: *const libc::c_char,

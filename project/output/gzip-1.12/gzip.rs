@@ -351,6 +351,7 @@ pub type ulg = libc::c_ulong;
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
     TIMESPEC_RESOLUTION = 1000000000,
+}
 impl C2RustUnnamed_10 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -359,6 +360,7 @@ impl C2RustUnnamed_10 {
     }
 }
 
+pub const TIMESPEC_RESOLUTION: C2RustUnnamed_10 = 1000000000;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option {
@@ -374,6 +376,7 @@ pub enum savedir_option {
     SAVEDIR_SORT_NONE,
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_FASTREAD,
+}
 impl savedir_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -384,6 +387,9 @@ impl savedir_option {
     }
 }
 
+pub const SAVEDIR_SORT_FASTREAD: savedir_option = 0;
+pub const SAVEDIR_SORT_NAME: savedir_option = 1;
+pub const SAVEDIR_SORT_NONE: savedir_option = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
@@ -391,6 +397,7 @@ pub enum C2RustUnnamed_11 {
     SYNCHRONOUS_OPTION = 130,
     RSYNCABLE_OPTION = 129,
     PRESUME_INPUT_TTY_OPTION = 128,
+}
 impl C2RustUnnamed_11 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -402,11 +409,15 @@ impl C2RustUnnamed_11 {
     }
 }
 
-pub const try_opening_directories: C2RustUnnamed_12 = 1;
+pub const ENV_OPTION: C2RustUnnamed_11 = 131;
+pub const SYNCHRONOUS_OPTION: C2RustUnnamed_11 = 130;
+pub const RSYNCABLE_OPTION: C2RustUnnamed_11 = 129;
+pub const PRESUME_INPUT_TTY_OPTION: C2RustUnnamed_11 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_12 {
     try_opening_directories = 1,
+}
 impl C2RustUnnamed_12 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -415,7 +426,6 @@ impl C2RustUnnamed_12 {
     }
 }
 
-pub type C2RustUnnamed_12 = libc::c_uint;
 static mut license_msg: [*const libc::c_char; 6] = [
     b"Copyright (C) 2018 Free Software Foundation, Inc.\0" as *const u8
         as *const libc::c_char,

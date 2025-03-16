@@ -247,6 +247,7 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
+}
 impl savedir_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -258,11 +259,15 @@ impl savedir_option {
     }
 }
 
-pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
+pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
+pub const SAVEDIR_SORT_INODE: savedir_option = 2;
+pub const SAVEDIR_SORT_NAME: savedir_option = 1;
+pub const SAVEDIR_SORT_NONE: savedir_option = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -271,7 +276,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
@@ -279,6 +283,7 @@ pub enum backup_type {
     simple_backups,
     numbered_existing_backups,
     numbered_backups,
+}
 impl backup_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -290,6 +295,10 @@ impl backup_type {
     }
 }
 
+pub const numbered_backups: backup_type = 3;
+pub const numbered_existing_backups: backup_type = 2;
+pub const simple_backups: backup_type = 1;
+pub const no_backups: backup_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -304,6 +313,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -322,6 +332,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct wd {
@@ -329,7 +350,19 @@ pub struct wd {
     pub abspath: *mut libc::c_char,
     pub fd: libc::c_int,
 }
-pub const CHDIR_CACHE_SIZE: C2RustUnnamed_1 = 16;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_1 {
+    CHDIR_CACHE_SIZE = 16,
+}
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::CHDIR_CACHE_SIZE => 16,
+        }
+    }
+}
+
 pub type namebuf_t = *mut namebuf;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -338,12 +371,12 @@ pub struct namebuf {
     pub buffer_size: size_t,
     pub dir_length: size_t,
 }
-pub const BILLION: C2RustUnnamed_0 = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     BILLION = 1000000000,
     LOG10_BILLION = 9,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -359,6 +392,7 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
+}
 impl remove_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -369,39 +403,9 @@ impl remove_option {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    CHDIR_CACHE_SIZE = 16,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::CHDIR_CACHE_SIZE => 16,
-        }
-    }
-}
-2RustUnnamed_0::LOG10_BILLION => 9,
-        }
-    }
-}
-
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum remove_option {
-    ORDINARY_REMOVE_OPTION,
-    RECURSIVE_REMOVE_OPTION,
-    WANT_DIRECTORY_REMOVE_OPTION,
-impl remove_option {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            remove_option::ORDINARY_REMOVE_OPTION => 0,
-            remove_option::RECURSIVE_REMOVE_OPTION => 1,
-            remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
-        }
-    }
-}
-
-pub type C2RustUnnamed_1 = libc::c_uint;
+pub const WANT_DIRECTORY_REMOVE_OPTION: remove_option = 2;
+pub const RECURSIVE_REMOVE_OPTION: remove_option = 1;
+pub const ORDINARY_REMOVE_OPTION: remove_option = 0;
 #[inline]
 unsafe extern "C" fn fstatat(
     mut __fd: libc::c_int,

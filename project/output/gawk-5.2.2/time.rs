@@ -121,6 +121,7 @@ pub struct stat {
 pub enum awk_bool {
     awk_false = 0,
     awk_true,
+}
 impl awk_bool {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -130,6 +131,8 @@ impl awk_bool {
     }
 }
 
+pub const awk_true: awk_bool = 1;
+pub const awk_false: awk_bool = 0;
 pub type awk_bool_t = awk_bool;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -243,6 +246,7 @@ pub type awk_two_way_processor_t = awk_two_way_processor;
 pub enum C2RustUnnamed {
     GAWK_API_MINOR_VERSION = 2,
     GAWK_API_MAJOR_VERSION = 3,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -252,6 +256,8 @@ impl C2RustUnnamed {
     }
 }
 
+pub const GAWK_API_MINOR_VERSION: C2RustUnnamed = 2;
+pub const GAWK_API_MAJOR_VERSION: C2RustUnnamed = 3;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_string {
@@ -265,6 +271,7 @@ pub enum AWK_NUMBER_TYPE {
     AWK_NUMBER_TYPE_DOUBLE,
     AWK_NUMBER_TYPE_MPFR,
     AWK_NUMBER_TYPE_MPZ,
+}
 impl AWK_NUMBER_TYPE {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -275,6 +282,9 @@ impl AWK_NUMBER_TYPE {
     }
 }
 
+pub const AWK_NUMBER_TYPE_MPZ: AWK_NUMBER_TYPE = 2;
+pub const AWK_NUMBER_TYPE_MPFR: AWK_NUMBER_TYPE = 1;
+pub const AWK_NUMBER_TYPE_DOUBLE: AWK_NUMBER_TYPE = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_number {
@@ -298,6 +308,7 @@ pub enum awk_valtype_t {
     AWK_SCALAR,
     AWK_VALUE_COOKIE,
     AWK_BOOL,
+}
 impl awk_valtype_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -314,6 +325,15 @@ impl awk_valtype_t {
     }
 }
 
+pub const AWK_BOOL: awk_valtype_t = 8;
+pub const AWK_VALUE_COOKIE: awk_valtype_t = 7;
+pub const AWK_SCALAR: awk_valtype_t = 6;
+pub const AWK_ARRAY: awk_valtype_t = 5;
+pub const AWK_STRNUM: awk_valtype_t = 4;
+pub const AWK_REGEX: awk_valtype_t = 3;
+pub const AWK_STRING: awk_valtype_t = 2;
+pub const AWK_NUMBER: awk_valtype_t = 1;
+pub const AWK_UNDEFINED: awk_valtype_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_value {
@@ -344,6 +364,7 @@ pub struct awk_element {
 pub enum C2RustUnnamed_1 {
     AWK_ELEMENT_DELETE = 1,
     AWK_ELEMENT_DEFAULT = 0,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -353,6 +374,8 @@ impl C2RustUnnamed_1 {
     }
 }
 
+pub const AWK_ELEMENT_DELETE: C2RustUnnamed_1 = 1;
+pub const AWK_ELEMENT_DEFAULT: C2RustUnnamed_1 = 0;
 pub type awk_element_t = awk_element;
 #[derive(Copy, Clone)]
 #[repr(C)]

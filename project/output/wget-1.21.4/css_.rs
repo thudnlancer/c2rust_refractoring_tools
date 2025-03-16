@@ -133,6 +133,7 @@ pub enum C2RustUnnamed {
     BAD_URI = 25,
     FUNCTION = 26,
     COMMENT = 27,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -168,6 +169,34 @@ impl C2RustUnnamed {
     }
 }
 
+pub const COMMENT: C2RustUnnamed = 27;
+pub const FUNCTION: C2RustUnnamed = 26;
+pub const BAD_URI: C2RustUnnamed = 25;
+pub const URI: C2RustUnnamed = 24;
+pub const NUMBER: C2RustUnnamed = 23;
+pub const PERCENTAGE: C2RustUnnamed = 22;
+pub const DIMENSION: C2RustUnnamed = 21;
+pub const FREQ: C2RustUnnamed = 20;
+pub const TIME: C2RustUnnamed = 19;
+pub const ANGLE: C2RustUnnamed = 18;
+pub const LENGTH: C2RustUnnamed = 17;
+pub const EXS: C2RustUnnamed = 16;
+pub const EMS: C2RustUnnamed = 15;
+pub const IMPORTANT_SYM: C2RustUnnamed = 14;
+pub const CHARSET_SYM: C2RustUnnamed = 13;
+pub const MEDIA_SYM: C2RustUnnamed = 12;
+pub const PAGE_SYM: C2RustUnnamed = 11;
+pub const IMPORT_SYM: C2RustUnnamed = 10;
+pub const HASH: C2RustUnnamed = 9;
+pub const IDENT: C2RustUnnamed = 8;
+pub const BAD_STRING: C2RustUnnamed = 7;
+pub const STRING: C2RustUnnamed = 6;
+pub const DASHMATCH: C2RustUnnamed = 5;
+pub const INCLUDES: C2RustUnnamed = 4;
+pub const CDC: C2RustUnnamed = 3;
+pub const CDO: C2RustUnnamed = 2;
+pub const S: C2RustUnnamed = 1;
+pub const CSSEOF: C2RustUnnamed = 0;
 static mut yy_buffer_stack_top: size_t = 0 as libc::c_int as size_t;
 static mut yy_buffer_stack_max: size_t = 0 as libc::c_int as size_t;
 static mut yy_buffer_stack: *mut YY_BUFFER_STATE = 0 as *const YY_BUFFER_STATE

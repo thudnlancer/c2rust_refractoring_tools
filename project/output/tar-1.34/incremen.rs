@@ -580,6 +580,7 @@ pub enum exclusion_tag_type {
     exclusion_tag_contents,
     exclusion_tag_under,
     exclusion_tag_all,
+}
 impl exclusion_tag_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -591,6 +592,10 @@ impl exclusion_tag_type {
     }
 }
 
+pub const exclusion_tag_all: exclusion_tag_type = 3;
+pub const exclusion_tag_under: exclusion_tag_type = 2;
+pub const exclusion_tag_contents: exclusion_tag_type = 1;
+pub const exclusion_tag_none: exclusion_tag_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct directory {
@@ -613,6 +618,7 @@ pub enum children {
     NO_CHILDREN,
     CHANGED_CHILDREN,
     ALL_CHILDREN,
+}
 impl children {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -623,6 +629,9 @@ impl children {
     }
 }
 
+pub const ALL_CHILDREN: children = 2;
+pub const CHANGED_CHILDREN: children = 1;
+pub const NO_CHILDREN: children = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct dumpdir {
@@ -663,13 +672,28 @@ pub struct field_range {
     pub min_val: intmax_t,
     pub max_val: uintmax_t,
 }
-pub const BILLION: C2RustUnnamed_2 = 1000000000;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    BILLION = 1000000000,
+    LOG10_BILLION = 9,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::BILLION => 1000000000,
+            C2RustUnnamed_2::LOG10_BILLION => 9,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
+}
 impl remove_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -680,20 +704,9 @@ impl remove_option {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::BILLION => 1000000000,
-            C2RustUnnamed_2::LOG10_BILLION => 9,
-        }
-    }
-}
-
+pub const WANT_DIRECTORY_REMOVE_OPTION: remove_option = 2;
+pub const RECURSIVE_REMOVE_OPTION: remove_option = 1;
+pub const ORDINARY_REMOVE_OPTION: remove_option = 0;
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,

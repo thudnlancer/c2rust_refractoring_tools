@@ -71,7 +71,6 @@ pub struct gz_header_s {
 }
 pub type gz_header = gz_header_s;
 pub type gz_headerp = *mut gz_header;
-pub const COPY_: inflate_mode = 14;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum inflate_mode {
@@ -107,6 +106,7 @@ pub enum inflate_mode {
     BAD,
     MEM,
     SYNC,
+}
 impl inflate_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -197,6 +197,7 @@ pub enum codetype {
     CODES,
     LENS,
     DISTS,
+}
 impl codetype {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -207,6 +208,9 @@ impl codetype {
     }
 }
 
+pub const DISTS: codetype = 2;
+pub const LENS: codetype = 1;
+pub const CODES: codetype = 0;
 #[no_mangle]
 pub unsafe extern "C" fn _glp_zlib_inflateReset(mut strm: z_streamp) -> libc::c_int {
     let mut state: *mut inflate_state = 0 as *mut inflate_state;

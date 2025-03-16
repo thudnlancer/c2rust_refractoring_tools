@@ -29,7 +29,19 @@ pub struct rpl_option {
     pub flag: *mut libc::c_int,
     pub val: libc::c_int,
 }
-pub const POSIXLY_CORRECT: C2RustUnnamed_0 = 1;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    POSIXLY_CORRECT = 1,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::POSIXLY_CORRECT => 1,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _getopt_data {
@@ -50,6 +62,7 @@ pub enum C2RustUnnamed {
     RETURN_IN_ORDER = 2,
     PERMUTE = 1,
     REQUIRE_ORDER = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -60,6 +73,9 @@ impl C2RustUnnamed {
     }
 }
 
+pub const RETURN_IN_ORDER: C2RustUnnamed = 2;
+pub const PERMUTE: C2RustUnnamed = 1;
+pub const REQUIRE_ORDER: C2RustUnnamed = 0;
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -98,78 +114,6 @@ pub type size_t = libc::c_ulong;
 pub type __off64_t = libc::c_long;
 pub type _IO_lock_t = ();
 pub type __off_t = libc::c_long;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    POSIXLY_CORRECT = 1,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::POSIXLY_CORRECT => 1,
-        }
-    }
-}
-ub __nextchar: *mut libc::c_char,
-    pub __ordering: C2RustUnnamed,
-    pub __posixly_correct: libc::c_int,
-    pub __first_nonopt: libc::c_int,
-    pub __last_nonopt: libc::c_int,
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed {
-    RETURN_IN_ORDER = 2,
-    PERMUTE = 1,
-    REQUIRE_ORDER = 0,
-impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed::RETURN_IN_ORDER => 2,
-            C2RustUnnamed::PERMUTE => 1,
-            C2RustUnnamed::REQUIRE_ORDER => 0,
-        }
-    }
-}
-
-pub type FILE = _IO_FILE;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
-    pub _markers: *mut _IO_marker,
-    pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
-    pub _old_offset: __off_t,
-    pub _cur_column: libc::c_ushort,
-    pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
-    pub _lock: *mut libc::c_void,
-    pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
-    pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
-}
-pub type size_t = libc::c_ulong;
-pub type __off64_t = libc::c_long;
-pub type _IO_lock_t = ();
-pub type __off_t = libc::c_long;
-pub type C2RustUnnamed_0 = libc::c_uint;
 #[no_mangle]
 pub static mut rpl_optarg: *mut libc::c_char = 0 as *const libc::c_char
     as *mut libc::c_char;

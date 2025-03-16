@@ -55,6 +55,7 @@ pub enum reg_errcode_t {
     REG_EEND,
     REG_ESIZE,
     REG_ERPAREN,
+}
 impl reg_errcode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -79,6 +80,23 @@ impl reg_errcode_t {
     }
 }
 
+pub const REG_ERPAREN: reg_errcode_t = 16;
+pub const REG_ESIZE: reg_errcode_t = 15;
+pub const REG_EEND: reg_errcode_t = 14;
+pub const REG_BADRPT: reg_errcode_t = 13;
+pub const REG_ESPACE: reg_errcode_t = 12;
+pub const REG_ERANGE: reg_errcode_t = 11;
+pub const REG_BADBR: reg_errcode_t = 10;
+pub const REG_EBRACE: reg_errcode_t = 9;
+pub const REG_EPAREN: reg_errcode_t = 8;
+pub const REG_EBRACK: reg_errcode_t = 7;
+pub const REG_ESUBREG: reg_errcode_t = 6;
+pub const REG_EESCAPE: reg_errcode_t = 5;
+pub const REG_ECTYPE: reg_errcode_t = 4;
+pub const REG_ECOLLATE: reg_errcode_t = 3;
+pub const REG_BADPAT: reg_errcode_t = 2;
+pub const REG_NOMATCH: reg_errcode_t = 1;
+pub const REG_NOERROR: reg_errcode_t = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
@@ -133,7 +151,6 @@ pub struct compile_stack_type {
     pub size: libc::c_uint,
     pub avail: libc::c_uint,
 }
-pub const succeed: re_opcode_t = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum re_opcode_t {
@@ -167,6 +184,7 @@ pub enum re_opcode_t {
     wordend,
     wordbound,
     notwordbound,
+}
 impl re_opcode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -205,49 +223,6 @@ impl re_opcode_t {
 }
 
 pub type boolean = libc::c_char;
-pub const _ISdigit: C2RustUnnamed_0 = 2048;
-pub const _ISlower: C2RustUnnamed_0 = 512;
-pub const _ISupper: C2RustUnnamed_0 = 256;
-pub const _ISxdigit: C2RustUnnamed_0 = 4096;
-pub const _ISspace: C2RustUnnamed_0 = 8192;
-pub const _ISpunct: C2RustUnnamed_0 = 4;
-pub const _ISprint: C2RustUnnamed_0 = 16384;
-pub const _ISgraph: C2RustUnnamed_0 = 32768;
-pub const _IScntrl: C2RustUnnamed_0 = 2;
-pub const _ISblank: C2RustUnnamed_0 = 1;
-pub const _ISalpha: C2RustUnnamed_0 = 1024;
-pub const _ISalnum: C2RustUnnamed_0 = 8;
-pub type fail_stack_elt_t = fail_stack_elt;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union fail_stack_elt {
-    pub pointer: *mut libc::c_uchar,
-    pub integer: libc::c_int,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct fail_stack_type {
-    pub stack: *mut fail_stack_elt_t,
-    pub size: libc::c_uint,
-    pub avail: libc::c_uint,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union register_info_type {
-    pub word: fail_stack_elt_t,
-    pub bits: C2RustUnnamed,
-}
-#[derive(Copy, Clone, BitfieldStruct)]
-#[repr(C)]
-pub struct C2RustUnnamed {
-    #[bitfield(name = "match_null_string_p", ty = "libc::c_uint", bits = "0..=1")]
-    #[bitfield(name = "is_active", ty = "libc::c_uint", bits = "2..=2")]
-    #[bitfield(name = "matched_something", ty = "libc::c_uint", bits = "3..=3")]
-    #[bitfield(name = "ever_matched_something", ty = "libc::c_uint", bits = "4..=4")]
-    pub match_null_string_p_is_active_matched_something_ever_matched_something: [u8; 1],
-    #[bitfield(padding)]
-    pub c2rust_padding: [u8; 3],
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -263,6 +238,7 @@ pub enum C2RustUnnamed_0 {
     _ISblank = 1,
     _ISalpha = 1024,
     _ISalnum = 8,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -313,7 +289,6 @@ pub struct C2RustUnnamed {
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 3],
 }
-pub type C2RustUnnamed_0 = libc::c_uint;
 static mut re_syntax_table: [libc::c_char; 256] = [0; 256];
 unsafe extern "C" fn init_syntax_once() {
     let mut c: libc::c_int = 0;

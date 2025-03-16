@@ -222,6 +222,7 @@ pub enum kwsub {
     kwsub_k = 2,
     kwsub_kvl = 1,
     kwsub_kv = 0,
+}
 impl kwsub {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -235,6 +236,12 @@ impl kwsub {
     }
 }
 
+pub const kwsub_b: kwsub = 5;
+pub const kwsub_o: kwsub = 4;
+pub const kwsub_v: kwsub = 3;
+pub const kwsub_k: kwsub = 2;
+pub const kwsub_kvl: kwsub = 1;
+pub const kwsub_kv: kwsub = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum tokens {
@@ -253,6 +260,7 @@ pub enum tokens {
     IDCHAR = 2,
     DIGIT = 1,
     DELIM = 0,
+}
 impl tokens {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -275,6 +283,21 @@ impl tokens {
     }
 }
 
+pub const STRING: tokens = 14;
+pub const SEMI: tokens = 13;
+pub const NUM: tokens = 12;
+pub const ID: tokens = 11;
+pub const COLON: tokens = 10;
+pub const UNKN: tokens = 9;
+pub const SPACE: tokens = 8;
+pub const SBEGIN: tokens = 7;
+pub const PERIOD: tokens = 6;
+pub const Letter: tokens = 5;
+pub const LETTER: tokens = 4;
+pub const NEWLN: tokens = 3;
+pub const IDCHAR: tokens = 2;
+pub const DIGIT: tokens = 1;
+pub const DELIM: tokens = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -334,6 +357,7 @@ pub enum readmethod {
     RM_STDIO = 2,
     RM_MEM = 1,
     RM_MMAP = 0,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -344,6 +368,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rcslock {
@@ -385,6 +412,7 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -395,6 +423,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -540,6 +571,7 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -559,6 +591,18 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed_3 = 8;
+pub const _ISpunct: C2RustUnnamed_3 = 4;
+pub const _IScntrl: C2RustUnnamed_3 = 2;
+pub const _ISblank: C2RustUnnamed_3 = 1;
+pub const _ISgraph: C2RustUnnamed_3 = 32768;
+pub const _ISprint: C2RustUnnamed_3 = 16384;
+pub const _ISspace: C2RustUnnamed_3 = 8192;
+pub const _ISxdigit: C2RustUnnamed_3 = 4096;
+pub const _ISdigit: C2RustUnnamed_3 = 2048;
+pub const _ISalpha: C2RustUnnamed_3 = 1024;
+pub const _ISlower: C2RustUnnamed_3 = 512;
+pub const _ISupper: C2RustUnnamed_3 = 256;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct grok {

@@ -14,14 +14,50 @@ extern "C" {
     fn strlen(_: *const libc::c_char) -> libc::c_ulong;
 }
 pub type size_t = libc::c_ulong;
-pub const HAVE_GNU_MALLOC: C2RustUnnamed_1 = 1;
-pub const HAVE_GNU_CALLOC: C2RustUnnamed_0 = 1;
-pub const HAVE_GNU_REALLOC: C2RustUnnamed_2 = 1;
-pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_1 {
+    HAVE_GNU_MALLOC = 1,
+}
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::HAVE_GNU_MALLOC => 1,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    HAVE_GNU_CALLOC = 1,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::HAVE_GNU_CALLOC => 1,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    HAVE_GNU_REALLOC = 1,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::HAVE_GNU_REALLOC => 1,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -30,72 +66,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    HAVE_GNU_CALLOC = 1,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::HAVE_GNU_CALLOC => 1,
-        }
-    }
-}
-uint {
-        match self {
-            C2RustUnnamed::DEFAULT_MXFAST => 128,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    HAVE_GNU_MALLOC = 1,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HAVE_GNU_MALLOC => 1,
-        }
-    }
-}
-amed_0::HAVE_GNU_CALLOC => 1,
-        }
-    }
-}
-uint {
-        match self {
-            C2RustUnnamed::DEFAULT_MXFAST => 128,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-pub type C2RustUnnamed_1 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    HAVE_GNU_REALLOC = 1,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::HAVE_GNU_REALLOC => 1,
-        }
-    }
-}
-amed::DEFAULT_MXFAST => 128,
-        }
-    }
-}
-
-pub type C2RustUnnamed = libc::c_uint;
-pub type C2RustUnnamed_0 = libc::c_uint;
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[no_mangle]
 #[inline]
 #[linkage = "external"]

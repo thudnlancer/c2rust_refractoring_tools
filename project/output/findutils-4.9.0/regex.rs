@@ -262,6 +262,7 @@ pub enum re_token_type_t {
     OP_SPACE,
     OP_NOTSPACE,
     BACK_SLASH,
+}
 impl re_token_type_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -303,6 +304,40 @@ impl re_token_type_t {
     }
 }
 
+pub const BACK_SLASH: re_token_type_t = 36;
+pub const OP_NOTSPACE: re_token_type_t = 35;
+pub const OP_SPACE: re_token_type_t = 34;
+pub const OP_NOTWORD: re_token_type_t = 33;
+pub const OP_WORD: re_token_type_t = 32;
+pub const OP_CLOSE_CHAR_CLASS: re_token_type_t = 31;
+pub const OP_OPEN_CHAR_CLASS: re_token_type_t = 30;
+pub const OP_CLOSE_EQUIV_CLASS: re_token_type_t = 29;
+pub const OP_OPEN_EQUIV_CLASS: re_token_type_t = 28;
+pub const OP_CLOSE_COLL_ELEM: re_token_type_t = 27;
+pub const OP_OPEN_COLL_ELEM: re_token_type_t = 26;
+pub const OP_NON_MATCH_LIST: re_token_type_t = 25;
+pub const OP_CLOSE_DUP_NUM: re_token_type_t = 24;
+pub const OP_OPEN_DUP_NUM: re_token_type_t = 23;
+pub const OP_CHARSET_RANGE: re_token_type_t = 22;
+pub const OP_CLOSE_BRACKET: re_token_type_t = 21;
+pub const OP_OPEN_BRACKET: re_token_type_t = 20;
+pub const OP_DUP_QUESTION: re_token_type_t = 19;
+pub const OP_DUP_PLUS: re_token_type_t = 18;
+pub const SUBEXP: re_token_type_t = 17;
+pub const CONCAT: re_token_type_t = 16;
+pub const ANCHOR: re_token_type_t = 12;
+pub const OP_DUP_ASTERISK: re_token_type_t = 11;
+pub const OP_ALT: re_token_type_t = 10;
+pub const OP_CLOSE_SUBEXP: re_token_type_t = 9;
+pub const OP_OPEN_SUBEXP: re_token_type_t = 8;
+pub const OP_UTF8_PERIOD: re_token_type_t = 7;
+pub const COMPLEX_BRACKET: re_token_type_t = 6;
+pub const OP_PERIOD: re_token_type_t = 5;
+pub const OP_BACK_REF: re_token_type_t = 4;
+pub const SIMPLE_BRACKET: re_token_type_t = 3;
+pub const END_OF_RE: re_token_type_t = 2;
+pub const CHARACTER: re_token_type_t = 1;
+pub const NON_TYPE: re_token_type_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
@@ -325,6 +360,7 @@ pub enum re_context_type {
     BUF_LAST,
     WORD_DELIM,
     NOT_WORD_DELIM,
+}
 impl re_context_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -342,6 +378,16 @@ impl re_context_type {
     }
 }
 
+pub const NOT_WORD_DELIM: re_context_type = 512;
+pub const WORD_DELIM: re_context_type = 256;
+pub const BUF_LAST: re_context_type = 128;
+pub const BUF_FIRST: re_context_type = 64;
+pub const LINE_LAST: re_context_type = 32;
+pub const LINE_FIRST: re_context_type = 16;
+pub const INSIDE_NOTWORD: re_context_type = 10;
+pub const WORD_LAST: re_context_type = 9;
+pub const WORD_FIRST: re_context_type = 6;
+pub const INSIDE_WORD: re_context_type = 5;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_charset_t {
@@ -453,18 +499,41 @@ pub union C2RustUnnamed_0 {
 }
 pub type wint_t = libc::c_uint;
 pub type uintptr_t = libc::c_ulong;
-pub const _ISalnum: C2RustUnnamed_4 = 8;
-pub const _ISxdigit: C2RustUnnamed_4 = 4096;
-pub const _ISpunct: C2RustUnnamed_4 = 4;
-pub const _ISgraph: C2RustUnnamed_4 = 32768;
-pub const _ISblank: C2RustUnnamed_4 = 1;
-pub const _ISupper: C2RustUnnamed_4 = 256;
-pub const _ISprint: C2RustUnnamed_4 = 16384;
-pub const _ISdigit: C2RustUnnamed_4 = 2048;
-pub const _ISalpha: C2RustUnnamed_4 = 1024;
-pub const _ISspace: C2RustUnnamed_4 = 8192;
-pub const _ISlower: C2RustUnnamed_4 = 512;
-pub const _IScntrl: C2RustUnnamed_4 = 2;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_4 {
+    _ISalnum = 8,
+    _ISxdigit = 4096,
+    _ISpunct = 4,
+    _ISgraph = 32768,
+    _ISblank = 1,
+    _ISupper = 256,
+    _ISprint = 16384,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISspace = 8192,
+    _ISlower = 512,
+    _IScntrl = 2,
+}
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::_ISalnum => 8,
+            C2RustUnnamed_4::_ISxdigit => 4096,
+            C2RustUnnamed_4::_ISpunct => 4,
+            C2RustUnnamed_4::_ISgraph => 32768,
+            C2RustUnnamed_4::_ISblank => 1,
+            C2RustUnnamed_4::_ISupper => 256,
+            C2RustUnnamed_4::_ISprint => 16384,
+            C2RustUnnamed_4::_ISdigit => 2048,
+            C2RustUnnamed_4::_ISalpha => 1024,
+            C2RustUnnamed_4::_ISspace => 8192,
+            C2RustUnnamed_4::_ISlower => 512,
+            C2RustUnnamed_4::_IScntrl => 2,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
@@ -486,6 +555,7 @@ pub enum bracket_elem_type {
     EQUIV_CLASS,
     COLL_SYM,
     CHAR_CLASS,
+}
 impl bracket_elem_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -498,274 +568,13 @@ impl bracket_elem_type {
     }
 }
 
+pub const CHAR_CLASS: bracket_elem_type = 4;
+pub const COLL_SYM: bracket_elem_type = 3;
+pub const EQUIV_CLASS: bracket_elem_type = 2;
+pub const MB_CHAR: bracket_elem_type = 1;
+pub const SB_CHAR: bracket_elem_type = 0;
 pub type int_fast32_t = libc::c_long;
 pub type uint_fast32_t = libc::c_ulong;
-pub const CODESET: C2RustUnnamed_5 = 14;
-pub type nl_item = libc::c_int;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_match_context_t {
-    pub input: re_string_t,
-    pub dfa: *const re_dfa_t,
-    pub eflags: libc::c_int,
-    pub match_last: Idx,
-    pub last_node: Idx,
-    pub state_log: *mut *mut re_dfastate_t,
-    pub state_log_top: Idx,
-    pub nbkref_ents: Idx,
-    pub abkref_ents: Idx,
-    pub bkref_ents: *mut re_backref_cache_entry,
-    pub max_mb_elem_len: libc::c_int,
-    pub nsub_tops: Idx,
-    pub asub_tops: Idx,
-    pub sub_tops: *mut *mut re_sub_match_top_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sub_match_top_t {
-    pub str_idx: Idx,
-    pub node: Idx,
-    pub path: *mut state_array_t,
-    pub alasts: Idx,
-    pub nlasts: Idx,
-    pub lasts: *mut *mut re_sub_match_last_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sub_match_last_t {
-    pub node: Idx,
-    pub str_idx: Idx,
-    pub path: state_array_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct state_array_t {
-    pub next_idx: Idx,
-    pub alloc: Idx,
-    pub array: *mut *mut re_dfastate_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_backref_cache_entry {
-    pub node: Idx,
-    pub str_idx: Idx,
-    pub subexp_from: Idx,
-    pub subexp_to: Idx,
-    pub eps_reachable_subexps_map: bitset_word_t,
-    pub more: libc::c_char,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_fail_stack_t {
-    pub num: Idx,
-    pub alloc: Idx,
-    pub stack: *mut re_fail_stack_ent_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_fail_stack_ent_t {
-    pub idx: Idx,
-    pub node: Idx,
-    pub regs: *mut regmatch_t,
-    pub eps_via_nodes: re_node_set,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct regmatch_list {
-    pub u: C2RustUnnamed_2,
-    pub scratch: [regmatch_t; 8],
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union C2RustUnnamed_2 {
-    pub dynarray_abstract: dynarray_header,
-    pub dynarray_header: C2RustUnnamed_3,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_3 {
-    pub used: size_t,
-    pub allocated: size_t,
-    pub array: *mut regmatch_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct dynarray_header {
-    pub used: size_t,
-    pub allocated: size_t,
-    pub array: *mut libc::c_void,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sift_context_t {
-    pub sifted_states: *mut *mut re_dfastate_t,
-    pub limited_states: *mut *mut re_dfastate_t,
-    pub last_node: Idx,
-    pub last_str_idx: Idx,
-    pub limits: re_node_set,
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_4 {
-    _ISalnum = 8,
-    _ISxdigit = 4096,
-    _ISpunct = 4,
-    _ISgraph = 32768,
-    _ISblank = 1,
-    _ISupper = 256,
-    _ISprint = 16384,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISspace = 8192,
-    _ISlower = 512,
-    _IScntrl = 2,
-impl C2RustUnnamed_4 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_4::_ISalnum => 8,
-            C2RustUnnamed_4::_ISxdigit => 4096,
-            C2RustUnnamed_4::_ISpunct => 4,
-            C2RustUnnamed_4::_ISgraph => 32768,
-            C2RustUnnamed_4::_ISblank => 1,
-            C2RustUnnamed_4::_ISupper => 256,
-            C2RustUnnamed_4::_ISprint => 16384,
-            C2RustUnnamed_4::_ISdigit => 2048,
-            C2RustUnnamed_4::_ISalpha => 1024,
-            C2RustUnnamed_4::_ISspace => 8192,
-            C2RustUnnamed_4::_ISlower => 512,
-            C2RustUnnamed_4::_IScntrl => 2,
-        }
-    }
-}
-C2RustUnnamed_1,
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum bracket_elem_type {
-    SB_CHAR,
-    MB_CHAR,
-    EQUIV_CLASS,
-    COLL_SYM,
-    CHAR_CLASS,
-impl bracket_elem_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            bracket_elem_type::SB_CHAR => 0,
-            bracket_elem_type::MB_CHAR => 1,
-            bracket_elem_type::EQUIV_CLASS => 2,
-            bracket_elem_type::COLL_SYM => 3,
-            bracket_elem_type::CHAR_CLASS => 4,
-        }
-    }
-}
-
-pub type int_fast32_t = libc::c_long;
-pub type uint_fast32_t = libc::c_ulong;
-pub const CODESET: C2RustUnnamed_5 = 14;
-pub type nl_item = libc::c_int;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_match_context_t {
-    pub input: re_string_t,
-    pub dfa: *const re_dfa_t,
-    pub eflags: libc::c_int,
-    pub match_last: Idx,
-    pub last_node: Idx,
-    pub state_log: *mut *mut re_dfastate_t,
-    pub state_log_top: Idx,
-    pub nbkref_ents: Idx,
-    pub abkref_ents: Idx,
-    pub bkref_ents: *mut re_backref_cache_entry,
-    pub max_mb_elem_len: libc::c_int,
-    pub nsub_tops: Idx,
-    pub asub_tops: Idx,
-    pub sub_tops: *mut *mut re_sub_match_top_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sub_match_top_t {
-    pub str_idx: Idx,
-    pub node: Idx,
-    pub path: *mut state_array_t,
-    pub alasts: Idx,
-    pub nlasts: Idx,
-    pub lasts: *mut *mut re_sub_match_last_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sub_match_last_t {
-    pub node: Idx,
-    pub str_idx: Idx,
-    pub path: state_array_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct state_array_t {
-    pub next_idx: Idx,
-    pub alloc: Idx,
-    pub array: *mut *mut re_dfastate_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_backref_cache_entry {
-    pub node: Idx,
-    pub str_idx: Idx,
-    pub subexp_from: Idx,
-    pub subexp_to: Idx,
-    pub eps_reachable_subexps_map: bitset_word_t,
-    pub more: libc::c_char,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_fail_stack_t {
-    pub num: Idx,
-    pub alloc: Idx,
-    pub stack: *mut re_fail_stack_ent_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_fail_stack_ent_t {
-    pub idx: Idx,
-    pub node: Idx,
-    pub regs: *mut regmatch_t,
-    pub eps_via_nodes: re_node_set,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct regmatch_list {
-    pub u: C2RustUnnamed_2,
-    pub scratch: [regmatch_t; 8],
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub union C2RustUnnamed_2 {
-    pub dynarray_abstract: dynarray_header,
-    pub dynarray_header: C2RustUnnamed_3,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_3 {
-    pub used: size_t,
-    pub allocated: size_t,
-    pub array: *mut regmatch_t,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct dynarray_header {
-    pub used: size_t,
-    pub allocated: size_t,
-    pub array: *mut libc::c_void,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct re_sift_context_t {
-    pub sifted_states: *mut *mut re_dfastate_t,
-    pub limited_states: *mut *mut re_dfastate_t,
-    pub last_node: Idx,
-    pub last_str_idx: Idx,
-    pub limits: re_node_set,
-}
-pub type C2RustUnnamed_4 = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -1152,6 +961,7 @@ pub enum C2RustUnnamed_5 {
     ABDAY_3 = 131074,
     ABDAY_2 = 131073,
     ABDAY_1 = 131072,
+}
 impl C2RustUnnamed_5 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1542,6 +1352,109 @@ impl C2RustUnnamed_5 {
     }
 }
 
+pub type nl_item = libc::c_int;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_match_context_t {
+    pub input: re_string_t,
+    pub dfa: *const re_dfa_t,
+    pub eflags: libc::c_int,
+    pub match_last: Idx,
+    pub last_node: Idx,
+    pub state_log: *mut *mut re_dfastate_t,
+    pub state_log_top: Idx,
+    pub nbkref_ents: Idx,
+    pub abkref_ents: Idx,
+    pub bkref_ents: *mut re_backref_cache_entry,
+    pub max_mb_elem_len: libc::c_int,
+    pub nsub_tops: Idx,
+    pub asub_tops: Idx,
+    pub sub_tops: *mut *mut re_sub_match_top_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_sub_match_top_t {
+    pub str_idx: Idx,
+    pub node: Idx,
+    pub path: *mut state_array_t,
+    pub alasts: Idx,
+    pub nlasts: Idx,
+    pub lasts: *mut *mut re_sub_match_last_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_sub_match_last_t {
+    pub node: Idx,
+    pub str_idx: Idx,
+    pub path: state_array_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct state_array_t {
+    pub next_idx: Idx,
+    pub alloc: Idx,
+    pub array: *mut *mut re_dfastate_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_backref_cache_entry {
+    pub node: Idx,
+    pub str_idx: Idx,
+    pub subexp_from: Idx,
+    pub subexp_to: Idx,
+    pub eps_reachable_subexps_map: bitset_word_t,
+    pub more: libc::c_char,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_fail_stack_t {
+    pub num: Idx,
+    pub alloc: Idx,
+    pub stack: *mut re_fail_stack_ent_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_fail_stack_ent_t {
+    pub idx: Idx,
+    pub node: Idx,
+    pub regs: *mut regmatch_t,
+    pub eps_via_nodes: re_node_set,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct regmatch_list {
+    pub u: C2RustUnnamed_2,
+    pub scratch: [regmatch_t; 8],
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub union C2RustUnnamed_2 {
+    pub dynarray_abstract: dynarray_header,
+    pub dynarray_header: C2RustUnnamed_3,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct C2RustUnnamed_3 {
+    pub used: size_t,
+    pub allocated: size_t,
+    pub array: *mut regmatch_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct dynarray_header {
+    pub used: size_t,
+    pub allocated: size_t,
+    pub array: *mut libc::c_void,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct re_sift_context_t {
+    pub sifted_states: *mut *mut re_dfastate_t,
+    pub limited_states: *mut *mut re_dfastate_t,
+    pub last_node: Idx,
+    pub last_str_idx: Idx,
+    pub limits: re_node_set,
+}
 unsafe extern "C" fn re_string_wchar_at(
     mut pstr: *const re_string_t,
     mut idx: Idx,

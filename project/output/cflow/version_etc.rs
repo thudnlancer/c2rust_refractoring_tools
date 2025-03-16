@@ -64,11 +64,11 @@ pub struct _IO_FILE {
 }
 pub type _IO_lock_t = ();
 pub type FILE = _IO_FILE;
-pub const COPYRIGHT_YEAR: C2RustUnnamed = 2009;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     COPYRIGHT_YEAR = 2009,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -77,7 +77,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]
 pub unsafe extern "C" fn version_etc_arn(
     mut stream: *mut FILE,

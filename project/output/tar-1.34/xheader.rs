@@ -176,6 +176,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -195,6 +196,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type ptrdiff_t = libc::c_long;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -457,13 +470,12 @@ pub struct xhdr_tab {
     pub flags: libc::c_int,
     pub prefix: bool,
 }
-pub const pax_global_header: C2RustUnnamed_3 = 1;
-pub const pax_file_header: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     pax_file_header,
     pax_global_header,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -473,7 +485,6 @@ impl C2RustUnnamed_3 {
     }
 }
 
-pub type C2RustUnnamed_3 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn strtoimax(
     mut nptr: *const libc::c_char,

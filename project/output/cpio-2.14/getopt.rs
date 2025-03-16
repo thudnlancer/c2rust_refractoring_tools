@@ -58,6 +58,7 @@ pub enum __ord {
     REQUIRE_ORDER,
     PERMUTE,
     RETURN_IN_ORDER,
+}
 impl __ord {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -68,6 +69,9 @@ impl __ord {
     }
 }
 
+pub const RETURN_IN_ORDER: __ord = 2;
+pub const PERMUTE: __ord = 1;
+pub const REQUIRE_ORDER: __ord = 0;
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]

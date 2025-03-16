@@ -309,6 +309,7 @@ pub enum compression_options {
     compression_none = 2,
     compression_gzip = 1,
     compression_auto = 0,
+}
 impl compression_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -319,12 +320,16 @@ impl compression_options {
     }
 }
 
+pub const compression_none: compression_options = 2;
+pub const compression_gzip: compression_options = 1;
+pub const compression_auto: compression_options = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     prefer_none = 2,
     prefer_ipv6 = 1,
     prefer_ipv4 = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -335,12 +340,16 @@ impl C2RustUnnamed {
     }
 }
 
+pub const prefer_none: C2RustUnnamed = 2;
+pub const prefer_ipv6: C2RustUnnamed = 1;
+pub const prefer_ipv4: C2RustUnnamed = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     restrict_uppercase = 2,
     restrict_lowercase = 1,
     restrict_no_case_restriction = 0,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -351,12 +360,16 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const restrict_uppercase: C2RustUnnamed_0 = 2;
+pub const restrict_lowercase: C2RustUnnamed_0 = 1;
+pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     restrict_windows = 2,
     restrict_vms = 1,
     restrict_unix = 0,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -367,11 +380,15 @@ impl C2RustUnnamed_1 {
     }
 }
 
+pub const restrict_windows: C2RustUnnamed_1 = 2;
+pub const restrict_vms: C2RustUnnamed_1 = 1;
+pub const restrict_unix: C2RustUnnamed_1 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
     keyfile_asn1 = 1,
     keyfile_pem = 0,
+}
 impl keyfile_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -381,6 +398,8 @@ impl keyfile_type {
     }
 }
 
+pub const keyfile_asn1: keyfile_type = 1;
+pub const keyfile_pem: keyfile_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -392,6 +411,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_sslv3 = 2,
     secure_protocol_sslv2 = 1,
     secure_protocol_auto = 0,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -407,11 +427,20 @@ impl C2RustUnnamed_2 {
     }
 }
 
+pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
+pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
+pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
+pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
+pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
+pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
+pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
+pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     regex_type_posix = 1,
     regex_type_pcre = 0,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -421,6 +450,8 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const regex_type_posix: C2RustUnnamed_3 = 1;
+pub const regex_type_pcre: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -429,6 +460,7 @@ pub enum log_options {
     LOG_NONVERBOSE,
     LOG_ALWAYS,
     LOG_PROGRESS,
+}
 impl log_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -441,6 +473,11 @@ impl log_options {
     }
 }
 
+pub const LOG_PROGRESS: log_options = 4;
+pub const LOG_ALWAYS: log_options = 3;
+pub const LOG_NONVERBOSE: log_options = 2;
+pub const LOG_NOTQUIET: log_options = 1;
+pub const LOG_VERBOSE: log_options = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct iri {
@@ -473,6 +510,7 @@ pub enum C2RustUnnamed_4 {
     _PC_MAX_INPUT = 2,
     _PC_MAX_CANON = 1,
     _PC_LINK_MAX = 0,
+}
 impl C2RustUnnamed_4 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -501,6 +539,27 @@ impl C2RustUnnamed_4 {
     }
 }
 
+pub const _PC_2_SYMLINKS: C2RustUnnamed_4 = 20;
+pub const _PC_SYMLINK_MAX: C2RustUnnamed_4 = 19;
+pub const _PC_ALLOC_SIZE_MIN: C2RustUnnamed_4 = 18;
+pub const _PC_REC_XFER_ALIGN: C2RustUnnamed_4 = 17;
+pub const _PC_REC_MIN_XFER_SIZE: C2RustUnnamed_4 = 16;
+pub const _PC_REC_MAX_XFER_SIZE: C2RustUnnamed_4 = 15;
+pub const _PC_REC_INCR_XFER_SIZE: C2RustUnnamed_4 = 14;
+pub const _PC_FILESIZEBITS: C2RustUnnamed_4 = 13;
+pub const _PC_SOCK_MAXBUF: C2RustUnnamed_4 = 12;
+pub const _PC_PRIO_IO: C2RustUnnamed_4 = 11;
+pub const _PC_ASYNC_IO: C2RustUnnamed_4 = 10;
+pub const _PC_SYNC_IO: C2RustUnnamed_4 = 9;
+pub const _PC_VDISABLE: C2RustUnnamed_4 = 8;
+pub const _PC_NO_TRUNC: C2RustUnnamed_4 = 7;
+pub const _PC_CHOWN_RESTRICTED: C2RustUnnamed_4 = 6;
+pub const _PC_PIPE_BUF: C2RustUnnamed_4 = 5;
+pub const _PC_PATH_MAX: C2RustUnnamed_4 = 4;
+pub const _PC_NAME_MAX: C2RustUnnamed_4 = 3;
+pub const _PC_MAX_INPUT: C2RustUnnamed_4 = 2;
+pub const _PC_MAX_CANON: C2RustUnnamed_4 = 1;
+pub const _PC_LINK_MAX: C2RustUnnamed_4 = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct file_stat_s {
@@ -515,6 +574,7 @@ pub enum url_auth_mode {
     URL_AUTH_SHOW,
     URL_AUTH_HIDE_PASSWD,
     URL_AUTH_HIDE,
+}
 impl url_auth_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -525,6 +585,9 @@ impl url_auth_mode {
     }
 }
 
+pub const URL_AUTH_HIDE: url_auth_mode = 2;
+pub const URL_AUTH_HIDE_PASSWD: url_auth_mode = 1;
+pub const URL_AUTH_SHOW: url_auth_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
@@ -533,6 +596,7 @@ pub enum url_scheme {
     SCHEME_FTP,
     SCHEME_FTPS,
     SCHEME_INVALID,
+}
 impl url_scheme {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -545,6 +609,11 @@ impl url_scheme {
     }
 }
 
+pub const SCHEME_INVALID: url_scheme = 4;
+pub const SCHEME_FTPS: url_scheme = 3;
+pub const SCHEME_FTP: url_scheme = 2;
+pub const SCHEME_HTTPS: url_scheme = 1;
+pub const SCHEME_HTTP: url_scheme = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct url {
@@ -561,8 +630,21 @@ pub struct url {
     pub user: *mut libc::c_char,
     pub passwd: *mut libc::c_char,
 }
-pub const urlchr_unsafe: C2RustUnnamed_7 = 2;
-pub const urlchr_reserved: C2RustUnnamed_7 = 1;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_7 {
+    urlchr_reserved = 1,
+    urlchr_unsafe = 2,
+}
+impl C2RustUnnamed_7 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_7::urlchr_reserved => 1,
+            C2RustUnnamed_7::urlchr_unsafe => 2,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct scheme_data {
@@ -571,19 +653,58 @@ pub struct scheme_data {
     pub default_port: libc::c_int,
     pub flags: libc::c_int,
 }
-pub const scm_has_fragment: C2RustUnnamed_6 = 8;
-pub const scm_has_params: C2RustUnnamed_6 = 2;
-pub const scm_has_query: C2RustUnnamed_6 = 4;
-pub const PE_INVALID_HOST_NAME: C2RustUnnamed_8 = 5;
-pub const PE_INVALID_USER_NAME: C2RustUnnamed_8 = 7;
-pub const PE_BAD_PORT_NUMBER: C2RustUnnamed_8 = 6;
-pub const PE_INVALID_IPV6_ADDRESS: C2RustUnnamed_8 = 10;
-pub const PE_UNTERMINATED_IPV6_ADDRESS: C2RustUnnamed_8 = 8;
-pub const PE_UNSUPPORTED_SCHEME: C2RustUnnamed_8 = 1;
-pub const PE_UNSUPPORTED_SCHEME_FTPS: C2RustUnnamed_8 = 3;
-pub const PE_UNSUPPORTED_SCHEME_HTTPS: C2RustUnnamed_8 = 2;
-pub const PE_MISSING_SCHEME: C2RustUnnamed_8 = 4;
-pub const scm_disabled: C2RustUnnamed_6 = 1;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_6 {
+    scm_disabled = 1,
+    scm_has_params = 2,
+    scm_has_query = 4,
+    scm_has_fragment = 8,
+}
+impl C2RustUnnamed_6 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_6::scm_disabled => 1,
+            C2RustUnnamed_6::scm_has_params => 2,
+            C2RustUnnamed_6::scm_has_query => 4,
+            C2RustUnnamed_6::scm_has_fragment => 8,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_8 {
+    PE_NO_ERROR = 0,
+    PE_UNSUPPORTED_SCHEME,
+    PE_UNSUPPORTED_SCHEME_HTTPS,
+    PE_UNSUPPORTED_SCHEME_FTPS,
+    PE_MISSING_SCHEME,
+    PE_INVALID_HOST_NAME,
+    PE_BAD_PORT_NUMBER,
+    PE_INVALID_USER_NAME,
+    PE_UNTERMINATED_IPV6_ADDRESS,
+    PE_IPV6_NOT_SUPPORTED,
+    PE_INVALID_IPV6_ADDRESS,
+}
+impl C2RustUnnamed_8 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_8::PE_NO_ERROR => 0,
+            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME => 1,
+            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_HTTPS => 2,
+            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_FTPS => 3,
+            C2RustUnnamed_8::PE_MISSING_SCHEME => 4,
+            C2RustUnnamed_8::PE_INVALID_HOST_NAME => 5,
+            C2RustUnnamed_8::PE_BAD_PORT_NUMBER => 6,
+            C2RustUnnamed_8::PE_INVALID_USER_NAME => 7,
+            C2RustUnnamed_8::PE_UNTERMINATED_IPV6_ADDRESS => 8,
+            C2RustUnnamed_8::PE_IPV6_NOT_SUPPORTED => 9,
+            C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS => 10,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct growable {
@@ -592,12 +713,6 @@ pub struct growable {
     pub tail: libc::c_int,
 }
 pub type iconv_t = *mut libc::c_void;
-pub const CODESET: C2RustUnnamed_5 = 14;
-pub type nl_item = libc::c_int;
-pub const filechr_control: C2RustUnnamed_9 = 8;
-pub const filechr_not_windows: C2RustUnnamed_9 = 4;
-pub const filechr_not_vms: C2RustUnnamed_9 = 2;
-pub const filechr_not_unix: C2RustUnnamed_9 = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -984,6 +1099,7 @@ pub enum C2RustUnnamed_5 {
     ABDAY_3 = 131074,
     ABDAY_2 = 131073,
     ABDAY_1 = 131072,
+}
 impl C2RustUnnamed_5 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1374,852 +1490,7 @@ impl C2RustUnnamed_5 {
     }
 }
 
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    scm_disabled = 1,
-    scm_has_params = 2,
-    scm_has_query = 4,
-    scm_has_fragment = 8,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::scm_disabled => 1,
-            C2RustUnnamed_6::scm_has_params => 2,
-            C2RustUnnamed_6::scm_has_query => 4,
-            C2RustUnnamed_6::scm_has_fragment => 8,
-        }
-    }
-}
-   C2RustUnnamed_5::_NL_IDENTIFICATION_LANGUAGE => 786439,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_FAX => 786438,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TEL => 786437,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_EMAIL => 786436,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CONTACT => 786435,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ADDRESS => 786434,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_SOURCE => 786433,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TITLE => 786432,
-            C2RustUnnamed_5::_NL_NUM_LC_MEASUREMENT => 720898,
-            C2RustUnnamed_5::_NL_MEASUREMENT_CODESET => 720897,
-            C2RustUnnamed_5::_NL_MEASUREMENT_MEASUREMENT => 720896,
-            C2RustUnnamed_5::_NL_NUM_LC_TELEPHONE => 655365,
-            C2RustUnnamed_5::_NL_TELEPHONE_CODESET => 655364,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_PREFIX => 655363,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_SELECT => 655362,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_DOM_FMT => 655361,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_INT_FMT => 655360,
-            C2RustUnnamed_5::_NL_NUM_LC_ADDRESS => 589837,
-            C2RustUnnamed_5::_NL_ADDRESS_CODESET => 589836,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_LIB => 589835,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_TERM => 589834,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_AB => 589833,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_NAME => 589832,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_5::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_5::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_5::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_5::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_5::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_5::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_5::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_5::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_5::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_5::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_5::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_5::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_5::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_5::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_5::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_5::__NOSTR => 327683,
-            C2RustUnnamed_5::__YESSTR => 327682,
-            C2RustUnnamed_5::__NOEXPR => 327681,
-            C2RustUnnamed_5::__YESEXPR => 327680,
-            C2RustUnnamed_5::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_5::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_5::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_5::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_5::__GROUPING => 65538,
-            C2RustUnnamed_5::THOUSEP => 65537,
-            C2RustUnnamed_5::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_5::RADIXCHAR => 65536,
-            C2RustUnnamed_5::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_5::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_5::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_5::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_5::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_5::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_5::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_5::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_5::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_5::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_5::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_5::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_5::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_5::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_5::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_5::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_5::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_5::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_5::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_5::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_5::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_5::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_5::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_5::__MON_GROUPING => 262148,
-            C2RustUnnamed_5::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_5::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_5::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_5::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_5::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_5::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_5::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_5::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_5::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_5::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_5::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_5::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_5::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_5::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_5::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_5::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_5::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_5::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_5::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_5::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_5::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_5::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_5::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_5::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_5::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_5::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_5::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_5::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_5::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_5::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_5::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_5::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_5::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_5::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_5::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_5::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_5::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_5::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_5::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_5::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_5::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_5::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_5::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_5::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_5::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_5::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_5::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_5::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_5::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_5::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_5::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_5::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_5::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_5::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_5::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_5::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_5::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_5::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_5::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_5::__ALTMON_12 => 131194,
-            C2RustUnnamed_5::__ALTMON_11 => 131193,
-            C2RustUnnamed_5::__ALTMON_10 => 131192,
-            C2RustUnnamed_5::__ALTMON_9 => 131191,
-            C2RustUnnamed_5::__ALTMON_8 => 131190,
-            C2RustUnnamed_5::__ALTMON_7 => 131189,
-            C2RustUnnamed_5::__ALTMON_6 => 131188,
-            C2RustUnnamed_5::__ALTMON_5 => 131187,
-            C2RustUnnamed_5::__ALTMON_4 => 131186,
-            C2RustUnnamed_5::__ALTMON_3 => 131185,
-            C2RustUnnamed_5::__ALTMON_2 => 131184,
-            C2RustUnnamed_5::__ALTMON_1 => 131183,
-            C2RustUnnamed_5::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_5::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_5::_DATE_FMT => 131180,
-            C2RustUnnamed_5::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_5::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_5::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_5::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_5::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_5::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_5::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_5::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_5::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_5::_NL_WT_FMT => 131166,
-            C2RustUnnamed_5::_NL_WD_FMT => 131165,
-            C2RustUnnamed_5::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_5::_NL_WPM_STR => 131163,
-            C2RustUnnamed_5::_NL_WAM_STR => 131162,
-            C2RustUnnamed_5::_NL_WMON_12 => 131161,
-            C2RustUnnamed_5::_NL_WMON_11 => 131160,
-            C2RustUnnamed_5::_NL_WMON_10 => 131159,
-            C2RustUnnamed_5::_NL_WMON_9 => 131158,
-            C2RustUnnamed_5::_NL_WMON_8 => 131157,
-            C2RustUnnamed_5::_NL_WMON_7 => 131156,
-            C2RustUnnamed_5::_NL_WMON_6 => 131155,
-            C2RustUnnamed_5::_NL_WMON_5 => 131154,
-            C2RustUnnamed_5::_NL_WMON_4 => 131153,
-            C2RustUnnamed_5::_NL_WMON_3 => 131152,
-            C2RustUnnamed_5::_NL_WMON_2 => 131151,
-            C2RustUnnamed_5::_NL_WMON_1 => 131150,
-            C2RustUnnamed_5::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_5::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_5::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_5::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_5::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_5::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_5::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_5::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_5::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_5::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_5::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_5::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_5::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_5::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_5::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_5::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_5::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_5::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_5::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_5::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_5::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_5::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_5::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_5::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_5::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_5::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_5::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_5::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_5::ERA_T_FMT => 131121,
-            C2RustUnnamed_5::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_5::ALT_DIGITS => 131119,
-            C2RustUnnamed_5::ERA_D_FMT => 131118,
-            C2RustUnnamed_5::__ERA_YEAR => 131117,
-            C2RustUnnamed_5::ERA => 131116,
-            C2RustUnnamed_5::T_FMT_AMPM => 131115,
-            C2RustUnnamed_5::T_FMT => 131114,
-            C2RustUnnamed_5::D_FMT => 131113,
-            C2RustUnnamed_5::D_T_FMT => 131112,
-            C2RustUnnamed_5::PM_STR => 131111,
-            C2RustUnnamed_5::AM_STR => 131110,
-            C2RustUnnamed_5::MON_12 => 131109,
-            C2RustUnnamed_5::MON_11 => 131108,
-            C2RustUnnamed_5::MON_10 => 131107,
-            C2RustUnnamed_5::MON_9 => 131106,
-            C2RustUnnamed_5::MON_8 => 131105,
-            C2RustUnnamed_5::MON_7 => 131104,
-            C2RustUnnamed_5::MON_6 => 131103,
-            C2RustUnnamed_5::MON_5 => 131102,
-            C2RustUnnamed_5::MON_4 => 131101,
-            C2RustUnnamed_5::MON_3 => 131100,
-            C2RustUnnamed_5::MON_2 => 131099,
-            C2RustUnnamed_5::MON_1 => 131098,
-            C2RustUnnamed_5::ABMON_12 => 131097,
-            C2RustUnnamed_5::ABMON_11 => 131096,
-            C2RustUnnamed_5::ABMON_10 => 131095,
-            C2RustUnnamed_5::ABMON_9 => 131094,
-            C2RustUnnamed_5::ABMON_8 => 131093,
-            C2RustUnnamed_5::ABMON_7 => 131092,
-            C2RustUnnamed_5::ABMON_6 => 131091,
-            C2RustUnnamed_5::ABMON_5 => 131090,
-            C2RustUnnamed_5::ABMON_4 => 131089,
-            C2RustUnnamed_5::ABMON_3 => 131088,
-            C2RustUnnamed_5::ABMON_2 => 131087,
-            C2RustUnnamed_5::ABMON_1 => 131086,
-            C2RustUnnamed_5::DAY_7 => 131085,
-            C2RustUnnamed_5::DAY_6 => 131084,
-            C2RustUnnamed_5::DAY_5 => 131083,
-            C2RustUnnamed_5::DAY_4 => 131082,
-            C2RustUnnamed_5::DAY_3 => 131081,
-            C2RustUnnamed_5::DAY_2 => 131080,
-            C2RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
-        }
-    }
-}
-
-pub type C2RustUnnamed_6 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_7 {
-    urlchr_reserved = 1,
-    urlchr_unsafe = 2,
-impl C2RustUnnamed_7 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_7::urlchr_reserved => 1,
-            C2RustUnnamed_7::urlchr_unsafe => 2,
-        }
-    }
-}
-RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
-        }
-    }
-}
-
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_6 {
-    scm_disabled = 1,
-    scm_has_params = 2,
-    scm_has_query = 4,
-    scm_has_fragment = 8,
-impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_6::scm_disabled => 1,
-            C2RustUnnamed_6::scm_has_params => 2,
-            C2RustUnnamed_6::scm_has_query => 4,
-            C2RustUnnamed_6::scm_has_fragment => 8,
-        }
-    }
-}
-   C2RustUnnamed_5::_NL_IDENTIFICATION_LANGUAGE => 786439,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_FAX => 786438,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TEL => 786437,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_EMAIL => 786436,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CONTACT => 786435,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ADDRESS => 786434,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_SOURCE => 786433,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TITLE => 786432,
-            C2RustUnnamed_5::_NL_NUM_LC_MEASUREMENT => 720898,
-            C2RustUnnamed_5::_NL_MEASUREMENT_CODESET => 720897,
-            C2RustUnnamed_5::_NL_MEASUREMENT_MEASUREMENT => 720896,
-            C2RustUnnamed_5::_NL_NUM_LC_TELEPHONE => 655365,
-            C2RustUnnamed_5::_NL_TELEPHONE_CODESET => 655364,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_PREFIX => 655363,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_SELECT => 655362,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_DOM_FMT => 655361,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_INT_FMT => 655360,
-            C2RustUnnamed_5::_NL_NUM_LC_ADDRESS => 589837,
-            C2RustUnnamed_5::_NL_ADDRESS_CODESET => 589836,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_LIB => 589835,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_TERM => 589834,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_AB => 589833,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_NAME => 589832,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_5::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_5::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_5::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_5::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_5::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_5::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_5::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_5::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_5::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_5::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_5::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_5::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_5::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_5::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_5::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_5::__NOSTR => 327683,
-            C2RustUnnamed_5::__YESSTR => 327682,
-            C2RustUnnamed_5::__NOEXPR => 327681,
-            C2RustUnnamed_5::__YESEXPR => 327680,
-            C2RustUnnamed_5::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_5::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_5::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_5::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_5::__GROUPING => 65538,
-            C2RustUnnamed_5::THOUSEP => 65537,
-            C2RustUnnamed_5::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_5::RADIXCHAR => 65536,
-            C2RustUnnamed_5::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_5::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_5::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_5::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_5::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_5::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_5::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_5::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_5::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_5::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_5::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_5::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_5::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_5::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_5::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_5::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_5::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_5::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_5::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_5::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_5::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_5::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_5::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_5::__MON_GROUPING => 262148,
-            C2RustUnnamed_5::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_5::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_5::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_5::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_5::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_5::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_5::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_5::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_5::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_5::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_5::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_5::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_5::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_5::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_5::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_5::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_5::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_5::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_5::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_5::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_5::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_5::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_5::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_5::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_5::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_5::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_5::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_5::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_5::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_5::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_5::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_5::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_5::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_5::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_5::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_5::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_5::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_5::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_5::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_5::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_5::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_5::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_5::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_5::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_5::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_5::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_5::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_5::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_5::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_5::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_5::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_5::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_5::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_5::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_5::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_5::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_5::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_5::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_5::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_5::__ALTMON_12 => 131194,
-            C2RustUnnamed_5::__ALTMON_11 => 131193,
-            C2RustUnnamed_5::__ALTMON_10 => 131192,
-            C2RustUnnamed_5::__ALTMON_9 => 131191,
-            C2RustUnnamed_5::__ALTMON_8 => 131190,
-            C2RustUnnamed_5::__ALTMON_7 => 131189,
-            C2RustUnnamed_5::__ALTMON_6 => 131188,
-            C2RustUnnamed_5::__ALTMON_5 => 131187,
-            C2RustUnnamed_5::__ALTMON_4 => 131186,
-            C2RustUnnamed_5::__ALTMON_3 => 131185,
-            C2RustUnnamed_5::__ALTMON_2 => 131184,
-            C2RustUnnamed_5::__ALTMON_1 => 131183,
-            C2RustUnnamed_5::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_5::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_5::_DATE_FMT => 131180,
-            C2RustUnnamed_5::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_5::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_5::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_5::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_5::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_5::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_5::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_5::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_5::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_5::_NL_WT_FMT => 131166,
-            C2RustUnnamed_5::_NL_WD_FMT => 131165,
-            C2RustUnnamed_5::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_5::_NL_WPM_STR => 131163,
-            C2RustUnnamed_5::_NL_WAM_STR => 131162,
-            C2RustUnnamed_5::_NL_WMON_12 => 131161,
-            C2RustUnnamed_5::_NL_WMON_11 => 131160,
-            C2RustUnnamed_5::_NL_WMON_10 => 131159,
-            C2RustUnnamed_5::_NL_WMON_9 => 131158,
-            C2RustUnnamed_5::_NL_WMON_8 => 131157,
-            C2RustUnnamed_5::_NL_WMON_7 => 131156,
-            C2RustUnnamed_5::_NL_WMON_6 => 131155,
-            C2RustUnnamed_5::_NL_WMON_5 => 131154,
-            C2RustUnnamed_5::_NL_WMON_4 => 131153,
-            C2RustUnnamed_5::_NL_WMON_3 => 131152,
-            C2RustUnnamed_5::_NL_WMON_2 => 131151,
-            C2RustUnnamed_5::_NL_WMON_1 => 131150,
-            C2RustUnnamed_5::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_5::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_5::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_5::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_5::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_5::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_5::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_5::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_5::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_5::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_5::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_5::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_5::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_5::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_5::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_5::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_5::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_5::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_5::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_5::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_5::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_5::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_5::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_5::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_5::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_5::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_5::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_5::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_5::ERA_T_FMT => 131121,
-            C2RustUnnamed_5::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_5::ALT_DIGITS => 131119,
-            C2RustUnnamed_5::ERA_D_FMT => 131118,
-            C2RustUnnamed_5::__ERA_YEAR => 131117,
-            C2RustUnnamed_5::ERA => 131116,
-            C2RustUnnamed_5::T_FMT_AMPM => 131115,
-            C2RustUnnamed_5::T_FMT => 131114,
-            C2RustUnnamed_5::D_FMT => 131113,
-            C2RustUnnamed_5::D_T_FMT => 131112,
-            C2RustUnnamed_5::PM_STR => 131111,
-            C2RustUnnamed_5::AM_STR => 131110,
-            C2RustUnnamed_5::MON_12 => 131109,
-            C2RustUnnamed_5::MON_11 => 131108,
-            C2RustUnnamed_5::MON_10 => 131107,
-            C2RustUnnamed_5::MON_9 => 131106,
-            C2RustUnnamed_5::MON_8 => 131105,
-            C2RustUnnamed_5::MON_7 => 131104,
-            C2RustUnnamed_5::MON_6 => 131103,
-            C2RustUnnamed_5::MON_5 => 131102,
-            C2RustUnnamed_5::MON_4 => 131101,
-            C2RustUnnamed_5::MON_3 => 131100,
-            C2RustUnnamed_5::MON_2 => 131099,
-            C2RustUnnamed_5::MON_1 => 131098,
-            C2RustUnnamed_5::ABMON_12 => 131097,
-            C2RustUnnamed_5::ABMON_11 => 131096,
-            C2RustUnnamed_5::ABMON_10 => 131095,
-            C2RustUnnamed_5::ABMON_9 => 131094,
-            C2RustUnnamed_5::ABMON_8 => 131093,
-            C2RustUnnamed_5::ABMON_7 => 131092,
-            C2RustUnnamed_5::ABMON_6 => 131091,
-            C2RustUnnamed_5::ABMON_5 => 131090,
-            C2RustUnnamed_5::ABMON_4 => 131089,
-            C2RustUnnamed_5::ABMON_3 => 131088,
-            C2RustUnnamed_5::ABMON_2 => 131087,
-            C2RustUnnamed_5::ABMON_1 => 131086,
-            C2RustUnnamed_5::DAY_7 => 131085,
-            C2RustUnnamed_5::DAY_6 => 131084,
-            C2RustUnnamed_5::DAY_5 => 131083,
-            C2RustUnnamed_5::DAY_4 => 131082,
-            C2RustUnnamed_5::DAY_3 => 131081,
-            C2RustUnnamed_5::DAY_2 => 131080,
-            C2RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
-        }
-    }
-}
-
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub type C2RustUnnamed_7 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    PE_NO_ERROR = 0,
-    PE_UNSUPPORTED_SCHEME,
-    PE_UNSUPPORTED_SCHEME_HTTPS,
-    PE_UNSUPPORTED_SCHEME_FTPS,
-    PE_MISSING_SCHEME,
-    PE_INVALID_HOST_NAME,
-    PE_BAD_PORT_NUMBER,
-    PE_INVALID_USER_NAME,
-    PE_UNTERMINATED_IPV6_ADDRESS,
-    PE_IPV6_NOT_SUPPORTED,
-    PE_INVALID_IPV6_ADDRESS,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::PE_NO_ERROR => 0,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME => 1,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_HTTPS => 2,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_FTPS => 3,
-            C2RustUnnamed_8::PE_MISSING_SCHEME => 4,
-            C2RustUnnamed_8::PE_INVALID_HOST_NAME => 5,
-            C2RustUnnamed_8::PE_BAD_PORT_NUMBER => 6,
-            C2RustUnnamed_8::PE_INVALID_USER_NAME => 7,
-            C2RustUnnamed_8::PE_UNTERMINATED_IPV6_ADDRESS => 8,
-            C2RustUnnamed_8::PE_IPV6_NOT_SUPPORTED => 9,
-            C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS => 10,
-        }
-    }
-}
-
+pub type nl_item = libc::c_int;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
@@ -2227,6 +1498,7 @@ pub enum C2RustUnnamed_9 {
     filechr_not_vms = 2,
     filechr_not_windows = 4,
     filechr_control = 8,
+}
 impl C2RustUnnamed_9 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -2237,395 +1509,7 @@ impl C2RustUnnamed_9 {
         }
     }
 }
-832,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_5::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_5::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_5::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_5::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_5::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_5::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_5::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_5::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_5::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_5::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_5::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_5::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_5::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_5::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_5::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_5::__NOSTR => 327683,
-            C2RustUnnamed_5::__YESSTR => 327682,
-            C2RustUnnamed_5::__NOEXPR => 327681,
-            C2RustUnnamed_5::__YESEXPR => 327680,
-            C2RustUnnamed_5::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_5::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_5::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_5::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_5::__GROUPING => 65538,
-            C2RustUnnamed_5::THOUSEP => 65537,
-            C2RustUnnamed_5::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_5::RADIXCHAR => 65536,
-            C2RustUnnamed_5::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_5::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_5::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_5::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_5::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_5::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_5::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_5::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_5::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_5::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_5::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_5::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_5::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_5::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_5::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_5::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_5::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_5::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_5::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_5::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_5::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_5::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_5::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_5::__MON_GROUPING => 262148,
-            C2RustUnnamed_5::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_5::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_5::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_5::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_5::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_5::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_5::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_5::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_5::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_5::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_5::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_5::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_5::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_5::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_5::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_5::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_5::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_5::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_5::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_5::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_5::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_5::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_5::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_5::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_5::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_5::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_5::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_5::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_5::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_5::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_5::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_5::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_5::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_5::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_5::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_5::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_5::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_5::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_5::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_5::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_5::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_5::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_5::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_5::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_5::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_5::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_5::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_5::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_5::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_5::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_5::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_5::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_5::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_5::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_5::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_5::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_5::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_5::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_5::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_5::__ALTMON_12 => 131194,
-            C2RustUnnamed_5::__ALTMON_11 => 131193,
-            C2RustUnnamed_5::__ALTMON_10 => 131192,
-            C2RustUnnamed_5::__ALTMON_9 => 131191,
-            C2RustUnnamed_5::__ALTMON_8 => 131190,
-            C2RustUnnamed_5::__ALTMON_7 => 131189,
-            C2RustUnnamed_5::__ALTMON_6 => 131188,
-            C2RustUnnamed_5::__ALTMON_5 => 131187,
-            C2RustUnnamed_5::__ALTMON_4 => 131186,
-            C2RustUnnamed_5::__ALTMON_3 => 131185,
-            C2RustUnnamed_5::__ALTMON_2 => 131184,
-            C2RustUnnamed_5::__ALTMON_1 => 131183,
-            C2RustUnnamed_5::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_5::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_5::_DATE_FMT => 131180,
-            C2RustUnnamed_5::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_5::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_5::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_5::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_5::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_5::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_5::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_5::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_5::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_5::_NL_WT_FMT => 131166,
-            C2RustUnnamed_5::_NL_WD_FMT => 131165,
-            C2RustUnnamed_5::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_5::_NL_WPM_STR => 131163,
-            C2RustUnnamed_5::_NL_WAM_STR => 131162,
-            C2RustUnnamed_5::_NL_WMON_12 => 131161,
-            C2RustUnnamed_5::_NL_WMON_11 => 131160,
-            C2RustUnnamed_5::_NL_WMON_10 => 131159,
-            C2RustUnnamed_5::_NL_WMON_9 => 131158,
-            C2RustUnnamed_5::_NL_WMON_8 => 131157,
-            C2RustUnnamed_5::_NL_WMON_7 => 131156,
-            C2RustUnnamed_5::_NL_WMON_6 => 131155,
-            C2RustUnnamed_5::_NL_WMON_5 => 131154,
-            C2RustUnnamed_5::_NL_WMON_4 => 131153,
-            C2RustUnnamed_5::_NL_WMON_3 => 131152,
-            C2RustUnnamed_5::_NL_WMON_2 => 131151,
-            C2RustUnnamed_5::_NL_WMON_1 => 131150,
-            C2RustUnnamed_5::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_5::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_5::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_5::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_5::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_5::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_5::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_5::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_5::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_5::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_5::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_5::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_5::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_5::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_5::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_5::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_5::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_5::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_5::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_5::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_5::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_5::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_5::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_5::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_5::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_5::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_5::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_5::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_5::ERA_T_FMT => 131121,
-            C2RustUnnamed_5::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_5::ALT_DIGITS => 131119,
-            C2RustUnnamed_5::ERA_D_FMT => 131118,
-            C2RustUnnamed_5::__ERA_YEAR => 131117,
-            C2RustUnnamed_5::ERA => 131116,
-            C2RustUnnamed_5::T_FMT_AMPM => 131115,
-            C2RustUnnamed_5::T_FMT => 131114,
-            C2RustUnnamed_5::D_FMT => 131113,
-            C2RustUnnamed_5::D_T_FMT => 131112,
-            C2RustUnnamed_5::PM_STR => 131111,
-            C2RustUnnamed_5::AM_STR => 131110,
-            C2RustUnnamed_5::MON_12 => 131109,
-            C2RustUnnamed_5::MON_11 => 131108,
-            C2RustUnnamed_5::MON_10 => 131107,
-            C2RustUnnamed_5::MON_9 => 131106,
-            C2RustUnnamed_5::MON_8 => 131105,
-            C2RustUnnamed_5::MON_7 => 131104,
-            C2RustUnnamed_5::MON_6 => 131103,
-            C2RustUnnamed_5::MON_5 => 131102,
-            C2RustUnnamed_5::MON_4 => 131101,
-            C2RustUnnamed_5::MON_3 => 131100,
-            C2RustUnnamed_5::MON_2 => 131099,
-            C2RustUnnamed_5::MON_1 => 131098,
-            C2RustUnnamed_5::ABMON_12 => 131097,
-            C2RustUnnamed_5::ABMON_11 => 131096,
-            C2RustUnnamed_5::ABMON_10 => 131095,
-            C2RustUnnamed_5::ABMON_9 => 131094,
-            C2RustUnnamed_5::ABMON_8 => 131093,
-            C2RustUnnamed_5::ABMON_7 => 131092,
-            C2RustUnnamed_5::ABMON_6 => 131091,
-            C2RustUnnamed_5::ABMON_5 => 131090,
-            C2RustUnnamed_5::ABMON_4 => 131089,
-            C2RustUnnamed_5::ABMON_3 => 131088,
-            C2RustUnnamed_5::ABMON_2 => 131087,
-            C2RustUnnamed_5::ABMON_1 => 131086,
-            C2RustUnnamed_5::DAY_7 => 131085,
-            C2RustUnnamed_5::DAY_6 => 131084,
-            C2RustUnnamed_5::DAY_5 => 131083,
-            C2RustUnnamed_5::DAY_4 => 131082,
-            C2RustUnnamed_5::DAY_3 => 131081,
-            C2RustUnnamed_5::DAY_2 => 131080,
-            C2RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
-        }
-    }
-}
 
-pub type C2RustUnnamed_6 = libc::c_uint;
-pub type C2RustUnnamed_7 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_8 {
-    PE_NO_ERROR = 0,
-    PE_UNSUPPORTED_SCHEME,
-    PE_UNSUPPORTED_SCHEME_HTTPS,
-    PE_UNSUPPORTED_SCHEME_FTPS,
-    PE_MISSING_SCHEME,
-    PE_INVALID_HOST_NAME,
-    PE_BAD_PORT_NUMBER,
-    PE_INVALID_USER_NAME,
-    PE_UNTERMINATED_IPV6_ADDRESS,
-    PE_IPV6_NOT_SUPPORTED,
-    PE_INVALID_IPV6_ADDRESS,
-impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_8::PE_NO_ERROR => 0,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME => 1,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_HTTPS => 2,
-            C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_FTPS => 3,
-            C2RustUnnamed_8::PE_MISSING_SCHEME => 4,
-            C2RustUnnamed_8::PE_INVALID_HOST_NAME => 5,
-            C2RustUnnamed_8::PE_BAD_PORT_NUMBER => 6,
-            C2RustUnnamed_8::PE_INVALID_USER_NAME => 7,
-            C2RustUnnamed_8::PE_UNTERMINATED_IPV6_ADDRESS => 8,
-            C2RustUnnamed_8::PE_IPV6_NOT_SUPPORTED => 9,
-            C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS => 10,
-        }
-    }
-}
-
-pub type C2RustUnnamed_9 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn stat(
     mut __path: *const libc::c_char,

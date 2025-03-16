@@ -75,11 +75,11 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub const TIMESPEC_HZ: C2RustUnnamed = 1000000000;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     TIMESPEC_HZ = 1000000000,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -88,7 +88,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[inline]
 unsafe extern "C" fn stat(
     mut __path: *const libc::c_char,

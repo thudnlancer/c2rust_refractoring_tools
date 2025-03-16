@@ -92,6 +92,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -110,6 +111,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
@@ -152,6 +164,7 @@ pub enum SymlinkOption {
     SYMLINK_NEVER_DEREF,
     SYMLINK_ALWAYS_DEREF,
     SYMLINK_DEREF_ARGSONLY,
+}
 impl SymlinkOption {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -162,6 +175,9 @@ impl SymlinkOption {
     }
 }
 
+pub const SYMLINK_DEREF_ARGSONLY: SymlinkOption = 2;
+pub const SYMLINK_ALWAYS_DEREF: SymlinkOption = 1;
+pub const SYMLINK_NEVER_DEREF: SymlinkOption = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed {

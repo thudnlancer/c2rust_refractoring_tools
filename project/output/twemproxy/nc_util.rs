@@ -155,6 +155,7 @@ pub enum __socket_type {
     SOCK_RAW = 3,
     SOCK_DGRAM = 2,
     SOCK_STREAM = 1,
+}
 impl __socket_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -171,6 +172,15 @@ impl __socket_type {
     }
 }
 
+pub const SOCK_NONBLOCK: __socket_type = 2048;
+pub const SOCK_CLOEXEC: __socket_type = 524288;
+pub const SOCK_PACKET: __socket_type = 10;
+pub const SOCK_DCCP: __socket_type = 6;
+pub const SOCK_SEQPACKET: __socket_type = 5;
+pub const SOCK_RDM: __socket_type = 4;
+pub const SOCK_RAW: __socket_type = 3;
+pub const SOCK_DGRAM: __socket_type = 2;
+pub const SOCK_STREAM: __socket_type = 1;
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -272,6 +282,7 @@ pub enum C2RustUnnamed_0 {
     IPPROTO_IGMP = 2,
     IPPROTO_ICMP = 1,
     IPPROTO_IP = 0,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -305,6 +316,32 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const IPPROTO_MAX: C2RustUnnamed_0 = 256;
+pub const IPPROTO_RAW: C2RustUnnamed_0 = 255;
+pub const IPPROTO_MPLS: C2RustUnnamed_0 = 137;
+pub const IPPROTO_UDPLITE: C2RustUnnamed_0 = 136;
+pub const IPPROTO_SCTP: C2RustUnnamed_0 = 132;
+pub const IPPROTO_COMP: C2RustUnnamed_0 = 108;
+pub const IPPROTO_PIM: C2RustUnnamed_0 = 103;
+pub const IPPROTO_ENCAP: C2RustUnnamed_0 = 98;
+pub const IPPROTO_BEETPH: C2RustUnnamed_0 = 94;
+pub const IPPROTO_MTP: C2RustUnnamed_0 = 92;
+pub const IPPROTO_AH: C2RustUnnamed_0 = 51;
+pub const IPPROTO_ESP: C2RustUnnamed_0 = 50;
+pub const IPPROTO_GRE: C2RustUnnamed_0 = 47;
+pub const IPPROTO_RSVP: C2RustUnnamed_0 = 46;
+pub const IPPROTO_IPV6: C2RustUnnamed_0 = 41;
+pub const IPPROTO_DCCP: C2RustUnnamed_0 = 33;
+pub const IPPROTO_TP: C2RustUnnamed_0 = 29;
+pub const IPPROTO_IDP: C2RustUnnamed_0 = 22;
+pub const IPPROTO_UDP: C2RustUnnamed_0 = 17;
+pub const IPPROTO_PUP: C2RustUnnamed_0 = 12;
+pub const IPPROTO_EGP: C2RustUnnamed_0 = 8;
+pub const IPPROTO_TCP: C2RustUnnamed_0 = 6;
+pub const IPPROTO_IPIP: C2RustUnnamed_0 = 4;
+pub const IPPROTO_IGMP: C2RustUnnamed_0 = 2;
+pub const IPPROTO_ICMP: C2RustUnnamed_0 = 1;
+pub const IPPROTO_IP: C2RustUnnamed_0 = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct addrinfo {

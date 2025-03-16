@@ -177,6 +177,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -196,6 +197,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type XID = libc::c_ulong;
 pub type Atom = libc::c_ulong;
 pub type VisualID = libc::c_ulong;
@@ -375,6 +388,7 @@ pub enum wintype_t {
     WINTYPE_COMBO,
     WINTYPE_DND,
     NUM_WINTYPES,
+}
 impl wintype_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -398,12 +412,29 @@ impl wintype_t {
     }
 }
 
+pub const NUM_WINTYPES: wintype_t = 15;
+pub const WINTYPE_DND: wintype_t = 14;
+pub const WINTYPE_COMBO: wintype_t = 13;
+pub const WINTYPE_NOTIFY: wintype_t = 12;
+pub const WINTYPE_TOOLTIP: wintype_t = 11;
+pub const WINTYPE_POPUP_MENU: wintype_t = 10;
+pub const WINTYPE_DROPDOWN_MENU: wintype_t = 9;
+pub const WINTYPE_NORMAL: wintype_t = 8;
+pub const WINTYPE_DIALOG: wintype_t = 7;
+pub const WINTYPE_SPLASH: wintype_t = 6;
+pub const WINTYPE_UTILITY: wintype_t = 5;
+pub const WINTYPE_MENU: wintype_t = 4;
+pub const WINTYPE_TOOLBAR: wintype_t = 3;
+pub const WINTYPE_DOCK: wintype_t = 2;
+pub const WINTYPE_DESKTOP: wintype_t = 1;
+pub const WINTYPE_UNKNOWN: wintype_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
     OFF,
     ON,
     UNSET,
+}
 impl switch_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -414,6 +445,9 @@ impl switch_t {
     }
 }
 
+pub const UNSET: switch_t = 2;
+pub const ON: switch_t = 1;
+pub const OFF: switch_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct geometry_t {
@@ -436,6 +470,7 @@ pub enum winmode_t {
     WMODE_TRANS,
     WMODE_SOLID,
     WMODE_ARGB,
+}
 impl winmode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -446,6 +481,9 @@ impl winmode_t {
     }
 }
 
+pub const WMODE_ARGB: winmode_t = 2;
+pub const WMODE_SOLID: winmode_t = 1;
+pub const WMODE_TRANS: winmode_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct winprop_t {
@@ -478,6 +516,7 @@ pub enum vsync_t {
     VSYNC_OPENGL_SWC,
     VSYNC_OPENGL_MSWC,
     NUM_VSYNC,
+}
 impl vsync_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -492,6 +531,13 @@ impl vsync_t {
     }
 }
 
+pub const NUM_VSYNC: vsync_t = 6;
+pub const VSYNC_OPENGL_MSWC: vsync_t = 5;
+pub const VSYNC_OPENGL_SWC: vsync_t = 4;
+pub const VSYNC_OPENGL_OML: vsync_t = 3;
+pub const VSYNC_OPENGL: vsync_t = 2;
+pub const VSYNC_DRM: vsync_t = 1;
+pub const VSYNC_NONE: vsync_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
@@ -499,6 +545,7 @@ pub enum backend {
     BKEND_GLX,
     BKEND_XR_GLX_HYBRID,
     NUM_BKEND,
+}
 impl backend {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -510,6 +557,10 @@ impl backend {
     }
 }
 
+pub const NUM_BKEND: backend = 3;
+pub const BKEND_XR_GLX_HYBRID: backend = 2;
+pub const BKEND_GLX: backend = 1;
+pub const BKEND_XRENDER: backend = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _glx_texture {
@@ -891,6 +942,7 @@ pub enum C2RustUnnamed_2 {
     C2_L_PTINT = 2,
     C2_L_PTSTRING = 1,
     C2_L_PTUNDEFINED = 0,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -901,6 +953,9 @@ impl C2RustUnnamed_2 {
     }
 }
 
+pub const C2_L_PTINT: C2RustUnnamed_2 = 2;
+pub const C2_L_PTSTRING: C2RustUnnamed_2 = 1;
+pub const C2_L_PTUNDEFINED: C2RustUnnamed_2 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_l_type {
@@ -910,6 +965,7 @@ pub enum c2_l_type {
     C2_L_TCARDINAL = 2,
     C2_L_TSTRING = 1,
     C2_L_TUNDEFINED = 0,
+}
 impl c2_l_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -923,6 +979,12 @@ impl c2_l_type {
     }
 }
 
+pub const C2_L_TDRAWABLE: c2_l_type = 5;
+pub const C2_L_TATOM: c2_l_type = 4;
+pub const C2_L_TWINDOW: c2_l_type = 3;
+pub const C2_L_TCARDINAL: c2_l_type = 2;
+pub const C2_L_TSTRING: c2_l_type = 1;
+pub const C2_L_TUNDEFINED: c2_l_type = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -951,6 +1013,7 @@ pub enum C2RustUnnamed_3 {
     C2_L_PX = 2,
     C2_L_PID = 1,
     C2_L_PUNDEFINED = 0,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -983,6 +1046,31 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const C2_L_PROLE: C2RustUnnamed_3 = 24;
+pub const C2_L_PCLASSI: C2RustUnnamed_3 = 23;
+pub const C2_L_PCLASSG: C2RustUnnamed_3 = 22;
+pub const C2_L_PNAME: C2RustUnnamed_3 = 21;
+pub const C2_L_PLEADER: C2RustUnnamed_3 = 20;
+pub const C2_L_PWINDOWTYPE: C2RustUnnamed_3 = 19;
+pub const C2_L_PCLIENT: C2RustUnnamed_3 = 18;
+pub const C2_L_PROUNDED: C2RustUnnamed_3 = 17;
+pub const C2_L_PBSHAPED: C2RustUnnamed_3 = 16;
+pub const C2_L_PWMWIN: C2RustUnnamed_3 = 15;
+pub const C2_L_PFOCUSED: C2RustUnnamed_3 = 14;
+pub const C2_L_PARGB: C2RustUnnamed_3 = 13;
+pub const C2_L_POVREDIR: C2RustUnnamed_3 = 12;
+pub const C2_L_PFULLSCREEN: C2RustUnnamed_3 = 11;
+pub const C2_L_PBDW: C2RustUnnamed_3 = 10;
+pub const C2_L_PHEIGHTB: C2RustUnnamed_3 = 9;
+pub const C2_L_PWIDTHB: C2RustUnnamed_3 = 8;
+pub const C2_L_PHEIGHT: C2RustUnnamed_3 = 7;
+pub const C2_L_PWIDTH: C2RustUnnamed_3 = 6;
+pub const C2_L_PY2: C2RustUnnamed_3 = 5;
+pub const C2_L_PX2: C2RustUnnamed_3 = 4;
+pub const C2_L_PY: C2RustUnnamed_3 = 3;
+pub const C2_L_PX: C2RustUnnamed_3 = 2;
+pub const C2_L_PID: C2RustUnnamed_3 = 1;
+pub const C2_L_PUNDEFINED: C2RustUnnamed_3 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
@@ -991,6 +1079,7 @@ pub enum C2RustUnnamed_4 {
     C2_L_MCONTAINS = 2,
     C2_L_MSTART = 1,
     C2_L_MEXACT = 0,
+}
 impl C2RustUnnamed_4 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1003,6 +1092,11 @@ impl C2RustUnnamed_4 {
     }
 }
 
+pub const C2_L_MPCRE: C2RustUnnamed_4 = 4;
+pub const C2_L_MWILDCARD: C2RustUnnamed_4 = 3;
+pub const C2_L_MCONTAINS: C2RustUnnamed_4 = 2;
+pub const C2_L_MSTART: C2RustUnnamed_4 = 1;
+pub const C2_L_MEXACT: C2RustUnnamed_4 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -1012,6 +1106,7 @@ pub enum C2RustUnnamed_5 {
     C2_L_OGT = 2,
     C2_L_OEQ = 1,
     C2_L_OEXISTS = 0,
+}
 impl C2RustUnnamed_5 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1025,6 +1120,12 @@ impl C2RustUnnamed_5 {
     }
 }
 
+pub const C2_L_OLTEQ: C2RustUnnamed_5 = 5;
+pub const C2_L_OLT: C2RustUnnamed_5 = 4;
+pub const C2_L_OGTEQ: C2RustUnnamed_5 = 3;
+pub const C2_L_OGT: C2RustUnnamed_5 = 2;
+pub const C2_L_OEQ: C2RustUnnamed_5 = 1;
+pub const C2_L_OEXISTS: C2RustUnnamed_5 = 0;
 pub type c2_b_t = _c2_b;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -1044,6 +1145,7 @@ pub enum c2_b_op_t {
     C2_B_OAND,
     C2_B_OOR,
     C2_B_OXOR,
+}
 impl c2_b_op_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1055,6 +1157,10 @@ impl c2_b_op_t {
     }
 }
 
+pub const C2_B_OXOR: c2_b_op_t = 3;
+pub const C2_B_OOR: c2_b_op_t = 2;
+pub const C2_B_OAND: c2_b_op_t = 1;
+pub const C2_B_OUNDEFINED: c2_b_op_t = 0;
 pub type options_t = _options_t;
 #[derive(Copy, Clone)]
 #[repr(C)]

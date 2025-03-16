@@ -81,13 +81,12 @@ pub type uch = libc::c_uchar;
 pub type ush = libc::c_ushort;
 pub type ulg = libc::c_ulong;
 pub type file_t = libc::c_int;
-pub const SLOW: C2RustUnnamed = 2;
-pub const FAST: C2RustUnnamed = 4;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     SLOW = 2,
     FAST = 4,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -97,7 +96,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[no_mangle]
 pub static mut header_bytes: off_t = 0;
 #[no_mangle]

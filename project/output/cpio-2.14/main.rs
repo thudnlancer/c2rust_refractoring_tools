@@ -291,6 +291,7 @@ pub enum archive_format {
     arf_ustar,
     arf_hpoldascii,
     arf_hpbinary,
+}
 impl archive_format {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -307,27 +308,15 @@ impl archive_format {
     }
 }
 
-pub const TO_STDOUT_OPTION: cpio_options = 267;
-pub const FORCE_LOCAL_OPTION: cpio_options = 264;
-pub const SPARSE_OPTION: cpio_options = 263;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct warn_tab {
-    pub name: *mut libc::c_char,
-    pub flag: libc::c_int,
-}
-pub const QUIET_OPTION: cpio_options = 262;
-pub const RENAME_BATCH_FILE_OPTION: cpio_options = 260;
-pub const RSH_COMMAND_OPTION: cpio_options = 261;
-pub const DEVICE_INDEPENDENT_OPTION: cpio_options = 271;
-pub const IGNORE_DIRNLINK_OPTION: cpio_options = 270;
-pub const RENUMBER_INODES_OPTION: cpio_options = 268;
-pub const IGNORE_DEVNO_OPTION: cpio_options = 269;
-pub const ONLY_VERIFY_CRC_OPTION: cpio_options = 259;
-pub const NO_PRESERVE_OWNER_OPTION: cpio_options = 258;
-pub const ABSOLUTE_FILENAMES_OPTION: cpio_options = 257;
-pub const NO_ABSOLUTE_FILENAMES_OPTION: cpio_options = 256;
-pub const BLOCK_SIZE_OPTION: cpio_options = 266;
+pub const arf_hpbinary: archive_format = 8;
+pub const arf_hpoldascii: archive_format = 7;
+pub const arf_ustar: archive_format = 6;
+pub const arf_tar: archive_format = 5;
+pub const arf_crcascii: archive_format = 4;
+pub const arf_newascii: archive_format = 3;
+pub const arf_oldascii: archive_format = 2;
+pub const arf_binary: archive_format = 1;
+pub const arf_unknown: archive_format = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum cpio_options {
@@ -347,6 +336,7 @@ pub enum cpio_options {
     IGNORE_DEVNO_OPTION,
     IGNORE_DIRNLINK_OPTION,
     DEVICE_INDEPENDENT_OPTION,
+}
 impl cpio_options {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -370,6 +360,12 @@ impl cpio_options {
     }
 }
 
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct warn_tab {
+    pub name: *mut libc::c_char,
+    pub flag: libc::c_int,
+}
 #[inline]
 unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
     return strtol(

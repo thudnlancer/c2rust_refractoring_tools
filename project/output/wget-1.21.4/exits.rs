@@ -65,6 +65,7 @@ pub enum uerr_t {
     METALINK_MISSING_RESOURCE,
     RETR_WITH_METALINK,
     METALINK_SIZE_ERROR,
+}
 impl uerr_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -135,6 +136,69 @@ impl uerr_t {
     }
 }
 
+pub const METALINK_SIZE_ERROR: uerr_t = 62;
+pub const RETR_WITH_METALINK: uerr_t = 61;
+pub const METALINK_MISSING_RESOURCE: uerr_t = 60;
+pub const METALINK_SIG_ERROR: uerr_t = 59;
+pub const METALINK_CHKSUM_ERROR: uerr_t = 58;
+pub const METALINK_RETR_ERROR: uerr_t = 57;
+pub const METALINK_PARSE_ERROR: uerr_t = 56;
+pub const TIMECONV_ERR: uerr_t = 55;
+pub const WARC_TMP_FWRITEERR: uerr_t = 54;
+pub const WARC_TMP_FOPENERR: uerr_t = 53;
+pub const WARC_ERR: uerr_t = 52;
+pub const UNKNOWNATTR: uerr_t = 51;
+pub const ATTRMISSING: uerr_t = 50;
+pub const CLOSEFAILED: uerr_t = 49;
+pub const NEWLOCATION_KEEP_POST: uerr_t = 48;
+pub const UNLINKERR: uerr_t = 47;
+pub const VERIFCERTERR: uerr_t = 46;
+pub const SSLINITFAILED: uerr_t = 45;
+pub const WRITEFAILED: uerr_t = 44;
+pub const QUOTEXC: uerr_t = 43;
+pub const AUTHFAILED: uerr_t = 42;
+pub const PROXERR: uerr_t = 41;
+pub const RETRBADPATTERN: uerr_t = 40;
+pub const RANGEERR: uerr_t = 39;
+pub const FILEBADFILE: uerr_t = 38;
+pub const TRYLIMEXC: uerr_t = 37;
+pub const READERR: uerr_t = 36;
+pub const RETRFINISHED: uerr_t = 35;
+pub const RETRUNNEEDED: uerr_t = 34;
+pub const CONTNOTSUPPORTED: uerr_t = 33;
+pub const FTPNOAUTH: uerr_t = 32;
+pub const FTPNOPROT: uerr_t = 31;
+pub const FTPNOPBSZ: uerr_t = 30;
+pub const FTPNOPASV: uerr_t = 29;
+pub const FTPINVPASV: uerr_t = 28;
+pub const WRONGCODE: uerr_t = 27;
+pub const RECLEVELEXC: uerr_t = 26;
+pub const RETROK: uerr_t = 25;
+pub const HERR: uerr_t = 24;
+pub const GATEWAYTIMEOUT: uerr_t = 23;
+pub const HEOF: uerr_t = 22;
+pub const FWRITEERR: uerr_t = 21;
+pub const FOPEN_EXCL_ERR: uerr_t = 20;
+pub const FOPENERR: uerr_t = 19;
+pub const URLERROR: uerr_t = 18;
+pub const FTPRESTFAIL: uerr_t = 17;
+pub const FTPRETRINT: uerr_t = 16;
+pub const FTPSRVERR: uerr_t = 15;
+pub const FTPRERR: uerr_t = 14;
+pub const FTPUNKNOWNTYPE: uerr_t = 13;
+pub const FTPNSFOD: uerr_t = 12;
+pub const FTPSYSERR: uerr_t = 11;
+pub const FTPPORTERR: uerr_t = 10;
+pub const FTPLOGREFUSED: uerr_t = 9;
+pub const FTPLOGINC: uerr_t = 8;
+pub const FTPOK: uerr_t = 7;
+pub const NEWLOCATION: uerr_t = 6;
+pub const CONIMPOSSIBLE: uerr_t = 5;
+pub const CONSSLERR: uerr_t = 4;
+pub const CONERROR: uerr_t = 3;
+pub const CONSOCKERR: uerr_t = 2;
+pub const HOSTERR: uerr_t = 1;
+pub const NOCONERROR: uerr_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -148,6 +212,7 @@ pub enum C2RustUnnamed {
     WGET_EXIT_PROTOCOL_ERROR = 7,
     WGET_EXIT_SERVER_ERROR = 8,
     WGET_EXIT_UNKNOWN,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -165,6 +230,16 @@ impl C2RustUnnamed {
     }
 }
 
+pub const WGET_EXIT_UNKNOWN: C2RustUnnamed = 9;
+pub const WGET_EXIT_SERVER_ERROR: C2RustUnnamed = 8;
+pub const WGET_EXIT_PROTOCOL_ERROR: C2RustUnnamed = 7;
+pub const WGET_EXIT_SERVER_AUTH_FAIL: C2RustUnnamed = 6;
+pub const WGET_EXIT_SSL_AUTH_FAIL: C2RustUnnamed = 5;
+pub const WGET_EXIT_NETWORK_FAIL: C2RustUnnamed = 4;
+pub const WGET_EXIT_IO_FAIL: C2RustUnnamed = 3;
+pub const WGET_EXIT_PARSE_ERROR: C2RustUnnamed = 2;
+pub const WGET_EXIT_GENERIC_ERROR: C2RustUnnamed = 1;
+pub const WGET_EXIT_SUCCESS: C2RustUnnamed = 0;
 static mut final_exit_status: libc::c_int = WGET_EXIT_SUCCESS as libc::c_int;
 unsafe extern "C" fn get_status_for_err(mut err: uerr_t) -> libc::c_int {
     match err as libc::c_uint {

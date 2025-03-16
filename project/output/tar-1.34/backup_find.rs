@@ -26,6 +26,7 @@ pub enum backup_type {
     numbered_existing_backups = 2,
     simple_backups = 1,
     no_backups = 0,
+}
 impl backup_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -37,6 +38,10 @@ impl backup_type {
     }
 }
 
+pub const numbered_backups: backup_type = 3;
+pub const numbered_existing_backups: backup_type = 2;
+pub const simple_backups: backup_type = 1;
+pub const no_backups: backup_type = 0;
 pub type ptrdiff_t = libc::c_long;
 pub type argmatch_exit_fn = Option::<unsafe extern "C" fn() -> ()>;
 #[no_mangle]

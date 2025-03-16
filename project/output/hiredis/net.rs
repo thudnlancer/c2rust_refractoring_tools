@@ -268,6 +268,7 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
+}
 impl redisConnectionType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -278,6 +279,9 @@ impl redisConnectionType {
     }
 }
 
+pub const REDIS_CONN_USERFD: redisConnectionType = 2;
+pub const REDIS_CONN_UNIX: redisConnectionType = 1;
+pub const REDIS_CONN_TCP: redisConnectionType = 0;
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -304,50 +308,6 @@ pub struct addrinfo {
     pub ai_canonname: *mut libc::c_char,
     pub ai_next: *mut addrinfo,
 }
-pub const IPPROTO_TCP: C2RustUnnamed_1 = 6;
-pub type nfds_t = libc::c_ulong;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct pollfd {
-    pub fd: libc::c_int,
-    pub events: libc::c_short,
-    pub revents: libc::c_short,
-}
-pub const SOCK_STREAM: __socket_type = 1;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct sockaddr_un {
-    pub sun_family: sa_family_t,
-    pub sun_path: [libc::c_char; 108],
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum __socket_type {
-    SOCK_STREAM = 1,
-    SOCK_NONBLOCK = 2048,
-    SOCK_CLOEXEC = 524288,
-    SOCK_PACKET = 10,
-    SOCK_DCCP = 6,
-    SOCK_SEQPACKET = 5,
-    SOCK_RDM = 4,
-    SOCK_RAW = 3,
-    SOCK_DGRAM = 2,
-impl __socket_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            __socket_type::SOCK_STREAM => 1,
-            __socket_type::SOCK_NONBLOCK => 2048,
-            __socket_type::SOCK_CLOEXEC => 524288,
-            __socket_type::SOCK_PACKET => 10,
-            __socket_type::SOCK_DCCP => 6,
-            __socket_type::SOCK_SEQPACKET => 5,
-            __socket_type::SOCK_RDM => 4,
-            __socket_type::SOCK_RAW => 3,
-            __socket_type::SOCK_DGRAM => 2,
-        }
-    }
-}
-
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -377,6 +337,7 @@ pub enum C2RustUnnamed_1 {
     IPPROTO_IGMP = 2,
     IPPROTO_ICMP = 1,
     IPPROTO_IP = 0,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -410,6 +371,49 @@ impl C2RustUnnamed_1 {
     }
 }
 
+pub type nfds_t = libc::c_ulong;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct pollfd {
+    pub fd: libc::c_int,
+    pub events: libc::c_short,
+    pub revents: libc::c_short,
+}
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum __socket_type {
+    SOCK_STREAM = 1,
+    SOCK_NONBLOCK = 2048,
+    SOCK_CLOEXEC = 524288,
+    SOCK_PACKET = 10,
+    SOCK_DCCP = 6,
+    SOCK_SEQPACKET = 5,
+    SOCK_RDM = 4,
+    SOCK_RAW = 3,
+    SOCK_DGRAM = 2,
+}
+impl __socket_type {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            __socket_type::SOCK_STREAM => 1,
+            __socket_type::SOCK_NONBLOCK => 2048,
+            __socket_type::SOCK_CLOEXEC => 524288,
+            __socket_type::SOCK_PACKET => 10,
+            __socket_type::SOCK_DCCP => 6,
+            __socket_type::SOCK_SEQPACKET => 5,
+            __socket_type::SOCK_RDM => 4,
+            __socket_type::SOCK_RAW => 3,
+            __socket_type::SOCK_DGRAM => 2,
+        }
+    }
+}
+
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct sockaddr_un {
+    pub sun_family: sa_family_t,
+    pub sun_path: [libc::c_char; 108],
+}
 #[inline]
 unsafe extern "C" fn sdslen(s: sds) -> size_t {
     let mut flags: libc::c_uchar = *s.offset(-(1 as libc::c_int) as isize)

@@ -173,6 +173,7 @@ pub enum NodeType {
     nREAL,
     nSYMBOL,
     nARRAY,
+}
 impl NodeType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -187,6 +188,13 @@ impl NodeType {
     }
 }
 
+pub const nARRAY: NodeType = 6;
+pub const nSYMBOL: NodeType = 5;
+pub const nREAL: NodeType = 4;
+pub const nINTEGER: NodeType = 3;
+pub const nREGEXP: NodeType = 2;
+pub const nSTRING: NodeType = 1;
+pub const nVOID: NodeType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {
@@ -269,6 +277,7 @@ pub enum ExprType {
     eNE,
     eGE,
     eLE,
+}
 impl ExprType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -307,6 +316,37 @@ impl ExprType {
     }
 }
 
+pub const eLE: ExprType = 30;
+pub const eGE: ExprType = 29;
+pub const eNE: ExprType = 28;
+pub const eEQ: ExprType = 27;
+pub const eGT: ExprType = 26;
+pub const eLT: ExprType = 25;
+pub const eMINUS: ExprType = 24;
+pub const ePLUS: ExprType = 23;
+pub const eDIV: ExprType = 22;
+pub const eMULT: ExprType = 21;
+pub const eQUESTCOLON: ExprType = 20;
+pub const eARRAYREF: ExprType = 19;
+pub const eARRAYASSIGN: ExprType = 18;
+pub const ePREFIXSUB: ExprType = 17;
+pub const ePREFIXADD: ExprType = 16;
+pub const ePOSTFIXSUB: ExprType = 15;
+pub const ePOSTFIXADD: ExprType = 14;
+pub const eDIVASSIGN: ExprType = 13;
+pub const eMULASSIGN: ExprType = 12;
+pub const eSUBASSIGN: ExprType = 11;
+pub const eADDASSIGN: ExprType = 10;
+pub const eASSIGN: ExprType = 9;
+pub const eFCALL: ExprType = 8;
+pub const eOR: ExprType = 7;
+pub const eAND: ExprType = 6;
+pub const eNOT: ExprType = 5;
+pub const eSYMBOL: ExprType = 4;
+pub const eREAL: ExprType = 3;
+pub const eINTEGER: ExprType = 2;
+pub const eREGEXP: ExprType = 1;
+pub const eSTRING: ExprType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expr_st {

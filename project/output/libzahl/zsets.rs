@@ -24,7 +24,6 @@ pub struct zahl {
     pub chars: *mut zahl_char_t,
 }
 pub type z_t = [zahl; 1];
-pub const _ISdigit: C2RustUnnamed = 2048;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -40,6 +39,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

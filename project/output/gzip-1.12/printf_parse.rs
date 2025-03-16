@@ -40,6 +40,7 @@ pub enum arg_type {
     TYPE_UCHAR = 2,
     TYPE_SCHAR = 1,
     TYPE_NONE = 0,
+}
 impl arg_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -70,6 +71,29 @@ impl arg_type {
     }
 }
 
+pub const TYPE_COUNT_LONGLONGINT_POINTER: arg_type = 22;
+pub const TYPE_COUNT_LONGINT_POINTER: arg_type = 21;
+pub const TYPE_COUNT_INT_POINTER: arg_type = 20;
+pub const TYPE_COUNT_SHORT_POINTER: arg_type = 19;
+pub const TYPE_COUNT_SCHAR_POINTER: arg_type = 18;
+pub const TYPE_POINTER: arg_type = 17;
+pub const TYPE_WIDE_STRING: arg_type = 16;
+pub const TYPE_STRING: arg_type = 15;
+pub const TYPE_WIDE_CHAR: arg_type = 14;
+pub const TYPE_CHAR: arg_type = 13;
+pub const TYPE_LONGDOUBLE: arg_type = 12;
+pub const TYPE_DOUBLE: arg_type = 11;
+pub const TYPE_ULONGLONGINT: arg_type = 10;
+pub const TYPE_LONGLONGINT: arg_type = 9;
+pub const TYPE_ULONGINT: arg_type = 8;
+pub const TYPE_LONGINT: arg_type = 7;
+pub const TYPE_UINT: arg_type = 6;
+pub const TYPE_INT: arg_type = 5;
+pub const TYPE_USHORT: arg_type = 4;
+pub const TYPE_SHORT: arg_type = 3;
+pub const TYPE_UCHAR: arg_type = 2;
+pub const TYPE_SCHAR: arg_type = 1;
+pub const TYPE_NONE: arg_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct argument {

@@ -144,6 +144,7 @@ pub enum C2RustUnnamed {
     DT_CHR = 2,
     DT_FIFO = 1,
     DT_UNKNOWN = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -160,6 +161,15 @@ impl C2RustUnnamed {
     }
 }
 
+pub const DT_WHT: C2RustUnnamed = 14;
+pub const DT_SOCK: C2RustUnnamed = 12;
+pub const DT_LNK: C2RustUnnamed = 10;
+pub const DT_REG: C2RustUnnamed = 8;
+pub const DT_BLK: C2RustUnnamed = 6;
+pub const DT_DIR: C2RustUnnamed = 4;
+pub const DT_CHR: C2RustUnnamed = 2;
+pub const DT_FIFO: C2RustUnnamed = 1;
+pub const DT_UNKNOWN: C2RustUnnamed = 0;
 pub type DIR = __dirstream;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -291,7 +301,19 @@ pub struct hash_tuning {
     pub growth_factor: libc::c_float,
     pub is_n_buckets: bool,
 }
-pub const DEV_TYPE_HT_INITIAL_SIZE: C2RustUnnamed_4 = 13;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_4 {
+    DEV_TYPE_HT_INITIAL_SIZE = 13,
+}
+impl C2RustUnnamed_4 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_4::DEV_TYPE_HT_INITIAL_SIZE => 13,
+        }
+    }
+}
+
 pub type Hash_data_freer = Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
 pub type Hash_comparator = Option::<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> bool,
@@ -299,15 +321,40 @@ pub type Hash_comparator = Option::<
 pub type Hash_hasher = Option::<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
-pub const _FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD: C2RustUnnamed_2 = 10000;
-pub const FTS_NO_STAT_REQUIRED: Fts_stat = 1;
-pub const FTS_STAT_REQUIRED: Fts_stat = 2;
-pub const NO_LEAF_OPTIMIZATION: leaf_optimization = 0;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    _FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD = 10000,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::_FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD => 10000,
+        }
+    }
+}
+
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum Fts_stat {
+    FTS_NO_STAT_REQUIRED = 1,
+    FTS_STAT_REQUIRED = 2,
+}
+impl Fts_stat {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            Fts_stat::FTS_NO_STAT_REQUIRED => 1,
+            Fts_stat::FTS_STAT_REQUIRED => 2,
+        }
+    }
+}
+
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum leaf_optimization {
     NO_LEAF_OPTIMIZATION,
     OK_LEAF_OPTIMIZATION,
+}
 impl leaf_optimization {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -317,98 +364,11 @@ impl leaf_optimization {
     }
 }
 
-pub const MIN_DIR_NLINK: C2RustUnnamed_3 = 2;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct Active_dir {
-    pub dev: dev_t,
-    pub ino: ino_t,
-    pub fts_ent: *mut FTSENT,
-}
-pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HT_INITIAL_SIZE => 31,
-        }
-    }
-}
-
-pub type C2RustUnnamed_1 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    _FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD = 10000,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::_FTS_INODE_SORT_DIR_ENTRIES_THRESHOLD => 10000,
-        }
-    }
-}
-;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct Active_dir {
-    pub dev: dev_t,
-    pub ino: ino_t,
-    pub fts_ent: *mut FTSENT,
-}
-pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HT_INITIAL_SIZE => 31,
-        }
-    }
-}
-
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum Fts_stat {
-    FTS_NO_STAT_REQUIRED = 1,
-    FTS_STAT_REQUIRED = 2,
-impl Fts_stat {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            Fts_stat::FTS_NO_STAT_REQUIRED => 1,
-            Fts_stat::FTS_STAT_REQUIRED => 2,
-        }
-    }
-}
-no: ino_t,
-    pub fts_ent: *mut FTSENT,
-}
-pub const HT_INITIAL_SIZE: C2RustUnnamed_1 = 31;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    HT_INITIAL_SIZE = 31,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HT_INITIAL_SIZE => 31,
-        }
-    }
-}
-
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
-pub type Fts_stat = libc::c_uint;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
     MIN_DIR_NLINK = 2,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -416,34 +376,19 @@ impl C2RustUnnamed_3 {
         }
     }
 }
-INITIAL_SIZE = 31,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HT_INITIAL_SIZE => 31,
-        }
-    }
-}
 
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
-pub type Fts_stat = libc::c_uint;
-pub type C2RustUnnamed_3 = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[derive(Copy, Clone)]
 #[repr(C)]
-pub enum C2RustUnnamed_4 {
-    DEV_TYPE_HT_INITIAL_SIZE = 13,
-impl C2RustUnnamed_4 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_4::DEV_TYPE_HT_INITIAL_SIZE => 13,
-        }
-    }
+pub struct Active_dir {
+    pub dev: dev_t,
+    pub ino: ino_t,
+    pub fts_ent: *mut FTSENT,
 }
-Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     HT_INITIAL_SIZE = 31,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -452,34 +397,6 @@ impl C2RustUnnamed_1 {
     }
 }
 
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
-pub type Fts_stat = libc::c_uint;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_3 {
-    MIN_DIR_NLINK = 2,
-impl C2RustUnnamed_3 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_3::MIN_DIR_NLINK => 2,
-        }
-    }
-}
-INITIAL_SIZE = 31,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::HT_INITIAL_SIZE => 31,
-        }
-    }
-}
-
-pub type C2RustUnnamed_1 = libc::c_uint;
-pub type C2RustUnnamed_2 = libc::c_uint;
-pub type Fts_stat = libc::c_uint;
-pub type C2RustUnnamed_3 = libc::c_uint;
-pub type C2RustUnnamed_4 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,

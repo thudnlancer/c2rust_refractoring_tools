@@ -47,6 +47,7 @@ pub enum savedir_option {
     SAVEDIR_SORT_NAME,
     SAVEDIR_SORT_INODE,
     SAVEDIR_SORT_FASTREAD,
+}
 impl savedir_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -58,6 +59,10 @@ impl savedir_option {
     }
 }
 
+pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
+pub const SAVEDIR_SORT_INODE: savedir_option = 2;
+pub const SAVEDIR_SORT_NAME: savedir_option = 1;
+pub const SAVEDIR_SORT_NONE: savedir_option = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct direntry_t {
@@ -70,11 +75,11 @@ pub type comparison_function = Option::<
 pub type __compar_fn_t = Option::<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
 >;
-pub const DEFAULT_MXFAST: C2RustUnnamed = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -83,7 +88,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[inline]
 unsafe extern "C" fn x2nrealloc(
     mut p: *mut libc::c_void,

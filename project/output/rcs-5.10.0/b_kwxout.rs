@@ -181,6 +181,7 @@ pub enum kwsub {
     kwsub_k = 2,
     kwsub_kvl = 1,
     kwsub_kv = 0,
+}
 impl kwsub {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -194,6 +195,12 @@ impl kwsub {
     }
 }
 
+pub const kwsub_b: kwsub = 5;
+pub const kwsub_o: kwsub = 4;
+pub const kwsub_v: kwsub = 3;
+pub const kwsub_k: kwsub = 2;
+pub const kwsub_kvl: kwsub = 1;
+pub const kwsub_kv: kwsub = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum tokens {
@@ -212,6 +219,7 @@ pub enum tokens {
     IDCHAR = 2,
     DIGIT = 1,
     DELIM = 0,
+}
 impl tokens {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -234,6 +242,21 @@ impl tokens {
     }
 }
 
+pub const STRING: tokens = 14;
+pub const SEMI: tokens = 13;
+pub const NUM: tokens = 12;
+pub const ID: tokens = 11;
+pub const COLON: tokens = 10;
+pub const UNKN: tokens = 9;
+pub const SPACE: tokens = 8;
+pub const SBEGIN: tokens = 7;
+pub const PERIOD: tokens = 6;
+pub const Letter: tokens = 5;
+pub const LETTER: tokens = 4;
+pub const NEWLN: tokens = 3;
+pub const IDCHAR: tokens = 2;
+pub const DIGIT: tokens = 1;
+pub const DELIM: tokens = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -287,6 +310,7 @@ pub enum readmethod {
     RM_STDIO = 2,
     RM_MEM = 1,
     RM_MMAP = 0,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -297,6 +321,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tinysym {
@@ -323,6 +350,7 @@ pub enum markers {
     Header = 2,
     Date = 1,
     Author = 0,
+}
 impl markers {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -341,6 +369,17 @@ impl markers {
     }
 }
 
+pub const State: markers = 10;
+pub const Source: markers = 9;
+pub const Revision: markers = 8;
+pub const RCSfile: markers = 7;
+pub const Name: markers = 6;
+pub const Log: markers = 5;
+pub const Locker: markers = 4;
+pub const Id: markers = 3;
+pub const Header: markers = 2;
+pub const Date: markers = 1;
+pub const Author: markers = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct divvy {
@@ -364,6 +403,7 @@ pub enum maker {
     effective = 2,
     real = 1,
     notmade = 0,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -374,6 +414,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {

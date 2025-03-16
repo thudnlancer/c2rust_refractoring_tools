@@ -12,6 +12,7 @@ pub enum codetype {
     CODES,
     LENS,
     DISTS,
+}
 impl codetype {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -22,6 +23,9 @@ impl codetype {
     }
 }
 
+pub const DISTS: codetype = 2;
+pub const LENS: codetype = 1;
+pub const CODES: codetype = 0;
 #[no_mangle]
 pub static mut _glp_zlib_inflate_copyright: [libc::c_char; 47] = unsafe {
     *::core::mem::transmute::<

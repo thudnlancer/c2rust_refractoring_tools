@@ -120,6 +120,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -139,6 +140,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type va_list = __builtin_va_list;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -369,6 +382,7 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
+}
 impl redisConnectionType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -379,6 +393,9 @@ impl redisConnectionType {
     }
 }
 
+pub const REDIS_CONN_USERFD: redisConnectionType = 2;
+pub const REDIS_CONN_UNIX: redisConnectionType = 1;
+pub const REDIS_CONN_TCP: redisConnectionType = 0;
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]

@@ -40,6 +40,7 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR,
     LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
     LONGINT_INVALID = 4,
+}
 impl strtol_error {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -52,6 +53,11 @@ impl strtol_error {
     }
 }
 
+pub const LONGINT_INVALID: strtol_error = 4;
+pub const LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW: strtol_error = 3;
+pub const LONGINT_INVALID_SUFFIX_CHAR: strtol_error = 2;
+pub const LONGINT_OVERFLOW: strtol_error = 1;
+pub const LONGINT_OK: strtol_error = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -65,6 +71,7 @@ pub enum C2RustUnnamed {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -82,6 +89,16 @@ impl C2RustUnnamed {
     }
 }
 
+pub const human_B: C2RustUnnamed = 256;
+pub const human_SI: C2RustUnnamed = 128;
+pub const human_space_before_unit: C2RustUnnamed = 64;
+pub const human_base_1024: C2RustUnnamed = 32;
+pub const human_autoscale: C2RustUnnamed = 16;
+pub const human_suppress_point_zero: C2RustUnnamed = 8;
+pub const human_group_digits: C2RustUnnamed = 4;
+pub const human_floor: C2RustUnnamed = 2;
+pub const human_round_to_nearest: C2RustUnnamed = 1;
+pub const human_ceiling: C2RustUnnamed = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct lconv {

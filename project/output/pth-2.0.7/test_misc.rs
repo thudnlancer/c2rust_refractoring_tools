@@ -95,6 +95,7 @@ pub enum C2RustUnnamed {
     PTH_ATTR_JOINABLE = 2,
     PTH_ATTR_NAME = 1,
     PTH_ATTR_PRIO = 0,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -117,6 +118,21 @@ impl C2RustUnnamed {
     }
 }
 
+pub const PTH_ATTR_BOUND: C2RustUnnamed = 14;
+pub const PTH_ATTR_EVENTS: C2RustUnnamed = 13;
+pub const PTH_ATTR_STATE: C2RustUnnamed = 12;
+pub const PTH_ATTR_START_ARG: C2RustUnnamed = 11;
+pub const PTH_ATTR_START_FUNC: C2RustUnnamed = 10;
+pub const PTH_ATTR_TIME_RAN: C2RustUnnamed = 9;
+pub const PTH_ATTR_TIME_LAST: C2RustUnnamed = 8;
+pub const PTH_ATTR_TIME_SPAWN: C2RustUnnamed = 7;
+pub const PTH_ATTR_DISPATCHES: C2RustUnnamed = 6;
+pub const PTH_ATTR_STACK_ADDR: C2RustUnnamed = 5;
+pub const PTH_ATTR_STACK_SIZE: C2RustUnnamed = 4;
+pub const PTH_ATTR_CANCEL_STATE: C2RustUnnamed = 3;
+pub const PTH_ATTR_JOINABLE: C2RustUnnamed = 2;
+pub const PTH_ATTR_NAME: C2RustUnnamed = 1;
+pub const PTH_ATTR_PRIO: C2RustUnnamed = 0;
 pub type pth_event_t = *mut pth_event_st;
 #[derive(Copy, Clone)]
 #[repr(C)]

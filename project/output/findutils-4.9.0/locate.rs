@@ -259,6 +259,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -278,6 +279,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type gid_t = __gid_t;
 pub type uid_t = __uid_t;
 pub type off_t = __off_t;
@@ -415,6 +428,7 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR,
     LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
     LONGINT_INVALID = 4,
+}
 impl strtol_error {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -427,6 +441,11 @@ impl strtol_error {
     }
 }
 
+pub const LONGINT_INVALID: strtol_error = 4;
+pub const LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW: strtol_error = 3;
+pub const LONGINT_INVALID_SUFFIX_CHAR: strtol_error = 2;
+pub const LONGINT_OVERFLOW: strtol_error = 1;
+pub const LONGINT_OK: strtol_error = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -440,6 +459,7 @@ pub enum C2RustUnnamed_0 {
     human_space_before_unit = 64,
     human_SI = 128,
     human_B = 256,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -457,6 +477,16 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const human_B: C2RustUnnamed_0 = 256;
+pub const human_SI: C2RustUnnamed_0 = 128;
+pub const human_space_before_unit: C2RustUnnamed_0 = 64;
+pub const human_base_1024: C2RustUnnamed_0 = 32;
+pub const human_autoscale: C2RustUnnamed_0 = 16;
+pub const human_suppress_point_zero: C2RustUnnamed_0 = 8;
+pub const human_group_digits: C2RustUnnamed_0 = 4;
+pub const human_floor: C2RustUnnamed_0 = 2;
+pub const human_round_to_nearest: C2RustUnnamed_0 = 1;
+pub const human_ceiling: C2RustUnnamed_0 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -471,6 +501,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -489,12 +520,24 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum GetwordEndianState {
     GetwordEndianStateInitial = 0,
     GetwordEndianStateNative = 1,
     GetwordEndianStateSwab = 2,
+}
 impl GetwordEndianState {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -505,6 +548,9 @@ impl GetwordEndianState {
     }
 }
 
+pub const GetwordEndianStateSwab: GetwordEndianState = 2;
+pub const GetwordEndianStateNative: GetwordEndianState = 1;
+pub const GetwordEndianStateInitial: GetwordEndianState = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum visit_result {
@@ -512,6 +558,7 @@ pub enum visit_result {
     VISIT_ACCEPTED = 2,
     VISIT_REJECTED = 4,
     VISIT_ABORT = 8,
+}
 impl visit_result {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -523,12 +570,17 @@ impl visit_result {
     }
 }
 
+pub const VISIT_ABORT: visit_result = 8;
+pub const VISIT_REJECTED: visit_result = 4;
+pub const VISIT_ACCEPTED: visit_result = 2;
+pub const VISIT_CONTINUE: visit_result = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ExistenceCheckType {
     ACCEPT_EITHER,
     ACCEPT_EXISTING,
     ACCEPT_NON_EXISTING,
+}
 impl ExistenceCheckType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -539,6 +591,9 @@ impl ExistenceCheckType {
     }
 }
 
+pub const ACCEPT_NON_EXISTING: ExistenceCheckType = 2;
+pub const ACCEPT_EXISTING: ExistenceCheckType = 1;
+pub const ACCEPT_EITHER: ExistenceCheckType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct locate_limits {
@@ -570,11 +625,11 @@ pub struct locate_stats {
     pub newline_count: uintmax_t,
     pub highbit_filename_count: uintmax_t,
 }
-pub const TIME_BUF_LEN: C2RustUnnamed_1 = 20;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
     TIME_BUF_LEN = 20,
+}
 impl C2RustUnnamed_1 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -583,7 +638,6 @@ impl C2RustUnnamed_1 {
     }
 }
 
-pub type C2RustUnnamed_1 = libc::c_uint;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_2 {
@@ -626,33 +680,12 @@ pub struct C2RustUnnamed_5 {
 pub struct C2RustUnnamed_6 {
     pub _gl_dummy: libc::c_int,
 }
-pub const MAX_DB_AGE: C2RustUnnamed_11 = 129;
-pub const REGEXTYPE_OPTION: C2RustUnnamed_11 = 128;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_7 {
-    pub _gl_dummy: libc::c_int,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_8 {
-    pub _gl_dummy: libc::c_int,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_9 {
-    pub _gl_dummy: libc::c_int,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_10 {
-    pub _gl_dummy: libc::c_int,
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
     MAX_DB_AGE = 129,
     REGEXTYPE_OPTION = 128,
+}
 impl C2RustUnnamed_11 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -682,7 +715,6 @@ pub struct C2RustUnnamed_9 {
 pub struct C2RustUnnamed_10 {
     pub _gl_dummy: libc::c_int,
 }
-pub type C2RustUnnamed_11 = libc::c_uint;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_12 {

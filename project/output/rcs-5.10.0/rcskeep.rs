@@ -227,6 +227,7 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -237,6 +238,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tinysym {
@@ -263,6 +267,7 @@ pub enum markers {
     Revision,
     Source,
     State,
+}
 impl markers {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -281,6 +286,17 @@ impl markers {
     }
 }
 
+pub const State: markers = 10;
+pub const Source: markers = 9;
+pub const Revision: markers = 8;
+pub const RCSfile: markers = 7;
+pub const Name: markers = 6;
+pub const Log: markers = 5;
+pub const Locker: markers = 4;
+pub const Id: markers = 3;
+pub const Header: markers = 2;
+pub const Date: markers = 1;
+pub const Author: markers = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct divvy {
@@ -304,6 +320,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -314,6 +331,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -426,7 +446,6 @@ pub struct top {
     pub repository: repository,
     pub flow: flow,
 }
-pub const _ISdigit: C2RustUnnamed_3 = 2048;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -442,6 +461,7 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

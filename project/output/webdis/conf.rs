@@ -145,6 +145,7 @@ pub enum json_type {
     JSON_TRUE,
     JSON_FALSE,
     JSON_NULL,
+}
 impl json_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -160,6 +161,14 @@ impl json_type {
     }
 }
 
+pub const JSON_NULL: json_type = 7;
+pub const JSON_FALSE: json_type = 6;
+pub const JSON_TRUE: json_type = 5;
+pub const JSON_REAL: json_type = 4;
+pub const JSON_INTEGER: json_type = 3;
+pub const JSON_STRING: json_type = 2;
+pub const JSON_ARRAY: json_type = 1;
+pub const JSON_OBJECT: json_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct json_t {
@@ -182,6 +191,7 @@ pub enum base64_encodestep {
     step_A,
     step_B,
     step_C,
+}
 impl base64_encodestep {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -192,6 +202,9 @@ impl base64_encodestep {
     }
 }
 
+pub const step_C: base64_encodestep = 2;
+pub const step_B: base64_encodestep = 1;
+pub const step_A: base64_encodestep = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base64_encodestate {
@@ -208,6 +221,7 @@ pub enum log_level {
     WEBDIS_INFO,
     WEBDIS_DEBUG,
     WEBDIS_TRACE = 8,
+}
 impl log_level {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -221,12 +235,19 @@ impl log_level {
     }
 }
 
+pub const WEBDIS_TRACE: log_level = 8;
+pub const WEBDIS_DEBUG: log_level = 4;
+pub const WEBDIS_INFO: log_level = 3;
+pub const WEBDIS_NOTICE: log_level = 2;
+pub const WEBDIS_WARNING: log_level = 1;
+pub const WEBDIS_ERROR: log_level = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_fsync_mode {
     LOG_FSYNC_AUTO = 0,
     LOG_FSYNC_MILLIS,
     LOG_FSYNC_ALL,
+}
 impl log_fsync_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -237,6 +258,9 @@ impl log_fsync_mode {
     }
 }
 
+pub const LOG_FSYNC_ALL: log_fsync_mode = 2;
+pub const LOG_FSYNC_MILLIS: log_fsync_mode = 1;
+pub const LOG_FSYNC_AUTO: log_fsync_mode = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct auth {

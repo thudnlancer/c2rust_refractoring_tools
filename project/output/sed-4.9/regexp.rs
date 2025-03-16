@@ -130,6 +130,7 @@ pub enum C2RustUnnamed {
     DFA_CONFUSING_BRACKETS_ERROR = 4,
     DFA_EOL_NUL = 2,
     DFA_ANCHOR = 1,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -143,6 +144,12 @@ impl C2RustUnnamed {
     }
 }
 
+pub const DFA_PLUS_WARN: C2RustUnnamed = 32;
+pub const DFA_STAR_WARN: C2RustUnnamed = 16;
+pub const DFA_STRAY_BACKSLASH_WARN: C2RustUnnamed = 8;
+pub const DFA_CONFUSING_BRACKETS_ERROR: C2RustUnnamed = 4;
+pub const DFA_EOL_NUL: C2RustUnnamed = 2;
+pub const DFA_ANCHOR: C2RustUnnamed = 1;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct regex {
@@ -160,6 +167,7 @@ pub enum text_types {
     TEXT_BUFFER,
     TEXT_REPLACEMENT,
     TEXT_REGEX,
+}
 impl text_types {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -170,12 +178,16 @@ impl text_types {
     }
 }
 
+pub const TEXT_REGEX: text_types = 2;
+pub const TEXT_REPLACEMENT: text_types = 1;
+pub const TEXT_BUFFER: text_types = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum posixicity_types {
     POSIXLY_EXTENDED,
     POSIXLY_CORRECT,
     POSIXLY_BASIC,
+}
 impl posixicity_types {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -186,6 +198,9 @@ impl posixicity_types {
     }
 }
 
+pub const POSIXLY_BASIC: posixicity_types = 2;
+pub const POSIXLY_CORRECT: posixicity_types = 1;
+pub const POSIXLY_EXTENDED: posixicity_types = 0;
 static mut errors: [libc::c_char; 72] = unsafe {
     *::core::mem::transmute::<
         &[u8; 72],

@@ -772,6 +772,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -791,6 +792,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type XID = libc::c_ulong;
 pub type Atom = libc::c_ulong;
 pub type VisualID = libc::c_ulong;
@@ -1573,6 +1586,7 @@ pub enum XICCEncodingStyle {
     XTextStyle = 2,
     XCompoundTextStyle = 1,
     XStringStyle = 0,
+}
 impl XICCEncodingStyle {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1585,6 +1599,11 @@ impl XICCEncodingStyle {
     }
 }
 
+pub const XUTF8StringStyle: XICCEncodingStyle = 4;
+pub const XStdICCTextStyle: XICCEncodingStyle = 3;
+pub const XTextStyle: XICCEncodingStyle = 2;
+pub const XCompoundTextStyle: XICCEncodingStyle = 1;
+pub const XStringStyle: XICCEncodingStyle = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct XClassHint {
@@ -1775,6 +1794,7 @@ pub enum config_error_t {
     CONFIG_ERR_PARSE = 2,
     CONFIG_ERR_FILE_IO = 1,
     CONFIG_ERR_NONE = 0,
+}
 impl config_error_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1785,6 +1805,9 @@ impl config_error_t {
     }
 }
 
+pub const CONFIG_ERR_PARSE: config_error_t = 2;
+pub const CONFIG_ERR_FILE_IO: config_error_t = 1;
+pub const CONFIG_ERR_NONE: config_error_t = 0;
 pub type GLenum = libc::c_uint;
 pub type GLint = libc::c_int;
 pub type GLubyte = libc::c_uchar;
@@ -1816,6 +1839,7 @@ pub enum wintype_t {
     WINTYPE_COMBO,
     WINTYPE_DND,
     NUM_WINTYPES,
+}
 impl wintype_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1839,12 +1863,29 @@ impl wintype_t {
     }
 }
 
+pub const NUM_WINTYPES: wintype_t = 15;
+pub const WINTYPE_DND: wintype_t = 14;
+pub const WINTYPE_COMBO: wintype_t = 13;
+pub const WINTYPE_NOTIFY: wintype_t = 12;
+pub const WINTYPE_TOOLTIP: wintype_t = 11;
+pub const WINTYPE_POPUP_MENU: wintype_t = 10;
+pub const WINTYPE_DROPDOWN_MENU: wintype_t = 9;
+pub const WINTYPE_NORMAL: wintype_t = 8;
+pub const WINTYPE_DIALOG: wintype_t = 7;
+pub const WINTYPE_SPLASH: wintype_t = 6;
+pub const WINTYPE_UTILITY: wintype_t = 5;
+pub const WINTYPE_MENU: wintype_t = 4;
+pub const WINTYPE_TOOLBAR: wintype_t = 3;
+pub const WINTYPE_DOCK: wintype_t = 2;
+pub const WINTYPE_DESKTOP: wintype_t = 1;
+pub const WINTYPE_UNKNOWN: wintype_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
     OFF,
     ON,
     UNSET,
+}
 impl switch_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1855,6 +1896,9 @@ impl switch_t {
     }
 }
 
+pub const UNSET: switch_t = 2;
+pub const ON: switch_t = 1;
+pub const OFF: switch_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct geometry_t {
@@ -1877,6 +1921,7 @@ pub enum winmode_t {
     WMODE_TRANS,
     WMODE_SOLID,
     WMODE_ARGB,
+}
 impl winmode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1887,6 +1932,9 @@ impl winmode_t {
     }
 }
 
+pub const WMODE_ARGB: winmode_t = 2;
+pub const WMODE_SOLID: winmode_t = 1;
+pub const WMODE_TRANS: winmode_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct winprop_t {
@@ -1919,6 +1967,7 @@ pub enum vsync_t {
     VSYNC_OPENGL_SWC,
     VSYNC_OPENGL_MSWC,
     NUM_VSYNC,
+}
 impl vsync_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1933,6 +1982,13 @@ impl vsync_t {
     }
 }
 
+pub const NUM_VSYNC: vsync_t = 6;
+pub const VSYNC_OPENGL_MSWC: vsync_t = 5;
+pub const VSYNC_OPENGL_SWC: vsync_t = 4;
+pub const VSYNC_OPENGL_OML: vsync_t = 3;
+pub const VSYNC_OPENGL: vsync_t = 2;
+pub const VSYNC_DRM: vsync_t = 1;
+pub const VSYNC_NONE: vsync_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
@@ -1940,6 +1996,7 @@ pub enum backend {
     BKEND_GLX,
     BKEND_XR_GLX_HYBRID,
     NUM_BKEND,
+}
 impl backend {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1951,6 +2008,10 @@ impl backend {
     }
 }
 
+pub const NUM_BKEND: backend = 3;
+pub const BKEND_XR_GLX_HYBRID: backend = 2;
+pub const BKEND_GLX: backend = 1;
+pub const BKEND_XRENDER: backend = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _glx_texture {
@@ -2400,6 +2461,7 @@ pub enum win_evmode_t {
     WIN_EVMODE_UNKNOWN,
     WIN_EVMODE_FRAME,
     WIN_EVMODE_CLIENT,
+}
 impl win_evmode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -2410,6 +2472,9 @@ impl win_evmode_t {
     }
 }
 
+pub const WIN_EVMODE_CLIENT: win_evmode_t = 2;
+pub const WIN_EVMODE_FRAME: win_evmode_t = 1;
+pub const WIN_EVMODE_UNKNOWN: win_evmode_t = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum drm_vblank_seq_type {
@@ -2421,6 +2486,7 @@ pub enum drm_vblank_seq_type {
     _DRM_VBLANK_HIGH_CRTC_MASK = 62,
     _DRM_VBLANK_RELATIVE = 1,
     _DRM_VBLANK_ABSOLUTE = 0,
+}
 impl drm_vblank_seq_type {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -2436,6 +2502,14 @@ impl drm_vblank_seq_type {
     }
 }
 
+pub const _DRM_VBLANK_SIGNAL: drm_vblank_seq_type = 1073741824;
+pub const _DRM_VBLANK_SECONDARY: drm_vblank_seq_type = 536870912;
+pub const _DRM_VBLANK_NEXTONMISS: drm_vblank_seq_type = 268435456;
+pub const _DRM_VBLANK_FLIP: drm_vblank_seq_type = 134217728;
+pub const _DRM_VBLANK_EVENT: drm_vblank_seq_type = 67108864;
+pub const _DRM_VBLANK_HIGH_CRTC_MASK: drm_vblank_seq_type = 62;
+pub const _DRM_VBLANK_RELATIVE: drm_vblank_seq_type = 1;
+pub const _DRM_VBLANK_ABSOLUTE: drm_vblank_seq_type = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct drm_wait_vblank_request {

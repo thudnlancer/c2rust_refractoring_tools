@@ -306,6 +306,7 @@ pub enum redisConnectionType {
     REDIS_CONN_TCP,
     REDIS_CONN_UNIX,
     REDIS_CONN_USERFD,
+}
 impl redisConnectionType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -316,6 +317,9 @@ impl redisConnectionType {
     }
 }
 
+pub const REDIS_CONN_USERFD: redisConnectionType = 2;
+pub const REDIS_CONN_UNIX: redisConnectionType = 1;
+pub const REDIS_CONN_TCP: redisConnectionType = 0;
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -381,6 +385,7 @@ pub enum log_fsync_mode {
     LOG_FSYNC_AUTO = 0,
     LOG_FSYNC_MILLIS,
     LOG_FSYNC_ALL,
+}
 impl log_fsync_mode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -391,6 +396,9 @@ impl log_fsync_mode {
     }
 }
 
+pub const LOG_FSYNC_ALL: log_fsync_mode = 2;
+pub const LOG_FSYNC_MILLIS: log_fsync_mode = 1;
+pub const LOG_FSYNC_AUTO: log_fsync_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
@@ -400,6 +408,7 @@ pub enum log_level {
     WEBDIS_INFO,
     WEBDIS_DEBUG,
     WEBDIS_TRACE = 8,
+}
 impl log_level {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -413,6 +422,12 @@ impl log_level {
     }
 }
 
+pub const WEBDIS_TRACE: log_level = 8;
+pub const WEBDIS_DEBUG: log_level = 4;
+pub const WEBDIS_INFO: log_level = 3;
+pub const WEBDIS_NOTICE: log_level = 2;
+pub const WEBDIS_WARNING: log_level = 1;
+pub const WEBDIS_ERROR: log_level = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct auth {

@@ -21,11 +21,11 @@ pub struct allocator {
     pub free: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub die: Option::<unsafe extern "C" fn(size_t) -> ()>,
 }
-pub const STACK_BUF_SIZE: C2RustUnnamed = 1024;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     STACK_BUF_SIZE = 1024,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -34,7 +34,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 unsafe extern "C" fn readlink_stk(
     mut fd: libc::c_int,
     mut filename: *const libc::c_char,

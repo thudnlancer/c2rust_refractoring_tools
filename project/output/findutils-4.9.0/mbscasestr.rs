@@ -45,9 +45,63 @@ extern "C" {
 pub type size_t = libc::c_ulong;
 pub type wchar_t = libc::c_int;
 pub type __int32_t = libc::c_int;
-pub const _ISupper: C2RustUnnamed_0 = 256;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_0 {
+    _ISupper = 256,
+    _ISalnum = 8,
+    _ISpunct = 4,
+    _IScntrl = 2,
+    _ISblank = 1,
+    _ISgraph = 32768,
+    _ISprint = 16384,
+    _ISspace = 8192,
+    _ISxdigit = 4096,
+    _ISdigit = 2048,
+    _ISalpha = 1024,
+    _ISlower = 512,
+}
+impl C2RustUnnamed_0 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_0::_ISupper => 256,
+            C2RustUnnamed_0::_ISalnum => 8,
+            C2RustUnnamed_0::_ISpunct => 4,
+            C2RustUnnamed_0::_IScntrl => 2,
+            C2RustUnnamed_0::_ISblank => 1,
+            C2RustUnnamed_0::_ISgraph => 32768,
+            C2RustUnnamed_0::_ISprint => 16384,
+            C2RustUnnamed_0::_ISspace => 8192,
+            C2RustUnnamed_0::_ISxdigit => 4096,
+            C2RustUnnamed_0::_ISdigit => 2048,
+            C2RustUnnamed_0::_ISalpha => 1024,
+            C2RustUnnamed_0::_ISlower => 512,
+        }
+    }
+}
+
 pub type uintptr_t = libc::c_ulong;
-pub const sa_alignment_max: C2RustUnnamed_1 = 16;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_1 {
+    sa_alignment_max = 16,
+    sa_alignment_longdouble = 16,
+    sa_alignment_longlong = 8,
+    sa_alignment_double = 8,
+    sa_alignment_long = 8,
+}
+impl C2RustUnnamed_1 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_1::sa_alignment_max => 16,
+            C2RustUnnamed_1::sa_alignment_longdouble => 16,
+            C2RustUnnamed_1::sa_alignment_longlong => 8,
+            C2RustUnnamed_1::sa_alignment_double => 8,
+            C2RustUnnamed_1::sa_alignment_long => 8,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct mbchar {
@@ -81,60 +135,6 @@ pub union C2RustUnnamed {
 }
 pub type wint_t = libc::c_uint;
 pub type mbchar_t = mbchar;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_0 {
-    _ISupper = 256,
-    _ISalnum = 8,
-    _ISpunct = 4,
-    _IScntrl = 2,
-    _ISblank = 1,
-    _ISgraph = 32768,
-    _ISprint = 16384,
-    _ISspace = 8192,
-    _ISxdigit = 4096,
-    _ISdigit = 2048,
-    _ISalpha = 1024,
-    _ISlower = 512,
-impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_0::_ISupper => 256,
-            C2RustUnnamed_0::_ISalnum => 8,
-            C2RustUnnamed_0::_ISpunct => 4,
-            C2RustUnnamed_0::_IScntrl => 2,
-            C2RustUnnamed_0::_ISblank => 1,
-            C2RustUnnamed_0::_ISgraph => 32768,
-            C2RustUnnamed_0::_ISprint => 16384,
-            C2RustUnnamed_0::_ISspace => 8192,
-            C2RustUnnamed_0::_ISxdigit => 4096,
-            C2RustUnnamed_0::_ISdigit => 2048,
-            C2RustUnnamed_0::_ISalpha => 1024,
-            C2RustUnnamed_0::_ISlower => 512,
-        }
-    }
-}
-
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_1 {
-    sa_alignment_max = 16,
-    sa_alignment_longdouble = 16,
-    sa_alignment_longlong = 8,
-    sa_alignment_double = 8,
-    sa_alignment_long = 8,
-impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_1::sa_alignment_max => 16,
-            C2RustUnnamed_1::sa_alignment_longdouble => 16,
-            C2RustUnnamed_1::sa_alignment_longlong => 8,
-            C2RustUnnamed_1::sa_alignment_double => 8,
-            C2RustUnnamed_1::sa_alignment_long => 8,
-        }
-    }
-}
-
 #[inline]
 unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {
     return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {

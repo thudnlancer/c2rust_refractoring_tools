@@ -173,6 +173,7 @@ pub enum symtype {
     SymUndefined,
     SymToken,
     SymIdentifier,
+}
 impl symtype {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -183,6 +184,9 @@ impl symtype {
     }
 }
 
+pub const SymIdentifier: symtype = 2;
+pub const SymToken: symtype = 1;
+pub const SymUndefined: symtype = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
@@ -191,6 +195,7 @@ pub enum storage {
     StaticStorage,
     AutoStorage,
     AnyStorage,
+}
 impl storage {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -203,6 +208,11 @@ impl storage {
     }
 }
 
+pub const AnyStorage: storage = 4;
+pub const AutoStorage: storage = 3;
+pub const StaticStorage: storage = 2;
+pub const ExplicitExternStorage: storage = 1;
+pub const ExternStorage: storage = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum symbol_flag {
@@ -210,6 +220,7 @@ pub enum symbol_flag {
     symbol_temp,
     symbol_parm,
     symbol_alias,
+}
 impl symbol_flag {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -221,6 +232,10 @@ impl symbol_flag {
     }
 }
 
+pub const symbol_alias: symbol_flag = 3;
+pub const symbol_parm: symbol_flag = 2;
+pub const symbol_temp: symbol_flag = 1;
+pub const symbol_none: symbol_flag = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct symbol {
@@ -257,6 +272,7 @@ pub enum cflow_output_command {
     cflow_output_separator,
     cflow_output_symbol,
     cflow_output_text,
+}
 impl cflow_output_command {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -271,6 +287,13 @@ impl cflow_output_command {
     }
 }
 
+pub const cflow_output_text: cflow_output_command = 6;
+pub const cflow_output_symbol: cflow_output_command = 5;
+pub const cflow_output_separator: cflow_output_command = 4;
+pub const cflow_output_newline: cflow_output_command = 3;
+pub const cflow_output_end: cflow_output_command = 2;
+pub const cflow_output_begin: cflow_output_command = 1;
+pub const cflow_output_init: cflow_output_command = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -286,6 +309,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -305,6 +329,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct argp_option {
@@ -383,6 +419,7 @@ pub enum option_code {
     OPT_NO_OMIT_ARGUMENTS,
     OPT_OMIT_SYMBOL_NAMES,
     OPT_NO_OMIT_SYMBOL_NAMES,
+}
 impl option_code {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -409,6 +446,25 @@ impl option_code {
     }
 }
 
+pub const OPT_NO_OMIT_SYMBOL_NAMES: option_code = 274;
+pub const OPT_OMIT_SYMBOL_NAMES: option_code = 273;
+pub const OPT_NO_OMIT_ARGUMENTS: option_code = 272;
+pub const OPT_OMIT_ARGUMENTS: option_code = 271;
+pub const OPT_NO_REVERSE: option_code = 270;
+pub const OPT_NO_PRINT_LEVEL: option_code = 269;
+pub const OPT_NO_NUMBER: option_code = 268;
+pub const OPT_NO_VERBOSE: option_code = 267;
+pub const OPT_NO_EMACS: option_code = 266;
+pub const OPT_NO_BRIEF: option_code = 265;
+pub const OPT_NO_TREE: option_code = 264;
+pub const OPT_NO_ANSI: option_code = 263;
+pub const OPT_NO_USE_INDENTATION: option_code = 262;
+pub const OPT_EMACS: option_code = 261;
+pub const OPT_NO_PREPROCESS: option_code = 260;
+pub const OPT_PREPROCESS: option_code = 259;
+pub const OPT_DEBUG: option_code = 258;
+pub const OPT_LEVEL_INDENT: option_code = 257;
+pub const OPT_DEFINES: option_code = 256;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option_type {

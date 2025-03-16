@@ -500,6 +500,7 @@ pub enum old_files {
     KEEP_OLD_FILES,
     SKIP_OLD_FILES,
     KEEP_NEWER_FILES,
+}
 impl old_files {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -514,6 +515,13 @@ impl old_files {
     }
 }
 
+pub const KEEP_NEWER_FILES: old_files = 6;
+pub const SKIP_OLD_FILES: old_files = 5;
+pub const KEEP_OLD_FILES: old_files = 4;
+pub const UNLINK_FIRST_OLD_FILES: old_files = 3;
+pub const OVERWRITE_OLD_FILES: old_files = 2;
+pub const NO_OVERWRITE_DIR_OLD_FILES: old_files = 1;
+pub const DEFAULT_OLD_FILES: old_files = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
@@ -521,6 +529,7 @@ pub enum dump_status {
     dump_status_short,
     dump_status_fail,
     dump_status_not_implemented,
+}
 impl dump_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -532,6 +541,10 @@ impl dump_status {
     }
 }
 
+pub const dump_status_not_implemented: dump_status = 3;
+pub const dump_status_fail: dump_status = 2;
+pub const dump_status_short: dump_status = 1;
+pub const dump_status_ok: dump_status = 0;
 pub type tar_extractor_t = Option::<
     unsafe extern "C" fn(*mut libc::c_char, libc::c_int) -> libc::c_int,
 >;
@@ -541,6 +554,7 @@ pub enum remove_option {
     ORDINARY_REMOVE_OPTION,
     RECURSIVE_REMOVE_OPTION,
     WANT_DIRECTORY_REMOVE_OPTION,
+}
 impl remove_option {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -551,7 +565,24 @@ impl remove_option {
     }
 }
 
-pub const BILLION: C2RustUnnamed_2 = 1000000000;
+pub const WANT_DIRECTORY_REMOVE_OPTION: remove_option = 2;
+pub const RECURSIVE_REMOVE_OPTION: remove_option = 1;
+pub const ORDINARY_REMOVE_OPTION: remove_option = 0;
+#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
+#[repr(C)]
+pub enum C2RustUnnamed_2 {
+    BILLION = 1000000000,
+    LOG10_BILLION = 9,
+}
+impl C2RustUnnamed_2 {
+    fn to_libc_c_uint(self) -> libc::c_uint {
+        match self {
+            C2RustUnnamed_2::BILLION => 1000000000,
+            C2RustUnnamed_2::LOG10_BILLION => 9,
+        }
+    }
+}
+
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct delayed_set_stat {
@@ -609,20 +640,6 @@ pub struct delayed_link {
     pub xattr_map: *mut xattr_array,
     pub target: [libc::c_char; 1],
 }
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_2 {
-    BILLION = 1000000000,
-    LOG10_BILLION = 9,
-impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_2::BILLION => 1000000000,
-            C2RustUnnamed_2::LOG10_BILLION => 9,
-        }
-    }
-}
-
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,

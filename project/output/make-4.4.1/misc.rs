@@ -208,6 +208,7 @@ pub enum cmd_state {
     cs_running = 2,
     cs_deps_running = 1,
     cs_not_started = 0,
+}
 impl cmd_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -219,6 +220,10 @@ impl cmd_state {
     }
 }
 
+pub const cs_finished: cmd_state = 3;
+pub const cs_running: cmd_state = 2;
+pub const cs_deps_running: cmd_state = 1;
+pub const cs_not_started: cmd_state = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -226,6 +231,7 @@ pub enum update_status {
     us_question = 2,
     us_none = 1,
     us_success = 0,
+}
 impl update_status {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -237,6 +243,10 @@ impl update_status {
     }
 }
 
+pub const us_failed: update_status = 3;
+pub const us_question: update_status = 2;
+pub const us_none: update_status = 1;
+pub const us_success: update_status = 0;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct dep {

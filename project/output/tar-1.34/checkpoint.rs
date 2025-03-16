@@ -214,6 +214,7 @@ pub enum checkpoint_opcode {
     cop_echo = 2,
     cop_bell = 1,
     cop_dot = 0,
+}
 impl checkpoint_opcode {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -229,72 +230,21 @@ impl checkpoint_opcode {
     }
 }
 
-pub const CHKP_COMPILE: C2RustUnnamed_0 = 1;
-pub const CHKP_INIT: C2RustUnnamed_0 = 0;
-pub const CHKP_RUN: C2RustUnnamed_0 = 2;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct winsize {
-    pub ws_row: libc::c_ushort,
-    pub ws_col: libc::c_ushort,
-    pub ws_xpixel: libc::c_ushort,
-    pub ws_ypixel: libc::c_ushort,
-}
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct wordsplit {
-    pub ws_wordc: size_t,
-    pub ws_wordv: *mut *mut libc::c_char,
-    pub ws_offs: size_t,
-    pub ws_wordn: size_t,
-    pub ws_flags: libc::c_uint,
-    pub ws_options: libc::c_uint,
-    pub ws_maxwords: size_t,
-    pub ws_wordi: size_t,
-    pub ws_delim: *const libc::c_char,
-    pub ws_comment: *const libc::c_char,
-    pub ws_escape: [*const libc::c_char; 2],
-    pub ws_alloc_die: Option::<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
-    pub ws_error: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_debug: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_env: *mut *const libc::c_char,
-    pub ws_envbuf: *mut *mut libc::c_char,
-    pub ws_envidx: size_t,
-    pub ws_envsiz: size_t,
-    pub ws_getvar: Option::<
-        unsafe extern "C" fn(
-            *mut *mut libc::c_char,
-            *const libc::c_char,
-            size_t,
-            *mut libc::c_void,
-        ) -> libc::c_int,
-    >,
-    pub ws_closure: *mut libc::c_void,
-    pub ws_command: Option::<
-        unsafe extern "C" fn(
-            *mut *mut libc::c_char,
-            *const libc::c_char,
-            size_t,
-            *mut *mut libc::c_char,
-            *mut libc::c_void,
-        ) -> libc::c_int,
-    >,
-    pub ws_input: *const libc::c_char,
-    pub ws_len: size_t,
-    pub ws_endp: size_t,
-    pub ws_errno: libc::c_int,
-    pub ws_usererr: *mut libc::c_char,
-    pub ws_head: *mut wordsplit_node,
-    pub ws_tail: *mut wordsplit_node,
-    pub ws_lvl: libc::c_int,
-}
-pub type wordsplit_t = wordsplit;
+pub const cop_wait: checkpoint_opcode = 7;
+pub const cop_totals: checkpoint_opcode = 6;
+pub const cop_exec: checkpoint_opcode = 5;
+pub const cop_sleep: checkpoint_opcode = 4;
+pub const cop_ttyout: checkpoint_opcode = 3;
+pub const cop_echo: checkpoint_opcode = 2;
+pub const cop_bell: checkpoint_opcode = 1;
+pub const cop_dot: checkpoint_opcode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     CHKP_INIT,
     CHKP_COMPILE,
     CHKP_RUN,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -362,7 +312,6 @@ pub struct wordsplit {
     pub ws_lvl: libc::c_int,
 }
 pub type wordsplit_t = wordsplit;
-pub type C2RustUnnamed_0 = libc::c_uint;
 #[inline]
 unsafe extern "C" fn fputc_unlocked(
     mut __c: libc::c_int,

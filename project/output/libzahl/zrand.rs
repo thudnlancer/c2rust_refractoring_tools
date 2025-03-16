@@ -68,6 +68,7 @@ pub enum zranddev {
     LIBC_RAND_RANDOM,
     LIBC_RANDOM_RANDOM,
     LIBC_RAND48_RANDOM,
+}
 impl zranddev {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -82,12 +83,20 @@ impl zranddev {
     }
 }
 
+pub const LIBC_RAND48_RANDOM: zranddev = 6;
+pub const LIBC_RANDOM_RANDOM: zranddev = 5;
+pub const LIBC_RAND_RANDOM: zranddev = 4;
+pub const FASTEST_RANDOM: zranddev = 3;
+pub const DEFAULT_RANDOM: zranddev = 2;
+pub const SECURE_RANDOM: zranddev = 1;
+pub const FAST_RANDOM: zranddev = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zranddist {
     QUASIUNIFORM = 0,
     UNIFORM,
     MODUNIFORM,
+}
 impl zranddist {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -98,6 +107,9 @@ impl zranddist {
     }
 }
 
+pub const MODUNIFORM: zranddist = 2;
+pub const UNIFORM: zranddist = 1;
+pub const QUASIUNIFORM: zranddist = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zerror {
@@ -107,6 +119,7 @@ pub enum zerror {
     ZERROR_DIV_0,
     ZERROR_NEGATIVE,
     ZERROR_INVALID_RADIX,
+}
 impl zerror {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -120,6 +133,12 @@ impl zerror {
     }
 }
 
+pub const ZERROR_INVALID_RADIX: zerror = 5;
+pub const ZERROR_NEGATIVE: zerror = 4;
+pub const ZERROR_DIV_0: zerror = 3;
+pub const ZERROR_0_DIV_0: zerror = 2;
+pub const ZERROR_0_POW_0: zerror = 1;
+pub const ZERROR_ERRNO_SET: zerror = 0;
 pub type time_t = __time_t;
 #[inline]
 unsafe extern "C" fn zzero(mut a: *mut zahl) -> libc::c_int {

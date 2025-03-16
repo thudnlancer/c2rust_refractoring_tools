@@ -239,11 +239,11 @@ pub struct _obstack_chunk {
 }
 pub type uintmax_t = __uintmax_t;
 pub type DIR = __dirstream;
-pub const DEFAULT_MXFAST: C2RustUnnamed_2 = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
     DEFAULT_MXFAST = 128,
+}
 impl C2RustUnnamed_2 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -252,7 +252,6 @@ impl C2RustUnnamed_2 {
     }
 }
 
-pub type C2RustUnnamed_2 = libc::c_uint;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {

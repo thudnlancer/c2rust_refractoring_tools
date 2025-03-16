@@ -96,6 +96,7 @@ pub enum canonicalize_mode_t {
     CAN_ALL_BUT_LAST = 1,
     CAN_MISSING = 2,
     CAN_NOLINKS = 4,
+}
 impl canonicalize_mode_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -107,6 +108,10 @@ impl canonicalize_mode_t {
     }
 }
 
+pub const CAN_NOLINKS: canonicalize_mode_t = 4;
+pub const CAN_MISSING: canonicalize_mode_t = 2;
+pub const CAN_ALL_BUT_LAST: canonicalize_mode_t = 1;
+pub const CAN_EXISTING: canonicalize_mode_t = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct realpath_bufs {

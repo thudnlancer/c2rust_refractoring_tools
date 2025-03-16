@@ -127,15 +127,13 @@ pub struct option {
     pub flag: *mut libc::c_int,
     pub val: libc::c_int,
 }
-pub const OPT_LIST: C2RustUnnamed = 770;
-pub const OPT_RAW: C2RustUnnamed = 769;
-pub const OPT_HELP: C2RustUnnamed = 768;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     OPT_LIST = 770,
     OPT_RAW = 769,
     OPT_HELP = 768,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -146,7 +144,6 @@ impl C2RustUnnamed {
     }
 }
 
-pub type C2RustUnnamed = libc::c_uint;
 #[inline]
 unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
     return strtol(

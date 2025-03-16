@@ -117,6 +117,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -136,6 +137,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type reg_syntax_t = libc::c_ulong;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -192,6 +205,7 @@ pub enum NodeType {
     nREAL,
     nSYMBOL,
     nARRAY,
+}
 impl NodeType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -206,6 +220,13 @@ impl NodeType {
     }
 }
 
+pub const nARRAY: NodeType = 6;
+pub const nSYMBOL: NodeType = 5;
+pub const nREAL: NodeType = 4;
+pub const nINTEGER: NodeType = 3;
+pub const nREGEXP: NodeType = 2;
+pub const nSTRING: NodeType = 1;
+pub const nVOID: NodeType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {
@@ -288,6 +309,7 @@ pub enum ExprType {
     eNE,
     eGE,
     eLE,
+}
 impl ExprType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -326,6 +348,37 @@ impl ExprType {
     }
 }
 
+pub const eLE: ExprType = 30;
+pub const eGE: ExprType = 29;
+pub const eNE: ExprType = 28;
+pub const eEQ: ExprType = 27;
+pub const eGT: ExprType = 26;
+pub const eLT: ExprType = 25;
+pub const eMINUS: ExprType = 24;
+pub const ePLUS: ExprType = 23;
+pub const eDIV: ExprType = 22;
+pub const eMULT: ExprType = 21;
+pub const eQUESTCOLON: ExprType = 20;
+pub const eARRAYREF: ExprType = 19;
+pub const eARRAYASSIGN: ExprType = 18;
+pub const ePREFIXSUB: ExprType = 17;
+pub const ePREFIXADD: ExprType = 16;
+pub const ePOSTFIXSUB: ExprType = 15;
+pub const ePOSTFIXADD: ExprType = 14;
+pub const eDIVASSIGN: ExprType = 13;
+pub const eMULASSIGN: ExprType = 12;
+pub const eSUBASSIGN: ExprType = 11;
+pub const eADDASSIGN: ExprType = 10;
+pub const eASSIGN: ExprType = 9;
+pub const eFCALL: ExprType = 8;
+pub const eOR: ExprType = 7;
+pub const eAND: ExprType = 6;
+pub const eNOT: ExprType = 5;
+pub const eSYMBOL: ExprType = 4;
+pub const eREAL: ExprType = 3;
+pub const eINTEGER: ExprType = 2;
+pub const eREGEXP: ExprType = 1;
+pub const eSTRING: ExprType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expr_st {
@@ -394,6 +447,7 @@ pub enum StmtType {
     sEXPR,
     sWHILE,
     sFOR,
+}
 impl StmtType {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -408,6 +462,13 @@ impl StmtType {
     }
 }
 
+pub const sFOR: StmtType = 6;
+pub const sWHILE: StmtType = 5;
+pub const sEXPR: StmtType = 4;
+pub const sIF: StmtType = 3;
+pub const sBLOCK: StmtType = 2;
+pub const sDEFSUB: StmtType = 1;
+pub const sRETURN: StmtType = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stmt_st {
@@ -474,6 +535,7 @@ pub type Primitive = Option::<
 pub enum WarningLevel {
     WARN_LIGHT = 10,
     WARN_ALL = 100,
+}
 impl WarningLevel {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -483,6 +545,8 @@ impl WarningLevel {
     }
 }
 
+pub const WARN_ALL: WarningLevel = 100;
+pub const WARN_LIGHT: WarningLevel = 10;
 #[inline]
 unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {
     return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {

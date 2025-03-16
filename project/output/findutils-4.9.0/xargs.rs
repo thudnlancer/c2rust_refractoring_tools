@@ -179,6 +179,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -198,6 +199,18 @@ impl C2RustUnnamed {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed = 8;
+pub const _ISpunct: C2RustUnnamed = 4;
+pub const _IScntrl: C2RustUnnamed = 2;
+pub const _ISblank: C2RustUnnamed = 1;
+pub const _ISgraph: C2RustUnnamed = 32768;
+pub const _ISprint: C2RustUnnamed = 16384;
+pub const _ISspace: C2RustUnnamed = 8192;
+pub const _ISxdigit: C2RustUnnamed = 4096;
+pub const _ISdigit: C2RustUnnamed = 2048;
+pub const _ISalpha: C2RustUnnamed = 1024;
+pub const _ISlower: C2RustUnnamed = 512;
+pub const _ISupper: C2RustUnnamed = 256;
 pub type pid_t = __pid_t;
 pub type ssize_t = __ssize_t;
 pub type size_t = libc::c_ulong;
@@ -583,6 +596,7 @@ pub enum C2RustUnnamed_11 {
     _SC_CLK_TCK = 2,
     _SC_CHILD_MAX = 1,
     _SC_ARG_MAX = 0,
+}
 impl C2RustUnnamed_11 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -805,6 +819,221 @@ impl C2RustUnnamed_11 {
     }
 }
 
+pub const _SC_THREAD_ROBUST_PRIO_PROTECT: C2RustUnnamed_11 = 248;
+pub const _SC_THREAD_ROBUST_PRIO_INHERIT: C2RustUnnamed_11 = 247;
+pub const _SC_XOPEN_STREAMS: C2RustUnnamed_11 = 246;
+pub const _SC_TRACE_USER_EVENT_MAX: C2RustUnnamed_11 = 245;
+pub const _SC_TRACE_SYS_MAX: C2RustUnnamed_11 = 244;
+pub const _SC_TRACE_NAME_MAX: C2RustUnnamed_11 = 243;
+pub const _SC_TRACE_EVENT_NAME_MAX: C2RustUnnamed_11 = 242;
+pub const _SC_SS_REPL_MAX: C2RustUnnamed_11 = 241;
+pub const _SC_V7_LPBIG_OFFBIG: C2RustUnnamed_11 = 240;
+pub const _SC_V7_LP64_OFF64: C2RustUnnamed_11 = 239;
+pub const _SC_V7_ILP32_OFFBIG: C2RustUnnamed_11 = 238;
+pub const _SC_V7_ILP32_OFF32: C2RustUnnamed_11 = 237;
+pub const _SC_RAW_SOCKETS: C2RustUnnamed_11 = 236;
+pub const _SC_IPV6: C2RustUnnamed_11 = 235;
+pub const _SC_LEVEL4_CACHE_LINESIZE: C2RustUnnamed_11 = 199;
+pub const _SC_LEVEL4_CACHE_ASSOC: C2RustUnnamed_11 = 198;
+pub const _SC_LEVEL4_CACHE_SIZE: C2RustUnnamed_11 = 197;
+pub const _SC_LEVEL3_CACHE_LINESIZE: C2RustUnnamed_11 = 196;
+pub const _SC_LEVEL3_CACHE_ASSOC: C2RustUnnamed_11 = 195;
+pub const _SC_LEVEL3_CACHE_SIZE: C2RustUnnamed_11 = 194;
+pub const _SC_LEVEL2_CACHE_LINESIZE: C2RustUnnamed_11 = 193;
+pub const _SC_LEVEL2_CACHE_ASSOC: C2RustUnnamed_11 = 192;
+pub const _SC_LEVEL2_CACHE_SIZE: C2RustUnnamed_11 = 191;
+pub const _SC_LEVEL1_DCACHE_LINESIZE: C2RustUnnamed_11 = 190;
+pub const _SC_LEVEL1_DCACHE_ASSOC: C2RustUnnamed_11 = 189;
+pub const _SC_LEVEL1_DCACHE_SIZE: C2RustUnnamed_11 = 188;
+pub const _SC_LEVEL1_ICACHE_LINESIZE: C2RustUnnamed_11 = 187;
+pub const _SC_LEVEL1_ICACHE_ASSOC: C2RustUnnamed_11 = 186;
+pub const _SC_LEVEL1_ICACHE_SIZE: C2RustUnnamed_11 = 185;
+pub const _SC_TRACE_LOG: C2RustUnnamed_11 = 184;
+pub const _SC_TRACE_INHERIT: C2RustUnnamed_11 = 183;
+pub const _SC_TRACE_EVENT_FILTER: C2RustUnnamed_11 = 182;
+pub const _SC_TRACE: C2RustUnnamed_11 = 181;
+pub const _SC_HOST_NAME_MAX: C2RustUnnamed_11 = 180;
+pub const _SC_V6_LPBIG_OFFBIG: C2RustUnnamed_11 = 179;
+pub const _SC_V6_LP64_OFF64: C2RustUnnamed_11 = 178;
+pub const _SC_V6_ILP32_OFFBIG: C2RustUnnamed_11 = 177;
+pub const _SC_V6_ILP32_OFF32: C2RustUnnamed_11 = 176;
+pub const _SC_2_PBS_CHECKPOINT: C2RustUnnamed_11 = 175;
+pub const _SC_STREAMS: C2RustUnnamed_11 = 174;
+pub const _SC_SYMLOOP_MAX: C2RustUnnamed_11 = 173;
+pub const _SC_2_PBS_TRACK: C2RustUnnamed_11 = 172;
+pub const _SC_2_PBS_MESSAGE: C2RustUnnamed_11 = 171;
+pub const _SC_2_PBS_LOCATE: C2RustUnnamed_11 = 170;
+pub const _SC_2_PBS_ACCOUNTING: C2RustUnnamed_11 = 169;
+pub const _SC_2_PBS: C2RustUnnamed_11 = 168;
+pub const _SC_USER_GROUPS_R: C2RustUnnamed_11 = 167;
+pub const _SC_USER_GROUPS: C2RustUnnamed_11 = 166;
+pub const _SC_TYPED_MEMORY_OBJECTS: C2RustUnnamed_11 = 165;
+pub const _SC_TIMEOUTS: C2RustUnnamed_11 = 164;
+pub const _SC_SYSTEM_DATABASE_R: C2RustUnnamed_11 = 163;
+pub const _SC_SYSTEM_DATABASE: C2RustUnnamed_11 = 162;
+pub const _SC_THREAD_SPORADIC_SERVER: C2RustUnnamed_11 = 161;
+pub const _SC_SPORADIC_SERVER: C2RustUnnamed_11 = 160;
+pub const _SC_SPAWN: C2RustUnnamed_11 = 159;
+pub const _SC_SIGNALS: C2RustUnnamed_11 = 158;
+pub const _SC_SHELL: C2RustUnnamed_11 = 157;
+pub const _SC_REGEX_VERSION: C2RustUnnamed_11 = 156;
+pub const _SC_REGEXP: C2RustUnnamed_11 = 155;
+pub const _SC_SPIN_LOCKS: C2RustUnnamed_11 = 154;
+pub const _SC_READER_WRITER_LOCKS: C2RustUnnamed_11 = 153;
+pub const _SC_NETWORKING: C2RustUnnamed_11 = 152;
+pub const _SC_SINGLE_PROCESS: C2RustUnnamed_11 = 151;
+pub const _SC_MULTI_PROCESS: C2RustUnnamed_11 = 150;
+pub const _SC_MONOTONIC_CLOCK: C2RustUnnamed_11 = 149;
+pub const _SC_FILE_SYSTEM: C2RustUnnamed_11 = 148;
+pub const _SC_FILE_LOCKING: C2RustUnnamed_11 = 147;
+pub const _SC_FILE_ATTRIBUTES: C2RustUnnamed_11 = 146;
+pub const _SC_PIPE: C2RustUnnamed_11 = 145;
+pub const _SC_FIFO: C2RustUnnamed_11 = 144;
+pub const _SC_FD_MGMT: C2RustUnnamed_11 = 143;
+pub const _SC_DEVICE_SPECIFIC_R: C2RustUnnamed_11 = 142;
+pub const _SC_DEVICE_SPECIFIC: C2RustUnnamed_11 = 141;
+pub const _SC_DEVICE_IO: C2RustUnnamed_11 = 140;
+pub const _SC_THREAD_CPUTIME: C2RustUnnamed_11 = 139;
+pub const _SC_CPUTIME: C2RustUnnamed_11 = 138;
+pub const _SC_CLOCK_SELECTION: C2RustUnnamed_11 = 137;
+pub const _SC_C_LANG_SUPPORT_R: C2RustUnnamed_11 = 136;
+pub const _SC_C_LANG_SUPPORT: C2RustUnnamed_11 = 135;
+pub const _SC_BASE: C2RustUnnamed_11 = 134;
+pub const _SC_BARRIERS: C2RustUnnamed_11 = 133;
+pub const _SC_ADVISORY_INFO: C2RustUnnamed_11 = 132;
+pub const _SC_XOPEN_REALTIME_THREADS: C2RustUnnamed_11 = 131;
+pub const _SC_XOPEN_REALTIME: C2RustUnnamed_11 = 130;
+pub const _SC_XOPEN_LEGACY: C2RustUnnamed_11 = 129;
+pub const _SC_XBS5_LPBIG_OFFBIG: C2RustUnnamed_11 = 128;
+pub const _SC_XBS5_LP64_OFF64: C2RustUnnamed_11 = 127;
+pub const _SC_XBS5_ILP32_OFFBIG: C2RustUnnamed_11 = 126;
+pub const _SC_XBS5_ILP32_OFF32: C2RustUnnamed_11 = 125;
+pub const _SC_NL_TEXTMAX: C2RustUnnamed_11 = 124;
+pub const _SC_NL_SETMAX: C2RustUnnamed_11 = 123;
+pub const _SC_NL_NMAX: C2RustUnnamed_11 = 122;
+pub const _SC_NL_MSGMAX: C2RustUnnamed_11 = 121;
+pub const _SC_NL_LANGMAX: C2RustUnnamed_11 = 120;
+pub const _SC_NL_ARGMAX: C2RustUnnamed_11 = 119;
+pub const _SC_USHRT_MAX: C2RustUnnamed_11 = 118;
+pub const _SC_ULONG_MAX: C2RustUnnamed_11 = 117;
+pub const _SC_UINT_MAX: C2RustUnnamed_11 = 116;
+pub const _SC_UCHAR_MAX: C2RustUnnamed_11 = 115;
+pub const _SC_SHRT_MIN: C2RustUnnamed_11 = 114;
+pub const _SC_SHRT_MAX: C2RustUnnamed_11 = 113;
+pub const _SC_SCHAR_MIN: C2RustUnnamed_11 = 112;
+pub const _SC_SCHAR_MAX: C2RustUnnamed_11 = 111;
+pub const _SC_SSIZE_MAX: C2RustUnnamed_11 = 110;
+pub const _SC_NZERO: C2RustUnnamed_11 = 109;
+pub const _SC_MB_LEN_MAX: C2RustUnnamed_11 = 108;
+pub const _SC_WORD_BIT: C2RustUnnamed_11 = 107;
+pub const _SC_LONG_BIT: C2RustUnnamed_11 = 106;
+pub const _SC_INT_MIN: C2RustUnnamed_11 = 105;
+pub const _SC_INT_MAX: C2RustUnnamed_11 = 104;
+pub const _SC_CHAR_MIN: C2RustUnnamed_11 = 103;
+pub const _SC_CHAR_MAX: C2RustUnnamed_11 = 102;
+pub const _SC_CHAR_BIT: C2RustUnnamed_11 = 101;
+pub const _SC_XOPEN_XPG4: C2RustUnnamed_11 = 100;
+pub const _SC_XOPEN_XPG3: C2RustUnnamed_11 = 99;
+pub const _SC_XOPEN_XPG2: C2RustUnnamed_11 = 98;
+pub const _SC_2_UPE: C2RustUnnamed_11 = 97;
+pub const _SC_2_C_VERSION: C2RustUnnamed_11 = 96;
+pub const _SC_2_CHAR_TERM: C2RustUnnamed_11 = 95;
+pub const _SC_XOPEN_SHM: C2RustUnnamed_11 = 94;
+pub const _SC_XOPEN_ENH_I18N: C2RustUnnamed_11 = 93;
+pub const _SC_XOPEN_CRYPT: C2RustUnnamed_11 = 92;
+pub const _SC_XOPEN_UNIX: C2RustUnnamed_11 = 91;
+pub const _SC_XOPEN_XCU_VERSION: C2RustUnnamed_11 = 90;
+pub const _SC_XOPEN_VERSION: C2RustUnnamed_11 = 89;
+pub const _SC_PASS_MAX: C2RustUnnamed_11 = 88;
+pub const _SC_ATEXIT_MAX: C2RustUnnamed_11 = 87;
+pub const _SC_AVPHYS_PAGES: C2RustUnnamed_11 = 86;
+pub const _SC_PHYS_PAGES: C2RustUnnamed_11 = 85;
+pub const _SC_NPROCESSORS_ONLN: C2RustUnnamed_11 = 84;
+pub const _SC_NPROCESSORS_CONF: C2RustUnnamed_11 = 83;
+pub const _SC_THREAD_PROCESS_SHARED: C2RustUnnamed_11 = 82;
+pub const _SC_THREAD_PRIO_PROTECT: C2RustUnnamed_11 = 81;
+pub const _SC_THREAD_PRIO_INHERIT: C2RustUnnamed_11 = 80;
+pub const _SC_THREAD_PRIORITY_SCHEDULING: C2RustUnnamed_11 = 79;
+pub const _SC_THREAD_ATTR_STACKSIZE: C2RustUnnamed_11 = 78;
+pub const _SC_THREAD_ATTR_STACKADDR: C2RustUnnamed_11 = 77;
+pub const _SC_THREAD_THREADS_MAX: C2RustUnnamed_11 = 76;
+pub const _SC_THREAD_STACK_MIN: C2RustUnnamed_11 = 75;
+pub const _SC_THREAD_KEYS_MAX: C2RustUnnamed_11 = 74;
+pub const _SC_THREAD_DESTRUCTOR_ITERATIONS: C2RustUnnamed_11 = 73;
+pub const _SC_TTY_NAME_MAX: C2RustUnnamed_11 = 72;
+pub const _SC_LOGIN_NAME_MAX: C2RustUnnamed_11 = 71;
+pub const _SC_GETPW_R_SIZE_MAX: C2RustUnnamed_11 = 70;
+pub const _SC_GETGR_R_SIZE_MAX: C2RustUnnamed_11 = 69;
+pub const _SC_THREAD_SAFE_FUNCTIONS: C2RustUnnamed_11 = 68;
+pub const _SC_THREADS: C2RustUnnamed_11 = 67;
+pub const _SC_T_IOV_MAX: C2RustUnnamed_11 = 66;
+pub const _SC_PII_OSI_M: C2RustUnnamed_11 = 65;
+pub const _SC_PII_OSI_CLTS: C2RustUnnamed_11 = 64;
+pub const _SC_PII_OSI_COTS: C2RustUnnamed_11 = 63;
+pub const _SC_PII_INTERNET_DGRAM: C2RustUnnamed_11 = 62;
+pub const _SC_PII_INTERNET_STREAM: C2RustUnnamed_11 = 61;
+pub const _SC_IOV_MAX: C2RustUnnamed_11 = 60;
+pub const _SC_UIO_MAXIOV: C2RustUnnamed_11 = 60;
+pub const _SC_SELECT: C2RustUnnamed_11 = 59;
+pub const _SC_POLL: C2RustUnnamed_11 = 58;
+pub const _SC_PII_OSI: C2RustUnnamed_11 = 57;
+pub const _SC_PII_INTERNET: C2RustUnnamed_11 = 56;
+pub const _SC_PII_SOCKET: C2RustUnnamed_11 = 55;
+pub const _SC_PII_XTI: C2RustUnnamed_11 = 54;
+pub const _SC_PII: C2RustUnnamed_11 = 53;
+pub const _SC_2_LOCALEDEF: C2RustUnnamed_11 = 52;
+pub const _SC_2_SW_DEV: C2RustUnnamed_11 = 51;
+pub const _SC_2_FORT_RUN: C2RustUnnamed_11 = 50;
+pub const _SC_2_FORT_DEV: C2RustUnnamed_11 = 49;
+pub const _SC_2_C_DEV: C2RustUnnamed_11 = 48;
+pub const _SC_2_C_BIND: C2RustUnnamed_11 = 47;
+pub const _SC_2_VERSION: C2RustUnnamed_11 = 46;
+pub const _SC_CHARCLASS_NAME_MAX: C2RustUnnamed_11 = 45;
+pub const _SC_RE_DUP_MAX: C2RustUnnamed_11 = 44;
+pub const _SC_LINE_MAX: C2RustUnnamed_11 = 43;
+pub const _SC_EXPR_NEST_MAX: C2RustUnnamed_11 = 42;
+pub const _SC_EQUIV_CLASS_MAX: C2RustUnnamed_11 = 41;
+pub const _SC_COLL_WEIGHTS_MAX: C2RustUnnamed_11 = 40;
+pub const _SC_BC_STRING_MAX: C2RustUnnamed_11 = 39;
+pub const _SC_BC_SCALE_MAX: C2RustUnnamed_11 = 38;
+pub const _SC_BC_DIM_MAX: C2RustUnnamed_11 = 37;
+pub const _SC_BC_BASE_MAX: C2RustUnnamed_11 = 36;
+pub const _SC_TIMER_MAX: C2RustUnnamed_11 = 35;
+pub const _SC_SIGQUEUE_MAX: C2RustUnnamed_11 = 34;
+pub const _SC_SEM_VALUE_MAX: C2RustUnnamed_11 = 33;
+pub const _SC_SEM_NSEMS_MAX: C2RustUnnamed_11 = 32;
+pub const _SC_RTSIG_MAX: C2RustUnnamed_11 = 31;
+pub const _SC_PAGESIZE: C2RustUnnamed_11 = 30;
+pub const _SC_VERSION: C2RustUnnamed_11 = 29;
+pub const _SC_MQ_PRIO_MAX: C2RustUnnamed_11 = 28;
+pub const _SC_MQ_OPEN_MAX: C2RustUnnamed_11 = 27;
+pub const _SC_DELAYTIMER_MAX: C2RustUnnamed_11 = 26;
+pub const _SC_AIO_PRIO_DELTA_MAX: C2RustUnnamed_11 = 25;
+pub const _SC_AIO_MAX: C2RustUnnamed_11 = 24;
+pub const _SC_AIO_LISTIO_MAX: C2RustUnnamed_11 = 23;
+pub const _SC_SHARED_MEMORY_OBJECTS: C2RustUnnamed_11 = 22;
+pub const _SC_SEMAPHORES: C2RustUnnamed_11 = 21;
+pub const _SC_MESSAGE_PASSING: C2RustUnnamed_11 = 20;
+pub const _SC_MEMORY_PROTECTION: C2RustUnnamed_11 = 19;
+pub const _SC_MEMLOCK_RANGE: C2RustUnnamed_11 = 18;
+pub const _SC_MEMLOCK: C2RustUnnamed_11 = 17;
+pub const _SC_MAPPED_FILES: C2RustUnnamed_11 = 16;
+pub const _SC_FSYNC: C2RustUnnamed_11 = 15;
+pub const _SC_SYNCHRONIZED_IO: C2RustUnnamed_11 = 14;
+pub const _SC_PRIORITIZED_IO: C2RustUnnamed_11 = 13;
+pub const _SC_ASYNCHRONOUS_IO: C2RustUnnamed_11 = 12;
+pub const _SC_TIMERS: C2RustUnnamed_11 = 11;
+pub const _SC_PRIORITY_SCHEDULING: C2RustUnnamed_11 = 10;
+pub const _SC_REALTIME_SIGNALS: C2RustUnnamed_11 = 9;
+pub const _SC_SAVED_IDS: C2RustUnnamed_11 = 8;
+pub const _SC_JOB_CONTROL: C2RustUnnamed_11 = 7;
+pub const _SC_TZNAME_MAX: C2RustUnnamed_11 = 6;
+pub const _SC_STREAM_MAX: C2RustUnnamed_11 = 5;
+pub const _SC_OPEN_MAX: C2RustUnnamed_11 = 4;
+pub const _SC_NGROUPS_MAX: C2RustUnnamed_11 = 3;
+pub const _SC_CLK_TCK: C2RustUnnamed_11 = 2;
+pub const _SC_CHILD_MAX: C2RustUnnamed_11 = 1;
+pub const _SC_ARG_MAX: C2RustUnnamed_11 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -819,6 +1048,7 @@ pub enum quoting_style {
     locale_quoting_style,
     clocale_quoting_style,
     custom_quoting_style,
+}
 impl quoting_style {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -837,6 +1067,17 @@ impl quoting_style {
     }
 }
 
+pub const custom_quoting_style: quoting_style = 10;
+pub const clocale_quoting_style: quoting_style = 9;
+pub const locale_quoting_style: quoting_style = 8;
+pub const escape_quoting_style: quoting_style = 7;
+pub const c_maybe_quoting_style: quoting_style = 6;
+pub const c_quoting_style: quoting_style = 5;
+pub const shell_escape_always_quoting_style: quoting_style = 4;
+pub const shell_escape_quoting_style: quoting_style = 3;
+pub const shell_always_quoting_style: quoting_style = 2;
+pub const shell_quoting_style: quoting_style = 1;
+pub const literal_quoting_style: quoting_style = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct buildcmd_state {
@@ -880,6 +1121,7 @@ pub enum BC_INIT_STATUS {
     BC_INIT_OK = 0,
     BC_INIT_ENV_TOO_BIG,
     BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
+}
 impl BC_INIT_STATUS {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -890,10 +1132,14 @@ impl BC_INIT_STATUS {
     }
 }
 
+pub const BC_INIT_CANNOT_ACCOMODATE_HEADROOM: BC_INIT_STATUS = 2;
+pub const BC_INIT_ENV_TOO_BIG: BC_INIT_STATUS = 1;
+pub const BC_INIT_OK: BC_INIT_STATUS = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum LongOptionIdentifier {
     PROCESS_SLOT_VAR,
+}
 impl LongOptionIdentifier {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -902,6 +1148,7 @@ impl LongOptionIdentifier {
     }
 }
 
+pub const PROCESS_SLOT_VAR: LongOptionIdentifier = 128;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum XargsStatusValues {
@@ -910,6 +1157,7 @@ pub enum XargsStatusValues {
     XARGS_EXIT_CLIENT_FATAL_SIG = 125,
     XARGS_EXIT_COMMAND_CANNOT_BE_RUN = 126,
     XARGS_EXIT_COMMAND_NOT_FOUND = 127,
+}
 impl XargsStatusValues {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -922,10 +1170,16 @@ impl XargsStatusValues {
     }
 }
 
+pub const XARGS_EXIT_COMMAND_NOT_FOUND: XargsStatusValues = 127;
+pub const XARGS_EXIT_COMMAND_CANNOT_BE_RUN: XargsStatusValues = 126;
+pub const XARGS_EXIT_CLIENT_FATAL_SIG: XargsStatusValues = 125;
+pub const XARGS_EXIT_CLIENT_EXIT_255: XargsStatusValues = 124;
+pub const XARGS_EXIT_CLIENT_EXIT_NONZERO: XargsStatusValues = 123;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum ClientStatusValues {
     CHILD_EXIT_PLEASE_STOP_IMMEDIATELY = 255,
+}
 impl ClientStatusValues {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -934,6 +1188,7 @@ impl ClientStatusValues {
     }
 }
 
+pub const CHILD_EXIT_PLEASE_STOP_IMMEDIATELY: ClientStatusValues = 255;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_12 {
@@ -946,6 +1201,7 @@ pub enum read_line_state {
     SPACE = 1,
     QUOTE = 2,
     BACKSLASH = 3,
+}
 impl read_line_state {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -957,6 +1213,10 @@ impl read_line_state {
     }
 }
 
+pub const BACKSLASH: read_line_state = 3;
+pub const QUOTE: read_line_state = 2;
+pub const SPACE: read_line_state = 1;
+pub const NORM: read_line_state = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_13 {
@@ -1067,16 +1327,11 @@ pub struct C2RustUnnamed_33 {
 pub struct C2RustUnnamed_34 {
     pub _gl_dummy: libc::c_int,
 }
-pub const XARGS_POSIX_HEADROOM: C2RustUnnamed_36 = 2048;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct C2RustUnnamed_35 {
-    pub _gl_dummy: libc::c_int,
-}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_36 {
     XARGS_POSIX_HEADROOM = 2048,
+}
 impl C2RustUnnamed_36 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -1090,7 +1345,6 @@ impl C2RustUnnamed_36 {
 pub struct C2RustUnnamed_35 {
     pub _gl_dummy: libc::c_int,
 }
-pub type C2RustUnnamed_36 = libc::c_uint;
 static mut input_stream: *mut FILE = 0 as *const FILE as *mut FILE;
 static mut linebuf: *mut libc::c_char = 0 as *const libc::c_char as *mut libc::c_char;
 static mut keep_stdin: libc::c_int = 0 as libc::c_int;

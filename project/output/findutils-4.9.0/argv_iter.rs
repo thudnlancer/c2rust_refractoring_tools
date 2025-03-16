@@ -74,6 +74,7 @@ pub enum argv_iter_err {
     AI_ERR_MEM = 3,
     AI_ERR_EOF = 2,
     AI_ERR_OK = 1,
+}
 impl argv_iter_err {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -85,6 +86,10 @@ impl argv_iter_err {
     }
 }
 
+pub const AI_ERR_READ: argv_iter_err = 4;
+pub const AI_ERR_MEM: argv_iter_err = 3;
+pub const AI_ERR_EOF: argv_iter_err = 2;
+pub const AI_ERR_OK: argv_iter_err = 1;
 #[no_mangle]
 pub unsafe extern "C" fn argv_iter_init_argv(
     mut argv: *mut *mut libc::c_char,

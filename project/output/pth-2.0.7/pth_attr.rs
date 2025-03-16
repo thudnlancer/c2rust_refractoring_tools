@@ -284,6 +284,7 @@ pub enum pth_status_t {
     PTH_STATUS_PENDING,
     PTH_STATUS_OCCURRED,
     PTH_STATUS_FAILED,
+}
 impl pth_status_t {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -294,6 +295,9 @@ impl pth_status_t {
     }
 }
 
+pub const PTH_STATUS_FAILED: pth_status_t = 2;
+pub const PTH_STATUS_OCCURRED: pth_status_t = 1;
+pub const PTH_STATUS_PENDING: pth_status_t = 0;
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -303,6 +307,7 @@ pub enum pth_state_en {
     PTH_STATE_READY,
     PTH_STATE_WAITING,
     PTH_STATE_DEAD,
+}
 impl pth_state_en {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -315,6 +320,11 @@ impl pth_state_en {
     }
 }
 
+pub const PTH_STATE_DEAD: pth_state_en = 4;
+pub const PTH_STATE_WAITING: pth_state_en = 3;
+pub const PTH_STATE_READY: pth_state_en = 2;
+pub const PTH_STATE_NEW: pth_state_en = 1;
+pub const PTH_STATE_SCHEDULER: pth_state_en = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct pth_attr_st {
@@ -346,6 +356,7 @@ pub enum C2RustUnnamed_9 {
     PTH_ATTR_JOINABLE = 2,
     PTH_ATTR_NAME = 1,
     PTH_ATTR_PRIO = 0,
+}
 impl C2RustUnnamed_9 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -368,13 +379,27 @@ impl C2RustUnnamed_9 {
     }
 }
 
-pub const PTH_ATTR_SET: C2RustUnnamed_10 = 1;
-pub const PTH_ATTR_GET: C2RustUnnamed_10 = 0;
+pub const PTH_ATTR_BOUND: C2RustUnnamed_9 = 14;
+pub const PTH_ATTR_EVENTS: C2RustUnnamed_9 = 13;
+pub const PTH_ATTR_STATE: C2RustUnnamed_9 = 12;
+pub const PTH_ATTR_START_ARG: C2RustUnnamed_9 = 11;
+pub const PTH_ATTR_START_FUNC: C2RustUnnamed_9 = 10;
+pub const PTH_ATTR_TIME_RAN: C2RustUnnamed_9 = 9;
+pub const PTH_ATTR_TIME_LAST: C2RustUnnamed_9 = 8;
+pub const PTH_ATTR_TIME_SPAWN: C2RustUnnamed_9 = 7;
+pub const PTH_ATTR_DISPATCHES: C2RustUnnamed_9 = 6;
+pub const PTH_ATTR_STACK_ADDR: C2RustUnnamed_9 = 5;
+pub const PTH_ATTR_STACK_SIZE: C2RustUnnamed_9 = 4;
+pub const PTH_ATTR_CANCEL_STATE: C2RustUnnamed_9 = 3;
+pub const PTH_ATTR_JOINABLE: C2RustUnnamed_9 = 2;
+pub const PTH_ATTR_NAME: C2RustUnnamed_9 = 1;
+pub const PTH_ATTR_PRIO: C2RustUnnamed_9 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_10 {
     PTH_ATTR_GET,
     PTH_ATTR_SET,
+}
 impl C2RustUnnamed_10 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -384,7 +409,6 @@ impl C2RustUnnamed_10 {
     }
 }
 
-pub type C2RustUnnamed_10 = libc::c_uint;
 #[no_mangle]
 pub unsafe extern "C" fn pth_attr_of(mut t: pth_t) -> pth_attr_t {
     let mut a: pth_attr_t = 0 as *mut pth_attr_st;

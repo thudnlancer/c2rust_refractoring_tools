@@ -84,6 +84,7 @@ pub type u64_0 = uint64_t;
 #[repr(C)]
 pub enum C2RustUnnamed {
     SHA384_DIGEST_SIZE = 48,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -92,10 +93,12 @@ impl C2RustUnnamed {
     }
 }
 
+pub const SHA384_DIGEST_SIZE: C2RustUnnamed = 48;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
     SHA512_DIGEST_SIZE = 64,
+}
 impl C2RustUnnamed_0 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -104,6 +107,7 @@ impl C2RustUnnamed_0 {
     }
 }
 
+pub const SHA512_DIGEST_SIZE: C2RustUnnamed_0 = 64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sha512_ctx {

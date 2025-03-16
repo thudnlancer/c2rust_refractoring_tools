@@ -67,6 +67,7 @@ pub type pth_event_t = *mut pth_event_st;
 pub enum C2RustUnnamed {
     PTH_FREE_THIS,
     PTH_FREE_ALL,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -76,6 +77,8 @@ impl C2RustUnnamed {
     }
 }
 
+pub const PTH_FREE_ALL: C2RustUnnamed = 1;
+pub const PTH_FREE_THIS: C2RustUnnamed = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct pth_ringnode_st {
@@ -105,6 +108,7 @@ pub enum philstat {
     thinking,
     hungry,
     eating,
+}
 impl philstat {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -115,6 +119,9 @@ impl philstat {
     }
 }
 
+pub const eating: philstat = 2;
+pub const hungry: philstat = 1;
+pub const thinking: philstat = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tablestruct {

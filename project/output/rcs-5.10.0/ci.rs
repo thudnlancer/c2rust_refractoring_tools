@@ -338,6 +338,7 @@ pub enum kwsub {
     kwsub_v,
     kwsub_o,
     kwsub_b,
+}
 impl kwsub {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -351,6 +352,12 @@ impl kwsub {
     }
 }
 
+pub const kwsub_b: kwsub = 5;
+pub const kwsub_o: kwsub = 4;
+pub const kwsub_v: kwsub = 3;
+pub const kwsub_k: kwsub = 2;
+pub const kwsub_kvl: kwsub = 1;
+pub const kwsub_kv: kwsub = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -410,6 +417,7 @@ pub enum readmethod {
     RM_MMAP,
     RM_MEM,
     RM_STDIO,
+}
 impl readmethod {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -420,6 +428,9 @@ impl readmethod {
     }
 }
 
+pub const RM_STDIO: readmethod = 2;
+pub const RM_MEM: readmethod = 1;
+pub const RM_MMAP: readmethod = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rcslock {
@@ -479,6 +490,7 @@ pub enum maker {
     notmade,
     real,
     effective,
+}
 impl maker {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -489,6 +501,9 @@ impl maker {
     }
 }
 
+pub const effective: maker = 2;
+pub const real: maker = 1;
+pub const notmade: maker = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -622,6 +637,7 @@ pub enum C2RustUnnamed_3 {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed_3 {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -641,6 +657,18 @@ impl C2RustUnnamed_3 {
     }
 }
 
+pub const _ISalnum: C2RustUnnamed_3 = 8;
+pub const _ISpunct: C2RustUnnamed_3 = 4;
+pub const _IScntrl: C2RustUnnamed_3 = 2;
+pub const _ISblank: C2RustUnnamed_3 = 1;
+pub const _ISgraph: C2RustUnnamed_3 = 32768;
+pub const _ISprint: C2RustUnnamed_3 = 16384;
+pub const _ISspace: C2RustUnnamed_3 = 8192;
+pub const _ISxdigit: C2RustUnnamed_3 = 4096;
+pub const _ISdigit: C2RustUnnamed_3 = 2048;
+pub const _ISalpha: C2RustUnnamed_3 = 1024;
+pub const _ISlower: C2RustUnnamed_3 = 512;
+pub const _ISupper: C2RustUnnamed_3 = 256;
 pub type submain_t = unsafe extern "C" fn(
     *const libc::c_char,
     libc::c_int,
@@ -660,6 +688,7 @@ pub enum isr_actions {
     ISR_IGNOREINTS,
     ISR_RESTOREINTS,
     ISR_CATCHMMAPINTS,
+}
 impl isr_actions {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -671,6 +700,10 @@ impl isr_actions {
     }
 }
 
+pub const ISR_CATCHMMAPINTS: isr_actions = 3;
+pub const ISR_RESTOREINTS: isr_actions = 2;
+pub const ISR_IGNOREINTS: isr_actions = 1;
+pub const ISR_CATCHINTS: isr_actions = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expctx {

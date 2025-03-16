@@ -24,6 +24,7 @@ pub enum strtol_error {
     LONGINT_INVALID_SUFFIX_CHAR = 2,
     LONGINT_OVERFLOW = 1,
     LONGINT_OK = 0,
+}
 impl strtol_error {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -36,7 +37,11 @@ impl strtol_error {
     }
 }
 
-pub const _ISspace: C2RustUnnamed = 8192;
+pub const LONGINT_INVALID: strtol_error = 4;
+pub const LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW: strtol_error = 3;
+pub const LONGINT_INVALID_SUFFIX_CHAR: strtol_error = 2;
+pub const LONGINT_OVERFLOW: strtol_error = 1;
+pub const LONGINT_OK: strtol_error = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -52,6 +57,7 @@ pub enum C2RustUnnamed {
     _ISalpha = 1024,
     _ISlower = 512,
     _ISupper = 256,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {

@@ -123,13 +123,12 @@ pub type rb_node = gsl_bst_rb_node;
 pub const GSL_ETABLE: C2RustUnnamed = 26;
 pub type rb_table = gsl_bst_rb_table;
 pub const GSL_SUCCESS: C2RustUnnamed = 0;
-pub const RB_BLACK: rb_color = 0;
-pub const RB_RED: rb_color = 1;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum rb_color {
     RB_BLACK,
     RB_RED,
+}
 impl rb_color {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -139,7 +138,6 @@ impl rb_color {
     }
 }
 
-pub type rb_color = libc::c_uint;
 pub type C2RustUnnamed = libc::c_int;
 pub const GSL_EOF: C2RustUnnamed = 32;
 pub const GSL_ETOLG: C2RustUnnamed = 31;

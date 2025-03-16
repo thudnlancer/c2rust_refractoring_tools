@@ -38,6 +38,7 @@ pub enum zprimality {
     NONPRIME = 0,
     PROBABLY_PRIME,
     PRIME,
+}
 impl zprimality {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -48,6 +49,9 @@ impl zprimality {
     }
 }
 
+pub const PRIME: zprimality = 2;
+pub const PROBABLY_PRIME: zprimality = 1;
+pub const NONPRIME: zprimality = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zranddev {
@@ -58,6 +62,7 @@ pub enum zranddev {
     LIBC_RAND_RANDOM,
     LIBC_RANDOM_RANDOM,
     LIBC_RAND48_RANDOM,
+}
 impl zranddev {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -72,12 +77,20 @@ impl zranddev {
     }
 }
 
+pub const LIBC_RAND48_RANDOM: zranddev = 6;
+pub const LIBC_RANDOM_RANDOM: zranddev = 5;
+pub const LIBC_RAND_RANDOM: zranddev = 4;
+pub const FASTEST_RANDOM: zranddev = 3;
+pub const DEFAULT_RANDOM: zranddev = 2;
+pub const SECURE_RANDOM: zranddev = 1;
+pub const FAST_RANDOM: zranddev = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum zranddist {
     QUASIUNIFORM = 0,
     UNIFORM,
     MODUNIFORM,
+}
 impl zranddist {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -88,6 +101,9 @@ impl zranddist {
     }
 }
 
+pub const MODUNIFORM: zranddist = 2;
+pub const UNIFORM: zranddist = 1;
+pub const QUASIUNIFORM: zranddist = 0;
 #[inline]
 unsafe extern "C" fn libzahl_memcpy(
     mut d_0: *mut zahl_char_t,

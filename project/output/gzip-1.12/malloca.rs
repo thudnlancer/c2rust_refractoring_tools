@@ -8,8 +8,6 @@ pub type ptrdiff_t = libc::c_long;
 pub type size_t = libc::c_ulong;
 pub type uintptr_t = libc::c_ulong;
 pub type small_t = libc::c_uchar;
-pub const sa_alignment_max: C2RustUnnamed = 16;
-pub type idx_t = ptrdiff_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -18,6 +16,7 @@ pub enum C2RustUnnamed {
     sa_alignment_longlong = 8,
     sa_alignment_double = 8,
     sa_alignment_long = 8,
+}
 impl C2RustUnnamed {
     fn to_libc_c_uint(self) -> libc::c_uint {
         match self {
@@ -30,6 +29,7 @@ impl C2RustUnnamed {
     }
 }
 
+pub type idx_t = ptrdiff_t;
 #[no_mangle]
 pub unsafe extern "C" fn mmalloca(mut n: size_t) -> *mut libc::c_void {
     let mut alignment2_mask: uintptr_t = (2 as libc::c_int
