@@ -1,9 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
-#![feature(extern_types)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     fn strtod(
         __nptr: *const libc::c_char,
         __endptr: *mut *mut libc::c_char,
@@ -20,9 +26,10 @@ extern "C" {
         __act: *const sigaction,
         __oact: *mut sigaction,
     ) -> libc::c_int;
-    static mut stdin: *mut FILE;
-    static mut stdout: *mut FILE;
-    static mut stderr: *mut FILE;
+    fn _IO_putc(__c: libc::c_int, __fp: *mut _IO_FILE) -> libc::c_int;
+    static mut stdin: *mut _IO_FILE;
+    static mut stdout: *mut _IO_FILE;
+    static mut stderr: *mut _IO_FILE;
     fn fclose(__stream: *mut FILE) -> libc::c_int;
     fn fflush(__stream: *mut FILE) -> libc::c_int;
     fn setvbuf(
@@ -34,7 +41,6 @@ extern "C" {
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn putc(__c: libc::c_int, __stream: *mut FILE) -> libc::c_int;
     fn fputs(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
     fn fread(
         __ptr: *mut libc::c_void,
@@ -56,47 +62,19 @@ extern "C" {
     fn time(__timer: *mut time_t) -> time_t;
     fn ctime(__timer: *const time_t) -> *mut libc::c_char;
     fn __errno_location() -> *mut libc::c_int;
-    fn pfatal_with_name(_: *const libc::c_char) -> !;
-    fn xrealloc(_: *mut libc::c_void, _: size_t) -> *mut libc::c_void;
-    fn xstrdup(_: *const libc::c_char) -> *mut libc::c_char;
-    fn make_toui(_: *const libc::c_char, _: *mut *const libc::c_char) -> libc::c_uint;
-    fn xmalloc(_: size_t) -> *mut libc::c_void;
-    fn xcalloc(_: size_t) -> *mut libc::c_void;
-    fn strcache_add(str: *const libc::c_char) -> *const libc::c_char;
-    static mut handling_fatal_signal: sig_atomic_t;
-    fn perror_with_name(_: *const libc::c_char, _: *const libc::c_char);
-    fn remote_cleanup();
-    static mut version_string: *mut libc::c_char;
-    static mut make_host: *mut libc::c_char;
-    static mut remote_description: *mut libc::c_char;
-    fn print_variable_data_base();
-    fn print_dir_data_base();
-    fn get_tmpdir() -> *const libc::c_char;
-    fn print_vpath_data_base();
-    fn strcache_print_stats(prefix: *const libc::c_char);
-    fn get_tmpfile(_: *mut *mut libc::c_char) -> *mut FILE;
-    fn hash_init_directories();
-    fn define_default_variables();
-    fn undefine_default_variables();
-    fn set_default_suffixes();
-    fn install_default_suffix_rules();
-    fn install_default_implicit_rules();
-    fn build_vpath_lists();
-    fn strcache_init();
-    fn construct_include_path(arg_dirs: *mut *const libc::c_char);
-    fn guile_gmake_setup(flocp: *const floc) -> libc::c_int;
-    fn load_file(
-        flocp: *const floc,
-        file: *mut file,
-        noerror: libc::c_int,
-    ) -> libc::c_int;
+    fn chdir(__path: *const libc::c_char) -> libc::c_int;
+    fn getcwd(__buf: *mut libc::c_char, __size: size_t) -> *mut libc::c_char;
+    static mut environ: *mut *mut libc::c_char;
+    fn _exit(_: libc::c_int) -> !;
+    fn ttyname(__fd: libc::c_int) -> *mut libc::c_char;
+    fn isatty(__fd: libc::c_int) -> libc::c_int;
+    fn unlink(__name: *const libc::c_char) -> libc::c_int;
     static mut optarg: *mut libc::c_char;
     static mut optind: libc::c_int;
     static mut opterr: libc::c_int;
-    fn remote_setup();
     fn free(__ptr: *mut libc::c_void);
     fn abort() -> !;
-    fn atexit(__func: Option::<unsafe extern "C" fn() -> ()>) -> libc::c_int;
+    fn atexit(__func: Option<unsafe extern "C" fn() -> ()>) -> libc::c_int;
     fn exit(_: libc::c_int) -> !;
     fn putenv(__string: *mut libc::c_char) -> libc::c_int;
     fn memcpy(
@@ -147,13 +125,41 @@ extern "C" {
     fn concat(_: libc::c_uint, _: ...) -> *const libc::c_char;
     fn error(flocp: *const floc, length: size_t, fmt: *const libc::c_char, _: ...);
     fn fatal(flocp: *const floc, length: size_t, fmt: *const libc::c_char, _: ...) -> !;
-    fn chdir(__path: *const libc::c_char) -> libc::c_int;
-    fn getcwd(__buf: *mut libc::c_char, __size: size_t) -> *mut libc::c_char;
-    static mut environ: *mut *mut libc::c_char;
-    fn _exit(_: libc::c_int) -> !;
-    fn ttyname(__fd: libc::c_int) -> *mut libc::c_char;
-    fn isatty(__fd: libc::c_int) -> libc::c_int;
-    fn unlink(__name: *const libc::c_char) -> libc::c_int;
+    fn remote_setup();
+    fn load_file(
+        flocp: *const floc,
+        file: *mut file,
+        noerror: libc::c_int,
+    ) -> libc::c_int;
+    fn guile_gmake_setup(flocp: *const floc) -> libc::c_int;
+    fn strcache_init();
+    fn build_vpath_lists();
+    fn install_default_implicit_rules();
+    fn install_default_suffix_rules();
+    fn set_default_suffixes();
+    fn undefine_default_variables();
+    fn define_default_variables();
+    fn hash_init_directories();
+    fn construct_include_path(arg_dirs: *mut *const libc::c_char);
+    fn get_tmpfile(_: *mut *mut libc::c_char) -> *mut FILE;
+    fn get_tmpdir() -> *const libc::c_char;
+    fn pfatal_with_name(_: *const libc::c_char) -> !;
+    fn xrealloc(_: *mut libc::c_void, _: size_t) -> *mut libc::c_void;
+    fn xstrdup(_: *const libc::c_char) -> *mut libc::c_char;
+    fn make_toui(_: *const libc::c_char, _: *mut *const libc::c_char) -> libc::c_uint;
+    fn strcache_print_stats(prefix: *const libc::c_char);
+    fn print_vpath_data_base();
+    fn xmalloc(_: size_t) -> *mut libc::c_void;
+    fn print_dir_data_base();
+    fn print_variable_data_base();
+    fn xcalloc(_: size_t) -> *mut libc::c_void;
+    static mut remote_description: *mut libc::c_char;
+    static mut make_host: *mut libc::c_char;
+    static mut version_string: *mut libc::c_char;
+    fn strcache_add(str: *const libc::c_char) -> *const libc::c_char;
+    fn remote_cleanup();
+    fn perror_with_name(_: *const libc::c_char, _: *const libc::c_char);
+    static mut handling_fatal_signal: sig_atomic_t;
     fn check_io_state() -> libc::c_uint;
     fn jobserver_enabled() -> libc::c_uint;
     fn jobserver_setup(
@@ -171,14 +177,14 @@ extern "C" {
     fn osync_get_mutex() -> *mut libc::c_char;
     fn osync_parse_mutex(mutex: *const libc::c_char) -> libc::c_uint;
     fn osync_clear();
-    fn lookup_file(name: *const libc::c_char) -> *mut file;
     fn enter_file(name: *const libc::c_char) -> *mut file;
+    fn f_mtime(file: *mut file, search: libc::c_int) -> uintmax_t;
     fn remove_intermediates(sig: libc::c_int);
+    fn print_file_data_base();
+    fn lookup_file(name: *const libc::c_char) -> *mut file;
     fn snap_deps();
     fn init_hash_files();
     fn verify_file_data_base();
-    fn print_file_data_base();
-    fn f_mtime(file: *mut file, search: libc::c_int) -> uintmax_t;
     fn parse_file_seq(
         stringp: *mut *mut libc::c_char,
         size: size_t,
@@ -221,13 +227,13 @@ extern "C" {
     ) -> *mut variable;
     fn child_handler(sig: libc::c_int);
     fn reap_children(block: libc::c_int, err: libc::c_int);
-    static mut output_context: *mut output;
-    fn output_close(out: *mut output);
     fn exec_command(argv: *mut *mut libc::c_char, envp: *mut *mut libc::c_char) -> pid_t;
     static mut job_slots_used: libc::c_uint;
+    fn output_init(out: *mut output);
     static mut jobserver_tokens: libc::c_uint;
     static mut stdio_traced: libc::c_uint;
-    fn output_init(out: *mut output);
+    static mut output_context: *mut output;
+    fn output_close(out: *mut output);
     fn fatal_error_signal(sig: libc::c_int);
     static mut suffix_file: *mut file;
     fn snap_implicit_rules();
@@ -353,20 +359,20 @@ pub struct C2RustUnnamed_8 {
     pub si_pid: __pid_t,
     pub si_uid: __uid_t,
 }
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type __sighandler_t = Option<unsafe extern "C" fn(libc::c_int) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sigaction {
     pub __sigaction_handler: C2RustUnnamed_9,
     pub sa_mask: __sigset_t,
     pub sa_flags: libc::c_int,
-    pub sa_restorer: Option::<unsafe extern "C" fn() -> ()>,
+    pub sa_restorer: Option<unsafe extern "C" fn() -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_9 {
     pub sa_handler: __sighandler_t,
-    pub sa_sigaction: Option::<
+    pub sa_sigaction: Option<
         unsafe extern "C" fn(libc::c_int, *mut siginfo_t, *mut libc::c_void) -> (),
     >,
 }
@@ -395,15 +401,22 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
 pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -438,20 +451,79 @@ impl C2RustUnnamed_10 {
             C2RustUnnamed_10::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_10 {
+        match value {
+            8 => C2RustUnnamed_10::_ISalnum,
+            4 => C2RustUnnamed_10::_ISpunct,
+            2 => C2RustUnnamed_10::_IScntrl,
+            1 => C2RustUnnamed_10::_ISblank,
+            32768 => C2RustUnnamed_10::_ISgraph,
+            16384 => C2RustUnnamed_10::_ISprint,
+            8192 => C2RustUnnamed_10::_ISspace,
+            4096 => C2RustUnnamed_10::_ISxdigit,
+            2048 => C2RustUnnamed_10::_ISdigit,
+            1024 => C2RustUnnamed_10::_ISalpha,
+            512 => C2RustUnnamed_10::_ISlower,
+            256 => C2RustUnnamed_10::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed_10: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed_10 = 8;
-pub const _ISpunct: C2RustUnnamed_10 = 4;
-pub const _IScntrl: C2RustUnnamed_10 = 2;
-pub const _ISblank: C2RustUnnamed_10 = 1;
-pub const _ISgraph: C2RustUnnamed_10 = 32768;
-pub const _ISprint: C2RustUnnamed_10 = 16384;
-pub const _ISspace: C2RustUnnamed_10 = 8192;
-pub const _ISxdigit: C2RustUnnamed_10 = 4096;
-pub const _ISdigit: C2RustUnnamed_10 = 2048;
-pub const _ISalpha: C2RustUnnamed_10 = 1024;
-pub const _ISlower: C2RustUnnamed_10 = 512;
-pub const _ISupper: C2RustUnnamed_10 = 256;
+impl AddAssign<u32> for C2RustUnnamed_10 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_10 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_10 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_10 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_10 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_10 {
+    type Output = C2RustUnnamed_10;
+    fn add(self, rhs: u32) -> C2RustUnnamed_10 {
+        C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_10 {
+    type Output = C2RustUnnamed_10;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_10 {
+        C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_10 {
+    type Output = C2RustUnnamed_10;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_10 {
+        C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_10 {
+    type Output = C2RustUnnamed_10;
+    fn div(self, rhs: u32) -> C2RustUnnamed_10 {
+        C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_10 {
+    type Output = C2RustUnnamed_10;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_10 {
+        C2RustUnnamed_10::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type uintmax_t = __uintmax_t;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -518,12 +590,71 @@ impl cmd_state {
             cmd_state::cs_not_started => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> cmd_state {
+        match value {
+            3 => cmd_state::cs_finished,
+            2 => cmd_state::cs_running,
+            1 => cmd_state::cs_deps_running,
+            0 => cmd_state::cs_not_started,
+            _ => panic!("Invalid value for cmd_state: {}", value),
+        }
+    }
 }
-
-pub const cs_finished: cmd_state = 3;
-pub const cs_running: cmd_state = 2;
-pub const cs_deps_running: cmd_state = 1;
-pub const cs_not_started: cmd_state = 0;
+impl AddAssign<u32> for cmd_state {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for cmd_state {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for cmd_state {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for cmd_state {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for cmd_state {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for cmd_state {
+    type Output = cmd_state;
+    fn add(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for cmd_state {
+    type Output = cmd_state;
+    fn sub(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for cmd_state {
+    type Output = cmd_state;
+    fn mul(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for cmd_state {
+    type Output = cmd_state;
+    fn div(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for cmd_state {
+    type Output = cmd_state;
+    fn rem(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -541,12 +672,71 @@ impl update_status {
             update_status::us_success => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> update_status {
+        match value {
+            3 => update_status::us_failed,
+            2 => update_status::us_question,
+            1 => update_status::us_none,
+            0 => update_status::us_success,
+            _ => panic!("Invalid value for update_status: {}", value),
+        }
+    }
 }
-
-pub const us_failed: update_status = 3;
-pub const us_question: update_status = 2;
-pub const us_none: update_status = 1;
-pub const us_success: update_status = 0;
+impl AddAssign<u32> for update_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for update_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for update_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for update_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for update_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for update_status {
+    type Output = update_status;
+    fn add(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for update_status {
+    type Output = update_status;
+    fn sub(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for update_status {
+    type Output = update_status;
+    fn mul(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for update_status {
+    type Output = update_status;
+    fn div(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for update_status {
+    type Output = update_status;
+    fn rem(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct variable_set_list {
@@ -574,10 +764,10 @@ pub struct hash_table {
     pub ht_lookups: libc::c_ulong,
     pub ht_rehashes: libc::c_uint,
 }
-pub type hash_cmp_func_t = Option::<
+pub type hash_cmp_func_t = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
 >;
-pub type hash_func_t = Option::<
+pub type hash_func_t = Option<
     unsafe extern "C" fn(*const libc::c_void) -> libc::c_ulong,
 >;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -646,8 +836,75 @@ impl variable_origin {
             variable_origin::o_invalid => 7,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> variable_origin {
+        match value {
+            0 => variable_origin::o_default,
+            1 => variable_origin::o_env,
+            2 => variable_origin::o_file,
+            3 => variable_origin::o_env_override,
+            4 => variable_origin::o_command,
+            5 => variable_origin::o_override,
+            6 => variable_origin::o_automatic,
+            7 => variable_origin::o_invalid,
+            _ => panic!("Invalid value for variable_origin: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for variable_origin {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = variable_origin::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for variable_origin {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = variable_origin::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for variable_origin {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = variable_origin::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for variable_origin {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = variable_origin::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for variable_origin {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = variable_origin::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for variable_origin {
+    type Output = variable_origin;
+    fn add(self, rhs: u32) -> variable_origin {
+        variable_origin::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for variable_origin {
+    type Output = variable_origin;
+    fn sub(self, rhs: u32) -> variable_origin {
+        variable_origin::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for variable_origin {
+    type Output = variable_origin;
+    fn mul(self, rhs: u32) -> variable_origin {
+        variable_origin::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for variable_origin {
+    type Output = variable_origin;
+    fn div(self, rhs: u32) -> variable_origin {
+        variable_origin::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for variable_origin {
+    type Output = variable_origin;
+    fn rem(self, rhs: u32) -> variable_origin {
+        variable_origin::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct variable {
@@ -686,12 +943,71 @@ impl variable_export {
             variable_export::v_ifset => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> variable_export {
+        match value {
+            0 => variable_export::v_default,
+            1 => variable_export::v_export,
+            2 => variable_export::v_noexport,
+            3 => variable_export::v_ifset,
+            _ => panic!("Invalid value for variable_export: {}", value),
+        }
+    }
 }
-
-pub const v_ifset: variable_export = 3;
-pub const v_noexport: variable_export = 2;
-pub const v_export: variable_export = 1;
-pub const v_default: variable_export = 0;
+impl AddAssign<u32> for variable_export {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = variable_export::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for variable_export {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = variable_export::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for variable_export {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = variable_export::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for variable_export {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = variable_export::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for variable_export {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = variable_export::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for variable_export {
+    type Output = variable_export;
+    fn add(self, rhs: u32) -> variable_export {
+        variable_export::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for variable_export {
+    type Output = variable_export;
+    fn sub(self, rhs: u32) -> variable_export {
+        variable_export::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for variable_export {
+    type Output = variable_export;
+    fn mul(self, rhs: u32) -> variable_export {
+        variable_export::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for variable_export {
+    type Output = variable_export;
+    fn div(self, rhs: u32) -> variable_export {
+        variable_export::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for variable_export {
+    type Output = variable_export;
+    fn rem(self, rhs: u32) -> variable_export {
+        variable_export::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum variable_flavor {
@@ -717,16 +1033,75 @@ impl variable_flavor {
             variable_flavor::f_append_value => 7,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> variable_flavor {
+        match value {
+            0 => variable_flavor::f_bogus,
+            1 => variable_flavor::f_simple,
+            2 => variable_flavor::f_recursive,
+            3 => variable_flavor::f_expand,
+            4 => variable_flavor::f_append,
+            5 => variable_flavor::f_conditional,
+            6 => variable_flavor::f_shell,
+            7 => variable_flavor::f_append_value,
+            _ => panic!("Invalid value for variable_flavor: {}", value),
+        }
+    }
 }
-
-pub const f_append_value: variable_flavor = 7;
-pub const f_shell: variable_flavor = 6;
-pub const f_conditional: variable_flavor = 5;
-pub const f_append: variable_flavor = 4;
-pub const f_expand: variable_flavor = 3;
-pub const f_recursive: variable_flavor = 2;
-pub const f_simple: variable_flavor = 1;
-pub const f_bogus: variable_flavor = 0;
+impl AddAssign<u32> for variable_flavor {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = variable_flavor::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for variable_flavor {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = variable_flavor::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for variable_flavor {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = variable_flavor::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for variable_flavor {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = variable_flavor::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for variable_flavor {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = variable_flavor::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for variable_flavor {
+    type Output = variable_flavor;
+    fn add(self, rhs: u32) -> variable_flavor {
+        variable_flavor::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for variable_flavor {
+    type Output = variable_flavor;
+    fn sub(self, rhs: u32) -> variable_flavor {
+        variable_flavor::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for variable_flavor {
+    type Output = variable_flavor;
+    fn mul(self, rhs: u32) -> variable_flavor {
+        variable_flavor::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for variable_flavor {
+    type Output = variable_flavor;
+    fn div(self, rhs: u32) -> variable_flavor {
+        variable_flavor::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for variable_flavor {
+    type Output = variable_flavor;
+    fn rem(self, rhs: u32) -> variable_flavor {
+        variable_flavor::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stringlist {
@@ -736,8 +1111,8 @@ pub struct stringlist {
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct flag {
-    pub next: *mut flag,
+pub struct C2RustUnnamed_11::flag {
+    pub next: *mut C2RustUnnamed_11::flag,
     pub cs: *const command_switch,
     pub arg: *const libc::c_char,
 }
@@ -784,16 +1159,75 @@ impl C2RustUnnamed_11 {
             C2RustUnnamed_11::flag => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_11 {
+        match value {
+            7 => C2RustUnnamed_11::ignore,
+            6 => C2RustUnnamed_11::floating,
+            5 => C2RustUnnamed_11::positive_int,
+            4 => C2RustUnnamed_11::filename,
+            3 => C2RustUnnamed_11::strlist,
+            2 => C2RustUnnamed_11::string,
+            1 => C2RustUnnamed_11::flag_off,
+            0 => C2RustUnnamed_11::flag,
+            _ => panic!("Invalid value for C2RustUnnamed_11: {}", value),
+        }
+    }
 }
-
-pub const ignore: C2RustUnnamed_11 = 7;
-pub const floating: C2RustUnnamed_11 = 6;
-pub const positive_int: C2RustUnnamed_11 = 5;
-pub const filename: C2RustUnnamed_11 = 4;
-pub const strlist: C2RustUnnamed_11 = 3;
-pub const string: C2RustUnnamed_11 = 2;
-pub const flag_off: C2RustUnnamed_11 = 1;
-pub const flag: C2RustUnnamed_11 = 0;
+impl AddAssign<u32> for C2RustUnnamed_11 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_11 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_11 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_11 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_11 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn add(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn div(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct output {
@@ -837,7 +1271,7 @@ pub struct command_variable {
 pub struct option {
     pub name: *const libc::c_char,
     pub has_arg: libc::c_int,
-    pub flag: *mut libc::c_int,
+    pub C2RustUnnamed_11::flag: *mut libc::c_int,
     pub val: libc::c_int,
 }
 #[derive(Copy, Clone)]
@@ -846,10 +1280,10 @@ pub struct nameseq {
     pub next: *mut nameseq,
     pub name: *const libc::c_char,
 }
-pub type bsd_signal_ret_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type bsd_signal_ret_t = Option<unsafe extern "C" fn(libc::c_int) -> ()>;
 #[inline]
 unsafe extern "C" fn putchar(mut __c: libc::c_int) -> libc::c_int {
-    return putc(__c, stdout);
+    return _IO_putc(__c, stdout);
 }
 #[inline]
 unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {
@@ -867,7 +1301,7 @@ unsafe extern "C" fn atof(mut __nptr: *const libc::c_char) -> libc::c_double {
 pub static mut verify_flag: libc::c_int = 0;
 static mut silent_flag: libc::c_int = 0;
 static mut default_silent_flag: libc::c_int = 0 as libc::c_int;
-static mut silent_origin: variable_origin = o_default;
+static mut silent_origin: variable_origin = variable_origin::o_default;
 #[no_mangle]
 pub static mut run_silent: libc::c_int = 0 as libc::c_int;
 #[no_mangle]
@@ -896,12 +1330,12 @@ pub static mut no_builtin_variables_flag: libc::c_int = 0 as libc::c_int;
 #[no_mangle]
 pub static mut keep_going_flag: libc::c_int = 0;
 static mut default_keep_going_flag: libc::c_int = 0 as libc::c_int;
-static mut keep_going_origin: variable_origin = o_default;
+static mut keep_going_origin: variable_origin = variable_origin::o_default;
 #[no_mangle]
 pub static mut check_symlink_flag: libc::c_int = 0 as libc::c_int;
 static mut print_directory_flag: libc::c_int = -(1 as libc::c_int);
 static mut default_print_directory_flag: libc::c_int = -(1 as libc::c_int);
-static mut print_directory_origin: variable_origin = o_default;
+static mut print_directory_origin: variable_origin = variable_origin::o_default;
 #[no_mangle]
 pub static mut print_version_flag: libc::c_int = 0 as libc::c_int;
 static mut makefiles: *mut stringlist = 0 as *const stringlist as *mut stringlist;
@@ -975,7 +1409,7 @@ static mut usage: [*const libc::c_char; 36] = [
         as *const u8 as *const libc::c_char,
     b"  -h, --help                  Print this message and exit.\n\0" as *const u8
         as *const libc::c_char,
-    b"  -i, --ignore-errors         Ignore errors from recipes.\n\0" as *const u8
+    b"  -i, --C2RustUnnamed_11::ignore-errors         Ignore errors from recipes.\n\0" as *const u8
         as *const libc::c_char,
     b"  -I DIRECTORY, --include-dir=DIRECTORY\n                              Search DIRECTORY for included makefiles.\n\0"
         as *const u8 as *const libc::c_char,
@@ -1030,7 +1464,7 @@ static mut usage: [*const libc::c_char; 36] = [
 static mut trace_flag: libc::c_int = 0 as libc::c_int;
 static mut switches: [command_switch; 40] = [command_switch {
     c: 0,
-    type_0: flag,
+    type_0: C2RustUnnamed_11::flag,
     value_ptr: 0 as *mut libc::c_void,
     env_toenv_no_makefile_specified: [0; 1],
     c2rust_padding: [0; 7],
@@ -1044,7 +1478,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"quiet\0" as *const u8 as *const libc::c_char,
             has_arg: 0 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 's' as i32,
         };
         init
@@ -1053,7 +1487,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"stop\0" as *const u8 as *const libc::c_char,
             has_arg: 0 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'S' as i32,
         };
         init
@@ -1062,7 +1496,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"new-file\0" as *const u8 as *const libc::c_char,
             has_arg: 1 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'W' as i32,
         };
         init
@@ -1071,7 +1505,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"assume-new\0" as *const u8 as *const libc::c_char,
             has_arg: 1 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'W' as i32,
         };
         init
@@ -1080,7 +1514,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"assume-old\0" as *const u8 as *const libc::c_char,
             has_arg: 1 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'o' as i32,
         };
         init
@@ -1089,7 +1523,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"max-load\0" as *const u8 as *const libc::c_char,
             has_arg: 2 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'l' as i32,
         };
         init
@@ -1098,7 +1532,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"dry-run\0" as *const u8 as *const libc::c_char,
             has_arg: 0 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'n' as i32,
         };
         init
@@ -1107,7 +1541,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"recon\0" as *const u8 as *const libc::c_char,
             has_arg: 0 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'n' as i32,
         };
         init
@@ -1116,7 +1550,7 @@ static mut long_option_aliases: [option; 9] = [
         let mut init = option {
             name: b"makefile\0" as *const u8 as *const libc::c_char,
             has_arg: 1 as libc::c_int,
-            flag: 0 as *const libc::c_int as *mut libc::c_int,
+            C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
             val: 'f' as i32,
         };
         init
@@ -1467,8 +1901,8 @@ unsafe extern "C" fn initialize_stopchar_map() {
     stopchar_map['=' as i32 as usize] = 0x20 as libc::c_int as libc::c_ushort;
     stopchar_map[':' as i32 as usize] = 0x40 as libc::c_int as libc::c_ushort;
     stopchar_map['|' as i32 as usize] = 0x100 as libc::c_int as libc::c_ushort;
-    stopchar_map['.' as i32
-        as usize] = (0x200 as libc::c_int | 0x2000 as libc::c_int) as libc::c_ushort;
+    stopchar_map['.' as i32 as usize] = (0x200 as libc::c_int | 0x2000 as libc::c_int)
+        as libc::c_ushort;
     stopchar_map[',' as i32 as usize] = 0x400 as libc::c_int as libc::c_ushort;
     stopchar_map['(' as i32 as usize] = 0x80 as libc::c_int as libc::c_ushort;
     stopchar_map['{' as i32 as usize] = 0x80 as libc::c_int as libc::c_ushort;
@@ -1483,18 +1917,18 @@ unsafe extern "C" fn initialize_stopchar_map() {
     i = 1 as libc::c_int;
     while i <= 127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int {
         if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-            & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+            & C2RustUnnamed_10::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            != 0
             && !(stopchar_map[i as usize] as libc::c_int & 0x2 as libc::c_int
                 != 0 as libc::c_int)
         {
-            stopchar_map[i
-                as usize] = (stopchar_map[i as usize] as libc::c_int
+            stopchar_map[i as usize] = (stopchar_map[i as usize] as libc::c_int
                 | 0x4 as libc::c_int) as libc::c_ushort;
         } else if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-            & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
+            & C2RustUnnamed_10::_ISalnum as libc::c_int as libc::c_ushort as libc::c_int
+            != 0
         {
-            stopchar_map[i
-                as usize] = (stopchar_map[i as usize] as libc::c_int
+            stopchar_map[i as usize] = (stopchar_map[i as usize] as libc::c_int
                 | 0x2000 as libc::c_int) as libc::c_ushort;
         }
         i += 1;
@@ -1539,7 +1973,7 @@ unsafe extern "C" fn expand_command_line_file(
             0 as libc::c_int as size_t,
             dcgettext(
                 0 as *const libc::c_char,
-                b"empty string invalid as file name\0" as *const u8
+                b"empty C2RustUnnamed_11::string invalid as file name\0" as *const u8
                     as *const libc::c_char,
                 5 as libc::c_int,
             ),
@@ -2037,7 +2471,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 11]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"\0" as *const u8 as *const libc::c_char,
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2048,7 +2482,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 14]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"\0" as *const u8 as *const libc::c_char,
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2059,7 +2493,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 12]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"-c\0" as *const u8 as *const libc::c_char,
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2069,7 +2503,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"\0" as *const u8 as *const libc::c_char,
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2081,7 +2515,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 10]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         features,
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2092,7 +2526,7 @@ unsafe fn main_0(
     while !(*envp.offset(i as isize)).is_null() {
         let mut v: *mut variable = 0 as *mut variable;
         let mut ep: *const libc::c_char = *envp.offset(i as isize);
-        let mut export: variable_export = v_export;
+        let mut export: variable_export = variable_export::v_export;
         let mut len: size_t = 0;
         while !(stopchar_map[*ep as libc::c_uchar as usize] as libc::c_int
             & (0x20 as libc::c_int | 0x1 as libc::c_int) != 0 as libc::c_int)
@@ -2119,13 +2553,13 @@ unsafe fn main_0(
                     ep;
                 }
                 restarts = make_toui(ep, 0 as *mut *const libc::c_char);
-                export = v_noexport;
+                export = variable_export::v_noexport;
             }
             v = define_variable_in_set(
                 *envp.offset(i as isize),
                 len,
                 ep,
-                o_env,
+                variable_origin::o_env,
                 1 as libc::c_int,
                 (*current_variable_set_list).set,
                 0 as *mut floc,
@@ -2141,7 +2575,7 @@ unsafe fn main_0(
                                 .offset(1 as libc::c_int as isize),
                         ) == 0)
             {
-                export = v_noexport;
+                export = variable_export::v_noexport;
                 shell_var.name = xstrdup(b"SHELL\0" as *const u8 as *const libc::c_char);
                 shell_var.length = 5 as libc::c_int as libc::c_uint;
                 shell_var.value = xstrdup(ep);
@@ -2162,14 +2596,14 @@ unsafe fn main_0(
             b"GNUMAKEFLAGS\0" as *const u8 as *const libc::c_char,
             (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
-            o_command,
+            variable_origin::o_command,
         );
         define_variable_in_set(
             b"GNUMAKEFLAGS\0" as *const u8 as *const libc::c_char,
             (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             b"\0" as *const u8 as *const libc::c_char,
-            o_env,
+            variable_origin::o_env,
             0 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -2179,7 +2613,7 @@ unsafe fn main_0(
         b"MAKEFLAGS\0" as *const u8 as *const libc::c_char,
         (::core::mem::size_of::<[libc::c_char; 10]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
-        o_command,
+        variable_origin::o_command,
     );
     make_sync
         .set_syncout(
@@ -2194,7 +2628,7 @@ unsafe fn main_0(
     };
     let mut env_slots: libc::c_int = arg_job_slots;
     arg_job_slots = -(1 as libc::c_int);
-    decode_switches(argc, argv as *mut *const libc::c_char, o_command);
+    decode_switches(argc, argv as *mut *const libc::c_char, variable_origin::o_command);
     argv_slots = arg_job_slots;
     if arg_job_slots == -(1 as libc::c_int) {
         arg_job_slots = env_slots;
@@ -2241,12 +2675,12 @@ unsafe fn main_0(
                 } else {
                     b"true\0" as *const u8 as *const libc::c_char
                 },
-                o_default,
+                variable_origin::o_default,
                 0 as libc::c_int,
                 (*current_variable_set_list).set,
                 0 as *mut floc,
             );
-            (*fresh4).set_export(v_export);
+            (*fresh4).set_export(variable_export::v_export);
         }
     }
     if isatty(fileno(stderr)) != 0 {
@@ -2267,12 +2701,12 @@ unsafe fn main_0(
                 } else {
                     b"true\0" as *const u8 as *const libc::c_char
                 },
-                o_default,
+                variable_origin::o_default,
                 0 as libc::c_int,
                 (*current_variable_set_list).set,
                 0 as *mut floc,
             );
-            (*fresh5).set_export(v_export);
+            (*fresh5).set_export(variable_export::v_export);
         }
     }
     syncing = (output_sync == 1 as libc::c_int || output_sync == 2 as libc::c_int)
@@ -2357,7 +2791,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 7]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         current_directory.as_mut_ptr(),
-        o_file,
+        variable_origin::o_file,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2372,7 +2806,7 @@ unsafe fn main_0(
     if !jobserver_auth.is_null() {
         if argv_slots == -(1 as libc::c_int) {
             if jobserver_parse_auth(jobserver_auth) != 0 {
-                current_block = 17390055489814795939;
+                current_block = 5505792528510197941;
             } else {
                 error(
                     0 as *mut floc,
@@ -2409,7 +2843,7 @@ unsafe fn main_0(
             current_block = 7157669805658135323;
         }
         match current_block {
-            17390055489814795939 => {}
+            5505792528510197941 => {}
             _ => {
                 reset_jobserver();
             }
@@ -2420,7 +2854,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         *argv.offset(0 as libc::c_int as isize),
-        o_default,
+        variable_origin::o_default,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2430,7 +2864,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 5]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"$(MAKE_COMMAND)\0" as *const u8 as *const libc::c_char,
-        o_default,
+        variable_origin::o_default,
         1 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2490,7 +2924,7 @@ unsafe fn main_0(
             (::core::mem::size_of::<[libc::c_char; 24]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             value,
-            o_automatic,
+            variable_origin::o_automatic,
             0 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -2500,7 +2934,7 @@ unsafe fn main_0(
             (::core::mem::size_of::<[libc::c_char; 14]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             b"${-*-command-variables-*-}\0" as *const u8 as *const libc::c_char,
-            o_default,
+            variable_origin::o_default,
             1 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -2588,8 +3022,8 @@ unsafe fn main_0(
             *((*makefiles).list).offset(stdin_offset as isize),
         );
         (*f).set_updated(1 as libc::c_int as libc::c_uint);
-        (*f).set_update_status(us_success);
-        (*f).set_command_state(cs_finished);
+        (*f).set_update_status(update_status::us_success);
+        (*f).set_command_state(cmd_state::cs_finished);
         (*f).set_intermediate(0 as libc::c_int as libc::c_uint);
         (*f).set_dontcare(0 as libc::c_int as libc::c_uint);
         (*f).mtime_before_update = f_mtime(f, 0 as libc::c_int);
@@ -2614,7 +3048,7 @@ unsafe fn main_0(
     set_default_suffixes();
     define_automatic_variables();
     let ref mut fresh12 = *define_makeflags(0 as libc::c_int);
-    (*fresh12).set_export(v_export);
+    (*fresh12).set_export(variable_export::v_export);
     define_default_variables();
     default_file = enter_file(
         strcache_add(b".DEFAULT\0" as *const u8 as *const libc::c_char),
@@ -2624,7 +3058,7 @@ unsafe fn main_0(
         (::core::mem::size_of::<[libc::c_char; 14]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"\0" as *const u8 as *const libc::c_char,
-        o_file,
+        variable_origin::o_file,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2672,7 +3106,7 @@ unsafe fn main_0(
             (::core::mem::size_of::<[libc::c_char; 17]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             value_0,
-            o_automatic,
+            variable_origin::o_automatic,
             0 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -2693,14 +3127,14 @@ unsafe fn main_0(
         b"GNUMAKEFLAGS\0" as *const u8 as *const libc::c_char,
         (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
-        o_env,
+        variable_origin::o_env,
     );
     define_variable_in_set(
         b"GNUMAKEFLAGS\0" as *const u8 as *const libc::c_char,
         (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         b"\0" as *const u8 as *const libc::c_char,
-        o_override,
+        variable_origin::o_override,
         0 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -2709,7 +3143,7 @@ unsafe fn main_0(
         b"MAKEFLAGS\0" as *const u8 as *const libc::c_char,
         (::core::mem::size_of::<[libc::c_char; 10]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
-        o_env,
+        variable_origin::o_env,
     );
     if arg_job_slots == -(1 as libc::c_int) || argv_slots != -(1 as libc::c_int) {
         arg_job_slots = old_arg_job_slots;
@@ -2756,7 +3190,7 @@ unsafe fn main_0(
             (::core::mem::size_of::<[libc::c_char; 9]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             b"\0" as *const u8 as *const libc::c_char,
-            o_default,
+            variable_origin::o_default,
             0 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -2844,8 +3278,8 @@ unsafe fn main_0(
             (*f_0).mtime_before_update = 2 as libc::c_int as uintmax_t;
             (*f_0).last_mtime = (*f_0).mtime_before_update;
             (*f_0).set_updated(1 as libc::c_int as libc::c_uint);
-            (*f_0).set_update_status(us_success);
-            (*f_0).set_command_state(cs_finished);
+            (*f_0).set_update_status(update_status::us_success);
+            (*f_0).set_command_state(cmd_state::cs_finished);
             p_1 = p_1.offset(1);
             p_1;
         }
@@ -2855,8 +3289,7 @@ unsafe fn main_0(
         p_2 = (*new_files).list;
         while !(*p_2).is_null() {
             let mut f_1: *mut file = enter_file(*p_2);
-            (*f_1)
-                .mtime_before_update = (!(0 as libc::c_int as uintmax_t))
+            (*f_1).mtime_before_update = (!(0 as libc::c_int as uintmax_t))
                 .wrapping_sub(
                     (if !(-(1 as libc::c_int) as uintmax_t
                         <= 0 as libc::c_int as libc::c_ulong)
@@ -2895,7 +3328,7 @@ unsafe fn main_0(
         let mut skipped_makefiles: *mut goaldep = 0 as *mut goaldep;
         let mut nargv: *mut *const libc::c_char = argv as *mut *const libc::c_char;
         let mut any_failed: libc::c_int = 0 as libc::c_int;
-        let mut status: update_status = us_success;
+        let mut status: update_status = update_status::us_success;
         if 0x1 as libc::c_int & db_level != 0 {
             printf(
                 dcgettext(
@@ -2946,10 +3379,8 @@ unsafe fn main_0(
             if skip == 0 {
                 let fresh16 = mm_idx;
                 mm_idx = mm_idx.wrapping_add(1);
-                *makefile_mtimes
-                    .offset(
-                        fresh16 as isize,
-                    ) = if (*(*d_0).file).last_mtime == 0 as libc::c_int as libc::c_ulong
+                *makefile_mtimes.offset(fresh16 as isize) = if (*(*d_0).file).last_mtime
+                    == 0 as libc::c_int as libc::c_ulong
                 {
                     f_mtime((*d_0).file, 0 as libc::c_int)
                 } else {
@@ -3022,9 +3453,10 @@ unsafe fn main_0(
             free(d_1 as *mut libc::c_void);
         }
         if any_failed != 0
-            && status as libc::c_uint == us_success as libc::c_int as libc::c_uint
+            && status as libc::c_uint
+                == update_status::us_success as libc::c_int as libc::c_uint
         {
-            status = us_none;
+            status = update_status::us_none;
         }
         let mut current_block_550: u64;
         match status as libc::c_uint {
@@ -3064,7 +3496,7 @@ unsafe fn main_0(
                 while !d_4.is_null() {
                     if (*(*d_4).file).updated() != 0 {
                         if (*(*d_4).file).update_status() as libc::c_int
-                            == us_success as libc::c_int
+                            == update_status::us_success as libc::c_int
                         {
                             any_remade
                                 |= ((if (*(*d_4).file).last_mtime
@@ -3145,13 +3577,13 @@ unsafe fn main_0(
                     d_4 = (*d_4).next;
                 }
                 if any_remade != 0 {
-                    current_block_550 = 6287740487801343474;
+                    current_block_550 = 17847216200670648219;
                 } else {
                     current_block_550 = 10824877258417480809;
                 }
             }
             0 => {
-                current_block_550 = 6287740487801343474;
+                current_block_550 = 17847216200670648219;
             }
             2 | _ => {
                 current_block_550 = 10824877258417480809;
@@ -3485,8 +3917,7 @@ unsafe fn main_0(
         p_5 = (*new_files).list;
         while !(*p_5).is_null() {
             let mut f_5: *mut file = enter_file(*p_5);
-            (*f_5)
-                .mtime_before_update = (!(0 as libc::c_int as uintmax_t))
+            (*f_5).mtime_before_update = (!(0 as libc::c_int as uintmax_t))
                 .wrapping_sub(
                     (if !(-(1 as libc::c_int) as uintmax_t
                         <= 0 as libc::c_int as libc::c_ulong)
@@ -3626,7 +4057,7 @@ static mut options: [libc::c_char; 121] = [0; 121];
 static mut long_options: [option; 49] = [option {
     name: 0 as *const libc::c_char,
     has_arg: 0,
-    flag: 0 as *const libc::c_int as *mut libc::c_int,
+    C2RustUnnamed_11::flag: 0 as *const libc::c_int as *mut libc::c_int,
     val: 0,
 }; 49];
 unsafe extern "C" fn init_switches() {
@@ -3642,8 +4073,7 @@ unsafe extern "C" fn init_switches() {
     *fresh29 = '-' as i32 as libc::c_char;
     i = 0 as libc::c_int as libc::c_uint;
     while switches[i as usize].c != '\0' as i32 {
-        long_options[i as usize]
-            .name = (if (switches[i as usize].long_name).is_null() {
+        long_options[i as usize].name = (if (switches[i as usize].long_name).is_null() {
             b"\0" as *const u8 as *const libc::c_char
         } else {
             switches[i as usize].long_name
@@ -3723,7 +4153,8 @@ unsafe extern "C" fn handle_non_switch_argument(
             command_variables = cv;
         }
     } else if *arg.offset(0 as libc::c_int as isize) as libc::c_int != '\0' as i32
-        && origin as libc::c_uint == o_command as libc::c_int as libc::c_uint
+        && origin as libc::c_uint
+            == variable_origin::o_command as libc::c_int as libc::c_uint
     {
         let mut f: *mut file = enter_file(strcache_add(expand_command_line_file(arg)));
         (*f).set_cmd_target(1 as libc::c_int as libc::c_uint);
@@ -3732,9 +4163,9 @@ unsafe extern "C" fn handle_non_switch_argument(
                 as *mut goaldep;
             lastgoal = goals;
         } else {
-            (*lastgoal)
-                .next = xcalloc(::core::mem::size_of::<goaldep>() as libc::c_ulong)
-                as *mut goaldep;
+            (*lastgoal).next = xcalloc(
+                ::core::mem::size_of::<goaldep>() as libc::c_ulong,
+            ) as *mut goaldep;
             lastgoal = (*lastgoal).next;
         }
         (*lastgoal).file = f;
@@ -3778,7 +4209,7 @@ unsafe extern "C" fn handle_non_switch_argument(
             (::core::mem::size_of::<[libc::c_char; 13]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
             value,
-            o_default,
+            variable_origin::o_default,
             0 as libc::c_int,
             (*current_variable_set_list).set,
             0 as *mut floc,
@@ -3812,8 +4243,8 @@ unsafe extern "C" fn decode_switches(
     let mut sl: *mut stringlist = 0 as *mut stringlist;
     let mut c: libc::c_int = 0;
     init_switches();
-    opterr = (origin as libc::c_uint == o_command as libc::c_int as libc::c_uint)
-        as libc::c_int;
+    opterr = (origin as libc::c_uint
+        == variable_origin::o_command as libc::c_int as libc::c_uint) as libc::c_int;
     optind = 0 as libc::c_int;
     while optind < argc {
         let mut coptarg: *const libc::c_char = 0 as *const libc::c_char;
@@ -3837,7 +4268,7 @@ unsafe extern "C" fn decode_switches(
             while (*cs).c != '\0' as i32 {
                 if (*cs).c == c {
                     let mut doit: libc::c_int = (origin as libc::c_uint
-                        == o_command as libc::c_int as libc::c_uint
+                        == variable_origin::o_command as libc::c_int as libc::c_uint
                         || (*cs).env() as libc::c_int != 0
                             && (((*cs).origin).is_null()
                                 || origin as libc::c_uint >= *(*cs).origin as libc::c_uint))
@@ -3850,9 +4281,9 @@ unsafe extern "C" fn decode_switches(
                         7 => {}
                         0 | 1 => {
                             if doit != 0 {
-                                *((*cs).value_ptr
-                                    as *mut libc::c_int) = ((*cs).type_0 as libc::c_uint
-                                    == flag as libc::c_int as libc::c_uint) as libc::c_int;
+                                *((*cs).value_ptr as *mut libc::c_int) = ((*cs).type_0
+                                    as libc::c_uint == C2RustUnnamed_11::flag as libc::c_int as libc::c_uint)
+                                    as libc::c_int;
                                 if !((*cs).origin).is_null() {
                                     *(*cs).origin = origin;
                                 }
@@ -3879,7 +4310,7 @@ unsafe extern "C" fn decode_switches(
                                         strlen(op),
                                         dcgettext(
                                             0 as *const libc::c_char,
-                                            b"the '%s%s' option requires a non-empty string argument\0"
+                                            b"the '%s%s' option requires a non-empty C2RustUnnamed_11::string argument\0"
                                                 as *const u8 as *const libc::c_char,
                                             5 as libc::c_int,
                                         ),
@@ -3899,7 +4330,7 @@ unsafe extern "C" fn decode_switches(
                                     14541395414537699361 => {}
                                     _ => {
                                         if (*cs).type_0 as libc::c_uint
-                                            == string as libc::c_int as libc::c_uint
+                                            == C2RustUnnamed_11::string as libc::c_int as libc::c_uint
                                         {
                                             let mut val: *mut *mut libc::c_char = (*cs).value_ptr
                                                 as *mut *mut libc::c_char;
@@ -3916,8 +4347,7 @@ unsafe extern "C" fn decode_switches(
                                                 ) as *mut stringlist;
                                                 (*sl).max = 5 as libc::c_int as libc::c_uint;
                                                 (*sl).idx = 0 as libc::c_int as libc::c_uint;
-                                                (*sl)
-                                                    .list = xmalloc(
+                                                (*sl).list = xmalloc(
                                                     (5 as libc::c_int as libc::c_ulong)
                                                         .wrapping_mul(
                                                             ::core::mem::size_of::<*mut libc::c_char>() as libc::c_ulong,
@@ -3930,11 +4360,9 @@ unsafe extern "C" fn decode_switches(
                                                 == ((*sl).max)
                                                     .wrapping_sub(1 as libc::c_int as libc::c_uint)
                                             {
-                                                (*sl)
-                                                    .max = ((*sl).max)
+                                                (*sl).max = ((*sl).max)
                                                     .wrapping_add(5 as libc::c_int as libc::c_uint);
-                                                (*sl)
-                                                    .list = xrealloc(
+                                                (*sl).list = xrealloc(
                                                     (*sl).list as *mut libc::c_void,
                                                     ((*sl).max as libc::c_ulong)
                                                         .wrapping_mul(
@@ -3974,7 +4402,7 @@ unsafe extern "C" fn decode_switches(
                                                 14541395414537699361 => {}
                                                 _ => {
                                                     if (*cs).type_0 as libc::c_uint
-                                                        == strlist as libc::c_int as libc::c_uint
+                                                        == C2RustUnnamed_11::strlist as libc::c_int as libc::c_uint
                                                     {
                                                         let fresh36 = (*sl).idx;
                                                         (*sl).idx = ((*sl).idx).wrapping_add(1);
@@ -4067,9 +4495,8 @@ unsafe extern "C" fn decode_switches(
                                         }
                                     }
                                 } else {
-                                    *((*cs).value_ptr
-                                        as *mut libc::c_uint) = *((*cs).noarg_value
-                                        as *mut libc::c_uint);
+                                    *((*cs).value_ptr as *mut libc::c_uint) = *((*cs)
+                                        .noarg_value as *mut libc::c_uint);
                                     if !((*cs).origin).is_null() {
                                         *(*cs).origin = origin;
                                     }
@@ -4091,8 +4518,9 @@ unsafe extern "C" fn decode_switches(
                                 coptarg = *argv.offset(fresh44 as isize);
                             }
                             if doit != 0 {
-                                *((*cs).value_ptr
-                                    as *mut libc::c_double) = if !coptarg.is_null() {
+                                *((*cs).value_ptr as *mut libc::c_double) = if !coptarg
+                                    .is_null()
+                                {
                                     atof(coptarg)
                                 } else {
                                     *((*cs).noarg_value as *mut libc::c_double)
@@ -4119,7 +4547,10 @@ unsafe extern "C" fn decode_switches(
         optind = optind + 1;
         handle_non_switch_argument(*argv.offset(fresh45 as isize), origin);
     }
-    if bad != 0 && origin as libc::c_uint == o_command as libc::c_int as libc::c_uint {
+    if bad != 0
+        && origin as libc::c_uint
+            == variable_origin::o_command as libc::c_int as libc::c_uint
+    {
         print_usage(bad);
     }
     decode_debug_flags();
@@ -4278,8 +4709,8 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
     let mut v: *mut variable = 0 as *mut variable;
     let mut flagstring: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut flags: *mut flag = 0 as *mut flag;
-    let mut last: *mut flag = 0 as *mut flag;
+    let mut flags: *mut flag = 0 as *mut C2RustUnnamed_11::flag;
+    let mut last: *mut flag = 0 as *mut C2RustUnnamed_11::flag;
     let mut flagslen: size_t = 0 as libc::c_int as size_t;
     cs = switches.as_mut_ptr();
     while (*cs).c != '\0' as i32 {
@@ -4291,7 +4722,7 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                 0 | 1 => {
                     if (*((*cs).value_ptr as *mut libc::c_int) == 0) as libc::c_int
                         == ((*cs).type_0 as libc::c_uint
-                            == flag_off as libc::c_int as libc::c_uint) as libc::c_int
+                            == C2RustUnnamed_11::flag_off as libc::c_int as libc::c_uint) as libc::c_int
                         && ((*cs).default_value == 0 as *mut libc::c_void
                             || (*cs).specified() as libc::c_int != 0
                             || *((*cs).value_ptr as *mut libc::c_int)
@@ -4299,12 +4730,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                     {
                         let mut fresh64 = ::std::vec::from_elem(
                             0,
-                            ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                            ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                         );
-                        let mut new: *mut flag = fresh64.as_mut_ptr() as *mut flag;
+                        let mut new: *mut C2RustUnnamed_11::flag = fresh64.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                         (*new).cs = cs;
                         (*new).arg = 0 as *const libc::c_char;
-                        (*new).next = 0 as *mut flag;
+                        (*new).next = 0 as *mut C2RustUnnamed_11::flag;
                         if flags.is_null() {
                             flags = new;
                         } else {
@@ -4342,12 +4773,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                         {
                             let mut fresh65 = ::std::vec::from_elem(
                                 0,
-                                ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                                ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                             );
-                            let mut new_0: *mut flag = fresh65.as_mut_ptr() as *mut flag;
+                            let mut new_0: *mut C2RustUnnamed_11::flag = fresh65.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                             (*new_0).cs = cs;
                             (*new_0).arg = b"\0" as *const u8 as *const libc::c_char;
-                            (*new_0).next = 0 as *mut flag;
+                            (*new_0).next = 0 as *mut C2RustUnnamed_11::flag;
                             if flags.is_null() {
                                 flags = new_0;
                             } else {
@@ -4386,12 +4817,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                             );
                             let mut fresh67 = ::std::vec::from_elem(
                                 0,
-                                ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                                ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                             );
-                            let mut new_1: *mut flag = fresh67.as_mut_ptr() as *mut flag;
+                            let mut new_1: *mut C2RustUnnamed_11::flag = fresh67.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                             (*new_1).cs = cs;
                             (*new_1).arg = buf;
-                            (*new_1).next = 0 as *mut flag;
+                            (*new_1).next = 0 as *mut C2RustUnnamed_11::flag;
                             if flags.is_null() {
                                 flags = new_1;
                             } else {
@@ -4434,12 +4865,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                         {
                             let mut fresh68 = ::std::vec::from_elem(
                                 0,
-                                ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                                ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                             );
-                            let mut new_2: *mut flag = fresh68.as_mut_ptr() as *mut flag;
+                            let mut new_2: *mut C2RustUnnamed_11::flag = fresh68.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                             (*new_2).cs = cs;
                             (*new_2).arg = b"\0" as *const u8 as *const libc::c_char;
-                            (*new_2).next = 0 as *mut flag;
+                            (*new_2).next = 0 as *mut C2RustUnnamed_11::flag;
                             if flags.is_null() {
                                 flags = new_2;
                             } else {
@@ -4478,12 +4909,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                             );
                             let mut fresh70 = ::std::vec::from_elem(
                                 0,
-                                ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                                ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                             );
-                            let mut new_3: *mut flag = fresh70.as_mut_ptr() as *mut flag;
+                            let mut new_3: *mut C2RustUnnamed_11::flag = fresh70.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                             (*new_3).cs = cs;
                             (*new_3).arg = buf_0;
-                            (*new_3).next = 0 as *mut flag;
+                            (*new_3).next = 0 as *mut C2RustUnnamed_11::flag;
                             if flags.is_null() {
                                 flags = new_3;
                             } else {
@@ -4520,12 +4951,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                     if !p.is_null() {
                         let mut fresh71 = ::std::vec::from_elem(
                             0,
-                            ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                            ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                         );
-                        let mut new_4: *mut flag = fresh71.as_mut_ptr() as *mut flag;
+                        let mut new_4: *mut C2RustUnnamed_11::flag = fresh71.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                         (*new_4).cs = cs;
                         (*new_4).arg = p;
-                        (*new_4).next = 0 as *mut flag;
+                        (*new_4).next = 0 as *mut C2RustUnnamed_11::flag;
                         if flags.is_null() {
                             flags = new_4;
                         } else {
@@ -4564,12 +4995,12 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                         while i < (*sl).idx {
                             let mut fresh72 = ::std::vec::from_elem(
                                 0,
-                                ::core::mem::size_of::<flag>() as libc::c_ulong as usize,
+                                ::core::mem::size_of::<C2RustUnnamed_11::flag>() as libc::c_ulong as usize,
                             );
-                            let mut new_5: *mut flag = fresh72.as_mut_ptr() as *mut flag;
+                            let mut new_5: *mut C2RustUnnamed_11::flag = fresh72.as_mut_ptr() as *mut C2RustUnnamed_11::flag;
                             (*new_5).cs = cs;
                             (*new_5).arg = *((*sl).list).offset(i as isize);
-                            (*new_5).next = 0 as *mut flag;
+                            (*new_5).next = 0 as *mut C2RustUnnamed_11::flag;
                             if flags.is_null() {
                                 flags = new_5;
                             } else {
@@ -4701,7 +5132,7 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
                     0 as libc::c_int
                 }) as isize,
             ),
-        o_env,
+        variable_origin::o_env,
         1 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -4749,11 +5180,13 @@ pub unsafe extern "C" fn define_makeflags(mut makefile: libc::c_int) -> *mut var
         (::core::mem::size_of::<[libc::c_char; 10]>() as libc::c_ulong)
             .wrapping_sub(1 as libc::c_int as libc::c_ulong),
         flagstring,
-        (if env_overrides != 0 {
-            o_env_override as libc::c_int
-        } else {
-            o_file as libc::c_int
-        }) as variable_origin,
+        variable_origin::from_libc_c_uint(
+            (if env_overrides != 0 {
+                variable_origin::o_env_override as libc::c_int
+            } else {
+                variable_origin::o_file as libc::c_int
+            }) as u32,
+        ),
         1 as libc::c_int,
         (*current_variable_set_list).set,
         0 as *mut floc,
@@ -4936,7 +5369,7 @@ pub unsafe extern "C" fn die(mut status: libc::c_int) -> ! {
     exit(status);
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut libc::c_char> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))
@@ -4945,7 +5378,7 @@ pub fn main() {
         );
     }
     args.push(::core::ptr::null_mut());
-    let mut vars: Vec::<*mut libc::c_char> = Vec::new();
+    let mut vars: Vec<*mut libc::c_char> = Vec::new();
     for (var_name, var_value) in ::std::env::vars() {
         let var: String = format!("{}={}", var_name, var_value);
         vars.push(
@@ -4972,7 +5405,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'b' as i32,
-                type_0: ignore,
+                type_0: C2RustUnnamed_11::ignore,
                 value_ptr: 0 as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -4990,7 +5423,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'B' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut always_make_set as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5008,7 +5441,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'd' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut debug_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5026,7 +5459,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'e' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut env_overrides as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5045,7 +5478,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'E' as i32,
-                type_0: strlist,
+                type_0: C2RustUnnamed_11::strlist,
                 value_ptr: &mut eval_strings as *mut *mut stringlist
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5064,7 +5497,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'h' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut print_usage_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5083,12 +5516,12 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'i' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut ignore_errors_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
-                long_name: b"ignore-errors\0" as *const u8 as *const libc::c_char,
+                long_name: b"C2RustUnnamed_11::ignore-errors\0" as *const u8 as *const libc::c_char,
                 origin: 0 as *mut variable_origin,
             };
             init.set_env(1 as libc::c_int as libc::c_uint);
@@ -5102,7 +5535,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'k' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut keep_going_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: &default_keep_going_flag as *const libc::c_int
@@ -5121,7 +5554,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'L' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut check_symlink_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5140,7 +5573,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'm' as i32,
-                type_0: ignore,
+                type_0: C2RustUnnamed_11::ignore,
                 value_ptr: 0 as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5158,7 +5591,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'n' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut just_print_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5176,7 +5609,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'p' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut print_data_base_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5195,7 +5628,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'q' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut question_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5213,7 +5646,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'r' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut no_builtin_rules_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5232,7 +5665,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'R' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut no_builtin_variables_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5251,7 +5684,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 's' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut silent_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: &default_silent_flag as *const libc::c_int
@@ -5270,7 +5703,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'S' as i32,
-                type_0: flag_off,
+                type_0: C2RustUnnamed_11::flag_off,
                 value_ptr: &mut keep_going_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: &default_keep_going_flag as *const libc::c_int
@@ -5289,7 +5722,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 't' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut touch_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5307,7 +5740,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'v' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut print_version_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5326,7 +5759,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'w' as i32,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut print_directory_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5346,7 +5779,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'C' as i32,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut directories as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5364,7 +5797,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'f' as i32,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut makefiles as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5382,7 +5815,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'I' as i32,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut include_dirs as *mut *mut stringlist
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5401,7 +5834,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'j' as i32,
-                type_0: positive_int,
+                type_0: C2RustUnnamed_11::positive_int,
                 value_ptr: &mut arg_job_slots as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: &inf_jobs as *const libc::c_int as *const libc::c_void,
                 default_value: &default_job_slots as *const libc::c_int
@@ -5420,7 +5853,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'l' as i32,
-                type_0: floating,
+                type_0: C2RustUnnamed_11::floating,
                 value_ptr: &mut max_load_average as *mut libc::c_double
                     as *mut libc::c_void,
                 noarg_value: &mut default_load_average as *mut libc::c_double
@@ -5441,7 +5874,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'o' as i32,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut old_files as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5459,7 +5892,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'O' as i32,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut output_sync_option as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: b"target\0" as *const u8 as *const libc::c_char
@@ -5479,7 +5912,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 'W' as i32,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut new_files as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5497,7 +5930,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 1 as libc::c_int,
-                type_0: strlist,
+                type_0: C2RustUnnamed_11::strlist,
                 value_ptr: &mut db_flags as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: b"basic\0" as *const u8 as *const libc::c_char
                     as *const libc::c_void,
@@ -5516,7 +5949,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 2 as libc::c_int,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut jobserver_auth as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5535,7 +5968,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 3 as libc::c_int,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut trace_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5553,7 +5986,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 4 as libc::c_int,
-                type_0: flag_off,
+                type_0: C2RustUnnamed_11::flag_off,
                 value_ptr: &mut print_directory_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5573,7 +6006,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 5 as libc::c_int,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: &mut warn_undefined_variables_flag as *mut libc::c_int
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5593,7 +6026,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 7 as libc::c_int,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut sync_mutex as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5612,7 +6045,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 8 as libc::c_int,
-                type_0: flag_off,
+                type_0: C2RustUnnamed_11::flag_off,
                 value_ptr: &mut silent_flag as *mut libc::c_int as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: &default_silent_flag as *const libc::c_int
@@ -5631,7 +6064,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 9 as libc::c_int,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut jobserver_auth as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5650,7 +6083,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 10 as libc::c_int,
-                type_0: filename,
+                type_0: C2RustUnnamed_11::filename,
                 value_ptr: &mut makefiles as *mut *mut stringlist as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,
@@ -5668,7 +6101,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 11 as libc::c_int,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut shuffle_mode as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: b"random\0" as *const u8 as *const libc::c_char
@@ -5688,7 +6121,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 127 as libc::c_int + 12 as libc::c_int,
-                type_0: string,
+                type_0: C2RustUnnamed_11::string,
                 value_ptr: &mut jobserver_style as *mut *mut libc::c_char
                     as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
@@ -5707,7 +6140,7 @@ unsafe extern "C" fn run_static_initializers() {
                 env_toenv_no_makefile_specified: [0; 1],
                 c2rust_padding: [0; 7],
                 c: 0 as libc::c_int,
-                type_0: flag,
+                type_0: C2RustUnnamed_11::flag,
                 value_ptr: 0 as *mut libc::c_void,
                 noarg_value: 0 as *const libc::c_void,
                 default_value: 0 as *const libc::c_void,

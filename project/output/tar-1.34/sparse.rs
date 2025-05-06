@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type exclist;
@@ -52,7 +62,7 @@ extern "C" {
     ) -> *mut libc::c_char;
     fn offtostr(_: off_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn umaxtostr(_: uintmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     static mut exit_status: libc::c_int;
     fn truncate_warn(_: *const libc::c_char);
     fn write_error_details(_: *const libc::c_char, _: size_t, _: size_t);
@@ -171,16 +181,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -210,8 +218,68 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::DEFAULT_MXFAST => 128,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_2 {
+        match value {
+            128 => C2RustUnnamed_2::DEFAULT_MXFAST,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -324,15 +392,74 @@ impl archive_format {
             archive_format::GNU_FORMAT => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> archive_format {
+        match value {
+            0 => archive_format::DEFAULT_FORMAT,
+            1 => archive_format::V7_FORMAT,
+            2 => archive_format::OLDGNU_FORMAT,
+            3 => archive_format::USTAR_FORMAT,
+            4 => archive_format::POSIX_FORMAT,
+            5 => archive_format::STAR_FORMAT,
+            6 => archive_format::GNU_FORMAT,
+            _ => panic!("Invalid value for archive_format: {}", value),
+        }
+    }
 }
-
-pub const GNU_FORMAT: archive_format = 6;
-pub const STAR_FORMAT: archive_format = 5;
-pub const POSIX_FORMAT: archive_format = 4;
-pub const USTAR_FORMAT: archive_format = 3;
-pub const OLDGNU_FORMAT: archive_format = 2;
-pub const V7_FORMAT: archive_format = 1;
-pub const DEFAULT_FORMAT: archive_format = 0;
+impl AddAssign<u32> for archive_format {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for archive_format {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for archive_format {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for archive_format {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for archive_format {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for archive_format {
+    type Output = archive_format;
+    fn add(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for archive_format {
+    type Output = archive_format;
+    fn sub(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for archive_format {
+    type Output = archive_format;
+    fn mul(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for archive_format {
+    type Output = archive_format;
+    fn div(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for archive_format {
+    type Output = archive_format;
+    fn rem(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -419,11 +546,70 @@ impl hole_detection_method {
             hole_detection_method::HOLE_DETECTION_SEEK => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> hole_detection_method {
+        match value {
+            0 => hole_detection_method::HOLE_DETECTION_DEFAULT,
+            1 => hole_detection_method::HOLE_DETECTION_RAW,
+            2 => hole_detection_method::HOLE_DETECTION_SEEK,
+            _ => panic!("Invalid value for hole_detection_method: {}", value),
+        }
+    }
 }
-
-pub const HOLE_DETECTION_SEEK: hole_detection_method = 2;
-pub const HOLE_DETECTION_RAW: hole_detection_method = 1;
-pub const HOLE_DETECTION_DEFAULT: hole_detection_method = 0;
+impl AddAssign<u32> for hole_detection_method {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for hole_detection_method {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for hole_detection_method {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for hole_detection_method {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for hole_detection_method {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn add(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn sub(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn mul(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn div(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn rem(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum dump_status {
@@ -441,12 +627,71 @@ impl dump_status {
             dump_status::dump_status_not_implemented => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> dump_status {
+        match value {
+            0 => dump_status::dump_status_ok,
+            1 => dump_status::dump_status_short,
+            2 => dump_status::dump_status_fail,
+            3 => dump_status::dump_status_not_implemented,
+            _ => panic!("Invalid value for dump_status: {}", value),
+        }
+    }
 }
-
-pub const dump_status_not_implemented: dump_status = 3;
-pub const dump_status_fail: dump_status = 2;
-pub const dump_status_short: dump_status = 1;
-pub const dump_status_ok: dump_status = 0;
+impl AddAssign<u32> for dump_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = dump_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for dump_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = dump_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for dump_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = dump_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for dump_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = dump_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for dump_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = dump_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for dump_status {
+    type Output = dump_status;
+    fn add(self, rhs: u32) -> dump_status {
+        dump_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for dump_status {
+    type Output = dump_status;
+    fn sub(self, rhs: u32) -> dump_status {
+        dump_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for dump_status {
+    type Output = dump_status;
+    fn mul(self, rhs: u32) -> dump_status {
+        dump_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for dump_status {
+    type Output = dump_status;
+    fn div(self, rhs: u32) -> dump_status {
+        dump_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for dump_status {
+    type Output = dump_status;
+    fn rem(self, rhs: u32) -> dump_status {
+        dump_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tar_sparse_file {
@@ -461,23 +706,21 @@ pub struct tar_sparse_file {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tar_sparse_optab {
-    pub init: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub done: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub sparse_member_p: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub dump_header: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub fixup_header: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub decode_header: Option::<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
-    pub scan_block: Option::<
+    pub init: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub done: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub sparse_member_p: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub dump_header: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub fixup_header: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub decode_header: Option<unsafe extern "C" fn(*mut tar_sparse_file) -> bool>,
+    pub sparse_scan_state::scan_block: Option<
         unsafe extern "C" fn(
             *mut tar_sparse_file,
             sparse_scan_state,
             *mut libc::c_void,
         ) -> bool,
     >,
-    pub dump_region: Option::<
-        unsafe extern "C" fn(*mut tar_sparse_file, size_t) -> bool,
-    >,
-    pub extract_region: Option::<
+    pub dump_region: Option<unsafe extern "C" fn(*mut tar_sparse_file, size_t) -> bool>,
+    pub extract_region: Option<
         unsafe extern "C" fn(*mut tar_sparse_file, size_t) -> bool,
     >,
 }
@@ -496,11 +739,70 @@ impl sparse_scan_state {
             sparse_scan_state::scan_begin => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> sparse_scan_state {
+        match value {
+            2 => sparse_scan_state::scan_end,
+            1 => sparse_scan_state::scan_block,
+            0 => sparse_scan_state::scan_begin,
+            _ => panic!("Invalid value for sparse_scan_state: {}", value),
+        }
+    }
 }
-
-pub const scan_end: sparse_scan_state = 2;
-pub const scan_block: sparse_scan_state = 1;
-pub const scan_begin: sparse_scan_state = 0;
+impl AddAssign<u32> for sparse_scan_state {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sparse_scan_state {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sparse_scan_state {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sparse_scan_state {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sparse_scan_state {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sparse_scan_state {
+    type Output = sparse_scan_state;
+    fn add(self, rhs: u32) -> sparse_scan_state {
+        sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sparse_scan_state {
+    type Output = sparse_scan_state;
+    fn sub(self, rhs: u32) -> sparse_scan_state {
+        sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sparse_scan_state {
+    type Output = sparse_scan_state;
+    fn mul(self, rhs: u32) -> sparse_scan_state {
+        sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sparse_scan_state {
+    type Output = sparse_scan_state;
+    fn div(self, rhs: u32) -> sparse_scan_state {
+        sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sparse_scan_state {
+    type Output = sparse_scan_state;
+    fn rem(self, rhs: u32) -> sparse_scan_state {
+        sparse_scan_state::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum oldgnu_add_status {
@@ -516,8 +818,70 @@ impl oldgnu_add_status {
             oldgnu_add_status::add_fail => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> oldgnu_add_status {
+        match value {
+            0 => oldgnu_add_status::add_ok,
+            1 => oldgnu_add_status::add_finish,
+            2 => oldgnu_add_status::add_fail,
+            _ => panic!("Invalid value for oldgnu_add_status: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for oldgnu_add_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for oldgnu_add_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for oldgnu_add_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for oldgnu_add_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for oldgnu_add_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for oldgnu_add_status {
+    type Output = oldgnu_add_status;
+    fn add(self, rhs: u32) -> oldgnu_add_status {
+        oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for oldgnu_add_status {
+    type Output = oldgnu_add_status;
+    fn sub(self, rhs: u32) -> oldgnu_add_status {
+        oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for oldgnu_add_status {
+    type Output = oldgnu_add_status;
+    fn mul(self, rhs: u32) -> oldgnu_add_status {
+        oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for oldgnu_add_status {
+    type Output = oldgnu_add_status;
+    fn div(self, rhs: u32) -> oldgnu_add_status {
+        oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for oldgnu_add_status {
+    type Output = oldgnu_add_status;
+    fn rem(self, rhs: u32) -> oldgnu_add_status {
+        oldgnu_add_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,
@@ -542,7 +906,8 @@ unsafe extern "C" fn x2nrealloc(
     let mut n: size_t = *pn;
     if p.is_null() {
         if n == 0 {
-            n = (DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
+            n = (C2RustUnnamed_2::DEFAULT_MXFAST as libc::c_int as libc::c_ulong)
+                .wrapping_div(s);
             n = (n as libc::c_ulong)
                 .wrapping_add((n == 0) as libc::c_int as libc::c_ulong) as size_t
                 as size_t;
@@ -644,8 +1009,8 @@ unsafe extern "C" fn tar_sparse_scan(
     mut state: sparse_scan_state,
     mut block: *mut libc::c_void,
 ) -> bool {
-    if ((*(*file).optab).scan_block).is_some() {
-        return ((*(*file).optab).scan_block)
+    if ((*(*file).optab).sparse_scan_state::scan_block).is_some() {
+        return ((*(*file).optab).sparse_scan_state::scan_block)
             .expect("non-null function pointer")(file, state, block);
     }
     return 1 as libc::c_int != 0;
@@ -754,7 +1119,7 @@ unsafe extern "C" fn sparse_scan_file_raw(mut file: *mut tar_sparse_file) -> boo
         init
     };
     (*st).archive_file_size = 0 as libc::c_int as off_t;
-    if !tar_sparse_scan(file, scan_begin, 0 as *mut libc::c_void) {
+    if !tar_sparse_scan(file, sparse_scan_state::scan_begin, 0 as *mut libc::c_void) {
         return 0 as libc::c_int != 0;
     }
     loop {
@@ -772,7 +1137,7 @@ unsafe extern "C" fn sparse_scan_file_raw(mut file: *mut tar_sparse_file) -> boo
             if sp.numbytes != 0 {
                 sparse_add_map(st, &mut sp);
                 sp.numbytes = 0 as libc::c_int as off_t;
-                if !tar_sparse_scan(file, scan_block, 0 as *mut libc::c_void) {
+                if !tar_sparse_scan(file, sparse_scan_state::scan_block, 0 as *mut libc::c_void) {
                     return 0 as libc::c_int != 0;
                 }
             }
@@ -780,15 +1145,13 @@ unsafe extern "C" fn sparse_scan_file_raw(mut file: *mut tar_sparse_file) -> boo
             if sp.numbytes == 0 as libc::c_int as libc::c_long {
                 sp.offset = offset;
             }
-            sp
-                .numbytes = (sp.numbytes as libc::c_ulong).wrapping_add(count) as off_t
+            sp.numbytes = (sp.numbytes as libc::c_ulong).wrapping_add(count) as off_t
                 as off_t;
-            (*st)
-                .archive_file_size = ((*st).archive_file_size as libc::c_ulong)
+            (*st).archive_file_size = ((*st).archive_file_size as libc::c_ulong)
                 .wrapping_add(count) as off_t as off_t;
             if !tar_sparse_scan(
                 file,
-                scan_block,
+                sparse_scan_state::scan_block,
                 buffer.as_mut_ptr() as *mut libc::c_void,
             ) {
                 return 0 as libc::c_int != 0;
@@ -800,10 +1163,9 @@ unsafe extern "C" fn sparse_scan_file_raw(mut file: *mut tar_sparse_file) -> boo
         sp.offset = offset;
     }
     sparse_add_map(st, &mut sp);
-    (*st)
-        .archive_file_size = ((*st).archive_file_size as libc::c_ulong)
+    (*st).archive_file_size = ((*st).archive_file_size as libc::c_ulong)
         .wrapping_add(count) as off_t as off_t;
-    return tar_sparse_scan(file, scan_end, 0 as *mut libc::c_void);
+    return tar_sparse_scan(file, sparse_scan_state::scan_end, 0 as *mut libc::c_void);
 }
 unsafe extern "C" fn sparse_scan_file_wholesparse(
     mut file: *mut tar_sparse_file,
@@ -895,7 +1257,7 @@ unsafe extern "C" fn sparse_scan_file(mut file: *mut tar_sparse_file) -> bool {
 }
 unsafe extern "C" fn sparse_select_optab(mut file: *mut tar_sparse_file) -> bool {
     match if current_format as libc::c_uint
-        == DEFAULT_FORMAT as libc::c_int as libc::c_uint
+        == archive_format::DEFAULT_FORMAT as libc::c_int as libc::c_uint
     {
         archive_format as libc::c_uint
     } else {
@@ -1011,8 +1373,7 @@ unsafe extern "C" fn sparse_dump_region(
         );
         bytes_left = (bytes_left as libc::c_ulong).wrapping_sub(bytes_read) as off_t
             as off_t;
-        (*file)
-            .dumped_size = ((*file).dumped_size as libc::c_ulong)
+        (*file).dumped_size = ((*file).dumped_size as libc::c_ulong)
             .wrapping_add(bytes_read) as off_t as off_t;
         set_next_block_after(blk);
     }
@@ -1071,9 +1432,8 @@ unsafe extern "C" fn sparse_extract_region(
             write_size = (write_size as libc::c_ulong).wrapping_sub(count) as off_t
                 as off_t;
             mv_size_left((*(*file).stat_info).archive_file_size - (*file).dumped_size);
-            (*file)
-                .offset = ((*file).offset as libc::c_ulong).wrapping_add(count) as off_t
-                as off_t;
+            (*file).offset = ((*file).offset as libc::c_ulong).wrapping_add(count)
+                as off_t as off_t;
             if count != wrbytes {
                 write_error_details((*(*file).stat_info).orig_file_name, count, wrbytes);
                 return 0 as libc::c_int != 0;
@@ -1098,7 +1458,7 @@ pub unsafe extern "C" fn sparse_dump_file(
         closure: 0 as *mut libc::c_void,
     };
     if !tar_sparse_init(&mut file) {
-        return dump_status_not_implemented;
+        return dump_status::dump_status_not_implemented;
     }
     file.stat_info = st;
     file.fd = fd;
@@ -1122,11 +1482,13 @@ pub unsafe extern "C" fn sparse_dump_file(
         }
     }
     pad_archive((*file.stat_info).archive_file_size - file.dumped_size);
-    return (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
-        dump_status_ok as libc::c_int
-    } else {
-        dump_status_short as libc::c_int
-    }) as dump_status;
+    return dump_status::from_libc_c_uint(
+        (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
+            dump_status::dump_status_ok as libc::c_int
+        } else {
+            dump_status::dump_status_short as libc::c_int
+        }) as u32,
+    );
 }
 #[no_mangle]
 pub unsafe extern "C" fn sparse_member_p(mut st: *mut tar_stat_info) -> bool {
@@ -1180,12 +1542,11 @@ pub unsafe extern "C" fn sparse_extract_file(
     };
     let mut i: size_t = 0;
     if !tar_sparse_init(&mut file) {
-        return dump_status_not_implemented;
+        return dump_status::dump_status_not_implemented;
     }
     file.stat_info = st;
     file.fd = fd;
-    file
-        .seekable = lseek(fd, 0 as libc::c_int as __off_t, 0 as libc::c_int)
+    file.seekable = lseek(fd, 0 as libc::c_int as __off_t, 0 as libc::c_int)
         == 0 as libc::c_int as libc::c_long;
     file.offset = 0 as libc::c_int as off_t;
     rc = tar_sparse_decode_header(&mut file);
@@ -1196,11 +1557,13 @@ pub unsafe extern "C" fn sparse_extract_file(
         i;
     }
     *size = (*file.stat_info).archive_file_size - file.dumped_size;
-    return (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
-        dump_status_ok as libc::c_int
-    } else {
-        dump_status_short as libc::c_int
-    }) as dump_status;
+    return dump_status::from_libc_c_uint(
+        (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
+            dump_status::dump_status_ok as libc::c_int
+        } else {
+            dump_status::dump_status_short as libc::c_int
+        }) as u32,
+    );
 }
 #[no_mangle]
 pub unsafe extern "C" fn sparse_skip_file(mut st: *mut tar_stat_info) -> dump_status {
@@ -1215,17 +1578,19 @@ pub unsafe extern "C" fn sparse_skip_file(mut st: *mut tar_stat_info) -> dump_st
         closure: 0 as *mut libc::c_void,
     };
     if !tar_sparse_init(&mut file) {
-        return dump_status_not_implemented;
+        return dump_status::dump_status_not_implemented;
     }
     file.stat_info = st;
     file.fd = -(1 as libc::c_int);
     rc = tar_sparse_decode_header(&mut file);
     skip_file((*file.stat_info).archive_file_size - file.dumped_size);
-    return (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
-        dump_status_ok as libc::c_int
-    } else {
-        dump_status_short as libc::c_int
-    }) as dump_status;
+    return dump_status::from_libc_c_uint(
+        (if tar_sparse_done(&mut file) as libc::c_int != 0 && rc as libc::c_int != 0 {
+            dump_status::dump_status_ok as libc::c_int
+        } else {
+            dump_status::dump_status_short as libc::c_int
+        }) as u32,
+    );
 }
 unsafe extern "C" fn check_sparse_region(
     mut file: *mut tar_sparse_file,
@@ -1420,15 +1785,13 @@ unsafe extern "C" fn oldgnu_add_sparse(
 ) -> oldgnu_add_status {
     let mut sp: sp_array = sp_array { offset: 0, numbytes: 0 };
     if (*s).numbytes[0 as libc::c_int as usize] as libc::c_int == '\0' as i32 {
-        return add_finish;
+        return oldgnu_add_status::add_finish;
     }
-    sp
-        .offset = off_from_header(
+    sp.offset = off_from_header(
         ((*s).offset).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 12]>() as libc::c_ulong,
     );
-    sp
-        .numbytes = off_from_header(
+    sp.numbytes = off_from_header(
         ((*s).numbytes).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 12]>() as libc::c_ulong,
     );
@@ -1560,10 +1923,10 @@ unsafe extern "C" fn oldgnu_add_sparse(
         }) != 0 || (*(*file).stat_info).stat.st_size < sp.offset + sp.numbytes
         || (*(*file).stat_info).archive_file_size < 0 as libc::c_int as libc::c_long
     {
-        return add_fail;
+        return oldgnu_add_status::add_fail;
     }
     sparse_add_map((*file).stat_info, &mut sp);
-    return add_ok;
+    return oldgnu_add_status::add_ok;
 }
 unsafe extern "C" fn oldgnu_fixup_header(mut file: *mut tar_sparse_file) -> bool {
     let mut realsize: off_t = off_from_header(
@@ -1571,9 +1934,8 @@ unsafe extern "C" fn oldgnu_fixup_header(mut file: *mut tar_sparse_file) -> bool
         ::core::mem::size_of::<[libc::c_char; 12]>() as libc::c_ulong,
     );
     (*(*file).stat_info).archive_file_size = (*(*file).stat_info).stat.st_size;
-    (*(*file).stat_info)
-        .stat
-        .st_size = if (0 as libc::c_int as libc::c_long) < realsize {
+    (*(*file).stat_info).stat.st_size = if (0 as libc::c_int as libc::c_long) < realsize
+    {
         realsize
     } else {
         0 as libc::c_int as libc::c_long
@@ -1584,7 +1946,7 @@ unsafe extern "C" fn oldgnu_get_sparse_info(mut file: *mut tar_sparse_file) -> b
     let mut i: size_t = 0;
     let mut h: *mut block = current_header;
     let mut ext_p: libc::c_int = 0;
-    let mut rc: oldgnu_add_status = add_ok;
+    let mut rc: oldgnu_add_status = oldgnu_add_status::add_ok;
     (*(*file).stat_info).sparse_map_avail = 0 as libc::c_int as size_t;
     i = 0 as libc::c_int as size_t;
     while i < 4 as libc::c_int as libc::c_ulong {
@@ -1592,14 +1954,14 @@ unsafe extern "C" fn oldgnu_get_sparse_info(mut file: *mut tar_sparse_file) -> b
             file,
             &mut *((*h).oldgnu_header.sp).as_mut_ptr().offset(i as isize),
         );
-        if rc as libc::c_uint != add_ok as libc::c_int as libc::c_uint {
+        if rc as libc::c_uint != oldgnu_add_status::add_ok as libc::c_int as libc::c_uint {
             break;
         }
         i = i.wrapping_add(1);
         i;
     }
     ext_p = (*h).oldgnu_header.isextended as libc::c_int;
-    while rc as libc::c_uint == add_ok as libc::c_int as libc::c_uint && ext_p != 0 {
+    while rc as libc::c_uint == oldgnu_add_status::add_ok as libc::c_int as libc::c_uint && ext_p != 0 {
         h = find_next_block();
         if h.is_null() {
             if error_hook.is_some() {
@@ -1620,7 +1982,7 @@ unsafe extern "C" fn oldgnu_get_sparse_info(mut file: *mut tar_sparse_file) -> b
         set_next_block_after(h);
         i = 0 as libc::c_int as size_t;
         while i < 21 as libc::c_int as libc::c_ulong
-            && rc as libc::c_uint == add_ok as libc::c_int as libc::c_uint
+            && rc as libc::c_uint == oldgnu_add_status::add_ok as libc::c_int as libc::c_uint
         {
             rc = oldgnu_add_sparse(
                 file,
@@ -1631,7 +1993,7 @@ unsafe extern "C" fn oldgnu_get_sparse_info(mut file: *mut tar_sparse_file) -> b
         }
         ext_p = (*h).sparse_header.isextended as libc::c_int;
     }
-    if rc as libc::c_uint == add_fail as libc::c_int as libc::c_uint {
+    if rc as libc::c_uint == oldgnu_add_status::add_fail as libc::c_int as libc::c_uint {
         if error_hook.is_some() {
             error_hook.expect("non-null function pointer")();
         }
@@ -1704,10 +2066,8 @@ unsafe extern "C" fn oldgnu_dump_header(mut file: *mut tar_sparse_file) -> bool 
         ((*blk).oldgnu_header.sp).as_mut_ptr(),
         4 as libc::c_int as size_t,
     );
-    (*blk)
-        .oldgnu_header
-        .isextended = (i < (*(*file).stat_info).sparse_map_avail) as libc::c_int
-        as libc::c_char;
+    (*blk).oldgnu_header.isextended = (i < (*(*file).stat_info).sparse_map_avail)
+        as libc::c_int as libc::c_char;
     finish_header((*file).stat_info, blk, block_ordinal);
     while i < (*(*file).stat_info).sparse_map_avail {
         blk = find_next_block();
@@ -1748,7 +2108,7 @@ static mut oldgnu_optab: tar_sparse_optab = unsafe {
                 oldgnu_get_sparse_info
                     as unsafe extern "C" fn(*mut tar_sparse_file) -> bool,
             ),
-            scan_block: None,
+            sparse_scan_state::scan_block: None,
             dump_region: Some(
                 sparse_dump_region
                     as unsafe extern "C" fn(*mut tar_sparse_file, size_t) -> bool,
@@ -1770,9 +2130,8 @@ unsafe extern "C" fn star_fixup_header(mut file: *mut tar_sparse_file) -> bool {
         ::core::mem::size_of::<[libc::c_char; 12]>() as libc::c_ulong,
     );
     (*(*file).stat_info).archive_file_size = (*(*file).stat_info).stat.st_size;
-    (*(*file).stat_info)
-        .stat
-        .st_size = if (0 as libc::c_int as libc::c_long) < realsize {
+    (*(*file).stat_info).stat.st_size = if (0 as libc::c_int as libc::c_long) < realsize
+    {
         realsize
     } else {
         0 as libc::c_int as libc::c_long
@@ -1783,7 +2142,7 @@ unsafe extern "C" fn star_get_sparse_info(mut file: *mut tar_sparse_file) -> boo
     let mut i: size_t = 0;
     let mut h: *mut block = current_header;
     let mut ext_p: libc::c_int = 0;
-    let mut rc: oldgnu_add_status = add_ok;
+    let mut rc: oldgnu_add_status = oldgnu_add_status::add_ok;
     (*(*file).stat_info).sparse_map_avail = 0 as libc::c_int as size_t;
     if (*h).star_in_header.prefix[0 as libc::c_int as usize] as libc::c_int
         == '\0' as i32
@@ -1798,7 +2157,7 @@ unsafe extern "C" fn star_get_sparse_info(mut file: *mut tar_sparse_file) -> boo
                 file,
                 &mut *((*h).star_in_header.sp).as_mut_ptr().offset(i as isize),
             );
-            if rc as libc::c_uint != add_ok as libc::c_int as libc::c_uint {
+            if rc as libc::c_uint != oldgnu_add_status::add_ok as libc::c_int as libc::c_uint {
                 break;
             }
             i = i.wrapping_add(1);
@@ -1808,7 +2167,7 @@ unsafe extern "C" fn star_get_sparse_info(mut file: *mut tar_sparse_file) -> boo
     } else {
         ext_p = 1 as libc::c_int;
     }
-    while rc as libc::c_uint == add_ok as libc::c_int as libc::c_uint && ext_p != 0 {
+    while rc as libc::c_uint == oldgnu_add_status::add_ok as libc::c_int as libc::c_uint && ext_p != 0 {
         h = find_next_block();
         if h.is_null() {
             if error_hook.is_some() {
@@ -1829,7 +2188,7 @@ unsafe extern "C" fn star_get_sparse_info(mut file: *mut tar_sparse_file) -> boo
         set_next_block_after(h);
         i = 0 as libc::c_int as size_t;
         while i < 21 as libc::c_int as libc::c_ulong
-            && rc as libc::c_uint == add_ok as libc::c_int as libc::c_uint
+            && rc as libc::c_uint == oldgnu_add_status::add_ok as libc::c_int as libc::c_uint
         {
             rc = oldgnu_add_sparse(
                 file,
@@ -1841,7 +2200,7 @@ unsafe extern "C" fn star_get_sparse_info(mut file: *mut tar_sparse_file) -> boo
         (*file).dumped_size += 512 as libc::c_int as libc::c_long;
         ext_p = (*h).star_ext_header.isextended as libc::c_int;
     }
-    if rc as libc::c_uint == add_fail as libc::c_int as libc::c_uint {
+    if rc as libc::c_uint == oldgnu_add_status::add_fail as libc::c_int as libc::c_uint {
         if error_hook.is_some() {
             error_hook.expect("non-null function pointer")();
         }
@@ -1878,7 +2237,7 @@ static mut star_optab: tar_sparse_optab = unsafe {
                 star_get_sparse_info
                     as unsafe extern "C" fn(*mut tar_sparse_file) -> bool,
             ),
-            scan_block: None,
+            sparse_scan_state::scan_block: None,
             dump_region: None,
             extract_region: Some(
                 sparse_extract_region
@@ -1942,8 +2301,7 @@ unsafe extern "C" fn pax_dump_header_0(mut file: *mut tar_sparse_file) -> bool {
             0 as *const libc::c_void,
         );
         save_file_name = (*(*file).stat_info).file_name;
-        (*(*file).stat_info)
-            .file_name = xheader_format_name(
+        (*(*file).stat_info).file_name = xheader_format_name(
             (*file).stat_info,
             b"%d/GNUSparseFile.%p/%f\0" as *const u8 as *const libc::c_char,
             0 as libc::c_int as size_t,
@@ -2049,15 +2407,14 @@ unsafe extern "C" fn pax_dump_header_1(mut file: *mut tar_sparse_file) -> bool {
         (*file).stat_info,
         0 as *const libc::c_void,
     );
-    (*(*file).stat_info)
-        .file_name = xheader_format_name(
+    (*(*file).stat_info).file_name = xheader_format_name(
         (*file).stat_info,
         b"%d/GNUSparseFile.%p/%f\0" as *const u8 as *const libc::c_char,
         0 as libc::c_int as size_t,
     );
     if strlen((*(*file).stat_info).file_name) > 100 as libc::c_int as libc::c_ulong {
-        *((*(*file).stat_info).file_name)
-            .offset(100 as libc::c_int as isize) = 0 as libc::c_int as libc::c_char;
+        *((*(*file).stat_info).file_name).offset(100 as libc::c_int as isize) = 0
+            as libc::c_int as libc::c_char;
     }
     blk = pax_start_header((*file).stat_info);
     finish_header((*file).stat_info, blk, block_ordinal);
@@ -2366,8 +2723,7 @@ unsafe extern "C" fn pax_decode_header(mut file: *mut tar_sparse_file) -> bool {
             return 0 as libc::c_int != 0;
         }
         (*(*file).stat_info).sparse_map_size = u;
-        (*(*file).stat_info)
-            .sparse_map = xcalloc(
+        (*(*file).stat_info).sparse_map = xcalloc(
             (*(*file).stat_info).sparse_map_size,
             ::core::mem::size_of::<sp_array>() as libc::c_ulong,
         ) as *mut sp_array;
@@ -2453,8 +2809,8 @@ unsafe extern "C" fn pax_decode_header(mut file: *mut tar_sparse_file) -> bool {
                     break;
                 }
             }
-            *dst_0
-                .offset(-(1 as libc::c_int) as isize) = 0 as libc::c_int as libc::c_char;
+            *dst_0.offset(-(1 as libc::c_int) as isize) = 0 as libc::c_int
+                as libc::c_char;
             if !decode_num(
                 &mut u,
                 nbuf.as_mut_ptr(),
@@ -2566,8 +2922,8 @@ unsafe extern "C" fn pax_decode_header(mut file: *mut tar_sparse_file) -> bool {
                     break;
                 }
             }
-            *dst_1
-                .offset(-(1 as libc::c_int) as isize) = 0 as libc::c_int as libc::c_char;
+            *dst_1.offset(-(1 as libc::c_int) as isize) = 0 as libc::c_int
+                as libc::c_char;
             if !decode_num(
                 &mut u,
                 nbuf.as_mut_ptr(),
@@ -2626,7 +2982,7 @@ static mut pax_optab: tar_sparse_optab = unsafe {
             decode_header: Some(
                 pax_decode_header as unsafe extern "C" fn(*mut tar_sparse_file) -> bool,
             ),
-            scan_block: None,
+            sparse_scan_state::scan_block: None,
             dump_region: Some(
                 sparse_dump_region
                     as unsafe extern "C" fn(*mut tar_sparse_file, size_t) -> bool,

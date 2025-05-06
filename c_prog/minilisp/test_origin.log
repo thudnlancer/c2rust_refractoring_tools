@@ -1,0 +1,219 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+warning: unused label
+   --> minilisp.rs:322:5
+    |
+322 |     'c_3062: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> minilisp.rs:474:5
+    |
+474 |     'c_3428: {
+    |     ^^^^^^^
+
+warning: unused variable: `env`
+   --> minilisp.rs:986:9
+    |
+986 |     mut env: *mut *mut Obj,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `root`
+    --> minilisp.rs:1173:9
+     |
+1173 |     mut root: *mut libc::c_void,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+
+warning: unused variable: `env`
+    --> minilisp.rs:1174:9
+     |
+1174 |     mut env: *mut *mut Obj,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+
+warning: unused variable: `env`
+    --> minilisp.rs:1359:9
+     |
+1359 |     mut env: *mut *mut Obj,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+
+warning: unused variable: `list`
+    --> minilisp.rs:1360:9
+     |
+1360 |     mut list: *mut *mut Obj,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+
+warning: unused variable: `argc`
+    --> minilisp.rs:2065:9
+     |
+2065 |     mut argc: libc::c_int,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+    --> minilisp.rs:2066:9
+     |
+2066 |     mut argv: *mut *mut libc::c_char,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: path statement with no effect
+   --> minilisp.rs:304:13
+    |
+304 |             i;
+    |             ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> minilisp.rs:529:9
+    |
+529 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:580:9
+    |
+580 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:642:9
+    |
+642 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:661:9
+    |
+661 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:836:9
+    |
+836 |         len;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> minilisp.rs:853:9
+    |
+853 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:880:9
+    |
+880 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:924:9
+    |
+924 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:954:9
+    |
+954 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:996:9
+    |
+996 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1039:13
+     |
+1039 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1083:9
+     |
+1083 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1132:17
+     |
+1132 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1258:9
+     |
+1258 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1297:9
+     |
+1297 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1339:9
+     |
+1339 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1488:9
+     |
+1488 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1529:9
+     |
+1529 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1575:9
+     |
+1575 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1619:9
+     |
+1619 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1641:9
+     |
+1641 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1670:9
+     |
+1670 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1759:9
+     |
+1759 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1784:9
+     |
+1784 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:2083:9
+     |
+2083 |         i;
+     |         ^^
+
+warning: `c2rust_out` (lib) generated 35 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.95s

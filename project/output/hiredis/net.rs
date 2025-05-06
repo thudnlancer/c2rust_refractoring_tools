@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type redisAsyncContext;
     fn fcntl(__fd: libc::c_int, __cmd: libc::c_int, _: ...) -> libc::c_int;
@@ -118,20 +128,20 @@ pub struct redisReadTask {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisReplyObjectFunctions {
-    pub createString: Option::<
+    pub createString: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             *mut libc::c_char,
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createArray: Option::<
+    pub createArray: Option<
         unsafe extern "C" fn(*const redisReadTask, size_t) -> *mut libc::c_void,
     >,
-    pub createInteger: Option::<
+    pub createInteger: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_longlong) -> *mut libc::c_void,
     >,
-    pub createDouble: Option::<
+    pub createDouble: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             libc::c_double,
@@ -139,13 +149,13 @@ pub struct redisReplyObjectFunctions {
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createNil: Option::<
+    pub createNil: Option<
         unsafe extern "C" fn(*const redisReadTask) -> *mut libc::c_void,
     >,
-    pub createBool: Option::<
+    pub createBool: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_int) -> *mut libc::c_void,
     >,
-    pub freeObject: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub freeObject: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -210,15 +220,13 @@ pub struct sdshdr64 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct hiredisAllocFuncs {
-    pub mallocFn: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub callocFn: Option::<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
-    pub reallocFn: Option::<
+    pub mallocFn: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub callocFn: Option<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
+    pub reallocFn: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
-    pub strdupFn: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char,
-    >,
-    pub freeFn: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub strdupFn: Option<unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char>,
+    pub freeFn: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -238,9 +246,9 @@ pub struct redisContext {
     pub saddr: *mut sockaddr,
     pub addrlen: size_t,
     pub privdata: *mut libc::c_void,
-    pub free_privdata: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub free_privdata: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub privctx: *mut libc::c_void,
-    pub push_cb: Option::<redisPushFn>,
+    pub push_cb: Option<redisPushFn>,
 }
 pub type redisPushFn = unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ();
 #[derive(Copy, Clone)]
@@ -277,23 +285,82 @@ impl redisConnectionType {
             redisConnectionType::REDIS_CONN_USERFD => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> redisConnectionType {
+        match value {
+            0 => redisConnectionType::REDIS_CONN_TCP,
+            1 => redisConnectionType::REDIS_CONN_UNIX,
+            2 => redisConnectionType::REDIS_CONN_USERFD,
+            _ => panic!("Invalid value for redisConnectionType: {}", value),
+        }
+    }
 }
-
-pub const REDIS_CONN_USERFD: redisConnectionType = 2;
-pub const REDIS_CONN_UNIX: redisConnectionType = 1;
-pub const REDIS_CONN_TCP: redisConnectionType = 0;
+impl AddAssign<u32> for redisConnectionType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for redisConnectionType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for redisConnectionType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for redisConnectionType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for redisConnectionType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn add(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn sub(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn mul(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn div(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn rem(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisContextFuncs {
-    pub close: Option::<unsafe extern "C" fn(*mut redisContext) -> ()>,
-    pub free_privctx: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub async_read: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub async_write: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub read: Option::<
+    pub close: Option<unsafe extern "C" fn(*mut redisContext) -> ()>,
+    pub free_privctx: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub async_read: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub async_write: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub read: Option<
         unsafe extern "C" fn(*mut redisContext, *mut libc::c_char, size_t) -> ssize_t,
     >,
-    pub write: Option::<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
+    pub write: Option<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
 }
 pub type socklen_t = __socklen_t;
 #[derive(Copy, Clone)]
@@ -369,8 +436,93 @@ impl C2RustUnnamed_1 {
             C2RustUnnamed_1::IPPROTO_IP => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_1 {
+        match value {
+            6 => C2RustUnnamed_1::IPPROTO_TCP,
+            256 => C2RustUnnamed_1::IPPROTO_MAX,
+            255 => C2RustUnnamed_1::IPPROTO_RAW,
+            137 => C2RustUnnamed_1::IPPROTO_MPLS,
+            136 => C2RustUnnamed_1::IPPROTO_UDPLITE,
+            132 => C2RustUnnamed_1::IPPROTO_SCTP,
+            108 => C2RustUnnamed_1::IPPROTO_COMP,
+            103 => C2RustUnnamed_1::IPPROTO_PIM,
+            98 => C2RustUnnamed_1::IPPROTO_ENCAP,
+            94 => C2RustUnnamed_1::IPPROTO_BEETPH,
+            92 => C2RustUnnamed_1::IPPROTO_MTP,
+            51 => C2RustUnnamed_1::IPPROTO_AH,
+            50 => C2RustUnnamed_1::IPPROTO_ESP,
+            47 => C2RustUnnamed_1::IPPROTO_GRE,
+            46 => C2RustUnnamed_1::IPPROTO_RSVP,
+            41 => C2RustUnnamed_1::IPPROTO_IPV6,
+            33 => C2RustUnnamed_1::IPPROTO_DCCP,
+            29 => C2RustUnnamed_1::IPPROTO_TP,
+            22 => C2RustUnnamed_1::IPPROTO_IDP,
+            17 => C2RustUnnamed_1::IPPROTO_UDP,
+            12 => C2RustUnnamed_1::IPPROTO_PUP,
+            8 => C2RustUnnamed_1::IPPROTO_EGP,
+            4 => C2RustUnnamed_1::IPPROTO_IPIP,
+            2 => C2RustUnnamed_1::IPPROTO_IGMP,
+            1 => C2RustUnnamed_1::IPPROTO_ICMP,
+            0 => C2RustUnnamed_1::IPPROTO_IP,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type nfds_t = libc::c_ulong;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -406,8 +558,76 @@ impl __socket_type {
             __socket_type::SOCK_DGRAM => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> __socket_type {
+        match value {
+            1 => __socket_type::SOCK_STREAM,
+            2048 => __socket_type::SOCK_NONBLOCK,
+            524288 => __socket_type::SOCK_CLOEXEC,
+            10 => __socket_type::SOCK_PACKET,
+            6 => __socket_type::SOCK_DCCP,
+            5 => __socket_type::SOCK_SEQPACKET,
+            4 => __socket_type::SOCK_RDM,
+            3 => __socket_type::SOCK_RAW,
+            2 => __socket_type::SOCK_DGRAM,
+            _ => panic!("Invalid value for __socket_type: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for __socket_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for __socket_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for __socket_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for __socket_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for __socket_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for __socket_type {
+    type Output = __socket_type;
+    fn add(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for __socket_type {
+    type Output = __socket_type;
+    fn sub(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for __socket_type {
+    type Output = __socket_type;
+    fn mul(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for __socket_type {
+    type Output = __socket_type;
+    fn div(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for __socket_type {
+    type Output = __socket_type;
+    fn rem(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sockaddr_un {
@@ -705,7 +925,7 @@ unsafe extern "C" fn redisCreateSocket(
     mut type_0: libc::c_int,
 ) -> libc::c_int {
     let mut s: redisFD = 0;
-    s = socket(type_0, SOCK_STREAM as libc::c_int, 0 as libc::c_int);
+    s = socket(type_0, __socket_type::SOCK_STREAM as libc::c_int, 0 as libc::c_int);
     if s == -(1 as libc::c_int) {
         __redisSetErrorFromErrno(c, 1 as libc::c_int, 0 as *const libc::c_char);
         return -(1 as libc::c_int);
@@ -757,7 +977,7 @@ pub unsafe extern "C" fn redisKeepAlive(
     let mut val: libc::c_int = 1 as libc::c_int;
     let mut fd: redisFD = (*c).fd;
     if (*c).connection_type as libc::c_uint
-        == REDIS_CONN_UNIX as libc::c_int as libc::c_uint
+        == redisConnectionType::REDIS_CONN_UNIX as libc::c_int as libc::c_uint
     {
         return -(1 as libc::c_int);
     }
@@ -775,7 +995,7 @@ pub unsafe extern "C" fn redisKeepAlive(
     val = interval;
     if setsockopt(
         fd,
-        IPPROTO_TCP as libc::c_int,
+        C2RustUnnamed_1::IPPROTO_TCP as libc::c_int,
         4 as libc::c_int,
         &mut val as *mut libc::c_int as *const libc::c_void,
         ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
@@ -790,7 +1010,7 @@ pub unsafe extern "C" fn redisKeepAlive(
     }
     if setsockopt(
         fd,
-        IPPROTO_TCP as libc::c_int,
+        C2RustUnnamed_1::IPPROTO_TCP as libc::c_int,
         5 as libc::c_int,
         &mut val as *mut libc::c_int as *const libc::c_void,
         ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
@@ -802,7 +1022,7 @@ pub unsafe extern "C" fn redisKeepAlive(
     val = 3 as libc::c_int;
     if setsockopt(
         fd,
-        IPPROTO_TCP as libc::c_int,
+        C2RustUnnamed_1::IPPROTO_TCP as libc::c_int,
         6 as libc::c_int,
         &mut val as *mut libc::c_int as *const libc::c_void,
         ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
@@ -818,7 +1038,7 @@ pub unsafe extern "C" fn redisSetTcpNoDelay(mut c: *mut redisContext) -> libc::c
     let mut yes: libc::c_int = 1 as libc::c_int;
     if setsockopt(
         (*c).fd,
-        IPPROTO_TCP as libc::c_int,
+        C2RustUnnamed_1::IPPROTO_TCP as libc::c_int,
         1 as libc::c_int,
         &mut yes as *mut libc::c_int as *const libc::c_void,
         ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
@@ -842,7 +1062,7 @@ pub unsafe extern "C" fn redisContextSetTcpUserTimeout(
     let mut res: libc::c_int = 0;
     res = setsockopt(
         (*c).fd,
-        IPPROTO_TCP as libc::c_int,
+        C2RustUnnamed_1::IPPROTO_TCP as libc::c_int,
         18 as libc::c_int,
         &mut timeout as *mut libc::c_uint as *const libc::c_void,
         ::core::mem::size_of::<libc::c_uint>() as libc::c_ulong as socklen_t,
@@ -1084,8 +1304,7 @@ pub unsafe extern "C" fn redisContextUpdateConnectTimeout(
         return 0 as libc::c_int;
     }
     if ((*c).connect_timeout).is_null() {
-        (*c)
-            .connect_timeout = hi_malloc(
+        (*c).connect_timeout = hi_malloc(
             ::core::mem::size_of::<timeval>() as libc::c_ulong,
         ) as *mut timeval;
         if ((*c).connect_timeout).is_null() {
@@ -1108,8 +1327,7 @@ pub unsafe extern "C" fn redisContextUpdateCommandTimeout(
         return 0 as libc::c_int;
     }
     if ((*c).command_timeout).is_null() {
-        (*c)
-            .command_timeout = hi_malloc(
+        (*c).command_timeout = hi_malloc(
             ::core::mem::size_of::<timeval>() as libc::c_ulong,
         ) as *mut timeval;
         if ((*c).command_timeout).is_null() {
@@ -1154,13 +1372,13 @@ unsafe extern "C" fn _redisContextConnectTcp(
     let mut reuses: libc::c_int = 0 as libc::c_int;
     let mut timeout_msec: libc::c_long = -(1 as libc::c_int) as libc::c_long;
     servinfo = 0 as *mut addrinfo;
-    (*c).connection_type = REDIS_CONN_TCP;
+    (*c).connection_type = redisConnectionType::REDIS_CONN_TCP;
     (*c).tcp.port = port;
     if (*c).tcp.host != addr as *mut libc::c_char {
         hi_free((*c).tcp.host as *mut libc::c_void);
         (*c).tcp.host = hi_strdup(addr);
         if ((*c).tcp.host).is_null() {
-            current_block = 17447817038493667125;
+            current_block = 3389578357014576633;
         } else {
             current_block = 17216689946888361452;
         }
@@ -1171,7 +1389,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
         17216689946888361452 => {
             if !timeout.is_null() {
                 if redisContextUpdateConnectTimeout(c, timeout) == -(1 as libc::c_int) {
-                    current_block = 17447817038493667125;
+                    current_block = 3389578357014576633;
                 } else {
                     current_block = 11050875288958768710;
                 }
@@ -1181,11 +1399,11 @@ unsafe extern "C" fn _redisContextConnectTcp(
                 current_block = 11050875288958768710;
             }
             match current_block {
-                17447817038493667125 => {}
+                3389578357014576633 => {}
                 _ => {
                     if redisContextTimeoutMsec(c, &mut timeout_msec) != 0 as libc::c_int
                     {
-                        current_block = 4576699668870366210;
+                        current_block = 2013464024525543704;
                     } else {
                         if source_addr.is_null() {
                             hi_free((*c).tcp.source_addr as *mut libc::c_void);
@@ -1208,7 +1426,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                             ::core::mem::size_of::<addrinfo>() as libc::c_ulong,
                         );
                         hints.ai_family = 2 as libc::c_int;
-                        hints.ai_socktype = SOCK_STREAM as libc::c_int;
+                        hints.ai_socktype = __socket_type::SOCK_STREAM as libc::c_int;
                         if (*c).flags & 0x1000 as libc::c_int != 0
                             && (*c).flags & 0x800 as libc::c_int != 0
                         {
@@ -1226,8 +1444,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                         );
                         if rv != 0 as libc::c_int && hints.ai_family != 0 as libc::c_int
                         {
-                            hints
-                                .ai_family = if hints.ai_family == 2 as libc::c_int {
+                            hints.ai_family = if hints.ai_family == 2 as libc::c_int {
                                 10 as libc::c_int
                             } else {
                                 2 as libc::c_int
@@ -1262,7 +1479,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                 (*c).fd = s;
                                 if redisSetBlocking(c, 0 as libc::c_int) != 0 as libc::c_int
                                 {
-                                    current_block = 4576699668870366210;
+                                    current_block = 2013464024525543704;
                                     break 's_170;
                                 }
                                 if !((*c).tcp.source_addr).is_null() {
@@ -1283,7 +1500,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                             gai_strerror(rv),
                                         );
                                         __redisSetError(c, 2 as libc::c_int, buf.as_mut_ptr());
-                                        current_block = 4576699668870366210;
+                                        current_block = 2013464024525543704;
                                         break 's_170;
                                     } else {
                                         if reuseaddr != 0 {
@@ -1299,7 +1516,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                             ) < 0 as libc::c_int
                                             {
                                                 freeaddrinfo(bservinfo);
-                                                current_block = 4576699668870366210;
+                                                current_block = 2013464024525543704;
                                                 break 's_170;
                                             }
                                         }
@@ -1326,17 +1543,16 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                                 strerror(*__errno_location()),
                                             );
                                             __redisSetError(c, 2 as libc::c_int, buf_0.as_mut_ptr());
-                                            current_block = 4576699668870366210;
+                                            current_block = 2013464024525543704;
                                             break 's_170;
                                         }
                                     }
                                 }
                                 hi_free((*c).saddr as *mut libc::c_void);
-                                (*c)
-                                    .saddr = hi_malloc((*p).ai_addrlen as size_t)
+                                (*c).saddr = hi_malloc((*p).ai_addrlen as size_t)
                                     as *mut sockaddr;
                                 if ((*c).saddr).is_null() {
-                                    current_block = 17447817038493667125;
+                                    current_block = 3389578357014576633;
                                     break 's_170;
                                 }
                                 memcpy(
@@ -1357,7 +1573,7 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                     break;
                                 } else if *__errno_location() == 115 as libc::c_int {
                                     if blocking != 0 {
-                                        current_block = 18413039352935389787;
+                                        current_block = 3433196830928603234;
                                         break;
                                     } else {
                                         current_block = 16029476503615101993;
@@ -1367,27 +1583,27 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                     if !(*__errno_location() == 99 as libc::c_int
                                         && reuseaddr != 0)
                                     {
-                                        current_block = 18413039352935389787;
+                                        current_block = 3433196830928603234;
                                         break;
                                     }
                                     reuses += 1;
                                     if reuses >= 10 as libc::c_int {
-                                        current_block = 4576699668870366210;
+                                        current_block = 2013464024525543704;
                                         break 's_170;
                                     }
                                     redisNetClose(c);
                                 }
                             }
                             match current_block {
-                                18413039352935389787 => {
+                                3433196830928603234 => {
                                     if redisContextWaitReady(c, timeout_msec)
                                         != 0 as libc::c_int
                                     {
-                                        current_block = 4576699668870366210;
+                                        current_block = 2013464024525543704;
                                         break;
                                     }
                                     if redisSetTcpNoDelay(c) != 0 as libc::c_int {
-                                        current_block = 4576699668870366210;
+                                        current_block = 2013464024525543704;
                                         break;
                                     }
                                 }
@@ -1400,18 +1616,18 @@ unsafe extern "C" fn _redisContextConnectTcp(
                             if blocking != 0
                                 && redisSetBlocking(c, 1 as libc::c_int) != 0 as libc::c_int
                             {
-                                current_block = 4576699668870366210;
+                                current_block = 2013464024525543704;
                                 break;
                             }
                             (*c).flags |= 0x2 as libc::c_int;
                             rv = 0 as libc::c_int;
-                            current_block = 13320834858111541275;
+                            current_block = 12901824599810099999;
                             break;
                         }
                         match current_block {
-                            4576699668870366210 => {}
-                            17447817038493667125 => {}
-                            13320834858111541275 => {}
+                            2013464024525543704 => {}
+                            3389578357014576633 => {}
+                            12901824599810099999 => {}
                             _ => {
                                 if p.is_null() {
                                     let mut buf_1: [libc::c_char; 128] = [0; 128];
@@ -1424,9 +1640,9 @@ unsafe extern "C" fn _redisContextConnectTcp(
                                         strerror(*__errno_location()),
                                     );
                                     __redisSetError(c, 2 as libc::c_int, buf_1.as_mut_ptr());
-                                    current_block = 4576699668870366210;
+                                    current_block = 2013464024525543704;
                                 } else {
-                                    current_block = 17447817038493667125;
+                                    current_block = 3389578357014576633;
                                 }
                             }
                         }
@@ -1437,18 +1653,18 @@ unsafe extern "C" fn _redisContextConnectTcp(
         _ => {}
     }
     match current_block {
-        17447817038493667125 => {
+        3389578357014576633 => {
             __redisSetError(
                 c,
                 5 as libc::c_int,
                 b"Out of memory\0" as *const u8 as *const libc::c_char,
             );
-            current_block = 4576699668870366210;
+            current_block = 2013464024525543704;
         }
         _ => {}
     }
     match current_block {
-        4576699668870366210 => {
+        2013464024525543704 => {
             rv = -(1 as libc::c_int);
         }
         _ => {}
@@ -1493,12 +1709,12 @@ pub unsafe extern "C" fn redisContextConnectUnix(
     if redisSetBlocking(c, 0 as libc::c_int) != 0 as libc::c_int {
         return -(1 as libc::c_int);
     }
-    (*c).connection_type = REDIS_CONN_UNIX;
+    (*c).connection_type = redisConnectionType::REDIS_CONN_UNIX;
     if (*c).unix_sock.path != path as *mut libc::c_char {
         hi_free((*c).unix_sock.path as *mut libc::c_void);
         (*c).unix_sock.path = hi_strdup(path);
         if ((*c).unix_sock.path).is_null() {
-            current_block = 6069098414066754246;
+            current_block = 15581356600578111675;
         } else {
             current_block = 10886091980245723256;
         }
@@ -1509,7 +1725,7 @@ pub unsafe extern "C" fn redisContextConnectUnix(
         10886091980245723256 => {
             if !timeout.is_null() {
                 if redisContextUpdateConnectTimeout(c, timeout) == -(1 as libc::c_int) {
-                    current_block = 6069098414066754246;
+                    current_block = 15581356600578111675;
                 } else {
                     current_block = 1856101646708284338;
                 }
@@ -1519,7 +1735,7 @@ pub unsafe extern "C" fn redisContextConnectUnix(
                 current_block = 1856101646708284338;
             }
             match current_block {
-                6069098414066754246 => {}
+                15581356600578111675 => {}
                 _ => {
                     if redisContextTimeoutMsec(c, &mut timeout_msec) != 0 as libc::c_int
                     {
@@ -1528,14 +1744,12 @@ pub unsafe extern "C" fn redisContextConnectUnix(
                     if !((*c).saddr).is_null() {
                         hi_free((*c).saddr as *mut libc::c_void);
                     }
-                    (*c)
-                        .saddr = hi_malloc(
+                    (*c).saddr = hi_malloc(
                         ::core::mem::size_of::<sockaddr_un>() as libc::c_ulong,
                     ) as *mut sockaddr;
                     sa = (*c).saddr as *mut sockaddr_un;
                     if !sa.is_null() {
-                        (*c)
-                            .addrlen = ::core::mem::size_of::<sockaddr_un>()
+                        (*c).addrlen = ::core::mem::size_of::<sockaddr_un>()
                             as libc::c_ulong;
                         (*sa).sun_family = 1 as libc::c_int as sa_family_t;
                         strncpy(

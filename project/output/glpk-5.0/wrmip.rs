@@ -1,0 +1,308 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+#![feature(extern_types)]
+extern "C" {
+    pub type glp_file;
+    pub type AVL;
+    pub type AVLNODE;
+    pub type BFD;
+    pub type DMP;
+    pub type glp_tree;
+    fn _glp_close(f: *mut glp_file) -> i32;
+    fn _glp_format(f: *mut glp_file, fmt: *const i8, _: ...) -> i32;
+    fn _glp_ioerr(f: *mut glp_file) -> i32;
+    fn glp_printf(fmt: *const i8, _: ...);
+    fn glp_error_(file: *const i8, line: i32) -> glp_errfunc;
+    fn _glp_get_err_msg() -> *const i8;
+    fn _glp_open(name: *const i8, mode: *const i8) -> *mut glp_file;
+}
+pub type glp_errfunc = Option<unsafe extern "C" fn(*const i8, ...) -> ()>;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct glp_prob {
+    pub pool: *mut DMP,
+    pub tree: *mut glp_tree,
+    pub name: *mut i8,
+    pub obj: *mut i8,
+    pub dir: i32,
+    pub c0: libc::c_double,
+    pub m_max: i32,
+    pub n_max: i32,
+    pub m: i32,
+    pub n: i32,
+    pub nnz: i32,
+    pub row: *mut *mut GLPROW,
+    pub col: *mut *mut GLPCOL,
+    pub r_tree: *mut AVL,
+    pub c_tree: *mut AVL,
+    pub valid: i32,
+    pub head: *mut i32,
+    pub bfd: *mut BFD,
+    pub pbs_stat: i32,
+    pub dbs_stat: i32,
+    pub obj_val: libc::c_double,
+    pub it_cnt: i32,
+    pub some: i32,
+    pub ipt_stat: i32,
+    pub ipt_obj: libc::c_double,
+    pub mip_stat: i32,
+    pub mip_obj: libc::c_double,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GLPCOL {
+    pub j: i32,
+    pub name: *mut i8,
+    pub node: *mut AVLNODE,
+    pub kind: i32,
+    pub type_0: i32,
+    pub lb: libc::c_double,
+    pub ub: libc::c_double,
+    pub coef: libc::c_double,
+    pub ptr: *mut GLPAIJ,
+    pub sjj: libc::c_double,
+    pub stat: i32,
+    pub bind: i32,
+    pub prim: libc::c_double,
+    pub dual: libc::c_double,
+    pub pval: libc::c_double,
+    pub dval: libc::c_double,
+    pub mipx: libc::c_double,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GLPAIJ {
+    pub row: *mut GLPROW,
+    pub col: *mut GLPCOL,
+    pub val: libc::c_double,
+    pub r_prev: *mut GLPAIJ,
+    pub r_next: *mut GLPAIJ,
+    pub c_prev: *mut GLPAIJ,
+    pub c_next: *mut GLPAIJ,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct GLPROW {
+    pub i: i32,
+    pub name: *mut i8,
+    pub node: *mut AVLNODE,
+    pub level: i32,
+    pub origin: u8,
+    pub klass: u8,
+    pub type_0: i32,
+    pub lb: libc::c_double,
+    pub ub: libc::c_double,
+    pub ptr: *mut GLPAIJ,
+    pub rii: libc::c_double,
+    pub stat: i32,
+    pub bind: i32,
+    pub prim: libc::c_double,
+    pub dual: libc::c_double,
+    pub pval: libc::c_double,
+    pub dval: libc::c_double,
+    pub mipx: libc::c_double,
+}
+#[no_mangle]
+pub unsafe extern "C" fn glp_write_mip(
+    mut P: *mut glp_prob,
+    mut fname: *const i8,
+) -> i32 {
+    let mut fp: *mut glp_file = 0 as *mut glp_file;
+    let mut row: *mut GLPROW = 0 as *mut GLPROW;
+    let mut col: *mut GLPCOL = 0 as *mut GLPCOL;
+    let mut i: i32 = 0;
+    let mut j: i32 = 0;
+    let mut count: i32 = 0;
+    let mut ret: i32 = 1 as i32;
+    let mut s: *mut i8 = 0 as *mut i8;
+    if fname.is_null() {
+        (glp_error_(b"api/wrmip.c\0" as *const u8 as *const i8, 55 as i32))
+            .expect(
+                "non-null function pointer",
+            )(
+            b"glp_write_mip: fname = %d; invalid parameter\n\0" as *const u8
+                as *const i8,
+            fname,
+        );
+    }
+    glp_printf(b"Writing MIP solution to '%s'...\n\0" as *const u8 as *const i8, fname);
+    fp = _glp_open(fname, b"w\0" as *const u8 as *const i8);
+    count = 0 as i32;
+    if fp.is_null() {
+        glp_printf(
+            b"Unable to create '%s' - %s\n\0" as *const u8 as *const i8,
+            fname,
+            _glp_get_err_msg(),
+        );
+    } else {
+        _glp_format(
+            fp,
+            b"c %-12s%s\n\0" as *const u8 as *const i8,
+            b"Problem:\0" as *const u8 as *const i8,
+            (if ((*P).name).is_null() {
+                b"\0" as *const u8 as *const i8
+            } else {
+                (*P).name
+            }),
+        );
+        count += 1;
+        count;
+        _glp_format(
+            fp,
+            b"c %-12s%d\n\0" as *const u8 as *const i8,
+            b"Rows:\0" as *const u8 as *const i8,
+            (*P).m,
+        );
+        count += 1;
+        count;
+        _glp_format(
+            fp,
+            b"c %-12s%d\n\0" as *const u8 as *const i8,
+            b"Columns:\0" as *const u8 as *const i8,
+            (*P).n,
+        );
+        count += 1;
+        count;
+        _glp_format(
+            fp,
+            b"c %-12s%d\n\0" as *const u8 as *const i8,
+            b"Non-zeros:\0" as *const u8 as *const i8,
+            (*P).nnz,
+        );
+        count += 1;
+        count;
+        match (*P).mip_stat {
+            5 => {
+                s = b"INTEGER OPTIMAL\0" as *const u8 as *const i8 as *mut i8;
+            }
+            2 => {
+                s = b"INTEGER NON-OPTIMAL\0" as *const u8 as *const i8 as *mut i8;
+            }
+            4 => {
+                s = b"INTEGER EMPTY\0" as *const u8 as *const i8 as *mut i8;
+            }
+            1 => {
+                s = b"INTEGER UNDEFINED\0" as *const u8 as *const i8 as *mut i8;
+            }
+            _ => {
+                s = b"???\0" as *const u8 as *const i8 as *mut i8;
+            }
+        }
+        _glp_format(
+            fp,
+            b"c %-12s%s\n\0" as *const u8 as *const i8,
+            b"Status:\0" as *const u8 as *const i8,
+            s,
+        );
+        count += 1;
+        count;
+        match (*P).dir {
+            1 => {
+                s = b"MINimum\0" as *const u8 as *const i8 as *mut i8;
+            }
+            2 => {
+                s = b"MAXimum\0" as *const u8 as *const i8 as *mut i8;
+            }
+            _ => {
+                s = b"???\0" as *const u8 as *const i8 as *mut i8;
+            }
+        }
+        _glp_format(
+            fp,
+            b"c %-12s%s%s%.10g (%s)\n\0" as *const u8 as *const i8,
+            b"Objective:\0" as *const u8 as *const i8,
+            (if ((*P).obj).is_null() {
+                b"\0" as *const u8 as *const i8
+            } else {
+                (*P).obj
+            }),
+            (if ((*P).obj).is_null() {
+                b"\0" as *const u8 as *const i8
+            } else {
+                b" = \0" as *const u8 as *const i8
+            }),
+            (*P).mip_obj,
+            s,
+        );
+        count += 1;
+        count;
+        _glp_format(fp, b"c\n\0" as *const u8 as *const i8);
+        count += 1;
+        count;
+        _glp_format(fp, b"s mip %d %d \0" as *const u8 as *const i8, (*P).m, (*P).n);
+        count += 1;
+        count;
+        match (*P).mip_stat {
+            5 => {
+                _glp_format(fp, b"o\0" as *const u8 as *const i8);
+            }
+            2 => {
+                _glp_format(fp, b"f\0" as *const u8 as *const i8);
+            }
+            4 => {
+                _glp_format(fp, b"n\0" as *const u8 as *const i8);
+            }
+            1 => {
+                _glp_format(fp, b"u\0" as *const u8 as *const i8);
+            }
+            _ => {
+                _glp_format(fp, b"?\0" as *const u8 as *const i8);
+            }
+        }
+        _glp_format(fp, b" %.*g\n\0" as *const u8 as *const i8, 15 as i32, (*P).mip_obj);
+        i = 1 as i32;
+        while i <= (*P).m {
+            row = *((*P).row).offset(i as isize);
+            _glp_format(
+                fp,
+                b"i %d %.*g\n\0" as *const u8 as *const i8,
+                i,
+                15 as i32,
+                (*row).mipx,
+            );
+            count += 1;
+            count;
+            i += 1;
+            i;
+        }
+        j = 1 as i32;
+        while j <= (*P).n {
+            col = *((*P).col).offset(j as isize);
+            _glp_format(
+                fp,
+                b"j %d %.*g\n\0" as *const u8 as *const i8,
+                j,
+                15 as i32,
+                (*col).mipx,
+            );
+            count += 1;
+            count;
+            j += 1;
+            j;
+        }
+        _glp_format(fp, b"e o f\n\0" as *const u8 as *const i8);
+        count += 1;
+        count;
+        if _glp_ioerr(fp) != 0 {
+            glp_printf(
+                b"Write error on '%s' - %s\n\0" as *const u8 as *const i8,
+                fname,
+                _glp_get_err_msg(),
+            );
+        } else {
+            glp_printf(b"%d lines were written\n\0" as *const u8 as *const i8, count);
+            ret = 0 as i32;
+        }
+    }
+    if !fp.is_null() {
+        _glp_close(fp);
+    }
+    return ret;
+}

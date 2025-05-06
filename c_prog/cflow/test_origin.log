@@ -1,0 +1,417 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/cflow)
+error: expected `;`, found keyword `if`
+   --> gnu/argp_parse.rs:380:18
+    |
+380 |                 )
+    |                  ^ help: add `;` here
+381 |                 if !(fresh1 > 0 as libc::c_int) {
+    |                 -- unexpected token
+
+error: Binary expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:205:17
+    |
+205 |                 compile_error!("Binary expression is not supposed to be used")
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:221:9
+    |
+221 |         compile_error!("Conditional expression is not supposed to be used");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Binary expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:464:33
+    |
+464 | / ...                   compile_error!(
+465 | | ...                       "Binary expression is not supposed to be used"
+466 | | ...                   )
+    | |_______________________^
+
+error: Conditional expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:484:25
+    |
+484 | /                         compile_error!(
+485 | |                             "Conditional expression is not supposed to be used"
+486 | |                         );
+    | |_________________________^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> gnu/printf_args.rs:58:23
+   |
+58 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> gnu/printf_args.rs:121:51
+    |
+121 |                 (*ap).a.a_longdouble = args.arg::<f128::f128>();
+    |                                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> gnu/printf_parse.rs:57:23
+   |
+57 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> gnu/vasnprintf.rs:57:23
+   |
+57 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+    --> gnu/vasnprintf.rs:1193:53
+     |
+1193 | ...                   let mut arg_10: f128::f128 = (*(a.arg)
+     |                                       ^^^^ use of undeclared crate or module `f128`
+
+warning: unnecessary parentheses around block return value
+   --> gnu/argp_fmtstream.rs:558:13
+    |
+558 |             ({
+    |             ^
+...
+594 |             })
+    |              ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+558 ~             {
+559 |                 let mut __ptr: *const libc::c_char = (*fs).buf as *const libc::c_char;
+  ...
+593 |                     .wrapping_div(1 as libc::c_int as size_t)
+594 ~             }
+    |
+
+warning: unused label
+   --> gnu/argp_help.rs:794:5
+    |
+794 |     'c_8703: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> gnu/argp_help.rs:824:9
+    |
+824 |         'c_8643: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> gnu/argp_help.rs:876:9
+    |
+876 |         'c_8526: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> gnu/argp_help.rs:916:13
+    |
+916 |             'c_8454: {
+    |             ^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+    --> gnu/argp_help.rs:1330:33
+     |
+1330 |                         __res = (if __c < -(128 as libc::c_int)
+     |                                 ^
+...
+1336 |                         });
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1330 ~                         __res = if __c < -(128 as libc::c_int)
+1331 |                             || __c > 255 as libc::c_int
+   ...
+1335 |                             *(*__ctype_tolower_loc()).offset(__c as isize)
+1336 ~                         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> gnu/argp_help.rs:1353:37
+     |
+1353 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+1359 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1353 ~                             __res = if __c < -(128 as libc::c_int)
+1354 |                                 || __c > 255 as libc::c_int
+   ...
+1358 |                                 *(*__ctype_tolower_loc()).offset(__c as isize)
+1359 ~                             };
+     |
+
+warning: unused label
+    --> gnu/argp_help.rs:1470:13
+     |
+1470 |             'c_9293: {
+     |             ^^^^^^^
+
+warning: unused label
+    --> gnu/argp_help.rs:1508:17
+     |
+1508 |                 'c_9231: {
+     |                 ^^^^^^^
+
+warning: unused import: `::libc`
+ --> gnu/argp_pin.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around assigned value
+   --> src/argcv.rs:184:21
+    |
+184 |                 n = (if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+    |                     ^
+...
+217 |                 });
+    |                  ^
+    |
+help: remove these parentheses
+    |
+184 ~                 n = if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+185 |                     & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+  ...
+216 |                     })
+217 ~                 };
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/argcv.rs:189:21
+    |
+189 |                     (if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+    |                     ^
+...
+216 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+189 ~                     if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+190 |                         & _ISxdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+  ...
+215 |                         255 as libc::c_int
+216 ~                     }
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/argcv.rs:199:45
+    |
+199 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+205 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+199 ~                                     __res = if __c < -(128 as libc::c_int)
+200 |                                         || __c > 255 as libc::c_int
+  ...
+204 |                                         *(*__ctype_toupper_loc()).offset(__c as isize)
+205 ~                                     };
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/c.rs:468:25
+    |
+468 |                         (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+    |                         ^
+...
+475 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+468 ~                         if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+469 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+474 |                             0 as *mut libc::c_char
+475 ~                         },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/c.rs:562:25
+    |
+562 |                         (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+    |                         ^
+...
+569 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+562 ~                         if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+563 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+568 |                             0 as *mut libc::c_char
+569 ~                         },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/c.rs:760:25
+    |
+760 |                         (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+    |                         ^
+...
+767 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+760 ~                         if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+761 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+766 |                             0 as *mut libc::c_char
+767 ~                         },
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/c.rs:811:33
+    |
+811 |                         __res = (if __c < -(128 as libc::c_int)
+    |                                 ^
+...
+817 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+811 ~                         __res = if __c < -(128 as libc::c_int)
+812 |                             || __c > 255 as libc::c_int
+  ...
+816 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+817 ~                         };
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/c.rs:932:29
+    |
+932 | ...                   (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+    |                       ^
+...
+939 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+932 ~                             if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+933 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+938 |                                 0 as *mut libc::c_char
+939 ~                             },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> src/c.rs:3847:49
+     |
+3847 | ...                   (if (::core::mem::size_of::<libc::c_long>()
+     |                       ^
+...
+3855 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3847 ~                                                 if (::core::mem::size_of::<libc::c_long>()
+3848 |                                                     as libc::c_ulong)
+   ...
+3854 |                                                     0 as *mut libc::c_char
+3855 ~                                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/c.rs:3930:49
+     |
+3930 | ...                   (if (::core::mem::size_of::<libc::c_long>()
+     |                       ^
+...
+3938 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3930 ~                                                 if (::core::mem::size_of::<libc::c_long>()
+3931 |                                                     as libc::c_ulong)
+   ...
+3937 |                                                     0 as *mut libc::c_char
+3938 ~                                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/c.rs:4000:49
+     |
+4000 | ...                   (if (::core::mem::size_of::<libc::c_long>()
+     |                       ^
+...
+4008 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4000 ~                                                 if (::core::mem::size_of::<libc::c_long>()
+4001 |                                                     as libc::c_ulong)
+   ...
+4007 |                                                     0 as *mut libc::c_char
+4008 ~                                                 },
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> src/main.rs:1202:33
+     |
+1202 |                         __res = (if __c < -(128 as libc::c_int)
+     |                                 ^
+...
+1208 |                         });
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1202 ~                         __res = if __c < -(128 as libc::c_int)
+1203 |                             || __c > 255 as libc::c_int
+   ...
+1207 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+1208 ~                         };
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/parser.rs:697:25
+    |
+697 |                         (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+    |                         ^
+...
+704 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+697 ~                         if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
+698 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+703 |                             0 as *mut libc::c_char
+704 ~                         },
+    |
+
+error[E0308]: mismatched types
+    --> src/main.rs:1810:42
+     |
+1810 | pub unsafe extern "C" fn xalloc_die() -> ! {
+     |                          ----------      ^ expected `!`, found `()`
+     |                          |
+     |                          implicitly returns `()` as its body has no tail or `return` expression
+     |
+     = note:   expected type `!`
+             found unit type `()`
+
+Some errors have detailed explanations: E0308, E0433.
+For more information about an error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 23 warnings
+error: could not compile `c2rust_out` due to 11 previous errors; 23 warnings emitted

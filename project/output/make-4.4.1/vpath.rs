@@ -1,80 +1,68 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type dep;
     pub type commands;
-    fn __xstat(
-        __ver: libc::c_int,
-        __filename: *const libc::c_char,
-        __stat_buf: *mut stat,
-    ) -> libc::c_int;
-    static mut stdout: *mut FILE;
-    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fputs(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
-    fn puts(__s: *const libc::c_char) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
+    fn __xstat(__ver: i32, __filename: *const i8, __stat_buf: *mut stat) -> i32;
+    static mut stdout: *mut _IO_FILE;
+    fn printf(_: *const i8, _: ...) -> i32;
+    fn fputs(__s: *const i8, __stream: *mut FILE) -> i32;
+    fn puts(__s: *const i8) -> i32;
+    fn __errno_location() -> *mut i32;
     fn free(__ptr: *mut libc::c_void);
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strncmp(
-        _: *const libc::c_char,
-        _: *const libc::c_char,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strrchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strncmp(_: *const i8, _: *const i8, _: u64) -> i32;
+    fn strrchr(_: *const i8, _: i32) -> *mut i8;
     fn mempcpy(
         __dest: *mut libc::c_void,
         __src: *const libc::c_void,
         __n: size_t,
     ) -> *mut libc::c_void;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn strlen(_: *const i8) -> u64;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
     fn xmalloc(_: size_t) -> *mut libc::c_void;
     fn xrealloc(_: *mut libc::c_void, _: size_t) -> *mut libc::c_void;
-    fn find_percent(_: *mut libc::c_char) -> *mut libc::c_char;
-    fn dir_file_exists_p(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn dir_name(_: *const libc::c_char) -> *const libc::c_char;
-    fn strcache_add(str: *const libc::c_char) -> *const libc::c_char;
+    fn find_percent(_: *mut i8) -> *mut i8;
+    fn dir_file_exists_p(_: *const i8, _: *const i8) -> i32;
+    fn dir_name(_: *const i8) -> *const i8;
+    fn strcache_add(str: *const i8) -> *const i8;
     static mut stopchar_map: [libc::c_ushort; 0];
-    fn strcache_add_len(str: *const libc::c_char, len: size_t) -> *const libc::c_char;
-    fn lookup_file(name: *const libc::c_char) -> *mut file;
-    fn file_timestamp_cons(
-        _: *const libc::c_char,
-        _: time_t,
-        _: libc::c_long,
-    ) -> uintmax_t;
-    fn variable_expand(line: *const libc::c_char) -> *mut libc::c_char;
-    fn pattern_matches(
-        pattern: *const libc::c_char,
-        percent: *const libc::c_char,
-        str: *const libc::c_char,
-    ) -> libc::c_int;
+    fn strcache_add_len(str: *const i8, len: size_t) -> *const i8;
+    fn lookup_file(name: *const i8) -> *mut file;
+    fn file_timestamp_cons(_: *const i8, _: time_t, _: i64) -> uintmax_t;
+    fn variable_expand(line: *const i8) -> *mut i8;
+    fn pattern_matches(pattern: *const i8, percent: *const i8, str: *const i8) -> i32;
 }
-pub type size_t = libc::c_ulong;
-pub type __uintmax_t = libc::c_ulong;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
+pub type size_t = u64;
+pub type __uintmax_t = u64;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __syscall_slong_t = i64;
 pub type time_t = __time_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -91,7 +79,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -104,48 +92,55 @@ pub struct stat {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
 pub type uintmax_t = __uintmax_t;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct file {
-    pub name: *const libc::c_char,
-    pub hname: *const libc::c_char,
-    pub vpath: *const libc::c_char,
+    pub name: *const i8,
+    pub hname: *const i8,
+    pub vpath: *const i8,
     pub deps: *mut dep,
     pub cmds: *mut commands,
-    pub stem: *const libc::c_char,
+    pub stem: *const i8,
     pub also_make: *mut dep,
     pub prev: *mut file,
     pub last: *mut file,
@@ -156,8 +151,8 @@ pub struct file {
     pub double_colon: *mut file,
     pub last_mtime: uintmax_t,
     pub mtime_before_update: uintmax_t,
-    pub considered: libc::c_uint,
-    pub command_flags: libc::c_int,
+    pub considered: u32,
+    pub command_flags: i32,
     #[bitfield(name = "update_status", ty = "update_status", bits = "0..=1")]
     #[bitfield(name = "command_state", ty = "cmd_state", bits = "2..=3")]
     #[bitfield(name = "builtin", ty = "libc::c_uint", bits = "4..=4")]
@@ -194,7 +189,7 @@ pub enum cmd_state {
     cs_not_started = 0,
 }
 impl cmd_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             cmd_state::cs_finished => 3,
             cmd_state::cs_running => 2,
@@ -202,12 +197,71 @@ impl cmd_state {
             cmd_state::cs_not_started => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> cmd_state {
+        match value {
+            3 => cmd_state::cs_finished,
+            2 => cmd_state::cs_running,
+            1 => cmd_state::cs_deps_running,
+            0 => cmd_state::cs_not_started,
+            _ => panic!("Invalid value for cmd_state: {}", value),
+        }
+    }
 }
-
-pub const cs_finished: cmd_state = 3;
-pub const cs_running: cmd_state = 2;
-pub const cs_deps_running: cmd_state = 1;
-pub const cs_not_started: cmd_state = 0;
+impl AddAssign<u32> for cmd_state {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for cmd_state {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for cmd_state {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for cmd_state {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for cmd_state {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for cmd_state {
+    type Output = cmd_state;
+    fn add(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for cmd_state {
+    type Output = cmd_state;
+    fn sub(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for cmd_state {
+    type Output = cmd_state;
+    fn mul(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for cmd_state {
+    type Output = cmd_state;
+    fn div(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for cmd_state {
+    type Output = cmd_state;
+    fn rem(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -217,7 +271,7 @@ pub enum update_status {
     us_success = 0,
 }
 impl update_status {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             update_status::us_failed => 3,
             update_status::us_question => 2,
@@ -225,18 +279,77 @@ impl update_status {
             update_status::us_success => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> update_status {
+        match value {
+            3 => update_status::us_failed,
+            2 => update_status::us_question,
+            1 => update_status::us_none,
+            0 => update_status::us_success,
+            _ => panic!("Invalid value for update_status: {}", value),
+        }
+    }
 }
-
-pub const us_failed: update_status = 3;
-pub const us_question: update_status = 2;
-pub const us_none: update_status = 1;
-pub const us_success: update_status = 0;
+impl AddAssign<u32> for update_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for update_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for update_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for update_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for update_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for update_status {
+    type Output = update_status;
+    fn add(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for update_status {
+    type Output = update_status;
+    fn sub(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for update_status {
+    type Output = update_status;
+    fn mul(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for update_status {
+    type Output = update_status;
+    fn div(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for update_status {
+    type Output = update_status;
+    fn rem(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct variable_set_list {
     pub next: *mut variable_set_list,
     pub set: *mut variable_set,
-    pub next_is_parent: libc::c_int,
+    pub next_is_parent: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -250,36 +363,31 @@ pub struct hash_table {
     pub ht_hash_1: hash_func_t,
     pub ht_hash_2: hash_func_t,
     pub ht_compare: hash_cmp_func_t,
-    pub ht_size: libc::c_ulong,
-    pub ht_capacity: libc::c_ulong,
-    pub ht_fill: libc::c_ulong,
-    pub ht_empty_slots: libc::c_ulong,
-    pub ht_collisions: libc::c_ulong,
-    pub ht_lookups: libc::c_ulong,
-    pub ht_rehashes: libc::c_uint,
+    pub ht_size: u64,
+    pub ht_capacity: u64,
+    pub ht_fill: u64,
+    pub ht_empty_slots: u64,
+    pub ht_collisions: u64,
+    pub ht_lookups: u64,
+    pub ht_rehashes: u32,
 }
-pub type hash_cmp_func_t = Option::<
-    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
+pub type hash_cmp_func_t = Option<
+    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
 >;
-pub type hash_func_t = Option::<
-    unsafe extern "C" fn(*const libc::c_void) -> libc::c_ulong,
->;
+pub type hash_func_t = Option<unsafe extern "C" fn(*const libc::c_void) -> u64>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct vpath {
     pub next: *mut vpath,
-    pub pattern: *const libc::c_char,
-    pub percent: *const libc::c_char,
+    pub pattern: *const i8,
+    pub percent: *const i8,
     pub patlen: size_t,
-    pub searchpath: *mut *const libc::c_char,
+    pub searchpath: *mut *const i8,
     pub maxlen: size_t,
 }
 #[inline]
-unsafe extern "C" fn stat(
-    mut __path: *const libc::c_char,
-    mut __statbuf: *mut stat,
-) -> libc::c_int {
-    return __xstat(1 as libc::c_int, __path, __statbuf);
+unsafe extern "C" fn stat(mut __path: *const i8, mut __statbuf: *mut stat) -> i32 {
+    return __xstat(1 as i32, __path, __statbuf);
 }
 static mut vpaths: *mut vpath = 0 as *const vpath as *mut vpath;
 static mut general_vpath: *mut vpath = 0 as *const vpath as *mut vpath;
@@ -289,7 +397,7 @@ pub unsafe extern "C" fn build_vpath_lists() {
     let mut new: *mut vpath = 0 as *mut vpath;
     let mut old: *mut vpath = 0 as *mut vpath;
     let mut nexto: *mut vpath = 0 as *mut vpath;
-    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut p: *mut i8 = 0 as *mut i8;
     old = vpaths;
     while !old.is_null() {
         nexto = (*old).next;
@@ -298,24 +406,21 @@ pub unsafe extern "C" fn build_vpath_lists() {
         old = nexto;
     }
     vpaths = new;
-    p = variable_expand(b"$(strip $(VPATH))\0" as *const u8 as *const libc::c_char);
-    if *p as libc::c_int != '\0' as i32 {
+    p = variable_expand(b"$(strip $(VPATH))\0" as *const u8 as *const i8);
+    if *p as i32 != '\0' as i32 {
         let mut save_vpaths: *mut vpath = vpaths;
-        let mut gp: [libc::c_char; 2] = *::core::mem::transmute::<
-            &[u8; 2],
-            &mut [libc::c_char; 2],
-        >(b"%\0");
+        let mut gp: [i8; 2] = *::core::mem::transmute::<&[u8; 2], &mut [i8; 2]>(b"%\0");
         vpaths = 0 as *mut vpath;
         construct_vpath_list(gp.as_mut_ptr(), p);
         general_vpath = vpaths;
         vpaths = save_vpaths;
     }
-    p = variable_expand(b"$(strip $(GPATH))\0" as *const u8 as *const libc::c_char);
-    if *p as libc::c_int != '\0' as i32 {
+    p = variable_expand(b"$(strip $(GPATH))\0" as *const u8 as *const i8);
+    if *p as i32 != '\0' as i32 {
         let mut save_vpaths_0: *mut vpath = vpaths;
-        let mut gp_0: [libc::c_char; 2] = *::core::mem::transmute::<
+        let mut gp_0: [i8; 2] = *::core::mem::transmute::<
             &[u8; 2],
-            &mut [libc::c_char; 2],
+            &mut [i8; 2],
         >(b"%\0");
         vpaths = 0 as *mut vpath;
         construct_vpath_list(gp_0.as_mut_ptr(), p);
@@ -325,15 +430,15 @@ pub unsafe extern "C" fn build_vpath_lists() {
 }
 #[no_mangle]
 pub unsafe extern "C" fn construct_vpath_list(
-    mut pattern: *mut libc::c_char,
-    mut dirpath: *mut libc::c_char,
+    mut pattern: *mut i8,
+    mut dirpath: *mut i8,
 ) {
-    let mut elem: libc::c_uint = 0;
-    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut vpath: *mut *const libc::c_char = 0 as *mut *const libc::c_char;
+    let mut elem: u32 = 0;
+    let mut p: *mut i8 = 0 as *mut i8;
+    let mut vpath: *mut *const i8 = 0 as *mut *const i8;
     let mut maxvpath: size_t = 0;
-    let mut maxelem: libc::c_uint = 0;
-    let mut percent: *const libc::c_char = 0 as *const libc::c_char;
+    let mut maxelem: u32 = 0;
+    let mut percent: *const i8 = 0 as *const i8;
     if !pattern.is_null() {
         percent = find_percent(pattern);
     }
@@ -346,15 +451,14 @@ pub unsafe extern "C" fn construct_vpath_list(
             let mut next: *mut vpath = (*path).next;
             if pattern.is_null()
                 || (percent.is_null() && ((*path).percent).is_null()
-                    || percent.offset_from(pattern) as libc::c_long
-                        == ((*path).percent).offset_from((*path).pattern)
-                            as libc::c_long)
-                    && (pattern == (*path).pattern as *mut libc::c_char
-                        || *pattern as libc::c_int == *(*path).pattern as libc::c_int
-                            && (*pattern as libc::c_int == '\0' as i32
+                    || percent.offset_from(pattern) as i64
+                        == ((*path).percent).offset_from((*path).pattern) as i64)
+                    && (pattern == (*path).pattern as *mut i8
+                        || *pattern as i32 == *(*path).pattern as i32
+                            && (*pattern as i32 == '\0' as i32
                                 || strcmp(
-                                    pattern.offset(1 as libc::c_int as isize),
-                                    ((*path).pattern).offset(1 as libc::c_int as isize),
+                                    pattern.offset(1 as i32 as isize),
+                                    ((*path).pattern).offset(1 as i32 as isize),
                                 ) == 0))
             {
                 if lastpath.is_null() {
@@ -371,51 +475,48 @@ pub unsafe extern "C" fn construct_vpath_list(
         }
         return;
     }
-    while *stopchar_map.as_mut_ptr().offset(*dirpath as libc::c_uchar as isize)
-        as libc::c_int & (0x2 as libc::c_int | 0x40 as libc::c_int) != 0 as libc::c_int
+    while *stopchar_map.as_mut_ptr().offset(*dirpath as u8 as isize) as i32
+        & (0x2 as i32 | 0x40 as i32) != 0 as i32
     {
         dirpath = dirpath.offset(1);
         dirpath;
     }
-    maxelem = 2 as libc::c_int as libc::c_uint;
+    maxelem = 2 as i32 as u32;
     p = dirpath;
-    while *p as libc::c_int != '\0' as i32 {
+    while *p as i32 != '\0' as i32 {
         let fresh0 = p;
         p = p.offset(1);
-        if *stopchar_map.as_mut_ptr().offset(*fresh0 as libc::c_uchar as isize)
-            as libc::c_int & (0x2 as libc::c_int | 0x40 as libc::c_int)
-            != 0 as libc::c_int
+        if *stopchar_map.as_mut_ptr().offset(*fresh0 as u8 as isize) as i32
+            & (0x2 as i32 | 0x40 as i32) != 0 as i32
         {
             maxelem = maxelem.wrapping_add(1);
             maxelem;
         }
     }
     vpath = xmalloc(
-        (maxelem as libc::c_ulong)
-            .wrapping_mul(::core::mem::size_of::<*const libc::c_char>() as libc::c_ulong),
-    ) as *mut *const libc::c_char;
-    maxvpath = 0 as libc::c_int as size_t;
-    elem = 0 as libc::c_int as libc::c_uint;
+        (maxelem as u64).wrapping_mul(::core::mem::size_of::<*const i8>() as u64),
+    ) as *mut *const i8;
+    maxvpath = 0 as i32 as size_t;
+    elem = 0 as i32 as u32;
     p = dirpath;
-    while *p as libc::c_int != '\0' as i32 {
-        let mut v: *mut libc::c_char = 0 as *mut libc::c_char;
+    while *p as i32 != '\0' as i32 {
+        let mut v: *mut i8 = 0 as *mut i8;
         let mut len: size_t = 0;
         v = p;
-        while *p as libc::c_int != '\0' as i32 && *p as libc::c_int != ':' as i32
-            && !(*stopchar_map.as_mut_ptr().offset(*p as libc::c_uchar as isize)
-                as libc::c_int & 0x2 as libc::c_int != 0 as libc::c_int)
+        while *p as i32 != '\0' as i32 && *p as i32 != ':' as i32
+            && !(*stopchar_map.as_mut_ptr().offset(*p as u8 as isize) as i32 & 0x2 as i32
+                != 0 as i32)
         {
             p = p.offset(1);
             p;
         }
-        len = p.offset_from(v) as libc::c_long as size_t;
-        if len > 1 as libc::c_int as libc::c_ulong
-            && *p.offset(-(1 as libc::c_int) as isize) as libc::c_int == '/' as i32
+        len = p.offset_from(v) as i64 as size_t;
+        if len > 1 as i32 as u64 && *p.offset(-(1 as i32) as isize) as i32 == '/' as i32
         {
             len = len.wrapping_sub(1);
             len;
         }
-        if len > 1 as libc::c_int as libc::c_ulong || *v as libc::c_int != '.' as i32 {
+        if len > 1 as i32 as u64 || *v as i32 != '.' as i32 {
             let fresh1 = elem;
             elem = elem.wrapping_add(1);
             let ref mut fresh2 = *vpath.offset(fresh1 as isize);
@@ -424,162 +525,148 @@ pub unsafe extern "C" fn construct_vpath_list(
                 maxvpath = len;
             }
         }
-        while *stopchar_map.as_mut_ptr().offset(*p as libc::c_uchar as isize)
-            as libc::c_int & (0x2 as libc::c_int | 0x40 as libc::c_int)
-            != 0 as libc::c_int
+        while *stopchar_map.as_mut_ptr().offset(*p as u8 as isize) as i32
+            & (0x2 as i32 | 0x40 as i32) != 0 as i32
         {
             p = p.offset(1);
             p;
         }
     }
-    if elem > 0 as libc::c_int as libc::c_uint {
+    if elem > 0 as i32 as u32 {
         let mut path_0: *mut vpath = 0 as *mut vpath;
-        if elem < maxelem.wrapping_sub(1 as libc::c_int as libc::c_uint) {
+        if elem < maxelem.wrapping_sub(1 as i32 as u32) {
             vpath = xrealloc(
                 vpath as *mut libc::c_void,
-                (elem.wrapping_add(1 as libc::c_int as libc::c_uint) as libc::c_ulong)
-                    .wrapping_mul(
-                        ::core::mem::size_of::<*const libc::c_char>() as libc::c_ulong,
-                    ),
-            ) as *mut *const libc::c_char;
+                (elem.wrapping_add(1 as i32 as u32) as u64)
+                    .wrapping_mul(::core::mem::size_of::<*const i8>() as u64),
+            ) as *mut *const i8;
         }
         let ref mut fresh3 = *vpath.offset(elem as isize);
-        *fresh3 = 0 as *const libc::c_char;
-        path_0 = xmalloc(::core::mem::size_of::<vpath>() as libc::c_ulong) as *mut vpath;
+        *fresh3 = 0 as *const i8;
+        path_0 = xmalloc(::core::mem::size_of::<vpath>() as u64) as *mut vpath;
         (*path_0).searchpath = vpath;
         (*path_0).maxlen = maxvpath;
         (*path_0).next = vpaths;
         vpaths = path_0;
         (*path_0).pattern = strcache_add(pattern);
         (*path_0).patlen = strlen(pattern);
-        (*path_0)
-            .percent = if !percent.is_null() {
-            ((*path_0).pattern)
-                .offset(percent.offset_from(pattern) as libc::c_long as isize)
+        (*path_0).percent = if !percent.is_null() {
+            ((*path_0).pattern).offset(percent.offset_from(pattern) as i64 as isize)
         } else {
-            0 as *const libc::c_char
+            0 as *const i8
         };
     } else {
         free(vpath as *mut libc::c_void);
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn gpath_search(
-    mut file: *const libc::c_char,
-    mut len: size_t,
-) -> libc::c_int {
+pub unsafe extern "C" fn gpath_search(mut file: *const i8, mut len: size_t) -> i32 {
     if !gpaths.is_null() && len <= (*gpaths).maxlen {
-        let mut gp: *mut *const libc::c_char = 0 as *mut *const libc::c_char;
+        let mut gp: *mut *const i8 = 0 as *mut *const i8;
         gp = (*gpaths).searchpath;
         while !(*gp).is_null() {
-            if strncmp(*gp, file, len) == 0 as libc::c_int
-                && *(*gp).offset(len as isize) as libc::c_int == '\0' as i32
+            if strncmp(*gp, file, len) == 0 as i32
+                && *(*gp).offset(len as isize) as i32 == '\0' as i32
             {
-                return 1 as libc::c_int;
+                return 1 as i32;
             }
             gp = gp.offset(1);
             gp;
         }
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 unsafe extern "C" fn selective_vpath_search(
     mut path: *mut vpath,
-    mut file: *const libc::c_char,
+    mut file: *const i8,
     mut mtime_ptr: *mut uintmax_t,
-    mut path_index: *mut libc::c_uint,
-) -> *const libc::c_char {
-    let mut not_target: libc::c_int = 0;
-    let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut n: *const libc::c_char = 0 as *const libc::c_char;
-    let mut filename: *const libc::c_char = 0 as *const libc::c_char;
-    let mut vpath: *mut *const libc::c_char = (*path).searchpath;
+    mut path_index: *mut u32,
+) -> *const i8 {
+    let mut not_target: i32 = 0;
+    let mut name: *mut i8 = 0 as *mut i8;
+    let mut n: *const i8 = 0 as *const i8;
+    let mut filename: *const i8 = 0 as *const i8;
+    let mut vpath: *mut *const i8 = (*path).searchpath;
     let mut maxvpath: size_t = (*path).maxlen;
-    let mut i: libc::c_uint = 0;
+    let mut i: u32 = 0;
     let mut flen: size_t = 0;
     let mut name_dplen: size_t = 0;
-    let mut exists: libc::c_int = 0 as libc::c_int;
+    let mut exists: i32 = 0 as i32;
     let mut f: *mut file = lookup_file(file);
-    not_target = (f.is_null() || (*f).is_target() == 0) as libc::c_int;
+    not_target = (f.is_null() || (*f).is_target() == 0) as i32;
     flen = strlen(file);
     n = strrchr(file, '/' as i32);
     name_dplen = (if !n.is_null() {
-        n.offset_from(file) as libc::c_long
+        n.offset_from(file) as i64
     } else {
-        0 as libc::c_int as libc::c_long
+        0 as i32 as i64
     }) as size_t;
-    filename = if name_dplen > 0 as libc::c_int as libc::c_ulong {
-        n.offset(1 as libc::c_int as isize)
+    filename = if name_dplen > 0 as i32 as u64 {
+        n.offset(1 as i32 as isize)
     } else {
         file
     };
-    if name_dplen > 0 as libc::c_int as libc::c_ulong {
-        flen = (flen as libc::c_ulong)
-            .wrapping_sub(name_dplen.wrapping_add(1 as libc::c_int as libc::c_ulong))
+    if name_dplen > 0 as i32 as u64 {
+        flen = (flen as u64).wrapping_sub(name_dplen.wrapping_add(1 as i32 as u64))
             as size_t as size_t;
     }
     let mut fresh4 = ::std::vec::from_elem(
         0,
         maxvpath
-            .wrapping_add(1 as libc::c_int as libc::c_ulong)
+            .wrapping_add(1 as i32 as u64)
             .wrapping_add(name_dplen)
-            .wrapping_add(1 as libc::c_int as libc::c_ulong)
+            .wrapping_add(1 as i32 as u64)
             .wrapping_add(flen)
-            .wrapping_add(1 as libc::c_int as libc::c_ulong) as usize,
+            .wrapping_add(1 as i32 as u64) as usize,
     );
-    name = fresh4.as_mut_ptr() as *mut libc::c_char;
+    name = fresh4.as_mut_ptr() as *mut i8;
     let mut current_block_45: u64;
-    i = 0 as libc::c_int as libc::c_uint;
+    i = 0 as i32 as u32;
     while !(*vpath.offset(i as isize)).is_null() {
-        let mut exists_in_cache: libc::c_int = 0 as libc::c_int;
-        let mut p: *mut libc::c_char = name;
+        let mut exists_in_cache: i32 = 0 as i32;
+        let mut p: *mut i8 = name;
         let mut vlen: size_t = strlen(*vpath.offset(i as isize));
         p = mempcpy(
             p as *mut libc::c_void,
             *vpath.offset(i as isize) as *const libc::c_void,
             vlen,
-        ) as *mut libc::c_char;
-        if name_dplen > 0 as libc::c_int as libc::c_ulong {
+        ) as *mut i8;
+        if name_dplen > 0 as i32 as u64 {
             let fresh5 = p;
             p = p.offset(1);
-            *fresh5 = '/' as i32 as libc::c_char;
+            *fresh5 = '/' as i32 as i8;
             p = mempcpy(p as *mut libc::c_void, file as *const libc::c_void, name_dplen)
-                as *mut libc::c_char;
+                as *mut i8;
         }
-        if p != name
-            && *p.offset(-(1 as libc::c_int) as isize) as libc::c_int != '/' as i32
-        {
-            *p = '/' as i32 as libc::c_char;
+        if p != name && *p.offset(-(1 as i32) as isize) as i32 != '/' as i32 {
+            *p = '/' as i32 as i8;
             memcpy(
-                p.offset(1 as libc::c_int as isize) as *mut libc::c_void,
+                p.offset(1 as i32 as isize) as *mut libc::c_void,
                 filename as *const libc::c_void,
-                flen.wrapping_add(1 as libc::c_int as libc::c_ulong),
+                flen.wrapping_add(1 as i32 as u64),
             );
         } else {
             memcpy(
                 p as *mut libc::c_void,
                 filename as *const libc::c_void,
-                flen.wrapping_add(1 as libc::c_int as libc::c_ulong),
+                flen.wrapping_add(1 as i32 as u64),
             );
         }
         let mut f_0: *mut file = lookup_file(name);
         if !f_0.is_null() {
-            exists = (not_target != 0 || (*f_0).is_target() as libc::c_int != 0)
-                as libc::c_int;
+            exists = (not_target != 0 || (*f_0).is_target() as i32 != 0) as i32;
             if exists != 0 && !mtime_ptr.is_null()
-                && ((*f_0).last_mtime == 2 as libc::c_int as libc::c_ulong
+                && ((*f_0).last_mtime == 2 as i32 as u64
                     || (*f_0).last_mtime
-                        == (!(0 as libc::c_int as uintmax_t))
+                        == (!(0 as i32 as uintmax_t))
                             .wrapping_sub(
-                                (if !(-(1 as libc::c_int) as uintmax_t
-                                    <= 0 as libc::c_int as libc::c_ulong)
-                                {
-                                    0 as libc::c_int as uintmax_t
+                                (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+                                    0 as i32 as uintmax_t
                                 } else {
-                                    !(0 as libc::c_int as uintmax_t)
-                                        << (::core::mem::size_of::<uintmax_t>() as libc::c_ulong)
-                                            .wrapping_mul(8 as libc::c_int as libc::c_ulong)
-                                            .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+                                    !(0 as i32 as uintmax_t)
+                                        << (::core::mem::size_of::<uintmax_t>() as u64)
+                                            .wrapping_mul(8 as i32 as u64)
+                                            .wrapping_sub(1 as i32 as u64)
                                 }),
                             ))
             {
@@ -588,7 +675,7 @@ unsafe extern "C" fn selective_vpath_search(
             }
         }
         if exists == 0 {
-            *p = '\0' as i32 as libc::c_char;
+            *p = '\0' as i32 as i8;
             exists = dir_file_exists_p(name, filename);
             exists_in_cache = exists;
         }
@@ -610,19 +697,17 @@ unsafe extern "C" fn selective_vpath_search(
                 st_ctim: timespec { tv_sec: 0, tv_nsec: 0 },
                 __glibc_reserved: [0; 3],
             };
-            *p = '/' as i32 as libc::c_char;
+            *p = '/' as i32 as i8;
             if exists_in_cache != 0 {
-                let mut e: libc::c_int = 0;
+                let mut e: i32 = 0;
                 loop {
                     e = stat(name, &mut st);
-                    if !(e == -(1 as libc::c_int)
-                        && *__errno_location() == 4 as libc::c_int)
-                    {
+                    if !(e == -(1 as i32) && *__errno_location() == 4 as i32) {
                         break;
                     }
                 }
-                if e != 0 as libc::c_int {
-                    exists = 0 as libc::c_int;
+                if e != 0 as i32 {
+                    exists = 0 as i32;
                     current_block_45 = 2868539653012386629;
                 } else {
                     if !mtime_ptr.is_null() {
@@ -642,15 +727,14 @@ unsafe extern "C" fn selective_vpath_search(
                 2868539653012386629 => {}
                 _ => {
                     if !mtime_ptr.is_null() {
-                        *mtime_ptr = 0 as libc::c_int as uintmax_t;
+                        *mtime_ptr = 0 as i32 as uintmax_t;
                     }
                     if !path_index.is_null() {
                         *path_index = i;
                     }
                     return strcache_add_len(
                         name,
-                        (p.offset(1 as libc::c_int as isize).offset_from(name)
-                            as libc::c_long as libc::c_ulong)
+                        (p.offset(1 as i32 as isize).offset_from(name) as i64 as u64)
                             .wrapping_add(flen),
                     );
                 }
@@ -659,29 +743,29 @@ unsafe extern "C" fn selective_vpath_search(
         i = i.wrapping_add(1);
         i;
     }
-    return 0 as *const libc::c_char;
+    return 0 as *const i8;
 }
 #[no_mangle]
 pub unsafe extern "C" fn vpath_search(
-    mut file: *const libc::c_char,
+    mut file: *const i8,
     mut mtime_ptr: *mut uintmax_t,
-    mut vpath_index: *mut libc::c_uint,
-    mut path_index: *mut libc::c_uint,
-) -> *const libc::c_char {
+    mut vpath_index: *mut u32,
+    mut path_index: *mut u32,
+) -> *const i8 {
     let mut v: *mut vpath = 0 as *mut vpath;
-    if *file.offset(0 as libc::c_int as isize) as libc::c_int == '/' as i32
+    if *file.offset(0 as i32 as isize) as i32 == '/' as i32
         || vpaths.is_null() && general_vpath.is_null()
     {
-        return 0 as *const libc::c_char;
+        return 0 as *const i8;
     }
     if !vpath_index.is_null() {
-        *vpath_index = 0 as libc::c_int as libc::c_uint;
-        *path_index = 0 as libc::c_int as libc::c_uint;
+        *vpath_index = 0 as i32 as u32;
+        *path_index = 0 as i32 as u32;
     }
     v = vpaths;
     while !v.is_null() {
         if pattern_matches((*v).pattern, (*v).percent, file) != 0 {
-            let mut p: *const libc::c_char = selective_vpath_search(
+            let mut p: *const i8 = selective_vpath_search(
                 v,
                 file,
                 mtime_ptr,
@@ -698,7 +782,7 @@ pub unsafe extern "C" fn vpath_search(
         v = (*v).next;
     }
     if !general_vpath.is_null() {
-        let mut p_0: *const libc::c_char = selective_vpath_search(
+        let mut p_0: *const i8 = selective_vpath_search(
             general_vpath,
             file,
             mtime_ptr,
@@ -708,33 +792,32 @@ pub unsafe extern "C" fn vpath_search(
             return p_0;
         }
     }
-    return 0 as *const libc::c_char;
+    return 0 as *const i8;
 }
 #[no_mangle]
 pub unsafe extern "C" fn print_vpath_data_base() {
-    let mut nvpaths: libc::c_uint = 0;
+    let mut nvpaths: u32 = 0;
     let mut v: *mut vpath = 0 as *mut vpath;
     puts(
         dcgettext(
-            0 as *const libc::c_char,
-            b"\n# VPATH Search Paths\n\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"\n# VPATH Search Paths\n\0" as *const u8 as *const i8,
+            5 as i32,
         ),
     );
-    nvpaths = 0 as libc::c_int as libc::c_uint;
+    nvpaths = 0 as i32 as u32;
     v = vpaths;
     while !v.is_null() {
-        let mut i: libc::c_uint = 0;
+        let mut i: u32 = 0;
         nvpaths = nvpaths.wrapping_add(1);
         nvpaths;
-        printf(b"vpath %s \0" as *const u8 as *const libc::c_char, (*v).pattern);
-        i = 0 as libc::c_int as libc::c_uint;
+        printf(b"vpath %s \0" as *const u8 as *const i8, (*v).pattern);
+        i = 0 as i32 as u32;
         while !(*((*v).searchpath).offset(i as isize)).is_null() {
             printf(
-                b"%s%c\0" as *const u8 as *const libc::c_char,
+                b"%s%c\0" as *const u8 as *const i8,
                 *((*v).searchpath).offset(i as isize),
-                if (*((*v).searchpath)
-                    .offset(i.wrapping_add(1 as libc::c_int as libc::c_uint) as isize))
+                if (*((*v).searchpath).offset(i.wrapping_add(1 as i32 as u32) as isize))
                     .is_null()
                 {
                     '\n' as i32
@@ -750,17 +833,17 @@ pub unsafe extern "C" fn print_vpath_data_base() {
     if vpaths.is_null() {
         puts(
             dcgettext(
-                0 as *const libc::c_char,
-                b"# No 'vpath' search paths.\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"# No 'vpath' search paths.\0" as *const u8 as *const i8,
+                5 as i32,
             ),
         );
     } else {
         printf(
             dcgettext(
-                0 as *const libc::c_char,
-                b"\n# %u 'vpath' search paths.\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"\n# %u 'vpath' search paths.\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             nvpaths,
         );
@@ -768,33 +851,30 @@ pub unsafe extern "C" fn print_vpath_data_base() {
     if general_vpath.is_null() {
         puts(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"\n# No general ('VPATH' variable) search path.\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
         );
     } else {
-        let mut path: *mut *const libc::c_char = (*general_vpath).searchpath;
-        let mut i_0: libc::c_uint = 0;
+        let mut path: *mut *const i8 = (*general_vpath).searchpath;
+        let mut i_0: u32 = 0;
         fputs(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"\n# General ('VPATH' variable) search path:\n# \0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             stdout,
         );
-        i_0 = 0 as libc::c_int as libc::c_uint;
+        i_0 = 0 as i32 as u32;
         while !(*path.offset(i_0 as isize)).is_null() {
             printf(
-                b"%s%c\0" as *const u8 as *const libc::c_char,
+                b"%s%c\0" as *const u8 as *const i8,
                 *path.offset(i_0 as isize),
-                if (*path
-                    .offset(i_0.wrapping_add(1 as libc::c_int as libc::c_uint) as isize))
-                    .is_null()
-                {
+                if (*path.offset(i_0.wrapping_add(1 as i32 as u32) as isize)).is_null() {
                     '\n' as i32
                 } else {
                     ':' as i32

@@ -1,31 +1,38 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type epoll_event;
-    fn ketama_hash(
-        key: *const libc::c_char,
-        key_length: size_t,
-        alignment: uint32_t,
-    ) -> uint32_t;
-    fn hash_murmur(key: *const libc::c_char, length: size_t) -> uint32_t;
-    fn hash_jenkins(key: *const libc::c_char, length: size_t) -> uint32_t;
-    fn hash_hsieh(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_fnv1a_32(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_fnv1_32(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_fnv1a_64(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_fnv1_64(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_crc32a(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_crc32(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_crc16(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_md5(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn hash_one_at_a_time(key: *const libc::c_char, key_length: size_t) -> uint32_t;
-    fn strstr(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn ketama_hash(key: *const i8, key_length: size_t, alignment: uint32_t) -> uint32_t;
+    fn hash_murmur(key: *const i8, length: size_t) -> uint32_t;
+    fn hash_jenkins(key: *const i8, length: size_t) -> uint32_t;
+    fn hash_hsieh(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_fnv1a_32(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_fnv1_32(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_fnv1a_64(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_fnv1_64(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_crc32a(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_crc32(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_crc16(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_md5(key: *const i8, key_length: size_t) -> uint32_t;
+    fn hash_one_at_a_time(key: *const i8, key_length: size_t) -> uint32_t;
+    fn strstr(_: *const i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
     static mut stderr: *mut _IO_FILE;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
-    fn log_init(level: libc::c_int, filename: *const libc::c_char) -> libc::c_int;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn printf(_: *const i8, _: ...) -> i32;
+    fn __errno_location() -> *mut i32;
+    fn log_init(level: i32, filename: *const i8) -> i32;
     fn log_deinit();
     fn mbuf_init(nci: *const instance);
     fn mbuf_deinit();
@@ -41,10 +48,10 @@ extern "C" {
     fn msg_deinit();
     fn msg_init();
     fn conf_destroy(cf: *mut conf);
-    fn conf_create(filename: *const libc::c_char) -> *mut conf;
+    fn conf_create(filename: *const i8) -> *mut conf;
 }
-pub type rstatus_t = libc::c_int;
-pub type err_t = libc::c_int;
+pub type rstatus_t = i32;
+pub type err_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct array {
@@ -54,8 +61,8 @@ pub struct array {
     pub nalloc: uint32_t,
 }
 pub type uint32_t = __uint32_t;
-pub type __uint32_t = libc::c_uint;
-pub type size_t = libc::c_ulong;
+pub type __uint32_t = u32;
+pub type size_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct string {
@@ -63,7 +70,7 @@ pub struct string {
     pub data: *mut uint8_t,
 }
 pub type uint8_t = __uint8_t;
-pub type __uint8_t = libc::c_uchar;
+pub type __uint8_t = u8;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct context {
@@ -72,8 +79,8 @@ pub struct context {
     pub stats: *mut stats,
     pub pool: array,
     pub evb: *mut event_base,
-    pub max_timeout: libc::c_int,
-    pub timeout: libc::c_int,
+    pub max_timeout: i32,
+    pub timeout: i32,
     pub max_nfd: uint32_t,
     pub max_ncconn: uint32_t,
     pub max_nsconn: uint32_t,
@@ -81,19 +88,17 @@ pub struct context {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct event_base {
-    pub ep: libc::c_int,
+    pub ep: i32,
     pub event: *mut epoll_event,
-    pub nevent: libc::c_int,
+    pub nevent: i32,
     pub cb: event_cb_t,
 }
-pub type event_cb_t = Option::<
-    unsafe extern "C" fn(*mut libc::c_void, uint32_t) -> libc::c_int,
->;
+pub type event_cb_t = Option<unsafe extern "C" fn(*mut libc::c_void, uint32_t) -> i32>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stats {
     pub port: uint16_t,
-    pub interval: libc::c_int,
+    pub interval: i32,
     pub addr: string,
     pub start_ts: int64_t,
     pub buf: stats_buffer,
@@ -101,7 +106,7 @@ pub struct stats {
     pub shadow: array,
     pub sum: array,
     pub tid: pthread_t,
-    pub sd: libc::c_int,
+    pub sd: i32,
     pub service_str: string,
     pub service: string,
     pub source_str: string,
@@ -112,10 +117,10 @@ pub struct stats {
     pub timestamp_str: string,
     pub ntotal_conn_str: string,
     pub ncurr_conn_str: string,
-    pub aggregate: libc::c_int,
-    pub updated: libc::c_int,
+    pub aggregate: i32,
+    pub updated: i32,
 }
-pub type pthread_t = libc::c_ulong;
+pub type pthread_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stats_buffer {
@@ -124,13 +129,13 @@ pub struct stats_buffer {
     pub size: size_t,
 }
 pub type int64_t = __int64_t;
-pub type __int64_t = libc::c_long;
+pub type __int64_t = i64;
 pub type uint16_t = __uint16_t;
 pub type __uint16_t = libc::c_ushort;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct conf {
-    pub fname: *const libc::c_char,
+    pub fname: *const i8,
     pub fh: *mut FILE,
     pub arg: array,
     pub pool: array,
@@ -183,12 +188,12 @@ pub struct C2RustUnnamed_0 {
     pub handle: *mut yaml_char_t,
     pub prefix: *mut yaml_char_t,
 }
-pub type yaml_char_t = libc::c_uchar;
+pub type yaml_char_t = u8;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
-    pub major: libc::c_int,
-    pub minor: libc::c_int,
+    pub major: i32,
+    pub minor: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -209,7 +214,7 @@ pub enum yaml_scalar_style_e {
     YAML_ANY_SCALAR_STYLE = 0,
 }
 impl yaml_scalar_style_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_scalar_style_e::YAML_FOLDED_SCALAR_STYLE => 5,
             yaml_scalar_style_e::YAML_LITERAL_SCALAR_STYLE => 4,
@@ -219,14 +224,73 @@ impl yaml_scalar_style_e {
             yaml_scalar_style_e::YAML_ANY_SCALAR_STYLE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_scalar_style_e {
+        match value {
+            5 => yaml_scalar_style_e::YAML_FOLDED_SCALAR_STYLE,
+            4 => yaml_scalar_style_e::YAML_LITERAL_SCALAR_STYLE,
+            3 => yaml_scalar_style_e::YAML_DOUBLE_QUOTED_SCALAR_STYLE,
+            2 => yaml_scalar_style_e::YAML_SINGLE_QUOTED_SCALAR_STYLE,
+            1 => yaml_scalar_style_e::YAML_PLAIN_SCALAR_STYLE,
+            0 => yaml_scalar_style_e::YAML_ANY_SCALAR_STYLE,
+            _ => panic!("Invalid value for yaml_scalar_style_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_FOLDED_SCALAR_STYLE: yaml_scalar_style_e = 5;
-pub const YAML_LITERAL_SCALAR_STYLE: yaml_scalar_style_e = 4;
-pub const YAML_DOUBLE_QUOTED_SCALAR_STYLE: yaml_scalar_style_e = 3;
-pub const YAML_SINGLE_QUOTED_SCALAR_STYLE: yaml_scalar_style_e = 2;
-pub const YAML_PLAIN_SCALAR_STYLE: yaml_scalar_style_e = 1;
-pub const YAML_ANY_SCALAR_STYLE: yaml_scalar_style_e = 0;
+impl AddAssign<u32> for yaml_scalar_style_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_scalar_style_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_scalar_style_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_scalar_style_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_scalar_style_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_scalar_style_e {
+    type Output = yaml_scalar_style_e;
+    fn add(self, rhs: u32) -> yaml_scalar_style_e {
+        yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_scalar_style_e {
+    type Output = yaml_scalar_style_e;
+    fn sub(self, rhs: u32) -> yaml_scalar_style_e {
+        yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_scalar_style_e {
+    type Output = yaml_scalar_style_e;
+    fn mul(self, rhs: u32) -> yaml_scalar_style_e {
+        yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_scalar_style_e {
+    type Output = yaml_scalar_style_e;
+    fn div(self, rhs: u32) -> yaml_scalar_style_e {
+        yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_scalar_style_e {
+    type Output = yaml_scalar_style_e;
+    fn rem(self, rhs: u32) -> yaml_scalar_style_e {
+        yaml_scalar_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_3 {
@@ -258,7 +322,7 @@ pub enum yaml_encoding_e {
     YAML_UTF16BE_ENCODING,
 }
 impl yaml_encoding_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_encoding_e::YAML_ANY_ENCODING => 0,
             yaml_encoding_e::YAML_UTF8_ENCODING => 1,
@@ -266,12 +330,71 @@ impl yaml_encoding_e {
             yaml_encoding_e::YAML_UTF16BE_ENCODING => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_encoding_e {
+        match value {
+            0 => yaml_encoding_e::YAML_ANY_ENCODING,
+            1 => yaml_encoding_e::YAML_UTF8_ENCODING,
+            2 => yaml_encoding_e::YAML_UTF16LE_ENCODING,
+            3 => yaml_encoding_e::YAML_UTF16BE_ENCODING,
+            _ => panic!("Invalid value for yaml_encoding_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_UTF16BE_ENCODING: yaml_encoding_e = 3;
-pub const YAML_UTF16LE_ENCODING: yaml_encoding_e = 2;
-pub const YAML_UTF8_ENCODING: yaml_encoding_e = 1;
-pub const YAML_ANY_ENCODING: yaml_encoding_e = 0;
+impl AddAssign<u32> for yaml_encoding_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_encoding_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_encoding_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_encoding_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_encoding_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_encoding_e {
+    type Output = yaml_encoding_e;
+    fn add(self, rhs: u32) -> yaml_encoding_e {
+        yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_encoding_e {
+    type Output = yaml_encoding_e;
+    fn sub(self, rhs: u32) -> yaml_encoding_e {
+        yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_encoding_e {
+    type Output = yaml_encoding_e;
+    fn mul(self, rhs: u32) -> yaml_encoding_e {
+        yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_encoding_e {
+    type Output = yaml_encoding_e;
+    fn div(self, rhs: u32) -> yaml_encoding_e {
+        yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_encoding_e {
+    type Output = yaml_encoding_e;
+    fn rem(self, rhs: u32) -> yaml_encoding_e {
+        yaml_encoding_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type yaml_token_type_t = yaml_token_type_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -300,7 +423,7 @@ pub enum yaml_token_type_e {
     YAML_NO_TOKEN = 0,
 }
 impl yaml_token_type_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_token_type_e::YAML_SCALAR_TOKEN => 21,
             yaml_token_type_e::YAML_TAG_TOKEN => 20,
@@ -326,30 +449,89 @@ impl yaml_token_type_e {
             yaml_token_type_e::YAML_NO_TOKEN => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_token_type_e {
+        match value {
+            21 => yaml_token_type_e::YAML_SCALAR_TOKEN,
+            20 => yaml_token_type_e::YAML_TAG_TOKEN,
+            19 => yaml_token_type_e::YAML_ANCHOR_TOKEN,
+            18 => yaml_token_type_e::YAML_ALIAS_TOKEN,
+            17 => yaml_token_type_e::YAML_VALUE_TOKEN,
+            16 => yaml_token_type_e::YAML_KEY_TOKEN,
+            15 => yaml_token_type_e::YAML_FLOW_ENTRY_TOKEN,
+            14 => yaml_token_type_e::YAML_BLOCK_ENTRY_TOKEN,
+            13 => yaml_token_type_e::YAML_FLOW_MAPPING_END_TOKEN,
+            12 => yaml_token_type_e::YAML_FLOW_MAPPING_START_TOKEN,
+            11 => yaml_token_type_e::YAML_FLOW_SEQUENCE_END_TOKEN,
+            10 => yaml_token_type_e::YAML_FLOW_SEQUENCE_START_TOKEN,
+            9 => yaml_token_type_e::YAML_BLOCK_END_TOKEN,
+            8 => yaml_token_type_e::YAML_BLOCK_MAPPING_START_TOKEN,
+            7 => yaml_token_type_e::YAML_BLOCK_SEQUENCE_START_TOKEN,
+            6 => yaml_token_type_e::YAML_DOCUMENT_END_TOKEN,
+            5 => yaml_token_type_e::YAML_DOCUMENT_START_TOKEN,
+            4 => yaml_token_type_e::YAML_TAG_DIRECTIVE_TOKEN,
+            3 => yaml_token_type_e::YAML_VERSION_DIRECTIVE_TOKEN,
+            2 => yaml_token_type_e::YAML_STREAM_END_TOKEN,
+            1 => yaml_token_type_e::YAML_STREAM_START_TOKEN,
+            0 => yaml_token_type_e::YAML_NO_TOKEN,
+            _ => panic!("Invalid value for yaml_token_type_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_SCALAR_TOKEN: yaml_token_type_e = 21;
-pub const YAML_TAG_TOKEN: yaml_token_type_e = 20;
-pub const YAML_ANCHOR_TOKEN: yaml_token_type_e = 19;
-pub const YAML_ALIAS_TOKEN: yaml_token_type_e = 18;
-pub const YAML_VALUE_TOKEN: yaml_token_type_e = 17;
-pub const YAML_KEY_TOKEN: yaml_token_type_e = 16;
-pub const YAML_FLOW_ENTRY_TOKEN: yaml_token_type_e = 15;
-pub const YAML_BLOCK_ENTRY_TOKEN: yaml_token_type_e = 14;
-pub const YAML_FLOW_MAPPING_END_TOKEN: yaml_token_type_e = 13;
-pub const YAML_FLOW_MAPPING_START_TOKEN: yaml_token_type_e = 12;
-pub const YAML_FLOW_SEQUENCE_END_TOKEN: yaml_token_type_e = 11;
-pub const YAML_FLOW_SEQUENCE_START_TOKEN: yaml_token_type_e = 10;
-pub const YAML_BLOCK_END_TOKEN: yaml_token_type_e = 9;
-pub const YAML_BLOCK_MAPPING_START_TOKEN: yaml_token_type_e = 8;
-pub const YAML_BLOCK_SEQUENCE_START_TOKEN: yaml_token_type_e = 7;
-pub const YAML_DOCUMENT_END_TOKEN: yaml_token_type_e = 6;
-pub const YAML_DOCUMENT_START_TOKEN: yaml_token_type_e = 5;
-pub const YAML_TAG_DIRECTIVE_TOKEN: yaml_token_type_e = 4;
-pub const YAML_VERSION_DIRECTIVE_TOKEN: yaml_token_type_e = 3;
-pub const YAML_STREAM_END_TOKEN: yaml_token_type_e = 2;
-pub const YAML_STREAM_START_TOKEN: yaml_token_type_e = 1;
-pub const YAML_NO_TOKEN: yaml_token_type_e = 0;
+impl AddAssign<u32> for yaml_token_type_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_token_type_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_token_type_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_token_type_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_token_type_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_token_type_e {
+    type Output = yaml_token_type_e;
+    fn add(self, rhs: u32) -> yaml_token_type_e {
+        yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_token_type_e {
+    type Output = yaml_token_type_e;
+    fn sub(self, rhs: u32) -> yaml_token_type_e {
+        yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_token_type_e {
+    type Output = yaml_token_type_e;
+    fn mul(self, rhs: u32) -> yaml_token_type_e {
+        yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_token_type_e {
+    type Output = yaml_token_type_e;
+    fn div(self, rhs: u32) -> yaml_token_type_e {
+        yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_token_type_e {
+    type Output = yaml_token_type_e;
+    fn rem(self, rhs: u32) -> yaml_token_type_e {
+        yaml_token_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type yaml_event_t = yaml_event_s;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -375,7 +557,7 @@ pub union C2RustUnnamed_7 {
 pub struct C2RustUnnamed_8 {
     pub anchor: *mut yaml_char_t,
     pub tag: *mut yaml_char_t,
-    pub implicit: libc::c_int,
+    pub implicit: i32,
     pub style: yaml_mapping_style_t,
 }
 pub type yaml_mapping_style_t = yaml_mapping_style_e;
@@ -387,24 +569,83 @@ pub enum yaml_mapping_style_e {
     YAML_ANY_MAPPING_STYLE = 0,
 }
 impl yaml_mapping_style_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_mapping_style_e::YAML_FLOW_MAPPING_STYLE => 2,
             yaml_mapping_style_e::YAML_BLOCK_MAPPING_STYLE => 1,
             yaml_mapping_style_e::YAML_ANY_MAPPING_STYLE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_mapping_style_e {
+        match value {
+            2 => yaml_mapping_style_e::YAML_FLOW_MAPPING_STYLE,
+            1 => yaml_mapping_style_e::YAML_BLOCK_MAPPING_STYLE,
+            0 => yaml_mapping_style_e::YAML_ANY_MAPPING_STYLE,
+            _ => panic!("Invalid value for yaml_mapping_style_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_FLOW_MAPPING_STYLE: yaml_mapping_style_e = 2;
-pub const YAML_BLOCK_MAPPING_STYLE: yaml_mapping_style_e = 1;
-pub const YAML_ANY_MAPPING_STYLE: yaml_mapping_style_e = 0;
+impl AddAssign<u32> for yaml_mapping_style_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_mapping_style_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_mapping_style_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_mapping_style_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_mapping_style_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_mapping_style_e {
+    type Output = yaml_mapping_style_e;
+    fn add(self, rhs: u32) -> yaml_mapping_style_e {
+        yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_mapping_style_e {
+    type Output = yaml_mapping_style_e;
+    fn sub(self, rhs: u32) -> yaml_mapping_style_e {
+        yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_mapping_style_e {
+    type Output = yaml_mapping_style_e;
+    fn mul(self, rhs: u32) -> yaml_mapping_style_e {
+        yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_mapping_style_e {
+    type Output = yaml_mapping_style_e;
+    fn div(self, rhs: u32) -> yaml_mapping_style_e {
+        yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_mapping_style_e {
+    type Output = yaml_mapping_style_e;
+    fn rem(self, rhs: u32) -> yaml_mapping_style_e {
+        yaml_mapping_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_9 {
     pub anchor: *mut yaml_char_t,
     pub tag: *mut yaml_char_t,
-    pub implicit: libc::c_int,
+    pub implicit: i32,
     pub style: yaml_sequence_style_t,
 }
 pub type yaml_sequence_style_t = yaml_sequence_style_e;
@@ -416,18 +657,77 @@ pub enum yaml_sequence_style_e {
     YAML_ANY_SEQUENCE_STYLE = 0,
 }
 impl yaml_sequence_style_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_sequence_style_e::YAML_FLOW_SEQUENCE_STYLE => 2,
             yaml_sequence_style_e::YAML_BLOCK_SEQUENCE_STYLE => 1,
             yaml_sequence_style_e::YAML_ANY_SEQUENCE_STYLE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_sequence_style_e {
+        match value {
+            2 => yaml_sequence_style_e::YAML_FLOW_SEQUENCE_STYLE,
+            1 => yaml_sequence_style_e::YAML_BLOCK_SEQUENCE_STYLE,
+            0 => yaml_sequence_style_e::YAML_ANY_SEQUENCE_STYLE,
+            _ => panic!("Invalid value for yaml_sequence_style_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_FLOW_SEQUENCE_STYLE: yaml_sequence_style_e = 2;
-pub const YAML_BLOCK_SEQUENCE_STYLE: yaml_sequence_style_e = 1;
-pub const YAML_ANY_SEQUENCE_STYLE: yaml_sequence_style_e = 0;
+impl AddAssign<u32> for yaml_sequence_style_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_sequence_style_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_sequence_style_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_sequence_style_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_sequence_style_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_sequence_style_e {
+    type Output = yaml_sequence_style_e;
+    fn add(self, rhs: u32) -> yaml_sequence_style_e {
+        yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_sequence_style_e {
+    type Output = yaml_sequence_style_e;
+    fn sub(self, rhs: u32) -> yaml_sequence_style_e {
+        yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_sequence_style_e {
+    type Output = yaml_sequence_style_e;
+    fn mul(self, rhs: u32) -> yaml_sequence_style_e {
+        yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_sequence_style_e {
+    type Output = yaml_sequence_style_e;
+    fn div(self, rhs: u32) -> yaml_sequence_style_e {
+        yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_sequence_style_e {
+    type Output = yaml_sequence_style_e;
+    fn rem(self, rhs: u32) -> yaml_sequence_style_e {
+        yaml_sequence_style_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_10 {
@@ -435,8 +735,8 @@ pub struct C2RustUnnamed_10 {
     pub tag: *mut yaml_char_t,
     pub value: *mut yaml_char_t,
     pub length: size_t,
-    pub plain_implicit: libc::c_int,
-    pub quoted_implicit: libc::c_int,
+    pub plain_implicit: i32,
+    pub quoted_implicit: i32,
     pub style: yaml_scalar_style_t,
 }
 #[derive(Copy, Clone)]
@@ -447,14 +747,14 @@ pub struct C2RustUnnamed_11 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_12 {
-    pub implicit: libc::c_int,
+    pub implicit: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_13 {
     pub version_directive: *mut yaml_version_directive_t,
     pub tag_directives: C2RustUnnamed_14,
-    pub implicit: libc::c_int,
+    pub implicit: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -473,8 +773,8 @@ pub type yaml_version_directive_t = yaml_version_directive_s;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yaml_version_directive_s {
-    pub major: libc::c_int,
-    pub minor: libc::c_int,
+    pub major: i32,
+    pub minor: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -498,7 +798,7 @@ pub enum yaml_event_type_e {
     YAML_NO_EVENT = 0,
 }
 impl yaml_event_type_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_event_type_e::YAML_MAPPING_END_EVENT => 10,
             yaml_event_type_e::YAML_MAPPING_START_EVENT => 9,
@@ -513,49 +813,108 @@ impl yaml_event_type_e {
             yaml_event_type_e::YAML_NO_EVENT => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_event_type_e {
+        match value {
+            10 => yaml_event_type_e::YAML_MAPPING_END_EVENT,
+            9 => yaml_event_type_e::YAML_MAPPING_START_EVENT,
+            8 => yaml_event_type_e::YAML_SEQUENCE_END_EVENT,
+            7 => yaml_event_type_e::YAML_SEQUENCE_START_EVENT,
+            6 => yaml_event_type_e::YAML_SCALAR_EVENT,
+            5 => yaml_event_type_e::YAML_ALIAS_EVENT,
+            4 => yaml_event_type_e::YAML_DOCUMENT_END_EVENT,
+            3 => yaml_event_type_e::YAML_DOCUMENT_START_EVENT,
+            2 => yaml_event_type_e::YAML_STREAM_END_EVENT,
+            1 => yaml_event_type_e::YAML_STREAM_START_EVENT,
+            0 => yaml_event_type_e::YAML_NO_EVENT,
+            _ => panic!("Invalid value for yaml_event_type_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_MAPPING_END_EVENT: yaml_event_type_e = 10;
-pub const YAML_MAPPING_START_EVENT: yaml_event_type_e = 9;
-pub const YAML_SEQUENCE_END_EVENT: yaml_event_type_e = 8;
-pub const YAML_SEQUENCE_START_EVENT: yaml_event_type_e = 7;
-pub const YAML_SCALAR_EVENT: yaml_event_type_e = 6;
-pub const YAML_ALIAS_EVENT: yaml_event_type_e = 5;
-pub const YAML_DOCUMENT_END_EVENT: yaml_event_type_e = 4;
-pub const YAML_DOCUMENT_START_EVENT: yaml_event_type_e = 3;
-pub const YAML_STREAM_END_EVENT: yaml_event_type_e = 2;
-pub const YAML_STREAM_START_EVENT: yaml_event_type_e = 1;
-pub const YAML_NO_EVENT: yaml_event_type_e = 0;
+impl AddAssign<u32> for yaml_event_type_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_event_type_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_event_type_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_event_type_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_event_type_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_event_type_e {
+    type Output = yaml_event_type_e;
+    fn add(self, rhs: u32) -> yaml_event_type_e {
+        yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_event_type_e {
+    type Output = yaml_event_type_e;
+    fn sub(self, rhs: u32) -> yaml_event_type_e {
+        yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_event_type_e {
+    type Output = yaml_event_type_e;
+    fn mul(self, rhs: u32) -> yaml_event_type_e {
+        yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_event_type_e {
+    type Output = yaml_event_type_e;
+    fn div(self, rhs: u32) -> yaml_event_type_e {
+        yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_event_type_e {
+    type Output = yaml_event_type_e;
+    fn rem(self, rhs: u32) -> yaml_event_type_e {
+        yaml_event_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type yaml_parser_t = yaml_parser_s;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yaml_parser_s {
     pub error: yaml_error_type_t,
-    pub problem: *const libc::c_char,
+    pub problem: *const i8,
     pub problem_offset: size_t,
-    pub problem_value: libc::c_int,
+    pub problem_value: i32,
     pub problem_mark: yaml_mark_t,
-    pub context: *const libc::c_char,
+    pub context: *const i8,
     pub context_mark: yaml_mark_t,
-    pub read_handler: Option::<yaml_read_handler_t>,
+    pub read_handler: Option<yaml_read_handler_t>,
     pub read_handler_data: *mut libc::c_void,
     pub input: C2RustUnnamed_33,
-    pub eof: libc::c_int,
+    pub eof: i32,
     pub buffer: C2RustUnnamed_32,
     pub unread: size_t,
     pub raw_buffer: C2RustUnnamed_31,
     pub encoding: yaml_encoding_t,
     pub offset: size_t,
     pub mark: yaml_mark_t,
-    pub stream_start_produced: libc::c_int,
-    pub stream_end_produced: libc::c_int,
-    pub flow_level: libc::c_int,
+    pub stream_start_produced: i32,
+    pub stream_end_produced: i32,
+    pub flow_level: i32,
     pub tokens: C2RustUnnamed_30,
     pub tokens_parsed: size_t,
-    pub token_available: libc::c_int,
+    pub token_available: i32,
     pub indents: C2RustUnnamed_29,
-    pub indent: libc::c_int,
-    pub simple_key_allowed: libc::c_int,
+    pub indent: i32,
+    pub simple_key_allowed: i32,
     pub simple_keys: C2RustUnnamed_28,
     pub states: C2RustUnnamed_27,
     pub state: yaml_parser_state_t,
@@ -571,8 +930,8 @@ pub struct yaml_document_s {
     pub nodes: C2RustUnnamed_17,
     pub version_directive: *mut yaml_version_directive_t,
     pub tag_directives: C2RustUnnamed_16,
-    pub start_implicit: libc::c_int,
-    pub end_implicit: libc::c_int,
+    pub start_implicit: i32,
+    pub end_implicit: i32,
     pub start_mark: yaml_mark_t,
     pub end_mark: yaml_mark_t,
 }
@@ -623,8 +982,8 @@ pub type yaml_node_pair_t = yaml_node_pair_s;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yaml_node_pair_s {
-    pub key: libc::c_int,
-    pub value: libc::c_int,
+    pub key: i32,
+    pub value: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -639,7 +998,7 @@ pub struct C2RustUnnamed_22 {
     pub end: *mut yaml_node_item_t,
     pub top: *mut yaml_node_item_t,
 }
-pub type yaml_node_item_t = libc::c_int;
+pub type yaml_node_item_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_23 {
@@ -657,7 +1016,7 @@ pub enum yaml_node_type_e {
     YAML_NO_NODE = 0,
 }
 impl yaml_node_type_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_node_type_e::YAML_MAPPING_NODE => 3,
             yaml_node_type_e::YAML_SEQUENCE_NODE => 2,
@@ -665,12 +1024,71 @@ impl yaml_node_type_e {
             yaml_node_type_e::YAML_NO_NODE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_node_type_e {
+        match value {
+            3 => yaml_node_type_e::YAML_MAPPING_NODE,
+            2 => yaml_node_type_e::YAML_SEQUENCE_NODE,
+            1 => yaml_node_type_e::YAML_SCALAR_NODE,
+            0 => yaml_node_type_e::YAML_NO_NODE,
+            _ => panic!("Invalid value for yaml_node_type_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_MAPPING_NODE: yaml_node_type_e = 3;
-pub const YAML_SEQUENCE_NODE: yaml_node_type_e = 2;
-pub const YAML_SCALAR_NODE: yaml_node_type_e = 1;
-pub const YAML_NO_NODE: yaml_node_type_e = 0;
+impl AddAssign<u32> for yaml_node_type_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_node_type_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_node_type_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_node_type_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_node_type_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_node_type_e {
+    type Output = yaml_node_type_e;
+    fn add(self, rhs: u32) -> yaml_node_type_e {
+        yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_node_type_e {
+    type Output = yaml_node_type_e;
+    fn sub(self, rhs: u32) -> yaml_node_type_e {
+        yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_node_type_e {
+    type Output = yaml_node_type_e;
+    fn mul(self, rhs: u32) -> yaml_node_type_e {
+        yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_node_type_e {
+    type Output = yaml_node_type_e;
+    fn div(self, rhs: u32) -> yaml_node_type_e {
+        yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_node_type_e {
+    type Output = yaml_node_type_e;
+    fn rem(self, rhs: u32) -> yaml_node_type_e {
+        yaml_node_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_24 {
@@ -683,7 +1101,7 @@ pub type yaml_alias_data_t = yaml_alias_data_s;
 #[repr(C)]
 pub struct yaml_alias_data_s {
     pub anchor: *mut yaml_char_t,
-    pub index: libc::c_int,
+    pub index: i32,
     pub mark: yaml_mark_t,
 }
 #[derive(Copy, Clone)]
@@ -730,7 +1148,7 @@ pub enum yaml_parser_state_e {
     YAML_PARSE_STREAM_START_STATE = 0,
 }
 impl yaml_parser_state_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_parser_state_e::YAML_PARSE_END_STATE => 23,
             yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_EMPTY_VALUE_STATE => 22,
@@ -758,32 +1176,91 @@ impl yaml_parser_state_e {
             yaml_parser_state_e::YAML_PARSE_STREAM_START_STATE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_parser_state_e {
+        match value {
+            23 => yaml_parser_state_e::YAML_PARSE_END_STATE,
+            22 => yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_EMPTY_VALUE_STATE,
+            21 => yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_VALUE_STATE,
+            20 => yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_KEY_STATE,
+            19 => yaml_parser_state_e::YAML_PARSE_FLOW_MAPPING_FIRST_KEY_STATE,
+            18 => yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_END_STATE,
+            17 => yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_VALUE_STATE,
+            16 => yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_KEY_STATE,
+            15 => yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_ENTRY_STATE,
+            14 => yaml_parser_state_e::YAML_PARSE_FLOW_SEQUENCE_FIRST_ENTRY_STATE,
+            13 => yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_VALUE_STATE,
+            12 => yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_KEY_STATE,
+            11 => yaml_parser_state_e::YAML_PARSE_BLOCK_MAPPING_FIRST_KEY_STATE,
+            10 => yaml_parser_state_e::YAML_PARSE_INDENTLESS_SEQUENCE_ENTRY_STATE,
+            9 => yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_ENTRY_STATE,
+            8 => yaml_parser_state_e::YAML_PARSE_BLOCK_SEQUENCE_FIRST_ENTRY_STATE,
+            7 => yaml_parser_state_e::YAML_PARSE_FLOW_NODE_STATE,
+            6 => yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_OR_INDENTLESS_SEQUENCE_STATE,
+            5 => yaml_parser_state_e::YAML_PARSE_BLOCK_NODE_STATE,
+            4 => yaml_parser_state_e::YAML_PARSE_DOCUMENT_END_STATE,
+            3 => yaml_parser_state_e::YAML_PARSE_DOCUMENT_CONTENT_STATE,
+            2 => yaml_parser_state_e::YAML_PARSE_DOCUMENT_START_STATE,
+            1 => yaml_parser_state_e::YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE,
+            0 => yaml_parser_state_e::YAML_PARSE_STREAM_START_STATE,
+            _ => panic!("Invalid value for yaml_parser_state_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_PARSE_END_STATE: yaml_parser_state_e = 23;
-pub const YAML_PARSE_FLOW_MAPPING_EMPTY_VALUE_STATE: yaml_parser_state_e = 22;
-pub const YAML_PARSE_FLOW_MAPPING_VALUE_STATE: yaml_parser_state_e = 21;
-pub const YAML_PARSE_FLOW_MAPPING_KEY_STATE: yaml_parser_state_e = 20;
-pub const YAML_PARSE_FLOW_MAPPING_FIRST_KEY_STATE: yaml_parser_state_e = 19;
-pub const YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_END_STATE: yaml_parser_state_e = 18;
-pub const YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_VALUE_STATE: yaml_parser_state_e = 17;
-pub const YAML_PARSE_FLOW_SEQUENCE_ENTRY_MAPPING_KEY_STATE: yaml_parser_state_e = 16;
-pub const YAML_PARSE_FLOW_SEQUENCE_ENTRY_STATE: yaml_parser_state_e = 15;
-pub const YAML_PARSE_FLOW_SEQUENCE_FIRST_ENTRY_STATE: yaml_parser_state_e = 14;
-pub const YAML_PARSE_BLOCK_MAPPING_VALUE_STATE: yaml_parser_state_e = 13;
-pub const YAML_PARSE_BLOCK_MAPPING_KEY_STATE: yaml_parser_state_e = 12;
-pub const YAML_PARSE_BLOCK_MAPPING_FIRST_KEY_STATE: yaml_parser_state_e = 11;
-pub const YAML_PARSE_INDENTLESS_SEQUENCE_ENTRY_STATE: yaml_parser_state_e = 10;
-pub const YAML_PARSE_BLOCK_SEQUENCE_ENTRY_STATE: yaml_parser_state_e = 9;
-pub const YAML_PARSE_BLOCK_SEQUENCE_FIRST_ENTRY_STATE: yaml_parser_state_e = 8;
-pub const YAML_PARSE_FLOW_NODE_STATE: yaml_parser_state_e = 7;
-pub const YAML_PARSE_BLOCK_NODE_OR_INDENTLESS_SEQUENCE_STATE: yaml_parser_state_e = 6;
-pub const YAML_PARSE_BLOCK_NODE_STATE: yaml_parser_state_e = 5;
-pub const YAML_PARSE_DOCUMENT_END_STATE: yaml_parser_state_e = 4;
-pub const YAML_PARSE_DOCUMENT_CONTENT_STATE: yaml_parser_state_e = 3;
-pub const YAML_PARSE_DOCUMENT_START_STATE: yaml_parser_state_e = 2;
-pub const YAML_PARSE_IMPLICIT_DOCUMENT_START_STATE: yaml_parser_state_e = 1;
-pub const YAML_PARSE_STREAM_START_STATE: yaml_parser_state_e = 0;
+impl AddAssign<u32> for yaml_parser_state_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_parser_state_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_parser_state_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_parser_state_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_parser_state_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_parser_state_e {
+    type Output = yaml_parser_state_e;
+    fn add(self, rhs: u32) -> yaml_parser_state_e {
+        yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_parser_state_e {
+    type Output = yaml_parser_state_e;
+    fn sub(self, rhs: u32) -> yaml_parser_state_e {
+        yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_parser_state_e {
+    type Output = yaml_parser_state_e;
+    fn mul(self, rhs: u32) -> yaml_parser_state_e {
+        yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_parser_state_e {
+    type Output = yaml_parser_state_e;
+    fn div(self, rhs: u32) -> yaml_parser_state_e {
+        yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_parser_state_e {
+    type Output = yaml_parser_state_e;
+    fn rem(self, rhs: u32) -> yaml_parser_state_e {
+        yaml_parser_state_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_27 {
@@ -802,17 +1279,17 @@ pub type yaml_simple_key_t = yaml_simple_key_s;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yaml_simple_key_s {
-    pub possible: libc::c_int,
-    pub required: libc::c_int,
+    pub possible: i32,
+    pub required: i32,
     pub token_number: size_t,
     pub mark: yaml_mark_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_29 {
-    pub start: *mut libc::c_int,
-    pub end: *mut libc::c_int,
-    pub top: *mut libc::c_int,
+    pub start: *mut i32,
+    pub end: *mut i32,
+    pub top: *mut i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -825,10 +1302,10 @@ pub struct C2RustUnnamed_30 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_31 {
-    pub start: *mut libc::c_uchar,
-    pub end: *mut libc::c_uchar,
-    pub pointer: *mut libc::c_uchar,
-    pub last: *mut libc::c_uchar,
+    pub start: *mut u8,
+    pub end: *mut u8,
+    pub pointer: *mut u8,
+    pub last: *mut u8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -848,26 +1325,26 @@ pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -875,32 +1352,32 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
-pub type __off64_t = libc::c_long;
+pub type __off64_t = i64;
 pub type _IO_lock_t = ();
-pub type __off_t = libc::c_long;
+pub type __off_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_34 {
-    pub start: *const libc::c_uchar,
-    pub end: *const libc::c_uchar,
-    pub current: *const libc::c_uchar,
+    pub start: *const u8,
+    pub end: *const u8,
+    pub current: *const u8,
 }
 pub type yaml_read_handler_t = unsafe extern "C" fn(
     *mut libc::c_void,
-    *mut libc::c_uchar,
+    *mut u8,
     size_t,
     *mut size_t,
-) -> libc::c_int;
+) -> i32;
 pub type yaml_error_type_t = yaml_error_type_e;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -915,7 +1392,7 @@ pub enum yaml_error_type_e {
     YAML_NO_ERROR = 0,
 }
 impl yaml_error_type_e {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             yaml_error_type_e::YAML_EMITTER_ERROR => 7,
             yaml_error_type_e::YAML_WRITER_ERROR => 6,
@@ -927,23 +1404,82 @@ impl yaml_error_type_e {
             yaml_error_type_e::YAML_NO_ERROR => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> yaml_error_type_e {
+        match value {
+            7 => yaml_error_type_e::YAML_EMITTER_ERROR,
+            6 => yaml_error_type_e::YAML_WRITER_ERROR,
+            5 => yaml_error_type_e::YAML_COMPOSER_ERROR,
+            4 => yaml_error_type_e::YAML_PARSER_ERROR,
+            3 => yaml_error_type_e::YAML_SCANNER_ERROR,
+            2 => yaml_error_type_e::YAML_READER_ERROR,
+            1 => yaml_error_type_e::YAML_MEMORY_ERROR,
+            0 => yaml_error_type_e::YAML_NO_ERROR,
+            _ => panic!("Invalid value for yaml_error_type_e: {}", value),
+        }
+    }
 }
-
-pub const YAML_EMITTER_ERROR: yaml_error_type_e = 7;
-pub const YAML_WRITER_ERROR: yaml_error_type_e = 6;
-pub const YAML_COMPOSER_ERROR: yaml_error_type_e = 5;
-pub const YAML_PARSER_ERROR: yaml_error_type_e = 4;
-pub const YAML_SCANNER_ERROR: yaml_error_type_e = 3;
-pub const YAML_READER_ERROR: yaml_error_type_e = 2;
-pub const YAML_MEMORY_ERROR: yaml_error_type_e = 1;
-pub const YAML_NO_ERROR: yaml_error_type_e = 0;
+impl AddAssign<u32> for yaml_error_type_e {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yaml_error_type_e {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yaml_error_type_e {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yaml_error_type_e {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yaml_error_type_e {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yaml_error_type_e {
+    type Output = yaml_error_type_e;
+    fn add(self, rhs: u32) -> yaml_error_type_e {
+        yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yaml_error_type_e {
+    type Output = yaml_error_type_e;
+    fn sub(self, rhs: u32) -> yaml_error_type_e {
+        yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yaml_error_type_e {
+    type Output = yaml_error_type_e;
+    fn mul(self, rhs: u32) -> yaml_error_type_e {
+        yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yaml_error_type_e {
+    type Output = yaml_error_type_e;
+    fn div(self, rhs: u32) -> yaml_error_type_e {
+        yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yaml_error_type_e {
+    type Output = yaml_error_type_e;
+    fn rem(self, rhs: u32) -> yaml_error_type_e {
+        yaml_error_type_e::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct conn {
     pub conn_tqe: C2RustUnnamed_41,
     pub owner: *mut libc::c_void,
-    pub sd: libc::c_int,
-    pub family: libc::c_int,
+    pub sd: i32,
+    pub family: i32,
     pub addrlen: socklen_t,
     pub addr: *mut sockaddr,
     pub imsg_q: msg_tqh,
@@ -986,7 +1522,7 @@ pub struct conn {
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 6],
 }
-pub type conn_msgq_t = Option::<
+pub type conn_msgq_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, *mut msg) -> (),
 >;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -1002,7 +1538,7 @@ pub struct msg {
     pub mhdr: mhdr,
     pub mlen: uint32_t,
     pub start_ts: int64_t,
-    pub state: libc::c_int,
+    pub state: i32,
     pub pos: *mut uint8_t,
     pub token: *mut uint8_t,
     pub parser: msg_parse_t,
@@ -1045,7 +1581,7 @@ pub struct msg {
     pub c2rust_padding: [u8; 2],
 }
 pub type uint64_t = __uint64_t;
-pub type __uint64_t = libc::c_ulong;
+pub type __uint64_t = u64;
 pub type msg_type_t = msg_type;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1237,7 +1773,7 @@ pub enum msg_type {
     MSG_UNKNOWN = 0,
 }
 impl msg_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             msg_type::MSG_SENTINEL => 184,
             msg_type::MSG_RSP_REDIS_MULTIBULK => 183,
@@ -1426,200 +1962,259 @@ impl msg_type {
             msg_type::MSG_UNKNOWN => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> msg_type {
+        match value {
+            184 => msg_type::MSG_SENTINEL,
+            183 => msg_type::MSG_RSP_REDIS_MULTIBULK,
+            182 => msg_type::MSG_RSP_REDIS_BULK,
+            181 => msg_type::MSG_RSP_REDIS_INTEGER,
+            180 => msg_type::MSG_RSP_REDIS_ERROR_NOREPLICAS,
+            179 => msg_type::MSG_RSP_REDIS_ERROR_MASTERDOWN,
+            178 => msg_type::MSG_RSP_REDIS_ERROR_EXECABORT,
+            177 => msg_type::MSG_RSP_REDIS_ERROR_WRONGTYPE,
+            176 => msg_type::MSG_RSP_REDIS_ERROR_READONLY,
+            175 => msg_type::MSG_RSP_REDIS_ERROR_NOSCRIPT,
+            174 => msg_type::MSG_RSP_REDIS_ERROR_MISCONF,
+            173 => msg_type::MSG_RSP_REDIS_ERROR_BUSYKEY,
+            172 => msg_type::MSG_RSP_REDIS_ERROR_LOADING,
+            171 => msg_type::MSG_RSP_REDIS_ERROR_NOAUTH,
+            170 => msg_type::MSG_RSP_REDIS_ERROR_BUSY,
+            169 => msg_type::MSG_RSP_REDIS_ERROR_OOM,
+            168 => msg_type::MSG_RSP_REDIS_ERROR_ERR,
+            167 => msg_type::MSG_RSP_REDIS_ERROR,
+            166 => msg_type::MSG_RSP_REDIS_STATUS,
+            165 => msg_type::MSG_REQ_REDIS_LOLWUT,
+            164 => msg_type::MSG_REQ_REDIS_COMMAND,
+            163 => msg_type::MSG_REQ_REDIS_SELECT,
+            162 => msg_type::MSG_REQ_REDIS_AUTH,
+            161 => msg_type::MSG_REQ_REDIS_QUIT,
+            160 => msg_type::MSG_REQ_REDIS_PING,
+            159 => msg_type::MSG_REQ_REDIS_EVALSHA,
+            158 => msg_type::MSG_REQ_REDIS_EVAL,
+            157 => msg_type::MSG_REQ_REDIS_GEOSEARCHSTORE,
+            156 => msg_type::MSG_REQ_REDIS_GEOSEARCH,
+            155 => msg_type::MSG_REQ_REDIS_GEOPOS,
+            154 => msg_type::MSG_REQ_REDIS_GEORADIUSBYMEMBER,
+            153 => msg_type::MSG_REQ_REDIS_GEORADIUS,
+            152 => msg_type::MSG_REQ_REDIS_GEOHASH,
+            151 => msg_type::MSG_REQ_REDIS_GEODIST,
+            150 => msg_type::MSG_REQ_REDIS_GEOADD,
+            149 => msg_type::MSG_REQ_REDIS_ZUNIONSTORE,
+            148 => msg_type::MSG_REQ_REDIS_ZSCORE,
+            147 => msg_type::MSG_REQ_REDIS_ZSCAN,
+            146 => msg_type::MSG_REQ_REDIS_ZUNION,
+            145 => msg_type::MSG_REQ_REDIS_ZREVRANK,
+            144 => msg_type::MSG_REQ_REDIS_ZREVRANGEBYSCORE,
+            143 => msg_type::MSG_REQ_REDIS_ZREVRANGEBYLEX,
+            142 => msg_type::MSG_REQ_REDIS_ZREVRANGE,
+            141 => msg_type::MSG_REQ_REDIS_ZREMRANGEBYSCORE,
+            140 => msg_type::MSG_REQ_REDIS_ZREMRANGEBYLEX,
+            139 => msg_type::MSG_REQ_REDIS_ZREMRANGEBYRANK,
+            138 => msg_type::MSG_REQ_REDIS_ZREM,
+            137 => msg_type::MSG_REQ_REDIS_ZRANK,
+            136 => msg_type::MSG_REQ_REDIS_ZRANGESTORE,
+            135 => msg_type::MSG_REQ_REDIS_ZRANGEBYSCORE,
+            134 => msg_type::MSG_REQ_REDIS_ZRANGEBYLEX,
+            133 => msg_type::MSG_REQ_REDIS_ZRANGE,
+            132 => msg_type::MSG_REQ_REDIS_ZRANDMEMBER,
+            131 => msg_type::MSG_REQ_REDIS_ZPOPMAX,
+            130 => msg_type::MSG_REQ_REDIS_ZPOPMIN,
+            129 => msg_type::MSG_REQ_REDIS_ZMSCORE,
+            128 => msg_type::MSG_REQ_REDIS_ZLEXCOUNT,
+            127 => msg_type::MSG_REQ_REDIS_ZINTERSTORE,
+            126 => msg_type::MSG_REQ_REDIS_ZINTER,
+            125 => msg_type::MSG_REQ_REDIS_ZINCRBY,
+            124 => msg_type::MSG_REQ_REDIS_ZDIFFSTORE,
+            123 => msg_type::MSG_REQ_REDIS_ZDIFF,
+            122 => msg_type::MSG_REQ_REDIS_ZCOUNT,
+            121 => msg_type::MSG_REQ_REDIS_ZCARD,
+            120 => msg_type::MSG_REQ_REDIS_ZADD,
+            119 => msg_type::MSG_REQ_REDIS_SSCAN,
+            118 => msg_type::MSG_REQ_REDIS_SUNIONSTORE,
+            117 => msg_type::MSG_REQ_REDIS_SUNION,
+            116 => msg_type::MSG_REQ_REDIS_SREM,
+            115 => msg_type::MSG_REQ_REDIS_SRANDMEMBER,
+            114 => msg_type::MSG_REQ_REDIS_SPOP,
+            113 => msg_type::MSG_REQ_REDIS_SMOVE,
+            112 => msg_type::MSG_REQ_REDIS_SMEMBERS,
+            111 => msg_type::MSG_REQ_REDIS_SMISMEMBER,
+            110 => msg_type::MSG_REQ_REDIS_SISMEMBER,
+            109 => msg_type::MSG_REQ_REDIS_SINTERSTORE,
+            108 => msg_type::MSG_REQ_REDIS_SINTER,
+            107 => msg_type::MSG_REQ_REDIS_SDIFFSTORE,
+            106 => msg_type::MSG_REQ_REDIS_SDIFF,
+            105 => msg_type::MSG_REQ_REDIS_SCARD,
+            104 => msg_type::MSG_REQ_REDIS_SADD,
+            103 => msg_type::MSG_REQ_REDIS_RPUSHX,
+            102 => msg_type::MSG_REQ_REDIS_RPUSH,
+            101 => msg_type::MSG_REQ_REDIS_RPOPLPUSH,
+            100 => msg_type::MSG_REQ_REDIS_RPOP,
+            99 => msg_type::MSG_REQ_REDIS_PFMERGE,
+            98 => msg_type::MSG_REQ_REDIS_PFCOUNT,
+            97 => msg_type::MSG_REQ_REDIS_PFADD,
+            96 => msg_type::MSG_REQ_REDIS_LTRIM,
+            95 => msg_type::MSG_REQ_REDIS_LSET,
+            94 => msg_type::MSG_REQ_REDIS_LREM,
+            93 => msg_type::MSG_REQ_REDIS_LRANGE,
+            92 => msg_type::MSG_REQ_REDIS_LPUSHX,
+            91 => msg_type::MSG_REQ_REDIS_LPUSH,
+            90 => msg_type::MSG_REQ_REDIS_LPOS,
+            89 => msg_type::MSG_REQ_REDIS_LPOP,
+            88 => msg_type::MSG_REQ_REDIS_LMOVE,
+            87 => msg_type::MSG_REQ_REDIS_LLEN,
+            86 => msg_type::MSG_REQ_REDIS_LINSERT,
+            85 => msg_type::MSG_REQ_REDIS_LINDEX,
+            84 => msg_type::MSG_REQ_REDIS_HVALS,
+            83 => msg_type::MSG_REQ_REDIS_HSTRLEN,
+            82 => msg_type::MSG_REQ_REDIS_HSCAN,
+            81 => msg_type::MSG_REQ_REDIS_HSETNX,
+            80 => msg_type::MSG_REQ_REDIS_HSET,
+            79 => msg_type::MSG_REQ_REDIS_HRANDFIELD,
+            78 => msg_type::MSG_REQ_REDIS_HMSET,
+            77 => msg_type::MSG_REQ_REDIS_HMGET,
+            76 => msg_type::MSG_REQ_REDIS_HLEN,
+            75 => msg_type::MSG_REQ_REDIS_HKEYS,
+            74 => msg_type::MSG_REQ_REDIS_HINCRBYFLOAT,
+            73 => msg_type::MSG_REQ_REDIS_HINCRBY,
+            72 => msg_type::MSG_REQ_REDIS_HGETALL,
+            71 => msg_type::MSG_REQ_REDIS_HGET,
+            70 => msg_type::MSG_REQ_REDIS_HEXISTS,
+            69 => msg_type::MSG_REQ_REDIS_HDEL,
+            68 => msg_type::MSG_REQ_REDIS_STRLEN,
+            67 => msg_type::MSG_REQ_REDIS_SETRANGE,
+            66 => msg_type::MSG_REQ_REDIS_SETNX,
+            65 => msg_type::MSG_REQ_REDIS_SETEX,
+            64 => msg_type::MSG_REQ_REDIS_SETBIT,
+            63 => msg_type::MSG_REQ_REDIS_SET,
+            62 => msg_type::MSG_REQ_REDIS_RESTORE,
+            61 => msg_type::MSG_REQ_REDIS_PSETEX,
+            60 => msg_type::MSG_REQ_REDIS_MSET,
+            59 => msg_type::MSG_REQ_REDIS_MGET,
+            58 => msg_type::MSG_REQ_REDIS_INCRBYFLOAT,
+            57 => msg_type::MSG_REQ_REDIS_INCRBY,
+            56 => msg_type::MSG_REQ_REDIS_INCR,
+            55 => msg_type::MSG_REQ_REDIS_GETSET,
+            54 => msg_type::MSG_REQ_REDIS_GETRANGE,
+            53 => msg_type::MSG_REQ_REDIS_GETEX,
+            52 => msg_type::MSG_REQ_REDIS_GETDEL,
+            51 => msg_type::MSG_REQ_REDIS_GETBIT,
+            50 => msg_type::MSG_REQ_REDIS_GET,
+            49 => msg_type::MSG_REQ_REDIS_DUMP,
+            48 => msg_type::MSG_REQ_REDIS_DECRBY,
+            47 => msg_type::MSG_REQ_REDIS_DECR,
+            46 => msg_type::MSG_REQ_REDIS_BITPOS,
+            45 => msg_type::MSG_REQ_REDIS_BITFIELD,
+            44 => msg_type::MSG_REQ_REDIS_BITCOUNT,
+            43 => msg_type::MSG_REQ_REDIS_APPEND,
+            42 => msg_type::MSG_REQ_REDIS_UNLINK,
+            41 => msg_type::MSG_REQ_REDIS_TYPE,
+            40 => msg_type::MSG_REQ_REDIS_TTL,
+            39 => msg_type::MSG_REQ_REDIS_TOUCH,
+            38 => msg_type::MSG_REQ_REDIS_SORT,
+            37 => msg_type::MSG_REQ_REDIS_PTTL,
+            36 => msg_type::MSG_REQ_REDIS_PERSIST,
+            35 => msg_type::MSG_REQ_REDIS_PEXPIREAT,
+            34 => msg_type::MSG_REQ_REDIS_PEXPIRE,
+            33 => msg_type::MSG_REQ_REDIS_MOVE,
+            32 => msg_type::MSG_REQ_REDIS_EXPIREAT,
+            31 => msg_type::MSG_REQ_REDIS_EXPIRE,
+            30 => msg_type::MSG_REQ_REDIS_EXISTS,
+            29 => msg_type::MSG_REQ_REDIS_DEL,
+            28 => msg_type::MSG_REQ_REDIS_COPY,
+            27 => msg_type::MSG_RSP_MC_SERVER_ERROR,
+            26 => msg_type::MSG_RSP_MC_CLIENT_ERROR,
+            25 => msg_type::MSG_RSP_MC_ERROR,
+            24 => msg_type::MSG_RSP_MC_VERSION,
+            23 => msg_type::MSG_RSP_MC_TOUCHED,
+            22 => msg_type::MSG_RSP_MC_DELETED,
+            21 => msg_type::MSG_RSP_MC_VALUE,
+            20 => msg_type::MSG_RSP_MC_END,
+            19 => msg_type::MSG_RSP_MC_NOT_FOUND,
+            18 => msg_type::MSG_RSP_MC_EXISTS,
+            17 => msg_type::MSG_RSP_MC_NOT_STORED,
+            16 => msg_type::MSG_RSP_MC_STORED,
+            15 => msg_type::MSG_RSP_MC_NUM,
+            14 => msg_type::MSG_REQ_MC_VERSION,
+            13 => msg_type::MSG_REQ_MC_QUIT,
+            12 => msg_type::MSG_REQ_MC_TOUCH,
+            11 => msg_type::MSG_REQ_MC_DECR,
+            10 => msg_type::MSG_REQ_MC_INCR,
+            9 => msg_type::MSG_REQ_MC_PREPEND,
+            8 => msg_type::MSG_REQ_MC_APPEND,
+            7 => msg_type::MSG_REQ_MC_REPLACE,
+            6 => msg_type::MSG_REQ_MC_ADD,
+            5 => msg_type::MSG_REQ_MC_SET,
+            4 => msg_type::MSG_REQ_MC_CAS,
+            3 => msg_type::MSG_REQ_MC_DELETE,
+            2 => msg_type::MSG_REQ_MC_GETS,
+            1 => msg_type::MSG_REQ_MC_GET,
+            0 => msg_type::MSG_UNKNOWN,
+            _ => panic!("Invalid value for msg_type: {}", value),
+        }
+    }
 }
-
-pub const MSG_SENTINEL: msg_type = 184;
-pub const MSG_RSP_REDIS_MULTIBULK: msg_type = 183;
-pub const MSG_RSP_REDIS_BULK: msg_type = 182;
-pub const MSG_RSP_REDIS_INTEGER: msg_type = 181;
-pub const MSG_RSP_REDIS_ERROR_NOREPLICAS: msg_type = 180;
-pub const MSG_RSP_REDIS_ERROR_MASTERDOWN: msg_type = 179;
-pub const MSG_RSP_REDIS_ERROR_EXECABORT: msg_type = 178;
-pub const MSG_RSP_REDIS_ERROR_WRONGTYPE: msg_type = 177;
-pub const MSG_RSP_REDIS_ERROR_READONLY: msg_type = 176;
-pub const MSG_RSP_REDIS_ERROR_NOSCRIPT: msg_type = 175;
-pub const MSG_RSP_REDIS_ERROR_MISCONF: msg_type = 174;
-pub const MSG_RSP_REDIS_ERROR_BUSYKEY: msg_type = 173;
-pub const MSG_RSP_REDIS_ERROR_LOADING: msg_type = 172;
-pub const MSG_RSP_REDIS_ERROR_NOAUTH: msg_type = 171;
-pub const MSG_RSP_REDIS_ERROR_BUSY: msg_type = 170;
-pub const MSG_RSP_REDIS_ERROR_OOM: msg_type = 169;
-pub const MSG_RSP_REDIS_ERROR_ERR: msg_type = 168;
-pub const MSG_RSP_REDIS_ERROR: msg_type = 167;
-pub const MSG_RSP_REDIS_STATUS: msg_type = 166;
-pub const MSG_REQ_REDIS_LOLWUT: msg_type = 165;
-pub const MSG_REQ_REDIS_COMMAND: msg_type = 164;
-pub const MSG_REQ_REDIS_SELECT: msg_type = 163;
-pub const MSG_REQ_REDIS_AUTH: msg_type = 162;
-pub const MSG_REQ_REDIS_QUIT: msg_type = 161;
-pub const MSG_REQ_REDIS_PING: msg_type = 160;
-pub const MSG_REQ_REDIS_EVALSHA: msg_type = 159;
-pub const MSG_REQ_REDIS_EVAL: msg_type = 158;
-pub const MSG_REQ_REDIS_GEOSEARCHSTORE: msg_type = 157;
-pub const MSG_REQ_REDIS_GEOSEARCH: msg_type = 156;
-pub const MSG_REQ_REDIS_GEOPOS: msg_type = 155;
-pub const MSG_REQ_REDIS_GEORADIUSBYMEMBER: msg_type = 154;
-pub const MSG_REQ_REDIS_GEORADIUS: msg_type = 153;
-pub const MSG_REQ_REDIS_GEOHASH: msg_type = 152;
-pub const MSG_REQ_REDIS_GEODIST: msg_type = 151;
-pub const MSG_REQ_REDIS_GEOADD: msg_type = 150;
-pub const MSG_REQ_REDIS_ZUNIONSTORE: msg_type = 149;
-pub const MSG_REQ_REDIS_ZSCORE: msg_type = 148;
-pub const MSG_REQ_REDIS_ZSCAN: msg_type = 147;
-pub const MSG_REQ_REDIS_ZUNION: msg_type = 146;
-pub const MSG_REQ_REDIS_ZREVRANK: msg_type = 145;
-pub const MSG_REQ_REDIS_ZREVRANGEBYSCORE: msg_type = 144;
-pub const MSG_REQ_REDIS_ZREVRANGEBYLEX: msg_type = 143;
-pub const MSG_REQ_REDIS_ZREVRANGE: msg_type = 142;
-pub const MSG_REQ_REDIS_ZREMRANGEBYSCORE: msg_type = 141;
-pub const MSG_REQ_REDIS_ZREMRANGEBYLEX: msg_type = 140;
-pub const MSG_REQ_REDIS_ZREMRANGEBYRANK: msg_type = 139;
-pub const MSG_REQ_REDIS_ZREM: msg_type = 138;
-pub const MSG_REQ_REDIS_ZRANK: msg_type = 137;
-pub const MSG_REQ_REDIS_ZRANGESTORE: msg_type = 136;
-pub const MSG_REQ_REDIS_ZRANGEBYSCORE: msg_type = 135;
-pub const MSG_REQ_REDIS_ZRANGEBYLEX: msg_type = 134;
-pub const MSG_REQ_REDIS_ZRANGE: msg_type = 133;
-pub const MSG_REQ_REDIS_ZRANDMEMBER: msg_type = 132;
-pub const MSG_REQ_REDIS_ZPOPMAX: msg_type = 131;
-pub const MSG_REQ_REDIS_ZPOPMIN: msg_type = 130;
-pub const MSG_REQ_REDIS_ZMSCORE: msg_type = 129;
-pub const MSG_REQ_REDIS_ZLEXCOUNT: msg_type = 128;
-pub const MSG_REQ_REDIS_ZINTERSTORE: msg_type = 127;
-pub const MSG_REQ_REDIS_ZINTER: msg_type = 126;
-pub const MSG_REQ_REDIS_ZINCRBY: msg_type = 125;
-pub const MSG_REQ_REDIS_ZDIFFSTORE: msg_type = 124;
-pub const MSG_REQ_REDIS_ZDIFF: msg_type = 123;
-pub const MSG_REQ_REDIS_ZCOUNT: msg_type = 122;
-pub const MSG_REQ_REDIS_ZCARD: msg_type = 121;
-pub const MSG_REQ_REDIS_ZADD: msg_type = 120;
-pub const MSG_REQ_REDIS_SSCAN: msg_type = 119;
-pub const MSG_REQ_REDIS_SUNIONSTORE: msg_type = 118;
-pub const MSG_REQ_REDIS_SUNION: msg_type = 117;
-pub const MSG_REQ_REDIS_SREM: msg_type = 116;
-pub const MSG_REQ_REDIS_SRANDMEMBER: msg_type = 115;
-pub const MSG_REQ_REDIS_SPOP: msg_type = 114;
-pub const MSG_REQ_REDIS_SMOVE: msg_type = 113;
-pub const MSG_REQ_REDIS_SMEMBERS: msg_type = 112;
-pub const MSG_REQ_REDIS_SMISMEMBER: msg_type = 111;
-pub const MSG_REQ_REDIS_SISMEMBER: msg_type = 110;
-pub const MSG_REQ_REDIS_SINTERSTORE: msg_type = 109;
-pub const MSG_REQ_REDIS_SINTER: msg_type = 108;
-pub const MSG_REQ_REDIS_SDIFFSTORE: msg_type = 107;
-pub const MSG_REQ_REDIS_SDIFF: msg_type = 106;
-pub const MSG_REQ_REDIS_SCARD: msg_type = 105;
-pub const MSG_REQ_REDIS_SADD: msg_type = 104;
-pub const MSG_REQ_REDIS_RPUSHX: msg_type = 103;
-pub const MSG_REQ_REDIS_RPUSH: msg_type = 102;
-pub const MSG_REQ_REDIS_RPOPLPUSH: msg_type = 101;
-pub const MSG_REQ_REDIS_RPOP: msg_type = 100;
-pub const MSG_REQ_REDIS_PFMERGE: msg_type = 99;
-pub const MSG_REQ_REDIS_PFCOUNT: msg_type = 98;
-pub const MSG_REQ_REDIS_PFADD: msg_type = 97;
-pub const MSG_REQ_REDIS_LTRIM: msg_type = 96;
-pub const MSG_REQ_REDIS_LSET: msg_type = 95;
-pub const MSG_REQ_REDIS_LREM: msg_type = 94;
-pub const MSG_REQ_REDIS_LRANGE: msg_type = 93;
-pub const MSG_REQ_REDIS_LPUSHX: msg_type = 92;
-pub const MSG_REQ_REDIS_LPUSH: msg_type = 91;
-pub const MSG_REQ_REDIS_LPOS: msg_type = 90;
-pub const MSG_REQ_REDIS_LPOP: msg_type = 89;
-pub const MSG_REQ_REDIS_LMOVE: msg_type = 88;
-pub const MSG_REQ_REDIS_LLEN: msg_type = 87;
-pub const MSG_REQ_REDIS_LINSERT: msg_type = 86;
-pub const MSG_REQ_REDIS_LINDEX: msg_type = 85;
-pub const MSG_REQ_REDIS_HVALS: msg_type = 84;
-pub const MSG_REQ_REDIS_HSTRLEN: msg_type = 83;
-pub const MSG_REQ_REDIS_HSCAN: msg_type = 82;
-pub const MSG_REQ_REDIS_HSETNX: msg_type = 81;
-pub const MSG_REQ_REDIS_HSET: msg_type = 80;
-pub const MSG_REQ_REDIS_HRANDFIELD: msg_type = 79;
-pub const MSG_REQ_REDIS_HMSET: msg_type = 78;
-pub const MSG_REQ_REDIS_HMGET: msg_type = 77;
-pub const MSG_REQ_REDIS_HLEN: msg_type = 76;
-pub const MSG_REQ_REDIS_HKEYS: msg_type = 75;
-pub const MSG_REQ_REDIS_HINCRBYFLOAT: msg_type = 74;
-pub const MSG_REQ_REDIS_HINCRBY: msg_type = 73;
-pub const MSG_REQ_REDIS_HGETALL: msg_type = 72;
-pub const MSG_REQ_REDIS_HGET: msg_type = 71;
-pub const MSG_REQ_REDIS_HEXISTS: msg_type = 70;
-pub const MSG_REQ_REDIS_HDEL: msg_type = 69;
-pub const MSG_REQ_REDIS_STRLEN: msg_type = 68;
-pub const MSG_REQ_REDIS_SETRANGE: msg_type = 67;
-pub const MSG_REQ_REDIS_SETNX: msg_type = 66;
-pub const MSG_REQ_REDIS_SETEX: msg_type = 65;
-pub const MSG_REQ_REDIS_SETBIT: msg_type = 64;
-pub const MSG_REQ_REDIS_SET: msg_type = 63;
-pub const MSG_REQ_REDIS_RESTORE: msg_type = 62;
-pub const MSG_REQ_REDIS_PSETEX: msg_type = 61;
-pub const MSG_REQ_REDIS_MSET: msg_type = 60;
-pub const MSG_REQ_REDIS_MGET: msg_type = 59;
-pub const MSG_REQ_REDIS_INCRBYFLOAT: msg_type = 58;
-pub const MSG_REQ_REDIS_INCRBY: msg_type = 57;
-pub const MSG_REQ_REDIS_INCR: msg_type = 56;
-pub const MSG_REQ_REDIS_GETSET: msg_type = 55;
-pub const MSG_REQ_REDIS_GETRANGE: msg_type = 54;
-pub const MSG_REQ_REDIS_GETEX: msg_type = 53;
-pub const MSG_REQ_REDIS_GETDEL: msg_type = 52;
-pub const MSG_REQ_REDIS_GETBIT: msg_type = 51;
-pub const MSG_REQ_REDIS_GET: msg_type = 50;
-pub const MSG_REQ_REDIS_DUMP: msg_type = 49;
-pub const MSG_REQ_REDIS_DECRBY: msg_type = 48;
-pub const MSG_REQ_REDIS_DECR: msg_type = 47;
-pub const MSG_REQ_REDIS_BITPOS: msg_type = 46;
-pub const MSG_REQ_REDIS_BITFIELD: msg_type = 45;
-pub const MSG_REQ_REDIS_BITCOUNT: msg_type = 44;
-pub const MSG_REQ_REDIS_APPEND: msg_type = 43;
-pub const MSG_REQ_REDIS_UNLINK: msg_type = 42;
-pub const MSG_REQ_REDIS_TYPE: msg_type = 41;
-pub const MSG_REQ_REDIS_TTL: msg_type = 40;
-pub const MSG_REQ_REDIS_TOUCH: msg_type = 39;
-pub const MSG_REQ_REDIS_SORT: msg_type = 38;
-pub const MSG_REQ_REDIS_PTTL: msg_type = 37;
-pub const MSG_REQ_REDIS_PERSIST: msg_type = 36;
-pub const MSG_REQ_REDIS_PEXPIREAT: msg_type = 35;
-pub const MSG_REQ_REDIS_PEXPIRE: msg_type = 34;
-pub const MSG_REQ_REDIS_MOVE: msg_type = 33;
-pub const MSG_REQ_REDIS_EXPIREAT: msg_type = 32;
-pub const MSG_REQ_REDIS_EXPIRE: msg_type = 31;
-pub const MSG_REQ_REDIS_EXISTS: msg_type = 30;
-pub const MSG_REQ_REDIS_DEL: msg_type = 29;
-pub const MSG_REQ_REDIS_COPY: msg_type = 28;
-pub const MSG_RSP_MC_SERVER_ERROR: msg_type = 27;
-pub const MSG_RSP_MC_CLIENT_ERROR: msg_type = 26;
-pub const MSG_RSP_MC_ERROR: msg_type = 25;
-pub const MSG_RSP_MC_VERSION: msg_type = 24;
-pub const MSG_RSP_MC_TOUCHED: msg_type = 23;
-pub const MSG_RSP_MC_DELETED: msg_type = 22;
-pub const MSG_RSP_MC_VALUE: msg_type = 21;
-pub const MSG_RSP_MC_END: msg_type = 20;
-pub const MSG_RSP_MC_NOT_FOUND: msg_type = 19;
-pub const MSG_RSP_MC_EXISTS: msg_type = 18;
-pub const MSG_RSP_MC_NOT_STORED: msg_type = 17;
-pub const MSG_RSP_MC_STORED: msg_type = 16;
-pub const MSG_RSP_MC_NUM: msg_type = 15;
-pub const MSG_REQ_MC_VERSION: msg_type = 14;
-pub const MSG_REQ_MC_QUIT: msg_type = 13;
-pub const MSG_REQ_MC_TOUCH: msg_type = 12;
-pub const MSG_REQ_MC_DECR: msg_type = 11;
-pub const MSG_REQ_MC_INCR: msg_type = 10;
-pub const MSG_REQ_MC_PREPEND: msg_type = 9;
-pub const MSG_REQ_MC_APPEND: msg_type = 8;
-pub const MSG_REQ_MC_REPLACE: msg_type = 7;
-pub const MSG_REQ_MC_ADD: msg_type = 6;
-pub const MSG_REQ_MC_SET: msg_type = 5;
-pub const MSG_REQ_MC_CAS: msg_type = 4;
-pub const MSG_REQ_MC_DELETE: msg_type = 3;
-pub const MSG_REQ_MC_GETS: msg_type = 2;
-pub const MSG_REQ_MC_GET: msg_type = 1;
-pub const MSG_UNKNOWN: msg_type = 0;
-pub type msg_coalesce_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;
-pub type msg_failure_t = Option::<unsafe extern "C" fn(*const msg) -> bool>;
-pub type msg_add_auth_t = Option::<
+impl AddAssign<u32> for msg_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = msg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for msg_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = msg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for msg_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = msg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for msg_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = msg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for msg_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = msg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for msg_type {
+    type Output = msg_type;
+    fn add(self, rhs: u32) -> msg_type {
+        msg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for msg_type {
+    type Output = msg_type;
+    fn sub(self, rhs: u32) -> msg_type {
+        msg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for msg_type {
+    type Output = msg_type;
+    fn mul(self, rhs: u32) -> msg_type {
+        msg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for msg_type {
+    type Output = msg_type;
+    fn div(self, rhs: u32) -> msg_type {
+        msg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for msg_type {
+    type Output = msg_type;
+    fn rem(self, rhs: u32) -> msg_type {
+        msg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type msg_coalesce_t = Option<unsafe extern "C" fn(*mut msg) -> ()>;
+pub type msg_failure_t = Option<unsafe extern "C" fn(*const msg) -> bool>;
+pub type msg_add_auth_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, *mut conn) -> rstatus_t,
 >;
-pub type msg_reply_t = Option::<unsafe extern "C" fn(*mut msg) -> rstatus_t>;
-pub type msg_fragment_t = Option::<
+pub type msg_reply_t = Option<unsafe extern "C" fn(*mut msg) -> rstatus_t>;
+pub type msg_fragment_t = Option<
     unsafe extern "C" fn(*mut msg, uint32_t, *mut msg_tqh) -> rstatus_t,
 >;
 #[derive(Copy, Clone)]
@@ -1638,7 +2233,7 @@ pub enum msg_parse_result {
     MSG_PARSE_AGAIN,
 }
 impl msg_parse_result {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             msg_parse_result::MSG_PARSE_OK => 0,
             msg_parse_result::MSG_PARSE_ERROR => 1,
@@ -1646,13 +2241,72 @@ impl msg_parse_result {
             msg_parse_result::MSG_PARSE_AGAIN => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> msg_parse_result {
+        match value {
+            0 => msg_parse_result::MSG_PARSE_OK,
+            1 => msg_parse_result::MSG_PARSE_ERROR,
+            2 => msg_parse_result::MSG_PARSE_REPAIR,
+            3 => msg_parse_result::MSG_PARSE_AGAIN,
+            _ => panic!("Invalid value for msg_parse_result: {}", value),
+        }
+    }
 }
-
-pub const MSG_PARSE_AGAIN: msg_parse_result = 3;
-pub const MSG_PARSE_REPAIR: msg_parse_result = 2;
-pub const MSG_PARSE_ERROR: msg_parse_result = 1;
-pub const MSG_PARSE_OK: msg_parse_result = 0;
-pub type msg_parse_t = Option::<unsafe extern "C" fn(*mut msg) -> ()>;
+impl AddAssign<u32> for msg_parse_result {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for msg_parse_result {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for msg_parse_result {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for msg_parse_result {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for msg_parse_result {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for msg_parse_result {
+    type Output = msg_parse_result;
+    fn add(self, rhs: u32) -> msg_parse_result {
+        msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for msg_parse_result {
+    type Output = msg_parse_result;
+    fn sub(self, rhs: u32) -> msg_parse_result {
+        msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for msg_parse_result {
+    type Output = msg_parse_result;
+    fn mul(self, rhs: u32) -> msg_parse_result {
+        msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for msg_parse_result {
+    type Output = msg_parse_result;
+    fn div(self, rhs: u32) -> msg_parse_result {
+        msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for msg_parse_result {
+    type Output = msg_parse_result;
+    fn rem(self, rhs: u32) -> msg_parse_result {
+        msg_parse_result::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type msg_parse_t = Option<unsafe extern "C" fn(*mut msg) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct mhdr {
@@ -1702,12 +2356,12 @@ pub struct C2RustUnnamed_38 {
     pub tqe_next: *mut msg,
     pub tqe_prev: *mut *mut msg,
 }
-pub type conn_unref_t = Option::<unsafe extern "C" fn(*mut conn) -> ()>;
-pub type conn_ref_t = Option::<unsafe extern "C" fn(*mut conn, *mut libc::c_void) -> ()>;
-pub type conn_swallow_msg_t = Option::<
+pub type conn_unref_t = Option<unsafe extern "C" fn(*mut conn) -> ()>;
+pub type conn_ref_t = Option<unsafe extern "C" fn(*mut conn, *mut libc::c_void) -> ()>;
+pub type conn_swallow_msg_t = Option<
     unsafe extern "C" fn(*mut conn, *mut msg, *mut msg) -> (),
 >;
-pub type conn_post_connect_t = Option::<
+pub type conn_post_connect_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, *mut server) -> (),
 >;
 #[derive(Copy, Clone)]
@@ -1735,7 +2389,7 @@ pub struct conn_tqh {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sockinfo {
-    pub family: libc::c_int,
+    pub family: i32,
     pub addrlen: socklen_t,
     pub addr: C2RustUnnamed_39,
 }
@@ -1750,7 +2404,7 @@ pub union C2RustUnnamed_39 {
 #[repr(C)]
 pub struct sockaddr_un {
     pub sun_family: sa_family_t,
-    pub sun_path: [libc::c_char; 108],
+    pub sun_path: [i8; 108],
 }
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
@@ -1781,7 +2435,7 @@ pub struct sockaddr_in {
     pub sin_family: sa_family_t,
     pub sin_port: in_port_t,
     pub sin_addr: in_addr,
-    pub sin_zero: [libc::c_uchar; 8],
+    pub sin_zero: [u8; 8],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1790,7 +2444,7 @@ pub struct in_addr {
 }
 pub type in_addr_t = uint32_t;
 pub type socklen_t = __socklen_t;
-pub type __socklen_t = libc::c_uint;
+pub type __socklen_t = u32;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct server_pool {
@@ -1810,19 +2464,19 @@ pub struct server_pool {
     pub port: uint16_t,
     pub info: sockinfo,
     pub perm: mode_t,
-    pub dist_type: libc::c_int,
-    pub key_hash_type: libc::c_int,
+    pub dist_type: i32,
+    pub key_hash_type: i32,
     pub key_hash: hash_t,
     pub hash_tag: string,
-    pub timeout: libc::c_int,
-    pub backlog: libc::c_int,
-    pub redis_db: libc::c_int,
+    pub timeout: i32,
+    pub backlog: i32,
+    pub redis_db: i32,
     pub client_connections: uint32_t,
     pub server_connections: uint32_t,
     pub server_retry_timeout: int64_t,
     pub server_failure_limit: uint32_t,
     pub redis_auth: string,
-    pub require_auth: libc::c_uint,
+    pub require_auth: u32,
     #[bitfield(name = "auto_eject_hosts", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "preconnect", ty = "libc::c_uint", bits = "1..=1")]
     #[bitfield(name = "redis", ty = "libc::c_uint", bits = "2..=2")]
@@ -1832,42 +2486,40 @@ pub struct server_pool {
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 3],
 }
-pub type hash_t = Option::<
-    unsafe extern "C" fn(*const libc::c_char, size_t) -> uint32_t,
->;
+pub type hash_t = Option<unsafe extern "C" fn(*const i8, size_t) -> uint32_t>;
 pub type mode_t = __mode_t;
-pub type __mode_t = libc::c_uint;
+pub type __mode_t = u32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct continuum {
     pub index: uint32_t,
     pub value: uint32_t,
 }
-pub type conn_active_t = Option::<unsafe extern "C" fn(*const conn) -> bool>;
-pub type conn_close_t = Option::<unsafe extern "C" fn(*mut context, *mut conn) -> ()>;
-pub type conn_send_done_t = Option::<
+pub type conn_active_t = Option<unsafe extern "C" fn(*const conn) -> bool>;
+pub type conn_close_t = Option<unsafe extern "C" fn(*mut context, *mut conn) -> ()>;
+pub type conn_send_done_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, *mut msg) -> (),
 >;
-pub type conn_send_next_t = Option::<
+pub type conn_send_next_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn) -> *mut msg,
 >;
-pub type conn_send_t = Option::<
+pub type conn_send_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn) -> rstatus_t,
 >;
-pub type conn_recv_done_t = Option::<
+pub type conn_recv_done_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, *mut msg, *mut msg) -> (),
 >;
-pub type conn_recv_next_t = Option::<
+pub type conn_recv_next_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn, bool) -> *mut msg,
 >;
-pub type conn_recv_t = Option::<
+pub type conn_recv_t = Option<
     unsafe extern "C" fn(*mut context, *mut conn) -> rstatus_t,
 >;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sockaddr {
     pub sa_family: sa_family_t,
-    pub sa_data: [libc::c_char; 14],
+    pub sa_data: [i8; 14],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1879,33 +2531,33 @@ pub struct C2RustUnnamed_41 {
 #[repr(C)]
 pub struct instance {
     pub ctx: *mut context,
-    pub log_level: libc::c_int,
-    pub log_filename: *const libc::c_char,
-    pub conf_filename: *const libc::c_char,
+    pub log_level: i32,
+    pub log_filename: *const i8,
+    pub conf_filename: *const i8,
     pub stats_port: uint16_t,
-    pub stats_interval: libc::c_int,
-    pub stats_addr: *const libc::c_char,
-    pub hostname: [libc::c_char; 256],
+    pub stats_interval: i32,
+    pub stats_addr: *const i8,
+    pub hostname: [i8; 256],
     pub mbuf_chunk_size: size_t,
     pub pid: pid_t,
-    pub pid_filename: *const libc::c_char,
+    pub pid_filename: *const i8,
     #[bitfield(name = "pidfile", ty = "libc::c_uint", bits = "0..=0")]
     pub pidfile: [u8; 1],
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 7],
 }
 pub type pid_t = __pid_t;
-pub type __pid_t = libc::c_int;
-static mut failures: libc::c_int = 0 as libc::c_int;
-static mut successes: libc::c_int = 0 as libc::c_int;
+pub type __pid_t = i32;
+static mut failures: i32 = 0 as i32;
+static mut successes: i32 = 0 as i32;
 unsafe extern "C" fn expect_same_int(
-    mut expected: libc::c_int,
-    mut actual: libc::c_int,
-    mut message: *const libc::c_char,
+    mut expected: i32,
+    mut actual: i32,
+    mut message: *const i8,
 ) {
     if expected != actual {
         printf(
-            b"FAIL Expected %d, got %d (%s)\n\0" as *const u8 as *const libc::c_char,
+            b"FAIL Expected %d, got %d (%s)\n\0" as *const u8 as *const i8,
             expected,
             actual,
             message,
@@ -1920,11 +2572,11 @@ unsafe extern "C" fn expect_same_int(
 unsafe extern "C" fn expect_same_uint32_t(
     mut expected: uint32_t,
     mut actual: uint32_t,
-    mut message: *const libc::c_char,
+    mut message: *const i8,
 ) {
     if expected != actual {
         printf(
-            b"FAIL Expected %u, got %u (%s)\n\0" as *const u8 as *const libc::c_char,
+            b"FAIL Expected %u, got %u (%s)\n\0" as *const u8 as *const i8,
             expected,
             actual,
             message,
@@ -1939,11 +2591,11 @@ unsafe extern "C" fn expect_same_uint32_t(
 unsafe extern "C" fn expect_same_ptr(
     mut expected: *const libc::c_void,
     mut actual: *const libc::c_void,
-    mut message: *const libc::c_char,
+    mut message: *const i8,
 ) {
     if expected != actual {
         printf(
-            b"FAIL Expected %p, got %p (%s)\n\0" as *const u8 as *const libc::c_char,
+            b"FAIL Expected %p, got %p (%s)\n\0" as *const u8 as *const i8,
             expected,
             actual,
             message,
@@ -1957,158 +2609,115 @@ unsafe extern "C" fn expect_same_ptr(
 }
 unsafe extern "C" fn test_hash_algorithms() {
     expect_same_uint32_t(
-        2297466611 as libc::c_uint,
-        hash_one_at_a_time(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        2297466611 as u32,
+        hash_one_at_a_time(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected one_at_a_time hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        3195025439 as libc::c_uint,
-        hash_md5(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected md5 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        3195025439 as u32,
+        hash_md5(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected md5 hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        3662830516 as libc::c_uint,
-        hash_crc16(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected crc16 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        3662830516 as u32,
+        hash_crc16(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected crc16 hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        10542 as libc::c_uint,
-        hash_crc32(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected crc32 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        10542 as u32,
+        hash_crc32(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected crc32 hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        2838417488 as libc::c_uint,
-        hash_crc32a(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected crc32a hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        2838417488 as u32,
+        hash_crc32a(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected crc32a hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        67176023 as libc::c_uint,
-        hash_fnv1_32(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        67176023 as u32,
+        hash_fnv1_32(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected fnv1_32 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        280767167 as libc::c_uint,
-        hash_fnv1a_32(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        280767167 as u32,
+        hash_fnv1a_32(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected fnv1a_32 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        473199127 as libc::c_uint,
-        hash_fnv1_64(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        473199127 as u32,
+        hash_fnv1_64(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected fnv1_64 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        1488911807 as libc::c_uint,
-        hash_fnv1a_64(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        1488911807 as u32,
+        hash_fnv1a_64(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected fnv1a_64 hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        3738850110 as libc::c_uint,
-        hash_hsieh(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected hsieh hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        3738850110 as u32,
+        hash_hsieh(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected hsieh hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        1442444624 as libc::c_uint,
-        hash_jenkins(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
+        1442444624 as u32,
+        hash_jenkins(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
         b"should have expected jenkins hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        4142305122 as libc::c_uint,
-        hash_murmur(
-            b"apple\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
-        ),
-        b"should have expected murmur hash for key \"apple\"\0" as *const u8
-            as *const libc::c_char,
+        4142305122 as u32,
+        hash_murmur(b"apple\0" as *const u8 as *const i8, 5 as i32 as size_t),
+        b"should have expected murmur hash for key \"apple\"\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        3853726576 as libc::c_uint,
+        3853726576 as u32,
         ketama_hash(
-            b"server1-8\0" as *const u8 as *const libc::c_char,
-            strlen(b"server1-8\0" as *const u8 as *const libc::c_char),
-            0 as libc::c_int as uint32_t,
+            b"server1-8\0" as *const u8 as *const i8,
+            strlen(b"server1-8\0" as *const u8 as *const i8),
+            0 as i32 as uint32_t,
         ),
         b"should have expected ketama_hash for server1-8 index 0\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_uint32_t(
-        2667054752 as libc::c_uint,
+        2667054752 as u32,
         ketama_hash(
-            b"server1-8\0" as *const u8 as *const libc::c_char,
-            strlen(b"server1-8\0" as *const u8 as *const libc::c_char),
-            3 as libc::c_int as uint32_t,
+            b"server1-8\0" as *const u8 as *const i8,
+            strlen(b"server1-8\0" as *const u8 as *const i8),
+            3 as i32 as uint32_t,
         ),
         b"should have expected ketama_hash for server1-8 index 3\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
 }
 unsafe extern "C" fn test_config_parsing() {
-    let mut conf_file: *const libc::c_char = b"../conf/nutcracker.yml\0" as *const u8
-        as *const libc::c_char;
+    let mut conf_file: *const i8 = b"../conf/nutcracker.yml\0" as *const u8 as *const i8;
     let mut conf: *mut conf = conf_create(conf_file);
     if conf.is_null() {
         printf(
             b"FAIL could not parse %s (this test should be run within src/ folder)\n\0"
-                as *const u8 as *const libc::c_char,
+                as *const u8 as *const i8,
             conf_file,
         );
         failures += 1;
         failures;
     } else {
-        printf(b"PASS parsed %s\n\0" as *const u8 as *const libc::c_char, conf_file);
+        printf(b"PASS parsed %s\n\0" as *const u8 as *const i8, conf_file);
         conf_destroy(conf);
         successes += 1;
         successes;
     };
 }
 unsafe extern "C" fn test_redis_parse_req_success_case(
-    mut data: *const libc::c_char,
-    mut expected_type: libc::c_int,
+    mut data: *const i8,
+    mut expected_type: i32,
 ) {
-    let original_failures: libc::c_int = failures;
+    let original_failures: i32 = failures;
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -2171,12 +2780,8 @@ unsafe extern "C" fn test_redis_parse_req_success_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let mut req: *mut msg = msg_get(
-        &mut fake_client,
-        1 as libc::c_int != 0,
-        1 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let mut req: *mut msg = msg_get(&mut fake_client, 1 as i32 != 0, 1 as i32 != 0);
     (*req).state = SW_START;
     (*req).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -2189,33 +2794,30 @@ unsafe extern "C" fn test_redis_parse_req_success_case(
     expect_same_ptr(
         (*m).last as *const libc::c_void,
         (*req).pos as *const libc::c_void,
-        b"redis_parse_req: expected req->pos to be m->last\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_req: expected req->pos to be m->last\0" as *const u8 as *const i8,
     );
     expect_same_int(
         SW_START,
         (*req).state,
-        b"redis_parse_req: expected full buffer to be parsed\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_req: expected full buffer to be parsed\0" as *const u8 as *const i8,
     );
     expect_same_int(
         expected_type,
-        (*req).type_0 as libc::c_int,
+        (*req).type_0 as i32,
         b"redis_parse_req: expected request type to be parsed\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
+        0 as i32,
         fake_client.err,
-        b"redis_parse_req: expected no connection error\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_req: expected no connection error\0" as *const u8 as *const i8,
     );
     msg_put(req);
     if failures > original_failures {
         fprintf(
             stderr,
             b"test_redis_parse_req_success_case failed for (%s)\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
             data,
         );
     }
@@ -2223,567 +2825,548 @@ unsafe extern "C" fn test_redis_parse_req_success_case(
 unsafe extern "C" fn test_redis_parse_req_success() {
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\neval\r\n$10\r\nreturn 123\r\n$1\r\n1\r\n$1\r\n1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_EVAL as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_EVAL as i32,
     );
     test_redis_parse_req_success_case(
         b"*7\r\n$4\r\neval\r\n$40\r\nreturn {KEYS[1],KEYS[2],ARGV[1],ARGV[2]}\r\n$1\r\n2\r\n$9\r\nkey1{tag}\r\n$4\r\narg1\r\n$9\r\nkey2{tag}\r\n$4\r\narg2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_EVAL as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_EVAL as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nappend\r\n$3\r\n999\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_APPEND as libc::c_int,
+        b"*3\r\n$6\r\nappend\r\n$3\r\n999\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_APPEND as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$8\r\nbitcount\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_BITCOUNT as libc::c_int,
+        b"*2\r\n$8\r\nbitcount\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_BITCOUNT as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$8\r\nbitcount\r\n$3\r\nfoo\r\n$1\r\n1\r\n$1\r\n1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_BITCOUNT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_BITCOUNT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*1\r\n$7\r\nCOMMAND\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_COMMAND as libc::c_int,
+        b"*1\r\n$7\r\nCOMMAND\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_COMMAND as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\ndecr\r\n$7\r\ncounter\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_DECR as libc::c_int,
+        b"*2\r\n$4\r\ndecr\r\n$7\r\ncounter\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_DECR as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$6\r\ndecrby\r\n$7\r\ncounter\r\n$3\r\n100\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_DECRBY as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_DECRBY as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$3\r\ndel\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_DEL as libc::c_int,
+        b"*2\r\n$3\r\ndel\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_DEL as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$3\r\ndel\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_DEL as libc::c_int,
+        b"*3\r\n$3\r\ndel\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_DEL as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\ndump\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_DUMP as libc::c_int,
+        b"*2\r\n$4\r\ndump\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_DUMP as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$6\r\nexists\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_EXISTS as libc::c_int,
+        b"*2\r\n$6\r\nexists\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_EXISTS as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nexpire\r\n$3\r\nfoo\r\n$1\r\n0\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_EXPIRE as libc::c_int,
+        b"*3\r\n$6\r\nexpire\r\n$3\r\nfoo\r\n$1\r\n0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_EXPIRE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$8\r\nexpireat\r\n$3\r\nfoo\r\n$10\r\n1282463464\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_EXPIREAT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_EXPIREAT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$3\r\nGET\r\n$3\r\nkey\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_GET as libc::c_int,
+        b"*2\r\n$3\r\nGET\r\n$3\r\nkey\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_GET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\ngetbit\r\n$3\r\nfoo\r\n$1\r\n1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_GETBIT as libc::c_int,
+        b"*3\r\n$6\r\ngetbit\r\n$3\r\nfoo\r\n$1\r\n1\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_GETBIT as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$8\r\ngetrange\r\n$3\r\nfoo\r\n$1\r\n1\r\n$1\r\n2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_GETRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_GETRANGE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\ngetset\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_GETSET as libc::c_int,
+        b"*3\r\n$6\r\ngetset\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_GETSET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nhdel\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_HDEL as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_HDEL as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$7\r\nhexists\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_HEXISTS as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_HEXISTS as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$4\r\nhget\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_HGET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_HGET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$7\r\nhgetall\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HGETALL as libc::c_int,
+        b"*2\r\n$7\r\nhgetall\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HGETALL as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$7\r\nhincrby\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$3\r\n100\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HINCRBY as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HINCRBY as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$12\r\nhincrbyfloat\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$6\r\n100.12\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HINCRBYFLOAT as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HINCRBYFLOAT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$5\r\nhkeys\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HKEYS as libc::c_int,
+        b"*2\r\n$5\r\nhkeys\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HKEYS as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nhlen\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HLEN as libc::c_int,
+        b"*2\r\n$4\r\nhlen\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HLEN as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$5\r\nhmget\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_HMGET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_HMGET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nhmget\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$6\r\n1dleif\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HMGET as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HMGET as i32,
     );
     test_redis_parse_req_success_case(
         b"*6\r\n$5\r\nhmset\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$3\r\nbar\r\n$6\r\nfield2\r\n$3\r\nbas\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HMSET as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HMSET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nhset\r\n$4\r\nhfoo\r\n$6\r\n1dleif\r\n$3\r\nrab\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_HSET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_HSET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nhsetnx\r\n$4\r\nhfoo\r\n$6\r\nfield1\r\n$3\r\nbar\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HSETNX as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HSETNX as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$5\r\nhvals\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_HVALS as libc::c_int,
+        b"*2\r\n$5\r\nhvals\r\n$4\r\nhfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_HVALS as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nincr\r\n$7\r\ncounter\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_INCR as libc::c_int,
+        b"*2\r\n$4\r\nincr\r\n$7\r\ncounter\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_INCR as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$6\r\nincrby\r\n$7\r\ncounter\r\n$3\r\n100\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_INCRBY as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_INCRBY as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$11\r\nincrbyfloat\r\n$7\r\ncounter\r\n$5\r\n10.10\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_INCRBYFLOAT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_INCRBYFLOAT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nlindex\r\n$4\r\nlfoo\r\n$1\r\n0\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LINDEX as libc::c_int,
+        b"*3\r\n$6\r\nlindex\r\n$4\r\nlfoo\r\n$1\r\n0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LINDEX as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$7\r\nlinsert\r\n$4\r\nlfoo\r\n$6\r\nBEFORE\r\n$3\r\nbar\r\n$3\r\nbaq\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LINSERT as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LINSERT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nllen\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LLEN as libc::c_int,
+        b"*2\r\n$4\r\nllen\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LLEN as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nLLEN\r\n$6\r\nmylist\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LLEN as libc::c_int,
+        b"*2\r\n$4\r\nLLEN\r\n$6\r\nmylist\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LLEN as i32,
     );
     test_redis_parse_req_success_case(
-        b"*1\r\n$6\r\nLOLWUT\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LOLWUT as libc::c_int,
+        b"*1\r\n$6\r\nLOLWUT\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LOLWUT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$6\r\nLOLWUT\r\n$2\r\n40\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LOLWUT as libc::c_int,
+        b"*2\r\n$6\r\nLOLWUT\r\n$2\r\n40\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LOLWUT as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nlpop\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LPOP as libc::c_int,
+        b"*2\r\n$4\r\nlpop\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LPOP as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$5\r\nlpush\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LPUSH as libc::c_int,
+        b"*3\r\n$5\r\nlpush\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LPUSH as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nlpush\r\n$4\r\nlfoo\r\n$3\r\nbaq\r\n$3\r\nbap\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LPUSH as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LPUSH as i32,
     );
     test_redis_parse_req_success_case(
         b"*6\r\n$5\r\nlpush\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbau\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_LPUSH as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LPUSH as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nlpushx\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LPUSHX as libc::c_int,
+        b"*3\r\n$6\r\nlpushx\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_LPUSHX as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nlrange\r\n$4\r\nlfoo\r\n$1\r\n0\r\n$1\r\n2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nlrange\r\n$4\r\nlfoo\r\n$1\r\n0\r\n$1\r\n3\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nlrem\r\n$4\r\nlfoo\r\n$1\r\n2\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LREM as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LREM as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nlset\r\n$4\r\nlfoo\r\n$1\r\n0\r\n$3\r\nbaq\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LSET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LSET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nltrim\r\n$4\r\nlfoo\r\n$1\r\n0\r\n$1\r\n2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_LTRIM as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_LTRIM as i32,
     );
     test_redis_parse_req_success_case(
         b"*13\r\n$4\r\nmget\r\n$3\r\nfoo\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n$3\r\nbar\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_MGET as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_MGET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nMGET\r\n$1\r\nx\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_MGET as libc::c_int,
+        b"*2\r\n$4\r\nMGET\r\n$1\r\nx\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_MGET as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$4\r\nMGET\r\n$1\r\nx\r\n$10\r\nabcdefghij\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_MGET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_MGET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$4\r\nmget\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_MGET as libc::c_int,
+        b"*3\r\n$4\r\nmget\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_MGET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$4\r\nmget\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_MGET as libc::c_int,
+        b"*3\r\n$4\r\nmget\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_MGET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$7\r\npersist\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_PERSIST as libc::c_int,
+        b"*2\r\n$7\r\npersist\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PERSIST as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$7\r\npexpire\r\n$3\r\nfoo\r\n$1\r\n0\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_PEXPIRE as libc::c_int,
+        b"*3\r\n$7\r\npexpire\r\n$3\r\nfoo\r\n$1\r\n0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PEXPIRE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$5\r\npfadd\r\n$7\r\n{pfoo}2\r\n$3\r\nbas\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_PFADD as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_PFADD as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\npfadd\r\n$4\r\npfoo\r\n$3\r\nbar\r\n$3\r\nbas\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_PFADD as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_PFADD as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$7\r\npfcount\r\n$4\r\npfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_PFCOUNT as libc::c_int,
+        b"*2\r\n$7\r\npfcount\r\n$4\r\npfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PFCOUNT as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$7\r\npfmerge\r\n$7\r\n{pfoo}3\r\n$1\r\n2\r\n$6\r\n{pfoo}\r\n$7\r\n{pfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_PFMERGE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PFMERGE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*1\r\n$4\r\nPING\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_PING as libc::c_int,
+        b"*1\r\n$4\r\nPING\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PING as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\npsetex\r\n$3\r\nfoo\r\n$4\r\n1000\r\n$3\r\noof\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_PSETEX as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_PSETEX as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\npttl\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_PTTL as libc::c_int,
+        b"*2\r\n$4\r\npttl\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_PTTL as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$7\r\nrestore\r\n$3\r\nfoo\r\n$1\r\n0\r\n$3\r\noof\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_RESTORE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_RESTORE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\nrpop\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_RPOP as libc::c_int,
+        b"*2\r\n$4\r\nrpop\r\n$4\r\nlfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_RPOP as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$9\r\nrpoplpush\r\n$6\r\n{lfoo}\r\n$7\r\n{lfoo}2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_RPOPLPUSH as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_RPOPLPUSH as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$5\r\nrpush\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_RPUSH as libc::c_int,
+        b"*3\r\n$5\r\nrpush\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_RPUSH as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nrpush\r\n$4\r\nlfoo\r\n$3\r\nbat\r\n$3\r\nbau\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_RPUSH as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_RPUSH as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nrpushx\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_RPUSHX as libc::c_int,
+        b"*3\r\n$6\r\nrpushx\r\n$4\r\nlfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_RPUSHX as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$4\r\nsadd\r\n$7\r\n{sfoo}2\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SADD as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SADD as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nsadd\r\n$4\r\nsfoo\r\n$3\r\nbar\r\n$3\r\nbas\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SADD as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SADD as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$4\r\nsadd\r\n$4\r\nsfoo\r\n$3\r\nbar\r\n$3\r\nbas\r\n$3\r\nbat\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SADD as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SADD as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$5\r\nscard\r\n$4\r\nsfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SCARD as libc::c_int,
+        b"*2\r\n$5\r\nscard\r\n$4\r\nsfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SCARD as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$5\r\nsdiff\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SDIFF as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SDIFF as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$10\r\nsdiffstore\r\n$7\r\n{sfoo}3\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SDIFFSTORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SDIFFSTORE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$3\r\nSET\r\n$10\r\nkey4567890\r\n$5\r\nVALUE\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SET as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SET as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$3\r\nset\r\n$3\r\nbar\r\n$3\r\nrab\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SET as libc::c_int,
+        b"*3\r\n$3\r\nset\r\n$3\r\nbar\r\n$3\r\nrab\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SET as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nsetbit\r\n$3\r\nfoo\r\n$1\r\n1\r\n$1\r\n1\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SETBIT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SETBIT as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nsetex\r\n$3\r\nfoo\r\n$4\r\n1000\r\n$3\r\noof\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SETEX as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SETEX as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$5\r\nsetnx\r\n$3\r\nfoo\r\n$3\r\noof\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SETNX as libc::c_int,
+        b"*3\r\n$5\r\nsetnx\r\n$3\r\nfoo\r\n$3\r\noof\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SETNX as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$8\r\nsetrange\r\n$3\r\nfoo\r\n$1\r\n1\r\n$3\r\noof\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SETRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SETRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$6\r\nsinter\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SINTER as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SINTER as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$11\r\nsinterstore\r\n$7\r\n{sfoo}3\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SINTERSTORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SINTERSTORE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$9\r\nsismember\r\n$4\r\nsfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SISMEMBER as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SISMEMBER as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$8\r\nsmembers\r\n$4\r\nsfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SMEMBERS as libc::c_int,
+        b"*2\r\n$8\r\nsmembers\r\n$4\r\nsfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SMEMBERS as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$5\r\nsmove\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n$3\r\nbas\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SMOVE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SMOVE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$11\r\nsrandmember\r\n$4\r\nsfoo\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SRANDMEMBER as libc::c_int,
+        b"*2\r\n$11\r\nsrandmember\r\n$4\r\nsfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SRANDMEMBER as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$11\r\nsrandmember\r\n$4\r\nsfoo\r\n$1\r\n2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SRANDMEMBER as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SRANDMEMBER as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$4\r\nsrem\r\n$4\r\nsfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SREM as libc::c_int,
+        b"*3\r\n$4\r\nsrem\r\n$4\r\nsfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SREM as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$4\r\nsrem\r\n$4\r\nsfoo\r\n$3\r\nbas\r\n$3\r\nbat\r\n$3\r\nrab\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SREM as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SREM as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$6\r\nsunion\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_SUNION as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_SUNION as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$11\r\nsunionstore\r\n$7\r\n{sfoo}3\r\n$6\r\n{sfoo}\r\n$7\r\n{sfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_SUNIONSTORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_SUNIONSTORE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$3\r\nttl\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_TTL as libc::c_int,
+        b"*2\r\n$3\r\nttl\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_TTL as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$4\r\ntype\r\n$3\r\nfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_TYPE as libc::c_int,
+        b"*2\r\n$4\r\ntype\r\n$3\r\nfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_TYPE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$4\r\nzadd\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZADD as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZADD as i32,
     );
     test_redis_parse_req_success_case(
         b"*6\r\n$4\r\nzadd\r\n$4\r\nzfoo\r\n$3\r\n101\r\n$3\r\nbat\r\n$3\r\n102\r\n$3\r\nbau\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZADD as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZADD as i32,
     );
     test_redis_parse_req_success_case(
         b"*8\r\n$4\r\nzadd\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\nbar\r\n$3\r\n101\r\n$3\r\nbat\r\n$3\r\n102\r\n$3\r\nbau\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZADD as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZADD as i32,
     );
     test_redis_parse_req_success_case(
-        b"*2\r\n$5\r\nzcard\r\n$4\r\nzfoo\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZCARD as libc::c_int,
+        b"*2\r\n$5\r\nzcard\r\n$4\r\nzfoo\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZCARD as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nzcount\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\n101\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZCOUNT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZCOUNT as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$7\r\nzincrby\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZINCRBY as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZINCRBY as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$11\r\nzinterstore\r\n$7\r\n{zfoo}3\r\n$1\r\n2\r\n$6\r\n{zfoo}\r\n$7\r\n{zfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZINTERSTORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZINTERSTORE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$9\r\nzlexcount\r\n$4\r\nzfoo\r\n$1\r\n-\r\n$1\r\n+\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZLEXCOUNT as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZLEXCOUNT as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$6\r\nzrange\r\n$4\r\nzfoo\r\n$1\r\n0\r\n$1\r\n3\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$6\r\nzrange\r\n$4\r\nzfoo\r\n$1\r\n0\r\n$1\r\n3\r\n$10\r\nWITHSCORES\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZRANGE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$11\r\nzrangebylex\r\n$4\r\nzfoo\r\n$1\r\n-\r\n$1\r\n+\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZRANGEBYLEX as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZRANGEBYLEX as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$13\r\nzrangebyscore\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\n101\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZRANGEBYSCORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZRANGEBYSCORE as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$5\r\nzrank\r\n$4\r\nzfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZRANK as libc::c_int,
+        b"*3\r\n$5\r\nzrank\r\n$4\r\nzfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZRANK as i32,
     );
     test_redis_parse_req_success_case(
         b"*8\r\n$4\r\nzrem\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\nbar\r\n$3\r\n101\r\n$3\r\nbat\r\n$3\r\n102\r\n$3\r\nbau\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZREM as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREM as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$14\r\nzremrangebylex\r\n$4\r\nzfoo\r\n$1\r\n-\r\n$1\r\n+\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZREMRANGEBYLEX as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREMRANGEBYLEX as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$15\r\nzremrangebyrank\r\n$4\r\nzfoo\r\n$1\r\n0\r\n$1\r\n1\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZREMRANGEBYRANK as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREMRANGEBYRANK as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$16\r\nzremrangebyscore\r\n$4\r\nzfoo\r\n$3\r\n100\r\n$3\r\n101\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZREMRANGEBYSCORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREMRANGEBYSCORE as i32,
     );
     test_redis_parse_req_success_case(
         b"*4\r\n$9\r\nzrevrange\r\n$4\r\nzfoo\r\n$1\r\n0\r\n$1\r\n2\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZREVRANGE as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREVRANGE as i32,
     );
     test_redis_parse_req_success_case(
         b"*3\r\n$8\r\nzrevrank\r\n$4\r\nzfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZREVRANK as libc::c_int,
+            as *const i8,
+        msg_type::MSG_REQ_REDIS_ZREVRANK as i32,
     );
     test_redis_parse_req_success_case(
-        b"*3\r\n$6\r\nzscore\r\n$4\r\nzfoo\r\n$3\r\nbar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_REDIS_ZSCORE as libc::c_int,
+        b"*3\r\n$6\r\nzscore\r\n$4\r\nzfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZSCORE as i32,
     );
     test_redis_parse_req_success_case(
         b"*5\r\n$11\r\nzunionstore\r\n$7\r\n{zfoo}3\r\n$1\r\n2\r\n$6\r\n{zfoo}\r\n$7\r\n{zfoo}2\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_REDIS_ZUNIONSTORE as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_REDIS_ZUNIONSTORE as i32,
     );
 }
 unsafe extern "C" fn test_redis_parse_rsp_success_case(
-    mut data: *const libc::c_char,
-    mut expected: libc::c_int,
+    mut data: *const i8,
+    mut expected: i32,
 ) {
-    let mut original_failures: libc::c_int = failures;
+    let mut original_failures: i32 = failures;
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -2846,12 +3429,8 @@ unsafe extern "C" fn test_redis_parse_rsp_success_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let mut rsp: *mut msg = msg_get(
-        &mut fake_client,
-        0 as libc::c_int != 0,
-        1 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let mut rsp: *mut msg = msg_get(&mut fake_client, 0 as i32 != 0, 1 as i32 != 0);
     (*rsp).state = SW_START;
     (*rsp).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -2860,95 +3439,93 @@ unsafe extern "C" fn test_redis_parse_rsp_success_case(
     (*rsp).mhdr.stqh_last = &mut (*rsp).mhdr.stqh_first;
     mbuf_insert(&mut (*rsp).mhdr, m);
     (*rsp).pos = (*m).start;
-    *__errno_location() = 0 as libc::c_int;
+    *__errno_location() = 0 as i32;
     redis_parse_rsp(rsp);
     expect_same_ptr(
         (*m).last as *const libc::c_void,
         (*rsp).pos as *const libc::c_void,
-        b"redis_parse_rsp: expected rsp->pos to be m->last\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_rsp: expected rsp->pos to be m->last\0" as *const u8 as *const i8,
     );
     expect_same_int(
         SW_START,
         (*rsp).state,
-        b"redis_parse_rsp: expected full buffer to be parsed\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_rsp: expected full buffer to be parsed\0" as *const u8 as *const i8,
     );
     expect_same_int(
         expected,
-        (*rsp).type_0 as libc::c_int,
+        (*rsp).type_0 as i32,
         b"redis_parse_rsp: expected response type to be parsed\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
+        0 as i32,
         *__errno_location(),
-        b"redis_parse_rsp: expected errno=0\0" as *const u8 as *const libc::c_char,
+        b"redis_parse_rsp: expected errno=0\0" as *const u8 as *const i8,
     );
     expect_same_uint32_t(
-        1 as libc::c_int as uint32_t,
-        if (*rsp).rnarg != 0 { (*rsp).rnarg } else { 1 as libc::c_int as libc::c_uint },
-        b"expected remaining args to be 0 or 1\0" as *const u8 as *const libc::c_char,
+        1 as i32 as uint32_t,
+        if (*rsp).rnarg != 0 { (*rsp).rnarg } else { 1 as i32 as u32 },
+        b"expected remaining args to be 0 or 1\0" as *const u8 as *const i8,
     );
     msg_put(rsp);
     if failures > original_failures {
         fprintf(
             stderr,
             b"test_redis_parse_rsp_success_case failed for (%s)\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
             data,
         );
     }
 }
 unsafe extern "C" fn test_redis_parse_rsp_success() {
     test_redis_parse_rsp_success_case(
-        b"-CUSTOMERR\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_ERROR as libc::c_int,
+        b"-CUSTOMERR\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_ERROR as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"-Error message\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_ERROR as libc::c_int,
+        b"-Error message\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_ERROR as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"+OK\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_STATUS as libc::c_int,
+        b"+OK\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_STATUS as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"$6\r\nfoobar\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_BULK as libc::c_int,
+        b"$6\r\nfoobar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_BULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"$0\r\n\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_BULK as libc::c_int,
+        b"$0\r\n\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_BULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"$-1\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_BULK as libc::c_int,
+        b"$-1\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_BULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"*0\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_MULTIBULK as libc::c_int,
+        b"*0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_MULTIBULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"*2\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_MULTIBULK as libc::c_int,
+        b"*2\r\n$3\r\nfoo\r\n$3\r\nbar\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_MULTIBULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"*3\r\n:1\r\n:2\r\n:3\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_MULTIBULK as libc::c_int,
+        b"*3\r\n:1\r\n:2\r\n:3\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_MULTIBULK as i32,
     );
     test_redis_parse_rsp_success_case(
-        b"*-1\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_REDIS_MULTIBULK as libc::c_int,
+        b"*-1\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_REDIS_MULTIBULK as i32,
     );
     test_redis_parse_rsp_success_case(
         b"*2\r\n*3\r\n:1\r\n:2\r\n:3\r\n*2\r\n+Foo\r\n-Bar\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_RSP_REDIS_MULTIBULK as libc::c_int,
+            as *const i8,
+        msg_type::MSG_RSP_REDIS_MULTIBULK as i32,
     );
 }
-unsafe extern "C" fn test_redis_parse_rsp_failure_case(mut data: *const libc::c_char) {
-    let mut original_failures: libc::c_int = failures;
+unsafe extern "C" fn test_redis_parse_rsp_failure_case(mut data: *const i8) {
+    let mut original_failures: i32 = failures;
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -3011,12 +3588,8 @@ unsafe extern "C" fn test_redis_parse_rsp_failure_case(mut data: *const libc::c_
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let mut rsp: *mut msg = msg_get(
-        &mut fake_client,
-        0 as libc::c_int != 0,
-        1 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let mut rsp: *mut msg = msg_get(&mut fake_client, 0 as i32 != 0, 1 as i32 != 0);
     (*rsp).state = SW_START;
     (*rsp).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -3025,55 +3598,48 @@ unsafe extern "C" fn test_redis_parse_rsp_failure_case(mut data: *const libc::c_
     (*rsp).mhdr.stqh_last = &mut (*rsp).mhdr.stqh_first;
     mbuf_insert(&mut (*rsp).mhdr, m);
     (*rsp).pos = (*m).start;
-    *__errno_location() = 0 as libc::c_int;
+    *__errno_location() = 0 as i32;
     redis_parse_rsp(rsp);
     expect_same_ptr(
         (*m).start as *const libc::c_void,
         (*rsp).pos as *const libc::c_void,
-        b"redis_parse_rsp: expected rsp->pos to be m->start\0" as *const u8
-            as *const libc::c_char,
+        b"redis_parse_rsp: expected rsp->pos to be m->start\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        MSG_PARSE_ERROR as libc::c_int,
-        (*rsp).result as libc::c_int,
-        b"redis_parse_rsp: expected MSG_PARSE_ERROR\0" as *const u8
-            as *const libc::c_char,
+        msg_parse_result::MSG_PARSE_ERROR as i32,
+        (*rsp).result as i32,
+        b"redis_parse_rsp: expected msg_parse_result::MSG_PARSE_ERROR\0" as *const u8
+            as *const i8,
     );
     expect_same_int(
-        22 as libc::c_int,
+        22 as i32,
         *__errno_location(),
-        b"redis_parse_rsp: expected errno=EINVAL\0" as *const u8 as *const libc::c_char,
+        b"redis_parse_rsp: expected errno=EINVAL\0" as *const u8 as *const i8,
     );
     msg_put(rsp);
     if failures > original_failures {
         fprintf(
             stderr,
             b"test_redis_parse_rsp_failure_case failed for (%s)\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
             data,
         );
     }
 }
 unsafe extern "C" fn test_redis_parse_rsp_failure() {
-    test_redis_parse_rsp_failure_case(b"*\r\n\0" as *const u8 as *const libc::c_char);
-    test_redis_parse_rsp_failure_case(b":x\r\n\0" as *const u8 as *const libc::c_char);
+    test_redis_parse_rsp_failure_case(b"*\r\n\0" as *const u8 as *const i8);
+    test_redis_parse_rsp_failure_case(b":x\r\n\0" as *const u8 as *const i8);
+    test_redis_parse_rsp_failure_case(b"$6\r\nfoobarr\r\n\0" as *const u8 as *const i8);
+    test_redis_parse_rsp_failure_case(b"$6\r\nfoobar\n\n\0" as *const u8 as *const i8);
+    test_redis_parse_rsp_failure_case(b"$0\r\nx\r\n\0" as *const u8 as *const i8);
+    test_redis_parse_rsp_failure_case(b"$0\n\0" as *const u8 as *const i8);
     test_redis_parse_rsp_failure_case(
-        b"$6\r\nfoobarr\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_redis_parse_rsp_failure_case(
-        b"$6\r\nfoobar\n\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_redis_parse_rsp_failure_case(
-        b"$0\r\nx\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_redis_parse_rsp_failure_case(b"$0\n\0" as *const u8 as *const libc::c_char);
-    test_redis_parse_rsp_failure_case(
-        b"*2\r\n*3\r\n:1\r\n:2\r\n:3\r\n*2\r\n\r\n\0" as *const u8 as *const libc::c_char,
+        b"*2\r\n*3\r\n:1\r\n:2\r\n:3\r\n*2\r\n\r\n\0" as *const u8 as *const i8,
     );
 }
 unsafe extern "C" fn test_memcache_parse_rsp_success_case(
-    mut data: *const libc::c_char,
-    mut expected: libc::c_int,
+    mut data: *const i8,
+    mut expected: i32,
 ) {
     let mut fake_client: conn = {
         let mut init = conn {
@@ -3137,13 +3703,9 @@ unsafe extern "C" fn test_memcache_parse_rsp_success_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let original_failures: libc::c_int = failures;
-    let mut rsp: *mut msg = msg_get(
-        &mut fake_client,
-        0 as libc::c_int != 0,
-        0 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let original_failures: i32 = failures;
+    let mut rsp: *mut msg = msg_get(&mut fake_client, 0 as i32 != 0, 0 as i32 != 0);
     (*rsp).state = SW_START;
     (*rsp).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -3152,119 +3714,116 @@ unsafe extern "C" fn test_memcache_parse_rsp_success_case(
     (*rsp).mhdr.stqh_last = &mut (*rsp).mhdr.stqh_first;
     mbuf_insert(&mut (*rsp).mhdr, m);
     (*rsp).pos = (*m).start;
-    *__errno_location() = 0 as libc::c_int;
+    *__errno_location() = 0 as i32;
     memcache_parse_rsp(rsp);
     expect_same_ptr(
         (*m).last as *const libc::c_void,
         (*rsp).pos as *const libc::c_void,
         b"memcache_parse_rsp: expected rsp->pos to be m->last\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
         SW_START,
         (*rsp).state,
         b"memcache_parse_rsp: expected state to be SW_START after parsing full buffer\0"
-            as *const u8 as *const libc::c_char,
+            as *const u8 as *const i8,
     );
     expect_same_int(
         expected,
-        (*rsp).type_0 as libc::c_int,
+        (*rsp).type_0 as i32,
         b"memcache_parse_rsp: expected response type to be parsed\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
+        0 as i32,
         fake_client.err,
-        b"memcache_parse_rsp: expected no connection error\0" as *const u8
-            as *const libc::c_char,
+        b"memcache_parse_rsp: expected no connection error\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*rsp).request() as libc::c_int,
-        b"memcache_parse_rsp: expected response\0" as *const u8 as *const libc::c_char,
+        0 as i32,
+        (*rsp).request() as i32,
+        b"memcache_parse_rsp: expected response\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*rsp).error() as libc::c_int,
-        b"memcache_parse_rsp: expected no error\0" as *const u8 as *const libc::c_char,
+        0 as i32,
+        (*rsp).error() as i32,
+        b"memcache_parse_rsp: expected no error\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*rsp).swallow() as libc::c_int,
-        b"memcache_parse_rsp: expected swallow=0\0" as *const u8 as *const libc::c_char,
+        0 as i32,
+        (*rsp).swallow() as i32,
+        b"memcache_parse_rsp: expected swallow=0\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
+        0 as i32,
         *__errno_location(),
-        b"memcache_parse_rsp: expected errno=0\0" as *const u8 as *const libc::c_char,
+        b"memcache_parse_rsp: expected errno=0\0" as *const u8 as *const i8,
     );
     msg_put(rsp);
     if original_failures != failures {
         printf(
             b"Saw test failures for test_memcache_parse_rsp_success_case (%s)\n\0"
-                as *const u8 as *const libc::c_char,
+                as *const u8 as *const i8,
             data,
         );
     }
 }
 unsafe extern "C" fn test_memcache_parse_rsp_success() {
     test_memcache_parse_rsp_success_case(
-        b"0\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_NUM as libc::c_int,
+        b"0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_NUM as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"0  \r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_NUM as libc::c_int,
+        b"0  \r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_NUM as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"9223372036854775807\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_NUM as libc::c_int,
+        b"9223372036854775807\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_NUM as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"DELETED\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_DELETED as libc::c_int,
+        b"DELETED\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_DELETED as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"END\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_END as libc::c_int,
+        b"END\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_END as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"ERROR\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_ERROR as libc::c_int,
+        b"ERROR\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_ERROR as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"EXISTS\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_EXISTS as libc::c_int,
+        b"EXISTS\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_EXISTS as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"NOT_FOUND\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_NOT_FOUND as libc::c_int,
+        b"NOT_FOUND\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_NOT_FOUND as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"STORED\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_STORED as libc::c_int,
+        b"STORED\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_STORED as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"TOUCHED\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_TOUCHED as libc::c_int,
+        b"TOUCHED\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_TOUCHED as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"VALUE key 0 2\r\nab\r\nEND\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_END as libc::c_int,
+        b"VALUE key 0 2\r\nab\r\nEND\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_END as i32,
     );
     test_memcache_parse_rsp_success_case(
         b"VALUE key 0 2\r\nab\r\nVALUE key2 0 2\r\ncd\r\nEND\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_RSP_MC_END as libc::c_int,
+            as *const i8,
+        msg_type::MSG_RSP_MC_END as i32,
     );
     test_memcache_parse_rsp_success_case(
-        b"VERSION 1.5.22\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_RSP_MC_VERSION as libc::c_int,
+        b"VERSION 1.5.22\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_RSP_MC_VERSION as i32,
     );
 }
-unsafe extern "C" fn test_memcache_parse_rsp_failure_case(
-    mut data: *const libc::c_char,
-) {
+unsafe extern "C" fn test_memcache_parse_rsp_failure_case(mut data: *const i8) {
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -3327,13 +3886,9 @@ unsafe extern "C" fn test_memcache_parse_rsp_failure_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let original_failures: libc::c_int = failures;
-    let mut rsp: *mut msg = msg_get(
-        &mut fake_client,
-        0 as libc::c_int != 0,
-        0 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let original_failures: i32 = failures;
+    let mut rsp: *mut msg = msg_get(&mut fake_client, 0 as i32 != 0, 0 as i32 != 0);
     (*rsp).state = SW_START;
     (*rsp).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -3342,55 +3897,51 @@ unsafe extern "C" fn test_memcache_parse_rsp_failure_case(
     (*rsp).mhdr.stqh_last = &mut (*rsp).mhdr.stqh_first;
     mbuf_insert(&mut (*rsp).mhdr, m);
     (*rsp).pos = (*m).start;
-    *__errno_location() = 0 as libc::c_int;
+    *__errno_location() = 0 as i32;
     memcache_parse_rsp(rsp);
     expect_same_ptr(
         (*m).start as *const libc::c_void,
         (*rsp).pos as *const libc::c_void,
         b"memcache_parse_rsp: expected rsp->pos to be m->start\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*rsp).type_0 as libc::c_int,
+        0 as i32,
+        (*rsp).type_0 as i32,
         b"memcache_parse_rsp: expected response type to be parsed\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        MSG_PARSE_ERROR as libc::c_int,
-        (*rsp).result as libc::c_int,
-        b"memcache_parse_rsp: expected MSG_PARSE_ERROR\0" as *const u8
-            as *const libc::c_char,
+        msg_parse_result::MSG_PARSE_ERROR as i32,
+        (*rsp).result as i32,
+        b"memcache_parse_rsp: expected msg_parse_result::MSG_PARSE_ERROR\0" as *const u8
+            as *const i8,
     );
     expect_same_int(
-        22 as libc::c_int,
+        22 as i32,
         *__errno_location(),
-        b"memcache_parse_rsp: expected EINVAL\0" as *const u8 as *const libc::c_char,
+        b"memcache_parse_rsp: expected EINVAL\0" as *const u8 as *const i8,
     );
     msg_put(rsp);
     if original_failures != failures {
         printf(
             b"Saw test failures for test_memcache_parse_rsp_success_case (%s)\n\0"
-                as *const u8 as *const libc::c_char,
+                as *const u8 as *const i8,
             data,
         );
     }
 }
 unsafe extern "C" fn test_memcache_parse_rsp_failure() {
-    test_memcache_parse_rsp_failure_case(b"\r\n\0" as *const u8 as *const libc::c_char);
-    test_memcache_parse_rsp_failure_case(
-        b"ENDD\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_rsp_failure_case(b"\r\0" as *const u8 as *const libc::c_char);
-    test_memcache_parse_rsp_failure_case(
-        b"-1\r\n\0" as *const u8 as *const libc::c_char,
-    );
+    test_memcache_parse_rsp_failure_case(b"\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_rsp_failure_case(b"ENDD\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_rsp_failure_case(b"\r\0" as *const u8 as *const i8);
+    test_memcache_parse_rsp_failure_case(b"-1\r\n\0" as *const u8 as *const i8);
 }
 unsafe extern "C" fn test_memcache_parse_req_success_case(
-    mut data: *const libc::c_char,
-    mut expected: libc::c_int,
+    mut data: *const i8,
+    mut expected: i32,
 ) {
-    let original_failures: libc::c_int = failures;
+    let original_failures: i32 = failures;
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -3453,16 +4004,10 @@ unsafe extern "C" fn test_memcache_parse_req_success_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let expected_noreply: libc::c_int = (strstr(
-        data,
-        b" noreply\0" as *const u8 as *const libc::c_char,
-    ) != 0 as *mut libc::c_void as *mut libc::c_char) as libc::c_int;
-    let mut req: *mut msg = msg_get(
-        &mut fake_client,
-        1 as libc::c_int != 0,
-        0 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let expected_noreply: i32 = (strstr(data, b" noreply\0" as *const u8 as *const i8)
+        != 0 as *mut libc::c_void as *mut i8) as i32;
+    let mut req: *mut msg = msg_get(&mut fake_client, 1 as i32 != 0, 0 as i32 != 0);
     (*req).state = SW_START;
     (*req).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -3476,176 +4021,168 @@ unsafe extern "C" fn test_memcache_parse_req_success_case(
         (*m).last as *const libc::c_void,
         (*req).pos as *const libc::c_void,
         b"memcache_parse_req: expected req->pos to be m->last\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
         SW_START,
         (*req).state,
         b"memcache_parse_req: expected state to be SW_START after parsing full buffer\0"
-            as *const u8 as *const libc::c_char,
+            as *const u8 as *const i8,
     );
     expect_same_int(
         expected,
-        (*req).type_0 as libc::c_int,
+        (*req).type_0 as i32,
         b"memcache_parse_req: expected response type to be parsed\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
         expected_noreply,
-        (*req).noreply() as libc::c_int,
-        b"memcache_parse_req: unexpected noreply value\0" as *const u8
-            as *const libc::c_char,
+        (*req).noreply() as i32,
+        b"memcache_parse_req: unexpected noreply value\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*req).noforward() as libc::c_int,
-        b"memcache_parse_req: unexpected noforward value\0" as *const u8
-            as *const libc::c_char,
+        0 as i32,
+        (*req).noforward() as i32,
+        b"memcache_parse_req: unexpected noforward value\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        1 as libc::c_int,
-        (*req).request() as libc::c_int,
-        b"memcache_parse_req: expected request\0" as *const u8 as *const libc::c_char,
+        1 as i32,
+        (*req).request() as i32,
+        b"memcache_parse_req: expected request\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
-        (*req).error() as libc::c_int,
-        b"memcache_parse_req: expected no error\0" as *const u8 as *const libc::c_char,
+        0 as i32,
+        (*req).error() as i32,
+        b"memcache_parse_req: expected no error\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        if !(strstr(data, b"quit\r\n\0" as *const u8 as *const libc::c_char)).is_null() {
-            1 as libc::c_int
+        if !(strstr(data, b"quit\r\n\0" as *const u8 as *const i8)).is_null() {
+            1 as i32
         } else {
-            0 as libc::c_int
+            0 as i32
         },
-        (*req).quit() as libc::c_int,
-        b"memcache_parse_req: unexpected quit value\0" as *const u8
-            as *const libc::c_char,
+        (*req).quit() as i32,
+        b"memcache_parse_req: unexpected quit value\0" as *const u8 as *const i8,
     );
     expect_same_int(
-        0 as libc::c_int,
+        0 as i32,
         fake_client.err,
-        b"memcache_parse_req: expected no connection error\0" as *const u8
-            as *const libc::c_char,
+        b"memcache_parse_req: expected no connection error\0" as *const u8 as *const i8,
     );
     msg_put(req);
     if original_failures != failures {
         printf(
             b"Saw test failures for test_memcache_parse_req_success_case (%s)\n\0"
-                as *const u8 as *const libc::c_char,
+                as *const u8 as *const i8,
             data,
         );
     }
 }
 unsafe extern "C" fn test_memcache_parse_req_success() {
     test_memcache_parse_req_success_case(
-        b"add key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_ADD as libc::c_int,
+        b"add key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_ADD as i32,
     );
     test_memcache_parse_req_success_case(
-        b"add key 0 0 1 noreply\r\n\n\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_ADD as libc::c_int,
+        b"add key 0 0 1 noreply\r\n\n\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_ADD as i32,
     );
     test_memcache_parse_req_success_case(
-        b"append key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_APPEND as libc::c_int,
+        b"append key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_APPEND as i32,
     );
     test_memcache_parse_req_success_case(
-        b"append key 0 1 0 noreply\r\n\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_APPEND as libc::c_int,
+        b"append key 0 1 0 noreply\r\n\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_APPEND as i32,
     );
     test_memcache_parse_req_success_case(
-        b"cas key 0 600 5 123456\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_CAS as libc::c_int,
+        b"cas key 0 600 5 123456\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_CAS as i32,
     );
     test_memcache_parse_req_success_case(
-        b"cas key 0 1 1 1 noreply\r\nx\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_CAS as libc::c_int,
+        b"cas key 0 1 1 1 noreply\r\nx\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_CAS as i32,
     );
     test_memcache_parse_req_success_case(
-        b"decr key 0\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_DECR as libc::c_int,
+        b"decr key 0\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_DECR as i32,
     );
     test_memcache_parse_req_success_case(
-        b"decr key 0 noreply\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_DECR as libc::c_int,
+        b"decr key 0 noreply\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_DECR as i32,
     );
     test_memcache_parse_req_success_case(
-        b"delete a noreply\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_DELETE as libc::c_int,
+        b"delete a noreply\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_DELETE as i32,
     );
     test_memcache_parse_req_success_case(
-        b"delete key\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_DELETE as libc::c_int,
+        b"delete key\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_DELETE as i32,
     );
     test_memcache_parse_req_success_case(
         b"get a b xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\r\n\0"
-            as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_GET as libc::c_int,
+            as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_GET as i32,
     );
     test_memcache_parse_req_success_case(
-        b"get key\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_GET as libc::c_int,
+        b"get key\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_GET as i32,
     );
     test_memcache_parse_req_success_case(
-        b"gets u\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_GETS as libc::c_int,
+        b"gets u\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_GETS as i32,
     );
     test_memcache_parse_req_success_case(
-        b"incr key 1\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_INCR as libc::c_int,
+        b"incr key 1\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_INCR as i32,
     );
     test_memcache_parse_req_success_case(
-        b"incr key 9223372036854775807 noreply\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_MC_INCR as libc::c_int,
+        b"incr key 9223372036854775807 noreply\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_INCR as i32,
     );
     test_memcache_parse_req_success_case(
-        b"prepend key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_PREPEND as libc::c_int,
+        b"prepend key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_PREPEND as i32,
     );
     test_memcache_parse_req_success_case(
-        b"prepend key 0 600 0 noreply\r\n\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_PREPEND as libc::c_int,
+        b"prepend key 0 600 0 noreply\r\n\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_PREPEND as i32,
     );
     test_memcache_parse_req_success_case(
-        b"quit\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_QUIT as libc::c_int,
+        b"quit\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_QUIT as i32,
     );
     test_memcache_parse_req_success_case(
-        b"replace key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_REPLACE as libc::c_int,
+        b"replace key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_REPLACE as i32,
     );
     test_memcache_parse_req_success_case(
-        b"replace key 0 9 0 noreply\r\n\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_REPLACE as libc::c_int,
+        b"replace key 0 9 0 noreply\r\n\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_REPLACE as i32,
     );
     test_memcache_parse_req_success_case(
-        b"set key 0 5 10 noreply\r\nvalue12345\r\n\0" as *const u8
-            as *const libc::c_char,
-        MSG_REQ_MC_SET as libc::c_int,
+        b"set key 0 5 10 noreply\r\nvalue12345\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_SET as i32,
     );
     test_memcache_parse_req_success_case(
-        b"set key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_SET as libc::c_int,
+        b"set key 0 600 5\r\nvalue\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_SET as i32,
     );
     test_memcache_parse_req_success_case(
-        b"touch key 12345\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_TOUCH as libc::c_int,
+        b"touch key 12345\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_TOUCH as i32,
     );
     test_memcache_parse_req_success_case(
-        b"touch key 12345 noreply\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_TOUCH as libc::c_int,
+        b"touch key 12345 noreply\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_TOUCH as i32,
     );
     test_memcache_parse_req_success_case(
-        b"version\r\n\0" as *const u8 as *const libc::c_char,
-        MSG_REQ_MC_VERSION as libc::c_int,
+        b"version\r\n\0" as *const u8 as *const i8,
+        msg_type::MSG_REQ_MC_VERSION as i32,
     );
 }
-unsafe extern "C" fn test_memcache_parse_req_failure_case(
-    mut data: *const libc::c_char,
-) {
-    let original_failures: libc::c_int = failures;
+unsafe extern "C" fn test_memcache_parse_req_failure_case(mut data: *const i8) {
+    let original_failures: i32 = failures;
     let mut fake_client: conn = {
         let mut init = conn {
             recv_active_recv_ready_send_active_send_ready_client_proxy_connecting_connected_eof_done_redis_authenticated: [0; 2],
@@ -3708,12 +4245,8 @@ unsafe extern "C" fn test_memcache_parse_req_failure_case(
         init
     };
     let mut m: *mut mbuf = mbuf_get();
-    let SW_START: libc::c_int = 0 as libc::c_int;
-    let mut req: *mut msg = msg_get(
-        &mut fake_client,
-        1 as libc::c_int != 0,
-        0 as libc::c_int != 0,
-    );
+    let SW_START: i32 = 0 as i32;
+    let mut req: *mut msg = msg_get(&mut fake_client, 1 as i32 != 0, 0 as i32 != 0);
     (*req).state = SW_START;
     (*req).token = 0 as *mut uint8_t;
     let datalen: size_t = strlen(data);
@@ -3722,30 +4255,30 @@ unsafe extern "C" fn test_memcache_parse_req_failure_case(
     (*req).mhdr.stqh_last = &mut (*req).mhdr.stqh_first;
     mbuf_insert(&mut (*req).mhdr, m);
     (*req).pos = (*m).start;
-    *__errno_location() = 0 as libc::c_int;
+    *__errno_location() = 0 as i32;
     memcache_parse_req(req);
     expect_same_ptr(
         (*m).start as *const libc::c_void,
         (*req).pos as *const libc::c_void,
         b"memcache_parse_rsp: expected rsp->pos to be m->start\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     expect_same_int(
-        MSG_PARSE_ERROR as libc::c_int,
-        (*req).result as libc::c_int,
-        b"memcache_parse_rsp: expected MSG_PARSE_ERROR\0" as *const u8
-            as *const libc::c_char,
+        msg_parse_result::MSG_PARSE_ERROR as i32,
+        (*req).result as i32,
+        b"memcache_parse_rsp: expected msg_parse_result::MSG_PARSE_ERROR\0" as *const u8
+            as *const i8,
     );
     expect_same_int(
-        22 as libc::c_int,
+        22 as i32,
         *__errno_location(),
-        b"memcache_parse_rsp: expected EINVAL\0" as *const u8 as *const libc::c_char,
+        b"memcache_parse_rsp: expected EINVAL\0" as *const u8 as *const i8,
     );
     msg_put(req);
     if original_failures != failures {
         printf(
             b"Saw test failures for test_memcache_parse_req_success_case (%s)\n\0"
-                as *const u8 as *const libc::c_char,
+                as *const u8 as *const i8,
             data,
         );
     }
@@ -3753,96 +4286,75 @@ unsafe extern "C" fn test_memcache_parse_req_failure_case(
 unsafe extern "C" fn test_memcache_parse_req_failure() {
     test_memcache_parse_req_failure_case(
         b"add xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx 0 600 5\r\nvalue\r\n\0"
-            as *const u8 as *const libc::c_char,
+            as *const u8 as *const i8,
+    );
+    test_memcache_parse_req_failure_case(b"add\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"get\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"get \r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"get key\r\r\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(
+        b"append key 0 600\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"add\r\n\0" as *const u8 as *const libc::c_char,
+        b"cas key 0 600 5 \r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"get\r\n\0" as *const u8 as *const libc::c_char,
+        b"decr key 0 extra\r\n\0" as *const u8 as *const i8,
+    );
+    test_memcache_parse_req_failure_case(b"decr key\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"delete \r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"DELETE key\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"gets\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(b"incr\r\n\0" as *const u8 as *const i8);
+    test_memcache_parse_req_failure_case(
+        b"incr key 0notanint\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"get \r\n\0" as *const u8 as *const libc::c_char,
+        b"prepend key 0 600 5\r\nvalueextra\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"get key\r\r\0" as *const u8 as *const libc::c_char,
+        b"prepend key 0 600 0 noreply\r\r\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"append key 0 600\r\n\0" as *const u8 as *const libc::c_char,
+        b"replace key 0 9 ?\r\n\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"cas key 0 600 5 \r\n\0" as *const u8 as *const libc::c_char,
+        b"set key 0 5 10 noreply\r\nvalue12345\r\r\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"decr key 0 extra\r\n\0" as *const u8 as *const libc::c_char,
+        b"set key 0 600 5\r\nvaluee\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"decr key\r\n\0" as *const u8 as *const libc::c_char,
+        b"touch missingarg\r\n\0" as *const u8 as *const i8,
     );
     test_memcache_parse_req_failure_case(
-        b"delete \r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"DELETE key\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"gets\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"incr\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"incr key 0notanint\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"prepend key 0 600 5\r\nvalueextra\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"prepend key 0 600 0 noreply\r\r\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"replace key 0 9 ?\r\n\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"set key 0 5 10 noreply\r\nvalue12345\r\r\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"set key 0 600 5\r\nvaluee\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"touch missingarg\r\n\0" as *const u8 as *const libc::c_char,
-    );
-    test_memcache_parse_req_failure_case(
-        b"version extra\r\n\0" as *const u8 as *const libc::c_char,
+        b"version extra\r\n\0" as *const u8 as *const i8,
     );
 }
-unsafe fn main_0(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
-) -> libc::c_int {
+unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
     let mut nci: instance = {
         let mut init = instance {
             pidfile: [0; 1],
             c2rust_padding: [0; 7],
             ctx: 0 as *mut context,
             log_level: 0,
-            log_filename: 0 as *const libc::c_char,
-            conf_filename: 0 as *const libc::c_char,
+            log_filename: 0 as *const i8,
+            conf_filename: 0 as *const i8,
             stats_port: 0,
             stats_interval: 0,
-            stats_addr: 0 as *const libc::c_char,
+            stats_addr: 0 as *const i8,
             hostname: [0; 256],
             mbuf_chunk_size: 0,
             pid: 0,
-            pid_filename: 0 as *const libc::c_char,
+            pid_filename: 0 as *const i8,
         };
         init.set_pidfile(0);
         init
     };
-    nci.mbuf_chunk_size = 16384 as libc::c_int as size_t;
+    nci.mbuf_chunk_size = 16384 as i32 as size_t;
     mbuf_init(&mut nci);
     msg_init();
-    log_init(7 as libc::c_int, 0 as *const libc::c_char);
+    log_init(7 as i32, 0 as *const i8);
     test_hash_algorithms();
     test_config_parsing();
     test_redis_parse_rsp_success();
@@ -3851,23 +4363,23 @@ unsafe fn main_0(
     test_memcache_parse_req_success();
     printf(
         b"Starting tests of request/response parsing failures\n\0" as *const u8
-            as *const libc::c_char,
+            as *const i8,
     );
     test_memcache_parse_rsp_failure();
     test_memcache_parse_req_failure();
     test_redis_parse_rsp_failure();
     printf(
-        b"%d successes, %d failures\n\0" as *const u8 as *const libc::c_char,
+        b"%d successes, %d failures\n\0" as *const u8 as *const i8,
         successes,
         failures,
     );
     msg_deinit();
     mbuf_deinit();
     log_deinit();
-    return if failures > 0 as libc::c_int { 1 as libc::c_int } else { 0 as libc::c_int };
+    return if failures > 0 as i32 { 1 as i32 } else { 0 as i32 };
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut i8> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))
@@ -3878,10 +4390,7 @@ pub fn main() {
     args.push(::core::ptr::null_mut());
     unsafe {
         ::std::process::exit(
-            main_0(
-                (args.len() - 1) as libc::c_int,
-                args.as_mut_ptr() as *mut *mut libc::c_char,
-            ) as i32,
+            main_0((args.len() - 1) as i32, args.as_mut_ptr() as *mut *mut i8) as i32,
         )
     }
 }

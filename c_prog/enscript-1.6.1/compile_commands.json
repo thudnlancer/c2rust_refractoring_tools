@@ -5,121 +5,6 @@
             "-c",
             "-DHAVE_CONFIG_H",
             "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../compat",
-            "-I./../afmlib",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "utils.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
-        "file": "utils.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_88592.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88592.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_pc.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_pc.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_88594.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88594.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../compat",
-            "-I./../afmlib",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "main.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
-        "file": "main.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_88597.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88597.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "afmparse.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "afmparse.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
             "-DLIBRARY=\"/usr/local/share/enscript\"",
             "-DSYSCONFDIR=\"/usr/local/etc\"",
             "-I.",
@@ -135,211 +20,6 @@
         ],
         "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src",
         "file": "prt_lpr.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_88591.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88591.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "xalloc.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
-        "file": "xalloc.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "deffont.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "deffont.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "regex.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
-        "file": "regex.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../compat",
-            "-I./../afmlib",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "process.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
-        "file": "process.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_vms.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_vms.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-DLIBRARY=\"/usr/local/share/enscript\"",
-            "-DSYSCONFDIR=\"/usr/local/etc\"",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../compat",
-            "-I./../afmlib",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "util.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src",
-        "file": "util.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "getopt1.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
-        "file": "getopt1.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_mac.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_mac.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "getopt.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
-        "file": "getopt.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-I./../compat",
-            "-I./../afmlib",
-            "-I./../intl",
-            "-I../intl",
-            "-g",
-            "-O2",
-            "prims.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
-        "file": "prims.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_88595.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88595.c"
     },
     {
         "arguments": [
@@ -377,8 +57,6 @@
             "-c",
             "-DHAVE_CONFIG_H",
             "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-DLIBRARY=\"/usr/local/share/enscript\"",
-            "-DSYSCONFDIR=\"/usr/local/etc\"",
             "-I.",
             "-I.",
             "-I..",
@@ -388,25 +66,10 @@
             "-I../intl",
             "-g",
             "-O2",
-            "mkafmmap.c"
+            "process.c"
         ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src",
-        "file": "mkafmmap.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "e_hp8.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_hp8.c"
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
+        "file": "process.c"
     },
     {
         "arguments": [
@@ -455,15 +118,292 @@
             "cc",
             "-c",
             "-DHAVE_CONFIG_H",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-DLIBRARY=\"/usr/local/share/enscript\"",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../compat",
+            "-I./../afmlib",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "util.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src",
+        "file": "util.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
             "-I.",
             "-I.",
             "-I..",
             "-g",
             "-O2",
-            "e_88593.c"
+            "e_vms.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
-        "file": "e_88593.c"
+        "file": "e_vms.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "xalloc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
+        "file": "xalloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../compat",
+            "-I./../afmlib",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "utils.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
+        "file": "utils.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "getopt.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
+        "file": "getopt.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88597.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88597.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88592.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88592.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "regex.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
+        "file": "regex.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88591.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88591.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_pc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_pc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_mac.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_mac.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "getopt1.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/compat",
+        "file": "getopt1.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../compat",
+            "-I./../afmlib",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "prims.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
+        "file": "prims.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "deffont.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "deffont.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "afmparse.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "afmparse.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../compat",
+            "-I./../afmlib",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "main.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/states",
+        "file": "main.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-DLIBRARY=\"/usr/local/share/enscript\"",
+            "-DSYSCONFDIR=\"/usr/local/etc\"",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-I./../compat",
+            "-I./../afmlib",
+            "-I./../intl",
+            "-I../intl",
+            "-g",
+            "-O2",
+            "mkafmmap.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/src",
+        "file": "mkafmmap.c"
     },
     {
         "arguments": [
@@ -521,5 +461,65 @@
         ],
         "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
         "file": "afm.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88593.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88593.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88595.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88595.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_88594.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_88594.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "e_hp8.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/enscript-1.6.1/afmlib",
+        "file": "e_hp8.c"
     }
 ]

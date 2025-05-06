@@ -1,0 +1,987 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/rcs-5.10.0)
+error: `super` cannot be a raw identifier
+  --> c2rust-lib.rs:70:9
+   |
+70 | pub mod r#super;
+   |         ^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:141:48
+    |
+141 |         alignment = if ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                                ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:150:37
+    |
+150 |             ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                     ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:162:44
+    |
+162 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:171:44
+    |
+171 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:183:43
+    |
+183 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:192:40
+    |
+192 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:205:44
+    |
+205 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:214:44
+    |
+214 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:226:43
+    |
+226 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:235:40
+    |
+235 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_args.rs:58:23
+   |
+58 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/printf_args.rs:122:51
+    |
+122 |                 (*ap).a.a_longdouble = args.arg::<f128::f128>();
+    |                                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:18
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:54
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                                                      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:18
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:49
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                                                 ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:10:12
+   |
+10 |     mut x: f128::f128,
+   |            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:12:6
+   |
+12 | ) -> f128::f128 {
+   |      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_parse.rs:62:23
+   |
+62 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/vasnprintf.rs:57:23
+   |
+57 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+    --> lib/vasnprintf.rs:1219:53
+     |
+1219 | ...                   let mut arg_10: f128::f128 = (*(a.arg)
+     |                                       ^^^^ use of undeclared crate or module `f128`
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:27:21
+   |
+27 |                     (if !suffix.is_null() {
+   |                     ^
+...
+31 |                     }),
+   |                      ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+27 ~                     if !suffix.is_null() {
+28 |                         strlen(suffix)
+29 |                     } else {
+30 |                         0 as libc::c_int as libc::c_ulong
+31 ~                     },
+   |
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:53:21
+   |
+53 |                     (if !suffix.is_null() {
+   |                     ^
+...
+57 |                     }),
+   |                      ^
+   |
+help: remove these parentheses
+   |
+53 ~                     if !suffix.is_null() {
+54 |                         strlen(suffix)
+55 |                     } else {
+56 |                         0 as libc::c_int as libc::c_ulong
+57 ~                     },
+   |
+
+warning: unused import: `::libc`
+ --> lib/math.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:205:17
+    |
+205 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+223 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+205 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+206 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+222 |                     })
+223 ~                 },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:162:17
+    |
+162 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+180 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+162 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+163 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+179 |                     })
+180 ~                 },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:173:21
+    |
+173 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+179 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+173 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+174 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+178 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+179 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:194:17
+    |
+194 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+200 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+194 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+195 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+199 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+200 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:216:21
+    |
+216 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+222 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+216 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+217 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+221 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+222 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:237:17
+    |
+237 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+243 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+237 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+238 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+242 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+243 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:268:21
+    |
+268 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+274 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+268 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+269 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+273 |                         0 as *mut libc::c_char
+274 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:359:21
+    |
+359 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+365 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+359 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+360 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+364 |                         0 as *mut libc::c_char
+365 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:387:29
+    |
+387 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+394 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+387 ~                             if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+388 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+393 |                                 0 as *mut libc::c_char
+394 ~                             },
+    |
+
+warning: unnecessary parentheses around assigned value
+  --> lib/printf_frexpl.rs:15:13
+   |
+15 |     oldcw = ({
+   |             ^
+...
+19 |     });
+   |      ^
+   |
+help: remove these parentheses
+   |
+15 ~     oldcw = {
+16 |         let mut _cw: fpucw_t = 0;
+17 |         asm!("fnstcw [{0}]", in (reg) & mut _cw, options(preserves_flags));
+18 |         _cw
+19 ~     };
+   |
+
+warning: unused label
+  --> lib/printf_frexpl.rs:23:5
+   |
+23 |     'c_149: {
+   |     ^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+  --> lib/printf_frexpl.rs:37:5
+   |
+37 |     'c_59: {
+   |     ^^^^^
+
+warning: unused import: `::libc`
+ --> lib/unistd.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around `return` value
+   --> src/b_divvy.rs:146:12
+    |
+146 |     return ({
+    |            ^
+...
+199 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+146 ~     return {
+147 |         let mut __h: *mut obstack = &mut (*divvy).space;
+  ...
+198 |         })
+199 ~     };
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/b_divvy.rs:159:9
+    |
+159 |         ({
+    |         ^
+...
+198 |         })
+    |          ^
+    |
+help: remove these parentheses
+    |
+159 ~         {
+160 |             let mut __o1: *mut obstack = __h;
+  ...
+197 |             __value
+198 ~         }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_divvy.rs:177:29
+    |
+177 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+184 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+177 ~                             if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+178 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+183 |                                 0 as *mut libc::c_char
+184 ~                             },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/b_divvy.rs:236:9
+    |
+236 |         ({
+    |         ^
+...
+275 |         })
+    |          ^
+    |
+help: remove these parentheses
+    |
+236 ~         {
+237 |             let mut __o1: *mut obstack = __h;
+  ...
+274 |             __value
+275 ~         }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_divvy.rs:254:29
+    |
+254 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+261 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+254 ~                             if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+255 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+260 |                                 0 as *mut libc::c_char
+261 ~                             },
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/b_divvy.rs:388:19
+    |
+388 |     *result_len = ({
+    |                   ^
+...
+391 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+388 ~     *result_len = {
+389 |         let mut __o: *const obstack = o;
+390 |         ((*__o).next_free).offset_from((*__o).object_base) as libc::c_long as size_t
+391 ~     };
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_divvy.rs:420:25
+    |
+420 |                         (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                         ^
+...
+427 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+420 ~                         if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+421 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+426 |                             0 as *mut libc::c_char
+427 ~                         },
+    |
+
+warning: unnecessary parentheses around `return` value
+   --> src/b_divvy.rs:478:12
+    |
+478 |     return ({
+    |            ^
+...
+516 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+478 ~     return {
+479 |         let mut __o1_0: *mut obstack = o;
+  ...
+515 |         __value
+516 ~     };
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_divvy.rs:495:25
+    |
+495 |                         (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                         ^
+...
+502 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+495 ~                         if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+496 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+501 |                             0 as *mut libc::c_char
+502 ~                         },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/b_fb.rs:349:34
+    |
+349 |     if 0 as libc::c_int > fflush((if !mstdout.is_null() { mstdout } else { stdout }))
+    |                                  ^                                                 ^
+    |
+help: remove these parentheses
+    |
+349 -     if 0 as libc::c_int > fflush((if !mstdout.is_null() { mstdout } else { stdout }))
+349 +     if 0 as libc::c_int > fflush(if !mstdout.is_null() { mstdout } else { stdout })
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/b_fro.rs:673:21
+    |
+673 |                     (if 0 as libc::c_int as libc::c_long > change {
+    |                     ^
+...
+677 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+673 ~                     if 0 as libc::c_int as libc::c_long > change {
+674 |                         1 as libc::c_int
+675 |                     } else {
+676 |                         0 as libc::c_int
+677 ~                     },
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/b_grok.rs:518:40
+    |
+518 |     let mut __obj: *mut libc::c_void = ({
+    |                                        ^
+...
+556 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+518 ~     let mut __obj: *mut libc::c_void = {
+519 |         let mut __o1: *mut obstack = o;
+  ...
+555 |         __value
+556 ~     };
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_grok.rs:535:25
+    |
+535 |                         (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                         ^
+...
+542 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+535 ~                         if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+536 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+541 |                             0 as *mut libc::c_char
+542 ~                         },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_grok.rs:766:25
+    |
+766 |                         (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                         ^
+...
+773 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+766 ~                         if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+767 |                             < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+772 |                             0 as *mut libc::c_char
+773 ~                         },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/b_grok.rs:891:17
+    |
+891 |                 ({
+    |                 ^
+...
+933 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+891 ~                 {
+892 |                     let mut __o1: *mut obstack = __h;
+  ...
+932 |                     __value
+933 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/b_grok.rs:910:37
+    |
+910 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+917 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+910 ~                                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+911 |                                         < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+916 |                                         0 as *mut libc::c_char
+917 ~                                     },
+    |
+
+warning: unnecessary parentheses around function argument
+    --> src/ci.rs:2112:81
+     |
+2112 | ...                   (if !Ttimeflag {
+     |                       ^
+...
+2120 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2112 ~                                                                                 if !Ttimeflag {
+2113 |                                                                                     unspecified_timespec()
+   ...
+2119 |                                                                                     })
+2120 ~                                                                                 },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/ci.rs:2115:85
+     |
+2115 | ...                   (if 0 as libc::c_int > timespec_cmp(wtime, fs_mtime) {
+     |                       ^
+...
+2119 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2115 ~                                                                                     if 0 as libc::c_int > timespec_cmp(wtime, fs_mtime) {
+2116 |                                                                                         fs_mtime
+2117 |                                                                                     } else {
+2118 |                                                                                         wtime
+2119 ~                                                                                     }
+     |
+
+warning: unnecessary parentheses around function argument
+    --> src/co.rs:1238:17
+     |
+1238 |                 (if lockflag != 0 {
+     |                 ^
+...
+1242 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1238 ~                 if lockflag != 0 {
+1239 |                     Some(rcswriteopen as unsafe extern "C" fn(*mut maybe) -> *mut fro)
+1240 |                 } else {
+1241 |                     Some(rcsreadopen as unsafe extern "C" fn(*mut maybe) -> *mut fro)
+1242 ~                 },
+     |
+
+warning: unnecessary parentheses around block return value
+   --> src/partime.rs:292:13
+    |
+292 |             ({
+    |             ^
+...
+313 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+292 ~             {
+293 |                 let mut __res: libc::c_int = 0;
+  ...
+312 |                 __res
+313 ~             }
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/rcsclean.rs:719:21
+    |
+719 |                     (if dounlock as libc::c_int != 0 {
+    |                     ^
+...
+725 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+719 ~                     if dounlock as libc::c_int != 0 {
+720 |                         Some(
+  ...
+724 |                         Some(rcsreadopen as unsafe extern "C" fn(*mut maybe) -> *mut fro)
+725 ~                     },
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0308]: mismatched types
+   --> src/rcsdiff.rs:470:19
+    |
+470 |               full: *::core::mem::transmute::<
+    |  ___________________^
+471 | |                 &[u8; 15],
+472 | |                 &[libc::c_char; 15],
+473 | |             >(b"--side-by-side\0"),
+    | |__________________________________^ expected an array with a fixed size of 0 elements, found one with 15 elements
+
+error[E0308]: mismatched types
+   --> src/rcsdiff.rs:483:19
+    |
+483 |             full: *::core::mem::transmute::<&[u8; 8], &[libc::c_char; 8]>(b"--ifdef\0"),
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 8 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:326:20
+    |
+326 |               bytes: *::core::mem::transmute::<
+    |  ____________________^
+327 | |                 &[u8; 23],
+328 | |                 &mut [uint8_t; 23],
+329 | |             >(b"checked in with -k by \0"),
+    | |__________________________________________^ expected an array with a fixed size of 0 elements, found one with 23 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:337:20
+    |
+337 |             bytes: *::core::mem::transmute::<&[u8; 7], &mut [uint8_t; 7]>(b"access\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 7 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:345:20
+    |
+345 |             bytes: *::core::mem::transmute::<&[u8; 7], &mut [uint8_t; 7]>(b"author\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 7 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:353:20
+    |
+353 |             bytes: *::core::mem::transmute::<&[u8; 7], &mut [uint8_t; 7]>(b"branch\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 7 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:361:20
+    |
+361 |             bytes: *::core::mem::transmute::<&[u8; 9], &mut [uint8_t; 9]>(b"branches\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 9 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:369:20
+    |
+369 |             bytes: *::core::mem::transmute::<&[u8; 8], &mut [uint8_t; 8]>(b"comment\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 8 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:377:20
+    |
+377 |             bytes: *::core::mem::transmute::<&[u8; 9], &mut [uint8_t; 9]>(b"commitid\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 9 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:385:20
+    |
+385 |             bytes: *::core::mem::transmute::<&[u8; 5], &mut [uint8_t; 5]>(b"date\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 5 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:393:20
+    |
+393 |             bytes: *::core::mem::transmute::<&[u8; 5], &mut [uint8_t; 5]>(b"desc\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 5 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:401:20
+    |
+401 |             bytes: *::core::mem::transmute::<&[u8; 7], &mut [uint8_t; 7]>(b"expand\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 7 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:409:20
+    |
+409 |             bytes: *::core::mem::transmute::<&[u8; 5], &mut [uint8_t; 5]>(b"head\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 5 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:417:20
+    |
+417 |               bytes: *::core::mem::transmute::<
+    |  ____________________^
+418 | |                 &[u8; 10],
+419 | |                 &mut [uint8_t; 10],
+420 | |             >(b"integrity\0"),
+    | |_____________________________^ expected an array with a fixed size of 0 elements, found one with 10 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:428:20
+    |
+428 |             bytes: *::core::mem::transmute::<&[u8; 6], &mut [uint8_t; 6]>(b"locks\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 6 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:436:20
+    |
+436 |             bytes: *::core::mem::transmute::<&[u8; 4], &mut [uint8_t; 4]>(b"log\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 4 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:444:20
+    |
+444 |             bytes: *::core::mem::transmute::<&[u8; 5], &mut [uint8_t; 5]>(b"next\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 5 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:452:20
+    |
+452 |             bytes: *::core::mem::transmute::<&[u8; 6], &mut [uint8_t; 6]>(b"state\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 6 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:460:20
+    |
+460 |             bytes: *::core::mem::transmute::<&[u8; 7], &mut [uint8_t; 7]>(b"strict\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 7 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:468:20
+    |
+468 |             bytes: *::core::mem::transmute::<&[u8; 8], &mut [uint8_t; 8]>(b"symbols\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 8 elements
+
+error[E0308]: mismatched types
+   --> src/b_anchor.rs:476:20
+    |
+476 |             bytes: *::core::mem::transmute::<&[u8; 5], &mut [uint8_t; 5]>(b"text\0"),
+    |                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 0 elements, found one with 5 elements
+
+error[E0054]: cannot cast as `bool`
+   --> src/b_kwxout.rs:642:32
+    |
+642 |                   kdelim_found = (kdelim_found as libc::c_int
+    |  ________________________________^
+643 | |                     | (c == '$' as i32) as libc::c_int) as bool;
+    | |_______________________________________________________________^
+    |
+help: compare with zero instead
+    |
+642 ~                 kdelim_found = (kdelim_found as libc::c_int
+643 ~                     | (c == '$' as i32) as libc::c_int) != 0;
+    |
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1387:27
+     |
+1387 |                   changed = (changed as libc::c_int
+     |  ___________________________^
+1388 | |                     | addsymbol(p, ssymbol, (*u).override_0)) as bool;
+     | |_____________________________________________________________________^
+     |
+help: compare with zero instead
+     |
+1387 ~                 changed = (changed as libc::c_int
+1388 ~                     | addsymbol(p, ssymbol, (*u).override_0)) != 0;
+     |
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1459:35
+     |
+1459 |                           changed = (changed as libc::c_int
+     |  ___________________________________^
+1460 | |                             | breaklock((*rl).delta, (*dc).suppress_mail) as libc::c_int)
+1461 | |                             as bool;
+     | |___________________________________^
+     |
+help: compare with zero instead
+     |
+1459 ~                         changed = (changed as libc::c_int
+1460 ~                             | breaklock((*rl).delta, (*dc).suppress_mail) as libc::c_int) != 0;
+     |
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1501:31
+     |
+1501 |                       changed = (changed as libc::c_int
+     |  _______________________________^
+1502 | |                         | breaklock(target, (*dc).suppress_mail) as libc::c_int) as bool;
+     | |________________________________________________________________________________________^
+     |
+help: compare with zero instead
+     |
+1501 ~                     changed = (changed as libc::c_int
+1502 ~                         | breaklock(target, (*dc).suppress_mail) as libc::c_int) != 0;
+     |
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1510:19
+     |
+1510 |           changed = (changed as libc::c_int
+     |  ___________________^
+1511 | |             | setlock(dc, (*lockpt).entry as *const libc::c_char) as libc::c_int)
+1512 | |             as bool;
+     | |___________________^
+     |
+help: compare with zero instead
+     |
+1510 ~         changed = (changed as libc::c_int
+1511 ~             | setlock(dc, (*lockpt).entry as *const libc::c_char) as libc::c_int) != 0;
+     |
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1518:23
+     |
+1518 |               changed = (changed as libc::c_int | setlock(dc, defbr) as libc::c_int)
+     |  _______________________^
+1519 | |                 as bool;
+     | |_______________________^ help: compare with zero instead: `(changed as libc::c_int | setlock(dc, defbr) as libc::c_int) != 0`
+
+error[E0054]: cannot cast as `bool`
+    --> src/rcs.rs:1521:23
+     |
+1521 |               changed = (changed as libc::c_int | setlock(dc, (*tip).num) as libc::c_int)
+     |  _______________________^
+1522 | |                 as bool;
+     | |_______________________^ help: compare with zero instead: `(changed as libc::c_int | setlock(dc, (*tip).num) as libc::c_int) != 0`
+
+Some errors have detailed explanations: E0054, E0308, E0433.
+For more information about an error, try `rustc --explain E0054`.
+warning: `c2rust_out` (lib) generated 38 warnings
+error: could not compile `c2rust_out` due to 50 previous errors; 38 warnings emitted

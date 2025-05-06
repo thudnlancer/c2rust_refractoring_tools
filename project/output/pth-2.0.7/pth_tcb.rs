@@ -1,22 +1,33 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
+    fn malloc(_: u64) -> *mut libc::c_void;
     fn free(__ptr: *mut libc::c_void);
-    fn __errno_location() -> *mut libc::c_int;
-    static mut __pth_errno_storage: libc::c_int;
-    static mut __pth_errno_flag: libc::c_int;
-    fn __pth_cleanup_popall(_: pth_t, _: libc::c_int);
+    fn __errno_location() -> *mut i32;
+    static mut __pth_errno_storage: i32;
+    static mut __pth_errno_flag: i32;
+    fn __pth_cleanup_popall(_: pth_t, _: i32);
 }
-pub type size_t = libc::c_ulong;
+pub type size_t = u64;
 pub type __uint16_t = libc::c_ushort;
-pub type __uint32_t = libc::c_uint;
-pub type __uint64_t = libc::c_ulong;
-pub type __time_t = libc::c_long;
-pub type __suseconds_t = libc::c_long;
+pub type __uint32_t = u32;
+pub type __uint64_t = u64;
+pub type __time_t = i64;
+pub type __suseconds_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct __sigset_t {
-    pub __val: [libc::c_ulong; 16],
+    pub __val: [u64; 16],
 }
 pub type sigset_t = __sigset_t;
 #[derive(Copy, Clone)]
@@ -25,7 +36,7 @@ pub struct timeval {
     pub tv_sec: __time_t,
     pub tv_usec: __suseconds_t,
 }
-pub type __fd_mask = libc::c_long;
+pub type __fd_mask = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct fd_set {
@@ -35,7 +46,7 @@ pub struct fd_set {
 #[repr(C)]
 pub struct stack_t {
     pub ss_sp: *mut libc::c_void,
-    pub ss_flags: libc::c_int,
+    pub ss_flags: i32,
     pub ss_size: size_t,
 }
 pub type greg_t = libc::c_longlong;
@@ -78,7 +89,7 @@ pub struct mcontext_t {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct ucontext_t {
-    pub uc_flags: libc::c_ulong,
+    pub uc_flags: u64,
     pub uc_link: *mut ucontext_t,
     pub uc_stack: stack_t,
     pub uc_mcontext: mcontext_t,
@@ -91,32 +102,30 @@ pub type pth_time_t = timeval;
 pub struct pth_st {
     pub q_next: pth_t,
     pub q_prev: pth_t,
-    pub q_prio: libc::c_int,
-    pub prio: libc::c_int,
-    pub name: [libc::c_char; 40],
-    pub dispatches: libc::c_int,
+    pub q_prio: i32,
+    pub prio: i32,
+    pub name: [i8; 40],
+    pub dispatches: i32,
     pub state: pth_state_t,
     pub spawned: pth_time_t,
     pub lastran: pth_time_t,
     pub running: pth_time_t,
     pub events: pth_event_t,
     pub sigpending: sigset_t,
-    pub sigpendcnt: libc::c_int,
+    pub sigpendcnt: i32,
     pub mctx: pth_mctx_t,
-    pub stack: *mut libc::c_char,
-    pub stacksize: libc::c_uint,
-    pub stackguard: *mut libc::c_long,
-    pub stackloan: libc::c_int,
-    pub start_func: Option::<
-        unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void,
-    >,
+    pub stack: *mut i8,
+    pub stacksize: u32,
+    pub stackguard: *mut i64,
+    pub stackloan: i32,
+    pub start_func: Option<unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void>,
     pub start_arg: *mut libc::c_void,
-    pub joinable: libc::c_int,
+    pub joinable: i32,
     pub join_arg: *mut libc::c_void,
     pub data_value: *mut *const libc::c_void,
-    pub data_count: libc::c_int,
-    pub cancelreq: libc::c_int,
-    pub cancelstate: libc::c_uint,
+    pub data_count: i32,
+    pub cancelreq: i32,
+    pub cancelstate: u32,
     pub cleanups: *mut pth_cleanup_t,
     pub mutexring: pth_ring_t,
 }
@@ -125,7 +134,7 @@ pub type pth_ring_t = pth_ring_st;
 #[repr(C)]
 pub struct pth_ring_st {
     pub r_hook: *mut pth_ringnode_t,
-    pub r_nodes: libc::c_uint,
+    pub r_nodes: u32,
 }
 pub type pth_ringnode_t = pth_ringnode_st;
 #[derive(Copy, Clone)]
@@ -139,7 +148,7 @@ pub type pth_cleanup_t = pth_cleanup_st;
 #[repr(C)]
 pub struct pth_cleanup_st {
     pub next: *mut pth_cleanup_t,
-    pub func: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub func: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub arg: *mut libc::c_void,
 }
 pub type pth_mctx_t = pth_mctx_st;
@@ -147,9 +156,9 @@ pub type pth_mctx_t = pth_mctx_st;
 #[repr(C)]
 pub struct pth_mctx_st {
     pub uc: ucontext_t,
-    pub restored: libc::c_int,
+    pub restored: i32,
     pub sigs: sigset_t,
-    pub error: libc::c_int,
+    pub error: i32,
 }
 pub type pth_event_t = *mut pth_event_st;
 #[derive(Copy, Clone)]
@@ -158,8 +167,8 @@ pub struct pth_event_st {
     pub ev_next: *mut pth_event_st,
     pub ev_prev: *mut pth_event_st,
     pub ev_status: pth_status_t,
-    pub ev_type: libc::c_int,
-    pub ev_goal: libc::c_int,
+    pub ev_type: i32,
+    pub ev_goal: i32,
     pub ev_args: C2RustUnnamed,
 }
 #[derive(Copy, Clone)]
@@ -182,9 +191,7 @@ pub struct C2RustUnnamed_0 {
     pub arg: *mut libc::c_void,
     pub tv: pth_time_t,
 }
-pub type pth_event_func_t = Option::<
-    unsafe extern "C" fn(*mut libc::c_void) -> libc::c_int,
->;
+pub type pth_event_func_t = Option<unsafe extern "C" fn(*mut libc::c_void) -> i32>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
@@ -200,8 +207,8 @@ pub type pth_cond_t = pth_cond_st;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct pth_cond_st {
-    pub cn_state: libc::c_ulong,
-    pub cn_waiters: libc::c_uint,
+    pub cn_state: u64,
+    pub cn_waiters: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -213,9 +220,9 @@ pub type pth_mutex_t = pth_mutex_st;
 #[repr(C)]
 pub struct pth_mutex_st {
     pub mx_node: pth_ringnode_t,
-    pub mx_state: libc::c_int,
+    pub mx_state: i32,
     pub mx_owner: pth_t,
-    pub mx_count: libc::c_ulong,
+    pub mx_count: u64,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -227,7 +234,7 @@ pub type pth_msgport_t = *mut pth_msgport_st;
 #[repr(C)]
 pub struct pth_msgport_st {
     pub mp_node: pth_ringnode_t,
-    pub mp_name: *const libc::c_char,
+    pub mp_name: *const i8,
     pub mp_tid: pth_t,
     pub mp_queue: pth_ring_t,
 }
@@ -240,13 +247,13 @@ pub struct C2RustUnnamed_5 {
 #[repr(C)]
 pub struct C2RustUnnamed_6 {
     pub sigs: *mut sigset_t,
-    pub sig: *mut libc::c_int,
+    pub sig: *mut i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_7 {
-    pub n: *mut libc::c_int,
-    pub nfd: libc::c_int,
+    pub n: *mut i32,
+    pub nfd: i32,
     pub rfds: *mut fd_set,
     pub wfds: *mut fd_set,
     pub efds: *mut fd_set,
@@ -254,7 +261,7 @@ pub struct C2RustUnnamed_7 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_8 {
-    pub fd: libc::c_int,
+    pub fd: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -264,18 +271,77 @@ pub enum pth_status_t {
     PTH_STATUS_FAILED,
 }
 impl pth_status_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             pth_status_t::PTH_STATUS_PENDING => 0,
             pth_status_t::PTH_STATUS_OCCURRED => 1,
             pth_status_t::PTH_STATUS_FAILED => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> pth_status_t {
+        match value {
+            0 => pth_status_t::PTH_STATUS_PENDING,
+            1 => pth_status_t::PTH_STATUS_OCCURRED,
+            2 => pth_status_t::PTH_STATUS_FAILED,
+            _ => panic!("Invalid value for pth_status_t: {}", value),
+        }
+    }
 }
-
-pub const PTH_STATUS_FAILED: pth_status_t = 2;
-pub const PTH_STATUS_OCCURRED: pth_status_t = 1;
-pub const PTH_STATUS_PENDING: pth_status_t = 0;
+impl AddAssign<u32> for pth_status_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = pth_status_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for pth_status_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = pth_status_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for pth_status_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = pth_status_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for pth_status_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = pth_status_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for pth_status_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = pth_status_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for pth_status_t {
+    type Output = pth_status_t;
+    fn add(self, rhs: u32) -> pth_status_t {
+        pth_status_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for pth_status_t {
+    type Output = pth_status_t;
+    fn sub(self, rhs: u32) -> pth_status_t {
+        pth_status_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for pth_status_t {
+    type Output = pth_status_t;
+    fn mul(self, rhs: u32) -> pth_status_t {
+        pth_status_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for pth_status_t {
+    type Output = pth_status_t;
+    fn div(self, rhs: u32) -> pth_status_t {
+        pth_status_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for pth_status_t {
+    type Output = pth_status_t;
+    fn rem(self, rhs: u32) -> pth_status_t {
+        pth_status_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type pth_state_t = pth_state_en;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -287,7 +353,7 @@ pub enum pth_state_en {
     PTH_STATE_DEAD,
 }
 impl pth_state_en {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             pth_state_en::PTH_STATE_SCHEDULER => 0,
             pth_state_en::PTH_STATE_NEW => 1,
@@ -296,64 +362,120 @@ impl pth_state_en {
             pth_state_en::PTH_STATE_DEAD => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> pth_state_en {
+        match value {
+            0 => pth_state_en::PTH_STATE_SCHEDULER,
+            1 => pth_state_en::PTH_STATE_NEW,
+            2 => pth_state_en::PTH_STATE_READY,
+            3 => pth_state_en::PTH_STATE_WAITING,
+            4 => pth_state_en::PTH_STATE_DEAD,
+            _ => panic!("Invalid value for pth_state_en: {}", value),
+        }
+    }
 }
-
-pub const PTH_STATE_DEAD: pth_state_en = 4;
-pub const PTH_STATE_WAITING: pth_state_en = 3;
-pub const PTH_STATE_READY: pth_state_en = 2;
-pub const PTH_STATE_NEW: pth_state_en = 1;
-pub const PTH_STATE_SCHEDULER: pth_state_en = 0;
+impl AddAssign<u32> for pth_state_en {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = pth_state_en::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for pth_state_en {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = pth_state_en::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for pth_state_en {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = pth_state_en::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for pth_state_en {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = pth_state_en::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for pth_state_en {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = pth_state_en::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for pth_state_en {
+    type Output = pth_state_en;
+    fn add(self, rhs: u32) -> pth_state_en {
+        pth_state_en::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for pth_state_en {
+    type Output = pth_state_en;
+    fn sub(self, rhs: u32) -> pth_state_en {
+        pth_state_en::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for pth_state_en {
+    type Output = pth_state_en;
+    fn mul(self, rhs: u32) -> pth_state_en {
+        pth_state_en::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for pth_state_en {
+    type Output = pth_state_en;
+    fn div(self, rhs: u32) -> pth_state_en {
+        pth_state_en::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for pth_state_en {
+    type Output = pth_state_en;
+    fn rem(self, rhs: u32) -> pth_state_en {
+        pth_state_en::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[no_mangle]
-pub static mut __pth_state_names: [*const libc::c_char; 6] = [
-    b"scheduler\0" as *const u8 as *const libc::c_char,
-    b"new\0" as *const u8 as *const libc::c_char,
-    b"ready\0" as *const u8 as *const libc::c_char,
-    b"running\0" as *const u8 as *const libc::c_char,
-    b"waiting\0" as *const u8 as *const libc::c_char,
-    b"dead\0" as *const u8 as *const libc::c_char,
+pub static mut __pth_state_names: [*const i8; 6] = [
+    b"scheduler\0" as *const u8 as *const i8,
+    b"new\0" as *const u8 as *const i8,
+    b"ready\0" as *const u8 as *const i8,
+    b"running\0" as *const u8 as *const i8,
+    b"waiting\0" as *const u8 as *const i8,
+    b"dead\0" as *const u8 as *const i8,
 ];
 #[no_mangle]
 pub unsafe extern "C" fn __pth_tcb_alloc(
-    mut stacksize: libc::c_uint,
+    mut stacksize: u32,
     mut stackaddr: *mut libc::c_void,
 ) -> pth_t {
     let mut t: pth_t = 0 as *mut pth_st;
-    if stacksize > 0 as libc::c_int as libc::c_uint
-        && stacksize < 8192 as libc::c_int as libc::c_uint
-    {
-        stacksize = 8192 as libc::c_int as libc::c_uint;
+    if stacksize > 0 as i32 as u32 && stacksize < 8192 as i32 as u32 {
+        stacksize = 8192 as i32 as u32;
     }
-    t = malloc(::core::mem::size_of::<pth_st>() as libc::c_ulong) as pth_t;
+    t = malloc(::core::mem::size_of::<pth_st>() as u64) as pth_t;
     if t.is_null() {
         return 0 as pth_t;
     }
     (*t).stacksize = stacksize;
-    (*t).stack = 0 as *mut libc::c_char;
-    (*t).stackguard = 0 as *mut libc::c_long;
-    (*t)
-        .stackloan = if !stackaddr.is_null() {
-        (0 as libc::c_int == 0) as libc::c_int
+    (*t).stack = 0 as *mut i8;
+    (*t).stackguard = 0 as *mut i64;
+    (*t).stackloan = if !stackaddr.is_null() {
+        (0 as i32 == 0) as i32
     } else {
-        0 as libc::c_int
+        0 as i32
     };
-    if stacksize > 0 as libc::c_int as libc::c_uint {
+    if stacksize > 0 as i32 as u32 {
         if !stackaddr.is_null() {
-            (*t).stack = stackaddr as *mut libc::c_char;
+            (*t).stack = stackaddr as *mut i8;
         } else {
-            (*t).stack = malloc(stacksize as libc::c_ulong) as *mut libc::c_char;
+            (*t).stack = malloc(stacksize as u64) as *mut i8;
             if ((*t).stack).is_null() {
                 __pth_errno_storage = *__errno_location();
-                __pth_errno_flag = (0 as libc::c_int == 0) as libc::c_int;
+                __pth_errno_flag = (0 as i32 == 0) as i32;
                 while __pth_errno_flag != 0 {
                     free(t as *mut libc::c_void);
                     *__errno_location() = __pth_errno_storage;
-                    __pth_errno_flag = 0 as libc::c_int;
+                    __pth_errno_flag = 0 as i32;
                 }
                 return 0 as pth_t;
             }
         }
-        (*t).stackguard = (*t).stack as libc::c_long as *mut libc::c_long;
-        *(*t).stackguard = 0xdead as libc::c_int as libc::c_long;
+        (*t).stackguard = (*t).stack as i64 as *mut i64;
+        *(*t).stackguard = 0xdead as i32 as i64;
     }
     return t;
 }
@@ -369,7 +491,7 @@ pub unsafe extern "C" fn __pth_tcb_free(mut t: pth_t) {
         free((*t).data_value as *mut libc::c_void);
     }
     if !((*t).cleanups).is_null() {
-        __pth_cleanup_popall(t, 0 as libc::c_int);
+        __pth_cleanup_popall(t, 0 as i32);
     }
     free(t as *mut libc::c_void);
 }

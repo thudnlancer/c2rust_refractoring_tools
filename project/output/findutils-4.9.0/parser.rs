@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types, label_break_value)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type re_dfa_t;
     pub type mode_change;
@@ -265,7 +275,7 @@ extern "C" {
         str: *const libc::c_char,
         ptr: *mut *const libc::c_char,
         result: *mut libc::c_double,
-        convert: Option::<
+        convert: Option<
             unsafe extern "C" fn(
                 *const libc::c_char,
                 *mut *mut libc::c_char,
@@ -462,7 +472,7 @@ pub struct buildcmd_control {
     pub rplen: size_t,
     pub replace_pat: *const libc::c_char,
     pub initial_argc: size_t,
-    pub exec_callback: Option::<
+    pub exec_callback: Option<
         unsafe extern "C" fn(
             *mut buildcmd_control,
             *mut libc::c_void,
@@ -488,11 +498,70 @@ impl BC_INIT_STATUS {
             BC_INIT_STATUS::BC_INIT_CANNOT_ACCOMODATE_HEADROOM => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> BC_INIT_STATUS {
+        match value {
+            0 => BC_INIT_STATUS::BC_INIT_OK,
+            1 => BC_INIT_STATUS::BC_INIT_ENV_TOO_BIG,
+            2 => BC_INIT_STATUS::BC_INIT_CANNOT_ACCOMODATE_HEADROOM,
+            _ => panic!("Invalid value for BC_INIT_STATUS: {}", value),
+        }
+    }
 }
-
-pub const BC_INIT_CANNOT_ACCOMODATE_HEADROOM: BC_INIT_STATUS = 2;
-pub const BC_INIT_ENV_TOO_BIG: BC_INIT_STATUS = 1;
-pub const BC_INIT_OK: BC_INIT_STATUS = 0;
+impl AddAssign<u32> for BC_INIT_STATUS {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for BC_INIT_STATUS {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for BC_INIT_STATUS {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for BC_INIT_STATUS {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for BC_INIT_STATUS {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for BC_INIT_STATUS {
+    type Output = BC_INIT_STATUS;
+    fn add(self, rhs: u32) -> BC_INIT_STATUS {
+        BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for BC_INIT_STATUS {
+    type Output = BC_INIT_STATUS;
+    fn sub(self, rhs: u32) -> BC_INIT_STATUS {
+        BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for BC_INIT_STATUS {
+    type Output = BC_INIT_STATUS;
+    fn mul(self, rhs: u32) -> BC_INIT_STATUS {
+        BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for BC_INIT_STATUS {
+    type Output = BC_INIT_STATUS;
+    fn div(self, rhs: u32) -> BC_INIT_STATUS {
+        BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for BC_INIT_STATUS {
+    type Output = BC_INIT_STATUS;
+    fn rem(self, rhs: u32) -> BC_INIT_STATUS {
+        BC_INIT_STATUS::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -524,19 +593,78 @@ impl quoting_style {
             quoting_style::custom_quoting_style => 10,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> quoting_style {
+        match value {
+            0 => quoting_style::literal_quoting_style,
+            1 => quoting_style::shell_quoting_style,
+            2 => quoting_style::shell_always_quoting_style,
+            3 => quoting_style::shell_escape_quoting_style,
+            4 => quoting_style::shell_escape_always_quoting_style,
+            5 => quoting_style::c_quoting_style,
+            6 => quoting_style::c_maybe_quoting_style,
+            7 => quoting_style::escape_quoting_style,
+            8 => quoting_style::locale_quoting_style,
+            9 => quoting_style::clocale_quoting_style,
+            10 => quoting_style::custom_quoting_style,
+            _ => panic!("Invalid value for quoting_style: {}", value),
+        }
+    }
 }
-
-pub const custom_quoting_style: quoting_style = 10;
-pub const clocale_quoting_style: quoting_style = 9;
-pub const locale_quoting_style: quoting_style = 8;
-pub const escape_quoting_style: quoting_style = 7;
-pub const c_maybe_quoting_style: quoting_style = 6;
-pub const c_quoting_style: quoting_style = 5;
-pub const shell_escape_always_quoting_style: quoting_style = 4;
-pub const shell_escape_quoting_style: quoting_style = 3;
-pub const shell_always_quoting_style: quoting_style = 2;
-pub const shell_quoting_style: quoting_style = 1;
-pub const literal_quoting_style: quoting_style = 0;
+impl AddAssign<u32> for quoting_style {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for quoting_style {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for quoting_style {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for quoting_style {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for quoting_style {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for quoting_style {
+    type Output = quoting_style;
+    fn add(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for quoting_style {
+    type Output = quoting_style;
+    fn sub(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for quoting_style {
+    type Output = quoting_style;
+    fn mul(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for quoting_style {
+    type Output = quoting_style;
+    fn div(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for quoting_style {
+    type Output = quoting_style;
+    fn rem(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type sharefile_handle = *mut libc::c_void;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -570,10 +698,10 @@ pub struct parser_table {
     pub parser_func: PARSE_FUNC,
     pub pred_func: PRED_FUNC,
 }
-pub type PRED_FUNC = Option::<
+pub type PRED_FUNC = Option<
     unsafe extern "C" fn(*const libc::c_char, *mut stat, *mut predicate) -> bool,
 >;
-pub type PARSE_FUNC = Option::<
+pub type PARSE_FUNC = Option<
     unsafe extern "C" fn(
         *const parser_table,
         *mut *mut libc::c_char,
@@ -603,15 +731,74 @@ impl arg_type {
             arg_type::ARG_ACTION => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> arg_type {
+        match value {
+            0 => arg_type::ARG_OPTION,
+            1 => arg_type::ARG_NOOP,
+            2 => arg_type::ARG_POSITIONAL_OPTION,
+            3 => arg_type::ARG_TEST,
+            4 => arg_type::ARG_SPECIAL_PARSE,
+            5 => arg_type::ARG_PUNCTUATION,
+            6 => arg_type::ARG_ACTION,
+            _ => panic!("Invalid value for arg_type: {}", value),
+        }
+    }
 }
-
-pub const ARG_ACTION: arg_type = 6;
-pub const ARG_PUNCTUATION: arg_type = 5;
-pub const ARG_SPECIAL_PARSE: arg_type = 4;
-pub const ARG_TEST: arg_type = 3;
-pub const ARG_POSITIONAL_OPTION: arg_type = 2;
-pub const ARG_NOOP: arg_type = 1;
-pub const ARG_OPTION: arg_type = 0;
+impl AddAssign<u32> for arg_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for arg_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for arg_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for arg_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for arg_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for arg_type {
+    type Output = arg_type;
+    fn add(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for arg_type {
+    type Output = arg_type;
+    fn sub(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for arg_type {
+    type Output = arg_type;
+    fn mul(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for arg_type {
+    type Output = arg_type;
+    fn div(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for arg_type {
+    type Output = arg_type;
+    fn rem(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct predicate_performance_info {
@@ -668,11 +855,70 @@ impl SegmentKind {
             SegmentKind::KIND_FORMAT => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> SegmentKind {
+        match value {
+            0 => SegmentKind::KIND_PLAIN,
+            1 => SegmentKind::KIND_STOP,
+            2 => SegmentKind::KIND_FORMAT,
+            _ => panic!("Invalid value for SegmentKind: {}", value),
+        }
+    }
 }
-
-pub const KIND_FORMAT: SegmentKind = 2;
-pub const KIND_STOP: SegmentKind = 1;
-pub const KIND_PLAIN: SegmentKind = 0;
+impl AddAssign<u32> for SegmentKind {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for SegmentKind {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for SegmentKind {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for SegmentKind {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for SegmentKind {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn add(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn sub(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn mul(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn div(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn rem(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct samefile_file_id {
@@ -701,11 +947,70 @@ impl permissions_type {
             permissions_type::PERM_EXACT => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> permissions_type {
+        match value {
+            0 => permissions_type::PERM_AT_LEAST,
+            1 => permissions_type::PERM_ANY,
+            2 => permissions_type::PERM_EXACT,
+            _ => panic!("Invalid value for permissions_type: {}", value),
+        }
+    }
 }
-
-pub const PERM_EXACT: permissions_type = 2;
-pub const PERM_ANY: permissions_type = 1;
-pub const PERM_AT_LEAST: permissions_type = 0;
+impl AddAssign<u32> for permissions_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for permissions_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for permissions_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for permissions_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for permissions_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for permissions_type {
+    type Output = permissions_type;
+    fn add(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for permissions_type {
+    type Output = permissions_type;
+    fn sub(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for permissions_type {
+    type Output = permissions_type;
+    fn mul(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for permissions_type {
+    type Output = permissions_type;
+    fn div(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for permissions_type {
+    type Output = permissions_type;
+    fn rem(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct time_val {
@@ -728,11 +1033,70 @@ impl comparison_type {
             comparison_type::COMP_EQ => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> comparison_type {
+        match value {
+            0 => comparison_type::COMP_GT,
+            1 => comparison_type::COMP_LT,
+            2 => comparison_type::COMP_EQ,
+            _ => panic!("Invalid value for comparison_type: {}", value),
+        }
+    }
 }
-
-pub const COMP_EQ: comparison_type = 2;
-pub const COMP_LT: comparison_type = 1;
-pub const COMP_GT: comparison_type = 0;
+impl AddAssign<u32> for comparison_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for comparison_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for comparison_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for comparison_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for comparison_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for comparison_type {
+    type Output = comparison_type;
+    fn add(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for comparison_type {
+    type Output = comparison_type;
+    fn sub(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for comparison_type {
+    type Output = comparison_type;
+    fn mul(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for comparison_type {
+    type Output = comparison_type;
+    fn div(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for comparison_type {
+    type Output = comparison_type;
+    fn rem(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum xval {
@@ -752,13 +1116,72 @@ impl xval {
             xval::XVAL_TIME => 4,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> xval {
+        match value {
+            0 => xval::XVAL_ATIME,
+            1 => xval::XVAL_BIRTHTIME,
+            2 => xval::XVAL_CTIME,
+            3 => xval::XVAL_MTIME,
+            4 => xval::XVAL_TIME,
+            _ => panic!("Invalid value for xval: {}", value),
+        }
+    }
 }
-
-pub const XVAL_TIME: xval = 4;
-pub const XVAL_MTIME: xval = 3;
-pub const XVAL_CTIME: xval = 2;
-pub const XVAL_BIRTHTIME: xval = 1;
-pub const XVAL_ATIME: xval = 0;
+impl AddAssign<u32> for xval {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for xval {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for xval {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for xval {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for xval {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for xval {
+    type Output = xval;
+    fn add(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for xval {
+    type Output = xval;
+    fn sub(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for xval {
+    type Output = xval;
+    fn mul(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for xval {
+    type Output = xval;
+    fn div(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for xval {
+    type Output = xval;
+    fn rem(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct size_val {
@@ -818,20 +1241,79 @@ impl EvaluationCost {
             EvaluationCost::NumEvaluationCosts => 11,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> EvaluationCost {
+        match value {
+            0 => EvaluationCost::NeedsNothing,
+            1 => EvaluationCost::NeedsInodeNumber,
+            2 => EvaluationCost::NeedsType,
+            3 => EvaluationCost::NeedsStatInfo,
+            4 => EvaluationCost::NeedsLinkName,
+            5 => EvaluationCost::NeedsAccessInfo,
+            6 => EvaluationCost::NeedsSyncDiskHit,
+            7 => EvaluationCost::NeedsEventualExec,
+            8 => EvaluationCost::NeedsImmediateExec,
+            9 => EvaluationCost::NeedsUserInteraction,
+            10 => EvaluationCost::NeedsUnknown,
+            11 => EvaluationCost::NumEvaluationCosts,
+            _ => panic!("Invalid value for EvaluationCost: {}", value),
+        }
+    }
 }
-
-pub const NumEvaluationCosts: EvaluationCost = 11;
-pub const NeedsUnknown: EvaluationCost = 10;
-pub const NeedsUserInteraction: EvaluationCost = 9;
-pub const NeedsImmediateExec: EvaluationCost = 8;
-pub const NeedsEventualExec: EvaluationCost = 7;
-pub const NeedsSyncDiskHit: EvaluationCost = 6;
-pub const NeedsAccessInfo: EvaluationCost = 5;
-pub const NeedsLinkName: EvaluationCost = 4;
-pub const NeedsStatInfo: EvaluationCost = 3;
-pub const NeedsType: EvaluationCost = 2;
-pub const NeedsInodeNumber: EvaluationCost = 1;
-pub const NeedsNothing: EvaluationCost = 0;
+impl AddAssign<u32> for EvaluationCost {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for EvaluationCost {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for EvaluationCost {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for EvaluationCost {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for EvaluationCost {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn add(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn sub(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn mul(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn div(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn rem(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_precedence {
@@ -853,14 +1335,73 @@ impl predicate_precedence {
             predicate_precedence::MAX_PREC => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> predicate_precedence {
+        match value {
+            0 => predicate_precedence::NO_PREC,
+            1 => predicate_precedence::COMMA_PREC,
+            2 => predicate_precedence::OR_PREC,
+            3 => predicate_precedence::AND_PREC,
+            4 => predicate_precedence::NEGATE_PREC,
+            5 => predicate_precedence::MAX_PREC,
+            _ => panic!("Invalid value for predicate_precedence: {}", value),
+        }
+    }
 }
-
-pub const MAX_PREC: predicate_precedence = 5;
-pub const NEGATE_PREC: predicate_precedence = 4;
-pub const AND_PREC: predicate_precedence = 3;
-pub const OR_PREC: predicate_precedence = 2;
-pub const COMMA_PREC: predicate_precedence = 1;
-pub const NO_PREC: predicate_precedence = 0;
+impl AddAssign<u32> for predicate_precedence {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for predicate_precedence {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for predicate_precedence {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for predicate_precedence {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for predicate_precedence {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn add(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn sub(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn mul(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn div(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn rem(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_type {
@@ -882,14 +1423,73 @@ impl predicate_type {
             predicate_type::CLOSE_PAREN => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> predicate_type {
+        match value {
+            0 => predicate_type::NO_TYPE,
+            1 => predicate_type::PRIMARY_TYPE,
+            2 => predicate_type::UNI_OP,
+            3 => predicate_type::BI_OP,
+            4 => predicate_type::OPEN_PAREN,
+            5 => predicate_type::CLOSE_PAREN,
+            _ => panic!("Invalid value for predicate_type: {}", value),
+        }
+    }
 }
-
-pub const CLOSE_PAREN: predicate_type = 5;
-pub const OPEN_PAREN: predicate_type = 4;
-pub const BI_OP: predicate_type = 3;
-pub const UNI_OP: predicate_type = 2;
-pub const PRIMARY_TYPE: predicate_type = 1;
-pub const NO_TYPE: predicate_type = 0;
+impl AddAssign<u32> for predicate_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for predicate_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for predicate_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for predicate_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for predicate_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for predicate_type {
+    type Output = predicate_type;
+    fn add(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for predicate_type {
+    type Output = predicate_type;
+    fn sub(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for predicate_type {
+    type Output = predicate_type;
+    fn mul(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for predicate_type {
+    type Output = predicate_type;
+    fn div(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for predicate_type {
+    type Output = predicate_type;
+    fn rem(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
@@ -909,12 +1509,12 @@ pub struct options {
     pub output_block_size: libc::c_int,
     pub debug_options: libc::c_ulong,
     pub symlink_handling: SymlinkOption,
-    pub xstat: Option::<
+    pub xstat: Option<
         unsafe extern "C" fn(*const libc::c_char, *mut stat) -> libc::c_int,
     >,
     pub open_nofollow_available: bool,
     pub regex_options: libc::c_int,
-    pub x_getfilecon: Option::<
+    pub x_getfilecon: Option<
         unsafe extern "C" fn(
             libc::c_int,
             *const libc::c_char,
@@ -941,11 +1541,70 @@ impl SymlinkOption {
             SymlinkOption::SYMLINK_DEREF_ARGSONLY => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> SymlinkOption {
+        match value {
+            0 => SymlinkOption::SYMLINK_NEVER_DEREF,
+            1 => SymlinkOption::SYMLINK_ALWAYS_DEREF,
+            2 => SymlinkOption::SYMLINK_DEREF_ARGSONLY,
+            _ => panic!("Invalid value for SymlinkOption: {}", value),
+        }
+    }
 }
-
-pub const SYMLINK_DEREF_ARGSONLY: SymlinkOption = 2;
-pub const SYMLINK_ALWAYS_DEREF: SymlinkOption = 1;
-pub const SYMLINK_NEVER_DEREF: SymlinkOption = 0;
+impl AddAssign<u32> for SymlinkOption {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for SymlinkOption {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for SymlinkOption {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for SymlinkOption {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for SymlinkOption {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn add(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn sub(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn mul(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn div(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn rem(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum file_type {
@@ -971,16 +1630,75 @@ impl file_type {
             file_type::FTYPE_COUNT => 7,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> file_type {
+        match value {
+            0 => file_type::FTYPE_BLK,
+            1 => file_type::FTYPE_CHR,
+            2 => file_type::FTYPE_DIR,
+            3 => file_type::FTYPE_REG,
+            4 => file_type::FTYPE_LNK,
+            5 => file_type::FTYPE_FIFO,
+            6 => file_type::FTYPE_SOCK,
+            7 => file_type::FTYPE_COUNT,
+            _ => panic!("Invalid value for file_type: {}", value),
+        }
+    }
 }
-
-pub const FTYPE_COUNT: file_type = 7;
-pub const FTYPE_SOCK: file_type = 6;
-pub const FTYPE_FIFO: file_type = 5;
-pub const FTYPE_LNK: file_type = 4;
-pub const FTYPE_REG: file_type = 3;
-pub const FTYPE_DIR: file_type = 2;
-pub const FTYPE_CHR: file_type = 1;
-pub const FTYPE_BLK: file_type = 0;
+impl AddAssign<u32> for file_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for file_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for file_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for file_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for file_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for file_type {
+    type Output = file_type;
+    fn add(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for file_type {
+    type Output = file_type;
+    fn sub(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for file_type {
+    type Output = file_type;
+    fn mul(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for file_type {
+    type Output = file_type;
+    fn div(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for file_type {
+    type Output = file_type;
+    fn rem(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub const DebugStat: DebugOption = 2;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1078,8 +1796,72 @@ impl strtol_error {
             strtol_error::LONGINT_INVALID => 4,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> strtol_error {
+        match value {
+            0 => strtol_error::LONGINT_OK,
+            1 => strtol_error::LONGINT_OVERFLOW,
+            2 => strtol_error::LONGINT_INVALID_SUFFIX_CHAR,
+            3 => strtol_error::LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+            4 => strtol_error::LONGINT_INVALID,
+            _ => panic!("Invalid value for strtol_error: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for strtol_error {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for strtol_error {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for strtol_error {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for strtol_error {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for strtol_error {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for strtol_error {
+    type Output = strtol_error;
+    fn add(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for strtol_error {
+    type Output = strtol_error;
+    fn sub(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for strtol_error {
+    type Output = strtol_error;
+    fn mul(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for strtol_error {
+    type Output = strtol_error;
+    fn div(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for strtol_error {
+    type Output = strtol_error;
+    fn rem(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_11 {
@@ -1126,8 +1908,68 @@ impl C2RustUnnamed_18 {
             C2RustUnnamed_18::MsgBufSize => 19,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_18 {
+        match value {
+            19 => C2RustUnnamed_18::MsgBufSize,
+            _ => panic!("Invalid value for C2RustUnnamed_18: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_18 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_18 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_18 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_18 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_18 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_18 {
+    type Output = C2RustUnnamed_18;
+    fn add(self, rhs: u32) -> C2RustUnnamed_18 {
+        C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_18 {
+    type Output = C2RustUnnamed_18;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_18 {
+        C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_18 {
+    type Output = C2RustUnnamed_18;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_18 {
+        C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_18 {
+    type Output = C2RustUnnamed_18;
+    fn div(self, rhs: u32) -> C2RustUnnamed_18 {
+        C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_18 {
+    type Output = C2RustUnnamed_18;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_18 {
+        C2RustUnnamed_18::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_19 {
@@ -1212,8 +2054,69 @@ impl C2RustUnnamed_33 {
             C2RustUnnamed_33::seen_prune => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_33 {
+        match value {
+            1 => C2RustUnnamed_33::seen_delete,
+            2 => C2RustUnnamed_33::seen_prune,
+            _ => panic!("Invalid value for C2RustUnnamed_33: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_33 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_33 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_33 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_33 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_33 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_33 {
+    type Output = C2RustUnnamed_33;
+    fn add(self, rhs: u32) -> C2RustUnnamed_33 {
+        C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_33 {
+    type Output = C2RustUnnamed_33;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_33 {
+        C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_33 {
+    type Output = C2RustUnnamed_33;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_33 {
+        C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_33 {
+    type Output = C2RustUnnamed_33;
+    fn div(self, rhs: u32) -> C2RustUnnamed_33 {
+        C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_33 {
+    type Output = C2RustUnnamed_33;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_33 {
+        C2RustUnnamed_33::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type DebugOption = libc::c_int;
 pub const DebugAll: DebugOption = -17;
 pub const DebugTime: DebugOption = 128;
@@ -1258,7 +2161,7 @@ unsafe extern "C" fn get_stat_birthtime(mut st: *const stat) -> timespec {
 static mut parse_entry_newerXY: parser_table = unsafe {
     {
         let mut init = parser_table {
-            type_0: ARG_SPECIAL_PARSE,
+            type_0: arg_type::ARG_SPECIAL_PARSE,
             parser_name: b"newerXY\0" as *const u8 as *const libc::c_char,
             parser_func: Some(
                 parse_newerXY
@@ -1277,7 +2180,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
     [
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"!\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_negate
@@ -1293,7 +2196,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"not\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_negate
@@ -1309,7 +2212,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"(\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_openparen
@@ -1325,7 +2228,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b")\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_closeparen
@@ -1341,7 +2244,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b",\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_comma
@@ -1357,7 +2260,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"a\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_and
@@ -1373,7 +2276,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"amin\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_amin
@@ -1389,7 +2292,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"and\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_and
@@ -1405,7 +2308,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"anewer\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_anewer
@@ -1421,7 +2324,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"atime\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_time
@@ -1437,7 +2340,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"cmin\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_cmin
@@ -1453,7 +2356,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"cnewer\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_cnewer
@@ -1469,7 +2372,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"ctime\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_time
@@ -1485,7 +2388,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"context\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_context
@@ -1501,7 +2404,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_POSITIONAL_OPTION,
+                type_0: arg_type::ARG_POSITIONAL_OPTION,
                 parser_name: b"daystart\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_daystart
@@ -1517,7 +2420,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"delete\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_delete
@@ -1533,7 +2436,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"d\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_d
@@ -1549,7 +2452,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"depth\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_depth
@@ -1565,7 +2468,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"empty\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_empty
@@ -1581,7 +2484,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"exec\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_exec
@@ -1597,7 +2500,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"executable\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_accesscheck
@@ -1613,7 +2516,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"execdir\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_execdir
@@ -1629,7 +2532,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"files0-from\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_files0_from
@@ -1645,7 +2548,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"fls\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_fls
@@ -1661,7 +2564,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_POSITIONAL_OPTION,
+                type_0: arg_type::ARG_POSITIONAL_OPTION,
                 parser_name: b"follow\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_follow
@@ -1677,7 +2580,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"fprint\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_fprint
@@ -1693,7 +2596,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"fprint0\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_fprint0
@@ -1709,7 +2612,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"fprintf\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_fprintf
@@ -1725,7 +2628,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"fstype\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_fstype
@@ -1741,7 +2644,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"gid\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_gid
@@ -1757,7 +2660,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"group\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_group
@@ -1773,7 +2676,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"ignore_readdir_race\0" as *const u8
                     as *const libc::c_char,
                 parser_func: Some(
@@ -1790,7 +2693,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"ilname\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_ilname
@@ -1806,7 +2709,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"iname\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_iname
@@ -1822,7 +2725,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"inum\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_inum
@@ -1838,7 +2741,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"ipath\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_ipath
@@ -1854,7 +2757,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"iregex\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_iregex
@@ -1870,7 +2773,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"iwholename\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_iwholename
@@ -1886,7 +2789,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"links\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_links
@@ -1902,7 +2805,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"lname\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_lname
@@ -1918,7 +2821,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"ls\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_ls
@@ -1934,7 +2837,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"maxdepth\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_maxdepth
@@ -1950,7 +2853,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"mindepth\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_mindepth
@@ -1966,7 +2869,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"mmin\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_mmin
@@ -1982,7 +2885,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"mount\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_xdev
@@ -1998,7 +2901,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"mtime\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_time
@@ -2014,7 +2917,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"name\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_name
@@ -2030,7 +2933,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"newer\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_newer
@@ -2046,7 +2949,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"atime\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_time
@@ -2062,7 +2965,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"noleaf\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_noleaf
@@ -2078,7 +2981,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"nogroup\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_nogroup
@@ -2094,7 +2997,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"nouser\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_nouser
@@ -2110,7 +3013,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"noignore_readdir_race\0" as *const u8
                     as *const libc::c_char,
                 parser_func: Some(
@@ -2127,7 +3030,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_POSITIONAL_OPTION,
+                type_0: arg_type::ARG_POSITIONAL_OPTION,
                 parser_name: b"nowarn\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_nowarn
@@ -2143,7 +3046,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_POSITIONAL_OPTION,
+                type_0: arg_type::ARG_POSITIONAL_OPTION,
                 parser_name: b"warn\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_warn
@@ -2159,7 +3062,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"o\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_or
@@ -2175,7 +3078,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_PUNCTUATION,
+                type_0: arg_type::ARG_PUNCTUATION,
                 parser_name: b"or\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_or
@@ -2191,7 +3094,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"ok\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_ok
@@ -2207,7 +3110,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"okdir\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_okdir
@@ -2223,7 +3126,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"path\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_path
@@ -2239,7 +3142,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"perm\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_perm
@@ -2255,7 +3158,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"print\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_print
@@ -2271,7 +3174,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"print0\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_print0
@@ -2287,7 +3190,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"printf\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_printf
@@ -2303,7 +3206,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"prune\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_prune
@@ -2319,7 +3222,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_ACTION,
+                type_0: arg_type::ARG_ACTION,
                 parser_name: b"quit\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_quit
@@ -2330,7 +3233,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
                         ) -> bool,
                 ),
                 pred_func: ::core::mem::transmute::<
-                    Option::<
+                    Option<
                         unsafe extern "C" fn(
                             *const libc::c_char,
                             *mut stat,
@@ -2353,7 +3256,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"readable\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_accesscheck
@@ -2369,7 +3272,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"regex\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_regex
@@ -2385,7 +3288,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_POSITIONAL_OPTION,
+                type_0: arg_type::ARG_POSITIONAL_OPTION,
                 parser_name: b"regextype\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_regextype
@@ -2401,7 +3304,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"samefile\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_samefile
@@ -2417,7 +3320,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"size\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_size
@@ -2433,7 +3336,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"type\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_type
@@ -2449,7 +3352,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"uid\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_uid
@@ -2465,7 +3368,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"used\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_used
@@ -2481,7 +3384,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"user\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_user
@@ -2497,7 +3400,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"wholename\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_wholename
@@ -2513,7 +3416,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"writable\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_accesscheck
@@ -2529,7 +3432,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: b"xdev\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_xdev
@@ -2545,7 +3448,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"xtype\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_xtype
@@ -2561,7 +3464,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"false\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_false
@@ -2577,7 +3480,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"true\0" as *const u8 as *const libc::c_char,
                 parser_func: Some(
                     parse_true
@@ -2593,7 +3496,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_NOOP,
+                type_0: arg_type::ARG_NOOP,
                 parser_name: b"--noop\0" as *const u8 as *const libc::c_char,
                 parser_func: None,
                 pred_func: Some(pred_true as PREDICATEFUNCTION),
@@ -2602,10 +3505,10 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"help\0" as *const u8 as *const libc::c_char,
                 parser_func: ::core::mem::transmute::<
-                    Option::<
+                    Option<
                         unsafe extern "C" fn(
                             *const parser_table,
                             *mut *mut libc::c_char,
@@ -2629,10 +3532,10 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"-help\0" as *const u8 as *const libc::c_char,
                 parser_func: ::core::mem::transmute::<
-                    Option::<
+                    Option<
                         unsafe extern "C" fn(
                             *const parser_table,
                             *mut *mut libc::c_char,
@@ -2656,10 +3559,10 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"version\0" as *const u8 as *const libc::c_char,
                 parser_func: ::core::mem::transmute::<
-                    Option::<
+                    Option<
                         unsafe extern "C" fn(
                             *const parser_table,
                             *mut *mut libc::c_char,
@@ -2683,10 +3586,10 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_TEST,
+                type_0: arg_type::ARG_TEST,
                 parser_name: b"-version\0" as *const u8 as *const libc::c_char,
                 parser_func: ::core::mem::transmute::<
-                    Option::<
+                    Option<
                         unsafe extern "C" fn(
                             *const parser_table,
                             *mut *mut libc::c_char,
@@ -2710,7 +3613,7 @@ static mut parse_table: [parser_table; 87] = unsafe {
         },
         {
             let mut init = parser_table {
-                type_0: ARG_OPTION,
+                type_0: arg_type::ARG_OPTION,
                 parser_name: 0 as *const libc::c_char,
                 parser_func: None,
                 pred_func: None,
@@ -2783,14 +3686,14 @@ pub unsafe extern "C" fn check_option_combinations(mut p: *const predicate) {
     let mut predicates: libc::c_uint = 0 as libc::c_uint;
     while !p.is_null() {
         if (*p).pred_func == Some(pred_delete as PREDICATEFUNCTION) {
-            predicates |= seen_delete as libc::c_int as libc::c_uint;
+            predicates |= C2RustUnnamed_33::seen_delete as libc::c_int as libc::c_uint;
         } else if (*p).pred_func == Some(pred_prune as PREDICATEFUNCTION) {
-            predicates |= seen_prune as libc::c_int as libc::c_uint;
+            predicates |= C2RustUnnamed_33::seen_prune as libc::c_int as libc::c_uint;
         }
         p = (*p).pred_next;
     }
-    if predicates & seen_prune as libc::c_int as libc::c_uint != 0
-        && predicates & seen_delete as libc::c_int as libc::c_uint != 0
+    if predicates & C2RustUnnamed_33::seen_prune as libc::c_int as libc::c_uint != 0
+        && predicates & C2RustUnnamed_33::seen_delete as libc::c_int as libc::c_uint != 0
     {
         if !options.explicit_depth {
             if ::core::mem::size_of::<C2RustUnnamed_32>() as libc::c_ulong != 0 {
@@ -2830,7 +3733,7 @@ unsafe extern "C" fn get_noop() -> *const parser_table {
     if noop.is_null() {
         i = 0 as libc::c_int;
         while !(parse_table[i as usize].parser_name).is_null() {
-            if ARG_NOOP as libc::c_int as libc::c_uint
+            if arg_type::ARG_NOOP as libc::c_int as libc::c_uint
                 == parse_table[i as usize].type_0 as libc::c_uint
             {
                 noop = &*parse_table.as_ptr().offset(i as isize) as *const parser_table;
@@ -2898,16 +3801,14 @@ unsafe extern "C" fn get_stat_Ytime(
 pub unsafe extern "C" fn set_follow_state(mut opt: SymlinkOption) {
     match opt as libc::c_uint {
         1 => {
-            options
-                .xstat = Some(
+            options.xstat = Some(
                 optionl_stat
                     as unsafe extern "C" fn(
                         *const libc::c_char,
                         *mut stat,
                     ) -> libc::c_int,
             );
-            options
-                .x_getfilecon = Some(
+            options.x_getfilecon = Some(
                 optionl_getfilecon
                     as unsafe extern "C" fn(
                         libc::c_int,
@@ -2918,16 +3819,14 @@ pub unsafe extern "C" fn set_follow_state(mut opt: SymlinkOption) {
             options.no_leaf_check = 1 as libc::c_int != 0;
         }
         0 => {
-            options
-                .xstat = Some(
+            options.xstat = Some(
                 optionp_stat
                     as unsafe extern "C" fn(
                         *const libc::c_char,
                         *mut stat,
                     ) -> libc::c_int,
             );
-            options
-                .x_getfilecon = Some(
+            options.x_getfilecon = Some(
                 optionp_getfilecon
                     as unsafe extern "C" fn(
                         libc::c_int,
@@ -2937,16 +3836,14 @@ pub unsafe extern "C" fn set_follow_state(mut opt: SymlinkOption) {
             );
         }
         2 => {
-            options
-                .xstat = Some(
+            options.xstat = Some(
                 optionh_stat
                     as unsafe extern "C" fn(
                         *const libc::c_char,
                         *mut stat,
                     ) -> libc::c_int,
             );
-            options
-                .x_getfilecon = Some(
+            options.x_getfilecon = Some(
                 optionh_getfilecon
                     as unsafe extern "C" fn(
                         libc::c_int,
@@ -2960,8 +3857,7 @@ pub unsafe extern "C" fn set_follow_state(mut opt: SymlinkOption) {
     }
     options.symlink_handling = opt;
     if options.debug_options & DebugStat as libc::c_int as libc::c_ulong != 0 {
-        options
-            .xstat = Some(
+        options.xstat = Some(
             debug_stat
                 as unsafe extern "C" fn(*const libc::c_char, *mut stat) -> libc::c_int,
         );
@@ -2995,12 +3891,16 @@ unsafe extern "C" fn found_parser(
     mut entry: *const parser_table,
 ) -> *const parser_table {
     if (*entry).type_0 as libc::c_uint
-        != ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
+        != arg_type::ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
     {
-        if (*entry).type_0 as libc::c_uint == ARG_NOOP as libc::c_int as libc::c_uint {
+        if (*entry).type_0 as libc::c_uint
+            == arg_type::ARG_NOOP as libc::c_int as libc::c_uint
+        {
             return 0 as *const parser_table;
         }
-        if (*entry).type_0 as libc::c_uint == ARG_OPTION as libc::c_int as libc::c_uint {
+        if (*entry).type_0 as libc::c_uint
+            == arg_type::ARG_OPTION as libc::c_int as libc::c_uint
+        {
             if !first_nonoption_arg.is_null()
                 && should_issue_warnings() as libc::c_int != 0
             {
@@ -3124,8 +4024,8 @@ unsafe extern "C" fn parse_and(
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     our_pred = get_new_pred_noarg(entry);
     (*our_pred).pred_func = Some(pred_and as PREDICATEFUNCTION);
-    (*our_pred).p_type = BI_OP;
-    (*our_pred).p_prec = AND_PREC;
+    (*our_pred).p_type = predicate_type::BI_OP;
+    (*our_pred).p_prec = predicate_precedence::AND_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     return 1 as libc::c_int != 0;
@@ -3156,11 +4056,10 @@ unsafe extern "C" fn parse_anewer(
     set_stat_placeholders(&mut stat_newer);
     if collect_arg_stat_info(argv, arg_ptr, &mut stat_newer, &mut arg) {
         let mut our_pred: *mut predicate = insert_primary(entry, arg);
-        (*our_pred).args.reftime.xval = XVAL_ATIME;
+        (*our_pred).args.reftime.xval = xval::XVAL_ATIME;
         (*our_pred).args.reftime.ts = get_stat_mtime(&mut stat_newer);
-        (*our_pred).args.reftime.kind = COMP_GT;
-        (*our_pred)
-            .est_success_rate = estimate_timestamp_success_rate(
+        (*our_pred).args.reftime.kind = comparison_type::COMP_GT;
+        (*our_pred).est_success_rate = estimate_timestamp_success_rate(
             stat_newer.st_mtim.tv_sec,
         );
         return 1 as libc::c_int != 0;
@@ -3176,8 +4075,8 @@ pub unsafe extern "C" fn parse_closeparen(
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     our_pred = get_new_pred_noarg(entry);
     (*our_pred).pred_func = Some(pred_closeparen as PREDICATEFUNCTION);
-    (*our_pred).p_type = CLOSE_PAREN;
-    (*our_pred).p_prec = NO_PREC;
+    (*our_pred).p_type = predicate_type::CLOSE_PAREN;
+    (*our_pred).p_prec = predicate_precedence::NO_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     return 1 as libc::c_int != 0;
@@ -3208,11 +4107,10 @@ unsafe extern "C" fn parse_cnewer(
     set_stat_placeholders(&mut stat_newer);
     if collect_arg_stat_info(argv, arg_ptr, &mut stat_newer, &mut arg) {
         let mut our_pred: *mut predicate = insert_primary(entry, arg);
-        (*our_pred).args.reftime.xval = XVAL_CTIME;
+        (*our_pred).args.reftime.xval = xval::XVAL_CTIME;
         (*our_pred).args.reftime.ts = get_stat_mtime(&mut stat_newer);
-        (*our_pred).args.reftime.kind = COMP_GT;
-        (*our_pred)
-            .est_success_rate = estimate_timestamp_success_rate(
+        (*our_pred).args.reftime.kind = comparison_type::COMP_GT;
+        (*our_pred).est_success_rate = estimate_timestamp_success_rate(
             stat_newer.st_mtim.tv_sec,
         );
         return 1 as libc::c_int != 0;
@@ -3227,8 +4125,8 @@ unsafe extern "C" fn parse_comma(
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     our_pred = get_new_pred_noarg(entry);
     (*our_pred).pred_func = Some(pred_comma as PREDICATEFUNCTION);
-    (*our_pred).p_type = BI_OP;
-    (*our_pred).p_prec = COMMA_PREC;
+    (*our_pred).p_type = predicate_type::BI_OP;
+    (*our_pred).p_prec = predicate_precedence::COMMA_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     (*our_pred).est_success_rate = 1.0f32;
@@ -3399,7 +4297,7 @@ unsafe extern "C" fn parse_follow(
     mut argv: *mut *mut libc::c_char,
     mut arg_ptr: *mut libc::c_int,
 ) -> bool {
-    set_follow_state(SYMLINK_ALWAYS_DEREF);
+    set_follow_state(SymlinkOption::SYMLINK_ALWAYS_DEREF);
     return parse_noop(entry, argv, arg_ptr);
 }
 unsafe extern "C" fn parse_fprint(
@@ -3527,8 +4425,7 @@ unsafe extern "C" fn parse_gid(
 ) -> bool {
     let mut p: *mut predicate = insert_num(argv, arg_ptr, entry);
     if !p.is_null() {
-        (*p)
-            .est_success_rate = (if (*p).args.numinfo.l_val
+        (*p).est_success_rate = (if (*p).args.numinfo.l_val
             < 100 as libc::c_int as libc::c_ulong
         {
             0.99f64
@@ -3696,8 +4593,7 @@ unsafe extern "C" fn parse_group(
         }
         our_pred = insert_primary(entry, groupname);
         (*our_pred).args.gid = gid;
-        (*our_pred)
-            .est_success_rate = (if (*our_pred).args.numinfo.l_val
+        (*our_pred).est_success_rate = (if (*our_pred).args.numinfo.l_val
             < 100 as libc::c_int as libc::c_ulong
         {
             0.99f64
@@ -3737,8 +4633,7 @@ unsafe extern "C" fn parse_ilname(
     if collect_arg(argv, arg_ptr, &mut name) {
         let mut our_pred: *mut predicate = insert_primary(entry, name);
         (*our_pred).args.str_0 = name;
-        (*our_pred)
-            .est_success_rate = 0.1f32
+        (*our_pred).est_success_rate = 0.1f32
             * estimate_pattern_match_rate(name, 0 as libc::c_int);
         return 1 as libc::c_int != 0;
     } else {
@@ -3846,8 +4741,10 @@ unsafe extern "C" fn parse_iname(
             (*our_pred).need_type = 0 as libc::c_int != 0;
             (*our_pred).need_stat = (*our_pred).need_type;
             (*our_pred).args.str_0 = name;
-            (*our_pred)
-                .est_success_rate = estimate_pattern_match_rate(name, 0 as libc::c_int);
+            (*our_pred).est_success_rate = estimate_pattern_match_rate(
+                name,
+                0 as libc::c_int,
+            );
             return 1 as libc::c_int != 0;
         }
     }
@@ -3922,8 +4819,7 @@ unsafe extern "C" fn parse_lname(
     if collect_arg(argv, arg_ptr, &mut name) {
         let mut our_pred: *mut predicate = insert_primary(entry, name);
         (*our_pred).args.str_0 = name;
-        (*our_pred)
-            .est_success_rate = 0.1f32
+        (*our_pred).est_success_rate = 0.1f32
             * estimate_pattern_match_rate(name, 0 as libc::c_int);
         return 1 as libc::c_int != 0;
     }
@@ -4020,8 +4916,8 @@ unsafe extern "C" fn do_parse_xmin(
     let saved_argc: libc::c_int = *arg_ptr;
     if collect_arg(argv, arg_ptr, &mut minutes) {
         let mut tval: time_val = time_val {
-            xval: XVAL_ATIME,
-            kind: COMP_GT,
+            xval: xval::XVAL_ATIME,
+            kind: comparison_type::COMP_GT,
             ts: timespec { tv_sec: 0, tv_nsec: 0 },
         };
         let mut origin: timespec = options.cur_day_start;
@@ -4037,8 +4933,9 @@ unsafe extern "C" fn do_parse_xmin(
         ) {
             let mut our_pred: *mut predicate = insert_primary(entry, minutes);
             (*our_pred).args.reftime = tval;
-            (*our_pred)
-                .est_success_rate = estimate_timestamp_success_rate(tval.ts.tv_sec);
+            (*our_pred).est_success_rate = estimate_timestamp_success_rate(
+                tval.ts.tv_sec,
+            );
             return 1 as libc::c_int != 0;
         } else {
             *arg_ptr = saved_argc;
@@ -4051,21 +4948,21 @@ unsafe extern "C" fn parse_amin(
     mut argv: *mut *mut libc::c_char,
     mut arg_ptr: *mut libc::c_int,
 ) -> bool {
-    return do_parse_xmin(entry, argv, arg_ptr, XVAL_ATIME);
+    return do_parse_xmin(entry, argv, arg_ptr, xval::XVAL_ATIME);
 }
 unsafe extern "C" fn parse_cmin(
     mut entry: *const parser_table,
     mut argv: *mut *mut libc::c_char,
     mut arg_ptr: *mut libc::c_int,
 ) -> bool {
-    return do_parse_xmin(entry, argv, arg_ptr, XVAL_CTIME);
+    return do_parse_xmin(entry, argv, arg_ptr, xval::XVAL_CTIME);
 }
 unsafe extern "C" fn parse_mmin(
     mut entry: *const parser_table,
     mut argv: *mut *mut libc::c_char,
     mut arg_ptr: *mut libc::c_int,
 ) -> bool {
-    return do_parse_xmin(entry, argv, arg_ptr, XVAL_MTIME);
+    return do_parse_xmin(entry, argv, arg_ptr, xval::XVAL_MTIME);
 }
 unsafe extern "C" fn parse_name(
     mut entry: *const parser_table,
@@ -4085,8 +4982,10 @@ unsafe extern "C" fn parse_name(
             (*our_pred).need_type = 0 as libc::c_int != 0;
             (*our_pred).need_stat = (*our_pred).need_type;
             (*our_pred).args.str_0 = name;
-            (*our_pred)
-                .est_success_rate = estimate_pattern_match_rate(name, 0 as libc::c_int);
+            (*our_pred).est_success_rate = estimate_pattern_match_rate(
+                name,
+                0 as libc::c_int,
+            );
             return 1 as libc::c_int != 0;
         } else {
             *arg_ptr = saved_argc;
@@ -4104,8 +5003,8 @@ unsafe extern "C" fn parse_negate(
     &mut arg_ptr;
     our_pred = get_new_pred_chk_op(entry, 0 as *const libc::c_char);
     (*our_pred).pred_func = Some(pred_negate as PREDICATEFUNCTION);
-    (*our_pred).p_type = UNI_OP;
-    (*our_pred).p_prec = NEGATE_PREC;
+    (*our_pred).p_type = predicate_type::UNI_OP;
+    (*our_pred).p_prec = predicate_precedence::NEGATE_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     return 1 as libc::c_int != 0;
@@ -4138,10 +5037,9 @@ unsafe extern "C" fn parse_newer(
     if collect_arg_stat_info(argv, arg_ptr, &mut stat_newer, &mut arg) {
         our_pred = insert_primary(entry, arg);
         (*our_pred).args.reftime.ts = get_stat_mtime(&mut stat_newer);
-        (*our_pred).args.reftime.xval = XVAL_MTIME;
-        (*our_pred).args.reftime.kind = COMP_GT;
-        (*our_pred)
-            .est_success_rate = estimate_timestamp_success_rate(
+        (*our_pred).args.reftime.xval = xval::XVAL_MTIME;
+        (*our_pred).args.reftime.kind = comparison_type::COMP_GT;
+        (*our_pred).est_success_rate = estimate_timestamp_success_rate(
             stat_newer.st_mtim.tv_sec,
         );
         return 1 as libc::c_int != 0;
@@ -4277,16 +5175,16 @@ unsafe extern "C" fn parse_newerXY(
             our_pred = insert_primary(entry, *argv.offset(*arg_ptr as isize));
             match x as libc::c_int {
                 97 => {
-                    (*our_pred).args.reftime.xval = XVAL_ATIME;
+                    (*our_pred).args.reftime.xval = xval::XVAL_ATIME;
                 }
                 66 => {
-                    (*our_pred).args.reftime.xval = XVAL_BIRTHTIME;
+                    (*our_pred).args.reftime.xval = xval::XVAL_BIRTHTIME;
                 }
                 99 => {
-                    (*our_pred).args.reftime.xval = XVAL_CTIME;
+                    (*our_pred).args.reftime.xval = xval::XVAL_CTIME;
                 }
                 109 => {
-                    (*our_pred).args.reftime.xval = XVAL_MTIME;
+                    (*our_pred).args.reftime.xval = xval::XVAL_MTIME;
                 }
                 _ => {
                     if !(strchr(validchars.as_ptr(), x as libc::c_int)).is_null()
@@ -4468,9 +5366,8 @@ unsafe extern "C" fn parse_newerXY(
                     };
                 }
             }
-            (*our_pred).args.reftime.kind = COMP_GT;
-            (*our_pred)
-                .est_success_rate = estimate_timestamp_success_rate(
+            (*our_pred).args.reftime.kind = comparison_type::COMP_GT;
+            (*our_pred).est_success_rate = estimate_timestamp_success_rate(
                 (*our_pred).args.reftime.ts.tv_sec,
             );
             *arg_ptr += 1;
@@ -4644,8 +5541,8 @@ pub unsafe extern "C" fn parse_openparen(
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     our_pred = get_new_pred_chk_op(entry, 0 as *const libc::c_char);
     (*our_pred).pred_func = Some(pred_openparen as PREDICATEFUNCTION);
-    (*our_pred).p_type = OPEN_PAREN;
-    (*our_pred).p_prec = NO_PREC;
+    (*our_pred).p_type = predicate_type::OPEN_PAREN;
+    (*our_pred).p_prec = predicate_precedence::NO_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     return 1 as libc::c_int != 0;
@@ -4658,8 +5555,8 @@ unsafe extern "C" fn parse_or(
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     our_pred = get_new_pred_noarg(entry);
     (*our_pred).pred_func = Some(pred_or as PREDICATEFUNCTION);
-    (*our_pred).p_type = BI_OP;
-    (*our_pred).p_prec = OR_PREC;
+    (*our_pred).p_type = predicate_type::BI_OP;
+    (*our_pred).p_prec = predicate_precedence::OR_PREC;
     (*our_pred).need_type = 0 as libc::c_int != 0;
     (*our_pred).need_stat = (*our_pred).need_type;
     return 1 as libc::c_int != 0;
@@ -4683,7 +5580,7 @@ unsafe extern "C" fn insert_path_check(
     mut argv: *mut *mut libc::c_char,
     mut arg_ptr: *mut libc::c_int,
     mut predicate_name: *const libc::c_char,
-    mut pred: Option::<PREDICATEFUNCTION>,
+    mut pred: Option<PREDICATEFUNCTION>,
 ) -> bool {
     let mut name: *const libc::c_char = 0 as *const libc::c_char;
     let mut foldcase: bool = 0 as libc::c_int != 0;
@@ -4696,8 +5593,10 @@ unsafe extern "C" fn insert_path_check(
         (*our_pred).need_type = 0 as libc::c_int != 0;
         (*our_pred).need_stat = (*our_pred).need_type;
         (*our_pred).args.str_0 = name;
-        (*our_pred)
-            .est_success_rate = estimate_pattern_match_rate(name, 0 as libc::c_int);
+        (*our_pred).est_success_rate = estimate_pattern_match_rate(
+            name,
+            0 as libc::c_int,
+        );
         if !options.posixly_correct && !is_feasible_path_argument(name, foldcase) {
             error(
                 0 as libc::c_int,
@@ -4777,7 +5676,7 @@ unsafe extern "C" fn parse_perm(
     let mut perm_val: [mode_t; 2] = [0; 2];
     let mut rate: libc::c_float = 0.;
     let mut mode_start: libc::c_int = 0 as libc::c_int;
-    let mut kind: permissions_type = PERM_EXACT;
+    let mut kind: permissions_type = permissions_type::PERM_EXACT;
     let mut change: *mut mode_change = 0 as *mut mode_change;
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     let mut perm_expr: *const libc::c_char = 0 as *const libc::c_char;
@@ -4787,17 +5686,17 @@ unsafe extern "C" fn parse_perm(
     match *perm_expr.offset(0 as libc::c_int as isize) as libc::c_int {
         45 => {
             mode_start = 1 as libc::c_int;
-            kind = PERM_AT_LEAST;
+            kind = permissions_type::PERM_AT_LEAST;
             rate = 0.2f64 as libc::c_float;
         }
         47 => {
             mode_start = 1 as libc::c_int;
-            kind = PERM_ANY;
+            kind = permissions_type::PERM_ANY;
             rate = 0.3f64 as libc::c_float;
         }
         _ => {
             mode_start = 0 as libc::c_int;
-            kind = PERM_EXACT;
+            kind = permissions_type::PERM_EXACT;
             rate = 0.01f64 as libc::c_float;
         }
     }
@@ -4837,16 +5736,14 @@ unsafe extern "C" fn parse_perm(
             };
         };
     }
-    perm_val[0 as libc::c_int
-        as usize] = mode_adjust(
+    perm_val[0 as libc::c_int as usize] = mode_adjust(
         0 as libc::c_int as mode_t,
         0 as libc::c_int != 0,
         0 as libc::c_int as mode_t,
         change,
         0 as *mut mode_t,
     );
-    perm_val[1 as libc::c_int
-        as usize] = mode_adjust(
+    perm_val[1 as libc::c_int as usize] = mode_adjust(
         0 as libc::c_int as mode_t,
         1 as libc::c_int != 0,
         0 as libc::c_int as mode_t,
@@ -4869,7 +5766,7 @@ unsafe extern "C" fn parse_perm(
             ),
             perm_expr,
         );
-        kind = PERM_AT_LEAST;
+        kind = permissions_type::PERM_AT_LEAST;
         rate = 0.9986f64 as libc::c_float;
     }
     our_pred = insert_primary(entry, perm_expr);
@@ -5079,7 +5976,7 @@ unsafe extern "C" fn parse_size(
     let mut arg: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut num: uintmax_t = 0;
     let mut suffix: libc::c_char = 0;
-    let mut c_type: comparison_type = COMP_GT;
+    let mut c_type: comparison_type = comparison_type::COMP_GT;
     let mut blksize: libc::c_int = 512 as libc::c_int;
     let mut len: libc::c_int = 0;
     if argv.is_null() || (*argv.offset(*arg_ptr as isize)).is_null() {
@@ -5226,18 +6123,19 @@ unsafe extern "C" fn parse_size(
     (*our_pred).args.size.size = num;
     (*our_pred).need_stat = 1 as libc::c_int != 0;
     (*our_pred).need_type = 0 as libc::c_int != 0;
-    if COMP_GT as libc::c_int as libc::c_uint == c_type as libc::c_uint {
-        (*our_pred)
-            .est_success_rate = (if num.wrapping_mul(blksize as libc::c_ulong)
+    if comparison_type::COMP_GT as libc::c_int as libc::c_uint == c_type as libc::c_uint
+    {
+        (*our_pred).est_success_rate = (if num.wrapping_mul(blksize as libc::c_ulong)
             > 20480 as libc::c_int as libc::c_ulong
         {
             0.1f64
         } else {
             0.9f64
         }) as libc::c_float;
-    } else if COMP_LT as libc::c_int as libc::c_uint == c_type as libc::c_uint {
-        (*our_pred)
-            .est_success_rate = (if num.wrapping_mul(blksize as libc::c_ulong)
+    } else if comparison_type::COMP_LT as libc::c_int as libc::c_uint
+        == c_type as libc::c_uint
+    {
+        (*our_pred).est_success_rate = (if num.wrapping_mul(blksize as libc::c_ulong)
             > 20480 as libc::c_int as libc::c_ulong
         {
             0.9f64
@@ -5302,7 +6200,7 @@ unsafe extern "C" fn parse_samefile(
     fd = -(3 as libc::c_int);
     openflags = 0 as libc::c_int;
     if options.symlink_handling as libc::c_uint
-        == SYMLINK_NEVER_DEREF as libc::c_int as libc::c_uint
+        == SymlinkOption::SYMLINK_NEVER_DEREF as libc::c_int as libc::c_uint
     {
         if options.open_nofollow_available {
             if 0o400000 as libc::c_int != 0 as libc::c_int {} else {
@@ -5387,7 +6285,7 @@ unsafe extern "C" fn parse_samefile(
                     fatal_target_file_error(*__errno_location(), filename);
                 }
                 if options.symlink_handling as libc::c_uint
-                    == SYMLINK_NEVER_DEREF as libc::c_int as libc::c_uint
+                    == SymlinkOption::SYMLINK_NEVER_DEREF as libc::c_int as libc::c_uint
                     && !options.open_nofollow_available
                 {
                     if st.st_mode & 0o170000 as libc::c_int as libc::c_uint
@@ -5465,8 +6363,7 @@ unsafe extern "C" fn parse_uid(
 ) -> bool {
     let mut p: *mut predicate = insert_num(argv, arg_ptr, entry);
     if !p.is_null() {
-        (*p)
-            .est_success_rate = (if (*p).args.numinfo.l_val
+        (*p).est_success_rate = (if (*p).args.numinfo.l_val
             < 100 as libc::c_int as libc::c_ulong
         {
             0.99f64
@@ -5487,8 +6384,8 @@ unsafe extern "C" fn parse_used(
 ) -> bool {
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     let mut tval: time_val = time_val {
-        xval: XVAL_ATIME,
-        kind: COMP_GT,
+        xval: xval::XVAL_ATIME,
+        kind: comparison_type::COMP_GT,
         ts: timespec { tv_sec: 0, tv_nsec: 0 },
     };
     let mut offset_str: *const libc::c_char = 0 as *const libc::c_char;
@@ -5511,8 +6408,7 @@ unsafe extern "C" fn parse_used(
         ) {
             our_pred = insert_primary(entry, offset_str);
             (*our_pred).args.reftime = tval;
-            (*our_pred)
-                .est_success_rate = estimate_file_age_success_rate(
+            (*our_pred).est_success_rate = estimate_file_age_success_rate(
                 (tval.ts.tv_sec / 86400 as libc::c_int as libc::c_long) as libc::c_float,
             );
             return 1 as libc::c_int != 0;
@@ -5653,8 +6549,7 @@ unsafe extern "C" fn parse_user(
         }
         our_pred = insert_primary(entry, username);
         (*our_pred).args.uid = uid;
-        (*our_pred)
-            .est_success_rate = (if (*our_pred).args.uid
+        (*our_pred).est_success_rate = (if (*our_pred).args.uid
             < 100 as libc::c_int as libc::c_uint
         {
             0.99f64
@@ -5871,31 +6766,31 @@ unsafe extern "C" fn insert_type(
         let mut rate: libc::c_float = 0.01f64 as libc::c_float;
         match *typeletter as libc::c_int {
             98 => {
-                type_cell = FTYPE_BLK as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_BLK as libc::c_int as libc::c_uint;
                 rate = 0.000888f32;
             }
             99 => {
-                type_cell = FTYPE_CHR as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_CHR as libc::c_int as libc::c_uint;
                 rate = 0.000443f32;
             }
             100 => {
-                type_cell = FTYPE_DIR as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_DIR as libc::c_int as libc::c_uint;
                 rate = 0.0922f32;
             }
             102 => {
-                type_cell = FTYPE_REG as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_REG as libc::c_int as libc::c_uint;
                 rate = 0.875f32;
             }
             108 => {
-                type_cell = FTYPE_LNK as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_LNK as libc::c_int as libc::c_uint;
                 rate = 0.0311f32;
             }
             112 => {
-                type_cell = FTYPE_FIFO as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_FIFO as libc::c_int as libc::c_uint;
                 rate = 7.554e-6f32;
             }
             115 => {
-                type_cell = FTYPE_SOCK as libc::c_int as libc::c_uint;
+                type_cell = file_type::FTYPE_SOCK as libc::c_int as libc::c_uint;
                 rate = 1.59e-5f32;
             }
             68 => {
@@ -6221,7 +7116,7 @@ unsafe extern "C" fn insert_exec_ok(
     let mut brace_count: libc::c_int = 0;
     let mut brace_arg: *const libc::c_char = 0 as *const libc::c_char;
     let mut func: PRED_FUNC = (*entry).pred_func;
-    let mut bcstatus: BC_INIT_STATUS = BC_INIT_OK;
+    let mut bcstatus: BC_INIT_STATUS = BC_INIT_STATUS::BC_INIT_OK;
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     let mut execp: *mut exec_val = 0 as *mut exec_val;
     if argv.is_null() || (*argv.offset(*arg_ptr as isize)).is_null() {
@@ -6406,13 +7301,15 @@ unsafe extern "C" fn insert_exec_ok(
             let mut buf: [libc::c_char; 19] = [0; 19];
             let needed: size_t = snprintf(
                 buf.as_mut_ptr(),
-                MsgBufSize as libc::c_int as libc::c_ulong,
+                C2RustUnnamed_18::MsgBufSize as libc::c_int as libc::c_ulong,
                 b"-exec%s ... {} +\0" as *const u8 as *const libc::c_char,
                 suffix,
             ) as size_t;
-            if needed <= MsgBufSize as libc::c_int as libc::c_ulong {} else {
+            if needed <= C2RustUnnamed_18::MsgBufSize as libc::c_int as libc::c_ulong
+            {} else {
                 __assert_fail(
-                    b"needed <= MsgBufSize\0" as *const u8 as *const libc::c_char,
+                    b"needed <= C2RustUnnamed_18::MsgBufSize\0" as *const u8
+                        as *const libc::c_char,
                     b"parser.c\0" as *const u8 as *const libc::c_char,
                     3014 as libc::c_int as libc::c_uint,
                     (*::core::mem::transmute::<
@@ -6425,9 +7322,11 @@ unsafe extern "C" fn insert_exec_ok(
                 );
             }
             'c_15932: {
-                if needed <= MsgBufSize as libc::c_int as libc::c_ulong {} else {
+                if needed <= C2RustUnnamed_18::MsgBufSize as libc::c_int as libc::c_ulong
+                {} else {
                     __assert_fail(
-                        b"needed <= MsgBufSize\0" as *const u8 as *const libc::c_char,
+                        b"needed <= C2RustUnnamed_18::MsgBufSize\0" as *const u8
+                            as *const libc::c_char,
                         b"parser.c\0" as *const u8 as *const libc::c_char,
                         3014 as libc::c_int as libc::c_uint,
                         (*::core::mem::transmute::<
@@ -6537,9 +7436,7 @@ unsafe extern "C" fn insert_exec_ok(
         0 | _ => {}
     }
     bc_use_sensible_arg_max(&mut (*execp).ctl);
-    (*execp)
-        .ctl
-        .exec_callback = Some(
+    (*execp).ctl.exec_callback = Some(
         launch
             as unsafe extern "C" fn(
                 *mut buildcmd_control,
@@ -6581,8 +7478,7 @@ unsafe extern "C" fn insert_exec_ok(
         (*execp).ctl.rplen = strlen((*execp).ctl.replace_pat);
         (*execp).ctl.lines_per_exec = 0 as libc::c_int as libc::c_ulong;
         (*execp).ctl.args_per_exec = 0 as libc::c_int as size_t;
-        (*execp)
-            .replace_vec = xmalloc(
+        (*execp).replace_vec = xmalloc(
             (::core::mem::size_of::<*mut libc::c_char>() as libc::c_ulong)
                 .wrapping_mul((*execp).num_args as libc::c_ulong),
         ) as *mut *mut libc::c_char;
@@ -6620,10 +7516,10 @@ unsafe extern "C" fn get_relative_timestamp(
     if get_comp_type(&mut str, &mut (*result).kind) {
         match (*result).kind as libc::c_uint {
             1 => {
-                (*result).kind = COMP_GT;
+                (*result).kind = comparison_type::COMP_GT;
             }
             0 => {
-                (*result).kind = COMP_LT;
+                (*result).kind = comparison_type::COMP_LT;
             }
             2 | _ => {}
         }
@@ -6672,9 +7568,8 @@ unsafe extern "C" fn get_relative_timestamp(
                     );
                 }
             };
-            (*result)
-                .ts
-                .tv_sec = (origin.tv_sec as libc::c_double - seconds) as __time_t;
+            (*result).ts.tv_sec = (origin.tv_sec as libc::c_double - seconds)
+                as __time_t;
             if (origin.tv_sec < (*result).ts.tv_sec) as libc::c_int
                 != (seconds < 0 as libc::c_int as libc::c_double) as libc::c_int
             {
@@ -6690,9 +7585,7 @@ unsafe extern "C" fn get_relative_timestamp(
                     };
                 };
             }
-            (*result)
-                .ts
-                .tv_nsec = (origin.tv_nsec as libc::c_double - nanosec)
+            (*result).ts.tv_nsec = (origin.tv_nsec as libc::c_double - nanosec)
                 as __syscall_slong_t;
             if (origin.tv_nsec as libc::c_double) < nanosec {
                 (*result).ts.tv_nsec += nanosec_per_sec;
@@ -6713,11 +7606,11 @@ unsafe extern "C" fn parse_time(
 ) -> bool {
     let mut our_pred: *mut predicate = 0 as *mut predicate;
     let mut tval: time_val = time_val {
-        xval: XVAL_ATIME,
-        kind: COMP_GT,
+        xval: xval::XVAL_ATIME,
+        kind: comparison_type::COMP_GT,
         ts: timespec { tv_sec: 0, tv_nsec: 0 },
     };
-    let mut comp: comparison_type = COMP_GT;
+    let mut comp: comparison_type = comparison_type::COMP_GT;
     let mut timearg: *const libc::c_char = 0 as *const libc::c_char;
     let mut orig_timearg: *const libc::c_char = 0 as *const libc::c_char;
     let mut errmsg: *const libc::c_char = dcgettext(
@@ -6734,7 +7627,9 @@ unsafe extern "C" fn parse_time(
     orig_timearg = timearg;
     origin = options.cur_day_start;
     if get_comp_type(&mut timearg, &mut comp) {
-        if COMP_LT as libc::c_int as libc::c_uint == comp as libc::c_uint {
+        if comparison_type::COMP_LT as libc::c_int as libc::c_uint
+            == comp as libc::c_uint
+        {
             let mut expected: uintmax_t = (origin.tv_sec
                 + (86400 as libc::c_int - 1 as libc::c_int) as libc::c_long)
                 as uintmax_t;
@@ -6796,23 +7691,31 @@ unsafe extern "C" fn parse_time(
         fprintf(
             stderr,
             b"    type: %s    %s  \0" as *const u8 as *const libc::c_char,
-            if tval.kind as libc::c_uint == COMP_GT as libc::c_int as libc::c_uint {
+            if tval.kind as libc::c_uint
+                == comparison_type::COMP_GT as libc::c_int as libc::c_uint
+            {
                 b"gt\0" as *const u8 as *const libc::c_char
-            } else if tval.kind as libc::c_uint == COMP_LT as libc::c_int as libc::c_uint
+            } else if tval.kind as libc::c_uint
+                == comparison_type::COMP_LT as libc::c_int as libc::c_uint
             {
                 b"lt\0" as *const u8 as *const libc::c_char
-            } else if tval.kind as libc::c_uint == COMP_EQ as libc::c_int as libc::c_uint
+            } else if tval.kind as libc::c_uint
+                == comparison_type::COMP_EQ as libc::c_int as libc::c_uint
             {
                 b"eq\0" as *const u8 as *const libc::c_char
             } else {
                 b"?\0" as *const u8 as *const libc::c_char
             },
-            if tval.kind as libc::c_uint == COMP_GT as libc::c_int as libc::c_uint {
+            if tval.kind as libc::c_uint
+                == comparison_type::COMP_GT as libc::c_int as libc::c_uint
+            {
                 b" >\0" as *const u8 as *const libc::c_char
-            } else if tval.kind as libc::c_uint == COMP_LT as libc::c_int as libc::c_uint
+            } else if tval.kind as libc::c_uint
+                == comparison_type::COMP_LT as libc::c_int as libc::c_uint
             {
                 b" <\0" as *const u8 as *const libc::c_char
-            } else if tval.kind as libc::c_uint == COMP_EQ as libc::c_int as libc::c_uint
+            } else if tval.kind as libc::c_uint
+                == comparison_type::COMP_EQ as libc::c_int as libc::c_uint
             {
                 b">=\0" as *const u8 as *const libc::c_char
             } else {
@@ -6826,7 +7729,9 @@ unsafe extern "C" fn parse_time(
             (*our_pred).args.reftime.ts.tv_sec as uintmax_t,
             ctime(&mut t),
         );
-        if tval.kind as libc::c_uint == COMP_EQ as libc::c_int as libc::c_uint {
+        if tval.kind as libc::c_uint
+            == comparison_type::COMP_EQ as libc::c_int as libc::c_uint
+        {
             t = (*our_pred).args.reftime.ts.tv_sec
                 + 86400 as libc::c_int as libc::c_long;
             fprintf(
@@ -6845,17 +7750,17 @@ unsafe extern "C" fn get_comp_type(
 ) -> bool {
     match **str as libc::c_int {
         43 => {
-            *comp_type = COMP_GT;
+            *comp_type = comparison_type::COMP_GT;
             *str = (*str).offset(1);
             *str;
         }
         45 => {
-            *comp_type = COMP_LT;
+            *comp_type = comparison_type::COMP_LT;
             *str = (*str).offset(1);
             *str;
         }
         _ => {
-            *comp_type = COMP_EQ;
+            *comp_type = comparison_type::COMP_EQ;
         }
     }
     return 1 as libc::c_int != 0;
@@ -6880,7 +7785,7 @@ unsafe extern "C" fn get_num(
         10 as libc::c_int,
         num,
         b"\0" as *const u8 as *const libc::c_char,
-    ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint;
+    ) as libc::c_uint == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint;
 }
 unsafe extern "C" fn insert_num(
     mut argv: *mut *mut libc::c_char,
@@ -6890,7 +7795,7 @@ unsafe extern "C" fn insert_num(
     let mut numstr: *const libc::c_char = 0 as *const libc::c_char;
     if collect_arg(argv, arg_ptr, &mut numstr) {
         let mut num: uintmax_t = 0;
-        let mut c_type: comparison_type = COMP_GT;
+        let mut c_type: comparison_type = comparison_type::COMP_GT;
         if get_num(numstr, &mut num, &mut c_type) {
             let mut our_pred: *mut predicate = insert_primary(entry, numstr);
             (*our_pred).args.numinfo.kind = c_type;
@@ -6906,27 +7811,31 @@ unsafe extern "C" fn insert_num(
                 fprintf(
                     stderr,
                     b"    type: %s    %s  \0" as *const u8 as *const libc::c_char,
-                    if c_type as libc::c_uint == COMP_GT as libc::c_int as libc::c_uint {
+                    if c_type as libc::c_uint
+                        == comparison_type::COMP_GT as libc::c_int as libc::c_uint
+                    {
                         b"gt\0" as *const u8 as *const libc::c_char
                     } else if c_type as libc::c_uint
-                        == COMP_LT as libc::c_int as libc::c_uint
+                        == comparison_type::COMP_LT as libc::c_int as libc::c_uint
                     {
                         b"lt\0" as *const u8 as *const libc::c_char
                     } else if c_type as libc::c_uint
-                        == COMP_EQ as libc::c_int as libc::c_uint
+                        == comparison_type::COMP_EQ as libc::c_int as libc::c_uint
                     {
                         b"eq\0" as *const u8 as *const libc::c_char
                     } else {
                         b"?\0" as *const u8 as *const libc::c_char
                     },
-                    if c_type as libc::c_uint == COMP_GT as libc::c_int as libc::c_uint {
+                    if c_type as libc::c_uint
+                        == comparison_type::COMP_GT as libc::c_int as libc::c_uint
+                    {
                         b" >\0" as *const u8 as *const libc::c_char
                     } else if c_type as libc::c_uint
-                        == COMP_LT as libc::c_int as libc::c_uint
+                        == comparison_type::COMP_LT as libc::c_int as libc::c_uint
                     {
                         b" <\0" as *const u8 as *const libc::c_char
                     } else if c_type as libc::c_uint
-                        == COMP_EQ as libc::c_int as libc::c_uint
+                        == comparison_type::COMP_EQ as libc::c_int as libc::c_uint
                     {
                         b" =\0" as *const u8 as *const libc::c_char
                     } else {
@@ -6952,16 +7861,14 @@ unsafe extern "C" fn open_output_file(
     (*p).quote_opts = clone_quoting_options(0 as *mut quoting_options);
     if strcmp(path, b"/dev/stderr\0" as *const u8 as *const libc::c_char) == 0 {
         (*p).stream = stderr;
-        (*p)
-            .filename = dcgettext(
+        (*p).filename = dcgettext(
             0 as *const libc::c_char,
             b"standard error\0" as *const u8 as *const libc::c_char,
             5 as libc::c_int,
         );
     } else if strcmp(path, b"/dev/stdout\0" as *const u8 as *const libc::c_char) == 0 {
         (*p).stream = stdout;
-        (*p)
-            .filename = dcgettext(
+        (*p).filename = dcgettext(
             0 as *const libc::c_char,
             b"standard output\0" as *const u8 as *const libc::c_char,
             5 as libc::c_int,

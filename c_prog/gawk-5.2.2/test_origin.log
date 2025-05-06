@@ -1,0 +1,4933 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/gawk-5.2.2)
+error: Binary expression is not supposed to be used
+    --> debug.rs:9355:25
+     |
+9355 |                         compile_error!("Binary expression is not supposed to be used")
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+    --> debug.rs:9372:17
+     |
+9372 |                 compile_error!("Conditional expression is not supposed to be used");
+     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:31
+   |
+14 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:16:19
+   |
+16 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+     --> awkgram.rs:13661:49
+      |
+13661 | ...                   __res = (if __c < -(128 as libc::c_int)
+      |                               ^
+...
+13667 | ...                   });
+      |                        ^
+      |
+      = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+      |
+13661 ~                                         __res = if __c < -(128 as libc::c_int)
+13662 |                                             || __c > 255 as libc::c_int
+    ...
+13666 |                                             *(*__ctype_tolower_loc()).offset(__c as isize)
+13667 ~                                         };
+      |
+
+warning: unnecessary parentheses around block return value
+    --> builtin.rs:1554:9
+     |
+1554 |         ({
+     |         ^
+...
+1581 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+1554 ~         {
+1555 |             let mut __ptr: *const libc::c_char = ptr as *const libc::c_char;
+   ...
+1580 |             size.wrapping_mul(count).wrapping_sub(__cnt).wrapping_div(size)
+1581 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> builtin.rs:1583:9
+     |
+1583 |         (if 0 != 0 && size == 0 as libc::c_int as libc::c_ulong
+     |         ^
+...
+1589 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+1583 ~         if 0 != 0 && size == 0 as libc::c_int as libc::c_ulong
+1584 |             || 0 != 0 && count == 0 as libc::c_int as libc::c_ulong
+   ...
+1588 |             fwrite_unlocked(ptr, size, count, fp)
+1589 ~         }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> builtin.rs:3197:49
+     |
+3197 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+3203 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3197 ~                                         __res = if __c < -(128 as libc::c_int)
+3198 |                                             || __c > 255 as libc::c_int
+   ...
+3202 |                                             *(*__ctype_tolower_loc()).offset(__c as isize)
+3203 ~                                         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> builtin.rs:4695:45
+     |
+4695 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+4701 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4695 ~                                     __res = if __c < -(128 as libc::c_int)
+4696 |                                         || __c > 255 as libc::c_int
+   ...
+4700 |                                         *(*__ctype_tolower_loc()).offset(__c as isize)
+4701 ~                                     };
+     |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10292:9
+      |
+10292 |         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |         ^
+...
+10298 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+10292 ~         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+10293 |             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+10297 |             __isnanl(f128::f128::new((*n).sub.val.fltnum))
+10298 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10305:13
+      |
+10305 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |             ^
+...
+10311 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+10305 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+10306 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+10310 |                 __isinfl(f128::f128::new((*n).sub.val.fltnum))
+10311 ~             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10340:17
+      |
+10340 |                 (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |                 ^
+...
+10346 |                 })
+      |                  ^
+      |
+help: remove these parentheses
+      |
+10340 ~                 if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+10341 |                     == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+10345 |                     (f128::f128::new(val)).is_sign_negative() as libc::c_int
+10346 ~                 }
+      |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:2239:21
+     |
+2239 |                     ({
+     |                     ^
+...
+2278 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2239 ~                     {
+2240 |                         let mut __ptr: *const libc::c_char = linebuf
+   ...
+2277 |                             )
+2278 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:2280:21
+     |
+2280 |                     (if 0 != 0
+     |                     ^
+...
+2293 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2280 ~                     if 0 != 0
+2281 |                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+2292 |                         )
+2293 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:8125:17
+     |
+8125 |                 ({
+     |                 ^
+...
+8162 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+8125 ~                 {
+8126 |                     let mut __ptr: *const libc::c_char = p as *const libc::c_char;
+   ...
+8161 |                         )
+8162 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:8164:17
+     |
+8164 |                 (if 0 != 0
+     |                 ^
+...
+8177 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+8164 ~                 if 0 != 0
+8165 |                     && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+8176 |                     )
+8177 ~                 }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> eval.rs:1622:37
+     |
+1622 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+1628 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1622 ~                             __res = if __c < -(128 as libc::c_int)
+1623 |                                 || __c > 255 as libc::c_int
+   ...
+1627 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+1628 ~                             };
+     |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:11936:9
+      |
+11936 |         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |         ^
+...
+11942 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+11936 ~         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+11937 |             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+11941 |             __isnanl(f128::f128::new(left))
+11942 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:11949:13
+      |
+11949 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |             ^
+...
+11955 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+11949 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+11950 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+11954 |                 (f128::f128::new(left)).is_sign_negative() as libc::c_int
+11955 ~             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:11964:9
+      |
+11964 |         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |         ^
+...
+11970 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+11964 ~         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+11965 |             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+11969 |             __isnanl(f128::f128::new(right))
+11970 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:11977:13
+      |
+11977 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+      |             ^
+...
+11983 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+11977 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+11978 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    ...
+11982 |                 (f128::f128::new(right)).is_sign_negative() as libc::c_int
+11983 ~             }
+      |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:641:25
+    |
+641 |                 major = ({
+    |                         ^
+...
+664 |                 });
+    |                  ^
+    |
+help: remove these parentheses
+    |
+641 ~                 major = {
+642 |                     let mut __v: libc::c_uint = 0;
+  ...
+663 |                     __v
+664 ~                 };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:672:29
+    |
+672 |                     minor = ({
+    |                             ^
+...
+695 |                     });
+    |                      ^
+    |
+help: remove these parentheses
+    |
+672 ~                     minor = {
+673 |                         let mut __v: libc::c_uint = 0;
+  ...
+694 |                         __v
+695 ~                     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:839:13
+    |
+839 |     count = ({
+    |             ^
+...
+858 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+839 ~     count = {
+840 |         let mut __v: libc::c_uint = 0;
+  ...
+857 |         __v
+858 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:905:20
+    |
+905 |     indexval_len = ({
+    |                    ^
+...
+924 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+905 ~     indexval_len = {
+906 |         let mut __v: libc::c_uint = 0;
+  ...
+923 |         __v
+924 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:954:16
+    |
+954 |         code = ({
+    |                ^
+...
+974 |         });
+    |          ^
+    |
+help: remove these parentheses
+    |
+954 ~         code = {
+955 |             let mut __v: libc::c_uint = 0;
+  ...
+973 |             __v
+974 ~         };
+    |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:991:20
+     |
+991  |             code = ({
+     |                    ^
+...
+1014 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+991  ~             code = {
+992  |                 let mut __v: libc::c_uint = 0;
+   ...
+1013 |                 __v
+1014 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1017:20
+     |
+1017 |             code = ({
+     |                    ^
+...
+1040 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1017 ~             code = {
+1018 |                 let mut __v: libc::c_uint = 0;
+   ...
+1039 |                 __v
+1040 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1043:20
+     |
+1043 |             code = ({
+     |                    ^
+...
+1066 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1043 ~             code = {
+1044 |                 let mut __v: libc::c_uint = 0;
+   ...
+1065 |                 __v
+1066 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1069:20
+     |
+1069 |             code = ({
+     |                    ^
+...
+1092 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1069 ~             code = {
+1070 |                 let mut __v: libc::c_uint = 0;
+   ...
+1091 |                 __v
+1092 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1095:20
+     |
+1095 |             code = ({
+     |                    ^
+...
+1118 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1095 ~             code = {
+1096 |                 let mut __v: libc::c_uint = 0;
+   ...
+1117 |                 __v
+1118 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1121:20
+     |
+1121 |             code = ({
+     |                    ^
+...
+1144 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1121 ~             code = {
+1122 |                 let mut __v: libc::c_uint = 0;
+   ...
+1143 |                 __v
+1144 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1197:15
+     |
+1197 |         len = ({
+     |               ^
+...
+1217 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1197 ~         len = {
+1198 |             let mut __v: libc::c_uint = 0;
+   ...
+1216 |             __v
+1217 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1240:15
+     |
+1240 |         len = ({
+     |               ^
+...
+1260 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1240 ~         len = {
+1241 |             let mut __v: libc::c_uint = 0;
+   ...
+1259 |             __v
+1260 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1293:16
+     |
+1293 |         code = ({
+     |                ^
+...
+1313 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1293 ~         code = {
+1294 |             let mut __v: libc::c_uint = 0;
+   ...
+1312 |             __v
+1313 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1330:29
+     |
+1330 |         network_order_len = ({
+     |                             ^
+...
+1350 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1330 ~         network_order_len = {
+1331 |             let mut __v: libc::c_uint = 0;
+   ...
+1349 |             __v
+1350 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1544:13
+     |
+1544 |     count = ({
+     |             ^
+...
+1563 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1544 ~     count = {
+1545 |         let mut __v: libc::c_uint = 0;
+   ...
+1562 |         __v
+1563 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1681:25
+     |
+1681 |                 major = ({
+     |                         ^
+...
+1704 |                 });
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1681 ~                 major = {
+1682 |                     let mut __v: libc::c_uint = 0;
+   ...
+1703 |                     __v
+1704 ~                 };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1717:29
+     |
+1717 |                     minor = ({
+     |                             ^
+...
+1745 |                     });
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1717 ~                     minor = {
+1718 |                         let mut __v: libc::c_uint = 0;
+   ...
+1744 |                         __v
+1745 ~                     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1867:13
+     |
+1867 |     count = ({
+     |             ^
+...
+1886 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1867 ~     count = {
+1868 |         let mut __v: libc::c_uint = 0;
+   ...
+1885 |         __v
+1886 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1937:17
+     |
+1937 |     index_len = ({
+     |                 ^
+...
+1956 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1937 ~     index_len = {
+1938 |         let mut __v: libc::c_uint = 0;
+   ...
+1955 |         __v
+1956 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2033:12
+     |
+2033 |     code = ({
+     |            ^
+...
+2052 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+2033 ~     code = {
+2034 |         let mut __v: libc::c_uint = 0;
+   ...
+2051 |         __v
+2052 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2076:15
+     |
+2076 |         len = ({
+     |               ^
+...
+2096 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+2076 ~         len = {
+2077 |             let mut __v: libc::c_uint = 0;
+   ...
+2095 |             __v
+2096 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2194:15
+     |
+2194 |         len = ({
+     |               ^
+...
+2214 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+2194 ~         len = {
+2195 |             let mut __v: libc::c_uint = 0;
+   ...
+2213 |             __v
+2214 ~         };
+     |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:17:9
+   |
+17 |         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |         ^
+...
+23 |         })
+   |          ^
+   |
+help: remove these parentheses
+   |
+17 ~         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+18 |             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+22 |             24 as libc::c_int
+23 ~         }
+   |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:39:21
+   |
+39 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |                     ^
+...
+45 |                     })
+   |                      ^
+   |
+help: remove these parentheses
+   |
+39 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+40 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+44 |                         24 as libc::c_int
+45 ~                     }
+   |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:59:17
+   |
+59 |                 (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |                 ^
+...
+65 |                 })
+   |                  ^
+   |
+help: remove these parentheses
+   |
+59 ~                 if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+60 |                     == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+64 |                     24 as libc::c_int
+65 ~                 }
+   |
+
+warning: unnecessary parentheses around function argument
+    --> io.rs:5371:13
+     |
+5371 |             (if interesting != 0 { 0 as libc::c_int } else { 1 as libc::c_int }),
+     |             ^                                                                  ^
+     |
+help: remove these parentheses
+     |
+5371 -             (if interesting != 0 { 0 as libc::c_int } else { 1 as libc::c_int }),
+5371 +             if interesting != 0 { 0 as libc::c_int } else { 1 as libc::c_int },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> io.rs:7766:9
+     |
+7766 |         ({
+     |         ^
+...
+7793 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+7766 ~         {
+7767 |             let mut __ptr: *const libc::c_char = buf as *const libc::c_char;
+   ...
+7792 |             size.wrapping_mul(count).wrapping_sub(__cnt).wrapping_div(size)
+7793 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> node.rs:1056:29
+     |
+1056 | ...                   (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |                       ^
+...
+1062 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1056 ~                             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+1057 |                                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+1061 |                                 __isnanl(f128::f128::new((*n).sub.val.fltnum))
+1062 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> node.rs:1071:33
+     |
+1071 | ...                   (if ::core::mem::size_of::<libc::c_double>()
+     |                       ^
+...
+1079 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1071 ~                                 if ::core::mem::size_of::<libc::c_double>()
+1072 |                                     as libc::c_ulong
+   ...
+1078 |                                         as libc::c_int
+1079 ~                                 }
+     |
+
+warning: unused import: `::libc`
+ --> replace.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:522:9
+     |
+522  |         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |         ^
+...
+1196 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+522  ~         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+523  |             (if (if item_size < 0 as libc::c_int as libc::c_long {
+   ...
+1195 |             })
+1196 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:523:13
+    |
+523 |             (if (if item_size < 0 as libc::c_int as libc::c_long {
+    |             ^
+...
+868 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+523 ~             if (if item_size < 0 as libc::c_int as libc::c_long {
+524 |                 (if n < 0 as libc::c_int as libc::c_long {
+  ...
+867 |                 0 as libc::c_int
+868 ~             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:524:17
+    |
+524 |                 (if n < 0 as libc::c_int as libc::c_long {
+    |                 ^
+...
+727 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+524 ~                 if n < 0 as libc::c_int as libc::c_long {
+525 |                     (if ((if 1 as libc::c_int != 0 {
+  ...
+726 |                     })
+727 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:525:21
+    |
+525 |                     (if ((if 1 as libc::c_int != 0 {
+    |                     ^
+...
+607 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+525 ~                     if ((if 1 as libc::c_int != 0 {
+526 |                         0 as libc::c_int as libc::c_long
+  ...
+606 |                         }) <= -(1 as libc::c_int) as libc::c_long - n) as libc::c_int
+607 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:609:21
+    |
+609 |                     (if (if (if ((if 1 as libc::c_int != 0 {
+    |                     ^
+...
+726 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+609 ~                     if (if (if ((if 1 as libc::c_int != 0 {
+610 |                         0 as libc::c_int as libc::c_long
+  ...
+725 |                             / item_size < n) as libc::c_int
+726 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:705:25
+    |
+705 |                         (if ((if 1 as libc::c_int != 0 {
+    |                         ^
+...
+722 |                         })
+    |                          ^
+    |
+help: remove these parentheses
+    |
+705 ~                         if ((if 1 as libc::c_int != 0 {
+706 |                             0 as libc::c_int as libc::c_long
+  ...
+721 |                                 as libc::c_int
+722 ~                         }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:729:17
+    |
+729 |                 (if item_size == 0 as libc::c_int as libc::c_long {
+    |                 ^
+...
+858 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+729 ~                 if item_size == 0 as libc::c_int as libc::c_long {
+730 |                     0 as libc::c_int
+  ...
+857 |                     })
+858 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:732:21
+    |
+732 |                     (if n < 0 as libc::c_int as libc::c_long {
+    |                     ^
+...
+857 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+732 ~                     if n < 0 as libc::c_int as libc::c_long {
+733 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+  ...
+856 |                             as libc::c_int
+857 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:733:25
+    |
+733 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+    |                         ^
+...
+853 |                         })
+    |                          ^
+    |
+help: remove these parentheses
+    |
+733 ~                         if (if (if ((if 1 as libc::c_int != 0 {
+734 |                             0 as libc::c_int as libc::c_long
+  ...
+852 |                                 / n < item_size) as libc::c_int
+853 ~                         }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:832:29
+    |
+832 | ...                   (if ((if 1 as libc::c_int != 0 {
+    |                       ^
+...
+849 | ...                   })
+    |                        ^
+    |
+help: remove these parentheses
+    |
+832 ~                             if ((if 1 as libc::c_int != 0 {
+833 |                                 0 as libc::c_int as libc::c_long
+  ...
+848 |                                     as libc::c_int
+849 ~                             }
+    |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:870:13
+     |
+870  |             (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |             ^
+...
+1195 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+870  ~             if (if item_size < 0 as libc::c_int as libc::c_long {
+871  |                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+1194 |                 0 as libc::c_int
+1195 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:871:17
+     |
+871  |                 (if n < 0 as libc::c_int as libc::c_long {
+     |                 ^
+...
+1067 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+871  ~                 if n < 0 as libc::c_int as libc::c_long {
+872  |                     (if ((if 1 as libc::c_int != 0 {
+   ...
+1066 |                     })
+1067 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+   --> support/dfa.rs:872:21
+    |
+872 |                     (if ((if 1 as libc::c_int != 0 {
+    |                     ^
+...
+958 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+872 ~                     if ((if 1 as libc::c_int != 0 {
+873 |                         0 as libc::c_int as libc::c_long
+  ...
+957 |                         }) <= -(1 as libc::c_int) as libc::c_long - n) as libc::c_int
+958 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:960:21
+     |
+960  |                     (if (if (if ((if 1 as libc::c_int != 0 {
+     |                     ^
+...
+1066 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+960  ~                     if (if (if ((if 1 as libc::c_int != 0 {
+961  |                         0 as libc::c_int as libc::c_long
+   ...
+1065 |                         (0 as libc::c_int as libc::c_long / item_size < n) as libc::c_int
+1066 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1049:25
+     |
+1049 |                         (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1063 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1049 ~                         if ((if 1 as libc::c_int != 0 {
+1050 |                             0 as libc::c_int as libc::c_long
+   ...
+1062 |                                 as libc::c_int
+1063 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1069:17
+     |
+1069 |                 (if item_size == 0 as libc::c_int as libc::c_long {
+     |                 ^
+...
+1185 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1069 ~                 if item_size == 0 as libc::c_int as libc::c_long {
+1070 |                     0 as libc::c_int
+   ...
+1184 |                     })
+1185 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1072:21
+     |
+1072 |                     (if n < 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+1184 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1072 ~                     if n < 0 as libc::c_int as libc::c_long {
+1073 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+1183 |                             as libc::c_long / item_size < n) as libc::c_int
+1184 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1073:25
+     |
+1073 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1180 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1073 ~                         if (if (if ((if 1 as libc::c_int != 0 {
+1074 |                             0 as libc::c_int as libc::c_long
+   ...
+1179 |                                 as libc::c_int
+1180 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1162:29
+     |
+1162 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1176 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1162 ~                             if ((if 1 as libc::c_int != 0 {
+1163 |                                 0 as libc::c_int as libc::c_long
+   ...
+1175 |                                     as libc::c_int
+1176 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1198:9
+     |
+1198 |         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |         ^
+...
+4061 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+1198 ~         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+1199 |             == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+4060 |             })
+4061 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1201:13
+     |
+1201 |             (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |             ^
+...
+1892 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1201 ~             if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+1202 |                 (if (if item_size < 0 as libc::c_int as libc::c_long {
+   ...
+1891 |                 })
+1892 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1202:17
+     |
+1202 |                 (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                 ^
+...
+1562 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1202 ~                 if (if item_size < 0 as libc::c_int as libc::c_long {
+1203 |                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+1561 |                     0 as libc::c_int
+1562 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1203:21
+     |
+1203 |                     (if n < 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+1415 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1203 ~                     if n < 0 as libc::c_int as libc::c_long {
+1204 |                         (if ((if 1 as libc::c_int != 0 {
+   ...
+1414 |                         })
+1415 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1204:25
+     |
+1204 |                         (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1286 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1204 ~                         if ((if 1 as libc::c_int != 0 {
+1205 |                             0 as libc::c_int as libc::c_long
+   ...
+1285 |                             }) <= -(1 as libc::c_int) as libc::c_long - n) as libc::c_int
+1286 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1288:25
+     |
+1288 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1414 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1288 ~                         if (if (if ((if 1 as libc::c_int != 0 {
+1289 |                             0 as libc::c_int as libc::c_long
+   ...
+1413 |                                 / item_size < n) as libc::c_int
+1414 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1393:29
+     |
+1393 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1410 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1393 ~                             if ((if 1 as libc::c_int != 0 {
+1394 |                                 0 as libc::c_int as libc::c_long
+   ...
+1409 |                                     as libc::c_int
+1410 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1417:21
+     |
+1417 |                     (if item_size == 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+1552 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1417 ~                     if item_size == 0 as libc::c_int as libc::c_long {
+1418 |                         0 as libc::c_int
+   ...
+1551 |                         })
+1552 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1420:25
+     |
+1420 |                         (if n < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+1551 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1420 ~                         if n < 0 as libc::c_int as libc::c_long {
+1421 |                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+1550 |                                 as libc::c_int
+1551 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1421:29
+     |
+1421 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1547 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1421 ~                             if (if (if ((if 1 as libc::c_int != 0 {
+1422 |                                 0 as libc::c_int as libc::c_long
+   ...
+1546 |                                     as libc::c_long / n < item_size) as libc::c_int
+1547 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1526:33
+     |
+1526 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1543 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1526 ~                                 if ((if 1 as libc::c_int != 0 {
+1527 |                                     0 as libc::c_int as libc::c_long
+   ...
+1542 |                                         as libc::c_int
+1543 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1564:17
+     |
+1564 |                 (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                 ^
+...
+1891 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1564 ~                 if (if item_size < 0 as libc::c_int as libc::c_long {
+1565 |                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+1890 |                     0 as libc::c_int
+1891 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1565:21
+     |
+1565 |                     (if n < 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+1763 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1565 ~                     if n < 0 as libc::c_int as libc::c_long {
+1566 |                         (if ((if 1 as libc::c_int != 0 {
+   ...
+1762 |                         })
+1763 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1566:25
+     |
+1566 |                         (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1653 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1566 ~                         if ((if 1 as libc::c_int != 0 {
+1567 |                             0 as libc::c_int as libc::c_long
+   ...
+1652 |                             }) <= -(1 as libc::c_int) as libc::c_long - n) as libc::c_int
+1653 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1655:25
+     |
+1655 |                         (if (if (if ((if 1 as libc::c_int != 0 {
+     |                         ^
+...
+1762 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1655 ~                         if (if (if ((if 1 as libc::c_int != 0 {
+1656 |                             0 as libc::c_int as libc::c_long
+   ...
+1761 |                                 as libc::c_int
+1762 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1744:29
+     |
+1744 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1758 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1744 ~                             if ((if 1 as libc::c_int != 0 {
+1745 |                                 0 as libc::c_int as libc::c_long
+   ...
+1757 |                                     as libc::c_int
+1758 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1765:21
+     |
+1765 |                     (if item_size == 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+1881 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1765 ~                     if item_size == 0 as libc::c_int as libc::c_long {
+1766 |                         0 as libc::c_int
+   ...
+1880 |                         })
+1881 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1768:25
+     |
+1768 |                         (if n < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+1880 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1768 ~                         if n < 0 as libc::c_int as libc::c_long {
+1769 |                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+1879 |                                 as libc::c_long / item_size < n) as libc::c_int
+1880 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1769:29
+     |
+1769 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1876 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1769 ~                             if (if (if ((if 1 as libc::c_int != 0 {
+1770 |                                 0 as libc::c_int as libc::c_long
+   ...
+1875 |                                     as libc::c_int
+1876 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1858:33
+     |
+1858 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1872 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1858 ~                                 if ((if 1 as libc::c_int != 0 {
+1859 |                                     0 as libc::c_int as libc::c_long
+   ...
+1871 |                                         as libc::c_int
+1872 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1894:13
+     |
+1894 |             (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |             ^
+...
+4060 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1894 ~             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+1895 |                 == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+4059 |                 })
+4060 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1897:17
+     |
+1897 |                 (if ((if 1 as libc::c_int != 0 {
+     |                 ^
+...
+2605 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1897 ~                 if ((if 1 as libc::c_int != 0 {
+1898 |                     0 as libc::c_int as libc::c_long
+   ...
+2604 |                     })
+2605 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1903:21
+     |
+1903 |                     (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+2266 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1903 ~                     if (if item_size < 0 as libc::c_int as libc::c_long {
+1904 |                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+2265 |                         0 as libc::c_int
+2266 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1904:25
+     |
+1904 |                         (if n < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+2117 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1904 ~                         if n < 0 as libc::c_int as libc::c_long {
+1905 |                             (if ((if 1 as libc::c_int != 0 {
+   ...
+2116 |                             })
+2117 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1905:29
+     |
+1905 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+1988 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1905 ~                             if ((if 1 as libc::c_int != 0 {
+1906 |                                 0 as libc::c_int as libc::c_long
+   ...
+1987 |                                     as libc::c_int
+1988 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:1990:29
+     |
+1990 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2116 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1990 ~                             if (if (if ((if 1 as libc::c_int != 0 {
+1991 |                                 0 as libc::c_int as libc::c_long
+   ...
+2115 |                                     as libc::c_long / item_size < n) as libc::c_int
+2116 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2095:33
+     |
+2095 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2112 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2095 ~                                 if ((if 1 as libc::c_int != 0 {
+2096 |                                     0 as libc::c_int as libc::c_long
+   ...
+2111 |                                         as libc::c_int
+2112 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2119:25
+     |
+2119 |                         (if item_size == 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+2254 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2119 ~                         if item_size == 0 as libc::c_int as libc::c_long {
+2120 |                             0 as libc::c_int
+   ...
+2253 |                             })
+2254 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2122:29
+     |
+2122 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+2253 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2122 ~                             if n < 0 as libc::c_int as libc::c_long {
+2123 |                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+2252 |                                     as libc::c_int
+2253 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2123:33
+     |
+2123 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2249 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2123 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+2124 |                                     0 as libc::c_int as libc::c_long
+   ...
+2248 |                                         as libc::c_long / n < item_size) as libc::c_int
+2249 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2228:37
+     |
+2228 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2245 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2228 ~                                     if ((if 1 as libc::c_int != 0 {
+2229 |                                         0 as libc::c_int as libc::c_long
+   ...
+2244 |                                             as libc::c_int
+2245 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2268:21
+     |
+2268 |                     (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                     ^
+...
+2604 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2268 ~                     if (if item_size < 0 as libc::c_int as libc::c_long {
+2269 |                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+2603 |                         0 as libc::c_int
+2604 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2269:25
+     |
+2269 |                         (if n < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+2474 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2269 ~                         if n < 0 as libc::c_int as libc::c_long {
+2270 |                             (if ((if 1 as libc::c_int != 0 {
+   ...
+2473 |                             })
+2474 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2270:29
+     |
+2270 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2364 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2270 ~                             if ((if 1 as libc::c_int != 0 {
+2271 |                                 0 as libc::c_int as libc::c_long
+   ...
+2363 |                                     as libc::c_int
+2364 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2366:29
+     |
+2366 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2473 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2366 ~                             if (if (if ((if 1 as libc::c_int != 0 {
+2367 |                                 0 as libc::c_int as libc::c_long
+   ...
+2472 |                                     as libc::c_int
+2473 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2455:33
+     |
+2455 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2469 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2455 ~                                 if ((if 1 as libc::c_int != 0 {
+2456 |                                     0 as libc::c_int as libc::c_long
+   ...
+2468 |                                         as libc::c_int
+2469 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2476:25
+     |
+2476 |                         (if item_size == 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+2594 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2476 ~                         if item_size == 0 as libc::c_int as libc::c_long {
+2477 |                             0 as libc::c_int
+   ...
+2593 |                             })
+2594 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2479:29
+     |
+2479 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+2593 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2479 ~                             if n < 0 as libc::c_int as libc::c_long {
+2480 |                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+2592 |                                     < n) as libc::c_int
+2593 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2480:33
+     |
+2480 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2587 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2480 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+2481 |                                     0 as libc::c_int as libc::c_long
+   ...
+2586 |                                         as libc::c_int
+2587 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2569:37
+     |
+2569 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2583 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2569 ~                                     if ((if 1 as libc::c_int != 0 {
+2570 |                                         0 as libc::c_int as libc::c_long
+   ...
+2582 |                                             as libc::c_int
+2583 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2607:17
+     |
+2607 |                 (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                 ^
+...
+4059 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2607 ~                 if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+2608 |                     == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+4058 |                     })
+4059 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2610:21
+     |
+2610 |                     (if ((if 1 as libc::c_int != 0 {
+     |                     ^
+...
+3323 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2610 ~                     if ((if 1 as libc::c_int != 0 {
+2611 |                         0 as libc::c_int as libc::c_long
+   ...
+3322 |                         })
+3323 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2617:25
+     |
+2617 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+2978 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2617 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+2618 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+2977 |                             0 as libc::c_int
+2978 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2618:29
+     |
+2618 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+2831 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2618 ~                             if n < 0 as libc::c_int as libc::c_long {
+2619 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+2830 |                                 })
+2831 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2619:33
+     |
+2619 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2702 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2619 ~                                 if ((if 1 as libc::c_int != 0 {
+2620 |                                     0 as libc::c_int as libc::c_long
+   ...
+2701 |                                         as libc::c_int
+2702 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2704:33
+     |
+2704 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2830 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2704 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+2705 |                                     0 as libc::c_int as libc::c_long
+   ...
+2829 |                                         - 1 as libc::c_long) / item_size < n) as libc::c_int
+2830 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2809:37
+     |
+2809 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2809 ~                                     if ((if 1 as libc::c_int != 0 {
+2810 |                                         0 as libc::c_int as libc::c_long
+   ...
+2825 |                                             as libc::c_int
+2826 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2833:29
+     |
+2833 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+2968 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2833 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+2834 |                                 0 as libc::c_int
+   ...
+2967 |                                 })
+2968 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2836:33
+     |
+2836 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+2967 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2836 ~                                 if n < 0 as libc::c_int as libc::c_long {
+2837 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+2966 |                                         as libc::c_int
+2967 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2837:37
+     |
+2837 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2963 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2837 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+2838 |                                         0 as libc::c_int as libc::c_long
+   ...
+2962 |                                             - 1 as libc::c_long) / n < item_size) as libc::c_int
+2963 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2942:41
+     |
+2942 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+2959 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2942 ~                                         if ((if 1 as libc::c_int != 0 {
+2943 |                                             0 as libc::c_int as libc::c_long
+   ...
+2958 |                                                 as libc::c_int
+2959 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2980:25
+     |
+2980 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3322 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2980 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+2981 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3321 |                             0 as libc::c_int
+3322 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2981:29
+     |
+2981 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3191 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2981 ~                             if n < 0 as libc::c_int as libc::c_long {
+2982 |                                 (if (if 1 as libc::c_int != 0 {
+   ...
+3190 |                                 })
+3191 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:2982:33
+     |
+2982 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3081 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2982 ~                                 if (if 1 as libc::c_int != 0 {
+2983 |                                     0 as libc::c_int as libc::c_ulong
+   ...
+3080 |                                             as libc::c_ulong) as libc::c_int
+3081 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3083:33
+     |
+3083 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3190 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3083 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3084 |                                     0 as libc::c_int as libc::c_long
+   ...
+3189 |                                         as libc::c_int
+3190 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3172:37
+     |
+3172 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3186 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3172 ~                                     if ((if 1 as libc::c_int != 0 {
+3173 |                                         0 as libc::c_int as libc::c_long
+   ...
+3185 |                                             as libc::c_int
+3186 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3193:29
+     |
+3193 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3193 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+3194 |                                 0 as libc::c_int
+   ...
+3311 |                                 })
+3312 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3196:33
+     |
+3196 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3311 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3196 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3197 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3310 |                                         < n as libc::c_ulong) as libc::c_int
+3311 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3197:37
+     |
+3197 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3304 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3197 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3198 |                                         0 as libc::c_int as libc::c_long
+   ...
+3303 |                                             as libc::c_int
+3304 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3286:41
+     |
+3286 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3300 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3286 ~                                         if ((if 1 as libc::c_int != 0 {
+3287 |                                             0 as libc::c_int as libc::c_long
+   ...
+3299 |                                                 as libc::c_int
+3300 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3325:21
+     |
+3325 |                     (if ((if 1 as libc::c_int != 0 {
+     |                     ^
+...
+4058 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3325 ~                     if ((if 1 as libc::c_int != 0 {
+3326 |                         0 as libc::c_int as libc::c_long
+   ...
+4057 |                         })
+4058 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3332:25
+     |
+3332 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3707 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3332 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+3333 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3706 |                             0 as libc::c_int
+3707 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3333:29
+     |
+3333 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3554 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3333 ~                             if n < 0 as libc::c_int as libc::c_long {
+3334 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+3553 |                                 })
+3554 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3334:33
+     |
+3334 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3421 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3334 ~                                 if ((if 1 as libc::c_int != 0 {
+3335 |                                     0 as libc::c_int as libc::c_longlong
+   ...
+3420 |                                             as libc::c_longlong) as libc::c_int
+3421 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3423:33
+     |
+3423 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3553 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3423 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3424 |                                     0 as libc::c_int as libc::c_longlong
+   ...
+3552 |                                         < n as libc::c_longlong) as libc::c_int
+3553 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3530:37
+     |
+3530 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3548 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3530 ~                                     if ((if 1 as libc::c_int != 0 {
+3531 |                                         0 as libc::c_int as libc::c_long
+   ...
+3547 |                                                     as libc::c_longlong) as libc::c_int
+3548 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3556:29
+     |
+3556 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3695 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3556 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+3557 |                                 0 as libc::c_int
+   ...
+3694 |                                 })
+3695 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3559:33
+     |
+3559 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3694 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3559 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3560 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3693 |                                         as libc::c_int
+3694 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3560:37
+     |
+3560 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3689 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3560 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3561 |                                         0 as libc::c_int as libc::c_longlong
+   ...
+3688 |                                             < item_size as libc::c_longlong) as libc::c_int
+3689 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3667:41
+     |
+3667 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3684 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3667 ~                                         if ((if 1 as libc::c_int != 0 {
+3668 |                                             0 as libc::c_int as libc::c_long
+   ...
+3683 |                                                     as libc::c_longlong) as libc::c_int
+3684 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3709:25
+     |
+3709 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4057 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3709 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+3710 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4056 |                             0 as libc::c_int
+4057 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3710:29
+     |
+3710 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3925 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3710 ~                             if n < 0 as libc::c_int as libc::c_long {
+3711 |                                 (if (if 1 as libc::c_int != 0 {
+   ...
+3924 |                                 })
+3925 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3711:33
+     |
+3711 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3815 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3711 ~                                 if (if 1 as libc::c_int != 0 {
+3712 |                                     0 as libc::c_int as libc::c_ulonglong
+   ...
+3814 |                                             as libc::c_ulonglong) as libc::c_int
+3815 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3817:33
+     |
+3817 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3924 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3817 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3818 |                                     0 as libc::c_int as libc::c_long
+   ...
+3923 |                                         as libc::c_int
+3924 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3906:37
+     |
+3906 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3920 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3906 ~                                     if ((if 1 as libc::c_int != 0 {
+3907 |                                         0 as libc::c_int as libc::c_long
+   ...
+3919 |                                             as libc::c_int
+3920 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3927:29
+     |
+3927 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4047 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3927 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+3928 |                                 0 as libc::c_int
+   ...
+4046 |                                 })
+4047 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3930:33
+     |
+3930 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4046 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3930 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3931 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4045 |                                         < n as libc::c_ulonglong) as libc::c_int
+4046 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:3931:37
+     |
+3931 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4038 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3931 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3932 |                                         0 as libc::c_int as libc::c_long
+   ...
+4037 |                                             as libc::c_int
+4038 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4020:41
+     |
+4020 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4034 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4020 ~                                         if ((if 1 as libc::c_int != 0 {
+4021 |                                             0 as libc::c_int as libc::c_long
+   ...
+4033 |                                                 as libc::c_int
+4034 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4094:21
+     |
+4094 |                     (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |                     ^
+...
+4778 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4094 ~                     if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+4095 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+   ...
+4777 |                         })
+4778 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4095:25
+     |
+4095 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4446 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4095 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+4096 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4445 |                             0 as libc::c_int
+4446 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4096:29
+     |
+4096 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4303 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4096 ~                             if n < 0 as libc::c_int as libc::c_long {
+4097 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4302 |                                 })
+4303 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4097:33
+     |
+4097 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4180 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4097 ~                                 if ((if 1 as libc::c_int != 0 {
+4098 |                                     0 as libc::c_int as libc::c_long
+   ...
+4179 |                                         as libc::c_int
+4180 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4182:33
+     |
+4182 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4302 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4182 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+4183 |                                     0 as libc::c_int as libc::c_long
+   ...
+4301 |                                         / item_size < n) as libc::c_int
+4302 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4281:37
+     |
+4281 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4298 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4281 ~                                     if ((if 1 as libc::c_int != 0 {
+4282 |                                         0 as libc::c_int as libc::c_long
+   ...
+4297 |                                             as libc::c_int
+4298 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4305:29
+     |
+4305 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4434 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4305 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+4306 |                                 0 as libc::c_int
+   ...
+4433 |                                 })
+4434 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4308:33
+     |
+4308 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4433 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4308 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4309 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4432 |                                         as libc::c_int
+4433 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4309:37
+     |
+4309 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4429 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4309 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4310 |                                         0 as libc::c_int as libc::c_long
+   ...
+4428 |                                             / n < item_size) as libc::c_int
+4429 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4408:41
+     |
+4408 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4425 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4408 ~                                         if ((if 1 as libc::c_int != 0 {
+4409 |                                             0 as libc::c_int as libc::c_long
+   ...
+4424 |                                                 as libc::c_int
+4425 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4448:25
+     |
+4448 |                         (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4777 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4448 ~                         if (if item_size < 0 as libc::c_int as libc::c_long {
+4449 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4776 |                             0 as libc::c_int
+4777 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4449:29
+     |
+4449 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4647 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4449 ~                             if n < 0 as libc::c_int as libc::c_long {
+4450 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4646 |                                 })
+4647 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4450:33
+     |
+4450 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4537 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4450 ~                                 if ((if 1 as libc::c_int != 0 {
+4451 |                                     0 as libc::c_int as libc::c_long
+   ...
+4536 |                                         as libc::c_int
+4537 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4539:33
+     |
+4539 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4646 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4539 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+4540 |                                     0 as libc::c_int as libc::c_long
+   ...
+4645 |                                         as libc::c_int
+4646 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4628:37
+     |
+4628 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4642 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4628 ~                                     if ((if 1 as libc::c_int != 0 {
+4629 |                                         0 as libc::c_int as libc::c_long
+   ...
+4641 |                                             as libc::c_int
+4642 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4649:29
+     |
+4649 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4765 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4649 ~                             if item_size == 0 as libc::c_int as libc::c_long {
+4650 |                                 0 as libc::c_int
+   ...
+4764 |                                 })
+4765 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4652:33
+     |
+4652 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4764 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4652 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4653 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4763 |                                         as libc::c_long / item_size < n) as libc::c_int
+4764 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4653:37
+     |
+4653 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4760 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4653 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4654 |                                         0 as libc::c_int as libc::c_long
+   ...
+4759 |                                             as libc::c_int
+4760 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4742:41
+     |
+4742 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4756 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4742 ~                                         if ((if 1 as libc::c_int != 0 {
+4743 |                                             0 as libc::c_int as libc::c_long
+   ...
+4755 |                                                 as libc::c_int
+4756 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4780:21
+     |
+4780 |                     (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                     ^
+...
+7652 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4780 ~                     if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4781 |                         == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+7651 |                         })
+7652 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4783:25
+     |
+4783 |                         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+     |                         ^
+...
+5482 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4783 ~                         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+4784 |                         {
+   ...
+5481 |                             })
+5482 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4785:29
+     |
+4785 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5148 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4785 ~                             if (if item_size < 0 as libc::c_int as libc::c_long {
+4786 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5147 |                                 0 as libc::c_int
+5148 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4786:33
+     |
+4786 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4999 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4786 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4787 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4998 |                                     })
+4999 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4787:37
+     |
+4787 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4870 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4787 ~                                     if ((if 1 as libc::c_int != 0 {
+4788 |                                         0 as libc::c_int as libc::c_long
+   ...
+4869 |                                             as libc::c_int
+4870 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4872:37
+     |
+4872 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4998 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4872 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4873 |                                         0 as libc::c_int as libc::c_long
+   ...
+4997 |                                             as libc::c_long / item_size < n) as libc::c_int
+4998 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:4977:41
+     |
+4977 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4994 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4977 ~                                         if ((if 1 as libc::c_int != 0 {
+4978 |                                             0 as libc::c_int as libc::c_long
+   ...
+4993 |                                                 as libc::c_int
+4994 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5001:33
+     |
+5001 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5136 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5001 ~                                 if item_size == 0 as libc::c_int as libc::c_long {
+5002 |                                     0 as libc::c_int
+   ...
+5135 |                                     })
+5136 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5004:37
+     |
+5004 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5135 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5004 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5005 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5134 |                                             as libc::c_int
+5135 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5005:41
+     |
+5005 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5131 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5005 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5006 |                                             0 as libc::c_int as libc::c_long
+   ...
+5130 |                                                 as libc::c_long / n < item_size) as libc::c_int
+5131 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5110:45
+     |
+5110 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5127 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5110 ~                                             if ((if 1 as libc::c_int != 0 {
+5111 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5126 |                                                     as libc::c_int
+5127 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5150:29
+     |
+5150 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5481 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5150 ~                             if (if item_size < 0 as libc::c_int as libc::c_long {
+5151 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5480 |                                 0 as libc::c_int
+5481 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5151:33
+     |
+5151 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5350 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5151 ~                                 if n < 0 as libc::c_int as libc::c_long {
+5152 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+5349 |                                     })
+5350 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5152:37
+     |
+5152 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5240 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5152 ~                                     if ((if 1 as libc::c_int != 0 {
+5153 |                                         0 as libc::c_int as libc::c_long
+   ...
+5239 |                                             as libc::c_int
+5240 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5242:37
+     |
+5242 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5349 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5242 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+5243 |                                         0 as libc::c_int as libc::c_long
+   ...
+5348 |                                             as libc::c_int
+5349 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5331:41
+     |
+5331 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5345 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5331 ~                                         if ((if 1 as libc::c_int != 0 {
+5332 |                                             0 as libc::c_int as libc::c_long
+   ...
+5344 |                                                 as libc::c_int
+5345 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5352:33
+     |
+5352 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5469 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5352 ~                                 if item_size == 0 as libc::c_int as libc::c_long {
+5353 |                                     0 as libc::c_int
+   ...
+5468 |                                     })
+5469 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5355:37
+     |
+5355 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5468 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5355 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5356 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5467 |                                             as libc::c_int
+5468 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5356:41
+     |
+5356 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5463 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5356 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5357 |                                             0 as libc::c_int as libc::c_long
+   ...
+5462 |                                                 as libc::c_int
+5463 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5445:45
+     |
+5445 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5459 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5445 ~                                             if ((if 1 as libc::c_int != 0 {
+5446 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5458 |                                                     as libc::c_int
+5459 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5484:25
+     |
+5484 |                         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                         ^
+...
+7651 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+5484 ~                         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+5485 |                             == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+7650 |                             })
+7651 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5487:29
+     |
+5487 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5487 ~                             if ((if 1 as libc::c_int != 0 {
+5488 |                                 0 as libc::c_int as libc::c_long
+   ...
+6195 |                                 })
+6196 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5494:33
+     |
+5494 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5857 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5494 ~                                 if (if item_size < 0 as libc::c_int as libc::c_long {
+5495 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5856 |                                     0 as libc::c_int
+5857 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5495:37
+     |
+5495 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5708 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5495 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5496 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5707 |                                         })
+5708 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5496:41
+     |
+5496 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5579 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5496 ~                                         if ((if 1 as libc::c_int != 0 {
+5497 |                                             0 as libc::c_int as libc::c_long
+   ...
+5578 |                                                 as libc::c_int
+5579 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5581:41
+     |
+5581 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5707 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5581 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5582 |                                             0 as libc::c_int as libc::c_long
+   ...
+5706 |                                                 as libc::c_long / item_size < n) as libc::c_int
+5707 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5686:45
+     |
+5686 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5703 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5686 ~                                             if ((if 1 as libc::c_int != 0 {
+5687 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5702 |                                                     as libc::c_int
+5703 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5710:37
+     |
+5710 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5845 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5710 ~                                     if item_size == 0 as libc::c_int as libc::c_long {
+5711 |                                         0 as libc::c_int
+   ...
+5844 |                                         })
+5845 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5713:41
+     |
+5713 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5844 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5713 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5714 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5843 |                                                 as libc::c_int
+5844 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5714:45
+     |
+5714 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5840 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5714 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5715 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5839 |                                                     as libc::c_long / n < item_size) as libc::c_int
+5840 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5819:49
+     |
+5819 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5836 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5819 ~                                                 if ((if 1 as libc::c_int != 0 {
+5820 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5835 |                                                         as libc::c_int
+5836 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5859:33
+     |
+5859 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6195 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5859 ~                                 if (if item_size < 0 as libc::c_int as libc::c_long {
+5860 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6194 |                                     0 as libc::c_int
+6195 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5860:37
+     |
+5860 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6065 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5860 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5861 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+6064 |                                         })
+6065 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5861:41
+     |
+5861 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5955 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5861 ~                                         if ((if 1 as libc::c_int != 0 {
+5862 |                                             0 as libc::c_int as libc::c_long
+   ...
+5954 |                                                 as libc::c_int
+5955 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:5957:41
+     |
+5957 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6064 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5957 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5958 |                                             0 as libc::c_int as libc::c_long
+   ...
+6063 |                                                 as libc::c_int
+6064 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6046:45
+     |
+6046 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6060 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6046 ~                                             if ((if 1 as libc::c_int != 0 {
+6047 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6059 |                                                     as libc::c_int
+6060 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6067:37
+     |
+6067 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6185 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6067 ~                                     if item_size == 0 as libc::c_int as libc::c_long {
+6068 |                                         0 as libc::c_int
+   ...
+6184 |                                         })
+6185 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6070:41
+     |
+6070 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6184 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6070 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6071 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6183 |                                                 < n) as libc::c_int
+6184 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6071:45
+     |
+6071 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6178 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6071 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6072 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6177 |                                                     as libc::c_int
+6178 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6160:49
+     |
+6160 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6174 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6160 ~                                                 if ((if 1 as libc::c_int != 0 {
+6161 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6173 |                                                         as libc::c_int
+6174 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6198:29
+     |
+6198 | ...                   (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                       ^
+...
+7650 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6198 ~                             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+6199 |                                 == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+7649 |                                 })
+7650 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6201:33
+     |
+6201 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6914 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6201 ~                                 if ((if 1 as libc::c_int != 0 {
+6202 |                                     0 as libc::c_int as libc::c_long
+   ...
+6913 |                                     })
+6914 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6208:37
+     |
+6208 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6569 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6208 ~                                     if (if item_size < 0 as libc::c_int as libc::c_long {
+6209 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6568 |                                         0 as libc::c_int
+6569 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6209:41
+     |
+6209 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6422 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6209 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6210 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+6421 |                                             })
+6422 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6210:45
+     |
+6210 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6293 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6210 ~                                             if ((if 1 as libc::c_int != 0 {
+6211 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6292 |                                                     as libc::c_int
+6293 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6295:45
+     |
+6295 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6421 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6295 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6296 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6420 |                                                     - 1 as libc::c_long) / item_size < n) as libc::c_int
+6421 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6400:49
+     |
+6400 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6417 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6400 ~                                                 if ((if 1 as libc::c_int != 0 {
+6401 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6416 |                                                         as libc::c_int
+6417 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6424:41
+     |
+6424 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6559 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6424 ~                                         if item_size == 0 as libc::c_int as libc::c_long {
+6425 |                                             0 as libc::c_int
+   ...
+6558 |                                             })
+6559 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6427:45
+     |
+6427 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6558 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6427 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6428 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6557 |                                                     as libc::c_int
+6558 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6428:49
+     |
+6428 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6554 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6428 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6429 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6553 |                                                         - 1 as libc::c_long) / n < item_size) as libc::c_int
+6554 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6533:53
+     |
+6533 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6550 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6533 ~                                                     if ((if 1 as libc::c_int != 0 {
+6534 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6549 |                                                             as libc::c_int
+6550 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6571:37
+     |
+6571 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6913 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6571 ~                                     if (if item_size < 0 as libc::c_int as libc::c_long {
+6572 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6912 |                                         0 as libc::c_int
+6913 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6572:41
+     |
+6572 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6782 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6572 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6573 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6781 |                                             })
+6782 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6573:45
+     |
+6573 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6672 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6573 ~                                             if (if 1 as libc::c_int != 0 {
+6574 |                                                 0 as libc::c_int as libc::c_ulong
+   ...
+6671 |                                                         as libc::c_ulong) as libc::c_int
+6672 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6674:45
+     |
+6674 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6781 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6674 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6675 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6780 |                                                     as libc::c_int
+6781 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6763:49
+     |
+6763 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6777 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6763 ~                                                 if ((if 1 as libc::c_int != 0 {
+6764 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6776 |                                                         as libc::c_int
+6777 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6784:41
+     |
+6784 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6903 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6784 ~                                         if item_size == 0 as libc::c_int as libc::c_long {
+6785 |                                             0 as libc::c_int
+   ...
+6902 |                                             })
+6903 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6787:45
+     |
+6787 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6902 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6787 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6788 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6901 |                                                     < n as libc::c_ulong) as libc::c_int
+6902 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6788:49
+     |
+6788 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6895 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6788 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6789 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6894 |                                                         as libc::c_int
+6895 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6877:53
+     |
+6877 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6891 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6877 ~                                                     if ((if 1 as libc::c_int != 0 {
+6878 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6890 |                                                             as libc::c_int
+6891 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6916:33
+     |
+6916 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7649 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6916 ~                                 if ((if 1 as libc::c_int != 0 {
+6917 |                                     0 as libc::c_int as libc::c_long
+   ...
+7648 |                                     })
+7649 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6923:37
+     |
+6923 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7298 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6923 ~                                     if (if item_size < 0 as libc::c_int as libc::c_long {
+6924 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7297 |                                         0 as libc::c_int
+7298 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6924:41
+     |
+6924 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7145 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6924 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6925 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+7144 |                                             })
+7145 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:6925:45
+     |
+6925 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7012 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6925 ~                                             if ((if 1 as libc::c_int != 0 {
+6926 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+7011 |                                                         as libc::c_longlong) as libc::c_int
+7012 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7014:45
+     |
+7014 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7144 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7014 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+7015 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+7143 |                                                     < n as libc::c_longlong) as libc::c_int
+7144 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7121:49
+     |
+7121 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7139 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7121 ~                                                 if ((if 1 as libc::c_int != 0 {
+7122 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7138 |                                                                 as libc::c_longlong) as libc::c_int
+7139 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7147:41
+     |
+7147 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7286 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7147 ~                                         if item_size == 0 as libc::c_int as libc::c_long {
+7148 |                                             0 as libc::c_int
+   ...
+7285 |                                             })
+7286 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7150:45
+     |
+7150 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7285 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7150 ~                                             if n < 0 as libc::c_int as libc::c_long {
+7151 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7284 |                                                     as libc::c_int
+7285 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7151:49
+     |
+7151 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7280 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7151 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+7152 |                                                     0 as libc::c_int as libc::c_longlong
+   ...
+7279 |                                                         < item_size as libc::c_longlong) as libc::c_int
+7280 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7258:53
+     |
+7258 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7275 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7258 ~                                                     if ((if 1 as libc::c_int != 0 {
+7259 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7274 |                                                                 as libc::c_longlong) as libc::c_int
+7275 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7300:37
+     |
+7300 | ...                   (if (if item_size < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7648 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7300 ~                                     if (if item_size < 0 as libc::c_int as libc::c_long {
+7301 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7647 |                                         0 as libc::c_int
+7648 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7301:41
+     |
+7301 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7516 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7301 ~                                         if n < 0 as libc::c_int as libc::c_long {
+7302 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+7515 |                                             })
+7516 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7302:45
+     |
+7302 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7406 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7302 ~                                             if (if 1 as libc::c_int != 0 {
+7303 |                                                 0 as libc::c_int as libc::c_ulonglong
+   ...
+7405 |                                                         as libc::c_ulonglong) as libc::c_int
+7406 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7408:45
+     |
+7408 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7515 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7408 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+7409 |                                                 0 as libc::c_int as libc::c_long
+   ...
+7514 |                                                     as libc::c_int
+7515 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7497:49
+     |
+7497 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7511 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7497 ~                                                 if ((if 1 as libc::c_int != 0 {
+7498 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7510 |                                                         as libc::c_int
+7511 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7518:41
+     |
+7518 | ...                   (if item_size == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7638 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7518 ~                                         if item_size == 0 as libc::c_int as libc::c_long {
+7519 |                                             0 as libc::c_int
+   ...
+7637 |                                             })
+7638 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7521:45
+     |
+7521 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7637 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7521 ~                                             if n < 0 as libc::c_int as libc::c_long {
+7522 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7636 |                                                     < n as libc::c_ulonglong) as libc::c_int
+7637 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7522:49
+     |
+7522 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7629 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7522 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+7523 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7628 |                                                         as libc::c_int
+7629 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/dfa.rs:7611:53
+     |
+7611 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7625 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7611 ~                                                     if ((if 1 as libc::c_int != 0 {
+7612 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7624 |                                                             as libc::c_int
+7625 ~                                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> support/dfa.rs:7889:31
+     |
+7889 |     let mut ub: libc::c_int = ({
+     |                               ^
+...
+7908 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+7889 ~     let mut ub: libc::c_int = {
+7890 |         let mut __res: libc::c_int = 0;
+   ...
+7907 |         __res
+7908 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> support/dfa.rs:7918:29
+     |
+7918 |                     __res = (if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+     |                             ^
+...
+7922 |                     });
+     |                      ^
+     |
+help: remove these parentheses
+     |
+7918 ~                     __res = if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+7919 |                         __c
+7920 |                     } else {
+7921 |                         *(*__ctype_toupper_loc()).offset(__c as isize)
+7922 ~                     };
+     |
+
+warning: unnecessary parentheses around assigned value
+     --> support/dfa.rs:12721:57
+      |
+12721 | ...                   __res = (if __c < -(128 as libc::c_int)
+      |                               ^
+...
+12727 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12721 ~                                                 __res = if __c < -(128 as libc::c_int)
+12722 |                                                     || __c > 255 as libc::c_int
+    ...
+12726 |                                                     *(*__ctype_toupper_loc()).offset(__c as isize)
+12727 ~                                                 };
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> support/dfa.rs:12743:61
+      |
+12743 | ...                   __res = (if __c < -(128 as libc::c_int)
+      |                               ^
+...
+12749 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12743 ~                                                     __res = if __c < -(128 as libc::c_int)
+12744 |                                                         || __c > 255 as libc::c_int
+    ...
+12748 |                                                         *(*__ctype_toupper_loc()).offset(__c as isize)
+12749 ~                                                     };
+      |
+
+warning: unnecessary parentheses around method argument
+    --> support/regex.rs:1560:45
+     |
+1560 | ...                   (if i_0 < mbclen {
+     |                       ^
+...
+1564 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1560 ~                                             if i_0 < mbclen {
+1561 |                                                 i_0
+1562 |                                             } else {
+1563 |                                                 mbclen.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1564 ~                                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4027:17
+     |
+4027 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4033 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4027 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4028 |                     < max_i18n_object_size
+   ...
+4032 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4033 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4038:13
+     |
+4038 |             (if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+     |             ^
+...
+4056 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+4038 ~             if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+4039 |                 < (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+   ...
+4055 |                 ::core::mem::size_of::<re_node_set>() as libc::c_ulong
+4056 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4047:17
+     |
+4047 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4053 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4047 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4048 |                     < max_i18n_object_size
+   ...
+4052 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4053 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4071:17
+     |
+4071 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4077 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4071 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4072 |                     < max_i18n_object_size
+   ...
+4076 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4077 ~                 }
+     |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+    --> builtin.rs:7087:24
+     |
+7087 |     istate.as_ptr() as *mut _ as *mut libc::c_char
+     |                        ^^^^^^ needs more type information
+     |
+     = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0054]: cannot cast as `bool`
+     --> awkgram.rs:15540:15
+      |
+15540 |     *shadow = (*shadow as libc::c_int | ret as libc::c_int) as bool;
+      |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: compare with zero instead: `(*shadow as libc::c_int | ret as libc::c_int) != 0`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:657:36
+    |
+657 | ...                   "bswap {0}", inlateout(reg)
+    |                              ^^^
+658 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh0, fresh2) => fresh1,
+    |                       -------------------------------------------------- for this argument
+    |
+    = note: `#[warn(asm_sub_register)]` on by default
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:688:40
+    |
+688 | ...                   "bswap {0}", inlateout(reg)
+    |                              ^^^
+689 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh3, fresh5) =>
+    |                       -------------------------------------------------- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:852:24
+    |
+852 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh6,
+    |  ________________________^^^__________________-
+853 | |                 fresh8) => fresh7, options(preserves_flags, pure, readonly, att_syntax)
+    | |_______________________- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:918:24
+    |
+918 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh9,
+    |  ________________________^^^__________________-
+919 | |                 fresh11) => fresh10, options(preserves_flags, pure, readonly, att_syntax)
+    | |________________________- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:967:28
+    |
+967 |                     "bswap {0}", inlateout(reg)
+    |                            ^^^
+968 |                     c2rust_asm_casts::AsmCast::cast_in(fresh12, fresh14) => fresh13,
+    |                     ---------------------------------------------------- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1007:32
+     |
+1007 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1008 |                         c2rust_asm_casts::AsmCast::cast_in(fresh15, fresh17) => fresh16,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1033:32
+     |
+1033 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1034 |                         c2rust_asm_casts::AsmCast::cast_in(fresh18, fresh20) => fresh19,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1059:32
+     |
+1059 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1060 |                         c2rust_asm_casts::AsmCast::cast_in(fresh21, fresh23) => fresh22,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1085:32
+     |
+1085 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1086 |                         c2rust_asm_casts::AsmCast::cast_in(fresh24, fresh26) => fresh25,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1111:32
+     |
+1111 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1112 |                         c2rust_asm_casts::AsmCast::cast_in(fresh27, fresh29) => fresh28,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1137:32
+     |
+1137 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1138 |                         c2rust_asm_casts::AsmCast::cast_in(fresh30, fresh32) => fresh31,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1183:28
+     |
+1183 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1184 |                     c2rust_asm_casts::AsmCast::cast_in(fresh33, fresh35) => fresh34,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1210:28
+     |
+1210 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1211 |                     c2rust_asm_casts::AsmCast::cast_in(fresh36, fresh38) => fresh37,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1253:28
+     |
+1253 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1254 |                     c2rust_asm_casts::AsmCast::cast_in(fresh39, fresh41) => fresh40,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1306:28
+     |
+1306 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1307 |                     c2rust_asm_casts::AsmCast::cast_in(fresh42, fresh44) => fresh43,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1343:28
+     |
+1343 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1344 |                     c2rust_asm_casts::AsmCast::cast_in(fresh45, fresh47) => fresh46,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1557:24
+     |
+1557 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh48,
+     |  ________________________^^^__________________-
+1558 | |                 fresh50) => fresh49, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1697:36
+     |
+1697 | ...                   "bswap {0}", inlateout(reg)
+     |                              ^^^
+1698 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh51, fresh53) =>
+     |                       ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1733:40
+     |
+1733 | ...                   "bswap {0}", inlateout(reg)
+     |                              ^^^
+1734 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh54, fresh56) =>
+     |                       ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1880:24
+     |
+1880 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh57,
+     |  ________________________^^^__________________-
+1881 | |                 fresh59) => fresh58, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1950:24
+     |
+1950 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh60,
+     |  ________________________^^^__________________-
+1951 | |                 fresh62) => fresh61, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2046:24
+     |
+2046 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh63,
+     |  ________________________^^^__________________-
+2047 | |                 fresh65) => fresh64, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2089:28
+     |
+2089 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+2090 |                     c2rust_asm_casts::AsmCast::cast_in(fresh66, fresh68) => fresh67,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2207:28
+     |
+2207 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+2208 |                     c2rust_asm_casts::AsmCast::cast_in(fresh69, fresh71) => fresh70,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+error[E0054]: cannot cast as `bool`
+     --> support/dfa.rs:11061:28
+      |
+11061 |                   *fresh31 = (*fresh31 as libc::c_int
+      |  ____________________________^
+11062 | |                     & (*stk.offset(-(1 as libc::c_int) as isize)).nullable
+11063 | |                         as libc::c_int) as bool;
+      | |_______________________________________________^
+      |
+help: compare with zero instead
+      |
+11061 ~                 *fresh31 = (*fresh31 as libc::c_int
+11062 +                     & (*stk.offset(-(1 as libc::c_int) as isize)).nullable
+11063 ~                         as libc::c_int) != 0;
+      |
+
+error[E0054]: cannot cast as `bool`
+     --> support/dfa.rs:11077:28
+      |
+11077 |                   *fresh34 = (*fresh34 as libc::c_int
+      |  ____________________________^
+11078 | |                     | (*stk.offset(-(1 as libc::c_int) as isize)).nullable
+11079 | |                         as libc::c_int) as bool;
+      | |_______________________________________________^
+      |
+help: compare with zero instead
+      |
+11077 ~                 *fresh34 = (*fresh34 as libc::c_int
+11078 +                     | (*stk.offset(-(1 as libc::c_int) as isize)).nullable
+11079 ~                         as libc::c_int) != 0;
+      |
+
+error[E0054]: cannot cast as `bool`
+     --> support/dfa.rs:11534:31
+      |
+11534 |                       mergeit = (mergeit as libc::c_int
+      |  _______________________________^
+11535 | |                         & *((*d).multibyte_prop)
+11536 | |                             .offset((*(group.elems).offset(j_3 as isize)).index as isize)
+11537 | |                             as libc::c_int) as bool;
+      | |___________________________________________________^
+      |
+help: compare with zero instead
+      |
+11534 ~                     mergeit = (mergeit as libc::c_int
+11535 +                         & *((*d).multibyte_prop)
+11536 +                             .offset((*(group.elems).offset(j_3 as isize)).index as isize)
+11537 ~                             as libc::c_int) != 0;
+      |
+
+error[E0054]: cannot cast as `bool`
+     --> support/dfa.rs:12539:36
+      |
+12539 |                           .begline = ((*lmp).begline as libc::c_int
+      |  ____________________________________^
+12540 | |                         & (*rmp).begline as libc::c_int) as bool;
+      | |________________________________________________________________^
+      |
+help: compare with zero instead
+      |
+12539 ~                         .begline = ((*lmp).begline as libc::c_int
+12540 ~                         & (*rmp).begline as libc::c_int) != 0;
+      |
+
+error[E0054]: cannot cast as `bool`
+     --> support/dfa.rs:12542:36
+      |
+12542 |                           .endline = ((*lmp).endline as libc::c_int
+      |  ____________________________________^
+12543 | |                         & (*rmp).endline as libc::c_int) as bool;
+      | |________________________________________________________________^
+      |
+help: compare with zero instead
+      |
+12542 ~                         .endline = ((*lmp).endline as libc::c_int
+12543 ~                         & (*rmp).endline as libc::c_int) != 0;
+      |
+
+Some errors have detailed explanations: E0054, E0641.
+For more information about an error, try `rustc --explain E0054`.
+warning: `c2rust_out` (lib) generated 280 warnings
+error: could not compile `c2rust_out` due to 9 previous errors; 280 warnings emitted

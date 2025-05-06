@@ -1,8 +1,18 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
+    fn free(__ptr: *mut libc::c_void);
     fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
     fn realloc(_: *mut libc::c_void, _: libc::c_ulong) -> *mut libc::c_void;
-    fn free(__ptr: *mut libc::c_void);
     fn abort() -> !;
     fn memcpy(
         _: *mut libc::c_void,
@@ -78,25 +88,84 @@ impl reg_errcode_t {
             reg_errcode_t::REG_ERPAREN => 16,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> reg_errcode_t {
+        match value {
+            0 => reg_errcode_t::REG_NOERROR,
+            1 => reg_errcode_t::REG_NOMATCH,
+            2 => reg_errcode_t::REG_BADPAT,
+            3 => reg_errcode_t::REG_ECOLLATE,
+            4 => reg_errcode_t::REG_ECTYPE,
+            5 => reg_errcode_t::REG_EESCAPE,
+            6 => reg_errcode_t::REG_ESUBREG,
+            7 => reg_errcode_t::REG_EBRACK,
+            8 => reg_errcode_t::REG_EPAREN,
+            9 => reg_errcode_t::REG_EBRACE,
+            10 => reg_errcode_t::REG_BADBR,
+            11 => reg_errcode_t::REG_ERANGE,
+            12 => reg_errcode_t::REG_ESPACE,
+            13 => reg_errcode_t::REG_BADRPT,
+            14 => reg_errcode_t::REG_EEND,
+            15 => reg_errcode_t::REG_ESIZE,
+            16 => reg_errcode_t::REG_ERPAREN,
+            _ => panic!("Invalid value for reg_errcode_t: {}", value),
+        }
+    }
 }
-
-pub const REG_ERPAREN: reg_errcode_t = 16;
-pub const REG_ESIZE: reg_errcode_t = 15;
-pub const REG_EEND: reg_errcode_t = 14;
-pub const REG_BADRPT: reg_errcode_t = 13;
-pub const REG_ESPACE: reg_errcode_t = 12;
-pub const REG_ERANGE: reg_errcode_t = 11;
-pub const REG_BADBR: reg_errcode_t = 10;
-pub const REG_EBRACE: reg_errcode_t = 9;
-pub const REG_EPAREN: reg_errcode_t = 8;
-pub const REG_EBRACK: reg_errcode_t = 7;
-pub const REG_ESUBREG: reg_errcode_t = 6;
-pub const REG_EESCAPE: reg_errcode_t = 5;
-pub const REG_ECTYPE: reg_errcode_t = 4;
-pub const REG_ECOLLATE: reg_errcode_t = 3;
-pub const REG_BADPAT: reg_errcode_t = 2;
-pub const REG_NOMATCH: reg_errcode_t = 1;
-pub const REG_NOERROR: reg_errcode_t = 0;
+impl AddAssign<u32> for reg_errcode_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for reg_errcode_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for reg_errcode_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for reg_errcode_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for reg_errcode_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for reg_errcode_t {
+    type Output = reg_errcode_t;
+    fn add(self, rhs: u32) -> reg_errcode_t {
+        reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for reg_errcode_t {
+    type Output = reg_errcode_t;
+    fn sub(self, rhs: u32) -> reg_errcode_t {
+        reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for reg_errcode_t {
+    type Output = reg_errcode_t;
+    fn mul(self, rhs: u32) -> reg_errcode_t {
+        reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for reg_errcode_t {
+    type Output = reg_errcode_t;
+    fn div(self, rhs: u32) -> reg_errcode_t {
+        reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for reg_errcode_t {
+    type Output = reg_errcode_t;
+    fn rem(self, rhs: u32) -> reg_errcode_t {
+        reg_errcode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
@@ -220,8 +289,97 @@ impl re_opcode_t {
             re_opcode_t::notwordbound => 29,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> re_opcode_t {
+        match value {
+            0 => re_opcode_t::no_op,
+            1 => re_opcode_t::succeed,
+            2 => re_opcode_t::exactn,
+            3 => re_opcode_t::anychar,
+            4 => re_opcode_t::charset,
+            5 => re_opcode_t::charset_not,
+            6 => re_opcode_t::start_memory,
+            7 => re_opcode_t::stop_memory,
+            8 => re_opcode_t::duplicate,
+            9 => re_opcode_t::begline,
+            10 => re_opcode_t::endline,
+            11 => re_opcode_t::begbuf,
+            12 => re_opcode_t::endbuf,
+            13 => re_opcode_t::jump,
+            14 => re_opcode_t::jump_past_alt,
+            15 => re_opcode_t::on_failure_jump,
+            16 => re_opcode_t::on_failure_keep_string_jump,
+            17 => re_opcode_t::pop_failure_jump,
+            18 => re_opcode_t::maybe_pop_jump,
+            19 => re_opcode_t::dummy_failure_jump,
+            20 => re_opcode_t::push_dummy_failure,
+            21 => re_opcode_t::succeed_n,
+            22 => re_opcode_t::jump_n,
+            23 => re_opcode_t::set_number_at,
+            24 => re_opcode_t::wordchar,
+            25 => re_opcode_t::notwordchar,
+            26 => re_opcode_t::wordbeg,
+            27 => re_opcode_t::wordend,
+            28 => re_opcode_t::wordbound,
+            29 => re_opcode_t::notwordbound,
+            _ => panic!("Invalid value for re_opcode_t: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for re_opcode_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for re_opcode_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for re_opcode_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for re_opcode_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for re_opcode_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for re_opcode_t {
+    type Output = re_opcode_t;
+    fn add(self, rhs: u32) -> re_opcode_t {
+        re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for re_opcode_t {
+    type Output = re_opcode_t;
+    fn sub(self, rhs: u32) -> re_opcode_t {
+        re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for re_opcode_t {
+    type Output = re_opcode_t;
+    fn mul(self, rhs: u32) -> re_opcode_t {
+        re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for re_opcode_t {
+    type Output = re_opcode_t;
+    fn div(self, rhs: u32) -> re_opcode_t {
+        re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for re_opcode_t {
+    type Output = re_opcode_t;
+    fn rem(self, rhs: u32) -> re_opcode_t {
+        re_opcode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type boolean = libc::c_char;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -256,8 +414,79 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::_ISalnum => 8,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_0 {
+        match value {
+            2048 => C2RustUnnamed_0::_ISdigit,
+            512 => C2RustUnnamed_0::_ISlower,
+            256 => C2RustUnnamed_0::_ISupper,
+            4096 => C2RustUnnamed_0::_ISxdigit,
+            8192 => C2RustUnnamed_0::_ISspace,
+            4 => C2RustUnnamed_0::_ISpunct,
+            16384 => C2RustUnnamed_0::_ISprint,
+            32768 => C2RustUnnamed_0::_ISgraph,
+            2 => C2RustUnnamed_0::_IScntrl,
+            1 => C2RustUnnamed_0::_ISblank,
+            1024 => C2RustUnnamed_0::_ISalpha,
+            8 => C2RustUnnamed_0::_ISalnum,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type fail_stack_elt_t = fail_stack_elt;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -401,13 +630,12 @@ unsafe extern "C" fn regex_compile(
     let mut beg_interval: *const libc::c_char = 0 as *const libc::c_char;
     let mut fixup_alt_jump: *mut libc::c_uchar = 0 as *mut libc::c_uchar;
     let mut regnum: regnum_t = 0 as libc::c_int as regnum_t;
-    compile_stack
-        .stack = malloc(
+    compile_stack.stack = malloc(
         (32 as libc::c_int as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<compile_stack_elt_t>() as libc::c_ulong),
     ) as *mut compile_stack_elt_t;
     if (compile_stack.stack).is_null() {
-        return REG_ESPACE;
+        return reg_errcode_t::REG_ESPACE;
     }
     compile_stack.size = 32 as libc::c_int as libc::c_uint;
     compile_stack.avail = 0 as libc::c_int as libc::c_uint;
@@ -420,8 +648,7 @@ unsafe extern "C" fn regex_compile(
     init_syntax_once();
     if (*bufp).allocated == 0 as libc::c_int as libc::c_ulong {
         if !((*bufp).buffer).is_null() {
-            (*bufp)
-                .buffer = realloc(
+            (*bufp).buffer = realloc(
                 (*bufp).buffer as *mut libc::c_void,
                 (32 as libc::c_int as libc::c_ulong)
                     .wrapping_mul(
@@ -429,8 +656,7 @@ unsafe extern "C" fn regex_compile(
                     ),
             ) as *mut libc::c_uchar;
         } else {
-            (*bufp)
-                .buffer = malloc(
+            (*bufp).buffer = malloc(
                 (32 as libc::c_int as libc::c_ulong)
                     .wrapping_mul(
                         ::core::mem::size_of::<libc::c_uchar>() as libc::c_ulong,
@@ -439,7 +665,9 @@ unsafe extern "C" fn regex_compile(
         }
         if ((*bufp).buffer).is_null() {
             free(compile_stack.stack as *mut libc::c_void);
-            return REG_ESPACE as libc::c_int as reg_errcode_t;
+            return reg_errcode_t::from_libc_c_uint(
+                reg_errcode_t::REG_ESPACE as libc::c_int as u32,
+            );
         }
         (*bufp).allocated = 32 as libc::c_int as libc::c_ulong;
     }
@@ -447,7 +675,7 @@ unsafe extern "C" fn regex_compile(
     begalt = b;
     while p != pend {
         if p == pend {
-            return REG_EEND;
+            return reg_errcode_t::REG_EEND;
         }
         let fresh0 = p;
         p = p.offset(1);
@@ -472,23 +700,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -521,10 +747,10 @@ unsafe extern "C" fn regex_compile(
                     }
                     let fresh1 = b;
                     b = b.offset(1);
-                    *fresh1 = begline as libc::c_int as libc::c_uchar;
+                    *fresh1 = re_opcode_t::begline as libc::c_int as libc::c_uchar;
                     continue;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             36 => {
@@ -543,23 +769,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer_0 != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -594,10 +818,10 @@ unsafe extern "C" fn regex_compile(
                     }
                     let fresh2 = b;
                     b = b.offset(1);
-                    *fresh2 = endline as libc::c_int as libc::c_uchar;
+                    *fresh2 = re_opcode_t::endline as libc::c_int as libc::c_uchar;
                     continue;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             43 | 63 => {
@@ -610,13 +834,13 @@ unsafe extern "C" fn regex_compile(
                             << 1 as libc::c_int) << 1 as libc::c_int)
                             << 1 as libc::c_int) << 1 as libc::c_int != 0
                 {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 } else {
-                    current_block = 8138665152816868871;
+                    current_block = 390529185191362524;
                 }
             }
             42 => {
-                current_block = 8138665152816868871;
+                current_block = 390529185191362524;
             }
             46 => {
                 laststart = b;
@@ -628,23 +852,21 @@ unsafe extern "C" fn regex_compile(
                     if (*bufp).allocated
                         == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        return REG_ESIZE;
+                        return reg_errcode_t::REG_ESIZE;
                     }
                     (*bufp).allocated <<= 1 as libc::c_int;
                     if (*bufp).allocated
                         > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        (*bufp)
-                            .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                        (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                             as libc::c_ulong;
                     }
-                    (*bufp)
-                        .buffer = realloc(
+                    (*bufp).buffer = realloc(
                         (*bufp).buffer as *mut libc::c_void,
                         (*bufp).allocated,
                     ) as *mut libc::c_uchar;
                     if ((*bufp).buffer).is_null() {
-                        return REG_ESPACE;
+                        return reg_errcode_t::REG_ESPACE;
                     }
                     if old_buffer_4 != (*bufp).buffer {
                         b = ((*bufp).buffer)
@@ -679,14 +901,16 @@ unsafe extern "C" fn regex_compile(
                 }
                 let fresh5 = b;
                 b = b.offset(1);
-                *fresh5 = anychar as libc::c_int as libc::c_uchar;
+                *fresh5 = re_opcode_t::anychar as libc::c_int as libc::c_uchar;
                 continue;
             }
             91 => {
                 let mut had_char_class: boolean = 0 as libc::c_int as boolean;
                 if p == pend {
                     free(compile_stack.stack as *mut libc::c_void);
-                    return REG_EBRACK as libc::c_int as reg_errcode_t;
+                    return reg_errcode_t::from_libc_c_uint(
+                        reg_errcode_t::REG_EBRACK as libc::c_int as u32,
+                    );
                 }
                 while (b.offset_from((*bufp).buffer) as libc::c_long
                     + 34 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -696,23 +920,21 @@ unsafe extern "C" fn regex_compile(
                     if (*bufp).allocated
                         == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        return REG_ESIZE;
+                        return reg_errcode_t::REG_ESIZE;
                     }
                     (*bufp).allocated <<= 1 as libc::c_int;
                     if (*bufp).allocated
                         > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        (*bufp)
-                            .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                        (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                             as libc::c_ulong;
                     }
-                    (*bufp)
-                        .buffer = realloc(
+                    (*bufp).buffer = realloc(
                         (*bufp).buffer as *mut libc::c_void,
                         (*bufp).allocated,
                     ) as *mut libc::c_uchar;
                     if ((*bufp).buffer).is_null() {
-                        return REG_ESPACE;
+                        return reg_errcode_t::REG_ESPACE;
                     }
                     if old_buffer_5 != (*bufp).buffer {
                         b = ((*bufp).buffer)
@@ -754,23 +976,21 @@ unsafe extern "C" fn regex_compile(
                     if (*bufp).allocated
                         == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        return REG_ESIZE;
+                        return reg_errcode_t::REG_ESIZE;
                     }
                     (*bufp).allocated <<= 1 as libc::c_int;
                     if (*bufp).allocated
                         > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        (*bufp)
-                            .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                        (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                             as libc::c_ulong;
                     }
-                    (*bufp)
-                        .buffer = realloc(
+                    (*bufp).buffer = realloc(
                         (*bufp).buffer as *mut libc::c_void,
                         (*bufp).allocated,
                     ) as *mut libc::c_uchar;
                     if ((*bufp).buffer).is_null() {
-                        return REG_ESPACE;
+                        return reg_errcode_t::REG_ESPACE;
                     }
                     if old_buffer_6 != (*bufp).buffer {
                         b = ((*bufp).buffer)
@@ -806,9 +1026,9 @@ unsafe extern "C" fn regex_compile(
                 let fresh6 = b;
                 b = b.offset(1);
                 *fresh6 = (if *p as libc::c_int == '^' as i32 {
-                    charset_not as libc::c_int
+                    re_opcode_t::charset_not as libc::c_int
                 } else {
-                    charset as libc::c_int
+                    re_opcode_t::charset as libc::c_int
                 }) as libc::c_uchar;
                 if *p as libc::c_int == '^' as i32 {
                     p = p.offset(1);
@@ -823,23 +1043,21 @@ unsafe extern "C" fn regex_compile(
                     if (*bufp).allocated
                         == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        return REG_ESIZE;
+                        return reg_errcode_t::REG_ESIZE;
                     }
                     (*bufp).allocated <<= 1 as libc::c_int;
                     if (*bufp).allocated
                         > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                     {
-                        (*bufp)
-                            .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                        (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                             as libc::c_ulong;
                     }
-                    (*bufp)
-                        .buffer = realloc(
+                    (*bufp).buffer = realloc(
                         (*bufp).buffer as *mut libc::c_void,
                         (*bufp).allocated,
                     ) as *mut libc::c_uchar;
                     if ((*bufp).buffer).is_null() {
-                        return REG_ESPACE;
+                        return reg_errcode_t::REG_ESPACE;
                     }
                     if old_buffer_7 != (*bufp).buffer {
                         b = ((*bufp).buffer)
@@ -882,8 +1100,10 @@ unsafe extern "C" fn regex_compile(
                     (((1 as libc::c_int) << 8 as libc::c_int) / 8 as libc::c_int)
                         as libc::c_ulong,
                 );
-                if *b.offset(-(2 as libc::c_int) as isize) as re_opcode_t as libc::c_uint
-                    == charset_not as libc::c_int as libc::c_uint
+                if re_opcode_t::from_libc_c_uint(
+                    *b.offset(-(2 as libc::c_int) as isize) as u32,
+                ) as libc::c_uint
+                    == re_opcode_t::charset_not as libc::c_int as libc::c_uint
                     && syntax
                         & ((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
                             << 1 as libc::c_int) << 1 as libc::c_int)
@@ -904,10 +1124,12 @@ unsafe extern "C" fn regex_compile(
                 loop {
                     if p == pend {
                         free(compile_stack.stack as *mut libc::c_void);
-                        return REG_EBRACK as libc::c_int as reg_errcode_t;
+                        return reg_errcode_t::from_libc_c_uint(
+                            reg_errcode_t::REG_EBRACK as libc::c_int as u32,
+                        );
                     }
                     if p == pend {
-                        return REG_EEND;
+                        return reg_errcode_t::REG_EEND;
                     }
                     let fresh9 = p;
                     p = p.offset(1);
@@ -920,10 +1142,12 @@ unsafe extern "C" fn regex_compile(
                     {
                         if p == pend {
                             free(compile_stack.stack as *mut libc::c_void);
-                            return REG_EESCAPE as libc::c_int as reg_errcode_t;
+                            return reg_errcode_t::from_libc_c_uint(
+                                reg_errcode_t::REG_EESCAPE as libc::c_int as u32,
+                            );
                         }
                         if p == pend {
-                            return REG_EEND;
+                            return reg_errcode_t::REG_EEND;
                         }
                         let fresh10 = p;
                         p = p.offset(1);
@@ -947,7 +1171,9 @@ unsafe extern "C" fn regex_compile(
                             && *p as libc::c_int != ']' as i32
                         {
                             free(compile_stack.stack as *mut libc::c_void);
-                            return REG_ERANGE as libc::c_int as reg_errcode_t;
+                            return reg_errcode_t::from_libc_c_uint(
+                                reg_errcode_t::REG_ERANGE as libc::c_int as u32,
+                            );
                         }
                         if c as libc::c_int == '-' as i32
                             && !(p.offset(-(2 as libc::c_int as isize)) >= pattern
@@ -967,7 +1193,7 @@ unsafe extern "C" fn regex_compile(
                                 b,
                             );
                             if ret as libc::c_uint
-                                != REG_NOERROR as libc::c_int as libc::c_uint
+                                != reg_errcode_t::REG_NOERROR as libc::c_int as libc::c_uint
                             {
                                 free(compile_stack.stack as *mut libc::c_void);
                                 return ret;
@@ -977,9 +1203,9 @@ unsafe extern "C" fn regex_compile(
                             && *p.offset(1 as libc::c_int as isize) as libc::c_int
                                 != ']' as i32
                         {
-                            let mut ret_0: reg_errcode_t = REG_NOERROR;
+                            let mut ret_0: reg_errcode_t = reg_errcode_t::REG_NOERROR;
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh12 = p;
                             p = p.offset(1);
@@ -989,7 +1215,7 @@ unsafe extern "C" fn regex_compile(
                             }
                             ret_0 = compile_range(&mut p, pend, translate, syntax, b);
                             if ret_0 as libc::c_uint
-                                != REG_NOERROR as libc::c_int as libc::c_uint
+                                != reg_errcode_t::REG_NOERROR as libc::c_int as libc::c_uint
                             {
                                 free(compile_stack.stack as *mut libc::c_void);
                                 return ret_0;
@@ -1001,7 +1227,7 @@ unsafe extern "C" fn regex_compile(
                         {
                             let mut str: [libc::c_char; 7] = [0; 7];
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh13 = p;
                             p = p.offset(1);
@@ -1012,11 +1238,13 @@ unsafe extern "C" fn regex_compile(
                             c1 = 0 as libc::c_int as libc::c_uchar;
                             if p == pend {
                                 free(compile_stack.stack as *mut libc::c_void);
-                                return REG_EBRACK as libc::c_int as reg_errcode_t;
+                                return reg_errcode_t::from_libc_c_uint(
+                                    reg_errcode_t::REG_EBRACK as libc::c_int as u32,
+                                );
                             }
                             loop {
                                 if p == pend {
-                                    return REG_EEND;
+                                    return reg_errcode_t::REG_EEND;
                                 }
                                 let fresh14 = p;
                                 p = p.offset(1);
@@ -1137,10 +1365,12 @@ unsafe extern "C" fn regex_compile(
                                     ) == 0 as libc::c_int)
                                 {
                                     free(compile_stack.stack as *mut libc::c_void);
-                                    return REG_ECTYPE as libc::c_int as reg_errcode_t;
+                                    return reg_errcode_t::from_libc_c_uint(
+                                        reg_errcode_t::REG_ECTYPE as libc::c_int as u32,
+                                    );
                                 }
                                 if p == pend {
-                                    return REG_EEND;
+                                    return reg_errcode_t::REG_EEND;
                                 }
                                 let fresh16 = p;
                                 p = p.offset(1);
@@ -1150,30 +1380,32 @@ unsafe extern "C" fn regex_compile(
                                 }
                                 if p == pend {
                                     free(compile_stack.stack as *mut libc::c_void);
-                                    return REG_EBRACK as libc::c_int as reg_errcode_t;
+                                    return reg_errcode_t::from_libc_c_uint(
+                                        reg_errcode_t::REG_EBRACK as libc::c_int as u32,
+                                    );
                                 }
                                 ch = 0 as libc::c_int;
                                 while ch < (1 as libc::c_int) << 8 as libc::c_int {
                                     if is_alnum as libc::c_int != 0
                                         && (1 as libc::c_int != 0
                                             && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int
-                                                != 0)
+                                                & C2RustUnnamed_0::_ISalnum as libc::c_int as libc::c_ushort
+                                                    as libc::c_int != 0)
                                         || is_alpha as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISalpha as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISalpha as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_blank as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISblank as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISblank as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_cntrl as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _IScntrl as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_IScntrl as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                     {
                                         let ref mut fresh17 = *b
                                             .offset(
@@ -1188,23 +1420,23 @@ unsafe extern "C" fn regex_compile(
                                     if is_digit as libc::c_int != 0
                                         && (1 as libc::c_int != 0
                                             && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-                                                != 0)
+                                                & C2RustUnnamed_0::_ISdigit as libc::c_int as libc::c_ushort
+                                                    as libc::c_int != 0)
                                         || is_graph as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISgraph as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISgraph as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_lower as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISlower as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISlower as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_print as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISprint as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISprint as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                     {
                                         let ref mut fresh18 = *b
                                             .offset(
@@ -1219,23 +1451,23 @@ unsafe extern "C" fn regex_compile(
                                     if is_punct as libc::c_int != 0
                                         && (1 as libc::c_int != 0
                                             && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                & _ISpunct as libc::c_int as libc::c_ushort as libc::c_int
-                                                != 0)
+                                                & C2RustUnnamed_0::_ISpunct as libc::c_int as libc::c_ushort
+                                                    as libc::c_int != 0)
                                         || is_space as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISspace as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_upper as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISupper as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISupper as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                         || is_xdigit as libc::c_int != 0
                                             && (1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISxdigit as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISxdigit as libc::c_int
+                                                        as libc::c_ushort as libc::c_int != 0)
                                     {
                                         let ref mut fresh19 = *b
                                             .offset(
@@ -1252,12 +1484,12 @@ unsafe extern "C" fn regex_compile(
                                             || is_lower as libc::c_int != 0)
                                         && (1 as libc::c_int != 0
                                             && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                & _ISupper as libc::c_int as libc::c_ushort as libc::c_int
-                                                != 0
+                                                & C2RustUnnamed_0::_ISupper as libc::c_int as libc::c_ushort
+                                                    as libc::c_int != 0
                                             || 1 as libc::c_int != 0
                                                 && *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                                                    & _ISlower as libc::c_int as libc::c_ushort as libc::c_int
-                                                    != 0)
+                                                    & C2RustUnnamed_0::_ISlower as libc::c_int as libc::c_ushort
+                                                        as libc::c_int != 0)
                                     {
                                         let ref mut fresh20 = *b
                                             .offset(
@@ -1342,9 +1574,9 @@ unsafe extern "C" fn regex_compile(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int != 0
                 {
-                    current_block = 3908040554451196172;
+                    current_block = 12924337694122082779;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             41 => {
@@ -1356,9 +1588,9 @@ unsafe extern "C" fn regex_compile(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int != 0
                 {
-                    current_block = 10068816213029999017;
+                    current_block = 4872567246065702152;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             10 => {
@@ -1369,9 +1601,9 @@ unsafe extern "C" fn regex_compile(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int != 0
                 {
-                    current_block = 8820078496211684002;
+                    current_block = 18405110941157351894;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             124 => {
@@ -1384,9 +1616,9 @@ unsafe extern "C" fn regex_compile(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                     != 0
                 {
-                    current_block = 8820078496211684002;
+                    current_block = 18405110941157351894;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             123 => {
@@ -1406,35 +1638,37 @@ unsafe extern "C" fn regex_compile(
                 {
                     current_block = 9217721635109559143;
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
             92 => {
                 if p == pend {
                     free(compile_stack.stack as *mut libc::c_void);
-                    return REG_EESCAPE as libc::c_int as reg_errcode_t;
+                    return reg_errcode_t::from_libc_c_uint(
+                        reg_errcode_t::REG_EESCAPE as libc::c_int as u32,
+                    );
                 }
                 if p == pend {
-                    return REG_EEND;
+                    return reg_errcode_t::REG_EEND;
                 }
                 let fresh26 = p;
                 p = p.offset(1);
                 c = *fresh26 as libc::c_uchar;
                 match c as libc::c_int {
                     40 => {
-                        current_block = 18389040574536762539;
+                        current_block = 9497405096675874836;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1448,7 +1682,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -1460,24 +1694,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -1513,11 +1745,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1531,7 +1764,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -1543,24 +1776,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -1596,11 +1827,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1626,12 +1858,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1650,12 +1882,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1666,7 +1898,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -1682,16 +1914,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1702,12 +1936,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1721,7 +1955,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -1732,24 +1966,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -1785,11 +2017,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1803,7 +2036,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -1814,24 +2047,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -1867,11 +2098,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1885,7 +2117,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -1896,24 +2128,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -1949,11 +2179,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -1967,7 +2198,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -1978,24 +2209,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2031,11 +2260,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2049,7 +2279,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2060,24 +2290,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2113,11 +2341,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2128,17 +2357,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -2150,24 +2381,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -2203,7 +2432,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -2225,7 +2455,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2236,24 +2466,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2289,26 +2517,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     41 => {
-                        current_block = 9020059652593846891;
+                        current_block = 13862862630540390946;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2322,7 +2551,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -2334,24 +2563,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2387,11 +2614,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2405,7 +2633,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -2417,24 +2645,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2470,11 +2696,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2500,12 +2727,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2524,12 +2751,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2540,7 +2767,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -2556,16 +2783,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2576,12 +2805,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2595,7 +2824,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2606,24 +2835,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2659,11 +2886,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2677,7 +2905,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2688,24 +2916,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2741,11 +2967,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2759,7 +2986,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2770,24 +2997,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2823,11 +3048,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2841,7 +3067,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2852,24 +3078,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2905,11 +3129,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -2923,7 +3148,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -2934,24 +3159,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -2987,11 +3210,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3002,17 +3226,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -3024,24 +3250,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -3077,7 +3301,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -3099,7 +3324,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3110,24 +3335,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3163,26 +3386,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     124 => {
-                        current_block = 9351194623849502965;
+                        current_block = 6723035467051578708;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3196,7 +3420,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -3208,24 +3432,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3261,11 +3483,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3279,7 +3502,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -3291,24 +3514,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3344,11 +3565,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3374,12 +3596,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3398,12 +3620,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3414,7 +3636,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -3430,16 +3652,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3450,12 +3674,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3469,7 +3693,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3480,24 +3704,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3533,11 +3755,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3551,7 +3774,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3562,24 +3785,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3615,11 +3836,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3633,7 +3855,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3644,24 +3866,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3697,11 +3917,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3715,7 +3936,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3726,24 +3947,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3779,11 +3998,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3797,7 +4017,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3808,24 +4028,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -3861,11 +4079,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -3876,17 +4095,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -3898,24 +4119,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -3951,7 +4170,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -3973,7 +4193,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -3984,24 +4204,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4037,26 +4255,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     123 => {
-                        current_block = 7581383065580588064;
+                        current_block = 14831581286765265411;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4070,7 +4289,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -4082,24 +4301,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4135,11 +4352,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4153,7 +4371,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -4165,24 +4383,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4218,11 +4434,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4248,12 +4465,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4272,12 +4489,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4288,7 +4505,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -4304,16 +4521,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4324,12 +4543,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4343,7 +4562,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4354,24 +4573,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4407,11 +4624,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4425,7 +4643,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4436,24 +4654,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4489,11 +4705,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4507,7 +4724,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4518,24 +4735,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4571,11 +4786,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4589,7 +4805,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4600,24 +4816,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4653,11 +4867,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4671,7 +4886,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4682,24 +4897,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4735,11 +4948,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4750,17 +4964,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -4772,24 +4988,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -4825,7 +5039,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -4847,7 +5062,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -4858,24 +5073,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -4911,26 +5124,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     119 => {
-                        current_block = 4903983735515102577;
+                        current_block = 4092966239614665407;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -4944,7 +5158,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -4956,24 +5170,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5009,11 +5221,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5027,7 +5240,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -5039,24 +5252,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5092,11 +5303,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5122,12 +5334,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5146,12 +5358,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5162,7 +5374,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -5178,16 +5390,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5198,12 +5412,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5217,7 +5431,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5228,24 +5442,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5281,11 +5493,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5299,7 +5512,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5310,24 +5523,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5363,11 +5574,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5381,7 +5593,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5392,24 +5604,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5445,11 +5655,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5463,7 +5674,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5474,24 +5685,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5527,11 +5736,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5545,7 +5755,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5556,24 +5766,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5609,11 +5817,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5624,17 +5833,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -5646,24 +5857,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -5699,7 +5908,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -5721,7 +5931,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -5732,24 +5942,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5785,26 +5993,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     87 => {
-                        current_block = 1131247822756948562;
+                        current_block = 18389040574536762539;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5818,7 +6027,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -5830,24 +6039,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5883,11 +6090,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5901,7 +6109,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -5913,24 +6121,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -5966,11 +6172,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -5996,12 +6203,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6020,12 +6227,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6036,7 +6243,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -6052,16 +6259,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6072,12 +6281,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6091,7 +6300,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6102,24 +6311,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6155,11 +6362,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6173,7 +6381,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6184,24 +6392,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6237,11 +6443,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6255,7 +6462,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6266,24 +6473,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6319,11 +6524,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6337,7 +6543,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6348,24 +6554,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6401,11 +6605,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6419,7 +6624,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6430,24 +6635,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6483,11 +6686,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6498,17 +6702,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -6520,24 +6726,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -6573,7 +6777,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -6595,7 +6800,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6606,24 +6811,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6659,26 +6862,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     60 => {
-                        current_block = 806649079849583205;
+                        current_block = 10401831275666622796;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6692,7 +6896,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -6704,24 +6908,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6757,11 +6959,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6775,7 +6978,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -6787,24 +6990,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -6840,11 +7041,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6870,12 +7072,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6894,12 +7096,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6910,7 +7112,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -6926,16 +7128,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6946,12 +7150,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -6965,7 +7169,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -6976,24 +7180,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7029,11 +7231,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7047,7 +7250,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7058,24 +7261,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7111,11 +7312,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7129,7 +7331,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7140,24 +7342,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7193,11 +7393,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7211,7 +7412,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7222,24 +7423,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7275,11 +7474,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7293,7 +7493,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7304,24 +7504,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7357,11 +7555,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7372,17 +7571,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -7394,24 +7595,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -7447,7 +7646,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -7469,7 +7669,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7480,24 +7680,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7533,26 +7731,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     62 => {
-                        current_block = 2147467507124728288;
+                        current_block = 13842607660749849617;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7566,7 +7765,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -7578,24 +7777,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7631,11 +7828,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7649,7 +7847,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -7661,24 +7859,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7714,11 +7910,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7744,12 +7941,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7768,12 +7965,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7784,7 +7981,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -7800,16 +7997,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7820,12 +8019,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7839,7 +8038,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7850,24 +8049,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7903,11 +8100,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7921,7 +8119,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -7932,24 +8130,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -7985,11 +8181,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8003,7 +8200,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8014,24 +8211,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8067,11 +8262,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8085,7 +8281,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8096,24 +8292,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8149,11 +8343,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8167,7 +8362,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8178,24 +8373,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8231,11 +8424,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8246,17 +8440,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -8268,24 +8464,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -8321,7 +8515,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -8343,7 +8538,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8354,24 +8549,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8407,26 +8600,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     98 => {
-                        current_block = 8613174255720370651;
+                        current_block = 14518978060224207180;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8440,7 +8634,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -8452,24 +8646,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8505,11 +8697,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8523,7 +8716,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -8535,24 +8728,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8588,11 +8779,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8618,12 +8810,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8642,12 +8834,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8658,7 +8850,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -8674,16 +8866,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8694,12 +8888,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8713,7 +8907,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8724,24 +8918,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8777,11 +8969,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8795,7 +8988,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8806,24 +8999,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8859,11 +9050,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8877,7 +9069,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8888,24 +9080,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -8941,11 +9131,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -8959,7 +9150,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -8970,24 +9161,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9023,11 +9212,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9041,7 +9231,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9052,24 +9242,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9105,11 +9293,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9120,17 +9309,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -9142,24 +9333,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -9195,7 +9384,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -9217,7 +9407,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9228,24 +9418,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9281,26 +9469,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     66 => {
-                        current_block = 9327617826283381890;
+                        current_block = 15263135129429906152;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9314,7 +9503,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -9326,24 +9515,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9379,11 +9566,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9397,7 +9585,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -9409,24 +9597,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9462,11 +9648,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9492,12 +9679,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9516,12 +9703,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9532,7 +9719,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -9548,16 +9735,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9568,12 +9757,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9587,7 +9776,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9598,24 +9787,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9651,11 +9838,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9669,7 +9857,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9680,24 +9868,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9733,11 +9919,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9751,7 +9938,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9762,24 +9949,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9815,11 +10000,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9833,7 +10019,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9844,24 +10030,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9897,11 +10081,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9915,7 +10100,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -9926,24 +10111,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -9979,11 +10162,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -9994,17 +10178,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -10016,24 +10202,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -10069,7 +10253,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -10091,7 +10276,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10102,24 +10287,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10155,26 +10338,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     96 => {
-                        current_block = 9927238264346192015;
+                        current_block = 2064595280536116385;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10188,7 +10372,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -10200,24 +10384,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10253,11 +10435,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10271,7 +10454,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -10283,24 +10466,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10336,11 +10517,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10366,12 +10548,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10390,12 +10572,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10406,7 +10588,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -10422,16 +10604,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10442,12 +10626,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10461,7 +10645,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10472,24 +10656,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10525,11 +10707,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10543,7 +10726,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10554,24 +10737,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10607,11 +10788,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10625,7 +10807,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10636,24 +10818,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10689,11 +10869,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10707,7 +10888,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10718,24 +10899,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10771,11 +10950,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10789,7 +10969,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10800,24 +10980,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -10853,11 +11031,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -10868,17 +11047,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -10890,24 +11071,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -10943,7 +11122,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -10965,7 +11145,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -10976,24 +11156,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11029,26 +11207,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     39 => {
-                        current_block = 363603568489877559;
+                        current_block = 9244997493990970786;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11062,7 +11241,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -11074,24 +11253,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11127,11 +11304,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11145,7 +11323,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -11157,24 +11335,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11210,11 +11386,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11240,12 +11417,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11264,12 +11441,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11280,7 +11457,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -11296,16 +11473,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11316,12 +11495,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11335,7 +11514,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11346,24 +11525,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11399,11 +11576,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11417,7 +11595,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11428,24 +11606,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11481,11 +11657,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11499,7 +11676,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11510,24 +11687,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11563,11 +11738,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11581,7 +11757,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11592,24 +11768,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11645,11 +11819,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11663,7 +11838,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11674,24 +11849,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11727,11 +11900,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11742,17 +11916,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -11764,24 +11940,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -11817,7 +11991,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -11839,7 +12014,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -11850,24 +12025,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -11903,26 +12076,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 => {
-                        current_block = 16189476996697164418;
+                        current_block = 2357893510580286616;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -11936,7 +12110,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -11948,24 +12122,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12001,11 +12173,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12019,7 +12192,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -12031,24 +12204,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12084,11 +12255,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12114,12 +12286,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12138,12 +12310,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12154,7 +12326,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -12170,16 +12342,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12190,12 +12364,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12209,7 +12383,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12220,24 +12394,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12273,11 +12445,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12291,7 +12464,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12302,24 +12475,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12355,11 +12526,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12373,7 +12545,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12384,24 +12556,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12437,11 +12607,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12455,7 +12626,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12466,24 +12637,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12519,11 +12688,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12537,7 +12707,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12548,24 +12718,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12601,11 +12769,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12616,17 +12785,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -12638,24 +12809,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -12691,7 +12860,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -12713,7 +12883,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -12724,24 +12894,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12777,26 +12945,27 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     43 | 63 => {
-                        current_block = 5341180329268950767;
+                        current_block = 8126495812788240094;
                         match current_block {
-                            5341180329268950767 => {
+                            8126495812788240094 => {
                                 if syntax
                                     & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                                     != 0
                                 {
-                                    current_block = 8138665152816868871;
+                                    current_block = 390529185191362524;
                                 } else {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 }
                             }
-                            1131247822756948562 => {
+                            18389040574536762539 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12810,7 +12979,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -12822,24 +12991,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_16 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12875,11 +13042,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh41 = b;
                                     b = b.offset(1);
-                                    *fresh41 = notwordchar as libc::c_int as libc::c_uchar;
+                                    *fresh41 = re_opcode_t::notwordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            4903983735515102577 => {
+                            4092966239614665407 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12893,7 +13061,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     laststart = b;
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -12905,24 +13073,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_15 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -12958,11 +13124,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh40 = b;
                                     b = b.offset(1);
-                                    *fresh40 = wordchar as libc::c_int as libc::c_uchar;
+                                    *fresh40 = re_opcode_t::wordchar as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            7581383065580588064 => {
+                            14831581286765265411 => {
                                 if syntax
                                     & (((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -12988,12 +13155,12 @@ unsafe extern "C" fn regex_compile(
                                     || p.offset(-(2 as libc::c_int as isize)) == pattern
                                         && p == pend
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
                                     current_block = 9217721635109559143;
                                 }
                             }
-                            9351194623849502965 => {
+                            6723035467051578708 => {
                                 if syntax
                                     & ((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13012,12 +13179,12 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 8820078496211684002;
+                                    current_block = 18405110941157351894;
                                 }
                             }
-                            9020059652593846891 => {
+                            13862862630540390946 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13028,7 +13195,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else if compile_stack.avail
                                     == 0 as libc::c_int as libc::c_uint
                                 {
@@ -13044,16 +13211,18 @@ unsafe extern "C" fn regex_compile(
                                             << 1 as libc::c_int) << 1 as libc::c_int)
                                             << 1 as libc::c_int != 0
                                     {
-                                        current_block = 10752149674740360864;
+                                        current_block = 3962563478812244436;
                                     } else {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                                        );
                                     }
                                 } else {
-                                    current_block = 10068816213029999017;
+                                    current_block = 4872567246065702152;
                                 }
                             }
-                            18389040574536762539 => {
+                            9497405096675874836 => {
                                 if syntax
                                     & (((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13064,12 +13233,12 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 10752149674740360864;
+                                    current_block = 3962563478812244436;
                                 } else {
-                                    current_block = 3908040554451196172;
+                                    current_block = 12924337694122082779;
                                 }
                             }
-                            2147467507124728288 => {
+                            13842607660749849617 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13083,7 +13252,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13094,24 +13263,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_18 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13147,11 +13314,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh43 = b;
                                     b = b.offset(1);
-                                    *fresh43 = wordend as libc::c_int as libc::c_uchar;
+                                    *fresh43 = re_opcode_t::wordend as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            8613174255720370651 => {
+                            14518978060224207180 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13165,7 +13333,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13176,24 +13344,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_19 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13229,11 +13395,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh44 = b;
                                     b = b.offset(1);
-                                    *fresh44 = wordbound as libc::c_int as libc::c_uchar;
+                                    *fresh44 = re_opcode_t::wordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9327617826283381890 => {
+                            15263135129429906152 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13247,7 +13414,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13258,24 +13425,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_20 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13311,11 +13476,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh45 = b;
                                     b = b.offset(1);
-                                    *fresh45 = notwordbound as libc::c_int as libc::c_uchar;
+                                    *fresh45 = re_opcode_t::notwordbound as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            9927238264346192015 => {
+                            2064595280536116385 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13329,7 +13495,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13340,24 +13506,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_21 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13393,11 +13557,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh46 = b;
                                     b = b.offset(1);
-                                    *fresh46 = begbuf as libc::c_int as libc::c_uchar;
+                                    *fresh46 = re_opcode_t::begbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            363603568489877559 => {
+                            9244997493990970786 => {
                                 if re_syntax_options
                                     & (((((((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13411,7 +13576,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13422,24 +13587,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_22 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13475,11 +13638,12 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh47 = b;
                                     b = b.offset(1);
-                                    *fresh47 = endbuf as libc::c_int as libc::c_uchar;
+                                    *fresh47 = re_opcode_t::endbuf as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
-                            16189476996697164418 => {
+                            2357893510580286616 => {
                                 if syntax
                                     & ((((((((((((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13490,17 +13654,19 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int) << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     c1 = (c as libc::c_int - '0' as i32) as libc::c_uchar;
                                     if c1 as libc::c_uint > regnum {
                                         free(compile_stack.stack as *mut libc::c_void);
-                                        return REG_ESUBREG as libc::c_int as reg_errcode_t;
+                                        return reg_errcode_t::from_libc_c_uint(
+                                            reg_errcode_t::REG_ESUBREG as libc::c_int as u32,
+                                        );
                                     }
                                     if group_in_compile_stack(compile_stack, c1 as regnum_t)
                                         != 0
                                     {
-                                        current_block = 2815554570557757365;
+                                        current_block = 9887592654468655139;
                                     } else {
                                         laststart = b;
                                         while (b.offset_from((*bufp).buffer) as libc::c_long
@@ -13512,24 +13678,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_23 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -13565,7 +13729,8 @@ unsafe extern "C" fn regex_compile(
                                         }
                                         let fresh48 = b;
                                         b = b.offset(1);
-                                        *fresh48 = duplicate as libc::c_int as libc::c_uchar;
+                                        *fresh48 = re_opcode_t::duplicate as libc::c_int
+                                            as libc::c_uchar;
                                         let fresh49 = b;
                                         b = b.offset(1);
                                         *fresh49 = c1;
@@ -13587,7 +13752,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int)
                                         << 1 as libc::c_int != 0
                                 {
-                                    current_block = 2815554570557757365;
+                                    current_block = 9887592654468655139;
                                 } else {
                                     while (b.offset_from((*bufp).buffer) as libc::c_long
                                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -13598,24 +13763,22 @@ unsafe extern "C" fn regex_compile(
                                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            return REG_ESIZE;
+                                            return reg_errcode_t::REG_ESIZE;
                                         }
                                         (*bufp).allocated <<= 1 as libc::c_int;
                                         if (*bufp).allocated
                                             > ((1 as libc::c_long) << 16 as libc::c_int)
                                                 as libc::c_ulong
                                         {
-                                            (*bufp)
-                                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                as libc::c_ulong;
+                                            (*bufp).allocated = ((1 as libc::c_long)
+                                                << 16 as libc::c_int) as libc::c_ulong;
                                         }
-                                        (*bufp)
-                                            .buffer = realloc(
+                                        (*bufp).buffer = realloc(
                                             (*bufp).buffer as *mut libc::c_void,
                                             (*bufp).allocated,
                                         ) as *mut libc::c_uchar;
                                         if ((*bufp).buffer).is_null() {
-                                            return REG_ESPACE;
+                                            return reg_errcode_t::REG_ESPACE;
                                         }
                                         if old_buffer_17 != (*bufp).buffer {
                                             b = ((*bufp).buffer)
@@ -13651,19 +13814,20 @@ unsafe extern "C" fn regex_compile(
                                     }
                                     let fresh42 = b;
                                     b = b.offset(1);
-                                    *fresh42 = wordbeg as libc::c_int as libc::c_uchar;
+                                    *fresh42 = re_opcode_t::wordbeg as libc::c_int
+                                        as libc::c_uchar;
                                     continue;
                                 }
                             }
                         }
                     }
                     _ => {
-                        current_block = 10752149674740360864;
+                        current_block = 3962563478812244436;
                     }
                 }
             }
             _ => {
-                current_block = 2815554570557757365;
+                current_block = 9887592654468655139;
             }
         }
         match current_block {
@@ -13682,12 +13846,14 @@ unsafe extern "C" fn regex_compile(
                             << 1 as libc::c_int) << 1 as libc::c_int != 0)
                     {
                         free(compile_stack.stack as *mut libc::c_void);
-                        return REG_EBRACE as libc::c_int as reg_errcode_t;
+                        return reg_errcode_t::from_libc_c_uint(
+                            reg_errcode_t::REG_EBRACE as libc::c_int as u32,
+                        );
                     }
                 } else {
                     if p != pend {
                         if p == pend {
-                            return REG_EEND;
+                            return reg_errcode_t::REG_EEND;
                         }
                         let fresh34 = p;
                         p = p.offset(1);
@@ -13698,8 +13864,8 @@ unsafe extern "C" fn regex_compile(
                         while 1 as libc::c_int != 0
                             && *(*__ctype_b_loc()).offset(c as libc::c_int as isize)
                                 as libc::c_int
-                                & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-                                != 0
+                                & C2RustUnnamed_0::_ISdigit as libc::c_int as libc::c_ushort
+                                    as libc::c_int != 0
                         {
                             if lower_bound < 0 as libc::c_int {
                                 lower_bound = 0 as libc::c_int;
@@ -13710,7 +13876,7 @@ unsafe extern "C" fn regex_compile(
                                 break;
                             }
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh35 = p;
                             p = p.offset(1);
@@ -13723,7 +13889,7 @@ unsafe extern "C" fn regex_compile(
                     if c as libc::c_int == ',' as i32 {
                         if p != pend {
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh36 = p;
                             p = p.offset(1);
@@ -13734,8 +13900,8 @@ unsafe extern "C" fn regex_compile(
                             while 1 as libc::c_int != 0
                                 && *(*__ctype_b_loc()).offset(c as libc::c_int as isize)
                                     as libc::c_int
-                                    & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-                                    != 0
+                                    & C2RustUnnamed_0::_ISdigit as libc::c_int as libc::c_ushort
+                                        as libc::c_int != 0
                             {
                                 if upper_bound < 0 as libc::c_int {
                                     upper_bound = 0 as libc::c_int;
@@ -13746,7 +13912,7 @@ unsafe extern "C" fn regex_compile(
                                     break;
                                 }
                                 if p == pend {
-                                    return REG_EEND;
+                                    return reg_errcode_t::REG_EEND;
                                 }
                                 let fresh37 = p;
                                 p = p.offset(1);
@@ -13776,7 +13942,9 @@ unsafe extern "C" fn regex_compile(
                                 << 1 as libc::c_int) << 1 as libc::c_int != 0)
                         {
                             free(compile_stack.stack as *mut libc::c_void);
-                            return REG_BADBR as libc::c_int as reg_errcode_t;
+                            return reg_errcode_t::from_libc_c_uint(
+                                reg_errcode_t::REG_BADBR as libc::c_int as u32,
+                            );
                         }
                     } else {
                         if syntax
@@ -13790,10 +13958,12 @@ unsafe extern "C" fn regex_compile(
                         {
                             if c as libc::c_int != '\\' as i32 {
                                 free(compile_stack.stack as *mut libc::c_void);
-                                return REG_EBRACE as libc::c_int as reg_errcode_t;
+                                return reg_errcode_t::from_libc_c_uint(
+                                    reg_errcode_t::REG_EBRACE as libc::c_int as u32,
+                                );
                             }
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh38 = p;
                             p = p.offset(1);
@@ -13813,7 +13983,9 @@ unsafe extern "C" fn regex_compile(
                                     << 1 as libc::c_int) << 1 as libc::c_int != 0)
                             {
                                 free(compile_stack.stack as *mut libc::c_void);
-                                return REG_BADBR as libc::c_int as reg_errcode_t;
+                                return reg_errcode_t::from_libc_c_uint(
+                                    reg_errcode_t::REG_BADBR as libc::c_int as u32,
+                                );
                             }
                         } else {
                             if laststart.is_null() {
@@ -13824,7 +13996,9 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int != 0
                                 {
                                     free(compile_stack.stack as *mut libc::c_void);
-                                    return REG_BADRPT as libc::c_int as reg_errcode_t;
+                                    return reg_errcode_t::from_libc_c_uint(
+                                        reg_errcode_t::REG_BADRPT as libc::c_int as u32,
+                                    );
                                 } else if syntax
                                     & ((((1 as libc::c_int as libc::c_ulong)
                                         << 1 as libc::c_int) << 1 as libc::c_int)
@@ -13851,24 +14025,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_13 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -13903,7 +14075,7 @@ unsafe extern "C" fn regex_compile(
                                             }
                                         }
                                         insert_op1(
-                                            jump,
+                                            re_opcode_t::jump,
                                             laststart,
                                             (b.offset(3 as libc::c_int as isize).offset_from(laststart)
                                                 as libc::c_long - 3 as libc::c_int as libc::c_long)
@@ -13924,24 +14096,22 @@ unsafe extern "C" fn regex_compile(
                                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                return REG_ESIZE;
+                                                return reg_errcode_t::REG_ESIZE;
                                             }
                                             (*bufp).allocated <<= 1 as libc::c_int;
                                             if (*bufp).allocated
                                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                                     as libc::c_ulong
                                             {
-                                                (*bufp)
-                                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                                    as libc::c_ulong;
+                                                (*bufp).allocated = ((1 as libc::c_long)
+                                                    << 16 as libc::c_int) as libc::c_ulong;
                                             }
-                                            (*bufp)
-                                                .buffer = realloc(
+                                            (*bufp).buffer = realloc(
                                                 (*bufp).buffer as *mut libc::c_void,
                                                 (*bufp).allocated,
                                             ) as *mut libc::c_uchar;
                                             if ((*bufp).buffer).is_null() {
-                                                return REG_ESPACE;
+                                                return reg_errcode_t::REG_ESPACE;
                                             }
                                             if old_buffer_14 != (*bufp).buffer {
                                                 b = ((*bufp).buffer)
@@ -13976,7 +14146,7 @@ unsafe extern "C" fn regex_compile(
                                             }
                                         }
                                         insert_op2(
-                                            succeed_n,
+                                            re_opcode_t::succeed_n,
                                             laststart,
                                             (b
                                                 .offset(5 as libc::c_int as isize)
@@ -13991,7 +14161,7 @@ unsafe extern "C" fn regex_compile(
                                         );
                                         b = b.offset(5 as libc::c_int as isize);
                                         insert_op2(
-                                            set_number_at,
+                                            re_opcode_t::set_number_at,
                                             laststart,
                                             5 as libc::c_int,
                                             lower_bound,
@@ -14000,7 +14170,7 @@ unsafe extern "C" fn regex_compile(
                                         b = b.offset(5 as libc::c_int as isize);
                                         if upper_bound > 1 as libc::c_int {
                                             store_op2(
-                                                jump_n,
+                                                re_opcode_t::jump_n,
                                                 b,
                                                 (laststart.offset(5 as libc::c_int as isize).offset_from(b)
                                                     as libc::c_long - 3 as libc::c_int as libc::c_long)
@@ -14009,7 +14179,7 @@ unsafe extern "C" fn regex_compile(
                                             );
                                             b = b.offset(5 as libc::c_int as isize);
                                             insert_op2(
-                                                set_number_at,
+                                                re_opcode_t::set_number_at,
                                                 laststart,
                                                 b.offset_from(laststart) as libc::c_long as libc::c_int,
                                                 upper_bound - 1 as libc::c_int,
@@ -14029,7 +14199,7 @@ unsafe extern "C" fn regex_compile(
                 p = beg_interval;
                 beg_interval = 0 as *const libc::c_char;
                 if p == pend {
-                    return REG_EEND;
+                    return reg_errcode_t::REG_EEND;
                 }
                 let fresh39 = p;
                 p = p.offset(1);
@@ -14048,15 +14218,15 @@ unsafe extern "C" fn regex_compile(
                         && *p.offset(-(1 as libc::c_int) as isize) as libc::c_int
                             == '\\' as i32
                     {
-                        current_block = 10752149674740360864;
+                        current_block = 3962563478812244436;
                     } else {
-                        current_block = 2815554570557757365;
+                        current_block = 9887592654468655139;
                     }
                 } else {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 }
             }
-            8820078496211684002 => {
+            18405110941157351894 => {
                 if syntax
                     & ((((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
@@ -14064,7 +14234,7 @@ unsafe extern "C" fn regex_compile(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                     != 0
                 {
-                    current_block = 2815554570557757365;
+                    current_block = 9887592654468655139;
                 } else {
                     while (b.offset_from((*bufp).buffer) as libc::c_long
                         + 3 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -14075,23 +14245,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer_11 != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -14126,7 +14294,7 @@ unsafe extern "C" fn regex_compile(
                         }
                     }
                     insert_op1(
-                        on_failure_jump,
+                        re_opcode_t::on_failure_jump,
                         begalt,
                         (b.offset(6 as libc::c_int as isize).offset_from(begalt)
                             as libc::c_long - 3 as libc::c_int as libc::c_long)
@@ -14137,7 +14305,7 @@ unsafe extern "C" fn regex_compile(
                     b = b.offset(3 as libc::c_int as isize);
                     if !fixup_alt_jump.is_null() {
                         store_op1(
-                            jump_past_alt,
+                            re_opcode_t::jump_past_alt,
                             fixup_alt_jump,
                             (b.offset_from(fixup_alt_jump) as libc::c_long
                                 - 3 as libc::c_int as libc::c_long) as libc::c_int,
@@ -14153,23 +14321,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer_12 != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -14209,7 +14375,7 @@ unsafe extern "C" fn regex_compile(
                     continue;
                 }
             }
-            10068816213029999017 => {
+            4872567246065702152 => {
                 if !fixup_alt_jump.is_null() {
                     while (b.offset_from((*bufp).buffer) as libc::c_long
                         + 1 as libc::c_int as libc::c_long) as libc::c_ulong
@@ -14220,23 +14386,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer_9 != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -14271,9 +14435,10 @@ unsafe extern "C" fn regex_compile(
                     }
                     let fresh30 = b;
                     b = b.offset(1);
-                    *fresh30 = push_dummy_failure as libc::c_int as libc::c_uchar;
+                    *fresh30 = re_opcode_t::push_dummy_failure as libc::c_int
+                        as libc::c_uchar;
                     store_op1(
-                        jump_past_alt,
+                        re_opcode_t::jump_past_alt,
                         fixup_alt_jump,
                         (b
                             .offset(-(1 as libc::c_int as isize))
@@ -14295,7 +14460,9 @@ unsafe extern "C" fn regex_compile(
                         != 0)
                     {
                         free(compile_stack.stack as *mut libc::c_void);
-                        return REG_ERPAREN as libc::c_int as reg_errcode_t;
+                        return reg_errcode_t::from_libc_c_uint(
+                            reg_errcode_t::REG_ERPAREN as libc::c_int as u32,
+                        );
                     }
                 } else {
                     let mut this_group_regnum: regnum_t = 0;
@@ -14347,24 +14514,22 @@ unsafe extern "C" fn regex_compile(
                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                     as libc::c_ulong
                             {
-                                return REG_ESIZE;
+                                return reg_errcode_t::REG_ESIZE;
                             }
                             (*bufp).allocated <<= 1 as libc::c_int;
                             if (*bufp).allocated
                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                     as libc::c_ulong
                             {
-                                (*bufp)
-                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                    as libc::c_ulong;
+                                (*bufp).allocated = ((1 as libc::c_long)
+                                    << 16 as libc::c_int) as libc::c_ulong;
                             }
-                            (*bufp)
-                                .buffer = realloc(
+                            (*bufp).buffer = realloc(
                                 (*bufp).buffer as *mut libc::c_void,
                                 (*bufp).allocated,
                             ) as *mut libc::c_uchar;
                             if ((*bufp).buffer).is_null() {
-                                return REG_ESPACE;
+                                return reg_errcode_t::REG_ESPACE;
                             }
                             if old_buffer_10 != (*bufp).buffer {
                                 b = ((*bufp).buffer)
@@ -14400,7 +14565,8 @@ unsafe extern "C" fn regex_compile(
                         }
                         let fresh31 = b;
                         b = b.offset(1);
-                        *fresh31 = stop_memory as libc::c_int as libc::c_uchar;
+                        *fresh31 = re_opcode_t::stop_memory as libc::c_int
+                            as libc::c_uchar;
                         let fresh32 = b;
                         b = b.offset(1);
                         *fresh32 = this_group_regnum as libc::c_uchar;
@@ -14411,16 +14577,15 @@ unsafe extern "C" fn regex_compile(
                     }
                     continue;
                 }
-                current_block = 2815554570557757365;
+                current_block = 9887592654468655139;
             }
-            3908040554451196172 => {
+            12924337694122082779 => {
                 (*bufp).re_nsub = ((*bufp).re_nsub).wrapping_add(1);
                 (*bufp).re_nsub;
                 regnum = regnum.wrapping_add(1);
                 regnum;
                 if compile_stack.avail == compile_stack.size {
-                    compile_stack
-                        .stack = realloc(
+                    compile_stack.stack = realloc(
                         compile_stack.stack as *mut libc::c_void,
                         ((compile_stack.size << 1 as libc::c_int) as libc::c_ulong)
                             .wrapping_mul(
@@ -14429,7 +14594,7 @@ unsafe extern "C" fn regex_compile(
                             ),
                     ) as *mut compile_stack_elt_t;
                     if (compile_stack.stack).is_null() {
-                        return REG_ESPACE;
+                        return reg_errcode_t::REG_ESPACE;
                     }
                     compile_stack.size <<= 1 as libc::c_int;
                 }
@@ -14444,8 +14609,7 @@ unsafe extern "C" fn regex_compile(
                 };
                 (*(compile_stack.stack).offset(compile_stack.avail as isize))
                     .laststart_offset = b.offset_from((*bufp).buffer) as libc::c_long;
-                (*(compile_stack.stack).offset(compile_stack.avail as isize))
-                    .regnum = regnum;
+                (*(compile_stack.stack).offset(compile_stack.avail as isize)).regnum = regnum;
                 if regnum <= 255 as libc::c_int as libc::c_uint {
                     (*(compile_stack.stack).offset(compile_stack.avail as isize))
                         .inner_group_offset = b.offset_from((*bufp).buffer)
@@ -14459,23 +14623,21 @@ unsafe extern "C" fn regex_compile(
                             == ((1 as libc::c_long) << 16 as libc::c_int)
                                 as libc::c_ulong
                         {
-                            return REG_ESIZE;
+                            return reg_errcode_t::REG_ESIZE;
                         }
                         (*bufp).allocated <<= 1 as libc::c_int;
                         if (*bufp).allocated
                             > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                         {
-                            (*bufp)
-                                .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                as libc::c_ulong;
+                            (*bufp).allocated = ((1 as libc::c_long)
+                                << 16 as libc::c_int) as libc::c_ulong;
                         }
-                        (*bufp)
-                            .buffer = realloc(
+                        (*bufp).buffer = realloc(
                             (*bufp).buffer as *mut libc::c_void,
                             (*bufp).allocated,
                         ) as *mut libc::c_uchar;
                         if ((*bufp).buffer).is_null() {
-                            return REG_ESPACE;
+                            return reg_errcode_t::REG_ESPACE;
                         }
                         if old_buffer_8 != (*bufp).buffer {
                             b = ((*bufp).buffer)
@@ -14510,7 +14672,7 @@ unsafe extern "C" fn regex_compile(
                     }
                     let fresh27 = b;
                     b = b.offset(1);
-                    *fresh27 = start_memory as libc::c_int as libc::c_uchar;
+                    *fresh27 = re_opcode_t::start_memory as libc::c_int as libc::c_uchar;
                     let fresh28 = b;
                     b = b.offset(1);
                     *fresh28 = regnum as libc::c_uchar;
@@ -14526,7 +14688,7 @@ unsafe extern "C" fn regex_compile(
                 pending_exact = 0 as *mut libc::c_uchar;
                 continue;
             }
-            8138665152816868871 => {
+            390529185191362524 => {
                 if laststart.is_null() {
                     if syntax
                         & (((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
@@ -14534,13 +14696,15 @@ unsafe extern "C" fn regex_compile(
                             << 1 as libc::c_int) << 1 as libc::c_int != 0
                     {
                         free(compile_stack.stack as *mut libc::c_void);
-                        return REG_BADRPT as libc::c_int as reg_errcode_t;
+                        return reg_errcode_t::from_libc_c_uint(
+                            reg_errcode_t::REG_BADRPT as libc::c_int as u32,
+                        );
                     } else if syntax
                         & ((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
                             << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                         == 0
                     {
-                        current_block = 2815554570557757365;
+                        current_block = 9887592654468655139;
                     } else {
                         current_block = 479107131381816815;
                     }
@@ -14548,7 +14712,7 @@ unsafe extern "C" fn regex_compile(
                     current_block = 479107131381816815;
                 }
                 match current_block {
-                    2815554570557757365 => {}
+                    9887592654468655139 => {}
                     _ => {
                         let mut keep_string_p: boolean = 0 as libc::c_int as boolean;
                         let mut zero_times_ok: libc::c_char = 0 as libc::c_int
@@ -14566,7 +14730,7 @@ unsafe extern "C" fn regex_compile(
                                 break;
                             }
                             if p == pend {
-                                return REG_EEND;
+                                return reg_errcode_t::REG_EEND;
                             }
                             let fresh3 = p;
                             p = p.offset(1);
@@ -14589,10 +14753,12 @@ unsafe extern "C" fn regex_compile(
                             {
                                 if p == pend {
                                     free(compile_stack.stack as *mut libc::c_void);
-                                    return REG_EESCAPE as libc::c_int as reg_errcode_t;
+                                    return reg_errcode_t::from_libc_c_uint(
+                                        reg_errcode_t::REG_EESCAPE as libc::c_int as u32,
+                                    );
                                 }
                                 if p == pend {
-                                    return REG_EEND;
+                                    return reg_errcode_t::REG_EEND;
                                 }
                                 let fresh4 = p;
                                 p = p.offset(1);
@@ -14630,24 +14796,22 @@ unsafe extern "C" fn regex_compile(
                                     == ((1 as libc::c_long) << 16 as libc::c_int)
                                         as libc::c_ulong
                                 {
-                                    return REG_ESIZE;
+                                    return reg_errcode_t::REG_ESIZE;
                                 }
                                 (*bufp).allocated <<= 1 as libc::c_int;
                                 if (*bufp).allocated
                                     > ((1 as libc::c_long) << 16 as libc::c_int)
                                         as libc::c_ulong
                                 {
-                                    (*bufp)
-                                        .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                        as libc::c_ulong;
+                                    (*bufp).allocated = ((1 as libc::c_long)
+                                        << 16 as libc::c_int) as libc::c_ulong;
                                 }
-                                (*bufp)
-                                    .buffer = realloc(
+                                (*bufp).buffer = realloc(
                                     (*bufp).buffer as *mut libc::c_void,
                                     (*bufp).allocated,
                                 ) as *mut libc::c_uchar;
                                 if ((*bufp).buffer).is_null() {
-                                    return REG_ESPACE;
+                                    return reg_errcode_t::REG_ESPACE;
                                 }
                                 if old_buffer_1 != (*bufp).buffer {
                                     b = ((*bufp).buffer)
@@ -14714,7 +14878,7 @@ unsafe extern "C" fn regex_compile(
                                         << 1 as libc::c_int) << 1 as libc::c_int == 0
                             {
                                 store_op1(
-                                    jump,
+                                    re_opcode_t::jump,
                                     b,
                                     (laststart.offset_from(b) as libc::c_long
                                         - 3 as libc::c_int as libc::c_long) as libc::c_int,
@@ -14722,7 +14886,7 @@ unsafe extern "C" fn regex_compile(
                                 keep_string_p = 1 as libc::c_int as boolean;
                             } else {
                                 store_op1(
-                                    maybe_pop_jump,
+                                    re_opcode_t::maybe_pop_jump,
                                     b,
                                     (laststart
                                         .offset(-(3 as libc::c_int as isize))
@@ -14741,24 +14905,22 @@ unsafe extern "C" fn regex_compile(
                                 == ((1 as libc::c_long) << 16 as libc::c_int)
                                     as libc::c_ulong
                             {
-                                return REG_ESIZE;
+                                return reg_errcode_t::REG_ESIZE;
                             }
                             (*bufp).allocated <<= 1 as libc::c_int;
                             if (*bufp).allocated
                                 > ((1 as libc::c_long) << 16 as libc::c_int)
                                     as libc::c_ulong
                             {
-                                (*bufp)
-                                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                    as libc::c_ulong;
+                                (*bufp).allocated = ((1 as libc::c_long)
+                                    << 16 as libc::c_int) as libc::c_ulong;
                             }
-                            (*bufp)
-                                .buffer = realloc(
+                            (*bufp).buffer = realloc(
                                 (*bufp).buffer as *mut libc::c_void,
                                 (*bufp).allocated,
                             ) as *mut libc::c_uchar;
                             if ((*bufp).buffer).is_null() {
-                                return REG_ESPACE;
+                                return reg_errcode_t::REG_ESPACE;
                             }
                             if old_buffer_2 != (*bufp).buffer {
                                 b = ((*bufp).buffer)
@@ -14792,11 +14954,13 @@ unsafe extern "C" fn regex_compile(
                             }
                         }
                         insert_op1(
-                            (if keep_string_p as libc::c_int != 0 {
-                                on_failure_keep_string_jump as libc::c_int
-                            } else {
-                                on_failure_jump as libc::c_int
-                            }) as re_opcode_t,
+                            re_opcode_t::from_libc_c_uint(
+                                (if keep_string_p as libc::c_int != 0 {
+                                    re_opcode_t::on_failure_keep_string_jump as libc::c_int
+                                } else {
+                                    re_opcode_t::on_failure_jump as libc::c_int
+                                }) as u32,
+                            ),
                             laststart,
                             (b.offset(3 as libc::c_int as isize).offset_from(laststart)
                                 as libc::c_long - 3 as libc::c_int as libc::c_long)
@@ -14815,24 +14979,22 @@ unsafe extern "C" fn regex_compile(
                                     == ((1 as libc::c_long) << 16 as libc::c_int)
                                         as libc::c_ulong
                                 {
-                                    return REG_ESIZE;
+                                    return reg_errcode_t::REG_ESIZE;
                                 }
                                 (*bufp).allocated <<= 1 as libc::c_int;
                                 if (*bufp).allocated
                                     > ((1 as libc::c_long) << 16 as libc::c_int)
                                         as libc::c_ulong
                                 {
-                                    (*bufp)
-                                        .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
-                                        as libc::c_ulong;
+                                    (*bufp).allocated = ((1 as libc::c_long)
+                                        << 16 as libc::c_int) as libc::c_ulong;
                                 }
-                                (*bufp)
-                                    .buffer = realloc(
+                                (*bufp).buffer = realloc(
                                     (*bufp).buffer as *mut libc::c_void,
                                     (*bufp).allocated,
                                 ) as *mut libc::c_uchar;
                                 if ((*bufp).buffer).is_null() {
-                                    return REG_ESPACE;
+                                    return reg_errcode_t::REG_ESPACE;
                                 }
                                 if old_buffer_3 != (*bufp).buffer {
                                     b = ((*bufp).buffer)
@@ -14866,7 +15028,7 @@ unsafe extern "C" fn regex_compile(
                                 }
                             }
                             insert_op1(
-                                dummy_failure_jump,
+                                re_opcode_t::dummy_failure_jump,
                                 laststart,
                                 (laststart
                                     .offset(6 as libc::c_int as isize)
@@ -14883,7 +15045,7 @@ unsafe extern "C" fn regex_compile(
             _ => {}
         }
         match current_block {
-            10752149674740360864 => {
+            3962563478812244436 => {
                 c = (if !translate.is_null() {
                     *translate.offset(c as isize) as libc::c_int
                 } else {
@@ -14936,23 +15098,21 @@ unsafe extern "C" fn regex_compile(
                 if (*bufp).allocated
                     == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                 {
-                    return REG_ESIZE;
+                    return reg_errcode_t::REG_ESIZE;
                 }
                 (*bufp).allocated <<= 1 as libc::c_int;
                 if (*bufp).allocated
                     > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
                 {
-                    (*bufp)
-                        .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                    (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                         as libc::c_ulong;
                 }
-                (*bufp)
-                    .buffer = realloc(
+                (*bufp).buffer = realloc(
                     (*bufp).buffer as *mut libc::c_void,
                     (*bufp).allocated,
                 ) as *mut libc::c_uchar;
                 if ((*bufp).buffer).is_null() {
-                    return REG_ESPACE;
+                    return reg_errcode_t::REG_ESPACE;
                 }
                 if old_buffer_24 != (*bufp).buffer {
                     b = ((*bufp).buffer)
@@ -14986,7 +15146,7 @@ unsafe extern "C" fn regex_compile(
             }
             let fresh50 = b;
             b = b.offset(1);
-            *fresh50 = exactn as libc::c_int as libc::c_uchar;
+            *fresh50 = re_opcode_t::exactn as libc::c_int as libc::c_uchar;
             let fresh51 = b;
             b = b.offset(1);
             *fresh51 = 0 as libc::c_int as libc::c_uchar;
@@ -14999,21 +15159,21 @@ unsafe extern "C" fn regex_compile(
             if (*bufp).allocated
                 == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
             {
-                return REG_ESIZE;
+                return reg_errcode_t::REG_ESIZE;
             }
             (*bufp).allocated <<= 1 as libc::c_int;
             if (*bufp).allocated
                 > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
             {
-                (*bufp)
-                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                     as libc::c_ulong;
             }
-            (*bufp)
-                .buffer = realloc((*bufp).buffer as *mut libc::c_void, (*bufp).allocated)
-                as *mut libc::c_uchar;
+            (*bufp).buffer = realloc(
+                (*bufp).buffer as *mut libc::c_void,
+                (*bufp).allocated,
+            ) as *mut libc::c_uchar;
             if ((*bufp).buffer).is_null() {
-                return REG_ESPACE;
+                return reg_errcode_t::REG_ESPACE;
             }
             if old_buffer_25 != (*bufp).buffer {
                 b = ((*bufp).buffer)
@@ -15050,7 +15210,7 @@ unsafe extern "C" fn regex_compile(
     }
     if !fixup_alt_jump.is_null() {
         store_op1(
-            jump_past_alt,
+            re_opcode_t::jump_past_alt,
             fixup_alt_jump,
             (b.offset_from(fixup_alt_jump) as libc::c_long
                 - 3 as libc::c_int as libc::c_long) as libc::c_int,
@@ -15058,7 +15218,9 @@ unsafe extern "C" fn regex_compile(
     }
     if !(compile_stack.avail == 0 as libc::c_int as libc::c_uint) {
         free(compile_stack.stack as *mut libc::c_void);
-        return REG_EPAREN as libc::c_int as reg_errcode_t;
+        return reg_errcode_t::from_libc_c_uint(
+            reg_errcode_t::REG_EPAREN as libc::c_int as u32,
+        );
     }
     if syntax
         & ((((((((((((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
@@ -15076,21 +15238,21 @@ unsafe extern "C" fn regex_compile(
             if (*bufp).allocated
                 == ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
             {
-                return REG_ESIZE;
+                return reg_errcode_t::REG_ESIZE;
             }
             (*bufp).allocated <<= 1 as libc::c_int;
             if (*bufp).allocated
                 > ((1 as libc::c_long) << 16 as libc::c_int) as libc::c_ulong
             {
-                (*bufp)
-                    .allocated = ((1 as libc::c_long) << 16 as libc::c_int)
+                (*bufp).allocated = ((1 as libc::c_long) << 16 as libc::c_int)
                     as libc::c_ulong;
             }
-            (*bufp)
-                .buffer = realloc((*bufp).buffer as *mut libc::c_void, (*bufp).allocated)
-                as *mut libc::c_uchar;
+            (*bufp).buffer = realloc(
+                (*bufp).buffer as *mut libc::c_void,
+                (*bufp).allocated,
+            ) as *mut libc::c_uchar;
             if ((*bufp).buffer).is_null() {
-                return REG_ESPACE;
+                return reg_errcode_t::REG_ESPACE;
             }
             if old_buffer_26 != (*bufp).buffer {
                 b = ((*bufp).buffer)
@@ -15121,11 +15283,11 @@ unsafe extern "C" fn regex_compile(
         }
         let fresh53 = b;
         b = b.offset(1);
-        *fresh53 = succeed as libc::c_int as libc::c_uchar;
+        *fresh53 = re_opcode_t::succeed as libc::c_int as libc::c_uchar;
     }
     free(compile_stack.stack as *mut libc::c_void);
     (*bufp).used = b.offset_from((*bufp).buffer) as libc::c_long as libc::c_ulong;
-    return REG_NOERROR;
+    return reg_errcode_t::REG_NOERROR;
 }
 unsafe extern "C" fn store_op1(
     mut op: re_opcode_t,
@@ -15133,14 +15295,10 @@ unsafe extern "C" fn store_op1(
     mut arg: libc::c_int,
 ) {
     *loc = op as libc::c_uchar;
-    *loc
-        .offset(1 as libc::c_int as isize)
-        .offset(
-            0 as libc::c_int as isize,
-        ) = (arg & 0o377 as libc::c_int) as libc::c_uchar;
-    *loc
-        .offset(1 as libc::c_int as isize)
-        .offset(1 as libc::c_int as isize) = (arg >> 8 as libc::c_int) as libc::c_uchar;
+    *loc.offset(1 as libc::c_int as isize).offset(0 as libc::c_int as isize) = (arg
+        & 0o377 as libc::c_int) as libc::c_uchar;
+    *loc.offset(1 as libc::c_int as isize).offset(1 as libc::c_int as isize) = (arg
+        >> 8 as libc::c_int) as libc::c_uchar;
 }
 unsafe extern "C" fn store_op2(
     mut op: re_opcode_t,
@@ -15149,22 +15307,14 @@ unsafe extern "C" fn store_op2(
     mut arg2: libc::c_int,
 ) {
     *loc = op as libc::c_uchar;
-    *loc
-        .offset(1 as libc::c_int as isize)
-        .offset(
-            0 as libc::c_int as isize,
-        ) = (arg1 & 0o377 as libc::c_int) as libc::c_uchar;
-    *loc
-        .offset(1 as libc::c_int as isize)
-        .offset(1 as libc::c_int as isize) = (arg1 >> 8 as libc::c_int) as libc::c_uchar;
-    *loc
-        .offset(3 as libc::c_int as isize)
-        .offset(
-            0 as libc::c_int as isize,
-        ) = (arg2 & 0o377 as libc::c_int) as libc::c_uchar;
-    *loc
-        .offset(3 as libc::c_int as isize)
-        .offset(1 as libc::c_int as isize) = (arg2 >> 8 as libc::c_int) as libc::c_uchar;
+    *loc.offset(1 as libc::c_int as isize).offset(0 as libc::c_int as isize) = (arg1
+        & 0o377 as libc::c_int) as libc::c_uchar;
+    *loc.offset(1 as libc::c_int as isize).offset(1 as libc::c_int as isize) = (arg1
+        >> 8 as libc::c_int) as libc::c_uchar;
+    *loc.offset(3 as libc::c_int as isize).offset(0 as libc::c_int as isize) = (arg2
+        & 0o377 as libc::c_int) as libc::c_uchar;
+    *loc.offset(3 as libc::c_int as isize).offset(1 as libc::c_int as isize) = (arg2
+        >> 8 as libc::c_int) as libc::c_uchar;
 }
 unsafe extern "C" fn insert_op1(
     mut op: re_opcode_t,
@@ -15293,7 +15443,7 @@ unsafe extern "C" fn compile_range(
     let mut range_start: libc::c_uint = 0;
     let mut range_end: libc::c_uint = 0;
     if p == pend {
-        return REG_ERANGE;
+        return reg_errcode_t::REG_ERANGE;
     }
     range_start = *(p as *const libc::c_uchar).offset(-(2 as libc::c_int) as isize)
         as libc::c_uint;
@@ -15302,18 +15452,20 @@ unsafe extern "C" fn compile_range(
     *p_ptr = (*p_ptr).offset(1);
     *p_ptr;
     if range_start > range_end {
-        return (if syntax
-            & ((((((((((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
-        {
-            REG_ERANGE as libc::c_int
-        } else {
-            REG_NOERROR as libc::c_int
-        }) as reg_errcode_t;
+        return reg_errcode_t::from_libc_c_uint(
+            (if syntax
+                & ((((((((((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
+            {
+                reg_errcode_t::REG_ERANGE as libc::c_int
+            } else {
+                reg_errcode_t::REG_NOERROR as libc::c_int
+            }) as u32,
+        );
     }
     this_char = range_start;
     while this_char <= range_end {
@@ -15337,7 +15489,7 @@ unsafe extern "C" fn compile_range(
         this_char = this_char.wrapping_add(1);
         this_char;
     }
-    return REG_NOERROR;
+    return reg_errcode_t::REG_NOERROR;
 }
 #[no_mangle]
 pub unsafe extern "C" fn re_compile_fastmap(
@@ -15379,7 +15531,7 @@ pub unsafe extern "C" fn re_compile_fastmap(
     (*bufp).set_fastmap_accurate(1 as libc::c_int as libc::c_uint);
     (*bufp).set_can_be_null(0 as libc::c_int as libc::c_uint);
     loop {
-        if p == pend || *p as libc::c_int == succeed as libc::c_int {
+        if p == pend || *p as libc::c_int == re_opcode_t::succeed as libc::c_int {
             if fail_stack.avail == 0 as libc::c_int as libc::c_uint {
                 current_block = 5409161009579131794;
                 break;
@@ -15395,17 +15547,15 @@ pub unsafe extern "C" fn re_compile_fastmap(
         } else {
             let fresh56 = p;
             p = p.offset(1);
-            match *fresh56 as re_opcode_t as libc::c_uint {
+            match re_opcode_t::from_libc_c_uint(*fresh56 as u32) as libc::c_uint {
                 8 => {
                     (*bufp).set_can_be_null(1 as libc::c_int as libc::c_uint);
                     current_block = 16590946904645350046;
                     break;
                 }
                 2 => {
-                    *fastmap
-                        .offset(
-                            *p.offset(1 as libc::c_int as isize) as isize,
-                        ) = 1 as libc::c_int as libc::c_char;
+                    *fastmap.offset(*p.offset(1 as libc::c_int as isize) as isize) = 1
+                        as libc::c_int as libc::c_char;
                     current_block = 2652804691515851435;
                 }
                 4 => {
@@ -15416,8 +15566,8 @@ pub unsafe extern "C" fn re_compile_fastmap(
                         if *p.offset((j / 8 as libc::c_int) as isize) as libc::c_int
                             & (1 as libc::c_int) << j % 8 as libc::c_int != 0
                         {
-                            *fastmap
-                                .offset(j as isize) = 1 as libc::c_int as libc::c_char;
+                            *fastmap.offset(j as isize) = 1 as libc::c_int
+                                as libc::c_char;
                         }
                         j -= 1;
                         j;
@@ -15438,8 +15588,8 @@ pub unsafe extern "C" fn re_compile_fastmap(
                         if *p.offset((j / 8 as libc::c_int) as isize) as libc::c_int
                             & (1 as libc::c_int) << j % 8 as libc::c_int == 0
                         {
-                            *fastmap
-                                .offset(j as isize) = 1 as libc::c_int as libc::c_char;
+                            *fastmap.offset(j as isize) = 1 as libc::c_int
+                                as libc::c_char;
                         }
                         j -= 1;
                         j;
@@ -15451,8 +15601,8 @@ pub unsafe extern "C" fn re_compile_fastmap(
                     while j < (1 as libc::c_int) << 8 as libc::c_int {
                         if re_syntax_table[j as usize] as libc::c_int == 1 as libc::c_int
                         {
-                            *fastmap
-                                .offset(j as isize) = 1 as libc::c_int as libc::c_char;
+                            *fastmap.offset(j as isize) = 1 as libc::c_int
+                                as libc::c_char;
                         }
                         j += 1;
                         j;
@@ -15464,8 +15614,8 @@ pub unsafe extern "C" fn re_compile_fastmap(
                     while j < (1 as libc::c_int) << 8 as libc::c_int {
                         if re_syntax_table[j as usize] as libc::c_int != 1 as libc::c_int
                         {
-                            *fastmap
-                                .offset(j as isize) = 1 as libc::c_int as libc::c_char;
+                            *fastmap.offset(j as isize) = 1 as libc::c_int
+                                as libc::c_char;
                         }
                         j += 1;
                         j;
@@ -15487,10 +15637,8 @@ pub unsafe extern "C" fn re_compile_fastmap(
                             << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                         == 0
                     {
-                        *fastmap
-                            .offset(
-                                '\n' as i32 as isize,
-                            ) = fastmap_newline as libc::c_char;
+                        *fastmap.offset('\n' as i32 as isize) = fastmap_newline
+                            as libc::c_char;
                     } else if (*bufp).can_be_null() != 0 {
                         current_block = 16590946904645350046;
                         break;
@@ -15510,10 +15658,10 @@ pub unsafe extern "C" fn re_compile_fastmap(
                     if j > 0 as libc::c_int {
                         continue;
                     }
-                    if *p as re_opcode_t as libc::c_uint
-                        != on_failure_jump as libc::c_int as libc::c_uint
-                        && *p as re_opcode_t as libc::c_uint
-                            != succeed_n as libc::c_int as libc::c_uint
+                    if re_opcode_t::from_libc_c_uint(*p as u32) as libc::c_uint
+                        != re_opcode_t::on_failure_jump as libc::c_int as libc::c_uint
+                        && re_opcode_t::from_libc_c_uint(*p as u32) as libc::c_uint
+                            != re_opcode_t::succeed_n as libc::c_int as libc::c_uint
                     {
                         continue;
                     }
@@ -15539,7 +15687,7 @@ pub unsafe extern "C" fn re_compile_fastmap(
                     continue;
                 }
                 15 | 16 => {
-                    current_block = 17611128889183986627;
+                    current_block = 12693412865587933385;
                 }
                 21 => {
                     p = p.offset(2 as libc::c_int as isize);
@@ -15553,7 +15701,7 @@ pub unsafe extern "C" fn re_compile_fastmap(
                     }
                     p = p.offset(-(4 as libc::c_int as isize));
                     succeed_n_p = 1 as libc::c_int as boolean;
-                    current_block = 17611128889183986627;
+                    current_block = 12693412865587933385;
                 }
                 23 => {
                     p = p.offset(4 as libc::c_int as isize);
@@ -15719,8 +15867,9 @@ pub unsafe extern "C" fn re_search_2(
         range = total_size - startpos;
     }
     if (*bufp).used > 0 as libc::c_int as libc::c_ulong
-        && *((*bufp).buffer).offset(0 as libc::c_int as isize) as re_opcode_t
-            as libc::c_uint == begbuf as libc::c_int as libc::c_uint
+        && re_opcode_t::from_libc_c_uint(
+            *((*bufp).buffer).offset(0 as libc::c_int as isize) as u32,
+        ) as libc::c_uint == re_opcode_t::begbuf as libc::c_int as libc::c_uint
         && range > 0 as libc::c_int
     {
         if startpos > 0 as libc::c_int {
@@ -15796,7 +15945,7 @@ pub unsafe extern "C" fn re_search_2(
                         }) as libc::c_uchar as isize,
                     ) == 0
                 {
-                    current_block_37 = 16358081790466628759;
+                    current_block_37 = 4460245538459946620;
                 } else {
                     current_block_37 = 14648156034262866959;
                 }
@@ -16162,7 +16311,7 @@ unsafe extern "C" fn re_match_2_internal(
         } else {
             let fresh88 = p;
             p = p.offset(1);
-            match *fresh88 as re_opcode_t as libc::c_uint {
+            match re_opcode_t::from_libc_c_uint(*fresh88 as u32) as libc::c_uint {
                 0 => {
                     current_block = 14951089859709286127;
                 }
@@ -16178,7 +16327,7 @@ unsafe extern "C" fn re_match_2_internal(
                         loop {
                             if d == dend {
                                 if dend == end_match_2 {
-                                    current_block = 17289708375665426530;
+                                    current_block = 11540785266911159237;
                                     break;
                                 }
                                 d = string2;
@@ -16191,7 +16340,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 if *translate.offset(*fresh90 as libc::c_uchar as isize)
                                     as libc::c_uchar as libc::c_int != *fresh91 as libc::c_int
                                 {
-                                    current_block = 17289708375665426530;
+                                    current_block = 11540785266911159237;
                                     break;
                                 }
                                 mcnt -= 1;
@@ -16205,7 +16354,7 @@ unsafe extern "C" fn re_match_2_internal(
                         loop {
                             if d == dend {
                                 if dend == end_match_2 {
-                                    current_block = 17289708375665426530;
+                                    current_block = 11540785266911159237;
                                     break;
                                 }
                                 d = string2;
@@ -16218,7 +16367,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 if *fresh92 as libc::c_int
                                     != *fresh93 as libc::c_char as libc::c_int
                                 {
-                                    current_block = 17289708375665426530;
+                                    current_block = 11540785266911159237;
                                     break;
                                 }
                                 mcnt -= 1;
@@ -16230,7 +16379,7 @@ unsafe extern "C" fn re_match_2_internal(
                         }
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             if set_regs_matched_done == 0 {
                                 let mut r: active_reg_t = 0;
@@ -16260,14 +16409,14 @@ unsafe extern "C" fn re_match_2_internal(
                             break;
                         }
                         if dend == end_match_2 {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                             break;
                         }
                         d = string2;
                         dend = end_match_2;
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             if (*bufp).syntax
                                 & ((((((1 as libc::c_int as libc::c_ulong)
@@ -16293,7 +16442,7 @@ unsafe extern "C" fn re_match_2_internal(
                                         *d as libc::c_int
                                     }) == '\0' as i32
                             {
-                                current_block = 17289708375665426530;
+                                current_block = 11540785266911159237;
                             } else {
                                 if set_regs_matched_done == 0 {
                                     let mut r_0: active_reg_t = 0;
@@ -16321,24 +16470,25 @@ unsafe extern "C" fn re_match_2_internal(
                 }
                 4 | 5 => {
                     let mut c: libc::c_uchar = 0;
-                    let mut not: boolean = (*p.offset(-(1 as libc::c_int as isize))
-                        as re_opcode_t as libc::c_uint
-                        == charset_not as libc::c_int as libc::c_uint) as libc::c_int
-                        as boolean;
+                    let mut not: boolean = (re_opcode_t::from_libc_c_uint(
+                        *p.offset(-(1 as libc::c_int as isize)) as u32,
+                    ) as libc::c_uint
+                        == re_opcode_t::charset_not as libc::c_int as libc::c_uint)
+                        as libc::c_int as boolean;
                     loop {
                         if !(d == dend) {
                             current_block = 14057427497994812512;
                             break;
                         }
                         if dend == end_match_2 {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                             break;
                         }
                         d = string2;
                         dend = end_match_2;
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             c = (if !translate.is_null() {
                                 *translate.offset(*d as libc::c_uchar as isize)
@@ -16361,7 +16511,7 @@ unsafe extern "C" fn re_match_2_internal(
                             p = p
                                 .offset((1 as libc::c_int + *p as libc::c_int) as isize);
                             if not == 0 {
-                                current_block = 17289708375665426530;
+                                current_block = 11540785266911159237;
                             } else {
                                 if set_regs_matched_done == 0 {
                                     let mut r_1: active_reg_t = 0;
@@ -16484,20 +16634,22 @@ unsafe extern "C" fn re_match_2_internal(
                         let mut current_block_380: u64;
                         let fresh108 = p1;
                         p1 = p1.offset(1);
-                        match *fresh108 as re_opcode_t as libc::c_uint {
+                        match re_opcode_t::from_libc_c_uint(*fresh108 as u32)
+                            as libc::c_uint
+                        {
                             22 => {
                                 is_a_jump_n = 1 as libc::c_int as boolean;
-                                current_block_380 = 11102636987042101221;
+                                current_block_380 = 18306521987677585429;
                             }
                             17 | 18 | 13 | 19 => {
-                                current_block_380 = 11102636987042101221;
+                                current_block_380 = 18306521987677585429;
                             }
                             _ => {
                                 current_block_380 = 16353847322475367968;
                             }
                         }
                         match current_block_380 {
-                            11102636987042101221 => {
+                            18306521987677585429 => {
                                 mcnt = *p1 as libc::c_int & 0o377 as libc::c_int;
                                 mcnt
                                     += (*p1.offset(1 as libc::c_int as isize) as libc::c_schar
@@ -16511,11 +16663,13 @@ unsafe extern "C" fn re_match_2_internal(
                         }
                         p1 = p1.offset(mcnt as isize);
                         if mcnt < 0 as libc::c_int
-                            && *p1 as re_opcode_t as libc::c_uint
-                                == on_failure_jump as libc::c_int as libc::c_uint
-                            && *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                                as libc::c_uint
-                                == start_memory as libc::c_int as libc::c_uint
+                            && re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                                == re_opcode_t::on_failure_jump as libc::c_int
+                                    as libc::c_uint
+                            && re_opcode_t::from_libc_c_uint(
+                                *p1.offset(3 as libc::c_int as isize) as u32,
+                            ) as libc::c_uint
+                                == re_opcode_t::start_memory as libc::c_int as libc::c_uint
                             && *p1.offset(4 as libc::c_int as isize) as libc::c_int
                                 == *p as libc::c_int
                         {
@@ -16622,21 +16776,20 @@ unsafe extern "C" fn re_match_2_internal(
                                     as *mut libc::c_uchar;
                                 let fresh117 = fail_stack.avail;
                                 fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                                *(fail_stack.stack)
-                                    .offset(
-                                        fresh117 as isize,
-                                    ) = (*reg_info.offset(this_reg as isize)).word;
+                                *(fail_stack.stack).offset(fresh117 as isize) = (*reg_info
+                                    .offset(this_reg as isize))
+                                    .word;
                                 this_reg += 1;
                                 this_reg;
                             }
                             let fresh118 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                            (*(fail_stack.stack).offset(fresh118 as isize))
-                                .integer = lowest_active_reg as libc::c_int;
+                            (*(fail_stack.stack).offset(fresh118 as isize)).integer = lowest_active_reg
+                                as libc::c_int;
                             let fresh119 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                            (*(fail_stack.stack).offset(fresh119 as isize))
-                                .integer = highest_active_reg as libc::c_int;
+                            (*(fail_stack.stack).offset(fresh119 as isize)).integer = highest_active_reg
+                                as libc::c_int;
                             let fresh120 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
                             let ref mut fresh121 = (*(fail_stack.stack)
@@ -16649,7 +16802,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 .offset(fresh122 as isize))
                                 .pointer;
                             *fresh123 = d as *mut libc::c_uchar;
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                         } else {
                             current_block = 13734492969709581318;
                         }
@@ -16657,7 +16810,7 @@ unsafe extern "C" fn re_match_2_internal(
                         current_block = 13734492969709581318;
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             p = p.offset(2 as libc::c_int as isize);
                             current_block = 14951089859709286127;
@@ -16675,7 +16828,7 @@ unsafe extern "C" fn re_match_2_internal(
                         || *regend.offset(regno as isize)
                             == &mut reg_unset_dummy as *mut libc::c_char
                     {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     } else {
                         d2 = *regstart.offset(regno as isize);
                         dend2 = if (size1 != 0
@@ -16707,7 +16860,7 @@ unsafe extern "C" fn re_match_2_internal(
                             }
                             while d == dend {
                                 if dend == end_match_2 {
-                                    current_block = 17289708375665426530;
+                                    current_block = 11540785266911159237;
                                     break 's_1933;
                                 }
                                 d = string2;
@@ -16729,7 +16882,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 )
                             } != 0
                             {
-                                current_block = 17289708375665426530;
+                                current_block = 11540785266911159237;
                                 break;
                             }
                             d = d.offset(mcnt as isize);
@@ -16775,7 +16928,7 @@ unsafe extern "C" fn re_match_2_internal(
                     match current_block {
                         14951089859709286127 => {}
                         _ => {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                         }
                     }
                 }
@@ -16784,7 +16937,7 @@ unsafe extern "C" fn re_match_2_internal(
                         if (*bufp).not_eol() == 0 {
                             current_block = 14951089859709286127;
                         } else {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                         }
                     } else if (if d == end1 {
                         *string2 as libc::c_int
@@ -16794,21 +16947,21 @@ unsafe extern "C" fn re_match_2_internal(
                     {
                         current_block = 14951089859709286127;
                     } else {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     }
                 }
                 11 => {
                     if d == (if size1 != 0 { string1 } else { string2 }) || size2 == 0 {
                         current_block = 14951089859709286127;
                     } else {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     }
                 }
                 12 => {
                     if d == end2 {
                         current_block = 14951089859709286127;
                     } else {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     }
                 }
                 16 => {
@@ -16884,21 +17037,20 @@ unsafe extern "C" fn re_match_2_internal(
                             as *mut libc::c_uchar;
                         let fresh132 = fail_stack.avail;
                         fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                        *(fail_stack.stack)
-                            .offset(
-                                fresh132 as isize,
-                            ) = (*reg_info.offset(this_reg_0 as isize)).word;
+                        *(fail_stack.stack).offset(fresh132 as isize) = (*reg_info
+                            .offset(this_reg_0 as isize))
+                            .word;
                         this_reg_0 += 1;
                         this_reg_0;
                     }
                     let fresh133 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh133 as isize))
-                        .integer = lowest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh133 as isize)).integer = lowest_active_reg
+                        as libc::c_int;
                     let fresh134 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh134 as isize))
-                        .integer = highest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh134 as isize)).integer = highest_active_reg
+                        as libc::c_int;
                     let fresh135 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
                     let ref mut fresh136 = (*(fail_stack.stack)
@@ -16925,16 +17077,17 @@ unsafe extern "C" fn re_match_2_internal(
                     let mut p2: *mut libc::c_uchar = p;
                     loop {
                         if p2.offset(2 as libc::c_int as isize) < pend
-                            && (*p2 as re_opcode_t as libc::c_uint
-                                == stop_memory as libc::c_int as libc::c_uint
-                                || *p2 as re_opcode_t as libc::c_uint
-                                    == start_memory as libc::c_int as libc::c_uint)
+                            && (re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                                == re_opcode_t::stop_memory as libc::c_int as libc::c_uint
+                                || re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                                    == re_opcode_t::start_memory as libc::c_int as libc::c_uint)
                         {
                             p2 = p2.offset(3 as libc::c_int as isize);
                         } else {
                             if !(p2.offset(6 as libc::c_int as isize) < pend
-                                && *p2 as re_opcode_t as libc::c_uint
-                                    == dummy_failure_jump as libc::c_int as libc::c_uint)
+                                && re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                                    == re_opcode_t::dummy_failure_jump as libc::c_int
+                                        as libc::c_uint)
                             {
                                 break;
                             }
@@ -16943,42 +17096,44 @@ unsafe extern "C" fn re_match_2_internal(
                     }
                     p1 = p.offset(mcnt as isize);
                     if p2 == pend {
-                        *p
-                            .offset(
-                                -(3 as libc::c_int) as isize,
-                            ) = pop_failure_jump as libc::c_int as libc::c_uchar;
-                    } else if *p2 as re_opcode_t as libc::c_uint
-                        == exactn as libc::c_int as libc::c_uint
+                        *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                            as libc::c_int as libc::c_uchar;
+                    } else if re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                        == re_opcode_t::exactn as libc::c_int as libc::c_uint
                         || (*bufp).newline_anchor() as libc::c_int != 0
-                            && *p2 as re_opcode_t as libc::c_uint
-                                == endline as libc::c_int as libc::c_uint
+                            && re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                                == re_opcode_t::endline as libc::c_int as libc::c_uint
                     {
                         let mut c_0: libc::c_uchar = (if *p2 as libc::c_int
-                            == endline as libc::c_int as libc::c_uchar as libc::c_int
+                            == re_opcode_t::endline as libc::c_int as libc::c_uchar
+                                as libc::c_int
                         {
                             '\n' as i32
                         } else {
                             *p2.offset(2 as libc::c_int as isize) as libc::c_int
                         }) as libc::c_uchar;
-                        if *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                            as libc::c_uint == exactn as libc::c_int as libc::c_uint
+                        if re_opcode_t::from_libc_c_uint(
+                            *p1.offset(3 as libc::c_int as isize) as u32,
+                        ) as libc::c_uint
+                            == re_opcode_t::exactn as libc::c_int as libc::c_uint
                             && *p1.offset(5 as libc::c_int as isize) as libc::c_int
                                 != c_0 as libc::c_int
                         {
-                            *p
-                                .offset(
-                                    -(3 as libc::c_int) as isize,
-                                ) = pop_failure_jump as libc::c_int as libc::c_uchar;
-                        } else if *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                            as libc::c_uint == charset as libc::c_int as libc::c_uint
-                            || *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                                as libc::c_uint
-                                == charset_not as libc::c_int as libc::c_uint
+                            *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                                as libc::c_int as libc::c_uchar;
+                        } else if re_opcode_t::from_libc_c_uint(
+                            *p1.offset(3 as libc::c_int as isize) as u32,
+                        ) as libc::c_uint
+                            == re_opcode_t::charset as libc::c_int as libc::c_uint
+                            || re_opcode_t::from_libc_c_uint(
+                                *p1.offset(3 as libc::c_int as isize) as u32,
+                            ) as libc::c_uint
+                                == re_opcode_t::charset_not as libc::c_int as libc::c_uint
                         {
-                            let mut not_0: libc::c_int = (*p1
-                                .offset(3 as libc::c_int as isize) as re_opcode_t
-                                as libc::c_uint
-                                == charset_not as libc::c_int as libc::c_uint)
+                            let mut not_0: libc::c_int = (re_opcode_t::from_libc_c_uint(
+                                *p1.offset(3 as libc::c_int as isize) as u32,
+                            ) as libc::c_uint
+                                == re_opcode_t::charset_not as libc::c_int as libc::c_uint)
                                 as libc::c_int;
                             if (c_0 as libc::c_int)
                                 < (*p1.offset(4 as libc::c_int as isize) as libc::c_int
@@ -16994,17 +17149,17 @@ unsafe extern "C" fn re_match_2_internal(
                                 not_0 = (not_0 == 0) as libc::c_int;
                             }
                             if not_0 == 0 {
-                                *p
-                                    .offset(
-                                        -(3 as libc::c_int) as isize,
-                                    ) = pop_failure_jump as libc::c_int as libc::c_uchar;
+                                *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                                    as libc::c_int as libc::c_uchar;
                             }
                         }
-                    } else if *p2 as re_opcode_t as libc::c_uint
-                        == charset as libc::c_int as libc::c_uint
+                    } else if re_opcode_t::from_libc_c_uint(*p2 as u32) as libc::c_uint
+                        == re_opcode_t::charset as libc::c_int as libc::c_uint
                     {
-                        if *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                            as libc::c_uint == exactn as libc::c_int as libc::c_uint
+                        if re_opcode_t::from_libc_c_uint(
+                            *p1.offset(3 as libc::c_int as isize) as u32,
+                        ) as libc::c_uint
+                            == re_opcode_t::exactn as libc::c_int as libc::c_uint
                             && !(*p2.offset(1 as libc::c_int as isize) as libc::c_int
                                 * 8 as libc::c_int
                                 > *p1.offset(4 as libc::c_int as isize) as libc::c_int
@@ -17018,12 +17173,12 @@ unsafe extern "C" fn re_match_2_internal(
                                         << *p1.offset(4 as libc::c_int as isize) as libc::c_int
                                             % 8 as libc::c_int != 0)
                         {
-                            *p
-                                .offset(
-                                    -(3 as libc::c_int) as isize,
-                                ) = pop_failure_jump as libc::c_int as libc::c_uchar;
-                        } else if *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                            as libc::c_uint == charset_not as libc::c_int as libc::c_uint
+                            *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                                as libc::c_int as libc::c_uchar;
+                        } else if re_opcode_t::from_libc_c_uint(
+                            *p1.offset(3 as libc::c_int as isize) as u32,
+                        ) as libc::c_uint
+                            == re_opcode_t::charset_not as libc::c_int as libc::c_uint
                         {
                             let mut idx: libc::c_int = 0;
                             idx = 0 as libc::c_int;
@@ -17047,13 +17202,13 @@ unsafe extern "C" fn re_match_2_internal(
                             if idx
                                 == *p2.offset(1 as libc::c_int as isize) as libc::c_int
                             {
-                                *p
-                                    .offset(
-                                        -(3 as libc::c_int) as isize,
-                                    ) = pop_failure_jump as libc::c_int as libc::c_uchar;
+                                *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                                    as libc::c_int as libc::c_uchar;
                             }
-                        } else if *p1.offset(3 as libc::c_int as isize) as re_opcode_t
-                            as libc::c_uint == charset as libc::c_int as libc::c_uint
+                        } else if re_opcode_t::from_libc_c_uint(
+                            *p1.offset(3 as libc::c_int as isize) as u32,
+                        ) as libc::c_uint
+                            == re_opcode_t::charset as libc::c_int as libc::c_uint
                         {
                             let mut idx_0: libc::c_int = 0;
                             idx_0 = 0 as libc::c_int;
@@ -17077,32 +17232,29 @@ unsafe extern "C" fn re_match_2_internal(
                                 || idx_0
                                     == *p1.offset(4 as libc::c_int as isize) as libc::c_int
                             {
-                                *p
-                                    .offset(
-                                        -(3 as libc::c_int) as isize,
-                                    ) = pop_failure_jump as libc::c_int as libc::c_uchar;
+                                *p.offset(-(3 as libc::c_int) as isize) = re_opcode_t::pop_failure_jump
+                                    as libc::c_int as libc::c_uchar;
                             }
                         }
                     }
                     p = p.offset(-(2 as libc::c_int as isize));
-                    if *p.offset(-(1 as libc::c_int) as isize) as re_opcode_t
-                        as libc::c_uint
-                        != pop_failure_jump as libc::c_int as libc::c_uint
+                    if re_opcode_t::from_libc_c_uint(
+                        *p.offset(-(1 as libc::c_int) as isize) as u32,
+                    ) as libc::c_uint
+                        != re_opcode_t::pop_failure_jump as libc::c_int as libc::c_uint
                     {
-                        *p
-                            .offset(
-                                -(1 as libc::c_int) as isize,
-                            ) = jump as libc::c_int as libc::c_uchar;
-                        current_block = 8292012543372301132;
+                        *p.offset(-(1 as libc::c_int) as isize) = re_opcode_t::jump
+                            as libc::c_int as libc::c_uchar;
+                        current_block = 9984103270937231169;
                     } else {
-                        current_block = 14743208079594042347;
+                        current_block = 2082904494386641978;
                     }
                 }
                 17 => {
-                    current_block = 14743208079594042347;
+                    current_block = 2082904494386641978;
                 }
                 13 | 14 => {
-                    current_block = 8292012543372301132;
+                    current_block = 9984103270937231169;
                 }
                 19 => {
                     let mut destination_2: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -17172,21 +17324,20 @@ unsafe extern "C" fn re_match_2_internal(
                             as *mut libc::c_uchar;
                         let fresh160 = fail_stack.avail;
                         fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                        *(fail_stack.stack)
-                            .offset(
-                                fresh160 as isize,
-                            ) = (*reg_info.offset(this_reg_3 as isize)).word;
+                        *(fail_stack.stack).offset(fresh160 as isize) = (*reg_info
+                            .offset(this_reg_3 as isize))
+                            .word;
                         this_reg_3 += 1;
                         this_reg_3;
                     }
                     let fresh161 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh161 as isize))
-                        .integer = lowest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh161 as isize)).integer = lowest_active_reg
+                        as libc::c_int;
                     let fresh162 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh162 as isize))
-                        .integer = highest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh162 as isize)).integer = highest_active_reg
+                        as libc::c_int;
                     let fresh163 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
                     let ref mut fresh164 = (*(fail_stack.stack)
@@ -17199,7 +17350,7 @@ unsafe extern "C" fn re_match_2_internal(
                         .offset(fresh165 as isize))
                         .pointer;
                     *fresh166 = 0 as *mut libc::c_uchar;
-                    current_block = 8292012543372301132;
+                    current_block = 9984103270937231169;
                 }
                 20 => {
                     let mut destination_3: *mut libc::c_char = 0 as *mut libc::c_char;
@@ -17269,21 +17420,20 @@ unsafe extern "C" fn re_match_2_internal(
                             as *mut libc::c_uchar;
                         let fresh172 = fail_stack.avail;
                         fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                        *(fail_stack.stack)
-                            .offset(
-                                fresh172 as isize,
-                            ) = (*reg_info.offset(this_reg_4 as isize)).word;
+                        *(fail_stack.stack).offset(fresh172 as isize) = (*reg_info
+                            .offset(this_reg_4 as isize))
+                            .word;
                         this_reg_4 += 1;
                         this_reg_4;
                     }
                     let fresh173 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh173 as isize))
-                        .integer = lowest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh173 as isize)).integer = lowest_active_reg
+                        as libc::c_int;
                     let fresh174 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                    (*(fail_stack.stack).offset(fresh174 as isize))
-                        .integer = highest_active_reg as libc::c_int;
+                    (*(fail_stack.stack).offset(fresh174 as isize)).integer = highest_active_reg
+                        as libc::c_int;
                     let fresh175 = fail_stack.avail;
                     fail_stack.avail = (fail_stack.avail).wrapping_add(1);
                     let ref mut fresh176 = (*(fail_stack.stack)
@@ -17310,25 +17460,17 @@ unsafe extern "C" fn re_match_2_internal(
                         mcnt -= 1;
                         mcnt;
                         p = p.offset(2 as libc::c_int as isize);
-                        *p
-                            .offset(
-                                0 as libc::c_int as isize,
-                            ) = (mcnt & 0o377 as libc::c_int) as libc::c_uchar;
-                        *p
-                            .offset(
-                                1 as libc::c_int as isize,
-                            ) = (mcnt >> 8 as libc::c_int) as libc::c_uchar;
+                        *p.offset(0 as libc::c_int as isize) = (mcnt
+                            & 0o377 as libc::c_int) as libc::c_uchar;
+                        *p.offset(1 as libc::c_int as isize) = (mcnt >> 8 as libc::c_int)
+                            as libc::c_uchar;
                         p = p.offset(2 as libc::c_int as isize);
                         current_block = 14951089859709286127;
                     } else if mcnt == 0 as libc::c_int {
-                        *p
-                            .offset(
-                                2 as libc::c_int as isize,
-                            ) = no_op as libc::c_int as libc::c_uchar;
-                        *p
-                            .offset(
-                                3 as libc::c_int as isize,
-                            ) = no_op as libc::c_int as libc::c_uchar;
+                        *p.offset(2 as libc::c_int as isize) = re_opcode_t::no_op
+                            as libc::c_int as libc::c_uchar;
+                        *p.offset(3 as libc::c_int as isize) = re_opcode_t::no_op
+                            as libc::c_int as libc::c_uchar;
                         current_block = 3120281088918102619;
                     } else {
                         current_block = 14951089859709286127;
@@ -17347,15 +17489,13 @@ unsafe extern "C" fn re_match_2_internal(
                         mcnt;
                         *p
                             .offset(2 as libc::c_int as isize)
-                            .offset(
-                                0 as libc::c_int as isize,
-                            ) = (mcnt & 0o377 as libc::c_int) as libc::c_uchar;
+                            .offset(0 as libc::c_int as isize) = (mcnt
+                            & 0o377 as libc::c_int) as libc::c_uchar;
                         *p
                             .offset(2 as libc::c_int as isize)
-                            .offset(
-                                1 as libc::c_int as isize,
-                            ) = (mcnt >> 8 as libc::c_int) as libc::c_uchar;
-                        current_block = 8292012543372301132;
+                            .offset(1 as libc::c_int as isize) = (mcnt
+                            >> 8 as libc::c_int) as libc::c_uchar;
+                        current_block = 9984103270937231169;
                     } else {
                         p = p.offset(4 as libc::c_int as isize);
                         current_block = 14951089859709286127;
@@ -17373,14 +17513,10 @@ unsafe extern "C" fn re_match_2_internal(
                         += (*p.offset(1 as libc::c_int as isize) as libc::c_schar
                             as libc::c_int) << 8 as libc::c_int;
                     p = p.offset(2 as libc::c_int as isize);
-                    *p1
-                        .offset(
-                            0 as libc::c_int as isize,
-                        ) = (mcnt & 0o377 as libc::c_int) as libc::c_uchar;
-                    *p1
-                        .offset(
-                            1 as libc::c_int as isize,
-                        ) = (mcnt >> 8 as libc::c_int) as libc::c_uchar;
+                    *p1.offset(0 as libc::c_int as isize) = (mcnt & 0o377 as libc::c_int)
+                        as libc::c_uchar;
+                    *p1.offset(1 as libc::c_int as isize) = (mcnt >> 8 as libc::c_int)
+                        as libc::c_uchar;
                     current_block = 14951089859709286127;
                 }
                 28 => {
@@ -17418,7 +17554,7 @@ unsafe extern "C" fn re_match_2_internal(
                         if prevchar as libc::c_int != thischar as libc::c_int {
                             current_block = 14951089859709286127;
                         } else {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                         }
                     }
                 }
@@ -17428,7 +17564,7 @@ unsafe extern "C" fn re_match_2_internal(
                     if d == (if size1 != 0 { string1 } else { string2 }) || size2 == 0
                         || d == end2
                     {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     } else {
                         prevchar_0 = (re_syntax_table[(if d
                             .offset(-(1 as libc::c_int as isize)) == end1
@@ -17455,7 +17591,7 @@ unsafe extern "C" fn re_match_2_internal(
                         }) as usize] as libc::c_int == 1 as libc::c_int) as libc::c_int
                             as boolean;
                         if prevchar_0 as libc::c_int != thischar_0 as libc::c_int {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                         } else {
                             current_block = 14951089859709286127;
                         }
@@ -17489,7 +17625,7 @@ unsafe extern "C" fn re_match_2_internal(
                     {
                         current_block = 14951089859709286127;
                     } else {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     }
                 }
                 27 => {
@@ -17519,7 +17655,7 @@ unsafe extern "C" fn re_match_2_internal(
                     {
                         current_block = 14951089859709286127;
                     } else {
-                        current_block = 17289708375665426530;
+                        current_block = 11540785266911159237;
                     }
                 }
                 24 => {
@@ -17529,14 +17665,14 @@ unsafe extern "C" fn re_match_2_internal(
                             break;
                         }
                         if dend == end_match_2 {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                             break;
                         }
                         d = string2;
                         dend = end_match_2;
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             if !(re_syntax_table[(if d == end1 {
                                 *string2 as libc::c_int
@@ -17548,7 +17684,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 })
                             }) as usize] as libc::c_int == 1 as libc::c_int)
                             {
-                                current_block = 17289708375665426530;
+                                current_block = 11540785266911159237;
                             } else {
                                 if set_regs_matched_done == 0 {
                                     let mut r_5: active_reg_t = 0;
@@ -17585,14 +17721,14 @@ unsafe extern "C" fn re_match_2_internal(
                             break;
                         }
                         if dend == end_match_2 {
-                            current_block = 17289708375665426530;
+                            current_block = 11540785266911159237;
                             break;
                         }
                         d = string2;
                         dend = end_match_2;
                     }
                     match current_block {
-                        17289708375665426530 => {}
+                        11540785266911159237 => {}
                         _ => {
                             if re_syntax_table[(if d == end1 {
                                 *string2 as libc::c_int
@@ -17604,7 +17740,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 })
                             }) as usize] as libc::c_int == 1 as libc::c_int
                             {
-                                current_block = 17289708375665426530;
+                                current_block = 11540785266911159237;
                             } else {
                                 if set_regs_matched_done == 0 {
                                     let mut r_6: active_reg_t = 0;
@@ -17639,10 +17775,10 @@ unsafe extern "C" fn re_match_2_internal(
                 }
             }
             match current_block {
-                17289708375665426530 => {}
+                11540785266911159237 => {}
                 _ => {
                     match current_block {
-                        14743208079594042347 => {
+                        2082904494386641978 => {
                             let mut dummy_low_reg: active_reg_t = 0;
                             let mut dummy_high_reg: active_reg_t = 0;
                             let mut pdummy: *mut libc::c_uchar = 0 as *mut libc::c_uchar;
@@ -17673,8 +17809,8 @@ unsafe extern "C" fn re_match_2_internal(
                             this_reg_2 = dummy_high_reg as s_reg_t;
                             while this_reg_2 as libc::c_ulong >= dummy_low_reg {
                                 fail_stack.avail = (fail_stack.avail).wrapping_sub(1);
-                                (*reg_info_dummy.offset(this_reg_2 as isize))
-                                    .word = *(fail_stack.stack)
+                                (*reg_info_dummy.offset(this_reg_2 as isize)).word = *(fail_stack
+                                    .stack)
                                     .offset(fail_stack.avail as isize);
                                 fail_stack.avail = (fail_stack.avail).wrapping_sub(1);
                                 let ref mut fresh151 = *reg_dummy
@@ -17692,7 +17828,7 @@ unsafe extern "C" fn re_match_2_internal(
                                 this_reg_2;
                             }
                             set_regs_matched_done = 0 as libc::c_int;
-                            current_block = 8292012543372301132;
+                            current_block = 9984103270937231169;
                         }
                         3120281088918102619 => {
                             mcnt = *p as libc::c_int & 0o377 as libc::c_int;
@@ -17702,15 +17838,15 @@ unsafe extern "C" fn re_match_2_internal(
                             p = p.offset(2 as libc::c_int as isize);
                             p1 = p;
                             while p1 < pend
-                                && *p1 as re_opcode_t as libc::c_uint
-                                    == no_op as libc::c_int as libc::c_uint
+                                && re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                                    == re_opcode_t::no_op as libc::c_int as libc::c_uint
                             {
                                 p1 = p1.offset(1);
                                 p1;
                             }
                             if p1 < pend
-                                && *p1 as re_opcode_t as libc::c_uint
-                                    == start_memory as libc::c_int as libc::c_uint
+                                && re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                                    == re_opcode_t::start_memory as libc::c_int as libc::c_uint
                             {
                                 highest_active_reg = (*p1.offset(1 as libc::c_int as isize)
                                     as libc::c_int
@@ -17792,21 +17928,20 @@ unsafe extern "C" fn re_match_2_internal(
                                     as *mut libc::c_uchar;
                                 let fresh144 = fail_stack.avail;
                                 fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                                *(fail_stack.stack)
-                                    .offset(
-                                        fresh144 as isize,
-                                    ) = (*reg_info.offset(this_reg_1 as isize)).word;
+                                *(fail_stack.stack).offset(fresh144 as isize) = (*reg_info
+                                    .offset(this_reg_1 as isize))
+                                    .word;
                                 this_reg_1 += 1;
                                 this_reg_1;
                             }
                             let fresh145 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                            (*(fail_stack.stack).offset(fresh145 as isize))
-                                .integer = lowest_active_reg as libc::c_int;
+                            (*(fail_stack.stack).offset(fresh145 as isize)).integer = lowest_active_reg
+                                as libc::c_int;
                             let fresh146 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
-                            (*(fail_stack.stack).offset(fresh146 as isize))
-                                .integer = highest_active_reg as libc::c_int;
+                            (*(fail_stack.stack).offset(fresh146 as isize)).integer = highest_active_reg
+                                as libc::c_int;
                             let fresh147 = fail_stack.avail;
                             fail_stack.avail = (fail_stack.avail).wrapping_add(1);
                             let ref mut fresh148 = (*(fail_stack.stack)
@@ -17824,7 +17959,7 @@ unsafe extern "C" fn re_match_2_internal(
                         _ => {}
                     }
                     match current_block {
-                        8292012543372301132 => {
+                        9984103270937231169 => {
                             mcnt = *p as libc::c_int & 0o377 as libc::c_int;
                             mcnt
                                 += (*p.offset(1 as libc::c_int as isize) as libc::c_schar
@@ -17861,8 +17996,8 @@ unsafe extern "C" fn re_match_2_internal(
                 this_reg_5 = highest_active_reg as s_reg_t;
                 while this_reg_5 as libc::c_ulong >= lowest_active_reg {
                     fail_stack.avail = (fail_stack.avail).wrapping_sub(1);
-                    (*reg_info.offset(this_reg_5 as isize))
-                        .word = *(fail_stack.stack).offset(fail_stack.avail as isize);
+                    (*reg_info.offset(this_reg_5 as isize)).word = *(fail_stack.stack)
+                        .offset(fail_stack.avail as isize);
                     fail_stack.avail = (fail_stack.avail).wrapping_sub(1);
                     let ref mut fresh183 = *regend.offset(this_reg_5 as isize);
                     *fresh183 = (*(fail_stack.stack).offset(fail_stack.avail as isize))
@@ -17882,7 +18017,7 @@ unsafe extern "C" fn re_match_2_internal(
                     break;
                 }
                 let mut is_a_jump_n_0: boolean = 0 as libc::c_int as boolean;
-                match *p as re_opcode_t as libc::c_uint {
+                match re_opcode_t::from_libc_c_uint(*p as u32) as libc::c_uint {
                     22 => {
                         is_a_jump_n_0 = 1 as libc::c_int as boolean;
                     }
@@ -17899,11 +18034,12 @@ unsafe extern "C" fn re_match_2_internal(
                 p1 = p1.offset(2 as libc::c_int as isize);
                 p1 = p1.offset(mcnt as isize);
                 if !(is_a_jump_n_0 as libc::c_int != 0
-                    && *p1 as re_opcode_t as libc::c_uint
-                        == succeed_n as libc::c_int as libc::c_uint
+                    && re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                        == re_opcode_t::succeed_n as libc::c_int as libc::c_uint
                     || is_a_jump_n_0 == 0
-                        && *p1 as re_opcode_t as libc::c_uint
-                            == on_failure_jump as libc::c_int as libc::c_uint)
+                        && re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                            == re_opcode_t::on_failure_jump as libc::c_int
+                                as libc::c_uint)
                 {
                     break;
                 }
@@ -17958,21 +18094,18 @@ unsafe extern "C" fn re_match_2_internal(
     }
     if !regs.is_null() && (*bufp).no_sub() == 0 {
         if (*bufp).regs_allocated() as libc::c_int == 0 as libc::c_int {
-            (*regs)
-                .num_regs = (if 30 as libc::c_int as libc::c_ulong
+            (*regs).num_regs = (if 30 as libc::c_int as libc::c_ulong
                 > num_regs.wrapping_add(1 as libc::c_int as libc::c_ulong)
             {
                 30 as libc::c_int as libc::c_ulong
             } else {
                 num_regs.wrapping_add(1 as libc::c_int as libc::c_ulong)
             }) as libc::c_uint;
-            (*regs)
-                .start = malloc(
+            (*regs).start = malloc(
                 ((*regs).num_regs as libc::c_ulong)
                     .wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
             ) as *mut regoff_t;
-            (*regs)
-                .end = malloc(
+            (*regs).end = malloc(
                 ((*regs).num_regs as libc::c_ulong)
                     .wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
             ) as *mut regoff_t;
@@ -18002,19 +18135,16 @@ unsafe extern "C" fn re_match_2_internal(
             if ((*regs).num_regs as libc::c_ulong)
                 < num_regs.wrapping_add(1 as libc::c_int as libc::c_ulong)
             {
-                (*regs)
-                    .num_regs = num_regs.wrapping_add(1 as libc::c_int as libc::c_ulong)
-                    as libc::c_uint;
-                (*regs)
-                    .start = realloc(
+                (*regs).num_regs = num_regs
+                    .wrapping_add(1 as libc::c_int as libc::c_ulong) as libc::c_uint;
+                (*regs).start = realloc(
                     (*regs).start as *mut libc::c_void,
                     ((*regs).num_regs as libc::c_ulong)
                         .wrapping_mul(
                             ::core::mem::size_of::<regoff_t>() as libc::c_ulong,
                         ),
                 ) as *mut regoff_t;
-                (*regs)
-                    .end = realloc(
+                (*regs).end = realloc(
                     (*regs).end as *mut libc::c_void,
                     ((*regs).num_regs as libc::c_ulong)
                         .wrapping_mul(
@@ -18046,10 +18176,7 @@ unsafe extern "C" fn re_match_2_internal(
         }
         if (*regs).num_regs > 0 as libc::c_int as libc::c_uint {
             *((*regs).start).offset(0 as libc::c_int as isize) = pos;
-            *((*regs).end)
-                .offset(
-                    0 as libc::c_int as isize,
-                ) = if dend == end_match_1 {
+            *((*regs).end).offset(0 as libc::c_int as isize) = if dend == end_match_1 {
                 d.offset_from(string1) as libc::c_long as regoff_t
             } else {
                 (d.offset_from(string2) as libc::c_long + size1 as libc::c_long)
@@ -18073,10 +18200,8 @@ unsafe extern "C" fn re_match_2_internal(
                 *fresh86 = -(1 as libc::c_int);
                 *((*regs).start).offset(mcnt as isize) = *fresh86;
             } else {
-                *((*regs).start)
-                    .offset(
-                        mcnt as isize,
-                    ) = if size1 != 0 && string1 <= *regstart.offset(mcnt as isize)
+                *((*regs).start).offset(mcnt as isize) = if size1 != 0
+                    && string1 <= *regstart.offset(mcnt as isize)
                     && *regstart.offset(mcnt as isize) <= string1.offset(size1 as isize)
                 {
                     (*regstart.offset(mcnt as isize)).offset_from(string1)
@@ -18085,10 +18210,8 @@ unsafe extern "C" fn re_match_2_internal(
                     ((*regstart.offset(mcnt as isize)).offset_from(string2)
                         as libc::c_long + size1 as libc::c_long) as regoff_t
                 };
-                *((*regs).end)
-                    .offset(
-                        mcnt as isize,
-                    ) = if size1 != 0 && string1 <= *regend.offset(mcnt as isize)
+                *((*regs).end).offset(mcnt as isize) = if size1 != 0
+                    && string1 <= *regend.offset(mcnt as isize)
                     && *regend.offset(mcnt as isize) <= string1.offset(size1 as isize)
                 {
                     (*regend.offset(mcnt as isize)).offset_from(string1) as libc::c_long
@@ -18147,7 +18270,7 @@ unsafe extern "C" fn group_match_null_string_p(
     let mut mcnt: libc::c_int = 0;
     let mut p1: *mut libc::c_uchar = (*p).offset(2 as libc::c_int as isize);
     while p1 < end {
-        match *p1 as re_opcode_t as libc::c_uint {
+        match re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint {
             15 => {
                 p1 = p1.offset(1);
                 p1;
@@ -18157,8 +18280,10 @@ unsafe extern "C" fn group_match_null_string_p(
                         as libc::c_int) << 8 as libc::c_int;
                 p1 = p1.offset(2 as libc::c_int as isize);
                 if mcnt >= 0 as libc::c_int {
-                    while *p1.offset((mcnt - 3 as libc::c_int) as isize) as re_opcode_t
-                        as libc::c_uint == jump_past_alt as libc::c_int as libc::c_uint
+                    while re_opcode_t::from_libc_c_uint(
+                        *p1.offset((mcnt - 3 as libc::c_int) as isize) as u32,
+                    ) as libc::c_uint
+                        == re_opcode_t::jump_past_alt as libc::c_int as libc::c_uint
                     {
                         if alt_match_null_string_p(
                             p1,
@@ -18171,8 +18296,9 @@ unsafe extern "C" fn group_match_null_string_p(
                             return 0 as libc::c_int as boolean;
                         }
                         p1 = p1.offset(mcnt as isize);
-                        if *p1 as re_opcode_t as libc::c_uint
-                            != on_failure_jump as libc::c_int as libc::c_uint
+                        if re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint
+                            != re_opcode_t::on_failure_jump as libc::c_int
+                                as libc::c_uint
                         {
                             break;
                         }
@@ -18183,9 +18309,10 @@ unsafe extern "C" fn group_match_null_string_p(
                             += (*p1.offset(1 as libc::c_int as isize) as libc::c_schar
                                 as libc::c_int) << 8 as libc::c_int;
                         p1 = p1.offset(2 as libc::c_int as isize);
-                        if !(*p1.offset((mcnt - 3 as libc::c_int) as isize)
-                            as re_opcode_t as libc::c_uint
-                            != jump_past_alt as libc::c_int as libc::c_uint)
+                        if !(re_opcode_t::from_libc_c_uint(
+                            *p1.offset((mcnt - 3 as libc::c_int) as isize) as u32,
+                        ) as libc::c_uint
+                            != re_opcode_t::jump_past_alt as libc::c_int as libc::c_uint)
                         {
                             continue;
                         }
@@ -18228,7 +18355,7 @@ unsafe extern "C" fn alt_match_null_string_p(
     let mut mcnt: libc::c_int = 0;
     let mut p1: *mut libc::c_uchar = p;
     while p1 < end {
-        match *p1 as re_opcode_t as libc::c_uint {
+        match re_opcode_t::from_libc_c_uint(*p1 as u32) as libc::c_uint {
             15 => {
                 p1 = p1.offset(1);
                 p1;
@@ -18260,7 +18387,7 @@ unsafe extern "C" fn common_op_match_null_string_p(
     let mut current_block_40: u64;
     let fresh187 = p1;
     p1 = p1.offset(1);
-    match *fresh187 as re_opcode_t as libc::c_uint {
+    match re_opcode_t::from_libc_c_uint(*fresh187 as u32) as libc::c_uint {
         0 | 9 | 10 | 11 | 12 | 26 | 27 | 28 | 29 => {
             current_block_40 = 980989089337379490;
         }
@@ -18319,14 +18446,14 @@ unsafe extern "C" fn common_op_match_null_string_p(
         }
         23 => {
             p1 = p1.offset(4 as libc::c_int as isize);
-            current_block_40 = 2640911580871994544;
+            current_block_40 = 11709970386672276113;
         }
         _ => {
-            current_block_40 = 2640911580871994544;
+            current_block_40 = 11709970386672276113;
         }
     }
     match current_block_40 {
-        2640911580871994544 => return 0 as libc::c_int as boolean,
+        11709970386672276113 => return 0 as libc::c_int as boolean,
         _ => {}
     }
     *p = p1;
@@ -18361,7 +18488,7 @@ pub unsafe extern "C" fn re_compile_pattern(
     mut length: size_t,
     mut bufp: *mut re_pattern_buffer,
 ) -> *const libc::c_char {
-    let mut ret: reg_errcode_t = REG_NOERROR;
+    let mut ret: reg_errcode_t = reg_errcode_t::REG_NOERROR;
     (*bufp).set_regs_allocated(0 as libc::c_int as libc::c_uint);
     (*bufp).set_no_sub(0 as libc::c_int as libc::c_uint);
     (*bufp).set_newline_anchor(1 as libc::c_int as libc::c_uint);
@@ -18377,7 +18504,7 @@ pub unsafe extern "C" fn regcomp(
     mut pattern: *const libc::c_char,
     mut cflags: libc::c_int,
 ) -> libc::c_int {
-    let mut ret: reg_errcode_t = REG_NOERROR;
+    let mut ret: reg_errcode_t = reg_errcode_t::REG_NOERROR;
     let mut syntax: reg_syntax_t = if cflags & 1 as libc::c_int != 0 {
         ((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int) << 1 as libc::c_int
             | ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
@@ -18449,22 +18576,19 @@ pub unsafe extern "C" fn regcomp(
     (*preg).fastmap = 0 as *mut libc::c_char;
     if cflags & (1 as libc::c_int) << 1 as libc::c_int != 0 {
         let mut i: libc::c_uint = 0;
-        (*preg)
-            .translate = malloc(
+        (*preg).translate = malloc(
             (256 as libc::c_int as libc::c_ulong)
                 .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
         ) as *mut libc::c_char;
         if ((*preg).translate).is_null() {
-            return REG_ESPACE as libc::c_int;
+            return reg_errcode_t::REG_ESPACE as libc::c_int;
         }
         i = 0 as libc::c_int as libc::c_uint;
         while i < 256 as libc::c_int as libc::c_uint {
-            *((*preg).translate)
-                .offset(
-                    i as isize,
-                ) = (if 1 as libc::c_int != 0
+            *((*preg).translate).offset(i as isize) = (if 1 as libc::c_int != 0
                 && *(*__ctype_b_loc()).offset(i as libc::c_int as isize) as libc::c_int
-                    & _ISupper as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_0::_ISupper as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
             {
                 ({
                     let mut __res: libc::c_int = 0;
@@ -18519,8 +18643,8 @@ pub unsafe extern "C" fn regcomp(
                     << 1 as libc::c_int != 0) as libc::c_int as libc::c_uint,
         );
     ret = regex_compile(pattern, strlen(pattern), syntax, preg);
-    if ret as libc::c_uint == REG_ERPAREN as libc::c_int as libc::c_uint {
-        ret = REG_EPAREN;
+    if ret as libc::c_uint == reg_errcode_t::REG_ERPAREN as libc::c_int as libc::c_uint {
+        ret = reg_errcode_t::REG_EPAREN;
     }
     return ret as libc::c_int;
 }
@@ -18563,16 +18687,14 @@ pub unsafe extern "C" fn regexec(
     private_preg.set_regs_allocated(2 as libc::c_int as libc::c_uint);
     if want_reg_info != 0 {
         regs.num_regs = nmatch as libc::c_uint;
-        regs
-            .start = malloc(
+        regs.start = malloc(
             nmatch.wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
         ) as *mut regoff_t;
-        regs
-            .end = malloc(
+        regs.end = malloc(
             nmatch.wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
         ) as *mut regoff_t;
         if (regs.start).is_null() || (regs.end).is_null() {
-            return REG_NOMATCH as libc::c_int;
+            return reg_errcode_t::REG_NOMATCH as libc::c_int;
         }
     }
     ret = re_search(
@@ -18602,9 +18724,9 @@ pub unsafe extern "C" fn regexec(
         free(regs.end as *mut libc::c_void);
     }
     return if ret >= 0 as libc::c_int {
-        REG_NOERROR as libc::c_int
+        reg_errcode_t::REG_NOERROR as libc::c_int
     } else {
-        REG_NOMATCH as libc::c_int
+        reg_errcode_t::REG_NOMATCH as libc::c_int
     };
 }
 #[no_mangle]

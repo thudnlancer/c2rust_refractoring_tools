@@ -315,11 +315,16 @@ impl redisConnectionType {
             redisConnectionType::REDIS_CONN_USERFD => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> redisConnectionType {
+        match value {
+            0 => redisConnectionType::REDIS_CONN_TCP,
+            1 => redisConnectionType::REDIS_CONN_UNIX,
+            2 => redisConnectionType::REDIS_CONN_USERFD,
+            _ => panic!("Invalid value for redisConnectionType: {}", value),
+        }
+    }
 }
 
-pub const REDIS_CONN_USERFD: redisConnectionType = 2;
-pub const REDIS_CONN_UNIX: redisConnectionType = 1;
-pub const REDIS_CONN_TCP: redisConnectionType = 0;
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -394,11 +399,16 @@ impl log_fsync_mode {
             log_fsync_mode::LOG_FSYNC_ALL => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> log_fsync_mode {
+        match value {
+            0 => log_fsync_mode::LOG_FSYNC_AUTO,
+            1 => log_fsync_mode::LOG_FSYNC_MILLIS,
+            2 => log_fsync_mode::LOG_FSYNC_ALL,
+            _ => panic!("Invalid value for log_fsync_mode: {}", value),
+        }
+    }
 }
 
-pub const LOG_FSYNC_ALL: log_fsync_mode = 2;
-pub const LOG_FSYNC_MILLIS: log_fsync_mode = 1;
-pub const LOG_FSYNC_AUTO: log_fsync_mode = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_level {
@@ -420,14 +430,19 @@ impl log_level {
             log_level::WEBDIS_TRACE => 8,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> log_level {
+        match value {
+            0 => log_level::WEBDIS_ERROR,
+            1 => log_level::WEBDIS_WARNING,
+            2 => log_level::WEBDIS_NOTICE,
+            3 => log_level::WEBDIS_INFO,
+            4 => log_level::WEBDIS_DEBUG,
+            8 => log_level::WEBDIS_TRACE,
+            _ => panic!("Invalid value for log_level: {}", value),
+        }
+    }
 }
 
-pub const WEBDIS_TRACE: log_level = 8;
-pub const WEBDIS_DEBUG: log_level = 4;
-pub const WEBDIS_INFO: log_level = 3;
-pub const WEBDIS_NOTICE: log_level = 2;
-pub const WEBDIS_WARNING: log_level = 1;
-pub const WEBDIS_ERROR: log_level = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct auth {
@@ -898,7 +913,7 @@ unsafe extern "C" fn pool_on_disconnect(
             );
             slog(
                 (*(*p).w).s,
-                WEBDIS_ERROR,
+                log_level::WEBDIS_ERROR,
                 log_msg,
                 msg_sz.wrapping_sub(1 as libc::c_int as libc::c_ulong),
             );
@@ -979,7 +994,7 @@ unsafe extern "C" fn pool_on_auth_complete(
     if (*reply).type_0 == 6 as libc::c_int {
         pool_log_auth(
             s,
-            WEBDIS_ERROR,
+            log_level::WEBDIS_ERROR,
             err_format.as_ptr(),
             (::core::mem::size_of::<[libc::c_char; 26]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
@@ -988,7 +1003,7 @@ unsafe extern "C" fn pool_on_auth_complete(
     } else if (*reply).type_0 == 5 as libc::c_int {
         pool_log_auth(
             s,
-            WEBDIS_INFO,
+            log_level::WEBDIS_INFO,
             ok_format.as_ptr(),
             (::core::mem::size_of::<[libc::c_char; 29]>() as libc::c_ulong)
                 .wrapping_sub(1 as libc::c_int as libc::c_ulong),
@@ -1030,7 +1045,7 @@ pub unsafe extern "C" fn pool_connect(
         ) as *mut libc::c_char;
         if !err.is_null() {
             let mut sz: size_t = sprintf(err, msg.as_mut_ptr(), (*ac).errstr) as size_t;
-            slog((*(*p).w).s, WEBDIS_ERROR, err, sz);
+            slog((*(*p).w).s, log_level::WEBDIS_ERROR, err, sz);
             free(err as *mut libc::c_void);
         }
         redisAsyncFree(ac);

@@ -1,152 +1,155 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strdup(_: *const libc::c_char) -> *mut libc::c_char;
-    fn strchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strdup(_: *const i8) -> *mut i8;
+    fn strchr(_: *const i8, _: i32) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
     fn rpl_free(_: *mut libc::c_void);
     static mut opt: options;
     fn xmalloc(s: size_t) -> *mut libc::c_void;
     fn xrealloc(p: *mut libc::c_void, s: size_t) -> *mut libc::c_void;
-    fn xstrdup(str: *const libc::c_char) -> *mut libc::c_char;
-    fn logprintf(_: log_options, _: *const libc::c_char, _: ...);
-    fn debug_logprintf(_: *const libc::c_char, _: ...);
-    fn quote_n(n: libc::c_int, arg: *const libc::c_char) -> *const libc::c_char;
-    fn quote(arg: *const libc::c_char) -> *const libc::c_char;
-    fn nl_langinfo(__item: nl_item) -> *mut libc::c_char;
-    fn __errno_location() -> *mut libc::c_int;
-    fn iconv_open(
-        __tocode: *const libc::c_char,
-        __fromcode: *const libc::c_char,
-    ) -> iconv_t;
+    fn xstrdup(str: *const i8) -> *mut i8;
+    fn logprintf(_: log_options, _: *const i8, _: ...);
+    fn debug_logprintf(_: *const i8, _: ...);
+    fn quote_n(n: i32, arg: *const i8) -> *const i8;
+    fn quote(arg: *const i8) -> *const i8;
+    fn nl_langinfo(__item: nl_item) -> *mut i8;
+    fn __errno_location() -> *mut i32;
+    fn iconv_open(__tocode: *const i8, __fromcode: *const i8) -> iconv_t;
     fn iconv(
         __cd: iconv_t,
-        __inbuf: *mut *mut libc::c_char,
+        __inbuf: *mut *mut i8,
         __inbytesleft: *mut size_t,
-        __outbuf: *mut *mut libc::c_char,
+        __outbuf: *mut *mut i8,
         __outbytesleft: *mut size_t,
     ) -> size_t;
-    fn iconv_close(__cd: iconv_t) -> libc::c_int;
+    fn iconv_close(__cd: iconv_t) -> i32;
     fn idn2_lookup_u8(
         src: *const uint8_t,
         lookupname: *mut *mut uint8_t,
-        flags: libc::c_int,
-    ) -> libc::c_int;
-    fn idn2_strerror(rc: libc::c_int) -> *const libc::c_char;
+        flags: i32,
+    ) -> i32;
+    fn idn2_strerror(rc: i32) -> *const i8;
     fn idn2_free(ptr: *mut libc::c_void);
-    fn strdupdelim(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn url_unescape_except_reserved(_: *mut libc::c_char);
-    fn c_strcasecmp(s1: *const libc::c_char, s2: *const libc::c_char) -> libc::c_int;
-    fn c_strcasestr(
-        haystack: *const libc::c_char,
-        needle: *const libc::c_char,
-    ) -> *mut libc::c_char;
-    fn xstrndup(string: *const libc::c_char, n: size_t) -> *mut libc::c_char;
+    fn strdupdelim(_: *const i8, _: *const i8) -> *mut i8;
+    fn url_unescape_except_reserved(_: *mut i8);
+    fn c_strcasecmp(s1: *const i8, s2: *const i8) -> i32;
+    fn c_strcasestr(haystack: *const i8, needle: *const i8) -> *mut i8;
+    fn xstrndup(string: *const i8, n: size_t) -> *mut i8;
 }
-pub type __uint8_t = libc::c_uchar;
-pub type __int64_t = libc::c_long;
-pub type size_t = libc::c_ulong;
+pub type __uint8_t = u8;
+pub type __int64_t = i64;
+pub type size_t = u64;
 pub type int64_t = __int64_t;
 pub type uint8_t = __uint8_t;
 pub type wgint = int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
-    pub verbose: libc::c_int,
+    pub verbose: i32,
     pub quiet: bool,
-    pub ntry: libc::c_int,
+    pub ntry: i32,
     pub retry_connrefused: bool,
     pub retry_on_host_error: bool,
-    pub retry_on_http_error: *mut libc::c_char,
+    pub retry_on_http_error: *mut i8,
     pub background: bool,
     pub ignore_length: bool,
     pub recursive: bool,
     pub spanhost: bool,
-    pub max_redirect: libc::c_int,
+    pub max_redirect: i32,
     pub relative_only: bool,
     pub no_parent: bool,
-    pub reclevel: libc::c_int,
+    pub reclevel: i32,
     pub dirstruct: bool,
     pub no_dirstruct: bool,
-    pub cut_dirs: libc::c_int,
+    pub cut_dirs: i32,
     pub add_hostdir: bool,
     pub protocol_directories: bool,
     pub noclobber: bool,
     pub unlink_requested: bool,
-    pub dir_prefix: *mut libc::c_char,
-    pub lfilename: *mut libc::c_char,
-    pub input_filename: *mut libc::c_char,
-    pub choose_config: *mut libc::c_char,
+    pub dir_prefix: *mut i8,
+    pub lfilename: *mut i8,
+    pub input_filename: *mut i8,
+    pub choose_config: *mut i8,
     pub noconfig: bool,
     pub force_html: bool,
-    pub default_page: *mut libc::c_char,
+    pub default_page: *mut i8,
     pub spider: bool,
-    pub accepts: *mut *mut libc::c_char,
-    pub rejects: *mut *mut libc::c_char,
-    pub excludes: *mut *const libc::c_char,
-    pub includes: *mut *const libc::c_char,
+    pub accepts: *mut *mut i8,
+    pub rejects: *mut *mut i8,
+    pub excludes: *mut *const i8,
+    pub includes: *mut *const i8,
     pub ignore_case: bool,
-    pub acceptregex_s: *mut libc::c_char,
-    pub rejectregex_s: *mut libc::c_char,
+    pub acceptregex_s: *mut i8,
+    pub rejectregex_s: *mut i8,
     pub acceptregex: *mut libc::c_void,
     pub rejectregex: *mut libc::c_void,
     pub regex_type: C2RustUnnamed_3,
-    pub regex_compile_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_void,
+    pub regex_compile_fun: Option<unsafe extern "C" fn(*const i8) -> *mut libc::c_void>,
+    pub regex_match_fun: Option<
+        unsafe extern "C" fn(*const libc::c_void, *const i8) -> bool,
     >,
-    pub regex_match_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_void, *const libc::c_char) -> bool,
-    >,
-    pub domains: *mut *mut libc::c_char,
-    pub exclude_domains: *mut *mut libc::c_char,
+    pub domains: *mut *mut i8,
+    pub exclude_domains: *mut *mut i8,
     pub dns_cache: bool,
-    pub follow_tags: *mut *mut libc::c_char,
-    pub ignore_tags: *mut *mut libc::c_char,
+    pub follow_tags: *mut *mut i8,
+    pub ignore_tags: *mut *mut i8,
     pub follow_ftp: bool,
     pub retr_symlinks: bool,
-    pub output_document: *mut libc::c_char,
-    pub warc_filename: *mut libc::c_char,
-    pub warc_tempdir: *mut libc::c_char,
-    pub warc_cdx_dedup_filename: *mut libc::c_char,
+    pub output_document: *mut i8,
+    pub warc_filename: *mut i8,
+    pub warc_tempdir: *mut i8,
+    pub warc_cdx_dedup_filename: *mut i8,
     pub warc_maxsize: wgint,
     pub warc_compression_enabled: bool,
     pub warc_digests_enabled: bool,
     pub warc_cdx_enabled: bool,
     pub warc_keep_log: bool,
-    pub warc_user_headers: *mut *mut libc::c_char,
+    pub warc_user_headers: *mut *mut i8,
     pub enable_xattr: bool,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
     pub ask_passwd: bool,
-    pub use_askpass: *mut libc::c_char,
+    pub use_askpass: *mut i8,
     pub always_rest: bool,
     pub start_pos: wgint,
-    pub ftp_user: *mut libc::c_char,
-    pub ftp_passwd: *mut libc::c_char,
+    pub ftp_user: *mut i8,
+    pub ftp_passwd: *mut i8,
     pub netrc: bool,
     pub ftp_glob: bool,
     pub ftp_pasv: bool,
-    pub http_user: *mut libc::c_char,
-    pub http_passwd: *mut libc::c_char,
-    pub user_headers: *mut *mut libc::c_char,
+    pub http_user: *mut i8,
+    pub http_passwd: *mut i8,
+    pub user_headers: *mut *mut i8,
     pub http_keep_alive: bool,
     pub use_proxy: bool,
     pub allow_cache: bool,
-    pub http_proxy: *mut libc::c_char,
-    pub ftp_proxy: *mut libc::c_char,
-    pub https_proxy: *mut libc::c_char,
-    pub no_proxy: *mut *mut libc::c_char,
-    pub base_href: *mut libc::c_char,
-    pub progress_type: *mut libc::c_char,
-    pub show_progress: libc::c_int,
+    pub http_proxy: *mut i8,
+    pub ftp_proxy: *mut i8,
+    pub https_proxy: *mut i8,
+    pub no_proxy: *mut *mut i8,
+    pub base_href: *mut i8,
+    pub progress_type: *mut i8,
+    pub show_progress: i32,
     pub noscroll: bool,
-    pub proxy_user: *mut libc::c_char,
-    pub proxy_passwd: *mut libc::c_char,
+    pub proxy_user: *mut i8,
+    pub proxy_passwd: *mut i8,
     pub read_timeout: libc::c_double,
     pub dns_timeout: libc::c_double,
     pub connect_timeout: libc::c_double,
@@ -163,50 +166,50 @@ pub struct options {
     pub timestamping: bool,
     pub if_modified_since: bool,
     pub backup_converted: bool,
-    pub backups: libc::c_int,
-    pub useragent: *mut libc::c_char,
-    pub referer: *mut libc::c_char,
+    pub backups: i32,
+    pub useragent: *mut i8,
+    pub referer: *mut i8,
     pub convert_links: bool,
     pub convert_file_only: bool,
     pub remove_listing: bool,
     pub htmlify: bool,
-    pub dot_style: *mut libc::c_char,
+    pub dot_style: *mut i8,
     pub dot_bytes: wgint,
-    pub dots_in_line: libc::c_int,
-    pub dot_spacing: libc::c_int,
+    pub dots_in_line: i32,
+    pub dot_spacing: i32,
     pub delete_after: bool,
     pub adjust_extension: bool,
     pub page_requisites: bool,
-    pub bind_address: *mut libc::c_char,
+    pub bind_address: *mut i8,
     pub secure_protocol: C2RustUnnamed_2,
-    pub secure_protocol_name: [libc::c_char; 8],
-    pub check_cert: libc::c_int,
-    pub cert_file: *mut libc::c_char,
-    pub private_key: *mut libc::c_char,
+    pub secure_protocol_name: [i8; 8],
+    pub check_cert: i32,
+    pub cert_file: *mut i8,
+    pub private_key: *mut i8,
     pub cert_type: keyfile_type,
     pub private_key_type: keyfile_type,
-    pub ca_directory: *mut libc::c_char,
-    pub ca_cert: *mut libc::c_char,
-    pub crl_file: *mut libc::c_char,
-    pub pinnedpubkey: *mut libc::c_char,
-    pub random_file: *mut libc::c_char,
-    pub egd_file: *mut libc::c_char,
+    pub ca_directory: *mut i8,
+    pub ca_cert: *mut i8,
+    pub crl_file: *mut i8,
+    pub pinnedpubkey: *mut i8,
+    pub random_file: *mut i8,
+    pub egd_file: *mut i8,
     pub https_only: bool,
     pub ftps_resume_ssl: bool,
     pub ftps_fallback_to_ftp: bool,
     pub ftps_implicit: bool,
     pub ftps_clear_data_connection: bool,
-    pub tls_ciphers_string: *mut libc::c_char,
+    pub tls_ciphers_string: *mut i8,
     pub cookies: bool,
-    pub cookies_input: *mut libc::c_char,
-    pub cookies_output: *mut libc::c_char,
+    pub cookies_input: *mut i8,
+    pub cookies_output: *mut i8,
     pub keep_badhash: bool,
     pub keep_session_cookies: bool,
-    pub post_data: *mut libc::c_char,
-    pub post_file_name: *mut libc::c_char,
-    pub method: *mut libc::c_char,
-    pub body_data: *mut libc::c_char,
-    pub body_file: *mut libc::c_char,
+    pub post_data: *mut i8,
+    pub post_file_name: *mut i8,
+    pub method: *mut i8,
+    pub body_data: *mut i8,
+    pub body_file: *mut i8,
     pub restrict_files_os: C2RustUnnamed_1,
     pub restrict_files_ctrl: bool,
     pub restrict_files_nonascii: bool,
@@ -219,18 +222,18 @@ pub struct options {
     pub content_disposition: bool,
     pub auth_without_challenge: bool,
     pub enable_iri: bool,
-    pub encoding_remote: *mut libc::c_char,
-    pub locale: *const libc::c_char,
+    pub encoding_remote: *mut i8,
+    pub locale: *const i8,
     pub trustservernames: bool,
     pub useservertimestamps: bool,
     pub show_all_dns_entries: bool,
     pub report_bps: bool,
     pub compression: compression_options,
-    pub rejected_log: *mut libc::c_char,
+    pub rejected_log: *mut i8,
     pub hsts: bool,
-    pub hsts_file: *mut libc::c_char,
-    pub homedir: *const libc::c_char,
-    pub wgetrcfile: *const libc::c_char,
+    pub hsts_file: *mut i8,
+    pub homedir: *const i8,
+    pub wgetrcfile: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -240,18 +243,77 @@ pub enum compression_options {
     compression_auto = 0,
 }
 impl compression_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             compression_options::compression_none => 2,
             compression_options::compression_gzip => 1,
             compression_options::compression_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> compression_options {
+        match value {
+            2 => compression_options::compression_none,
+            1 => compression_options::compression_gzip,
+            0 => compression_options::compression_auto,
+            _ => panic!("Invalid value for compression_options: {}", value),
+        }
+    }
 }
-
-pub const compression_none: compression_options = 2;
-pub const compression_gzip: compression_options = 1;
-pub const compression_auto: compression_options = 0;
+impl AddAssign<u32> for compression_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for compression_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for compression_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for compression_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for compression_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for compression_options {
+    type Output = compression_options;
+    fn add(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for compression_options {
+    type Output = compression_options;
+    fn sub(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for compression_options {
+    type Output = compression_options;
+    fn mul(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for compression_options {
+    type Output = compression_options;
+    fn div(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for compression_options {
+    type Output = compression_options;
+    fn rem(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -260,18 +322,77 @@ pub enum C2RustUnnamed {
     prefer_ipv4 = 0,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::prefer_none => 2,
             C2RustUnnamed::prefer_ipv6 => 1,
             C2RustUnnamed::prefer_ipv4 => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            2 => C2RustUnnamed::prefer_none,
+            1 => C2RustUnnamed::prefer_ipv6,
+            0 => C2RustUnnamed::prefer_ipv4,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const prefer_none: C2RustUnnamed = 2;
-pub const prefer_ipv6: C2RustUnnamed = 1;
-pub const prefer_ipv4: C2RustUnnamed = 0;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -280,18 +401,77 @@ pub enum C2RustUnnamed_0 {
     restrict_no_case_restriction = 0,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::restrict_uppercase => 2,
             C2RustUnnamed_0::restrict_lowercase => 1,
             C2RustUnnamed_0::restrict_no_case_restriction => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            2 => C2RustUnnamed_0::restrict_uppercase,
+            1 => C2RustUnnamed_0::restrict_lowercase,
+            0 => C2RustUnnamed_0::restrict_no_case_restriction,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const restrict_uppercase: C2RustUnnamed_0 = 2;
-pub const restrict_lowercase: C2RustUnnamed_0 = 1;
-pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -300,18 +480,77 @@ pub enum C2RustUnnamed_1 {
     restrict_unix = 0,
 }
 impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_1::restrict_windows => 2,
             C2RustUnnamed_1::restrict_vms => 1,
             C2RustUnnamed_1::restrict_unix => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_1 {
+        match value {
+            2 => C2RustUnnamed_1::restrict_windows,
+            1 => C2RustUnnamed_1::restrict_vms,
+            0 => C2RustUnnamed_1::restrict_unix,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
-pub const restrict_windows: C2RustUnnamed_1 = 2;
-pub const restrict_vms: C2RustUnnamed_1 = 1;
-pub const restrict_unix: C2RustUnnamed_1 = 0;
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
@@ -319,16 +558,75 @@ pub enum keyfile_type {
     keyfile_pem = 0,
 }
 impl keyfile_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             keyfile_type::keyfile_asn1 => 1,
             keyfile_type::keyfile_pem => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> keyfile_type {
+        match value {
+            1 => keyfile_type::keyfile_asn1,
+            0 => keyfile_type::keyfile_pem,
+            _ => panic!("Invalid value for keyfile_type: {}", value),
+        }
+    }
 }
-
-pub const keyfile_asn1: keyfile_type = 1;
-pub const keyfile_pem: keyfile_type = 0;
+impl AddAssign<u32> for keyfile_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for keyfile_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for keyfile_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for keyfile_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for keyfile_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn add(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn sub(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn mul(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn div(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn rem(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -342,7 +640,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_auto = 0,
 }
 impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_2::secure_protocol_pfs => 7,
             C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
@@ -354,16 +652,75 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::secure_protocol_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_2 {
+        match value {
+            7 => C2RustUnnamed_2::secure_protocol_pfs,
+            6 => C2RustUnnamed_2::secure_protocol_tlsv1_3,
+            5 => C2RustUnnamed_2::secure_protocol_tlsv1_2,
+            4 => C2RustUnnamed_2::secure_protocol_tlsv1_1,
+            3 => C2RustUnnamed_2::secure_protocol_tlsv1,
+            2 => C2RustUnnamed_2::secure_protocol_sslv3,
+            1 => C2RustUnnamed_2::secure_protocol_sslv2,
+            0 => C2RustUnnamed_2::secure_protocol_auto,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
-pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
-pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
-pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
-pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
-pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
-pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
-pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
-pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -371,16 +728,75 @@ pub enum C2RustUnnamed_3 {
     regex_type_pcre = 0,
 }
 impl C2RustUnnamed_3 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_3::regex_type_posix => 1,
             C2RustUnnamed_3::regex_type_pcre => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_3 {
+        match value {
+            1 => C2RustUnnamed_3::regex_type_posix,
+            0 => C2RustUnnamed_3::regex_type_pcre,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const regex_type_posix: C2RustUnnamed_3 = 1;
-pub const regex_type_pcre: C2RustUnnamed_3 = 0;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -391,7 +807,7 @@ pub enum log_options {
     LOG_PROGRESS,
 }
 impl log_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             log_options::LOG_VERBOSE => 0,
             log_options::LOG_NOTQUIET => 1,
@@ -400,799 +816,82 @@ impl log_options {
             log_options::LOG_PROGRESS => 4,
         }
     }
-}
-
-pub const LOG_PROGRESS: log_options = 4;
-pub const LOG_ALWAYS: log_options = 3;
-pub const LOG_NONVERBOSE: log_options = 2;
-pub const LOG_NOTQUIET: log_options = 1;
-pub const LOG_VERBOSE: log_options = 0;
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct iri {
-    pub uri_encoding: *mut libc::c_char,
-    pub content_encoding: *mut libc::c_char,
-    pub orig_url: *mut libc::c_char,
-    pub utf8_encode: bool,
-}
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_4 {
-    CODESET = 14,
-    _NL_NUM = 786449,
-    _NL_NUM_LC_IDENTIFICATION = 786448,
-    _NL_IDENTIFICATION_CODESET = 786447,
-    _NL_IDENTIFICATION_CATEGORY = 786446,
-    _NL_IDENTIFICATION_DATE = 786445,
-    _NL_IDENTIFICATION_REVISION = 786444,
-    _NL_IDENTIFICATION_ABBREVIATION = 786443,
-    _NL_IDENTIFICATION_APPLICATION = 786442,
-    _NL_IDENTIFICATION_AUDIENCE = 786441,
-    _NL_IDENTIFICATION_TERRITORY = 786440,
-    _NL_IDENTIFICATION_LANGUAGE = 786439,
-    _NL_IDENTIFICATION_FAX = 786438,
-    _NL_IDENTIFICATION_TEL = 786437,
-    _NL_IDENTIFICATION_EMAIL = 786436,
-    _NL_IDENTIFICATION_CONTACT = 786435,
-    _NL_IDENTIFICATION_ADDRESS = 786434,
-    _NL_IDENTIFICATION_SOURCE = 786433,
-    _NL_IDENTIFICATION_TITLE = 786432,
-    _NL_NUM_LC_MEASUREMENT = 720898,
-    _NL_MEASUREMENT_CODESET = 720897,
-    _NL_MEASUREMENT_MEASUREMENT = 720896,
-    _NL_NUM_LC_TELEPHONE = 655365,
-    _NL_TELEPHONE_CODESET = 655364,
-    _NL_TELEPHONE_INT_PREFIX = 655363,
-    _NL_TELEPHONE_INT_SELECT = 655362,
-    _NL_TELEPHONE_TEL_DOM_FMT = 655361,
-    _NL_TELEPHONE_TEL_INT_FMT = 655360,
-    _NL_NUM_LC_ADDRESS = 589837,
-    _NL_ADDRESS_CODESET = 589836,
-    _NL_ADDRESS_LANG_LIB = 589835,
-    _NL_ADDRESS_LANG_TERM = 589834,
-    _NL_ADDRESS_LANG_AB = 589833,
-    _NL_ADDRESS_LANG_NAME = 589832,
-    _NL_ADDRESS_COUNTRY_ISBN = 589831,
-    _NL_ADDRESS_COUNTRY_NUM = 589830,
-    _NL_ADDRESS_COUNTRY_CAR = 589829,
-    _NL_ADDRESS_COUNTRY_AB3 = 589828,
-    _NL_ADDRESS_COUNTRY_AB2 = 589827,
-    _NL_ADDRESS_COUNTRY_POST = 589826,
-    _NL_ADDRESS_COUNTRY_NAME = 589825,
-    _NL_ADDRESS_POSTAL_FMT = 589824,
-    _NL_NUM_LC_NAME = 524295,
-    _NL_NAME_CODESET = 524294,
-    _NL_NAME_NAME_MS = 524293,
-    _NL_NAME_NAME_MISS = 524292,
-    _NL_NAME_NAME_MRS = 524291,
-    _NL_NAME_NAME_MR = 524290,
-    _NL_NAME_NAME_GEN = 524289,
-    _NL_NAME_NAME_FMT = 524288,
-    _NL_NUM_LC_PAPER = 458755,
-    _NL_PAPER_CODESET = 458754,
-    _NL_PAPER_WIDTH = 458753,
-    _NL_PAPER_HEIGHT = 458752,
-    _NL_NUM_LC_MESSAGES = 327685,
-    _NL_MESSAGES_CODESET = 327684,
-    __NOSTR = 327683,
-    __YESSTR = 327682,
-    __NOEXPR = 327681,
-    __YESEXPR = 327680,
-    _NL_NUM_LC_NUMERIC = 65542,
-    _NL_NUMERIC_CODESET = 65541,
-    _NL_NUMERIC_THOUSANDS_SEP_WC = 65540,
-    _NL_NUMERIC_DECIMAL_POINT_WC = 65539,
-    __GROUPING = 65538,
-    THOUSEP = 65537,
-    __THOUSANDS_SEP = 65537,
-    RADIXCHAR = 65536,
-    __DECIMAL_POINT = 65536,
-    _NL_NUM_LC_MONETARY = 262190,
-    _NL_MONETARY_CODESET = 262189,
-    _NL_MONETARY_THOUSANDS_SEP_WC = 262188,
-    _NL_MONETARY_DECIMAL_POINT_WC = 262187,
-    _NL_MONETARY_CONVERSION_RATE = 262186,
-    _NL_MONETARY_DUO_VALID_TO = 262185,
-    _NL_MONETARY_DUO_VALID_FROM = 262184,
-    _NL_MONETARY_UNO_VALID_TO = 262183,
-    _NL_MONETARY_UNO_VALID_FROM = 262182,
-    _NL_MONETARY_DUO_INT_N_SIGN_POSN = 262181,
-    _NL_MONETARY_DUO_INT_P_SIGN_POSN = 262180,
-    _NL_MONETARY_DUO_N_SIGN_POSN = 262179,
-    _NL_MONETARY_DUO_P_SIGN_POSN = 262178,
-    _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE = 262177,
-    _NL_MONETARY_DUO_INT_N_CS_PRECEDES = 262176,
-    _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE = 262175,
-    _NL_MONETARY_DUO_INT_P_CS_PRECEDES = 262174,
-    _NL_MONETARY_DUO_N_SEP_BY_SPACE = 262173,
-    _NL_MONETARY_DUO_N_CS_PRECEDES = 262172,
-    _NL_MONETARY_DUO_P_SEP_BY_SPACE = 262171,
-    _NL_MONETARY_DUO_P_CS_PRECEDES = 262170,
-    _NL_MONETARY_DUO_FRAC_DIGITS = 262169,
-    _NL_MONETARY_DUO_INT_FRAC_DIGITS = 262168,
-    _NL_MONETARY_DUO_CURRENCY_SYMBOL = 262167,
-    _NL_MONETARY_DUO_INT_CURR_SYMBOL = 262166,
-    __INT_N_SIGN_POSN = 262165,
-    __INT_P_SIGN_POSN = 262164,
-    __INT_N_SEP_BY_SPACE = 262163,
-    __INT_N_CS_PRECEDES = 262162,
-    __INT_P_SEP_BY_SPACE = 262161,
-    __INT_P_CS_PRECEDES = 262160,
-    _NL_MONETARY_CRNCYSTR = 262159,
-    __N_SIGN_POSN = 262158,
-    __P_SIGN_POSN = 262157,
-    __N_SEP_BY_SPACE = 262156,
-    __N_CS_PRECEDES = 262155,
-    __P_SEP_BY_SPACE = 262154,
-    __P_CS_PRECEDES = 262153,
-    __FRAC_DIGITS = 262152,
-    __INT_FRAC_DIGITS = 262151,
-    __NEGATIVE_SIGN = 262150,
-    __POSITIVE_SIGN = 262149,
-    __MON_GROUPING = 262148,
-    __MON_THOUSANDS_SEP = 262147,
-    __MON_DECIMAL_POINT = 262146,
-    __CURRENCY_SYMBOL = 262145,
-    __INT_CURR_SYMBOL = 262144,
-    _NL_NUM_LC_CTYPE = 86,
-    _NL_CTYPE_EXTRA_MAP_14 = 85,
-    _NL_CTYPE_EXTRA_MAP_13 = 84,
-    _NL_CTYPE_EXTRA_MAP_12 = 83,
-    _NL_CTYPE_EXTRA_MAP_11 = 82,
-    _NL_CTYPE_EXTRA_MAP_10 = 81,
-    _NL_CTYPE_EXTRA_MAP_9 = 80,
-    _NL_CTYPE_EXTRA_MAP_8 = 79,
-    _NL_CTYPE_EXTRA_MAP_7 = 78,
-    _NL_CTYPE_EXTRA_MAP_6 = 77,
-    _NL_CTYPE_EXTRA_MAP_5 = 76,
-    _NL_CTYPE_EXTRA_MAP_4 = 75,
-    _NL_CTYPE_EXTRA_MAP_3 = 74,
-    _NL_CTYPE_EXTRA_MAP_2 = 73,
-    _NL_CTYPE_EXTRA_MAP_1 = 72,
-    _NL_CTYPE_NONASCII_CASE = 71,
-    _NL_CTYPE_MAP_TO_NONASCII = 70,
-    _NL_CTYPE_TRANSLIT_IGNORE = 69,
-    _NL_CTYPE_TRANSLIT_IGNORE_LEN = 68,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING = 67,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN = 66,
-    _NL_CTYPE_TRANSLIT_TO_TBL = 65,
-    _NL_CTYPE_TRANSLIT_TO_IDX = 64,
-    _NL_CTYPE_TRANSLIT_FROM_TBL = 63,
-    _NL_CTYPE_TRANSLIT_FROM_IDX = 62,
-    _NL_CTYPE_TRANSLIT_TAB_SIZE = 61,
-    _NL_CTYPE_OUTDIGIT9_WC = 60,
-    _NL_CTYPE_OUTDIGIT8_WC = 59,
-    _NL_CTYPE_OUTDIGIT7_WC = 58,
-    _NL_CTYPE_OUTDIGIT6_WC = 57,
-    _NL_CTYPE_OUTDIGIT5_WC = 56,
-    _NL_CTYPE_OUTDIGIT4_WC = 55,
-    _NL_CTYPE_OUTDIGIT3_WC = 54,
-    _NL_CTYPE_OUTDIGIT2_WC = 53,
-    _NL_CTYPE_OUTDIGIT1_WC = 52,
-    _NL_CTYPE_OUTDIGIT0_WC = 51,
-    _NL_CTYPE_OUTDIGIT9_MB = 50,
-    _NL_CTYPE_OUTDIGIT8_MB = 49,
-    _NL_CTYPE_OUTDIGIT7_MB = 48,
-    _NL_CTYPE_OUTDIGIT6_MB = 47,
-    _NL_CTYPE_OUTDIGIT5_MB = 46,
-    _NL_CTYPE_OUTDIGIT4_MB = 45,
-    _NL_CTYPE_OUTDIGIT3_MB = 44,
-    _NL_CTYPE_OUTDIGIT2_MB = 43,
-    _NL_CTYPE_OUTDIGIT1_MB = 42,
-    _NL_CTYPE_OUTDIGIT0_MB = 41,
-    _NL_CTYPE_INDIGITS9_WC = 40,
-    _NL_CTYPE_INDIGITS8_WC = 39,
-    _NL_CTYPE_INDIGITS7_WC = 38,
-    _NL_CTYPE_INDIGITS6_WC = 37,
-    _NL_CTYPE_INDIGITS5_WC = 36,
-    _NL_CTYPE_INDIGITS4_WC = 35,
-    _NL_CTYPE_INDIGITS3_WC = 34,
-    _NL_CTYPE_INDIGITS2_WC = 33,
-    _NL_CTYPE_INDIGITS1_WC = 32,
-    _NL_CTYPE_INDIGITS0_WC = 31,
-    _NL_CTYPE_INDIGITS_WC_LEN = 30,
-    _NL_CTYPE_INDIGITS9_MB = 29,
-    _NL_CTYPE_INDIGITS8_MB = 28,
-    _NL_CTYPE_INDIGITS7_MB = 27,
-    _NL_CTYPE_INDIGITS6_MB = 26,
-    _NL_CTYPE_INDIGITS5_MB = 25,
-    _NL_CTYPE_INDIGITS4_MB = 24,
-    _NL_CTYPE_INDIGITS3_MB = 23,
-    _NL_CTYPE_INDIGITS2_MB = 22,
-    _NL_CTYPE_INDIGITS1_MB = 21,
-    _NL_CTYPE_INDIGITS0_MB = 20,
-    _NL_CTYPE_INDIGITS_MB_LEN = 19,
-    _NL_CTYPE_MAP_OFFSET = 18,
-    _NL_CTYPE_CLASS_OFFSET = 17,
-    _NL_CTYPE_TOLOWER32 = 16,
-    _NL_CTYPE_TOUPPER32 = 15,
-    _NL_CTYPE_CODESET_NAME = 14,
-    _NL_CTYPE_MB_CUR_MAX = 13,
-    _NL_CTYPE_WIDTH = 12,
-    _NL_CTYPE_MAP_NAMES = 11,
-    _NL_CTYPE_CLASS_NAMES = 10,
-    _NL_CTYPE_GAP6 = 9,
-    _NL_CTYPE_GAP5 = 8,
-    _NL_CTYPE_GAP4 = 7,
-    _NL_CTYPE_GAP3 = 6,
-    _NL_CTYPE_CLASS32 = 5,
-    _NL_CTYPE_GAP2 = 4,
-    _NL_CTYPE_TOLOWER = 3,
-    _NL_CTYPE_GAP1 = 2,
-    _NL_CTYPE_TOUPPER = 1,
-    _NL_CTYPE_CLASS = 0,
-    _NL_NUM_LC_COLLATE = 196627,
-    _NL_COLLATE_CODESET = 196626,
-    _NL_COLLATE_COLLSEQWC = 196625,
-    _NL_COLLATE_COLLSEQMB = 196624,
-    _NL_COLLATE_SYMB_EXTRAMB = 196623,
-    _NL_COLLATE_SYMB_TABLEMB = 196622,
-    _NL_COLLATE_SYMB_HASH_SIZEMB = 196621,
-    _NL_COLLATE_INDIRECTWC = 196620,
-    _NL_COLLATE_EXTRAWC = 196619,
-    _NL_COLLATE_WEIGHTWC = 196618,
-    _NL_COLLATE_TABLEWC = 196617,
-    _NL_COLLATE_GAP3 = 196616,
-    _NL_COLLATE_GAP2 = 196615,
-    _NL_COLLATE_GAP1 = 196614,
-    _NL_COLLATE_INDIRECTMB = 196613,
-    _NL_COLLATE_EXTRAMB = 196612,
-    _NL_COLLATE_WEIGHTMB = 196611,
-    _NL_COLLATE_TABLEMB = 196610,
-    _NL_COLLATE_RULESETS = 196609,
-    _NL_COLLATE_NRULES = 196608,
-    _NL_NUM_LC_TIME = 131231,
-    _NL_WABALTMON_12 = 131230,
-    _NL_WABALTMON_11 = 131229,
-    _NL_WABALTMON_10 = 131228,
-    _NL_WABALTMON_9 = 131227,
-    _NL_WABALTMON_8 = 131226,
-    _NL_WABALTMON_7 = 131225,
-    _NL_WABALTMON_6 = 131224,
-    _NL_WABALTMON_5 = 131223,
-    _NL_WABALTMON_4 = 131222,
-    _NL_WABALTMON_3 = 131221,
-    _NL_WABALTMON_2 = 131220,
-    _NL_WABALTMON_1 = 131219,
-    _NL_ABALTMON_12 = 131218,
-    _NL_ABALTMON_11 = 131217,
-    _NL_ABALTMON_10 = 131216,
-    _NL_ABALTMON_9 = 131215,
-    _NL_ABALTMON_8 = 131214,
-    _NL_ABALTMON_7 = 131213,
-    _NL_ABALTMON_6 = 131212,
-    _NL_ABALTMON_5 = 131211,
-    _NL_ABALTMON_4 = 131210,
-    _NL_ABALTMON_3 = 131209,
-    _NL_ABALTMON_2 = 131208,
-    _NL_ABALTMON_1 = 131207,
-    _NL_WALTMON_12 = 131206,
-    _NL_WALTMON_11 = 131205,
-    _NL_WALTMON_10 = 131204,
-    _NL_WALTMON_9 = 131203,
-    _NL_WALTMON_8 = 131202,
-    _NL_WALTMON_7 = 131201,
-    _NL_WALTMON_6 = 131200,
-    _NL_WALTMON_5 = 131199,
-    _NL_WALTMON_4 = 131198,
-    _NL_WALTMON_3 = 131197,
-    _NL_WALTMON_2 = 131196,
-    _NL_WALTMON_1 = 131195,
-    __ALTMON_12 = 131194,
-    __ALTMON_11 = 131193,
-    __ALTMON_10 = 131192,
-    __ALTMON_9 = 131191,
-    __ALTMON_8 = 131190,
-    __ALTMON_7 = 131189,
-    __ALTMON_6 = 131188,
-    __ALTMON_5 = 131187,
-    __ALTMON_4 = 131186,
-    __ALTMON_3 = 131185,
-    __ALTMON_2 = 131184,
-    __ALTMON_1 = 131183,
-    _NL_TIME_CODESET = 131182,
-    _NL_W_DATE_FMT = 131181,
-    _DATE_FMT = 131180,
-    _NL_TIME_TIMEZONE = 131179,
-    _NL_TIME_CAL_DIRECTION = 131178,
-    _NL_TIME_FIRST_WORKDAY = 131177,
-    _NL_TIME_FIRST_WEEKDAY = 131176,
-    _NL_TIME_WEEK_1STWEEK = 131175,
-    _NL_TIME_WEEK_1STDAY = 131174,
-    _NL_TIME_WEEK_NDAYS = 131173,
-    _NL_WERA_T_FMT = 131172,
-    _NL_WERA_D_T_FMT = 131171,
-    _NL_WALT_DIGITS = 131170,
-    _NL_WERA_D_FMT = 131169,
-    _NL_WERA_YEAR = 131168,
-    _NL_WT_FMT_AMPM = 131167,
-    _NL_WT_FMT = 131166,
-    _NL_WD_FMT = 131165,
-    _NL_WD_T_FMT = 131164,
-    _NL_WPM_STR = 131163,
-    _NL_WAM_STR = 131162,
-    _NL_WMON_12 = 131161,
-    _NL_WMON_11 = 131160,
-    _NL_WMON_10 = 131159,
-    _NL_WMON_9 = 131158,
-    _NL_WMON_8 = 131157,
-    _NL_WMON_7 = 131156,
-    _NL_WMON_6 = 131155,
-    _NL_WMON_5 = 131154,
-    _NL_WMON_4 = 131153,
-    _NL_WMON_3 = 131152,
-    _NL_WMON_2 = 131151,
-    _NL_WMON_1 = 131150,
-    _NL_WABMON_12 = 131149,
-    _NL_WABMON_11 = 131148,
-    _NL_WABMON_10 = 131147,
-    _NL_WABMON_9 = 131146,
-    _NL_WABMON_8 = 131145,
-    _NL_WABMON_7 = 131144,
-    _NL_WABMON_6 = 131143,
-    _NL_WABMON_5 = 131142,
-    _NL_WABMON_4 = 131141,
-    _NL_WABMON_3 = 131140,
-    _NL_WABMON_2 = 131139,
-    _NL_WABMON_1 = 131138,
-    _NL_WDAY_7 = 131137,
-    _NL_WDAY_6 = 131136,
-    _NL_WDAY_5 = 131135,
-    _NL_WDAY_4 = 131134,
-    _NL_WDAY_3 = 131133,
-    _NL_WDAY_2 = 131132,
-    _NL_WDAY_1 = 131131,
-    _NL_WABDAY_7 = 131130,
-    _NL_WABDAY_6 = 131129,
-    _NL_WABDAY_5 = 131128,
-    _NL_WABDAY_4 = 131127,
-    _NL_WABDAY_3 = 131126,
-    _NL_WABDAY_2 = 131125,
-    _NL_WABDAY_1 = 131124,
-    _NL_TIME_ERA_ENTRIES = 131123,
-    _NL_TIME_ERA_NUM_ENTRIES = 131122,
-    ERA_T_FMT = 131121,
-    ERA_D_T_FMT = 131120,
-    ALT_DIGITS = 131119,
-    ERA_D_FMT = 131118,
-    __ERA_YEAR = 131117,
-    ERA = 131116,
-    T_FMT_AMPM = 131115,
-    T_FMT = 131114,
-    D_FMT = 131113,
-    D_T_FMT = 131112,
-    PM_STR = 131111,
-    AM_STR = 131110,
-    MON_12 = 131109,
-    MON_11 = 131108,
-    MON_10 = 131107,
-    MON_9 = 131106,
-    MON_8 = 131105,
-    MON_7 = 131104,
-    MON_6 = 131103,
-    MON_5 = 131102,
-    MON_4 = 131101,
-    MON_3 = 131100,
-    MON_2 = 131099,
-    MON_1 = 131098,
-    ABMON_12 = 131097,
-    ABMON_11 = 131096,
-    ABMON_10 = 131095,
-    ABMON_9 = 131094,
-    ABMON_8 = 131093,
-    ABMON_7 = 131092,
-    ABMON_6 = 131091,
-    ABMON_5 = 131090,
-    ABMON_4 = 131089,
-    ABMON_3 = 131088,
-    ABMON_2 = 131087,
-    ABMON_1 = 131086,
-    DAY_7 = 131085,
-    DAY_6 = 131084,
-    DAY_5 = 131083,
-    DAY_4 = 131082,
-    DAY_3 = 131081,
-    DAY_2 = 131080,
-    DAY_1 = 131079,
-    ABDAY_7 = 131078,
-    ABDAY_6 = 131077,
-    ABDAY_5 = 131076,
-    ABDAY_4 = 131075,
-    ABDAY_3 = 131074,
-    ABDAY_2 = 131073,
-    ABDAY_1 = 131072,
-}
-impl C2RustUnnamed_4 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_4::CODESET => 14,
-            C2RustUnnamed_4::_NL_NUM => 786449,
-            C2RustUnnamed_4::_NL_NUM_LC_IDENTIFICATION => 786448,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_CODESET => 786447,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_CATEGORY => 786446,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_DATE => 786445,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_REVISION => 786444,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_ABBREVIATION => 786443,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_APPLICATION => 786442,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_AUDIENCE => 786441,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_TERRITORY => 786440,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_LANGUAGE => 786439,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_FAX => 786438,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_TEL => 786437,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_EMAIL => 786436,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_CONTACT => 786435,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_ADDRESS => 786434,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_SOURCE => 786433,
-            C2RustUnnamed_4::_NL_IDENTIFICATION_TITLE => 786432,
-            C2RustUnnamed_4::_NL_NUM_LC_MEASUREMENT => 720898,
-            C2RustUnnamed_4::_NL_MEASUREMENT_CODESET => 720897,
-            C2RustUnnamed_4::_NL_MEASUREMENT_MEASUREMENT => 720896,
-            C2RustUnnamed_4::_NL_NUM_LC_TELEPHONE => 655365,
-            C2RustUnnamed_4::_NL_TELEPHONE_CODESET => 655364,
-            C2RustUnnamed_4::_NL_TELEPHONE_INT_PREFIX => 655363,
-            C2RustUnnamed_4::_NL_TELEPHONE_INT_SELECT => 655362,
-            C2RustUnnamed_4::_NL_TELEPHONE_TEL_DOM_FMT => 655361,
-            C2RustUnnamed_4::_NL_TELEPHONE_TEL_INT_FMT => 655360,
-            C2RustUnnamed_4::_NL_NUM_LC_ADDRESS => 589837,
-            C2RustUnnamed_4::_NL_ADDRESS_CODESET => 589836,
-            C2RustUnnamed_4::_NL_ADDRESS_LANG_LIB => 589835,
-            C2RustUnnamed_4::_NL_ADDRESS_LANG_TERM => 589834,
-            C2RustUnnamed_4::_NL_ADDRESS_LANG_AB => 589833,
-            C2RustUnnamed_4::_NL_ADDRESS_LANG_NAME => 589832,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_4::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_4::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_4::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_4::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_4::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_4::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_4::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_4::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_4::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_4::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_4::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_4::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_4::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_4::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_4::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_4::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_4::__NOSTR => 327683,
-            C2RustUnnamed_4::__YESSTR => 327682,
-            C2RustUnnamed_4::__NOEXPR => 327681,
-            C2RustUnnamed_4::__YESEXPR => 327680,
-            C2RustUnnamed_4::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_4::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_4::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_4::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_4::__GROUPING => 65538,
-            C2RustUnnamed_4::THOUSEP => 65537,
-            C2RustUnnamed_4::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_4::RADIXCHAR => 65536,
-            C2RustUnnamed_4::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_4::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_4::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_4::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_4::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_4::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_4::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_4::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_4::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_4::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_4::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_4::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_4::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_4::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_4::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_4::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_4::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_4::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_4::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_4::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_4::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_4::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_4::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_4::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_4::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_4::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_4::__MON_GROUPING => 262148,
-            C2RustUnnamed_4::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_4::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_4::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_4::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_4::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_4::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_4::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_4::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_4::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_4::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_4::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_4::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_4::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_4::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_4::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_4::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_4::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_4::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_4::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_4::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_4::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_4::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_4::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_4::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_4::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_4::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_4::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_4::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_4::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_4::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_4::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_4::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_4::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_4::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_4::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_4::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_4::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_4::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_4::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_4::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_4::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_4::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_4::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_4::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_4::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_4::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_4::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_4::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_4::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_4::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_4::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_4::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_4::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_4::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_4::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_4::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_4::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_4::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_4::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_4::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_4::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_4::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_4::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_4::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_4::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_4::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_4::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_4::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_4::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_4::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_4::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_4::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_4::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_4::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_4::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_4::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_4::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_4::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_4::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_4::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_4::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_4::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_4::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_4::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_4::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_4::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_4::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_4::__ALTMON_12 => 131194,
-            C2RustUnnamed_4::__ALTMON_11 => 131193,
-            C2RustUnnamed_4::__ALTMON_10 => 131192,
-            C2RustUnnamed_4::__ALTMON_9 => 131191,
-            C2RustUnnamed_4::__ALTMON_8 => 131190,
-            C2RustUnnamed_4::__ALTMON_7 => 131189,
-            C2RustUnnamed_4::__ALTMON_6 => 131188,
-            C2RustUnnamed_4::__ALTMON_5 => 131187,
-            C2RustUnnamed_4::__ALTMON_4 => 131186,
-            C2RustUnnamed_4::__ALTMON_3 => 131185,
-            C2RustUnnamed_4::__ALTMON_2 => 131184,
-            C2RustUnnamed_4::__ALTMON_1 => 131183,
-            C2RustUnnamed_4::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_4::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_4::_DATE_FMT => 131180,
-            C2RustUnnamed_4::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_4::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_4::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_4::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_4::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_4::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_4::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_4::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_4::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_4::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_4::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_4::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_4::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_4::_NL_WT_FMT => 131166,
-            C2RustUnnamed_4::_NL_WD_FMT => 131165,
-            C2RustUnnamed_4::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_4::_NL_WPM_STR => 131163,
-            C2RustUnnamed_4::_NL_WAM_STR => 131162,
-            C2RustUnnamed_4::_NL_WMON_12 => 131161,
-            C2RustUnnamed_4::_NL_WMON_11 => 131160,
-            C2RustUnnamed_4::_NL_WMON_10 => 131159,
-            C2RustUnnamed_4::_NL_WMON_9 => 131158,
-            C2RustUnnamed_4::_NL_WMON_8 => 131157,
-            C2RustUnnamed_4::_NL_WMON_7 => 131156,
-            C2RustUnnamed_4::_NL_WMON_6 => 131155,
-            C2RustUnnamed_4::_NL_WMON_5 => 131154,
-            C2RustUnnamed_4::_NL_WMON_4 => 131153,
-            C2RustUnnamed_4::_NL_WMON_3 => 131152,
-            C2RustUnnamed_4::_NL_WMON_2 => 131151,
-            C2RustUnnamed_4::_NL_WMON_1 => 131150,
-            C2RustUnnamed_4::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_4::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_4::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_4::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_4::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_4::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_4::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_4::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_4::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_4::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_4::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_4::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_4::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_4::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_4::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_4::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_4::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_4::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_4::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_4::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_4::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_4::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_4::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_4::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_4::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_4::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_4::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_4::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_4::ERA_T_FMT => 131121,
-            C2RustUnnamed_4::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_4::ALT_DIGITS => 131119,
-            C2RustUnnamed_4::ERA_D_FMT => 131118,
-            C2RustUnnamed_4::__ERA_YEAR => 131117,
-            C2RustUnnamed_4::ERA => 131116,
-            C2RustUnnamed_4::T_FMT_AMPM => 131115,
-            C2RustUnnamed_4::T_FMT => 131114,
-            C2RustUnnamed_4::D_FMT => 131113,
-            C2RustUnnamed_4::D_T_FMT => 131112,
-            C2RustUnnamed_4::PM_STR => 131111,
-            C2RustUnnamed_4::AM_STR => 131110,
-            C2RustUnnamed_4::MON_12 => 131109,
-            C2RustUnnamed_4::MON_11 => 131108,
-            C2RustUnnamed_4::MON_10 => 131107,
-            C2RustUnnamed_4::MON_9 => 131106,
-            C2RustUnnamed_4::MON_8 => 131105,
-            C2RustUnnamed_4::MON_7 => 131104,
-            C2RustUnnamed_4::MON_6 => 131103,
-            C2RustUnnamed_4::MON_5 => 131102,
-            C2RustUnnamed_4::MON_4 => 131101,
-            C2RustUnnamed_4::MON_3 => 131100,
-            C2RustUnnamed_4::MON_2 => 131099,
-            C2RustUnnamed_4::MON_1 => 131098,
-            C2RustUnnamed_4::ABMON_12 => 131097,
-            C2RustUnnamed_4::ABMON_11 => 131096,
-            C2RustUnnamed_4::ABMON_10 => 131095,
-            C2RustUnnamed_4::ABMON_9 => 131094,
-            C2RustUnnamed_4::ABMON_8 => 131093,
-            C2RustUnnamed_4::ABMON_7 => 131092,
-            C2RustUnnamed_4::ABMON_6 => 131091,
-            C2RustUnnamed_4::ABMON_5 => 131090,
-            C2RustUnnamed_4::ABMON_4 => 131089,
-            C2RustUnnamed_4::ABMON_3 => 131088,
-            C2RustUnnamed_4::ABMON_2 => 131087,
-            C2RustUnnamed_4::ABMON_1 => 131086,
-            C2RustUnnamed_4::DAY_7 => 131085,
-            C2RustUnnamed_4::DAY_6 => 131084,
-            C2RustUnnamed_4::DAY_5 => 131083,
-            C2RustUnnamed_4::DAY_4 => 131082,
-            C2RustUnnamed_4::DAY_3 => 131081,
-            C2RustUnnamed_4::DAY_2 => 131080,
-            C2RustUnnamed_4::DAY_1 => 131079,
-            C2RustUnnamed_4::ABDAY_7 => 131078,
-            C2RustUnnamed_4::ABDAY_6 => 131077,
-            C2RustUnnamed_4::ABDAY_5 => 131076,
-            C2RustUnnamed_4::ABDAY_4 => 131075,
-            C2RustUnnamed_4::ABDAY_3 => 131074,
-            C2RustUnnamed_4::ABDAY_2 => 131073,
-            C2RustUnnamed_4::ABDAY_1 => 131072,
+    fn from_libc_c_uint(value: u32) -> log_options {
+        match value {
+            0 => log_options::LOG_VERBOSE,
+            1 => log_options::LOG_NOTQUIET,
+            2 => log_options::LOG_NONVERBOSE,
+            3 => log_options::LOG_ALWAYS,
+            4 => log_options::LOG_PROGRESS,
+            _ => panic!("Invalid value for log_options: {}", value),
         }
     }
 }
-
-pub type nl_item = libc::c_int;
+impl AddAssign<u32> for log_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for log_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for log_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for log_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for log_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for log_options {
+    type Output = log_options;
+    fn add(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for log_options {
+    type Output = log_options;
+    fn sub(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for log_options {
+    type Output = log_options;
+    fn mul(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for log_options {
+    type Output = log_options;
+    fn div(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for log_options {
+    type Output = log_options;
+    fn rem(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct iri {
+    pub uri_encoding: *mut i8,
+    pub content_encoding: *mut i8,
+    pub orig_url: *mut i8,
+    pub utf8_encode: bool,
+}
+pub const CODESET: C2RustUnnamed_4 = 14;
+pub type nl_item = i32;
 pub type iconv_t = *mut libc::c_void;
 pub const IDN2_OK: C2RustUnnamed_6 = 0;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -1208,7 +907,7 @@ pub enum C2RustUnnamed_5 {
     IDN2_NFC_INPUT = 1,
 }
 impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_5::IDN2_TRANSITIONAL => 4,
             C2RustUnnamed_5::IDN2_NONTRANSITIONAL => 8,
@@ -1220,9 +919,459 @@ impl C2RustUnnamed_5 {
             C2RustUnnamed_5::IDN2_NFC_INPUT => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_5 {
+        match value {
+            4 => C2RustUnnamed_5::IDN2_TRANSITIONAL,
+            8 => C2RustUnnamed_5::IDN2_NONTRANSITIONAL,
+            128 => C2RustUnnamed_5::IDN2_NO_ALABEL_ROUNDTRIP,
+            64 => C2RustUnnamed_5::IDN2_NO_TR46,
+            32 => C2RustUnnamed_5::IDN2_USE_STD3_ASCII_RULES,
+            16 => C2RustUnnamed_5::IDN2_ALLOW_UNASSIGNED,
+            2 => C2RustUnnamed_5::IDN2_ALABEL_ROUNDTRIP,
+            1 => C2RustUnnamed_5::IDN2_NFC_INPUT,
+            _ => panic!("Invalid value for C2RustUnnamed_5: {}", value),
+        }
+    }
 }
-
-pub type C2RustUnnamed_6 = libc::c_int;
+impl AddAssign<u32> for C2RustUnnamed_5 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_5 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_5 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_5 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_5 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn add(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn div(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type C2RustUnnamed_4 = u32;
+pub const _NL_NUM: C2RustUnnamed_4 = 786449;
+pub const _NL_NUM_LC_IDENTIFICATION: C2RustUnnamed_4 = 786448;
+pub const _NL_IDENTIFICATION_CODESET: C2RustUnnamed_4 = 786447;
+pub const _NL_IDENTIFICATION_CATEGORY: C2RustUnnamed_4 = 786446;
+pub const _NL_IDENTIFICATION_DATE: C2RustUnnamed_4 = 786445;
+pub const _NL_IDENTIFICATION_REVISION: C2RustUnnamed_4 = 786444;
+pub const _NL_IDENTIFICATION_ABBREVIATION: C2RustUnnamed_4 = 786443;
+pub const _NL_IDENTIFICATION_APPLICATION: C2RustUnnamed_4 = 786442;
+pub const _NL_IDENTIFICATION_AUDIENCE: C2RustUnnamed_4 = 786441;
+pub const _NL_IDENTIFICATION_TERRITORY: C2RustUnnamed_4 = 786440;
+pub const _NL_IDENTIFICATION_LANGUAGE: C2RustUnnamed_4 = 786439;
+pub const _NL_IDENTIFICATION_FAX: C2RustUnnamed_4 = 786438;
+pub const _NL_IDENTIFICATION_TEL: C2RustUnnamed_4 = 786437;
+pub const _NL_IDENTIFICATION_EMAIL: C2RustUnnamed_4 = 786436;
+pub const _NL_IDENTIFICATION_CONTACT: C2RustUnnamed_4 = 786435;
+pub const _NL_IDENTIFICATION_ADDRESS: C2RustUnnamed_4 = 786434;
+pub const _NL_IDENTIFICATION_SOURCE: C2RustUnnamed_4 = 786433;
+pub const _NL_IDENTIFICATION_TITLE: C2RustUnnamed_4 = 786432;
+pub const _NL_NUM_LC_MEASUREMENT: C2RustUnnamed_4 = 720898;
+pub const _NL_MEASUREMENT_CODESET: C2RustUnnamed_4 = 720897;
+pub const _NL_MEASUREMENT_MEASUREMENT: C2RustUnnamed_4 = 720896;
+pub const _NL_NUM_LC_TELEPHONE: C2RustUnnamed_4 = 655365;
+pub const _NL_TELEPHONE_CODESET: C2RustUnnamed_4 = 655364;
+pub const _NL_TELEPHONE_INT_PREFIX: C2RustUnnamed_4 = 655363;
+pub const _NL_TELEPHONE_INT_SELECT: C2RustUnnamed_4 = 655362;
+pub const _NL_TELEPHONE_TEL_DOM_FMT: C2RustUnnamed_4 = 655361;
+pub const _NL_TELEPHONE_TEL_INT_FMT: C2RustUnnamed_4 = 655360;
+pub const _NL_NUM_LC_ADDRESS: C2RustUnnamed_4 = 589837;
+pub const _NL_ADDRESS_CODESET: C2RustUnnamed_4 = 589836;
+pub const _NL_ADDRESS_LANG_LIB: C2RustUnnamed_4 = 589835;
+pub const _NL_ADDRESS_LANG_TERM: C2RustUnnamed_4 = 589834;
+pub const _NL_ADDRESS_LANG_AB: C2RustUnnamed_4 = 589833;
+pub const _NL_ADDRESS_LANG_NAME: C2RustUnnamed_4 = 589832;
+pub const _NL_ADDRESS_COUNTRY_ISBN: C2RustUnnamed_4 = 589831;
+pub const _NL_ADDRESS_COUNTRY_NUM: C2RustUnnamed_4 = 589830;
+pub const _NL_ADDRESS_COUNTRY_CAR: C2RustUnnamed_4 = 589829;
+pub const _NL_ADDRESS_COUNTRY_AB3: C2RustUnnamed_4 = 589828;
+pub const _NL_ADDRESS_COUNTRY_AB2: C2RustUnnamed_4 = 589827;
+pub const _NL_ADDRESS_COUNTRY_POST: C2RustUnnamed_4 = 589826;
+pub const _NL_ADDRESS_COUNTRY_NAME: C2RustUnnamed_4 = 589825;
+pub const _NL_ADDRESS_POSTAL_FMT: C2RustUnnamed_4 = 589824;
+pub const _NL_NUM_LC_NAME: C2RustUnnamed_4 = 524295;
+pub const _NL_NAME_CODESET: C2RustUnnamed_4 = 524294;
+pub const _NL_NAME_NAME_MS: C2RustUnnamed_4 = 524293;
+pub const _NL_NAME_NAME_MISS: C2RustUnnamed_4 = 524292;
+pub const _NL_NAME_NAME_MRS: C2RustUnnamed_4 = 524291;
+pub const _NL_NAME_NAME_MR: C2RustUnnamed_4 = 524290;
+pub const _NL_NAME_NAME_GEN: C2RustUnnamed_4 = 524289;
+pub const _NL_NAME_NAME_FMT: C2RustUnnamed_4 = 524288;
+pub const _NL_NUM_LC_PAPER: C2RustUnnamed_4 = 458755;
+pub const _NL_PAPER_CODESET: C2RustUnnamed_4 = 458754;
+pub const _NL_PAPER_WIDTH: C2RustUnnamed_4 = 458753;
+pub const _NL_PAPER_HEIGHT: C2RustUnnamed_4 = 458752;
+pub const _NL_NUM_LC_MESSAGES: C2RustUnnamed_4 = 327685;
+pub const _NL_MESSAGES_CODESET: C2RustUnnamed_4 = 327684;
+pub const __NOSTR: C2RustUnnamed_4 = 327683;
+pub const __YESSTR: C2RustUnnamed_4 = 327682;
+pub const __NOEXPR: C2RustUnnamed_4 = 327681;
+pub const __YESEXPR: C2RustUnnamed_4 = 327680;
+pub const _NL_NUM_LC_NUMERIC: C2RustUnnamed_4 = 65542;
+pub const _NL_NUMERIC_CODESET: C2RustUnnamed_4 = 65541;
+pub const _NL_NUMERIC_THOUSANDS_SEP_WC: C2RustUnnamed_4 = 65540;
+pub const _NL_NUMERIC_DECIMAL_POINT_WC: C2RustUnnamed_4 = 65539;
+pub const __GROUPING: C2RustUnnamed_4 = 65538;
+pub const THOUSEP: C2RustUnnamed_4 = 65537;
+pub const __THOUSANDS_SEP: C2RustUnnamed_4 = 65537;
+pub const RADIXCHAR: C2RustUnnamed_4 = 65536;
+pub const __DECIMAL_POINT: C2RustUnnamed_4 = 65536;
+pub const _NL_NUM_LC_MONETARY: C2RustUnnamed_4 = 262190;
+pub const _NL_MONETARY_CODESET: C2RustUnnamed_4 = 262189;
+pub const _NL_MONETARY_THOUSANDS_SEP_WC: C2RustUnnamed_4 = 262188;
+pub const _NL_MONETARY_DECIMAL_POINT_WC: C2RustUnnamed_4 = 262187;
+pub const _NL_MONETARY_CONVERSION_RATE: C2RustUnnamed_4 = 262186;
+pub const _NL_MONETARY_DUO_VALID_TO: C2RustUnnamed_4 = 262185;
+pub const _NL_MONETARY_DUO_VALID_FROM: C2RustUnnamed_4 = 262184;
+pub const _NL_MONETARY_UNO_VALID_TO: C2RustUnnamed_4 = 262183;
+pub const _NL_MONETARY_UNO_VALID_FROM: C2RustUnnamed_4 = 262182;
+pub const _NL_MONETARY_DUO_INT_N_SIGN_POSN: C2RustUnnamed_4 = 262181;
+pub const _NL_MONETARY_DUO_INT_P_SIGN_POSN: C2RustUnnamed_4 = 262180;
+pub const _NL_MONETARY_DUO_N_SIGN_POSN: C2RustUnnamed_4 = 262179;
+pub const _NL_MONETARY_DUO_P_SIGN_POSN: C2RustUnnamed_4 = 262178;
+pub const _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE: C2RustUnnamed_4 = 262177;
+pub const _NL_MONETARY_DUO_INT_N_CS_PRECEDES: C2RustUnnamed_4 = 262176;
+pub const _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE: C2RustUnnamed_4 = 262175;
+pub const _NL_MONETARY_DUO_INT_P_CS_PRECEDES: C2RustUnnamed_4 = 262174;
+pub const _NL_MONETARY_DUO_N_SEP_BY_SPACE: C2RustUnnamed_4 = 262173;
+pub const _NL_MONETARY_DUO_N_CS_PRECEDES: C2RustUnnamed_4 = 262172;
+pub const _NL_MONETARY_DUO_P_SEP_BY_SPACE: C2RustUnnamed_4 = 262171;
+pub const _NL_MONETARY_DUO_P_CS_PRECEDES: C2RustUnnamed_4 = 262170;
+pub const _NL_MONETARY_DUO_FRAC_DIGITS: C2RustUnnamed_4 = 262169;
+pub const _NL_MONETARY_DUO_INT_FRAC_DIGITS: C2RustUnnamed_4 = 262168;
+pub const _NL_MONETARY_DUO_CURRENCY_SYMBOL: C2RustUnnamed_4 = 262167;
+pub const _NL_MONETARY_DUO_INT_CURR_SYMBOL: C2RustUnnamed_4 = 262166;
+pub const __INT_N_SIGN_POSN: C2RustUnnamed_4 = 262165;
+pub const __INT_P_SIGN_POSN: C2RustUnnamed_4 = 262164;
+pub const __INT_N_SEP_BY_SPACE: C2RustUnnamed_4 = 262163;
+pub const __INT_N_CS_PRECEDES: C2RustUnnamed_4 = 262162;
+pub const __INT_P_SEP_BY_SPACE: C2RustUnnamed_4 = 262161;
+pub const __INT_P_CS_PRECEDES: C2RustUnnamed_4 = 262160;
+pub const _NL_MONETARY_CRNCYSTR: C2RustUnnamed_4 = 262159;
+pub const __N_SIGN_POSN: C2RustUnnamed_4 = 262158;
+pub const __P_SIGN_POSN: C2RustUnnamed_4 = 262157;
+pub const __N_SEP_BY_SPACE: C2RustUnnamed_4 = 262156;
+pub const __N_CS_PRECEDES: C2RustUnnamed_4 = 262155;
+pub const __P_SEP_BY_SPACE: C2RustUnnamed_4 = 262154;
+pub const __P_CS_PRECEDES: C2RustUnnamed_4 = 262153;
+pub const __FRAC_DIGITS: C2RustUnnamed_4 = 262152;
+pub const __INT_FRAC_DIGITS: C2RustUnnamed_4 = 262151;
+pub const __NEGATIVE_SIGN: C2RustUnnamed_4 = 262150;
+pub const __POSITIVE_SIGN: C2RustUnnamed_4 = 262149;
+pub const __MON_GROUPING: C2RustUnnamed_4 = 262148;
+pub const __MON_THOUSANDS_SEP: C2RustUnnamed_4 = 262147;
+pub const __MON_DECIMAL_POINT: C2RustUnnamed_4 = 262146;
+pub const __CURRENCY_SYMBOL: C2RustUnnamed_4 = 262145;
+pub const __INT_CURR_SYMBOL: C2RustUnnamed_4 = 262144;
+pub const _NL_NUM_LC_CTYPE: C2RustUnnamed_4 = 86;
+pub const _NL_CTYPE_EXTRA_MAP_14: C2RustUnnamed_4 = 85;
+pub const _NL_CTYPE_EXTRA_MAP_13: C2RustUnnamed_4 = 84;
+pub const _NL_CTYPE_EXTRA_MAP_12: C2RustUnnamed_4 = 83;
+pub const _NL_CTYPE_EXTRA_MAP_11: C2RustUnnamed_4 = 82;
+pub const _NL_CTYPE_EXTRA_MAP_10: C2RustUnnamed_4 = 81;
+pub const _NL_CTYPE_EXTRA_MAP_9: C2RustUnnamed_4 = 80;
+pub const _NL_CTYPE_EXTRA_MAP_8: C2RustUnnamed_4 = 79;
+pub const _NL_CTYPE_EXTRA_MAP_7: C2RustUnnamed_4 = 78;
+pub const _NL_CTYPE_EXTRA_MAP_6: C2RustUnnamed_4 = 77;
+pub const _NL_CTYPE_EXTRA_MAP_5: C2RustUnnamed_4 = 76;
+pub const _NL_CTYPE_EXTRA_MAP_4: C2RustUnnamed_4 = 75;
+pub const _NL_CTYPE_EXTRA_MAP_3: C2RustUnnamed_4 = 74;
+pub const _NL_CTYPE_EXTRA_MAP_2: C2RustUnnamed_4 = 73;
+pub const _NL_CTYPE_EXTRA_MAP_1: C2RustUnnamed_4 = 72;
+pub const _NL_CTYPE_NONASCII_CASE: C2RustUnnamed_4 = 71;
+pub const _NL_CTYPE_MAP_TO_NONASCII: C2RustUnnamed_4 = 70;
+pub const _NL_CTYPE_TRANSLIT_IGNORE: C2RustUnnamed_4 = 69;
+pub const _NL_CTYPE_TRANSLIT_IGNORE_LEN: C2RustUnnamed_4 = 68;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING: C2RustUnnamed_4 = 67;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN: C2RustUnnamed_4 = 66;
+pub const _NL_CTYPE_TRANSLIT_TO_TBL: C2RustUnnamed_4 = 65;
+pub const _NL_CTYPE_TRANSLIT_TO_IDX: C2RustUnnamed_4 = 64;
+pub const _NL_CTYPE_TRANSLIT_FROM_TBL: C2RustUnnamed_4 = 63;
+pub const _NL_CTYPE_TRANSLIT_FROM_IDX: C2RustUnnamed_4 = 62;
+pub const _NL_CTYPE_TRANSLIT_TAB_SIZE: C2RustUnnamed_4 = 61;
+pub const _NL_CTYPE_OUTDIGIT9_WC: C2RustUnnamed_4 = 60;
+pub const _NL_CTYPE_OUTDIGIT8_WC: C2RustUnnamed_4 = 59;
+pub const _NL_CTYPE_OUTDIGIT7_WC: C2RustUnnamed_4 = 58;
+pub const _NL_CTYPE_OUTDIGIT6_WC: C2RustUnnamed_4 = 57;
+pub const _NL_CTYPE_OUTDIGIT5_WC: C2RustUnnamed_4 = 56;
+pub const _NL_CTYPE_OUTDIGIT4_WC: C2RustUnnamed_4 = 55;
+pub const _NL_CTYPE_OUTDIGIT3_WC: C2RustUnnamed_4 = 54;
+pub const _NL_CTYPE_OUTDIGIT2_WC: C2RustUnnamed_4 = 53;
+pub const _NL_CTYPE_OUTDIGIT1_WC: C2RustUnnamed_4 = 52;
+pub const _NL_CTYPE_OUTDIGIT0_WC: C2RustUnnamed_4 = 51;
+pub const _NL_CTYPE_OUTDIGIT9_MB: C2RustUnnamed_4 = 50;
+pub const _NL_CTYPE_OUTDIGIT8_MB: C2RustUnnamed_4 = 49;
+pub const _NL_CTYPE_OUTDIGIT7_MB: C2RustUnnamed_4 = 48;
+pub const _NL_CTYPE_OUTDIGIT6_MB: C2RustUnnamed_4 = 47;
+pub const _NL_CTYPE_OUTDIGIT5_MB: C2RustUnnamed_4 = 46;
+pub const _NL_CTYPE_OUTDIGIT4_MB: C2RustUnnamed_4 = 45;
+pub const _NL_CTYPE_OUTDIGIT3_MB: C2RustUnnamed_4 = 44;
+pub const _NL_CTYPE_OUTDIGIT2_MB: C2RustUnnamed_4 = 43;
+pub const _NL_CTYPE_OUTDIGIT1_MB: C2RustUnnamed_4 = 42;
+pub const _NL_CTYPE_OUTDIGIT0_MB: C2RustUnnamed_4 = 41;
+pub const _NL_CTYPE_INDIGITS9_WC: C2RustUnnamed_4 = 40;
+pub const _NL_CTYPE_INDIGITS8_WC: C2RustUnnamed_4 = 39;
+pub const _NL_CTYPE_INDIGITS7_WC: C2RustUnnamed_4 = 38;
+pub const _NL_CTYPE_INDIGITS6_WC: C2RustUnnamed_4 = 37;
+pub const _NL_CTYPE_INDIGITS5_WC: C2RustUnnamed_4 = 36;
+pub const _NL_CTYPE_INDIGITS4_WC: C2RustUnnamed_4 = 35;
+pub const _NL_CTYPE_INDIGITS3_WC: C2RustUnnamed_4 = 34;
+pub const _NL_CTYPE_INDIGITS2_WC: C2RustUnnamed_4 = 33;
+pub const _NL_CTYPE_INDIGITS1_WC: C2RustUnnamed_4 = 32;
+pub const _NL_CTYPE_INDIGITS0_WC: C2RustUnnamed_4 = 31;
+pub const _NL_CTYPE_INDIGITS_WC_LEN: C2RustUnnamed_4 = 30;
+pub const _NL_CTYPE_INDIGITS9_MB: C2RustUnnamed_4 = 29;
+pub const _NL_CTYPE_INDIGITS8_MB: C2RustUnnamed_4 = 28;
+pub const _NL_CTYPE_INDIGITS7_MB: C2RustUnnamed_4 = 27;
+pub const _NL_CTYPE_INDIGITS6_MB: C2RustUnnamed_4 = 26;
+pub const _NL_CTYPE_INDIGITS5_MB: C2RustUnnamed_4 = 25;
+pub const _NL_CTYPE_INDIGITS4_MB: C2RustUnnamed_4 = 24;
+pub const _NL_CTYPE_INDIGITS3_MB: C2RustUnnamed_4 = 23;
+pub const _NL_CTYPE_INDIGITS2_MB: C2RustUnnamed_4 = 22;
+pub const _NL_CTYPE_INDIGITS1_MB: C2RustUnnamed_4 = 21;
+pub const _NL_CTYPE_INDIGITS0_MB: C2RustUnnamed_4 = 20;
+pub const _NL_CTYPE_INDIGITS_MB_LEN: C2RustUnnamed_4 = 19;
+pub const _NL_CTYPE_MAP_OFFSET: C2RustUnnamed_4 = 18;
+pub const _NL_CTYPE_CLASS_OFFSET: C2RustUnnamed_4 = 17;
+pub const _NL_CTYPE_TOLOWER32: C2RustUnnamed_4 = 16;
+pub const _NL_CTYPE_TOUPPER32: C2RustUnnamed_4 = 15;
+pub const _NL_CTYPE_CODESET_NAME: C2RustUnnamed_4 = 14;
+pub const _NL_CTYPE_MB_CUR_MAX: C2RustUnnamed_4 = 13;
+pub const _NL_CTYPE_WIDTH: C2RustUnnamed_4 = 12;
+pub const _NL_CTYPE_MAP_NAMES: C2RustUnnamed_4 = 11;
+pub const _NL_CTYPE_CLASS_NAMES: C2RustUnnamed_4 = 10;
+pub const _NL_CTYPE_GAP6: C2RustUnnamed_4 = 9;
+pub const _NL_CTYPE_GAP5: C2RustUnnamed_4 = 8;
+pub const _NL_CTYPE_GAP4: C2RustUnnamed_4 = 7;
+pub const _NL_CTYPE_GAP3: C2RustUnnamed_4 = 6;
+pub const _NL_CTYPE_CLASS32: C2RustUnnamed_4 = 5;
+pub const _NL_CTYPE_GAP2: C2RustUnnamed_4 = 4;
+pub const _NL_CTYPE_TOLOWER: C2RustUnnamed_4 = 3;
+pub const _NL_CTYPE_GAP1: C2RustUnnamed_4 = 2;
+pub const _NL_CTYPE_TOUPPER: C2RustUnnamed_4 = 1;
+pub const _NL_CTYPE_CLASS: C2RustUnnamed_4 = 0;
+pub const _NL_NUM_LC_COLLATE: C2RustUnnamed_4 = 196627;
+pub const _NL_COLLATE_CODESET: C2RustUnnamed_4 = 196626;
+pub const _NL_COLLATE_COLLSEQWC: C2RustUnnamed_4 = 196625;
+pub const _NL_COLLATE_COLLSEQMB: C2RustUnnamed_4 = 196624;
+pub const _NL_COLLATE_SYMB_EXTRAMB: C2RustUnnamed_4 = 196623;
+pub const _NL_COLLATE_SYMB_TABLEMB: C2RustUnnamed_4 = 196622;
+pub const _NL_COLLATE_SYMB_HASH_SIZEMB: C2RustUnnamed_4 = 196621;
+pub const _NL_COLLATE_INDIRECTWC: C2RustUnnamed_4 = 196620;
+pub const _NL_COLLATE_EXTRAWC: C2RustUnnamed_4 = 196619;
+pub const _NL_COLLATE_WEIGHTWC: C2RustUnnamed_4 = 196618;
+pub const _NL_COLLATE_TABLEWC: C2RustUnnamed_4 = 196617;
+pub const _NL_COLLATE_GAP3: C2RustUnnamed_4 = 196616;
+pub const _NL_COLLATE_GAP2: C2RustUnnamed_4 = 196615;
+pub const _NL_COLLATE_GAP1: C2RustUnnamed_4 = 196614;
+pub const _NL_COLLATE_INDIRECTMB: C2RustUnnamed_4 = 196613;
+pub const _NL_COLLATE_EXTRAMB: C2RustUnnamed_4 = 196612;
+pub const _NL_COLLATE_WEIGHTMB: C2RustUnnamed_4 = 196611;
+pub const _NL_COLLATE_TABLEMB: C2RustUnnamed_4 = 196610;
+pub const _NL_COLLATE_RULESETS: C2RustUnnamed_4 = 196609;
+pub const _NL_COLLATE_NRULES: C2RustUnnamed_4 = 196608;
+pub const _NL_NUM_LC_TIME: C2RustUnnamed_4 = 131231;
+pub const _NL_WABALTMON_12: C2RustUnnamed_4 = 131230;
+pub const _NL_WABALTMON_11: C2RustUnnamed_4 = 131229;
+pub const _NL_WABALTMON_10: C2RustUnnamed_4 = 131228;
+pub const _NL_WABALTMON_9: C2RustUnnamed_4 = 131227;
+pub const _NL_WABALTMON_8: C2RustUnnamed_4 = 131226;
+pub const _NL_WABALTMON_7: C2RustUnnamed_4 = 131225;
+pub const _NL_WABALTMON_6: C2RustUnnamed_4 = 131224;
+pub const _NL_WABALTMON_5: C2RustUnnamed_4 = 131223;
+pub const _NL_WABALTMON_4: C2RustUnnamed_4 = 131222;
+pub const _NL_WABALTMON_3: C2RustUnnamed_4 = 131221;
+pub const _NL_WABALTMON_2: C2RustUnnamed_4 = 131220;
+pub const _NL_WABALTMON_1: C2RustUnnamed_4 = 131219;
+pub const _NL_ABALTMON_12: C2RustUnnamed_4 = 131218;
+pub const _NL_ABALTMON_11: C2RustUnnamed_4 = 131217;
+pub const _NL_ABALTMON_10: C2RustUnnamed_4 = 131216;
+pub const _NL_ABALTMON_9: C2RustUnnamed_4 = 131215;
+pub const _NL_ABALTMON_8: C2RustUnnamed_4 = 131214;
+pub const _NL_ABALTMON_7: C2RustUnnamed_4 = 131213;
+pub const _NL_ABALTMON_6: C2RustUnnamed_4 = 131212;
+pub const _NL_ABALTMON_5: C2RustUnnamed_4 = 131211;
+pub const _NL_ABALTMON_4: C2RustUnnamed_4 = 131210;
+pub const _NL_ABALTMON_3: C2RustUnnamed_4 = 131209;
+pub const _NL_ABALTMON_2: C2RustUnnamed_4 = 131208;
+pub const _NL_ABALTMON_1: C2RustUnnamed_4 = 131207;
+pub const _NL_WALTMON_12: C2RustUnnamed_4 = 131206;
+pub const _NL_WALTMON_11: C2RustUnnamed_4 = 131205;
+pub const _NL_WALTMON_10: C2RustUnnamed_4 = 131204;
+pub const _NL_WALTMON_9: C2RustUnnamed_4 = 131203;
+pub const _NL_WALTMON_8: C2RustUnnamed_4 = 131202;
+pub const _NL_WALTMON_7: C2RustUnnamed_4 = 131201;
+pub const _NL_WALTMON_6: C2RustUnnamed_4 = 131200;
+pub const _NL_WALTMON_5: C2RustUnnamed_4 = 131199;
+pub const _NL_WALTMON_4: C2RustUnnamed_4 = 131198;
+pub const _NL_WALTMON_3: C2RustUnnamed_4 = 131197;
+pub const _NL_WALTMON_2: C2RustUnnamed_4 = 131196;
+pub const _NL_WALTMON_1: C2RustUnnamed_4 = 131195;
+pub const __ALTMON_12: C2RustUnnamed_4 = 131194;
+pub const __ALTMON_11: C2RustUnnamed_4 = 131193;
+pub const __ALTMON_10: C2RustUnnamed_4 = 131192;
+pub const __ALTMON_9: C2RustUnnamed_4 = 131191;
+pub const __ALTMON_8: C2RustUnnamed_4 = 131190;
+pub const __ALTMON_7: C2RustUnnamed_4 = 131189;
+pub const __ALTMON_6: C2RustUnnamed_4 = 131188;
+pub const __ALTMON_5: C2RustUnnamed_4 = 131187;
+pub const __ALTMON_4: C2RustUnnamed_4 = 131186;
+pub const __ALTMON_3: C2RustUnnamed_4 = 131185;
+pub const __ALTMON_2: C2RustUnnamed_4 = 131184;
+pub const __ALTMON_1: C2RustUnnamed_4 = 131183;
+pub const _NL_TIME_CODESET: C2RustUnnamed_4 = 131182;
+pub const _NL_W_DATE_FMT: C2RustUnnamed_4 = 131181;
+pub const _DATE_FMT: C2RustUnnamed_4 = 131180;
+pub const _NL_TIME_TIMEZONE: C2RustUnnamed_4 = 131179;
+pub const _NL_TIME_CAL_DIRECTION: C2RustUnnamed_4 = 131178;
+pub const _NL_TIME_FIRST_WORKDAY: C2RustUnnamed_4 = 131177;
+pub const _NL_TIME_FIRST_WEEKDAY: C2RustUnnamed_4 = 131176;
+pub const _NL_TIME_WEEK_1STWEEK: C2RustUnnamed_4 = 131175;
+pub const _NL_TIME_WEEK_1STDAY: C2RustUnnamed_4 = 131174;
+pub const _NL_TIME_WEEK_NDAYS: C2RustUnnamed_4 = 131173;
+pub const _NL_WERA_T_FMT: C2RustUnnamed_4 = 131172;
+pub const _NL_WERA_D_T_FMT: C2RustUnnamed_4 = 131171;
+pub const _NL_WALT_DIGITS: C2RustUnnamed_4 = 131170;
+pub const _NL_WERA_D_FMT: C2RustUnnamed_4 = 131169;
+pub const _NL_WERA_YEAR: C2RustUnnamed_4 = 131168;
+pub const _NL_WT_FMT_AMPM: C2RustUnnamed_4 = 131167;
+pub const _NL_WT_FMT: C2RustUnnamed_4 = 131166;
+pub const _NL_WD_FMT: C2RustUnnamed_4 = 131165;
+pub const _NL_WD_T_FMT: C2RustUnnamed_4 = 131164;
+pub const _NL_WPM_STR: C2RustUnnamed_4 = 131163;
+pub const _NL_WAM_STR: C2RustUnnamed_4 = 131162;
+pub const _NL_WMON_12: C2RustUnnamed_4 = 131161;
+pub const _NL_WMON_11: C2RustUnnamed_4 = 131160;
+pub const _NL_WMON_10: C2RustUnnamed_4 = 131159;
+pub const _NL_WMON_9: C2RustUnnamed_4 = 131158;
+pub const _NL_WMON_8: C2RustUnnamed_4 = 131157;
+pub const _NL_WMON_7: C2RustUnnamed_4 = 131156;
+pub const _NL_WMON_6: C2RustUnnamed_4 = 131155;
+pub const _NL_WMON_5: C2RustUnnamed_4 = 131154;
+pub const _NL_WMON_4: C2RustUnnamed_4 = 131153;
+pub const _NL_WMON_3: C2RustUnnamed_4 = 131152;
+pub const _NL_WMON_2: C2RustUnnamed_4 = 131151;
+pub const _NL_WMON_1: C2RustUnnamed_4 = 131150;
+pub const _NL_WABMON_12: C2RustUnnamed_4 = 131149;
+pub const _NL_WABMON_11: C2RustUnnamed_4 = 131148;
+pub const _NL_WABMON_10: C2RustUnnamed_4 = 131147;
+pub const _NL_WABMON_9: C2RustUnnamed_4 = 131146;
+pub const _NL_WABMON_8: C2RustUnnamed_4 = 131145;
+pub const _NL_WABMON_7: C2RustUnnamed_4 = 131144;
+pub const _NL_WABMON_6: C2RustUnnamed_4 = 131143;
+pub const _NL_WABMON_5: C2RustUnnamed_4 = 131142;
+pub const _NL_WABMON_4: C2RustUnnamed_4 = 131141;
+pub const _NL_WABMON_3: C2RustUnnamed_4 = 131140;
+pub const _NL_WABMON_2: C2RustUnnamed_4 = 131139;
+pub const _NL_WABMON_1: C2RustUnnamed_4 = 131138;
+pub const _NL_WDAY_7: C2RustUnnamed_4 = 131137;
+pub const _NL_WDAY_6: C2RustUnnamed_4 = 131136;
+pub const _NL_WDAY_5: C2RustUnnamed_4 = 131135;
+pub const _NL_WDAY_4: C2RustUnnamed_4 = 131134;
+pub const _NL_WDAY_3: C2RustUnnamed_4 = 131133;
+pub const _NL_WDAY_2: C2RustUnnamed_4 = 131132;
+pub const _NL_WDAY_1: C2RustUnnamed_4 = 131131;
+pub const _NL_WABDAY_7: C2RustUnnamed_4 = 131130;
+pub const _NL_WABDAY_6: C2RustUnnamed_4 = 131129;
+pub const _NL_WABDAY_5: C2RustUnnamed_4 = 131128;
+pub const _NL_WABDAY_4: C2RustUnnamed_4 = 131127;
+pub const _NL_WABDAY_3: C2RustUnnamed_4 = 131126;
+pub const _NL_WABDAY_2: C2RustUnnamed_4 = 131125;
+pub const _NL_WABDAY_1: C2RustUnnamed_4 = 131124;
+pub const _NL_TIME_ERA_ENTRIES: C2RustUnnamed_4 = 131123;
+pub const _NL_TIME_ERA_NUM_ENTRIES: C2RustUnnamed_4 = 131122;
+pub const ERA_T_FMT: C2RustUnnamed_4 = 131121;
+pub const ERA_D_T_FMT: C2RustUnnamed_4 = 131120;
+pub const ALT_DIGITS: C2RustUnnamed_4 = 131119;
+pub const ERA_D_FMT: C2RustUnnamed_4 = 131118;
+pub const __ERA_YEAR: C2RustUnnamed_4 = 131117;
+pub const ERA: C2RustUnnamed_4 = 131116;
+pub const T_FMT_AMPM: C2RustUnnamed_4 = 131115;
+pub const T_FMT: C2RustUnnamed_4 = 131114;
+pub const D_FMT: C2RustUnnamed_4 = 131113;
+pub const D_T_FMT: C2RustUnnamed_4 = 131112;
+pub const PM_STR: C2RustUnnamed_4 = 131111;
+pub const AM_STR: C2RustUnnamed_4 = 131110;
+pub const MON_12: C2RustUnnamed_4 = 131109;
+pub const MON_11: C2RustUnnamed_4 = 131108;
+pub const MON_10: C2RustUnnamed_4 = 131107;
+pub const MON_9: C2RustUnnamed_4 = 131106;
+pub const MON_8: C2RustUnnamed_4 = 131105;
+pub const MON_7: C2RustUnnamed_4 = 131104;
+pub const MON_6: C2RustUnnamed_4 = 131103;
+pub const MON_5: C2RustUnnamed_4 = 131102;
+pub const MON_4: C2RustUnnamed_4 = 131101;
+pub const MON_3: C2RustUnnamed_4 = 131100;
+pub const MON_2: C2RustUnnamed_4 = 131099;
+pub const MON_1: C2RustUnnamed_4 = 131098;
+pub const ABMON_12: C2RustUnnamed_4 = 131097;
+pub const ABMON_11: C2RustUnnamed_4 = 131096;
+pub const ABMON_10: C2RustUnnamed_4 = 131095;
+pub const ABMON_9: C2RustUnnamed_4 = 131094;
+pub const ABMON_8: C2RustUnnamed_4 = 131093;
+pub const ABMON_7: C2RustUnnamed_4 = 131092;
+pub const ABMON_6: C2RustUnnamed_4 = 131091;
+pub const ABMON_5: C2RustUnnamed_4 = 131090;
+pub const ABMON_4: C2RustUnnamed_4 = 131089;
+pub const ABMON_3: C2RustUnnamed_4 = 131088;
+pub const ABMON_2: C2RustUnnamed_4 = 131087;
+pub const ABMON_1: C2RustUnnamed_4 = 131086;
+pub const DAY_7: C2RustUnnamed_4 = 131085;
+pub const DAY_6: C2RustUnnamed_4 = 131084;
+pub const DAY_5: C2RustUnnamed_4 = 131083;
+pub const DAY_4: C2RustUnnamed_4 = 131082;
+pub const DAY_3: C2RustUnnamed_4 = 131081;
+pub const DAY_2: C2RustUnnamed_4 = 131080;
+pub const DAY_1: C2RustUnnamed_4 = 131079;
+pub const ABDAY_7: C2RustUnnamed_4 = 131078;
+pub const ABDAY_6: C2RustUnnamed_4 = 131077;
+pub const ABDAY_5: C2RustUnnamed_4 = 131076;
+pub const ABDAY_4: C2RustUnnamed_4 = 131075;
+pub const ABDAY_3: C2RustUnnamed_4 = 131074;
+pub const ABDAY_2: C2RustUnnamed_4 = 131073;
+pub const ABDAY_1: C2RustUnnamed_4 = 131072;
+pub type C2RustUnnamed_6 = i32;
 pub const IDN2_ALABEL_ROUNDTRIP_FAILED: C2RustUnnamed_6 = -314;
 pub const IDN2_INVALID_NONTRANSITIONAL: C2RustUnnamed_6 = -313;
 pub const IDN2_INVALID_TRANSITIONAL: C2RustUnnamed_6 = -312;
@@ -1252,7 +1401,7 @@ pub const IDN2_ICONV_FAIL: C2RustUnnamed_6 = -102;
 pub const IDN2_NO_CODESET: C2RustUnnamed_6 = -101;
 pub const IDN2_MALLOC: C2RustUnnamed_6 = -100;
 #[inline]
-unsafe extern "C" fn c_isascii(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isascii(mut c: i32) -> bool {
     match c {
         32 | 7 | 8 | 12 | 10 | 13 | 9 | 11 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 14 | 15 | 16
         | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 127
@@ -1262,138 +1411,133 @@ unsafe extern "C" fn c_isascii(mut c: libc::c_int) -> bool {
         | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 58 | 59 | 60 | 61 | 62 | 63 | 64
         | 91 | 92 | 93 | 94 | 95 | 96 | 123 | 124 | 125 | 126 | 65 | 66 | 67 | 68 | 69
         | 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79 | 80 | 81 | 82 | 83 | 84 | 85
-        | 86 | 87 | 88 | 89 | 90 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        | 86 | 87 | 88 | 89 | 90 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_isspace(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isspace(mut c: i32) -> bool {
     match c {
-        32 | 9 | 10 | 11 | 12 | 13 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        32 | 9 | 10 | 11 | 12 | 13 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn parse_charset(
-    mut str: *const libc::c_char,
-) -> *mut libc::c_char {
-    let mut end: *const libc::c_char = 0 as *const libc::c_char;
-    let mut charset: *mut libc::c_char = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn parse_charset(mut str: *const i8) -> *mut i8 {
+    let mut end: *const i8 = 0 as *const i8;
+    let mut charset: *mut i8 = 0 as *mut i8;
     if str.is_null() || *str == 0 {
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
-    str = c_strcasestr(str, b"charset=\0" as *const u8 as *const libc::c_char);
+    str = c_strcasestr(str, b"charset=\0" as *const u8 as *const i8);
     if str.is_null() {
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
-    str = str.offset(8 as libc::c_int as isize);
+    str = str.offset(8 as i32 as isize);
     end = str;
-    while *end as libc::c_int != 0 && !c_isspace(*end as libc::c_int) {
+    while *end as i32 != 0 && !c_isspace(*end as i32) {
         end = end.offset(1);
         end;
     }
     charset = strdupdelim(str, end);
     if !check_encoding_name(charset) {
         rpl_free(charset as *mut libc::c_void);
-        charset = 0 as *mut libc::c_char;
-        return 0 as *mut libc::c_char;
+        charset = 0 as *mut i8;
+        return 0 as *mut i8;
     }
     return charset;
 }
 #[no_mangle]
-pub unsafe extern "C" fn find_locale() -> *const libc::c_char {
-    let mut encoding: *const libc::c_char = nl_langinfo(CODESET as libc::c_int);
+pub unsafe extern "C" fn find_locale() -> *const i8 {
+    let mut encoding: *const i8 = nl_langinfo(CODESET as i32);
     if encoding.is_null() || *encoding == 0 {
-        return xstrdup(b"ASCII\0" as *const u8 as *const libc::c_char);
+        return xstrdup(b"ASCII\0" as *const u8 as *const i8);
     }
     return xstrdup(encoding);
 }
 #[no_mangle]
-pub unsafe extern "C" fn check_encoding_name(mut encoding: *const libc::c_char) -> bool {
-    let mut s: *const libc::c_char = encoding;
+pub unsafe extern "C" fn check_encoding_name(mut encoding: *const i8) -> bool {
+    let mut s: *const i8 = encoding;
     while *s != 0 {
-        if !c_isascii(*s as libc::c_int)
-            || c_isspace(*s as libc::c_int) as libc::c_int != 0
-        {
+        if !c_isascii(*s as i32) || c_isspace(*s as i32) as i32 != 0 {
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Encoding %s isn't valid\n\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Encoding %s isn't valid\n\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 quote(encoding),
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
         s = s.offset(1);
         s;
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 unsafe extern "C" fn do_conversion(
-    mut tocode: *const libc::c_char,
-    mut fromcode: *const libc::c_char,
-    mut in_org: *const libc::c_char,
+    mut tocode: *const i8,
+    mut fromcode: *const i8,
+    mut in_org: *const i8,
     mut inlen: size_t,
-    mut out: *mut *mut libc::c_char,
+    mut out: *mut *mut i8,
 ) -> bool {
     let mut cd: iconv_t = 0 as *mut libc::c_void;
     let mut len: size_t = 0;
     let mut done: size_t = 0;
     let mut outlen: size_t = 0;
-    let mut invalid: libc::c_int = 0 as libc::c_int;
-    let mut tooshort: libc::c_int = 0 as libc::c_int;
-    let mut s: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut in_0: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut in_save: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut invalid: i32 = 0 as i32;
+    let mut tooshort: i32 = 0 as i32;
+    let mut s: *mut i8 = 0 as *mut i8;
+    let mut in_0: *mut i8 = 0 as *mut i8;
+    let mut in_save: *mut i8 = 0 as *mut i8;
     cd = iconv_open(tocode, fromcode);
-    if cd == -(1 as libc::c_int) as iconv_t {
+    if cd == -(1 as i32) as iconv_t {
         logprintf(
-            LOG_VERBOSE,
+            log_options::LOG_VERBOSE,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"Conversion from %s to %s isn't supported\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
-            quote_n(0 as libc::c_int, fromcode),
-            quote_n(1 as libc::c_int, tocode),
+            quote_n(0 as i32, fromcode),
+            quote_n(1 as i32, tocode),
         );
-        *out = 0 as *mut libc::c_char;
-        return 0 as libc::c_int != 0;
+        *out = 0 as *mut i8;
+        return 0 as i32 != 0;
     }
     in_0 = xstrndup(in_org, inlen);
     in_save = in_0;
     url_unescape_except_reserved(in_0);
     inlen = strlen(in_0);
-    outlen = inlen.wrapping_mul(2 as libc::c_int as libc::c_ulong);
+    outlen = inlen.wrapping_mul(2 as i32 as u64);
     len = outlen;
-    s = xmalloc(outlen.wrapping_add(1 as libc::c_int as libc::c_ulong))
-        as *mut libc::c_char;
+    s = xmalloc(outlen.wrapping_add(1 as i32 as u64)) as *mut i8;
     *out = s;
-    done = 0 as libc::c_int as size_t;
+    done = 0 as i32 as size_t;
     loop {
-        if iconv(cd, &mut in_0 as *mut *mut libc::c_char, &mut inlen, out, &mut outlen)
-            != -(1 as libc::c_int) as size_t
-            && iconv(cd, 0 as *mut *mut libc::c_char, 0 as *mut size_t, out, &mut outlen)
-                != -(1 as libc::c_int) as size_t
+        if iconv(cd, &mut in_0 as *mut *mut i8, &mut inlen, out, &mut outlen)
+            != -(1 as i32) as size_t
+            && iconv(cd, 0 as *mut *mut i8, 0 as *mut size_t, out, &mut outlen)
+                != -(1 as i32) as size_t
         {
             *out = s;
             *s
                 .offset(len as isize)
                 .offset(-(outlen as isize))
-                .offset(-(done as isize)) = '\0' as i32 as libc::c_char;
+                .offset(-(done as isize)) = '\0' as i32 as i8;
             rpl_free(in_save as *mut libc::c_void);
-            in_save = 0 as *mut libc::c_char;
+            in_save = 0 as *mut i8;
             iconv_close(cd);
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 if (strchr(in_org, '@' as i32)).is_null()
                     && (strchr(*out, '@' as i32)).is_null()
                 {
                     debug_logprintf(
                         b"converted '%s' (%s) -> '%s' (%s)\n\0" as *const u8
-                            as *const libc::c_char,
+                            as *const i8,
                         in_org,
                         fromcode,
                         *out,
@@ -1402,23 +1546,21 @@ unsafe extern "C" fn do_conversion(
                 } else {
                     debug_logprintf(
                         b"logging suppressed, strings may contain password\n\0"
-                            as *const u8 as *const libc::c_char,
+                            as *const u8 as *const i8,
                     );
                 }
             }
-            return 1 as libc::c_int != 0;
+            return 1 as i32 != 0;
         }
-        if *__errno_location() == 22 as libc::c_int
-            || *__errno_location() == 84 as libc::c_int
-        {
+        if *__errno_location() == 22 as i32 || *__errno_location() == 84 as i32 {
             if invalid == 0 {
                 logprintf(
-                    LOG_VERBOSE,
+                    log_options::LOG_VERBOSE,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"Incomplete or invalid multibyte sequence encountered\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
             }
@@ -1433,27 +1575,23 @@ unsafe extern "C" fn do_conversion(
             *out;
             outlen = outlen.wrapping_sub(1);
             outlen;
-        } else if *__errno_location() == 7 as libc::c_int {
+        } else if *__errno_location() == 7 as i32 {
             tooshort += 1;
             tooshort;
             done = len;
-            len = done
-                .wrapping_add(inlen.wrapping_mul(2 as libc::c_int as libc::c_ulong));
-            s = xrealloc(
-                s as *mut libc::c_void,
-                len.wrapping_add(1 as libc::c_int as libc::c_ulong),
-            ) as *mut libc::c_char;
+            len = done.wrapping_add(inlen.wrapping_mul(2 as i32 as u64));
+            s = xrealloc(s as *mut libc::c_void, len.wrapping_add(1 as i32 as u64))
+                as *mut i8;
             *out = s.offset(done as isize).offset(-(outlen as isize));
-            outlen = (outlen as libc::c_ulong)
-                .wrapping_add(inlen.wrapping_mul(2 as libc::c_int as libc::c_ulong))
+            outlen = (outlen as u64).wrapping_add(inlen.wrapping_mul(2 as i32 as u64))
                 as size_t as size_t;
         } else {
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Unhandled errno %d\n\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Unhandled errno %d\n\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 *__errno_location(),
             );
@@ -1461,14 +1599,13 @@ unsafe extern "C" fn do_conversion(
         }
     }
     rpl_free(in_save as *mut libc::c_void);
-    in_save = 0 as *mut libc::c_char;
+    in_save = 0 as *mut i8;
     iconv_close(cd);
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         if (strchr(in_org, '@' as i32)).is_null() && (strchr(*out, '@' as i32)).is_null()
         {
             debug_logprintf(
-                b"converted '%s' (%s) -> '%s' (%s)\n\0" as *const u8
-                    as *const libc::c_char,
+                b"converted '%s' (%s) -> '%s' (%s)\n\0" as *const u8 as *const i8,
                 in_org,
                 fromcode,
                 *out,
@@ -1477,59 +1614,53 @@ unsafe extern "C" fn do_conversion(
         } else {
             debug_logprintf(
                 b"logging suppressed, strings may contain password\n\0" as *const u8
-                    as *const libc::c_char,
+                    as *const i8,
             );
         }
     }
-    return 0 as libc::c_int != 0;
+    return 0 as i32 != 0;
 }
 #[no_mangle]
-pub unsafe extern "C" fn locale_to_utf8(
-    mut str: *const libc::c_char,
-) -> *const libc::c_char {
-    let mut new: *mut libc::c_char = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn locale_to_utf8(mut str: *const i8) -> *const i8 {
+    let mut new: *mut i8 = 0 as *mut i8;
     if (opt.locale).is_null() {
         logprintf(
-            LOG_VERBOSE,
+            log_options::LOG_VERBOSE,
             dcgettext(
-                0 as *const libc::c_char,
-                b"locale_to_utf8: locale is unset\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"locale_to_utf8: locale is unset\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
         );
         opt.locale = find_locale();
     }
     if (opt.locale).is_null()
-        || c_strcasecmp(opt.locale, b"utf-8\0" as *const u8 as *const libc::c_char) == 0
+        || c_strcasecmp(opt.locale, b"utf-8\0" as *const u8 as *const i8) == 0
     {
         return str;
     }
     if do_conversion(
-        b"UTF-8\0" as *const u8 as *const libc::c_char,
+        b"UTF-8\0" as *const u8 as *const i8,
         opt.locale,
-        str as *mut libc::c_char,
-        strlen(str as *mut libc::c_char),
+        str as *mut i8,
+        strlen(str as *mut i8),
         &mut new,
     ) {
-        return new as *const libc::c_char;
+        return new as *const i8;
     }
     rpl_free(new as *mut libc::c_void);
-    new = 0 as *mut libc::c_char;
+    new = 0 as *mut i8;
     return str;
 }
 #[no_mangle]
-pub unsafe extern "C" fn idn_encode(
-    mut i: *const iri,
-    mut host: *const libc::c_char,
-) -> *mut libc::c_char {
-    let mut ret: libc::c_int = 0;
-    let mut ascii_encoded: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut utf8_encoded: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut src: *const libc::c_char = 0 as *const libc::c_char;
+pub unsafe extern "C" fn idn_encode(mut i: *const iri, mut host: *const i8) -> *mut i8 {
+    let mut ret: i32 = 0;
+    let mut ascii_encoded: *mut i8 = 0 as *mut i8;
+    let mut utf8_encoded: *mut i8 = 0 as *mut i8;
+    let mut src: *const i8 = 0 as *const i8;
     if !(*i).utf8_encode {
         if !remote_to_utf8(i, host, &mut utf8_encoded) {
-            return 0 as *mut libc::c_char;
+            return 0 as *mut i8;
         }
         src = utf8_encoded;
     } else {
@@ -1537,122 +1668,110 @@ pub unsafe extern "C" fn idn_encode(
     }
     ret = idn2_lookup_u8(
         src as *mut uint8_t,
-        &mut ascii_encoded as *mut *mut libc::c_char as *mut *mut uint8_t,
-        IDN2_NONTRANSITIONAL as libc::c_int,
+        &mut ascii_encoded as *mut *mut i8 as *mut *mut uint8_t,
+        C2RustUnnamed_5::IDN2_NONTRANSITIONAL as i32,
     );
-    if ret != IDN2_OK as libc::c_int {
+    if ret != IDN2_OK as i32 {
         ret = idn2_lookup_u8(
             src as *mut uint8_t,
-            &mut ascii_encoded as *mut *mut libc::c_char as *mut *mut uint8_t,
-            IDN2_TRANSITIONAL as libc::c_int,
+            &mut ascii_encoded as *mut *mut i8 as *mut *mut uint8_t,
+            C2RustUnnamed_5::IDN2_TRANSITIONAL as i32,
         );
     }
-    if ret != IDN2_OK as libc::c_int {
+    if ret != IDN2_OK as i32 {
         logprintf(
-            LOG_VERBOSE,
+            log_options::LOG_VERBOSE,
             dcgettext(
-                0 as *const libc::c_char,
-                b"idn_encode failed (%d): %s\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"idn_encode failed (%d): %s\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             ret,
             quote(idn2_strerror(ret)),
         );
     }
     rpl_free(utf8_encoded as *mut libc::c_void);
-    utf8_encoded = 0 as *mut libc::c_char;
-    if ret == IDN2_OK as libc::c_int && !ascii_encoded.is_null() {
-        let mut tmp: *mut libc::c_char = xstrdup(ascii_encoded);
+    utf8_encoded = 0 as *mut i8;
+    if ret == IDN2_OK as i32 && !ascii_encoded.is_null() {
+        let mut tmp: *mut i8 = xstrdup(ascii_encoded);
         idn2_free(ascii_encoded as *mut libc::c_void);
         ascii_encoded = tmp;
     }
-    return if ret == IDN2_OK as libc::c_int {
-        ascii_encoded
-    } else {
-        0 as *mut libc::c_char
-    };
+    return if ret == IDN2_OK as i32 { ascii_encoded } else { 0 as *mut i8 };
 }
 #[no_mangle]
-pub unsafe extern "C" fn idn_decode(mut host: *const libc::c_char) -> *mut libc::c_char {
+pub unsafe extern "C" fn idn_decode(mut host: *const i8) -> *mut i8 {
     return xstrdup(host);
 }
 #[no_mangle]
 pub unsafe extern "C" fn remote_to_utf8(
     mut iri: *const iri,
-    mut str: *const libc::c_char,
-    mut new: *mut *mut libc::c_char,
+    mut str: *const i8,
+    mut new: *mut *mut i8,
 ) -> bool {
-    let mut ret: bool = 0 as libc::c_int != 0;
+    let mut ret: bool = 0 as i32 != 0;
     if ((*iri).uri_encoding).is_null() {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    if c_strcasecmp((*iri).uri_encoding, b"UTF-8\0" as *const u8 as *const libc::c_char)
-        == 0
-    {
-        let mut p: *const libc::c_uchar = 0 as *const libc::c_uchar;
-        p = str as *mut libc::c_uchar;
+    if c_strcasecmp((*iri).uri_encoding, b"UTF-8\0" as *const u8 as *const i8) == 0 {
+        let mut p: *const u8 = 0 as *const u8;
+        p = str as *mut u8;
         while *p != 0 {
-            if *p as libc::c_int > 127 as libc::c_int {
+            if *p as i32 > 127 as i32 {
                 *new = strdup(str);
-                return 1 as libc::c_int != 0;
+                return 1 as i32 != 0;
             }
             p = p.offset(1);
             p;
         }
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     if do_conversion(
-        b"UTF-8\0" as *const u8 as *const libc::c_char,
+        b"UTF-8\0" as *const u8 as *const i8,
         (*iri).uri_encoding,
         str,
         strlen(str),
         new,
     ) {
-        ret = 1 as libc::c_int != 0;
+        ret = 1 as i32 != 0;
     }
     if !(*new).is_null() && strcmp(str, *new) == 0 {
         rpl_free(*new as *mut libc::c_void);
-        *new = 0 as *mut libc::c_char;
-        return 0 as libc::c_int != 0;
+        *new = 0 as *mut i8;
+        return 0 as i32 != 0;
     }
     return ret;
 }
 #[no_mangle]
 pub unsafe extern "C" fn iri_new() -> *mut iri {
-    let mut i: *mut iri = xmalloc(::core::mem::size_of::<iri>() as libc::c_ulong)
-        as *mut iri;
-    (*i)
-        .uri_encoding = if !(opt.encoding_remote).is_null() {
+    let mut i: *mut iri = xmalloc(::core::mem::size_of::<iri>() as u64) as *mut iri;
+    (*i).uri_encoding = if !(opt.encoding_remote).is_null() {
         xstrdup(opt.encoding_remote)
     } else {
-        0 as *mut libc::c_char
+        0 as *mut i8
     };
-    (*i).content_encoding = 0 as *mut libc::c_char;
-    (*i).orig_url = 0 as *mut libc::c_char;
+    (*i).content_encoding = 0 as *mut i8;
+    (*i).orig_url = 0 as *mut i8;
     (*i).utf8_encode = opt.enable_iri;
     return i;
 }
 #[no_mangle]
 pub unsafe extern "C" fn iri_dup(mut src: *const iri) -> *mut iri {
-    let mut i: *mut iri = xmalloc(::core::mem::size_of::<iri>() as libc::c_ulong)
-        as *mut iri;
-    (*i)
-        .uri_encoding = if !((*src).uri_encoding).is_null() {
+    let mut i: *mut iri = xmalloc(::core::mem::size_of::<iri>() as u64) as *mut iri;
+    (*i).uri_encoding = if !((*src).uri_encoding).is_null() {
         xstrdup((*src).uri_encoding)
     } else {
-        0 as *mut libc::c_char
+        0 as *mut i8
     };
-    (*i)
-        .content_encoding = if !((*src).content_encoding).is_null() {
+    (*i).content_encoding = if !((*src).content_encoding).is_null() {
         xstrdup((*src).content_encoding)
     } else {
-        0 as *mut libc::c_char
+        0 as *mut i8
     };
-    (*i)
-        .orig_url = if !((*src).orig_url).is_null() {
+    (*i).orig_url = if !((*src).orig_url).is_null() {
         xstrdup((*src).orig_url)
     } else {
-        0 as *mut libc::c_char
+        0 as *mut i8
     };
     (*i).utf8_encode = (*src).utf8_encode;
     return i;
@@ -1661,11 +1780,11 @@ pub unsafe extern "C" fn iri_dup(mut src: *const iri) -> *mut iri {
 pub unsafe extern "C" fn iri_free(mut i: *mut iri) {
     if !i.is_null() {
         rpl_free((*i).uri_encoding as *mut libc::c_void);
-        (*i).uri_encoding = 0 as *mut libc::c_char;
+        (*i).uri_encoding = 0 as *mut i8;
         rpl_free((*i).content_encoding as *mut libc::c_void);
-        (*i).content_encoding = 0 as *mut libc::c_char;
+        (*i).content_encoding = 0 as *mut i8;
         rpl_free((*i).orig_url as *mut libc::c_void);
-        (*i).orig_url = 0 as *mut libc::c_char;
+        (*i).orig_url = 0 as *mut i8;
         rpl_free(i as *mut libc::c_void);
         i = 0 as *mut iri;
     }
@@ -1673,16 +1792,16 @@ pub unsafe extern "C" fn iri_free(mut i: *mut iri) {
 #[no_mangle]
 pub unsafe extern "C" fn set_uri_encoding(
     mut i: *mut iri,
-    mut charset: *const libc::c_char,
+    mut charset: *const i8,
     mut force: bool,
 ) {
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"URI encoding = %s\n\0" as *const u8 as *const libc::c_char,
+            b"URI encoding = %s\n\0" as *const u8 as *const i8,
             if !charset.is_null() {
                 quote(charset)
             } else {
-                b"None\0" as *const u8 as *const libc::c_char
+                b"None\0" as *const u8 as *const i8
             },
         );
     }
@@ -1694,27 +1813,19 @@ pub unsafe extern "C" fn set_uri_encoding(
             return;
         }
         rpl_free((*i).uri_encoding as *mut libc::c_void);
-        (*i).uri_encoding = 0 as *mut libc::c_char;
+        (*i).uri_encoding = 0 as *mut i8;
     }
-    (*i)
-        .uri_encoding = if !charset.is_null() {
-        xstrdup(charset)
-    } else {
-        0 as *mut libc::c_char
-    };
+    (*i).uri_encoding = if !charset.is_null() { xstrdup(charset) } else { 0 as *mut i8 };
 }
 #[no_mangle]
-pub unsafe extern "C" fn set_content_encoding(
-    mut i: *mut iri,
-    mut charset: *const libc::c_char,
-) {
-    if opt.debug as libc::c_long != 0 {
+pub unsafe extern "C" fn set_content_encoding(mut i: *mut iri, mut charset: *const i8) {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"URI content encoding = %s\n\0" as *const u8 as *const libc::c_char,
+            b"URI content encoding = %s\n\0" as *const u8 as *const i8,
             if !charset.is_null() {
                 quote(charset)
             } else {
-                b"None\0" as *const u8 as *const libc::c_char
+                b"None\0" as *const u8 as *const i8
             },
         );
     }
@@ -1726,12 +1837,11 @@ pub unsafe extern "C" fn set_content_encoding(
             return;
         }
         rpl_free((*i).content_encoding as *mut libc::c_void);
-        (*i).content_encoding = 0 as *mut libc::c_char;
+        (*i).content_encoding = 0 as *mut i8;
     }
-    (*i)
-        .content_encoding = if !charset.is_null() {
+    (*i).content_encoding = if !charset.is_null() {
         xstrdup(charset)
     } else {
-        0 as *mut libc::c_char
+        0 as *mut i8
     };
 }

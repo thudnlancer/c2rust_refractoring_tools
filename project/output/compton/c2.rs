@@ -1,9 +1,16 @@
-use ::libc;
-use ::c2rust_bitfields;
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+#![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type _XGC;
     pub type _XDisplay;
     pub type DBusConnection;
@@ -56,7 +63,7 @@ extern "C" {
     ) -> libc::c_long;
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    static mut stderr: *mut FILE;
+    static mut stderr: *mut _IO_FILE;
     static WINTYPES: [*const libc::c_char; 15];
     fn wid_get_prop_adv(
         ps: *const session_t,
@@ -75,7 +82,7 @@ extern "C" {
         pnstr: *mut libc::c_int,
     ) -> bool;
     fn pcre_free_study(_: *mut pcre_extra);
-    static mut pcre_free: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
+    static mut pcre_free: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
     fn pcre_study(
         _: *const pcre,
         _: libc::c_int,
@@ -137,15 +144,22 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
 pub type FILE = _IO_FILE;
 pub type int64_t = __int64_t;
 #[derive(Copy, Clone)]
@@ -195,20 +209,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type XID = libc::c_ulong;
 pub type Atom = libc::c_ulong;
 pub type VisualID = libc::c_ulong;
@@ -222,7 +295,7 @@ pub type XPointer = *mut libc::c_char;
 pub struct _XExtData {
     pub number: libc::c_int,
     pub next: *mut _XExtData,
-    pub free_private: Option::<unsafe extern "C" fn(*mut _XExtData) -> libc::c_int>,
+    pub free_private: Option<unsafe extern "C" fn(*mut _XExtData) -> libc::c_int>,
     pub private_data: XPointer,
 }
 pub type XExtData = _XExtData;
@@ -410,24 +483,83 @@ impl wintype_t {
             wintype_t::NUM_WINTYPES => 15,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> wintype_t {
+        match value {
+            0 => wintype_t::WINTYPE_UNKNOWN,
+            1 => wintype_t::WINTYPE_DESKTOP,
+            2 => wintype_t::WINTYPE_DOCK,
+            3 => wintype_t::WINTYPE_TOOLBAR,
+            4 => wintype_t::WINTYPE_MENU,
+            5 => wintype_t::WINTYPE_UTILITY,
+            6 => wintype_t::WINTYPE_SPLASH,
+            7 => wintype_t::WINTYPE_DIALOG,
+            8 => wintype_t::WINTYPE_NORMAL,
+            9 => wintype_t::WINTYPE_DROPDOWN_MENU,
+            10 => wintype_t::WINTYPE_POPUP_MENU,
+            11 => wintype_t::WINTYPE_TOOLTIP,
+            12 => wintype_t::WINTYPE_NOTIFY,
+            13 => wintype_t::WINTYPE_COMBO,
+            14 => wintype_t::WINTYPE_DND,
+            15 => wintype_t::NUM_WINTYPES,
+            _ => panic!("Invalid value for wintype_t: {}", value),
+        }
+    }
 }
-
-pub const NUM_WINTYPES: wintype_t = 15;
-pub const WINTYPE_DND: wintype_t = 14;
-pub const WINTYPE_COMBO: wintype_t = 13;
-pub const WINTYPE_NOTIFY: wintype_t = 12;
-pub const WINTYPE_TOOLTIP: wintype_t = 11;
-pub const WINTYPE_POPUP_MENU: wintype_t = 10;
-pub const WINTYPE_DROPDOWN_MENU: wintype_t = 9;
-pub const WINTYPE_NORMAL: wintype_t = 8;
-pub const WINTYPE_DIALOG: wintype_t = 7;
-pub const WINTYPE_SPLASH: wintype_t = 6;
-pub const WINTYPE_UTILITY: wintype_t = 5;
-pub const WINTYPE_MENU: wintype_t = 4;
-pub const WINTYPE_TOOLBAR: wintype_t = 3;
-pub const WINTYPE_DOCK: wintype_t = 2;
-pub const WINTYPE_DESKTOP: wintype_t = 1;
-pub const WINTYPE_UNKNOWN: wintype_t = 0;
+impl AddAssign<u32> for wintype_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for wintype_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for wintype_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for wintype_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for wintype_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for wintype_t {
+    type Output = wintype_t;
+    fn add(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for wintype_t {
+    type Output = wintype_t;
+    fn sub(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for wintype_t {
+    type Output = wintype_t;
+    fn mul(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for wintype_t {
+    type Output = wintype_t;
+    fn div(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for wintype_t {
+    type Output = wintype_t;
+    fn rem(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
@@ -443,11 +575,70 @@ impl switch_t {
             switch_t::UNSET => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> switch_t {
+        match value {
+            0 => switch_t::OFF,
+            1 => switch_t::ON,
+            2 => switch_t::UNSET,
+            _ => panic!("Invalid value for switch_t: {}", value),
+        }
+    }
 }
-
-pub const UNSET: switch_t = 2;
-pub const ON: switch_t = 1;
-pub const OFF: switch_t = 0;
+impl AddAssign<u32> for switch_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for switch_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for switch_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for switch_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for switch_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for switch_t {
+    type Output = switch_t;
+    fn add(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for switch_t {
+    type Output = switch_t;
+    fn sub(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for switch_t {
+    type Output = switch_t;
+    fn mul(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for switch_t {
+    type Output = switch_t;
+    fn div(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for switch_t {
+    type Output = switch_t;
+    fn rem(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct geometry_t {
@@ -479,11 +670,70 @@ impl winmode_t {
             winmode_t::WMODE_ARGB => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> winmode_t {
+        match value {
+            0 => winmode_t::WMODE_TRANS,
+            1 => winmode_t::WMODE_SOLID,
+            2 => winmode_t::WMODE_ARGB,
+            _ => panic!("Invalid value for winmode_t: {}", value),
+        }
+    }
 }
-
-pub const WMODE_ARGB: winmode_t = 2;
-pub const WMODE_SOLID: winmode_t = 1;
-pub const WMODE_TRANS: winmode_t = 0;
+impl AddAssign<u32> for winmode_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for winmode_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for winmode_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for winmode_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for winmode_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for winmode_t {
+    type Output = winmode_t;
+    fn add(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for winmode_t {
+    type Output = winmode_t;
+    fn sub(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for winmode_t {
+    type Output = winmode_t;
+    fn mul(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for winmode_t {
+    type Output = winmode_t;
+    fn div(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for winmode_t {
+    type Output = winmode_t;
+    fn rem(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct winprop_t {
@@ -529,15 +779,74 @@ impl vsync_t {
             vsync_t::NUM_VSYNC => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> vsync_t {
+        match value {
+            0 => vsync_t::VSYNC_NONE,
+            1 => vsync_t::VSYNC_DRM,
+            2 => vsync_t::VSYNC_OPENGL,
+            3 => vsync_t::VSYNC_OPENGL_OML,
+            4 => vsync_t::VSYNC_OPENGL_SWC,
+            5 => vsync_t::VSYNC_OPENGL_MSWC,
+            6 => vsync_t::NUM_VSYNC,
+            _ => panic!("Invalid value for vsync_t: {}", value),
+        }
+    }
 }
-
-pub const NUM_VSYNC: vsync_t = 6;
-pub const VSYNC_OPENGL_MSWC: vsync_t = 5;
-pub const VSYNC_OPENGL_SWC: vsync_t = 4;
-pub const VSYNC_OPENGL_OML: vsync_t = 3;
-pub const VSYNC_OPENGL: vsync_t = 2;
-pub const VSYNC_DRM: vsync_t = 1;
-pub const VSYNC_NONE: vsync_t = 0;
+impl AddAssign<u32> for vsync_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for vsync_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for vsync_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for vsync_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for vsync_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for vsync_t {
+    type Output = vsync_t;
+    fn add(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for vsync_t {
+    type Output = vsync_t;
+    fn sub(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for vsync_t {
+    type Output = vsync_t;
+    fn mul(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for vsync_t {
+    type Output = vsync_t;
+    fn div(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for vsync_t {
+    type Output = vsync_t;
+    fn rem(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
@@ -555,12 +864,71 @@ impl backend {
             backend::NUM_BKEND => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> backend {
+        match value {
+            0 => backend::BKEND_XRENDER,
+            1 => backend::BKEND_GLX,
+            2 => backend::BKEND_XR_GLX_HYBRID,
+            3 => backend::NUM_BKEND,
+            _ => panic!("Invalid value for backend: {}", value),
+        }
+    }
 }
-
-pub const NUM_BKEND: backend = 3;
-pub const BKEND_XR_GLX_HYBRID: backend = 2;
-pub const BKEND_GLX: backend = 1;
-pub const BKEND_XRENDER: backend = 0;
+impl AddAssign<u32> for backend {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for backend {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for backend {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for backend {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for backend {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for backend {
+    type Output = backend;
+    fn add(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for backend {
+    type Output = backend;
+    fn sub(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for backend {
+    type Output = backend;
+    fn mul(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for backend {
+    type Output = backend;
+    fn div(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for backend {
+    type Output = backend;
+    fn rem(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _glx_texture {
@@ -574,13 +942,11 @@ pub struct _glx_texture {
     pub y_inverted: bool,
 }
 pub type glx_texture_t = _glx_texture;
-pub type f_WaitVideoSync = Option::<
+pub type f_WaitVideoSync = Option<
     unsafe extern "C" fn(libc::c_int, libc::c_int, *mut libc::c_uint) -> libc::c_int,
 >;
-pub type f_GetVideoSync = Option::<
-    unsafe extern "C" fn(*mut libc::c_uint) -> libc::c_int,
->;
-pub type f_GetSyncValuesOML = Option::<
+pub type f_GetVideoSync = Option<unsafe extern "C" fn(*mut libc::c_uint) -> libc::c_int>;
+pub type f_GetSyncValuesOML = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
@@ -589,7 +955,7 @@ pub type f_GetSyncValuesOML = Option::<
         *mut int64_t,
     ) -> libc::c_int,
 >;
-pub type f_WaitForMscOML = Option::<
+pub type f_WaitForMscOML = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
@@ -601,11 +967,9 @@ pub type f_WaitForMscOML = Option::<
         *mut int64_t,
     ) -> libc::c_int,
 >;
-pub type f_SwapIntervalSGI = Option::<unsafe extern "C" fn(libc::c_int) -> libc::c_int>;
-pub type f_SwapIntervalMESA = Option::<
-    unsafe extern "C" fn(libc::c_uint) -> libc::c_int,
->;
-pub type f_BindTexImageEXT = Option::<
+pub type f_SwapIntervalSGI = Option<unsafe extern "C" fn(libc::c_int) -> libc::c_int>;
+pub type f_SwapIntervalMESA = Option<unsafe extern "C" fn(libc::c_uint) -> libc::c_int>;
+pub type f_BindTexImageEXT = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
@@ -613,10 +977,10 @@ pub type f_BindTexImageEXT = Option::<
         *const libc::c_int,
     ) -> (),
 >;
-pub type f_ReleaseTexImageEXT = Option::<
+pub type f_ReleaseTexImageEXT = Option<
     unsafe extern "C" fn(*mut Display, GLXDrawable, libc::c_int) -> (),
 >;
-pub type f_CopySubBuffer = Option::<
+pub type f_CopySubBuffer = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
@@ -684,9 +1048,7 @@ pub type latom_t = _latom;
 pub struct _timeout_t {
     pub enabled: bool,
     pub data: *mut libc::c_void,
-    pub callback: Option::<
-        unsafe extern "C" fn(*mut session_t, *mut _timeout_t) -> bool,
-    >,
+    pub callback: Option<unsafe extern "C" fn(*mut session_t, *mut _timeout_t) -> bool>,
     pub interval: time_ms_t,
     pub firstrun: time_ms_t,
     pub lastrun: time_ms_t,
@@ -855,7 +1217,7 @@ pub struct _win {
     pub fade: bool,
     pub fade_last: bool,
     pub fade_force: switch_t,
-    pub fade_callback: Option::<unsafe extern "C" fn(*mut session_t, *mut _win) -> ()>,
+    pub fade_callback: Option<unsafe extern "C" fn(*mut session_t, *mut _win) -> ()>,
     pub frame_opacity: libc::c_double,
     pub frame_extents: margin_t,
     pub shadow: bool,
@@ -951,11 +1313,70 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::C2_L_PTUNDEFINED => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_2 {
+        match value {
+            2 => C2RustUnnamed_2::C2_L_PTINT,
+            1 => C2RustUnnamed_2::C2_L_PTSTRING,
+            0 => C2RustUnnamed_2::C2_L_PTUNDEFINED,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
-pub const C2_L_PTINT: C2RustUnnamed_2 = 2;
-pub const C2_L_PTSTRING: C2RustUnnamed_2 = 1;
-pub const C2_L_PTUNDEFINED: C2RustUnnamed_2 = 0;
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum c2_l_type {
@@ -977,14 +1398,73 @@ impl c2_l_type {
             c2_l_type::C2_L_TUNDEFINED => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> c2_l_type {
+        match value {
+            5 => c2_l_type::C2_L_TDRAWABLE,
+            4 => c2_l_type::C2_L_TATOM,
+            3 => c2_l_type::C2_L_TWINDOW,
+            2 => c2_l_type::C2_L_TCARDINAL,
+            1 => c2_l_type::C2_L_TSTRING,
+            0 => c2_l_type::C2_L_TUNDEFINED,
+            _ => panic!("Invalid value for c2_l_type: {}", value),
+        }
+    }
 }
-
-pub const C2_L_TDRAWABLE: c2_l_type = 5;
-pub const C2_L_TATOM: c2_l_type = 4;
-pub const C2_L_TWINDOW: c2_l_type = 3;
-pub const C2_L_TCARDINAL: c2_l_type = 2;
-pub const C2_L_TSTRING: c2_l_type = 1;
-pub const C2_L_TUNDEFINED: c2_l_type = 0;
+impl AddAssign<u32> for c2_l_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = c2_l_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for c2_l_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = c2_l_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for c2_l_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = c2_l_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for c2_l_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = c2_l_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for c2_l_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = c2_l_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for c2_l_type {
+    type Output = c2_l_type;
+    fn add(self, rhs: u32) -> c2_l_type {
+        c2_l_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for c2_l_type {
+    type Output = c2_l_type;
+    fn sub(self, rhs: u32) -> c2_l_type {
+        c2_l_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for c2_l_type {
+    type Output = c2_l_type;
+    fn mul(self, rhs: u32) -> c2_l_type {
+        c2_l_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for c2_l_type {
+    type Output = c2_l_type;
+    fn div(self, rhs: u32) -> c2_l_type {
+        c2_l_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for c2_l_type {
+    type Output = c2_l_type;
+    fn rem(self, rhs: u32) -> c2_l_type {
+        c2_l_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -1044,33 +1524,92 @@ impl C2RustUnnamed_3 {
             C2RustUnnamed_3::C2_L_PUNDEFINED => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_3 {
+        match value {
+            24 => C2RustUnnamed_3::C2_L_PROLE,
+            23 => C2RustUnnamed_3::C2_L_PCLASSI,
+            22 => C2RustUnnamed_3::C2_L_PCLASSG,
+            21 => C2RustUnnamed_3::C2_L_PNAME,
+            20 => C2RustUnnamed_3::C2_L_PLEADER,
+            19 => C2RustUnnamed_3::C2_L_PWINDOWTYPE,
+            18 => C2RustUnnamed_3::C2_L_PCLIENT,
+            17 => C2RustUnnamed_3::C2_L_PROUNDED,
+            16 => C2RustUnnamed_3::C2_L_PBSHAPED,
+            15 => C2RustUnnamed_3::C2_L_PWMWIN,
+            14 => C2RustUnnamed_3::C2_L_PFOCUSED,
+            13 => C2RustUnnamed_3::C2_L_PARGB,
+            12 => C2RustUnnamed_3::C2_L_POVREDIR,
+            11 => C2RustUnnamed_3::C2_L_PFULLSCREEN,
+            10 => C2RustUnnamed_3::C2_L_PBDW,
+            9 => C2RustUnnamed_3::C2_L_PHEIGHTB,
+            8 => C2RustUnnamed_3::C2_L_PWIDTHB,
+            7 => C2RustUnnamed_3::C2_L_PHEIGHT,
+            6 => C2RustUnnamed_3::C2_L_PWIDTH,
+            5 => C2RustUnnamed_3::C2_L_PY2,
+            4 => C2RustUnnamed_3::C2_L_PX2,
+            3 => C2RustUnnamed_3::C2_L_PY,
+            2 => C2RustUnnamed_3::C2_L_PX,
+            1 => C2RustUnnamed_3::C2_L_PID,
+            0 => C2RustUnnamed_3::C2_L_PUNDEFINED,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const C2_L_PROLE: C2RustUnnamed_3 = 24;
-pub const C2_L_PCLASSI: C2RustUnnamed_3 = 23;
-pub const C2_L_PCLASSG: C2RustUnnamed_3 = 22;
-pub const C2_L_PNAME: C2RustUnnamed_3 = 21;
-pub const C2_L_PLEADER: C2RustUnnamed_3 = 20;
-pub const C2_L_PWINDOWTYPE: C2RustUnnamed_3 = 19;
-pub const C2_L_PCLIENT: C2RustUnnamed_3 = 18;
-pub const C2_L_PROUNDED: C2RustUnnamed_3 = 17;
-pub const C2_L_PBSHAPED: C2RustUnnamed_3 = 16;
-pub const C2_L_PWMWIN: C2RustUnnamed_3 = 15;
-pub const C2_L_PFOCUSED: C2RustUnnamed_3 = 14;
-pub const C2_L_PARGB: C2RustUnnamed_3 = 13;
-pub const C2_L_POVREDIR: C2RustUnnamed_3 = 12;
-pub const C2_L_PFULLSCREEN: C2RustUnnamed_3 = 11;
-pub const C2_L_PBDW: C2RustUnnamed_3 = 10;
-pub const C2_L_PHEIGHTB: C2RustUnnamed_3 = 9;
-pub const C2_L_PWIDTHB: C2RustUnnamed_3 = 8;
-pub const C2_L_PHEIGHT: C2RustUnnamed_3 = 7;
-pub const C2_L_PWIDTH: C2RustUnnamed_3 = 6;
-pub const C2_L_PY2: C2RustUnnamed_3 = 5;
-pub const C2_L_PX2: C2RustUnnamed_3 = 4;
-pub const C2_L_PY: C2RustUnnamed_3 = 3;
-pub const C2_L_PX: C2RustUnnamed_3 = 2;
-pub const C2_L_PID: C2RustUnnamed_3 = 1;
-pub const C2_L_PUNDEFINED: C2RustUnnamed_3 = 0;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
@@ -1090,13 +1629,72 @@ impl C2RustUnnamed_4 {
             C2RustUnnamed_4::C2_L_MEXACT => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_4 {
+        match value {
+            4 => C2RustUnnamed_4::C2_L_MPCRE,
+            3 => C2RustUnnamed_4::C2_L_MWILDCARD,
+            2 => C2RustUnnamed_4::C2_L_MCONTAINS,
+            1 => C2RustUnnamed_4::C2_L_MSTART,
+            0 => C2RustUnnamed_4::C2_L_MEXACT,
+            _ => panic!("Invalid value for C2RustUnnamed_4: {}", value),
+        }
+    }
 }
-
-pub const C2_L_MPCRE: C2RustUnnamed_4 = 4;
-pub const C2_L_MWILDCARD: C2RustUnnamed_4 = 3;
-pub const C2_L_MCONTAINS: C2RustUnnamed_4 = 2;
-pub const C2_L_MSTART: C2RustUnnamed_4 = 1;
-pub const C2_L_MEXACT: C2RustUnnamed_4 = 0;
+impl AddAssign<u32> for C2RustUnnamed_4 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_4 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_4 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_4 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_4 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn add(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn div(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -1118,14 +1716,73 @@ impl C2RustUnnamed_5 {
             C2RustUnnamed_5::C2_L_OEXISTS => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_5 {
+        match value {
+            5 => C2RustUnnamed_5::C2_L_OLTEQ,
+            4 => C2RustUnnamed_5::C2_L_OLT,
+            3 => C2RustUnnamed_5::C2_L_OGTEQ,
+            2 => C2RustUnnamed_5::C2_L_OGT,
+            1 => C2RustUnnamed_5::C2_L_OEQ,
+            0 => C2RustUnnamed_5::C2_L_OEXISTS,
+            _ => panic!("Invalid value for C2RustUnnamed_5: {}", value),
+        }
+    }
 }
-
-pub const C2_L_OLTEQ: C2RustUnnamed_5 = 5;
-pub const C2_L_OLT: C2RustUnnamed_5 = 4;
-pub const C2_L_OGTEQ: C2RustUnnamed_5 = 3;
-pub const C2_L_OGT: C2RustUnnamed_5 = 2;
-pub const C2_L_OEQ: C2RustUnnamed_5 = 1;
-pub const C2_L_OEXISTS: C2RustUnnamed_5 = 0;
+impl AddAssign<u32> for C2RustUnnamed_5 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_5 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_5 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_5 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_5 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn add(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn div(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type c2_b_t = _c2_b;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
@@ -1155,12 +1812,71 @@ impl c2_b_op_t {
             c2_b_op_t::C2_B_OXOR => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> c2_b_op_t {
+        match value {
+            0 => c2_b_op_t::C2_B_OUNDEFINED,
+            1 => c2_b_op_t::C2_B_OAND,
+            2 => c2_b_op_t::C2_B_OOR,
+            3 => c2_b_op_t::C2_B_OXOR,
+            _ => panic!("Invalid value for c2_b_op_t: {}", value),
+        }
+    }
 }
-
-pub const C2_B_OXOR: c2_b_op_t = 3;
-pub const C2_B_OOR: c2_b_op_t = 2;
-pub const C2_B_OAND: c2_b_op_t = 1;
-pub const C2_B_OUNDEFINED: c2_b_op_t = 0;
+impl AddAssign<u32> for c2_b_op_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for c2_b_op_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for c2_b_op_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for c2_b_op_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for c2_b_op_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for c2_b_op_t {
+    type Output = c2_b_op_t;
+    fn add(self, rhs: u32) -> c2_b_op_t {
+        c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for c2_b_op_t {
+    type Output = c2_b_op_t;
+    fn sub(self, rhs: u32) -> c2_b_op_t {
+        c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for c2_b_op_t {
+    type Output = c2_b_op_t;
+    fn mul(self, rhs: u32) -> c2_b_op_t {
+        c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for c2_b_op_t {
+    type Output = c2_b_op_t;
+    fn div(self, rhs: u32) -> c2_b_op_t {
+        c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for c2_b_op_t {
+    type Output = c2_b_op_t;
+    fn rem(self, rhs: u32) -> c2_b_op_t {
+        c2_b_op_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type options_t = _options_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1466,7 +2182,7 @@ unsafe extern "C" fn strcmp_wd(
     }
     let mut c: libc::c_char = *src.offset(strlen(needle) as isize);
     if *(*__ctype_b_loc()).offset(c as libc::c_int as isize) as libc::c_int
-        & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
+        & C2RustUnnamed::_ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
         || '_' as i32 == c as libc::c_int
     {
         return 1 as libc::c_int
@@ -1477,13 +2193,13 @@ unsafe extern "C" fn strcmp_wd(
 static mut C2_PREDEFS: [c2_predef_t; 25] = [
     c2_predef_t {
         name: 0 as *const libc::c_char,
-        type_0: C2_L_TUNDEFINED,
+        type_0: c2_l_type::C2_L_TUNDEFINED,
         format: 0,
     },
     {
         let mut init = c2_predef_t {
             name: b"id\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1491,7 +2207,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"x\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1499,7 +2215,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"y\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1507,7 +2223,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"x2\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1515,7 +2231,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"y2\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1523,7 +2239,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"width\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1531,7 +2247,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"height\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1539,7 +2255,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"widthb\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1547,7 +2263,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"heightb\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1555,7 +2271,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"border_width\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1563,7 +2279,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"fullscreen\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1571,7 +2287,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"override_redirect\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1579,7 +2295,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"argb\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1587,7 +2303,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"focused\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1595,7 +2311,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"wmwin\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1603,7 +2319,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"bounding_shaped\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1611,7 +2327,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"rounded_corners\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TCARDINAL,
+            type_0: c2_l_type::C2_L_TCARDINAL,
             format: 0 as libc::c_int,
         };
         init
@@ -1619,7 +2335,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"client\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TWINDOW,
+            type_0: c2_l_type::C2_L_TWINDOW,
             format: 0 as libc::c_int,
         };
         init
@@ -1627,7 +2343,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"window_type\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TSTRING,
+            type_0: c2_l_type::C2_L_TSTRING,
             format: 0 as libc::c_int,
         };
         init
@@ -1635,7 +2351,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"leader\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TWINDOW,
+            type_0: c2_l_type::C2_L_TWINDOW,
             format: 0 as libc::c_int,
         };
         init
@@ -1643,7 +2359,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"name\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TSTRING,
+            type_0: c2_l_type::C2_L_TSTRING,
             format: 0 as libc::c_int,
         };
         init
@@ -1651,7 +2367,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"class_g\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TSTRING,
+            type_0: c2_l_type::C2_L_TSTRING,
             format: 0 as libc::c_int,
         };
         init
@@ -1659,7 +2375,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"class_i\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TSTRING,
+            type_0: c2_l_type::C2_L_TSTRING,
             format: 0 as libc::c_int,
         };
         init
@@ -1667,7 +2383,7 @@ static mut C2_PREDEFS: [c2_predef_t; 25] = [
     {
         let mut init = c2_predef_t {
             name: b"role\0" as *const u8 as *const libc::c_char,
-            type_0: C2_L_TSTRING,
+            type_0: c2_l_type::C2_L_TSTRING,
             format: 0 as libc::c_int,
         };
         init
@@ -1680,10 +2396,10 @@ static mut leaf_def: c2_l_t = c2_l_t {
     tgtatom: 0,
     tgt_onframe: false,
     index: 0,
-    predef: C2_L_PUNDEFINED,
-    type_0: C2_L_TUNDEFINED,
+    predef: C2RustUnnamed_3::C2_L_PUNDEFINED,
+    type_0: c2_l_type::C2_L_TUNDEFINED,
     format: 0,
-    ptntype: C2_L_PTUNDEFINED,
+    ptntype: C2RustUnnamed_2::C2_L_PTUNDEFINED,
     ptnstr: 0 as *const libc::c_char as *mut libc::c_char,
     ptnint: 0,
     regex_pcre: 0 as *const pcre as *mut pcre,
@@ -1802,7 +2518,11 @@ unsafe extern "C" fn c2_parse_grp(
     }
     let endchar: libc::c_char = (if offset != 0 { ')' as i32 } else { '\0' as i32 })
         as libc::c_char;
-    let mut ops: [c2_b_op_t; 3] = [C2_B_OUNDEFINED, C2_B_OUNDEFINED, C2_B_OUNDEFINED];
+    let mut ops: [c2_b_op_t; 3] = [
+        c2_b_op_t::C2_B_OUNDEFINED,
+        c2_b_op_t::C2_B_OUNDEFINED,
+        c2_b_op_t::C2_B_OUNDEFINED,
+    ];
     let mut eles: [c2_ptr_t; 2] = [
         {
             let mut init = c2_ptr_t {
@@ -1838,7 +2558,8 @@ unsafe extern "C" fn c2_parse_grp(
         }
         if !(*(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0)
         {
             if ')' as i32 == *pattern.offset(offset as isize) as libc::c_int {
@@ -1854,7 +2575,7 @@ unsafe extern "C" fn c2_parse_grp(
                         pattern,
                         offset,
                     );
-                    current_block = 13059611758418424346;
+                    current_block = 7509357750771601126;
                     break;
                 } else {
                     neg = !neg;
@@ -1870,7 +2591,7 @@ unsafe extern "C" fn c2_parse_grp(
                         pattern,
                         offset,
                     );
-                    current_block = 13059611758418424346;
+                    current_block = 7509357750771601126;
                     break;
                 } else {
                     next_expected = 1 as libc::c_int != 0;
@@ -1880,7 +2601,7 @@ unsafe extern "C" fn c2_parse_grp(
                         strlen(b"&&\0" as *const u8 as *const libc::c_char),
                     ) == 0
                     {
-                        ops[elei as usize] = C2_B_OAND;
+                        ops[elei as usize] = c2_b_op_t::C2_B_OAND;
                         offset += 1;
                         offset;
                     } else if strncmp(
@@ -1889,7 +2610,7 @@ unsafe extern "C" fn c2_parse_grp(
                         strlen(b"||\0" as *const u8 as *const libc::c_char),
                     ) == 0
                     {
-                        ops[elei as usize] = C2_B_OOR;
+                        ops[elei as usize] = c2_b_op_t::C2_B_OOR;
                         offset += 1;
                         offset;
                     } else {
@@ -1900,7 +2621,7 @@ unsafe extern "C" fn c2_parse_grp(
                             pattern,
                             offset,
                         );
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                 }
@@ -1912,7 +2633,7 @@ unsafe extern "C" fn c2_parse_grp(
                     pattern,
                     offset,
                 );
-                current_block = 13059611758418424346;
+                current_block = 7509357750771601126;
                 break;
             } else {
                 if 2 as libc::c_int == elei {
@@ -1923,8 +2644,7 @@ unsafe extern "C" fn c2_parse_grp(
                         ops[2 as libc::c_int as usize],
                     ) >= 0 as libc::c_int
                     {
-                        eles[0 as libc::c_int
-                            as usize] = c2h_comb_tree(
+                        eles[0 as libc::c_int as usize] = c2h_comb_tree(
                             ops[1 as libc::c_int as usize],
                             eles[0 as libc::c_int as usize],
                             eles[1 as libc::c_int as usize],
@@ -1936,8 +2656,7 @@ unsafe extern "C" fn c2_parse_grp(
                             as *mut c2_ptr_t;
                         ops[1 as libc::c_int as usize] = ops[2 as libc::c_int as usize];
                     } else {
-                        eles[1 as libc::c_int
-                            as usize] = c2h_comb_tree(
+                        eles[1 as libc::c_int as usize] = c2h_comb_tree(
                             ops[2 as libc::c_int as usize],
                             eles[1 as libc::c_int as usize],
                             C2_PTR_NULL,
@@ -1949,7 +2668,7 @@ unsafe extern "C" fn c2_parse_grp(
                             .b)
                             .opr2;
                     }
-                    ops[2 as libc::c_int as usize] = C2_B_OUNDEFINED;
+                    ops[2 as libc::c_int as usize] = c2_b_op_t::C2_B_OUNDEFINED;
                 }
                 if '(' as i32 == *pattern.offset(offset as isize) as libc::c_int {
                     offset = c2_parse_grp(
@@ -1960,27 +2679,27 @@ unsafe extern "C" fn c2_parse_grp(
                         level + 1 as libc::c_int,
                     );
                     if offset < 0 as libc::c_int {
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                 } else {
                     offset = c2_parse_target(ps, pattern, offset, pele);
                     if offset < 0 as libc::c_int {
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                     offset = c2_parse_op(pattern, offset, pele);
                     if offset < 0 as libc::c_int {
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                     offset = c2_parse_pattern(ps, pattern, offset, pele);
                     if offset < 0 as libc::c_int {
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                     if !c2_l_postprocess(ps, (*pele).c2rust_unnamed.l) {
-                        current_block = 13059611758418424346;
+                        current_block = 7509357750771601126;
                         break;
                     }
                 }
@@ -2045,8 +2764,7 @@ unsafe extern "C" fn c2_parse_grp(
                 );
             } else {
                 if elei > 1 as libc::c_int {
-                    eles[0 as libc::c_int
-                        as usize] = c2h_comb_tree(
+                    eles[0 as libc::c_int as usize] = c2h_comb_tree(
                         ops[1 as libc::c_int as usize],
                         eles[0 as libc::c_int as usize],
                         eles[1 as libc::c_int as usize],
@@ -2076,9 +2794,9 @@ unsafe extern "C" fn c2_parse_target(
     mut presult: *mut c2_ptr_t,
 ) -> libc::c_int {
     (*presult).set_isbranch(0 as libc::c_int != 0);
-    (*presult)
-        .c2rust_unnamed
-        .l = malloc(::core::mem::size_of::<c2_l_t>() as libc::c_ulong) as *mut c2_l_t;
+    (*presult).c2rust_unnamed.l = malloc(
+        ::core::mem::size_of::<c2_l_t>() as libc::c_ulong,
+    ) as *mut c2_l_t;
     if ((*presult).c2rust_unnamed.l).is_null() {
         fprintf(
             stderr,
@@ -2101,7 +2819,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2112,7 +2831,8 @@ unsafe extern "C" fn c2_parse_target(
     while *pattern.offset(offset as isize) as libc::c_int != 0
         && (*(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISalnum as libc::c_int as libc::c_ushort as libc::c_int
             != 0 || '_' as i32 == *pattern.offset(offset as isize) as libc::c_int)
     {
         tgtlen = tgtlen.wrapping_add(1);
@@ -2130,8 +2850,7 @@ unsafe extern "C" fn c2_parse_target(
         );
         return -(1 as libc::c_int);
     }
-    (*pleaf)
-        .tgt = mstrncpy(
+    (*pleaf).tgt = mstrncpy(
         &*pattern.offset((offset as libc::c_uint).wrapping_sub(tgtlen) as isize),
         tgtlen,
     );
@@ -2141,7 +2860,7 @@ unsafe extern "C" fn c2_parse_target(
             .wrapping_div(::core::mem::size_of::<c2_predef_t>() as libc::c_ulong)
     {
         if strcmp(C2_PREDEFS[i as usize].name, (*pleaf).tgt) == 0 {
-            (*pleaf).predef = i as C2RustUnnamed_3;
+            (*pleaf).predef = C2RustUnnamed_3::from_libc_c_uint(i as u32);
             (*pleaf).type_0 = C2_PREDEFS[i as usize].type_0;
             (*pleaf).format = C2_PREDEFS[i as usize].format;
             break;
@@ -2153,7 +2872,7 @@ unsafe extern "C" fn c2_parse_target(
     (*pleaf).predef as u64 == 0;
     while *(*__ctype_b_loc())
         .offset(*pattern.offset(offset as isize) as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+        & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
     {
         offset += 1;
         offset;
@@ -2164,7 +2883,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2176,7 +2896,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2220,7 +2941,8 @@ unsafe extern "C" fn c2_parse_target(
         offset = endptr.offset_from(pattern) as libc::c_long as libc::c_int;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2240,7 +2962,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2252,7 +2975,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2270,28 +2994,29 @@ unsafe extern "C" fn c2_parse_target(
         }
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
             offset;
         }
-        let mut type_0: c2_l_type = C2_L_TUNDEFINED;
+        let mut type_0: c2_l_type = c2_l_type::C2_L_TUNDEFINED;
         match *pattern.offset(offset as isize) as libc::c_int {
             119 => {
-                type_0 = C2_L_TWINDOW;
+                type_0 = c2_l_type::C2_L_TWINDOW;
             }
             100 => {
-                type_0 = C2_L_TDRAWABLE;
+                type_0 = c2_l_type::C2_L_TDRAWABLE;
             }
             99 => {
-                type_0 = C2_L_TCARDINAL;
+                type_0 = c2_l_type::C2_L_TCARDINAL;
             }
             115 => {
-                type_0 = C2_L_TSTRING;
+                type_0 = c2_l_type::C2_L_TSTRING;
             }
             97 => {
-                type_0 = C2_L_TATOM;
+                type_0 = c2_l_type::C2_L_TATOM;
             }
             _ => {
                 fprintf(
@@ -2338,7 +3063,8 @@ unsafe extern "C" fn c2_parse_target(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2368,7 +3094,7 @@ unsafe extern "C" fn c2_parse_target(
                         .as_ptr(),
                     format,
                 );
-            } else if C2_L_TSTRING as libc::c_int as libc::c_uint
+            } else if c2_l_type::C2_L_TSTRING as libc::c_int as libc::c_uint
                 == (*pleaf).type_0 as libc::c_uint
             {
                 fprintf(
@@ -2427,7 +3153,7 @@ unsafe extern "C" fn c2_parse_op(
     let pleaf: *mut c2_l_t = (*presult).c2rust_unnamed.l;
     while *(*__ctype_b_loc())
         .offset(*pattern.offset(offset as isize) as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+        & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
     {
         offset += 1;
         offset;
@@ -2438,7 +3164,8 @@ unsafe extern "C" fn c2_parse_op(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2452,16 +3179,16 @@ unsafe extern "C" fn c2_parse_op(
     {
         match *pattern.offset(offset as isize) as libc::c_int {
             42 => {
-                (*pleaf).set_match_0(C2_L_MCONTAINS);
+                (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MCONTAINS);
             }
             94 => {
-                (*pleaf).set_match_0(C2_L_MSTART);
+                (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MSTART);
             }
             37 => {
-                (*pleaf).set_match_0(C2_L_MWILDCARD);
+                (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MWILDCARD);
             }
             126 => {
-                (*pleaf).set_match_0(C2_L_MPCRE);
+                (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MPCRE);
             }
             _ => {}
         }
@@ -2469,7 +3196,8 @@ unsafe extern "C" fn c2_parse_op(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2482,7 +3210,8 @@ unsafe extern "C" fn c2_parse_op(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
@@ -2494,13 +3223,13 @@ unsafe extern "C" fn c2_parse_op(
         || '<' as i32 == *pattern.offset(offset as isize) as libc::c_int
     {
         if '=' as i32 == *pattern.offset(offset as isize) as libc::c_int
-            && C2_L_OGT as libc::c_int == (*pleaf).op() as libc::c_int
+            && C2RustUnnamed_5::C2_L_OGT as libc::c_int == (*pleaf).op() as libc::c_int
         {
-            (*pleaf).set_op(C2_L_OGTEQ);
+            (*pleaf).set_op(C2RustUnnamed_5::C2_L_OGTEQ);
         } else if '=' as i32 == *pattern.offset(offset as isize) as libc::c_int
-            && C2_L_OLT as libc::c_int == (*pleaf).op() as libc::c_int
+            && C2RustUnnamed_5::C2_L_OLT as libc::c_int == (*pleaf).op() as libc::c_int
         {
-            (*pleaf).set_op(C2_L_OLTEQ);
+            (*pleaf).set_op(C2RustUnnamed_5::C2_L_OLTEQ);
         } else if (*pleaf).op() as u64 != 0 {
             fprintf(
                 stderr,
@@ -2513,13 +3242,13 @@ unsafe extern "C" fn c2_parse_op(
         } else {
             match *pattern.offset(offset as isize) as libc::c_int {
                 61 => {
-                    (*pleaf).set_op(C2_L_OEQ);
+                    (*pleaf).set_op(C2RustUnnamed_5::C2_L_OEQ);
                 }
                 62 => {
-                    (*pleaf).set_op(C2_L_OGT);
+                    (*pleaf).set_op(C2RustUnnamed_5::C2_L_OGT);
                 }
                 60 => {
-                    (*pleaf).set_op(C2_L_OLT);
+                    (*pleaf).set_op(C2RustUnnamed_5::C2_L_OLT);
                 }
                 _ => {}
             }
@@ -2528,14 +3257,15 @@ unsafe extern "C" fn c2_parse_op(
         offset;
         while *(*__ctype_b_loc())
             .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
         {
             offset += 1;
             offset;
         }
     }
-    if C2_L_OEQ as libc::c_int != (*pleaf).op() as libc::c_int
+    if C2RustUnnamed_5::C2_L_OEQ as libc::c_int != (*pleaf).op() as libc::c_int
         && ((*pleaf).match_0() as libc::c_int != 0
             || (*pleaf).match_ignorecase() as libc::c_int != 0)
     {
@@ -2562,7 +3292,7 @@ unsafe extern "C" fn c2_parse_pattern(
     }
     while *(*__ctype_b_loc())
         .offset(*pattern.offset(offset as isize) as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+        & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
     {
         offset += 1;
         offset;
@@ -2573,7 +3303,7 @@ unsafe extern "C" fn c2_parse_pattern(
         &*pattern.offset(offset as isize),
     ) == 0
     {
-        (*pleaf).ptntype = C2_L_PTINT;
+        (*pleaf).ptntype = C2RustUnnamed_2::C2_L_PTINT;
         (*pleaf).ptnint = 1 as libc::c_int as libc::c_long;
         offset = (offset as libc::c_ulong)
             .wrapping_add(strlen(b"true\0" as *const u8 as *const libc::c_char))
@@ -2583,24 +3313,24 @@ unsafe extern "C" fn c2_parse_pattern(
         &*pattern.offset(offset as isize),
     ) == 0
     {
-        (*pleaf).ptntype = C2_L_PTINT;
+        (*pleaf).ptntype = C2RustUnnamed_2::C2_L_PTINT;
         (*pleaf).ptnint = 0 as libc::c_int as libc::c_long;
         offset = (offset as libc::c_ulong)
             .wrapping_add(strlen(b"false\0" as *const u8 as *const libc::c_char))
             as libc::c_int as libc::c_int;
     } else {
-        (*pleaf)
-            .ptnint = strtol(
+        (*pleaf).ptnint = strtol(
             pattern.offset(offset as isize),
             &mut endptr,
             0 as libc::c_int,
         );
         if pattern.offset(offset as isize) != endptr {
-            (*pleaf).ptntype = C2_L_PTINT;
+            (*pleaf).ptntype = C2RustUnnamed_2::C2_L_PTINT;
             offset = endptr.offset_from(pattern) as libc::c_long as libc::c_int;
             if *(*__ctype_b_loc())
                 .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
-                as libc::c_int & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int
+                as libc::c_int
+                & C2RustUnnamed::_ISalnum as libc::c_int as libc::c_ushort as libc::c_int
                 != 0
             {
                 fprintf(
@@ -2651,7 +3381,8 @@ unsafe extern "C" fn c2_parse_pattern(
                 while *(*__ctype_b_loc())
                     .offset(*pattern.offset(offset as isize) as libc::c_int as isize)
                     as libc::c_int
-                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     offset += 1;
                     offset;
@@ -2660,12 +3391,12 @@ unsafe extern "C" fn c2_parse_pattern(
             if '"' as i32 == *pattern.offset(offset as isize) as libc::c_int
                 || '\'' as i32 == *pattern.offset(offset as isize) as libc::c_int
             {
-                (*pleaf).ptntype = C2_L_PTSTRING;
+                (*pleaf).ptntype = C2RustUnnamed_2::C2_L_PTSTRING;
                 delim = *pattern.offset(offset as isize);
                 offset += 1;
                 offset;
             }
-            if C2_L_PTSTRING as libc::c_int as libc::c_uint
+            if C2RustUnnamed_2::C2_L_PTSTRING as libc::c_int as libc::c_uint
                 != (*pleaf).ptntype as libc::c_uint
             {
                 fprintf(
@@ -2821,7 +3552,7 @@ unsafe extern "C" fn c2_parse_pattern(
     }
     while *(*__ctype_b_loc())
         .offset(*pattern.offset(offset as isize) as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+        & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
     {
         offset += 1;
         offset;
@@ -2836,17 +3567,19 @@ unsafe extern "C" fn c2_parse_pattern(
         );
         return -(1 as libc::c_int);
     }
-    if !((C2_L_TSTRING as libc::c_int as libc::c_uint == (*pleaf).type_0 as libc::c_uint
-        || C2_L_TATOM as libc::c_int as libc::c_uint == (*pleaf).type_0 as libc::c_uint)
-        && C2_L_PTSTRING as libc::c_int as libc::c_uint
+    if !((c2_l_type::C2_L_TSTRING as libc::c_int as libc::c_uint
+        == (*pleaf).type_0 as libc::c_uint
+        || c2_l_type::C2_L_TATOM as libc::c_int as libc::c_uint
+            == (*pleaf).type_0 as libc::c_uint)
+        && C2RustUnnamed_2::C2_L_PTSTRING as libc::c_int as libc::c_uint
             == (*pleaf).ptntype as libc::c_uint
-        || (C2_L_TCARDINAL as libc::c_int as libc::c_uint
+        || (c2_l_type::C2_L_TCARDINAL as libc::c_int as libc::c_uint
             == (*pleaf).type_0 as libc::c_uint
-            || C2_L_TWINDOW as libc::c_int as libc::c_uint
+            || c2_l_type::C2_L_TWINDOW as libc::c_int as libc::c_uint
                 == (*pleaf).type_0 as libc::c_uint
-            || C2_L_TDRAWABLE as libc::c_int as libc::c_uint
+            || c2_l_type::C2_L_TDRAWABLE as libc::c_int as libc::c_uint
                 == (*pleaf).type_0 as libc::c_uint)
-            && C2_L_PTINT as libc::c_int as libc::c_uint
+            && C2RustUnnamed_2::C2_L_PTINT as libc::c_int as libc::c_uint
                 == (*pleaf).ptntype as libc::c_uint)
     {
         fprintf(
@@ -2858,8 +3591,8 @@ unsafe extern "C" fn c2_parse_pattern(
         );
         return -(1 as libc::c_int);
     }
-    if C2_L_PTINT as libc::c_int as libc::c_uint == (*pleaf).ptntype as libc::c_uint
-        && (*pleaf).match_0() as libc::c_int != 0
+    if C2RustUnnamed_2::C2_L_PTINT as libc::c_int as libc::c_uint
+        == (*pleaf).ptntype as libc::c_uint && (*pleaf).match_0() as libc::c_int != 0
     {
         fprintf(
             stderr,
@@ -2870,7 +3603,8 @@ unsafe extern "C" fn c2_parse_pattern(
         );
         return -(1 as libc::c_int);
     }
-    if C2_L_PTINT as libc::c_int as libc::c_uint == (*pleaf).ptntype as libc::c_uint
+    if C2RustUnnamed_2::C2_L_PTINT as libc::c_int as libc::c_uint
+        == (*pleaf).ptntype as libc::c_uint
         && (*pleaf).match_ignorecase() as libc::c_int != 0
     {
         fprintf(
@@ -2882,11 +3616,13 @@ unsafe extern "C" fn c2_parse_pattern(
         );
         return -(1 as libc::c_int);
     }
-    if C2_L_PTSTRING as libc::c_int as libc::c_uint == (*pleaf).ptntype as libc::c_uint
-        && (C2_L_OGT as libc::c_int == (*pleaf).op() as libc::c_int
-            || C2_L_OGTEQ as libc::c_int == (*pleaf).op() as libc::c_int
-            || C2_L_OLT as libc::c_int == (*pleaf).op() as libc::c_int
-            || C2_L_OLTEQ as libc::c_int == (*pleaf).op() as libc::c_int)
+    if C2RustUnnamed_2::C2_L_PTSTRING as libc::c_int as libc::c_uint
+        == (*pleaf).ptntype as libc::c_uint
+        && (C2RustUnnamed_5::C2_L_OGT as libc::c_int == (*pleaf).op() as libc::c_int
+            || C2RustUnnamed_5::C2_L_OGTEQ as libc::c_int == (*pleaf).op() as libc::c_int
+            || C2RustUnnamed_5::C2_L_OLT as libc::c_int == (*pleaf).op() as libc::c_int
+            || C2RustUnnamed_5::C2_L_OLTEQ as libc::c_int
+                == (*pleaf).op() as libc::c_int)
     {
         fprintf(
             stderr,
@@ -2947,29 +3683,45 @@ unsafe extern "C" fn c2_parse_legacy(
         &leaf_def as *const c2_l_t as *const libc::c_void,
         ::core::mem::size_of::<c2_l_t>() as libc::c_ulong,
     );
-    (*pleaf).type_0 = C2_L_TSTRING;
-    (*pleaf).set_op(C2_L_OEQ);
-    (*pleaf).ptntype = C2_L_PTSTRING;
+    (*pleaf).type_0 = c2_l_type::C2_L_TSTRING;
+    (*pleaf).set_op(C2RustUnnamed_5::C2_L_OEQ);
+    (*pleaf).ptntype = C2RustUnnamed_2::C2_L_PTSTRING;
     match *pattern.offset(offset as isize) as libc::c_int {
         110 => {
-            (*pleaf).predef = C2_L_PNAME;
-            (*pleaf).type_0 = C2_PREDEFS[C2_L_PNAME as libc::c_int as usize].type_0;
-            (*pleaf).format = C2_PREDEFS[C2_L_PNAME as libc::c_int as usize].format;
+            (*pleaf).predef = C2RustUnnamed_3::C2_L_PNAME;
+            (*pleaf).type_0 = C2_PREDEFS[C2RustUnnamed_3::C2_L_PNAME as libc::c_int
+                    as usize]
+                .type_0;
+            (*pleaf).format = C2_PREDEFS[C2RustUnnamed_3::C2_L_PNAME as libc::c_int
+                    as usize]
+                .format;
         }
         105 => {
-            (*pleaf).predef = C2_L_PCLASSI;
-            (*pleaf).type_0 = C2_PREDEFS[C2_L_PCLASSI as libc::c_int as usize].type_0;
-            (*pleaf).format = C2_PREDEFS[C2_L_PCLASSI as libc::c_int as usize].format;
+            (*pleaf).predef = C2RustUnnamed_3::C2_L_PCLASSI;
+            (*pleaf).type_0 = C2_PREDEFS[C2RustUnnamed_3::C2_L_PCLASSI as libc::c_int
+                    as usize]
+                .type_0;
+            (*pleaf).format = C2_PREDEFS[C2RustUnnamed_3::C2_L_PCLASSI as libc::c_int
+                    as usize]
+                .format;
         }
         103 => {
-            (*pleaf).predef = C2_L_PCLASSG;
-            (*pleaf).type_0 = C2_PREDEFS[C2_L_PCLASSG as libc::c_int as usize].type_0;
-            (*pleaf).format = C2_PREDEFS[C2_L_PCLASSG as libc::c_int as usize].format;
+            (*pleaf).predef = C2RustUnnamed_3::C2_L_PCLASSG;
+            (*pleaf).type_0 = C2_PREDEFS[C2RustUnnamed_3::C2_L_PCLASSG as libc::c_int
+                    as usize]
+                .type_0;
+            (*pleaf).format = C2_PREDEFS[C2RustUnnamed_3::C2_L_PCLASSG as libc::c_int
+                    as usize]
+                .format;
         }
         114 => {
-            (*pleaf).predef = C2_L_PROLE;
-            (*pleaf).type_0 = C2_PREDEFS[C2_L_PROLE as libc::c_int as usize].type_0;
-            (*pleaf).format = C2_PREDEFS[C2_L_PROLE as libc::c_int as usize].format;
+            (*pleaf).predef = C2RustUnnamed_3::C2_L_PROLE;
+            (*pleaf).type_0 = C2_PREDEFS[C2RustUnnamed_3::C2_L_PROLE as libc::c_int
+                    as usize]
+                .type_0;
+            (*pleaf).format = C2_PREDEFS[C2RustUnnamed_3::C2_L_PROLE as libc::c_int
+                    as usize]
+                .format;
         }
         _ => {
             fprintf(
@@ -2986,19 +3738,19 @@ unsafe extern "C" fn c2_parse_legacy(
     offset += 2 as libc::c_int;
     match *pattern.offset(offset as isize) as libc::c_int {
         101 => {
-            (*pleaf).set_match_0(C2_L_MEXACT);
+            (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MEXACT);
         }
         97 => {
-            (*pleaf).set_match_0(C2_L_MCONTAINS);
+            (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MCONTAINS);
         }
         115 => {
-            (*pleaf).set_match_0(C2_L_MSTART);
+            (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MSTART);
         }
         119 => {
-            (*pleaf).set_match_0(C2_L_MWILDCARD);
+            (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MWILDCARD);
         }
         112 => {
-            (*pleaf).set_match_0(C2_L_MPCRE);
+            (*pleaf).set_match_0(C2RustUnnamed_4::C2_L_MPCRE);
         }
         _ => {
             fprintf(
@@ -3046,17 +3798,18 @@ unsafe extern "C" fn c2_l_postprocess(
     mut ps: *mut session_t,
     mut pleaf: *mut c2_l_t,
 ) -> bool {
-    if C2_L_OEXISTS as libc::c_int == (*pleaf).op() as libc::c_int
+    if C2RustUnnamed_5::C2_L_OEXISTS as libc::c_int == (*pleaf).op() as libc::c_int
         && (*pleaf).ptntype as u64 == 0
     {
-        (*pleaf)
-            .ptntype = (if C2_L_TSTRING as libc::c_int as libc::c_uint
-            == (*pleaf).type_0 as libc::c_uint
-        {
-            C2_L_PTSTRING as libc::c_int
-        } else {
-            C2_L_PTINT as libc::c_int
-        }) as C2RustUnnamed_2;
+        (*pleaf).ptntype = C2RustUnnamed_2::from_libc_c_uint(
+            (if c2_l_type::C2_L_TSTRING as libc::c_int as libc::c_uint
+                == (*pleaf).type_0 as libc::c_uint
+            {
+                C2RustUnnamed_2::C2_L_PTSTRING as libc::c_int
+            } else {
+                C2RustUnnamed_2::C2_L_PTINT as libc::c_int
+            }) as u32,
+        );
     }
     if (*pleaf).predef as u64 == 0 {
         (*pleaf).tgtatom = get_atom(ps, (*pleaf).tgt);
@@ -3118,7 +3871,8 @@ unsafe extern "C" fn c2_l_postprocess(
         let mut pc: *const libc::c_char = (*pleaf).tgt;
         while *pc != 0 {
             if *(*__ctype_b_loc()).offset(*pc as libc::c_int as isize) as libc::c_int
-                & _ISlower as libc::c_int as libc::c_ushort as libc::c_int != 0
+                & C2RustUnnamed::_ISlower as libc::c_int as libc::c_ushort as libc::c_int
+                != 0
             {
                 fprintf(
                     stderr,
@@ -3138,8 +3892,10 @@ unsafe extern "C" fn c2_l_postprocess(
             }
         }
     }
-    if C2_L_PTSTRING as libc::c_int as libc::c_uint == (*pleaf).ptntype as libc::c_uint
-        && C2_L_MPCRE as libc::c_int == (*pleaf).match_0() as libc::c_int
+    if C2RustUnnamed_2::C2_L_PTSTRING as libc::c_int as libc::c_uint
+        == (*pleaf).ptntype as libc::c_uint
+        && C2RustUnnamed_4::C2_L_MPCRE as libc::c_int
+            == (*pleaf).match_0() as libc::c_int
     {
         let mut error: *const libc::c_char = 0 as *const libc::c_char;
         let mut erroffset: libc::c_int = 0 as libc::c_int;
@@ -3147,8 +3903,7 @@ unsafe extern "C" fn c2_l_postprocess(
         if (*pleaf).match_ignorecase() {
             options |= 0x1 as libc::c_int;
         }
-        (*pleaf)
-            .regex_pcre = pcre_compile(
+        (*pleaf).regex_pcre = pcre_compile(
             (*pleaf).ptnstr,
             options,
             &mut error,
@@ -3166,8 +3921,7 @@ unsafe extern "C" fn c2_l_postprocess(
             );
             return 0 as libc::c_int != 0;
         }
-        (*pleaf)
-            .regex_pcre_extra = pcre_study(
+        (*pleaf).regex_pcre_extra = pcre_study(
             (*pleaf).regex_pcre,
             0x1 as libc::c_int,
             &mut error,
@@ -3292,7 +4046,7 @@ unsafe extern "C" fn c2_match_once_leaf(
                         tgt = (*w).a.override_redirect as libc::c_long;
                     }
                     13 => {
-                        tgt = (WMODE_ARGB as libc::c_int as libc::c_uint
+                        tgt = (winmode_t::WMODE_ARGB as libc::c_int as libc::c_uint
                             == (*w).mode as libc::c_uint) as libc::c_int as libc::c_long;
                     }
                     14 => {
@@ -3386,7 +4140,7 @@ unsafe extern "C" fn c2_match_once_leaf(
                     }
                     _ => {}
                 }
-            } else if C2_L_TATOM as libc::c_int as libc::c_uint
+            } else if c2_l_type::C2_L_TATOM as libc::c_int as libc::c_uint
                 == (*pleaf).type_0 as libc::c_uint
             {
                 let mut prop_0: winprop_t = wid_get_prop_adv(
@@ -3486,7 +4240,7 @@ unsafe extern "C" fn c2_match_once_leaf(
                 }
             }
             if !tgt_free.is_null() {
-                if C2_L_TATOM as libc::c_int as libc::c_uint
+                if c2_l_type::C2_L_TATOM as libc::c_int as libc::c_uint
                     == (*pleaf).type_0 as libc::c_uint
                 {
                     cxfree(tgt_free as *mut libc::c_void);
@@ -3534,7 +4288,7 @@ unsafe extern "C" fn c2_match_once(
             return 0 as libc::c_int != 0;
         }
         c2_match_once_leaf(ps, w, pleaf, &mut result, &mut error);
-        if C2_L_OEXISTS as libc::c_int == (*pleaf).op() as libc::c_int
+        if C2RustUnnamed_5::C2_L_OEXISTS as libc::c_int == (*pleaf).op() as libc::c_int
             && error as libc::c_int != 0
         {
             result = 0 as libc::c_int != 0;
@@ -3604,18 +4358,18 @@ unsafe extern "C" fn run_static_initializers() {
             tgtatom: 0 as libc::c_int as Atom,
             tgt_onframe: 0 as libc::c_int != 0,
             index: -(1 as libc::c_int),
-            predef: C2_L_PUNDEFINED,
-            type_0: C2_L_TUNDEFINED,
+            predef: C2RustUnnamed_3::C2_L_PUNDEFINED,
+            type_0: c2_l_type::C2_L_TUNDEFINED,
             format: 0 as libc::c_int,
-            ptntype: C2_L_PTUNDEFINED,
+            ptntype: C2RustUnnamed_2::C2_L_PTUNDEFINED,
             ptnstr: 0 as *mut libc::c_char,
             ptnint: 0 as libc::c_int as libc::c_long,
             regex_pcre: 0 as *mut pcre,
             regex_pcre_extra: 0 as *mut pcre_extra,
         };
         init.set_neg(0 as libc::c_int != 0);
-        init.set_op(C2_L_OEXISTS);
-        init.set_match_0(C2_L_MEXACT);
+        init.set_op(C2RustUnnamed_5::C2_L_OEXISTS);
+        init.set_match_0(C2RustUnnamed_4::C2_L_MEXACT);
         init.set_match_ignorecase(0 as libc::c_int != 0);
         init
     };

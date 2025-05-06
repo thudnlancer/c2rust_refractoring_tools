@@ -1,5 +1,16 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 use num_traits::Float;
 extern "C" {
     pub type re_dfa_t;
@@ -8,72 +19,56 @@ extern "C" {
     fn pow(_: libc::c_double, _: libc::c_double) -> libc::c_double;
     fn fmod(_: libc::c_double, _: libc::c_double) -> libc::c_double;
     fn copysign(_: libc::c_double, _: libc::c_double) -> libc::c_double;
-    fn wcslen(_: *const libc::c_int) -> libc::c_ulong;
-    fn __isnanl(__value: f128::f128) -> libc::c_int;
-    fn __isnanf(__value: libc::c_float) -> libc::c_int;
-    fn __isnan(__value: libc::c_double) -> libc::c_int;
+    fn wcslen(_: *const i32) -> u64;
+    fn __isnanl(__value: f128::f128) -> i32;
+    fn __isnanf(__value: libc::c_float) -> i32;
+    fn __isnan(__value: libc::c_double) -> i32;
     fn __ctype_toupper_loc() -> *mut *const __int32_t;
     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
-    fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fflush(__stream: *mut FILE) -> libc::c_int;
+    fn sprintf(_: *mut i8, _: *const i8, _: ...) -> i32;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn fflush(__stream: *mut FILE) -> i32;
     static mut stderr: *mut _IO_FILE;
     fn pma_free(ptr: *mut libc::c_void);
     fn pma_realloc(ptr: *mut libc::c_void, size: size_t) -> *mut libc::c_void;
     fn pma_calloc(nmemb: size_t, size: size_t) -> *mut libc::c_void;
     fn pma_malloc(size: size_t) -> *mut libc::c_void;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
     fn memmove(
         _: *mut libc::c_void,
         _: *const libc::c_void,
-        _: libc::c_ulong,
+        _: u64,
     ) -> *mut libc::c_void;
-    fn memset(
-        _: *mut libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memcmp(
-        _: *const libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strncmp(
-        _: *const libc::c_char,
-        _: *const libc::c_char,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strcoll(__s1: *const libc::c_char, __s2: *const libc::c_char) -> libc::c_int;
-    fn strchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strerror(_: libc::c_int) -> *mut libc::c_char;
-    fn signal(__sig: libc::c_int, __handler: __sighandler_t) -> __sighandler_t;
-    fn kill(__pid: __pid_t, __sig: libc::c_int) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
-    fn wcscoll(__s1: *const wchar_t, __s2: *const wchar_t) -> libc::c_int;
+    fn memset(_: *mut libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn memcmp(_: *const libc::c_void, _: *const libc::c_void, _: u64) -> i32;
+    fn strcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strncmp(_: *const i8, _: *const i8, _: u64) -> i32;
+    fn strcoll(__s1: *const i8, __s2: *const i8) -> i32;
+    fn strchr(_: *const i8, _: i32) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
+    fn strerror(_: i32) -> *mut i8;
+    fn signal(__sig: i32, __handler: __sighandler_t) -> __sighandler_t;
+    fn kill(__pid: __pid_t, __sig: i32) -> i32;
+    fn __errno_location() -> *mut i32;
+    fn wcscoll(__s1: *const wchar_t, __s2: *const wchar_t) -> i32;
     fn getpid() -> __pid_t;
-    static ruletab: [*const libc::c_char; 0];
-    static mut NF: libc::c_long;
-    static mut NR: libc::c_long;
-    static mut FNR: libc::c_long;
-    static mut BINMODE: libc::c_int;
+    static ruletab: [*const i8; 0];
+    static mut NF: i64;
+    static mut NR: i64;
+    static mut FNR: i64;
+    static mut BINMODE: i32;
     static mut IGNORECASE: bool;
-    static mut OFS: *mut libc::c_char;
-    static mut ORS: *mut libc::c_char;
-    static mut OFMT: *mut libc::c_char;
-    static mut CONVFMT: *const libc::c_char;
-    static mut TEXTDOMAIN: *mut libc::c_char;
+    static mut OFS: *mut i8;
+    static mut ORS: *mut i8;
+    static mut OFMT: *mut i8;
+    static mut CONVFMT: *const i8;
+    static mut TEXTDOMAIN: *mut i8;
     static mut BINMODE_node: *mut NODE;
     static mut CONVFMT_node: *mut NODE;
     static mut FNR_node: *mut NODE;
@@ -89,117 +84,105 @@ extern "C" {
     static mut TEXTDOMAIN_node: *mut NODE;
     static mut Nnull_string: *mut NODE;
     static mut fields_arr: *mut *mut NODE;
-    static mut sourceline: libc::c_int;
-    static mut source: *mut libc::c_char;
-    static mut make_number: Option::<unsafe extern "C" fn(libc::c_double) -> *mut NODE>;
-    static mut str2number: Option::<unsafe extern "C" fn(*mut NODE) -> *mut NODE>;
-    static mut format_val: Option::<
-        unsafe extern "C" fn(*const libc::c_char, libc::c_int, *mut NODE) -> *mut NODE,
+    static mut sourceline: i32;
+    static mut source: *mut i8;
+    static mut make_number: Option<unsafe extern "C" fn(libc::c_double) -> *mut NODE>;
+    static mut str2number: Option<unsafe extern "C" fn(*mut NODE) -> *mut NODE>;
+    static mut format_val: Option<
+        unsafe extern "C" fn(*const i8, i32, *mut NODE) -> *mut NODE,
     >;
-    static mut cmp_numbers: Option::<
-        unsafe extern "C" fn(*const NODE, *const NODE) -> libc::c_int,
+    static mut cmp_numbers: Option<
+        unsafe extern "C" fn(*const NODE, *const NODE) -> i32,
     >;
     static mut nextfree: [block_header; 2];
     static mut field0_valid: bool;
     static mut do_itrace: bool;
     static mut do_flags: do_flag_values;
-    static mut exit_val: libc::c_int;
-    static mut gawk_mb_cur_max: libc::c_int;
+    static mut exit_val: i32;
+    static mut gawk_mb_cur_max: i32;
     fn r_unref(tmp: *mut NODE);
     fn make_array() -> *mut NODE;
     fn force_array(symbol: *mut NODE, canfatal: bool) -> *mut NODE;
-    fn array_vname(symbol: *const NODE) -> *const libc::c_char;
-    fn concat_exp(nargs: libc::c_int, do_subsep: bool) -> *mut NODE;
+    fn array_vname(symbol: *const NODE) -> *const i8;
+    fn concat_exp(nargs: i32, do_subsep: bool) -> *mut NODE;
     fn assoc_list(
         symbol: *mut NODE,
-        sort_str: *const libc::c_char,
+        sort_str: *const i8,
         sort_ctxt: sort_context_t,
     ) -> *mut *mut NODE;
-    fn do_delete(symbol: *mut NODE, nsubs: libc::c_int);
+    fn do_delete(symbol: *mut NODE, nsubs: i32);
     fn do_delete_loop(symbol: *mut NODE, lhs: *mut *mut NODE);
-    fn lookup_builtin(name: *const libc::c_char) -> builtin_func_t;
-    fn do_printf(nargs: libc::c_int, redirtype: libc::c_int);
-    fn do_print(nargs: libc::c_int, redirtype: libc::c_int);
-    fn do_print_rec(args: libc::c_int, redirtype: libc::c_int);
-    fn do_match(nargs: libc::c_int) -> *mut NODE;
-    fn do_sub(nargs: libc::c_int, flags: libc::c_uint) -> *mut NODE;
-    fn call_sub(name: *const libc::c_char, nargs: libc::c_int) -> *mut NODE;
-    fn call_match(nargs: libc::c_int) -> *mut NODE;
-    fn call_split_func(name: *const libc::c_char, nargs: libc::c_int) -> *mut NODE;
-    fn strncasecmpmbs(
-        _: *const libc::c_uchar,
-        _: *const libc::c_uchar,
-        _: size_t,
-    ) -> libc::c_int;
-    fn r_fatal(mesg: *const libc::c_char, _: ...);
-    fn set_loc(file: *const libc::c_char, line: libc::c_int);
-    fn more_blocks(id: libc::c_int) -> *mut libc::c_void;
+    fn lookup_builtin(name: *const i8) -> builtin_func_t;
+    fn do_printf(nargs: i32, redirtype: i32);
+    fn do_print(nargs: i32, redirtype: i32);
+    fn do_print_rec(args: i32, redirtype: i32);
+    fn do_match(nargs: i32) -> *mut NODE;
+    fn do_sub(nargs: i32, flags: u32) -> *mut NODE;
+    fn call_sub(name: *const i8, nargs: i32) -> *mut NODE;
+    fn call_match(nargs: i32) -> *mut NODE;
+    fn call_split_func(name: *const i8, nargs: i32) -> *mut NODE;
+    fn strncasecmpmbs(_: *const u8, _: *const u8, _: size_t) -> i32;
+    fn r_fatal(mesg: *const i8, _: ...);
+    fn set_loc(file: *const i8, line: i32);
+    fn more_blocks(id: i32) -> *mut libc::c_void;
     fn r_dupnode(n: *mut NODE) -> *mut NODE;
-    fn in_main_context() -> libc::c_int;
-    fn nextfile(curfile_0: *mut *mut IOBUF, skipping: bool) -> libc::c_int;
-    fn make_str_node(
-        s: *const libc::c_char,
-        len: size_t,
-        flags: libc::c_int,
-    ) -> *mut NODE;
-    fn update_PROCINFO_num(subscript: *const libc::c_char, val: libc::c_double);
-    fn inrec(iop: *mut IOBUF, errcode: *mut libc::c_int) -> bool;
+    fn in_main_context() -> i32;
+    fn nextfile(curfile_0: *mut *mut IOBUF, skipping: bool) -> i32;
+    fn make_str_node(s: *const i8, len: size_t, flags: i32) -> *mut NODE;
+    fn update_PROCINFO_num(subscript: *const i8, val: libc::c_double);
+    fn inrec(iop: *mut IOBUF, errcode: *mut i32) -> bool;
     fn after_beginfile(curfile_0: *mut *mut IOBUF);
-    fn do_getline(intovar: libc::c_int, iop: *mut IOBUF) -> *mut NODE;
-    fn do_getline_redir(intovar: libc::c_int, redirtype: redirval) -> *mut NODE;
-    fn r_warning(mesg: *const libc::c_char, _: ...);
-    fn lookup(name: *const libc::c_char) -> *mut NODE;
-    fn do_patsplit(nargs: libc::c_int) -> *mut NODE;
-    fn do_split(nargs: libc::c_int) -> *mut NODE;
+    fn do_getline(intovar: i32, iop: *mut IOBUF) -> *mut NODE;
+    fn do_getline_redir(intovar: i32, redirtype: redirval) -> *mut NODE;
+    fn r_warning(mesg: *const i8, _: ...);
+    fn lookup(name: *const i8) -> *mut NODE;
+    fn do_patsplit(nargs: i32) -> *mut NODE;
+    fn do_split(nargs: i32) -> *mut NODE;
     fn re_update(t: *mut NODE) -> *mut Regexp;
     fn research(
         rp: *mut Regexp,
-        str: *mut libc::c_char,
-        start: libc::c_int,
+        str: *mut i8,
+        start: i32,
         len: size_t,
-        flags: libc::c_int,
-    ) -> libc::c_int;
-    fn get_field(num: libc::c_long, assign: *mut Func_ptr) -> *mut *mut NODE;
+        flags: i32,
+    ) -> i32;
+    fn get_field(num: i64, assign: *mut Func_ptr) -> *mut *mut NODE;
     fn free_api_string_copies();
     fn awk_value_to_node(_: *const awk_value_t) -> *mut NODE;
-    static mut lintfunc: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>;
+    static mut lintfunc: Option<unsafe extern "C" fn(*const i8, ...) -> ()>;
     fn str2wstr(n: *mut NODE, ptr: *mut *mut size_t) -> *mut NODE;
     fn r_free_wstr(n: *mut NODE);
     fn reset_record();
     fn update_global_values();
     static mut symbol_table: *mut NODE;
     static mut func_table: *mut NODE;
-    fn estrdup(str: *const libc::c_char, len: size_t) -> *mut libc::c_char;
+    fn estrdup(str: *const i8, len: size_t) -> *mut i8;
     fn close_extensions();
-    fn close_io(stdio_problem: *mut bool, got_EPIPE: *mut bool) -> libc::c_int;
-    fn set_record(
-        buf: *const libc::c_char,
-        cnt: size_t,
-        _: *const awk_fieldwidth_info_t,
-    );
-    fn getenv_long(name: *const libc::c_char) -> libc::c_long;
+    fn close_io(stdio_problem: *mut bool, got_EPIPE: *mut bool) -> i32;
+    fn set_record(buf: *const i8, cnt: size_t, _: *const awk_fieldwidth_info_t);
+    fn getenv_long(name: *const i8) -> i64;
     fn set_RS();
     fn rebuild_record();
     fn update_ext_api();
     fn frame_popped();
 }
-pub type size_t = libc::c_ulong;
-pub type wchar_t = libc::c_int;
-pub type __int32_t = libc::c_int;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __pid_t = libc::c_int;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __ssize_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
+pub type size_t = u64;
+pub type wchar_t = i32;
+pub type __int32_t = i32;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __pid_t = i32;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __ssize_t = i64;
+pub type __syscall_slong_t = i64;
 pub type ssize_t = __ssize_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -210,26 +193,26 @@ pub struct timespec {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -237,8 +220,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -246,7 +229,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -266,7 +249,7 @@ pub enum C2RustUnnamed {
     _ISupper = 256,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::_ISalnum => 8,
             C2RustUnnamed::_ISpunct => 4,
@@ -282,21 +265,80 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type __sighandler_t = Option<unsafe extern "C" fn(i32) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stat {
@@ -306,7 +348,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -316,9 +358,9 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub type __re_size_t = libc::c_uint;
-pub type __re_long_size_t = libc::c_ulong;
-pub type reg_syntax_t = libc::c_ulong;
+pub type __re_size_t = u32;
+pub type __re_long_size_t = u64;
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
@@ -326,8 +368,8 @@ pub struct re_pattern_buffer {
     pub allocated: __re_long_size_t,
     pub used: __re_long_size_t,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_uchar,
+    pub fastmap: *mut i8,
+    pub translate: *mut u8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -340,7 +382,7 @@ pub struct re_pattern_buffer {
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 7],
 }
-pub type regoff_t = libc::c_int;
+pub type regoff_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct re_registers {
@@ -364,16 +406,75 @@ pub enum awk_bool {
     awk_true,
 }
 impl awk_bool {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             awk_bool::awk_false => 0,
             awk_bool::awk_true => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> awk_bool {
+        match value {
+            0 => awk_bool::awk_false,
+            1 => awk_bool::awk_true,
+            _ => panic!("Invalid value for awk_bool: {}", value),
+        }
+    }
 }
-
-pub const awk_true: awk_bool = 1;
-pub const awk_false: awk_bool = 0;
+impl AddAssign<u32> for awk_bool {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for awk_bool {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for awk_bool {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for awk_bool {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for awk_bool {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for awk_bool {
+    type Output = awk_bool;
+    fn add(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for awk_bool {
+    type Output = awk_bool;
+    fn sub(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for awk_bool {
+    type Output = awk_bool;
+    fn mul(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for awk_bool {
+    type Output = awk_bool;
+    fn div(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for awk_bool {
+    type Output = awk_bool;
+    fn rem(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type awk_bool_t = awk_bool;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -391,30 +492,30 @@ pub struct awk_field_info {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_input {
-    pub name: *const libc::c_char,
-    pub fd: libc::c_int,
+    pub name: *const i8,
+    pub fd: i32,
     pub opaque: *mut libc::c_void,
-    pub get_record: Option::<
+    pub get_record: Option<
         unsafe extern "C" fn(
-            *mut *mut libc::c_char,
+            *mut *mut i8,
             *mut awk_input,
-            *mut libc::c_int,
-            *mut *mut libc::c_char,
+            *mut i32,
+            *mut *mut i8,
             *mut size_t,
             *mut *const awk_fieldwidth_info_t,
-        ) -> libc::c_int,
+        ) -> i32,
     >,
-    pub read_func: Option::<
-        unsafe extern "C" fn(libc::c_int, *mut libc::c_void, size_t) -> ssize_t,
+    pub read_func: Option<
+        unsafe extern "C" fn(i32, *mut libc::c_void, size_t) -> ssize_t,
     >,
-    pub close_func: Option::<unsafe extern "C" fn(*mut awk_input) -> ()>,
+    pub close_func: Option<unsafe extern "C" fn(*mut awk_input) -> ()>,
     pub sbuf: stat,
 }
 pub type awk_input_buf_t = awk_input;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_string {
-    pub str_0: *mut libc::c_char,
+    pub str_0: *mut i8,
     pub len: size_t,
 }
 pub type awk_string_t = awk_string;
@@ -426,18 +527,77 @@ pub enum AWK_NUMBER_TYPE {
     AWK_NUMBER_TYPE_MPZ,
 }
 impl AWK_NUMBER_TYPE {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE => 0,
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR => 1,
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> AWK_NUMBER_TYPE {
+        match value {
+            0 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE,
+            1 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR,
+            2 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ,
+            _ => panic!("Invalid value for AWK_NUMBER_TYPE: {}", value),
+        }
+    }
 }
-
-pub const AWK_NUMBER_TYPE_MPZ: AWK_NUMBER_TYPE = 2;
-pub const AWK_NUMBER_TYPE_MPFR: AWK_NUMBER_TYPE = 1;
-pub const AWK_NUMBER_TYPE_DOUBLE: AWK_NUMBER_TYPE = 0;
+impl AddAssign<u32> for AWK_NUMBER_TYPE {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for AWK_NUMBER_TYPE {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for AWK_NUMBER_TYPE {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for AWK_NUMBER_TYPE {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for AWK_NUMBER_TYPE {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn add(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn sub(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn mul(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn div(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn rem(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_number {
@@ -463,7 +623,7 @@ pub enum awk_valtype_t {
     AWK_BOOL,
 }
 impl awk_valtype_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             awk_valtype_t::AWK_UNDEFINED => 0,
             awk_valtype_t::AWK_NUMBER => 1,
@@ -476,17 +636,76 @@ impl awk_valtype_t {
             awk_valtype_t::AWK_BOOL => 8,
         }
     }
+    fn from_libc_c_uint(value: u32) -> awk_valtype_t {
+        match value {
+            0 => awk_valtype_t::AWK_UNDEFINED,
+            1 => awk_valtype_t::AWK_NUMBER,
+            2 => awk_valtype_t::AWK_STRING,
+            3 => awk_valtype_t::AWK_REGEX,
+            4 => awk_valtype_t::AWK_STRNUM,
+            5 => awk_valtype_t::AWK_ARRAY,
+            6 => awk_valtype_t::AWK_SCALAR,
+            7 => awk_valtype_t::AWK_VALUE_COOKIE,
+            8 => awk_valtype_t::AWK_BOOL,
+            _ => panic!("Invalid value for awk_valtype_t: {}", value),
+        }
+    }
 }
-
-pub const AWK_BOOL: awk_valtype_t = 8;
-pub const AWK_VALUE_COOKIE: awk_valtype_t = 7;
-pub const AWK_SCALAR: awk_valtype_t = 6;
-pub const AWK_ARRAY: awk_valtype_t = 5;
-pub const AWK_STRNUM: awk_valtype_t = 4;
-pub const AWK_REGEX: awk_valtype_t = 3;
-pub const AWK_STRING: awk_valtype_t = 2;
-pub const AWK_NUMBER: awk_valtype_t = 1;
-pub const AWK_UNDEFINED: awk_valtype_t = 0;
+impl AddAssign<u32> for awk_valtype_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for awk_valtype_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for awk_valtype_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for awk_valtype_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for awk_valtype_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn add(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn sub(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn mul(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn div(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn rem(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_value {
@@ -507,10 +726,10 @@ pub type awk_value_t = awk_value;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_ext_func {
-    pub name: *const libc::c_char,
-    pub function: Option::<
+    pub name: *const i8,
+    pub function: Option<
         unsafe extern "C" fn(
-            libc::c_int,
+            i32,
             *mut awk_value_t,
             *mut awk_ext_func,
         ) -> *mut awk_value_t,
@@ -532,7 +751,7 @@ pub enum defrule {
     MAXRULE,
 }
 impl defrule {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             defrule::BEGIN => 1,
             defrule::Rule => 2,
@@ -542,14 +761,73 @@ impl defrule {
             defrule::MAXRULE => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> defrule {
+        match value {
+            1 => defrule::BEGIN,
+            2 => defrule::Rule,
+            3 => defrule::END,
+            4 => defrule::BEGINFILE,
+            5 => defrule::ENDFILE,
+            6 => defrule::MAXRULE,
+            _ => panic!("Invalid value for defrule: {}", value),
+        }
+    }
 }
-
-pub const MAXRULE: defrule = 6;
-pub const ENDFILE: defrule = 5;
-pub const BEGINFILE: defrule = 4;
-pub const END: defrule = 3;
-pub const Rule: defrule = 2;
-pub const BEGIN: defrule = 1;
+impl AddAssign<u32> for defrule {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = defrule::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for defrule {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = defrule::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for defrule {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = defrule::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for defrule {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = defrule::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for defrule {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = defrule::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for defrule {
+    type Output = defrule;
+    fn add(self, rhs: u32) -> defrule {
+        defrule::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for defrule {
+    type Output = defrule;
+    fn sub(self, rhs: u32) -> defrule {
+        defrule::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for defrule {
+    type Output = defrule;
+    fn mul(self, rhs: u32) -> defrule {
+        defrule::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for defrule {
+    type Output = defrule;
+    fn div(self, rhs: u32) -> defrule {
+        defrule::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for defrule {
+    type Output = defrule;
+    fn rem(self, rhs: u32) -> defrule {
+        defrule::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum nodevals {
@@ -575,7 +853,7 @@ pub enum nodevals {
     Node_final,
 }
 impl nodevals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             nodevals::Node_illegal => 0,
             nodevals::Node_val => 1,
@@ -599,28 +877,87 @@ impl nodevals {
             nodevals::Node_final => 19,
         }
     }
+    fn from_libc_c_uint(value: u32) -> nodevals {
+        match value {
+            0 => nodevals::Node_illegal,
+            1 => nodevals::Node_val,
+            2 => nodevals::Node_regex,
+            3 => nodevals::Node_dynregex,
+            4 => nodevals::Node_var,
+            5 => nodevals::Node_var_array,
+            6 => nodevals::Node_var_new,
+            7 => nodevals::Node_elem_new,
+            8 => nodevals::Node_param_list,
+            9 => nodevals::Node_func,
+            10 => nodevals::Node_ext_func,
+            11 => nodevals::Node_builtin_func,
+            12 => nodevals::Node_array_ref,
+            13 => nodevals::Node_array_tree,
+            14 => nodevals::Node_array_leaf,
+            15 => nodevals::Node_dump_array,
+            16 => nodevals::Node_arrayfor,
+            17 => nodevals::Node_frame,
+            18 => nodevals::Node_instruction,
+            19 => nodevals::Node_final,
+            _ => panic!("Invalid value for nodevals: {}", value),
+        }
+    }
 }
-
-pub const Node_final: nodevals = 19;
-pub const Node_instruction: nodevals = 18;
-pub const Node_frame: nodevals = 17;
-pub const Node_arrayfor: nodevals = 16;
-pub const Node_dump_array: nodevals = 15;
-pub const Node_array_leaf: nodevals = 14;
-pub const Node_array_tree: nodevals = 13;
-pub const Node_array_ref: nodevals = 12;
-pub const Node_builtin_func: nodevals = 11;
-pub const Node_ext_func: nodevals = 10;
-pub const Node_func: nodevals = 9;
-pub const Node_param_list: nodevals = 8;
-pub const Node_elem_new: nodevals = 7;
-pub const Node_var_new: nodevals = 6;
-pub const Node_var_array: nodevals = 5;
-pub const Node_var: nodevals = 4;
-pub const Node_dynregex: nodevals = 3;
-pub const Node_regex: nodevals = 2;
-pub const Node_val: nodevals = 1;
-pub const Node_illegal: nodevals = 0;
+impl AddAssign<u32> for nodevals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for nodevals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for nodevals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for nodevals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for nodevals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for nodevals {
+    type Output = nodevals;
+    fn add(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for nodevals {
+    type Output = nodevals;
+    fn sub(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for nodevals {
+    type Output = nodevals;
+    fn mul(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for nodevals {
+    type Output = nodevals;
+    fn div(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for nodevals {
+    type Output = nodevals;
+    fn rem(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type NODETYPE = nodevals;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -628,7 +965,7 @@ pub struct exp_node {
     pub sub: C2RustUnnamed_1,
     pub type_0: NODETYPE,
     pub flags: flagvals,
-    pub valref: libc::c_long,
+    pub valref: i64,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -655,7 +992,7 @@ pub enum flagvals {
     MALLOC = 1,
 }
 impl flagvals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             flagvals::REGEX => 524288,
             flagvals::NUMCONSTSTR => 262144,
@@ -679,28 +1016,87 @@ impl flagvals {
             flagvals::MALLOC => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> flagvals {
+        match value {
+            524288 => flagvals::REGEX,
+            262144 => flagvals::NUMCONSTSTR,
+            131072 => flagvals::XARRAY,
+            65536 => flagvals::HALFHAT,
+            32768 => flagvals::ARRAYMAXED,
+            16384 => flagvals::NULL_FIELD,
+            8192 => flagvals::NO_EXT_SET,
+            4096 => flagvals::MPZN,
+            2048 => flagvals::MPFN,
+            1024 => flagvals::WSTRCUR,
+            512 => flagvals::INTIND,
+            256 => flagvals::NUMINT,
+            128 => flagvals::INTLSTR,
+            64 => flagvals::BOOLVAL,
+            32 => flagvals::USER_INPUT,
+            16 => flagvals::NUMBER,
+            8 => flagvals::NUMCUR,
+            4 => flagvals::STRCUR,
+            2 => flagvals::STRING,
+            1 => flagvals::MALLOC,
+            _ => panic!("Invalid value for flagvals: {}", value),
+        }
+    }
 }
-
-pub const REGEX: flagvals = 524288;
-pub const NUMCONSTSTR: flagvals = 262144;
-pub const XARRAY: flagvals = 131072;
-pub const HALFHAT: flagvals = 65536;
-pub const ARRAYMAXED: flagvals = 32768;
-pub const NULL_FIELD: flagvals = 16384;
-pub const NO_EXT_SET: flagvals = 8192;
-pub const MPZN: flagvals = 4096;
-pub const MPFN: flagvals = 2048;
-pub const WSTRCUR: flagvals = 1024;
-pub const INTIND: flagvals = 512;
-pub const NUMINT: flagvals = 256;
-pub const INTLSTR: flagvals = 128;
-pub const BOOLVAL: flagvals = 64;
-pub const USER_INPUT: flagvals = 32;
-pub const NUMBER: flagvals = 16;
-pub const NUMCUR: flagvals = 8;
-pub const STRCUR: flagvals = 4;
-pub const STRING: flagvals = 2;
-pub const MALLOC: flagvals = 1;
+impl AddAssign<u32> for flagvals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for flagvals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for flagvals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for flagvals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for flagvals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for flagvals {
+    type Output = flagvals;
+    fn add(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for flagvals {
+    type Output = flagvals;
+    fn sub(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for flagvals {
+    type Output = flagvals;
+    fn mul(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for flagvals {
+    type Output = flagvals;
+    fn div(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for flagvals {
+    type Output = flagvals;
+    fn rem(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
@@ -711,9 +1107,9 @@ pub union C2RustUnnamed_1 {
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
     pub fltnum: libc::c_double,
-    pub sp: *mut libc::c_char,
+    pub sp: *mut i8,
     pub slen: size_t,
-    pub idx: libc::c_int,
+    pub idx: i32,
     pub wsp: *mut wchar_t,
     pub wslen: size_t,
     pub typre: *mut exp_node,
@@ -727,28 +1123,87 @@ pub enum commenttype {
     EOL_COMMENT = 1,
 }
 impl commenttype {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             commenttype::FOR_COMMENT => 3,
             commenttype::BLOCK_COMMENT => 2,
             commenttype::EOL_COMMENT => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> commenttype {
+        match value {
+            3 => commenttype::FOR_COMMENT,
+            2 => commenttype::BLOCK_COMMENT,
+            1 => commenttype::EOL_COMMENT,
+            _ => panic!("Invalid value for commenttype: {}", value),
+        }
+    }
 }
-
-pub const FOR_COMMENT: commenttype = 3;
-pub const BLOCK_COMMENT: commenttype = 2;
-pub const EOL_COMMENT: commenttype = 1;
+impl AddAssign<u32> for commenttype {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for commenttype {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for commenttype {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for commenttype {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for commenttype {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for commenttype {
+    type Output = commenttype;
+    fn add(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for commenttype {
+    type Output = commenttype;
+    fn sub(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for commenttype {
+    type Output = commenttype;
+    fn mul(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for commenttype {
+    type Output = commenttype;
+    fn div(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for commenttype {
+    type Output = commenttype;
+    fn rem(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_3 {
     pub l: C2RustUnnamed_10,
     pub r: C2RustUnnamed_5,
     pub x: C2RustUnnamed_4,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub reserved: size_t,
     pub rn: *mut exp_node,
-    pub cnt: libc::c_ulong,
+    pub cnt: u64,
     pub reflags: reflagvals,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -758,22 +1213,81 @@ pub enum reflagvals {
     FS_DFLT = 2,
 }
 impl reflagvals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             reflagvals::CONSTANT => 1,
             reflagvals::FS_DFLT => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> reflagvals {
+        match value {
+            1 => reflagvals::CONSTANT,
+            2 => reflagvals::FS_DFLT,
+            _ => panic!("Invalid value for reflagvals: {}", value),
+        }
+    }
 }
-
-pub const FS_DFLT: reflagvals = 2;
-pub const CONSTANT: reflagvals = 1;
+impl AddAssign<u32> for reflagvals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for reflagvals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for reflagvals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for reflagvals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for reflagvals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for reflagvals {
+    type Output = reflagvals;
+    fn add(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for reflagvals {
+    type Output = reflagvals;
+    fn sub(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for reflagvals {
+    type Output = reflagvals;
+    fn mul(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for reflagvals {
+    type Output = reflagvals;
+    fn div(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for reflagvals {
+    type Output = reflagvals;
+    fn rem(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_4 {
     pub extra: *mut exp_node,
-    pub aptr: Option::<unsafe extern "C" fn() -> ()>,
-    pub xl: libc::c_long,
+    pub aptr: Option<unsafe extern "C" fn() -> ()>,
+    pub xl: i64,
     pub cmnt: *mut libc::c_void,
 }
 #[derive(Copy, Clone)]
@@ -783,7 +1297,7 @@ pub union C2RustUnnamed_5 {
     pub preg: [*mut Regexp; 2],
     pub av: *mut *mut exp_node,
     pub bv: *mut *mut BUCKET,
-    pub uptr: Option::<unsafe extern "C" fn() -> ()>,
+    pub uptr: Option<unsafe extern "C" fn() -> ()>,
     pub iptr: *mut exp_instruction,
 }
 #[derive(Copy, Clone)]
@@ -926,7 +1440,7 @@ pub enum opcodeval {
     Op_illegal = 0,
 }
 impl opcodeval {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             opcodeval::Op_final => 122,
             opcodeval::Op_parens => 121,
@@ -1053,137 +1567,196 @@ impl opcodeval {
             opcodeval::Op_illegal => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> opcodeval {
+        match value {
+            122 => opcodeval::Op_final,
+            121 => opcodeval::Op_parens,
+            120 => opcodeval::Op_cond_exp,
+            119 => opcodeval::Op_K_function,
+            118 => opcodeval::Op_K_else,
+            117 => opcodeval::Op_K_if,
+            116 => opcodeval::Op_K_switch,
+            115 => opcodeval::Op_K_while,
+            114 => opcodeval::Op_K_arrayfor,
+            113 => opcodeval::Op_K_for,
+            112 => opcodeval::Op_K_do,
+            111 => opcodeval::Op_list,
+            110 => opcodeval::Op_symbol,
+            109 => opcodeval::Op_token,
+            108 => opcodeval::Op_stop,
+            107 => opcodeval::Op_atexit,
+            106 => opcodeval::Op_lint_plus,
+            105 => opcodeval::Op_lint,
+            104 => opcodeval::Op_breakpoint,
+            103 => opcodeval::Op_exec_count,
+            102 => opcodeval::Op_comment,
+            101 => opcodeval::Op_func,
+            100 => opcodeval::Op_after_endfile,
+            99 => opcodeval::Op_after_beginfile,
+            98 => opcodeval::Op_subscript_assign,
+            97 => opcodeval::Op_field_assign,
+            96 => opcodeval::Op_var_assign,
+            95 => opcodeval::Op_var_update,
+            94 => opcodeval::Op_arrayfor_final,
+            93 => opcodeval::Op_arrayfor_incr,
+            92 => opcodeval::Op_arrayfor_init,
+            91 => opcodeval::Op_newfile,
+            90 => opcodeval::Op_get_record,
+            89 => opcodeval::Op_jmp_false,
+            88 => opcodeval::Op_jmp_true,
+            87 => opcodeval::Op_jmp,
+            86 => opcodeval::Op_pop,
+            85 => opcodeval::Op_no_op,
+            84 => opcodeval::Op_field_spec_lhs,
+            83 => opcodeval::Op_subscript_lhs,
+            82 => opcodeval::Op_push_lhs,
+            81 => opcodeval::Op_push_param,
+            80 => opcodeval::Op_push_array,
+            79 => opcodeval::Op_push_re,
+            78 => opcodeval::Op_push_i,
+            77 => opcodeval::Op_push_arg_untyped,
+            76 => opcodeval::Op_push_arg,
+            75 => opcodeval::Op_push,
+            74 => opcodeval::Op_indirect_func_call,
+            73 => opcodeval::Op_func_call,
+            72 => opcodeval::Op_in_array,
+            71 => opcodeval::Op_ext_builtin,
+            70 => opcodeval::Op_sub_builtin,
+            69 => opcodeval::Op_builtin,
+            68 => opcodeval::Op_K_namespace,
+            67 => opcodeval::Op_K_nextfile,
+            66 => opcodeval::Op_K_getline,
+            65 => opcodeval::Op_K_getline_redir,
+            64 => opcodeval::Op_K_delete_loop,
+            63 => opcodeval::Op_K_delete,
+            62 => opcodeval::Op_K_return_from_eval,
+            61 => opcodeval::Op_K_return,
+            60 => opcodeval::Op_K_exit,
+            59 => opcodeval::Op_K_next,
+            58 => opcodeval::Op_K_printf,
+            57 => opcodeval::Op_K_print_rec,
+            56 => opcodeval::Op_K_print,
+            55 => opcodeval::Op_K_continue,
+            54 => opcodeval::Op_K_break,
+            53 => opcodeval::Op_K_default,
+            52 => opcodeval::Op_K_case,
+            51 => opcodeval::Op_rule,
+            50 => opcodeval::Op_nomatch,
+            49 => opcodeval::Op_match_rec,
+            48 => opcodeval::Op_match,
+            47 => opcodeval::Op_geq,
+            46 => opcodeval::Op_leq,
+            45 => opcodeval::Op_greater,
+            44 => opcodeval::Op_less,
+            43 => opcodeval::Op_notequal,
+            42 => opcodeval::Op_equal,
+            41 => opcodeval::Op_or_final,
+            40 => opcodeval::Op_or,
+            39 => opcodeval::Op_and_final,
+            38 => opcodeval::Op_and,
+            37 => opcodeval::Op_assign_concat,
+            36 => opcodeval::Op_assign_exp,
+            35 => opcodeval::Op_assign_minus,
+            34 => opcodeval::Op_assign_plus,
+            33 => opcodeval::Op_assign_mod,
+            32 => opcodeval::Op_assign_quotient,
+            31 => opcodeval::Op_assign_times,
+            30 => opcodeval::Op_store_field_exp,
+            29 => opcodeval::Op_store_field,
+            28 => opcodeval::Op_store_sub,
+            27 => opcodeval::Op_store_var,
+            26 => opcodeval::Op_assign,
+            25 => opcodeval::Op_not,
+            24 => opcodeval::Op_field_spec,
+            23 => opcodeval::Op_unary_plus,
+            22 => opcodeval::Op_unary_minus,
+            21 => opcodeval::Op_postdecrement,
+            20 => opcodeval::Op_postincrement,
+            19 => opcodeval::Op_predecrement,
+            18 => opcodeval::Op_preincrement,
+            17 => opcodeval::Op_sub_array,
+            16 => opcodeval::Op_subscript,
+            15 => opcodeval::Op_cond_pair,
+            14 => opcodeval::Op_line_range,
+            13 => opcodeval::Op_concat,
+            12 => opcodeval::Op_exp_i,
+            11 => opcodeval::Op_exp,
+            10 => opcodeval::Op_minus_i,
+            9 => opcodeval::Op_minus,
+            8 => opcodeval::Op_plus_i,
+            7 => opcodeval::Op_plus,
+            6 => opcodeval::Op_mod_i,
+            5 => opcodeval::Op_mod,
+            4 => opcodeval::Op_quotient_i,
+            3 => opcodeval::Op_quotient,
+            2 => opcodeval::Op_times_i,
+            1 => opcodeval::Op_times,
+            0 => opcodeval::Op_illegal,
+            _ => panic!("Invalid value for opcodeval: {}", value),
+        }
+    }
 }
-
-pub const Op_final: opcodeval = 122;
-pub const Op_parens: opcodeval = 121;
-pub const Op_cond_exp: opcodeval = 120;
-pub const Op_K_function: opcodeval = 119;
-pub const Op_K_else: opcodeval = 118;
-pub const Op_K_if: opcodeval = 117;
-pub const Op_K_switch: opcodeval = 116;
-pub const Op_K_while: opcodeval = 115;
-pub const Op_K_arrayfor: opcodeval = 114;
-pub const Op_K_for: opcodeval = 113;
-pub const Op_K_do: opcodeval = 112;
-pub const Op_list: opcodeval = 111;
-pub const Op_symbol: opcodeval = 110;
-pub const Op_token: opcodeval = 109;
-pub const Op_stop: opcodeval = 108;
-pub const Op_atexit: opcodeval = 107;
-pub const Op_lint_plus: opcodeval = 106;
-pub const Op_lint: opcodeval = 105;
-pub const Op_breakpoint: opcodeval = 104;
-pub const Op_exec_count: opcodeval = 103;
-pub const Op_comment: opcodeval = 102;
-pub const Op_func: opcodeval = 101;
-pub const Op_after_endfile: opcodeval = 100;
-pub const Op_after_beginfile: opcodeval = 99;
-pub const Op_subscript_assign: opcodeval = 98;
-pub const Op_field_assign: opcodeval = 97;
-pub const Op_var_assign: opcodeval = 96;
-pub const Op_var_update: opcodeval = 95;
-pub const Op_arrayfor_final: opcodeval = 94;
-pub const Op_arrayfor_incr: opcodeval = 93;
-pub const Op_arrayfor_init: opcodeval = 92;
-pub const Op_newfile: opcodeval = 91;
-pub const Op_get_record: opcodeval = 90;
-pub const Op_jmp_false: opcodeval = 89;
-pub const Op_jmp_true: opcodeval = 88;
-pub const Op_jmp: opcodeval = 87;
-pub const Op_pop: opcodeval = 86;
-pub const Op_no_op: opcodeval = 85;
-pub const Op_field_spec_lhs: opcodeval = 84;
-pub const Op_subscript_lhs: opcodeval = 83;
-pub const Op_push_lhs: opcodeval = 82;
-pub const Op_push_param: opcodeval = 81;
-pub const Op_push_array: opcodeval = 80;
-pub const Op_push_re: opcodeval = 79;
-pub const Op_push_i: opcodeval = 78;
-pub const Op_push_arg_untyped: opcodeval = 77;
-pub const Op_push_arg: opcodeval = 76;
-pub const Op_push: opcodeval = 75;
-pub const Op_indirect_func_call: opcodeval = 74;
-pub const Op_func_call: opcodeval = 73;
-pub const Op_in_array: opcodeval = 72;
-pub const Op_ext_builtin: opcodeval = 71;
-pub const Op_sub_builtin: opcodeval = 70;
-pub const Op_builtin: opcodeval = 69;
-pub const Op_K_namespace: opcodeval = 68;
-pub const Op_K_nextfile: opcodeval = 67;
-pub const Op_K_getline: opcodeval = 66;
-pub const Op_K_getline_redir: opcodeval = 65;
-pub const Op_K_delete_loop: opcodeval = 64;
-pub const Op_K_delete: opcodeval = 63;
-pub const Op_K_return_from_eval: opcodeval = 62;
-pub const Op_K_return: opcodeval = 61;
-pub const Op_K_exit: opcodeval = 60;
-pub const Op_K_next: opcodeval = 59;
-pub const Op_K_printf: opcodeval = 58;
-pub const Op_K_print_rec: opcodeval = 57;
-pub const Op_K_print: opcodeval = 56;
-pub const Op_K_continue: opcodeval = 55;
-pub const Op_K_break: opcodeval = 54;
-pub const Op_K_default: opcodeval = 53;
-pub const Op_K_case: opcodeval = 52;
-pub const Op_rule: opcodeval = 51;
-pub const Op_nomatch: opcodeval = 50;
-pub const Op_match_rec: opcodeval = 49;
-pub const Op_match: opcodeval = 48;
-pub const Op_geq: opcodeval = 47;
-pub const Op_leq: opcodeval = 46;
-pub const Op_greater: opcodeval = 45;
-pub const Op_less: opcodeval = 44;
-pub const Op_notequal: opcodeval = 43;
-pub const Op_equal: opcodeval = 42;
-pub const Op_or_final: opcodeval = 41;
-pub const Op_or: opcodeval = 40;
-pub const Op_and_final: opcodeval = 39;
-pub const Op_and: opcodeval = 38;
-pub const Op_assign_concat: opcodeval = 37;
-pub const Op_assign_exp: opcodeval = 36;
-pub const Op_assign_minus: opcodeval = 35;
-pub const Op_assign_plus: opcodeval = 34;
-pub const Op_assign_mod: opcodeval = 33;
-pub const Op_assign_quotient: opcodeval = 32;
-pub const Op_assign_times: opcodeval = 31;
-pub const Op_store_field_exp: opcodeval = 30;
-pub const Op_store_field: opcodeval = 29;
-pub const Op_store_sub: opcodeval = 28;
-pub const Op_store_var: opcodeval = 27;
-pub const Op_assign: opcodeval = 26;
-pub const Op_not: opcodeval = 25;
-pub const Op_field_spec: opcodeval = 24;
-pub const Op_unary_plus: opcodeval = 23;
-pub const Op_unary_minus: opcodeval = 22;
-pub const Op_postdecrement: opcodeval = 21;
-pub const Op_postincrement: opcodeval = 20;
-pub const Op_predecrement: opcodeval = 19;
-pub const Op_preincrement: opcodeval = 18;
-pub const Op_sub_array: opcodeval = 17;
-pub const Op_subscript: opcodeval = 16;
-pub const Op_cond_pair: opcodeval = 15;
-pub const Op_line_range: opcodeval = 14;
-pub const Op_concat: opcodeval = 13;
-pub const Op_exp_i: opcodeval = 12;
-pub const Op_exp: opcodeval = 11;
-pub const Op_minus_i: opcodeval = 10;
-pub const Op_minus: opcodeval = 9;
-pub const Op_plus_i: opcodeval = 8;
-pub const Op_plus: opcodeval = 7;
-pub const Op_mod_i: opcodeval = 6;
-pub const Op_mod: opcodeval = 5;
-pub const Op_quotient_i: opcodeval = 4;
-pub const Op_quotient: opcodeval = 3;
-pub const Op_times_i: opcodeval = 2;
-pub const Op_times: opcodeval = 1;
-pub const Op_illegal: opcodeval = 0;
+impl AddAssign<u32> for opcodeval {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for opcodeval {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for opcodeval {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for opcodeval {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for opcodeval {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for opcodeval {
+    type Output = opcodeval;
+    fn add(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for opcodeval {
+    type Output = opcodeval;
+    fn sub(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for opcodeval {
+    type Output = opcodeval;
+    fn mul(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for opcodeval {
+    type Output = opcodeval;
+    fn div(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for opcodeval {
+    type Output = opcodeval;
+    fn rem(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_6 {
-    pub xl: libc::c_long,
+    pub xl: i64,
     pub xn: *mut NODE,
-    pub aptr: Option::<unsafe extern "C" fn() -> ()>,
+    pub aptr: Option<unsafe extern "C" fn() -> ()>,
     pub xi: *mut exp_instruction,
     pub bpt: *mut break_point,
     pub exf: *mut awk_ext_func_t,
@@ -1194,17 +1767,17 @@ pub type NODE = exp_node;
 pub union C2RustUnnamed_7 {
     pub dn: *mut NODE,
     pub di: *mut exp_instruction,
-    pub fptr: Option::<unsafe extern "C" fn(libc::c_int) -> *mut NODE>,
-    pub efptr: Option::<
+    pub fptr: Option<unsafe extern "C" fn(i32) -> *mut NODE>,
+    pub efptr: Option<
         unsafe extern "C" fn(
-            libc::c_int,
+            i32,
             *mut awk_value_t,
             *mut awk_ext_func,
         ) -> *mut awk_value_t,
     >,
-    pub dl: libc::c_long,
+    pub dl: i64,
     pub ldl: exec_count_t,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
 }
 pub type exec_count_t = libc::c_ulonglong;
 pub type BUCKET = bucket_item;
@@ -1218,7 +1791,7 @@ pub union bucket_item {
 #[repr(C)]
 pub struct C2RustUnnamed_8 {
     pub next: *mut bucket_item,
-    pub li: [libc::c_long; 2],
+    pub li: [i64; 2],
     pub val: [*mut exp_node; 2],
     pub cnt: size_t,
 }
@@ -1226,7 +1799,7 @@ pub struct C2RustUnnamed_8 {
 #[repr(C)]
 pub struct C2RustUnnamed_9 {
     pub next: *mut bucket_item,
-    pub str_0: *mut libc::c_char,
+    pub str_0: *mut i8,
     pub len: size_t,
     pub code: size_t,
     pub name: *mut exp_node,
@@ -1237,13 +1810,13 @@ pub struct C2RustUnnamed_9 {
 pub union C2RustUnnamed_10 {
     pub lptr: *mut exp_node,
     pub li: *mut exp_instruction,
-    pub ll: libc::c_long,
+    pub ll: i64,
     pub lp: *const array_funcs_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct array_funcs_t {
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub init: afunc_t,
     pub type_of: afunc_t,
     pub lookup: afunc_t,
@@ -1255,7 +1828,7 @@ pub struct array_funcs_t {
     pub dump: afunc_t,
     pub store: afunc_t,
 }
-pub type afunc_t = Option::<
+pub type afunc_t = Option<
     unsafe extern "C" fn(*mut exp_node, *mut exp_node) -> *mut *mut exp_node,
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -1266,18 +1839,77 @@ pub enum lintvals {
     LINT_illegal = 0,
 }
 impl lintvals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             lintvals::LINT_no_effect => 2,
             lintvals::LINT_assign_in_cond => 1,
             lintvals::LINT_illegal => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> lintvals {
+        match value {
+            2 => lintvals::LINT_no_effect,
+            1 => lintvals::LINT_assign_in_cond,
+            0 => lintvals::LINT_illegal,
+            _ => panic!("Invalid value for lintvals: {}", value),
+        }
+    }
 }
-
-pub const LINT_no_effect: lintvals = 2;
-pub const LINT_assign_in_cond: lintvals = 1;
-pub const LINT_illegal: lintvals = 0;
+impl AddAssign<u32> for lintvals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = lintvals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for lintvals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = lintvals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for lintvals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = lintvals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for lintvals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = lintvals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for lintvals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = lintvals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for lintvals {
+    type Output = lintvals;
+    fn add(self, rhs: u32) -> lintvals {
+        lintvals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for lintvals {
+    type Output = lintvals;
+    fn sub(self, rhs: u32) -> lintvals {
+        lintvals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for lintvals {
+    type Output = lintvals;
+    fn mul(self, rhs: u32) -> lintvals {
+        lintvals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for lintvals {
+    type Output = lintvals;
+    fn div(self, rhs: u32) -> lintvals {
+        lintvals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for lintvals {
+    type Output = lintvals;
+    fn rem(self, rhs: u32) -> lintvals {
+        lintvals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum redirval {
@@ -1290,7 +1922,7 @@ pub enum redirval {
     redirect_none = 0,
 }
 impl redirval {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             redirval::redirect_twoway => 6,
             redirval::redirect_input => 5,
@@ -1301,30 +1933,89 @@ impl redirval {
             redirval::redirect_none => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> redirval {
+        match value {
+            6 => redirval::redirect_twoway,
+            5 => redirval::redirect_input,
+            4 => redirval::redirect_pipein,
+            3 => redirval::redirect_pipe,
+            2 => redirval::redirect_append,
+            1 => redirval::redirect_output,
+            0 => redirval::redirect_none,
+            _ => panic!("Invalid value for redirval: {}", value),
+        }
+    }
 }
-
-pub const redirect_twoway: redirval = 6;
-pub const redirect_input: redirval = 5;
-pub const redirect_pipein: redirval = 4;
-pub const redirect_pipe: redirval = 3;
-pub const redirect_append: redirval = 2;
-pub const redirect_output: redirval = 1;
-pub const redirect_none: redirval = 0;
+impl AddAssign<u32> for redirval {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = redirval::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for redirval {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = redirval::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for redirval {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = redirval::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for redirval {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = redirval::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for redirval {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = redirval::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for redirval {
+    type Output = redirval;
+    fn add(self, rhs: u32) -> redirval {
+        redirval::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for redirval {
+    type Output = redirval;
+    fn sub(self, rhs: u32) -> redirval {
+        redirval::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for redirval {
+    type Output = redirval;
+    fn mul(self, rhs: u32) -> redirval {
+        redirval::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for redirval {
+    type Output = redirval;
+    fn div(self, rhs: u32) -> redirval {
+        redirval::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for redirval {
+    type Output = redirval;
+    fn rem(self, rhs: u32) -> redirval {
+        redirval::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type INSTRUCTION = exp_instruction;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct iobuf {
     pub public: awk_input_buf_t,
-    pub buf: *mut libc::c_char,
-    pub off: *mut libc::c_char,
-    pub dataend: *mut libc::c_char,
-    pub end: *mut libc::c_char,
+    pub buf: *mut i8,
+    pub off: *mut i8,
+    pub dataend: *mut i8,
+    pub end: *mut i8,
     pub readsize: size_t,
     pub size: size_t,
     pub count: ssize_t,
     pub scanoff: size_t,
     pub valid: bool,
-    pub errcode: libc::c_int,
+    pub errcode: i32,
     pub flag: iobuf_flags,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -1336,7 +2027,7 @@ pub enum iobuf_flags {
     IOP_AT_START = 8,
 }
 impl iobuf_flags {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             iobuf_flags::IOP_IS_TTY => 1,
             iobuf_flags::IOP_AT_EOF => 2,
@@ -1344,14 +2035,73 @@ impl iobuf_flags {
             iobuf_flags::IOP_AT_START => 8,
         }
     }
+    fn from_libc_c_uint(value: u32) -> iobuf_flags {
+        match value {
+            1 => iobuf_flags::IOP_IS_TTY,
+            2 => iobuf_flags::IOP_AT_EOF,
+            4 => iobuf_flags::IOP_CLOSED,
+            8 => iobuf_flags::IOP_AT_START,
+            _ => panic!("Invalid value for iobuf_flags: {}", value),
+        }
+    }
 }
-
-pub const IOP_AT_START: iobuf_flags = 8;
-pub const IOP_CLOSED: iobuf_flags = 4;
-pub const IOP_AT_EOF: iobuf_flags = 2;
-pub const IOP_IS_TTY: iobuf_flags = 1;
+impl AddAssign<u32> for iobuf_flags {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for iobuf_flags {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for iobuf_flags {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for iobuf_flags {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for iobuf_flags {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for iobuf_flags {
+    type Output = iobuf_flags;
+    fn add(self, rhs: u32) -> iobuf_flags {
+        iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for iobuf_flags {
+    type Output = iobuf_flags;
+    fn sub(self, rhs: u32) -> iobuf_flags {
+        iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for iobuf_flags {
+    type Output = iobuf_flags;
+    fn mul(self, rhs: u32) -> iobuf_flags {
+        iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for iobuf_flags {
+    type Output = iobuf_flags;
+    fn div(self, rhs: u32) -> iobuf_flags {
+        iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for iobuf_flags {
+    type Output = iobuf_flags;
+    fn rem(self, rhs: u32) -> iobuf_flags {
+        iobuf_flags::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type IOBUF = iobuf;
-pub type Func_ptr = Option::<unsafe extern "C" fn() -> ()>;
+pub type Func_ptr = Option<unsafe extern "C" fn() -> ()>;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum binmode_values {
@@ -1361,7 +2111,7 @@ pub enum binmode_values {
     BINMODE_BOTH = 3,
 }
 impl binmode_values {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             binmode_values::TEXT_TRANSLATE => 0,
             binmode_values::BINMODE_INPUT => 1,
@@ -1369,17 +2119,76 @@ impl binmode_values {
             binmode_values::BINMODE_BOTH => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> binmode_values {
+        match value {
+            0 => binmode_values::TEXT_TRANSLATE,
+            1 => binmode_values::BINMODE_INPUT,
+            2 => binmode_values::BINMODE_OUTPUT,
+            3 => binmode_values::BINMODE_BOTH,
+            _ => panic!("Invalid value for binmode_values: {}", value),
+        }
+    }
 }
-
-pub const BINMODE_BOTH: binmode_values = 3;
-pub const BINMODE_OUTPUT: binmode_values = 2;
-pub const BINMODE_INPUT: binmode_values = 1;
-pub const TEXT_TRANSLATE: binmode_values = 0;
+impl AddAssign<u32> for binmode_values {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = binmode_values::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for binmode_values {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = binmode_values::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for binmode_values {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = binmode_values::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for binmode_values {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = binmode_values::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for binmode_values {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = binmode_values::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for binmode_values {
+    type Output = binmode_values;
+    fn add(self, rhs: u32) -> binmode_values {
+        binmode_values::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for binmode_values {
+    type Output = binmode_values;
+    fn sub(self, rhs: u32) -> binmode_values {
+        binmode_values::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for binmode_values {
+    type Output = binmode_values;
+    fn mul(self, rhs: u32) -> binmode_values {
+        binmode_values::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for binmode_values {
+    type Output = binmode_values;
+    fn div(self, rhs: u32) -> binmode_values {
+        binmode_values::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for binmode_values {
+    type Output = binmode_values;
+    fn rem(self, rhs: u32) -> binmode_values {
+        binmode_values::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct flagtab {
-    pub val: libc::c_int,
-    pub name: *const libc::c_char,
+    pub val: i32,
+    pub name: *const i8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1391,8 +2200,8 @@ pub struct block_item {
 pub struct block_header {
     pub freep: *mut block_item,
     pub size: size_t,
-    pub name: *const libc::c_char,
-    pub highwater: libc::c_long,
+    pub name: *const i8,
+    pub highwater: i64,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1402,22 +2211,79 @@ pub enum block_id {
     BLOCK_MAX,
 }
 impl block_id {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             block_id::BLOCK_NODE => 0,
             block_id::BLOCK_BUCKET => 1,
             block_id::BLOCK_MAX => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> block_id {
+        match value {
+            0 => block_id::BLOCK_NODE,
+            1 => block_id::BLOCK_BUCKET,
+            2 => block_id::BLOCK_MAX,
+            _ => panic!("Invalid value for block_id: {}", value),
+        }
+    }
 }
-
-pub const BLOCK_MAX: block_id = 2;
-pub const BLOCK_BUCKET: block_id = 1;
-pub const BLOCK_NODE: block_id = 0;
-pub type Func_pre_exec = Option::<
-    unsafe extern "C" fn(*mut *mut INSTRUCTION) -> libc::c_int,
->;
-pub type Func_post_exec = Option::<unsafe extern "C" fn(*mut INSTRUCTION) -> ()>;
+impl AddAssign<u32> for block_id {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = block_id::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for block_id {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = block_id::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for block_id {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = block_id::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for block_id {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = block_id::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for block_id {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = block_id::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for block_id {
+    type Output = block_id;
+    fn add(self, rhs: u32) -> block_id {
+        block_id::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for block_id {
+    type Output = block_id;
+    fn sub(self, rhs: u32) -> block_id {
+        block_id::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for block_id {
+    type Output = block_id;
+    fn mul(self, rhs: u32) -> block_id {
+        block_id::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for block_id {
+    type Output = block_id;
+    fn div(self, rhs: u32) -> block_id {
+        block_id::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for block_id {
+    type Output = block_id;
+    fn rem(self, rhs: u32) -> block_id {
+        block_id::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type Func_pre_exec = Option<unsafe extern "C" fn(*mut *mut INSTRUCTION) -> i32>;
+pub type Func_post_exec = Option<unsafe extern "C" fn(*mut INSTRUCTION) -> ()>;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum do_flag_values {
@@ -1440,7 +2306,7 @@ pub enum do_flag_values {
     DO_FLAG_NONE = 0,
 }
 impl do_flag_values {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             do_flag_values::DO_MPFR => 32768,
             do_flag_values::DO_DEBUG => 16384,
@@ -1461,25 +2327,84 @@ impl do_flag_values {
             do_flag_values::DO_FLAG_NONE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> do_flag_values {
+        match value {
+            32768 => do_flag_values::DO_MPFR,
+            16384 => do_flag_values::DO_DEBUG,
+            8192 => do_flag_values::DO_PROFILE,
+            4096 => do_flag_values::DO_SANDBOX,
+            2048 => do_flag_values::DO_TIDY_MEM,
+            1024 => do_flag_values::DO_DUMP_VARS,
+            512 => do_flag_values::DO_PRETTY_PRINT,
+            256 => do_flag_values::DO_INTERVALS,
+            128 => do_flag_values::DO_NON_DEC_DATA,
+            64 => do_flag_values::DO_INTL,
+            32 => do_flag_values::DO_POSIX,
+            16 => do_flag_values::DO_TRADITIONAL,
+            8 => do_flag_values::DO_LINT_OLD,
+            4 => do_flag_values::DO_LINT_ALL,
+            2 => do_flag_values::DO_LINT_EXTENSIONS,
+            1 => do_flag_values::DO_LINT_INVALID,
+            0 => do_flag_values::DO_FLAG_NONE,
+            _ => panic!("Invalid value for do_flag_values: {}", value),
+        }
+    }
 }
-
-pub const DO_MPFR: do_flag_values = 32768;
-pub const DO_DEBUG: do_flag_values = 16384;
-pub const DO_PROFILE: do_flag_values = 8192;
-pub const DO_SANDBOX: do_flag_values = 4096;
-pub const DO_TIDY_MEM: do_flag_values = 2048;
-pub const DO_DUMP_VARS: do_flag_values = 1024;
-pub const DO_PRETTY_PRINT: do_flag_values = 512;
-pub const DO_INTERVALS: do_flag_values = 256;
-pub const DO_NON_DEC_DATA: do_flag_values = 128;
-pub const DO_INTL: do_flag_values = 64;
-pub const DO_POSIX: do_flag_values = 32;
-pub const DO_TRADITIONAL: do_flag_values = 16;
-pub const DO_LINT_OLD: do_flag_values = 8;
-pub const DO_LINT_ALL: do_flag_values = 4;
-pub const DO_LINT_EXTENSIONS: do_flag_values = 2;
-pub const DO_LINT_INVALID: do_flag_values = 1;
-pub const DO_FLAG_NONE: do_flag_values = 0;
+impl AddAssign<u32> for do_flag_values {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for do_flag_values {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for do_flag_values {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for do_flag_values {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for do_flag_values {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn add(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn sub(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn mul(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn div(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn rem(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union stack_item {
@@ -1495,24 +2420,83 @@ pub enum sort_context_t {
     ASORTI,
 }
 impl sort_context_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sort_context_t::SORTED_IN => 1,
             sort_context_t::ASORT => 2,
             sort_context_t::ASORTI => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sort_context_t {
+        match value {
+            1 => sort_context_t::SORTED_IN,
+            2 => sort_context_t::ASORT,
+            3 => sort_context_t::ASORTI,
+            _ => panic!("Invalid value for sort_context_t: {}", value),
+        }
+    }
 }
-
-pub const ASORTI: sort_context_t = 3;
-pub const ASORT: sort_context_t = 2;
-pub const SORTED_IN: sort_context_t = 1;
-pub type builtin_func_t = Option::<unsafe extern "C" fn(libc::c_int) -> *mut NODE>;
+impl AddAssign<u32> for sort_context_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sort_context_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sort_context_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sort_context_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sort_context_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sort_context_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sort_context_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sort_context_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sort_context_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sort_context_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sort_context_t {
+    type Output = sort_context_t;
+    fn add(self, rhs: u32) -> sort_context_t {
+        sort_context_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sort_context_t {
+    type Output = sort_context_t;
+    fn sub(self, rhs: u32) -> sort_context_t {
+        sort_context_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sort_context_t {
+    type Output = sort_context_t;
+    fn mul(self, rhs: u32) -> sort_context_t {
+        sort_context_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sort_context_t {
+    type Output = sort_context_t;
+    fn div(self, rhs: u32) -> sort_context_t {
+        sort_context_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sort_context_t {
+    type Output = sort_context_t;
+    fn rem(self, rhs: u32) -> sort_context_t {
+        sort_context_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type builtin_func_t = Option<unsafe extern "C" fn(i32) -> *mut NODE>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct optypetab {
-    pub desc: *mut libc::c_char,
-    pub operator: *mut libc::c_char,
+    pub desc: *mut i8,
+    pub operator: *mut i8,
 }
 pub type EXEC_STATE = exec_state;
 #[derive(Copy, Clone)]
@@ -1520,9 +2504,9 @@ pub type EXEC_STATE = exec_state;
 pub struct exec_state {
     pub next: *mut exec_state,
     pub cptr: *mut INSTRUCTION,
-    pub rule: libc::c_int,
-    pub stack_size: libc::c_long,
-    pub source: *const libc::c_char,
+    pub rule: i32,
+    pub stack_size: i64,
+    pub source: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -1535,7 +2519,7 @@ pub enum scalar_cmp_t {
     SCALAR_GE,
 }
 impl scalar_cmp_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             scalar_cmp_t::SCALAR_EQ => 0,
             scalar_cmp_t::SCALAR_NEQ => 1,
@@ -1545,17 +2529,76 @@ impl scalar_cmp_t {
             scalar_cmp_t::SCALAR_GE => 5,
         }
     }
+    fn from_libc_c_uint(value: u32) -> scalar_cmp_t {
+        match value {
+            0 => scalar_cmp_t::SCALAR_EQ,
+            1 => scalar_cmp_t::SCALAR_NEQ,
+            2 => scalar_cmp_t::SCALAR_LT,
+            3 => scalar_cmp_t::SCALAR_LE,
+            4 => scalar_cmp_t::SCALAR_GT,
+            5 => scalar_cmp_t::SCALAR_GE,
+            _ => panic!("Invalid value for scalar_cmp_t: {}", value),
+        }
+    }
 }
-
-pub const SCALAR_GE: scalar_cmp_t = 5;
-pub const SCALAR_GT: scalar_cmp_t = 4;
-pub const SCALAR_LE: scalar_cmp_t = 3;
-pub const SCALAR_LT: scalar_cmp_t = 2;
-pub const SCALAR_NEQ: scalar_cmp_t = 1;
-pub const SCALAR_EQ: scalar_cmp_t = 0;
+impl AddAssign<u32> for scalar_cmp_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for scalar_cmp_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for scalar_cmp_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for scalar_cmp_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for scalar_cmp_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for scalar_cmp_t {
+    type Output = scalar_cmp_t;
+    fn add(self, rhs: u32) -> scalar_cmp_t {
+        scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for scalar_cmp_t {
+    type Output = scalar_cmp_t;
+    fn sub(self, rhs: u32) -> scalar_cmp_t {
+        scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for scalar_cmp_t {
+    type Output = scalar_cmp_t;
+    fn mul(self, rhs: u32) -> scalar_cmp_t {
+        scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for scalar_cmp_t {
+    type Output = scalar_cmp_t;
+    fn div(self, rhs: u32) -> scalar_cmp_t {
+        scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for scalar_cmp_t {
+    type Output = scalar_cmp_t;
+    fn rem(self, rhs: u32) -> scalar_cmp_t {
+        scalar_cmp_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
-unsafe extern "C" fn toupper(mut __c: libc::c_int) -> libc::c_int {
-    return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {
+unsafe extern "C" fn toupper(mut __c: i32) -> i32 {
+    return if __c >= -(128 as i32) && __c < 256 as i32 {
         *(*__ctype_toupper_loc()).offset(__c as isize)
     } else {
         __c
@@ -1564,7 +2607,7 @@ unsafe extern "C" fn toupper(mut __c: libc::c_int) -> libc::c_int {
 #[inline]
 unsafe extern "C" fn DEREF(mut r: *mut NODE) {
     (*r).valref -= 1;
-    if (*r).valref > 0 as libc::c_int as libc::c_long {
+    if (*r).valref > 0 as i32 as i64 {
         return;
     }
     r_unref(r);
@@ -1573,30 +2616,26 @@ unsafe extern "C" fn DEREF(mut r: *mut NODE) {
 unsafe extern "C" fn erealloc_real(
     mut ptr: *mut libc::c_void,
     mut count: size_t,
-    mut where_0: *const libc::c_char,
-    mut var: *const libc::c_char,
-    mut file: *const libc::c_char,
-    mut line: libc::c_int,
+    mut where_0: *const i8,
+    mut var: *const i8,
+    mut file: *const i8,
+    mut line: i32,
 ) -> *mut libc::c_void {
     let mut ret: *mut libc::c_void = 0 as *mut libc::c_void;
-    if count == 0 as libc::c_int as libc::c_ulong {
+    if count == 0 as i32 as u64 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2088 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2088 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
-            b"%s:%d: erealloc called with zero bytes\0" as *const u8
-                as *const libc::c_char,
+            b"%s:%d: erealloc called with zero bytes\0" as *const u8 as *const i8,
             file,
             line,
         );
@@ -1605,30 +2644,27 @@ unsafe extern "C" fn erealloc_real(
     if ret.is_null() {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2092 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2092 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s:%d:%s: %s: cannot reallocate %ld bytes of memory: %s\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             file,
             line,
             where_0,
             var,
-            count as libc::c_long,
+            count as i64,
             strerror(*__errno_location()),
         );
     }
@@ -1636,28 +2672,23 @@ unsafe extern "C" fn erealloc_real(
 }
 #[inline]
 unsafe extern "C" fn boolval(mut t: *mut NODE) -> bool {
-    if (*t).type_0 as libc::c_uint == Node_var as libc::c_int as libc::c_uint {
+    if (*t).type_0 as u32 == nodevals::Node_var as i32 as u32 {
         t = (*t).sub.nodep.l.lptr;
     }
     fixtype(t);
-    if (*t).flags as libc::c_uint & NUMBER as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
+    if (*t).flags as u32 & flagvals::NUMBER as i32 as u32 != 0 as i32 as u32 {
         return !((*t).sub.val.fltnum == 0.0f64);
     }
-    return (*t).sub.val.slen > 0 as libc::c_int as libc::c_ulong;
+    return (*t).sub.val.slen > 0 as i32 as u64;
 }
 #[inline]
 unsafe extern "C" fn fixtype(mut n: *mut NODE) -> *mut NODE {
-    if (*n).flags as libc::c_uint
-        & (NUMCUR as libc::c_int | USER_INPUT as libc::c_int) as libc::c_uint
-        == USER_INPUT as libc::c_int as libc::c_uint
+    if (*n).flags as u32 & (flagvals::NUMCUR as i32 | flagvals::USER_INPUT as i32) as u32
+        == flagvals::USER_INPUT as i32 as u32
     {
         return force_number(n);
     }
-    if (*n).flags as libc::c_uint & INTIND as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
+    if (*n).flags as u32 & flagvals::INTIND as i32 as u32 != 0 as i32 as u32 {
         return force_string_fmt(n, CONVFMT, CONVFMTidx);
     }
     return n;
@@ -1665,21 +2696,19 @@ unsafe extern "C" fn fixtype(mut n: *mut NODE) -> *mut NODE {
 #[inline]
 unsafe extern "C" fn force_string_fmt(
     mut s: *mut NODE,
-    mut fmtstr: *const libc::c_char,
-    mut fmtidx: libc::c_int,
+    mut fmtstr: *const i8,
+    mut fmtidx: i32,
 ) -> *mut NODE {
-    if (*s).type_0 as libc::c_uint == Node_elem_new as libc::c_int as libc::c_uint {
-        (*s).type_0 = Node_val;
-        (*s)
-            .flags = ::core::mem::transmute::<
-            libc::c_uint,
+    if (*s).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
+        (*s).type_0 = nodevals::Node_val;
+        (*s).flags = ::core::mem::transmute::<
+            u32,
             flagvals,
-        >((*s).flags as libc::c_uint & !(NUMBER as libc::c_int) as libc::c_uint);
+        >((*s).flags as u32 & !(flagvals::NUMBER as i32) as u32);
         return s;
     }
-    if (*s).flags as libc::c_uint & STRCUR as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-        && ((*s).sub.val.idx == -(1 as libc::c_int) || (*s).sub.val.idx == fmtidx)
+    if (*s).flags as u32 & flagvals::STRCUR as i32 as u32 != 0 as i32 as u32
+        && ((*s).sub.val.idx == -(1 as i32) || (*s).sub.val.idx == fmtidx)
     {
         return s;
     }
@@ -1687,9 +2716,7 @@ unsafe extern "C" fn force_string_fmt(
 }
 #[inline]
 unsafe extern "C" fn force_number(mut n: *mut NODE) -> *mut NODE {
-    return if (*n).flags as libc::c_uint & NUMCUR as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
+    return if (*n).flags as u32 & flagvals::NUMCUR as i32 as u32 != 0 as i32 as u32 {
         n
     } else {
         str2number.expect("non-null function pointer")(n)
@@ -1698,32 +2725,28 @@ unsafe extern "C" fn force_number(mut n: *mut NODE) -> *mut NODE {
 #[inline]
 unsafe extern "C" fn TOP_SCALAR() -> *mut NODE {
     let mut t: *mut NODE = (*stack_ptr).rptr;
-    if (*t).type_0 as libc::c_uint == Node_var_array as libc::c_int as libc::c_uint {
+    if (*t).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            1896 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 1896 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"attempt to use array `%s' in a scalar context\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             array_vname(t),
         );
-    } else if (*t).type_0 as libc::c_uint == Node_elem_new as libc::c_int as libc::c_uint
-    {
+    } else if (*t).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
         t = elem_new_to_scalar(t);
         (*stack_ptr).rptr = t;
     }
@@ -1731,9 +2754,7 @@ unsafe extern "C" fn TOP_SCALAR() -> *mut NODE {
 }
 #[inline]
 unsafe extern "C" fn dupnode(mut n: *mut NODE) -> *mut NODE {
-    if (*n).flags as libc::c_uint & MALLOC as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
+    if (*n).flags as u32 & flagvals::MALLOC as i32 as u32 != 0 as i32 as u32 {
         (*n).valref += 1;
         (*n).valref;
         return n;
@@ -1745,7 +2766,7 @@ unsafe extern "C" fn unref(mut r: *mut NODE) {
     if !r.is_null()
         && {
             (*r).valref -= 1;
-            (*r).valref <= 0 as libc::c_int as libc::c_long
+            (*r).valref <= 0 as i32 as i64
         }
     {
         r_unref(r);
@@ -1756,32 +2777,28 @@ unsafe extern "C" fn POP_SCALAR() -> *mut NODE {
     let fresh0 = stack_ptr;
     stack_ptr = stack_ptr.offset(-1);
     let mut t: *mut NODE = (*fresh0).rptr;
-    if (*t).type_0 as libc::c_uint == Node_var_array as libc::c_int as libc::c_uint {
+    if (*t).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            1881 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 1881 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"attempt to use array `%s' in a scalar context\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             array_vname(t),
         );
-    } else if (*t).type_0 as libc::c_uint == Node_elem_new as libc::c_int as libc::c_uint
-    {
+    } else if (*t).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
         t = elem_new_to_scalar(t);
     }
     return t;
@@ -1789,30 +2806,26 @@ unsafe extern "C" fn POP_SCALAR() -> *mut NODE {
 #[inline]
 unsafe extern "C" fn emalloc_real(
     mut count: size_t,
-    mut where_0: *const libc::c_char,
-    mut var: *const libc::c_char,
-    mut file: *const libc::c_char,
-    mut line: libc::c_int,
+    mut where_0: *const i8,
+    mut var: *const i8,
+    mut file: *const i8,
+    mut line: i32,
 ) -> *mut libc::c_void {
     let mut ret: *mut libc::c_void = 0 as *mut libc::c_void;
-    if count == 0 as libc::c_int as libc::c_ulong {
+    if count == 0 as i32 as u64 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2052 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2052 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
-            b"%s:%d: emalloc called with zero bytes\0" as *const u8
-                as *const libc::c_char,
+            b"%s:%d: emalloc called with zero bytes\0" as *const u8 as *const i8,
             file,
             line,
         );
@@ -1821,30 +2834,27 @@ unsafe extern "C" fn emalloc_real(
     if ret.is_null() {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2056 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2056 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s:%d:%s: %s: cannot allocate %ld bytes of memory: %s\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             file,
             line,
             where_0,
             var,
-            count as libc::c_long,
+            count as i64,
             strerror(*__errno_location()),
         );
     }
@@ -1853,71 +2863,64 @@ unsafe extern "C" fn emalloc_real(
 #[inline]
 unsafe extern "C" fn ezalloc_real(
     mut count: size_t,
-    mut where_0: *const libc::c_char,
-    mut var: *const libc::c_char,
-    mut file: *const libc::c_char,
-    mut line: libc::c_int,
+    mut where_0: *const i8,
+    mut var: *const i8,
+    mut file: *const i8,
+    mut line: i32,
 ) -> *mut libc::c_void {
     let mut ret: *mut libc::c_void = 0 as *mut libc::c_void;
-    if count == 0 as libc::c_int as libc::c_ulong {
+    if count == 0 as i32 as u64 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2070 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2070 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
-            b"%s:%d: ezalloc called with zero bytes\0" as *const u8
-                as *const libc::c_char,
+            b"%s:%d: ezalloc called with zero bytes\0" as *const u8 as *const i8,
             file,
             line,
         );
     }
-    ret = pma_calloc(1 as libc::c_int as size_t, count);
+    ret = pma_calloc(1 as i32 as size_t, count);
     if ret.is_null() {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            2074 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 2074 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s:%d:%s: %s: cannot allocate %ld bytes of memory: %s\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             file,
             line,
             where_0,
             var,
-            count as libc::c_long,
+            count as i64,
             strerror(*__errno_location()),
         );
     }
     return ret;
 }
 #[inline]
-unsafe extern "C" fn str_terminate_f(mut n: *mut NODE, mut savep: *mut libc::c_char) {
+unsafe extern "C" fn str_terminate_f(mut n: *mut NODE, mut savep: *mut i8) {
     *savep = *((*n).sub.val.sp).offset((*n).sub.val.slen as isize);
-    *((*n).sub.val.sp).offset((*n).sub.val.slen as isize) = '\0' as i32 as libc::c_char;
+    *((*n).sub.val.sp).offset((*n).sub.val.slen as isize) = '\0' as i32 as i8;
 }
 #[inline]
 unsafe extern "C" fn in_array(mut a: *mut NODE, mut s: *mut NODE) -> *mut NODE {
@@ -1930,41 +2933,35 @@ unsafe extern "C" fn POP_ARRAY(mut check_for_untyped: bool) -> *mut NODE {
     let fresh1 = stack_ptr;
     stack_ptr = stack_ptr.offset(-1);
     let mut t: *mut NODE = (*fresh1).rptr;
-    static mut warned: bool = 0 as libc::c_int != 0;
-    if do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint
-        != 0 && !warned && check_for_untyped as libc::c_int != 0
-        && ((*t).type_0 as libc::c_uint == Node_var_new as libc::c_int as libc::c_uint
-            || (*t).type_0 as libc::c_uint
-                == Node_elem_new as libc::c_int as libc::c_uint)
+    static mut warned: bool = 0 as i32 != 0;
+    if do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32 != 0 && !warned && check_for_untyped as i32 != 0
+        && ((*t).type_0 as u32 == nodevals::Node_var_new as i32 as u32
+            || (*t).type_0 as u32 == nodevals::Node_elem_new as i32 as u32)
     {
-        warned = 1 as libc::c_int != 0;
+        warned = 1 as i32 != 0;
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"./awk.h\0" as *const u8 as *const libc::c_char,
-            1857 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"./awk.h\0" as *const u8 as *const i8, 1857 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"behavior of `for' loop on untyped variable is not defined by POSIX\0"
-                    as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const u8 as *const i8,
+                5 as i32,
             ),
         );
     }
-    return if (*t).type_0 as libc::c_uint
-        == Node_var_array as libc::c_int as libc::c_uint
-    {
+    return if (*t).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
         t
     } else {
-        force_array(t, 1 as libc::c_int != 0)
+        force_array(t, 1 as i32 != 0)
     };
 }
 #[inline]
@@ -1986,315 +2983,309 @@ unsafe extern "C" fn assoc_set(
 #[no_mangle]
 pub static mut fcall_list: *mut *mut NODE = 0 as *const *mut NODE as *mut *mut NODE;
 #[no_mangle]
-pub static mut fcall_count: libc::c_long = 0 as libc::c_int as libc::c_long;
+pub static mut fcall_count: i64 = 0 as i32 as i64;
 #[no_mangle]
-pub static mut currule: libc::c_int = 0 as libc::c_int;
+pub static mut currule: i32 = 0 as i32;
 #[no_mangle]
 pub static mut curfile: *mut IOBUF = 0 as *const IOBUF as *mut IOBUF;
 #[no_mangle]
-pub static mut exiting: bool = 0 as libc::c_int != 0;
+pub static mut exiting: bool = 0 as i32 != 0;
 #[no_mangle]
-pub static mut interpret: Option::<
-    unsafe extern "C" fn(*mut INSTRUCTION) -> libc::c_int,
-> = None;
-static mut num_exec_hook: libc::c_int = 0 as libc::c_int;
+pub static mut interpret: Option<unsafe extern "C" fn(*mut INSTRUCTION) -> i32> = None;
+static mut num_exec_hook: i32 = 0 as i32;
 static mut pre_execute: [Func_pre_exec; 10] = [None; 10];
 static mut post_execute: Func_post_exec = None;
 #[no_mangle]
-pub static mut OFSlen: libc::c_int = 0;
+pub static mut OFSlen: i32 = 0;
 #[no_mangle]
-pub static mut ORSlen: libc::c_int = 0;
+pub static mut ORSlen: i32 = 0;
 #[no_mangle]
-pub static mut OFMTidx: libc::c_int = 0;
+pub static mut OFMTidx: i32 = 0;
 #[no_mangle]
-pub static mut CONVFMTidx: libc::c_int = 0;
+pub static mut CONVFMTidx: i32 = 0;
 static mut node_Boolean: [*mut NODE; 2] = [0 as *const NODE as *mut NODE; 2];
 #[no_mangle]
-pub static mut casetable: [libc::c_char; 256] = [
-    '\0' as i32 as libc::c_char,
-    '\u{1}' as i32 as libc::c_char,
-    '\u{2}' as i32 as libc::c_char,
-    '\u{3}' as i32 as libc::c_char,
-    '\u{4}' as i32 as libc::c_char,
-    '\u{5}' as i32 as libc::c_char,
-    '\u{6}' as i32 as libc::c_char,
-    '\u{7}' as i32 as libc::c_char,
-    '\u{8}' as i32 as libc::c_char,
-    '\t' as i32 as libc::c_char,
-    '\n' as i32 as libc::c_char,
-    '\u{b}' as i32 as libc::c_char,
-    '\u{c}' as i32 as libc::c_char,
-    '\r' as i32 as libc::c_char,
-    '\u{e}' as i32 as libc::c_char,
-    '\u{f}' as i32 as libc::c_char,
-    '\u{10}' as i32 as libc::c_char,
-    '\u{11}' as i32 as libc::c_char,
-    '\u{12}' as i32 as libc::c_char,
-    '\u{13}' as i32 as libc::c_char,
-    '\u{14}' as i32 as libc::c_char,
-    '\u{15}' as i32 as libc::c_char,
-    '\u{16}' as i32 as libc::c_char,
-    '\u{17}' as i32 as libc::c_char,
-    '\u{18}' as i32 as libc::c_char,
-    '\u{19}' as i32 as libc::c_char,
-    '\u{1a}' as i32 as libc::c_char,
-    '\u{1b}' as i32 as libc::c_char,
-    '\u{1c}' as i32 as libc::c_char,
-    '\u{1d}' as i32 as libc::c_char,
-    '\u{1e}' as i32 as libc::c_char,
-    '\u{1f}' as i32 as libc::c_char,
-    ' ' as i32 as libc::c_char,
-    '!' as i32 as libc::c_char,
-    '"' as i32 as libc::c_char,
-    '#' as i32 as libc::c_char,
-    '$' as i32 as libc::c_char,
-    '%' as i32 as libc::c_char,
-    '&' as i32 as libc::c_char,
-    '\'' as i32 as libc::c_char,
-    '(' as i32 as libc::c_char,
-    ')' as i32 as libc::c_char,
-    '*' as i32 as libc::c_char,
-    '+' as i32 as libc::c_char,
-    ',' as i32 as libc::c_char,
-    '-' as i32 as libc::c_char,
-    '.' as i32 as libc::c_char,
-    '/' as i32 as libc::c_char,
-    '0' as i32 as libc::c_char,
-    '1' as i32 as libc::c_char,
-    '2' as i32 as libc::c_char,
-    '3' as i32 as libc::c_char,
-    '4' as i32 as libc::c_char,
-    '5' as i32 as libc::c_char,
-    '6' as i32 as libc::c_char,
-    '7' as i32 as libc::c_char,
-    '8' as i32 as libc::c_char,
-    '9' as i32 as libc::c_char,
-    ':' as i32 as libc::c_char,
-    ';' as i32 as libc::c_char,
-    '<' as i32 as libc::c_char,
-    '=' as i32 as libc::c_char,
-    '>' as i32 as libc::c_char,
-    '?' as i32 as libc::c_char,
-    '@' as i32 as libc::c_char,
-    'a' as i32 as libc::c_char,
-    'b' as i32 as libc::c_char,
-    'c' as i32 as libc::c_char,
-    'd' as i32 as libc::c_char,
-    'e' as i32 as libc::c_char,
-    'f' as i32 as libc::c_char,
-    'g' as i32 as libc::c_char,
-    'h' as i32 as libc::c_char,
-    'i' as i32 as libc::c_char,
-    'j' as i32 as libc::c_char,
-    'k' as i32 as libc::c_char,
-    'l' as i32 as libc::c_char,
-    'm' as i32 as libc::c_char,
-    'n' as i32 as libc::c_char,
-    'o' as i32 as libc::c_char,
-    'p' as i32 as libc::c_char,
-    'q' as i32 as libc::c_char,
-    'r' as i32 as libc::c_char,
-    's' as i32 as libc::c_char,
-    't' as i32 as libc::c_char,
-    'u' as i32 as libc::c_char,
-    'v' as i32 as libc::c_char,
-    'w' as i32 as libc::c_char,
-    'x' as i32 as libc::c_char,
-    'y' as i32 as libc::c_char,
-    'z' as i32 as libc::c_char,
-    '[' as i32 as libc::c_char,
-    '\\' as i32 as libc::c_char,
-    ']' as i32 as libc::c_char,
-    '^' as i32 as libc::c_char,
-    '_' as i32 as libc::c_char,
-    '`' as i32 as libc::c_char,
-    'a' as i32 as libc::c_char,
-    'b' as i32 as libc::c_char,
-    'c' as i32 as libc::c_char,
-    'd' as i32 as libc::c_char,
-    'e' as i32 as libc::c_char,
-    'f' as i32 as libc::c_char,
-    'g' as i32 as libc::c_char,
-    'h' as i32 as libc::c_char,
-    'i' as i32 as libc::c_char,
-    'j' as i32 as libc::c_char,
-    'k' as i32 as libc::c_char,
-    'l' as i32 as libc::c_char,
-    'm' as i32 as libc::c_char,
-    'n' as i32 as libc::c_char,
-    'o' as i32 as libc::c_char,
-    'p' as i32 as libc::c_char,
-    'q' as i32 as libc::c_char,
-    'r' as i32 as libc::c_char,
-    's' as i32 as libc::c_char,
-    't' as i32 as libc::c_char,
-    'u' as i32 as libc::c_char,
-    'v' as i32 as libc::c_char,
-    'w' as i32 as libc::c_char,
-    'x' as i32 as libc::c_char,
-    'y' as i32 as libc::c_char,
-    'z' as i32 as libc::c_char,
-    '{' as i32 as libc::c_char,
-    '|' as i32 as libc::c_char,
-    '}' as i32 as libc::c_char,
-    '~' as i32 as libc::c_char,
-    '\u{7f}' as i32 as libc::c_char,
-    -128i32 as libc::c_char,
-    -127i32 as libc::c_char,
-    -126i32 as libc::c_char,
-    -125i32 as libc::c_char,
-    -124i32 as libc::c_char,
-    -123i32 as libc::c_char,
-    -122i32 as libc::c_char,
-    -121i32 as libc::c_char,
-    -120i32 as libc::c_char,
-    -119i32 as libc::c_char,
-    -118i32 as libc::c_char,
-    -117i32 as libc::c_char,
-    -116i32 as libc::c_char,
-    -115i32 as libc::c_char,
-    -114i32 as libc::c_char,
-    -113i32 as libc::c_char,
-    -112i32 as libc::c_char,
-    -111i32 as libc::c_char,
-    -110i32 as libc::c_char,
-    -109i32 as libc::c_char,
-    -108i32 as libc::c_char,
-    -107i32 as libc::c_char,
-    -106i32 as libc::c_char,
-    -105i32 as libc::c_char,
-    -104i32 as libc::c_char,
-    -103i32 as libc::c_char,
-    -102i32 as libc::c_char,
-    -101i32 as libc::c_char,
-    -100i32 as libc::c_char,
-    -99i32 as libc::c_char,
-    -98i32 as libc::c_char,
-    -97i32 as libc::c_char,
-    -96i32 as libc::c_char,
-    -95i32 as libc::c_char,
-    -94i32 as libc::c_char,
-    -93i32 as libc::c_char,
-    -92i32 as libc::c_char,
-    -91i32 as libc::c_char,
-    -90i32 as libc::c_char,
-    -89i32 as libc::c_char,
-    -88i32 as libc::c_char,
-    -87i32 as libc::c_char,
-    -86i32 as libc::c_char,
-    -85i32 as libc::c_char,
-    -84i32 as libc::c_char,
-    -83i32 as libc::c_char,
-    -82i32 as libc::c_char,
-    -81i32 as libc::c_char,
-    -80i32 as libc::c_char,
-    -79i32 as libc::c_char,
-    -78i32 as libc::c_char,
-    -77i32 as libc::c_char,
-    -76i32 as libc::c_char,
-    -75i32 as libc::c_char,
-    -74i32 as libc::c_char,
-    -73i32 as libc::c_char,
-    -72i32 as libc::c_char,
-    -71i32 as libc::c_char,
-    -70i32 as libc::c_char,
-    -69i32 as libc::c_char,
-    -68i32 as libc::c_char,
-    -67i32 as libc::c_char,
-    -66i32 as libc::c_char,
-    -65i32 as libc::c_char,
-    -32i32 as libc::c_char,
-    -31i32 as libc::c_char,
-    -30i32 as libc::c_char,
-    -29i32 as libc::c_char,
-    -28i32 as libc::c_char,
-    -27i32 as libc::c_char,
-    -26i32 as libc::c_char,
-    -25i32 as libc::c_char,
-    -24i32 as libc::c_char,
-    -23i32 as libc::c_char,
-    -22i32 as libc::c_char,
-    -21i32 as libc::c_char,
-    -20i32 as libc::c_char,
-    -19i32 as libc::c_char,
-    -18i32 as libc::c_char,
-    -17i32 as libc::c_char,
-    -16i32 as libc::c_char,
-    -15i32 as libc::c_char,
-    -14i32 as libc::c_char,
-    -13i32 as libc::c_char,
-    -12i32 as libc::c_char,
-    -11i32 as libc::c_char,
-    -10i32 as libc::c_char,
-    -41i32 as libc::c_char,
-    -8i32 as libc::c_char,
-    -7i32 as libc::c_char,
-    -6i32 as libc::c_char,
-    -5i32 as libc::c_char,
-    -4i32 as libc::c_char,
-    -3i32 as libc::c_char,
-    -2i32 as libc::c_char,
-    -33i32 as libc::c_char,
-    -32i32 as libc::c_char,
-    -31i32 as libc::c_char,
-    -30i32 as libc::c_char,
-    -29i32 as libc::c_char,
-    -28i32 as libc::c_char,
-    -27i32 as libc::c_char,
-    -26i32 as libc::c_char,
-    -25i32 as libc::c_char,
-    -24i32 as libc::c_char,
-    -23i32 as libc::c_char,
-    -22i32 as libc::c_char,
-    -21i32 as libc::c_char,
-    -20i32 as libc::c_char,
-    -19i32 as libc::c_char,
-    -18i32 as libc::c_char,
-    -17i32 as libc::c_char,
-    -16i32 as libc::c_char,
-    -15i32 as libc::c_char,
-    -14i32 as libc::c_char,
-    -13i32 as libc::c_char,
-    -12i32 as libc::c_char,
-    -11i32 as libc::c_char,
-    -10i32 as libc::c_char,
-    -9i32 as libc::c_char,
-    -8i32 as libc::c_char,
-    -7i32 as libc::c_char,
-    -6i32 as libc::c_char,
-    -5i32 as libc::c_char,
-    -4i32 as libc::c_char,
-    -3i32 as libc::c_char,
-    -2i32 as libc::c_char,
-    -1i32 as libc::c_char,
+pub static mut casetable: [i8; 256] = [
+    '\0' as i32 as i8,
+    '\u{1}' as i32 as i8,
+    '\u{2}' as i32 as i8,
+    '\u{3}' as i32 as i8,
+    '\u{4}' as i32 as i8,
+    '\u{5}' as i32 as i8,
+    '\u{6}' as i32 as i8,
+    '\u{7}' as i32 as i8,
+    '\u{8}' as i32 as i8,
+    '\t' as i32 as i8,
+    '\n' as i32 as i8,
+    '\u{b}' as i32 as i8,
+    '\u{c}' as i32 as i8,
+    '\r' as i32 as i8,
+    '\u{e}' as i32 as i8,
+    '\u{f}' as i32 as i8,
+    '\u{10}' as i32 as i8,
+    '\u{11}' as i32 as i8,
+    '\u{12}' as i32 as i8,
+    '\u{13}' as i32 as i8,
+    '\u{14}' as i32 as i8,
+    '\u{15}' as i32 as i8,
+    '\u{16}' as i32 as i8,
+    '\u{17}' as i32 as i8,
+    '\u{18}' as i32 as i8,
+    '\u{19}' as i32 as i8,
+    '\u{1a}' as i32 as i8,
+    '\u{1b}' as i32 as i8,
+    '\u{1c}' as i32 as i8,
+    '\u{1d}' as i32 as i8,
+    '\u{1e}' as i32 as i8,
+    '\u{1f}' as i32 as i8,
+    ' ' as i32 as i8,
+    '!' as i32 as i8,
+    '"' as i32 as i8,
+    '#' as i32 as i8,
+    '$' as i32 as i8,
+    '%' as i32 as i8,
+    '&' as i32 as i8,
+    '\'' as i32 as i8,
+    '(' as i32 as i8,
+    ')' as i32 as i8,
+    '*' as i32 as i8,
+    '+' as i32 as i8,
+    ',' as i32 as i8,
+    '-' as i32 as i8,
+    '.' as i32 as i8,
+    '/' as i32 as i8,
+    '0' as i32 as i8,
+    '1' as i32 as i8,
+    '2' as i32 as i8,
+    '3' as i32 as i8,
+    '4' as i32 as i8,
+    '5' as i32 as i8,
+    '6' as i32 as i8,
+    '7' as i32 as i8,
+    '8' as i32 as i8,
+    '9' as i32 as i8,
+    ':' as i32 as i8,
+    ';' as i32 as i8,
+    '<' as i32 as i8,
+    '=' as i32 as i8,
+    '>' as i32 as i8,
+    '?' as i32 as i8,
+    '@' as i32 as i8,
+    'a' as i32 as i8,
+    'b' as i32 as i8,
+    'c' as i32 as i8,
+    'd' as i32 as i8,
+    'e' as i32 as i8,
+    'f' as i32 as i8,
+    'g' as i32 as i8,
+    'h' as i32 as i8,
+    'i' as i32 as i8,
+    'j' as i32 as i8,
+    'k' as i32 as i8,
+    'l' as i32 as i8,
+    'm' as i32 as i8,
+    'n' as i32 as i8,
+    'o' as i32 as i8,
+    'p' as i32 as i8,
+    'q' as i32 as i8,
+    'r' as i32 as i8,
+    's' as i32 as i8,
+    't' as i32 as i8,
+    'u' as i32 as i8,
+    'v' as i32 as i8,
+    'w' as i32 as i8,
+    'x' as i32 as i8,
+    'y' as i32 as i8,
+    'z' as i32 as i8,
+    '[' as i32 as i8,
+    '\\' as i32 as i8,
+    ']' as i32 as i8,
+    '^' as i32 as i8,
+    '_' as i32 as i8,
+    '`' as i32 as i8,
+    'a' as i32 as i8,
+    'b' as i32 as i8,
+    'c' as i32 as i8,
+    'd' as i32 as i8,
+    'e' as i32 as i8,
+    'f' as i32 as i8,
+    'g' as i32 as i8,
+    'h' as i32 as i8,
+    'i' as i32 as i8,
+    'j' as i32 as i8,
+    'k' as i32 as i8,
+    'l' as i32 as i8,
+    'm' as i32 as i8,
+    'n' as i32 as i8,
+    'o' as i32 as i8,
+    'p' as i32 as i8,
+    'q' as i32 as i8,
+    'r' as i32 as i8,
+    's' as i32 as i8,
+    't' as i32 as i8,
+    'u' as i32 as i8,
+    'v' as i32 as i8,
+    'w' as i32 as i8,
+    'x' as i32 as i8,
+    'y' as i32 as i8,
+    'z' as i32 as i8,
+    '{' as i32 as i8,
+    '|' as i32 as i8,
+    '}' as i32 as i8,
+    '~' as i32 as i8,
+    '\u{7f}' as i32 as i8,
+    -128i32 as i8,
+    -127i32 as i8,
+    -126i32 as i8,
+    -125i32 as i8,
+    -124i32 as i8,
+    -123i32 as i8,
+    -122i32 as i8,
+    -121i32 as i8,
+    -120i32 as i8,
+    -119i32 as i8,
+    -118i32 as i8,
+    -117i32 as i8,
+    -116i32 as i8,
+    -115i32 as i8,
+    -114i32 as i8,
+    -113i32 as i8,
+    -112i32 as i8,
+    -111i32 as i8,
+    -110i32 as i8,
+    -109i32 as i8,
+    -108i32 as i8,
+    -107i32 as i8,
+    -106i32 as i8,
+    -105i32 as i8,
+    -104i32 as i8,
+    -103i32 as i8,
+    -102i32 as i8,
+    -101i32 as i8,
+    -100i32 as i8,
+    -99i32 as i8,
+    -98i32 as i8,
+    -97i32 as i8,
+    -96i32 as i8,
+    -95i32 as i8,
+    -94i32 as i8,
+    -93i32 as i8,
+    -92i32 as i8,
+    -91i32 as i8,
+    -90i32 as i8,
+    -89i32 as i8,
+    -88i32 as i8,
+    -87i32 as i8,
+    -86i32 as i8,
+    -85i32 as i8,
+    -84i32 as i8,
+    -83i32 as i8,
+    -82i32 as i8,
+    -81i32 as i8,
+    -80i32 as i8,
+    -79i32 as i8,
+    -78i32 as i8,
+    -77i32 as i8,
+    -76i32 as i8,
+    -75i32 as i8,
+    -74i32 as i8,
+    -73i32 as i8,
+    -72i32 as i8,
+    -71i32 as i8,
+    -70i32 as i8,
+    -69i32 as i8,
+    -68i32 as i8,
+    -67i32 as i8,
+    -66i32 as i8,
+    -65i32 as i8,
+    -32i32 as i8,
+    -31i32 as i8,
+    -30i32 as i8,
+    -29i32 as i8,
+    -28i32 as i8,
+    -27i32 as i8,
+    -26i32 as i8,
+    -25i32 as i8,
+    -24i32 as i8,
+    -23i32 as i8,
+    -22i32 as i8,
+    -21i32 as i8,
+    -20i32 as i8,
+    -19i32 as i8,
+    -18i32 as i8,
+    -17i32 as i8,
+    -16i32 as i8,
+    -15i32 as i8,
+    -14i32 as i8,
+    -13i32 as i8,
+    -12i32 as i8,
+    -11i32 as i8,
+    -10i32 as i8,
+    -41i32 as i8,
+    -8i32 as i8,
+    -7i32 as i8,
+    -6i32 as i8,
+    -5i32 as i8,
+    -4i32 as i8,
+    -3i32 as i8,
+    -2i32 as i8,
+    -33i32 as i8,
+    -32i32 as i8,
+    -31i32 as i8,
+    -30i32 as i8,
+    -29i32 as i8,
+    -28i32 as i8,
+    -27i32 as i8,
+    -26i32 as i8,
+    -25i32 as i8,
+    -24i32 as i8,
+    -23i32 as i8,
+    -22i32 as i8,
+    -21i32 as i8,
+    -20i32 as i8,
+    -19i32 as i8,
+    -18i32 as i8,
+    -17i32 as i8,
+    -16i32 as i8,
+    -15i32 as i8,
+    -14i32 as i8,
+    -13i32 as i8,
+    -12i32 as i8,
+    -11i32 as i8,
+    -10i32 as i8,
+    -9i32 as i8,
+    -8i32 as i8,
+    -7i32 as i8,
+    -6i32 as i8,
+    -5i32 as i8,
+    -4i32 as i8,
+    -3i32 as i8,
+    -2i32 as i8,
+    -1i32 as i8,
 ];
 #[no_mangle]
 pub unsafe extern "C" fn load_casetable() {
-    let mut i: libc::c_int = 0;
-    static mut loaded: bool = 0 as libc::c_int != 0;
-    if loaded as libc::c_int != 0
-        || do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0
+    let mut i: i32 = 0;
+    static mut loaded: bool = 0 as i32 != 0;
+    if loaded as i32 != 0
+        || do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 != 0
     {
         return;
     }
-    loaded = 1 as libc::c_int != 0;
-    i = 0o200 as libc::c_int;
-    while i <= 0o377 as libc::c_int {
-        if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-            & _ISalpha as libc::c_int as libc::c_ushort as libc::c_int != 0
-            && *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                & _ISlower as libc::c_int as libc::c_ushort as libc::c_int != 0
+    loaded = 1 as i32 != 0;
+    i = 0o200 as i32;
+    while i <= 0o377 as i32 {
+        if *(*__ctype_b_loc()).offset(i as isize) as i32
+            & C2RustUnnamed::_ISalpha as i32 as libc::c_ushort as i32 != 0
+            && *(*__ctype_b_loc()).offset(i as isize) as i32
+                & C2RustUnnamed::_ISlower as i32 as libc::c_ushort as i32 != 0
             && i
                 != ({
-                    let mut __res: libc::c_int = 0;
-                    if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
-                        > 1 as libc::c_int as libc::c_ulong
-                    {
+                    let mut __res: i32 = 0;
+                    if ::core::mem::size_of::<i32>() as u64 > 1 as i32 as u64 {
                         if 0 != 0 {
-                            let mut __c: libc::c_int = i;
-                            __res = (if __c < -(128 as libc::c_int)
-                                || __c > 255 as libc::c_int
-                            {
+                            let mut __c: i32 = i;
+                            __res = (if __c < -(128 as i32) || __c > 255 as i32 {
                                 __c
                             } else {
                                 *(*__ctype_toupper_loc()).offset(__c as isize)
@@ -2308,17 +3299,12 @@ pub unsafe extern "C" fn load_casetable() {
                     __res
                 })
         {
-            casetable[i
-                as usize] = ({
-                let mut __res: libc::c_int = 0;
-                if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
-                    > 1 as libc::c_int as libc::c_ulong
-                {
+            casetable[i as usize] = ({
+                let mut __res: i32 = 0;
+                if ::core::mem::size_of::<i32>() as u64 > 1 as i32 as u64 {
                     if 0 != 0 {
-                        let mut __c: libc::c_int = i;
-                        __res = if __c < -(128 as libc::c_int)
-                            || __c > 255 as libc::c_int
-                        {
+                        let mut __c: i32 = i;
+                        __res = if __c < -(128 as i32) || __c > 255 as i32 {
                             __c
                         } else {
                             *(*__ctype_toupper_loc()).offset(__c as isize)
@@ -2330,1266 +3316,1161 @@ pub unsafe extern "C" fn load_casetable() {
                     __res = *(*__ctype_toupper_loc()).offset(i as isize);
                 }
                 __res
-            }) as libc::c_char;
+            }) as i8;
         } else {
-            casetable[i as usize] = i as libc::c_char;
+            casetable[i as usize] = i as i8;
         }
         i += 1;
         i;
     }
 }
-static mut nodetypes: [*const libc::c_char; 21] = [
-    b"Node_illegal\0" as *const u8 as *const libc::c_char,
-    b"Node_val\0" as *const u8 as *const libc::c_char,
-    b"Node_regex\0" as *const u8 as *const libc::c_char,
-    b"Node_dynregex\0" as *const u8 as *const libc::c_char,
-    b"Node_var\0" as *const u8 as *const libc::c_char,
-    b"Node_var_array\0" as *const u8 as *const libc::c_char,
-    b"Node_var_new\0" as *const u8 as *const libc::c_char,
-    b"Node_elem_new\0" as *const u8 as *const libc::c_char,
-    b"Node_param_list\0" as *const u8 as *const libc::c_char,
-    b"Node_func\0" as *const u8 as *const libc::c_char,
-    b"Node_ext_func\0" as *const u8 as *const libc::c_char,
-    b"Node_builtin_func\0" as *const u8 as *const libc::c_char,
-    b"Node_array_ref\0" as *const u8 as *const libc::c_char,
-    b"Node_array_tree\0" as *const u8 as *const libc::c_char,
-    b"Node_array_leaf\0" as *const u8 as *const libc::c_char,
-    b"Node_dump_array\0" as *const u8 as *const libc::c_char,
-    b"Node_arrayfor\0" as *const u8 as *const libc::c_char,
-    b"Node_frame\0" as *const u8 as *const libc::c_char,
-    b"Node_instruction\0" as *const u8 as *const libc::c_char,
-    b"Node_final --- this should never appear\0" as *const u8 as *const libc::c_char,
-    0 as *const libc::c_char,
+static mut nodetypes: [*const i8; 21] = [
+    b"nodevals::Node_illegal\0" as *const u8 as *const i8,
+    b"nodevals::Node_val\0" as *const u8 as *const i8,
+    b"nodevals::Node_regex\0" as *const u8 as *const i8,
+    b"nodevals::Node_dynregex\0" as *const u8 as *const i8,
+    b"nodevals::Node_var\0" as *const u8 as *const i8,
+    b"nodevals::Node_var_array\0" as *const u8 as *const i8,
+    b"nodevals::Node_var_new\0" as *const u8 as *const i8,
+    b"nodevals::Node_elem_new\0" as *const u8 as *const i8,
+    b"nodevals::Node_param_list\0" as *const u8 as *const i8,
+    b"nodevals::Node_func\0" as *const u8 as *const i8,
+    b"nodevals::Node_ext_func\0" as *const u8 as *const i8,
+    b"nodevals::Node_builtin_func\0" as *const u8 as *const i8,
+    b"nodevals::Node_array_ref\0" as *const u8 as *const i8,
+    b"nodevals::Node_array_tree\0" as *const u8 as *const i8,
+    b"nodevals::Node_array_leaf\0" as *const u8 as *const i8,
+    b"nodevals::Node_dump_array\0" as *const u8 as *const i8,
+    b"nodevals::Node_arrayfor\0" as *const u8 as *const i8,
+    b"nodevals::Node_frame\0" as *const u8 as *const i8,
+    b"nodevals::Node_instruction\0" as *const u8 as *const i8,
+    b"nodevals::Node_final --- this should never appear\0" as *const u8 as *const i8,
+    0 as *const i8,
 ];
 static mut optypes: [optypetab; 124] = [
     {
         let mut init = optypetab {
-            desc: b"Op_illegal\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_illegal\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_times\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" * \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_times\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" * \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_times_i\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" * \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_times_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" * \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_quotient\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" / \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_quotient\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" / \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_quotient_i\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" / \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_quotient_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" / \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_mod\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" % \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_mod\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" % \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_mod_i\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" % \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_mod_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" % \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_plus\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" + \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_plus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" + \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_plus_i\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" + \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_plus_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" + \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_minus\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" - \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_minus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" - \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_minus_i\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" - \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_minus_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" - \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_exp\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" ^ \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_exp\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" ^ \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_exp_i\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" ^ \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_exp_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" ^ \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_concat\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_concat\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_line_range\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_line_range\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_cond_pair\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b", \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_cond_pair\0" as *const u8 as *const i8 as *mut i8,
+            operator: b", \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_subscript\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"[]\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_subscript\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"[]\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_sub_array\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"[]\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_sub_array\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"[]\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_preincrement\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"++\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_preincrement\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"++\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_predecrement\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"--\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_predecrement\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"--\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_postincrement\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"++\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_postincrement\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"++\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_postdecrement\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"--\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_postdecrement\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"--\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_unary_minus\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"-\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_unary_minus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"-\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_unary_plus\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"+\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_unary_plus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"+\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_field_spec\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"$\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_field_spec\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"$\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_not\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b"! \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_not\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"! \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" = \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" = \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_store_var\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" = \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_store_var\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" = \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_store_sub\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" = \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_store_sub\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" = \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_store_field\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" = \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_store_field\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" = \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_store_field_exp\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" = \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_store_field_exp\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: b" = \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_times\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" *= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_times\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" *= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_quotient\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" /= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_quotient\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: b" /= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_mod\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" %= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_mod\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" %= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_plus\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" += \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_plus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" += \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_minus\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" -= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_minus\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" -= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_exp\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" ^= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_exp\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" ^= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_assign_concat\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_assign_concat\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_and\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" && \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_and\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" && \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_and_final\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_and_final\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_or\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" || \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_or\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" || \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_or_final\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_or_final\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_equal\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" == \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_equal\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" == \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_notequal\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" != \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_notequal\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" != \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_less\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" < \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_less\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" < \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_greater\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" > \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_greater\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" > \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_leq\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" <= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_leq\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" <= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_geq\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" >= \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_geq\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" >= \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_match\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b" ~ \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_match\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" ~ \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_match_rec\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_match_rec\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_nomatch\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" !~ \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_nomatch\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" !~ \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_rule\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_rule\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_case\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"case\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_case\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"case\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_default\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"default\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_default\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"default\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_break\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"break\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_break\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"break\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_continue\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"continue\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_continue\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"continue\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_print\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"print\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_print\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"print\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_print_rec\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"print\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_print_rec\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"print\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_printf\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"printf\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_printf\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"printf\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_next\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"next\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_next\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"next\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_exit\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"exit\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_exit\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"exit\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_return\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"return\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_return\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"return\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_return_from_eval\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"return\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_return_from_eval\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: b"return\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_delete\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"delete\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_delete\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"delete\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_delete_loop\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_delete_loop\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_getline_redir\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"getline\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_getline_redir\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: b"getline\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_getline\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"getline\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_getline\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"getline\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_nextfile\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"nextfile\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_nextfile\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"nextfile\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_namespace\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"@namespace\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_namespace\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"@namespace\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_builtin\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_builtin\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_sub_builtin\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_sub_builtin\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_ext_builtin\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_ext_builtin\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_in_array\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b" in \0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_in_array\0" as *const u8 as *const i8 as *mut i8,
+            operator: b" in \0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_func_call\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_func_call\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_indirect_func_call\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_indirect_func_call\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_arg\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_arg\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_arg_untyped\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_arg_untyped\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_i\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_i\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_re\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_re\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_array\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_array\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_param\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_param\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_push_lhs\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_push_lhs\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_subscript_lhs\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"[]\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_subscript_lhs\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"[]\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_field_spec_lhs\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"$\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_field_spec_lhs\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"$\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_no_op\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_no_op\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_pop\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_pop\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_jmp\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_jmp\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_jmp_true\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_jmp_true\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_jmp_false\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_jmp_false\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_get_record\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_get_record\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_newfile\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_newfile\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_arrayfor_init\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_arrayfor_init\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_arrayfor_incr\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_arrayfor_incr\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_arrayfor_final\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_arrayfor_final\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_var_update\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_var_update\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_var_assign\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_var_assign\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_field_assign\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_field_assign\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_subscript_assign\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_subscript_assign\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_after_beginfile\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_after_beginfile\0" as *const u8 as *const i8
+                as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_after_endfile\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_after_endfile\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_func\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_func\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_comment\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_comment\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_exec_count\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_exec_count\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_breakpoint\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_breakpoint\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_lint\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_lint\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_lint_plus\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_lint_plus\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_atexit\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_atexit\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_stop\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_stop\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_token\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_token\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_symbol\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_symbol\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_list\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_list\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_do\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b"do\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_do\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"do\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_for\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b"for\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_for\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"for\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_arrayfor\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"for\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_arrayfor\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"for\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_while\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"while\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_while\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"while\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_switch\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"switch\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_switch\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"switch\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_if\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-            operator: b"if\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_if\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"if\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_else\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"else\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_else\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"else\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_K_function\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: b"function\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
+            desc: b"opcodeval::Op_K_function\0" as *const u8 as *const i8 as *mut i8,
+            operator: b"function\0" as *const u8 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_cond_exp\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_cond_exp\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_parens\0" as *const u8 as *const libc::c_char
-                as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_parens\0" as *const u8 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: b"Op_final --- this should never appear\0" as *const u8
-                as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: b"opcodeval::Op_final --- this should never appear\0" as *const u8
+                as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
     {
         let mut init = optypetab {
-            desc: 0 as *const libc::c_char as *mut libc::c_char,
-            operator: 0 as *const libc::c_char as *mut libc::c_char,
+            desc: 0 as *const i8 as *mut i8,
+            operator: 0 as *const i8 as *mut i8,
         };
         init
     },
 ];
 #[no_mangle]
-pub unsafe extern "C" fn nodetype2str(mut type_0: NODETYPE) -> *const libc::c_char {
-    static mut buf: [libc::c_char; 40] = [0; 40];
-    if type_0 as libc::c_uint >= Node_illegal as libc::c_int as libc::c_uint
-        && type_0 as libc::c_uint <= Node_final as libc::c_int as libc::c_uint
+pub unsafe extern "C" fn nodetype2str(mut type_0: NODETYPE) -> *const i8 {
+    static mut buf: [i8; 40] = [0; 40];
+    if type_0 as u32 >= nodevals::Node_illegal as i32 as u32
+        && type_0 as u32 <= nodevals::Node_final as i32 as u32
     {
-        return nodetypes[type_0 as libc::c_int as usize];
+        return nodetypes[type_0 as i32 as usize];
     }
     sprintf(
         buf.as_mut_ptr(),
         dcgettext(
-            0 as *const libc::c_char,
-            b"unknown nodetype %d\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"unknown nodetype %d\0" as *const u8 as *const i8,
+            5 as i32,
         ),
-        type_0 as libc::c_int,
+        type_0 as i32,
     );
     return buf.as_mut_ptr();
 }
 #[no_mangle]
-pub unsafe extern "C" fn opcode2str(mut op: OPCODE) -> *const libc::c_char {
-    if op as libc::c_uint >= Op_illegal as libc::c_int as libc::c_uint
-        && (op as libc::c_uint) < Op_final as libc::c_int as libc::c_uint
+pub unsafe extern "C" fn opcode2str(mut op: OPCODE) -> *const i8 {
+    if op as u32 >= opcodeval::Op_illegal as i32 as u32
+        && (op as u32) < opcodeval::Op_final as i32 as u32
     {
-        return optypes[op as libc::c_int as usize].desc;
+        return optypes[op as i32 as usize].desc;
     }
     (set_loc
         as unsafe extern "C" fn(
-            *const libc::c_char,
-            libc::c_int,
-        ) -> ())(b"eval.c\0" as *const u8 as *const libc::c_char, 416 as libc::c_int);
+            *const i8,
+            i32,
+        ) -> ())(b"eval.c\0" as *const u8 as *const i8, 416 as i32);
     (Some(
-        (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
             .expect("non-null function pointer"),
     ))
         .expect(
             "non-null function pointer",
         )(
         dcgettext(
-            0 as *const libc::c_char,
-            b"unknown opcode %d\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"unknown opcode %d\0" as *const u8 as *const i8,
+            5 as i32,
         ),
-        op as libc::c_int,
+        op as i32,
     );
-    return 0 as *const libc::c_char;
+    return 0 as *const i8;
 }
 #[no_mangle]
-pub unsafe extern "C" fn op2str(mut op: OPCODE) -> *const libc::c_char {
-    if op as libc::c_uint >= Op_illegal as libc::c_int as libc::c_uint
-        && (op as libc::c_uint) < Op_final as libc::c_int as libc::c_uint
+pub unsafe extern "C" fn op2str(mut op: OPCODE) -> *const i8 {
+    if op as u32 >= opcodeval::Op_illegal as i32 as u32
+        && (op as u32) < opcodeval::Op_final as i32 as u32
     {
-        if !(optypes[op as libc::c_int as usize].operator).is_null() {
-            return optypes[op as libc::c_int as usize].operator
+        if !(optypes[op as i32 as usize].operator).is_null() {
+            return optypes[op as i32 as usize].operator
         } else {
             (set_loc
                 as unsafe extern "C" fn(
-                    *const libc::c_char,
-                    libc::c_int,
-                ) -> ())(
-                b"eval.c\0" as *const u8 as *const libc::c_char,
-                429 as libc::c_int,
-            );
+                    *const i8,
+                    i32,
+                ) -> ())(b"eval.c\0" as *const u8 as *const i8, 429 as i32);
             (Some(
-                (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+                (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                     .expect("non-null function pointer"),
             ))
                 .expect(
                     "non-null function pointer",
                 )(
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"opcode %s not an operator or keyword\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"opcode %s not an operator or keyword\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
-                optypes[op as libc::c_int as usize].desc,
+                optypes[op as i32 as usize].desc,
             );
         }
     } else {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            432 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 432 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"unknown opcode %d\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"unknown opcode %d\0" as *const u8 as *const i8,
+                5 as i32,
             ),
-            op as libc::c_int,
+            op as i32,
         );
     }
-    return 0 as *const libc::c_char;
+    return 0 as *const i8;
 }
 #[no_mangle]
-pub unsafe extern "C" fn flags2str(mut flagval: libc::c_int) -> *const libc::c_char {
+pub unsafe extern "C" fn flags2str(mut flagval: i32) -> *const i8 {
     static mut values: [flagtab; 21] = [
         {
             let mut init = flagtab {
-                val: MALLOC as libc::c_int,
-                name: b"MALLOC\0" as *const u8 as *const libc::c_char,
+                val: flagvals::MALLOC as i32,
+                name: b"flagvals::MALLOC\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: STRING as libc::c_int,
-                name: b"STRING\0" as *const u8 as *const libc::c_char,
+                val: flagvals::STRING as i32,
+                name: b"flagvals::STRING\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: STRCUR as libc::c_int,
-                name: b"STRCUR\0" as *const u8 as *const libc::c_char,
+                val: flagvals::STRCUR as i32,
+                name: b"flagvals::STRCUR\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NUMCUR as libc::c_int,
-                name: b"NUMCUR\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NUMCUR as i32,
+                name: b"flagvals::NUMCUR\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NUMBER as libc::c_int,
-                name: b"NUMBER\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NUMBER as i32,
+                name: b"flagvals::NUMBER\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: USER_INPUT as libc::c_int,
-                name: b"USER_INPUT\0" as *const u8 as *const libc::c_char,
+                val: flagvals::USER_INPUT as i32,
+                name: b"flagvals::USER_INPUT\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: BOOLVAL as libc::c_int,
-                name: b"BOOL\0" as *const u8 as *const libc::c_char,
+                val: flagvals::BOOLVAL as i32,
+                name: b"BOOL\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: INTLSTR as libc::c_int,
-                name: b"INTLSTR\0" as *const u8 as *const libc::c_char,
+                val: flagvals::INTLSTR as i32,
+                name: b"flagvals::INTLSTR\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NUMINT as libc::c_int,
-                name: b"NUMINT\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NUMINT as i32,
+                name: b"flagvals::NUMINT\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: INTIND as libc::c_int,
-                name: b"INTIND\0" as *const u8 as *const libc::c_char,
+                val: flagvals::INTIND as i32,
+                name: b"flagvals::INTIND\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: WSTRCUR as libc::c_int,
-                name: b"WSTRCUR\0" as *const u8 as *const libc::c_char,
+                val: flagvals::WSTRCUR as i32,
+                name: b"flagvals::WSTRCUR\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: MPFN as libc::c_int,
-                name: b"MPFN\0" as *const u8 as *const libc::c_char,
+                val: flagvals::MPFN as i32,
+                name: b"flagvals::MPFN\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: MPZN as libc::c_int,
-                name: b"MPZN\0" as *const u8 as *const libc::c_char,
+                val: flagvals::MPZN as i32,
+                name: b"flagvals::MPZN\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NO_EXT_SET as libc::c_int,
-                name: b"NO_EXT_SET\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NO_EXT_SET as i32,
+                name: b"flagvals::NO_EXT_SET\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NULL_FIELD as libc::c_int,
-                name: b"NULL_FIELD\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NULL_FIELD as i32,
+                name: b"flagvals::NULL_FIELD\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: ARRAYMAXED as libc::c_int,
-                name: b"ARRAYMAXED\0" as *const u8 as *const libc::c_char,
+                val: flagvals::ARRAYMAXED as i32,
+                name: b"flagvals::ARRAYMAXED\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: HALFHAT as libc::c_int,
-                name: b"HALFHAT\0" as *const u8 as *const libc::c_char,
+                val: flagvals::HALFHAT as i32,
+                name: b"flagvals::HALFHAT\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: XARRAY as libc::c_int,
-                name: b"XARRAY\0" as *const u8 as *const libc::c_char,
+                val: flagvals::XARRAY as i32,
+                name: b"flagvals::XARRAY\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: NUMCONSTSTR as libc::c_int,
-                name: b"NUMCONSTSTR\0" as *const u8 as *const libc::c_char,
+                val: flagvals::NUMCONSTSTR as i32,
+                name: b"flagvals::NUMCONSTSTR\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: REGEX as libc::c_int,
-                name: b"REGEX\0" as *const u8 as *const libc::c_char,
+                val: flagvals::REGEX as i32,
+                name: b"flagvals::REGEX\0" as *const u8 as *const i8,
             };
             init
         },
         {
             let mut init = flagtab {
-                val: 0 as libc::c_int,
-                name: 0 as *const libc::c_char,
+                val: 0 as i32,
+                name: 0 as *const i8,
             };
             init
         },
@@ -3598,113 +4479,102 @@ pub unsafe extern "C" fn flags2str(mut flagval: libc::c_int) -> *const libc::c_c
 }
 #[no_mangle]
 pub unsafe extern "C" fn genflags2str(
-    mut flagval: libc::c_int,
+    mut flagval: i32,
     mut tab: *const flagtab,
-) -> *const libc::c_char {
-    static mut buffer: [libc::c_char; 8192] = [0; 8192];
-    let mut sp: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut i: libc::c_int = 0;
-    let mut space_left: libc::c_int = 0;
-    let mut space_needed: libc::c_int = 0;
+) -> *const i8 {
+    static mut buffer: [i8; 8192] = [0; 8192];
+    let mut sp: *mut i8 = 0 as *mut i8;
+    let mut i: i32 = 0;
+    let mut space_left: i32 = 0;
+    let mut space_needed: i32 = 0;
     sp = buffer.as_mut_ptr();
-    space_left = 8192 as libc::c_int;
-    i = 0 as libc::c_int;
+    space_left = 8192 as i32;
+    i = 0 as i32;
     while !((*tab.offset(i as isize)).name).is_null() {
-        if flagval & (*tab.offset(i as isize)).val != 0 as libc::c_int {
+        if flagval & (*tab.offset(i as isize)).val != 0 as i32 {
             space_needed = (strlen((*tab.offset(i as isize)).name))
-                .wrapping_add(
-                    (sp != buffer.as_mut_ptr()) as libc::c_int as libc::c_ulong,
-                ) as libc::c_int;
+                .wrapping_add((sp != buffer.as_mut_ptr()) as i32 as u64) as i32;
             if space_left <= space_needed {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    488 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 488 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"buffer overflow in genflags2str\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"buffer overflow in genflags2str\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
             }
             if sp != buffer.as_mut_ptr() {
                 let fresh2 = sp;
                 sp = sp.offset(1);
-                *fresh2 = '|' as i32 as libc::c_char;
+                *fresh2 = '|' as i32 as i8;
                 space_left -= 1;
                 space_left;
             }
             strcpy(sp, (*tab.offset(i as isize)).name);
-            space_left = (space_left as libc::c_ulong).wrapping_sub(strlen(sp))
-                as libc::c_int as libc::c_int;
+            space_left = (space_left as u64).wrapping_sub(strlen(sp)) as i32 as i32;
             sp = sp.offset(strlen(sp) as isize);
         }
         i += 1;
         i;
     }
-    *sp = '\0' as i32 as libc::c_char;
+    *sp = '\0' as i32 as i8;
     return buffer.as_mut_ptr();
 }
-unsafe extern "C" fn posix_compare(mut s1: *mut NODE, mut s2: *mut NODE) -> libc::c_int {
-    let mut ret: libc::c_int = 0;
-    if gawk_mb_cur_max == 1 as libc::c_int {
-        let mut save1: libc::c_char = 0;
-        let mut save2: libc::c_char = 0;
-        let mut p1: *const libc::c_char = 0 as *const libc::c_char;
-        let mut p2: *const libc::c_char = 0 as *const libc::c_char;
+unsafe extern "C" fn posix_compare(mut s1: *mut NODE, mut s2: *mut NODE) -> i32 {
+    let mut ret: i32 = 0;
+    if gawk_mb_cur_max == 1 as i32 {
+        let mut save1: i8 = 0;
+        let mut save2: i8 = 0;
+        let mut p1: *const i8 = 0 as *const i8;
+        let mut p2: *const i8 = 0 as *const i8;
         save1 = *((*s1).sub.val.sp).offset((*s1).sub.val.slen as isize);
-        *((*s1).sub.val.sp)
-            .offset((*s1).sub.val.slen as isize) = '\0' as i32 as libc::c_char;
+        *((*s1).sub.val.sp).offset((*s1).sub.val.slen as isize) = '\0' as i32 as i8;
         save2 = *((*s2).sub.val.sp).offset((*s2).sub.val.slen as isize);
-        *((*s2).sub.val.sp)
-            .offset((*s2).sub.val.slen as isize) = '\0' as i32 as libc::c_char;
+        *((*s2).sub.val.sp).offset((*s2).sub.val.slen as isize) = '\0' as i32 as i8;
         p1 = (*s1).sub.val.sp;
         p2 = (*s2).sub.val.sp;
         loop {
             let mut len: size_t = 0;
             ret = strcoll(p1, p2);
-            if ret != 0 as libc::c_int {
+            if ret != 0 as i32 {
                 break;
             }
             len = strlen(p1);
-            p1 = p1.offset(len.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize);
-            p2 = p2.offset(len.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize);
+            p1 = p1.offset(len.wrapping_add(1 as i32 as u64) as isize);
+            p2 = p2.offset(len.wrapping_add(1 as i32 as u64) as isize);
             if p1
                 == ((*s1).sub.val.sp)
                     .offset((*s1).sub.val.slen as isize)
-                    .offset(1 as libc::c_int as isize)
+                    .offset(1 as i32 as isize)
             {
                 if p2
                     != ((*s2).sub.val.sp)
                         .offset((*s2).sub.val.slen as isize)
-                        .offset(1 as libc::c_int as isize)
+                        .offset(1 as i32 as isize)
                 {
-                    ret = -(1 as libc::c_int);
+                    ret = -(1 as i32);
                 }
                 break;
             } else {
                 if !(p2
                     == ((*s2).sub.val.sp)
                         .offset((*s2).sub.val.slen as isize)
-                        .offset(1 as libc::c_int as isize))
+                        .offset(1 as i32 as isize))
                 {
                     continue;
                 }
-                ret = 1 as libc::c_int;
+                ret = 1 as i32;
                 break;
             }
         }
@@ -3720,36 +4590,34 @@ unsafe extern "C" fn posix_compare(mut s1: *mut NODE, mut s2: *mut NODE) -> libc
         loop {
             let mut len_0: size_t = 0;
             ret = wcscoll(p1_0, p2_0);
-            if ret != 0 as libc::c_int {
+            if ret != 0 as i32 {
                 break;
             }
             len_0 = wcslen(p1_0);
-            p1_0 = p1_0
-                .offset(len_0.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize);
-            p2_0 = p2_0
-                .offset(len_0.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize);
+            p1_0 = p1_0.offset(len_0.wrapping_add(1 as i32 as u64) as isize);
+            p2_0 = p2_0.offset(len_0.wrapping_add(1 as i32 as u64) as isize);
             if p1_0
                 == ((*s1).sub.val.wsp)
                     .offset((*s1).sub.val.wslen as isize)
-                    .offset(1 as libc::c_int as isize)
+                    .offset(1 as i32 as isize)
             {
                 if p2_0
                     != ((*s2).sub.val.wsp)
                         .offset((*s2).sub.val.wslen as isize)
-                        .offset(1 as libc::c_int as isize)
+                        .offset(1 as i32 as isize)
                 {
-                    ret = -(1 as libc::c_int);
+                    ret = -(1 as i32);
                 }
                 break;
             } else {
                 if !(p2_0
                     == ((*s2).sub.val.wsp)
                         .offset((*s2).sub.val.wslen as isize)
-                        .offset(1 as libc::c_int as isize))
+                        .offset(1 as i32 as isize))
                 {
                     continue;
                 }
-                ret = 1 as libc::c_int;
+                ret = 1 as i32;
                 break;
             }
         }
@@ -3761,21 +4629,19 @@ pub unsafe extern "C" fn cmp_nodes(
     mut t1: *mut NODE,
     mut t2: *mut NODE,
     mut use_strcmp: bool,
-) -> libc::c_int {
-    let mut ret: libc::c_int = 0 as libc::c_int;
+) -> i32 {
+    let mut ret: i32 = 0 as i32;
     let mut len1: size_t = 0;
     let mut len2: size_t = 0;
-    let mut l: libc::c_int = 0;
-    let mut ldiff: libc::c_int = 0;
+    let mut l: i32 = 0;
+    let mut ldiff: i32 = 0;
     if t1 == t2 {
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
     fixtype(t1);
     fixtype(t2);
-    if (*t1).flags as libc::c_uint & NUMBER as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-        && (*t2).flags as libc::c_uint & NUMBER as libc::c_int as libc::c_uint
-            != 0 as libc::c_int as libc::c_uint
+    if (*t1).flags as u32 & flagvals::NUMBER as i32 as u32 != 0 as i32 as u32
+        && (*t2).flags as u32 & flagvals::NUMBER as i32 as u32 != 0 as i32 as u32
     {
         return cmp_numbers.expect("non-null function pointer")(t1, t2);
     }
@@ -3783,42 +4649,35 @@ pub unsafe extern "C" fn cmp_nodes(
     force_string_fmt(t2, CONVFMT, CONVFMTidx);
     len1 = (*t1).sub.val.slen;
     len2 = (*t2).sub.val.slen;
-    ldiff = len1.wrapping_sub(len2) as libc::c_int;
-    if len1 == 0 as libc::c_int as libc::c_ulong
-        || len2 == 0 as libc::c_int as libc::c_ulong
-    {
+    ldiff = len1.wrapping_sub(len2) as i32;
+    if len1 == 0 as i32 as u64 || len2 == 0 as i32 as u64 {
         return ldiff;
     }
-    if do_flags as libc::c_uint & DO_POSIX as libc::c_int as libc::c_uint != 0
-        && !use_strcmp
-    {
+    if do_flags as u32 & do_flag_values::DO_POSIX as i32 as u32 != 0 && !use_strcmp {
         return posix_compare(t1, t2);
     }
-    l = (if ldiff <= 0 as libc::c_int { len1 } else { len2 }) as libc::c_int;
+    l = (if ldiff <= 0 as i32 { len1 } else { len2 }) as i32;
     if IGNORECASE {
-        let mut cp1: *const libc::c_uchar = (*t1).sub.val.sp as *const libc::c_uchar;
-        let mut cp2: *const libc::c_uchar = (*t2).sub.val.sp as *const libc::c_uchar;
-        let mut save1: libc::c_char = *((*t1).sub.val.sp)
-            .offset((*t1).sub.val.slen as isize);
-        let mut save2: libc::c_char = *((*t2).sub.val.sp)
-            .offset((*t2).sub.val.slen as isize);
-        if gawk_mb_cur_max > 1 as libc::c_int {
+        let mut cp1: *const u8 = (*t1).sub.val.sp as *const u8;
+        let mut cp2: *const u8 = (*t2).sub.val.sp as *const u8;
+        let mut save1: i8 = *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize);
+        let mut save2: i8 = *((*t2).sub.val.sp).offset((*t2).sub.val.slen as isize);
+        if gawk_mb_cur_max > 1 as i32 {
             let ref mut fresh3 = *((*t2).sub.val.sp).offset((*t2).sub.val.slen as isize);
-            *fresh3 = '\0' as i32 as libc::c_char;
+            *fresh3 = '\0' as i32 as i8;
             *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = *fresh3;
             ret = strncasecmpmbs(cp1, cp2, l as size_t);
             *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = save1;
             *((*t2).sub.val.sp).offset((*t2).sub.val.slen as isize) = save2;
         } else {
-            ret = 0 as libc::c_int;
+            ret = 0 as i32;
             loop {
                 let fresh4 = l;
                 l = l - 1;
-                if !(fresh4 > 0 as libc::c_int && ret == 0 as libc::c_int) {
+                if !(fresh4 > 0 as i32 && ret == 0 as i32) {
                     break;
                 }
-                ret = casetable[*cp1 as usize] as libc::c_int
-                    - casetable[*cp2 as usize] as libc::c_int;
+                ret = casetable[*cp1 as usize] as i32 - casetable[*cp2 as usize] as i32;
                 cp1 = cp1.offset(1);
                 cp1;
                 cp2 = cp2.offset(1);
@@ -3829,61 +4688,61 @@ pub unsafe extern "C" fn cmp_nodes(
         ret = memcmp(
             (*t1).sub.val.sp as *const libc::c_void,
             (*t2).sub.val.sp as *const libc::c_void,
-            l as libc::c_ulong,
+            l as u64,
         );
     }
-    ret = if ret == 0 as libc::c_int { ldiff } else { ret };
+    ret = if ret == 0 as i32 { ldiff } else { ret };
     return ret;
 }
 unsafe extern "C" fn push_frame(mut f: *mut NODE) {
-    static mut max_fcall: libc::c_long = 0;
+    static mut max_fcall: i64 = 0;
     fcall_count += 1;
     fcall_count;
     if fcall_list.is_null() {
-        max_fcall = 10 as libc::c_int as libc::c_long;
+        max_fcall = 10 as i32 as i64;
         fcall_list = emalloc_real(
-            ((max_fcall + 1 as libc::c_int as libc::c_long) as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
-            b"push_frame\0" as *const u8 as *const libc::c_char,
-            b"fcall_list\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            654 as libc::c_int,
+            ((max_fcall + 1 as i32 as i64) as u64)
+                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
+            b"push_frame\0" as *const u8 as *const i8,
+            b"fcall_list\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            654 as i32,
         ) as *mut *mut NODE;
     } else if fcall_count == max_fcall {
-        max_fcall *= 2 as libc::c_int as libc::c_long;
+        max_fcall *= 2 as i32 as i64;
         fcall_list = erealloc_real(
             fcall_list as *mut libc::c_void,
-            ((max_fcall + 1 as libc::c_int as libc::c_long) as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
-            b"push_frame\0" as *const u8 as *const libc::c_char,
-            b"fcall_list\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            657 as libc::c_int,
+            ((max_fcall + 1 as i32 as i64) as u64)
+                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
+            b"push_frame\0" as *const u8 as *const i8,
+            b"fcall_list\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            657 as i32,
         ) as *mut *mut NODE;
     }
-    if fcall_count > 1 as libc::c_int as libc::c_long {
+    if fcall_count > 1 as i32 as i64 {
         memmove(
-            fcall_list.offset(2 as libc::c_int as isize) as *mut libc::c_void,
-            fcall_list.offset(1 as libc::c_int as isize) as *const libc::c_void,
-            ((fcall_count - 1 as libc::c_int as libc::c_long) as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
+            fcall_list.offset(2 as i32 as isize) as *mut libc::c_void,
+            fcall_list.offset(1 as i32 as isize) as *const libc::c_void,
+            ((fcall_count - 1 as i32 as i64) as u64)
+                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
         );
     }
-    let ref mut fresh5 = *fcall_list.offset(1 as libc::c_int as isize);
+    let ref mut fresh5 = *fcall_list.offset(1 as i32 as isize);
     *fresh5 = f;
 }
 unsafe extern "C" fn pop_frame() {
-    if fcall_count > 1 as libc::c_int as libc::c_long {
+    if fcall_count > 1 as i32 as i64 {
         memmove(
-            fcall_list.offset(1 as libc::c_int as isize) as *mut libc::c_void,
-            fcall_list.offset(2 as libc::c_int as isize) as *const libc::c_void,
-            ((fcall_count - 1 as libc::c_int as libc::c_long) as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
+            fcall_list.offset(1 as i32 as isize) as *mut libc::c_void,
+            fcall_list.offset(2 as i32 as isize) as *const libc::c_void,
+            ((fcall_count - 1 as i32 as i64) as u64)
+                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
         );
     }
     fcall_count -= 1;
     fcall_count;
-    if do_flags as libc::c_uint & DO_DEBUG as libc::c_int as libc::c_uint != 0 {
+    if do_flags as u32 & do_flag_values::DO_DEBUG as i32 as u32 != 0 {
         frame_popped();
     }
 }
@@ -3891,17 +4750,17 @@ unsafe extern "C" fn pop_frame() {
 pub unsafe extern "C" fn dump_fcall_stack(mut fp: *mut FILE) {
     let mut f: *mut NODE = 0 as *mut NODE;
     let mut func: *mut NODE = 0 as *mut NODE;
-    let mut i: libc::c_long = 0 as libc::c_int as libc::c_long;
-    let mut k: libc::c_long = 0 as libc::c_int as libc::c_long;
-    if fcall_count == 0 as libc::c_int as libc::c_long {
+    let mut i: i64 = 0 as i32 as i64;
+    let mut k: i64 = 0 as i32 as i64;
+    if fcall_count == 0 as i32 as i64 {
         return;
     }
     fprintf(
         fp,
         dcgettext(
-            0 as *const libc::c_char,
-            b"\n\t# Function Call Stack:\n\n\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"\n\t# Function Call Stack:\n\n\0" as *const u8 as *const i8,
+            5 as i32,
         ),
     );
     func = (*frame_ptr).sub.nodep.x.extra;
@@ -3909,11 +4768,11 @@ pub unsafe extern "C" fn dump_fcall_stack(mut fp: *mut FILE) {
     k = k + 1;
     fprintf(
         fp,
-        b"\t# %3ld. %s\n\0" as *const u8 as *const libc::c_char,
+        b"\t# %3ld. %s\n\0" as *const u8 as *const i8,
         fresh6,
         (*func).sub.nodep.name,
     );
-    i = 1 as libc::c_int as libc::c_long;
+    i = 1 as i32 as i64;
     while i < fcall_count {
         f = *fcall_list.offset(i as isize);
         func = (*f).sub.nodep.x.extra;
@@ -3921,45 +4780,41 @@ pub unsafe extern "C" fn dump_fcall_stack(mut fp: *mut FILE) {
         k = k + 1;
         fprintf(
             fp,
-            b"\t# %3ld. %s\n\0" as *const u8 as *const libc::c_char,
+            b"\t# %3ld. %s\n\0" as *const u8 as *const i8,
             fresh7,
             (*func).sub.nodep.name,
         );
         i += 1;
         i;
     }
-    fprintf(fp, b"\t# %3ld. -- main --\n\0" as *const u8 as *const libc::c_char, k);
+    fprintf(fp, b"\t# %3ld. -- main --\n\0" as *const u8 as *const i8, k);
 }
 #[no_mangle]
 pub unsafe extern "C" fn set_IGNORECASE() {
-    static mut warned: bool = 0 as libc::c_int != 0;
-    if (do_flags as libc::c_uint & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-        || do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0)
+    static mut warned: bool = 0 as i32 != 0;
+    if (do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32 != 0
+        || do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 != 0)
         && !warned
     {
-        warned = 1 as libc::c_int != 0;
+        warned = 1 as i32 != 0;
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            716 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 716 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"`IGNORECASE' is a gawk extension\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"`IGNORECASE' is a gawk extension\0" as *const u8 as *const i8,
+                5 as i32,
             ),
         );
     }
-    if do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0 {
-        IGNORECASE = 0 as libc::c_int != 0;
+    if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 != 0 {
+        IGNORECASE = 0 as i32 != 0;
     } else {
         IGNORECASE = boolval((*IGNORECASE_node).sub.nodep.l.lptr);
     }
@@ -3968,90 +4823,78 @@ pub unsafe extern "C" fn set_IGNORECASE() {
 #[no_mangle]
 pub unsafe extern "C" fn set_BINMODE() {
     let mut current_block: u64;
-    static mut warned: bool = 0 as libc::c_int != 0;
-    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
+    static mut warned: bool = 0 as i32 != 0;
+    let mut p: *mut i8 = 0 as *mut i8;
     let mut v: *mut NODE = fixtype((*BINMODE_node).sub.nodep.l.lptr);
-    if (do_flags as libc::c_uint & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-        || do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0)
+    if (do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32 != 0
+        || do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 != 0)
         && !warned
     {
-        warned = 1 as libc::c_int != 0;
+        warned = 1 as i32 != 0;
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            737 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 737 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"`BINMODE' is a gawk extension\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"`BINMODE' is a gawk extension\0" as *const u8 as *const i8,
+                5 as i32,
             ),
         );
     }
-    if do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0 {
-        BINMODE = TEXT_TRANSLATE as libc::c_int;
-    } else if (*v).flags as libc::c_uint & NUMBER as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
-        BINMODE = (*v).sub.val.fltnum as libc::c_long as libc::c_int;
-        if BINMODE < TEXT_TRANSLATE as libc::c_int {
-            BINMODE = TEXT_TRANSLATE as libc::c_int;
-        } else if BINMODE > BINMODE_BOTH as libc::c_int {
-            BINMODE = BINMODE_BOTH as libc::c_int;
+    if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 != 0 {
+        BINMODE = binmode_values::TEXT_TRANSLATE as i32;
+    } else if (*v).flags as u32 & flagvals::NUMBER as i32 as u32 != 0 as i32 as u32 {
+        BINMODE = (*v).sub.val.fltnum as i64 as i32;
+        if BINMODE < binmode_values::TEXT_TRANSLATE as i32 {
+            BINMODE = binmode_values::TEXT_TRANSLATE as i32;
+        } else if BINMODE > binmode_values::BINMODE_BOTH as i32 {
+            BINMODE = binmode_values::BINMODE_BOTH as i32;
         }
-    } else if (*v).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
+    } else if (*v).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32 {
         p = (*v).sub.val.sp;
         match (*v).sub.val.slen {
             1 => {
-                match *p.offset(0 as libc::c_int as isize) as libc::c_int {
+                match *p.offset(0 as i32 as isize) as i32 {
                     48 | 49 | 50 | 51 => {
-                        BINMODE = *p.offset(0 as libc::c_int as isize) as libc::c_int
-                            - '0' as i32;
+                        BINMODE = *p.offset(0 as i32 as isize) as i32 - '0' as i32;
                         current_block = 18377268871191777778;
                     }
                     114 => {
-                        BINMODE = BINMODE_INPUT as libc::c_int;
+                        BINMODE = binmode_values::BINMODE_INPUT as i32;
                         current_block = 18377268871191777778;
                     }
                     119 => {
-                        BINMODE = BINMODE_OUTPUT as libc::c_int;
+                        BINMODE = binmode_values::BINMODE_OUTPUT as i32;
                         current_block = 18377268871191777778;
                     }
                     _ => {
-                        BINMODE = BINMODE_BOTH as libc::c_int;
+                        BINMODE = binmode_values::BINMODE_BOTH as i32;
                         current_block = 14035247036432658994;
                     }
                 }
             }
             2 => {
-                match *p.offset(0 as libc::c_int as isize) as libc::c_int {
+                match *p.offset(0 as i32 as isize) as i32 {
                     114 => {
                         current_block = 11561196344241271117;
                         match current_block {
                             14784417845850896246 => {
-                                BINMODE = BINMODE_BOTH as libc::c_int;
-                                if *p.offset(1 as libc::c_int as isize) as libc::c_int
-                                    != 'r' as i32
-                                {
+                                BINMODE = binmode_values::BINMODE_BOTH as i32;
+                                if *p.offset(1 as i32 as isize) as i32 != 'r' as i32 {
                                     current_block = 14035247036432658994;
                                 } else {
                                     current_block = 18377268871191777778;
                                 }
                             }
                             _ => {
-                                BINMODE = BINMODE_BOTH as libc::c_int;
-                                if *p.offset(1 as libc::c_int as isize) as libc::c_int
-                                    != 'w' as i32
-                                {
+                                BINMODE = binmode_values::BINMODE_BOTH as i32;
+                                if *p.offset(1 as i32 as isize) as i32 != 'w' as i32 {
                                     current_block = 14035247036432658994;
                                 } else {
                                     current_block = 18377268871191777778;
@@ -4063,20 +4906,16 @@ pub unsafe extern "C" fn set_BINMODE() {
                         current_block = 14784417845850896246;
                         match current_block {
                             14784417845850896246 => {
-                                BINMODE = BINMODE_BOTH as libc::c_int;
-                                if *p.offset(1 as libc::c_int as isize) as libc::c_int
-                                    != 'r' as i32
-                                {
+                                BINMODE = binmode_values::BINMODE_BOTH as i32;
+                                if *p.offset(1 as i32 as isize) as i32 != 'r' as i32 {
                                     current_block = 14035247036432658994;
                                 } else {
                                     current_block = 18377268871191777778;
                                 }
                             }
                             _ => {
-                                BINMODE = BINMODE_BOTH as libc::c_int;
-                                if *p.offset(1 as libc::c_int as isize) as libc::c_int
-                                    != 'w' as i32
-                                {
+                                BINMODE = binmode_values::BINMODE_BOTH as i32;
+                                if *p.offset(1 as i32 as isize) as i32 != 'w' as i32 {
                                     current_block = 14035247036432658994;
                                 } else {
                                     current_block = 18377268871191777778;
@@ -4098,215 +4937,196 @@ pub unsafe extern "C" fn set_BINMODE() {
             _ => {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    794 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 794 as i32);
                 (Some(lintfunc.expect("non-null function pointer")))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"BINMODE value `%s' is invalid, treated as 3\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     p,
                 );
             }
         }
     } else {
-        BINMODE = 3 as libc::c_int;
+        BINMODE = 3 as i32;
     };
 }
 #[no_mangle]
 pub unsafe extern "C" fn set_OFS() {
-    static mut first: bool = 1 as libc::c_int != 0;
+    static mut first: bool = 1 as i32 != 0;
     let mut new_ofs_len: size_t = 0;
     if first {
-        first = 0 as libc::c_int != 0;
+        first = 0 as i32 != 0;
     } else if !field0_valid {
-        get_field(
-            9223372036854775807 as libc::c_long - 1 as libc::c_int as libc::c_long,
-            0 as *mut Func_ptr,
-        );
+        get_field(9223372036854775807 as i64 - 1 as i32 as i64, 0 as *mut Func_ptr);
         rebuild_record();
     }
-    (*OFS_node)
-        .sub
-        .nodep
-        .l
-        .lptr = force_string_fmt((*OFS_node).sub.nodep.l.lptr, CONVFMT, CONVFMTidx);
+    (*OFS_node).sub.nodep.l.lptr = force_string_fmt(
+        (*OFS_node).sub.nodep.l.lptr,
+        CONVFMT,
+        CONVFMTidx,
+    );
     new_ofs_len = (*(*OFS_node).sub.nodep.l.lptr).sub.val.slen;
     if OFS.is_null() {
         OFS = emalloc_real(
-            new_ofs_len.wrapping_add(1 as libc::c_int as libc::c_ulong),
-            b"set_OFS\0" as *const u8 as *const libc::c_char,
-            b"OFS\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            829 as libc::c_int,
-        ) as *mut libc::c_char;
-    } else if (OFSlen as libc::c_ulong) < new_ofs_len {
+            new_ofs_len.wrapping_add(1 as i32 as u64),
+            b"set_OFS\0" as *const u8 as *const i8,
+            b"OFS\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            829 as i32,
+        ) as *mut i8;
+    } else if (OFSlen as u64) < new_ofs_len {
         OFS = erealloc_real(
             OFS as *mut libc::c_void,
-            new_ofs_len.wrapping_add(1 as libc::c_int as libc::c_ulong),
-            b"set_OFS\0" as *const u8 as *const libc::c_char,
-            b"OFS\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            831 as libc::c_int,
-        ) as *mut libc::c_char;
+            new_ofs_len.wrapping_add(1 as i32 as u64),
+            b"set_OFS\0" as *const u8 as *const i8,
+            b"OFS\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            831 as i32,
+        ) as *mut i8;
     }
     memcpy(
         OFS as *mut libc::c_void,
         (*(*OFS_node).sub.nodep.l.lptr).sub.val.sp as *const libc::c_void,
         (*(*OFS_node).sub.nodep.l.lptr).sub.val.slen,
     );
-    OFSlen = new_ofs_len as libc::c_int;
-    *OFS.offset(OFSlen as isize) = '\0' as i32 as libc::c_char;
+    OFSlen = new_ofs_len as i32;
+    *OFS.offset(OFSlen as isize) = '\0' as i32 as i8;
 }
 #[no_mangle]
 pub unsafe extern "C" fn set_ORS() {
-    (*ORS_node)
-        .sub
-        .nodep
-        .l
-        .lptr = force_string_fmt((*ORS_node).sub.nodep.l.lptr, CONVFMT, CONVFMTidx);
+    (*ORS_node).sub.nodep.l.lptr = force_string_fmt(
+        (*ORS_node).sub.nodep.l.lptr,
+        CONVFMT,
+        CONVFMTidx,
+    );
     ORS = (*(*ORS_node).sub.nodep.l.lptr).sub.val.sp;
-    ORSlen = (*(*ORS_node).sub.nodep.l.lptr).sub.val.slen as libc::c_int;
+    ORSlen = (*(*ORS_node).sub.nodep.l.lptr).sub.val.slen as i32;
 }
 #[no_mangle]
 pub static mut fmt_list: *mut *mut NODE = 0 as *const *mut NODE as *mut *mut NODE;
-unsafe extern "C" fn fmt_ok(mut n: *mut NODE) -> libc::c_int {
+unsafe extern "C" fn fmt_ok(mut n: *mut NODE) -> i32 {
     let mut tmp: *mut NODE = force_string_fmt(n, CONVFMT, CONVFMTidx);
-    let mut p: *const libc::c_char = (*tmp).sub.val.sp;
-    static mut float_formats: [libc::c_char; 7] = unsafe {
-        *::core::mem::transmute::<&[u8; 7], &[libc::c_char; 7]>(b"efgEFG\0")
+    let mut p: *const i8 = (*tmp).sub.val.sp;
+    static mut float_formats: [i8; 7] = unsafe {
+        *::core::mem::transmute::<&[u8; 7], &[i8; 7]>(b"efgEFG\0")
     };
-    static mut flags: [libc::c_char; 6] = unsafe {
-        *::core::mem::transmute::<&[u8; 6], &[libc::c_char; 6]>(b" +-#'\0")
+    static mut flags: [i8; 6] = unsafe {
+        *::core::mem::transmute::<&[u8; 6], &[i8; 6]>(b" +-#'\0")
     };
     let fresh8 = p;
     p = p.offset(1);
-    if *fresh8 as libc::c_int != '%' as i32 {
-        return 0 as libc::c_int;
+    if *fresh8 as i32 != '%' as i32 {
+        return 0 as i32;
     }
-    while *p as libc::c_int != 0
-        && !(strchr(flags.as_ptr(), *p as libc::c_int)).is_null()
+    while *p as i32 != 0 && !(strchr(flags.as_ptr(), *p as i32)).is_null() {
+        p = p.offset(1);
+        p;
+    }
+    while *p as i32 != 0
+        && *(*__ctype_b_loc()).offset(*p as u8 as i32 as isize) as i32
+            & C2RustUnnamed::_ISdigit as i32 as libc::c_ushort as i32 != 0
     {
         p = p.offset(1);
         p;
     }
-    while *p as libc::c_int != 0
-        && *(*__ctype_b_loc()).offset(*p as libc::c_uchar as libc::c_int as isize)
-            as libc::c_int & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-            != 0
+    if *p as i32 == '\0' as i32
+        || *p as i32 != '.' as i32
+            && *(*__ctype_b_loc()).offset(*p as u8 as i32 as isize) as i32
+                & C2RustUnnamed::_ISdigit as i32 as libc::c_ushort as i32 == 0
+    {
+        return 0 as i32;
+    }
+    if *p as i32 == '.' as i32 {
+        p = p.offset(1);
+        p;
+    }
+    while *p as i32 != 0
+        && *(*__ctype_b_loc()).offset(*p as u8 as i32 as isize) as i32
+            & C2RustUnnamed::_ISdigit as i32 as libc::c_ushort as i32 != 0
     {
         p = p.offset(1);
         p;
     }
-    if *p as libc::c_int == '\0' as i32
-        || *p as libc::c_int != '.' as i32
-            && *(*__ctype_b_loc()).offset(*p as libc::c_uchar as libc::c_int as isize)
-                as libc::c_int & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-                == 0
+    if *p as i32 == '\0' as i32 || (strchr(float_formats.as_ptr(), *p as i32)).is_null()
     {
-        return 0 as libc::c_int;
-    }
-    if *p as libc::c_int == '.' as i32 {
-        p = p.offset(1);
-        p;
-    }
-    while *p as libc::c_int != 0
-        && *(*__ctype_b_loc()).offset(*p as libc::c_uchar as libc::c_int as isize)
-            as libc::c_int & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int
-            != 0
-    {
-        p = p.offset(1);
-        p;
-    }
-    if *p as libc::c_int == '\0' as i32
-        || (strchr(float_formats.as_ptr(), *p as libc::c_int)).is_null()
-    {
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
     p = p.offset(1);
-    if *p as libc::c_int != '\0' as i32 {
-        return 0 as libc::c_int;
+    if *p as i32 != '\0' as i32 {
+        return 0 as i32;
     }
-    return 1 as libc::c_int;
+    return 1 as i32;
 }
-unsafe extern "C" fn fmt_index(mut n: *mut NODE) -> libc::c_int {
-    let mut ix: libc::c_int = 0 as libc::c_int;
-    static mut fmt_num: libc::c_int = 4 as libc::c_int;
-    static mut fmt_hiwater: libc::c_int = 0 as libc::c_int;
-    let mut save: libc::c_char = 0;
+unsafe extern "C" fn fmt_index(mut n: *mut NODE) -> i32 {
+    let mut ix: i32 = 0 as i32;
+    static mut fmt_num: i32 = 4 as i32;
+    static mut fmt_hiwater: i32 = 0 as i32;
+    let mut save: i8 = 0;
     if fmt_list.is_null() {
         fmt_list = emalloc_real(
-            (fmt_num as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
-            b"fmt_index\0" as *const u8 as *const libc::c_char,
-            b"fmt_list\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            903 as libc::c_int,
+            (fmt_num as u64).wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
+            b"fmt_index\0" as *const u8 as *const i8,
+            b"fmt_list\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            903 as i32,
         ) as *mut *mut NODE;
     }
     n = force_string_fmt(n, CONVFMT, CONVFMTidx);
     save = *((*n).sub.val.sp).offset((*n).sub.val.slen as isize);
-    *((*n).sub.val.sp).offset((*n).sub.val.slen as isize) = '\0' as i32 as libc::c_char;
+    *((*n).sub.val.sp).offset((*n).sub.val.slen as isize) = '\0' as i32 as i8;
     while ix < fmt_hiwater {
-        if cmp_nodes(*fmt_list.offset(ix as isize), n, 1 as libc::c_int != 0)
-            == 0 as libc::c_int
-        {
+        if cmp_nodes(*fmt_list.offset(ix as isize), n, 1 as i32 != 0) == 0 as i32 {
             return ix;
         }
         ix += 1;
         ix;
     }
-    if do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint
-        != 0 && fmt_ok(n) == 0
+    if do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32 != 0 && fmt_ok(n) == 0
     {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            917 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 917 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"bad `%sFMT' specification `%s'\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"bad `%sFMT' specification `%s'\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             if n == (*CONVFMT_node).sub.nodep.l.lptr {
-                b"CONV\0" as *const u8 as *const libc::c_char
+                b"CONV\0" as *const u8 as *const i8
             } else if n == (*OFMT_node).sub.nodep.l.lptr {
-                b"O\0" as *const u8 as *const libc::c_char
+                b"O\0" as *const u8 as *const i8
             } else {
-                b"\0" as *const u8 as *const libc::c_char
+                b"\0" as *const u8 as *const i8
             },
             (*n).sub.val.sp,
         );
     }
     *((*n).sub.val.sp).offset((*n).sub.val.slen as isize) = save;
     if fmt_hiwater >= fmt_num {
-        fmt_num *= 2 as libc::c_int;
+        fmt_num *= 2 as i32;
         fmt_list = erealloc_real(
             fmt_list as *mut libc::c_void,
-            (fmt_num as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
-            b"fmt_index\0" as *const u8 as *const libc::c_char,
-            b"fmt_list\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            926 as libc::c_int,
+            (fmt_num as u64).wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
+            b"fmt_index\0" as *const u8 as *const i8,
+            b"fmt_list\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            926 as i32,
         ) as *mut *mut NODE;
     }
     let ref mut fresh9 = *fmt_list.offset(fmt_hiwater as isize);
@@ -4327,107 +5147,96 @@ pub unsafe extern "C" fn set_CONVFMT() {
 }
 #[no_mangle]
 pub unsafe extern "C" fn set_LINT() {
-    let mut old_lint: libc::c_int = (do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint)
-        as libc::c_int;
+    let mut old_lint: i32 = (do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32) as i32;
     let mut n: *mut NODE = fixtype((*LINT_node).sub.nodep.l.lptr);
-    lintfunc = Some(r_warning as unsafe extern "C" fn(*const libc::c_char, ...) -> ());
+    lintfunc = Some(r_warning as unsafe extern "C" fn(*const i8, ...) -> ());
     do_flags = ::core::mem::transmute::<
-        libc::c_uint,
+        u32,
         do_flag_values,
     >(
-        do_flags as libc::c_uint
-            & !(DO_LINT_ALL as libc::c_int | DO_LINT_INVALID as libc::c_int)
-                as libc::c_uint,
+        do_flags as u32
+            & !(do_flag_values::DO_LINT_ALL as i32
+                | do_flag_values::DO_LINT_INVALID as i32) as u32,
     );
-    if (*n).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-    {
-        let mut lintval: *const libc::c_char = 0 as *const libc::c_char;
+    if (*n).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32 {
+        let mut lintval: *const i8 = 0 as *const i8;
         let mut lintlen: size_t = 0;
         lintval = (*n).sub.val.sp;
         lintlen = (*n).sub.val.slen;
-        if lintlen > 0 as libc::c_int as libc::c_ulong {
-            if lintlen == 7 as libc::c_int as libc::c_ulong
+        if lintlen > 0 as i32 as u64 {
+            if lintlen == 7 as i32 as u64
                 && strncmp(
                     lintval,
-                    b"invalid\0" as *const u8 as *const libc::c_char,
-                    7 as libc::c_int as libc::c_ulong,
-                ) == 0 as libc::c_int
+                    b"invalid\0" as *const u8 as *const i8,
+                    7 as i32 as u64,
+                ) == 0 as i32
             {
                 do_flags = ::core::mem::transmute::<
-                    libc::c_uint,
+                    u32,
                     do_flag_values,
-                >(
-                    do_flags as libc::c_uint
-                        | DO_LINT_INVALID as libc::c_int as libc::c_uint,
-                );
-            } else if lintlen == 6 as libc::c_int as libc::c_ulong
+                >(do_flags as u32 | do_flag_values::DO_LINT_INVALID as i32 as u32);
+            } else if lintlen == 6 as i32 as u64
                 && strncmp(
                     lintval,
-                    b"no-ext\0" as *const u8 as *const libc::c_char,
-                    6 as libc::c_int as libc::c_ulong,
-                ) == 0 as libc::c_int
+                    b"no-ext\0" as *const u8 as *const i8,
+                    6 as i32 as u64,
+                ) == 0 as i32
             {
                 do_flags = ::core::mem::transmute::<
-                    libc::c_uint,
+                    u32,
                     do_flag_values,
-                >(
-                    do_flags as libc::c_uint
-                        & !(DO_LINT_EXTENSIONS as libc::c_int) as libc::c_uint,
-                );
+                >(do_flags as u32 & !(do_flag_values::DO_LINT_EXTENSIONS as i32) as u32);
             } else {
                 do_flags = ::core::mem::transmute::<
-                    libc::c_uint,
+                    u32,
                     do_flag_values,
-                >(do_flags as libc::c_uint | DO_LINT_ALL as libc::c_int as libc::c_uint);
-                if lintlen == 5 as libc::c_int as libc::c_ulong
+                >(do_flags as u32 | do_flag_values::DO_LINT_ALL as i32 as u32);
+                if lintlen == 5 as i32 as u64
                     && strncmp(
                         lintval,
-                        b"fatal\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int as libc::c_ulong,
-                    ) == 0 as libc::c_int
+                        b"fatal\0" as *const u8 as *const i8,
+                        5 as i32 as u64,
+                    ) == 0 as i32
                 {
                     lintfunc = Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                        r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                     );
                 }
             }
         }
     } else if !((*n).sub.val.fltnum == 0.0f64) {
         do_flags = ::core::mem::transmute::<
-            libc::c_uint,
+            u32,
             do_flag_values,
-        >(do_flags as libc::c_uint | DO_LINT_ALL as libc::c_int as libc::c_uint);
+        >(do_flags as u32 | do_flag_values::DO_LINT_ALL as i32 as u32);
     }
-    if old_lint as libc::c_uint
-        != do_flags as libc::c_uint
-            & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                as libc::c_uint && old_lint != 0
-        && do_flags as libc::c_uint
-            & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                as libc::c_uint == 0
+    if old_lint as u32
+        != do_flags as u32
+            & (do_flag_values::DO_LINT_INVALID as i32
+                | do_flag_values::DO_LINT_ALL as i32) as u32 && old_lint != 0
+        && do_flags as u32
+            & (do_flag_values::DO_LINT_INVALID as i32
+                | do_flag_values::DO_LINT_ALL as i32) as u32 == 0
     {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            987 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 987 as i32);
         (Some(
-            (Some(r_warning as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_warning as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"turning off `--lint' due to assignment to `LINT'\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
         );
     }
@@ -4436,11 +5245,7 @@ pub unsafe extern "C" fn set_LINT() {
 #[no_mangle]
 pub unsafe extern "C" fn set_TEXTDOMAIN() {
     let mut tmp: *mut NODE = 0 as *mut NODE;
-    (*TEXTDOMAIN_node)
-        .sub
-        .nodep
-        .l
-        .lptr = force_string_fmt(
+    (*TEXTDOMAIN_node).sub.nodep.l.lptr = force_string_fmt(
         (*TEXTDOMAIN_node).sub.nodep.l.lptr,
         CONVFMT,
         CONVFMTidx,
@@ -4449,36 +5254,33 @@ pub unsafe extern "C" fn set_TEXTDOMAIN() {
     TEXTDOMAIN = (*tmp).sub.val.sp;
 }
 #[no_mangle]
-pub unsafe extern "C" fn update_ERRNO_int(mut errcode: libc::c_int) {
-    let mut cp: *const libc::c_char = 0 as *const libc::c_char;
-    update_PROCINFO_num(
-        b"errno\0" as *const u8 as *const libc::c_char,
-        errcode as libc::c_double,
-    );
+pub unsafe extern "C" fn update_ERRNO_int(mut errcode: i32) {
+    let mut cp: *const i8 = 0 as *const i8;
+    update_PROCINFO_num(b"errno\0" as *const u8 as *const i8, errcode as libc::c_double);
     if errcode != 0 {
         cp = strerror(errcode);
-        cp = dcgettext(0 as *const libc::c_char, cp, 5 as libc::c_int);
+        cp = dcgettext(0 as *const i8, cp, 5 as i32);
     } else {
-        cp = b"\0" as *const u8 as *const libc::c_char;
+        cp = b"\0" as *const u8 as *const i8;
     }
     unref((*ERRNO_node).sub.nodep.l.lptr);
-    (*ERRNO_node).sub.nodep.l.lptr = make_str_node(cp, strlen(cp), 0 as libc::c_int);
+    (*ERRNO_node).sub.nodep.l.lptr = make_str_node(cp, strlen(cp), 0 as i32);
 }
 #[no_mangle]
-pub unsafe extern "C" fn update_ERRNO_string(mut string: *const libc::c_char) {
+pub unsafe extern "C" fn update_ERRNO_string(mut string: *const i8) {
     update_PROCINFO_num(
-        b"errno\0" as *const u8 as *const libc::c_char,
-        0 as libc::c_int as libc::c_double,
+        b"errno\0" as *const u8 as *const i8,
+        0 as i32 as libc::c_double,
     );
     unref((*ERRNO_node).sub.nodep.l.lptr);
     let mut len: size_t = strlen(string);
-    (*ERRNO_node).sub.nodep.l.lptr = make_str_node(string, len, 0 as libc::c_int);
+    (*ERRNO_node).sub.nodep.l.lptr = make_str_node(string, len, 0 as i32);
 }
 #[no_mangle]
 pub unsafe extern "C" fn unset_ERRNO() {
     update_PROCINFO_num(
-        b"errno\0" as *const u8 as *const libc::c_char,
-        0 as libc::c_int as libc::c_double,
+        b"errno\0" as *const u8 as *const i8,
+        0 as i32 as libc::c_double,
     );
     unref((*ERRNO_node).sub.nodep.l.lptr);
     (*ERRNO_node).sub.nodep.l.lptr = dupnode(Nnull_string);
@@ -4487,31 +5289,20 @@ pub unsafe extern "C" fn unset_ERRNO() {
 pub unsafe extern "C" fn update_NR() {
     if (*(*NR_node).sub.nodep.l.lptr).sub.val.fltnum != NR as libc::c_double {
         unref((*NR_node).sub.nodep.l.lptr);
-        (*NR_node)
-            .sub
-            .nodep
-            .l
-            .lptr = make_number
+        (*NR_node).sub.nodep.l.lptr = make_number
             .expect("non-null function pointer")(NR as libc::c_double);
     }
 }
 #[no_mangle]
 pub unsafe extern "C" fn update_NF() {
-    let mut l: libc::c_long = 0;
-    l = (*(*NF_node).sub.nodep.l.lptr).sub.val.fltnum as libc::c_long;
-    if NF == -(1 as libc::c_int) as libc::c_long || l != NF {
-        if NF == -(1 as libc::c_int) as libc::c_long {
-            get_field(
-                9223372036854775807 as libc::c_long - 1 as libc::c_int as libc::c_long,
-                0 as *mut Func_ptr,
-            );
+    let mut l: i64 = 0;
+    l = (*(*NF_node).sub.nodep.l.lptr).sub.val.fltnum as i64;
+    if NF == -(1 as i32) as i64 || l != NF {
+        if NF == -(1 as i32) as i64 {
+            get_field(9223372036854775807 as i64 - 1 as i32 as i64, 0 as *mut Func_ptr);
         }
         unref((*NF_node).sub.nodep.l.lptr);
-        (*NF_node)
-            .sub
-            .nodep
-            .l
-            .lptr = make_number
+        (*NF_node).sub.nodep.l.lptr = make_number
             .expect("non-null function pointer")(NF as libc::c_double);
     }
 }
@@ -4519,11 +5310,7 @@ pub unsafe extern "C" fn update_NF() {
 pub unsafe extern "C" fn update_FNR() {
     if (*(*FNR_node).sub.nodep.l.lptr).sub.val.fltnum != FNR as libc::c_double {
         unref((*FNR_node).sub.nodep.l.lptr);
-        (*FNR_node)
-            .sub
-            .nodep
-            .l
-            .lptr = make_number
+        (*FNR_node).sub.nodep.l.lptr = make_number
             .expect("non-null function pointer")(FNR as libc::c_double);
     }
 }
@@ -4535,27 +5322,24 @@ pub static mut stack_ptr: *mut STACK_ITEM = 0 as *const STACK_ITEM as *mut STACK
 pub static mut stack_bottom: *mut STACK_ITEM = 0 as *const STACK_ITEM as *mut STACK_ITEM;
 #[no_mangle]
 pub static mut stack_top: *mut STACK_ITEM = 0 as *const STACK_ITEM as *mut STACK_ITEM;
-static mut STACK_SIZE: libc::c_ulong = 256 as libc::c_int as libc::c_ulong;
+static mut STACK_SIZE: u64 = 256 as i32 as u64;
 #[no_mangle]
-pub static mut max_args: libc::c_int = 0 as libc::c_int;
+pub static mut max_args: i32 = 0 as i32;
 #[no_mangle]
 pub static mut args_array: *mut *mut NODE = 0 as *const *mut NODE as *mut *mut NODE;
 #[no_mangle]
 pub unsafe extern "C" fn grow_stack() -> *mut STACK_ITEM {
-    STACK_SIZE = STACK_SIZE.wrapping_mul(2 as libc::c_int as libc::c_ulong);
+    STACK_SIZE = STACK_SIZE.wrapping_mul(2 as i32 as u64);
     stack_bottom = erealloc_real(
         stack_bottom as *mut libc::c_void,
-        STACK_SIZE.wrapping_mul(::core::mem::size_of::<STACK_ITEM>() as libc::c_ulong),
-        b"grow_stack\0" as *const u8 as *const libc::c_char,
-        b"stack_bottom\0" as *const u8 as *const libc::c_char,
-        b"eval.c\0" as *const u8 as *const libc::c_char,
-        1132 as libc::c_int,
+        STACK_SIZE.wrapping_mul(::core::mem::size_of::<STACK_ITEM>() as u64),
+        b"grow_stack\0" as *const u8 as *const i8,
+        b"stack_bottom\0" as *const u8 as *const i8,
+        b"eval.c\0" as *const u8 as *const i8,
+        1132 as i32,
     ) as *mut STACK_ITEM;
-    stack_top = stack_bottom
-        .offset(STACK_SIZE as isize)
-        .offset(-(1 as libc::c_int as isize));
-    stack_ptr = stack_bottom
-        .offset(STACK_SIZE.wrapping_div(2 as libc::c_int as libc::c_ulong) as isize);
+    stack_top = stack_bottom.offset(STACK_SIZE as isize).offset(-(1 as i32 as isize));
+    stack_ptr = stack_bottom.offset(STACK_SIZE.wrapping_div(2 as i32 as u64) as isize);
     return stack_ptr;
 }
 #[no_mangle]
@@ -4563,73 +5347,64 @@ pub unsafe extern "C" fn r_get_lhs(
     mut n: *mut NODE,
     mut reference: bool,
 ) -> *mut *mut NODE {
-    let mut isparam: bool = 0 as libc::c_int != 0;
-    if (*n).type_0 as libc::c_uint == Node_param_list as libc::c_int as libc::c_uint {
-        isparam = 1 as libc::c_int != 0;
+    let mut isparam: bool = 0 as i32 != 0;
+    if (*n).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
+        isparam = 1 as i32 != 0;
         n = *((*frame_ptr).sub.nodep.r.av).offset((*n).sub.nodep.l.ll as isize);
     }
     let mut current_block_19: u64;
-    match (*n).type_0 as libc::c_uint {
+    match (*n).type_0 as u32 {
         5 => {
             (set_loc
                 as unsafe extern "C" fn(
-                    *const libc::c_char,
-                    libc::c_int,
-                ) -> ())(
-                b"eval.c\0" as *const u8 as *const libc::c_char,
-                1156 as libc::c_int,
-            );
+                    *const i8,
+                    i32,
+                ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1156 as i32);
             (Some(
-                (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+                (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                     .expect("non-null function pointer"),
             ))
                 .expect(
                     "non-null function pointer",
                 )(
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"attempt to use array `%s' in a scalar context\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
                 array_vname(n),
             );
             return 0 as *mut *mut NODE;
         }
         12 => {
-            if (*(*n).sub.nodep.l.lptr).type_0 as libc::c_uint
-                == Node_var_array as libc::c_int as libc::c_uint
+            if (*(*n).sub.nodep.l.lptr).type_0 as u32
+                == nodevals::Node_var_array as i32 as u32
             {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    1161 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1161 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"attempt to use array `%s' in a scalar context\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     array_vname(n),
                 );
             }
-            if (*(*n).sub.nodep.l.lptr).type_0 as libc::c_uint
-                != Node_var as libc::c_int as libc::c_uint
+            if (*(*n).sub.nodep.l.lptr).type_0 as u32 != nodevals::Node_var as i32 as u32
             {
-                (*(*n).sub.nodep.l.lptr).type_0 = Node_var;
+                (*(*n).sub.nodep.l.lptr).type_0 = nodevals::Node_var;
                 (*(*n).sub.nodep.l.lptr).sub.nodep.l.lptr = dupnode(Nnull_string);
             }
             current_block_19 = 14934394078603883031;
@@ -4639,9 +5414,9 @@ pub unsafe extern "C" fn r_get_lhs(
         }
         7 => {
             pma_free((*n).sub.val.sp as *mut libc::c_void);
-            (*n).sub.val.sp = 0 as *mut libc::c_char;
-            (*n).sub.val.slen = 0 as libc::c_int as size_t;
-            (*n).type_0 = Node_var;
+            (*n).sub.val.sp = 0 as *mut i8;
+            (*n).sub.val.slen = 0 as i32 as size_t;
+            (*n).type_0 = nodevals::Node_var;
             (*n).sub.nodep.l.lptr = dupnode(Nnull_string);
             current_block_19 = 5948590327928692120;
         }
@@ -4651,9 +5426,9 @@ pub unsafe extern "C" fn r_get_lhs(
         _ => {
             r_fatal(
                 b"internal error: file %s, line %d: unexpected variable type %s\0"
-                    as *const u8 as *const libc::c_char,
-                b"eval.c\0" as *const u8 as *const libc::c_char,
-                1185 as libc::c_int,
+                    as *const u8 as *const i8,
+                b"eval.c\0" as *const u8 as *const i8,
+                1185 as i32,
                 nodetype2str((*n).type_0),
             );
             current_block_19 = 5948590327928692120;
@@ -4661,40 +5436,37 @@ pub unsafe extern "C" fn r_get_lhs(
     }
     match current_block_19 {
         14934394078603883031 => {
-            (*n).type_0 = Node_var;
+            (*n).type_0 = nodevals::Node_var;
             (*n).sub.nodep.l.lptr = dupnode(Nnull_string);
         }
         _ => {}
     }
-    if do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint
-        != 0 && reference as libc::c_int != 0 && (*n).sub.nodep.l.lptr == Nnull_string
+    if do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32 != 0 && reference as i32 != 0 && (*n).sub.nodep.l.lptr == Nnull_string
     {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1189 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1189 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
-            if isparam as libc::c_int != 0 {
+            if isparam as i32 != 0 {
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"reference to uninitialized argument `%s'\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 )
             } else {
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"reference to uninitialized variable `%s'\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 )
             },
             (*n).sub.nodep.name,
@@ -4708,118 +5480,102 @@ pub unsafe extern "C" fn r_get_field(
     mut assign: *mut Func_ptr,
     mut reference: bool,
 ) -> *mut *mut NODE {
-    let mut field_num: libc::c_long = 0;
+    let mut field_num: i64 = 0;
     let mut lhs: *mut *mut NODE = 0 as *mut *mut NODE;
     if !assign.is_null() {
         *assign = None;
     }
-    if do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint
-        != 0
+    if do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32 != 0
     {
-        if (*fixtype(n)).flags as libc::c_uint & NUMBER as libc::c_int as libc::c_uint
-            == 0 as libc::c_int as libc::c_uint
+        if (*fixtype(n)).flags as u32 & flagvals::NUMBER as i32 as u32 == 0 as i32 as u32
         {
             (set_loc
                 as unsafe extern "C" fn(
-                    *const libc::c_char,
-                    libc::c_int,
-                ) -> ())(
-                b"eval.c\0" as *const u8 as *const libc::c_char,
-                1209 as libc::c_int,
-            );
+                    *const i8,
+                    i32,
+                ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1209 as i32);
             (Some(lintfunc.expect("non-null function pointer")))
                 .expect(
                     "non-null function pointer",
                 )(
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"attempt to field reference from non-numeric value\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
             );
-            if (*n).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+            if (*n).sub.val.slen == 0 as i32 as u64 {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    1211 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1211 as i32);
                 (Some(lintfunc.expect("non-null function pointer")))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"attempt to field reference from null string\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                 );
             }
         }
     }
     force_number(n);
-    field_num = (*n).sub.val.fltnum as libc::c_long;
-    if field_num < 0 as libc::c_int as libc::c_long {
+    field_num = (*n).sub.val.fltnum as i64;
+    if field_num < 0 as i32 as i64 {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1219 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1219 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"attempt to access field %ld\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"attempt to access field %ld\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             field_num,
         );
     }
-    if field_num == 0 as libc::c_int as libc::c_long && field0_valid as libc::c_int != 0
-    {
-        lhs = &mut *fields_arr.offset(0 as libc::c_int as isize) as *mut *mut NODE;
+    if field_num == 0 as i32 as i64 && field0_valid as i32 != 0 {
+        lhs = &mut *fields_arr.offset(0 as i32 as isize) as *mut *mut NODE;
         if !assign.is_null() {
             *assign = Some(reset_record as unsafe extern "C" fn() -> ());
         }
     } else {
         lhs = get_field(field_num, assign);
     }
-    if do_flags as libc::c_uint
-        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int) as libc::c_uint
-        != 0 && reference as libc::c_int != 0
-        && (**lhs).flags as libc::c_uint & NULL_FIELD as libc::c_int as libc::c_uint
-            != 0 as libc::c_int as libc::c_uint
+    if do_flags as u32
+        & (do_flag_values::DO_LINT_INVALID as i32 | do_flag_values::DO_LINT_ALL as i32)
+            as u32 != 0 && reference as i32 != 0
+        && (**lhs).flags as u32 & flagvals::NULL_FIELD as i32 as u32 != 0 as i32 as u32
     {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1228 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1228 as i32);
         (Some(lintfunc.expect("non-null function pointer")))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
-                b"reference to uninitialized field `$%ld'\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"reference to uninitialized field `$%ld'\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             field_num,
         );
@@ -4828,15 +5584,15 @@ pub unsafe extern "C" fn r_get_field(
 }
 unsafe extern "C" fn calc_exp_posint(
     mut x: libc::c_double,
-    mut n: libc::c_long,
+    mut n: i64,
 ) -> libc::c_double {
-    let mut mult: libc::c_double = 1 as libc::c_int as libc::c_double;
-    while n > 1 as libc::c_int as libc::c_long {
-        if n % 2 as libc::c_int as libc::c_long == 1 as libc::c_int as libc::c_long {
+    let mut mult: libc::c_double = 1 as i32 as libc::c_double;
+    while n > 1 as i32 as i64 {
+        if n % 2 as i32 as i64 == 1 as i32 as i64 {
             mult *= x;
         }
         x *= x;
-        n /= 2 as libc::c_int as libc::c_long;
+        n /= 2 as i32 as i64;
     }
     return mult * x;
 }
@@ -4845,13 +5601,13 @@ pub unsafe extern "C" fn calc_exp(
     mut x1: libc::c_double,
     mut x2: libc::c_double,
 ) -> libc::c_double {
-    let mut lx: libc::c_long = 0;
-    lx = x2 as libc::c_long;
+    let mut lx: i64 = 0;
+    lx = x2 as i64;
     if lx as libc::c_double == x2 {
-        if lx == 0 as libc::c_int as libc::c_long {
-            return 1 as libc::c_int as libc::c_double;
+        if lx == 0 as i32 as i64 {
+            return 1 as i32 as libc::c_double;
         }
-        return if lx > 0 as libc::c_int as libc::c_long {
+        return if lx > 0 as i32 as i64 {
             calc_exp_posint(x1, lx)
         } else {
             1.0f64 / calc_exp_posint(x1, -lx)
@@ -4865,45 +5621,41 @@ unsafe extern "C" fn setup_frame(mut pc: *mut INSTRUCTION) -> *mut INSTRUCTION {
     let mut f: *mut NODE = 0 as *mut NODE;
     let mut fp: *mut NODE = 0 as *mut NODE;
     let mut sp: *mut *mut NODE = 0 as *mut *mut NODE;
-    let mut pcount: libc::c_int = 0;
-    let mut arg_count: libc::c_int = 0;
-    let mut i: libc::c_int = 0;
-    let mut j: libc::c_int = 0;
+    let mut pcount: i32 = 0;
+    let mut arg_count: i32 = 0;
+    let mut i: i32 = 0;
+    let mut j: i32 = 0;
     f = (*pc).x.xn;
-    pcount = (*f).sub.nodep.l.ll as libc::c_int;
+    pcount = (*f).sub.nodep.l.ll as i32;
     fp = (*f).sub.nodep.rn;
-    arg_count = (*pc.offset(1 as libc::c_int as isize)).x.xl as libc::c_int;
-    if pcount > 0 as libc::c_int {
+    arg_count = (*pc.offset(1 as i32 as isize)).x.xl as i32;
+    if pcount > 0 as i32 {
         sp = ezalloc_real(
-            (pcount as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<*mut NODE>() as libc::c_ulong),
-            b"setup_frame\0" as *const u8 as *const libc::c_char,
-            b"sp\0" as *const u8 as *const libc::c_char,
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1286 as libc::c_int,
+            (pcount as u64).wrapping_mul(::core::mem::size_of::<*mut NODE>() as u64),
+            b"setup_frame\0" as *const u8 as *const i8,
+            b"sp\0" as *const u8 as *const i8,
+            b"eval.c\0" as *const u8 as *const i8,
+            1286 as i32,
         ) as *mut *mut NODE;
     }
     if arg_count > pcount {
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1291 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1291 as i32);
         (Some(
-            (Some(r_warning as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_warning as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"function `%s' called with more arguments than declared\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             (*f).sub.nodep.name,
         );
@@ -4911,7 +5663,7 @@ unsafe extern "C" fn setup_frame(mut pc: *mut INSTRUCTION) -> *mut INSTRUCTION {
             let fresh11 = stack_ptr;
             stack_ptr = stack_ptr.offset(-1);
             r = (*fresh11).rptr;
-            if (*r).type_0 as libc::c_uint == Node_val as libc::c_int as libc::c_uint {
+            if (*r).type_0 as u32 == nodevals::Node_val as i32 as u32 {
                 DEREF(r);
             }
             arg_count -= 1;
@@ -4920,74 +5672,65 @@ unsafe extern "C" fn setup_frame(mut pc: *mut INSTRUCTION) -> *mut INSTRUCTION {
             }
         }
     }
-    i = 0 as libc::c_int;
-    j = arg_count - 1 as libc::c_int;
+    i = 0 as i32;
+    j = arg_count - 1 as i32;
     while i < pcount {
-        r = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+        r = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
         if !r.is_null() {
-            nextfree[BLOCK_NODE as libc::c_int as usize]
-                .freep = (*(r as *mut block_item)).freep;
+            nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(r
+                as *mut block_item))
+                .freep;
         } else {
-            r = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+            r = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
         };
-        memset(
-            r as *mut libc::c_void,
-            0 as libc::c_int,
-            ::core::mem::size_of::<NODE>() as libc::c_ulong,
-        );
+        memset(r as *mut libc::c_void, 0 as i32, ::core::mem::size_of::<NODE>() as u64);
         let ref mut fresh12 = *sp.offset(i as isize);
         *fresh12 = r;
         if i >= arg_count {
-            (*r).type_0 = Node_var_new;
+            (*r).type_0 = nodevals::Node_var_new;
             (*r).sub.nodep.name = (*fp.offset(i as isize)).sub.nodep.name;
         } else {
             m = (*stack_ptr.offset(-(j as isize))).rptr;
-            if (*m).type_0 as libc::c_uint
-                == Node_param_list as libc::c_int as libc::c_uint
-            {
+            if (*m).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
                 m = *((*frame_ptr).sub.nodep.r.av).offset((*m).sub.nodep.l.ll as isize);
             }
-            if m == *fields_arr.offset(0 as libc::c_int as isize) {
+            if m == *fields_arr.offset(0 as i32 as isize) {
                 DEREF(m);
                 m = dupnode(m);
             }
-            match (*m).type_0 as libc::c_uint {
+            match (*m).type_0 as u32 {
                 6 | 5 | 7 => {
-                    (*r).type_0 = Node_array_ref;
+                    (*r).type_0 = nodevals::Node_array_ref;
                     (*r).sub.nodep.r.rptr = m;
                     (*r).sub.nodep.l.lptr = (*r).sub.nodep.r.rptr;
                 }
                 12 => {
-                    (*r).type_0 = Node_array_ref;
+                    (*r).type_0 = nodevals::Node_array_ref;
                     (*r).sub.nodep.l.lptr = (*m).sub.nodep.l.lptr;
                     (*r).sub.nodep.r.rptr = m;
                 }
                 4 => {
-                    (*r).type_0 = Node_var;
+                    (*r).type_0 = nodevals::Node_var;
                     (*r).sub.nodep.l.lptr = dupnode(Nnull_string);
                 }
                 1 => {
-                    (*r).type_0 = Node_var;
+                    (*r).type_0 = nodevals::Node_var;
                     (*r).sub.nodep.l.lptr = m;
                 }
                 9 | 11 | 10 => {
-                    (*r).type_0 = Node_var;
-                    (*r)
-                        .sub
-                        .nodep
-                        .l
-                        .lptr = make_str_node(
+                    (*r).type_0 = nodevals::Node_var;
+                    (*r).sub.nodep.l.lptr = make_str_node(
                         (*m).sub.nodep.name,
                         strlen((*m).sub.nodep.name),
-                        0 as libc::c_int,
+                        0 as i32,
                     );
                 }
                 _ => {
                     r_fatal(
                         b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                            as *const u8 as *const libc::c_char,
-                        b"eval.c\0" as *const u8 as *const libc::c_char,
-                        1360 as libc::c_int,
+                            as *const u8 as *const i8,
+                        b"eval.c\0" as *const u8 as *const i8,
+                        1360 as i32,
                         nodetype2str((*m).type_0),
                     );
                 }
@@ -5000,17 +5743,15 @@ unsafe extern "C" fn setup_frame(mut pc: *mut INSTRUCTION) -> *mut INSTRUCTION {
         j;
     }
     stack_ptr = stack_ptr.offset(-arg_count as isize);
-    if (*pc).opcode as libc::c_uint
-        == Op_indirect_func_call as libc::c_int as libc::c_uint
-    {
+    if (*pc).opcode as u32 == opcodeval::Op_indirect_func_call as i32 as u32 {
         let fresh13 = stack_ptr;
         stack_ptr = stack_ptr.offset(-1);
         r = (*fresh13).rptr;
         DEREF(r);
     }
     (*frame_ptr).sub.nodep.name = source;
-    if do_flags as libc::c_uint & DO_PROFILE as libc::c_int as libc::c_uint != 0
-        || do_flags as libc::c_uint & DO_DEBUG as libc::c_int as libc::c_uint != 0
+    if do_flags as u32 & do_flag_values::DO_PROFILE as i32 as u32 != 0
+        || do_flags as u32 & do_flag_values::DO_DEBUG as i32 as u32 != 0
     {
         push_frame(frame_ptr);
     }
@@ -5022,48 +5763,46 @@ unsafe extern "C" fn setup_frame(mut pc: *mut INSTRUCTION) -> *mut INSTRUCTION {
     })
         .rptr;
     *fresh14 = frame_ptr;
-    frame_ptr = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+    frame_ptr = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
     if !frame_ptr.is_null() {
-        nextfree[BLOCK_NODE as libc::c_int as usize]
-            .freep = (*(frame_ptr as *mut block_item)).freep;
+        nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(frame_ptr
+            as *mut block_item))
+            .freep;
     } else {
-        frame_ptr = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+        frame_ptr = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
     };
-    (*frame_ptr).type_0 = Node_frame;
+    (*frame_ptr).type_0 = nodevals::Node_frame;
     (*frame_ptr).sub.nodep.r.av = sp;
-    (*frame_ptr)
-        .sub
-        .nodep
-        .reflags = stack_ptr.offset_from(stack_bottom) as libc::c_long as reflagvals;
+    (*frame_ptr).sub.nodep.reflags = reflagvals::from_libc_c_uint(
+        stack_ptr.offset_from(stack_bottom) as i64 as u32,
+    );
     (*frame_ptr).sub.nodep.x.extra = f;
-    (*frame_ptr).sub.nodep.name = 0 as *mut libc::c_char;
+    (*frame_ptr).sub.nodep.name = 0 as *mut i8;
     (*frame_ptr).sub.nodep.l.li = pc;
     return (*f).sub.nodep.r.iptr;
 }
 unsafe extern "C" fn restore_frame(mut fp: *mut NODE) -> *mut INSTRUCTION {
     let mut r: *mut NODE = 0 as *mut NODE;
     let mut sp: *mut *mut NODE = 0 as *mut *mut NODE;
-    let mut n: libc::c_int = 0;
+    let mut n: i32 = 0;
     let mut func: *mut NODE = 0 as *mut NODE;
     let mut ri: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
     func = (*frame_ptr).sub.nodep.x.extra;
-    n = (*func).sub.nodep.l.ll as libc::c_int;
+    n = (*func).sub.nodep.l.ll as i32;
     sp = (*frame_ptr).sub.nodep.r.av;
-    while n > 0 as libc::c_int {
+    while n > 0 as i32 {
         let fresh15 = sp;
         sp = sp.offset(1);
         r = *fresh15;
-        if (*r).type_0 as libc::c_uint == Node_var as libc::c_int as libc::c_uint {
+        if (*r).type_0 as u32 == nodevals::Node_var as i32 as u32 {
             DEREF((*r).sub.nodep.l.lptr);
-        } else if (*r).type_0 as libc::c_uint
-            == Node_var_array as libc::c_int as libc::c_uint
-        {
+        } else if (*r).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
             ((*(*r).sub.nodep.l.lp).clear)
                 .expect("non-null function pointer")(r, 0 as *mut exp_node);
         }
         let ref mut fresh16 = (*(r as *mut block_item)).freep;
-        *fresh16 = nextfree[BLOCK_NODE as libc::c_int as usize].freep;
-        nextfree[BLOCK_NODE as libc::c_int as usize].freep = r as *mut block_item;
+        *fresh16 = nextfree[block_id::BLOCK_NODE as i32 as usize].freep;
+        nextfree[block_id::BLOCK_NODE as i32 as usize].freep = r as *mut block_item;
         n -= 1;
         n;
     }
@@ -5072,16 +5811,16 @@ unsafe extern "C" fn restore_frame(mut fp: *mut NODE) -> *mut INSTRUCTION {
     }
     ri = (*frame_ptr).sub.nodep.l.li;
     let ref mut fresh17 = (*(frame_ptr as *mut block_item)).freep;
-    *fresh17 = nextfree[BLOCK_NODE as libc::c_int as usize].freep;
-    nextfree[BLOCK_NODE as libc::c_int as usize].freep = frame_ptr as *mut block_item;
-    if do_flags as libc::c_uint & DO_PROFILE as libc::c_int as libc::c_uint != 0
-        || do_flags as libc::c_uint & DO_DEBUG as libc::c_int as libc::c_uint != 0
+    *fresh17 = nextfree[block_id::BLOCK_NODE as i32 as usize].freep;
+    nextfree[block_id::BLOCK_NODE as i32 as usize].freep = frame_ptr as *mut block_item;
+    if do_flags as u32 & do_flag_values::DO_PROFILE as i32 as u32 != 0
+        || do_flags as u32 & do_flag_values::DO_DEBUG as i32 as u32 != 0
     {
         pop_frame();
     }
     frame_ptr = fp;
     source = (*fp).sub.nodep.name;
-    (*fp).sub.nodep.name = 0 as *mut libc::c_char;
+    (*fp).sub.nodep.name = 0 as *mut i8;
     return (*ri).nexti;
 }
 #[inline]
@@ -5090,7 +5829,7 @@ unsafe extern "C" fn free_arrayfor(mut r: *mut NODE) {
         let mut n: *mut NODE = 0 as *mut NODE;
         let mut num_elems: size_t = (*r).sub.nodep.reflags as size_t;
         let mut list: *mut *mut NODE = (*r).sub.nodep.r.av;
-        while num_elems > 0 as libc::c_int as libc::c_ulong {
+        while num_elems > 0 as i32 as u64 {
             num_elems = num_elems.wrapping_sub(1);
             n = *list.offset(num_elems as isize);
             unref(n);
@@ -5098,11 +5837,11 @@ unsafe extern "C" fn free_arrayfor(mut r: *mut NODE) {
         pma_free(list as *mut libc::c_void);
     }
     let ref mut fresh18 = (*(r as *mut block_item)).freep;
-    *fresh18 = nextfree[BLOCK_NODE as libc::c_int as usize].freep;
-    nextfree[BLOCK_NODE as libc::c_int as usize].freep = r as *mut block_item;
+    *fresh18 = nextfree[block_id::BLOCK_NODE as i32 as usize].freep;
+    nextfree[block_id::BLOCK_NODE as i32 as usize].freep = r as *mut block_item;
 }
 #[no_mangle]
-pub unsafe extern "C" fn unwind_stack(mut n: libc::c_long) -> *mut INSTRUCTION {
+pub unsafe extern "C" fn unwind_stack(mut n: i64) -> *mut INSTRUCTION {
     let mut r: *mut NODE = 0 as *mut NODE;
     let mut cp: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
     let mut sp: *mut STACK_ITEM = 0 as *mut STACK_ITEM;
@@ -5120,7 +5859,7 @@ pub unsafe extern "C" fn unwind_stack(mut n: libc::c_long) -> *mut INSTRUCTION {
         if r.is_null() {
             break;
         }
-        match (*r).type_0 as libc::c_uint {
+        match (*r).type_0 as u32 {
             17 => {
                 cp = restore_frame(r);
             }
@@ -5132,35 +5871,29 @@ pub unsafe extern "C" fn unwind_stack(mut n: libc::c_long) -> *mut INSTRUCTION {
             }
             18 => {
                 let ref mut fresh20 = (*(r as *mut block_item)).freep;
-                *fresh20 = nextfree[BLOCK_NODE as libc::c_int as usize].freep;
-                nextfree[BLOCK_NODE as libc::c_int as usize]
-                    .freep = r as *mut block_item;
+                *fresh20 = nextfree[block_id::BLOCK_NODE as i32 as usize].freep;
+                nextfree[block_id::BLOCK_NODE as i32 as usize].freep = r
+                    as *mut block_item;
             }
             _ => {
                 if in_main_context() != 0 && !exiting {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
-                        ) -> ())(
-                        b"eval.c\0" as *const u8 as *const libc::c_char,
-                        1497 as libc::c_int,
-                    );
+                            *const i8,
+                            i32,
+                        ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1497 as i32);
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unwind_stack: unexpected type `%s'\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         nodetype2str((*r).type_0),
                     );
@@ -5175,77 +5908,71 @@ pub unsafe extern "C" fn unwind_stack(mut n: libc::c_long) -> *mut INSTRUCTION {
 }
 #[inline]
 unsafe extern "C" fn eval_condition(mut t: *mut NODE) -> bool {
-    if t == node_Boolean[0 as libc::c_int as usize] {
-        return 0 as libc::c_int != 0;
+    if t == node_Boolean[0 as i32 as usize] {
+        return 0 as i32 != 0;
     }
-    if t == node_Boolean[1 as libc::c_int as usize] {
-        return 1 as libc::c_int != 0;
+    if t == node_Boolean[1 as i32 as usize] {
+        return 1 as i32 != 0;
     }
     return boolval(t);
 }
 unsafe extern "C" fn cmp_scalars(mut comparison_type: scalar_cmp_t) -> bool {
     let mut t1: *mut NODE = 0 as *mut NODE;
     let mut t2: *mut NODE = 0 as *mut NODE;
-    let mut di: libc::c_int = 0;
+    let mut di: i32 = 0;
     let mut ret: bool = false;
     t2 = POP_SCALAR();
     t1 = (*stack_ptr).rptr;
     t1 = elem_new_to_scalar(t1);
     t2 = elem_new_to_scalar(t2);
-    if (*t1).type_0 as libc::c_uint == Node_var_array as libc::c_int as libc::c_uint {
+    if (*t1).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
         DEREF(t2);
         (set_loc
             as unsafe extern "C" fn(
-                *const libc::c_char,
-                libc::c_int,
-            ) -> ())(
-            b"eval.c\0" as *const u8 as *const libc::c_char,
-            1555 as libc::c_int,
-        );
+                *const i8,
+                i32,
+            ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1555 as i32);
         (Some(
-            (Some(r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> ()))
+            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                 .expect("non-null function pointer"),
         ))
             .expect(
                 "non-null function pointer",
             )(
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"attempt to use array `%s' in a scalar context\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             array_vname(t1),
         );
     }
-    if (*t1).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-        || (*t2).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-            != 0 as libc::c_int as libc::c_uint
+    if (*t1).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32
+        || (*t2).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32
     {
-        let mut use_strcmp: bool = comparison_type as libc::c_uint
-            == SCALAR_EQ as libc::c_int as libc::c_uint
-            || comparison_type as libc::c_uint
-                == SCALAR_NEQ as libc::c_int as libc::c_uint;
+        let mut use_strcmp: bool = comparison_type as u32
+            == scalar_cmp_t::SCALAR_EQ as i32 as u32
+            || comparison_type as u32 == scalar_cmp_t::SCALAR_NEQ as i32 as u32;
         di = cmp_nodes(t1, t2, use_strcmp);
-        match comparison_type as libc::c_uint {
+        match comparison_type as u32 {
             0 => {
-                ret = di == 0 as libc::c_int;
+                ret = di == 0 as i32;
             }
             1 => {
-                ret = di != 0 as libc::c_int;
+                ret = di != 0 as i32;
             }
             2 => {
-                ret = di < 0 as libc::c_int;
+                ret = di < 0 as i32;
             }
             3 => {
-                ret = di <= 0 as libc::c_int;
+                ret = di <= 0 as i32;
             }
             4 => {
-                ret = di > 0 as libc::c_int;
+                ret = di > 0 as i32;
             }
             5 => {
-                ret = di >= 0 as libc::c_int;
+                ret = di >= 0 as i32;
             }
             _ => {}
         }
@@ -5263,52 +5990,52 @@ unsafe extern "C" fn cmp_doubles(
     mut t2: *const NODE,
     mut comparison_type: scalar_cmp_t,
 ) -> bool {
-    let mut t1_nan: bool = if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+    let mut t1_nan: bool = if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_float>() as u64
     {
         __isnanf((*t1).sub.val.fltnum as libc::c_float)
-    } else if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    } else if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_double>() as u64
     {
         __isnan((*t1).sub.val.fltnum)
     } else {
         __isnanl(f128::f128::new((*t1).sub.val.fltnum))
     } != 0;
-    let mut t2_nan: bool = if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+    let mut t2_nan: bool = if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_float>() as u64
     {
         __isnanf((*t2).sub.val.fltnum as libc::c_float)
-    } else if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    } else if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_double>() as u64
     {
         __isnan((*t2).sub.val.fltnum)
     } else {
         __isnanl(f128::f128::new((*t2).sub.val.fltnum))
     } != 0;
-    let mut ret: libc::c_int = 0;
-    if (t1_nan as libc::c_int != 0 || t2_nan as libc::c_int != 0)
-        && comparison_type as libc::c_uint != SCALAR_NEQ as libc::c_int as libc::c_uint
+    let mut ret: i32 = 0;
+    if (t1_nan as i32 != 0 || t2_nan as i32 != 0)
+        && comparison_type as u32 != scalar_cmp_t::SCALAR_NEQ as i32 as u32
     {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    match comparison_type as libc::c_uint {
+    match comparison_type as u32 {
         0 => {
-            ret = ((*t1).sub.val.fltnum == (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum == (*t2).sub.val.fltnum) as i32;
         }
         1 => {
-            ret = ((*t1).sub.val.fltnum != (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum != (*t2).sub.val.fltnum) as i32;
         }
         2 => {
-            ret = ((*t1).sub.val.fltnum < (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum < (*t2).sub.val.fltnum) as i32;
         }
         3 => {
-            ret = ((*t1).sub.val.fltnum <= (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum <= (*t2).sub.val.fltnum) as i32;
         }
         4 => {
-            ret = ((*t1).sub.val.fltnum > (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum > (*t2).sub.val.fltnum) as i32;
         }
         5 => {
-            ret = ((*t1).sub.val.fltnum >= (*t2).sub.val.fltnum) as libc::c_int;
+            ret = ((*t1).sub.val.fltnum >= (*t2).sub.val.fltnum) as i32;
         }
         _ => {}
     }
@@ -5329,7 +6056,7 @@ unsafe extern "C" fn op_assign(mut op: OPCODE) {
     t2 = TOP_SCALAR();
     x2 = (*force_number(t2)).sub.val.fltnum;
     DEREF(t2);
-    match op as libc::c_uint {
+    match op as u32 {
         34 => {
             x = x1 + x2;
         }
@@ -5340,62 +6067,52 @@ unsafe extern "C" fn op_assign(mut op: OPCODE) {
             x = x1 * x2;
         }
         32 => {
-            if x2 == 0 as libc::c_int as libc::c_double {
+            if x2 == 0 as i32 as libc::c_double {
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    1672 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1672 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"division by zero attempted in `/='\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                 );
             }
             x = x1 / x2;
         }
         33 => {
-            if x2 == 0 as libc::c_int as libc::c_double {
+            if x2 == 0 as i32 as libc::c_double {
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"eval.c\0" as *const u8 as *const libc::c_char,
-                    1679 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"eval.c\0" as *const u8 as *const i8, 1679 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"division by zero attempted in `%%='\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                 );
             }
@@ -5406,10 +6123,10 @@ unsafe extern "C" fn op_assign(mut op: OPCODE) {
         }
         _ => {}
     }
-    if (*t1).valref == 1 as libc::c_int as libc::c_long
-        && (*t1).flags as libc::c_uint
-            == (MALLOC as libc::c_int | NUMCUR as libc::c_int | NUMBER as libc::c_int)
-                as libc::c_uint
+    if (*t1).valref == 1 as i32 as i64
+        && (*t1).flags as u32
+            == (flagvals::MALLOC as i32 | flagvals::NUMCUR as i32
+                | flagvals::NUMBER as i32) as u32
     {
         (*t1).sub.val.fltnum = x;
     } else {
@@ -5424,14 +6141,14 @@ unsafe extern "C" fn op_assign(mut op: OPCODE) {
 #[no_mangle]
 pub unsafe extern "C" fn PUSH_CODE(mut cp: *mut INSTRUCTION) {
     let mut r: *mut NODE = 0 as *mut NODE;
-    r = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+    r = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
     if !r.is_null() {
-        nextfree[BLOCK_NODE as libc::c_int as usize]
-            .freep = (*(r as *mut block_item)).freep;
+        nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(r as *mut block_item))
+            .freep;
     } else {
-        r = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+        r = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
     };
-    (*r).type_0 = Node_instruction;
+    (*r).type_0 = nodevals::Node_instruction;
     (*r).sub.nodep.r.iptr = cp;
     let ref mut fresh22 = (*if stack_ptr < stack_top {
         stack_ptr = stack_ptr.offset(1);
@@ -5451,8 +6168,8 @@ pub unsafe extern "C" fn POP_CODE() -> *mut INSTRUCTION {
     r = (*fresh23).rptr;
     cp = (*r).sub.nodep.r.iptr;
     let ref mut fresh24 = (*(r as *mut block_item)).freep;
-    *fresh24 = nextfree[BLOCK_NODE as libc::c_int as usize].freep;
-    nextfree[BLOCK_NODE as libc::c_int as usize].freep = r as *mut block_item;
+    *fresh24 = nextfree[block_id::BLOCK_NODE as i32 as usize].freep;
+    nextfree[block_id::BLOCK_NODE as i32 as usize].freep = r as *mut block_item;
     return cp;
 }
 static mut exec_state_stack: EXEC_STATE = EXEC_STATE {
@@ -5460,35 +6177,33 @@ static mut exec_state_stack: EXEC_STATE = EXEC_STATE {
     cptr: 0 as *const INSTRUCTION as *mut INSTRUCTION,
     rule: 0,
     stack_size: 0,
-    source: 0 as *const libc::c_char,
+    source: 0 as *const i8,
 };
 unsafe extern "C" fn push_exec_state(
     mut cp: *mut INSTRUCTION,
-    mut rule: libc::c_int,
-    mut src: *mut libc::c_char,
+    mut rule: i32,
+    mut src: *mut i8,
     mut sp: *mut STACK_ITEM,
 ) {
     let mut es: *mut EXEC_STATE = 0 as *mut EXEC_STATE;
     es = emalloc_real(
-        ::core::mem::size_of::<EXEC_STATE>() as libc::c_ulong,
-        b"push_exec_state\0" as *const u8 as *const libc::c_char,
-        b"es\0" as *const u8 as *const libc::c_char,
-        b"eval.c\0" as *const u8 as *const libc::c_char,
-        1769 as libc::c_int,
+        ::core::mem::size_of::<EXEC_STATE>() as u64,
+        b"push_exec_state\0" as *const u8 as *const i8,
+        b"es\0" as *const u8 as *const i8,
+        b"eval.c\0" as *const u8 as *const i8,
+        1769 as i32,
     ) as *mut EXEC_STATE;
     (*es).rule = rule;
     (*es).cptr = cp;
-    (*es)
-        .stack_size = sp.offset_from(stack_bottom) as libc::c_long
-        + 1 as libc::c_int as libc::c_long;
+    (*es).stack_size = sp.offset_from(stack_bottom) as i64 + 1 as i32 as i64;
     (*es).source = src;
     (*es).next = exec_state_stack.next;
     exec_state_stack.next = es;
 }
 unsafe extern "C" fn pop_exec_state(
-    mut rule: *mut libc::c_int,
-    mut src: *mut *mut libc::c_char,
-    mut sz: *mut libc::c_long,
+    mut rule: *mut i32,
+    mut src: *mut *mut i8,
+    mut sz: *mut i64,
 ) -> *mut INSTRUCTION {
     let mut cp: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
     let mut es: *mut EXEC_STATE = 0 as *mut EXEC_STATE;
@@ -5501,7 +6216,7 @@ unsafe extern "C" fn pop_exec_state(
         *rule = (*es).rule;
     }
     if !src.is_null() {
-        *src = (*es).source as *mut libc::c_char;
+        *src = (*es).source as *mut i8;
     }
     if !sz.is_null() {
         *sz = (*es).stack_size;
@@ -5514,28 +6229,23 @@ unsafe extern "C" fn pop_exec_state(
 pub unsafe extern "C" fn register_exec_hook(
     mut preh: Func_pre_exec,
     mut posth: Func_post_exec,
-) -> libc::c_int {
-    let mut pos: libc::c_int = 0 as libc::c_int;
+) -> i32 {
+    let mut pos: i32 = 0 as i32;
     if preh.is_none() || post_execute.is_some() && posth.is_some() {
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
-    if num_exec_hook == 10 as libc::c_int {
-        return 0 as libc::c_int;
+    if num_exec_hook == 10 as i32 {
+        return 0 as i32;
     }
-    if num_exec_hook > 0 as libc::c_int {
-        pos = (do_flags as libc::c_uint & DO_DEBUG as libc::c_int as libc::c_uint != 0)
-            as libc::c_int;
+    if num_exec_hook > 0 as i32 {
+        pos = (do_flags as u32 & do_flag_values::DO_DEBUG as i32 as u32 != 0) as i32;
         if num_exec_hook > pos {
             memmove(
-                pre_execute
-                    .as_mut_ptr()
-                    .offset(pos as isize)
-                    .offset(1 as libc::c_int as isize) as *mut libc::c_void,
+                pre_execute.as_mut_ptr().offset(pos as isize).offset(1 as i32 as isize)
+                    as *mut libc::c_void,
                 pre_execute.as_mut_ptr().offset(pos as isize) as *const libc::c_void,
-                ((num_exec_hook - pos) as libc::c_ulong)
-                    .wrapping_mul(
-                        ::core::mem::size_of::<Func_pre_exec>() as libc::c_ulong,
-                    ),
+                ((num_exec_hook - pos) as u64)
+                    .wrapping_mul(::core::mem::size_of::<Func_pre_exec>() as u64),
             );
         }
     }
@@ -5545,13 +6255,12 @@ pub unsafe extern "C" fn register_exec_hook(
     if posth.is_some() {
         post_execute = posth;
     }
-    return 1 as libc::c_int;
+    return 1 as i32;
 }
 #[inline]
 unsafe extern "C" fn unfield(mut l: *mut *mut NODE, mut r: *mut *mut NODE) {
-    if (**r).flags as libc::c_uint & MALLOC as libc::c_int as libc::c_uint
-        != 0 as libc::c_int as libc::c_uint
-        || (**r).valref == 1 as libc::c_int as libc::c_long
+    if (**r).flags as u32 & flagvals::MALLOC as i32 as u32 != 0 as i32 as u32
+        || (**r).valref == 1 as i32 as i64
     {
         *l = *r;
     } else {
@@ -5560,10 +6269,10 @@ unsafe extern "C" fn unfield(mut l: *mut *mut NODE, mut r: *mut *mut NODE) {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int {
+pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> i32 {
     let mut current_block: u64;
     let mut pc: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-    let mut op: OPCODE = Op_illegal;
+    let mut op: OPCODE = opcodeval::Op_illegal;
     let mut r: *mut NODE = 0 as *mut NODE;
     let mut m: *mut NODE = 0 as *mut NODE;
     let mut ni: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
@@ -5572,17 +6281,17 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
     let mut lhs: *mut *mut NODE = 0 as *mut *mut NODE;
     let mut x: libc::c_double = 0.;
     let mut x2: libc::c_double = 0.;
-    let mut di: libc::c_int = 0;
+    let mut di: i32 = 0;
     let mut rp: *mut Regexp = 0 as *mut Regexp;
     let mut set_array: *mut NODE = 0 as *mut NODE;
     let mut set_idx: *mut NODE = 0 as *mut NODE;
-    let mut in_indirect_call: bool = 0 as libc::c_int != 0;
+    let mut in_indirect_call: bool = 0 as i32 != 0;
     pc = code;
     '_top: loop {
-        if (*pc).source_line as libc::c_int > 0 as libc::c_int {
-            sourceline = (*pc).source_line as libc::c_int;
+        if (*pc).source_line as i32 > 0 as i32 {
+            sourceline = (*pc).source_line as i32;
         }
-        di = 0 as libc::c_int;
+        di = 0 as i32;
         while di < num_exec_hook {
             if (pre_execute[di as usize]).expect("non-null function pointer")(&mut pc)
                 == 0
@@ -5594,20 +6303,16 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
         }
         op = (*pc).opcode;
         if do_itrace {
-            fprintf(
-                stderr,
-                b"+ %s\n\0" as *const u8 as *const libc::c_char,
-                opcode2str(op),
-            );
+            fprintf(stderr, b"+ %s\n\0" as *const u8 as *const i8, opcode2str(op));
             fflush(stderr);
         }
-        match op as libc::c_uint {
+        match op as u32 {
             51 => {
-                currule = (*pc).x.xl as libc::c_int;
-                if currule == BEGINFILE as libc::c_int {
+                currule = (*pc).x.xl as i32;
+                if currule == defrule::BEGINFILE as i32 {
                     set_record(
-                        b"\0" as *const u8 as *const libc::c_char,
-                        0 as libc::c_int as size_t,
+                        b"\0" as *const u8 as *const i8,
+                        0 as i32 as size_t,
                         0 as *const awk_fieldwidth_info_t,
                     );
                 }
@@ -5617,21 +6322,19 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 16275318387282786645;
             }
             107 => {
-                let mut stdio_problem: bool = 0 as libc::c_int != 0;
-                let mut got_EPIPE: bool = 0 as libc::c_int != 0;
-                source = 0 as *mut libc::c_char;
-                sourceline = 0 as libc::c_int;
-                nextfile(&mut curfile, 1 as libc::c_int != 0);
+                let mut stdio_problem: bool = 0 as i32 != 0;
+                let mut got_EPIPE: bool = 0 as i32 != 0;
+                source = 0 as *mut i8;
+                sourceline = 0 as i32;
+                nextfile(&mut curfile, 1 as i32 != 0);
                 close_io(&mut stdio_problem, &mut got_EPIPE);
-                if stdio_problem as libc::c_int != 0 && !exiting
-                    && exit_val == 0 as libc::c_int
-                {
-                    exit_val = 1 as libc::c_int;
+                if stdio_problem as i32 != 0 && !exiting && exit_val == 0 as i32 {
+                    exit_val = 1 as i32;
                 }
                 close_extensions();
                 if got_EPIPE {
-                    signal(13 as libc::c_int, None);
-                    kill(getpid(), 13 as libc::c_int);
+                    signal(13 as i32, None);
+                    kill(getpid(), 13 as i32);
                 }
                 current_block = 3518619798157913413;
             }
@@ -5640,25 +6343,21 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             78 => {
                 m = (*pc).d.dn;
-                if do_flags as libc::c_uint
-                    & DO_TRADITIONAL as libc::c_int as libc::c_uint == 0
-                    && (*m).flags as libc::c_uint
-                        & INTLSTR as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
+                if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 == 0
+                    && (*m).flags as u32 & flagvals::INTLSTR as i32 as u32
+                        != 0 as i32 as u32
                 {
-                    let mut orig: *mut libc::c_char = 0 as *mut libc::c_char;
-                    let mut trans: *mut libc::c_char = 0 as *mut libc::c_char;
-                    let mut save: libc::c_char = 0;
+                    let mut orig: *mut i8 = 0 as *mut i8;
+                    let mut trans: *mut i8 = 0 as *mut i8;
+                    let mut save: i8 = 0;
                     save = *((*m).sub.val.sp).offset((*m).sub.val.slen as isize);
-                    *((*m).sub.val.sp)
-                        .offset(
-                            (*m).sub.val.slen as isize,
-                        ) = '\0' as i32 as libc::c_char;
+                    *((*m).sub.val.sp).offset((*m).sub.val.slen as isize) = '\0' as i32
+                        as i8;
                     orig = (*m).sub.val.sp;
-                    trans = dcgettext(TEXTDOMAIN, orig, 5 as libc::c_int);
+                    trans = dcgettext(TEXTDOMAIN, orig, 5 as i32);
                     *((*m).sub.val.sp).offset((*m).sub.val.slen as isize) = save;
                     if trans != orig {
-                        m = make_str_node(trans, strlen(trans), 0 as libc::c_int);
+                        m = make_str_node(trans, strlen(trans), 0 as i32);
                     } else {
                         (*m).valref += 1;
                         (*m).valref;
@@ -5680,21 +6379,17 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             75 | 76 | 77 => {
                 let mut current_block_67: u64;
                 let mut save_symbol: *mut NODE = 0 as *mut NODE;
-                let mut isparam: bool = 0 as libc::c_int != 0;
+                let mut isparam: bool = 0 as i32 != 0;
                 m = (*pc).d.dn;
                 save_symbol = m;
-                if (*m).type_0 as libc::c_uint
-                    == Node_param_list as libc::c_int as libc::c_uint
-                {
-                    isparam = 1 as libc::c_int != 0;
+                if (*m).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
+                    isparam = 1 as i32 != 0;
                     m = *((*frame_ptr).sub.nodep.r.av)
                         .offset((*m).sub.nodep.l.ll as isize);
                     save_symbol = m;
-                    if (*m).type_0 as libc::c_uint
-                        == Node_array_ref as libc::c_int as libc::c_uint
-                    {
-                        if (*(*m).sub.nodep.l.lptr).type_0 as libc::c_uint
-                            == Node_var as libc::c_int as libc::c_uint
+                    if (*m).type_0 as u32 == nodevals::Node_array_ref as i32 as u32 {
+                        if (*(*m).sub.nodep.l.lptr).type_0 as u32
+                            == nodevals::Node_var as i32 as u32
                         {
                             current_block_67 = 5634311649589774485;
                         } else {
@@ -5709,50 +6404,50 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 match current_block_67 {
                     3160140712158701372 => {
-                        match (*m).type_0 as libc::c_uint {
+                        match (*m).type_0 as u32 {
                             4 => {
                                 current_block_67 = 16500597064430046275;
                                 match current_block_67 {
                                     15911032364363321810 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     16500597064430046275 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -5771,10 +6466,8 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh26 = m;
                                     }
                                     17647237853557353373 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh29 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -5787,16 +6480,15 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -5804,54 +6496,53 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -5877,43 +6568,43 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     15911032364363321810 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     16500597064430046275 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -5932,10 +6623,8 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh26 = m;
                                     }
                                     17647237853557353373 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh29 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -5948,16 +6637,15 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -5965,54 +6653,53 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -6035,43 +6722,43 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     15911032364363321810 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     16500597064430046275 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -6090,10 +6777,8 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh26 = m;
                                     }
                                     17647237853557353373 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh29 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -6106,16 +6791,15 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -6123,54 +6807,53 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -6193,43 +6876,43 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     15911032364363321810 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     16500597064430046275 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -6248,10 +6931,8 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh26 = m;
                                     }
                                     17647237853557353373 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh29 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -6264,16 +6945,15 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -6281,54 +6961,53 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -6351,44 +7030,42 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 match current_block_67 {
                     5634311649589774485 => {
-                        if do_flags as libc::c_uint
-                            & (DO_LINT_INVALID as libc::c_int
-                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                        if do_flags as u32
+                            & (do_flag_values::DO_LINT_INVALID as i32
+                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                         {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                216 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                216 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
-                                if isparam as libc::c_int != 0 {
+                                if isparam as i32 != 0 {
                                     dcgettext(
-                                        0 as *const libc::c_char,
+                                        0 as *const i8,
                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                            as *const libc::c_char,
-                                        5 as libc::c_int,
+                                            as *const i8,
+                                        5 as i32,
                                     )
                                 } else {
                                     dcgettext(
-                                        0 as *const libc::c_char,
+                                        0 as *const i8,
                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                            as *const libc::c_char,
-                                        5 as libc::c_int,
+                                            as *const i8,
+                                        5 as i32,
                                     )
                                 },
                                 (*save_symbol).sub.nodep.name,
                             );
                         }
-                        if op as libc::c_uint
-                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
-                        {
-                            (*m).type_0 = Node_var;
+                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32 {
+                            (*m).type_0 = nodevals::Node_var;
                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                             m = dupnode(Nnull_string);
                         }
@@ -6409,14 +7086,11 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             81 => {
                 m = (*pc).d.dn;
-                if (*m).type_0 as libc::c_uint
-                    == Node_param_list as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
                     m = *((*frame_ptr).sub.nodep.r.av)
                         .offset((*m).sub.nodep.l.ll as isize);
                 }
-                if (*m).type_0 as libc::c_uint == Node_var as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_var as i32 as u32 {
                     m = (*m).sub.nodep.l.lptr;
                     (*m).valref += 1;
                     (*m).valref;
@@ -6437,8 +7111,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 1528899951983446718;
             }
             82 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
@@ -6456,116 +7129,110 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             16 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 if (in_array(t1, t2)).is_null() {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if t1 == func_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            296 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            296 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"FUNCTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"FUNCTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     } else if t1 == symbol_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            299 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            299 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"SYMTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"SYMTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                    } else if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
+                    } else if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            302 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            302 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                        if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                        if (*t2).sub.val.slen == 0 as i32 as u64 {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                305 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                305 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"subscript of array `%s' is null string\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 array_vname(t1),
                             );
@@ -6573,29 +7240,27 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     }
                 }
                 if t1 == func_table {
-                    static mut warned: bool = 0 as libc::c_int != 0;
-                    if do_flags as libc::c_uint
-                        & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-                        && !warned
+                    static mut warned: bool = 0 as i32 != 0;
+                    if do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32
+                        != 0 && !warned
                     {
-                        warned = 1 as libc::c_int != 0;
+                        warned = 1 as i32 != 0;
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            317 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            317 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"FUNCTAB is a gawk extension\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"FUNCTAB is a gawk extension\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -6609,48 +7274,41 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 DEREF(t2);
                 if t1 == symbol_table {
-                    static mut warned_0: bool = 0 as libc::c_int != 0;
-                    if do_flags as libc::c_uint
-                        & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-                        && !warned_0
+                    static mut warned_0: bool = 0 as i32 != 0;
+                    if do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32
+                        != 0 && !warned_0
                     {
-                        warned_0 = 1 as libc::c_int != 0;
+                        warned_0 = 1 as i32 != 0;
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            335 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            335 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"SYMTAB is a gawk extension\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"SYMTAB is a gawk extension\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
-                    if (*r).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                    {
+                    if (*r).type_0 as u32 == nodevals::Node_var as i32 as u32 {
                         r = (*r).sub.nodep.l.lptr;
-                    } else if (*r).type_0 as libc::c_uint
-                        == Node_var_new as libc::c_int as libc::c_uint
+                    } else if (*r).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         (*r).sub.nodep.l.lptr = dupnode(Nnull_string);
                         r = (*r).sub.nodep.l.lptr;
                     }
                 }
-                if (*r).type_0 as libc::c_uint == Node_val as libc::c_int as libc::c_uint
-                    || (*r).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                    || (*r).type_0 as libc::c_uint
-                        == Node_elem_new as libc::c_int as libc::c_uint
+                if (*r).type_0 as u32 == nodevals::Node_val as i32 as u32
+                    || (*r).type_0 as u32 == nodevals::Node_var as i32 as u32
+                    || (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32
                 {
                     (*r).valref += 1;
                     (*r).valref;
@@ -6666,117 +7324,111 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             17 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 r = in_array(t1, t2);
                 if r.is_null() {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if t1 == func_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            362 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            362 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"FUNCTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"FUNCTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     } else if t1 == symbol_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            365 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            365 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"SYMTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"SYMTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                    } else if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
+                    } else if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            368 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            368 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                        if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                        if (*t2).sub.val.slen == 0 as i32 as u64 {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                371 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                371 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"subscript of array `%s' is null string\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 array_vname(t1),
                             );
@@ -6789,43 +7441,36 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (*r).sub.nodep.name = estrdup((*t2).sub.val.sp, (*t2).sub.val.slen);
                     assoc_set(t1, t2, r);
-                } else if (*r).type_0 as libc::c_uint
-                    == Node_elem_new as libc::c_int as libc::c_uint
-                {
-                    r = force_array(r, 0 as libc::c_int != 0);
+                } else if (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
+                    r = force_array(r, 0 as i32 != 0);
                     (*r).sub.nodep.x.extra = t1;
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (*r).sub.nodep.name = estrdup((*t2).sub.val.sp, (*t2).sub.val.slen);
-                } else if (*r).type_0 as libc::c_uint
-                    != Node_var_array as libc::c_int as libc::c_uint
-                {
+                } else if (*r).type_0 as u32 != nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        388 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        388 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use scalar `%s[\"%.*s\"]' as an array\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 } else {
@@ -6842,59 +7487,60 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             83 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0 && (in_array(t1, t2)).is_null()
+                t1 = POP_ARRAY(0 as i32 != 0);
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                    && (in_array(t1, t2)).is_null()
                 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if (*pc).x.xl != 0 {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            402 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            402 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     }
-                    if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                    if (*t2).sub.val.slen == 0 as i32 as u64 {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            405 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            405 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"subscript of array `%s' is null string\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
                         );
@@ -6902,98 +7548,85 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 lhs = ((*(*t1).sub.nodep.l.lp).lookup)
                     .expect("non-null function pointer")(t1, t2);
-                if (**lhs).type_0 as libc::c_uint
-                    == Node_var_array as libc::c_int as libc::c_uint
-                {
+                if (**lhs).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        411 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        411 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use array `%s[\"%.*s\"]' in a scalar context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 }
                 if t1 == func_table {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        429 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        429 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"cannot assign to elements of FUNCTAB\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 } else if t1 == symbol_table {
-                    if (**lhs).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                        || (**lhs).type_0 as libc::c_uint
-                            == Node_var_new as libc::c_int as libc::c_uint
+                    if (**lhs).type_0 as u32 == nodevals::Node_var as i32 as u32
+                        || (**lhs).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         update_global_values();
-                        (**lhs).type_0 = Node_var;
+                        (**lhs).type_0 = nodevals::Node_var;
                         lhs = &mut (**lhs).sub.nodep.l.lptr;
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            437 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            437 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"cannot assign to arbitrary elements of SYMTAB\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -7016,7 +7649,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             24 => {
                 t1 = TOP_SCALAR();
-                lhs = r_get_field(t1, 0 as *mut Func_ptr, 1 as libc::c_int != 0);
+                lhs = r_get_field(t1, 0 as *mut Func_ptr, 1 as i32 != 0);
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 DEREF(t1);
@@ -7050,39 +7683,39 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             105 => {
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                 {
                     match (*pc).d.dl {
                         1 => {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                474 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                474 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"assignment used in conditional context\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                             );
                         }
                         _ => {
                             r_fatal(
                                 b"internal error: file %s, line %d: unexpected lint type value %d\0"
-                                    as *const u8 as *const libc::c_char,
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                478 as libc::c_int,
-                                (*pc).d.dl as libc::c_int,
+                                    as *const u8 as *const i8,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                478 as i32,
+                                (*pc).d.dl as i32,
                             );
                         }
                     }
@@ -7091,30 +7724,28 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             106 => {
                 t1 = (*stack_ptr).rptr;
-                t2 = (*stack_ptr.offset(-(1 as libc::c_int as isize))).rptr;
-                if (*t1).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-                    != 0 as libc::c_int as libc::c_uint
-                    && (*t2).flags as libc::c_uint
-                        & STRING as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
+                t2 = (*stack_ptr.offset(-(1 as i32 as isize))).rptr;
+                if (*t1).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32
+                    && (*t2).flags as u32 & flagvals::STRING as i32 as u32
+                        != 0 as i32 as u32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        489 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        489 as i32,
                     );
                     (Some(lintfunc.expect("non-null function pointer")))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"operator `+' used on two string values\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -7129,7 +7760,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             89 => {
                 r = POP_SCALAR();
-                di = eval_condition(r) as libc::c_int;
+                di = eval_condition(r) as i32;
                 DEREF(r);
                 if di == 0 {
                     if post_execute.is_some() {
@@ -7143,7 +7774,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             88 => {
                 r = POP_SCALAR();
-                di = eval_condition(r) as libc::c_int;
+                di = eval_condition(r) as i32;
                 DEREF(r);
                 if di != 0 {
                     if post_execute.is_some() {
@@ -7157,11 +7788,10 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             38 | 40 => {
                 t1 = POP_SCALAR();
-                di = eval_condition(t1) as libc::c_int;
+                di = eval_condition(t1) as i32;
                 DEREF(t1);
-                if op as libc::c_uint == Op_and as libc::c_int as libc::c_uint && di != 0
-                    || op as libc::c_uint == Op_or as libc::c_int as libc::c_uint
-                        && di == 0
+                if op as u32 == opcodeval::Op_and as i32 as u32 && di != 0
+                    || op as u32 == opcodeval::Op_or as i32 as u32 && di == 0
                 {
                     current_block = 3518619798157913413;
                 } else {
@@ -7195,7 +7825,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             25 => {
                 t1 = TOP_SCALAR();
-                r = node_Boolean[!eval_condition(t1) as libc::c_int as usize];
+                r = node_Boolean[!eval_condition(t1) as i32 as usize];
                 DEREF(t1);
                 (*r).valref += 1;
                 (*r).valref;
@@ -7203,42 +7833,42 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             42 => {
-                r = node_Boolean[cmp_scalars(SCALAR_EQ) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_EQ) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 3518619798157913413;
             }
             43 => {
-                r = node_Boolean[cmp_scalars(SCALAR_NEQ) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_NEQ) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 3518619798157913413;
             }
             44 => {
-                r = node_Boolean[cmp_scalars(SCALAR_LT) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_LT) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 3518619798157913413;
             }
             45 => {
-                r = node_Boolean[cmp_scalars(SCALAR_GT) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_GT) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 3518619798157913413;
             }
             46 => {
-                r = node_Boolean[cmp_scalars(SCALAR_LE) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_LE) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 3518619798157913413;
             }
             47 => {
-                r = node_Boolean[cmp_scalars(SCALAR_GE) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_GE) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
@@ -7305,9 +7935,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 11956501910097409974;
             }
             18 | 19 => {
-                x = if op as libc::c_uint
-                    == Op_preincrement as libc::c_int as libc::c_uint
-                {
+                x = if op as u32 == opcodeval::Op_preincrement as i32 as u32 {
                     1.0f64
                 } else {
                     -1.0f64
@@ -7315,10 +7943,10 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 lhs = (*stack_ptr).lptr;
                 t1 = *lhs;
                 force_number(t1);
-                if (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        == (MALLOC as libc::c_int | NUMCUR as libc::c_int
-                            | NUMBER as libc::c_int) as libc::c_uint
+                if (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        == (flagvals::MALLOC as i32 | flagvals::NUMCUR as i32
+                            | flagvals::NUMBER as i32) as u32
                 {
                     (*t1).sub.val.fltnum += x;
                     r = t1;
@@ -7334,9 +7962,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             20 | 21 => {
-                x = if op as libc::c_uint
-                    == Op_postincrement as libc::c_int as libc::c_uint
-                {
+                x = if op as u32 == opcodeval::Op_postincrement as i32 as u32 {
                     1.0f64
                 } else {
                     -1.0f64
@@ -7346,10 +7972,10 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 force_number(t1);
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum);
-                if (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        == (MALLOC as libc::c_int | NUMCUR as libc::c_int
-                            | NUMBER as libc::c_int) as libc::c_uint
+                if (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        == (flagvals::MALLOC as i32 | flagvals::NUMCUR as i32
+                            | flagvals::NUMBER as i32) as u32
                 {
                     (*t1).sub.val.fltnum += x;
                 } else {
@@ -7377,44 +8003,39 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             28 => {
-                t1 = force_array((*pc).d.dn, 1 as libc::c_int != 0);
-                t2 = if (*pc).x.xl == 1 as libc::c_int as libc::c_long {
+                t1 = force_array((*pc).d.dn, 1 as i32 != 0);
+                t2 = if (*pc).x.xl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).x.xl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).x.xl as i32, 1 as i32 != 0)
                 };
                 lhs = ((*(*t1).sub.nodep.l.lp).lookup)
                     .expect("non-null function pointer")(t1, t2);
-                if (**lhs).type_0 as libc::c_uint
-                    == Node_var_array as libc::c_int as libc::c_uint
-                {
+                if (**lhs).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        737 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        737 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use array `%s[\"%.*s\"]' in a scalar context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 }
@@ -7422,62 +8043,54 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if t1 == func_table {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        755 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        755 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"cannot assign to elements of FUNCTAB\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 } else if t1 == symbol_table {
-                    if (**lhs).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                        || (**lhs).type_0 as libc::c_uint
-                            == Node_var_new as libc::c_int as libc::c_uint
+                    if (**lhs).type_0 as u32 == nodevals::Node_var as i32 as u32
+                        || (**lhs).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         update_global_values();
-                        (**lhs).type_0 = Node_var;
+                        (**lhs).type_0 = nodevals::Node_var;
                         lhs = &mut (**lhs).sub.nodep.l.lptr;
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            763 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            763 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"cannot assign to arbitrary elements of SYMTAB\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -7496,13 +8109,12 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             27 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
                 } else {
-                    r_get_lhs((*pc).d.dn, 0 as libc::c_int != 0)
+                    r_get_lhs((*pc).d.dn, 0 as i32 != 0)
                 };
                 unref(*lhs);
                 r = (*pc).x.xn;
@@ -7519,7 +8131,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             29 | 30 => {
                 let mut assign: Func_ptr = None;
                 t1 = TOP_SCALAR();
-                lhs = r_get_field(t1, &mut assign, 0 as libc::c_int != 0);
+                lhs = r_get_field(t1, &mut assign, 0 as i32 != 0);
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 DEREF(t1);
@@ -7528,9 +8140,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 r = POP_SCALAR();
                 unfield(lhs, &mut r);
                 force_string_fmt(*lhs, CONVFMT, CONVFMTidx);
-                if op as libc::c_uint
-                    == Op_store_field_exp as libc::c_int as libc::c_uint
-                {
+                if op as u32 == opcodeval::Op_store_field_exp as i32 as u32 {
                     (**lhs).valref += 1;
                     (**lhs).valref;
                     let ref mut fresh39 = (*if stack_ptr < stack_top {
@@ -7545,43 +8155,39 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             37 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
                 } else {
-                    r_get_lhs((*pc).d.dn, 0 as libc::c_int != 0)
+                    r_get_lhs((*pc).d.dn, 0 as i32 != 0)
                 };
                 t1 = force_string_fmt(*lhs, CONVFMT, CONVFMTidx);
                 t2 = force_string_fmt(POP_SCALAR(), CONVFMT, CONVFMTidx);
                 if t1 != *lhs {
                     unref(*lhs);
-                    if (*t1).valref == 1 as libc::c_int as libc::c_long {
+                    if (*t1).valref == 1 as i32 as i64 {
                         *lhs = t1;
                     } else {
                         *lhs = dupnode(t1);
                     }
                 }
-                if t1 != t2 && (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        & (MALLOC as libc::c_int | MPFN as libc::c_int
-                            | MPZN as libc::c_int) as libc::c_uint
-                        == MALLOC as libc::c_int as libc::c_uint
+                if t1 != t2 && (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        & (flagvals::MALLOC as i32 | flagvals::MPFN as i32
+                            | flagvals::MPZN as i32) as u32
+                        == flagvals::MALLOC as i32 as u32
                 {
                     let mut nlen: size_t = ((*t1).sub.val.slen)
                         .wrapping_add((*t2).sub.val.slen);
-                    (*t1)
-                        .sub
-                        .val
-                        .sp = erealloc_real(
+                    (*t1).sub.val.sp = erealloc_real(
                         (*t1).sub.val.sp as *mut libc::c_void,
-                        nlen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                        b"r_interpret\0" as *const u8 as *const libc::c_char,
-                        b"t1->stptr\0" as *const u8 as *const libc::c_char,
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        843 as libc::c_int,
-                    ) as *mut libc::c_char;
+                        nlen.wrapping_add(1 as i32 as u64),
+                        b"r_interpret\0" as *const u8 as *const i8,
+                        b"t1->stptr\0" as *const u8 as *const i8,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        843 as i32,
+                    ) as *mut i8;
                     memcpy(
                         ((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize)
                             as *mut libc::c_void,
@@ -7589,76 +8195,60 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         (*t2).sub.val.slen,
                     );
                     (*t1).sub.val.slen = nlen;
-                    *((*t1).sub.val.sp)
-                        .offset(nlen as isize) = '\0' as i32 as libc::c_char;
-                    (*t1)
-                        .flags = ::core::mem::transmute::<
-                        libc::c_uint,
+                    *((*t1).sub.val.sp).offset(nlen as isize) = '\0' as i32 as i8;
+                    (*t1).flags = ::core::mem::transmute::<
+                        u32,
+                        flagvals,
+                    >((*t1).flags as u32 & flagvals::WSTRCUR as i32 as u32);
+                    (*t1).flags = ::core::mem::transmute::<
+                        u32,
                         flagvals,
                     >(
-                        (*t1).flags as libc::c_uint
-                            & WSTRCUR as libc::c_int as libc::c_uint,
+                        (*t1).flags as u32
+                            | (flagvals::MALLOC as i32 | flagvals::STRING as i32
+                                | flagvals::STRCUR as i32) as u32,
                     );
-                    (*t1)
-                        .flags = ::core::mem::transmute::<
-                        libc::c_uint,
-                        flagvals,
-                    >(
-                        (*t1).flags as libc::c_uint
-                            | (MALLOC as libc::c_int | STRING as libc::c_int
-                                | STRCUR as libc::c_int) as libc::c_uint,
-                    );
-                    (*t1).sub.val.idx = -(1 as libc::c_int);
-                    if (*t1).flags as libc::c_uint
-                        & WSTRCUR as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
-                        && (*t2).flags as libc::c_uint
-                            & WSTRCUR as libc::c_int as libc::c_uint
-                            != 0 as libc::c_int as libc::c_uint
+                    (*t1).sub.val.idx = -(1 as i32);
+                    if (*t1).flags as u32 & flagvals::WSTRCUR as i32 as u32
+                        != 0 as i32 as u32
+                        && (*t2).flags as u32 & flagvals::WSTRCUR as i32 as u32
+                            != 0 as i32 as u32
                     {
                         let mut wlen: size_t = ((*t1).sub.val.wslen)
                             .wrapping_add((*t2).sub.val.wslen);
-                        (*t1)
-                            .sub
-                            .val
-                            .wsp = erealloc_real(
+                        (*t1).sub.val.wsp = erealloc_real(
                             (*t1).sub.val.wsp as *mut libc::c_void,
-                            (::core::mem::size_of::<wchar_t>() as libc::c_ulong)
-                                .wrapping_mul(
-                                    wlen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                                ),
-                            b"r_interpret\0" as *const u8 as *const libc::c_char,
-                            b"t1->wstptr\0" as *const u8 as *const libc::c_char,
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            860 as libc::c_int,
+                            (::core::mem::size_of::<wchar_t>() as u64)
+                                .wrapping_mul(wlen.wrapping_add(1 as i32 as u64)),
+                            b"r_interpret\0" as *const u8 as *const i8,
+                            b"t1->wstptr\0" as *const u8 as *const i8,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            860 as i32,
                         ) as *mut wchar_t;
                         memcpy(
                             ((*t1).sub.val.wsp).offset((*t1).sub.val.wslen as isize)
                                 as *mut libc::c_void,
                             (*t2).sub.val.wsp as *const libc::c_void,
                             ((*t2).sub.val.wslen)
-                                .wrapping_mul(
-                                    ::core::mem::size_of::<wchar_t>() as libc::c_ulong,
-                                ),
+                                .wrapping_mul(::core::mem::size_of::<wchar_t>() as u64),
                         );
                         (*t1).sub.val.wslen = wlen;
                         *((*t1).sub.val.wsp).offset(wlen as isize) = '\0' as i32;
-                    } else if (**lhs).flags as libc::c_uint
-                        & WSTRCUR as libc::c_int as libc::c_uint != 0
+                    } else if (**lhs).flags as u32 & flagvals::WSTRCUR as i32 as u32 != 0
                     {
                         r_free_wstr(*lhs);
                     }
                 } else {
                     let mut nlen_0: size_t = ((*t1).sub.val.slen)
                         .wrapping_add((*t2).sub.val.slen);
-                    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
+                    let mut p: *mut i8 = 0 as *mut i8;
                     p = emalloc_real(
-                        nlen_0.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                        b"r_interpret\0" as *const u8 as *const libc::c_char,
-                        b"p\0" as *const u8 as *const libc::c_char,
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        870 as libc::c_int,
-                    ) as *mut libc::c_char;
+                        nlen_0.wrapping_add(1 as i32 as u64),
+                        b"r_interpret\0" as *const u8 as *const i8,
+                        b"p\0" as *const u8 as *const i8,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        870 as i32,
+                    ) as *mut i8;
                     memcpy(
                         p as *mut libc::c_void,
                         (*t1).sub.val.sp as *const libc::c_void,
@@ -7670,7 +8260,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         (*t2).sub.val.slen,
                     );
                     unref(*lhs);
-                    *lhs = make_str_node(p, nlen_0, 2 as libc::c_int);
+                    *lhs = make_str_node(p, nlen_0, 2 as i32);
                     t1 = *lhs;
                 }
                 DEREF(t2);
@@ -7682,9 +8272,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 lhs = (*fresh40).lptr;
                 r = TOP_SCALAR();
                 unref(*lhs);
-                if (*r).type_0 as libc::c_uint
-                    == Node_elem_new as libc::c_int as libc::c_uint
-                {
+                if (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
                     DEREF(r);
                     r = dupnode(Nnull_string);
                 }
@@ -7696,27 +8284,22 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             98 => {
                 if !set_idx.is_null() {
-                    di = 1 as libc::c_int;
-                    if (*pc).d.dl == Op_sub_builtin as libc::c_int as libc::c_long
+                    di = 1 as i32;
+                    if (*pc).d.dl == opcodeval::Op_sub_builtin as i32 as i64
                         && {
                             r = (*stack_ptr).rptr;
                             !r.is_null()
-                        }
-                        && (*r).sub.val.fltnum as libc::c_long
-                            == 0 as libc::c_int as libc::c_long
+                        } && (*r).sub.val.fltnum as i64 == 0 as i32 as i64
                     {
-                        di = 0 as libc::c_int;
-                    } else if ((*pc).d.dl == Op_K_getline as libc::c_int as libc::c_long
-                        || (*pc).d.dl
-                            == Op_K_getline_redir as libc::c_int as libc::c_long)
+                        di = 0 as i32;
+                    } else if ((*pc).d.dl == opcodeval::Op_K_getline as i32 as i64
+                        || (*pc).d.dl == opcodeval::Op_K_getline_redir as i32 as i64)
                         && {
                             r = (*stack_ptr).rptr;
                             !r.is_null()
-                        }
-                        && (*r).sub.val.fltnum as libc::c_long
-                            <= 0 as libc::c_int as libc::c_long
+                        } && (*r).sub.val.fltnum as i64 <= 0 as i32 as i64
                     {
-                        di = 0 as libc::c_int;
+                        di = 0 as i32;
                     }
                     if di != 0 {
                         (Some(
@@ -7740,19 +8323,14 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             96 | 97 => {
                 r = (*stack_ptr).rptr;
-                if !((*pc).d.dl == Op_sub_builtin as libc::c_int as libc::c_long
-                    && (*r).sub.val.fltnum as libc::c_long
-                        == 0 as libc::c_int as libc::c_long)
+                if !((*pc).d.dl == opcodeval::Op_sub_builtin as i32 as i64
+                    && (*r).sub.val.fltnum as i64 == 0 as i32 as i64)
                 {
-                    if !(((*pc).d.dl == Op_K_getline as libc::c_int as libc::c_long
-                        || (*pc).d.dl
-                            == Op_K_getline_redir as libc::c_int as libc::c_long)
-                        && (*r).sub.val.fltnum as libc::c_long
-                            <= 0 as libc::c_int as libc::c_long)
+                    if !(((*pc).d.dl == opcodeval::Op_K_getline as i32 as i64
+                        || (*pc).d.dl == opcodeval::Op_K_getline_redir as i32 as i64)
+                        && (*r).sub.val.fltnum as i64 <= 0 as i32 as i64)
                     {
-                        if op as libc::c_uint
-                            == Op_var_assign as libc::c_int as libc::c_uint
-                        {
+                        if op as u32 == opcodeval::Op_var_assign as i32 as u32 {
                             ((*pc).x.aptr).expect("non-null function pointer")();
                         } else {
                             ((*pc).x.aptr).expect("non-null function pointer")();
@@ -7762,10 +8340,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             13 => {
-                r = concat_exp(
-                    (*pc).x.xl as libc::c_int,
-                    (*pc).d.dl & 1 as libc::c_int as libc::c_long != 0,
-                );
+                r = concat_exp((*pc).x.xl as i32, (*pc).d.dl & 1 as i32 as i64 != 0);
                 let ref mut fresh41 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -7777,7 +8352,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             52 => {
-                if (*pc.offset(1 as libc::c_int as isize)).x.xl != 0 {
+                if (*pc.offset(1 as i32 as isize)).x.xl != 0 {
                     let fresh42 = stack_ptr;
                     stack_ptr = stack_ptr.offset(-1);
                     m = (*fresh42).rptr;
@@ -7787,15 +8362,14 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     di = (research(
                         rp,
                         (*t2).sub.val.sp,
-                        0 as libc::c_int,
+                        0 as i32,
                         (*t2).sub.val.slen,
-                        0 as libc::c_int,
-                    ) >= 0 as libc::c_int) as libc::c_int;
+                        0 as i32,
+                    ) >= 0 as i32) as i32;
                 } else {
                     t1 = POP_SCALAR();
                     t2 = TOP_SCALAR();
-                    di = (cmp_nodes(t2, t1, 1 as libc::c_int != 0) == 0 as libc::c_int)
-                        as libc::c_int;
+                    di = (cmp_nodes(t2, t1, 1 as i32 != 0) == 0 as i32) as i32;
                     DEREF(t1);
                 }
                 if di != 0 {
@@ -7811,13 +8385,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             63 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                do_delete(t1, (*pc).x.xl as libc::c_int);
+                t1 = POP_ARRAY(0 as i32 != 0);
+                do_delete(t1, (*pc).x.xl as i32);
                 stack_ptr = stack_ptr.offset(-(*pc).x.xl as isize);
                 current_block = 3518619798157913413;
             }
             64 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 let fresh43 = stack_ptr;
                 stack_ptr = stack_ptr.offset(-1);
                 lhs = (*fresh43).lptr;
@@ -7825,14 +8399,14 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             72 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                t2 = if (*pc).x.xl == 1 as libc::c_int as libc::c_long {
+                t1 = POP_ARRAY(0 as i32 != 0);
+                t2 = if (*pc).x.xl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).x.xl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).x.xl as i32, 1 as i32 != 0)
                 };
                 r = node_Boolean[(in_array(t1, t2)
-                    != 0 as *mut libc::c_void as *mut NODE) as libc::c_int as usize];
+                    != 0 as *mut libc::c_void as *mut NODE) as i32 as usize];
                 DEREF(t2);
                 (*r).valref += 1;
                 (*r).valref;
@@ -7850,53 +8424,54 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 let mut list: *mut *mut NODE = 0 as *mut *mut NODE;
                 let mut array: *mut NODE = 0 as *mut NODE;
                 let mut sort_str: *mut NODE = 0 as *mut NODE;
-                let mut num_elems: size_t = 0 as libc::c_int as size_t;
+                let mut num_elems: size_t = 0 as i32 as size_t;
                 static mut sorted_in: *mut NODE = 0 as *const NODE as *mut NODE;
-                let mut how_to_sort: *const libc::c_char = b"@unsorted\0" as *const u8
-                    as *const libc::c_char;
-                let mut save_0: libc::c_char = 0;
-                let mut saved_end: bool = 0 as libc::c_int != 0;
-                array = POP_ARRAY(1 as libc::c_int != 0);
+                let mut how_to_sort: *const i8 = b"@unsorted\0" as *const u8
+                    as *const i8;
+                let mut save_0: i8 = 0;
+                let mut saved_end: bool = 0 as i32 != 0;
+                array = POP_ARRAY(1 as i32 != 0);
                 num_elems = (*array).sub.nodep.reflags as size_t;
-                if !(num_elems == 0 as libc::c_int as libc::c_ulong) {
+                if !(num_elems == 0 as i32 as u64) {
                     if sorted_in.is_null() {
                         sorted_in = make_str_node(
-                            b"sorted_in\0" as *const u8 as *const libc::c_char,
-                            9 as libc::c_int as size_t,
-                            0 as libc::c_int,
+                            b"sorted_in\0" as *const u8 as *const i8,
+                            9 as i32 as size_t,
+                            0 as i32,
                         );
                     }
                     sort_str = 0 as *mut NODE;
-                    if do_flags as libc::c_uint & DO_POSIX as libc::c_int as libc::c_uint
-                        == 0 && !PROCINFO_node.is_null()
+                    if do_flags as u32 & do_flag_values::DO_POSIX as i32 as u32 == 0
+                        && !PROCINFO_node.is_null()
                     {
                         sort_str = in_array(PROCINFO_node, sorted_in);
                     }
                     if !sort_str.is_null() {
                         sort_str = force_string_fmt(sort_str, CONVFMT, CONVFMTidx);
-                        if (*sort_str).sub.val.slen > 0 as libc::c_int as libc::c_ulong {
+                        if (*sort_str).sub.val.slen > 0 as i32 as u64 {
                             how_to_sort = (*sort_str).sub.val.sp;
                             str_terminate_f(sort_str, &mut save_0);
-                            saved_end = 1 as libc::c_int != 0;
+                            saved_end = 1 as i32 != 0;
                         }
                     }
-                    list = assoc_list(array, how_to_sort, SORTED_IN);
+                    list = assoc_list(array, how_to_sort, sort_context_t::SORTED_IN);
                     if saved_end {
                         *((*sort_str).sub.val.sp)
                             .offset((*sort_str).sub.val.slen as isize) = save_0;
                     }
                 }
-                r = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+                r = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
                 if !r.is_null() {
-                    nextfree[BLOCK_NODE as libc::c_int as usize]
-                        .freep = (*(r as *mut block_item)).freep;
+                    nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(r
+                        as *mut block_item))
+                        .freep;
                 } else {
-                    r = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+                    r = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
                 };
-                (*r).type_0 = Node_arrayfor;
+                (*r).type_0 = nodevals::Node_arrayfor;
                 (*r).sub.nodep.r.av = list;
-                (*r).sub.nodep.reflags = num_elems as reflagvals;
-                (*r).sub.nodep.l.ll = -(1 as libc::c_int) as libc::c_long;
+                (*r).sub.nodep.reflags = reflagvals::from_libc_c_uint(num_elems as u32);
+                (*r).sub.nodep.l.ll = -(1 as i32) as i64;
                 (*r).sub.nodep.rn = array;
                 let ref mut fresh45 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
@@ -7906,7 +8481,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 })
                     .rptr;
                 *fresh45 = r;
-                if num_elems == 0 as libc::c_int as libc::c_ulong {
+                if num_elems == 0 as i32 as u64 {
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
                     }
@@ -7919,36 +8494,36 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             93 => {
                 r = (*stack_ptr).rptr;
                 (*r).sub.nodep.l.ll += 1;
-                if (*r).sub.nodep.l.ll == (*r).sub.nodep.reflags as libc::c_long {
+                if (*r).sub.nodep.l.ll == (*r).sub.nodep.reflags as i64 {
                     let mut array_0: *mut NODE = 0 as *mut NODE;
                     array_0 = (*r).sub.nodep.rn;
-                    if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
-                        && (*array_0).sub.nodep.reflags as libc::c_uint
-                            != (*r).sub.nodep.reflags as libc::c_uint
+                    if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                        && (*array_0).sub.nodep.reflags as u32
+                            != (*r).sub.nodep.reflags as u32
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1070 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1070 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"for loop: array `%s' changed size from %ld to %ld during loop execution\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(array_0),
-                            (*r).sub.nodep.reflags as libc::c_long,
-                            (*array_0).sub.nodep.reflags as libc::c_long,
+                            (*r).sub.nodep.reflags as i64,
+                            (*array_0).sub.nodep.reflags as i64,
                         );
                     }
                     if post_execute.is_some() {
@@ -7958,13 +8533,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     continue;
                 } else {
                     t1 = *((*r).sub.nodep.r.av).offset((*r).sub.nodep.l.ll as isize);
-                    lhs = if (*(*pc).x.xn).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
+                    lhs = if (*(*pc).x.xn).type_0 as u32
+                        == nodevals::Node_var as i32 as u32
                         && !((*(*pc).x.xn).sub.nodep.l.lptr == Nnull_string)
                     {
                         &mut (*(*pc).x.xn).sub.nodep.l.lptr
                     } else {
-                        r_get_lhs((*pc).x.xn, 0 as libc::c_int != 0)
+                        r_get_lhs((*pc).x.xn, 0 as i32 != 0)
                     };
                     unref(*lhs);
                     *lhs = dupnode(t1);
@@ -7980,7 +8555,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             69 => {
                 r = ((*pc).d.fptr)
-                    .expect("non-null function pointer")((*pc).x.xl as libc::c_int);
+                    .expect("non-null function pointer")((*pc).x.xl as i32);
                 let ref mut fresh47 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -7993,16 +8568,14 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             71 => {
                 let mut arg_count: size_t = (*pc).x.xl as size_t;
-                let mut f: *mut awk_ext_func_t = (*pc.offset(1 as libc::c_int as isize))
-                    .x
-                    .exf;
+                let mut f: *mut awk_ext_func_t = (*pc.offset(1 as i32 as isize)).x.exf;
                 let mut min_req: size_t = (*f).min_required_args;
                 let mut max_expect: size_t = (*f).max_expected_args;
                 let mut result: awk_value_t = awk_value_t {
-                    val_type: AWK_UNDEFINED,
+                    val_type: awk_valtype_t::AWK_UNDEFINED,
                     u: C2RustUnnamed_0 {
                         s: awk_string_t {
-                            str_0: 0 as *mut libc::c_char,
+                            str_0: 0 as *mut i8,
                             len: 0,
                         },
                     },
@@ -8010,57 +8583,54 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if arg_count < min_req {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1101 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1101 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: called with %lu arguments, expecting at least %lu\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
-                        (*pc.offset(1 as libc::c_int as isize)).d.name,
+                        (*pc.offset(1 as i32 as isize)).d.name,
                         arg_count,
                         min_req,
                     );
                 }
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0 && (*f).suppress_lint as u64 == 0
-                    && arg_count > max_expect
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                    && (*f).suppress_lint as u64 == 0 && arg_count > max_expect
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1107 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1107 as i32,
                     );
                     (Some(lintfunc.expect("non-null function pointer")))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: called with %lu arguments, expecting no more than %lu\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
-                        (*pc.offset(1 as libc::c_int as isize)).d.name,
+                        (*pc.offset(1 as i32 as isize)).d.name,
                         arg_count,
                         max_expect,
                     );
@@ -8069,22 +8639,20 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 let mut ef_ret: *mut awk_value_t = ((*pc).d.efptr)
                     .expect(
                         "non-null function pointer",
-                    )(arg_count as libc::c_int, &mut result, f);
+                    )(arg_count as i32, &mut result, f);
                 r = awk_value_to_node(ef_ret);
                 POP_CODE();
                 loop {
                     let fresh48 = arg_count;
                     arg_count = arg_count.wrapping_sub(1);
-                    if !(fresh48 > 0 as libc::c_int as libc::c_ulong) {
+                    if !(fresh48 > 0 as i32 as u64) {
                         break;
                     }
                     let fresh49 = stack_ptr;
                     stack_ptr = stack_ptr.offset(-1);
                     t1 = (*fresh49).rptr;
-                    if (*t1).type_0 as libc::c_uint
-                        == Node_val as libc::c_int as libc::c_uint
-                        || (*t1).type_0 as libc::c_uint
-                            == Node_elem_new as libc::c_int as libc::c_uint
+                    if (*t1).type_0 as u32 == nodevals::Node_val as i32 as u32
+                        || (*t1).type_0 as u32 == nodevals::Node_elem_new as i32 as u32
                     {
                         DEREF(t1);
                     }
@@ -8095,7 +8663,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     stack_ptr = stack_ptr.offset(-1);
                     let mut fname: *mut NODE = (*fresh50).rptr;
                     DEREF(fname);
-                    in_indirect_call = 0 as libc::c_int != 0;
+                    in_indirect_call = 0 as i32 != 0;
                 }
                 let ref mut fresh51 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
@@ -8108,7 +8676,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             70 => {
-                r = do_sub((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_uint);
+                r = do_sub((*pc).x.xl as i32, (*pc).d.dl as u32);
                 let ref mut fresh52 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -8120,28 +8688,24 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             56 => {
-                do_print((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_print((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 3518619798157913413;
             }
             58 => {
-                do_printf((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_printf((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 3518619798157913413;
             }
             57 => {
-                do_print_rec((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_print_rec((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 3518619798157913413;
             }
             79 => {
                 m = (*pc).d.dn;
-                if (*m).type_0 as libc::c_uint
-                    == Node_dynregex as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                     r = force_string_fmt(POP_SCALAR(), CONVFMT, CONVFMTidx);
                     unref((*m).sub.nodep.x.extra);
                     (*m).sub.nodep.x.extra = r;
-                } else if (*m).type_0 as libc::c_uint
-                    == Node_val as libc::c_int as libc::c_uint
-                {
+                } else if (*m).type_0 as u32 == nodevals::Node_val as i32 as u32 {
                     (*m).valref += 1;
                     (*m).valref;
                 }
@@ -8157,15 +8721,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             49 => {
                 m = (*pc).d.dn;
-                t1 = *get_field(0 as libc::c_int as libc::c_long, 0 as *mut Func_ptr);
+                t1 = *get_field(0 as i32 as i64, 0 as *mut Func_ptr);
                 current_block = 16958959661683804599;
             }
             50 | 48 => {
                 m = (*pc).d.dn;
                 t1 = force_string_fmt(TOP_SCALAR(), CONVFMT, CONVFMTidx);
-                if (*m).type_0 as libc::c_uint
-                    == Node_dynregex as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                     unref((*m).sub.nodep.x.extra);
                     (*m).sub.nodep.x.extra = t1;
                     stack_ptr = stack_ptr.offset(-1);
@@ -8176,48 +8738,41 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             74 => {
                 let mut f_0: *mut NODE = 0 as *mut NODE;
-                let mut arg_count_0: libc::c_int = 0;
-                let mut save_1: libc::c_char = 0;
+                let mut arg_count_0: i32 = 0;
+                let mut save_1: i8 = 0;
                 let mut function_name: *mut NODE = 0 as *mut NODE;
-                arg_count_0 = (*pc.offset(1 as libc::c_int as isize)).x.xl
-                    as libc::c_int;
+                arg_count_0 = (*pc.offset(1 as i32 as isize)).x.xl as i32;
                 t1 = (*stack_ptr.offset(-(arg_count_0 as isize))).rptr;
-                if (*t1).type_0 as libc::c_uint
-                    != Node_val as libc::c_int as libc::c_uint
-                {
+                if (*t1).type_0 as u32 != nodevals::Node_val as i32 as u32 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1209 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1209 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"indirect function call requires a simple scalar value\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
                 t1 = force_string_fmt(t1, CONVFMT, CONVFMTidx);
                 str_terminate_f(t1, &mut save_1);
-                if (*t1).sub.val.slen > 0 as libc::c_int as libc::c_ulong {
+                if (*t1).sub.val.slen > 0 as i32 as u64 {
                     f_0 = (*pc).x.xn;
                     if !f_0.is_null()
-                        && strcmp((*f_0).sub.nodep.name, (*t1).sub.val.sp)
-                            == 0 as libc::c_int
+                        && strcmp((*f_0).sub.nodep.name, (*t1).sub.val.sp) == 0 as i32
                     {
                         *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = save_1;
                         ni = setup_frame(pc);
@@ -8233,70 +8788,50 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if f_0.is_null() {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1227 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1227 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`%s' is not a function, so it cannot be called indirectly\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         (*t1).sub.val.sp,
                     );
                     current_block = 8195495264928745804;
-                } else if (*f_0).type_0 as libc::c_uint
-                    == Node_builtin_func as libc::c_int as libc::c_uint
+                } else if (*f_0).type_0 as u32
+                    == nodevals::Node_builtin_func as i32 as u32
                 {
-                    let mut arg_count_1: libc::c_int = (*pc
-                        .offset(1 as libc::c_int as isize))
-                        .x
-                        .xl as libc::c_int;
+                    let mut arg_count_1: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                        as i32;
                     let mut the_func: builtin_func_t = lookup_builtin((*t1).sub.val.sp);
                     if the_func
                         == ::core::mem::transmute::<
-                            Option::<
-                                unsafe extern "C" fn(libc::c_int, libc::c_uint) -> *mut NODE,
-                            >,
+                            Option<unsafe extern "C" fn(i32, u32) -> *mut NODE>,
                             builtin_func_t,
-                        >(
-                            Some(
-                                do_sub
-                                    as unsafe extern "C" fn(
-                                        libc::c_int,
-                                        libc::c_uint,
-                                    ) -> *mut NODE,
-                            ),
-                        )
+                        >(Some(do_sub as unsafe extern "C" fn(i32, u32) -> *mut NODE))
                     {
                         r = call_sub((*t1).sub.val.sp, arg_count_1);
                     } else if the_func
-                        == Some(
-                            do_match as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
-                        )
+                        == Some(do_match as unsafe extern "C" fn(i32) -> *mut NODE)
                     {
                         r = call_match(arg_count_1);
                     } else if the_func
-                        == Some(
-                            do_split as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
-                        )
+                        == Some(do_split as unsafe extern "C" fn(i32) -> *mut NODE)
                         || the_func
                             == Some(
-                                do_patsplit
-                                    as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
+                                do_patsplit as unsafe extern "C" fn(i32) -> *mut NODE,
                             )
                     {
                         r = call_split_func((*t1).sub.val.sp, arg_count_1);
@@ -8317,19 +8852,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         .rptr;
                     *fresh56 = r;
                     current_block = 3518619798157913413;
-                } else if (*f_0).type_0 as libc::c_uint
-                    != Node_func as libc::c_int as libc::c_uint
-                {
+                } else if (*f_0).type_0 as u32 != nodevals::Node_func as i32 as u32 {
                     *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = save_1;
-                    if (*f_0).type_0 as libc::c_uint
-                        == Node_ext_func as libc::c_int as libc::c_uint
-                    {
+                    if (*f_0).type_0 as u32 == nodevals::Node_ext_func as i32 as u32 {
                         let mut bc: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-                        let mut fname_0: *mut libc::c_char = (*pc).d.name;
-                        let mut arg_count_2: libc::c_int = (*pc
-                            .offset(1 as libc::c_int as isize))
-                            .x
-                            .xl as libc::c_int;
+                        let mut fname_0: *mut i8 = (*pc).d.name;
+                        let mut arg_count_2: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                            as i32;
                         static mut npc: [INSTRUCTION; 2] = [INSTRUCTION {
                             nexti: 0 as *const exp_instruction as *mut exp_instruction,
                             d: C2RustUnnamed_7 {
@@ -8339,20 +8868,17 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                             comment: 0 as *const exp_instruction as *mut exp_instruction,
                             source_line: 0,
                             pool_size: 0,
-                            opcode: Op_illegal,
+                            opcode: opcodeval::Op_illegal,
                         }; 2];
-                        npc[0 as libc::c_int as usize] = *pc;
+                        npc[0 as i32 as usize] = *pc;
                         bc = (*f_0).sub.nodep.r.iptr;
-                        npc[0 as libc::c_int as usize].opcode = Op_ext_builtin;
-                        npc[0 as libc::c_int as usize].d.efptr = (*bc).d.efptr;
-                        npc[0 as libc::c_int as usize]
-                            .x
-                            .xl = arg_count_2 as libc::c_long;
-                        npc[1 as libc::c_int
-                            as usize] = *pc.offset(1 as libc::c_int as isize);
-                        npc[1 as libc::c_int as usize].d.name = fname_0;
-                        npc[1 as libc::c_int as usize].x.exf = (*bc).x.exf;
-                        in_indirect_call = 1 as libc::c_int != 0;
+                        npc[0 as i32 as usize].opcode = opcodeval::Op_ext_builtin;
+                        npc[0 as i32 as usize].d.efptr = (*bc).d.efptr;
+                        npc[0 as i32 as usize].x.xl = arg_count_2 as i64;
+                        npc[1 as i32 as usize] = *pc.offset(1 as i32 as isize);
+                        npc[1 as i32 as usize].d.name = fname_0;
+                        npc[1 as i32 as usize].x.exf = (*bc).x.exf;
+                        in_indirect_call = 1 as i32 != 0;
                         ni = npc.as_mut_ptr();
                         if post_execute.is_some() {
                             post_execute.expect("non-null function pointer")(pc);
@@ -8362,27 +8888,24 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1277 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1277 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"function called indirectly through `%s' does not exist\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             (*pc).d.name,
                         );
@@ -8411,56 +8934,47 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if f_1.is_null() {
                     f_1 = lookup((*pc).d.name);
                     if f_1.is_null()
-                        || (*f_1).type_0 as libc::c_uint
-                            != Node_func as libc::c_int as libc::c_uint
-                            && (*f_1).type_0 as libc::c_uint
-                                != Node_ext_func as libc::c_int as libc::c_uint
+                        || (*f_1).type_0 as u32 != nodevals::Node_func as i32 as u32
+                            && (*f_1).type_0 as u32
+                                != nodevals::Node_ext_func as i32 as u32
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1296 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1296 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"function `%s' not defined\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"function `%s' not defined\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             (*pc).d.name,
                         );
                     }
                     (*pc).x.xn = f_1;
                 }
-                if (*f_1).type_0 as libc::c_uint
-                    == Node_ext_func as libc::c_int as libc::c_uint
-                {
+                if (*f_1).type_0 as u32 == nodevals::Node_ext_func as i32 as u32 {
                     let mut bc_0: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-                    let mut fname_1: *mut libc::c_char = (*pc).d.name;
-                    let mut arg_count_3: libc::c_int = (*pc
-                        .offset(1 as libc::c_int as isize))
-                        .x
-                        .xl as libc::c_int;
+                    let mut fname_1: *mut i8 = (*pc).d.name;
+                    let mut arg_count_3: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                        as i32;
                     bc_0 = (*f_1).sub.nodep.r.iptr;
-                    (*pc).opcode = Op_ext_builtin;
+                    (*pc).opcode = opcodeval::Op_ext_builtin;
                     (*pc).d.efptr = (*bc_0).d.efptr;
-                    (*pc).x.xl = arg_count_3 as libc::c_long;
-                    let ref mut fresh57 = (*pc.offset(1 as libc::c_int as isize)).d.name;
+                    (*pc).x.xl = arg_count_3 as i64;
+                    let ref mut fresh57 = (*pc.offset(1 as i32 as isize)).d.name;
                     *fresh57 = fname_1;
-                    let ref mut fresh58 = (*pc.offset(1 as libc::c_int as isize)).x.exf;
+                    let ref mut fresh58 = (*pc.offset(1 as i32 as isize)).x.exf;
                     *fresh58 = (*bc_0).x.exf;
                     ni = pc;
                     if post_execute.is_some() {
@@ -8480,16 +8994,16 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             62 => {
                 r_fatal(
                     b"internal error: file %s, line %d: unexpected opcode %s\0"
-                        as *const u8 as *const libc::c_char,
-                    b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                    1322 as libc::c_int,
+                        as *const u8 as *const i8,
+                    b"./interpret.h\0" as *const u8 as *const i8,
+                    1322 as i32,
                     opcode2str(op),
                 );
                 current_block = 3518619798157913413;
             }
             61 => {
                 m = POP_SCALAR();
-                ni = unwind_stack((*frame_ptr).sub.nodep.reflags as libc::c_long);
+                ni = unwind_stack((*frame_ptr).sub.nodep.reflags as i64);
                 let ref mut fresh59 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -8505,7 +9019,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 continue;
             }
             65 => {
-                r = do_getline_redir((*pc).x.xl as libc::c_int, (*pc).d.dl as redirval);
+                r = do_getline_redir((*pc).x.xl as i32, (*pc).d.dl as redirval);
                 let ref mut fresh60 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -8517,41 +9031,38 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             66 => {
-                if currule == 0 || currule == BEGINFILE as libc::c_int
-                    || currule == ENDFILE as libc::c_int
+                if currule == 0 || currule == defrule::BEGINFILE as i32
+                    || currule == defrule::ENDFILE as i32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1342 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1342 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"non-redirected `getline' invalid inside `%s' rule\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
                 loop {
-                    let mut ret: libc::c_int = 0;
-                    ret = nextfile(&mut curfile, 0 as libc::c_int != 0);
-                    if ret <= 0 as libc::c_int {
-                        r = do_getline((*pc).x.xl as libc::c_int, curfile);
+                    let mut ret: i32 = 0;
+                    ret = nextfile(&mut curfile, 0 as i32 != 0);
+                    if ret <= 0 as i32 {
+                        r = do_getline((*pc).x.xl as i32, curfile);
                         if !r.is_null() {
                             break;
                         }
@@ -8561,13 +9072,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                             if post_execute.is_some() {
                                 post_execute.expect("non-null function pointer")(pc);
                             }
-                            pc = (*pc.offset(1 as libc::c_int as isize)).x.xi;
+                            pc = (*pc.offset(1 as i32 as isize)).x.xi;
                             continue '_top;
                         } else {
                             if post_execute.is_some() {
                                 post_execute.expect("non-null function pointer")(pc);
                             }
-                            pc = (*pc.offset(1 as libc::c_int as isize)).d.di;
+                            pc = (*pc.offset(1 as i32 as isize)).d.di;
                             continue '_top;
                         }
                     }
@@ -8583,7 +9094,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             100 => {
-                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
+                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
                 if post_execute.is_some() {
                     post_execute.expect("non-null function pointer")(pc);
                 }
@@ -8592,9 +9103,9 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             99 => {
                 after_beginfile(&mut curfile);
-                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
-                if (*ni).opcode as libc::c_uint
-                    == Op_K_getline as libc::c_int as libc::c_uint || curfile.is_null()
+                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
+                if (*ni).opcode as u32 == opcodeval::Op_K_getline as i32 as u32
+                    || curfile.is_null()
                 {
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
@@ -8605,19 +9116,19 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             91 => {
-                let mut ret_0: libc::c_int = 0;
-                ret_0 = nextfile(&mut curfile, 0 as libc::c_int != 0);
-                if ret_0 < 0 as libc::c_int {
+                let mut ret_0: i32 = 0;
+                ret_0 = nextfile(&mut curfile, 0 as i32 != 0);
+                if ret_0 < 0 as i32 {
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
                     }
                     pc = (*pc).d.di;
                     continue;
-                } else if ret_0 == 0 as libc::c_int {
+                } else if ret_0 == 0 as i32 {
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
                     }
-                    pc = (*pc.offset(1 as libc::c_int as isize)).x.xi;
+                    pc = (*pc.offset(1 as i32 as isize)).x.xi;
                     continue;
                 } else {
                     push_exec_state(pc, currule, source, stack_ptr);
@@ -8632,7 +9143,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             90 => {
-                let mut errcode: libc::c_int = 0 as libc::c_int;
+                let mut errcode: i32 = 0 as i32;
                 ni = (*pc).d.di;
                 if curfile.is_null() {
                     ni = (*ni).d.di;
@@ -8642,24 +9153,22 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     pc = ni;
                     continue;
                 } else if !inrec(curfile, &mut errcode) {
-                    if errcode > 0 as libc::c_int {
+                    if errcode > 0 as i32 {
                         update_ERRNO_int(errcode);
-                        if do_flags as libc::c_uint
-                            & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0
-                            || (*pc).x.xl == 0
+                        if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32
+                            != 0 || (*pc).x.xl == 0
                         {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                1433 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                1433 as i32,
                             );
                             (Some(
                                 (Some(
-                                    r_fatal
-                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                 ))
                                     .expect("non-null function pointer"),
                             ))
@@ -8667,10 +9176,10 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"error reading input file `%s': %s\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 (*curfile).public.name,
                                 strerror(errcode),
@@ -8686,42 +9195,40 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 3518619798157913413;
             }
             67 => {
-                let mut ret_1: libc::c_int = 0;
-                if currule != Rule as libc::c_int && currule != BEGINFILE as libc::c_int
+                let mut ret_1: i32 = 0;
+                if currule != defrule::Rule as i32
+                    && currule != defrule::BEGINFILE as i32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1448 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1448 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`nextfile' cannot be called from a `%s' rule\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
-                ret_1 = nextfile(&mut curfile, 1 as libc::c_int != 0);
-                if currule == BEGINFILE as libc::c_int {
-                    let mut stack_size: libc::c_long = 0 as libc::c_int as libc::c_long;
+                ret_1 = nextfile(&mut curfile, 1 as i32 != 0);
+                if currule == defrule::BEGINFILE as i32 {
+                    let mut stack_size: i64 = 0 as i32 as i64;
                     ni = pop_exec_state(&mut currule, &mut source, &mut stack_size);
                     unwind_stack(stack_size);
-                    if ret_1 == 0 as libc::c_int {
+                    if ret_1 == 0 as i32 {
                         if post_execute.is_some() {
                             post_execute.expect("non-null function pointer")(pc);
                         }
@@ -8736,7 +9243,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         continue;
                     }
                 } else {
-                    unwind_stack(0 as libc::c_int as libc::c_long);
+                    unwind_stack(0 as i32 as i64);
                     push_exec_state((*pc).d.di, currule, source, stack_ptr);
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
@@ -8749,43 +9256,40 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if currule == 0 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1495 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1495 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`exit' cannot be called in the current context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
-                exiting = 1 as libc::c_int != 0;
+                exiting = 1 as i32 != 0;
                 t1 = force_number(POP_SCALAR());
                 if t1 != Nnull_string {
-                    exit_val = (*t1).sub.val.fltnum as libc::c_long as libc::c_int;
+                    exit_val = (*t1).sub.val.fltnum as i64 as i32;
                 }
                 DEREF(t1);
-                if currule == BEGINFILE as libc::c_int
-                    || currule == ENDFILE as libc::c_int
+                if currule == defrule::BEGINFILE as i32
+                    || currule == defrule::ENDFILE as i32
                 {
-                    pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
+                    pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
                 }
-                unwind_stack(0 as libc::c_int as libc::c_long);
-                if currule == END as libc::c_int {
+                unwind_stack(0 as i32 as i64);
+                if currule == defrule::END as i32 {
                     ni = (*pc).x.xi;
                 } else {
                     ni = (*pc).d.di;
@@ -8797,35 +9301,32 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 continue;
             }
             59 => {
-                if currule != Rule as libc::c_int {
+                if currule != defrule::Rule as i32 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1536 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1536 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`next' cannot be called from a `%s' rule\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
-                unwind_stack(0 as libc::c_int as libc::c_long);
+                unwind_stack(0 as i32 as i64);
                 if post_execute.is_some() {
                     post_execute.expect("non-null function pointer")(pc);
                 }
@@ -8849,25 +9350,24 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             15 => {
-                let mut result_0: libc::c_int = 0;
+                let mut result_0: i32 = 0;
                 let mut ip: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
                 t1 = TOP_SCALAR();
-                di = (eval_condition(t1) as libc::c_int != 0 as libc::c_int)
-                    as libc::c_int;
+                di = (eval_condition(t1) as i32 != 0 as i32) as i32;
                 DEREF(t1);
                 ip = (*pc).x.xi;
                 if (*ip).x.xl == 0 && di != 0 {
                     stack_ptr = stack_ptr.offset(-1);
                     stack_ptr;
-                    (*ip).x.xl = 1 as libc::c_int as libc::c_long;
+                    (*ip).x.xl = 1 as i32 as i64;
                     if post_execute.is_some() {
                         post_execute.expect("non-null function pointer")(pc);
                     }
                     pc = (*ip).d.di;
                     continue;
                 } else {
-                    result_0 = ((*ip).x.xl != 0 || di != 0) as libc::c_int;
-                    (*ip).x.xl ^= di as libc::c_long;
+                    result_0 = ((*ip).x.xl != 0 || di != 0) as i32;
+                    (*ip).x.xl ^= di as i64;
                     r = node_Boolean[result_0 as usize];
                     (*r).valref += 1;
                     (*r).valref;
@@ -8880,9 +9380,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             103 => {
-                if do_flags as libc::c_uint & DO_PROFILE as libc::c_int as libc::c_uint
-                    != 0
-                {
+                if do_flags as u32 & do_flag_values::DO_PROFILE as i32 as u32 != 0 {
                     (*pc).d.ldl = ((*pc).d.ldl).wrapping_add(1);
                     (*pc).d.ldl;
                 }
@@ -8894,26 +9392,21 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             _ => {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                    1599 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"./interpret.h\0" as *const u8 as *const i8, 1599 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"Sorry, don't know how to interpret `%s'\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     opcode2str(op),
                 );
@@ -8926,20 +9419,17 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 di = research(
                     rp,
                     (*t1).sub.val.sp,
-                    0 as libc::c_int,
+                    0 as i32,
                     (*t1).sub.val.slen,
-                    0 as libc::c_int,
+                    0 as i32,
                 );
-                di = (di == -(1 as libc::c_int)) as libc::c_int
-                    ^ (op as libc::c_uint != Op_nomatch as libc::c_int as libc::c_uint)
-                        as libc::c_int;
-                if op as libc::c_uint != Op_match_rec as libc::c_int as libc::c_uint {
+                di = (di == -(1 as i32)) as i32
+                    ^ (op as u32 != opcodeval::Op_nomatch as i32 as u32) as i32;
+                if op as u32 != opcodeval::Op_match_rec as i32 as u32 {
                     stack_ptr = stack_ptr.offset(-1);
                     stack_ptr;
                     DEREF(t1);
-                    if (*m).type_0 as libc::c_uint
-                        == Node_dynregex as libc::c_int as libc::c_uint
-                    {
+                    if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                         DEREF((*m).sub.nodep.x.extra);
                         (*m).sub.nodep.x.extra = 0 as *mut exp_node;
                     }
@@ -8958,30 +9448,27 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             11956501910097409974 => {
                 t1 = force_number(TOP_SCALAR());
-                if x2 == 0 as libc::c_int as libc::c_double {
+                if x2 == 0 as i32 as libc::c_double {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        664 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        664 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"division by zero attempted in `%%'\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -8992,30 +9479,26 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             7294098017659915583 => {
                 t1 = force_number(TOP_SCALAR());
-                if x2 == 0 as libc::c_int as libc::c_double {
+                if x2 == 0 as i32 as libc::c_double {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        648 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        648 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
-                            b"division by zero attempted\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                            0 as *const i8,
+                            b"division by zero attempted\0" as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -9044,10 +9527,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 t1 = force_number(TOP_SCALAR());
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum - x2);
-                (*r)
-                    .sub
-                    .val
-                    .fltnum = fix_nan_sign(
+                (*r).sub.val.fltnum = fix_nan_sign(
                     (*t1).sub.val.fltnum,
                     x2,
                     (*r).sub.val.fltnum,
@@ -9059,10 +9539,7 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 t1 = force_number(TOP_SCALAR());
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum + x2);
-                (*r)
-                    .sub
-                    .val
-                    .fltnum = fix_nan_sign(
+                (*r).sub.val.fltnum = fix_nan_sign(
                     (*t1).sub.val.fltnum,
                     x2,
                     (*r).sub.val.fltnum,
@@ -9090,13 +9567,13 @@ pub unsafe extern "C" fn h_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
         }
         pc = (*pc).nexti;
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int {
+pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> i32 {
     let mut current_block: u64;
     let mut pc: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-    let mut op: OPCODE = Op_illegal;
+    let mut op: OPCODE = opcodeval::Op_illegal;
     let mut r: *mut NODE = 0 as *mut NODE;
     let mut m: *mut NODE = 0 as *mut NODE;
     let mut ni: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
@@ -9105,32 +9582,28 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
     let mut lhs: *mut *mut NODE = 0 as *mut *mut NODE;
     let mut x: libc::c_double = 0.;
     let mut x2: libc::c_double = 0.;
-    let mut di: libc::c_int = 0;
+    let mut di: i32 = 0;
     let mut rp: *mut Regexp = 0 as *mut Regexp;
     let mut set_array: *mut NODE = 0 as *mut NODE;
     let mut set_idx: *mut NODE = 0 as *mut NODE;
-    let mut in_indirect_call: bool = 0 as libc::c_int != 0;
+    let mut in_indirect_call: bool = 0 as i32 != 0;
     pc = code;
     '_top: loop {
-        if (*pc).source_line as libc::c_int > 0 as libc::c_int {
-            sourceline = (*pc).source_line as libc::c_int;
+        if (*pc).source_line as i32 > 0 as i32 {
+            sourceline = (*pc).source_line as i32;
         }
         op = (*pc).opcode;
         if do_itrace {
-            fprintf(
-                stderr,
-                b"+ %s\n\0" as *const u8 as *const libc::c_char,
-                opcode2str(op),
-            );
+            fprintf(stderr, b"+ %s\n\0" as *const u8 as *const i8, opcode2str(op));
             fflush(stderr);
         }
-        match op as libc::c_uint {
+        match op as u32 {
             51 => {
-                currule = (*pc).x.xl as libc::c_int;
-                if currule == BEGINFILE as libc::c_int {
+                currule = (*pc).x.xl as i32;
+                if currule == defrule::BEGINFILE as i32 {
                     set_record(
-                        b"\0" as *const u8 as *const libc::c_char,
-                        0 as libc::c_int as size_t,
+                        b"\0" as *const u8 as *const i8,
+                        0 as i32 as size_t,
                         0 as *const awk_fieldwidth_info_t,
                     );
                 }
@@ -9140,21 +9613,19 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 8953125900534742068;
             }
             107 => {
-                let mut stdio_problem: bool = 0 as libc::c_int != 0;
-                let mut got_EPIPE: bool = 0 as libc::c_int != 0;
-                source = 0 as *mut libc::c_char;
-                sourceline = 0 as libc::c_int;
-                nextfile(&mut curfile, 1 as libc::c_int != 0);
+                let mut stdio_problem: bool = 0 as i32 != 0;
+                let mut got_EPIPE: bool = 0 as i32 != 0;
+                source = 0 as *mut i8;
+                sourceline = 0 as i32;
+                nextfile(&mut curfile, 1 as i32 != 0);
                 close_io(&mut stdio_problem, &mut got_EPIPE);
-                if stdio_problem as libc::c_int != 0 && !exiting
-                    && exit_val == 0 as libc::c_int
-                {
-                    exit_val = 1 as libc::c_int;
+                if stdio_problem as i32 != 0 && !exiting && exit_val == 0 as i32 {
+                    exit_val = 1 as i32;
                 }
                 close_extensions();
                 if got_EPIPE {
-                    signal(13 as libc::c_int, None);
-                    kill(getpid(), 13 as libc::c_int);
+                    signal(13 as i32, None);
+                    kill(getpid(), 13 as i32);
                 }
                 current_block = 2242099707034464334;
             }
@@ -9163,25 +9634,21 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             78 => {
                 m = (*pc).d.dn;
-                if do_flags as libc::c_uint
-                    & DO_TRADITIONAL as libc::c_int as libc::c_uint == 0
-                    && (*m).flags as libc::c_uint
-                        & INTLSTR as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
+                if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 == 0
+                    && (*m).flags as u32 & flagvals::INTLSTR as i32 as u32
+                        != 0 as i32 as u32
                 {
-                    let mut orig: *mut libc::c_char = 0 as *mut libc::c_char;
-                    let mut trans: *mut libc::c_char = 0 as *mut libc::c_char;
-                    let mut save: libc::c_char = 0;
+                    let mut orig: *mut i8 = 0 as *mut i8;
+                    let mut trans: *mut i8 = 0 as *mut i8;
+                    let mut save: i8 = 0;
                     save = *((*m).sub.val.sp).offset((*m).sub.val.slen as isize);
-                    *((*m).sub.val.sp)
-                        .offset(
-                            (*m).sub.val.slen as isize,
-                        ) = '\0' as i32 as libc::c_char;
+                    *((*m).sub.val.sp).offset((*m).sub.val.slen as isize) = '\0' as i32
+                        as i8;
                     orig = (*m).sub.val.sp;
-                    trans = dcgettext(TEXTDOMAIN, orig, 5 as libc::c_int);
+                    trans = dcgettext(TEXTDOMAIN, orig, 5 as i32);
                     *((*m).sub.val.sp).offset((*m).sub.val.slen as isize) = save;
                     if trans != orig {
-                        m = make_str_node(trans, strlen(trans), 0 as libc::c_int);
+                        m = make_str_node(trans, strlen(trans), 0 as i32);
                     } else {
                         (*m).valref += 1;
                         (*m).valref;
@@ -9203,21 +9670,17 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             75 | 76 | 77 => {
                 let mut current_block_66: u64;
                 let mut save_symbol: *mut NODE = 0 as *mut NODE;
-                let mut isparam: bool = 0 as libc::c_int != 0;
+                let mut isparam: bool = 0 as i32 != 0;
                 m = (*pc).d.dn;
                 save_symbol = m;
-                if (*m).type_0 as libc::c_uint
-                    == Node_param_list as libc::c_int as libc::c_uint
-                {
-                    isparam = 1 as libc::c_int != 0;
+                if (*m).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
+                    isparam = 1 as i32 != 0;
                     m = *((*frame_ptr).sub.nodep.r.av)
                         .offset((*m).sub.nodep.l.ll as isize);
                     save_symbol = m;
-                    if (*m).type_0 as libc::c_uint
-                        == Node_array_ref as libc::c_int as libc::c_uint
-                    {
-                        if (*(*m).sub.nodep.l.lptr).type_0 as libc::c_uint
-                            == Node_var as libc::c_int as libc::c_uint
+                    if (*m).type_0 as u32 == nodevals::Node_array_ref as i32 as u32 {
+                        if (*(*m).sub.nodep.l.lptr).type_0 as u32
+                            == nodevals::Node_var as i32 as u32
                         {
                             current_block_66 = 12941253007842490363;
                         } else {
@@ -9232,50 +9695,50 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 match current_block_66 {
                     2543120759711851213 => {
-                        match (*m).type_0 as libc::c_uint {
+                        match (*m).type_0 as u32 {
                             4 => {
                                 current_block_66 = 13362829586527803627;
                                 match current_block_66 {
                                     8173679788479780328 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     13362829586527803627 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -9294,10 +9757,8 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh63 = m;
                                     }
                                     18313894875582446089 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh66 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -9310,16 +9771,15 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -9327,54 +9787,53 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -9400,43 +9859,43 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     8173679788479780328 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     13362829586527803627 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -9455,10 +9914,8 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh63 = m;
                                     }
                                     18313894875582446089 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh66 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -9471,16 +9928,15 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -9488,54 +9944,53 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -9558,43 +10013,43 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     8173679788479780328 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     13362829586527803627 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -9613,10 +10068,8 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh63 = m;
                                     }
                                     18313894875582446089 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh66 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -9629,16 +10082,15 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -9646,54 +10098,53 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -9716,43 +10167,43 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     8173679788479780328 => {
                                         r_fatal(
                                             b"internal error: file %s, line %d: unexpected parameter type %s\0"
-                                                as *const u8 as *const libc::c_char,
-                                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                            263 as libc::c_int,
+                                                as *const u8 as *const i8,
+                                            b"./interpret.h\0" as *const u8 as *const i8,
+                                            263 as i32,
                                             nodetype2str((*m).type_0),
                                         );
                                     }
                                     13362829586527803627 => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                             && (*m).sub.nodep.l.lptr == Nnull_string
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                204 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                204 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
@@ -9771,10 +10222,8 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         *fresh63 = m;
                                     }
                                     18313894875582446089 => {
-                                        if op as libc::c_uint
-                                            == Op_push_arg as libc::c_int as libc::c_uint
-                                            || op as libc::c_uint
-                                                == Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 == opcodeval::Op_push_arg as i32 as u32
+                                            || op as u32 == opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
                                             let ref mut fresh66 = (*if stack_ptr < stack_top {
                                                 stack_ptr = stack_ptr.offset(1);
@@ -9787,16 +10236,15 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                         } else {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                258 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                258 as i32,
                                             );
                                             (Some(
                                                 (Some(
-                                                    r_fatal
-                                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                                 ))
                                                     .expect("non-null function pointer"),
                                             ))
@@ -9804,54 +10252,53 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                                     "non-null function pointer",
                                                 )(
                                                 dcgettext(
-                                                    0 as *const libc::c_char,
+                                                    0 as *const i8,
                                                     b"attempt to use array `%s' in a scalar context\0"
-                                                        as *const u8 as *const libc::c_char,
-                                                    5 as libc::c_int,
+                                                        as *const u8 as *const i8,
+                                                    5 as i32,
                                                 ),
                                                 array_vname(save_symbol),
                                             );
                                         }
                                     }
                                     _ => {
-                                        if do_flags as libc::c_uint
-                                            & (DO_LINT_INVALID as libc::c_int
-                                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                                        if do_flags as u32
+                                            & (do_flag_values::DO_LINT_INVALID as i32
+                                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                                         {
                                             (set_loc
                                                 as unsafe extern "C" fn(
-                                                    *const libc::c_char,
-                                                    libc::c_int,
+                                                    *const i8,
+                                                    i32,
                                                 ) -> ())(
-                                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                                236 as libc::c_int,
+                                                b"./interpret.h\0" as *const u8 as *const i8,
+                                                236 as i32,
                                             );
                                             (Some(lintfunc.expect("non-null function pointer")))
                                                 .expect(
                                                     "non-null function pointer",
                                                 )(
-                                                if isparam as libc::c_int != 0 {
+                                                if isparam as i32 != 0 {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 } else {
                                                     dcgettext(
-                                                        0 as *const libc::c_char,
+                                                        0 as *const i8,
                                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                                            as *const libc::c_char,
-                                                        5 as libc::c_int,
+                                                            as *const i8,
+                                                        5 as i32,
                                                     )
                                                 },
                                                 (*save_symbol).sub.nodep.name,
                                             );
                                         }
-                                        if op as libc::c_uint
-                                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
+                                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32
                                         {
-                                            (*m).type_0 = Node_var;
+                                            (*m).type_0 = nodevals::Node_var;
                                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                                             DEREF(m);
                                             m = dupnode(Nnull_string);
@@ -9874,44 +10321,42 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 match current_block_66 {
                     12941253007842490363 => {
-                        if do_flags as libc::c_uint
-                            & (DO_LINT_INVALID as libc::c_int
-                                | DO_LINT_ALL as libc::c_int) as libc::c_uint != 0
+                        if do_flags as u32
+                            & (do_flag_values::DO_LINT_INVALID as i32
+                                | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                         {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                216 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                216 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
-                                if isparam as libc::c_int != 0 {
+                                if isparam as i32 != 0 {
                                     dcgettext(
-                                        0 as *const libc::c_char,
+                                        0 as *const i8,
                                         b"reference to uninitialized argument `%s'\0" as *const u8
-                                            as *const libc::c_char,
-                                        5 as libc::c_int,
+                                            as *const i8,
+                                        5 as i32,
                                     )
                                 } else {
                                     dcgettext(
-                                        0 as *const libc::c_char,
+                                        0 as *const i8,
                                         b"reference to uninitialized variable `%s'\0" as *const u8
-                                            as *const libc::c_char,
-                                        5 as libc::c_int,
+                                            as *const i8,
+                                        5 as i32,
                                     )
                                 },
                                 (*save_symbol).sub.nodep.name,
                             );
                         }
-                        if op as libc::c_uint
-                            != Op_push_arg_untyped as libc::c_int as libc::c_uint
-                        {
-                            (*m).type_0 = Node_var;
+                        if op as u32 != opcodeval::Op_push_arg_untyped as i32 as u32 {
+                            (*m).type_0 = nodevals::Node_var;
                             (*m).sub.nodep.l.lptr = dupnode(Nnull_string);
                             m = dupnode(Nnull_string);
                         }
@@ -9932,14 +10377,11 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             81 => {
                 m = (*pc).d.dn;
-                if (*m).type_0 as libc::c_uint
-                    == Node_param_list as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_param_list as i32 as u32 {
                     m = *((*frame_ptr).sub.nodep.r.av)
                         .offset((*m).sub.nodep.l.ll as isize);
                 }
-                if (*m).type_0 as libc::c_uint == Node_var as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_var as i32 as u32 {
                     m = (*m).sub.nodep.l.lptr;
                     (*m).valref += 1;
                     (*m).valref;
@@ -9960,8 +10402,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 11503388136377843356;
             }
             82 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
@@ -9979,116 +10420,110 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             16 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 if (in_array(t1, t2)).is_null() {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if t1 == func_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            296 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            296 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"FUNCTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"FUNCTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     } else if t1 == symbol_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            299 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            299 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"SYMTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"SYMTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                    } else if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
+                    } else if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            302 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            302 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                        if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                        if (*t2).sub.val.slen == 0 as i32 as u64 {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                305 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                305 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"subscript of array `%s' is null string\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 array_vname(t1),
                             );
@@ -10096,29 +10531,27 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     }
                 }
                 if t1 == func_table {
-                    static mut warned: bool = 0 as libc::c_int != 0;
-                    if do_flags as libc::c_uint
-                        & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-                        && !warned
+                    static mut warned: bool = 0 as i32 != 0;
+                    if do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32
+                        != 0 && !warned
                     {
-                        warned = 1 as libc::c_int != 0;
+                        warned = 1 as i32 != 0;
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            317 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            317 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"FUNCTAB is a gawk extension\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"FUNCTAB is a gawk extension\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -10132,48 +10565,41 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 DEREF(t2);
                 if t1 == symbol_table {
-                    static mut warned_0: bool = 0 as libc::c_int != 0;
-                    if do_flags as libc::c_uint
-                        & DO_LINT_EXTENSIONS as libc::c_int as libc::c_uint != 0
-                        && !warned_0
+                    static mut warned_0: bool = 0 as i32 != 0;
+                    if do_flags as u32 & do_flag_values::DO_LINT_EXTENSIONS as i32 as u32
+                        != 0 && !warned_0
                     {
-                        warned_0 = 1 as libc::c_int != 0;
+                        warned_0 = 1 as i32 != 0;
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            335 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            335 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"SYMTAB is a gawk extension\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"SYMTAB is a gawk extension\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
-                    if (*r).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                    {
+                    if (*r).type_0 as u32 == nodevals::Node_var as i32 as u32 {
                         r = (*r).sub.nodep.l.lptr;
-                    } else if (*r).type_0 as libc::c_uint
-                        == Node_var_new as libc::c_int as libc::c_uint
+                    } else if (*r).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         (*r).sub.nodep.l.lptr = dupnode(Nnull_string);
                         r = (*r).sub.nodep.l.lptr;
                     }
                 }
-                if (*r).type_0 as libc::c_uint == Node_val as libc::c_int as libc::c_uint
-                    || (*r).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                    || (*r).type_0 as libc::c_uint
-                        == Node_elem_new as libc::c_int as libc::c_uint
+                if (*r).type_0 as u32 == nodevals::Node_val as i32 as u32
+                    || (*r).type_0 as u32 == nodevals::Node_var as i32 as u32
+                    || (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32
                 {
                     (*r).valref += 1;
                     (*r).valref;
@@ -10189,117 +10615,111 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             17 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 r = in_array(t1, t2);
                 if r.is_null() {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if t1 == func_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            362 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            362 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"FUNCTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"FUNCTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     } else if t1 == symbol_table {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            365 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            365 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"] is not allowed'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
-                            b"SYMTAB\0" as *const u8 as *const libc::c_char,
-                            (*t2).sub.val.slen as libc::c_int,
+                            b"SYMTAB\0" as *const u8 as *const i8,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                    } else if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
+                    } else if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            368 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            368 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
-                        if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                        if (*t2).sub.val.slen == 0 as i32 as u64 {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                371 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                371 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"subscript of array `%s' is null string\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 array_vname(t1),
                             );
@@ -10312,43 +10732,36 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (*r).sub.nodep.name = estrdup((*t2).sub.val.sp, (*t2).sub.val.slen);
                     assoc_set(t1, t2, r);
-                } else if (*r).type_0 as libc::c_uint
-                    == Node_elem_new as libc::c_int as libc::c_uint
-                {
-                    r = force_array(r, 0 as libc::c_int != 0);
+                } else if (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
+                    r = force_array(r, 0 as i32 != 0);
                     (*r).sub.nodep.x.extra = t1;
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (*r).sub.nodep.name = estrdup((*t2).sub.val.sp, (*t2).sub.val.slen);
-                } else if (*r).type_0 as libc::c_uint
-                    != Node_var_array as libc::c_int as libc::c_uint
-                {
+                } else if (*r).type_0 as u32 != nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        388 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        388 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use scalar `%s[\"%.*s\"]' as an array\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 } else {
@@ -10365,59 +10778,60 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             83 => {
-                t2 = if (*pc).d.dl == 1 as libc::c_int as libc::c_long {
+                t2 = if (*pc).d.dl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).d.dl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).d.dl as i32, 1 as i32 != 0)
                 };
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0 && (in_array(t1, t2)).is_null()
+                t1 = POP_ARRAY(0 as i32 != 0);
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                    && (in_array(t1, t2)).is_null()
                 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     if (*pc).x.xl != 0 {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            402 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            402 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"reference to uninitialized element `%s[\"%.*s\"]'\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
-                            (*t2).sub.val.slen as libc::c_int,
+                            (*t2).sub.val.slen as i32,
                             (*t2).sub.val.sp,
                         );
                     }
-                    if (*t2).sub.val.slen == 0 as libc::c_int as libc::c_ulong {
+                    if (*t2).sub.val.slen == 0 as i32 as u64 {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            405 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            405 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"subscript of array `%s' is null string\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const i8,
+                                5 as i32,
                             ),
                             array_vname(t1),
                         );
@@ -10425,98 +10839,85 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
                 lhs = ((*(*t1).sub.nodep.l.lp).lookup)
                     .expect("non-null function pointer")(t1, t2);
-                if (**lhs).type_0 as libc::c_uint
-                    == Node_var_array as libc::c_int as libc::c_uint
-                {
+                if (**lhs).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        411 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        411 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use array `%s[\"%.*s\"]' in a scalar context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 }
                 if t1 == func_table {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        429 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        429 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"cannot assign to elements of FUNCTAB\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 } else if t1 == symbol_table {
-                    if (**lhs).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                        || (**lhs).type_0 as libc::c_uint
-                            == Node_var_new as libc::c_int as libc::c_uint
+                    if (**lhs).type_0 as u32 == nodevals::Node_var as i32 as u32
+                        || (**lhs).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         update_global_values();
-                        (**lhs).type_0 = Node_var;
+                        (**lhs).type_0 = nodevals::Node_var;
                         lhs = &mut (**lhs).sub.nodep.l.lptr;
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            437 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            437 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"cannot assign to arbitrary elements of SYMTAB\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -10539,7 +10940,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             24 => {
                 t1 = TOP_SCALAR();
-                lhs = r_get_field(t1, 0 as *mut Func_ptr, 1 as libc::c_int != 0);
+                lhs = r_get_field(t1, 0 as *mut Func_ptr, 1 as i32 != 0);
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 DEREF(t1);
@@ -10573,39 +10974,39 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             105 => {
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
                 {
                     match (*pc).d.dl {
                         1 => {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                474 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                474 as i32,
                             );
                             (Some(lintfunc.expect("non-null function pointer")))
                                 .expect(
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"assignment used in conditional context\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                             );
                         }
                         _ => {
                             r_fatal(
                                 b"internal error: file %s, line %d: unexpected lint type value %d\0"
-                                    as *const u8 as *const libc::c_char,
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                478 as libc::c_int,
-                                (*pc).d.dl as libc::c_int,
+                                    as *const u8 as *const i8,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                478 as i32,
+                                (*pc).d.dl as i32,
                             );
                         }
                     }
@@ -10614,30 +11015,28 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             106 => {
                 t1 = (*stack_ptr).rptr;
-                t2 = (*stack_ptr.offset(-(1 as libc::c_int as isize))).rptr;
-                if (*t1).flags as libc::c_uint & STRING as libc::c_int as libc::c_uint
-                    != 0 as libc::c_int as libc::c_uint
-                    && (*t2).flags as libc::c_uint
-                        & STRING as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
+                t2 = (*stack_ptr.offset(-(1 as i32 as isize))).rptr;
+                if (*t1).flags as u32 & flagvals::STRING as i32 as u32 != 0 as i32 as u32
+                    && (*t2).flags as u32 & flagvals::STRING as i32 as u32
+                        != 0 as i32 as u32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        489 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        489 as i32,
                     );
                     (Some(lintfunc.expect("non-null function pointer")))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"operator `+' used on two string values\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -10649,7 +11048,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             89 => {
                 r = POP_SCALAR();
-                di = eval_condition(r) as libc::c_int;
+                di = eval_condition(r) as i32;
                 DEREF(r);
                 if di == 0 {
                     pc = (*pc).d.di;
@@ -10660,7 +11059,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             88 => {
                 r = POP_SCALAR();
-                di = eval_condition(r) as libc::c_int;
+                di = eval_condition(r) as i32;
                 DEREF(r);
                 if di != 0 {
                     pc = (*pc).d.di;
@@ -10671,11 +11070,10 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             38 | 40 => {
                 t1 = POP_SCALAR();
-                di = eval_condition(t1) as libc::c_int;
+                di = eval_condition(t1) as i32;
                 DEREF(t1);
-                if op as libc::c_uint == Op_and as libc::c_int as libc::c_uint && di != 0
-                    || op as libc::c_uint == Op_or as libc::c_int as libc::c_uint
-                        && di == 0
+                if op as u32 == opcodeval::Op_and as i32 as u32 && di != 0
+                    || op as u32 == opcodeval::Op_or as i32 as u32 && di == 0
                 {
                     current_block = 2242099707034464334;
                 } else {
@@ -10706,7 +11104,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             25 => {
                 t1 = TOP_SCALAR();
-                r = node_Boolean[!eval_condition(t1) as libc::c_int as usize];
+                r = node_Boolean[!eval_condition(t1) as i32 as usize];
                 DEREF(t1);
                 (*r).valref += 1;
                 (*r).valref;
@@ -10714,42 +11112,42 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             42 => {
-                r = node_Boolean[cmp_scalars(SCALAR_EQ) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_EQ) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 2242099707034464334;
             }
             43 => {
-                r = node_Boolean[cmp_scalars(SCALAR_NEQ) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_NEQ) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 2242099707034464334;
             }
             44 => {
-                r = node_Boolean[cmp_scalars(SCALAR_LT) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_LT) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 2242099707034464334;
             }
             45 => {
-                r = node_Boolean[cmp_scalars(SCALAR_GT) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_GT) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 2242099707034464334;
             }
             46 => {
-                r = node_Boolean[cmp_scalars(SCALAR_LE) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_LE) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
                 current_block = 2242099707034464334;
             }
             47 => {
-                r = node_Boolean[cmp_scalars(SCALAR_GE) as usize];
+                r = node_Boolean[cmp_scalars(scalar_cmp_t::SCALAR_GE) as usize];
                 (*r).valref += 1;
                 (*r).valref;
                 (*stack_ptr).rptr = r;
@@ -10816,9 +11214,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 11021467851294229602;
             }
             18 | 19 => {
-                x = if op as libc::c_uint
-                    == Op_preincrement as libc::c_int as libc::c_uint
-                {
+                x = if op as u32 == opcodeval::Op_preincrement as i32 as u32 {
                     1.0f64
                 } else {
                     -1.0f64
@@ -10826,10 +11222,10 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 lhs = (*stack_ptr).lptr;
                 t1 = *lhs;
                 force_number(t1);
-                if (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        == (MALLOC as libc::c_int | NUMCUR as libc::c_int
-                            | NUMBER as libc::c_int) as libc::c_uint
+                if (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        == (flagvals::MALLOC as i32 | flagvals::NUMCUR as i32
+                            | flagvals::NUMBER as i32) as u32
                 {
                     (*t1).sub.val.fltnum += x;
                     r = t1;
@@ -10845,9 +11241,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             20 | 21 => {
-                x = if op as libc::c_uint
-                    == Op_postincrement as libc::c_int as libc::c_uint
-                {
+                x = if op as u32 == opcodeval::Op_postincrement as i32 as u32 {
                     1.0f64
                 } else {
                     -1.0f64
@@ -10857,10 +11251,10 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 force_number(t1);
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum);
-                if (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        == (MALLOC as libc::c_int | NUMCUR as libc::c_int
-                            | NUMBER as libc::c_int) as libc::c_uint
+                if (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        == (flagvals::MALLOC as i32 | flagvals::NUMCUR as i32
+                            | flagvals::NUMBER as i32) as u32
                 {
                     (*t1).sub.val.fltnum += x;
                 } else {
@@ -10888,44 +11282,39 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             28 => {
-                t1 = force_array((*pc).d.dn, 1 as libc::c_int != 0);
-                t2 = if (*pc).x.xl == 1 as libc::c_int as libc::c_long {
+                t1 = force_array((*pc).d.dn, 1 as i32 != 0);
+                t2 = if (*pc).x.xl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).x.xl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).x.xl as i32, 1 as i32 != 0)
                 };
                 lhs = ((*(*t1).sub.nodep.l.lp).lookup)
                     .expect("non-null function pointer")(t1, t2);
-                if (**lhs).type_0 as libc::c_uint
-                    == Node_var_array as libc::c_int as libc::c_uint
-                {
+                if (**lhs).type_0 as u32 == nodevals::Node_var_array as i32 as u32 {
                     t2 = force_string_fmt(t2, CONVFMT, CONVFMTidx);
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        737 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        737 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"attempt to use array `%s[\"%.*s\"]' in a scalar context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         array_vname(t1),
-                        (*t2).sub.val.slen as libc::c_int,
+                        (*t2).sub.val.slen as i32,
                         (*t2).sub.val.sp,
                     );
                 }
@@ -10933,62 +11322,54 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if t1 == func_table {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        755 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        755 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"cannot assign to elements of FUNCTAB\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 } else if t1 == symbol_table {
-                    if (**lhs).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
-                        || (**lhs).type_0 as libc::c_uint
-                            == Node_var_new as libc::c_int as libc::c_uint
+                    if (**lhs).type_0 as u32 == nodevals::Node_var as i32 as u32
+                        || (**lhs).type_0 as u32 == nodevals::Node_var_new as i32 as u32
                     {
                         update_global_values();
-                        (**lhs).type_0 = Node_var;
+                        (**lhs).type_0 = nodevals::Node_var;
                         lhs = &mut (**lhs).sub.nodep.l.lptr;
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            763 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            763 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"cannot assign to arbitrary elements of SYMTAB\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
@@ -11007,13 +11388,12 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             27 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
                 } else {
-                    r_get_lhs((*pc).d.dn, 0 as libc::c_int != 0)
+                    r_get_lhs((*pc).d.dn, 0 as i32 != 0)
                 };
                 unref(*lhs);
                 r = (*pc).x.xn;
@@ -11030,7 +11410,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             29 | 30 => {
                 let mut assign: Func_ptr = None;
                 t1 = TOP_SCALAR();
-                lhs = r_get_field(t1, &mut assign, 0 as libc::c_int != 0);
+                lhs = r_get_field(t1, &mut assign, 0 as i32 != 0);
                 stack_ptr = stack_ptr.offset(-1);
                 stack_ptr;
                 DEREF(t1);
@@ -11039,9 +11419,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 r = POP_SCALAR();
                 unfield(lhs, &mut r);
                 force_string_fmt(*lhs, CONVFMT, CONVFMTidx);
-                if op as libc::c_uint
-                    == Op_store_field_exp as libc::c_int as libc::c_uint
-                {
+                if op as u32 == opcodeval::Op_store_field_exp as i32 as u32 {
                     (**lhs).valref += 1;
                     (**lhs).valref;
                     let ref mut fresh76 = (*if stack_ptr < stack_top {
@@ -11056,43 +11434,39 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             37 => {
-                lhs = if (*(*pc).d.dn).type_0 as libc::c_uint
-                    == Node_var as libc::c_int as libc::c_uint
+                lhs = if (*(*pc).d.dn).type_0 as u32 == nodevals::Node_var as i32 as u32
                     && !((*(*pc).d.dn).sub.nodep.l.lptr == Nnull_string)
                 {
                     &mut (*(*pc).d.dn).sub.nodep.l.lptr
                 } else {
-                    r_get_lhs((*pc).d.dn, 0 as libc::c_int != 0)
+                    r_get_lhs((*pc).d.dn, 0 as i32 != 0)
                 };
                 t1 = force_string_fmt(*lhs, CONVFMT, CONVFMTidx);
                 t2 = force_string_fmt(POP_SCALAR(), CONVFMT, CONVFMTidx);
                 if t1 != *lhs {
                     unref(*lhs);
-                    if (*t1).valref == 1 as libc::c_int as libc::c_long {
+                    if (*t1).valref == 1 as i32 as i64 {
                         *lhs = t1;
                     } else {
                         *lhs = dupnode(t1);
                     }
                 }
-                if t1 != t2 && (*t1).valref == 1 as libc::c_int as libc::c_long
-                    && (*t1).flags as libc::c_uint
-                        & (MALLOC as libc::c_int | MPFN as libc::c_int
-                            | MPZN as libc::c_int) as libc::c_uint
-                        == MALLOC as libc::c_int as libc::c_uint
+                if t1 != t2 && (*t1).valref == 1 as i32 as i64
+                    && (*t1).flags as u32
+                        & (flagvals::MALLOC as i32 | flagvals::MPFN as i32
+                            | flagvals::MPZN as i32) as u32
+                        == flagvals::MALLOC as i32 as u32
                 {
                     let mut nlen: size_t = ((*t1).sub.val.slen)
                         .wrapping_add((*t2).sub.val.slen);
-                    (*t1)
-                        .sub
-                        .val
-                        .sp = erealloc_real(
+                    (*t1).sub.val.sp = erealloc_real(
                         (*t1).sub.val.sp as *mut libc::c_void,
-                        nlen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                        b"r_interpret\0" as *const u8 as *const libc::c_char,
-                        b"t1->stptr\0" as *const u8 as *const libc::c_char,
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        843 as libc::c_int,
-                    ) as *mut libc::c_char;
+                        nlen.wrapping_add(1 as i32 as u64),
+                        b"r_interpret\0" as *const u8 as *const i8,
+                        b"t1->stptr\0" as *const u8 as *const i8,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        843 as i32,
+                    ) as *mut i8;
                     memcpy(
                         ((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize)
                             as *mut libc::c_void,
@@ -11100,76 +11474,60 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         (*t2).sub.val.slen,
                     );
                     (*t1).sub.val.slen = nlen;
-                    *((*t1).sub.val.sp)
-                        .offset(nlen as isize) = '\0' as i32 as libc::c_char;
-                    (*t1)
-                        .flags = ::core::mem::transmute::<
-                        libc::c_uint,
+                    *((*t1).sub.val.sp).offset(nlen as isize) = '\0' as i32 as i8;
+                    (*t1).flags = ::core::mem::transmute::<
+                        u32,
+                        flagvals,
+                    >((*t1).flags as u32 & flagvals::WSTRCUR as i32 as u32);
+                    (*t1).flags = ::core::mem::transmute::<
+                        u32,
                         flagvals,
                     >(
-                        (*t1).flags as libc::c_uint
-                            & WSTRCUR as libc::c_int as libc::c_uint,
+                        (*t1).flags as u32
+                            | (flagvals::MALLOC as i32 | flagvals::STRING as i32
+                                | flagvals::STRCUR as i32) as u32,
                     );
-                    (*t1)
-                        .flags = ::core::mem::transmute::<
-                        libc::c_uint,
-                        flagvals,
-                    >(
-                        (*t1).flags as libc::c_uint
-                            | (MALLOC as libc::c_int | STRING as libc::c_int
-                                | STRCUR as libc::c_int) as libc::c_uint,
-                    );
-                    (*t1).sub.val.idx = -(1 as libc::c_int);
-                    if (*t1).flags as libc::c_uint
-                        & WSTRCUR as libc::c_int as libc::c_uint
-                        != 0 as libc::c_int as libc::c_uint
-                        && (*t2).flags as libc::c_uint
-                            & WSTRCUR as libc::c_int as libc::c_uint
-                            != 0 as libc::c_int as libc::c_uint
+                    (*t1).sub.val.idx = -(1 as i32);
+                    if (*t1).flags as u32 & flagvals::WSTRCUR as i32 as u32
+                        != 0 as i32 as u32
+                        && (*t2).flags as u32 & flagvals::WSTRCUR as i32 as u32
+                            != 0 as i32 as u32
                     {
                         let mut wlen: size_t = ((*t1).sub.val.wslen)
                             .wrapping_add((*t2).sub.val.wslen);
-                        (*t1)
-                            .sub
-                            .val
-                            .wsp = erealloc_real(
+                        (*t1).sub.val.wsp = erealloc_real(
                             (*t1).sub.val.wsp as *mut libc::c_void,
-                            (::core::mem::size_of::<wchar_t>() as libc::c_ulong)
-                                .wrapping_mul(
-                                    wlen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                                ),
-                            b"r_interpret\0" as *const u8 as *const libc::c_char,
-                            b"t1->wstptr\0" as *const u8 as *const libc::c_char,
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            860 as libc::c_int,
+                            (::core::mem::size_of::<wchar_t>() as u64)
+                                .wrapping_mul(wlen.wrapping_add(1 as i32 as u64)),
+                            b"r_interpret\0" as *const u8 as *const i8,
+                            b"t1->wstptr\0" as *const u8 as *const i8,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            860 as i32,
                         ) as *mut wchar_t;
                         memcpy(
                             ((*t1).sub.val.wsp).offset((*t1).sub.val.wslen as isize)
                                 as *mut libc::c_void,
                             (*t2).sub.val.wsp as *const libc::c_void,
                             ((*t2).sub.val.wslen)
-                                .wrapping_mul(
-                                    ::core::mem::size_of::<wchar_t>() as libc::c_ulong,
-                                ),
+                                .wrapping_mul(::core::mem::size_of::<wchar_t>() as u64),
                         );
                         (*t1).sub.val.wslen = wlen;
                         *((*t1).sub.val.wsp).offset(wlen as isize) = '\0' as i32;
-                    } else if (**lhs).flags as libc::c_uint
-                        & WSTRCUR as libc::c_int as libc::c_uint != 0
+                    } else if (**lhs).flags as u32 & flagvals::WSTRCUR as i32 as u32 != 0
                     {
                         r_free_wstr(*lhs);
                     }
                 } else {
                     let mut nlen_0: size_t = ((*t1).sub.val.slen)
                         .wrapping_add((*t2).sub.val.slen);
-                    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
+                    let mut p: *mut i8 = 0 as *mut i8;
                     p = emalloc_real(
-                        nlen_0.wrapping_add(1 as libc::c_int as libc::c_ulong),
-                        b"r_interpret\0" as *const u8 as *const libc::c_char,
-                        b"p\0" as *const u8 as *const libc::c_char,
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        870 as libc::c_int,
-                    ) as *mut libc::c_char;
+                        nlen_0.wrapping_add(1 as i32 as u64),
+                        b"r_interpret\0" as *const u8 as *const i8,
+                        b"p\0" as *const u8 as *const i8,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        870 as i32,
+                    ) as *mut i8;
                     memcpy(
                         p as *mut libc::c_void,
                         (*t1).sub.val.sp as *const libc::c_void,
@@ -11181,7 +11539,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         (*t2).sub.val.slen,
                     );
                     unref(*lhs);
-                    *lhs = make_str_node(p, nlen_0, 2 as libc::c_int);
+                    *lhs = make_str_node(p, nlen_0, 2 as i32);
                     t1 = *lhs;
                 }
                 DEREF(t2);
@@ -11193,9 +11551,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 lhs = (*fresh77).lptr;
                 r = TOP_SCALAR();
                 unref(*lhs);
-                if (*r).type_0 as libc::c_uint
-                    == Node_elem_new as libc::c_int as libc::c_uint
-                {
+                if (*r).type_0 as u32 == nodevals::Node_elem_new as i32 as u32 {
                     DEREF(r);
                     r = dupnode(Nnull_string);
                 }
@@ -11207,27 +11563,22 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             98 => {
                 if !set_idx.is_null() {
-                    di = 1 as libc::c_int;
-                    if (*pc).d.dl == Op_sub_builtin as libc::c_int as libc::c_long
+                    di = 1 as i32;
+                    if (*pc).d.dl == opcodeval::Op_sub_builtin as i32 as i64
                         && {
                             r = (*stack_ptr).rptr;
                             !r.is_null()
-                        }
-                        && (*r).sub.val.fltnum as libc::c_long
-                            == 0 as libc::c_int as libc::c_long
+                        } && (*r).sub.val.fltnum as i64 == 0 as i32 as i64
                     {
-                        di = 0 as libc::c_int;
-                    } else if ((*pc).d.dl == Op_K_getline as libc::c_int as libc::c_long
-                        || (*pc).d.dl
-                            == Op_K_getline_redir as libc::c_int as libc::c_long)
+                        di = 0 as i32;
+                    } else if ((*pc).d.dl == opcodeval::Op_K_getline as i32 as i64
+                        || (*pc).d.dl == opcodeval::Op_K_getline_redir as i32 as i64)
                         && {
                             r = (*stack_ptr).rptr;
                             !r.is_null()
-                        }
-                        && (*r).sub.val.fltnum as libc::c_long
-                            <= 0 as libc::c_int as libc::c_long
+                        } && (*r).sub.val.fltnum as i64 <= 0 as i32 as i64
                     {
-                        di = 0 as libc::c_int;
+                        di = 0 as i32;
                     }
                     if di != 0 {
                         (Some(
@@ -11251,20 +11602,17 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             96 | 97 => {
                 r = (*stack_ptr).rptr;
-                if (*pc).d.dl == Op_sub_builtin as libc::c_int as libc::c_long
-                    && (*r).sub.val.fltnum as libc::c_long
-                        == 0 as libc::c_int as libc::c_long
+                if (*pc).d.dl == opcodeval::Op_sub_builtin as i32 as i64
+                    && (*r).sub.val.fltnum as i64 == 0 as i32 as i64
                 {
                     current_block = 2242099707034464334;
-                } else if ((*pc).d.dl == Op_K_getline as libc::c_int as libc::c_long
-                    || (*pc).d.dl == Op_K_getline_redir as libc::c_int as libc::c_long)
-                    && (*r).sub.val.fltnum as libc::c_long
-                        <= 0 as libc::c_int as libc::c_long
+                } else if ((*pc).d.dl == opcodeval::Op_K_getline as i32 as i64
+                    || (*pc).d.dl == opcodeval::Op_K_getline_redir as i32 as i64)
+                    && (*r).sub.val.fltnum as i64 <= 0 as i32 as i64
                 {
                     current_block = 2242099707034464334;
                 } else {
-                    if op as libc::c_uint == Op_var_assign as libc::c_int as libc::c_uint
-                    {
+                    if op as u32 == opcodeval::Op_var_assign as i32 as u32 {
                         ((*pc).x.aptr).expect("non-null function pointer")();
                     } else {
                         ((*pc).x.aptr).expect("non-null function pointer")();
@@ -11273,10 +11621,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             13 => {
-                r = concat_exp(
-                    (*pc).x.xl as libc::c_int,
-                    (*pc).d.dl & 1 as libc::c_int as libc::c_long != 0,
-                );
+                r = concat_exp((*pc).x.xl as i32, (*pc).d.dl & 1 as i32 as i64 != 0);
                 let ref mut fresh78 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -11288,7 +11633,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             52 => {
-                if (*pc.offset(1 as libc::c_int as isize)).x.xl != 0 {
+                if (*pc.offset(1 as i32 as isize)).x.xl != 0 {
                     let fresh79 = stack_ptr;
                     stack_ptr = stack_ptr.offset(-1);
                     m = (*fresh79).rptr;
@@ -11298,15 +11643,14 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     di = (research(
                         rp,
                         (*t2).sub.val.sp,
-                        0 as libc::c_int,
+                        0 as i32,
                         (*t2).sub.val.slen,
-                        0 as libc::c_int,
-                    ) >= 0 as libc::c_int) as libc::c_int;
+                        0 as i32,
+                    ) >= 0 as i32) as i32;
                 } else {
                     t1 = POP_SCALAR();
                     t2 = TOP_SCALAR();
-                    di = (cmp_nodes(t2, t1, 1 as libc::c_int != 0) == 0 as libc::c_int)
-                        as libc::c_int;
+                    di = (cmp_nodes(t2, t1, 1 as i32 != 0) == 0 as i32) as i32;
                     DEREF(t1);
                 }
                 if di != 0 {
@@ -11319,13 +11663,13 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             63 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                do_delete(t1, (*pc).x.xl as libc::c_int);
+                t1 = POP_ARRAY(0 as i32 != 0);
+                do_delete(t1, (*pc).x.xl as i32);
                 stack_ptr = stack_ptr.offset(-(*pc).x.xl as isize);
                 current_block = 2242099707034464334;
             }
             64 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
+                t1 = POP_ARRAY(0 as i32 != 0);
                 let fresh80 = stack_ptr;
                 stack_ptr = stack_ptr.offset(-1);
                 lhs = (*fresh80).lptr;
@@ -11333,14 +11677,14 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             72 => {
-                t1 = POP_ARRAY(0 as libc::c_int != 0);
-                t2 = if (*pc).x.xl == 1 as libc::c_int as libc::c_long {
+                t1 = POP_ARRAY(0 as i32 != 0);
+                t2 = if (*pc).x.xl == 1 as i32 as i64 {
                     POP_SCALAR()
                 } else {
-                    concat_exp((*pc).x.xl as libc::c_int, 1 as libc::c_int != 0)
+                    concat_exp((*pc).x.xl as i32, 1 as i32 != 0)
                 };
                 r = node_Boolean[(in_array(t1, t2)
-                    != 0 as *mut libc::c_void as *mut NODE) as libc::c_int as usize];
+                    != 0 as *mut libc::c_void as *mut NODE) as i32 as usize];
                 DEREF(t2);
                 (*r).valref += 1;
                 (*r).valref;
@@ -11358,53 +11702,54 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 let mut list: *mut *mut NODE = 0 as *mut *mut NODE;
                 let mut array: *mut NODE = 0 as *mut NODE;
                 let mut sort_str: *mut NODE = 0 as *mut NODE;
-                let mut num_elems: size_t = 0 as libc::c_int as size_t;
+                let mut num_elems: size_t = 0 as i32 as size_t;
                 static mut sorted_in: *mut NODE = 0 as *const NODE as *mut NODE;
-                let mut how_to_sort: *const libc::c_char = b"@unsorted\0" as *const u8
-                    as *const libc::c_char;
-                let mut save_0: libc::c_char = 0;
-                let mut saved_end: bool = 0 as libc::c_int != 0;
-                array = POP_ARRAY(1 as libc::c_int != 0);
+                let mut how_to_sort: *const i8 = b"@unsorted\0" as *const u8
+                    as *const i8;
+                let mut save_0: i8 = 0;
+                let mut saved_end: bool = 0 as i32 != 0;
+                array = POP_ARRAY(1 as i32 != 0);
                 num_elems = (*array).sub.nodep.reflags as size_t;
-                if !(num_elems == 0 as libc::c_int as libc::c_ulong) {
+                if !(num_elems == 0 as i32 as u64) {
                     if sorted_in.is_null() {
                         sorted_in = make_str_node(
-                            b"sorted_in\0" as *const u8 as *const libc::c_char,
-                            9 as libc::c_int as size_t,
-                            0 as libc::c_int,
+                            b"sorted_in\0" as *const u8 as *const i8,
+                            9 as i32 as size_t,
+                            0 as i32,
                         );
                     }
                     sort_str = 0 as *mut NODE;
-                    if do_flags as libc::c_uint & DO_POSIX as libc::c_int as libc::c_uint
-                        == 0 && !PROCINFO_node.is_null()
+                    if do_flags as u32 & do_flag_values::DO_POSIX as i32 as u32 == 0
+                        && !PROCINFO_node.is_null()
                     {
                         sort_str = in_array(PROCINFO_node, sorted_in);
                     }
                     if !sort_str.is_null() {
                         sort_str = force_string_fmt(sort_str, CONVFMT, CONVFMTidx);
-                        if (*sort_str).sub.val.slen > 0 as libc::c_int as libc::c_ulong {
+                        if (*sort_str).sub.val.slen > 0 as i32 as u64 {
                             how_to_sort = (*sort_str).sub.val.sp;
                             str_terminate_f(sort_str, &mut save_0);
-                            saved_end = 1 as libc::c_int != 0;
+                            saved_end = 1 as i32 != 0;
                         }
                     }
-                    list = assoc_list(array, how_to_sort, SORTED_IN);
+                    list = assoc_list(array, how_to_sort, sort_context_t::SORTED_IN);
                     if saved_end {
                         *((*sort_str).sub.val.sp)
                             .offset((*sort_str).sub.val.slen as isize) = save_0;
                     }
                 }
-                r = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+                r = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
                 if !r.is_null() {
-                    nextfree[BLOCK_NODE as libc::c_int as usize]
-                        .freep = (*(r as *mut block_item)).freep;
+                    nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(r
+                        as *mut block_item))
+                        .freep;
                 } else {
-                    r = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+                    r = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
                 };
-                (*r).type_0 = Node_arrayfor;
+                (*r).type_0 = nodevals::Node_arrayfor;
                 (*r).sub.nodep.r.av = list;
-                (*r).sub.nodep.reflags = num_elems as reflagvals;
-                (*r).sub.nodep.l.ll = -(1 as libc::c_int) as libc::c_long;
+                (*r).sub.nodep.reflags = reflagvals::from_libc_c_uint(num_elems as u32);
+                (*r).sub.nodep.l.ll = -(1 as i32) as i64;
                 (*r).sub.nodep.rn = array;
                 let ref mut fresh82 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
@@ -11414,7 +11759,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 })
                     .rptr;
                 *fresh82 = r;
-                if num_elems == 0 as libc::c_int as libc::c_ulong {
+                if num_elems == 0 as i32 as u64 {
                     pc = (*pc).d.di;
                     continue;
                 } else {
@@ -11424,49 +11769,49 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             93 => {
                 r = (*stack_ptr).rptr;
                 (*r).sub.nodep.l.ll += 1;
-                if (*r).sub.nodep.l.ll == (*r).sub.nodep.reflags as libc::c_long {
+                if (*r).sub.nodep.l.ll == (*r).sub.nodep.reflags as i64 {
                     let mut array_0: *mut NODE = 0 as *mut NODE;
                     array_0 = (*r).sub.nodep.rn;
-                    if do_flags as libc::c_uint
-                        & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                            as libc::c_uint != 0
-                        && (*array_0).sub.nodep.reflags as libc::c_uint
-                            != (*r).sub.nodep.reflags as libc::c_uint
+                    if do_flags as u32
+                        & (do_flag_values::DO_LINT_INVALID as i32
+                            | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                        && (*array_0).sub.nodep.reflags as u32
+                            != (*r).sub.nodep.reflags as u32
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1070 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1070 as i32,
                         );
                         (Some(lintfunc.expect("non-null function pointer")))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"for loop: array `%s' changed size from %ld to %ld during loop execution\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             array_vname(array_0),
-                            (*r).sub.nodep.reflags as libc::c_long,
-                            (*array_0).sub.nodep.reflags as libc::c_long,
+                            (*r).sub.nodep.reflags as i64,
+                            (*array_0).sub.nodep.reflags as i64,
                         );
                     }
                     pc = (*pc).d.di;
                     continue;
                 } else {
                     t1 = *((*r).sub.nodep.r.av).offset((*r).sub.nodep.l.ll as isize);
-                    lhs = if (*(*pc).x.xn).type_0 as libc::c_uint
-                        == Node_var as libc::c_int as libc::c_uint
+                    lhs = if (*(*pc).x.xn).type_0 as u32
+                        == nodevals::Node_var as i32 as u32
                         && !((*(*pc).x.xn).sub.nodep.l.lptr == Nnull_string)
                     {
                         &mut (*(*pc).x.xn).sub.nodep.l.lptr
                     } else {
-                        r_get_lhs((*pc).x.xn, 0 as libc::c_int != 0)
+                        r_get_lhs((*pc).x.xn, 0 as i32 != 0)
                     };
                     unref(*lhs);
                     *lhs = dupnode(t1);
@@ -11482,7 +11827,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             69 => {
                 r = ((*pc).d.fptr)
-                    .expect("non-null function pointer")((*pc).x.xl as libc::c_int);
+                    .expect("non-null function pointer")((*pc).x.xl as i32);
                 let ref mut fresh84 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -11495,16 +11840,14 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             71 => {
                 let mut arg_count: size_t = (*pc).x.xl as size_t;
-                let mut f: *mut awk_ext_func_t = (*pc.offset(1 as libc::c_int as isize))
-                    .x
-                    .exf;
+                let mut f: *mut awk_ext_func_t = (*pc.offset(1 as i32 as isize)).x.exf;
                 let mut min_req: size_t = (*f).min_required_args;
                 let mut max_expect: size_t = (*f).max_expected_args;
                 let mut result: awk_value_t = awk_value_t {
-                    val_type: AWK_UNDEFINED,
+                    val_type: awk_valtype_t::AWK_UNDEFINED,
                     u: C2RustUnnamed_0 {
                         s: awk_string_t {
-                            str_0: 0 as *mut libc::c_char,
+                            str_0: 0 as *mut i8,
                             len: 0,
                         },
                     },
@@ -11512,57 +11855,54 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if arg_count < min_req {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1101 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1101 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: called with %lu arguments, expecting at least %lu\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
-                        (*pc.offset(1 as libc::c_int as isize)).d.name,
+                        (*pc.offset(1 as i32 as isize)).d.name,
                         arg_count,
                         min_req,
                     );
                 }
-                if do_flags as libc::c_uint
-                    & (DO_LINT_INVALID as libc::c_int | DO_LINT_ALL as libc::c_int)
-                        as libc::c_uint != 0 && (*f).suppress_lint as u64 == 0
-                    && arg_count > max_expect
+                if do_flags as u32
+                    & (do_flag_values::DO_LINT_INVALID as i32
+                        | do_flag_values::DO_LINT_ALL as i32) as u32 != 0
+                    && (*f).suppress_lint as u64 == 0 && arg_count > max_expect
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1107 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1107 as i32,
                     );
                     (Some(lintfunc.expect("non-null function pointer")))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: called with %lu arguments, expecting no more than %lu\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
-                        (*pc.offset(1 as libc::c_int as isize)).d.name,
+                        (*pc.offset(1 as i32 as isize)).d.name,
                         arg_count,
                         max_expect,
                     );
@@ -11571,22 +11911,20 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 let mut ef_ret: *mut awk_value_t = ((*pc).d.efptr)
                     .expect(
                         "non-null function pointer",
-                    )(arg_count as libc::c_int, &mut result, f);
+                    )(arg_count as i32, &mut result, f);
                 r = awk_value_to_node(ef_ret);
                 POP_CODE();
                 loop {
                     let fresh85 = arg_count;
                     arg_count = arg_count.wrapping_sub(1);
-                    if !(fresh85 > 0 as libc::c_int as libc::c_ulong) {
+                    if !(fresh85 > 0 as i32 as u64) {
                         break;
                     }
                     let fresh86 = stack_ptr;
                     stack_ptr = stack_ptr.offset(-1);
                     t1 = (*fresh86).rptr;
-                    if (*t1).type_0 as libc::c_uint
-                        == Node_val as libc::c_int as libc::c_uint
-                        || (*t1).type_0 as libc::c_uint
-                            == Node_elem_new as libc::c_int as libc::c_uint
+                    if (*t1).type_0 as u32 == nodevals::Node_val as i32 as u32
+                        || (*t1).type_0 as u32 == nodevals::Node_elem_new as i32 as u32
                     {
                         DEREF(t1);
                     }
@@ -11597,7 +11935,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                     stack_ptr = stack_ptr.offset(-1);
                     let mut fname: *mut NODE = (*fresh87).rptr;
                     DEREF(fname);
-                    in_indirect_call = 0 as libc::c_int != 0;
+                    in_indirect_call = 0 as i32 != 0;
                 }
                 let ref mut fresh88 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
@@ -11610,7 +11948,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             70 => {
-                r = do_sub((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_uint);
+                r = do_sub((*pc).x.xl as i32, (*pc).d.dl as u32);
                 let ref mut fresh89 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -11622,28 +11960,24 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             56 => {
-                do_print((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_print((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 2242099707034464334;
             }
             58 => {
-                do_printf((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_printf((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 2242099707034464334;
             }
             57 => {
-                do_print_rec((*pc).x.xl as libc::c_int, (*pc).d.dl as libc::c_int);
+                do_print_rec((*pc).x.xl as i32, (*pc).d.dl as i32);
                 current_block = 2242099707034464334;
             }
             79 => {
                 m = (*pc).d.dn;
-                if (*m).type_0 as libc::c_uint
-                    == Node_dynregex as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                     r = force_string_fmt(POP_SCALAR(), CONVFMT, CONVFMTidx);
                     unref((*m).sub.nodep.x.extra);
                     (*m).sub.nodep.x.extra = r;
-                } else if (*m).type_0 as libc::c_uint
-                    == Node_val as libc::c_int as libc::c_uint
-                {
+                } else if (*m).type_0 as u32 == nodevals::Node_val as i32 as u32 {
                     (*m).valref += 1;
                     (*m).valref;
                 }
@@ -11659,15 +11993,13 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             49 => {
                 m = (*pc).d.dn;
-                t1 = *get_field(0 as libc::c_int as libc::c_long, 0 as *mut Func_ptr);
+                t1 = *get_field(0 as i32 as i64, 0 as *mut Func_ptr);
                 current_block = 9616300735396971712;
             }
             50 | 48 => {
                 m = (*pc).d.dn;
                 t1 = force_string_fmt(TOP_SCALAR(), CONVFMT, CONVFMTidx);
-                if (*m).type_0 as libc::c_uint
-                    == Node_dynregex as libc::c_int as libc::c_uint
-                {
+                if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                     unref((*m).sub.nodep.x.extra);
                     (*m).sub.nodep.x.extra = t1;
                     stack_ptr = stack_ptr.offset(-1);
@@ -11678,48 +12010,41 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             74 => {
                 let mut f_0: *mut NODE = 0 as *mut NODE;
-                let mut arg_count_0: libc::c_int = 0;
-                let mut save_1: libc::c_char = 0;
+                let mut arg_count_0: i32 = 0;
+                let mut save_1: i8 = 0;
                 let mut function_name: *mut NODE = 0 as *mut NODE;
-                arg_count_0 = (*pc.offset(1 as libc::c_int as isize)).x.xl
-                    as libc::c_int;
+                arg_count_0 = (*pc.offset(1 as i32 as isize)).x.xl as i32;
                 t1 = (*stack_ptr.offset(-(arg_count_0 as isize))).rptr;
-                if (*t1).type_0 as libc::c_uint
-                    != Node_val as libc::c_int as libc::c_uint
-                {
+                if (*t1).type_0 as u32 != nodevals::Node_val as i32 as u32 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1209 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1209 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"indirect function call requires a simple scalar value\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
                 t1 = force_string_fmt(t1, CONVFMT, CONVFMTidx);
                 str_terminate_f(t1, &mut save_1);
-                if (*t1).sub.val.slen > 0 as libc::c_int as libc::c_ulong {
+                if (*t1).sub.val.slen > 0 as i32 as u64 {
                     f_0 = (*pc).x.xn;
                     if !f_0.is_null()
-                        && strcmp((*f_0).sub.nodep.name, (*t1).sub.val.sp)
-                            == 0 as libc::c_int
+                        && strcmp((*f_0).sub.nodep.name, (*t1).sub.val.sp) == 0 as i32
                     {
                         *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = save_1;
                         ni = setup_frame(pc);
@@ -11732,70 +12057,50 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if f_0.is_null() {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1227 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1227 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`%s' is not a function, so it cannot be called indirectly\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         (*t1).sub.val.sp,
                     );
                     current_block = 4159430576127784976;
-                } else if (*f_0).type_0 as libc::c_uint
-                    == Node_builtin_func as libc::c_int as libc::c_uint
+                } else if (*f_0).type_0 as u32
+                    == nodevals::Node_builtin_func as i32 as u32
                 {
-                    let mut arg_count_1: libc::c_int = (*pc
-                        .offset(1 as libc::c_int as isize))
-                        .x
-                        .xl as libc::c_int;
+                    let mut arg_count_1: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                        as i32;
                     let mut the_func: builtin_func_t = lookup_builtin((*t1).sub.val.sp);
                     if the_func
                         == ::core::mem::transmute::<
-                            Option::<
-                                unsafe extern "C" fn(libc::c_int, libc::c_uint) -> *mut NODE,
-                            >,
+                            Option<unsafe extern "C" fn(i32, u32) -> *mut NODE>,
                             builtin_func_t,
-                        >(
-                            Some(
-                                do_sub
-                                    as unsafe extern "C" fn(
-                                        libc::c_int,
-                                        libc::c_uint,
-                                    ) -> *mut NODE,
-                            ),
-                        )
+                        >(Some(do_sub as unsafe extern "C" fn(i32, u32) -> *mut NODE))
                     {
                         r = call_sub((*t1).sub.val.sp, arg_count_1);
                     } else if the_func
-                        == Some(
-                            do_match as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
-                        )
+                        == Some(do_match as unsafe extern "C" fn(i32) -> *mut NODE)
                     {
                         r = call_match(arg_count_1);
                     } else if the_func
-                        == Some(
-                            do_split as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
-                        )
+                        == Some(do_split as unsafe extern "C" fn(i32) -> *mut NODE)
                         || the_func
                             == Some(
-                                do_patsplit
-                                    as unsafe extern "C" fn(libc::c_int) -> *mut NODE,
+                                do_patsplit as unsafe extern "C" fn(i32) -> *mut NODE,
                             )
                     {
                         r = call_split_func((*t1).sub.val.sp, arg_count_1);
@@ -11816,19 +12121,13 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         .rptr;
                     *fresh93 = r;
                     current_block = 2242099707034464334;
-                } else if (*f_0).type_0 as libc::c_uint
-                    != Node_func as libc::c_int as libc::c_uint
-                {
+                } else if (*f_0).type_0 as u32 != nodevals::Node_func as i32 as u32 {
                     *((*t1).sub.val.sp).offset((*t1).sub.val.slen as isize) = save_1;
-                    if (*f_0).type_0 as libc::c_uint
-                        == Node_ext_func as libc::c_int as libc::c_uint
-                    {
+                    if (*f_0).type_0 as u32 == nodevals::Node_ext_func as i32 as u32 {
                         let mut bc: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-                        let mut fname_0: *mut libc::c_char = (*pc).d.name;
-                        let mut arg_count_2: libc::c_int = (*pc
-                            .offset(1 as libc::c_int as isize))
-                            .x
-                            .xl as libc::c_int;
+                        let mut fname_0: *mut i8 = (*pc).d.name;
+                        let mut arg_count_2: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                            as i32;
                         static mut npc: [INSTRUCTION; 2] = [INSTRUCTION {
                             nexti: 0 as *const exp_instruction as *mut exp_instruction,
                             d: C2RustUnnamed_7 {
@@ -11838,47 +12137,41 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                             comment: 0 as *const exp_instruction as *mut exp_instruction,
                             source_line: 0,
                             pool_size: 0,
-                            opcode: Op_illegal,
+                            opcode: opcodeval::Op_illegal,
                         }; 2];
-                        npc[0 as libc::c_int as usize] = *pc;
+                        npc[0 as i32 as usize] = *pc;
                         bc = (*f_0).sub.nodep.r.iptr;
-                        npc[0 as libc::c_int as usize].opcode = Op_ext_builtin;
-                        npc[0 as libc::c_int as usize].d.efptr = (*bc).d.efptr;
-                        npc[0 as libc::c_int as usize]
-                            .x
-                            .xl = arg_count_2 as libc::c_long;
-                        npc[1 as libc::c_int
-                            as usize] = *pc.offset(1 as libc::c_int as isize);
-                        npc[1 as libc::c_int as usize].d.name = fname_0;
-                        npc[1 as libc::c_int as usize].x.exf = (*bc).x.exf;
-                        in_indirect_call = 1 as libc::c_int != 0;
+                        npc[0 as i32 as usize].opcode = opcodeval::Op_ext_builtin;
+                        npc[0 as i32 as usize].d.efptr = (*bc).d.efptr;
+                        npc[0 as i32 as usize].x.xl = arg_count_2 as i64;
+                        npc[1 as i32 as usize] = *pc.offset(1 as i32 as isize);
+                        npc[1 as i32 as usize].d.name = fname_0;
+                        npc[1 as i32 as usize].x.exf = (*bc).x.exf;
+                        in_indirect_call = 1 as i32 != 0;
                         ni = npc.as_mut_ptr();
                         pc = ni;
                         continue;
                     } else {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1277 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1277 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"function called indirectly through `%s' does not exist\0"
-                                    as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             (*pc).d.name,
                         );
@@ -11904,56 +12197,47 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if f_1.is_null() {
                     f_1 = lookup((*pc).d.name);
                     if f_1.is_null()
-                        || (*f_1).type_0 as libc::c_uint
-                            != Node_func as libc::c_int as libc::c_uint
-                            && (*f_1).type_0 as libc::c_uint
-                                != Node_ext_func as libc::c_int as libc::c_uint
+                        || (*f_1).type_0 as u32 != nodevals::Node_func as i32 as u32
+                            && (*f_1).type_0 as u32
+                                != nodevals::Node_ext_func as i32 as u32
                     {
                         (set_loc
                             as unsafe extern "C" fn(
-                                *const libc::c_char,
-                                libc::c_int,
+                                *const i8,
+                                i32,
                             ) -> ())(
-                            b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                            1296 as libc::c_int,
+                            b"./interpret.h\0" as *const u8 as *const i8,
+                            1296 as i32,
                         );
                         (Some(
-                            (Some(
-                                r_fatal
-                                    as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                            ))
+                            (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                                 .expect("non-null function pointer"),
                         ))
                             .expect(
                                 "non-null function pointer",
                             )(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"function `%s' not defined\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"function `%s' not defined\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             (*pc).d.name,
                         );
                     }
                     (*pc).x.xn = f_1;
                 }
-                if (*f_1).type_0 as libc::c_uint
-                    == Node_ext_func as libc::c_int as libc::c_uint
-                {
+                if (*f_1).type_0 as u32 == nodevals::Node_ext_func as i32 as u32 {
                     let mut bc_0: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
-                    let mut fname_1: *mut libc::c_char = (*pc).d.name;
-                    let mut arg_count_3: libc::c_int = (*pc
-                        .offset(1 as libc::c_int as isize))
-                        .x
-                        .xl as libc::c_int;
+                    let mut fname_1: *mut i8 = (*pc).d.name;
+                    let mut arg_count_3: i32 = (*pc.offset(1 as i32 as isize)).x.xl
+                        as i32;
                     bc_0 = (*f_1).sub.nodep.r.iptr;
-                    (*pc).opcode = Op_ext_builtin;
+                    (*pc).opcode = opcodeval::Op_ext_builtin;
                     (*pc).d.efptr = (*bc_0).d.efptr;
-                    (*pc).x.xl = arg_count_3 as libc::c_long;
-                    let ref mut fresh94 = (*pc.offset(1 as libc::c_int as isize)).d.name;
+                    (*pc).x.xl = arg_count_3 as i64;
+                    let ref mut fresh94 = (*pc.offset(1 as i32 as isize)).d.name;
                     *fresh94 = fname_1;
-                    let ref mut fresh95 = (*pc.offset(1 as libc::c_int as isize)).x.exf;
+                    let ref mut fresh95 = (*pc.offset(1 as i32 as isize)).x.exf;
                     *fresh95 = (*bc_0).x.exf;
                     ni = pc;
                     pc = ni;
@@ -11967,16 +12251,16 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             62 => {
                 r_fatal(
                     b"internal error: file %s, line %d: unexpected opcode %s\0"
-                        as *const u8 as *const libc::c_char,
-                    b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                    1322 as libc::c_int,
+                        as *const u8 as *const i8,
+                    b"./interpret.h\0" as *const u8 as *const i8,
+                    1322 as i32,
                     opcode2str(op),
                 );
                 current_block = 2242099707034464334;
             }
             61 => {
                 m = POP_SCALAR();
-                ni = unwind_stack((*frame_ptr).sub.nodep.reflags as libc::c_long);
+                ni = unwind_stack((*frame_ptr).sub.nodep.reflags as i64);
                 let ref mut fresh96 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -11989,7 +12273,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 continue;
             }
             65 => {
-                r = do_getline_redir((*pc).x.xl as libc::c_int, (*pc).d.dl as redirval);
+                r = do_getline_redir((*pc).x.xl as i32, (*pc).d.dl as redirval);
                 let ref mut fresh97 = (*if stack_ptr < stack_top {
                     stack_ptr = stack_ptr.offset(1);
                     stack_ptr
@@ -12001,51 +12285,48 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             66 => {
-                if currule == 0 || currule == BEGINFILE as libc::c_int
-                    || currule == ENDFILE as libc::c_int
+                if currule == 0 || currule == defrule::BEGINFILE as i32
+                    || currule == defrule::ENDFILE as i32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1342 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1342 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"non-redirected `getline' invalid inside `%s' rule\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
                 loop {
-                    let mut ret: libc::c_int = 0;
-                    ret = nextfile(&mut curfile, 0 as libc::c_int != 0);
-                    if ret <= 0 as libc::c_int {
-                        r = do_getline((*pc).x.xl as libc::c_int, curfile);
+                    let mut ret: i32 = 0;
+                    ret = nextfile(&mut curfile, 0 as i32 != 0);
+                    if ret <= 0 as i32 {
+                        r = do_getline((*pc).x.xl as i32, curfile);
                         if !r.is_null() {
                             break;
                         }
                     } else {
                         push_exec_state(pc, currule, source, stack_ptr);
                         if curfile.is_null() {
-                            pc = (*pc.offset(1 as libc::c_int as isize)).x.xi;
+                            pc = (*pc.offset(1 as i32 as isize)).x.xi;
                             continue '_top;
                         } else {
-                            pc = (*pc.offset(1 as libc::c_int as isize)).d.di;
+                            pc = (*pc.offset(1 as i32 as isize)).d.di;
                             continue '_top;
                         }
                     }
@@ -12061,15 +12342,15 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             100 => {
-                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
+                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
                 pc = ni;
                 continue;
             }
             99 => {
                 after_beginfile(&mut curfile);
-                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
-                if (*ni).opcode as libc::c_uint
-                    == Op_K_getline as libc::c_int as libc::c_uint || curfile.is_null()
+                ni = pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
+                if (*ni).opcode as u32 == opcodeval::Op_K_getline as i32 as u32
+                    || curfile.is_null()
                 {
                     pc = ni;
                     continue;
@@ -12078,13 +12359,13 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             91 => {
-                let mut ret_0: libc::c_int = 0;
-                ret_0 = nextfile(&mut curfile, 0 as libc::c_int != 0);
-                if ret_0 < 0 as libc::c_int {
+                let mut ret_0: i32 = 0;
+                ret_0 = nextfile(&mut curfile, 0 as i32 != 0);
+                if ret_0 < 0 as i32 {
                     pc = (*pc).d.di;
                     continue;
-                } else if ret_0 == 0 as libc::c_int {
-                    pc = (*pc.offset(1 as libc::c_int as isize)).x.xi;
+                } else if ret_0 == 0 as i32 {
+                    pc = (*pc.offset(1 as i32 as isize)).x.xi;
                     continue;
                 } else {
                     push_exec_state(pc, currule, source, stack_ptr);
@@ -12096,31 +12377,29 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             90 => {
-                let mut errcode: libc::c_int = 0 as libc::c_int;
+                let mut errcode: i32 = 0 as i32;
                 ni = (*pc).d.di;
                 if curfile.is_null() {
                     ni = (*ni).d.di;
                     pc = ni;
                     continue;
                 } else if !inrec(curfile, &mut errcode) {
-                    if errcode > 0 as libc::c_int {
+                    if errcode > 0 as i32 {
                         update_ERRNO_int(errcode);
-                        if do_flags as libc::c_uint
-                            & DO_TRADITIONAL as libc::c_int as libc::c_uint != 0
-                            || (*pc).x.xl == 0
+                        if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32
+                            != 0 || (*pc).x.xl == 0
                         {
                             (set_loc
                                 as unsafe extern "C" fn(
-                                    *const libc::c_char,
-                                    libc::c_int,
+                                    *const i8,
+                                    i32,
                                 ) -> ())(
-                                b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                                1433 as libc::c_int,
+                                b"./interpret.h\0" as *const u8 as *const i8,
+                                1433 as i32,
                             );
                             (Some(
                                 (Some(
-                                    r_fatal
-                                        as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
+                                    r_fatal as unsafe extern "C" fn(*const i8, ...) -> (),
                                 ))
                                     .expect("non-null function pointer"),
                             ))
@@ -12128,10 +12407,10 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                                     "non-null function pointer",
                                 )(
                                 dcgettext(
-                                    0 as *const libc::c_char,
+                                    0 as *const i8,
                                     b"error reading input file `%s': %s\0" as *const u8
-                                        as *const libc::c_char,
-                                    5 as libc::c_int,
+                                        as *const i8,
+                                    5 as i32,
                                 ),
                                 (*curfile).public.name,
                                 strerror(errcode),
@@ -12144,42 +12423,40 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 current_block = 2242099707034464334;
             }
             67 => {
-                let mut ret_1: libc::c_int = 0;
-                if currule != Rule as libc::c_int && currule != BEGINFILE as libc::c_int
+                let mut ret_1: i32 = 0;
+                if currule != defrule::Rule as i32
+                    && currule != defrule::BEGINFILE as i32
                 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1448 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1448 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`nextfile' cannot be called from a `%s' rule\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
-                ret_1 = nextfile(&mut curfile, 1 as libc::c_int != 0);
-                if currule == BEGINFILE as libc::c_int {
-                    let mut stack_size: libc::c_long = 0 as libc::c_int as libc::c_long;
+                ret_1 = nextfile(&mut curfile, 1 as i32 != 0);
+                if currule == defrule::BEGINFILE as i32 {
+                    let mut stack_size: i64 = 0 as i32 as i64;
                     ni = pop_exec_state(&mut currule, &mut source, &mut stack_size);
                     unwind_stack(stack_size);
-                    if ret_1 == 0 as libc::c_int {
+                    if ret_1 == 0 as i32 {
                         pc = ni;
                         continue;
                     } else {
@@ -12188,7 +12465,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                         continue;
                     }
                 } else {
-                    unwind_stack(0 as libc::c_int as libc::c_long);
+                    unwind_stack(0 as i32 as i64);
                     push_exec_state((*pc).d.di, currule, source, stack_ptr);
                     pc = (*pc).x.xi;
                     continue;
@@ -12198,43 +12475,40 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 if currule == 0 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1495 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1495 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`exit' cannot be called in the current context\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
-                exiting = 1 as libc::c_int != 0;
+                exiting = 1 as i32 != 0;
                 t1 = force_number(POP_SCALAR());
                 if t1 != Nnull_string {
-                    exit_val = (*t1).sub.val.fltnum as libc::c_long as libc::c_int;
+                    exit_val = (*t1).sub.val.fltnum as i64 as i32;
                 }
                 DEREF(t1);
-                if currule == BEGINFILE as libc::c_int
-                    || currule == ENDFILE as libc::c_int
+                if currule == defrule::BEGINFILE as i32
+                    || currule == defrule::ENDFILE as i32
                 {
-                    pop_exec_state(&mut currule, &mut source, 0 as *mut libc::c_long);
+                    pop_exec_state(&mut currule, &mut source, 0 as *mut i64);
                 }
-                unwind_stack(0 as libc::c_int as libc::c_long);
-                if currule == END as libc::c_int {
+                unwind_stack(0 as i32 as i64);
+                if currule == defrule::END as i32 {
                     ni = (*pc).x.xi;
                 } else {
                     ni = (*pc).d.di;
@@ -12243,35 +12517,32 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 continue;
             }
             59 => {
-                if currule != Rule as libc::c_int {
+                if currule != defrule::Rule as i32 {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        1536 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        1536 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"`next' cannot be called from a `%s' rule\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         *ruletab.as_ptr().offset(currule as isize),
                     );
                 }
-                unwind_stack(0 as libc::c_int as libc::c_long);
+                unwind_stack(0 as i32 as i64);
                 pc = (*pc).d.di;
                 continue;
             }
@@ -12289,22 +12560,21 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             15 => {
-                let mut result_0: libc::c_int = 0;
+                let mut result_0: i32 = 0;
                 let mut ip: *mut INSTRUCTION = 0 as *mut INSTRUCTION;
                 t1 = TOP_SCALAR();
-                di = (eval_condition(t1) as libc::c_int != 0 as libc::c_int)
-                    as libc::c_int;
+                di = (eval_condition(t1) as i32 != 0 as i32) as i32;
                 DEREF(t1);
                 ip = (*pc).x.xi;
                 if (*ip).x.xl == 0 && di != 0 {
                     stack_ptr = stack_ptr.offset(-1);
                     stack_ptr;
-                    (*ip).x.xl = 1 as libc::c_int as libc::c_long;
+                    (*ip).x.xl = 1 as i32 as i64;
                     pc = (*ip).d.di;
                     continue;
                 } else {
-                    result_0 = ((*ip).x.xl != 0 || di != 0) as libc::c_int;
-                    (*ip).x.xl ^= di as libc::c_long;
+                    result_0 = ((*ip).x.xl != 0 || di != 0) as i32;
+                    (*ip).x.xl ^= di as i64;
                     r = node_Boolean[result_0 as usize];
                     (*r).valref += 1;
                     (*r).valref;
@@ -12314,9 +12584,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 }
             }
             103 => {
-                if do_flags as libc::c_uint & DO_PROFILE as libc::c_int as libc::c_uint
-                    != 0
-                {
+                if do_flags as u32 & do_flag_values::DO_PROFILE as i32 as u32 != 0 {
                     (*pc).d.ldl = ((*pc).d.ldl).wrapping_add(1);
                     (*pc).d.ldl;
                 }
@@ -12328,26 +12596,21 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             _ => {
                 (set_loc
                     as unsafe extern "C" fn(
-                        *const libc::c_char,
-                        libc::c_int,
-                    ) -> ())(
-                    b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                    1599 as libc::c_int,
-                );
+                        *const i8,
+                        i32,
+                    ) -> ())(b"./interpret.h\0" as *const u8 as *const i8, 1599 as i32);
                 (Some(
-                    (Some(
-                        r_fatal as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                    ))
+                    (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                         .expect("non-null function pointer"),
                 ))
                     .expect(
                         "non-null function pointer",
                     )(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"Sorry, don't know how to interpret `%s'\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     opcode2str(op),
                 );
@@ -12360,20 +12623,17 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 di = research(
                     rp,
                     (*t1).sub.val.sp,
-                    0 as libc::c_int,
+                    0 as i32,
                     (*t1).sub.val.slen,
-                    0 as libc::c_int,
+                    0 as i32,
                 );
-                di = (di == -(1 as libc::c_int)) as libc::c_int
-                    ^ (op as libc::c_uint != Op_nomatch as libc::c_int as libc::c_uint)
-                        as libc::c_int;
-                if op as libc::c_uint != Op_match_rec as libc::c_int as libc::c_uint {
+                di = (di == -(1 as i32)) as i32
+                    ^ (op as u32 != opcodeval::Op_nomatch as i32 as u32) as i32;
+                if op as u32 != opcodeval::Op_match_rec as i32 as u32 {
                     stack_ptr = stack_ptr.offset(-1);
                     stack_ptr;
                     DEREF(t1);
-                    if (*m).type_0 as libc::c_uint
-                        == Node_dynregex as libc::c_int as libc::c_uint
-                    {
+                    if (*m).type_0 as u32 == nodevals::Node_dynregex as i32 as u32 {
                         DEREF((*m).sub.nodep.x.extra);
                         (*m).sub.nodep.x.extra = 0 as *mut exp_node;
                     }
@@ -12392,30 +12652,27 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             11021467851294229602 => {
                 t1 = force_number(TOP_SCALAR());
-                if x2 == 0 as libc::c_int as libc::c_double {
+                if x2 == 0 as i32 as libc::c_double {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        664 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        664 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"division by zero attempted in `%%'\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -12426,30 +12683,26 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
             }
             5149334253309972495 => {
                 t1 = force_number(TOP_SCALAR());
-                if x2 == 0 as libc::c_int as libc::c_double {
+                if x2 == 0 as i32 as libc::c_double {
                     (set_loc
                         as unsafe extern "C" fn(
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                         ) -> ())(
-                        b"./interpret.h\0" as *const u8 as *const libc::c_char,
-                        648 as libc::c_int,
+                        b"./interpret.h\0" as *const u8 as *const i8,
+                        648 as i32,
                     );
                     (Some(
-                        (Some(
-                            r_fatal
-                                as unsafe extern "C" fn(*const libc::c_char, ...) -> (),
-                        ))
+                        (Some(r_fatal as unsafe extern "C" fn(*const i8, ...) -> ()))
                             .expect("non-null function pointer"),
                     ))
                         .expect(
                             "non-null function pointer",
                         )(
                         dcgettext(
-                            0 as *const libc::c_char,
-                            b"division by zero attempted\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                            0 as *const i8,
+                            b"division by zero attempted\0" as *const u8 as *const i8,
+                            5 as i32,
                         ),
                     );
                 }
@@ -12478,10 +12731,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 t1 = force_number(TOP_SCALAR());
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum - x2);
-                (*r)
-                    .sub
-                    .val
-                    .fltnum = fix_nan_sign(
+                (*r).sub.val.fltnum = fix_nan_sign(
                     (*t1).sub.val.fltnum,
                     x2,
                     (*r).sub.val.fltnum,
@@ -12493,10 +12743,7 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
                 t1 = force_number(TOP_SCALAR());
                 r = make_number
                     .expect("non-null function pointer")((*t1).sub.val.fltnum + x2);
-                (*r)
-                    .sub
-                    .val
-                    .fltnum = fix_nan_sign(
+                (*r).sub.val.fltnum = fix_nan_sign(
                     (*t1).sub.val.fltnum,
                     x2,
                     (*r).sub.val.fltnum,
@@ -12521,79 +12768,72 @@ pub unsafe extern "C" fn r_interpret(mut code: *mut INSTRUCTION) -> libc::c_int 
         }
         pc = (*pc).nexti;
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn init_interpret() {
-    let mut newval: libc::c_long = 0;
-    newval = getenv_long(b"GAWK_STACKSIZE\0" as *const u8 as *const libc::c_char);
-    if newval > 0 as libc::c_int as libc::c_long {
-        STACK_SIZE = newval as libc::c_ulong;
+    let mut newval: i64 = 0;
+    newval = getenv_long(b"GAWK_STACKSIZE\0" as *const u8 as *const i8);
+    if newval > 0 as i32 as i64 {
+        STACK_SIZE = newval as u64;
     }
     stack_bottom = emalloc_real(
-        STACK_SIZE.wrapping_mul(::core::mem::size_of::<STACK_ITEM>() as libc::c_ulong),
-        b"grow_stack\0" as *const u8 as *const libc::c_char,
-        b"stack_bottom\0" as *const u8 as *const libc::c_char,
-        b"eval.c\0" as *const u8 as *const libc::c_char,
-        1860 as libc::c_int,
+        STACK_SIZE.wrapping_mul(::core::mem::size_of::<STACK_ITEM>() as u64),
+        b"grow_stack\0" as *const u8 as *const i8,
+        b"stack_bottom\0" as *const u8 as *const i8,
+        b"eval.c\0" as *const u8 as *const i8,
+        1860 as i32,
     ) as *mut STACK_ITEM;
-    stack_ptr = stack_bottom.offset(-(1 as libc::c_int as isize));
-    stack_top = stack_bottom
-        .offset(STACK_SIZE as isize)
-        .offset(-(1 as libc::c_int as isize));
-    frame_ptr = nextfree[BLOCK_NODE as libc::c_int as usize].freep as *mut NODE;
+    stack_ptr = stack_bottom.offset(-(1 as i32 as isize));
+    stack_top = stack_bottom.offset(STACK_SIZE as isize).offset(-(1 as i32 as isize));
+    frame_ptr = nextfree[block_id::BLOCK_NODE as i32 as usize].freep as *mut NODE;
     if !frame_ptr.is_null() {
-        nextfree[BLOCK_NODE as libc::c_int as usize]
-            .freep = (*(frame_ptr as *mut block_item)).freep;
+        nextfree[block_id::BLOCK_NODE as i32 as usize].freep = (*(frame_ptr
+            as *mut block_item))
+            .freep;
     } else {
-        frame_ptr = more_blocks(BLOCK_NODE as libc::c_int) as *mut NODE;
+        frame_ptr = more_blocks(block_id::BLOCK_NODE as i32) as *mut NODE;
     };
-    (*frame_ptr).type_0 = Node_frame;
+    (*frame_ptr).type_0 = nodevals::Node_frame;
     (*frame_ptr).sub.nodep.r.av = 0 as *mut *mut exp_node;
     (*frame_ptr).sub.nodep.x.extra = 0 as *mut exp_node;
-    (*frame_ptr).sub.nodep.name = 0 as *mut libc::c_char;
-    node_Boolean[0 as libc::c_int
-        as usize] = make_number.expect("non-null function pointer")(0.0f64);
-    node_Boolean[1 as libc::c_int
-        as usize] = make_number.expect("non-null function pointer")(1.0f64);
-    if 0 as libc::c_int == 0 {
-        (*node_Boolean[0 as libc::c_int as usize])
-            .flags = ::core::mem::transmute::<
-            libc::c_uint,
+    (*frame_ptr).sub.nodep.name = 0 as *mut i8;
+    node_Boolean[0 as i32 as usize] = make_number
+        .expect("non-null function pointer")(0.0f64);
+    node_Boolean[1 as i32 as usize] = make_number
+        .expect("non-null function pointer")(1.0f64);
+    if 0 as i32 == 0 {
+        (*node_Boolean[0 as i32 as usize]).flags = ::core::mem::transmute::<
+            u32,
             flagvals,
         >(
-            (*node_Boolean[0 as libc::c_int as usize]).flags as libc::c_uint
-                | NUMINT as libc::c_int as libc::c_uint,
+            (*node_Boolean[0 as i32 as usize]).flags as u32
+                | flagvals::NUMINT as i32 as u32,
         );
-        (*node_Boolean[1 as libc::c_int as usize])
-            .flags = ::core::mem::transmute::<
-            libc::c_uint,
+        (*node_Boolean[1 as i32 as usize]).flags = ::core::mem::transmute::<
+            u32,
             flagvals,
         >(
-            (*node_Boolean[1 as libc::c_int as usize]).flags as libc::c_uint
-                | NUMINT as libc::c_int as libc::c_uint,
+            (*node_Boolean[1 as i32 as usize]).flags as u32
+                | flagvals::NUMINT as i32 as u32,
         );
     }
-    if num_exec_hook > 0 as libc::c_int {
-        interpret = Some(
-            h_interpret as unsafe extern "C" fn(*mut INSTRUCTION) -> libc::c_int,
-        );
+    if num_exec_hook > 0 as i32 {
+        interpret = Some(h_interpret as unsafe extern "C" fn(*mut INSTRUCTION) -> i32);
     } else {
-        interpret = Some(
-            r_interpret as unsafe extern "C" fn(*mut INSTRUCTION) -> libc::c_int,
-        );
+        interpret = Some(r_interpret as unsafe extern "C" fn(*mut INSTRUCTION) -> i32);
     };
 }
 #[no_mangle]
 pub unsafe extern "C" fn elem_new_to_scalar(mut n: *mut NODE) -> *mut NODE {
-    if (*n).type_0 as libc::c_uint != Node_elem_new as libc::c_int as libc::c_uint {
+    if (*n).type_0 as u32 != nodevals::Node_elem_new as i32 as u32 {
         return n;
     }
-    if (*n).valref > 1 as libc::c_int as libc::c_long {
+    if (*n).valref > 1 as i32 as i64 {
         unref(n);
         return dupnode(Nnull_string);
     }
-    (*n).type_0 = Node_val;
+    (*n).type_0 = nodevals::Node_val;
     return n;
 }
 unsafe extern "C" fn fix_nan_sign(
@@ -12601,58 +12841,58 @@ unsafe extern "C" fn fix_nan_sign(
     mut right: libc::c_double,
     mut result: libc::c_double,
 ) -> libc::c_double {
-    if (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+    if (if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_float>() as u64
     {
         __isnanf(left as libc::c_float)
     } else {
-        (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-            == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+        (if ::core::mem::size_of::<libc::c_double>() as u64
+            == ::core::mem::size_of::<libc::c_double>() as u64
         {
             __isnan(left)
         } else {
             __isnanl(f128::f128::new(left))
         })
     }) != 0
-        && (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-            == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+        && (if ::core::mem::size_of::<libc::c_double>() as u64
+            == ::core::mem::size_of::<libc::c_float>() as u64
         {
-            (left as libc::c_float).is_sign_negative() as libc::c_int
+            (left as libc::c_float).is_sign_negative() as i32
         } else {
-            (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-                == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            (if ::core::mem::size_of::<libc::c_double>() as u64
+                == ::core::mem::size_of::<libc::c_double>() as u64
             {
-                left.is_sign_negative() as libc::c_int
+                left.is_sign_negative() as i32
             } else {
-                (f128::f128::new(left)).is_sign_negative() as libc::c_int
+                (f128::f128::new(left)).is_sign_negative() as i32
             })
         }) != 0
     {
         return copysign(result, -1.0f64)
-    } else if (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-        == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+    } else if (if ::core::mem::size_of::<libc::c_double>() as u64
+        == ::core::mem::size_of::<libc::c_float>() as u64
     {
         __isnanf(right as libc::c_float)
     } else {
-        (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-            == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+        (if ::core::mem::size_of::<libc::c_double>() as u64
+            == ::core::mem::size_of::<libc::c_double>() as u64
         {
             __isnan(right)
         } else {
             __isnanl(f128::f128::new(right))
         })
     }) != 0
-        && (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-            == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+        && (if ::core::mem::size_of::<libc::c_double>() as u64
+            == ::core::mem::size_of::<libc::c_float>() as u64
         {
-            (right as libc::c_float).is_sign_negative() as libc::c_int
+            (right as libc::c_float).is_sign_negative() as i32
         } else {
-            (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
-                == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            (if ::core::mem::size_of::<libc::c_double>() as u64
+                == ::core::mem::size_of::<libc::c_double>() as u64
             {
-                right.is_sign_negative() as libc::c_int
+                right.is_sign_negative() as i32
             } else {
-                (f128::f128::new(right)).is_sign_negative() as libc::c_int
+                (f128::f128::new(right)).is_sign_negative() as i32
             })
         }) != 0
     {

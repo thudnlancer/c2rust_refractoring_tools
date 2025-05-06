@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types, label_break_value)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type re_dfa_t;
@@ -302,7 +312,7 @@ pub struct buildcmd_control {
     pub rplen: size_t,
     pub replace_pat: *const libc::c_char,
     pub initial_argc: size_t,
-    pub exec_callback: Option::<
+    pub exec_callback: Option<
         unsafe extern "C" fn(
             *mut buildcmd_control,
             *mut libc::c_void,
@@ -344,19 +354,78 @@ impl quoting_style {
             quoting_style::custom_quoting_style => 10,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> quoting_style {
+        match value {
+            0 => quoting_style::literal_quoting_style,
+            1 => quoting_style::shell_quoting_style,
+            2 => quoting_style::shell_always_quoting_style,
+            3 => quoting_style::shell_escape_quoting_style,
+            4 => quoting_style::shell_escape_always_quoting_style,
+            5 => quoting_style::c_quoting_style,
+            6 => quoting_style::c_maybe_quoting_style,
+            7 => quoting_style::escape_quoting_style,
+            8 => quoting_style::locale_quoting_style,
+            9 => quoting_style::clocale_quoting_style,
+            10 => quoting_style::custom_quoting_style,
+            _ => panic!("Invalid value for quoting_style: {}", value),
+        }
+    }
 }
-
-pub const custom_quoting_style: quoting_style = 10;
-pub const clocale_quoting_style: quoting_style = 9;
-pub const locale_quoting_style: quoting_style = 8;
-pub const escape_quoting_style: quoting_style = 7;
-pub const c_maybe_quoting_style: quoting_style = 6;
-pub const c_quoting_style: quoting_style = 5;
-pub const shell_escape_always_quoting_style: quoting_style = 4;
-pub const shell_escape_quoting_style: quoting_style = 3;
-pub const shell_always_quoting_style: quoting_style = 2;
-pub const shell_quoting_style: quoting_style = 1;
-pub const literal_quoting_style: quoting_style = 0;
+impl AddAssign<u32> for quoting_style {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for quoting_style {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for quoting_style {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for quoting_style {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for quoting_style {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for quoting_style {
+    type Output = quoting_style;
+    fn add(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for quoting_style {
+    type Output = quoting_style;
+    fn sub(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for quoting_style {
+    type Output = quoting_style;
+    fn mul(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for quoting_style {
+    type Output = quoting_style;
+    fn div(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for quoting_style {
+    type Output = quoting_style;
+    fn rem(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type sharefile_handle = *mut libc::c_void;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -390,10 +459,10 @@ pub struct parser_table {
     pub parser_func: PARSE_FUNC,
     pub pred_func: PRED_FUNC,
 }
-pub type PRED_FUNC = Option::<
+pub type PRED_FUNC = Option<
     unsafe extern "C" fn(*const libc::c_char, *mut stat, *mut predicate) -> bool,
 >;
-pub type PARSE_FUNC = Option::<
+pub type PARSE_FUNC = Option<
     unsafe extern "C" fn(
         *const parser_table,
         *mut *mut libc::c_char,
@@ -423,15 +492,74 @@ impl arg_type {
             arg_type::ARG_ACTION => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> arg_type {
+        match value {
+            0 => arg_type::ARG_OPTION,
+            1 => arg_type::ARG_NOOP,
+            2 => arg_type::ARG_POSITIONAL_OPTION,
+            3 => arg_type::ARG_TEST,
+            4 => arg_type::ARG_SPECIAL_PARSE,
+            5 => arg_type::ARG_PUNCTUATION,
+            6 => arg_type::ARG_ACTION,
+            _ => panic!("Invalid value for arg_type: {}", value),
+        }
+    }
 }
-
-pub const ARG_ACTION: arg_type = 6;
-pub const ARG_PUNCTUATION: arg_type = 5;
-pub const ARG_SPECIAL_PARSE: arg_type = 4;
-pub const ARG_TEST: arg_type = 3;
-pub const ARG_POSITIONAL_OPTION: arg_type = 2;
-pub const ARG_NOOP: arg_type = 1;
-pub const ARG_OPTION: arg_type = 0;
+impl AddAssign<u32> for arg_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for arg_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for arg_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for arg_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for arg_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = arg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for arg_type {
+    type Output = arg_type;
+    fn add(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for arg_type {
+    type Output = arg_type;
+    fn sub(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for arg_type {
+    type Output = arg_type;
+    fn mul(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for arg_type {
+    type Output = arg_type;
+    fn div(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for arg_type {
+    type Output = arg_type;
+    fn rem(self, rhs: u32) -> arg_type {
+        arg_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct predicate_performance_info {
@@ -488,11 +616,70 @@ impl SegmentKind {
             SegmentKind::KIND_FORMAT => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> SegmentKind {
+        match value {
+            0 => SegmentKind::KIND_PLAIN,
+            1 => SegmentKind::KIND_STOP,
+            2 => SegmentKind::KIND_FORMAT,
+            _ => panic!("Invalid value for SegmentKind: {}", value),
+        }
+    }
 }
-
-pub const KIND_FORMAT: SegmentKind = 2;
-pub const KIND_STOP: SegmentKind = 1;
-pub const KIND_PLAIN: SegmentKind = 0;
+impl AddAssign<u32> for SegmentKind {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for SegmentKind {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for SegmentKind {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for SegmentKind {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for SegmentKind {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = SegmentKind::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn add(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn sub(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn mul(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn div(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for SegmentKind {
+    type Output = SegmentKind;
+    fn rem(self, rhs: u32) -> SegmentKind {
+        SegmentKind::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct samefile_file_id {
@@ -521,11 +708,70 @@ impl permissions_type {
             permissions_type::PERM_EXACT => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> permissions_type {
+        match value {
+            0 => permissions_type::PERM_AT_LEAST,
+            1 => permissions_type::PERM_ANY,
+            2 => permissions_type::PERM_EXACT,
+            _ => panic!("Invalid value for permissions_type: {}", value),
+        }
+    }
 }
-
-pub const PERM_EXACT: permissions_type = 2;
-pub const PERM_ANY: permissions_type = 1;
-pub const PERM_AT_LEAST: permissions_type = 0;
+impl AddAssign<u32> for permissions_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for permissions_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for permissions_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for permissions_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for permissions_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = permissions_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for permissions_type {
+    type Output = permissions_type;
+    fn add(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for permissions_type {
+    type Output = permissions_type;
+    fn sub(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for permissions_type {
+    type Output = permissions_type;
+    fn mul(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for permissions_type {
+    type Output = permissions_type;
+    fn div(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for permissions_type {
+    type Output = permissions_type;
+    fn rem(self, rhs: u32) -> permissions_type {
+        permissions_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct time_val {
@@ -548,11 +794,70 @@ impl comparison_type {
             comparison_type::COMP_EQ => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> comparison_type {
+        match value {
+            0 => comparison_type::COMP_GT,
+            1 => comparison_type::COMP_LT,
+            2 => comparison_type::COMP_EQ,
+            _ => panic!("Invalid value for comparison_type: {}", value),
+        }
+    }
 }
-
-pub const COMP_EQ: comparison_type = 2;
-pub const COMP_LT: comparison_type = 1;
-pub const COMP_GT: comparison_type = 0;
+impl AddAssign<u32> for comparison_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for comparison_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for comparison_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for comparison_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for comparison_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = comparison_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for comparison_type {
+    type Output = comparison_type;
+    fn add(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for comparison_type {
+    type Output = comparison_type;
+    fn sub(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for comparison_type {
+    type Output = comparison_type;
+    fn mul(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for comparison_type {
+    type Output = comparison_type;
+    fn div(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for comparison_type {
+    type Output = comparison_type;
+    fn rem(self, rhs: u32) -> comparison_type {
+        comparison_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum xval {
@@ -572,13 +877,72 @@ impl xval {
             xval::XVAL_TIME => 4,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> xval {
+        match value {
+            0 => xval::XVAL_ATIME,
+            1 => xval::XVAL_BIRTHTIME,
+            2 => xval::XVAL_CTIME,
+            3 => xval::XVAL_MTIME,
+            4 => xval::XVAL_TIME,
+            _ => panic!("Invalid value for xval: {}", value),
+        }
+    }
 }
-
-pub const XVAL_TIME: xval = 4;
-pub const XVAL_MTIME: xval = 3;
-pub const XVAL_CTIME: xval = 2;
-pub const XVAL_BIRTHTIME: xval = 1;
-pub const XVAL_ATIME: xval = 0;
+impl AddAssign<u32> for xval {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for xval {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for xval {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for xval {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for xval {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = xval::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for xval {
+    type Output = xval;
+    fn add(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for xval {
+    type Output = xval;
+    fn sub(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for xval {
+    type Output = xval;
+    fn mul(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for xval {
+    type Output = xval;
+    fn div(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for xval {
+    type Output = xval;
+    fn rem(self, rhs: u32) -> xval {
+        xval::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct size_val {
@@ -638,20 +1002,79 @@ impl EvaluationCost {
             EvaluationCost::NumEvaluationCosts => 11,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> EvaluationCost {
+        match value {
+            0 => EvaluationCost::NeedsNothing,
+            1 => EvaluationCost::NeedsInodeNumber,
+            2 => EvaluationCost::NeedsType,
+            3 => EvaluationCost::NeedsStatInfo,
+            4 => EvaluationCost::NeedsLinkName,
+            5 => EvaluationCost::NeedsAccessInfo,
+            6 => EvaluationCost::NeedsSyncDiskHit,
+            7 => EvaluationCost::NeedsEventualExec,
+            8 => EvaluationCost::NeedsImmediateExec,
+            9 => EvaluationCost::NeedsUserInteraction,
+            10 => EvaluationCost::NeedsUnknown,
+            11 => EvaluationCost::NumEvaluationCosts,
+            _ => panic!("Invalid value for EvaluationCost: {}", value),
+        }
+    }
 }
-
-pub const NumEvaluationCosts: EvaluationCost = 11;
-pub const NeedsUnknown: EvaluationCost = 10;
-pub const NeedsUserInteraction: EvaluationCost = 9;
-pub const NeedsImmediateExec: EvaluationCost = 8;
-pub const NeedsEventualExec: EvaluationCost = 7;
-pub const NeedsSyncDiskHit: EvaluationCost = 6;
-pub const NeedsAccessInfo: EvaluationCost = 5;
-pub const NeedsLinkName: EvaluationCost = 4;
-pub const NeedsStatInfo: EvaluationCost = 3;
-pub const NeedsType: EvaluationCost = 2;
-pub const NeedsInodeNumber: EvaluationCost = 1;
-pub const NeedsNothing: EvaluationCost = 0;
+impl AddAssign<u32> for EvaluationCost {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for EvaluationCost {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for EvaluationCost {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for EvaluationCost {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for EvaluationCost {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn add(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn sub(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn mul(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn div(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for EvaluationCost {
+    type Output = EvaluationCost;
+    fn rem(self, rhs: u32) -> EvaluationCost {
+        EvaluationCost::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_precedence {
@@ -673,14 +1096,73 @@ impl predicate_precedence {
             predicate_precedence::MAX_PREC => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> predicate_precedence {
+        match value {
+            0 => predicate_precedence::NO_PREC,
+            1 => predicate_precedence::COMMA_PREC,
+            2 => predicate_precedence::OR_PREC,
+            3 => predicate_precedence::AND_PREC,
+            4 => predicate_precedence::NEGATE_PREC,
+            5 => predicate_precedence::MAX_PREC,
+            _ => panic!("Invalid value for predicate_precedence: {}", value),
+        }
+    }
 }
-
-pub const MAX_PREC: predicate_precedence = 5;
-pub const NEGATE_PREC: predicate_precedence = 4;
-pub const AND_PREC: predicate_precedence = 3;
-pub const OR_PREC: predicate_precedence = 2;
-pub const COMMA_PREC: predicate_precedence = 1;
-pub const NO_PREC: predicate_precedence = 0;
+impl AddAssign<u32> for predicate_precedence {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for predicate_precedence {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for predicate_precedence {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for predicate_precedence {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for predicate_precedence {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn add(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn sub(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn mul(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn div(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for predicate_precedence {
+    type Output = predicate_precedence;
+    fn rem(self, rhs: u32) -> predicate_precedence {
+        predicate_precedence::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum predicate_type {
@@ -702,14 +1184,73 @@ impl predicate_type {
             predicate_type::CLOSE_PAREN => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> predicate_type {
+        match value {
+            0 => predicate_type::NO_TYPE,
+            1 => predicate_type::PRIMARY_TYPE,
+            2 => predicate_type::UNI_OP,
+            3 => predicate_type::BI_OP,
+            4 => predicate_type::OPEN_PAREN,
+            5 => predicate_type::CLOSE_PAREN,
+            _ => panic!("Invalid value for predicate_type: {}", value),
+        }
+    }
 }
-
-pub const CLOSE_PAREN: predicate_type = 5;
-pub const OPEN_PAREN: predicate_type = 4;
-pub const BI_OP: predicate_type = 3;
-pub const UNI_OP: predicate_type = 2;
-pub const PRIMARY_TYPE: predicate_type = 1;
-pub const NO_TYPE: predicate_type = 0;
+impl AddAssign<u32> for predicate_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for predicate_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for predicate_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for predicate_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for predicate_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = predicate_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for predicate_type {
+    type Output = predicate_type;
+    fn add(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for predicate_type {
+    type Output = predicate_type;
+    fn sub(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for predicate_type {
+    type Output = predicate_type;
+    fn mul(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for predicate_type {
+    type Output = predicate_type;
+    fn div(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for predicate_type {
+    type Output = predicate_type;
+    fn rem(self, rhs: u32) -> predicate_type {
+        predicate_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
@@ -729,12 +1270,12 @@ pub struct options {
     pub output_block_size: libc::c_int,
     pub debug_options: libc::c_ulong,
     pub symlink_handling: SymlinkOption,
-    pub xstat: Option::<
+    pub xstat: Option<
         unsafe extern "C" fn(*const libc::c_char, *mut stat) -> libc::c_int,
     >,
     pub open_nofollow_available: bool,
     pub regex_options: libc::c_int,
-    pub x_getfilecon: Option::<
+    pub x_getfilecon: Option<
         unsafe extern "C" fn(
             libc::c_int,
             *const libc::c_char,
@@ -761,11 +1302,70 @@ impl SymlinkOption {
             SymlinkOption::SYMLINK_DEREF_ARGSONLY => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> SymlinkOption {
+        match value {
+            0 => SymlinkOption::SYMLINK_NEVER_DEREF,
+            1 => SymlinkOption::SYMLINK_ALWAYS_DEREF,
+            2 => SymlinkOption::SYMLINK_DEREF_ARGSONLY,
+            _ => panic!("Invalid value for SymlinkOption: {}", value),
+        }
+    }
 }
-
-pub const SYMLINK_DEREF_ARGSONLY: SymlinkOption = 2;
-pub const SYMLINK_ALWAYS_DEREF: SymlinkOption = 1;
-pub const SYMLINK_NEVER_DEREF: SymlinkOption = 0;
+impl AddAssign<u32> for SymlinkOption {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for SymlinkOption {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for SymlinkOption {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for SymlinkOption {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for SymlinkOption {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn add(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn sub(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn mul(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn div(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for SymlinkOption {
+    type Output = SymlinkOption;
+    fn rem(self, rhs: u32) -> SymlinkOption {
+        SymlinkOption::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum file_type {
@@ -791,16 +1391,75 @@ impl file_type {
             file_type::FTYPE_COUNT => 7,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> file_type {
+        match value {
+            0 => file_type::FTYPE_BLK,
+            1 => file_type::FTYPE_CHR,
+            2 => file_type::FTYPE_DIR,
+            3 => file_type::FTYPE_REG,
+            4 => file_type::FTYPE_LNK,
+            5 => file_type::FTYPE_FIFO,
+            6 => file_type::FTYPE_SOCK,
+            7 => file_type::FTYPE_COUNT,
+            _ => panic!("Invalid value for file_type: {}", value),
+        }
+    }
 }
-
-pub const FTYPE_COUNT: file_type = 7;
-pub const FTYPE_SOCK: file_type = 6;
-pub const FTYPE_FIFO: file_type = 5;
-pub const FTYPE_LNK: file_type = 4;
-pub const FTYPE_REG: file_type = 3;
-pub const FTYPE_DIR: file_type = 2;
-pub const FTYPE_CHR: file_type = 1;
-pub const FTYPE_BLK: file_type = 0;
+impl AddAssign<u32> for file_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for file_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for file_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for file_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for file_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = file_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for file_type {
+    type Output = file_type;
+    fn add(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for file_type {
+    type Output = file_type;
+    fn sub(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for file_type {
+    type Output = file_type;
+    fn mul(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for file_type {
+    type Output = file_type;
+    fn div(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for file_type {
+    type Output = file_type;
+    fn rem(self, rhs: u32) -> file_type {
+        file_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct state {
@@ -948,11 +1607,11 @@ pub unsafe extern "C" fn pred_anewer(
     mut pred_ptr: *mut predicate,
 ) -> bool {
     &mut pathname;
-    if COMP_GT as libc::c_int as libc::c_uint
+    if comparison_type::COMP_GT as libc::c_int as libc::c_uint
         == (*pred_ptr).args.reftime.kind as libc::c_uint
     {} else {
         __assert_fail(
-            b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+            b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                 as *const libc::c_char,
             b"pred.c\0" as *const u8 as *const libc::c_char,
             166 as libc::c_int as libc::c_uint,
@@ -964,11 +1623,11 @@ pub unsafe extern "C" fn pred_anewer(
         );
     }
     'c_10624: {
-        if COMP_GT as libc::c_int as libc::c_uint
+        if comparison_type::COMP_GT as libc::c_int as libc::c_uint
             == (*pred_ptr).args.reftime.kind as libc::c_uint
         {} else {
             __assert_fail(
-                b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+                b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                     as *const libc::c_char,
                 b"pred.c\0" as *const u8 as *const libc::c_char,
                 166 as libc::c_int as libc::c_uint,
@@ -1019,11 +1678,11 @@ pub unsafe extern "C" fn pred_cnewer(
     mut stat_buf: *mut stat,
     mut pred_ptr: *mut predicate,
 ) -> bool {
-    if COMP_GT as libc::c_int as libc::c_uint
+    if comparison_type::COMP_GT as libc::c_int as libc::c_uint
         == (*pred_ptr).args.reftime.kind as libc::c_uint
     {} else {
         __assert_fail(
-            b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+            b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                 as *const libc::c_char,
             b"pred.c\0" as *const u8 as *const libc::c_char,
             199 as libc::c_int as libc::c_uint,
@@ -1035,11 +1694,11 @@ pub unsafe extern "C" fn pred_cnewer(
         );
     }
     'c_10772: {
-        if COMP_GT as libc::c_int as libc::c_uint
+        if comparison_type::COMP_GT as libc::c_int as libc::c_uint
             == (*pred_ptr).args.reftime.kind as libc::c_uint
         {} else {
             __assert_fail(
-                b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+                b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                     as *const libc::c_char,
                 b"pred.c\0" as *const u8 as *const libc::c_char,
                 199 as libc::c_int as libc::c_uint,
@@ -1530,11 +2189,11 @@ pub unsafe extern "C" fn pred_newer(
     mut stat_buf: *mut stat,
     mut pred_ptr: *mut predicate,
 ) -> bool {
-    if COMP_GT as libc::c_int as libc::c_uint
+    if comparison_type::COMP_GT as libc::c_int as libc::c_uint
         == (*pred_ptr).args.reftime.kind as libc::c_uint
     {} else {
         __assert_fail(
-            b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+            b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                 as *const libc::c_char,
             b"pred.c\0" as *const u8 as *const libc::c_char,
             621 as libc::c_int as libc::c_uint,
@@ -1546,11 +2205,11 @@ pub unsafe extern "C" fn pred_newer(
         );
     }
     'c_12382: {
-        if COMP_GT as libc::c_int as libc::c_uint
+        if comparison_type::COMP_GT as libc::c_int as libc::c_uint
             == (*pred_ptr).args.reftime.kind as libc::c_uint
         {} else {
             __assert_fail(
-                b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+                b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                     as *const libc::c_char,
                 b"pred.c\0" as *const u8 as *const libc::c_char,
                 621 as libc::c_int as libc::c_uint,
@@ -1575,11 +2234,11 @@ pub unsafe extern "C" fn pred_newerXY(
 ) -> bool {
     let mut ts: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
     let mut collected: bool = 0 as libc::c_int != 0;
-    if COMP_GT as libc::c_int as libc::c_uint
+    if comparison_type::COMP_GT as libc::c_int as libc::c_uint
         == (*pred_ptr).args.reftime.kind as libc::c_uint
     {} else {
         __assert_fail(
-            b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+            b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                 as *const libc::c_char,
             b"pred.c\0" as *const u8 as *const libc::c_char,
             631 as libc::c_int as libc::c_uint,
@@ -1591,11 +2250,11 @@ pub unsafe extern "C" fn pred_newerXY(
         );
     }
     'c_12668: {
-        if COMP_GT as libc::c_int as libc::c_uint
+        if comparison_type::COMP_GT as libc::c_int as libc::c_uint
             == (*pred_ptr).args.reftime.kind as libc::c_uint
         {} else {
             __assert_fail(
-                b"COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
+                b"comparison_type::COMP_GT == pred_ptr->args.reftime.kind\0" as *const u8
                     as *const libc::c_char,
                 b"pred.c\0" as *const u8 as *const libc::c_char,
                 631 as libc::c_int as libc::c_uint,
@@ -1612,10 +2271,10 @@ pub unsafe extern "C" fn pred_newerXY(
     match (*pred_ptr).args.reftime.xval as libc::c_uint {
         4 => {
             if (*pred_ptr).args.reftime.xval as libc::c_uint
-                != XVAL_TIME as libc::c_int as libc::c_uint
+                != xval::XVAL_TIME as libc::c_int as libc::c_uint
             {} else {
                 __assert_fail(
-                    b"pred_ptr->args.reftime.xval != XVAL_TIME\0" as *const u8
+                    b"pred_ptr->args.reftime.xval != xval::XVAL_TIME\0" as *const u8
                         as *const libc::c_char,
                     b"pred.c\0" as *const u8 as *const libc::c_char,
                     636 as libc::c_int as libc::c_uint,
@@ -1630,10 +2289,10 @@ pub unsafe extern "C" fn pred_newerXY(
             }
             'c_12612: {
                 if (*pred_ptr).args.reftime.xval as libc::c_uint
-                    != XVAL_TIME as libc::c_int as libc::c_uint
+                    != xval::XVAL_TIME as libc::c_int as libc::c_uint
                 {} else {
                     __assert_fail(
-                        b"pred_ptr->args.reftime.xval != XVAL_TIME\0" as *const u8
+                        b"pred_ptr->args.reftime.xval != xval::XVAL_TIME\0" as *const u8
                             as *const libc::c_char,
                         b"pred.c\0" as *const u8 as *const libc::c_char,
                         636 as libc::c_int as libc::c_uint,
@@ -2083,7 +2742,7 @@ pub unsafe extern "C" fn pred_type(
     mut pred_ptr: *mut predicate,
 ) -> bool {
     let mut mode: mode_t = 0;
-    let mut type_0: file_type = FTYPE_COUNT;
+    let mut type_0: file_type = file_type::FTYPE_COUNT;
     if state.have_type {} else {
         __assert_fail(
             b"state.have_type\0" as *const u8 as *const libc::c_char,
@@ -2120,29 +2779,29 @@ pub unsafe extern "C" fn pred_type(
     }
     match mode & 0o170000 as libc::c_int as libc::c_uint {
         32768 => {
-            type_0 = FTYPE_REG;
+            type_0 = file_type::FTYPE_REG;
         }
         16384 => {
-            type_0 = FTYPE_DIR;
+            type_0 = file_type::FTYPE_DIR;
         }
         40960 => {
-            type_0 = FTYPE_LNK;
+            type_0 = file_type::FTYPE_LNK;
         }
         24576 => {
-            type_0 = FTYPE_BLK;
+            type_0 = file_type::FTYPE_BLK;
         }
         8192 => {
-            type_0 = FTYPE_CHR;
+            type_0 = file_type::FTYPE_CHR;
         }
         49152 => {
-            type_0 = FTYPE_SOCK;
+            type_0 = file_type::FTYPE_SOCK;
         }
         4096 => {
-            type_0 = FTYPE_FIFO;
+            type_0 = file_type::FTYPE_FIFO;
         }
         _ => {}
     }
-    if type_0 as libc::c_uint != FTYPE_COUNT as libc::c_int as libc::c_uint
+    if type_0 as libc::c_uint != file_type::FTYPE_COUNT as libc::c_int as libc::c_uint
         && (*pred_ptr).args.types[type_0 as usize] as libc::c_int != 0
     {
         return 1 as libc::c_int != 0
@@ -2233,7 +2892,7 @@ pub unsafe extern "C" fn pred_xtype(
         st_ctim: timespec { tv_sec: 0, tv_nsec: 0 },
         __glibc_reserved: [0; 3],
     };
-    let mut ystat: Option::<
+    let mut ystat: Option<
         unsafe extern "C" fn(*const libc::c_char, *mut stat) -> libc::c_int,
     > = None;
     if following_links() {
@@ -2516,10 +3175,10 @@ pub unsafe extern "C" fn pred_sanity_check(mut predicates: *const predicate) {
         match (*(*p).parser_entry).type_0 as libc::c_uint {
             0 | 2 => {
                 if (*(*p).parser_entry).type_0 as libc::c_uint
-                    != ARG_OPTION as libc::c_int as libc::c_uint
+                    != arg_type::ARG_OPTION as libc::c_int as libc::c_uint
                 {} else {
                     __assert_fail(
-                        b"p->parser_entry->type != ARG_OPTION\0" as *const u8
+                        b"p->parser_entry->type != arg_type::ARG_OPTION\0" as *const u8
                             as *const libc::c_char,
                         b"pred.c\0" as *const u8 as *const libc::c_char,
                         1338 as libc::c_int as libc::c_uint,
@@ -2532,11 +3191,11 @@ pub unsafe extern "C" fn pred_sanity_check(mut predicates: *const predicate) {
                 }
                 'c_10076: {
                     if (*(*p).parser_entry).type_0 as libc::c_uint
-                        != ARG_OPTION as libc::c_int as libc::c_uint
+                        != arg_type::ARG_OPTION as libc::c_int as libc::c_uint
                     {} else {
                         __assert_fail(
-                            b"p->parser_entry->type != ARG_OPTION\0" as *const u8
-                                as *const libc::c_char,
+                            b"p->parser_entry->type != arg_type::ARG_OPTION\0"
+                                as *const u8 as *const libc::c_char,
                             b"pred.c\0" as *const u8 as *const libc::c_char,
                             1338 as libc::c_int as libc::c_uint,
                             (*::core::mem::transmute::<
@@ -2548,11 +3207,11 @@ pub unsafe extern "C" fn pred_sanity_check(mut predicates: *const predicate) {
                     }
                 };
                 if (*(*p).parser_entry).type_0 as libc::c_uint
-                    != ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
+                    != arg_type::ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
                 {} else {
                     __assert_fail(
-                        b"p->parser_entry->type != ARG_POSITIONAL_OPTION\0" as *const u8
-                            as *const libc::c_char,
+                        b"p->parser_entry->type != arg_type::ARG_POSITIONAL_OPTION\0"
+                            as *const u8 as *const libc::c_char,
                         b"pred.c\0" as *const u8 as *const libc::c_char,
                         1339 as libc::c_int as libc::c_uint,
                         (*::core::mem::transmute::<
@@ -2564,10 +3223,10 @@ pub unsafe extern "C" fn pred_sanity_check(mut predicates: *const predicate) {
                 }
                 'c_10023: {
                     if (*(*p).parser_entry).type_0 as libc::c_uint
-                        != ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
+                        != arg_type::ARG_POSITIONAL_OPTION as libc::c_int as libc::c_uint
                     {} else {
                         __assert_fail(
-                            b"p->parser_entry->type != ARG_POSITIONAL_OPTION\0"
+                            b"p->parser_entry->type != arg_type::ARG_POSITIONAL_OPTION\0"
                                 as *const u8 as *const libc::c_char,
                             b"pred.c\0" as *const u8 as *const libc::c_char,
                             1339 as libc::c_int as libc::c_uint,
@@ -2610,7 +3269,7 @@ pub unsafe extern "C" fn pred_sanity_check(mut predicates: *const predicate) {
                 if !((*p).pred_func == Some(pred_prune as PREDICATEFUNCTION))
                     && !((*p).pred_func
                         == ::core::mem::transmute::<
-                            Option::<
+                            Option<
                                 unsafe extern "C" fn(
                                     *const libc::c_char,
                                     *mut stat,

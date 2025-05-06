@@ -1,10 +1,17 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(c_variadic, extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type tm_zone;
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     fn gmtime_r(__timer: *const time_t, __tp: *mut tm) -> *mut tm;
     fn tzalloc(__name: *const libc::c_char) -> timezone_t;
     fn tzfree(__tz: timezone_t);
@@ -23,22 +30,22 @@ extern "C" {
         __tz: timezone_t,
         __ns: libc::c_int,
     ) -> size_t;
-    static mut stderr: *mut FILE;
+    static mut stderr: *mut _IO_FILE;
+    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
+    fn vfprintf(
+        _: *mut FILE,
+        _: *const libc::c_char,
+        _: ::core::ffi::VaList,
+    ) -> libc::c_int;
     fn snprintf(
         _: *mut libc::c_char,
         _: libc::c_ulong,
         _: *const libc::c_char,
         _: ...
     ) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn fputc(__c: libc::c_int, __stream: *mut FILE) -> libc::c_int;
     fn fputs(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
-    fn vfprintf(
-        _: *mut FILE,
-        _: *const libc::c_char,
-        _: ::core::ffi::VaList,
-    ) -> libc::c_int;
     fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
     fn getenv(__name: *const libc::c_char) -> *mut libc::c_char;
     fn abs(_: libc::c_int) -> libc::c_int;
@@ -158,7 +165,6 @@ pub struct textint {
     pub digits: idx_t,
 }
 pub type va_list = __builtin_va_list;
-pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
@@ -184,15 +190,23 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
+pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -206,8 +220,69 @@ impl C2RustUnnamed_1 {
             C2RustUnnamed_1::LOG10_BILLION => 9,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_1 {
+        match value {
+            1000000000 => C2RustUnnamed_1::BILLION,
+            9 => C2RustUnnamed_1::LOG10_BILLION,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -219,8 +294,68 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::TM_YEAR_BASE => 1900,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_2 {
+        match value {
+            1900 => C2RustUnnamed_2::TM_YEAR_BASE,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -236,8 +371,70 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::MER24 => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_0 {
+        match value {
+            1 => C2RustUnnamed_0::MERpm,
+            0 => C2RustUnnamed_0::MERam,
+            2 => C2RustUnnamed_0::MER24,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type yytype_int16 = libc::c_short;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -298,8 +495,87 @@ impl yytokentype {
             yytokentype::tLOCAL_ZONE => 269,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> yytokentype {
+        match value {
+            268 => yytokentype::tDAYZONE,
+            273 => yytokentype::tZONE,
+            258 => yytokentype::tAGO,
+            272 => yytokentype::tORDINAL,
+            266 => yytokentype::tDAY_SHIFT,
+            264 => yytokentype::tSEC_UNIT,
+            263 => yytokentype::tMINUTE_UNIT,
+            262 => yytokentype::tHOUR_UNIT,
+            265 => yytokentype::tDAY_UNIT,
+            261 => yytokentype::tMONTH_UNIT,
+            260 => yytokentype::tYEAR_UNIT,
+            259 => yytokentype::tDST,
+            267 => yytokentype::tDAY,
+            271 => yytokentype::tMONTH,
+            270 => yytokentype::tMERIDIAN,
+            275 => yytokentype::tUNUMBER,
+            274 => yytokentype::tSNUMBER,
+            277 => yytokentype::tUDECIMAL_NUMBER,
+            276 => yytokentype::tSDECIMAL_NUMBER,
+            269 => yytokentype::tLOCAL_ZONE,
+            _ => panic!("Invalid value for yytokentype: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for yytokentype {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = yytokentype::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for yytokentype {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = yytokentype::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for yytokentype {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = yytokentype::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for yytokentype {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = yytokentype::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for yytokentype {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = yytokentype::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for yytokentype {
+    type Output = yytokentype;
+    fn add(self, rhs: u32) -> yytokentype {
+        yytokentype::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for yytokentype {
+    type Output = yytokentype;
+    fn sub(self, rhs: u32) -> yytokentype {
+        yytokentype::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for yytokentype {
+    type Output = yytokentype;
+    fn mul(self, rhs: u32) -> yytokentype {
+        yytokentype::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for yytokentype {
+    type Output = yytokentype;
+    fn div(self, rhs: u32) -> yytokentype {
+        yytokentype::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for yytokentype {
+    type Output = yytokentype;
+    fn rem(self, rhs: u32) -> yytokentype {
+        yytokentype::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union yyalloc {
@@ -317,8 +593,68 @@ impl C2RustUnnamed {
             C2RustUnnamed::TZBUFSIZE => 100,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            100 => C2RustUnnamed::TZBUFSIZE,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn c_isalpha(mut c: libc::c_int) -> bool {
     match c {
@@ -406,8 +742,7 @@ unsafe extern "C" fn digits_to_date_time(
         (*pc).dates_seen += 1;
         (*pc).dates_seen;
         (*pc).day = text_int.value % 100 as libc::c_int as libc::c_long;
-        (*pc)
-            .month = text_int.value / 100 as libc::c_int as libc::c_long
+        (*pc).month = text_int.value / 100 as libc::c_int as libc::c_long
             % 100 as libc::c_int as libc::c_long;
         (*pc).year.value = text_int.value / 10000 as libc::c_int as libc::c_long;
         (*pc).year.digits = text_int.digits - 4 as libc::c_int as libc::c_long;
@@ -423,7 +758,7 @@ unsafe extern "C" fn digits_to_date_time(
         }
         (*pc).seconds.tv_sec = 0 as libc::c_int as __time_t;
         (*pc).seconds.tv_nsec = 0 as libc::c_int as __syscall_slong_t;
-        (*pc).meridian = MER24 as libc::c_int;
+        (*pc).meridian = C2RustUnnamed_0::MER24 as libc::c_int;
     };
 }
 unsafe extern "C" fn apply_relative_time(
@@ -696,7 +1031,7 @@ unsafe extern "C" fn debug_print_current_time(
             let mut nsec: libc::c_int = (*pc).seconds.tv_nsec as libc::c_int;
             fprintf(stderr, b".%09d\0" as *const u8 as *const libc::c_char, nsec);
         }
-        if (*pc).meridian == MERpm as libc::c_int {
+        if (*pc).meridian == C2RustUnnamed_0::MERpm as libc::c_int {
             fputs(b"pm\0" as *const u8 as *const libc::c_char, stderr);
         }
         (*pc).debug_times_seen = 1 as libc::c_int != 0;
@@ -1141,32 +1476,32 @@ static mut meridian_table: [table; 5] = [
     {
         let mut init = table {
             name: b"AM\0" as *const u8 as *const libc::c_char,
-            type_0: tMERIDIAN as libc::c_int,
-            value: MERam as libc::c_int,
+            type_0: yytokentype::tMERIDIAN as libc::c_int,
+            value: C2RustUnnamed_0::MERam as libc::c_int,
         };
         init
     },
     {
         let mut init = table {
             name: b"A.M.\0" as *const u8 as *const libc::c_char,
-            type_0: tMERIDIAN as libc::c_int,
-            value: MERam as libc::c_int,
+            type_0: yytokentype::tMERIDIAN as libc::c_int,
+            value: C2RustUnnamed_0::MERam as libc::c_int,
         };
         init
     },
     {
         let mut init = table {
             name: b"PM\0" as *const u8 as *const libc::c_char,
-            type_0: tMERIDIAN as libc::c_int,
-            value: MERpm as libc::c_int,
+            type_0: yytokentype::tMERIDIAN as libc::c_int,
+            value: C2RustUnnamed_0::MERpm as libc::c_int,
         };
         init
     },
     {
         let mut init = table {
             name: b"P.M.\0" as *const u8 as *const libc::c_char,
-            type_0: tMERIDIAN as libc::c_int,
-            value: MERpm as libc::c_int,
+            type_0: yytokentype::tMERIDIAN as libc::c_int,
+            value: C2RustUnnamed_0::MERpm as libc::c_int,
         };
         init
     },
@@ -1183,7 +1518,7 @@ static mut dst_table: [table; 1] = [
     {
         let mut init = table {
             name: b"DST\0" as *const u8 as *const libc::c_char,
-            type_0: tDST as libc::c_int,
+            type_0: yytokentype::tDST as libc::c_int,
             value: 0 as libc::c_int,
         };
         init
@@ -1193,7 +1528,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"JANUARY\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1201,7 +1536,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"FEBRUARY\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 2 as libc::c_int,
         };
         init
@@ -1209,7 +1544,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"MARCH\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 3 as libc::c_int,
         };
         init
@@ -1217,7 +1552,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"APRIL\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 4 as libc::c_int,
         };
         init
@@ -1225,7 +1560,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"MAY\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 5 as libc::c_int,
         };
         init
@@ -1233,7 +1568,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"JUNE\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 6 as libc::c_int,
         };
         init
@@ -1241,7 +1576,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"JULY\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 7 as libc::c_int,
         };
         init
@@ -1249,7 +1584,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"AUGUST\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 8 as libc::c_int,
         };
         init
@@ -1257,7 +1592,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"SEPTEMBER\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 9 as libc::c_int,
         };
         init
@@ -1265,7 +1600,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"SEPT\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 9 as libc::c_int,
         };
         init
@@ -1273,7 +1608,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"OCTOBER\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 10 as libc::c_int,
         };
         init
@@ -1281,7 +1616,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"NOVEMBER\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 11 as libc::c_int,
         };
         init
@@ -1289,7 +1624,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"DECEMBER\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH as libc::c_int,
+            type_0: yytokentype::tMONTH as libc::c_int,
             value: 12 as libc::c_int,
         };
         init
@@ -1297,7 +1632,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"SUNDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 0 as libc::c_int,
         };
         init
@@ -1305,7 +1640,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"MONDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1313,7 +1648,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"TUESDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 2 as libc::c_int,
         };
         init
@@ -1321,7 +1656,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"TUES\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 2 as libc::c_int,
         };
         init
@@ -1329,7 +1664,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"WEDNESDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 3 as libc::c_int,
         };
         init
@@ -1337,7 +1672,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"WEDNES\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 3 as libc::c_int,
         };
         init
@@ -1345,7 +1680,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"THURSDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 4 as libc::c_int,
         };
         init
@@ -1353,7 +1688,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"THUR\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 4 as libc::c_int,
         };
         init
@@ -1361,7 +1696,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"THURS\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 4 as libc::c_int,
         };
         init
@@ -1369,7 +1704,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"FRIDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 5 as libc::c_int,
         };
         init
@@ -1377,7 +1712,7 @@ static mut month_and_day_table: [table; 25] = [
     {
         let mut init = table {
             name: b"SATURDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY as libc::c_int,
+            type_0: yytokentype::tDAY as libc::c_int,
             value: 6 as libc::c_int,
         };
         init
@@ -1395,7 +1730,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"YEAR\0" as *const u8 as *const libc::c_char,
-            type_0: tYEAR_UNIT as libc::c_int,
+            type_0: yytokentype::tYEAR_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1403,7 +1738,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"MONTH\0" as *const u8 as *const libc::c_char,
-            type_0: tMONTH_UNIT as libc::c_int,
+            type_0: yytokentype::tMONTH_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1411,7 +1746,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"FORTNIGHT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_UNIT as libc::c_int,
+            type_0: yytokentype::tDAY_UNIT as libc::c_int,
             value: 14 as libc::c_int,
         };
         init
@@ -1419,7 +1754,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"WEEK\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_UNIT as libc::c_int,
+            type_0: yytokentype::tDAY_UNIT as libc::c_int,
             value: 7 as libc::c_int,
         };
         init
@@ -1427,7 +1762,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"DAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_UNIT as libc::c_int,
+            type_0: yytokentype::tDAY_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1435,7 +1770,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"HOUR\0" as *const u8 as *const libc::c_char,
-            type_0: tHOUR_UNIT as libc::c_int,
+            type_0: yytokentype::tHOUR_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1443,7 +1778,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"MINUTE\0" as *const u8 as *const libc::c_char,
-            type_0: tMINUTE_UNIT as libc::c_int,
+            type_0: yytokentype::tMINUTE_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1451,7 +1786,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"MIN\0" as *const u8 as *const libc::c_char,
-            type_0: tMINUTE_UNIT as libc::c_int,
+            type_0: yytokentype::tMINUTE_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1459,7 +1794,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"SECOND\0" as *const u8 as *const libc::c_char,
-            type_0: tSEC_UNIT as libc::c_int,
+            type_0: yytokentype::tSEC_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1467,7 +1802,7 @@ static mut time_units_table: [table; 11] = [
     {
         let mut init = table {
             name: b"SEC\0" as *const u8 as *const libc::c_char,
-            type_0: tSEC_UNIT as libc::c_int,
+            type_0: yytokentype::tSEC_UNIT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1602,7 +1937,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"TOMORROW\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_SHIFT as libc::c_int,
+            type_0: yytokentype::tDAY_SHIFT as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1610,7 +1945,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"YESTERDAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_SHIFT as libc::c_int,
+            type_0: yytokentype::tDAY_SHIFT as libc::c_int,
             value: -(1 as libc::c_int),
         };
         init
@@ -1618,7 +1953,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"TODAY\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_SHIFT as libc::c_int,
+            type_0: yytokentype::tDAY_SHIFT as libc::c_int,
             value: 0 as libc::c_int,
         };
         init
@@ -1626,7 +1961,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"NOW\0" as *const u8 as *const libc::c_char,
-            type_0: tDAY_SHIFT as libc::c_int,
+            type_0: yytokentype::tDAY_SHIFT as libc::c_int,
             value: 0 as libc::c_int,
         };
         init
@@ -1634,7 +1969,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"LAST\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: -(1 as libc::c_int),
         };
         init
@@ -1642,7 +1977,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"THIS\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 0 as libc::c_int,
         };
         init
@@ -1650,7 +1985,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"NEXT\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1658,7 +1993,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"FIRST\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1666,7 +2001,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"THIRD\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 3 as libc::c_int,
         };
         init
@@ -1674,7 +2009,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"FOURTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 4 as libc::c_int,
         };
         init
@@ -1682,7 +2017,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"FIFTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 5 as libc::c_int,
         };
         init
@@ -1690,7 +2025,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"SIXTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 6 as libc::c_int,
         };
         init
@@ -1698,7 +2033,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"SEVENTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 7 as libc::c_int,
         };
         init
@@ -1706,7 +2041,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"EIGHTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 8 as libc::c_int,
         };
         init
@@ -1714,7 +2049,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"NINTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 9 as libc::c_int,
         };
         init
@@ -1722,7 +2057,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"TENTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 10 as libc::c_int,
         };
         init
@@ -1730,7 +2065,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"ELEVENTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 11 as libc::c_int,
         };
         init
@@ -1738,7 +2073,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"TWELFTH\0" as *const u8 as *const libc::c_char,
-            type_0: tORDINAL as libc::c_int,
+            type_0: yytokentype::tORDINAL as libc::c_int,
             value: 12 as libc::c_int,
         };
         init
@@ -1746,7 +2081,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"AGO\0" as *const u8 as *const libc::c_char,
-            type_0: tAGO as libc::c_int,
+            type_0: yytokentype::tAGO as libc::c_int,
             value: -(1 as libc::c_int),
         };
         init
@@ -1754,7 +2089,7 @@ static mut relative_time_table: [table; 21] = [
     {
         let mut init = table {
             name: b"HENCE\0" as *const u8 as *const libc::c_char,
-            type_0: tAGO as libc::c_int,
+            type_0: yytokentype::tAGO as libc::c_int,
             value: 1 as libc::c_int,
         };
         init
@@ -1889,7 +2224,7 @@ static mut universal_time_zone_table: [table; 4] = [
     {
         let mut init = table {
             name: b"GMT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -1897,7 +2232,7 @@ static mut universal_time_zone_table: [table; 4] = [
     {
         let mut init = table {
             name: b"UT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -1905,7 +2240,7 @@ static mut universal_time_zone_table: [table; 4] = [
     {
         let mut init = table {
             name: b"UTC\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -1979,7 +2314,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"WET\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -1987,7 +2322,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"WEST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -1995,7 +2330,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"BST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -2003,7 +2338,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"ART\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int),
         };
         init
@@ -2011,7 +2346,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"BRT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int),
         };
         init
@@ -2019,7 +2354,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"BRST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int),
         };
         init
@@ -2027,7 +2362,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"NST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int
                 + 30 as libc::c_int * 60 as libc::c_int),
         };
@@ -2036,7 +2371,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"NDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int
                 + 30 as libc::c_int * 60 as libc::c_int),
         };
@@ -2045,7 +2380,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"AST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int),
         };
         init
@@ -2053,7 +2388,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"ADT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int),
         };
         init
@@ -2061,7 +2396,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CLT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int),
         };
         init
@@ -2069,7 +2404,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CLST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int),
         };
         init
@@ -2077,7 +2412,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"EST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 5 as libc::c_int),
         };
         init
@@ -2085,7 +2420,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"EDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 5 as libc::c_int),
         };
         init
@@ -2093,7 +2428,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 6 as libc::c_int),
         };
         init
@@ -2101,7 +2436,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 6 as libc::c_int),
         };
         init
@@ -2109,7 +2444,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 7 as libc::c_int),
         };
         init
@@ -2117,7 +2452,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 7 as libc::c_int),
         };
         init
@@ -2125,7 +2460,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"PST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 8 as libc::c_int),
         };
         init
@@ -2133,7 +2468,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"PDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 8 as libc::c_int),
         };
         init
@@ -2141,7 +2476,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"AKST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int),
         };
         init
@@ -2149,7 +2484,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"AKDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int),
         };
         init
@@ -2157,7 +2492,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"HST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int),
         };
         init
@@ -2165,7 +2500,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"HAST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int),
         };
         init
@@ -2173,7 +2508,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"HADT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int),
         };
         init
@@ -2181,7 +2516,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"SST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 12 as libc::c_int),
         };
         init
@@ -2189,7 +2524,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"WAT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2197,7 +2532,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CET\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2205,7 +2540,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CEST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2213,7 +2548,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MET\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2221,7 +2556,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MEZ\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2229,7 +2564,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MEST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2237,7 +2572,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MESZ\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2245,7 +2580,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"EET\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int,
         };
         init
@@ -2253,7 +2588,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"EEST\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int,
         };
         init
@@ -2261,7 +2596,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"CAT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int,
         };
         init
@@ -2269,7 +2604,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"SAST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int,
         };
         init
@@ -2277,7 +2612,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"EAT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int,
         };
         init
@@ -2285,7 +2620,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MSK\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int,
         };
         init
@@ -2293,7 +2628,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"MSD\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int,
         };
         init
@@ -2301,7 +2636,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"IST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 5 as libc::c_int
                 + 30 as libc::c_int * 60 as libc::c_int,
         };
@@ -2310,7 +2645,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"SGT\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 8 as libc::c_int,
         };
         init
@@ -2318,7 +2653,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"KST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int,
         };
         init
@@ -2326,7 +2661,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"JST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int,
         };
         init
@@ -2334,7 +2669,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"GST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int,
         };
         init
@@ -2342,7 +2677,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"NZST\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 12 as libc::c_int,
         };
         init
@@ -2350,7 +2685,7 @@ static mut time_zone_table: [table; 48] = [
     {
         let mut init = table {
             name: b"NZDT\0" as *const u8 as *const libc::c_char,
-            type_0: tDAYZONE as libc::c_int,
+            type_0: yytokentype::tDAYZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 12 as libc::c_int,
         };
         init
@@ -2719,7 +3054,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"A\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int,
         };
         init
@@ -2727,7 +3062,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"B\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int,
         };
         init
@@ -2735,7 +3070,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"C\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int,
         };
         init
@@ -2743,7 +3078,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"D\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int,
         };
         init
@@ -2751,7 +3086,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"E\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 5 as libc::c_int,
         };
         init
@@ -2759,7 +3094,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"F\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 6 as libc::c_int,
         };
         init
@@ -2767,7 +3102,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"G\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 7 as libc::c_int,
         };
         init
@@ -2775,7 +3110,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"H\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 8 as libc::c_int,
         };
         init
@@ -2783,7 +3118,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"I\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int,
         };
         init
@@ -2799,7 +3134,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"K\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int,
         };
         init
@@ -2807,7 +3142,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"L\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 11 as libc::c_int,
         };
         init
@@ -2815,7 +3150,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"M\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 12 as libc::c_int,
         };
         init
@@ -2823,7 +3158,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"N\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 1 as libc::c_int),
         };
         init
@@ -2831,7 +3166,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"O\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 2 as libc::c_int),
         };
         init
@@ -2839,7 +3174,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"P\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 3 as libc::c_int),
         };
         init
@@ -2847,7 +3182,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"Q\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 4 as libc::c_int),
         };
         init
@@ -2855,7 +3190,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"R\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 5 as libc::c_int),
         };
         init
@@ -2863,7 +3198,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"S\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 6 as libc::c_int),
         };
         init
@@ -2879,7 +3214,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"U\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 8 as libc::c_int),
         };
         init
@@ -2887,7 +3222,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"V\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 9 as libc::c_int),
         };
         init
@@ -2895,7 +3230,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"W\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 10 as libc::c_int),
         };
         init
@@ -2903,7 +3238,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"X\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 11 as libc::c_int),
         };
         init
@@ -2911,7 +3246,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"Y\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: -(60 as libc::c_int * 60 as libc::c_int * 12 as libc::c_int),
         };
         init
@@ -2919,7 +3254,7 @@ static mut military_table: [table; 27] = [
     {
         let mut init = table {
             name: b"Z\0" as *const u8 as *const libc::c_char,
-            type_0: tZONE as libc::c_int,
+            type_0: yytokentype::tZONE as libc::c_int,
             value: 60 as libc::c_int * 60 as libc::c_int * 0 as libc::c_int,
         };
         init
@@ -6528,11 +6863,13 @@ unsafe extern "C" fn tm_year_str(
     sprintf(
         buf,
         &*(b"-%02d%02d\0" as *const u8 as *const libc::c_char)
-            .offset((-(TM_YEAR_BASE as libc::c_int) <= tm_year) as libc::c_int as isize)
-            as *const libc::c_char,
+            .offset(
+                (-(C2RustUnnamed_2::TM_YEAR_BASE as libc::c_int) <= tm_year)
+                    as libc::c_int as isize,
+            ) as *const libc::c_char,
         abs(
             tm_year / 100 as libc::c_int
-                + TM_YEAR_BASE as libc::c_int / 100 as libc::c_int,
+                + C2RustUnnamed_2::TM_YEAR_BASE as libc::c_int / 100 as libc::c_int,
         ),
         abs(tm_year % 100 as libc::c_int),
     );
@@ -6567,11 +6904,13 @@ unsafe extern "C" fn to_tm_year(
         }
     }
     if if year < 0 as libc::c_int as libc::c_long {
-        let (fresh38, fresh39) = (-(TM_YEAR_BASE as libc::c_int)).overflowing_sub(year);
+        let (fresh38, fresh39) = (-(C2RustUnnamed_2::TM_YEAR_BASE as libc::c_int))
+            .overflowing_sub(year);
         *tm_year = fresh38;
         fresh39 as libc::c_int
     } else {
-        let (fresh40, fresh41) = year.overflowing_sub(TM_YEAR_BASE as libc::c_int);
+        let (fresh40, fresh41) = year
+            .overflowing_sub(C2RustUnnamed_2::TM_YEAR_BASE as libc::c_int);
         *tm_year = fresh40;
         fresh41 as libc::c_int
     } != 0
@@ -6681,10 +7020,8 @@ unsafe extern "C" fn lookup_word(
     if *word.offset((wordlen - 1 as libc::c_int as libc::c_long) as isize) as libc::c_int
         == 'S' as i32
     {
-        *word
-            .offset(
-                (wordlen - 1 as libc::c_int as libc::c_long) as isize,
-            ) = '\0' as i32 as libc::c_char;
+        *word.offset((wordlen - 1 as libc::c_int as libc::c_long) as isize) = '\0' as i32
+            as libc::c_char;
         tp = time_units_table.as_ptr();
         while !((*tp).name).is_null() {
             if strcmp(word, (*tp).name) == 0 as libc::c_int {
@@ -6693,10 +7030,8 @@ unsafe extern "C" fn lookup_word(
             tp = tp.offset(1);
             tp;
         }
-        *word
-            .offset(
-                (wordlen - 1 as libc::c_int as libc::c_long) as isize,
-            ) = 'S' as i32 as libc::c_char;
+        *word.offset((wordlen - 1 as libc::c_int as libc::c_long) as isize) = 'S' as i32
+            as libc::c_char;
     }
     tp = relative_time_table.as_ptr();
     while !((*tp).name).is_null() {
@@ -10139,7 +10474,7 @@ unsafe extern "C" fn yylex(
                 p = p.offset(1);
                 let mut ns: libc::c_int = *fresh44 as libc::c_int - '0' as i32;
                 digits = 2 as libc::c_int;
-                while digits <= LOG10_BILLION as libc::c_int {
+                while digits <= C2RustUnnamed_1::LOG10_BILLION as libc::c_int {
                     ns *= 10 as libc::c_int;
                     if c_isdigit(*p as libc::c_int) {
                         let fresh45 = p;
@@ -10171,15 +10506,15 @@ unsafe extern "C" fn yylex(
                     if fresh47 {
                         return '?' as i32;
                     }
-                    ns = BILLION as libc::c_int - ns;
+                    ns = C2RustUnnamed_1::BILLION as libc::c_int - ns;
                 }
                 (*lvalp).timespec.tv_sec = s;
                 (*lvalp).timespec.tv_nsec = ns as __syscall_slong_t;
                 (*pc).input = p;
                 return if sign != 0 {
-                    tSDECIMAL_NUMBER as libc::c_int
+                    yytokentype::tSDECIMAL_NUMBER as libc::c_int
                 } else {
-                    tUDECIMAL_NUMBER as libc::c_int
+                    yytokentype::tUDECIMAL_NUMBER as libc::c_int
                 };
             } else {
                 (*lvalp).textintval.negative = sign < 0 as libc::c_int;
@@ -10187,9 +10522,9 @@ unsafe extern "C" fn yylex(
                 (*lvalp).textintval.digits = p.offset_from((*pc).input) as libc::c_long;
                 (*pc).input = p;
                 return if sign != 0 {
-                    tSNUMBER as libc::c_int
+                    yytokentype::tSNUMBER as libc::c_int
                 } else {
-                    tUNUMBER as libc::c_int
+                    yytokentype::tUNUMBER as libc::c_int
                 };
             }
         } else {
@@ -10374,7 +10709,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
             let mut yysize: libc::c_ulong = (yyssp.offset_from(yyss) as libc::c_long
                 + 1 as libc::c_int as libc::c_long) as libc::c_ulong;
             if 20 as libc::c_int as libc::c_ulong <= yystacksize {
-                current_block = 7265145029541556510;
+                current_block = 12281395165281818713;
                 break;
             }
             yystacksize = yystacksize.wrapping_mul(2 as libc::c_int as libc::c_ulong);
@@ -10396,7 +10731,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                     ),
             ) as *mut yyalloc;
             if yyptr.is_null() {
-                current_block = 7265145029541556510;
+                current_block = 12281395165281818713;
                 break;
             }
             let mut yynewbytes: libc::c_ulong = 0;
@@ -10449,18 +10784,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
             if yyss.offset(yystacksize as isize).offset(-(1 as libc::c_int as isize))
                 <= yyssp
             {
-                current_block = 17999098670684395425;
+                current_block = 498769287901429355;
                 break;
             }
         }
         if yystate == 12 as libc::c_int {
             yyresult = 0 as libc::c_int;
-            current_block = 8947955362139703485;
+            current_block = 4204999846219927902;
             break;
         } else {
             yyn = yypact[yystate as usize] as libc::c_int;
             if yyn == -(91 as libc::c_int) {
-                current_block = 16920137334735599194;
+                current_block = 6653455700349157016;
             } else {
                 if yychar == -(2 as libc::c_int) {
                     yychar = yylex(&mut yylval, pc);
@@ -10481,12 +10816,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                 if yyn < 0 as libc::c_int || (114 as libc::c_int) < yyn
                     || yycheck[yyn as usize] as libc::c_int != yytoken
                 {
-                    current_block = 16920137334735599194;
+                    current_block = 6653455700349157016;
                 } else {
                     yyn = yytable[yyn as usize] as libc::c_int;
                     if yyn <= 0 as libc::c_int {
                         yyn = -yyn;
-                        current_block = 5757382307270806732;
+                        current_block = 9164919981500593943;
                     } else {
                         if yyerrstatus != 0 {
                             yyerrstatus -= 1;
@@ -10496,12 +10831,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                         yystate = yyn;
                         yyvsp = yyvsp.offset(1);
                         *yyvsp = yylval;
-                        current_block = 9731479585685552655;
+                        current_block = 14736118709392852852;
                     }
                 }
             }
             match current_block {
-                16920137334735599194 => {
+                6653455700349157016 => {
                     yyn = yydefact[yystate as usize] as libc::c_int;
                     if yyn == 0 as libc::c_int {
                         yytoken = if yychar == -(2 as libc::c_int) {
@@ -10524,7 +10859,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                         if yyerrstatus == 3 as libc::c_int {
                             if yychar <= 0 as libc::c_int {
                                 if yychar == 0 as libc::c_int {
-                                    current_block = 17999098670684395425;
+                                    current_block = 498769287901429355;
                                     break;
                                 }
                             } else {
@@ -10552,7 +10887,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 }
                             }
                             if yyssp == yyss {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break '_yysetstate;
                             }
                             yydestruct(
@@ -10568,21 +10903,20 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                         yyvsp = yyvsp.offset(1);
                         *yyvsp = yylval;
                         yystate = yyn;
-                        current_block = 9731479585685552655;
+                        current_block = 14736118709392852852;
                     } else {
-                        current_block = 5757382307270806732;
+                        current_block = 9164919981500593943;
                     }
                 }
                 _ => {}
             }
             match current_block {
-                5757382307270806732 => {
+                9164919981500593943 => {
                     yylen = yyr2[yyn as usize] as libc::c_int;
                     yyval = *yyvsp.offset((1 as libc::c_int - yylen) as isize);
                     match yyn {
                         4 => {
-                            (*pc)
-                                .seconds = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).seconds = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .timespec;
                             (*pc).timespec_seen = 1 as libc::c_int != 0;
                             debug_print_current_time(
@@ -10716,8 +11050,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int as time_t,
                                 0 as libc::c_int,
                             );
-                            (*pc)
-                                .meridian = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).meridian = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         20 => {
@@ -10732,8 +11065,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int as time_t,
                                 0 as libc::c_int,
                             );
-                            (*pc)
-                                .meridian = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).meridian = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         21 => {
@@ -10752,8 +11084,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                     .timespec
                                     .tv_nsec as libc::c_int,
                             );
-                            (*pc)
-                                .meridian = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).meridian = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         23 => {
@@ -10766,7 +11097,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int as time_t,
                                 0 as libc::c_int,
                             );
-                            (*pc).meridian = MER24 as libc::c_int;
+                            (*pc).meridian = C2RustUnnamed_0::MER24 as libc::c_int;
                         }
                         24 => {
                             set_hhmmss(
@@ -10780,7 +11111,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int as time_t,
                                 0 as libc::c_int,
                             );
-                            (*pc).meridian = MER24 as libc::c_int;
+                            (*pc).meridian = C2RustUnnamed_0::MER24 as libc::c_int;
                         }
                         25 => {
                             set_hhmmss(
@@ -10798,7 +11129,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                     .timespec
                                     .tv_nsec as libc::c_int,
                             );
-                            (*pc).meridian = MER24 as libc::c_int;
+                            (*pc).meridian = C2RustUnnamed_0::MER24 as libc::c_int;
                         }
                         28 => {
                             (*pc).zones_seen += 1;
@@ -10808,13 +11139,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(-(1 as libc::c_int) as isize)).textintval,
                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         29 => {
-                            (*pc)
-                                .local_isdst = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).local_isdst = (*yyvsp
+                                .offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         30 => {
@@ -10823,25 +11154,23 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             (*pc).dsts_seen;
                         }
                         31 => {
-                            (*pc)
-                                .time_zone = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).time_zone = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         32 => {
-                            (*pc)
-                                .time_zone = -(60 as libc::c_int * 60 as libc::c_int
+                            (*pc).time_zone = -(60 as libc::c_int * 60 as libc::c_int
                                 * 7 as libc::c_int);
                         }
                         33 => {
-                            (*pc)
-                                .time_zone = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).time_zone = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval as libc::c_int;
                             if !apply_relative_time(
                                 pc,
                                 (*yyvsp.offset(0 as libc::c_int as isize)).rel,
                                 1 as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                             debug_print_relative_time(
@@ -10854,15 +11183,14 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             );
                         }
                         34 => {
-                            (*pc)
-                                .time_zone = -(60 as libc::c_int * 60 as libc::c_int
+                            (*pc).time_zone = -(60 as libc::c_int * 60 as libc::c_int
                                 * 7 as libc::c_int);
                             if !apply_relative_time(
                                 pc,
                                 (*yyvsp.offset(0 as libc::c_int as isize)).rel,
                                 1 as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                             debug_print_relative_time(
@@ -10880,7 +11208,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(-(1 as libc::c_int) as isize)).textintval,
                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                             let (fresh51, fresh52) = ((*pc).time_zone)
@@ -10889,62 +11217,56 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).time_zone as *mut libc::c_int) = fresh51;
                             if fresh52 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         36 => {
-                            (*pc)
-                                .time_zone = ((*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).time_zone = ((*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval
                                 + (60 as libc::c_int * 60 as libc::c_int) as libc::c_long)
                                 as libc::c_int;
                         }
                         37 => {
-                            (*pc)
-                                .time_zone = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).time_zone = ((*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval
                                 + (60 as libc::c_int * 60 as libc::c_int) as libc::c_long)
                                 as libc::c_int;
                         }
                         38 => {
                             (*pc).day_ordinal = 0 as libc::c_int as intmax_t;
-                            (*pc)
-                                .day_number = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).day_number = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                         }
                         39 => {
                             (*pc).day_ordinal = 0 as libc::c_int as intmax_t;
-                            (*pc)
-                                .day_number = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).day_number = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval as libc::c_int;
                         }
                         40 => {
-                            (*pc)
-                                .day_ordinal = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).day_ordinal = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
-                            (*pc)
-                                .day_number = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).day_number = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                             (*pc).debug_ordinal_day_seen = 1 as libc::c_int != 0;
                         }
                         41 => {
-                            (*pc)
-                                .day_ordinal = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).day_ordinal = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .day_number = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).day_number = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .intval as libc::c_int;
                             (*pc).debug_ordinal_day_seen = 1 as libc::c_int != 0;
                         }
                         42 => {
-                            (*pc)
-                                .month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .day = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).day = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .textintval
                                 .value;
                         }
@@ -10972,15 +11294,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         digits,
                                     );
                                 }
-                                (*pc)
-                                    .year = (*yyvsp.offset(-(4 as libc::c_int) as isize))
+                                (*pc).year = (*yyvsp.offset(-(4 as libc::c_int) as isize))
                                     .textintval;
-                                (*pc)
-                                    .month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                                (*pc).month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                     .textintval
                                     .value;
-                                (*pc)
-                                    .day = (*yyvsp.offset(0 as libc::c_int as isize))
+                                (*pc).day = (*yyvsp.offset(0 as libc::c_int as isize))
                                     .textintval
                                     .value;
                             } else {
@@ -10997,26 +11316,21 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value,
                                     );
                                 }
-                                (*pc)
-                                    .month = (*yyvsp.offset(-(4 as libc::c_int) as isize))
+                                (*pc).month = (*yyvsp.offset(-(4 as libc::c_int) as isize))
                                     .textintval
                                     .value;
-                                (*pc)
-                                    .day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                                (*pc).day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                     .textintval
                                     .value;
-                                (*pc)
-                                    .year = (*yyvsp.offset(0 as libc::c_int as isize))
+                                (*pc).year = (*yyvsp.offset(0 as libc::c_int as isize))
                                     .textintval;
                             }
                         }
                         44 => {
-                            (*pc)
-                                .day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .intval;
                             let (fresh53, fresh54) = (0 as libc::c_int)
                                 .overflowing_sub(
@@ -11024,18 +11338,16 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).year.value as *mut intmax_t) = fresh53;
                             if fresh54 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
-                            (*pc)
-                                .year
-                                .digits = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).year.digits = (*yyvsp
+                                .offset(0 as libc::c_int as isize))
                                 .textintval
                                 .digits;
                         }
                         45 => {
-                            (*pc)
-                                .month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .intval;
                             let (fresh55, fresh56) = (0 as libc::c_int)
                                 .overflowing_sub(
@@ -11045,7 +11357,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).day as *mut intmax_t) = fresh55;
                             if fresh56 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                             let (fresh57, fresh58) = (0 as libc::c_int)
@@ -11054,59 +11366,48 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).year.value as *mut intmax_t) = fresh57;
                             if fresh58 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
-                            (*pc)
-                                .year
-                                .digits = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).year.digits = (*yyvsp
+                                .offset(0 as libc::c_int as isize))
                                 .textintval
                                 .digits;
                         }
                         46 => {
-                            (*pc)
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .intval;
-                            (*pc)
-                                .day = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).day = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .textintval
                                 .value;
                         }
                         47 => {
-                            (*pc)
-                                .month = (*yyvsp.offset(-(3 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(3 as libc::c_int) as isize))
                                 .intval;
-                            (*pc)
-                                .day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .year = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).year = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .textintval;
                         }
                         48 => {
-                            (*pc)
-                                .day = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).day = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .month = (*yyvsp.offset(0 as libc::c_int as isize)).intval;
+                            (*pc).month = (*yyvsp.offset(0 as libc::c_int as isize))
+                                .intval;
                         }
                         49 => {
-                            (*pc)
-                                .day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).day = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .textintval
                                 .value;
-                            (*pc)
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            (*pc).month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .intval;
-                            (*pc)
-                                .year = (*yyvsp.offset(0 as libc::c_int as isize))
+                            (*pc).year = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .textintval;
                         }
                         51 => {
-                            (*pc)
-                                .year = (*yyvsp.offset(-(2 as libc::c_int) as isize))
+                            (*pc).year = (*yyvsp.offset(-(2 as libc::c_int) as isize))
                                 .textintval;
                             let (fresh59, fresh60) = (0 as libc::c_int)
                                 .overflowing_sub(
@@ -11116,7 +11417,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).month as *mut intmax_t) = fresh59;
                             if fresh60 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                             let (fresh61, fresh62) = (0 as libc::c_int)
@@ -11125,7 +11426,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 );
                             *(&mut (*pc).day as *mut intmax_t) = fresh61;
                             if fresh62 {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
@@ -11136,7 +11437,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                     as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
@@ -11146,7 +11447,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(0 as libc::c_int as isize)).rel,
                                 1 as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
@@ -11156,13 +11457,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(0 as libc::c_int as isize)).rel,
                                 1 as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         55 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11174,14 +11474,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .year = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.year = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
                         }
                         56 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11193,15 +11491,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .year = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.year = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         57 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11216,8 +11512,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.rel.year = 1 as libc::c_int as intmax_t;
                         }
                         58 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11229,14 +11524,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.month = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
                         }
                         59 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11248,15 +11541,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.month = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         60 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11271,8 +11562,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.rel.month = 1 as libc::c_int as intmax_t;
                         }
                         61 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -11653,20 +11943,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
                                             ) as libc::c_schar as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
@@ -12016,20 +12304,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
                                         ) as libc::c_uchar as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
@@ -12419,20 +12705,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
                                             ) as libc::c_short as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
@@ -12782,20 +13066,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
                                         ) as libc::c_ushort as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
@@ -13189,20 +13471,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
                                             ) as libc::c_int as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_uint)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_uint)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_uint,
@@ -13558,20 +13838,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_uint)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_uint)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_uint,
@@ -13964,20 +14242,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_ulong)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_ulong)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_ulong,
                                             ) as libc::c_long;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                            as libc::c_ulong)
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
+                                            .intval as libc::c_ulong)
                                             .wrapping_mul(
                                                 (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                     as libc::c_ulong,
@@ -14348,20 +14624,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_ulong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_ulong)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_ulong)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_ulong,
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_ulong)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_ulong)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_ulong,
@@ -14767,20 +15041,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             as libc::c_longlong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_ulonglong)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_ulonglong)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_ulonglong,
                                         ) as libc::c_longlong as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                        as libc::c_ulonglong)
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
+                                        .intval as libc::c_ulonglong)
                                         .wrapping_mul(
                                             (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                                 as libc::c_ulonglong,
@@ -15156,20 +15428,18 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         as libc::c_ulonglong) as libc::c_int
                             } != 0
                             {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                    as libc::c_ulonglong)
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
+                                    .intval as libc::c_ulonglong)
                                     .wrapping_mul(
                                         (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                             as libc::c_ulonglong,
                                     ) as intmax_t;
                                 1 as libc::c_int
                             } else {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize)).intval
-                                    as libc::c_ulonglong)
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
+                                    .intval as libc::c_ulonglong)
                                     .wrapping_mul(
                                         (*yyvsp.offset(0 as libc::c_int as isize)).intval
                                             as libc::c_ulonglong,
@@ -15177,13 +15447,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int
                             } != 0
                             {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         62 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -15596,9 +15865,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -15607,9 +15875,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_schar as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -15992,9 +16259,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -16003,9 +16269,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_uchar as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -16429,9 +16694,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -16440,9 +16704,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_short as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -16825,9 +17088,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -16836,9 +17098,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_ushort as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -17266,9 +17527,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -17277,9 +17537,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_int as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -17668,9 +17927,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -17679,9 +17937,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -18108,9 +18365,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_ulong)
                                             .wrapping_mul(
@@ -18119,9 +18375,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_long;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_ulong)
                                             .wrapping_mul(
@@ -18524,9 +18779,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value as libc::c_ulong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulong)
                                         .wrapping_mul(
@@ -18535,9 +18789,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulong)
                                         .wrapping_mul(
@@ -18975,9 +19228,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value as libc::c_longlong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulonglong)
                                         .wrapping_mul(
@@ -18986,9 +19238,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_longlong as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulonglong)
                                         .wrapping_mul(
@@ -19396,9 +19647,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         .value as libc::c_ulonglong) as libc::c_int
                             } != 0
                             {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
                                     .textintval
                                     .value as libc::c_ulonglong)
                                     .wrapping_mul(
@@ -19407,9 +19657,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                     ) as intmax_t;
                                 1 as libc::c_int
                             } else {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
                                     .textintval
                                     .value as libc::c_ulonglong)
                                     .wrapping_mul(
@@ -19419,13 +19668,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int
                             } != 0
                             {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         63 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19437,13 +19685,11 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .day = (*yyvsp.offset(0 as libc::c_int as isize)).intval;
+                            yyval.rel.day = (*yyvsp.offset(0 as libc::c_int as isize))
+                                .intval;
                         }
                         64 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19455,14 +19701,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .hour = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.hour = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
                         }
                         65 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19474,15 +19718,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .hour = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.hour = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         66 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19497,8 +19739,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.rel.hour = 1 as libc::c_int as intmax_t;
                         }
                         67 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19510,14 +19751,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .minutes = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.minutes = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
                         }
                         68 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19529,15 +19768,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .minutes = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.minutes = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         69 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19552,8 +19789,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.rel.minutes = 1 as libc::c_int as intmax_t;
                         }
                         70 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19565,14 +19801,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .seconds = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.seconds = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .intval;
                         }
                         71 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19584,15 +19818,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .seconds = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.seconds = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         72 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19604,20 +19836,16 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .seconds = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.seconds = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .timespec
                                 .tv_sec;
-                            yyval
-                                .rel
-                                .ns = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.ns = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .timespec
                                 .tv_nsec as libc::c_int;
                         }
                         73 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19629,20 +19857,16 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .seconds = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.seconds = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .timespec
                                 .tv_sec;
-                            yyval
-                                .rel
-                                .ns = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.ns = (*yyvsp.offset(-(1 as libc::c_int) as isize))
                                 .timespec
                                 .tv_nsec as libc::c_int;
                         }
                         74 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19657,8 +19881,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.rel.seconds = 1 as libc::c_int as intmax_t;
                         }
                         76 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19670,15 +19893,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .year = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.year = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         77 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -19690,15 +19911,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .month = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.month = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         78 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -20111,9 +20330,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -20122,9 +20340,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_schar as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -20507,9 +20724,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -20518,9 +20734,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_uchar as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -20944,9 +21159,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -20955,9 +21169,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_short as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -21340,9 +21553,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -21351,9 +21563,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_ushort as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -21781,9 +21992,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -21792,9 +22002,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_int as intmax_t;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_uint)
                                             .wrapping_mul(
@@ -22183,9 +22392,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -22194,9 +22402,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_uint)
                                         .wrapping_mul(
@@ -22623,9 +22830,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                                 .value) as libc::c_int
                                     } != 0
                                     {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_ulong)
                                             .wrapping_mul(
@@ -22634,9 +22840,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             ) as libc::c_long;
                                         1 as libc::c_int
                                     } else {
-                                        yyval
-                                            .rel
-                                            .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                        yyval.rel.day = ((*yyvsp
+                                            .offset(-(1 as libc::c_int) as isize))
                                             .textintval
                                             .value as libc::c_ulong)
                                             .wrapping_mul(
@@ -23039,9 +23244,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value as libc::c_ulong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulong)
                                         .wrapping_mul(
@@ -23050,9 +23254,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulong)
                                         .wrapping_mul(
@@ -23490,9 +23693,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                             .value as libc::c_longlong) as libc::c_int
                                 } != 0
                                 {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulonglong)
                                         .wrapping_mul(
@@ -23501,9 +23703,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         ) as libc::c_longlong as intmax_t;
                                     1 as libc::c_int
                                 } else {
-                                    yyval
-                                        .rel
-                                        .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                    yyval.rel.day = ((*yyvsp
+                                        .offset(-(1 as libc::c_int) as isize))
                                         .textintval
                                         .value as libc::c_ulonglong)
                                         .wrapping_mul(
@@ -23911,9 +24112,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                         .value as libc::c_ulonglong) as libc::c_int
                             } != 0
                             {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
                                     .textintval
                                     .value as libc::c_ulonglong)
                                     .wrapping_mul(
@@ -23922,9 +24122,8 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                     ) as intmax_t;
                                 1 as libc::c_int
                             } else {
-                                yyval
-                                    .rel
-                                    .day = ((*yyvsp.offset(-(1 as libc::c_int) as isize))
+                                yyval.rel.day = ((*yyvsp
+                                    .offset(-(1 as libc::c_int) as isize))
                                     .textintval
                                     .value as libc::c_ulonglong)
                                     .wrapping_mul(
@@ -23934,13 +24133,12 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 0 as libc::c_int
                             } != 0
                             {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
                         79 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -23952,15 +24150,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .hour = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.hour = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         80 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -23972,15 +24168,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .minutes = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.minutes = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         81 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -23992,15 +24186,13 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .seconds = (*yyvsp.offset(-(1 as libc::c_int) as isize))
+                            yyval.rel.seconds = (*yyvsp
+                                .offset(-(1 as libc::c_int) as isize))
                                 .textintval
                                 .value;
                         }
                         82 => {
-                            yyval
-                                .rel = {
+                            yyval.rel = {
                                 let mut init = relative_time {
                                     year: 0 as libc::c_int as intmax_t,
                                     month: 0 as libc::c_int as intmax_t,
@@ -24012,41 +24204,36 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 };
                                 init
                             };
-                            yyval
-                                .rel
-                                .day = (*yyvsp.offset(0 as libc::c_int as isize)).intval;
+                            yyval.rel.day = (*yyvsp.offset(0 as libc::c_int as isize))
+                                .intval;
                         }
                         86 => {
                             if time_overflow(
                                 (*yyvsp.offset(0 as libc::c_int as isize)).textintval.value,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
-                            yyval
-                                .timespec
-                                .tv_sec = (*yyvsp.offset(0 as libc::c_int as isize))
+                            yyval.timespec.tv_sec = (*yyvsp
+                                .offset(0 as libc::c_int as isize))
                                 .textintval
                                 .value;
-                            yyval
-                                .timespec
-                                .tv_nsec = 0 as libc::c_int as __syscall_slong_t;
+                            yyval.timespec.tv_nsec = 0 as libc::c_int
+                                as __syscall_slong_t;
                         }
                         88 => {
                             if time_overflow(
                                 (*yyvsp.offset(0 as libc::c_int as isize)).textintval.value,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
-                            yyval
-                                .timespec
-                                .tv_sec = (*yyvsp.offset(0 as libc::c_int as isize))
+                            yyval.timespec.tv_sec = (*yyvsp
+                                .offset(0 as libc::c_int as isize))
                                 .textintval
                                 .value;
-                            yyval
-                                .timespec
-                                .tv_nsec = 0 as libc::c_int as __syscall_slong_t;
+                            yyval.timespec.tv_nsec = 0 as libc::c_int
+                                as __syscall_slong_t;
                         }
                         89 => {
                             digits_to_date_time(
@@ -24064,7 +24251,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                                 (*yyvsp.offset(0 as libc::c_int as isize)).rel,
                                 1 as libc::c_int,
                             ) {
-                                current_block = 17999098670684395425;
+                                current_block = 498769287901429355;
                                 break;
                             }
                         }
@@ -24072,8 +24259,7 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
                             yyval.intval = -(1 as libc::c_int) as intmax_t;
                         }
                         92 => {
-                            yyval
-                                .intval = (*yyvsp.offset(0 as libc::c_int as isize))
+                            yyval.intval = (*yyvsp.offset(0 as libc::c_int as isize))
                                 .textintval
                                 .value;
                         }
@@ -24104,11 +24290,11 @@ pub unsafe extern "C" fn yyparse(mut pc: *mut parser_control) -> libc::c_int {
         }
     }
     match current_block {
-        7265145029541556510 => {
+        12281395165281818713 => {
             yyerror(pc, b"memory exhausted\0" as *const u8 as *const libc::c_char);
             yyresult = 2 as libc::c_int;
         }
-        17999098670684395425 => {
+        498769287901429355 => {
             yyresult = 1 as libc::c_int;
         }
         _ => {}
@@ -24473,10 +24659,10 @@ unsafe extern "C" fn parse_datetime_body(
                 let mut tz1: timezone_t = 0 as *mut tm_zone;
                 let mut tz1string: *mut libc::c_char = tz1buf.as_mut_ptr();
                 let mut z: *mut libc::c_char = 0 as *mut libc::c_char;
-                if (TZBUFSIZE as libc::c_int as libc::c_long) < tzsize {
+                if (C2RustUnnamed::TZBUFSIZE as libc::c_int as libc::c_long) < tzsize {
                     tz1alloc = malloc(tzsize as libc::c_ulong) as *mut libc::c_char;
                     if tz1alloc.is_null() {
-                        current_block = 14461210115225079269;
+                        current_block = 17558535653139081844;
                         break;
                     }
                     tz1string = tz1alloc;
@@ -24497,7 +24683,7 @@ unsafe extern "C" fn parse_datetime_body(
                 *z = '\0' as i32 as libc::c_char;
                 tz1 = tzalloc(tz1string);
                 if tz1.is_null() {
-                    current_block = 14461210115225079269;
+                    current_block = 17558535653139081844;
                     break;
                 }
                 tz = tz1;
@@ -24592,7 +24778,7 @@ unsafe extern "C" fn parse_datetime_body(
                 };
                 pc.input = p;
                 let (fresh64, fresh65) = (tmp.tm_year)
-                    .overflowing_add(TM_YEAR_BASE as libc::c_int);
+                    .overflowing_add(C2RustUnnamed_2::TM_YEAR_BASE as libc::c_int);
                 *(&mut pc.year.value as *mut intmax_t) = fresh64;
                 if fresh65 {
                     if debugging(&mut pc) {
@@ -24614,7 +24800,7 @@ unsafe extern "C" fn parse_datetime_body(
                     pc.seconds.tv_sec = tmp.tm_sec as __time_t;
                     pc.seconds.tv_nsec = Start_ns as __syscall_slong_t;
                     tm.tm_isdst = tmp.tm_isdst;
-                    pc.meridian = MER24 as libc::c_int;
+                    pc.meridian = C2RustUnnamed_0::MER24 as libc::c_int;
                     pc.rel = rel_time_0;
                     pc.timespec_seen = 0 as libc::c_int != 0;
                     pc.rels_seen = 0 as libc::c_int != 0;
@@ -24633,18 +24819,14 @@ unsafe extern "C" fn parse_datetime_body(
                     pc.debug_zones_seen = 0 as libc::c_int != 0;
                     pc.debug_year_seen = 0 as libc::c_int != 0;
                     pc.debug_ordinal_day_seen = 0 as libc::c_int != 0;
-                    pc
-                        .local_time_zone_table[0 as libc::c_int as usize]
-                        .name = tmp.tm_zone;
-                    pc
-                        .local_time_zone_table[0 as libc::c_int as usize]
-                        .type_0 = tLOCAL_ZONE as libc::c_int;
-                    pc
-                        .local_time_zone_table[0 as libc::c_int as usize]
-                        .value = tmp.tm_isdst;
-                    pc
-                        .local_time_zone_table[1 as libc::c_int as usize]
-                        .name = 0 as *const libc::c_char;
+                    pc.local_time_zone_table[0 as libc::c_int as usize].name = tmp
+                        .tm_zone;
+                    pc.local_time_zone_table[0 as libc::c_int as usize].type_0 = yytokentype::tLOCAL_ZONE
+                        as libc::c_int;
+                    pc.local_time_zone_table[0 as libc::c_int as usize].value = tmp
+                        .tm_isdst;
+                    pc.local_time_zone_table[1 as libc::c_int as usize].name = 0
+                        as *const libc::c_char;
                     let mut quarter: libc::c_int = 0;
                     quarter = 1 as libc::c_int;
                     while quarter <= 3 as libc::c_int {
@@ -24677,18 +24859,14 @@ unsafe extern "C" fn parse_datetime_body(
                             && probe_tm.tm_isdst
                                 != pc.local_time_zone_table[0 as libc::c_int as usize].value
                         {
-                            pc
-                                .local_time_zone_table[1 as libc::c_int as usize]
-                                .name = probe_tm.tm_zone;
-                            pc
-                                .local_time_zone_table[1 as libc::c_int as usize]
-                                .type_0 = tLOCAL_ZONE as libc::c_int;
-                            pc
-                                .local_time_zone_table[1 as libc::c_int as usize]
-                                .value = probe_tm.tm_isdst;
-                            pc
-                                .local_time_zone_table[2 as libc::c_int as usize]
-                                .name = 0 as *const libc::c_char;
+                            pc.local_time_zone_table[1 as libc::c_int as usize].name = probe_tm
+                                .tm_zone;
+                            pc.local_time_zone_table[1 as libc::c_int as usize].type_0 = yytokentype::tLOCAL_ZONE
+                                as libc::c_int;
+                            pc.local_time_zone_table[1 as libc::c_int as usize].value = probe_tm
+                                .tm_isdst;
+                            pc.local_time_zone_table[2 as libc::c_int as usize].name = 0
+                                as *const libc::c_char;
                             break;
                         } else {
                             quarter += 1;
@@ -24704,12 +24882,10 @@ unsafe extern "C" fn parse_datetime_body(
                             pc.local_time_zone_table[1 as libc::c_int as usize].name,
                         ) == 0
                     {
-                        pc
-                            .local_time_zone_table[0 as libc::c_int as usize]
-                            .value = -(1 as libc::c_int);
-                        pc
-                            .local_time_zone_table[1 as libc::c_int as usize]
-                            .name = 0 as *const libc::c_char;
+                        pc.local_time_zone_table[0 as libc::c_int as usize].value = -(1
+                            as libc::c_int);
+                        pc.local_time_zone_table[1 as libc::c_int as usize].name = 0
+                            as *const libc::c_char;
                     }
                     if yyparse(&mut pc) != 0 as libc::c_int {
                         if debugging(&mut pc) {
@@ -24867,7 +25043,7 @@ unsafe extern "C" fn parse_datetime_body(
                                     );
                                 }
                             }
-                            current_block = 14461210115225079269;
+                            current_block = 17558535653139081844;
                         } else if !to_tm_year(
                             pc.year,
                             debugging(&mut pc),
@@ -24896,7 +25072,7 @@ unsafe extern "C" fn parse_datetime_body(
                                     ),
                                 );
                             }
-                            current_block = 14461210115225079269;
+                            current_block = 17558535653139081844;
                         } else {
                             if pc.times_seen != 0
                                 || pc.rels_seen as libc::c_int != 0 && pc.dates_seen == 0
@@ -24905,10 +25081,12 @@ unsafe extern "C" fn parse_datetime_body(
                                 tm.tm_hour = to_hour(pc.hour, pc.meridian);
                                 if tm.tm_hour < 0 as libc::c_int {
                                     let mut mrd: *const libc::c_char = if pc.meridian
-                                        == MERam as libc::c_int
+                                        == C2RustUnnamed_0::MERam as libc::c_int
                                     {
                                         b"am\0" as *const u8 as *const libc::c_char
-                                    } else if pc.meridian == MERpm as libc::c_int {
+                                    } else if pc.meridian
+                                        == C2RustUnnamed_0::MERpm as libc::c_int
+                                    {
                                         b"pm\0" as *const u8 as *const libc::c_char
                                     } else {
                                         b"\0" as *const u8 as *const libc::c_char
@@ -24925,7 +25103,7 @@ unsafe extern "C" fn parse_datetime_body(
                                             mrd,
                                         );
                                     }
-                                    current_block = 14461210115225079269;
+                                    current_block = 17558535653139081844;
                                 } else {
                                     tm.tm_min = pc.minutes as libc::c_int;
                                     tm.tm_sec = pc.seconds.tv_sec as libc::c_int;
@@ -24970,7 +25148,7 @@ unsafe extern "C" fn parse_datetime_body(
                                 current_block = 10248984122780841972;
                             }
                             match current_block {
-                                14461210115225079269 => {}
+                                17558535653139081844 => {}
                                 _ => {
                                     if pc.dates_seen | pc.days_seen | pc.times_seen != 0 {
                                         tm.tm_isdst = -(1 as libc::c_int);
@@ -24993,12 +25171,12 @@ unsafe extern "C" fn parse_datetime_body(
                                             != 0 as libc::c_int as libc::c_long;
                                         if time_zone_seen {
                                             let mut tz2buf: [libc::c_char; 30] = [0; 30];
-                                            tz2buf[2 as libc::c_int
-                                                as usize] = 'X' as i32 as libc::c_char;
-                                            tz2buf[1 as libc::c_int
-                                                as usize] = tz2buf[2 as libc::c_int as usize];
-                                            tz2buf[0 as libc::c_int
-                                                as usize] = tz2buf[1 as libc::c_int as usize];
+                                            tz2buf[2 as libc::c_int as usize] = 'X' as i32
+                                                as libc::c_char;
+                                            tz2buf[1 as libc::c_int as usize] = tz2buf[2 as libc::c_int
+                                                as usize];
+                                            tz2buf[0 as libc::c_int as usize] = tz2buf[1 as libc::c_int
+                                                as usize];
                                             time_zone_str(
                                                 pc.time_zone,
                                                 &mut *tz2buf.as_mut_ptr().offset(3 as libc::c_int as isize),
@@ -25016,7 +25194,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                         tz2buf.as_mut_ptr(),
                                                     );
                                                 }
-                                                current_block = 14461210115225079269;
+                                                current_block = 17558535653139081844;
                                             } else {
                                                 tm.tm_sec = tm0.tm_sec;
                                                 tm.tm_min = tm0.tm_min;
@@ -25035,7 +25213,7 @@ unsafe extern "C" fn parse_datetime_body(
                                             current_block = 11227437541145425351;
                                         }
                                         match current_block {
-                                            14461210115225079269 => {}
+                                            17558535653139081844 => {}
                                             _ => {
                                                 if !repaired {
                                                     debug_mktime_not_ok(
@@ -25044,7 +25222,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                         &mut pc,
                                                         time_zone_seen,
                                                     );
-                                                    current_block = 14461210115225079269;
+                                                    current_block = 17558535653139081844;
                                                 } else {
                                                     current_block = 2884634553824165030;
                                                 }
@@ -25054,7 +25232,7 @@ unsafe extern "C" fn parse_datetime_body(
                                         current_block = 2884634553824165030;
                                     }
                                     match current_block {
-                                        14461210115225079269 => {}
+                                        17558535653139081844 => {}
                                         _ => {
                                             let mut dbg_ord: [libc::c_char; 100] = [0; 100];
                                             if pc.days_seen != 0 && pc.dates_seen == 0 {
@@ -29241,7 +29419,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                             ),
                                                         );
                                                     }
-                                                    current_block = 14461210115225079269;
+                                                    current_block = 17558535653139081844;
                                                 } else {
                                                     if debugging(&mut pc) {
                                                         dbg_printf(
@@ -29272,7 +29450,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                 current_block = 5388205036907793036;
                                             }
                                             match current_block {
-                                                14461210115225079269 => {}
+                                                17558535653139081844 => {}
                                                 _ => {
                                                     if debugging(&mut pc) {
                                                         if pc.dates_seen == 0 && pc.days_seen == 0 {
@@ -29382,7 +29560,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                                     2146 as libc::c_int,
                                                                 );
                                                             }
-                                                            current_block = 14461210115225079269;
+                                                            current_block = 17558535653139081844;
                                                         } else {
                                                             tm.tm_year = year;
                                                             tm.tm_mon = month;
@@ -29411,7 +29589,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                                         ),
                                                                     );
                                                                 }
-                                                                current_block = 14461210115225079269;
+                                                                current_block = 17558535653139081844;
                                                             } else {
                                                                 if debugging(&mut pc) {
                                                                     dbg_printf(
@@ -29497,7 +29675,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                         current_block = 11202235766349324107;
                                                     }
                                                     match current_block {
-                                                        14461210115225079269 => {}
+                                                        17558535653139081844 => {}
                                                         _ => {
                                                             if pc.zones_seen != 0 {
                                                                 let mut overflow: bool = 0 as libc::c_int != 0;
@@ -29525,7 +29703,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                                             pc.time_zone,
                                                                         );
                                                                     }
-                                                                    current_block = 14461210115225079269;
+                                                                    current_block = 17558535653139081844;
                                                                 } else {
                                                                     Start = t1;
                                                                     current_block = 763224442071743734;
@@ -29534,7 +29712,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                                 current_block = 763224442071743734;
                                                             }
                                                             match current_block {
-                                                                14461210115225079269 => {}
+                                                                17558535653139081844 => {}
                                                                 _ => {
                                                                     if debugging(&mut pc) {
                                                                         let mut Starti: intmax_t = Start;
@@ -29559,12 +29737,14 @@ unsafe extern "C" fn parse_datetime_body(
                                                                     let mut sum_ns: intmax_t = orig_ns
                                                                         + pc.rel.ns as libc::c_long;
                                                                     let mut normalized_ns: libc::c_int = ((sum_ns
-                                                                        % BILLION as libc::c_int as libc::c_long
-                                                                        + BILLION as libc::c_int as libc::c_long)
-                                                                        % BILLION as libc::c_int as libc::c_long) as libc::c_int;
+                                                                        % C2RustUnnamed_1::BILLION as libc::c_int as libc::c_long
+                                                                        + C2RustUnnamed_1::BILLION as libc::c_int as libc::c_long)
+                                                                        % C2RustUnnamed_1::BILLION as libc::c_int as libc::c_long)
+                                                                        as libc::c_int;
                                                                     let mut d4: libc::c_int = ((sum_ns
                                                                         - normalized_ns as libc::c_long)
-                                                                        / BILLION as libc::c_int as libc::c_long) as libc::c_int;
+                                                                        / C2RustUnnamed_1::BILLION as libc::c_int as libc::c_long)
+                                                                        as libc::c_int;
                                                                     let mut d1: intmax_t = 0;
                                                                     let mut t1_0: intmax_t = 0;
                                                                     let mut d2: intmax_t = 0;
@@ -36638,7 +36818,7 @@ unsafe extern "C" fn parse_datetime_body(
                                                                                 ),
                                                                             );
                                                                         }
-                                                                        current_block = 14461210115225079269;
+                                                                        current_block = 17558535653139081844;
                                                                     } else {
                                                                         (*result).tv_sec = t4;
                                                                         (*result).tv_nsec = normalized_ns as __syscall_slong_t;
@@ -36709,7 +36889,7 @@ unsafe extern "C" fn parse_datetime_body(
                             }
                         }
                         match current_block {
-                            14461210115225079269 => {}
+                            17558535653139081844 => {}
                             _ => {
                                 if debugging(&mut pc) {
                                     if tzstring.is_null() {

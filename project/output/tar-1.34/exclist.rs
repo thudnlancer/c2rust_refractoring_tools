@@ -1,101 +1,81 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type __dirstream;
     pub type wordsplit_node;
     pub type exclude;
-    fn fclose(__stream: *mut FILE) -> libc::c_int;
+    fn fclose(__stream: *mut FILE) -> i32;
     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strncmp(
-        _: *const libc::c_char,
-        _: *const libc::c_char,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn __errno_location() -> *mut libc::c_int;
-    fn faccessat(
-        __fd: libc::c_int,
-        __file: *const libc::c_char,
-        __type: libc::c_int,
-        __flag: libc::c_int,
-    ) -> libc::c_int;
-    fn close(__fd: libc::c_int) -> libc::c_int;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn strcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strncmp(_: *const i8, _: *const i8, _: u64) -> i32;
+    fn strlen(_: *const i8) -> u64;
+    fn __errno_location() -> *mut i32;
+    fn faccessat(__fd: i32, __file: *const i8, __type: i32, __flag: i32) -> i32;
+    fn close(__fd: i32) -> i32;
     fn rpl_free(ptr: *mut libc::c_void);
-    fn fdopen(__fd: libc::c_int, __modes: *const libc::c_char) -> *mut FILE;
-    fn base_name(file: *const libc::c_char) -> *mut libc::c_char;
-    fn error(
-        __status: libc::c_int,
-        __errnum: libc::c_int,
-        __format: *const libc::c_char,
-        _: ...
-    );
+    fn fdopen(__fd: i32, __modes: *const i8) -> *mut FILE;
+    fn base_name(file: *const i8) -> *mut i8;
+    fn error(__status: i32, __errnum: i32, __format: *const i8, _: ...);
     fn xmalloc(s: size_t) -> *mut libc::c_void;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
-    static mut exit_status: libc::c_int;
-    fn open_error(_: *const libc::c_char);
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
+    static mut exit_status: i32;
+    fn open_error(_: *const i8);
     fn fatal_exit() -> !;
-    fn quotearg_colon(arg: *const libc::c_char) -> *mut libc::c_char;
-    fn wordsplit(
-        s: *const libc::c_char,
-        ws: *mut wordsplit_t,
-        flags: libc::c_uint,
-    ) -> libc::c_int;
+    fn quotearg_colon(arg: *const i8) -> *mut i8;
+    fn wordsplit(s: *const i8, ws: *mut wordsplit_t, flags: u32) -> i32;
     fn wordsplit_free(ws: *mut wordsplit_t);
     static mut excluded: *mut exclude;
-    fn subfile_open(
-        dir: *const tar_stat_info,
-        file: *const libc::c_char,
-        flags: libc::c_int,
-    ) -> libc::c_int;
-    static mut chdir_fd: libc::c_int;
-    fn exclude_add_pattern_buffer(ex: *mut exclude, buf: *mut libc::c_char);
-    fn excluded_file_name(_: *const exclude, _: *const libc::c_char) -> bool;
+    fn subfile_open(dir: *const tar_stat_info, file: *const i8, flags: i32) -> i32;
+    static mut chdir_fd: i32;
+    fn exclude_add_pattern_buffer(ex: *mut exclude, buf: *mut i8);
+    fn excluded_file_name(_: *const exclude, _: *const i8) -> bool;
     fn add_exclude_fp(
-        _: Option::<
-            unsafe extern "C" fn(
-                *mut exclude,
-                *const libc::c_char,
-                libc::c_int,
-                *mut libc::c_void,
-            ) -> (),
+        _: Option<
+            unsafe extern "C" fn(*mut exclude, *const i8, i32, *mut libc::c_void) -> (),
         >,
         _: *mut exclude,
         _: *mut FILE,
-        _: libc::c_int,
-        _: libc::c_char,
+        _: i32,
+        _: i8,
         _: *mut libc::c_void,
-    ) -> libc::c_int;
-    fn add_exclude(_: *mut exclude, _: *const libc::c_char, _: libc::c_int);
+    ) -> i32;
+    fn add_exclude(_: *mut exclude, _: *const i8, _: i32);
     fn free_exclude(_: *mut exclude);
     fn new_exclude() -> *mut exclude;
 }
-pub type __uintmax_t = libc::c_ulong;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
+pub type __uintmax_t = u64;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __syscall_slong_t = i64;
 pub type off_t = __off_t;
-pub type size_t = libc::c_ulong;
+pub type size_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct timespec {
@@ -119,7 +99,7 @@ pub enum C2RustUnnamed {
     _ISupper = 256,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::_ISalnum => 8,
             C2RustUnnamed::_ISpunct => 4,
@@ -135,20 +115,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stat {
@@ -158,7 +197,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -171,26 +210,26 @@ pub struct stat {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -198,8 +237,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -207,7 +246,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone, BitfieldStruct)]
@@ -215,9 +254,9 @@ pub type FILE = _IO_FILE;
 pub struct obstack {
     pub chunk_size: size_t,
     pub chunk: *mut _obstack_chunk,
-    pub object_base: *mut libc::c_char,
-    pub next_free: *mut libc::c_char,
-    pub chunk_limit: *mut libc::c_char,
+    pub object_base: *mut i8,
+    pub next_free: *mut i8,
+    pub chunk_limit: *mut i8,
     pub temp: C2RustUnnamed_2,
     pub alignment_mask: size_t,
     pub chunkfun: C2RustUnnamed_1,
@@ -233,16 +272,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -255,9 +292,9 @@ pub union C2RustUnnamed_2 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _obstack_chunk {
-    pub limit: *mut libc::c_char,
+    pub limit: *mut i8,
     pub prev: *mut _obstack_chunk,
-    pub contents: [libc::c_char; 0],
+    pub contents: [i8; 0],
 }
 pub type uintmax_t = __uintmax_t;
 pub type DIR = __dirstream;
@@ -265,49 +302,44 @@ pub type DIR = __dirstream;
 #[repr(C)]
 pub struct wordsplit {
     pub ws_wordc: size_t,
-    pub ws_wordv: *mut *mut libc::c_char,
+    pub ws_wordv: *mut *mut i8,
     pub ws_offs: size_t,
     pub ws_wordn: size_t,
-    pub ws_flags: libc::c_uint,
-    pub ws_options: libc::c_uint,
+    pub ws_flags: u32,
+    pub ws_options: u32,
     pub ws_maxwords: size_t,
     pub ws_wordi: size_t,
-    pub ws_delim: *const libc::c_char,
-    pub ws_comment: *const libc::c_char,
-    pub ws_escape: [*const libc::c_char; 2],
-    pub ws_alloc_die: Option::<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
-    pub ws_error: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_debug: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_env: *mut *const libc::c_char,
-    pub ws_envbuf: *mut *mut libc::c_char,
+    pub ws_delim: *const i8,
+    pub ws_comment: *const i8,
+    pub ws_escape: [*const i8; 2],
+    pub ws_alloc_die: Option<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
+    pub ws_error: Option<unsafe extern "C" fn(*const i8, ...) -> ()>,
+    pub ws_debug: Option<unsafe extern "C" fn(*const i8, ...) -> ()>,
+    pub ws_env: *mut *const i8,
+    pub ws_envbuf: *mut *mut i8,
     pub ws_envidx: size_t,
     pub ws_envsiz: size_t,
-    pub ws_getvar: Option::<
-        unsafe extern "C" fn(
-            *mut *mut libc::c_char,
-            *const libc::c_char,
-            size_t,
-            *mut libc::c_void,
-        ) -> libc::c_int,
+    pub ws_getvar: Option<
+        unsafe extern "C" fn(*mut *mut i8, *const i8, size_t, *mut libc::c_void) -> i32,
     >,
     pub ws_closure: *mut libc::c_void,
-    pub ws_command: Option::<
+    pub ws_command: Option<
         unsafe extern "C" fn(
-            *mut *mut libc::c_char,
-            *const libc::c_char,
+            *mut *mut i8,
+            *const i8,
             size_t,
-            *mut *mut libc::c_char,
+            *mut *mut i8,
             *mut libc::c_void,
-        ) -> libc::c_int,
+        ) -> i32,
     >,
-    pub ws_input: *const libc::c_char,
+    pub ws_input: *const i8,
     pub ws_len: size_t,
     pub ws_endp: size_t,
-    pub ws_errno: libc::c_int,
-    pub ws_usererr: *mut libc::c_char,
+    pub ws_errno: i32,
+    pub ws_usererr: *mut i8,
     pub ws_head: *mut wordsplit_node,
     pub ws_tail: *mut wordsplit_node,
-    pub ws_lvl: libc::c_int,
+    pub ws_lvl: i32,
 }
 pub type wordsplit_t = wordsplit;
 #[derive(Copy, Clone)]
@@ -321,29 +353,29 @@ pub struct sp_array {
 pub struct xheader {
     pub stk: *mut obstack,
     pub size: size_t,
-    pub buffer: *mut libc::c_char,
+    pub buffer: *mut i8,
     pub string_length: uintmax_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct xattr_array {
-    pub xkey: *mut libc::c_char,
-    pub xval_ptr: *mut libc::c_char,
+    pub xkey: *mut i8,
+    pub xval_ptr: *mut i8,
     pub xval_len: size_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tar_stat_info {
-    pub orig_file_name: *mut libc::c_char,
-    pub file_name: *mut libc::c_char,
+    pub orig_file_name: *mut i8,
+    pub file_name: *mut i8,
     pub had_trailing_slash: bool,
-    pub link_name: *mut libc::c_char,
-    pub uname: *mut libc::c_char,
-    pub gname: *mut libc::c_char,
-    pub cntx_name: *mut libc::c_char,
-    pub acls_a_ptr: *mut libc::c_char,
+    pub link_name: *mut i8,
+    pub uname: *mut i8,
+    pub gname: *mut i8,
+    pub cntx_name: *mut i8,
+    pub acls_a_ptr: *mut i8,
     pub acls_a_len: size_t,
-    pub acls_d_ptr: *mut libc::c_char,
+    pub acls_d_ptr: *mut i8,
     pub acls_d_len: size_t,
     pub stat: stat,
     pub atime: timespec,
@@ -351,8 +383,8 @@ pub struct tar_stat_info {
     pub ctime: timespec,
     pub archive_file_size: off_t,
     pub is_sparse: bool,
-    pub sparse_major: libc::c_uint,
-    pub sparse_minor: libc::c_uint,
+    pub sparse_major: u32,
+    pub sparse_minor: u32,
     pub sparse_map_avail: size_t,
     pub sparse_map_size: size_t,
     pub sparse_map: *mut sp_array,
@@ -364,10 +396,10 @@ pub struct tar_stat_info {
     pub xhdr: xheader,
     pub is_dumpdir: bool,
     pub skipped: bool,
-    pub dumpdir: *mut libc::c_char,
+    pub dumpdir: *mut i8,
     pub parent: *mut tar_stat_info,
     pub dirstream: *mut DIR,
-    pub fd: libc::c_int,
+    pub fd: i32,
     pub exclude_list: *mut exclist,
 }
 #[derive(Copy, Clone)]
@@ -375,42 +407,34 @@ pub struct tar_stat_info {
 pub struct exclist {
     pub next: *mut exclist,
     pub prev: *mut exclist,
-    pub flags: libc::c_int,
+    pub flags: i32,
     pub excluded: *mut exclude,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct excfile {
     pub next: *mut excfile,
-    pub flags: libc::c_int,
-    pub name: [libc::c_char; 1],
+    pub flags: i32,
+    pub name: [i8; 1],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct vcs_ignore_file {
-    pub filename: *const libc::c_char,
-    pub flags: libc::c_int,
+    pub filename: *const i8,
+    pub flags: i32,
     pub addfn: add_fn,
-    pub initfn: Option::<unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void>,
+    pub initfn: Option<unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void>,
     pub data: *mut libc::c_void,
 }
-pub type add_fn = Option::<
-    unsafe extern "C" fn(
-        *mut exclude,
-        *const libc::c_char,
-        libc::c_int,
-        *mut libc::c_void,
-    ) -> (),
+pub type add_fn = Option<
+    unsafe extern "C" fn(*mut exclude, *const i8, i32, *mut libc::c_void) -> (),
 >;
 static mut excfile_head: *mut excfile = 0 as *const excfile as *mut excfile;
 static mut excfile_tail: *mut excfile = 0 as *const excfile as *mut excfile;
 #[no_mangle]
-pub unsafe extern "C" fn excfile_add(
-    mut name: *const libc::c_char,
-    mut flags: libc::c_int,
-) {
+pub unsafe extern "C" fn excfile_add(mut name: *const i8, mut flags: i32) {
     let mut p: *mut excfile = xmalloc(
-        (::core::mem::size_of::<excfile>() as libc::c_ulong).wrapping_add(strlen(name)),
+        (::core::mem::size_of::<excfile>() as u64).wrapping_add(strlen(name)),
     ) as *mut excfile;
     (*p).next = 0 as *mut excfile;
     (*p).flags = flags;
@@ -437,36 +461,32 @@ pub unsafe extern "C" fn info_attach_exclist(mut dir: *mut tar_stat_info) {
         if faccessat(
             (if !dir.is_null() { (*dir).fd } else { chdir_fd }),
             ((*file).name).as_mut_ptr(),
-            0 as libc::c_int,
-            0 as libc::c_int,
-        ) == 0 as libc::c_int
+            0 as i32,
+            0 as i32,
+        ) == 0 as i32
         {
             let mut fp: *mut FILE = 0 as *mut FILE;
             let mut ex: *mut exclude = 0 as *mut exclude;
-            let mut fd: libc::c_int = subfile_open(
-                dir,
-                ((*file).name).as_mut_ptr(),
-                0 as libc::c_int,
-            );
-            if fd == -(1 as libc::c_int) {
+            let mut fd: i32 = subfile_open(dir, ((*file).name).as_mut_ptr(), 0 as i32);
+            if fd == -(1 as i32) {
                 open_error(((*file).name).as_mut_ptr());
             } else {
-                fp = fdopen(fd, b"r\0" as *const u8 as *const libc::c_char);
+                fp = fdopen(fd, b"r\0" as *const u8 as *const i8);
                 if fp.is_null() {
                     if error_hook.is_some() {
                         error_hook.expect("non-null function pointer")();
                     }
                     error(
-                        0 as libc::c_int,
+                        0 as i32,
                         *__errno_location(),
                         dcgettext(
-                            0 as *const libc::c_char,
-                            b"%s: fdopen failed\0" as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                            0 as *const i8,
+                            b"%s: fdopen failed\0" as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         ((*file).name).as_mut_ptr(),
                     );
-                    exit_status = 2 as libc::c_int;
+                    exit_status = 2 as i32;
                     close(fd);
                 } else {
                     if ex.is_null() {
@@ -474,39 +494,36 @@ pub unsafe extern "C" fn info_attach_exclist(mut dir: *mut tar_stat_info) {
                     }
                     vcsfile = get_vcs_ignore_file(((*file).name).as_mut_ptr());
                     if ((*vcsfile).initfn).is_some() {
-                        (*vcsfile)
-                            .data = ((*vcsfile).initfn)
+                        (*vcsfile).data = ((*vcsfile).initfn)
                             .expect("non-null function pointer")((*vcsfile).data);
                     }
                     if add_exclude_fp(
                         (*vcsfile).addfn,
                         ex,
                         fp,
-                        (1 as libc::c_int) << 0 as libc::c_int
-                            | (1 as libc::c_int) << 28 as libc::c_int
-                            | (1 as libc::c_int) << 30 as libc::c_int,
-                        '\n' as i32 as libc::c_char,
+                        (1 as i32) << 0 as i32 | (1 as i32) << 28 as i32
+                            | (1 as i32) << 30 as i32,
+                        '\n' as i32 as i8,
                         (*vcsfile).data,
                     ) != 0
                     {
-                        let mut e: libc::c_int = *__errno_location();
+                        let mut e: i32 = *__errno_location();
                         if error_hook.is_some() {
                             error_hook.expect("non-null function pointer")();
                         }
                         error(
-                            0 as libc::c_int,
+                            0 as i32,
                             e,
-                            b"%s\0" as *const u8 as *const libc::c_char,
+                            b"%s\0" as *const u8 as *const i8,
                             quotearg_colon(((*file).name).as_mut_ptr()),
                         );
                         fatal_exit();
                     }
                     fclose(fp);
-                    ent = xmalloc(::core::mem::size_of::<exclist>() as libc::c_ulong)
+                    ent = xmalloc(::core::mem::size_of::<exclist>() as u64)
                         as *mut exclist;
                     (*ent).excluded = ex;
-                    (*ent)
-                        .flags = if (*file).flags == 0 as libc::c_int {
+                    (*ent).flags = if (*file).flags == 0 as i32 {
                         (*file).flags
                     } else {
                         (*vcsfile).flags
@@ -539,22 +556,22 @@ pub unsafe extern "C" fn info_free_exclist(mut dir: *mut tar_stat_info) {
 }
 #[no_mangle]
 pub unsafe extern "C" fn excluded_name(
-    mut name: *const libc::c_char,
+    mut name: *const i8,
     mut st: *mut tar_stat_info,
 ) -> bool {
     let mut ep: *mut exclist = 0 as *mut exclist;
-    let mut rname: *const libc::c_char = 0 as *const libc::c_char;
-    let mut bname: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut rname: *const i8 = 0 as *const i8;
+    let mut bname: *mut i8 = 0 as *mut i8;
     let mut result: bool = false;
-    let mut nr: libc::c_int = 0 as libc::c_int;
-    name = name.offset(0 as libc::c_int as isize);
+    let mut nr: i32 = 0 as i32;
+    name = name.offset(0 as i32 as isize);
     if excluded_file_name(excluded, name) {
-        return 1 as libc::c_int != 0;
+        return 1 as i32 != 0;
     }
     if st.is_null() {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    result = 0 as libc::c_int != 0;
+    result = 0 as i32 != 0;
     while !st.is_null() && !result {
         ep = (*st).exclude_list;
         while !ep.is_null() {
@@ -565,11 +582,10 @@ pub unsafe extern "C" fn excluded_name(
                 }
                 if rname.is_null() {
                     rname = name;
-                    while *rname as libc::c_int == '.' as i32
-                        && *rname.offset(1 as libc::c_int as isize) as libc::c_int
-                            == '/' as i32
+                    while *rname as i32 == '.' as i32
+                        && *rname.offset(1 as i32 as isize) as i32 == '/' as i32
                     {
-                        rname = rname.offset(2 as libc::c_int as isize);
+                        rname = rname.offset(2 as i32 as isize);
                     }
                 }
                 result = excluded_file_name((*ep).excluded, rname);
@@ -587,58 +603,54 @@ pub unsafe extern "C" fn excluded_name(
             ep = (*ep).next;
         }
         st = (*st).parent;
-        nr = 0x2 as libc::c_int;
+        nr = 0x2 as i32;
     }
     rpl_free(bname as *mut libc::c_void);
     return result;
 }
 unsafe extern "C" fn cvs_addfn(
     mut ex: *mut exclude,
-    mut pattern: *const libc::c_char,
-    mut options: libc::c_int,
+    mut pattern: *const i8,
+    mut options: i32,
     mut data: *mut libc::c_void,
 ) {
     let mut ws: wordsplit = wordsplit {
         ws_wordc: 0,
-        ws_wordv: 0 as *mut *mut libc::c_char,
+        ws_wordv: 0 as *mut *mut i8,
         ws_offs: 0,
         ws_wordn: 0,
         ws_flags: 0,
         ws_options: 0,
         ws_maxwords: 0,
         ws_wordi: 0,
-        ws_delim: 0 as *const libc::c_char,
-        ws_comment: 0 as *const libc::c_char,
-        ws_escape: [0 as *const libc::c_char; 2],
+        ws_delim: 0 as *const i8,
+        ws_comment: 0 as *const i8,
+        ws_escape: [0 as *const i8; 2],
         ws_alloc_die: None,
         ws_error: None,
         ws_debug: None,
-        ws_env: 0 as *mut *const libc::c_char,
-        ws_envbuf: 0 as *mut *mut libc::c_char,
+        ws_env: 0 as *mut *const i8,
+        ws_envbuf: 0 as *mut *mut i8,
         ws_envidx: 0,
         ws_envsiz: 0,
         ws_getvar: None,
         ws_closure: 0 as *mut libc::c_void,
         ws_command: None,
-        ws_input: 0 as *const libc::c_char,
+        ws_input: 0 as *const i8,
         ws_len: 0,
         ws_endp: 0,
         ws_errno: 0,
-        ws_usererr: 0 as *mut libc::c_char,
+        ws_usererr: 0 as *mut i8,
         ws_head: 0 as *mut wordsplit_node,
         ws_tail: 0 as *mut wordsplit_node,
         ws_lvl: 0,
     };
     let mut i: size_t = 0;
-    if wordsplit(
-        pattern,
-        &mut ws,
-        (0x40 as libc::c_int | 0x4 as libc::c_int | 0x800 as libc::c_int) as libc::c_uint,
-    ) != 0
+    if wordsplit(pattern, &mut ws, (0x40 as i32 | 0x4 as i32 | 0x800 as i32) as u32) != 0
     {
         return;
     }
-    i = 0 as libc::c_int as size_t;
+    i = 0 as i32 as size_t;
     while i < ws.ws_wordc {
         add_exclude(ex, *(ws.ws_wordv).offset(i as isize), options);
         i = i.wrapping_add(1);
@@ -648,23 +660,21 @@ unsafe extern "C" fn cvs_addfn(
 }
 unsafe extern "C" fn git_addfn(
     mut ex: *mut exclude,
-    mut pattern: *const libc::c_char,
-    mut options: libc::c_int,
+    mut pattern: *const i8,
+    mut options: i32,
     mut data: *mut libc::c_void,
 ) {
-    while *(*__ctype_b_loc()).offset(*pattern as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+    while *(*__ctype_b_loc()).offset(*pattern as i32 as isize) as i32
+        & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 != 0
     {
         pattern = pattern.offset(1);
         pattern;
     }
-    if *pattern as libc::c_int == 0 as libc::c_int
-        || *pattern as libc::c_int == '#' as i32
-    {
+    if *pattern as i32 == 0 as i32 || *pattern as i32 == '#' as i32 {
         return;
     }
-    if *pattern as libc::c_int == '\\' as i32
-        && *pattern.offset(1 as libc::c_int as isize) as libc::c_int == '#' as i32
+    if *pattern as i32 == '\\' as i32
+        && *pattern.offset(1 as i32 as isize) as i32 == '#' as i32
     {
         pattern = pattern.offset(1);
         pattern;
@@ -673,119 +683,99 @@ unsafe extern "C" fn git_addfn(
 }
 unsafe extern "C" fn bzr_addfn(
     mut ex: *mut exclude,
-    mut pattern: *const libc::c_char,
-    mut options: libc::c_int,
+    mut pattern: *const i8,
+    mut options: i32,
     mut data: *mut libc::c_void,
 ) {
-    while *(*__ctype_b_loc()).offset(*pattern as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+    while *(*__ctype_b_loc()).offset(*pattern as i32 as isize) as i32
+        & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 != 0
     {
         pattern = pattern.offset(1);
         pattern;
     }
-    if *pattern as libc::c_int == 0 as libc::c_int
-        || *pattern as libc::c_int == '#' as i32
-    {
+    if *pattern as i32 == 0 as i32 || *pattern as i32 == '#' as i32 {
         return;
     }
-    if *pattern as libc::c_int == '!' as i32 {
+    if *pattern as i32 == '!' as i32 {
         pattern = pattern.offset(1);
-        if *pattern as libc::c_int == '!' as i32 {
+        if *pattern as i32 == '!' as i32 {
             pattern = pattern.offset(1);
             pattern;
         } else {
-            options |= (1 as libc::c_int) << 29 as libc::c_int;
+            options |= (1 as i32) << 29 as i32;
         }
     }
-    if strncmp(
-        pattern,
-        b"RE:\0" as *const u8 as *const libc::c_char,
-        3 as libc::c_int as libc::c_ulong,
-    ) == 0 as libc::c_int
+    if strncmp(pattern, b"RE:\0" as *const u8 as *const i8, 3 as i32 as u64) == 0 as i32
     {
-        pattern = pattern.offset(3 as libc::c_int as isize);
-        options &= !((1 as libc::c_int) << 28 as libc::c_int);
-        options |= (1 as libc::c_int) << 27 as libc::c_int;
+        pattern = pattern.offset(3 as i32 as isize);
+        options &= !((1 as i32) << 28 as i32);
+        options |= (1 as i32) << 27 as i32;
     }
     add_exclude(ex, pattern, options);
 }
 unsafe extern "C" fn hg_initfn(mut data: *mut libc::c_void) -> *mut libc::c_void {
-    static mut hg_options: libc::c_int = 0;
-    let mut hgopt: *mut libc::c_int = (if !data.is_null() {
+    static mut hg_options: i32 = 0;
+    let mut hgopt: *mut i32 = (if !data.is_null() {
         data
     } else {
-        &mut hg_options as *mut libc::c_int as *mut libc::c_void
-    }) as *mut libc::c_int;
-    *hgopt = (1 as libc::c_int) << 27 as libc::c_int;
+        &mut hg_options as *mut i32 as *mut libc::c_void
+    }) as *mut i32;
+    *hgopt = (1 as i32) << 27 as i32;
     return hgopt as *mut libc::c_void;
 }
 unsafe extern "C" fn hg_addfn(
     mut ex: *mut exclude,
-    mut pattern: *const libc::c_char,
-    mut options: libc::c_int,
+    mut pattern: *const i8,
+    mut options: i32,
     mut data: *mut libc::c_void,
 ) {
-    let mut hgopt: *mut libc::c_int = data as *mut libc::c_int;
+    let mut hgopt: *mut i32 = data as *mut i32;
     let mut len: size_t = 0;
-    while *(*__ctype_b_loc()).offset(*pattern as libc::c_int as isize) as libc::c_int
-        & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+    while *(*__ctype_b_loc()).offset(*pattern as i32 as isize) as i32
+        & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 != 0
     {
         pattern = pattern.offset(1);
         pattern;
     }
-    if *pattern as libc::c_int == 0 as libc::c_int
-        || *pattern as libc::c_int == '#' as i32
-    {
+    if *pattern as i32 == 0 as i32 || *pattern as i32 == '#' as i32 {
         return;
     }
-    if strncmp(
-        pattern,
-        b"syntax:\0" as *const u8 as *const libc::c_char,
-        7 as libc::c_int as libc::c_ulong,
-    ) == 0 as libc::c_int
+    if strncmp(pattern, b"syntax:\0" as *const u8 as *const i8, 7 as i32 as u64)
+        == 0 as i32
     {
-        pattern = pattern.offset(7 as libc::c_int as isize);
-        while *(*__ctype_b_loc()).offset(*pattern as libc::c_int as isize) as libc::c_int
-            & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+        pattern = pattern.offset(7 as i32 as isize);
+        while *(*__ctype_b_loc()).offset(*pattern as i32 as isize) as i32
+            & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 != 0
         {
             pattern = pattern.offset(1);
             pattern;
         }
-        if strcmp(pattern, b"regexp\0" as *const u8 as *const libc::c_char)
-            == 0 as libc::c_int
-        {
-            *hgopt = (1 as libc::c_int) << 27 as libc::c_int;
-        } else if strcmp(pattern, b"glob\0" as *const u8 as *const libc::c_char)
-            == 0 as libc::c_int
-        {
-            *hgopt = (1 as libc::c_int) << 28 as libc::c_int;
+        if strcmp(pattern, b"regexp\0" as *const u8 as *const i8) == 0 as i32 {
+            *hgopt = (1 as i32) << 27 as i32;
+        } else if strcmp(pattern, b"glob\0" as *const u8 as *const i8) == 0 as i32 {
+            *hgopt = (1 as i32) << 28 as i32;
         }
         return;
     }
     len = strlen(pattern);
-    if *pattern.offset(len.wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize)
-        as libc::c_int == '/' as i32
-    {
-        let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
+    if *pattern.offset(len.wrapping_sub(1 as i32 as u64) as isize) as i32 == '/' as i32 {
+        let mut p: *mut i8 = 0 as *mut i8;
         len = len.wrapping_sub(1);
         len;
-        p = xmalloc(len.wrapping_add(1 as libc::c_int as libc::c_ulong))
-            as *mut libc::c_char;
+        p = xmalloc(len.wrapping_add(1 as i32 as u64)) as *mut i8;
         memcpy(p as *mut libc::c_void, pattern as *const libc::c_void, len);
-        *p.offset(len as isize) = 0 as libc::c_int as libc::c_char;
+        *p.offset(len as isize) = 0 as i32 as i8;
         pattern = p;
         exclude_add_pattern_buffer(ex, p);
-        options
-            |= (1 as libc::c_int) << 3 as libc::c_int
-                | (1 as libc::c_int) << 26 as libc::c_int;
+        options |= (1 as i32) << 3 as i32 | (1 as i32) << 26 as i32;
     }
     add_exclude(
         ex,
         pattern,
-        (if *hgopt == (1 as libc::c_int) << 27 as libc::c_int {
-            options & !((1 as libc::c_int) << 28 as libc::c_int)
+        (if *hgopt == (1 as i32) << 27 as i32 {
+            options & !((1 as i32) << 28 as i32)
         } else {
-            options & !((1 as libc::c_int) << 27 as libc::c_int)
+            options & !((1 as i32) << 27 as i32)
         }) | *hgopt,
     );
 }
@@ -793,14 +783,14 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
     [
         {
             let mut init = vcs_ignore_file {
-                filename: b".cvsignore\0" as *const u8 as *const libc::c_char,
-                flags: 0x2 as libc::c_int,
+                filename: b".cvsignore\0" as *const u8 as *const i8,
+                flags: 0x2 as i32,
                 addfn: Some(
                     cvs_addfn
                         as unsafe extern "C" fn(
                             *mut exclude,
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                             *mut libc::c_void,
                         ) -> (),
                 ),
@@ -811,14 +801,14 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
         },
         {
             let mut init = vcs_ignore_file {
-                filename: b".gitignore\0" as *const u8 as *const libc::c_char,
-                flags: 0 as libc::c_int,
+                filename: b".gitignore\0" as *const u8 as *const i8,
+                flags: 0 as i32,
                 addfn: Some(
                     git_addfn
                         as unsafe extern "C" fn(
                             *mut exclude,
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                             *mut libc::c_void,
                         ) -> (),
                 ),
@@ -829,14 +819,14 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
         },
         {
             let mut init = vcs_ignore_file {
-                filename: b".bzrignore\0" as *const u8 as *const libc::c_char,
-                flags: 0 as libc::c_int,
+                filename: b".bzrignore\0" as *const u8 as *const i8,
+                flags: 0 as i32,
                 addfn: Some(
                     bzr_addfn
                         as unsafe extern "C" fn(
                             *mut exclude,
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                             *mut libc::c_void,
                         ) -> (),
                 ),
@@ -847,14 +837,14 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
         },
         {
             let mut init = vcs_ignore_file {
-                filename: b".hgignore\0" as *const u8 as *const libc::c_char,
-                flags: 0 as libc::c_int,
+                filename: b".hgignore\0" as *const u8 as *const i8,
+                flags: 0 as i32,
                 addfn: Some(
                     hg_addfn
                         as unsafe extern "C" fn(
                             *mut exclude,
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                             *mut libc::c_void,
                         ) -> (),
                 ),
@@ -868,14 +858,14 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
         },
         {
             let mut init = vcs_ignore_file {
-                filename: 0 as *const libc::c_char,
-                flags: 0 as libc::c_int,
+                filename: 0 as *const i8,
+                flags: 0 as i32,
                 addfn: Some(
                     git_addfn
                         as unsafe extern "C" fn(
                             *mut exclude,
-                            *const libc::c_char,
-                            libc::c_int,
+                            *const i8,
+                            i32,
                             *mut libc::c_void,
                         ) -> (),
                 ),
@@ -886,13 +876,11 @@ static mut vcs_ignore_files: [vcs_ignore_file; 5] = unsafe {
         },
     ]
 };
-unsafe extern "C" fn get_vcs_ignore_file(
-    mut name: *const libc::c_char,
-) -> *mut vcs_ignore_file {
+unsafe extern "C" fn get_vcs_ignore_file(mut name: *const i8) -> *mut vcs_ignore_file {
     let mut p: *mut vcs_ignore_file = 0 as *mut vcs_ignore_file;
     p = vcs_ignore_files.as_mut_ptr();
     while !((*p).filename).is_null() {
-        if strcmp((*p).filename, name) == 0 as libc::c_int {
+        if strcmp((*p).filename, name) == 0 as i32 {
             break;
         }
         p = p.offset(1);
@@ -905,7 +893,7 @@ pub unsafe extern "C" fn exclude_vcs_ignores() {
     let mut p: *mut vcs_ignore_file = 0 as *mut vcs_ignore_file;
     p = vcs_ignore_files.as_mut_ptr();
     while !((*p).filename).is_null() {
-        excfile_add((*p).filename, 0 as libc::c_int);
+        excfile_add((*p).filename, 0 as i32);
         p = p.offset(1);
         p;
     }

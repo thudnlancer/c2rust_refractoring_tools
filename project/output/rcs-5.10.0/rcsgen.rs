@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(c_variadic, extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type maketimestuff;
     pub type ephemstuff;
@@ -193,16 +203,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -265,14 +273,73 @@ impl kwsub {
             kwsub::kwsub_b => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> kwsub {
+        match value {
+            0 => kwsub::kwsub_kv,
+            1 => kwsub::kwsub_kvl,
+            2 => kwsub::kwsub_k,
+            3 => kwsub::kwsub_v,
+            4 => kwsub::kwsub_o,
+            5 => kwsub::kwsub_b,
+            _ => panic!("Invalid value for kwsub: {}", value),
+        }
+    }
 }
-
-pub const kwsub_b: kwsub = 5;
-pub const kwsub_o: kwsub = 4;
-pub const kwsub_v: kwsub = 3;
-pub const kwsub_k: kwsub = 2;
-pub const kwsub_kvl: kwsub = 1;
-pub const kwsub_kv: kwsub = 0;
+impl AddAssign<u32> for kwsub {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for kwsub {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for kwsub {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for kwsub {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for kwsub {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for kwsub {
+    type Output = kwsub;
+    fn add(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for kwsub {
+    type Output = kwsub;
+    fn sub(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for kwsub {
+    type Output = kwsub;
+    fn mul(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for kwsub {
+    type Output = kwsub;
+    fn div(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for kwsub {
+    type Output = kwsub;
+    fn rem(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct diffcmd {
@@ -330,7 +397,7 @@ pub struct fro {
     pub ptr: *mut libc::c_char,
     pub lim: *mut libc::c_char,
     pub base: *mut libc::c_char,
-    pub deallocate: Option::<unsafe extern "C" fn(*mut fro) -> ()>,
+    pub deallocate: Option<unsafe extern "C" fn(*mut fro) -> ()>,
     pub stream: *mut FILE,
     pub verbatim: off_t,
 }
@@ -349,11 +416,70 @@ impl readmethod {
             readmethod::RM_STDIO => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> readmethod {
+        match value {
+            0 => readmethod::RM_MMAP,
+            1 => readmethod::RM_MEM,
+            2 => readmethod::RM_STDIO,
+            _ => panic!("Invalid value for readmethod: {}", value),
+        }
+    }
 }
-
-pub const RM_STDIO: readmethod = 2;
-pub const RM_MEM: readmethod = 1;
-pub const RM_MMAP: readmethod = 0;
+impl AddAssign<u32> for readmethod {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for readmethod {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for readmethod {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for readmethod {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for readmethod {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for readmethod {
+    type Output = readmethod;
+    fn add(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for readmethod {
+    type Output = readmethod;
+    fn sub(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for readmethod {
+    type Output = readmethod;
+    fn mul(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for readmethod {
+    type Output = readmethod;
+    fn div(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for readmethod {
+    type Output = readmethod;
+    fn rem(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rcslock {
@@ -404,11 +530,70 @@ impl maker {
             maker::effective => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> maker {
+        match value {
+            0 => maker::notmade,
+            1 => maker::real,
+            2 => maker::effective,
+            _ => panic!("Invalid value for maker: {}", value),
+        }
+    }
 }
-
-pub const effective: maker = 2;
-pub const real: maker = 1;
-pub const notmade: maker = 0;
+impl AddAssign<u32> for maker {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for maker {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for maker {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for maker {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for maker {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for maker {
+    type Output = maker;
+    fn add(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for maker {
+    type Output = maker;
+    fn sub(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for maker {
+    type Output = maker;
+    fn mul(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for maker {
+    type Output = maker;
+    fn div(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for maker {
+    type Output = maker;
+    fn rem(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -484,7 +669,7 @@ pub struct repo {
     pub strict: bool,
     pub integrity: *mut atat,
     pub comment: *mut atat,
-    pub expand: libc::c_int,
+    pub stringwork::expand: libc::c_int,
     pub deltas_count: size_t,
     pub deltas: *mut wlink,
     pub desc: *mut atat,
@@ -546,13 +731,72 @@ impl stringwork {
             stringwork::edit_expand => 4,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> stringwork {
+        match value {
+            0 => stringwork::enter,
+            1 => stringwork::copy,
+            2 => stringwork::edit,
+            3 => stringwork::expand,
+            4 => stringwork::edit_expand,
+            _ => panic!("Invalid value for stringwork: {}", value),
+        }
+    }
 }
-
-pub const edit_expand: stringwork = 4;
-pub const expand: stringwork = 3;
-pub const edit: stringwork = 2;
-pub const copy: stringwork = 1;
-pub const enter: stringwork = 0;
+impl AddAssign<u32> for stringwork {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = stringwork::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for stringwork {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = stringwork::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for stringwork {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = stringwork::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for stringwork {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = stringwork::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for stringwork {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = stringwork::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for stringwork {
+    type Output = stringwork;
+    fn add(self, rhs: u32) -> stringwork {
+        stringwork::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for stringwork {
+    type Output = stringwork;
+    fn sub(self, rhs: u32) -> stringwork {
+        stringwork::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for stringwork {
+    type Output = stringwork;
+    fn mul(self, rhs: u32) -> stringwork {
+        stringwork::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for stringwork {
+    type Output = stringwork;
+    fn div(self, rhs: u32) -> stringwork {
+        stringwork::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for stringwork {
+    type Output = stringwork;
+    fn rem(self, rhs: u32) -> stringwork {
+        stringwork::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expctx {
@@ -591,8 +835,7 @@ unsafe extern "C" fn scandeltatext(
         range.end = (*text).beg;
         if needlog as libc::c_int != 0 && delta == nextdelta as *mut delta {
             (*delta).pretty_log = string_from_atat(single, log);
-            (*delta)
-                .pretty_log = cleanlogmsg(
+            (*delta).pretty_log = cleanlogmsg(
                 (*delta).pretty_log.string,
                 (*delta).pretty_log.size,
             );
@@ -664,9 +907,9 @@ pub unsafe extern "C" fn buildrevision(
             &mut ls,
             target,
             (if expandflag as libc::c_int != 0 {
-                expand as libc::c_int
+                stringwork::expand as libc::c_int
             } else {
-                copy as libc::c_int
+                stringwork::copy as libc::c_int
             }) as stringwork,
             1 as libc::c_int != 0,
         );
@@ -675,7 +918,7 @@ pub unsafe extern "C" fn buildrevision(
             es,
             &mut ls,
             (*deltas).entry as *mut delta,
-            enter,
+            stringwork::enter,
             0 as libc::c_int != 0,
         );
         loop {
@@ -688,7 +931,7 @@ pub unsafe extern "C" fn buildrevision(
                 es,
                 &mut ls,
                 (*deltas).entry as *mut delta,
-                edit,
+                stringwork::edit,
                 0 as libc::c_int != 0,
             );
         }
@@ -700,9 +943,9 @@ pub unsafe extern "C" fn buildrevision(
             &mut ls,
             target,
             (if expandflag as libc::c_int != 0 {
-                edit_expand as libc::c_int
+                stringwork::edit_expand as libc::c_int
             } else {
-                edit as libc::c_int
+                stringwork::edit as libc::c_int
             }) as stringwork,
             1 as libc::c_int != 0,
         );
@@ -903,7 +1146,7 @@ pub unsafe extern "C" fn getsstdin(
     let mut discard: bool = 0 as libc::c_int != 0;
     if tty {
         complain(
-            b"enter %s, terminated with single '.' or end of file:\n%s>> \0" as *const u8
+            b"stringwork::enter %s, terminated with single '.' or end of file:\n%s>> \0" as *const u8
                 as *const libc::c_char,
             name,
             note,
@@ -1077,13 +1320,13 @@ pub unsafe extern "C" fn putadmin() {
         putstring(fout, (*top).repository.log_lead, 0 as libc::c_int != 0);
         aprintf(fout, b"%s\0" as *const u8 as *const libc::c_char, semi_lf);
     }
-    if kws != kwsub_kv as libc::c_int {
+    if kws != kwsub::kwsub_kv as libc::c_int {
         aprintf(
             fout,
             b"%s\t%c%s%c%s\0" as *const u8 as *const libc::c_char,
             (tiny_expand.bytes).as_ptr() as *const libc::c_char,
             '@' as i32,
-            kwsub_string(kws as kwsub),
+            kwsub_string(kwsub::from_libc_c_uint(kws as u32)),
             '@' as i32,
             semi_lf,
         );

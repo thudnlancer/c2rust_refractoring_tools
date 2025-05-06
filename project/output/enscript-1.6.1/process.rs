@@ -1,12 +1,20 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type stringhash_st;
-    static mut stderr: *mut FILE;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
+    static mut stderr: *mut _IO_FILE;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
     fn fread(
         __ptr: *mut libc::c_void,
         __size: size_t,
@@ -19,106 +27,113 @@ extern "C" {
         __n: size_t,
         __s: *mut FILE,
     ) -> size_t;
-    fn exit(_: libc::c_int) -> !;
+    fn exit(_: i32) -> !;
     fn memmove(
         _: *mut libc::c_void,
         _: *const libc::c_void,
-        _: libc::c_ulong,
+        _: u64,
     ) -> *mut libc::c_void;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn strlen(_: *const i8) -> u64;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
     fn re_search(
         buffer: *mut re_pattern_buffer,
-        string: *const libc::c_char,
-        length: libc::c_int,
-        start: libc::c_int,
-        range: libc::c_int,
+        string: *const i8,
+        length: i32,
+        start: i32,
+        range: i32,
         regs: *mut re_registers,
-    ) -> libc::c_int;
+    ) -> i32;
     fn strhash_get(
         hash: StringHashPtr,
-        key: *const libc::c_char,
-        keylen: libc::c_int,
+        key: *const i8,
+        keylen: i32,
         data_return: *mut *mut libc::c_void,
-    ) -> libc::c_int;
-    static mut program: *mut libc::c_char;
+    ) -> i32;
+    static mut program: *mut i8;
     static mut ofp: *mut FILE;
     static mut ns_vars: StringHashPtr;
     static mut ns_states: StringHashPtr;
     static mut start_stmts: *mut List;
     static mut nvoid: *mut Node;
     static mut ifp: *mut FILE;
-    static mut inbuf: *mut libc::c_char;
-    static mut data_in_buffer: libc::c_uint;
-    static mut bufpos: libc::c_uint;
-    static mut eof_seen: libc::c_int;
-    static mut current_fname: *mut libc::c_char;
-    static mut current_linenum: libc::c_uint;
+    static mut inbuf: *mut i8;
+    static mut data_in_buffer: u32;
+    static mut bufpos: u32;
+    static mut eof_seen: i32;
+    static mut current_fname: *mut i8;
+    static mut current_linenum: u32;
     static mut current_match: *mut re_registers;
-    static mut current_match_buf: *mut libc::c_char;
-    static mut start_state_arg: *mut libc::c_char;
-    static mut start_state: *mut libc::c_char;
+    static mut current_match_buf: *mut i8;
+    static mut start_state_arg: *mut i8;
+    static mut start_state: *mut i8;
     fn node_free(node: *mut Node);
-    fn enter_system_variable(name: *mut libc::c_char, value: *mut libc::c_char);
+    fn enter_system_variable(name: *mut i8, value: *mut i8);
     fn compile_regexp(regexp: *mut Node);
     fn eval_statement_list(
         lst: *mut List,
         env: *mut Environment,
-        return_seen: *mut libc::c_int,
+        return_seen: *mut i32,
     ) -> *mut Node;
 }
-pub type size_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
-pub type reg_syntax_t = libc::c_ulong;
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
-    pub buffer: *mut libc::c_uchar,
-    pub allocated: libc::c_ulong,
-    pub used: libc::c_ulong,
+    pub buffer: *mut u8,
+    pub allocated: u64,
+    pub used: u64,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_char,
+    pub fastmap: *mut i8,
+    pub translate: *mut i8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -132,11 +147,11 @@ pub struct re_pattern_buffer {
     pub c2rust_padding: [u8; 7],
 }
 pub type regex_t = re_pattern_buffer;
-pub type regoff_t = libc::c_int;
+pub type regoff_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct re_registers {
-    pub num_regs: libc::c_uint,
+    pub num_regs: u32,
     pub start: *mut regoff_t,
     pub end: *mut regoff_t,
 }
@@ -167,7 +182,7 @@ pub enum NodeType {
     nARRAY,
 }
 impl NodeType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             NodeType::nVOID => 0,
             NodeType::nSTRING => 1,
@@ -178,21 +193,80 @@ impl NodeType {
             NodeType::nARRAY => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> NodeType {
+        match value {
+            0 => NodeType::nVOID,
+            1 => NodeType::nSTRING,
+            2 => NodeType::nREGEXP,
+            3 => NodeType::nINTEGER,
+            4 => NodeType::nREAL,
+            5 => NodeType::nSYMBOL,
+            6 => NodeType::nARRAY,
+            _ => panic!("Invalid value for NodeType: {}", value),
+        }
+    }
 }
-
-pub const nARRAY: NodeType = 6;
-pub const nSYMBOL: NodeType = 5;
-pub const nREAL: NodeType = 4;
-pub const nINTEGER: NodeType = 3;
-pub const nREGEXP: NodeType = 2;
-pub const nSTRING: NodeType = 1;
-pub const nVOID: NodeType = 0;
+impl AddAssign<u32> for NodeType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for NodeType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for NodeType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for NodeType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for NodeType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for NodeType {
+    type Output = NodeType;
+    fn add(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for NodeType {
+    type Output = NodeType;
+    fn sub(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for NodeType {
+    type Output = NodeType;
+    fn mul(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for NodeType {
+    type Output = NodeType;
+    fn div(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for NodeType {
+    type Output = NodeType;
+    fn rem(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {
     pub type_0: NodeType,
-    pub refcount: libc::c_uint,
-    pub linenum: libc::c_uint,
+    pub refcount: u32,
+    pub linenum: u32,
     pub u: C2RustUnnamed,
 }
 #[derive(Copy, Clone)]
@@ -200,32 +274,32 @@ pub struct node_st {
 pub union C2RustUnnamed {
     pub str_0: C2RustUnnamed_2,
     pub re: C2RustUnnamed_1,
-    pub integer: libc::c_int,
+    pub integer: i32,
     pub real: libc::c_double,
-    pub sym: *mut libc::c_char,
+    pub sym: *mut i8,
     pub array: C2RustUnnamed_0,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_0 {
     pub array: *mut *mut node_st,
-    pub len: libc::c_uint,
-    pub allocated: libc::c_uint,
+    pub len: u32,
+    pub allocated: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
-    pub flags: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
+    pub flags: u32,
     pub compiled: regex_t,
     pub matches: re_registers,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
 }
 pub type Node = node_st;
 #[derive(Copy, Clone)]
@@ -239,32 +313,29 @@ pub type Cons = cons_st;
 #[repr(C)]
 pub struct environment_st {
     pub next: *mut environment_st,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub val: *mut Node,
 }
 pub type Environment = environment_st;
 #[no_mangle]
-pub unsafe extern "C" fn process_file(mut fname: *mut libc::c_char) {
+pub unsafe extern "C" fn process_file(mut fname: *mut i8) {
     let mut result: *mut Node = 0 as *mut Node;
-    let mut return_seen: libc::c_int = 0 as libc::c_int;
-    start_state = 0 as *mut libc::c_char;
+    let mut return_seen: i32 = 0 as i32;
+    start_state = 0 as *mut i8;
     current_fname = fname;
-    current_linenum = 1 as libc::c_int as libc::c_uint;
-    data_in_buffer = 0 as libc::c_int as libc::c_uint;
-    bufpos = 0 as libc::c_int as libc::c_uint;
-    eof_seen = 0 as libc::c_int;
-    enter_system_variable(
-        b"filename\0" as *const u8 as *const libc::c_char as *mut libc::c_char,
-        fname,
-    );
+    current_linenum = 1 as i32 as u32;
+    data_in_buffer = 0 as i32 as u32;
+    bufpos = 0 as i32 as u32;
+    eof_seen = 0 as i32;
+    enter_system_variable(b"filename\0" as *const u8 as *const i8 as *mut i8, fname);
     data_in_buffer = fread(
         inbuf as *mut libc::c_void,
-        1 as libc::c_int as size_t,
-        (20 as libc::c_int * 1024 as libc::c_int) as size_t,
+        1 as i32 as size_t,
+        (20 as i32 * 1024 as i32) as size_t,
         ifp,
-    ) as libc::c_uint;
-    if data_in_buffer < (20 as libc::c_int * 1024 as libc::c_int) as libc::c_uint {
-        eof_seen = 1 as libc::c_int;
+    ) as u32;
+    if data_in_buffer < (20 as i32 * 1024 as i32) as u32 {
+        eof_seen = 1 as i32;
     }
     if !start_state_arg.is_null() {
         start_state = start_state_arg;
@@ -275,16 +346,16 @@ pub unsafe extern "C" fn process_file(mut fname: *mut libc::c_char) {
         while data_in_buffer != 0 {
             fwrite(
                 inbuf as *const libc::c_void,
-                1 as libc::c_int as size_t,
+                1 as i32 as size_t,
                 data_in_buffer as size_t,
                 ofp,
             );
             data_in_buffer = fread(
                 inbuf as *mut libc::c_void,
-                1 as libc::c_int as size_t,
-                (20 as libc::c_int * 1024 as libc::c_int) as size_t,
+                1 as i32 as size_t,
+                (20 as i32 * 1024 as i32) as size_t,
                 ifp,
-            ) as libc::c_uint;
+            ) as u32;
         }
     } else {
         result = execute_state(start_state);
@@ -292,38 +363,38 @@ pub unsafe extern "C" fn process_file(mut fname: *mut libc::c_char) {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node {
+pub unsafe extern "C" fn execute_state(mut name: *mut i8) -> *mut Node {
     let mut current_block: u64;
     let mut state: *mut List = 0 as *mut List;
-    let mut to_read: libc::c_int = 0;
-    let mut got: libc::c_int = 0;
+    let mut to_read: i32 = 0;
+    let mut got: i32 = 0;
     let mut rule: *mut ListItem = 0 as *mut ListItem;
     let mut first_rule: *mut ListItem = 0 as *mut ListItem;
-    let mut first_idx: libc::c_uint = 0;
-    let mut match_len: libc::c_uint = 0;
+    let mut first_idx: u32 = 0;
+    let mut match_len: u32 = 0;
     let mut result: *mut Node = nvoid;
     let mut r: *mut Cons = 0 as *mut Cons;
     let mut exp: *mut Node = 0 as *mut Node;
-    let mut return_seen: libc::c_int = 0 as libc::c_int;
-    let mut idx: libc::c_int = 0;
+    let mut return_seen: i32 = 0 as i32;
+    let mut idx: i32 = 0;
     if strhash_get(
         ns_states,
         name,
-        strlen(name) as libc::c_int,
+        strlen(name) as i32,
         &mut state as *mut *mut List as *mut *mut libc::c_void,
     ) == 0
     {
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s: undefined state `%s'\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s: undefined state `%s'\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             program,
             name,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     rule = (*state).head;
     loop {
@@ -340,7 +411,7 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                 &mut return_seen,
             );
             if return_seen != 0 {
-                current_block = 2124874407514333780;
+                current_block = 16824052130944227025;
                 break;
             } else {
                 current_block = 3512920355445576850;
@@ -352,11 +423,11 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
     }
     loop {
         match current_block {
-            2124874407514333780 => {
+            16824052130944227025 => {
                 rule = (*state).head;
                 while !rule.is_null() {
                     r = (*rule).data as *mut Cons;
-                    if (*r).car == 1 as libc::c_int as *mut libc::c_void {
+                    if (*r).car == 1 as i32 as *mut libc::c_void {
                         node_free(result);
                         result = eval_statement_list(
                             (*r).cdr as *mut List,
@@ -369,114 +440,102 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                 break;
             }
             _ => {
-                let mut eol: libc::c_int = 0;
+                let mut eol: i32 = 0;
                 if bufpos >= data_in_buffer {
                     if eof_seen != 0 {
-                        current_block = 2124874407514333780;
+                        current_block = 16824052130944227025;
                         continue;
                     }
                     data_in_buffer = fread(
                         inbuf as *mut libc::c_void,
-                        1 as libc::c_int as size_t,
-                        (20 as libc::c_int * 1024 as libc::c_int) as size_t,
+                        1 as i32 as size_t,
+                        (20 as i32 * 1024 as i32) as size_t,
                         ifp,
-                    ) as libc::c_uint;
-                    if data_in_buffer
-                        < (20 as libc::c_int * 1024 as libc::c_int) as libc::c_uint
-                    {
-                        eof_seen = 1 as libc::c_int;
+                    ) as u32;
+                    if data_in_buffer < (20 as i32 * 1024 as i32) as u32 {
+                        eof_seen = 1 as i32;
                     }
-                    bufpos = 0 as libc::c_int as libc::c_uint;
+                    bufpos = 0 as i32 as u32;
                     current_block = 3512920355445576850;
                 } else {
-                    if bufpos > 0 as libc::c_int as libc::c_uint
-                        && *inbuf
-                            .offset(
-                                bufpos.wrapping_sub(1 as libc::c_int as libc::c_uint)
-                                    as isize,
-                            ) as libc::c_int == '\n' as i32
+                    if bufpos > 0 as i32 as u32
+                        && *inbuf.offset(bufpos.wrapping_sub(1 as i32 as u32) as isize)
+                            as i32 == '\n' as i32
                     {
                         current_linenum = current_linenum.wrapping_add(1);
                         current_linenum;
                     }
-                    eol = bufpos as libc::c_int;
-                    while (eol as libc::c_uint) < data_in_buffer
-                        && *inbuf.offset(eol as isize) as libc::c_int != '\n' as i32
+                    eol = bufpos as i32;
+                    while (eol as u32) < data_in_buffer
+                        && *inbuf.offset(eol as isize) as i32 != '\n' as i32
                     {
                         eol += 1;
                         eol;
                     }
-                    if *inbuf.offset(eol as isize) as libc::c_int == '\n' as i32 {
+                    if *inbuf.offset(eol as isize) as i32 == '\n' as i32 {
                         eol += 1;
                         eol;
                     }
-                    if eol as libc::c_uint >= data_in_buffer && eof_seen == 0
-                        && bufpos > 0 as libc::c_int as libc::c_uint
+                    if eol as u32 >= data_in_buffer && eof_seen == 0
+                        && bufpos > 0 as i32 as u32
                     {
                         memmove(
                             inbuf as *mut libc::c_void,
                             inbuf.offset(bufpos as isize) as *const libc::c_void,
-                            (eol as libc::c_uint).wrapping_sub(bufpos) as libc::c_ulong,
+                            (eol as u32).wrapping_sub(bufpos) as u64,
                         );
-                        data_in_buffer = (eol as libc::c_uint).wrapping_sub(bufpos);
-                        bufpos = 0 as libc::c_int as libc::c_uint;
-                        to_read = ((20 as libc::c_int * 1024 as libc::c_int)
-                            as libc::c_uint)
-                            .wrapping_sub(data_in_buffer) as libc::c_int;
+                        data_in_buffer = (eol as u32).wrapping_sub(bufpos);
+                        bufpos = 0 as i32 as u32;
+                        to_read = ((20 as i32 * 1024 as i32) as u32)
+                            .wrapping_sub(data_in_buffer) as i32;
                         got = fread(
                             inbuf.offset(data_in_buffer as isize) as *mut libc::c_void,
-                            1 as libc::c_int as size_t,
+                            1 as i32 as size_t,
                             to_read as size_t,
                             ifp,
-                        ) as libc::c_int;
+                        ) as i32;
                         if got < to_read {
-                            eof_seen = 1 as libc::c_int;
+                            eof_seen = 1 as i32;
                         }
-                        data_in_buffer = data_in_buffer
-                            .wrapping_add(got as libc::c_uint);
+                        data_in_buffer = data_in_buffer.wrapping_add(got as u32);
                         current_block = 3512920355445576850;
                     } else {
-                        first_idx = eol as libc::c_uint;
-                        match_len = 0 as libc::c_int as libc::c_uint;
+                        first_idx = eol as u32;
+                        match_len = 0 as i32 as u32;
                         first_rule = 0 as *mut ListItem;
                         current_match = 0 as *mut re_registers;
                         let mut current_block_47: u64;
                         rule = (*state).head;
                         while !rule.is_null() {
-                            let mut err: libc::c_int = 0;
+                            let mut err: i32 = 0;
                             r = (*rule).data as *mut Cons;
                             exp = (*r).car as *mut Node;
                             if !(exp.is_null()
-                                || exp
-                                    == 1 as libc::c_int as *mut libc::c_void as *mut Node)
+                                || exp == 1 as i32 as *mut libc::c_void as *mut Node)
                             {
-                                if (*exp).type_0 as libc::c_uint
-                                    == nSYMBOL as libc::c_int as libc::c_uint
-                                {
+                                if (*exp).type_0 as u32 == NodeType::nSYMBOL as i32 as u32 {
                                     let mut n: *mut Node = 0 as *mut Node;
                                     if strhash_get(
                                         ns_vars,
                                         (*exp).u.sym,
-                                        strlen((*exp).u.sym) as libc::c_int,
+                                        strlen((*exp).u.sym) as i32,
                                         &mut n as *mut *mut Node as *mut *mut libc::c_void,
                                     ) == 0
                                     {
                                         fprintf(
                                             stderr,
                                             dcgettext(
-                                                0 as *const libc::c_char,
+                                                0 as *const i8,
                                                 b"%s: error: undefined variable `%s'\n\0" as *const u8
-                                                    as *const libc::c_char,
-                                                5 as libc::c_int,
+                                                    as *const i8,
+                                                5 as i32,
                                             ),
                                             program,
                                             (*exp).u.sym,
                                         );
-                                        exit(1 as libc::c_int);
+                                        exit(1 as i32);
                                     }
-                                    if (*n).type_0 as libc::c_uint
-                                        != nREGEXP as libc::c_int as libc::c_uint
-                                    {
+                                    if (*n).type_0 as u32 != NodeType::nREGEXP as i32 as u32 {
                                         current_block_47 = 7245201122033322888;
                                     } else {
                                         exp = n;
@@ -489,9 +548,7 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                                     7245201122033322888 => {}
                                     _ => {
                                         err = re_search(
-                                            if ((*exp).u.re.compiled).fastmap_accurate() as libc::c_int
-                                                != 0
-                                            {
+                                            if ((*exp).u.re.compiled).fastmap_accurate() as i32 != 0 {
                                                 &mut (*exp).u.re.compiled
                                             } else {
                                                 compile_regexp(exp);
@@ -499,28 +556,26 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                                             },
                                             inbuf,
                                             eol,
-                                            bufpos as libc::c_int,
-                                            (eol as libc::c_uint).wrapping_sub(bufpos) as libc::c_int,
+                                            bufpos as i32,
+                                            (eol as u32).wrapping_sub(bufpos) as i32,
                                             &mut (*exp).u.re.matches,
                                         );
-                                        if !(err < 0 as libc::c_int) {
+                                        if !(err < 0 as i32) {
                                             idx = *((*exp).u.re.matches.start)
-                                                .offset(0 as libc::c_int as isize);
-                                            if idx >= 0 as libc::c_int
-                                                && ((idx as libc::c_uint) < first_idx
-                                                    || idx as libc::c_uint == first_idx
-                                                        && (*((*exp).u.re.matches.end)
-                                                            .offset(0 as libc::c_int as isize)
-                                                            - *((*exp).u.re.matches.start)
-                                                                .offset(0 as libc::c_int as isize)) as libc::c_uint
-                                                            > match_len)
+                                                .offset(0 as i32 as isize);
+                                            if idx >= 0 as i32
+                                                && ((idx as u32) < first_idx
+                                                    || idx as u32 == first_idx
+                                                        && (*((*exp).u.re.matches.end).offset(0 as i32 as isize)
+                                                            - *((*exp).u.re.matches.start).offset(0 as i32 as isize))
+                                                            as u32 > match_len)
                                             {
-                                                first_idx = idx as libc::c_uint;
+                                                first_idx = idx as u32;
                                                 first_rule = rule;
                                                 match_len = (*((*exp).u.re.matches.end)
-                                                    .offset(0 as libc::c_int as isize)
-                                                    - *((*exp).u.re.matches.start)
-                                                        .offset(0 as libc::c_int as isize)) as libc::c_uint;
+                                                    .offset(0 as i32 as isize)
+                                                    - *((*exp).u.re.matches.start).offset(0 as i32 as isize))
+                                                    as u32;
                                                 current_match = &mut (*exp).u.re.matches;
                                                 current_match_buf = inbuf;
                                             }
@@ -532,13 +587,13 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                         }
                         fwrite(
                             inbuf.offset(bufpos as isize) as *const libc::c_void,
-                            1 as libc::c_int as size_t,
+                            1 as i32 as size_t,
                             first_idx.wrapping_sub(bufpos) as size_t,
                             ofp,
                         );
                         if !first_rule.is_null() {
-                            bufpos = *((*current_match).end)
-                                .offset(0 as libc::c_int as isize) as libc::c_uint;
+                            bufpos = *((*current_match).end).offset(0 as i32 as isize)
+                                as u32;
                             node_free(result);
                             result = eval_statement_list(
                                 (*((*first_rule).data as *mut Cons)).cdr as *mut List,
@@ -546,7 +601,7 @@ pub unsafe extern "C" fn execute_state(mut name: *mut libc::c_char) -> *mut Node
                                 &mut return_seen,
                             );
                             if return_seen != 0 {
-                                current_block = 2124874407514333780;
+                                current_block = 16824052130944227025;
                             } else {
                                 current_block = 3512920355445576850;
                             }

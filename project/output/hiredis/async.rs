@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(c_variadic, extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type sockaddr;
     static mut hiredisAllocFns: hiredisAllocFuncs;
@@ -38,24 +48,24 @@ extern "C" {
         _: *const libc::c_char,
         _: ...
     ) -> libc::c_int;
-    fn sdsnewlen(init: *const libc::c_void, initlen: size_t) -> sds;
-    fn sdsfree(s: sds);
+    fn redisvFormatCommand(
+        target: *mut *mut libc::c_char,
+        format: *const libc::c_char,
+        ap: ::core::ffi::VaList,
+    ) -> libc::c_int;
     fn redisFormatSdsCommandArgv(
         target: *mut sds,
         argc: libc::c_int,
         argv: *mut *const libc::c_char,
         argvlen: *const size_t,
     ) -> libc::c_longlong;
-    fn redisvFormatCommand(
-        target: *mut *mut libc::c_char,
-        format: *const libc::c_char,
-        ap: ::core::ffi::VaList,
-    ) -> libc::c_int;
-    fn redisBufferWrite(c: *mut redisContext, done: *mut libc::c_int) -> libc::c_int;
-    fn redisBufferRead(c: *mut redisContext) -> libc::c_int;
     fn redisConnectWithOptions(options: *const redisOptions) -> *mut redisContext;
-    fn redisGetReply(c: *mut redisContext, reply: *mut *mut libc::c_void) -> libc::c_int;
     fn redisFree(c: *mut redisContext);
+    fn redisBufferRead(c: *mut redisContext) -> libc::c_int;
+    fn redisBufferWrite(c: *mut redisContext, done: *mut libc::c_int) -> libc::c_int;
+    fn redisGetReply(c: *mut redisContext, reply: *mut *mut libc::c_void) -> libc::c_int;
+    fn sdsnewlen(init: *const libc::c_void, initlen: size_t) -> sds;
+    fn sdsfree(s: sds);
     fn redisCheckSocketError(c: *mut redisContext) -> libc::c_int;
     fn redisCheckConnectDone(
         c: *mut redisContext,
@@ -98,15 +108,13 @@ pub type uint64_t = __uint64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct hiredisAllocFuncs {
-    pub mallocFn: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub callocFn: Option::<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
-    pub reallocFn: Option::<
+    pub mallocFn: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub callocFn: Option<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
+    pub reallocFn: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
-    pub strdupFn: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char,
-    >,
-    pub freeFn: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub strdupFn: Option<unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char>,
+    pub freeFn: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 pub type ssize_t = __ssize_t;
 pub type va_list = __builtin_va_list;
@@ -123,20 +131,20 @@ pub struct redisReadTask {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisReplyObjectFunctions {
-    pub createString: Option::<
+    pub createString: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             *mut libc::c_char,
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createArray: Option::<
+    pub createArray: Option<
         unsafe extern "C" fn(*const redisReadTask, size_t) -> *mut libc::c_void,
     >,
-    pub createInteger: Option::<
+    pub createInteger: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_longlong) -> *mut libc::c_void,
     >,
-    pub createDouble: Option::<
+    pub createDouble: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             libc::c_double,
@@ -144,13 +152,13 @@ pub struct redisReplyObjectFunctions {
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createNil: Option::<
+    pub createNil: Option<
         unsafe extern "C" fn(*const redisReadTask) -> *mut libc::c_void,
     >,
-    pub createBool: Option::<
+    pub createBool: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_int) -> *mut libc::c_void,
     >,
-    pub freeObject: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub freeObject: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -215,16 +223,16 @@ pub struct redisAsyncContext {
     pub err: libc::c_int,
     pub errstr: *mut libc::c_char,
     pub data: *mut libc::c_void,
-    pub dataCleanup: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub dataCleanup: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub ev: C2RustUnnamed_0,
-    pub onDisconnect: Option::<redisDisconnectCallback>,
-    pub onConnect: Option::<redisConnectCallback>,
-    pub onConnectNC: Option::<redisConnectCallbackNC>,
+    pub onDisconnect: Option<redisDisconnectCallback>,
+    pub onConnect: Option<redisConnectCallback>,
+    pub onConnectNC: Option<redisConnectCallbackNC>,
     pub replies: redisCallbackList,
     pub saddr: *mut sockaddr,
     pub addrlen: size_t,
     pub sub: C2RustUnnamed,
-    pub push_cb: Option::<redisAsyncPushFn>,
+    pub push_cb: Option<redisAsyncPushFn>,
 }
 pub type redisAsyncPushFn = unsafe extern "C" fn(
     *mut redisAsyncContext,
@@ -251,26 +259,24 @@ pub struct dict {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct dictType {
-    pub hashFunction: Option::<
-        unsafe extern "C" fn(*const libc::c_void) -> libc::c_uint,
-    >,
-    pub keyDup: Option::<
+    pub hashFunction: Option<unsafe extern "C" fn(*const libc::c_void) -> libc::c_uint>,
+    pub keyDup: Option<
         unsafe extern "C" fn(*mut libc::c_void, *const libc::c_void) -> *mut libc::c_void,
     >,
-    pub valDup: Option::<
+    pub valDup: Option<
         unsafe extern "C" fn(*mut libc::c_void, *const libc::c_void) -> *mut libc::c_void,
     >,
-    pub keyCompare: Option::<
+    pub keyCompare: Option<
         unsafe extern "C" fn(
             *mut libc::c_void,
             *const libc::c_void,
             *const libc::c_void,
         ) -> libc::c_int,
     >,
-    pub keyDestructor: Option::<
+    pub keyDestructor: Option<
         unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
     >,
-    pub valDestructor: Option::<
+    pub valDestructor: Option<
         unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
     >,
 }
@@ -291,7 +297,7 @@ pub struct redisCallbackList {
 #[repr(C)]
 pub struct redisCallback {
     pub next: *mut redisCallback,
-    pub fn_0: Option::<redisCallbackFn>,
+    pub fn_0: Option<redisCallbackFn>,
     pub pending_subs: libc::c_int,
     pub unsubscribe_sent: libc::c_int,
     pub privdata: *mut libc::c_void,
@@ -317,12 +323,12 @@ pub type redisDisconnectCallback = unsafe extern "C" fn(
 #[repr(C)]
 pub struct C2RustUnnamed_0 {
     pub data: *mut libc::c_void,
-    pub addRead: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub delRead: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub addWrite: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub delWrite: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub cleanup: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub scheduleTimer: Option::<unsafe extern "C" fn(*mut libc::c_void, timeval) -> ()>,
+    pub addRead: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub delRead: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub addWrite: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub delWrite: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub cleanup: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub scheduleTimer: Option<unsafe extern "C" fn(*mut libc::c_void, timeval) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -342,9 +348,9 @@ pub struct redisContext {
     pub saddr: *mut sockaddr,
     pub addrlen: size_t,
     pub privdata: *mut libc::c_void,
-    pub free_privdata: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub free_privdata: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub privctx: *mut libc::c_void,
-    pub push_cb: Option::<redisPushFn>,
+    pub push_cb: Option<redisPushFn>,
 }
 pub type redisPushFn = unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ();
 #[derive(Copy, Clone)]
@@ -374,23 +380,82 @@ impl redisConnectionType {
             redisConnectionType::REDIS_CONN_USERFD => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> redisConnectionType {
+        match value {
+            0 => redisConnectionType::REDIS_CONN_TCP,
+            1 => redisConnectionType::REDIS_CONN_UNIX,
+            2 => redisConnectionType::REDIS_CONN_USERFD,
+            _ => panic!("Invalid value for redisConnectionType: {}", value),
+        }
+    }
 }
-
-pub const REDIS_CONN_USERFD: redisConnectionType = 2;
-pub const REDIS_CONN_UNIX: redisConnectionType = 1;
-pub const REDIS_CONN_TCP: redisConnectionType = 0;
+impl AddAssign<u32> for redisConnectionType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for redisConnectionType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for redisConnectionType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for redisConnectionType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for redisConnectionType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn add(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn sub(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn mul(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn div(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn rem(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisContextFuncs {
-    pub close: Option::<unsafe extern "C" fn(*mut redisContext) -> ()>,
-    pub free_privctx: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub async_read: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub async_write: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub read: Option::<
+    pub close: Option<unsafe extern "C" fn(*mut redisContext) -> ()>,
+    pub free_privctx: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub async_read: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub async_write: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub read: Option<
         unsafe extern "C" fn(*mut redisContext, *mut libc::c_char, size_t) -> ssize_t,
     >,
-    pub write: Option::<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
+    pub write: Option<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -413,9 +478,9 @@ pub struct redisOptions {
     pub command_timeout: *const timeval,
     pub endpoint: C2RustUnnamed_3,
     pub privdata: *mut libc::c_void,
-    pub free_privdata: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub push_cb: Option::<redisPushFn>,
-    pub async_push_cb: Option::<redisAsyncPushFn>,
+    pub free_privdata: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub push_cb: Option<redisPushFn>,
+    pub async_push_cb: Option<redisAsyncPushFn>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -506,235 +571,27 @@ unsafe extern "C" fn sdslen(s: sds) -> size_t {
     }
     return 0 as libc::c_int as size_t;
 }
-unsafe extern "C" fn dictGenHashFunction(
-    mut buf: *const libc::c_uchar,
-    mut len: libc::c_int,
-) -> libc::c_uint {
-    let mut hash: libc::c_uint = 5381 as libc::c_int as libc::c_uint;
+unsafe extern "C" fn _dictNextPower(mut size: libc::c_ulong) -> libc::c_ulong {
+    let mut i: libc::c_ulong = 4 as libc::c_int as libc::c_ulong;
+    if size >= 9223372036854775807 as libc::c_long as libc::c_ulong {
+        return 9223372036854775807 as libc::c_long as libc::c_ulong;
+    }
     loop {
-        let fresh0 = len;
-        len = len - 1;
-        if !(fresh0 != 0) {
-            break;
+        if i >= size {
+            return i;
         }
-        let fresh1 = buf;
-        buf = buf.offset(1);
-        hash = (hash << 5 as libc::c_int)
-            .wrapping_add(hash)
-            .wrapping_add(*fresh1 as libc::c_uint);
-    }
-    return hash;
-}
-unsafe extern "C" fn _dictReset(mut ht: *mut dict) {
-    (*ht).table = 0 as *mut *mut dictEntry;
-    (*ht).size = 0 as libc::c_int as libc::c_ulong;
-    (*ht).sizemask = 0 as libc::c_int as libc::c_ulong;
-    (*ht).used = 0 as libc::c_int as libc::c_ulong;
-}
-unsafe extern "C" fn dictCreate(
-    mut type_0: *mut dictType,
-    mut privDataPtr: *mut libc::c_void,
-) -> *mut dict {
-    let mut ht: *mut dict = hi_malloc(::core::mem::size_of::<dict>() as libc::c_ulong)
-        as *mut dict;
-    if ht.is_null() {
-        return 0 as *mut dict;
-    }
-    _dictInit(ht, type_0, privDataPtr);
-    return ht;
-}
-unsafe extern "C" fn _dictInit(
-    mut ht: *mut dict,
-    mut type_0: *mut dictType,
-    mut privDataPtr: *mut libc::c_void,
-) -> libc::c_int {
-    _dictReset(ht);
-    (*ht).type_0 = type_0;
-    (*ht).privdata = privDataPtr;
-    return 0 as libc::c_int;
-}
-unsafe extern "C" fn dictExpand(
-    mut ht: *mut dict,
-    mut size: libc::c_ulong,
-) -> libc::c_int {
-    let mut n: dict = dict {
-        table: 0 as *mut *mut dictEntry,
-        type_0: 0 as *mut dictType,
-        size: 0,
-        sizemask: 0,
-        used: 0,
-        privdata: 0 as *mut libc::c_void,
+        i = i.wrapping_mul(2 as libc::c_int as libc::c_ulong);
     };
-    let mut realsize: libc::c_ulong = _dictNextPower(size);
-    let mut i: libc::c_ulong = 0;
-    if (*ht).used > size {
-        return 1 as libc::c_int;
-    }
-    _dictInit(&mut n, (*ht).type_0, (*ht).privdata);
-    n.size = realsize;
-    n.sizemask = realsize.wrapping_sub(1 as libc::c_int as libc::c_ulong);
-    n
-        .table = hi_calloc(
-        realsize,
-        ::core::mem::size_of::<*mut dictEntry>() as libc::c_ulong,
-    ) as *mut *mut dictEntry;
-    if (n.table).is_null() {
-        return 1 as libc::c_int;
-    }
-    n.used = (*ht).used;
-    i = 0 as libc::c_int as libc::c_ulong;
-    while i < (*ht).size && (*ht).used > 0 as libc::c_int as libc::c_ulong {
-        let mut he: *mut dictEntry = 0 as *mut dictEntry;
-        let mut nextHe: *mut dictEntry = 0 as *mut dictEntry;
-        if !(*((*ht).table).offset(i as isize)).is_null() {
-            he = *((*ht).table).offset(i as isize);
-            while !he.is_null() {
-                let mut h: libc::c_uint = 0;
-                nextHe = (*he).next;
-                h = (((*(*ht).type_0).hashFunction)
-                    .expect("non-null function pointer")((*he).key) as libc::c_ulong
-                    & n.sizemask) as libc::c_uint;
-                (*he).next = *(n.table).offset(h as isize);
-                let ref mut fresh2 = *(n.table).offset(h as isize);
-                *fresh2 = he;
-                (*ht).used = ((*ht).used).wrapping_sub(1);
-                (*ht).used;
-                he = nextHe;
-            }
-        }
-        i = i.wrapping_add(1);
-        i;
-    }
-    if (*ht).used == 0 as libc::c_int as libc::c_ulong {} else {
-        __assert_fail(
-            b"ht->used == 0\0" as *const u8 as *const libc::c_char,
-            b"./dict.c\0" as *const u8 as *const libc::c_char,
-            132 as libc::c_int as libc::c_uint,
-            (*::core::mem::transmute::<
-                &[u8; 38],
-                &[libc::c_char; 38],
-            >(b"int dictExpand(dict *, unsigned long)\0"))
-                .as_ptr(),
-        );
-    };
-    hi_free((*ht).table as *mut libc::c_void);
-    *ht = n;
-    return 0 as libc::c_int;
 }
-unsafe extern "C" fn dictAdd(
-    mut ht: *mut dict,
-    mut key: *mut libc::c_void,
-    mut val: *mut libc::c_void,
-) -> libc::c_int {
-    let mut index: libc::c_int = 0;
-    let mut entry: *mut dictEntry = 0 as *mut dictEntry;
-    index = _dictKeyIndex(ht, key);
-    if index == -(1 as libc::c_int) {
-        return 1 as libc::c_int;
-    }
-    entry = hi_malloc(::core::mem::size_of::<dictEntry>() as libc::c_ulong)
-        as *mut dictEntry;
-    if entry.is_null() {
-        return 1 as libc::c_int;
-    }
-    (*entry).next = *((*ht).table).offset(index as isize);
-    let ref mut fresh3 = *((*ht).table).offset(index as isize);
-    *fresh3 = entry;
-    if ((*(*ht).type_0).keyDup).is_some() {
-        (*entry)
-            .key = ((*(*ht).type_0).keyDup)
-            .expect("non-null function pointer")((*ht).privdata, key);
-    } else {
-        (*entry).key = key;
-    }
-    if ((*(*ht).type_0).valDup).is_some() {
-        (*entry)
-            .val = ((*(*ht).type_0).valDup)
-            .expect("non-null function pointer")((*ht).privdata, val);
-    } else {
-        (*entry).val = val;
-    }
-    (*ht).used = ((*ht).used).wrapping_add(1);
-    (*ht).used;
-    return 0 as libc::c_int;
+unsafe extern "C" fn dictInitIterator(mut iter: *mut dictIterator, mut ht: *mut dict) {
+    (*iter).ht = ht;
+    (*iter).index = -(1 as libc::c_int);
+    (*iter).entry = 0 as *mut dictEntry;
+    (*iter).nextEntry = 0 as *mut dictEntry;
 }
-unsafe extern "C" fn dictReplace(
-    mut ht: *mut dict,
-    mut key: *mut libc::c_void,
-    mut val: *mut libc::c_void,
-) -> libc::c_int {
-    let mut entry: *mut dictEntry = 0 as *mut dictEntry;
-    let mut auxentry: dictEntry = dictEntry {
-        key: 0 as *mut libc::c_void,
-        val: 0 as *mut libc::c_void,
-        next: 0 as *mut dictEntry,
-    };
-    if dictAdd(ht, key, val) == 0 as libc::c_int {
-        return 1 as libc::c_int;
-    }
-    entry = dictFind(ht, key);
-    if entry.is_null() {
-        return 0 as libc::c_int;
-    }
-    auxentry = *entry;
-    if ((*(*ht).type_0).valDup).is_some() {
-        (*entry)
-            .val = ((*(*ht).type_0).valDup)
-            .expect("non-null function pointer")((*ht).privdata, val);
-    } else {
-        (*entry).val = val;
-    }
-    if ((*(*ht).type_0).valDestructor).is_some() {
-        ((*(*ht).type_0).valDestructor)
-            .expect("non-null function pointer")((*ht).privdata, auxentry.val);
-    }
-    return 0 as libc::c_int;
-}
-unsafe extern "C" fn dictDelete(
-    mut ht: *mut dict,
-    mut key: *const libc::c_void,
-) -> libc::c_int {
-    let mut h: libc::c_uint = 0;
-    let mut de: *mut dictEntry = 0 as *mut dictEntry;
-    let mut prevde: *mut dictEntry = 0 as *mut dictEntry;
-    if (*ht).size == 0 as libc::c_int as libc::c_ulong {
-        return 1 as libc::c_int;
-    }
-    h = (((*(*ht).type_0).hashFunction).expect("non-null function pointer")(key)
-        as libc::c_ulong & (*ht).sizemask) as libc::c_uint;
-    de = *((*ht).table).offset(h as isize);
-    prevde = 0 as *mut dictEntry;
-    while !de.is_null() {
-        if if ((*(*ht).type_0).keyCompare).is_some() {
-            ((*(*ht).type_0).keyCompare)
-                .expect("non-null function pointer")((*ht).privdata, key, (*de).key)
-        } else {
-            (key == (*de).key) as libc::c_int
-        } != 0
-        {
-            if !prevde.is_null() {
-                (*prevde).next = (*de).next;
-            } else {
-                let ref mut fresh4 = *((*ht).table).offset(h as isize);
-                *fresh4 = (*de).next;
-            }
-            if ((*(*ht).type_0).keyDestructor).is_some() {
-                ((*(*ht).type_0).keyDestructor)
-                    .expect("non-null function pointer")((*ht).privdata, (*de).key);
-            }
-            if ((*(*ht).type_0).valDestructor).is_some() {
-                ((*(*ht).type_0).valDestructor)
-                    .expect("non-null function pointer")((*ht).privdata, (*de).val);
-            }
-            hi_free(de as *mut libc::c_void);
-            (*ht).used = ((*ht).used).wrapping_sub(1);
-            (*ht).used;
-            return 0 as libc::c_int;
-        }
-        prevde = de;
-        de = (*de).next;
-    }
-    return 1 as libc::c_int;
+unsafe extern "C" fn dictRelease(mut ht: *mut dict) {
+    _dictClear(ht);
+    hi_free(ht as *mut libc::c_void);
 }
 unsafe extern "C" fn _dictClear(mut ht: *mut dict) -> libc::c_int {
     let mut i: libc::c_ulong = 0;
@@ -767,9 +624,183 @@ unsafe extern "C" fn _dictClear(mut ht: *mut dict) -> libc::c_int {
     _dictReset(ht);
     return 0 as libc::c_int;
 }
-unsafe extern "C" fn dictRelease(mut ht: *mut dict) {
-    _dictClear(ht);
-    hi_free(ht as *mut libc::c_void);
+unsafe extern "C" fn _dictReset(mut ht: *mut dict) {
+    (*ht).table = 0 as *mut *mut dictEntry;
+    (*ht).size = 0 as libc::c_int as libc::c_ulong;
+    (*ht).sizemask = 0 as libc::c_int as libc::c_ulong;
+    (*ht).used = 0 as libc::c_int as libc::c_ulong;
+}
+unsafe extern "C" fn dictGenHashFunction(
+    mut buf: *const libc::c_uchar,
+    mut len: libc::c_int,
+) -> libc::c_uint {
+    let mut hash: libc::c_uint = 5381 as libc::c_int as libc::c_uint;
+    loop {
+        let fresh0 = len;
+        len = len - 1;
+        if !(fresh0 != 0) {
+            break;
+        }
+        let fresh1 = buf;
+        buf = buf.offset(1);
+        hash = (hash << 5 as libc::c_int)
+            .wrapping_add(hash)
+            .wrapping_add(*fresh1 as libc::c_uint);
+    }
+    return hash;
+}
+unsafe extern "C" fn dictCreate(
+    mut type_0: *mut dictType,
+    mut privDataPtr: *mut libc::c_void,
+) -> *mut dict {
+    let mut ht: *mut dict = hi_malloc(::core::mem::size_of::<dict>() as libc::c_ulong)
+        as *mut dict;
+    if ht.is_null() {
+        return 0 as *mut dict;
+    }
+    _dictInit(ht, type_0, privDataPtr);
+    return ht;
+}
+unsafe extern "C" fn _dictInit(
+    mut ht: *mut dict,
+    mut type_0: *mut dictType,
+    mut privDataPtr: *mut libc::c_void,
+) -> libc::c_int {
+    _dictReset(ht);
+    (*ht).type_0 = type_0;
+    (*ht).privdata = privDataPtr;
+    return 0 as libc::c_int;
+}
+unsafe extern "C" fn dictNext(mut iter: *mut dictIterator) -> *mut dictEntry {
+    loop {
+        if ((*iter).entry).is_null() {
+            (*iter).index += 1;
+            (*iter).index;
+            if (*iter).index >= (*(*iter).ht).size as libc::c_int {
+                break;
+            }
+            (*iter).entry = *((*(*iter).ht).table).offset((*iter).index as isize);
+        } else {
+            (*iter).entry = (*iter).nextEntry;
+        }
+        if !((*iter).entry).is_null() {
+            (*iter).nextEntry = (*(*iter).entry).next;
+            return (*iter).entry;
+        }
+    }
+    return 0 as *mut dictEntry;
+}
+unsafe extern "C" fn dictDelete(
+    mut ht: *mut dict,
+    mut key: *const libc::c_void,
+) -> libc::c_int {
+    let mut h: libc::c_uint = 0;
+    let mut de: *mut dictEntry = 0 as *mut dictEntry;
+    let mut prevde: *mut dictEntry = 0 as *mut dictEntry;
+    if (*ht).size == 0 as libc::c_int as libc::c_ulong {
+        return 1 as libc::c_int;
+    }
+    h = (((*(*ht).type_0).hashFunction).expect("non-null function pointer")(key)
+        as libc::c_ulong & (*ht).sizemask) as libc::c_uint;
+    de = *((*ht).table).offset(h as isize);
+    prevde = 0 as *mut dictEntry;
+    while !de.is_null() {
+        if if ((*(*ht).type_0).keyCompare).is_some() {
+            ((*(*ht).type_0).keyCompare)
+                .expect("non-null function pointer")((*ht).privdata, key, (*de).key)
+        } else {
+            (key == (*de).key) as libc::c_int
+        } != 0
+        {
+            if !prevde.is_null() {
+                (*prevde).next = (*de).next;
+            } else {
+                let ref mut fresh2 = *((*ht).table).offset(h as isize);
+                *fresh2 = (*de).next;
+            }
+            if ((*(*ht).type_0).keyDestructor).is_some() {
+                ((*(*ht).type_0).keyDestructor)
+                    .expect("non-null function pointer")((*ht).privdata, (*de).key);
+            }
+            if ((*(*ht).type_0).valDestructor).is_some() {
+                ((*(*ht).type_0).valDestructor)
+                    .expect("non-null function pointer")((*ht).privdata, (*de).val);
+            }
+            hi_free(de as *mut libc::c_void);
+            (*ht).used = ((*ht).used).wrapping_sub(1);
+            (*ht).used;
+            return 0 as libc::c_int;
+        }
+        prevde = de;
+        de = (*de).next;
+    }
+    return 1 as libc::c_int;
+}
+unsafe extern "C" fn dictReplace(
+    mut ht: *mut dict,
+    mut key: *mut libc::c_void,
+    mut val: *mut libc::c_void,
+) -> libc::c_int {
+    let mut entry: *mut dictEntry = 0 as *mut dictEntry;
+    let mut auxentry: dictEntry = dictEntry {
+        key: 0 as *mut libc::c_void,
+        val: 0 as *mut libc::c_void,
+        next: 0 as *mut dictEntry,
+    };
+    if dictAdd(ht, key, val) == 0 as libc::c_int {
+        return 1 as libc::c_int;
+    }
+    entry = dictFind(ht, key);
+    if entry.is_null() {
+        return 0 as libc::c_int;
+    }
+    auxentry = *entry;
+    if ((*(*ht).type_0).valDup).is_some() {
+        (*entry).val = ((*(*ht).type_0).valDup)
+            .expect("non-null function pointer")((*ht).privdata, val);
+    } else {
+        (*entry).val = val;
+    }
+    if ((*(*ht).type_0).valDestructor).is_some() {
+        ((*(*ht).type_0).valDestructor)
+            .expect("non-null function pointer")((*ht).privdata, auxentry.val);
+    }
+    return 0 as libc::c_int;
+}
+unsafe extern "C" fn dictAdd(
+    mut ht: *mut dict,
+    mut key: *mut libc::c_void,
+    mut val: *mut libc::c_void,
+) -> libc::c_int {
+    let mut index: libc::c_int = 0;
+    let mut entry: *mut dictEntry = 0 as *mut dictEntry;
+    index = _dictKeyIndex(ht, key);
+    if index == -(1 as libc::c_int) {
+        return 1 as libc::c_int;
+    }
+    entry = hi_malloc(::core::mem::size_of::<dictEntry>() as libc::c_ulong)
+        as *mut dictEntry;
+    if entry.is_null() {
+        return 1 as libc::c_int;
+    }
+    (*entry).next = *((*ht).table).offset(index as isize);
+    let ref mut fresh3 = *((*ht).table).offset(index as isize);
+    *fresh3 = entry;
+    if ((*(*ht).type_0).keyDup).is_some() {
+        (*entry).key = ((*(*ht).type_0).keyDup)
+            .expect("non-null function pointer")((*ht).privdata, key);
+    } else {
+        (*entry).key = key;
+    }
+    if ((*(*ht).type_0).valDup).is_some() {
+        (*entry).val = ((*(*ht).type_0).valDup)
+            .expect("non-null function pointer")((*ht).privdata, val);
+    } else {
+        (*entry).val = val;
+    }
+    (*ht).used = ((*ht).used).wrapping_add(1);
+    (*ht).used;
+    return 0 as libc::c_int;
 }
 unsafe extern "C" fn dictFind(
     mut ht: *mut dict,
@@ -797,31 +828,6 @@ unsafe extern "C" fn dictFind(
     }
     return 0 as *mut dictEntry;
 }
-unsafe extern "C" fn dictInitIterator(mut iter: *mut dictIterator, mut ht: *mut dict) {
-    (*iter).ht = ht;
-    (*iter).index = -(1 as libc::c_int);
-    (*iter).entry = 0 as *mut dictEntry;
-    (*iter).nextEntry = 0 as *mut dictEntry;
-}
-unsafe extern "C" fn dictNext(mut iter: *mut dictIterator) -> *mut dictEntry {
-    loop {
-        if ((*iter).entry).is_null() {
-            (*iter).index += 1;
-            (*iter).index;
-            if (*iter).index >= (*(*iter).ht).size as libc::c_int {
-                break;
-            }
-            (*iter).entry = *((*(*iter).ht).table).offset((*iter).index as isize);
-        } else {
-            (*iter).entry = (*iter).nextEntry;
-        }
-        if !((*iter).entry).is_null() {
-            (*iter).nextEntry = (*(*iter).entry).next;
-            return (*iter).entry;
-        }
-    }
-    return 0 as *mut dictEntry;
-}
 unsafe extern "C" fn _dictExpandIfNeeded(mut ht: *mut dict) -> libc::c_int {
     if (*ht).size == 0 as libc::c_int as libc::c_ulong {
         return dictExpand(ht, 4 as libc::c_int as libc::c_ulong);
@@ -834,17 +840,72 @@ unsafe extern "C" fn _dictExpandIfNeeded(mut ht: *mut dict) -> libc::c_int {
     }
     return 0 as libc::c_int;
 }
-unsafe extern "C" fn _dictNextPower(mut size: libc::c_ulong) -> libc::c_ulong {
-    let mut i: libc::c_ulong = 4 as libc::c_int as libc::c_ulong;
-    if size >= 9223372036854775807 as libc::c_long as libc::c_ulong {
-        return 9223372036854775807 as libc::c_long as libc::c_ulong;
-    }
-    loop {
-        if i >= size {
-            return i;
-        }
-        i = i.wrapping_mul(2 as libc::c_int as libc::c_ulong);
+unsafe extern "C" fn dictExpand(
+    mut ht: *mut dict,
+    mut size: libc::c_ulong,
+) -> libc::c_int {
+    let mut n: dict = dict {
+        table: 0 as *mut *mut dictEntry,
+        type_0: 0 as *mut dictType,
+        size: 0,
+        sizemask: 0,
+        used: 0,
+        privdata: 0 as *mut libc::c_void,
     };
+    let mut realsize: libc::c_ulong = _dictNextPower(size);
+    let mut i: libc::c_ulong = 0;
+    if (*ht).used > size {
+        return 1 as libc::c_int;
+    }
+    _dictInit(&mut n, (*ht).type_0, (*ht).privdata);
+    n.size = realsize;
+    n.sizemask = realsize.wrapping_sub(1 as libc::c_int as libc::c_ulong);
+    n.table = hi_calloc(
+        realsize,
+        ::core::mem::size_of::<*mut dictEntry>() as libc::c_ulong,
+    ) as *mut *mut dictEntry;
+    if (n.table).is_null() {
+        return 1 as libc::c_int;
+    }
+    n.used = (*ht).used;
+    i = 0 as libc::c_int as libc::c_ulong;
+    while i < (*ht).size && (*ht).used > 0 as libc::c_int as libc::c_ulong {
+        let mut he: *mut dictEntry = 0 as *mut dictEntry;
+        let mut nextHe: *mut dictEntry = 0 as *mut dictEntry;
+        if !(*((*ht).table).offset(i as isize)).is_null() {
+            he = *((*ht).table).offset(i as isize);
+            while !he.is_null() {
+                let mut h: libc::c_uint = 0;
+                nextHe = (*he).next;
+                h = (((*(*ht).type_0).hashFunction)
+                    .expect("non-null function pointer")((*he).key) as libc::c_ulong
+                    & n.sizemask) as libc::c_uint;
+                (*he).next = *(n.table).offset(h as isize);
+                let ref mut fresh4 = *(n.table).offset(h as isize);
+                *fresh4 = he;
+                (*ht).used = ((*ht).used).wrapping_sub(1);
+                (*ht).used;
+                he = nextHe;
+            }
+        }
+        i = i.wrapping_add(1);
+        i;
+    }
+    if (*ht).used == 0 as libc::c_int as libc::c_ulong {} else {
+        __assert_fail(
+            b"ht->used == 0\0" as *const u8 as *const libc::c_char,
+            b"./dict.c\0" as *const u8 as *const libc::c_char,
+            132 as libc::c_int as libc::c_uint,
+            (*::core::mem::transmute::<
+                &[u8; 38],
+                &[libc::c_char; 38],
+            >(b"int dictExpand(dict *, unsigned long)\0"))
+                .as_ptr(),
+        );
+    };
+    hi_free((*ht).table as *mut libc::c_void);
+    *ht = n;
+    return 0 as libc::c_int;
 }
 unsafe extern "C" fn _dictKeyIndex(
     mut ht: *mut dict,
@@ -1085,7 +1146,7 @@ pub unsafe extern "C" fn redisAsyncConnect(
         };
         init
     };
-    options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
     options.endpoint.tcp.ip = ip;
     options.endpoint.tcp.port = port;
     return redisAsyncConnectWithOptions(&mut options);
@@ -1116,7 +1177,7 @@ pub unsafe extern "C" fn redisAsyncConnectBind(
         };
         init
     };
-    options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
     options.endpoint.tcp.ip = ip;
     options.endpoint.tcp.port = port;
     options.endpoint.tcp.source_addr = source_addr;
@@ -1148,7 +1209,7 @@ pub unsafe extern "C" fn redisAsyncConnectBindWithReuse(
         };
         init
     };
-    options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
     options.endpoint.tcp.ip = ip;
     options.endpoint.tcp.port = port;
     options.options |= 0x2 as libc::c_int;
@@ -1179,14 +1240,14 @@ pub unsafe extern "C" fn redisAsyncConnectUnix(
         };
         init
     };
-    options.type_0 = REDIS_CONN_UNIX as libc::c_int;
+    options.type_0 = redisConnectionType::REDIS_CONN_UNIX as libc::c_int;
     options.endpoint.unix_socket = path;
     return redisAsyncConnectWithOptions(&mut options);
 }
 unsafe extern "C" fn redisAsyncSetConnectCallbackImpl(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisConnectCallback>,
-    mut fn_nc: Option::<redisConnectCallbackNC>,
+    mut fn_0: Option<redisConnectCallback>,
+    mut fn_nc: Option<redisConnectCallbackNC>,
 ) -> libc::c_int {
     if ((*ac).onConnect).is_some() || ((*ac).onConnectNC).is_some() {
         return -(1 as libc::c_int);
@@ -1205,21 +1266,21 @@ unsafe extern "C" fn redisAsyncSetConnectCallbackImpl(
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncSetConnectCallback(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisConnectCallback>,
+    mut fn_0: Option<redisConnectCallback>,
 ) -> libc::c_int {
     return redisAsyncSetConnectCallbackImpl(ac, fn_0, None);
 }
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncSetConnectCallbackNC(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisConnectCallbackNC>,
+    mut fn_0: Option<redisConnectCallbackNC>,
 ) -> libc::c_int {
     return redisAsyncSetConnectCallbackImpl(ac, None, fn_0);
 }
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncSetDisconnectCallback(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisDisconnectCallback>,
+    mut fn_0: Option<redisDisconnectCallback>,
 ) -> libc::c_int {
     if ((*ac).onDisconnect).is_none() {
         (*ac).onDisconnect = fn_0;
@@ -1804,7 +1865,7 @@ unsafe extern "C" fn __redisAsyncHandleConnect(
         return -(1 as libc::c_int);
     } else if completed == 1 as libc::c_int {
         if (*c).connection_type as libc::c_uint
-            == REDIS_CONN_TCP as libc::c_int as libc::c_uint
+            == redisConnectionType::REDIS_CONN_TCP as libc::c_int as libc::c_uint
             && redisSetTcpNoDelay(c) == -(1 as libc::c_int)
         {
             __redisAsyncHandleConnectFailure(ac);
@@ -1995,7 +2056,7 @@ unsafe extern "C" fn nextArgument(
 }
 unsafe extern "C" fn __redisAsyncCommand(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisCallbackFn>,
+    mut fn_0: Option<redisCallbackFn>,
     mut privdata: *mut libc::c_void,
     mut cmd: *const libc::c_char,
     mut len: size_t,
@@ -2097,7 +2158,7 @@ unsafe extern "C" fn __redisAsyncCommand(
             }
             sname = sdsnewlen(astr as *const libc::c_void, alen);
             if sname.is_null() {
-                current_block = 14054218710020299727;
+                current_block = 7498292795577061466;
                 break;
             }
             if pvariant != 0 {
@@ -2142,7 +2203,7 @@ unsafe extern "C" fn __redisAsyncCommand(
                 }
                 sname = sdsnewlen(astr as *const libc::c_void, alen);
                 if sname.is_null() {
-                    current_block = 14054218710020299727;
+                    current_block = 7498292795577061466;
                     break;
                 }
                 de = dictFind(cbdict, sname as *const libc::c_void);
@@ -2185,23 +2246,23 @@ unsafe extern "C" fn __redisAsyncCommand(
     {
         (*c).flags |= 0x40 as libc::c_int;
         if __redisPushCallback(&mut (*ac).replies, &mut cb) != 0 as libc::c_int {
-            current_block = 14054218710020299727;
+            current_block = 7498292795577061466;
         } else {
             current_block = 6545907279487748450;
         }
     } else if (*c).flags & 0x20 as libc::c_int != 0 {
         if __redisPushCallback(&mut (*ac).sub.replies, &mut cb) != 0 as libc::c_int {
-            current_block = 14054218710020299727;
+            current_block = 7498292795577061466;
         } else {
             current_block = 6545907279487748450;
         }
     } else if __redisPushCallback(&mut (*ac).replies, &mut cb) != 0 as libc::c_int {
-        current_block = 14054218710020299727;
+        current_block = 7498292795577061466;
     } else {
         current_block = 6545907279487748450;
     }
     match current_block {
-        14054218710020299727 => {
+        7498292795577061466 => {
             __redisSetError(
                 &mut (*ac).c,
                 5 as libc::c_int,
@@ -2223,7 +2284,7 @@ unsafe extern "C" fn __redisAsyncCommand(
 #[no_mangle]
 pub unsafe extern "C" fn redisvAsyncCommand(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisCallbackFn>,
+    mut fn_0: Option<redisCallbackFn>,
     mut privdata: *mut libc::c_void,
     mut format: *const libc::c_char,
     mut ap: ::core::ffi::VaList,
@@ -2242,7 +2303,7 @@ pub unsafe extern "C" fn redisvAsyncCommand(
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncCommand(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisCallbackFn>,
+    mut fn_0: Option<redisCallbackFn>,
     mut privdata: *mut libc::c_void,
     mut format: *const libc::c_char,
     mut args: ...
@@ -2256,7 +2317,7 @@ pub unsafe extern "C" fn redisAsyncCommand(
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncCommandArgv(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisCallbackFn>,
+    mut fn_0: Option<redisCallbackFn>,
     mut privdata: *mut libc::c_void,
     mut argc: libc::c_int,
     mut argv: *mut *const libc::c_char,
@@ -2282,7 +2343,7 @@ pub unsafe extern "C" fn redisAsyncCommandArgv(
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncFormattedCommand(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisCallbackFn>,
+    mut fn_0: Option<redisCallbackFn>,
     mut privdata: *mut libc::c_void,
     mut cmd: *const libc::c_char,
     mut len: size_t,
@@ -2293,9 +2354,9 @@ pub unsafe extern "C" fn redisAsyncFormattedCommand(
 #[no_mangle]
 pub unsafe extern "C" fn redisAsyncSetPushCallback(
     mut ac: *mut redisAsyncContext,
-    mut fn_0: Option::<redisAsyncPushFn>,
-) -> Option::<redisAsyncPushFn> {
-    let mut old: Option::<redisAsyncPushFn> = (*ac).push_cb;
+    mut fn_0: Option<redisAsyncPushFn>,
+) -> Option<redisAsyncPushFn> {
+    let mut old: Option<redisAsyncPushFn> = (*ac).push_cb;
     (*ac).push_cb = fn_0;
     return old;
 }
@@ -2305,9 +2366,7 @@ pub unsafe extern "C" fn redisAsyncSetTimeout(
     mut tv: timeval,
 ) -> libc::c_int {
     if ((*ac).c.command_timeout).is_null() {
-        (*ac)
-            .c
-            .command_timeout = hi_calloc(
+        (*ac).c.command_timeout = hi_calloc(
             1 as libc::c_int as size_t,
             ::core::mem::size_of::<timeval>() as libc::c_ulong,
         ) as *mut timeval;

@@ -1,129 +1,135 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type table_entry;
     fn free(__ptr: *mut libc::c_void);
-    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    static mut stderr: *mut FILE;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    static mut stderr: *mut _IO_FILE;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
     fn memmove(
         _: *mut libc::c_void,
         _: *const libc::c_void,
-        _: libc::c_ulong,
+        _: u64,
     ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn _obstack_newchunk(_: *mut obstack, _: libc::c_int);
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strlen(_: *const i8) -> u64;
+    fn printf(_: *const i8, _: ...) -> i32;
+    fn _obstack_newchunk(_: *mut obstack, _: i32);
     fn _obstack_begin(
         _: *mut obstack,
-        _: libc::c_int,
-        _: libc::c_int,
-        _: Option::<unsafe extern "C" fn(libc::c_long) -> *mut libc::c_void>,
-        _: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    ) -> libc::c_int;
-    fn error(
-        __status: libc::c_int,
-        __errnum: libc::c_int,
-        __format: *const libc::c_char,
-        _: ...
-    );
+        _: i32,
+        _: i32,
+        _: Option<unsafe extern "C" fn(i64) -> *mut libc::c_void>,
+        _: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    ) -> i32;
+    fn error(__status: i32, __errnum: i32, __format: *const i8, _: ...);
     fn error_at_line(
-        __status: libc::c_int,
-        __errnum: libc::c_int,
-        __fname: *const libc::c_char,
-        __lineno: libc::c_uint,
-        __format: *const libc::c_char,
+        __status: i32,
+        __errnum: i32,
+        __fname: *const i8,
+        __lineno: u32,
+        __format: *const i8,
         _: ...
     );
     fn xmalloc(s: size_t) -> *mut libc::c_void;
     fn xrealloc(p: *mut libc::c_void, s: size_t) -> *mut libc::c_void;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    static mut verbose: libc::c_int;
-    static mut use_indentation: libc::c_int;
-    static mut strict_ansi: libc::c_int;
-    static mut debug: libc::c_int;
-    static mut omit_arguments_option: libc::c_int;
-    static mut omit_symbol_names_option: libc::c_int;
-    fn lookup(_: *const libc::c_char) -> *mut Symbol;
-    fn install(_: *mut libc::c_char, _: libc::c_int) -> *mut Symbol;
-    fn install_ident(name: *mut libc::c_char, storage: storage) -> *mut Symbol;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    static mut verbose: i32;
+    static mut use_indentation: i32;
+    static mut strict_ansi: i32;
+    static mut debug: i32;
+    static mut omit_arguments_option: i32;
+    static mut omit_symbol_names_option: i32;
+    fn lookup(_: *const i8) -> *mut Symbol;
+    fn install(_: *mut i8, _: i32) -> *mut Symbol;
+    fn install_ident(name: *mut i8, storage: storage) -> *mut Symbol;
     fn ident_change_storage(sp: *mut Symbol, storage: storage);
-    fn delete_autos(level_0: libc::c_int);
-    fn delete_parms(level_0: libc::c_int);
-    fn move_parms(level_0: libc::c_int);
+    fn delete_autos(level_0: i32);
+    fn delete_parms(level_0: i32);
+    fn move_parms(level_0: i32);
     fn linked_list_create(fun: linked_list_free_data_fp) -> *mut linked_list;
     fn linked_list_append(plist: *mut *mut linked_list, data: *mut libc::c_void);
-    fn data_in_list(data: *mut libc::c_void, list: *mut linked_list) -> libc::c_int;
-    fn get_token() -> libc::c_int;
-    fn globals_only() -> libc::c_int;
+    fn data_in_list(data: *mut libc::c_void, list: *mut linked_list) -> i32;
+    fn get_token() -> i32;
+    fn globals_only() -> i32;
     static mut yylval: YYSTYPE;
-    static mut filename: *mut libc::c_char;
-    static mut line_num: libc::c_int;
+    static mut filename: *mut i8;
+    static mut line_num: i32;
 }
-pub type size_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct obstack {
-    pub chunk_size: libc::c_long,
+    pub chunk_size: i64,
     pub chunk: *mut _obstack_chunk,
-    pub object_base: *mut libc::c_char,
-    pub next_free: *mut libc::c_char,
-    pub chunk_limit: *mut libc::c_char,
+    pub object_base: *mut i8,
+    pub next_free: *mut i8,
+    pub chunk_limit: *mut i8,
     pub temp: C2RustUnnamed,
-    pub alignment_mask: libc::c_int,
-    pub chunkfun: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, libc::c_long) -> *mut _obstack_chunk,
+    pub alignment_mask: i32,
+    pub chunkfun: Option<
+        unsafe extern "C" fn(*mut libc::c_void, i64) -> *mut _obstack_chunk,
     >,
-    pub freefun: Option::<
+    pub freefun: Option<
         unsafe extern "C" fn(*mut libc::c_void, *mut _obstack_chunk) -> (),
     >,
     pub extra_arg: *mut libc::c_void,
@@ -137,14 +143,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _obstack_chunk {
-    pub limit: *mut libc::c_char,
+    pub limit: *mut i8,
     pub prev: *mut _obstack_chunk,
-    pub contents: [libc::c_char; 4],
+    pub contents: [i8; 4],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub tempint: libc::c_long,
+    pub tempint: i64,
     pub tempptr: *mut libc::c_void,
 }
 #[derive(Copy, Clone)]
@@ -162,7 +168,7 @@ pub struct linked_list {
     pub head: *mut linked_list_entry,
     pub tail: *mut linked_list_entry,
 }
-pub type linked_list_free_data_fp = Option::<
+pub type linked_list_free_data_fp = Option<
     unsafe extern "C" fn(*mut libc::c_void) -> (),
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -173,18 +179,77 @@ pub enum symtype {
     SymIdentifier,
 }
 impl symtype {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             symtype::SymUndefined => 0,
             symtype::SymToken => 1,
             symtype::SymIdentifier => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> symtype {
+        match value {
+            0 => symtype::SymUndefined,
+            1 => symtype::SymToken,
+            2 => symtype::SymIdentifier,
+            _ => panic!("Invalid value for symtype: {}", value),
+        }
+    }
 }
-
-pub const SymIdentifier: symtype = 2;
-pub const SymToken: symtype = 1;
-pub const SymUndefined: symtype = 0;
+impl AddAssign<u32> for symtype {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = symtype::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for symtype {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = symtype::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for symtype {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = symtype::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for symtype {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = symtype::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for symtype {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = symtype::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for symtype {
+    type Output = symtype;
+    fn add(self, rhs: u32) -> symtype {
+        symtype::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for symtype {
+    type Output = symtype;
+    fn sub(self, rhs: u32) -> symtype {
+        symtype::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for symtype {
+    type Output = symtype;
+    fn mul(self, rhs: u32) -> symtype {
+        symtype::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for symtype {
+    type Output = symtype;
+    fn div(self, rhs: u32) -> symtype {
+        symtype::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for symtype {
+    type Output = symtype;
+    fn rem(self, rhs: u32) -> symtype {
+        symtype::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum storage {
@@ -195,7 +260,7 @@ pub enum storage {
     AnyStorage,
 }
 impl storage {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             storage::ExternStorage => 0,
             storage::ExplicitExternStorage => 1,
@@ -204,18 +269,77 @@ impl storage {
             storage::AnyStorage => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> storage {
+        match value {
+            0 => storage::ExternStorage,
+            1 => storage::ExplicitExternStorage,
+            2 => storage::StaticStorage,
+            3 => storage::AutoStorage,
+            4 => storage::AnyStorage,
+            _ => panic!("Invalid value for storage: {}", value),
+        }
+    }
 }
-
-pub const AnyStorage: storage = 4;
-pub const AutoStorage: storage = 3;
-pub const StaticStorage: storage = 2;
-pub const ExplicitExternStorage: storage = 1;
-pub const ExternStorage: storage = 0;
+impl AddAssign<u32> for storage {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = storage::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for storage {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = storage::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for storage {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = storage::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for storage {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = storage::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for storage {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = storage::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for storage {
+    type Output = storage;
+    fn add(self, rhs: u32) -> storage {
+        storage::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for storage {
+    type Output = storage;
+    fn sub(self, rhs: u32) -> storage {
+        storage::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for storage {
+    type Output = storage;
+    fn mul(self, rhs: u32) -> storage {
+        storage::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for storage {
+    type Output = storage;
+    fn div(self, rhs: u32) -> storage {
+        storage::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for storage {
+    type Output = storage;
+    fn rem(self, rhs: u32) -> storage {
+        storage::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct Ref {
-    pub line: libc::c_int,
-    pub source: *mut libc::c_char,
+    pub line: i32,
+    pub source: *mut i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -226,7 +350,7 @@ pub enum symbol_flag {
     symbol_alias,
 }
 impl symbol_flag {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             symbol_flag::symbol_none => 0,
             symbol_flag::symbol_temp => 1,
@@ -234,12 +358,71 @@ impl symbol_flag {
             symbol_flag::symbol_alias => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> symbol_flag {
+        match value {
+            0 => symbol_flag::symbol_none,
+            1 => symbol_flag::symbol_temp,
+            2 => symbol_flag::symbol_parm,
+            3 => symbol_flag::symbol_alias,
+            _ => panic!("Invalid value for symbol_flag: {}", value),
+        }
+    }
 }
-
-pub const symbol_alias: symbol_flag = 3;
-pub const symbol_parm: symbol_flag = 2;
-pub const symbol_temp: symbol_flag = 1;
-pub const symbol_none: symbol_flag = 0;
+impl AddAssign<u32> for symbol_flag {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = symbol_flag::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for symbol_flag {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = symbol_flag::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for symbol_flag {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = symbol_flag::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for symbol_flag {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = symbol_flag::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for symbol_flag {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = symbol_flag::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for symbol_flag {
+    type Output = symbol_flag;
+    fn add(self, rhs: u32) -> symbol_flag {
+        symbol_flag::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for symbol_flag {
+    type Output = symbol_flag;
+    fn sub(self, rhs: u32) -> symbol_flag {
+        symbol_flag::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for symbol_flag {
+    type Output = symbol_flag;
+    fn mul(self, rhs: u32) -> symbol_flag {
+        symbol_flag::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for symbol_flag {
+    type Output = symbol_flag;
+    fn div(self, rhs: u32) -> symbol_flag {
+        symbol_flag::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for symbol_flag {
+    type Output = symbol_flag;
+    fn rem(self, rhs: u32) -> symbol_flag {
+        symbol_flag::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct symbol {
@@ -247,20 +430,20 @@ pub struct symbol {
     pub next: *mut Symbol,
     pub entry: *mut linked_list_entry,
     pub type_0: symtype,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub flag: symbol_flag,
     pub alias: *mut symbol,
-    pub active: libc::c_int,
-    pub expand_line: libc::c_int,
-    pub token_type: libc::c_int,
-    pub source: *mut libc::c_char,
-    pub def_line: libc::c_int,
+    pub active: i32,
+    pub expand_line: i32,
+    pub token_type: i32,
+    pub source: *mut i8,
+    pub def_line: i32,
     pub ref_line: *mut linked_list,
-    pub level: libc::c_int,
-    pub decl: *mut libc::c_char,
+    pub level: i32,
+    pub decl: *mut i8,
     pub storage: storage,
-    pub arity: libc::c_int,
-    pub recursive: libc::c_int,
+    pub arity: i32,
+    pub recursive: i32,
     pub ord: size_t,
     pub caller: *mut linked_list,
     pub callee: *mut linked_list,
@@ -269,36 +452,36 @@ pub type Symbol = symbol;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct TOKSTK {
-    pub type_0: libc::c_int,
-    pub token: *mut libc::c_char,
-    pub line: libc::c_int,
+    pub type_0: i32,
+    pub token: *mut i8,
+    pub line: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct Ident {
-    pub name: *mut libc::c_char,
-    pub type_end: libc::c_int,
-    pub parmcnt: libc::c_int,
-    pub line: libc::c_int,
+    pub name: *mut i8,
+    pub type_end: i32,
+    pub parmcnt: i32,
+    pub line: i32,
     pub storage: storage,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct YYSTYPE {
-    pub str_0: *mut libc::c_char,
+    pub str_0: *mut i8,
 }
-pub type Stackpos = [libc::c_int; 1];
+pub type Stackpos = [i32; 1];
 #[no_mangle]
-pub static mut level: libc::c_int = 0;
+pub static mut level: i32 = 0;
 #[no_mangle]
 pub static mut caller: *mut Symbol = 0 as *const Symbol as *mut Symbol;
 #[no_mangle]
 pub static mut text_stk: obstack = obstack {
     chunk_size: 0,
     chunk: 0 as *const _obstack_chunk as *mut _obstack_chunk,
-    object_base: 0 as *const libc::c_char as *mut libc::c_char,
-    next_free: 0 as *const libc::c_char as *mut libc::c_char,
-    chunk_limit: 0 as *const libc::c_char as *mut libc::c_char,
+    object_base: 0 as *const i8 as *mut i8,
+    next_free: 0 as *const i8 as *mut i8,
+    chunk_limit: 0 as *const i8 as *mut i8,
     temp: C2RustUnnamed { tempint: 0 },
     alignment_mask: 0,
     chunkfun: None,
@@ -308,102 +491,76 @@ pub static mut text_stk: obstack = obstack {
     c2rust_padding: [0; 7],
 };
 #[no_mangle]
-pub static mut parm_level: libc::c_int = 0;
+pub static mut parm_level: i32 = 0;
 #[no_mangle]
 pub static mut tok: TOKSTK = TOKSTK {
     type_0: 0,
-    token: 0 as *const libc::c_char as *mut libc::c_char,
+    token: 0 as *const i8 as *mut i8,
     line: 0,
 };
 #[no_mangle]
 pub static mut token_stack: *mut TOKSTK = 0 as *const TOKSTK as *mut TOKSTK;
 #[no_mangle]
-pub static mut tos: libc::c_int = 0;
+pub static mut tos: i32 = 0;
 #[no_mangle]
-pub static mut curs: libc::c_int = 0;
+pub static mut curs: i32 = 0;
 #[no_mangle]
-pub static mut token_stack_length: libc::c_int = 64 as libc::c_int;
+pub static mut token_stack_length: i32 = 64 as i32;
 #[no_mangle]
-pub static mut token_stack_increase: libc::c_int = 32 as libc::c_int;
-static mut need_space: libc::c_int = 0;
+pub static mut token_stack_increase: i32 = 32 as i32;
+static mut need_space: i32 = 0;
 unsafe extern "C" fn print_token(mut tokptr: *mut TOKSTK) {
     match (*tokptr).type_0 {
         260 | 270 | 257 | 265 | 264 | 272 | 273 | 266 => {
-            fprintf(
-                stderr,
-                b"`%s'\0" as *const u8 as *const libc::c_char,
-                (*tokptr).token,
-            );
+            fprintf(stderr, b"`%s'\0" as *const u8 as *const i8, (*tokptr).token);
         }
         258 | 123 => {
-            fprintf(stderr, b"`{'\0" as *const u8 as *const libc::c_char);
+            fprintf(stderr, b"`{'\0" as *const u8 as *const i8);
         }
         259 | 125 => {
-            fprintf(stderr, b"`}'\0" as *const u8 as *const libc::c_char);
+            fprintf(stderr, b"`}'\0" as *const u8 as *const i8);
         }
         261 => {
-            fprintf(stderr, b"`extern'\0" as *const u8 as *const libc::c_char);
+            fprintf(stderr, b"`extern'\0" as *const u8 as *const i8);
         }
         262 => {
-            fprintf(stderr, b"`static'\0" as *const u8 as *const libc::c_char);
+            fprintf(stderr, b"`static'\0" as *const u8 as *const i8);
         }
         263 => {
-            fprintf(stderr, b"`typedef'\0" as *const u8 as *const libc::c_char);
+            fprintf(stderr, b"`typedef'\0" as *const u8 as *const i8);
         }
         271 => {
-            fprintf(
-                stderr,
-                b"\"%s\"\0" as *const u8 as *const libc::c_char,
-                (*tokptr).token,
-            );
+            fprintf(stderr, b"\"%s\"\0" as *const u8 as *const i8, (*tokptr).token);
         }
         _ => {
-            fprintf(
-                stderr,
-                b"`%c'\0" as *const u8 as *const libc::c_char,
-                (*tokptr).type_0,
-            );
+            fprintf(stderr, b"`%c'\0" as *const u8 as *const i8, (*tokptr).type_0);
         }
     };
 }
-unsafe extern "C" fn file_error(mut msg: *mut libc::c_char, mut tokptr: *mut TOKSTK) {
-    fprintf(
-        stderr,
-        b"%s:%d: %s\0" as *const u8 as *const libc::c_char,
-        filename,
-        tok.line,
-        msg,
-    );
+unsafe extern "C" fn file_error(mut msg: *mut i8, mut tokptr: *mut TOKSTK) {
+    fprintf(stderr, b"%s:%d: %s\0" as *const u8 as *const i8, filename, tok.line, msg);
     if !tokptr.is_null() {
         fprintf(
             stderr,
-            dcgettext(
-                0 as *const libc::c_char,
-                b" near \0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
-            ),
+            dcgettext(0 as *const i8, b" near \0" as *const u8 as *const i8, 5 as i32),
         );
         print_token(tokptr);
     }
-    fprintf(stderr, b"\n\0" as *const u8 as *const libc::c_char);
+    fprintf(stderr, b"\n\0" as *const u8 as *const i8);
 }
 #[no_mangle]
-pub unsafe extern "C" fn mark(mut pos: *mut libc::c_int) {
-    *pos.offset(0 as libc::c_int as isize) = curs;
+pub unsafe extern "C" fn mark(mut pos: *mut i32) {
+    *pos.offset(0 as i32 as isize) = curs;
 }
 #[no_mangle]
-pub unsafe extern "C" fn restore(mut pos: *mut libc::c_int) {
-    curs = *pos.offset(0 as libc::c_int as isize);
+pub unsafe extern "C" fn restore(mut pos: *mut i32) {
+    curs = *pos.offset(0 as i32 as isize);
     if curs != 0 {
-        tok = *token_stack.offset((curs - 1 as libc::c_int) as isize);
+        tok = *token_stack.offset((curs - 1 as i32) as isize);
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn tokpush(
-    mut type_0: libc::c_int,
-    mut line: libc::c_int,
-    mut token: *mut libc::c_char,
-) {
+pub unsafe extern "C" fn tokpush(mut type_0: i32, mut line: i32, mut token: *mut i8) {
     (*token_stack.offset(tos as isize)).type_0 = type_0;
     let ref mut fresh0 = (*token_stack.offset(tos as isize)).token;
     *fresh0 = token;
@@ -413,33 +570,32 @@ pub unsafe extern "C" fn tokpush(
         token_stack_length += token_stack_increase;
         token_stack = xrealloc(
             token_stack as *mut libc::c_void,
-            (token_stack_length as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<TOKSTK>() as libc::c_ulong),
+            (token_stack_length as u64)
+                .wrapping_mul(::core::mem::size_of::<TOKSTK>() as u64),
         ) as *mut TOKSTK;
     }
 }
 #[no_mangle]
 pub unsafe extern "C" fn cleanup_stack() {
-    let mut delta: libc::c_int = tos - curs;
+    let mut delta: i32 = tos - curs;
     if delta != 0 {
         memmove(
             token_stack as *mut libc::c_void,
             token_stack.offset(curs as isize) as *const libc::c_void,
-            (delta as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<TOKSTK>() as libc::c_ulong),
+            (delta as u64).wrapping_mul(::core::mem::size_of::<TOKSTK>() as u64),
         );
     }
     tos = delta;
-    curs = 0 as libc::c_int;
+    curs = 0 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn clearstack() {
-    curs = 0 as libc::c_int;
+    curs = 0 as i32;
     tos = curs;
 }
 #[no_mangle]
-pub unsafe extern "C" fn nexttoken() -> libc::c_int {
-    let mut type_0: libc::c_int = 0;
+pub unsafe extern "C" fn nexttoken() -> i32 {
+    let mut type_0: i32 = 0;
     if curs == tos {
         type_0 = get_token();
         tokpush(type_0, line_num, yylval.str_0);
@@ -450,26 +606,26 @@ pub unsafe extern "C" fn nexttoken() -> libc::c_int {
     return tok.type_0;
 }
 #[no_mangle]
-pub unsafe extern "C" fn putback() -> libc::c_int {
-    if curs == 0 as libc::c_int {
+pub unsafe extern "C" fn putback() -> i32 {
+    if curs == 0 as i32 {
         error(
-            10 as libc::c_int,
-            0 as libc::c_int,
+            10 as i32,
+            0 as i32,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"INTERNAL ERROR: cannot return token to stream\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
         );
     }
     curs -= 1;
     curs;
-    if curs > 0 as libc::c_int {
-        tok.type_0 = (*token_stack.offset((curs - 1 as libc::c_int) as isize)).type_0;
-        tok.token = (*token_stack.offset((curs - 1 as libc::c_int) as isize)).token;
+    if curs > 0 as i32 {
+        tok.type_0 = (*token_stack.offset((curs - 1 as i32) as isize)).type_0;
+        tok.token = (*token_stack.offset((curs - 1 as i32) as isize)).token;
     } else {
-        tok.type_0 = 0 as libc::c_int;
+        tok.type_0 = 0 as i32;
     }
     return tok.type_0;
 }
@@ -477,175 +633,158 @@ pub unsafe extern "C" fn putback() -> libc::c_int {
 pub unsafe extern "C" fn init_parse() {
     _obstack_begin(
         &mut text_stk,
-        0 as libc::c_int,
-        0 as libc::c_int,
+        0 as i32,
+        0 as i32,
         ::core::mem::transmute::<
-            Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-            Option::<unsafe extern "C" fn(libc::c_long) -> *mut libc::c_void>,
+            Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+            Option<unsafe extern "C" fn(i64) -> *mut libc::c_void>,
         >(Some(xmalloc as unsafe extern "C" fn(size_t) -> *mut libc::c_void)),
         ::core::mem::transmute::<
-            Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-            Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+            Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+            Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
         >(Some(free as unsafe extern "C" fn(*mut libc::c_void) -> ())),
     );
     token_stack = xmalloc(
-        (token_stack_length as libc::c_ulong)
-            .wrapping_mul(::core::mem::size_of::<TOKSTK>() as libc::c_ulong),
+        (token_stack_length as u64).wrapping_mul(::core::mem::size_of::<TOKSTK>() as u64),
     ) as *mut TOKSTK;
     clearstack();
 }
 #[no_mangle]
 pub unsafe extern "C" fn save_token(mut tokptr: *mut TOKSTK) {
-    let mut len: libc::c_int = 0;
+    let mut len: i32 = 0;
     match (*tokptr).type_0 {
         260 | 270 | 264 | 272 | 257 | 273 => {
             if need_space != 0 {
                 let mut __o: *mut obstack = &mut text_stk;
-                if ((*__o).next_free).offset(1 as libc::c_int as isize)
-                    > (*__o).chunk_limit
-                {
-                    _obstack_newchunk(__o, 1 as libc::c_int);
+                if ((*__o).next_free).offset(1 as i32 as isize) > (*__o).chunk_limit {
+                    _obstack_newchunk(__o, 1 as i32);
                 }
                 let fresh1 = (*__o).next_free;
                 (*__o).next_free = ((*__o).next_free).offset(1);
-                *fresh1 = ' ' as i32 as libc::c_char;
+                *fresh1 = ' ' as i32 as i8;
             }
-            len = strlen((*tokptr).token) as libc::c_int;
+            len = strlen((*tokptr).token) as i32;
             let mut __o_0: *mut obstack = &mut text_stk;
-            let mut __len: libc::c_int = len;
+            let mut __len: i32 = len;
             if ((*__o_0).next_free).offset(__len as isize) > (*__o_0).chunk_limit {
                 _obstack_newchunk(__o_0, __len);
             }
             memcpy(
                 (*__o_0).next_free as *mut libc::c_void,
                 (*tokptr).token as *const libc::c_void,
-                __len as libc::c_ulong,
+                __len as u64,
             );
             (*__o_0).next_free = ((*__o_0).next_free).offset(__len as isize);
-            need_space = 1 as libc::c_int;
+            need_space = 1 as i32;
         }
         265 => {
             if need_space != 0 {
                 let mut __o_1: *mut obstack = &mut text_stk;
-                if ((*__o_1).next_free).offset(1 as libc::c_int as isize)
-                    > (*__o_1).chunk_limit
+                if ((*__o_1).next_free).offset(1 as i32 as isize) > (*__o_1).chunk_limit
                 {
-                    _obstack_newchunk(__o_1, 1 as libc::c_int);
+                    _obstack_newchunk(__o_1, 1 as i32);
                 }
                 let fresh2 = (*__o_1).next_free;
                 (*__o_1).next_free = ((*__o_1).next_free).offset(1);
-                *fresh2 = ' ' as i32 as libc::c_char;
+                *fresh2 = ' ' as i32 as i8;
             }
-            if *((*tokptr).token).offset(0 as libc::c_int as isize) as libc::c_int
-                == '*' as i32
-            {
-                need_space = 0 as libc::c_int;
+            if *((*tokptr).token).offset(0 as i32 as isize) as i32 == '*' as i32 {
+                need_space = 0 as i32;
             } else {
-                need_space = 1 as libc::c_int;
+                need_space = 1 as i32;
             }
-            len = strlen((*tokptr).token) as libc::c_int;
+            len = strlen((*tokptr).token) as i32;
             let mut __o_2: *mut obstack = &mut text_stk;
-            let mut __len_0: libc::c_int = len;
+            let mut __len_0: i32 = len;
             if ((*__o_2).next_free).offset(__len_0 as isize) > (*__o_2).chunk_limit {
                 _obstack_newchunk(__o_2, __len_0);
             }
             memcpy(
                 (*__o_2).next_free as *mut libc::c_void,
                 (*tokptr).token as *const libc::c_void,
-                __len_0 as libc::c_ulong,
+                __len_0 as u64,
             );
             (*__o_2).next_free = ((*__o_2).next_free).offset(__len_0 as isize);
         }
         261 | 262 => {}
         44 => {
             let mut __o_3: *mut obstack = &mut text_stk;
-            if ((*__o_3).next_free).offset(1 as libc::c_int as isize)
-                > (*__o_3).chunk_limit
-            {
-                _obstack_newchunk(__o_3, 1 as libc::c_int);
+            if ((*__o_3).next_free).offset(1 as i32 as isize) > (*__o_3).chunk_limit {
+                _obstack_newchunk(__o_3, 1 as i32);
             }
             let fresh3 = (*__o_3).next_free;
             (*__o_3).next_free = ((*__o_3).next_free).offset(1);
-            *fresh3 = ',' as i32 as libc::c_char;
-            need_space = 1 as libc::c_int;
+            *fresh3 = ',' as i32 as i8;
+            need_space = 1 as i32;
         }
         40 => {
             if need_space != 0 {
                 let mut __o_4: *mut obstack = &mut text_stk;
-                if ((*__o_4).next_free).offset(1 as libc::c_int as isize)
-                    > (*__o_4).chunk_limit
+                if ((*__o_4).next_free).offset(1 as i32 as isize) > (*__o_4).chunk_limit
                 {
-                    _obstack_newchunk(__o_4, 1 as libc::c_int);
+                    _obstack_newchunk(__o_4, 1 as i32);
                 }
                 let fresh4 = (*__o_4).next_free;
                 (*__o_4).next_free = ((*__o_4).next_free).offset(1);
-                *fresh4 = ' ' as i32 as libc::c_char;
+                *fresh4 = ' ' as i32 as i8;
             }
             let mut __o_5: *mut obstack = &mut text_stk;
-            if ((*__o_5).next_free).offset(1 as libc::c_int as isize)
-                > (*__o_5).chunk_limit
-            {
-                _obstack_newchunk(__o_5, 1 as libc::c_int);
+            if ((*__o_5).next_free).offset(1 as i32 as isize) > (*__o_5).chunk_limit {
+                _obstack_newchunk(__o_5, 1 as i32);
             }
             let fresh5 = (*__o_5).next_free;
             (*__o_5).next_free = ((*__o_5).next_free).offset(1);
-            *fresh5 = (*tokptr).type_0 as libc::c_char;
-            need_space = 0 as libc::c_int;
+            *fresh5 = (*tokptr).type_0 as i8;
+            need_space = 0 as i32;
         }
         41 => {
             let mut __o_6: *mut obstack = &mut text_stk;
-            if ((*__o_6).next_free).offset(1 as libc::c_int as isize)
-                > (*__o_6).chunk_limit
-            {
-                _obstack_newchunk(__o_6, 1 as libc::c_int);
+            if ((*__o_6).next_free).offset(1 as i32 as isize) > (*__o_6).chunk_limit {
+                _obstack_newchunk(__o_6, 1 as i32);
             }
             let fresh6 = (*__o_6).next_free;
             (*__o_6).next_free = ((*__o_6).next_free).offset(1);
-            *fresh6 = (*tokptr).type_0 as libc::c_char;
-            need_space = 1 as libc::c_int;
+            *fresh6 = (*tokptr).type_0 as i8;
+            need_space = 1 as i32;
         }
         91 | 93 => {
             let mut __o_7: *mut obstack = &mut text_stk;
-            if ((*__o_7).next_free).offset(1 as libc::c_int as isize)
-                > (*__o_7).chunk_limit
-            {
-                _obstack_newchunk(__o_7, 1 as libc::c_int);
+            if ((*__o_7).next_free).offset(1 as i32 as isize) > (*__o_7).chunk_limit {
+                _obstack_newchunk(__o_7, 1 as i32);
             }
             let fresh7 = (*__o_7).next_free;
             (*__o_7).next_free = ((*__o_7).next_free).offset(1);
-            *fresh7 = (*tokptr).type_0 as libc::c_char;
-            need_space = 0 as libc::c_int;
+            *fresh7 = (*tokptr).type_0 as i8;
+            need_space = 0 as i32;
         }
         266 => {
             let mut __o_8: *mut obstack = &mut text_stk;
-            if ((*__o_8).next_free).offset(1 as libc::c_int as isize)
-                > (*__o_8).chunk_limit
-            {
-                _obstack_newchunk(__o_8, 1 as libc::c_int);
+            if ((*__o_8).next_free).offset(1 as i32 as isize) > (*__o_8).chunk_limit {
+                _obstack_newchunk(__o_8, 1 as i32);
             }
             let fresh8 = (*__o_8).next_free;
             (*__o_8).next_free = ((*__o_8).next_free).offset(1);
-            *fresh8 = ' ' as i32 as libc::c_char;
+            *fresh8 = ' ' as i32 as i8;
             let mut __o_9: *mut obstack = &mut text_stk;
-            let mut __len_1: libc::c_int = strlen((*tokptr).token) as libc::c_int;
+            let mut __len_1: i32 = strlen((*tokptr).token) as i32;
             if ((*__o_9).next_free).offset(__len_1 as isize) > (*__o_9).chunk_limit {
                 _obstack_newchunk(__o_9, __len_1);
             }
             memcpy(
                 (*__o_9).next_free as *mut libc::c_void,
                 (*tokptr).token as *const libc::c_void,
-                __len_1 as libc::c_ulong,
+                __len_1 as u64,
             );
             (*__o_9).next_free = ((*__o_9).next_free).offset(__len_1 as isize);
-            need_space = 1 as libc::c_int;
+            need_space = 1 as i32;
         }
         _ => {
             if verbose != 0 {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"unrecognized definition\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"unrecognized definition\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     tokptr,
                 );
@@ -654,31 +793,29 @@ pub unsafe extern "C" fn save_token(mut tokptr: *mut TOKSTK) {
     };
 }
 static mut start_pos: Stackpos = [0; 1];
-static mut save_end: libc::c_int = 0;
+static mut save_end: i32 = 0;
 #[no_mangle]
 pub unsafe extern "C" fn save_stack() {
     mark(start_pos.as_mut_ptr());
-    save_end = curs - 1 as libc::c_int;
+    save_end = curs - 1 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn undo_save_stack() {
-    save_end = -(1 as libc::c_int);
+    save_end = -(1 as i32);
 }
 #[no_mangle]
-pub unsafe extern "C" fn finish_save_stack(
-    mut name: *mut libc::c_char,
-) -> *mut libc::c_char {
-    let mut i: libc::c_int = 0;
-    let mut level_0: libc::c_int = 0 as libc::c_int;
-    let mut found_ident: libc::c_int = (omit_symbol_names_option == 0) as libc::c_int;
-    need_space = 0 as libc::c_int;
+pub unsafe extern "C" fn finish_save_stack(mut name: *mut i8) -> *mut i8 {
+    let mut i: i32 = 0;
+    let mut level_0: i32 = 0 as i32;
+    let mut found_ident: i32 = (omit_symbol_names_option == 0) as i32;
+    need_space = 0 as i32;
     let mut current_block_13: u64;
-    i = 0 as libc::c_int;
+    i = 0 as i32;
     while i < save_end {
         match (*token_stack.offset(i as isize)).type_0 {
             40 => {
                 if omit_arguments_option != 0 {
-                    if level_0 == 0 as libc::c_int {
+                    if level_0 == 0 as i32 {
                         save_token(token_stack.offset(i as isize));
                     }
                     level_0 += 1;
@@ -695,11 +832,10 @@ pub unsafe extern "C" fn finish_save_stack(
             }
             260 => {
                 if found_ident == 0
-                    && strcmp(name, (*token_stack.offset(i as isize)).token)
-                        == 0 as libc::c_int
+                    && strcmp(name, (*token_stack.offset(i as isize)).token) == 0 as i32
                 {
-                    need_space = 1 as libc::c_int;
-                    found_ident = 1 as libc::c_int;
+                    need_space = 1 as i32;
+                    found_ident = 1 as i32;
                     current_block_13 = 4988723283678924448;
                 } else {
                     current_block_13 = 13056961889198038528;
@@ -711,7 +847,7 @@ pub unsafe extern "C" fn finish_save_stack(
         }
         match current_block_13 {
             13056961889198038528 => {
-                if level_0 == 0 as libc::c_int {
+                if level_0 == 0 as i32 {
                     save_token(token_stack.offset(i as isize));
                 }
             }
@@ -721,53 +857,49 @@ pub unsafe extern "C" fn finish_save_stack(
         i;
     }
     let mut __o: *mut obstack = &mut text_stk;
-    if ((*__o).next_free).offset(1 as libc::c_int as isize) > (*__o).chunk_limit {
-        _obstack_newchunk(__o, 1 as libc::c_int);
+    if ((*__o).next_free).offset(1 as i32 as isize) > (*__o).chunk_limit {
+        _obstack_newchunk(__o, 1 as i32);
     }
     let fresh9 = (*__o).next_free;
     (*__o).next_free = ((*__o).next_free).offset(1);
-    *fresh9 = 0 as libc::c_int as libc::c_char;
+    *fresh9 = 0 as i32 as i8;
     return ({
         let mut __o1: *mut obstack = &mut text_stk as *mut obstack;
         let mut __value: *mut libc::c_void = (*__o1).object_base as *mut libc::c_void;
-        if (*__o1).next_free == __value as *mut libc::c_char {
-            (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
+        if (*__o1).next_free == __value as *mut i8 {
+            (*__o1).set_maybe_empty_object(1 as i32 as u32);
         }
-        (*__o1)
-            .next_free = (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
-            < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+        (*__o1).next_free = (if (::core::mem::size_of::<i64>() as u64)
+            < ::core::mem::size_of::<*mut libc::c_void>() as u64
         {
             (*__o1).object_base
         } else {
-            0 as *mut libc::c_char
+            0 as *mut i8
         })
             .offset(
                 (((*__o1).next_free)
                     .offset_from(
-                        (if (::core::mem::size_of::<libc::c_long>() as libc::c_ulong)
-                            < ::core::mem::size_of::<*mut libc::c_void>()
-                                as libc::c_ulong
+                        (if (::core::mem::size_of::<i64>() as u64)
+                            < ::core::mem::size_of::<*mut libc::c_void>() as u64
                         {
                             (*__o1).object_base
                         } else {
-                            0 as *mut libc::c_char
+                            0 as *mut i8
                         }),
-                    ) as libc::c_long + (*__o1).alignment_mask as libc::c_long
-                    & !(*__o1).alignment_mask as libc::c_long) as isize,
+                    ) as i64 + (*__o1).alignment_mask as i64
+                    & !(*__o1).alignment_mask as i64) as isize,
             );
-        if ((*__o1).next_free).offset_from((*__o1).chunk as *mut libc::c_char)
-            as libc::c_long
-            > ((*__o1).chunk_limit).offset_from((*__o1).chunk as *mut libc::c_char)
-                as libc::c_long
+        if ((*__o1).next_free).offset_from((*__o1).chunk as *mut i8) as i64
+            > ((*__o1).chunk_limit).offset_from((*__o1).chunk as *mut i8) as i64
         {
             (*__o1).next_free = (*__o1).chunk_limit;
         }
         (*__o1).object_base = (*__o1).next_free;
         __value
-    }) as *mut libc::c_char;
+    }) as *mut i8;
 }
 #[no_mangle]
-pub unsafe extern "C" fn skip_to(mut c: libc::c_int) {
+pub unsafe extern "C" fn skip_to(mut c: i32) {
     while nexttoken() != 0 {
         if tok.type_0 == c {
             break;
@@ -776,21 +908,21 @@ pub unsafe extern "C" fn skip_to(mut c: libc::c_int) {
 }
 #[no_mangle]
 pub unsafe extern "C" fn skip_balanced(
-    mut open_tok: libc::c_int,
-    mut close_tok: libc::c_int,
-    mut level_0: libc::c_int,
-) -> libc::c_int {
-    if level_0 == 0 as libc::c_int {
+    mut open_tok: i32,
+    mut close_tok: i32,
+    mut level_0: i32,
+) -> i32 {
+    if level_0 == 0 as i32 {
         if nexttoken() != open_tok {
-            return 1 as libc::c_int;
+            return 1 as i32;
         }
         level_0 += 1;
         level_0;
     }
     while nexttoken() != 0 {
-        if tok.type_0 == 258 as libc::c_int && open_tok == '{' as i32 {
+        if tok.type_0 == 258 as i32 && open_tok == '{' as i32 {
             tok.type_0 = '{' as i32;
-        } else if tok.type_0 == 259 as libc::c_int && close_tok == '}' as i32 {
+        } else if tok.type_0 == 259 as i32 && close_tok == '}' as i32 {
             tok.type_0 = '}' as i32;
         }
         if tok.type_0 == open_tok {
@@ -798,31 +930,31 @@ pub unsafe extern "C" fn skip_balanced(
             level_0;
         } else if tok.type_0 == close_tok {
             level_0 -= 1;
-            if level_0 == 0 as libc::c_int {
+            if level_0 == 0 as i32 {
                 nexttoken();
-                return 0 as libc::c_int;
+                return 0 as i32;
             }
         }
     }
-    return -(1 as libc::c_int);
+    return -(1 as i32);
 }
 #[no_mangle]
-pub unsafe extern "C" fn yyparse() -> libc::c_int {
+pub unsafe extern "C" fn yyparse() -> i32 {
     let mut identifier: Ident = Ident {
-        name: 0 as *mut libc::c_char,
+        name: 0 as *mut i8,
         type_end: 0,
         parmcnt: 0,
         line: 0,
-        storage: ExternStorage,
+        storage: storage::ExternStorage,
     };
-    level = 0 as libc::c_int;
+    level = 0 as i32;
     caller = 0 as *mut Symbol;
     clearstack();
     let mut current_block_11: u64;
     while nexttoken() != 0 {
-        identifier.storage = ExternStorage;
+        identifier.storage = storage::ExternStorage;
         match tok.type_0 {
-            0 => return 0 as libc::c_int,
+            0 => return 0 as i32,
             273 => {
                 continue;
             }
@@ -831,32 +963,32 @@ pub unsafe extern "C" fn yyparse() -> libc::c_int {
                 current_block_11 = 5399440093318478209;
             }
             261 => {
-                identifier.storage = ExplicitExternStorage;
-                parse_declaration(&mut identifier, 0 as libc::c_int);
+                identifier.storage = storage::ExplicitExternStorage;
+                parse_declaration(&mut identifier, 0 as i32);
                 current_block_11 = 5399440093318478209;
             }
             262 => {
-                identifier.storage = StaticStorage;
+                identifier.storage = storage::StaticStorage;
                 nexttoken();
-                current_block_11 = 2684696397838582068;
+                current_block_11 = 740180670140435916;
             }
             _ => {
-                current_block_11 = 2684696397838582068;
+                current_block_11 = 740180670140435916;
             }
         }
         match current_block_11 {
-            2684696397838582068 => {
-                parse_declaration(&mut identifier, 0 as libc::c_int);
+            740180670140435916 => {
+                parse_declaration(&mut identifier, 0 as i32);
             }
             _ => {}
         }
         cleanup_stack();
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
-unsafe extern "C" fn is_function() -> libc::c_int {
+unsafe extern "C" fn is_function() -> i32 {
     let mut sp: Stackpos = [0; 1];
-    let mut res: libc::c_int = 0 as libc::c_int;
+    let mut res: i32 = 0 as i32;
     mark(sp.as_mut_ptr());
     loop {
         match tok.type_0 {
@@ -864,22 +996,20 @@ unsafe extern "C" fn is_function() -> libc::c_int {
                 nexttoken();
             }
             272 => {
-                if skip_balanced('(' as i32, ')' as i32, 0 as libc::c_int)
-                    == -(1 as libc::c_int)
-                {
+                if skip_balanced('(' as i32, ')' as i32, 0 as i32) == -(1 as i32) {
                     file_error(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unexpected end of file in declaration\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         0 as *mut TOKSTK,
                     );
                 }
             }
             40 => {
-                res = (nexttoken() != 265 as libc::c_int) as libc::c_int;
+                res = (nexttoken() != 265 as i32) as i32;
                 break;
             }
             _ => {
@@ -891,10 +1021,7 @@ unsafe extern "C" fn is_function() -> libc::c_int {
     return res;
 }
 #[no_mangle]
-pub unsafe extern "C" fn parse_declaration(
-    mut ident: *mut Ident,
-    mut parm: libc::c_int,
-) {
+pub unsafe extern "C" fn parse_declaration(mut ident: *mut Ident, mut parm: i32) {
     if is_function() != 0 {
         parse_function_declaration(ident, parm);
     } else {
@@ -904,10 +1031,10 @@ pub unsafe extern "C" fn parse_declaration(
 }
 #[no_mangle]
 pub unsafe extern "C" fn expression() {
-    let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut line: libc::c_int = 0;
-    let mut parens_lev: libc::c_int = 0;
-    parens_lev = 0 as libc::c_int;
+    let mut name: *mut i8 = 0 as *mut i8;
+    let mut line: i32 = 0;
+    let mut parens_lev: i32 = 0;
+    parens_lev = 0 as i32;
     loop {
         match tok.type_0 {
             59 => return,
@@ -916,7 +1043,7 @@ pub unsafe extern "C" fn expression() {
                 return;
             }
             44 => {
-                if parens_lev == 0 as libc::c_int {
+                if parens_lev == 0 as i32 {
                     return;
                 }
             }
@@ -924,10 +1051,10 @@ pub unsafe extern "C" fn expression() {
                 if verbose != 0 {
                     file_error(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unexpected end of file in expression\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         0 as *mut TOKSTK,
                     );
@@ -944,8 +1071,8 @@ pub unsafe extern "C" fn expression() {
                     parens_lev;
                 } else {
                     reference(name, line);
-                    if tok.type_0 == 269 as libc::c_int {
-                        while tok.type_0 == 269 as libc::c_int {
+                    if tok.type_0 == 269 as i32 {
+                        while tok.type_0 == 269 as i32 {
                             nexttoken();
                         }
                     } else {
@@ -954,7 +1081,7 @@ pub unsafe extern "C" fn expression() {
                 }
             }
             40 => {
-                if nexttoken() == 270 as libc::c_int {
+                if nexttoken() == 270 as i32 {
                     skip_to(')' as i32);
                 } else {
                     putback();
@@ -974,10 +1101,10 @@ pub unsafe extern "C" fn expression() {
 #[no_mangle]
 pub unsafe extern "C" fn parse_function_declaration(
     mut ident: *mut Ident,
-    mut parm: libc::c_int,
+    mut parm: i32,
 ) {
-    let mut error_recovery: libc::c_int = 0 as libc::c_int;
-    (*ident).type_end = -(1 as libc::c_int);
+    let mut error_recovery: i32 = 0 as i32;
+    (*ident).type_end = -(1 as i32);
     parse_knr_dcl(ident);
     loop {
         match tok.type_0 {
@@ -1000,10 +1127,10 @@ pub unsafe extern "C" fn parse_function_declaration(
                 if verbose != 0 {
                     file_error(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unexpected end of file in declaration\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         0 as *mut TOKSTK,
                     );
@@ -1018,91 +1145,88 @@ pub unsafe extern "C" fn parse_function_declaration(
             if verbose != 0 {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"expected `;'\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"expected `;'\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     &mut tok,
                 );
             }
-            error_recovery = 1 as libc::c_int;
+            error_recovery = 1 as i32;
         }
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn fake_struct(mut ident: *mut Ident) -> libc::c_int {
+pub unsafe extern "C" fn fake_struct(mut ident: *mut Ident) -> i32 {
     let mut sp: Stackpos = [0; 1];
     mark(sp.as_mut_ptr());
-    (*ident).type_end = -(1 as libc::c_int);
-    if tok.type_0 == 264 as libc::c_int {
-        if nexttoken() == 260 as libc::c_int {
+    (*ident).type_end = -(1 as i32);
+    if tok.type_0 == 264 as i32 {
+        if nexttoken() == 260 as i32 {
             (*ident).type_end = tos;
         }
         putback();
         skip_struct();
-        if tok.type_0 == 260 as libc::c_int || tok.type_0 == 265 as libc::c_int {
+        if tok.type_0 == 260 as i32 || tok.type_0 == 265 as i32 {
             let mut hold: TOKSTK = tok;
             restore(sp.as_mut_ptr());
-            if (*ident).type_end == -(1 as libc::c_int) {
+            if (*ident).type_end == -(1 as i32) {
                 tos = curs;
-                (*token_stack.offset(curs as isize)).type_0 = 260 as libc::c_int;
+                (*token_stack.offset(curs as isize)).type_0 = 260 as i32;
                 let ref mut fresh10 = (*token_stack.offset(curs as isize)).token;
-                *fresh10 = b"{ ... }\0" as *const u8 as *const libc::c_char
-                    as *mut libc::c_char;
+                *fresh10 = b"{ ... }\0" as *const u8 as *const i8 as *mut i8;
                 tos += 1;
                 tos;
             } else {
-                tos = curs + 1 as libc::c_int;
+                tos = curs + 1 as i32;
             }
             tokpush(hold.type_0, hold.line, hold.token);
         } else if tok.type_0 == '(' as i32 {
-            return 0 as libc::c_int
+            return 0 as i32
         } else if tok.type_0 != ';' as i32 {
             file_error(
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"missing `;' after struct declaration\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"missing `;' after struct declaration\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 &mut tok,
             );
         }
-        return 1 as libc::c_int;
+        return 1 as i32;
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn parse_variable_declaration(
     mut ident: *mut Ident,
-    mut parm: libc::c_int,
+    mut parm: i32,
 ) {
     let mut current_block: u64;
     let mut sp: Stackpos = [0; 1];
     mark(sp.as_mut_ptr());
-    (*ident).type_end = -(1 as libc::c_int);
-    if tok.type_0 == 264 as libc::c_int {
-        if nexttoken() == 260 as libc::c_int {
+    (*ident).type_end = -(1 as i32);
+    if tok.type_0 == 264 as i32 {
+        if nexttoken() == 260 as i32 {
             (*ident).type_end = tos;
         }
         putback();
         skip_struct();
-        while tok.type_0 == 265 as libc::c_int || tok.type_0 == 273 as libc::c_int {
+        while tok.type_0 == 265 as i32 || tok.type_0 == 273 as i32 {
             nexttoken();
         }
-        if tok.type_0 == 260 as libc::c_int {
+        if tok.type_0 == 260 as i32 {
             let mut hold: TOKSTK = tok;
             restore(sp.as_mut_ptr());
-            if (*ident).type_end == -(1 as libc::c_int) {
+            if (*ident).type_end == -(1 as i32) {
                 tos = curs;
-                (*token_stack.offset(curs as isize)).type_0 = 260 as libc::c_int;
+                (*token_stack.offset(curs as isize)).type_0 = 260 as i32;
                 let ref mut fresh11 = (*token_stack.offset(curs as isize)).token;
-                *fresh11 = b"{ ... }\0" as *const u8 as *const libc::c_char
-                    as *mut libc::c_char;
+                *fresh11 = b"{ ... }\0" as *const u8 as *const i8 as *mut i8;
                 tos += 1;
                 tos;
             } else {
-                tos = curs + 1 as libc::c_int;
+                tos = curs + 1 as i32;
             }
             tokpush(hold.type_0, hold.line, hold.token);
         } else {
@@ -1113,7 +1237,7 @@ pub unsafe extern "C" fn parse_variable_declaration(
         }
     }
     '_again: loop {
-        parse_dcl(ident, 0 as libc::c_int);
+        parse_dcl(ident, 0 as i32);
         loop {
             match tok.type_0 {
                 41 => {
@@ -1121,7 +1245,7 @@ pub unsafe extern "C" fn parse_variable_declaration(
                         current_block = 3123434771885419771;
                         break '_again;
                     } else {
-                        current_block = 16858144124982468868;
+                        current_block = 14180127615403059768;
                         break '_again;
                     }
                 }
@@ -1140,7 +1264,7 @@ pub unsafe extern "C" fn parse_variable_declaration(
                 }
                 61 => {
                     nexttoken();
-                    if tok.type_0 == '{' as i32 || tok.type_0 == 258 as libc::c_int {
+                    if tok.type_0 == '{' as i32 || tok.type_0 == 258 as i32 {
                         initializer_list();
                     } else {
                         expression();
@@ -1155,10 +1279,10 @@ pub unsafe extern "C" fn parse_variable_declaration(
                     if verbose != 0 {
                         file_error(
                             dcgettext(
-                                0 as *const libc::c_char,
+                                0 as *const i8,
                                 b"unexpected end of file in declaration\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                    as *const i8,
+                                5 as i32,
                             ),
                             0 as *mut TOKSTK,
                         );
@@ -1167,20 +1291,20 @@ pub unsafe extern "C" fn parse_variable_declaration(
                     break '_again;
                 }
                 _ => {
-                    current_block = 16858144124982468868;
+                    current_block = 14180127615403059768;
                     break '_again;
                 }
             }
         }
     }
     match current_block {
-        16858144124982468868 => {
+        14180127615403059768 => {
             if verbose != 0 {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"expected `;'\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"expected `;'\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     &mut tok,
                 );
@@ -1191,7 +1315,7 @@ pub unsafe extern "C" fn parse_variable_declaration(
 }
 #[no_mangle]
 pub unsafe extern "C" fn initializer_list() {
-    let mut lev: libc::c_int = 0 as libc::c_int;
+    let mut lev: i32 = 0 as i32;
     loop {
         match tok.type_0 {
             123 | 258 => {
@@ -1200,7 +1324,7 @@ pub unsafe extern "C" fn initializer_list() {
             }
             125 | 259 => {
                 lev -= 1;
-                if lev <= 0 as libc::c_int {
+                if lev <= 0 as i32 {
                     nexttoken();
                     return;
                 }
@@ -1208,10 +1332,10 @@ pub unsafe extern "C" fn initializer_list() {
             0 => {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"unexpected end of file in initializer list\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     0 as *mut TOKSTK,
                 );
@@ -1227,40 +1351,36 @@ pub unsafe extern "C" fn initializer_list() {
 }
 #[no_mangle]
 pub unsafe extern "C" fn parse_knr_dcl(mut ident: *mut Ident) {
-    (*ident).type_end = -(1 as libc::c_int);
-    parse_dcl(ident, (strict_ansi == 0) as libc::c_int);
+    (*ident).type_end = -(1 as i32);
+    parse_dcl(ident, (strict_ansi == 0) as i32);
 }
 #[no_mangle]
 pub unsafe extern "C" fn skip_struct() {
-    if nexttoken() == 260 as libc::c_int {
+    if nexttoken() == 260 as i32 {
         nexttoken();
     } else if tok.type_0 == ';' as i32 {
         return
     }
-    if tok.type_0 == '{' as i32 || tok.type_0 == 258 as libc::c_int {
-        if skip_balanced('{' as i32, '}' as i32, 1 as libc::c_int) == -(1 as libc::c_int)
-        {
+    if tok.type_0 == '{' as i32 || tok.type_0 == 258 as i32 {
+        if skip_balanced('{' as i32, '}' as i32, 1 as i32) == -(1 as i32) {
             file_error(
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"unexpected end of file in struct\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"unexpected end of file in struct\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 0 as *mut TOKSTK,
             );
             return;
         }
     }
-    while tok.type_0 == 272 as libc::c_int {
-        if skip_balanced('(' as i32, ')' as i32, 0 as libc::c_int) == -(1 as libc::c_int)
-        {
+    while tok.type_0 == 272 as i32 {
+        if skip_balanced('(' as i32, ')' as i32, 0 as i32) == -(1 as i32) {
             file_error(
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"unexpected end of file in struct\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"unexpected end of file in struct\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 0 as *mut TOKSTK,
             );
@@ -1270,17 +1390,17 @@ pub unsafe extern "C" fn skip_struct() {
 #[no_mangle]
 pub unsafe extern "C" fn parse_typedef() {
     let mut ident: Ident = Ident {
-        name: 0 as *mut libc::c_char,
+        name: 0 as *mut i8,
         type_end: 0,
         parmcnt: 0,
         line: 0,
-        storage: ExternStorage,
+        storage: storage::ExternStorage,
     };
-    ident.name = 0 as *mut libc::c_char;
-    ident.type_end = -(1 as libc::c_int);
-    ident.parmcnt = -(1 as libc::c_int);
-    ident.line = -(1 as libc::c_int);
-    ident.storage = AnyStorage;
+    ident.name = 0 as *mut i8;
+    ident.type_end = -(1 as i32);
+    ident.parmcnt = -(1 as i32);
+    ident.line = -(1 as i32);
+    ident.storage = storage::AnyStorage;
     nexttoken();
     if fake_struct(&mut ident) == 0 {
         putback();
@@ -1291,9 +1411,9 @@ pub unsafe extern "C" fn parse_typedef() {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn parse_dcl(mut ident: *mut Ident, mut maybe_knr: libc::c_int) {
-    (*ident).parmcnt = -(1 as libc::c_int);
-    (*ident).name = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn parse_dcl(mut ident: *mut Ident, mut maybe_knr: i32) {
+    (*ident).parmcnt = -(1 as i32);
+    (*ident).name = 0 as *mut i8;
     putback();
     dcl(ident);
     save_stack();
@@ -1304,74 +1424,70 @@ pub unsafe extern "C" fn parse_dcl(mut ident: *mut Ident, mut maybe_knr: libc::c
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn dcl(mut idptr: *mut Ident) -> libc::c_int {
-    while nexttoken() != 0 as libc::c_int && tok.type_0 != '(' as i32 {
-        if tok.type_0 == 265 as libc::c_int {
-            if !idptr.is_null() && (*idptr).type_end == -(1 as libc::c_int) {
-                (*idptr).type_end = curs - 1 as libc::c_int;
+pub unsafe extern "C" fn dcl(mut idptr: *mut Ident) -> i32 {
+    while nexttoken() != 0 as i32 && tok.type_0 != '(' as i32 {
+        if tok.type_0 == 265 as i32 {
+            if !idptr.is_null() && (*idptr).type_end == -(1 as i32) {
+                (*idptr).type_end = curs - 1 as i32;
             }
-        } else if tok.type_0 == 272 as libc::c_int {
-            if skip_balanced('(' as i32, ')' as i32, 0 as libc::c_int)
-                == -(1 as libc::c_int)
-            {
+        } else if tok.type_0 == 272 as i32 {
+            if skip_balanced('(' as i32, ')' as i32, 0 as i32) == -(1 as i32) {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"unexpected end of file in function declaration\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     0 as *mut TOKSTK,
                 );
-                return 1 as libc::c_int;
+                return 1 as i32;
             }
-        } else if tok.type_0 == 260 as libc::c_int {
-            let mut type_0: libc::c_int = 0;
-            while tok.type_0 == 260 as libc::c_int {
+        } else if tok.type_0 == 260 as i32 {
+            let mut type_0: i32 = 0;
+            while tok.type_0 == 260 as i32 {
                 nexttoken();
             }
             type_0 = tok.type_0;
             putback();
-            if !(type_0 == 270 as libc::c_int || type_0 == 265 as libc::c_int
-                || type_0 == 273 as libc::c_int)
-            {
+            if !(type_0 == 270 as i32 || type_0 == 265 as i32 || type_0 == 273 as i32) {
                 break;
             }
         } else if tok.type_0 == ')' as i32 || tok.type_0 == ';' as i32 {
-            return 1 as libc::c_int
+            return 1 as i32
         }
     }
-    if !idptr.is_null() && (*idptr).type_end == -(1 as libc::c_int) {
-        (*idptr).type_end = curs - 1 as libc::c_int;
+    if !idptr.is_null() && (*idptr).type_end == -(1 as i32) {
+        (*idptr).type_end = curs - 1 as i32;
     }
     return dirdcl(idptr);
 }
 #[no_mangle]
-pub unsafe extern "C" fn dirdcl(mut idptr: *mut Ident) -> libc::c_int {
-    let mut wrapper: libc::c_int = 0 as libc::c_int;
-    let mut parm_ptr: *mut libc::c_int = 0 as *mut libc::c_int;
+pub unsafe extern "C" fn dirdcl(mut idptr: *mut Ident) -> i32 {
+    let mut wrapper: i32 = 0 as i32;
+    let mut parm_ptr: *mut i32 = 0 as *mut i32;
     if tok.type_0 == '(' as i32 {
         dcl(idptr);
         if tok.type_0 != ')' as i32 && verbose != 0 {
             file_error(
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"expected `)'\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"expected `)'\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 &mut tok,
             );
-            return 1 as libc::c_int;
+            return 1 as i32;
         }
-    } else if tok.type_0 == 260 as libc::c_int {
+    } else if tok.type_0 == 260 as i32 {
         if !idptr.is_null() {
             (*idptr).name = tok.token;
             (*idptr).line = tok.line;
             parm_ptr = &mut (*idptr).parmcnt;
         }
     }
-    if nexttoken() == 272 as libc::c_int {
-        wrapper = 1 as libc::c_int;
+    if nexttoken() == 272 as i32 {
+        wrapper = 1 as i32;
         nexttoken();
     } else {
         putback();
@@ -1384,72 +1500,71 @@ pub unsafe extern "C" fn dirdcl(mut idptr: *mut Ident) -> libc::c_int {
             if tok.type_0 != ')' as i32 && verbose != 0 {
                 file_error(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"expected `)'\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"expected `)'\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     &mut tok,
                 );
-                return 1 as libc::c_int;
+                return 1 as i32;
             }
         }
     }
     if wrapper != 0 {
         nexttoken();
     }
-    while tok.type_0 == 272 as libc::c_int {
-        if skip_balanced('(' as i32, ')' as i32, 0 as libc::c_int) == -(1 as libc::c_int)
-        {
+    while tok.type_0 == 272 as i32 {
+        if skip_balanced('(' as i32, ')' as i32, 0 as i32) == -(1 as i32) {
             file_error(
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"unexpected end of file in function declaration\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
                 0 as *mut TOKSTK,
             );
         }
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn parmdcl(mut idptr: *mut Ident) -> libc::c_int {
-    let mut type_0: libc::c_int = 0;
-    while nexttoken() != 0 as libc::c_int && tok.type_0 != '(' as i32 {
-        if tok.type_0 == 265 as libc::c_int {
-            if !idptr.is_null() && (*idptr).type_end == -(1 as libc::c_int) {
-                (*idptr).type_end = curs - 1 as libc::c_int;
+pub unsafe extern "C" fn parmdcl(mut idptr: *mut Ident) -> i32 {
+    let mut type_0: i32 = 0;
+    while nexttoken() != 0 as i32 && tok.type_0 != '(' as i32 {
+        if tok.type_0 == 265 as i32 {
+            if !idptr.is_null() && (*idptr).type_end == -(1 as i32) {
+                (*idptr).type_end = curs - 1 as i32;
             }
-        } else if tok.type_0 == 260 as libc::c_int {
-            while tok.type_0 == 260 as libc::c_int {
+        } else if tok.type_0 == 260 as i32 {
+            while tok.type_0 == 260 as i32 {
                 nexttoken();
             }
             type_0 = tok.type_0;
             putback();
-            if type_0 != 265 as libc::c_int {
+            if type_0 != 265 as i32 {
                 break;
             }
         } else if tok.type_0 == ')' as i32 || tok.type_0 == ',' as i32 {
-            return 0 as libc::c_int
+            return 0 as i32
         }
     }
-    if !idptr.is_null() && (*idptr).type_end == -(1 as libc::c_int) {
-        (*idptr).type_end = curs - 1 as libc::c_int;
+    if !idptr.is_null() && (*idptr).type_end == -(1 as i32) {
+        (*idptr).type_end = curs - 1 as i32;
     }
     return dirdcl(idptr);
 }
 #[no_mangle]
-pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut libc::c_int) {
-    let mut parmcnt: libc::c_int = 0 as libc::c_int;
+pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut i32) {
+    let mut parmcnt: i32 = 0 as i32;
     let mut ident: Ident = Ident {
-        name: 0 as *mut libc::c_char,
+        name: 0 as *mut i8,
         type_end: 0,
         parmcnt: 0,
         line: 0,
-        storage: ExternStorage,
+        storage: storage::ExternStorage,
     };
-    let mut level_0: libc::c_int = 0;
+    let mut level_0: i32 = 0;
     parm_level += 1;
     parm_level;
     while nexttoken() != 0 {
@@ -1466,23 +1581,23 @@ pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut libc::c_int) 
             273 | 260 | 265 | 264 | 267 | 270 => {
                 parmcnt += 1;
                 parmcnt;
-                ident.storage = AutoStorage;
-                parse_declaration(&mut ident, 1 as libc::c_int);
+                ident.storage = storage::AutoStorage;
+                parse_declaration(&mut ident, 1 as i32);
                 putback();
             }
             _ => {
                 if verbose != 0 {
                     file_error(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unexpected token in parameter list\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         &mut tok,
                     );
                 }
-                level_0 = 0 as libc::c_int;
+                level_0 = 0 as i32;
                 loop {
                     if tok.type_0 == '(' as i32 {
                         level_0 += 1;
@@ -1490,7 +1605,7 @@ pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut libc::c_int) 
                     } else if tok.type_0 == ')' as i32 {
                         let fresh12 = level_0;
                         level_0 = level_0 - 1;
-                        if fresh12 == 0 as libc::c_int {
+                        if fresh12 == 0 as i32 {
                             break;
                         }
                     }
@@ -1505,10 +1620,9 @@ pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut libc::c_int) 
     if verbose != 0 {
         file_error(
             dcgettext(
-                0 as *const libc::c_char,
-                b"unexpected end of file in parameter list\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"unexpected end of file in parameter list\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             0 as *mut TOKSTK,
         );
@@ -1517,11 +1631,11 @@ pub unsafe extern "C" fn maybe_parm_list(mut parm_cnt_return: *mut libc::c_int) 
 #[no_mangle]
 pub unsafe extern "C" fn func_body() {
     let mut ident: Ident = Ident {
-        name: 0 as *mut libc::c_char,
+        name: 0 as *mut i8,
         type_end: 0,
         parmcnt: 0,
         line: 0,
-        storage: ExternStorage,
+        storage: storage::ExternStorage,
     };
     level += 1;
     level;
@@ -1532,19 +1646,19 @@ pub unsafe extern "C" fn func_body() {
         let mut current_block_23: u64;
         match tok.type_0 {
             262 => {
-                ident.storage = StaticStorage;
+                ident.storage = storage::StaticStorage;
                 nexttoken();
-                parse_variable_declaration(&mut ident, 0 as libc::c_int);
+                parse_variable_declaration(&mut ident, 0 as i32);
                 current_block_23 = 6669252993407410313;
             }
             270 | 264 => {
-                ident.storage = AutoStorage;
-                parse_variable_declaration(&mut ident, 0 as libc::c_int);
+                ident.storage = storage::AutoStorage;
+                parse_variable_declaration(&mut ident, 0 as i32);
                 current_block_23 = 6669252993407410313;
             }
             261 => {
-                ident.storage = ExplicitExternStorage;
-                parse_declaration(&mut ident, 0 as libc::c_int);
+                ident.storage = storage::ExplicitExternStorage;
+                parse_declaration(&mut ident, 0 as i32);
                 current_block_23 = 6669252993407410313;
             }
             258 | 123 => {
@@ -1554,13 +1668,12 @@ pub unsafe extern "C" fn func_body() {
             }
             259 => {
                 if use_indentation != 0 {
-                    if verbose != 0 && level != 1 as libc::c_int {
+                    if verbose != 0 && level != 1 as i32 {
                         file_error(
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"forced function body close\0" as *const u8
-                                    as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"forced function body close\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                             0 as *mut TOKSTK,
                         );
@@ -1572,20 +1685,20 @@ pub unsafe extern "C" fn func_body() {
                     }
                     current_block_23 = 6669252993407410313;
                 } else {
-                    current_block_23 = 8596173826025606;
+                    current_block_23 = 16641983121783467691;
                 }
             }
             125 => {
-                current_block_23 = 8596173826025606;
+                current_block_23 = 16641983121783467691;
             }
             0 => {
                 if verbose != 0 {
                     file_error(
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"unexpected end of file in function body\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         0 as *mut TOKSTK,
                     );
@@ -1599,7 +1712,7 @@ pub unsafe extern "C" fn func_body() {
             }
         }
         match current_block_23 {
-            8596173826025606 => {
+            16641983121783467691 => {
                 delete_autos(level);
                 level -= 1;
                 level;
@@ -1610,36 +1723,36 @@ pub unsafe extern "C" fn func_body() {
     caller = 0 as *mut Symbol;
 }
 #[no_mangle]
-pub unsafe extern "C" fn get_knr_args(mut ident: *mut Ident) -> libc::c_int {
-    let mut parmcnt: libc::c_int = 0;
-    let mut stop: libc::c_int = 0;
+pub unsafe extern "C" fn get_knr_args(mut ident: *mut Ident) -> i32 {
+    let mut parmcnt: i32 = 0;
+    let mut stop: i32 = 0;
     let mut sp: Stackpos = [0; 1];
     let mut new_sp: Stackpos = [0; 1];
     let mut id: Ident = Ident {
-        name: 0 as *mut libc::c_char,
+        name: 0 as *mut i8,
         type_end: 0,
         parmcnt: 0,
         line: 0,
-        storage: ExternStorage,
+        storage: storage::ExternStorage,
     };
     match tok.type_0 {
         260 | 270 | 264 => {
             mark(sp.as_mut_ptr());
-            parmcnt = 0 as libc::c_int;
-            stop = 0 as libc::c_int;
+            parmcnt = 0 as i32;
+            stop = 0 as i32;
             while stop == 0 && parmcnt < (*ident).parmcnt {
-                id.type_end = -(1 as libc::c_int);
+                id.type_end = -(1 as i32);
                 let mut current_block_19: u64;
                 match tok.type_0 {
                     123 | 258 => {
                         putback();
-                        stop = 1 as libc::c_int;
+                        stop = 1 as i32;
                         current_block_19 = 14401909646449704462;
                     }
                     270 | 260 | 264 => {
                         putback();
                         mark(new_sp.as_mut_ptr());
-                        if dcl(&mut id) == 0 as libc::c_int {
+                        if dcl(&mut id) == 0 as i32 {
                             parmcnt += 1;
                             parmcnt;
                             if tok.type_0 == ',' as i32 {
@@ -1656,18 +1769,18 @@ pub unsafe extern "C" fn get_knr_args(mut ident: *mut Ident) -> libc::c_int {
                             }
                             current_block_19 = 14401909646449704462;
                         } else {
-                            current_block_19 = 4399502651816579445;
+                            current_block_19 = 17615156732777954325;
                         }
                     }
                     _ => {
-                        current_block_19 = 4399502651816579445;
+                        current_block_19 = 17615156732777954325;
                     }
                 }
                 match current_block_19 {
                     14401909646449704462 => {}
                     _ => {
                         restore(sp.as_mut_ptr());
-                        return 1 as libc::c_int;
+                        return 1 as i32;
                     }
                 }
                 nexttoken();
@@ -1675,97 +1788,94 @@ pub unsafe extern "C" fn get_knr_args(mut ident: *mut Ident) -> libc::c_int {
         }
         _ => {}
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn declare(mut ident: *mut Ident, mut maybe_knr: libc::c_int) {
+pub unsafe extern "C" fn declare(mut ident: *mut Ident, mut maybe_knr: i32) {
     let mut sp: *mut Symbol = 0 as *mut Symbol;
-    if (*ident).storage as libc::c_uint == AutoStorage as libc::c_int as libc::c_uint {
+    if (*ident).storage as u32 == storage::AutoStorage as i32 as u32 {
         undo_save_stack();
         sp = install_ident((*ident).name, (*ident).storage);
         if parm_level != 0 {
             (*sp).level = parm_level;
-            (*sp).flag = symbol_parm;
+            (*sp).flag = symbol_flag::symbol_parm;
         } else {
             (*sp).level = level;
         }
-        (*sp).arity = -(1 as libc::c_int);
+        (*sp).arity = -(1 as i32);
         return;
     }
-    if (*ident).parmcnt >= 0 as libc::c_int
-        && (maybe_knr == 0 || get_knr_args(ident) == 0 as libc::c_int)
-        && !(tok.type_0 == '{' as i32 || tok.type_0 == 258 as libc::c_int
-            || tok.type_0 == 270 as libc::c_int || tok.type_0 == 272 as libc::c_int)
-        || (*ident).parmcnt < 0 as libc::c_int
-            && (*ident).storage as libc::c_uint
-                == ExplicitExternStorage as libc::c_int as libc::c_uint
+    if (*ident).parmcnt >= 0 as i32
+        && (maybe_knr == 0 || get_knr_args(ident) == 0 as i32)
+        && !(tok.type_0 == '{' as i32 || tok.type_0 == 258 as i32
+            || tok.type_0 == 270 as i32 || tok.type_0 == 272 as i32)
+        || (*ident).parmcnt < 0 as i32
+            && (*ident).storage as u32 == storage::ExplicitExternStorage as i32 as u32
     {
         undo_save_stack();
         return;
     }
     sp = get_symbol((*ident).name);
     if !((*sp).source).is_null() {
-        if (*ident).storage as libc::c_uint
-            == StaticStorage as libc::c_int as libc::c_uint
-            && ((*sp).storage as libc::c_uint
-                != StaticStorage as libc::c_int as libc::c_uint
-                || level > 0 as libc::c_int)
+        if (*ident).storage as u32 == storage::StaticStorage as i32 as u32
+            && ((*sp).storage as u32 != storage::StaticStorage as i32 as u32
+                || level > 0 as i32)
         {
             sp = install_ident((*ident).name, (*ident).storage);
         } else {
-            if (*sp).arity >= 0 as libc::c_int {
+            if (*sp).arity >= 0 as i32 {
                 error_at_line(
-                    0 as libc::c_int,
-                    0 as libc::c_int,
+                    0 as i32,
+                    0 as i32,
                     filename,
-                    (*ident).line as libc::c_uint,
+                    (*ident).line as u32,
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"%s/%d redefined\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"%s/%d redefined\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     (*ident).name,
                     (*sp).arity,
                 );
             } else {
                 error_at_line(
-                    0 as libc::c_int,
-                    0 as libc::c_int,
+                    0 as i32,
+                    0 as i32,
                     filename,
-                    (*ident).line as libc::c_uint,
+                    (*ident).line as u32,
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"%s redefined\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"%s redefined\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     (*ident).name,
                 );
             }
             error_at_line(
-                0 as libc::c_int,
-                0 as libc::c_int,
+                0 as i32,
+                0 as i32,
                 (*sp).source,
-                (*sp).def_line as libc::c_uint,
+                (*sp).def_line as u32,
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"this is the place of previous definition\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
             );
         }
     }
-    (*sp).type_0 = SymIdentifier;
+    (*sp).type_0 = symtype::SymIdentifier;
     (*sp).arity = (*ident).parmcnt;
     ident_change_storage(
         sp,
-        (if (*ident).storage as libc::c_uint
-            == ExplicitExternStorage as libc::c_int as libc::c_uint
-        {
-            ExternStorage as libc::c_int as libc::c_uint
-        } else {
-            (*ident).storage as libc::c_uint
-        }) as storage,
+        storage::from_libc_c_uint(
+            (if (*ident).storage as u32 == storage::ExplicitExternStorage as i32 as u32 {
+                storage::ExternStorage as i32 as u32
+            } else {
+                (*ident).storage as u32
+            }) as u32,
+        ),
     );
     (*sp).decl = finish_save_stack((*ident).name);
     (*sp).source = filename;
@@ -1774,9 +1884,9 @@ pub unsafe extern "C" fn declare(mut ident: *mut Ident, mut maybe_knr: libc::c_i
     if debug != 0 {
         printf(
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s:%d: %s/%d defined to %s\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s:%d: %s/%d defined to %s\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             filename,
             line_num,
@@ -1792,27 +1902,27 @@ pub unsafe extern "C" fn declare_type(mut ident: *mut Ident) {
     undo_save_stack();
     sp = lookup((*ident).name);
     while !sp.is_null() {
-        if (*sp).type_0 as libc::c_uint == SymToken as libc::c_int as libc::c_uint
-            && (*sp).token_type == 270 as libc::c_int
+        if (*sp).type_0 as u32 == symtype::SymToken as i32 as u32
+            && (*sp).token_type == 270 as i32
         {
             break;
         }
         sp = (*sp).next;
     }
     if sp.is_null() {
-        sp = install((*ident).name, 0x4 as libc::c_int);
+        sp = install((*ident).name, 0x4 as i32);
     }
-    (*sp).type_0 = SymToken;
-    (*sp).token_type = 270 as libc::c_int;
+    (*sp).type_0 = symtype::SymToken;
+    (*sp).token_type = 270 as i32;
     (*sp).source = filename;
     (*sp).def_line = (*ident).line;
     (*sp).ref_line = 0 as *mut linked_list;
     if debug != 0 {
         printf(
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s:%d: type %s\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s:%d: type %s\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             filename,
             line_num,
@@ -1821,13 +1931,12 @@ pub unsafe extern "C" fn declare_type(mut ident: *mut Ident) {
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn get_symbol(mut name: *mut libc::c_char) -> *mut Symbol {
+pub unsafe extern "C" fn get_symbol(mut name: *mut i8) -> *mut Symbol {
     let mut sp: *mut Symbol = lookup(name);
     if !sp.is_null() {
         while !sp.is_null() {
-            if (*sp).type_0 as libc::c_uint
-                == SymIdentifier as libc::c_int as libc::c_uint
-                && strcmp((*sp).name, name) == 0 as libc::c_int
+            if (*sp).type_0 as u32 == symtype::SymIdentifier as i32 as u32
+                && strcmp((*sp).name, name) == 0 as i32
             {
                 break;
             }
@@ -1837,27 +1946,23 @@ pub unsafe extern "C" fn get_symbol(mut name: *mut libc::c_char) -> *mut Symbol 
             return sp;
         }
     }
-    return install_ident(name, ExternStorage);
+    return install_ident(name, storage::ExternStorage);
 }
 #[no_mangle]
-pub unsafe extern "C" fn add_reference(
-    mut name: *mut libc::c_char,
-    mut line: libc::c_int,
-) -> *mut Symbol {
+pub unsafe extern "C" fn add_reference(mut name: *mut i8, mut line: i32) -> *mut Symbol {
     let mut sp: *mut Symbol = get_symbol(name);
     let mut refptr: *mut Ref = 0 as *mut Ref;
-    if (*sp).storage as libc::c_uint == AutoStorage as libc::c_int as libc::c_uint
-        || (*sp).storage as libc::c_uint == StaticStorage as libc::c_int as libc::c_uint
+    if (*sp).storage as u32 == storage::AutoStorage as i32 as u32
+        || (*sp).storage as u32 == storage::StaticStorage as i32 as u32
             && globals_only() != 0
     {
         return 0 as *mut Symbol;
     }
-    refptr = xmalloc(::core::mem::size_of::<Ref>() as libc::c_ulong) as *mut Ref;
+    refptr = xmalloc(::core::mem::size_of::<Ref>() as u64) as *mut Ref;
     (*refptr).source = filename;
     (*refptr).line = line;
     if ((*sp).ref_line).is_null() {
-        (*sp)
-            .ref_line = linked_list_create(
+        (*sp).ref_line = linked_list_create(
             Some(free as unsafe extern "C" fn(*mut libc::c_void) -> ()),
         );
     }
@@ -1865,14 +1970,14 @@ pub unsafe extern "C" fn add_reference(
     return sp;
 }
 #[no_mangle]
-pub unsafe extern "C" fn call(mut name: *mut libc::c_char, mut line: libc::c_int) {
+pub unsafe extern "C" fn call(mut name: *mut i8, mut line: i32) {
     let mut sp: *mut Symbol = 0 as *mut Symbol;
     sp = add_reference(name, line);
     if sp.is_null() {
         return;
     }
-    if (*sp).arity < 0 as libc::c_int {
-        (*sp).arity = 0 as libc::c_int;
+    if (*sp).arity < 0 as i32 {
+        (*sp).arity = 0 as i32;
     }
     if !caller.is_null() {
         if data_in_list(caller as *mut libc::c_void, (*sp).caller) == 0 {
@@ -1884,7 +1989,7 @@ pub unsafe extern "C" fn call(mut name: *mut libc::c_char, mut line: libc::c_int
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn reference(mut name: *mut libc::c_char, mut line: libc::c_int) {
+pub unsafe extern "C" fn reference(mut name: *mut i8, mut line: i32) {
     let mut sp: *mut Symbol = add_reference(name, line);
     if sp.is_null() {
         return;

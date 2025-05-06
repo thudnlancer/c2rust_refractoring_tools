@@ -1,32 +1,43 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     fn rpl_getopt_internal(
-        ___argc: libc::c_int,
-        ___argv: *mut *mut libc::c_char,
-        __shortopts: *const libc::c_char,
+        ___argc: i32,
+        ___argv: *mut *mut i8,
+        __shortopts: *const i8,
         __longopts: *const rpl_option,
-        __longind: *mut libc::c_int,
-        __long_only: libc::c_int,
-        __posixly_correct: libc::c_int,
-    ) -> libc::c_int;
+        __longind: *mut i32,
+        __long_only: i32,
+        __posixly_correct: i32,
+    ) -> i32;
     fn _getopt_internal_r(
-        ___argc: libc::c_int,
-        ___argv: *mut *mut libc::c_char,
-        __shortopts: *const libc::c_char,
+        ___argc: i32,
+        ___argv: *mut *mut i8,
+        __shortopts: *const i8,
         __longopts: *const rpl_option,
-        __longind: *mut libc::c_int,
-        __long_only: libc::c_int,
+        __longind: *mut i32,
+        __long_only: i32,
         __data: *mut _getopt_data,
-        __posixly_correct: libc::c_int,
-    ) -> libc::c_int;
+        __posixly_correct: i32,
+    ) -> i32;
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rpl_option {
-    pub name: *const libc::c_char,
-    pub has_arg: libc::c_int,
-    pub flag: *mut libc::c_int,
-    pub val: libc::c_int,
+    pub name: *const i8,
+    pub has_arg: i32,
+    pub flag: *mut i32,
+    pub val: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -36,104 +47,163 @@ pub enum __ord {
     RETURN_IN_ORDER,
 }
 impl __ord {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             __ord::REQUIRE_ORDER => 0,
             __ord::PERMUTE => 1,
             __ord::RETURN_IN_ORDER => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> __ord {
+        match value {
+            0 => __ord::REQUIRE_ORDER,
+            1 => __ord::PERMUTE,
+            2 => __ord::RETURN_IN_ORDER,
+            _ => panic!("Invalid value for __ord: {}", value),
+        }
+    }
 }
-
-pub const RETURN_IN_ORDER: __ord = 2;
-pub const PERMUTE: __ord = 1;
-pub const REQUIRE_ORDER: __ord = 0;
+impl AddAssign<u32> for __ord {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for __ord {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for __ord {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for __ord {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for __ord {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for __ord {
+    type Output = __ord;
+    fn add(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for __ord {
+    type Output = __ord;
+    fn sub(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for __ord {
+    type Output = __ord;
+    fn mul(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for __ord {
+    type Output = __ord;
+    fn div(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for __ord {
+    type Output = __ord;
+    fn rem(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _getopt_data {
-    pub rpl_optind: libc::c_int,
-    pub rpl_opterr: libc::c_int,
-    pub rpl_optopt: libc::c_int,
-    pub rpl_optarg: *mut libc::c_char,
-    pub __initialized: libc::c_int,
-    pub __nextchar: *mut libc::c_char,
+    pub rpl_optind: i32,
+    pub rpl_opterr: i32,
+    pub rpl_optopt: i32,
+    pub rpl_optarg: *mut i8,
+    pub __initialized: i32,
+    pub __nextchar: *mut i8,
     pub __ordering: __ord,
-    pub __first_nonopt: libc::c_int,
-    pub __last_nonopt: libc::c_int,
+    pub __first_nonopt: i32,
+    pub __last_nonopt: i32,
 }
 #[no_mangle]
 pub unsafe extern "C" fn rpl_getopt_long(
-    mut argc: libc::c_int,
-    mut argv: *const *mut libc::c_char,
-    mut options: *const libc::c_char,
+    mut argc: i32,
+    mut argv: *const *mut i8,
+    mut options: *const i8,
     mut long_options: *const rpl_option,
-    mut opt_index: *mut libc::c_int,
-) -> libc::c_int {
+    mut opt_index: *mut i32,
+) -> i32 {
     return rpl_getopt_internal(
         argc,
-        argv as *mut *mut libc::c_char,
+        argv as *mut *mut i8,
         options,
         long_options,
         opt_index,
-        0 as libc::c_int,
-        0 as libc::c_int,
+        0 as i32,
+        0 as i32,
     );
 }
 #[no_mangle]
 pub unsafe extern "C" fn _getopt_long_r(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
-    mut options: *const libc::c_char,
+    mut argc: i32,
+    mut argv: *mut *mut i8,
+    mut options: *const i8,
     mut long_options: *const rpl_option,
-    mut opt_index: *mut libc::c_int,
+    mut opt_index: *mut i32,
     mut d: *mut _getopt_data,
-) -> libc::c_int {
+) -> i32 {
     return _getopt_internal_r(
         argc,
         argv,
         options,
         long_options,
         opt_index,
-        0 as libc::c_int,
+        0 as i32,
         d,
-        0 as libc::c_int,
+        0 as i32,
     );
 }
 #[no_mangle]
 pub unsafe extern "C" fn rpl_getopt_long_only(
-    mut argc: libc::c_int,
-    mut argv: *const *mut libc::c_char,
-    mut options: *const libc::c_char,
+    mut argc: i32,
+    mut argv: *const *mut i8,
+    mut options: *const i8,
     mut long_options: *const rpl_option,
-    mut opt_index: *mut libc::c_int,
-) -> libc::c_int {
+    mut opt_index: *mut i32,
+) -> i32 {
     return rpl_getopt_internal(
         argc,
-        argv as *mut *mut libc::c_char,
+        argv as *mut *mut i8,
         options,
         long_options,
         opt_index,
-        1 as libc::c_int,
-        0 as libc::c_int,
+        1 as i32,
+        0 as i32,
     );
 }
 #[no_mangle]
 pub unsafe extern "C" fn _getopt_long_only_r(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
-    mut options: *const libc::c_char,
+    mut argc: i32,
+    mut argv: *mut *mut i8,
+    mut options: *const i8,
     mut long_options: *const rpl_option,
-    mut opt_index: *mut libc::c_int,
+    mut opt_index: *mut i32,
     mut d: *mut _getopt_data,
-) -> libc::c_int {
+) -> i32 {
     return _getopt_internal_r(
         argc,
         argv,
         options,
         long_options,
         opt_index,
-        1 as libc::c_int,
+        1 as i32,
         d,
-        0 as libc::c_int,
+        0 as i32,
     );
 }

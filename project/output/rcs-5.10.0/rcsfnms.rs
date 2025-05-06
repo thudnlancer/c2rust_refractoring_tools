@@ -1,5 +1,16 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type wlink;
     pub type maketimestuff;
@@ -9,85 +20,69 @@ extern "C" {
     pub type lockdef;
     pub type link;
     static mut top: *mut top;
-    fn __xstat(
-        __ver: libc::c_int,
-        __filename: *const libc::c_char,
-        __stat_buf: *mut stat,
-    ) -> libc::c_int;
-    fn cgetenv(name: *const libc::c_char) -> *mut libc::c_char;
-    fn memcmp(
-        _: *const libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strrchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strcasecmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
-    fn getcwd(__buf: *mut libc::c_char, __size: size_t) -> *mut libc::c_char;
-    fn syserror(e: libc::c_int, who: *const libc::c_char);
-    fn generic_error(who: *const libc::c_char, fmt: *const libc::c_char, _: ...);
-    fn fatal_sys(who: *const libc::c_char);
-    fn generic_warn(who: *const libc::c_char, fmt: *const libc::c_char, _: ...);
+    fn __xstat(__ver: i32, __filename: *const i8, __stat_buf: *mut stat) -> i32;
+    fn cgetenv(name: *const i8) -> *mut i8;
+    fn memcmp(_: *const libc::c_void, _: *const libc::c_void, _: u64) -> i32;
+    fn strrchr(_: *const i8, _: i32) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
+    fn strcasecmp(_: *const i8, _: *const i8) -> i32;
+    fn __errno_location() -> *mut i32;
+    fn getcwd(__buf: *mut i8, __size: size_t) -> *mut i8;
+    fn syserror(e: i32, who: *const i8);
+    fn generic_error(who: *const i8, fmt: *const i8, _: ...);
+    fn fatal_sys(who: *const i8);
+    fn generic_warn(who: *const i8, fmt: *const i8, _: ...);
     static mut plexus: *mut divvy;
     static mut single: *mut divvy;
-    fn make_space(name: *const libc::c_char) -> *mut divvy;
+    fn make_space(name: *const i8) -> *mut divvy;
     fn alloc(divvy: *mut divvy, len: size_t) -> *mut libc::c_void;
     fn close_space(divvy: *mut divvy);
     fn brush_off(divvy: *mut divvy, ptr: *mut libc::c_void);
-    fn intern(
-        divvy: *mut divvy,
-        s: *const libc::c_char,
-        len: size_t,
-    ) -> *mut libc::c_char;
-    fn finish_string(divvy: *mut divvy, result_len: *mut size_t) -> *mut libc::c_char;
-    fn accumulate_nbytes(divvy: *mut divvy, start: *const libc::c_char, count: size_t);
-    fn accumulate_byte(divvy: *mut divvy, c: libc::c_int);
-    fn accf(divvy: *mut divvy, fmt: *const libc::c_char, _: ...);
-    fn fro_open(
-        filename: *const libc::c_char,
-        type_0: *const libc::c_char,
-        status: *mut stat,
-    ) -> *mut fro;
+    fn intern(divvy: *mut divvy, s: *const i8, len: size_t) -> *mut i8;
+    fn finish_string(divvy: *mut divvy, result_len: *mut size_t) -> *mut i8;
+    fn accumulate_nbytes(divvy: *mut divvy, start: *const i8, count: size_t);
+    fn accumulate_byte(divvy: *mut divvy, c: i32);
+    fn accf(divvy: *mut divvy, fmt: *const i8, _: ...);
+    fn fro_open(filename: *const i8, type_0: *const i8, status: *mut stat) -> *mut fro;
     fn empty_repo(to: *mut divvy) -> *mut repo;
     fn grok_all(to: *mut divvy, f: *mut fro) -> *mut repo;
 }
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
-pub type size_t = libc::c_ulong;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __syscall_slong_t = i64;
+pub type size_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -95,8 +90,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -104,7 +99,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 pub type off_t = __off_t;
@@ -113,9 +108,9 @@ pub type off_t = __off_t;
 pub struct obstack {
     pub chunk_size: size_t,
     pub chunk: *mut _obstack_chunk,
-    pub object_base: *mut libc::c_char,
-    pub next_free: *mut libc::c_char,
-    pub chunk_limit: *mut libc::c_char,
+    pub object_base: *mut i8,
+    pub next_free: *mut i8,
+    pub chunk_limit: *mut i8,
     pub temp: C2RustUnnamed_1,
     pub alignment_mask: size_t,
     pub chunkfun: C2RustUnnamed_0,
@@ -131,16 +126,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -153,9 +146,9 @@ pub union C2RustUnnamed_1 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _obstack_chunk {
-    pub limit: *mut libc::c_char,
+    pub limit: *mut i8,
     pub prev: *mut _obstack_chunk,
-    pub contents: [libc::c_char; 0],
+    pub contents: [i8; 0],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -172,7 +165,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -193,7 +186,7 @@ pub enum kwsub {
     kwsub_b,
 }
 impl kwsub {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             kwsub::kwsub_kv => 0,
             kwsub::kwsub_kvl => 1,
@@ -203,34 +196,93 @@ impl kwsub {
             kwsub::kwsub_b => 5,
         }
     }
+    fn from_libc_c_uint(value: u32) -> kwsub {
+        match value {
+            0 => kwsub::kwsub_kv,
+            1 => kwsub::kwsub_kvl,
+            2 => kwsub::kwsub_k,
+            3 => kwsub::kwsub_v,
+            4 => kwsub::kwsub_o,
+            5 => kwsub::kwsub_b,
+            _ => panic!("Invalid value for kwsub: {}", value),
+        }
+    }
 }
-
-pub const kwsub_b: kwsub = 5;
-pub const kwsub_o: kwsub = 4;
-pub const kwsub_v: kwsub = 3;
-pub const kwsub_k: kwsub = 2;
-pub const kwsub_kvl: kwsub = 1;
-pub const kwsub_kv: kwsub = 0;
+impl AddAssign<u32> for kwsub {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for kwsub {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for kwsub {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for kwsub {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for kwsub {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for kwsub {
+    type Output = kwsub;
+    fn add(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for kwsub {
+    type Output = kwsub;
+    fn sub(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for kwsub {
+    type Output = kwsub;
+    fn mul(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for kwsub {
+    type Output = kwsub;
+    fn div(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for kwsub {
+    type Output = kwsub;
+    fn rem(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
-    pub string: *const libc::c_char,
+    pub string: *const i8,
     pub size: size_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct delta {
-    pub num: *const libc::c_char,
-    pub date: *const libc::c_char,
-    pub author: *const libc::c_char,
-    pub lockedby: *const libc::c_char,
-    pub state: *const libc::c_char,
+    pub num: *const i8,
+    pub date: *const i8,
+    pub author: *const i8,
+    pub lockedby: *const i8,
+    pub state: *const i8,
     pub log: *mut atat,
     pub text: *mut atat,
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub pretty_log: cbuf,
     pub branches: *mut wlink,
-    pub commitid: *const libc::c_char,
+    pub commitid: *const i8,
     pub ilk: *mut delta,
     pub selector: bool,
     pub neck: off_t,
@@ -248,13 +300,13 @@ pub struct atat {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct fro {
-    pub fd: libc::c_int,
+    pub fd: i32,
     pub end: off_t,
     pub rm: readmethod,
-    pub ptr: *mut libc::c_char,
-    pub lim: *mut libc::c_char,
-    pub base: *mut libc::c_char,
-    pub deallocate: Option::<unsafe extern "C" fn(*mut fro) -> ()>,
+    pub ptr: *mut i8,
+    pub lim: *mut i8,
+    pub base: *mut i8,
+    pub deallocate: Option<unsafe extern "C" fn(*mut fro) -> ()>,
     pub stream: *mut FILE,
     pub verbatim: off_t,
 }
@@ -266,33 +318,92 @@ pub enum readmethod {
     RM_STDIO,
 }
 impl readmethod {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             readmethod::RM_MMAP => 0,
             readmethod::RM_MEM => 1,
             readmethod::RM_STDIO => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> readmethod {
+        match value {
+            0 => readmethod::RM_MMAP,
+            1 => readmethod::RM_MEM,
+            2 => readmethod::RM_STDIO,
+            _ => panic!("Invalid value for readmethod: {}", value),
+        }
+    }
 }
-
-pub const RM_STDIO: readmethod = 2;
-pub const RM_MEM: readmethod = 1;
-pub const RM_MMAP: readmethod = 0;
+impl AddAssign<u32> for readmethod {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for readmethod {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for readmethod {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for readmethod {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for readmethod {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for readmethod {
+    type Output = readmethod;
+    fn add(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for readmethod {
+    type Output = readmethod;
+    fn sub(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for readmethod {
+    type Output = readmethod;
+    fn mul(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for readmethod {
+    type Output = readmethod;
+    fn div(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for readmethod {
+    type Output = readmethod;
+    fn rem(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct maybe {
-    pub open: Option::<open_rcsfile_fn>,
+    pub open: Option<open_rcsfile_fn>,
     pub mustread: bool,
     pub tentative: cbuf,
     pub space: *mut divvy,
     pub bestfit: cbuf,
     pub status: *mut stat,
-    pub eno: libc::c_int,
+    pub eno: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct divvy {
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub space: obstack,
     pub first: *mut libc::c_void,
     pub count: size_t,
@@ -301,11 +412,11 @@ pub type open_rcsfile_fn = unsafe extern "C" fn(*mut maybe) -> *mut fro;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct program {
-    pub invoke: *const libc::c_char,
-    pub name: *const libc::c_char,
-    pub desc: *const libc::c_char,
-    pub help: *const libc::c_char,
-    pub tyag: libc::c_int,
+    pub invoke: *const i8,
+    pub name: *const i8,
+    pub desc: *const i8,
+    pub help: *const i8,
+    pub tyag: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -315,28 +426,87 @@ pub enum maker {
     effective,
 }
 impl maker {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             maker::notmade => 0,
             maker::real => 1,
             maker::effective => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> maker {
+        match value {
+            0 => maker::notmade,
+            1 => maker::real,
+            2 => maker::effective,
+            _ => panic!("Invalid value for maker: {}", value),
+        }
+    }
 }
-
-pub const effective: maker = 2;
-pub const real: maker = 1;
-pub const notmade: maker = 0;
+impl AddAssign<u32> for maker {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for maker {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for maker {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for maker {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for maker {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for maker {
+    type Output = maker;
+    fn add(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for maker {
+    type Output = maker;
+    fn sub(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for maker {
+    type Output = maker;
+    fn mul(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for maker {
+    type Output = maker;
+    fn div(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for maker {
+    type Output = maker;
+    fn rem(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
-    pub filename: *const libc::c_char,
+    pub filename: *const i8,
     pub disposition: maker,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct behavior {
-    pub invdir: *const libc::c_char,
+    pub invdir: *const i8,
     pub unbuffered: bool,
     pub quiet: bool,
     pub interactive_valid: bool,
@@ -344,21 +514,21 @@ pub struct behavior {
     pub inclusive_of_Locker_in_Id_val: bool,
     pub strictly_locking: bool,
     pub version_set: bool,
-    pub version: libc::c_int,
+    pub version: i32,
     pub stick_with_euid: bool,
-    pub ruid: libc::c_int,
-    pub euid: libc::c_int,
+    pub ruid: i32,
+    pub euid: i32,
     pub ruid_cached: bool,
     pub euid_cached: bool,
     pub already_setuid: bool,
-    pub kws: libc::c_int,
-    pub pe: *const libc::c_char,
+    pub kws: i32,
+    pub pe: *const i8,
     pub zone_offset: zone_offset,
-    pub username: *mut libc::c_char,
+    pub username: *mut i8,
     pub now: timespec,
     pub fixed_SIGCHLD: bool,
     pub Oerrloop: bool,
-    pub cwd: *mut libc::c_char,
+    pub cwd: *mut i8,
     pub mem_limit: off_t,
     pub sff: *mut sff,
     pub isr: *mut isr_scratch,
@@ -369,12 +539,12 @@ pub struct behavior {
 #[repr(C)]
 pub struct zone_offset {
     pub valid: bool,
-    pub seconds: libc::c_long,
+    pub seconds: i64,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct manifestation {
-    pub filename: *mut libc::c_char,
+    pub filename: *mut i8,
     pub standard_output: *mut FILE,
     pub prev: C2RustUnnamed_2,
 }
@@ -382,17 +552,17 @@ pub struct manifestation {
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
     pub valid: bool,
-    pub author: *mut libc::c_char,
-    pub date: *mut libc::c_char,
-    pub name: *mut libc::c_char,
-    pub rev: *mut libc::c_char,
-    pub state: *mut libc::c_char,
+    pub author: *mut i8,
+    pub date: *mut i8,
+    pub name: *mut i8,
+    pub rev: *mut i8,
+    pub state: *mut i8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct repo {
-    pub head: *const libc::c_char,
-    pub branch: *const libc::c_char,
+    pub head: *const i8,
+    pub branch: *const i8,
     pub access_count: size_t,
     pub access: *mut link,
     pub symbols_count: size_t,
@@ -402,7 +572,7 @@ pub struct repo {
     pub strict: bool,
     pub integrity: *mut atat,
     pub comment: *mut atat,
-    pub expand: libc::c_int,
+    pub expand: i32,
     pub deltas_count: size_t,
     pub deltas: *mut wlink,
     pub desc: *mut atat,
@@ -413,8 +583,8 @@ pub struct repo {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct repository {
-    pub filename: *const libc::c_char,
-    pub fd_lock: libc::c_int,
+    pub filename: *const i8,
+    pub fd_lock: i32,
     pub stat: stat,
     pub r: *mut repo,
     pub tip: *mut delta,
@@ -427,7 +597,7 @@ pub struct flow {
     pub rewr: *mut FILE,
     pub to: *mut FILE,
     pub res: *mut FILE,
-    pub result: *const libc::c_char,
+    pub result: *const i8,
     pub erroneous: bool,
 }
 #[derive(Copy, Clone)]
@@ -442,301 +612,298 @@ pub struct top {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct compair {
-    pub suffix: *const libc::c_char,
-    pub comlead: *const libc::c_char,
+    pub suffix: *const i8,
+    pub comlead: *const i8,
 }
 #[inline]
-unsafe extern "C" fn stat(
-    mut __path: *const libc::c_char,
-    mut __statbuf: *mut stat,
-) -> libc::c_int {
-    return __xstat(1 as libc::c_int, __path, __statbuf);
+unsafe extern "C" fn stat(mut __path: *const i8, mut __statbuf: *mut stat) -> i32 {
+    return __xstat(1 as i32, __path, __statbuf);
 }
 static mut comtable: [compair; 39] = [
     {
         let mut init = compair {
-            suffix: b"a\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"a\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"ada\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"ada\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"adb\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"adb\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"ads\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"ads\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"asm\0" as *const u8 as *const libc::c_char,
-            comlead: b";; \0" as *const u8 as *const libc::c_char,
+            suffix: b"asm\0" as *const u8 as *const i8,
+            comlead: b";; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"bat\0" as *const u8 as *const libc::c_char,
-            comlead: b":: \0" as *const u8 as *const libc::c_char,
+            suffix: b"bat\0" as *const u8 as *const i8,
+            comlead: b":: \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"body\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"body\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"c\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"c\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"c++\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"c++\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cc\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"cc\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cpp\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"cpp\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cxx\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"cxx\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cl\0" as *const u8 as *const libc::c_char,
-            comlead: b";;; \0" as *const u8 as *const libc::c_char,
+            suffix: b"cl\0" as *const u8 as *const i8,
+            comlead: b";;; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cmd\0" as *const u8 as *const libc::c_char,
-            comlead: b":: \0" as *const u8 as *const libc::c_char,
+            suffix: b"cmd\0" as *const u8 as *const i8,
+            comlead: b":: \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cmf\0" as *const u8 as *const libc::c_char,
-            comlead: b"c \0" as *const u8 as *const libc::c_char,
+            suffix: b"cmf\0" as *const u8 as *const i8,
+            comlead: b"c \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"cs\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"cs\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"el\0" as *const u8 as *const libc::c_char,
-            comlead: b"; \0" as *const u8 as *const libc::c_char,
+            suffix: b"el\0" as *const u8 as *const i8,
+            comlead: b"; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"f\0" as *const u8 as *const libc::c_char,
-            comlead: b"c \0" as *const u8 as *const libc::c_char,
+            suffix: b"f\0" as *const u8 as *const i8,
+            comlead: b"c \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"for\0" as *const u8 as *const libc::c_char,
-            comlead: b"c \0" as *const u8 as *const libc::c_char,
+            suffix: b"for\0" as *const u8 as *const i8,
+            comlead: b"c \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"h\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"h\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"hpp\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"hpp\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"hxx\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"hxx\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"l\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"l\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"lisp\0" as *const u8 as *const libc::c_char,
-            comlead: b";;; \0" as *const u8 as *const libc::c_char,
+            suffix: b"lisp\0" as *const u8 as *const i8,
+            comlead: b";;; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"lsp\0" as *const u8 as *const libc::c_char,
-            comlead: b";; \0" as *const u8 as *const libc::c_char,
+            suffix: b"lsp\0" as *const u8 as *const i8,
+            comlead: b";; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"m\0" as *const u8 as *const libc::c_char,
-            comlead: b"// \0" as *const u8 as *const libc::c_char,
+            suffix: b"m\0" as *const u8 as *const i8,
+            comlead: b"// \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"mac\0" as *const u8 as *const libc::c_char,
-            comlead: b";; \0" as *const u8 as *const libc::c_char,
+            suffix: b"mac\0" as *const u8 as *const i8,
+            comlead: b";; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"me\0" as *const u8 as *const libc::c_char,
-            comlead: b".\\\" \0" as *const u8 as *const libc::c_char,
+            suffix: b"me\0" as *const u8 as *const i8,
+            comlead: b".\\\" \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"ml\0" as *const u8 as *const libc::c_char,
-            comlead: b"; \0" as *const u8 as *const libc::c_char,
+            suffix: b"ml\0" as *const u8 as *const i8,
+            comlead: b"; \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"mm\0" as *const u8 as *const libc::c_char,
-            comlead: b".\\\" \0" as *const u8 as *const libc::c_char,
+            suffix: b"mm\0" as *const u8 as *const i8,
+            comlead: b".\\\" \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"ms\0" as *const u8 as *const libc::c_char,
-            comlead: b".\\\" \0" as *const u8 as *const libc::c_char,
+            suffix: b"ms\0" as *const u8 as *const i8,
+            comlead: b".\\\" \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"p\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"p\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"pas\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"pas\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"ps\0" as *const u8 as *const libc::c_char,
-            comlead: b"% \0" as *const u8 as *const libc::c_char,
+            suffix: b"ps\0" as *const u8 as *const i8,
+            comlead: b"% \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"spec\0" as *const u8 as *const libc::c_char,
-            comlead: b"-- \0" as *const u8 as *const libc::c_char,
+            suffix: b"spec\0" as *const u8 as *const i8,
+            comlead: b"-- \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"sty\0" as *const u8 as *const libc::c_char,
-            comlead: b"% \0" as *const u8 as *const libc::c_char,
+            suffix: b"sty\0" as *const u8 as *const i8,
+            comlead: b"% \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"tex\0" as *const u8 as *const libc::c_char,
-            comlead: b"% \0" as *const u8 as *const libc::c_char,
+            suffix: b"tex\0" as *const u8 as *const i8,
+            comlead: b"% \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: b"y\0" as *const u8 as *const libc::c_char,
-            comlead: b" * \0" as *const u8 as *const libc::c_char,
+            suffix: b"y\0" as *const u8 as *const i8,
+            comlead: b" * \0" as *const u8 as *const i8,
         };
         init
     },
     {
         let mut init = compair {
-            suffix: 0 as *const libc::c_char,
-            comlead: b"# \0" as *const u8 as *const libc::c_char,
+            suffix: 0 as *const i8,
+            comlead: b"# \0" as *const u8 as *const i8,
         };
         init
     },
 ];
 unsafe extern "C" fn InitAdmin() {
-    let mut ext: *const libc::c_char = 0 as *const libc::c_char;
+    let mut ext: *const i8 = 0 as *const i8;
     (*top).repository.tip = 0 as *mut delta;
-    (*top).behavior.strictly_locking = 1 as libc::c_int != 0;
+    (*top).behavior.strictly_locking = 1 as i32 != 0;
     (*top).repository.r = empty_repo(single);
     ext = strrchr((*top).manifestation.filename, '.' as i32);
     ext = if !ext.is_null() {
-        ext.offset(1 as libc::c_int as isize)
+        ext.offset(1 as i32 as isize)
     } else {
-        b"\0" as *const u8 as *const libc::c_char
+        b"\0" as *const u8 as *const i8
     };
     let mut ent: *const compair = comtable.as_ptr();
     loop {
@@ -749,18 +916,16 @@ unsafe extern "C" fn InitAdmin() {
             ent;
         }
     }
-    (*top).behavior.kws = kwsub_kv as libc::c_int;
+    (*top).behavior.kws = kwsub::kwsub_kv as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn basefilename(
-    mut p: *const libc::c_char,
-) -> *const libc::c_char {
-    let mut b: *const libc::c_char = p;
-    let mut q: *const libc::c_char = p;
+pub unsafe extern "C" fn basefilename(mut p: *const i8) -> *const i8 {
+    let mut b: *const i8 = p;
+    let mut q: *const i8 = p;
     loop {
         let fresh0 = q;
         q = q.offset(1);
-        match *fresh0 as libc::c_int {
+        match *fresh0 as i32 {
             47 => {
                 b = q;
             }
@@ -769,12 +934,12 @@ pub unsafe extern "C" fn basefilename(
         }
     };
 }
-unsafe extern "C" fn suffixlen(mut x: *const libc::c_char) -> size_t {
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
+unsafe extern "C" fn suffixlen(mut x: *const i8) -> size_t {
+    let mut p: *const i8 = 0 as *const i8;
     p = x;
     loop {
-        match *p as libc::c_int {
-            0 | 47 => return p.offset_from(x) as libc::c_long as size_t,
+        match *p as i32 {
+            0 | 47 => return p.offset_from(x) as i64 as size_t,
             _ => {
                 p = p.offset(1);
                 p;
@@ -783,12 +948,10 @@ unsafe extern "C" fn suffixlen(mut x: *const libc::c_char) -> size_t {
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn rcssuffix(
-    mut name: *const libc::c_char,
-) -> *const libc::c_char {
-    let mut x: *const libc::c_char = 0 as *const libc::c_char;
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
-    let mut nz: *const libc::c_char = 0 as *const libc::c_char;
+pub unsafe extern "C" fn rcssuffix(mut name: *const i8) -> *const i8 {
+    let mut x: *const i8 = 0 as *const i8;
+    let mut p: *const i8 = 0 as *const i8;
+    let mut nz: *const i8 = 0 as *const i8;
     let mut nl: size_t = 0;
     let mut xl: size_t = 0;
     nl = strlen(name);
@@ -800,7 +963,7 @@ pub unsafe extern "C" fn rcssuffix(
             if xl <= nl
                 && {
                     p = nz.offset(-(xl as isize));
-                    0 as libc::c_int
+                    0 as i32
                         == memcmp(p as *const libc::c_void, x as *const libc::c_void, xl)
                 }
             {
@@ -811,30 +974,25 @@ pub unsafe extern "C" fn rcssuffix(
             while p
                 < nz
                     .offset(
-                        -((::core::mem::size_of::<[libc::c_char; 4]>() as libc::c_ulong)
-                            .wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize),
+                        -((::core::mem::size_of::<[i8; 4]>() as u64)
+                            .wrapping_sub(1 as i32 as u64) as isize),
                     )
             {
                 if isSLASH(
                     *p
                         .offset(
-                            (::core::mem::size_of::<[libc::c_char; 4]>()
-                                as libc::c_ulong)
-                                .wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize,
-                        ) as libc::c_int,
-                ) as libc::c_int != 0
+                            (::core::mem::size_of::<[i8; 4]>() as u64)
+                                .wrapping_sub(1 as i32 as u64) as isize,
+                        ) as i32,
+                ) as i32 != 0
                     && (p == name
-                        || isSLASH(
-                            *p.offset(-(1 as libc::c_int) as isize) as libc::c_int,
-                        ) as libc::c_int != 0)
-                    && 0 as libc::c_int
+                        || isSLASH(*p.offset(-(1 as i32) as isize) as i32) as i32 != 0)
+                    && 0 as i32
                         == memcmp(
                             p as *const libc::c_void,
-                            b"RCS\0" as *const u8 as *const libc::c_char
-                                as *const libc::c_void,
-                            (::core::mem::size_of::<[libc::c_char; 4]>()
-                                as libc::c_ulong)
-                                .wrapping_sub(1 as libc::c_int as libc::c_ulong),
+                            b"RCS\0" as *const u8 as *const i8 as *const libc::c_void,
+                            (::core::mem::size_of::<[i8; 4]>() as u64)
+                                .wrapping_sub(1 as i32 as u64),
                         )
                 {
                     return nz;
@@ -850,47 +1008,43 @@ pub unsafe extern "C" fn rcssuffix(
             break;
         }
     }
-    return 0 as *const libc::c_char;
+    return 0 as *const i8;
 }
 #[no_mangle]
 pub unsafe extern "C" fn rcsreadopen(mut m: *mut maybe) -> *mut fro {
     return fro_open(
         (*m).tentative.string,
-        b"r\0" as *const u8 as *const libc::c_char,
+        b"r\0" as *const u8 as *const i8,
         (*m).status,
     );
 }
 unsafe extern "C" fn finopen(mut m: *mut maybe) -> bool {
     let mut interesting: bool = false;
     let mut preferold: bool = false;
-    preferold = *((*m).bestfit.string).offset(0 as libc::c_int as isize) as libc::c_int
-        != 0
-        && ((*m).mustread as libc::c_int != 0
-            || 0 as libc::c_int <= (*top).repository.fd_lock);
+    preferold = *((*m).bestfit.string).offset(0 as i32 as isize) as i32 != 0
+        && ((*m).mustread as i32 != 0 || 0 as i32 <= (*top).repository.fd_lock);
     (*top).flow.from = ((*m).open).expect("non-null function pointer")(m);
-    interesting = !((*top).flow.from).is_null()
-        || *__errno_location() != 2 as libc::c_int;
-    if interesting as libc::c_int != 0 || !preferold {
+    interesting = !((*top).flow.from).is_null() || *__errno_location() != 2 as i32;
+    if interesting as i32 != 0 || !preferold {
         (*m).eno = *__errno_location();
         (*m).bestfit = (*m).tentative;
     }
     return interesting;
 }
 unsafe extern "C" fn fin2open(
-    mut d: *const libc::c_char,
+    mut d: *const i8,
     mut dlen: size_t,
-    mut base: *const libc::c_char,
+    mut base: *const i8,
     mut baselen: size_t,
-    mut x: *const libc::c_char,
+    mut x: *const i8,
     mut xlen: size_t,
     mut m: *mut maybe,
 ) -> bool {
     accumulate_nbytes((*m).space, d, dlen);
     accumulate_nbytes(
         (*m).space,
-        b"RCS\0" as *const u8 as *const libc::c_char,
-        (::core::mem::size_of::<[libc::c_char; 4]>() as libc::c_ulong)
-            .wrapping_sub(1 as libc::c_int as libc::c_ulong),
+        b"RCS\0" as *const u8 as *const i8,
+        (::core::mem::size_of::<[i8; 4]>() as u64).wrapping_sub(1 as i32 as u64),
     );
     accumulate_byte((*m).space, '/' as i32);
     accumulate_nbytes((*m).space, base, baselen);
@@ -898,7 +1052,7 @@ unsafe extern "C" fn fin2open(
     (*m).tentative.string = finish_string((*m).space, &mut (*m).tentative.size);
     if xlen != 0 {
         if finopen(m) {
-            return 1 as libc::c_int != 0;
+            return 1 as i32 != 0;
         }
         accumulate_nbytes((*m).space, d, dlen);
         accumulate_nbytes((*m).space, base, baselen);
@@ -909,19 +1063,19 @@ unsafe extern "C" fn fin2open(
 }
 #[no_mangle]
 pub unsafe extern "C" fn pairnames(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
-    mut rcsopen: Option::<open_rcsfile_fn>,
+    mut argc: i32,
+    mut argv: *mut *mut i8,
+    mut rcsopen: Option<open_rcsfile_fn>,
     mut mustread: bool,
     mut quiet: bool,
-) -> libc::c_int {
-    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut arg: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut RCS1: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut base: *const libc::c_char = 0 as *const libc::c_char;
-    let mut RCSbase: *const libc::c_char = 0 as *const libc::c_char;
-    let mut x: *const libc::c_char = 0 as *const libc::c_char;
-    let mut mani_filename: *mut libc::c_char = 0 as *mut libc::c_char;
+) -> i32 {
+    let mut p: *mut i8 = 0 as *mut i8;
+    let mut arg: *mut i8 = 0 as *mut i8;
+    let mut RCS1: *mut i8 = 0 as *mut i8;
+    let mut base: *const i8 = 0 as *const i8;
+    let mut RCSbase: *const i8 = 0 as *const i8;
+    let mut x: *const i8 = 0 as *const i8;
+    let mut mani_filename: *mut i8 = 0 as *mut i8;
     let mut paired: bool = false;
     let mut arglen: size_t = 0;
     let mut dlen: size_t = 0;
@@ -933,12 +1087,12 @@ pub unsafe extern "C" fn pairnames(
             open: rcsopen,
             mustread: mustread,
             tentative: cbuf {
-                string: 0 as *const libc::c_char,
+                string: 0 as *const i8,
                 size: 0,
             },
             space: 0 as *mut divvy,
             bestfit: cbuf {
-                string: 0 as *const libc::c_char,
+                string: 0 as *const i8,
                 size: 0,
             },
             status: &mut (*top).repository.stat,
@@ -946,30 +1100,29 @@ pub unsafe extern "C" fn pairnames(
         };
         init
     };
-    (*top).repository.fd_lock = -(1 as libc::c_int);
+    (*top).repository.fd_lock = -(1 as i32);
     arg = *argv;
     if arg.is_null() {
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
-    if *arg as libc::c_int == '-' as i32 {
+    if *arg as i32 == '-' as i32 {
         generic_error(
-            0 as *const libc::c_char,
-            b"%s option is ignored after filenames\0" as *const u8
-                as *const libc::c_char,
+            0 as *const i8,
+            b"%s option is ignored after filenames\0" as *const u8 as *const i8,
             arg,
         );
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
     base = basefilename(arg);
-    paired = 0 as libc::c_int != 0;
+    paired = 0 as i32 != 0;
     x = rcssuffix(arg);
     if !x.is_null() {
         RCS1 = arg;
         RCSbase = base;
-        baselen = x.offset_from(base) as libc::c_long as size_t;
-        if (1 as libc::c_int) < argc
+        baselen = x.offset_from(base) as i64 as size_t;
+        if (1 as i32) < argc
             && {
-                p = *argv.offset(1 as libc::c_int as isize);
+                p = *argv.offset(1 as i32 as isize);
                 mani_filename = p;
                 (rcssuffix(mani_filename)).is_null()
             }
@@ -980,76 +1133,65 @@ pub unsafe extern "C" fn pairnames(
             && {
                 p = p.offset(arglen.wrapping_sub(baselen) as isize);
                 p == mani_filename
-                    || isSLASH(*p.offset(-(1 as libc::c_int) as isize) as libc::c_int)
-                        as libc::c_int != 0
+                    || isSLASH(*p.offset(-(1 as i32) as isize) as i32) as i32 != 0
             }
-            && 0 as libc::c_int
+            && 0 as i32
                 == memcmp(base as *const libc::c_void, p as *const libc::c_void, baselen)
         {
-            let ref mut fresh2 = *argv.offset(1 as libc::c_int as isize);
-            *fresh2 = 0 as *mut libc::c_char;
-            paired = 1 as libc::c_int != 0;
+            let ref mut fresh2 = *argv.offset(1 as i32 as isize);
+            *fresh2 = 0 as *mut i8;
+            paired = 1 as i32 != 0;
         } else {
-            mani_filename = intern(
-                single,
-                base,
-                baselen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-            );
-            *mani_filename.offset(baselen as isize) = '\0' as i32 as libc::c_char;
+            mani_filename = intern(single, base, baselen.wrapping_add(1 as i32 as u64));
+            *mani_filename.offset(baselen as isize) = '\0' as i32 as i8;
         }
     } else {
         mani_filename = arg;
         baselen = strlen(base);
-        if (1 as libc::c_int) < argc
+        if (1 as i32) < argc
             && {
-                RCS1 = *argv.offset(1 as libc::c_int as isize);
+                RCS1 = *argv.offset(1 as i32 as isize);
                 x = rcssuffix(RCS1);
                 !x.is_null()
-            } && RCS1.offset(baselen as isize) <= x as *mut libc::c_char
+            } && RCS1.offset(baselen as isize) <= x as *mut i8
             && {
                 RCSbase = x.offset(-(baselen as isize));
                 RCSbase == RCS1
-                    || isSLASH(
-                        *RCSbase.offset(-(1 as libc::c_int) as isize) as libc::c_int,
-                    ) as libc::c_int != 0
+                    || isSLASH(*RCSbase.offset(-(1 as i32) as isize) as i32) as i32 != 0
             }
-            && 0 as libc::c_int
+            && 0 as i32
                 == memcmp(
                     base as *const libc::c_void,
                     RCSbase as *const libc::c_void,
                     baselen,
                 )
         {
-            let ref mut fresh3 = *argv.offset(1 as libc::c_int as isize);
-            *fresh3 = 0 as *mut libc::c_char;
-            paired = 1 as libc::c_int != 0;
+            let ref mut fresh3 = *argv.offset(1 as i32 as isize);
+            *fresh3 = 0 as *mut i8;
+            paired = 1 as i32 != 0;
         } else {
-            RCS1 = 0 as *mut libc::c_char;
+            RCS1 = 0 as *mut i8;
             RCSbase = RCS1;
         }
     }
     (*top).manifestation.filename = mani_filename;
-    maybe
-        .space = make_space(
-        (*::core::mem::transmute::<&[u8; 10], &[libc::c_char; 10]>(b"pairnames\0"))
-            .as_ptr(),
+    maybe.space = make_space(
+        (*::core::mem::transmute::<&[u8; 10], &[i8; 10]>(b"pairnames\0")).as_ptr(),
     );
     if RCSbase != RCS1 {
         maybe.bestfit.string = RCS1;
         maybe.bestfit.size = strlen(RCS1);
         maybe.tentative = maybe.bestfit;
-        (*top)
-            .flow
-            .from = (Some(rcsopen.expect("non-null function pointer")))
+        (*top).flow.from = (Some(rcsopen.expect("non-null function pointer")))
             .expect("non-null function pointer")(&mut maybe);
         maybe.eno = *__errno_location();
     } else {
-        maybe.bestfit.string = b"\0" as *const u8 as *const libc::c_char;
-        maybe.bestfit.size = 0 as libc::c_int as size_t;
+        maybe.bestfit.string = b"\0" as *const u8 as *const i8;
+        maybe.bestfit.size = 0 as i32 as size_t;
         if !RCS1.is_null() {
             fin2open(
                 arg,
-                0 as libc::c_int as size_t,
+                0 as i32 as size_t,
                 RCSbase,
                 baselen,
                 x,
@@ -1057,7 +1199,7 @@ pub unsafe extern "C" fn pairnames(
                 &mut maybe,
             );
         } else {
-            dlen = base.offset_from(arg) as libc::c_long as size_t;
+            dlen = base.offset_from(arg) as i64 as size_t;
             x = (*top).behavior.pe;
             loop {
                 xlen = suffixlen(x);
@@ -1075,67 +1217,60 @@ pub unsafe extern "C" fn pairnames(
     }
     p = intern(single, maybe.bestfit.string, maybe.bestfit.size);
     (*top).repository.filename = p;
-    (*top).flow.erroneous = 0 as libc::c_int != 0;
-    (*top).behavior.Oerrloop = 0 as libc::c_int != 0;
+    (*top).flow.erroneous = 0 as i32 != 0;
+    (*top).behavior.Oerrloop = 0 as i32 != 0;
     from = (*top).flow.from;
     if !from.is_null() {
-        if !((*maybe.status).st_mode & 0o170000 as libc::c_int as libc::c_uint
-            == 0o100000 as libc::c_int as libc::c_uint)
+        if !((*maybe.status).st_mode & 0o170000 as i32 as u32 == 0o100000 as i32 as u32)
         {
             generic_error(
-                0 as *const libc::c_char,
-                b"%s isn't a regular file -- ignored\0" as *const u8
-                    as *const libc::c_char,
+                0 as *const i8,
+                b"%s isn't a regular file -- ignored\0" as *const u8 as *const i8,
                 p,
             );
-            return 0 as libc::c_int;
+            return 0 as i32;
         }
         (*top).repository.r = grok_all(single, from);
         (*top).flow.to = 0 as *mut FILE;
     } else {
-        if maybe.eno != 2 as libc::c_int || mustread as libc::c_int != 0
-            || 0 as libc::c_int > (*top).repository.fd_lock
+        if maybe.eno != 2 as i32 || mustread as i32 != 0
+            || 0 as i32 > (*top).repository.fd_lock
         {
-            if maybe.eno == 17 as libc::c_int {
+            if maybe.eno == 17 as i32 {
                 generic_error(
-                    0 as *const libc::c_char,
-                    b"RCS file %s is in use\0" as *const u8 as *const libc::c_char,
+                    0 as *const i8,
+                    b"RCS file %s is in use\0" as *const u8 as *const i8,
                     p,
                 );
-            } else if !quiet || maybe.eno != 2 as libc::c_int {
+            } else if !quiet || maybe.eno != 2 as i32 {
                 syserror(maybe.eno, p);
             }
-            return 0 as libc::c_int;
+            return 0 as i32;
         }
         InitAdmin();
     }
-    if paired as libc::c_int != 0 && !((*top).manifestation.standard_output).is_null() {
+    if paired as i32 != 0 && !((*top).manifestation.standard_output).is_null() {
         generic_warn(
             (*top).manifestation.filename,
-            b"Working file ignored due to -p option\0" as *const u8
-                as *const libc::c_char,
+            b"Working file ignored due to -p option\0" as *const u8 as *const i8,
         );
     }
-    (*top).manifestation.prev.valid = 0 as libc::c_int != 0;
+    (*top).manifestation.prev.valid = 0 as i32 != 0;
     close_space(maybe.space);
-    return if !from.is_null() { 1 as libc::c_int } else { -(1 as libc::c_int) };
+    return if !from.is_null() { 1 as i32 } else { -(1 as i32) };
 }
-unsafe extern "C" fn dir_useful_len(mut d: *const libc::c_char) -> size_t {
+unsafe extern "C" fn dir_useful_len(mut d: *const i8) -> size_t {
     let mut dlen: size_t = strlen(d);
-    if 0 as libc::c_int != 0 && dlen == 2 as libc::c_int as libc::c_ulong
-        && isSLASH(*d.offset(0 as libc::c_int as isize) as libc::c_int) as libc::c_int
-            != 0
-        && isSLASH(*d.offset(1 as libc::c_int as isize) as libc::c_int) as libc::c_int
-            != 0
+    if 0 as i32 != 0 && dlen == 2 as i32 as u64
+        && isSLASH(*d.offset(0 as i32 as isize) as i32) as i32 != 0
+        && isSLASH(*d.offset(1 as i32 as isize) as i32) as i32 != 0
     {
         dlen = dlen.wrapping_sub(1);
         dlen;
     } else {
         while dlen != 0
-            && isSLASH(
-                *d.offset(dlen.wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize)
-                    as libc::c_int,
-            ) as libc::c_int != 0
+            && isSLASH(*d.offset(dlen.wrapping_sub(1 as i32 as u64) as isize) as i32)
+                as i32 != 0
         {
             dlen = dlen.wrapping_sub(1);
             dlen;
@@ -1144,19 +1279,17 @@ unsafe extern "C" fn dir_useful_len(mut d: *const libc::c_char) -> size_t {
     return dlen;
 }
 #[no_mangle]
-pub unsafe extern "C" fn getfullRCSname() -> *const libc::c_char {
-    let mut r: *const libc::c_char = (*top).repository.filename;
-    if isSLASH(*r.offset(0 as libc::c_int as isize) as libc::c_int) {
+pub unsafe extern "C" fn getfullRCSname() -> *const i8 {
+    let mut r: *const i8 = (*top).repository.filename;
+    if isSLASH(*r.offset(0 as i32 as isize) as i32) {
         return r
     } else {
-        let mut cwd: *mut libc::c_char = 0 as *mut libc::c_char;
-        let mut rv: *mut libc::c_char = 0 as *mut libc::c_char;
+        let mut cwd: *mut i8 = 0 as *mut i8;
+        let mut rv: *mut i8 = 0 as *mut i8;
         let mut len: size_t = 0;
         cwd = (*top).behavior.cwd;
         if cwd.is_null() {
-            let mut PWD: *mut libc::c_char = cgetenv(
-                b"PWD\0" as *const u8 as *const libc::c_char,
-            );
+            let mut PWD: *mut i8 = cgetenv(b"PWD\0" as *const u8 as *const i8);
             let mut PWDstat: stat = stat {
                 st_dev: 0,
                 st_ino: 0,
@@ -1193,62 +1326,54 @@ pub unsafe extern "C" fn getfullRCSname() -> *const libc::c_char {
             };
             cwd = PWD;
             if !(!cwd.is_null()
-                && isSLASH(*PWD.offset(0 as libc::c_int as isize) as libc::c_int)
-                    as libc::c_int != 0 && !(0 as libc::c_int > stat(PWD, &mut PWDstat))
-                && !(0 as libc::c_int
-                    > stat(b".\0" as *const u8 as *const libc::c_char, &mut dotstat))
+                && isSLASH(*PWD.offset(0 as i32 as isize) as i32) as i32 != 0
+                && !(0 as i32 > stat(PWD, &mut PWDstat))
+                && !(0 as i32 > stat(b".\0" as *const u8 as *const i8, &mut dotstat))
                 && (PWDstat.st_ino == dotstat.st_ino
                     && PWDstat.st_dev == dotstat.st_dev))
             {
-                let mut sz: size_t = 64 as libc::c_int as size_t;
+                let mut sz: size_t = 64 as i32 as size_t;
                 loop {
-                    cwd = alloc(plexus, sz) as *mut libc::c_char;
+                    cwd = alloc(plexus, sz) as *mut i8;
                     if !(getcwd(cwd, sz)).is_null() {
                         break;
                     }
                     brush_off(plexus, cwd as *mut libc::c_void);
-                    if *__errno_location() == 34 as libc::c_int {
-                        sz <<= 1 as libc::c_int;
+                    if *__errno_location() == 34 as i32 {
+                        sz <<= 1 as i32;
                     } else {
                         cwd = PWD;
                         if !cwd.is_null() {
                             break;
                         }
-                        fatal_sys(b"getcwd\0" as *const u8 as *const libc::c_char);
+                        fatal_sys(b"getcwd\0" as *const u8 as *const i8);
                     }
                 }
             }
-            *cwd.offset(dir_useful_len(cwd) as isize) = '\0' as i32 as libc::c_char;
+            *cwd.offset(dir_useful_len(cwd) as isize) = '\0' as i32 as i8;
             (*top).behavior.cwd = cwd;
         }
-        while *r.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
-            && isSLASH(*r.offset(1 as libc::c_int as isize) as libc::c_int)
-                as libc::c_int != 0
+        while *r.offset(0 as i32 as isize) as i32 == '.' as i32
+            && isSLASH(*r.offset(1 as i32 as isize) as i32) as i32 != 0
         {
-            while isSLASH(*r.offset(2 as libc::c_int as isize) as libc::c_int) {
+            while isSLASH(*r.offset(2 as i32 as isize) as i32) {
                 r = r.offset(1);
                 r;
             }
-            r = r.offset(2 as libc::c_int as isize);
+            r = r.offset(2 as i32 as isize);
         }
-        accf(
-            single,
-            b"%s%c%s\0" as *const u8 as *const libc::c_char,
-            cwd,
-            '/' as i32,
-            r,
-        );
+        accf(single, b"%s%c%s\0" as *const u8 as *const i8, cwd, '/' as i32, r);
         rv = finish_string(single, &mut len);
         return rv;
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn isSLASH(mut c: libc::c_int) -> bool {
-    if 0 as libc::c_int == 0 {
+pub unsafe extern "C" fn isSLASH(mut c: i32) -> bool {
+    if 0 as i32 == 0 {
         return '/' as i32 == c;
     }
     match c {
-        47 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        47 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }

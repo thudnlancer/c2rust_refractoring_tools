@@ -1,26 +1,33 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types, label_break_value)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type hash_table;
     pub type Hash_tuning_0;
     fn __assert_fail(
-        __assertion: *const libc::c_char,
-        __file: *const libc::c_char,
-        __line: libc::c_uint,
-        __function: *const libc::c_char,
+        __assertion: *const i8,
+        __file: *const i8,
+        __line: u32,
+        __function: *const i8,
     ) -> !;
-    fn __errno_location() -> *mut libc::c_int;
-    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
+    fn __errno_location() -> *mut i32;
+    fn malloc(_: u64) -> *mut libc::c_void;
     fn rpl_free(ptr: *mut libc::c_void);
-    fn strdup(_: *const libc::c_char) -> *mut libc::c_char;
-    fn __fxstat(
-        __ver: libc::c_int,
-        __fildes: libc::c_int,
-        __stat_buf: *mut stat,
-    ) -> libc::c_int;
-    fn set_cloexec_flag(desc: libc::c_int, value: bool) -> libc::c_int;
-    fn fileno(__stream: *mut FILE) -> libc::c_int;
-    fn rpl_fclose(stream: *mut FILE) -> libc::c_int;
+    fn strdup(_: *const i8) -> *mut i8;
+    fn __fxstat(__ver: i32, __fildes: i32, __stat_buf: *mut stat) -> i32;
+    fn set_cloexec_flag(desc: i32, value: bool) -> i32;
+    fn fileno(__stream: *mut FILE) -> i32;
+    fn rpl_fclose(stream: *mut FILE) -> i32;
     fn hash_insert(
         table: *mut Hash_table,
         entry: *const libc::c_void,
@@ -37,25 +44,22 @@ extern "C" {
         table: *const Hash_table,
         entry: *const libc::c_void,
     ) -> *mut libc::c_void;
-    fn fopen_safer(_: *const libc::c_char, _: *const libc::c_char) -> *mut FILE;
-    fn fatal_nontarget_file_error(
-        errno_value: libc::c_int,
-        name: *const libc::c_char,
-    ) -> !;
+    fn fopen_safer(_: *const i8, _: *const i8) -> *mut FILE;
+    fn fatal_nontarget_file_error(errno_value: i32, name: *const i8) -> !;
 }
-pub type size_t = libc::c_ulong;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
+pub type size_t = u64;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __syscall_slong_t = i64;
 pub type ino_t = __ino_t;
 pub type dev_t = __dev_t;
 #[derive(Copy, Clone)]
@@ -73,7 +77,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -86,26 +90,26 @@ pub struct stat {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -113,8 +117,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -122,7 +126,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
@@ -136,18 +140,18 @@ pub struct hash_tuning {
 }
 pub type Hash_tuning = hash_tuning;
 pub type Hash_table = hash_table;
-pub type Hash_hasher = Option::<
+pub type Hash_hasher = Option<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
-pub type Hash_comparator = Option::<
+pub type Hash_comparator = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> bool,
 >;
-pub type Hash_data_freer = Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
+pub type Hash_data_freer = Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
 pub type sharefile_handle = *mut libc::c_void;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sharefile {
-    pub mode: *mut libc::c_char,
+    pub mode: *mut i8,
     pub table: *mut Hash_table,
 }
 #[derive(Copy, Clone)]
@@ -155,7 +159,7 @@ pub struct sharefile {
 pub struct SharefileEntry {
     pub device: dev_t,
     pub inode: ino_t,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub fp: *mut FILE,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -164,19 +168,76 @@ pub enum C2RustUnnamed {
     DefaultHashTableSize = 11,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::DefaultHashTableSize => 11,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            11 => C2RustUnnamed::DefaultHashTableSize,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
-unsafe extern "C" fn fstat(
-    mut __fd: libc::c_int,
-    mut __statbuf: *mut stat,
-) -> libc::c_int {
-    return __fxstat(1 as libc::c_int, __fd, __statbuf);
+unsafe extern "C" fn fstat(mut __fd: i32, mut __statbuf: *mut stat) -> i32 {
+    return __fxstat(1 as i32, __fd, __statbuf);
 }
 unsafe extern "C" fn entry_comparator(
     mut av: *const libc::c_void,
@@ -189,7 +250,7 @@ unsafe extern "C" fn entry_comparator(
 unsafe extern "C" fn entry_free(mut pv: *mut libc::c_void) {
     let mut p: *mut SharefileEntry = pv as *mut SharefileEntry;
     if !((*p).fp).is_null() {
-        if 0 as libc::c_int != rpl_fclose((*p).fp) {
+        if 0 as i32 != rpl_fclose((*p).fp) {
             fatal_nontarget_file_error(*__errno_location(), (*p).name);
         }
     }
@@ -204,18 +265,14 @@ unsafe extern "C" fn entry_hashfunc(
     return ((*p).device ^ (*p).inode).wrapping_rem(buckets);
 }
 #[no_mangle]
-pub unsafe extern "C" fn sharefile_init(
-    mut mode: *const libc::c_char,
-) -> sharefile_handle {
-    let mut p: *mut sharefile = malloc(
-        ::core::mem::size_of::<sharefile>() as libc::c_ulong,
-    ) as *mut sharefile;
+pub unsafe extern "C" fn sharefile_init(mut mode: *const i8) -> sharefile_handle {
+    let mut p: *mut sharefile = malloc(::core::mem::size_of::<sharefile>() as u64)
+        as *mut sharefile;
     if !p.is_null() {
         (*p).mode = strdup(mode);
         if !((*p).mode).is_null() {
-            (*p)
-                .table = hash_initialize(
-                DefaultHashTableSize as libc::c_int as size_t,
+            (*p).table = hash_initialize(
+                C2RustUnnamed::DefaultHashTableSize as i32 as size_t,
                 0 as *const Hash_tuning,
                 Some(
                     entry_hashfunc
@@ -251,11 +308,11 @@ pub unsafe extern "C" fn sharefile_destroy(mut pv: sharefile_handle) {
 #[no_mangle]
 pub unsafe extern "C" fn sharefile_fopen(
     mut h: sharefile_handle,
-    mut filename: *const libc::c_char,
+    mut filename: *const i8,
 ) -> *mut FILE {
     let mut p: *mut sharefile = h as *mut sharefile;
     let mut new_entry: *mut SharefileEntry = 0 as *mut SharefileEntry;
-    new_entry = malloc(::core::mem::size_of::<SharefileEntry>() as libc::c_ulong)
+    new_entry = malloc(::core::mem::size_of::<SharefileEntry>() as u64)
         as *mut SharefileEntry;
     if new_entry.is_null() {
         return 0 as *mut FILE;
@@ -287,35 +344,35 @@ pub unsafe extern "C" fn sharefile_fopen(
             st_ctim: timespec { tv_sec: 0, tv_nsec: 0 },
             __glibc_reserved: [0; 3],
         };
-        let fd: libc::c_int = fileno((*new_entry).fp);
-        if fd >= 0 as libc::c_int {} else {
+        let fd: i32 = fileno((*new_entry).fp);
+        if fd >= 0 as i32 {} else {
             __assert_fail(
-                b"fd >= 0\0" as *const u8 as *const libc::c_char,
-                b"sharefile.c\0" as *const u8 as *const libc::c_char,
-                166 as libc::c_int as libc::c_uint,
+                b"fd >= 0\0" as *const u8 as *const i8,
+                b"sharefile.c\0" as *const u8 as *const i8,
+                166 as i32 as u32,
                 (*::core::mem::transmute::<
                     &[u8; 54],
-                    &[libc::c_char; 54],
+                    &[i8; 54],
                 >(b"FILE *sharefile_fopen(sharefile_handle, const char *)\0"))
                     .as_ptr(),
             );
         }
         'c_3690: {
-            if fd >= 0 as libc::c_int {} else {
+            if fd >= 0 as i32 {} else {
                 __assert_fail(
-                    b"fd >= 0\0" as *const u8 as *const libc::c_char,
-                    b"sharefile.c\0" as *const u8 as *const libc::c_char,
-                    166 as libc::c_int as libc::c_uint,
+                    b"fd >= 0\0" as *const u8 as *const i8,
+                    b"sharefile.c\0" as *const u8 as *const i8,
+                    166 as i32 as u32,
                     (*::core::mem::transmute::<
                         &[u8; 54],
-                        &[libc::c_char; 54],
+                        &[i8; 54],
                     >(b"FILE *sharefile_fopen(sharefile_handle, const char *)\0"))
                         .as_ptr(),
                 );
             }
         };
-        set_cloexec_flag(fd, 1 as libc::c_int != 0);
-        if fstat(fd, &mut st) < 0 as libc::c_int {
+        set_cloexec_flag(fd, 1 as i32 != 0);
+        if fstat(fd, &mut st) < 0 as i32 {
             entry_free(new_entry as *mut libc::c_void);
             return 0 as *mut FILE;
         } else {
@@ -331,7 +388,7 @@ pub unsafe extern "C" fn sharefile_fopen(
             {
                 return (*new_entry).fp
             } else {
-                let save_errno: libc::c_int = *__errno_location();
+                let save_errno: i32 = *__errno_location();
                 entry_free(new_entry as *mut libc::c_void);
                 *__errno_location() = save_errno;
                 return 0 as *mut FILE;

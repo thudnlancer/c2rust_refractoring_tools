@@ -1,0 +1,65 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+pub type size_t = u64;
+pub type __uint8_t = u8;
+pub type uint8_t = __uint8_t;
+pub type nettle_hash_update_func = unsafe extern "C" fn(
+    *mut libc::c_void,
+    size_t,
+    *const uint8_t,
+) -> ();
+pub type nettle_hash_digest_func = unsafe extern "C" fn(
+    *mut libc::c_void,
+    size_t,
+    *mut uint8_t,
+) -> ();
+#[no_mangle]
+pub unsafe extern "C" fn nettle_hkdf_extract(
+    mut mac_ctx: *mut libc::c_void,
+    mut update: Option<nettle_hash_update_func>,
+    mut digest: Option<nettle_hash_digest_func>,
+    mut digest_size: size_t,
+    mut secret_size: size_t,
+    mut secret: *const uint8_t,
+    mut dst: *mut uint8_t,
+) {
+    update.expect("non-null function pointer")(mac_ctx, secret_size, secret);
+    digest.expect("non-null function pointer")(mac_ctx, digest_size, dst);
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_hkdf_expand(
+    mut mac_ctx: *mut libc::c_void,
+    mut update: Option<nettle_hash_update_func>,
+    mut digest: Option<nettle_hash_digest_func>,
+    mut digest_size: size_t,
+    mut info_size: size_t,
+    mut info: *const uint8_t,
+    mut length: size_t,
+    mut dst: *mut uint8_t,
+) {
+    let mut i: uint8_t = 1 as i32 as uint8_t;
+    if length == 0 {
+        return;
+    }
+    loop {
+        update.expect("non-null function pointer")(mac_ctx, info_size, info);
+        update.expect("non-null function pointer")(mac_ctx, 1 as i32 as size_t, &mut i);
+        if length <= digest_size {
+            break;
+        }
+        digest.expect("non-null function pointer")(mac_ctx, digest_size, dst);
+        update.expect("non-null function pointer")(mac_ctx, digest_size, dst);
+        dst = dst.offset(digest_size as isize);
+        length = (length as u64).wrapping_sub(digest_size) as size_t as size_t;
+        i = i.wrapping_add(1);
+        i;
+    }
+    digest.expect("non-null function pointer")(mac_ctx, length, dst);
+}

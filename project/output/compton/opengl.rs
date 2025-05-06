@@ -1,8 +1,17 @@
-use ::libc;
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+#![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type _XGC;
     pub type _XDisplay;
     pub type DBusConnection;
@@ -53,21 +62,84 @@ extern "C" {
         texture: GLuint,
         level: GLint,
     );
-    fn glClearColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf);
-    fn glClear(mask: GLbitfield);
-    fn glColorMask(red: GLboolean, green: GLboolean, blue: GLboolean, alpha: GLboolean);
-    fn glBlendFunc(sfactor: GLenum, dfactor: GLenum);
-    fn glLogicOp(opcode: GLenum);
-    fn glScissor(x: GLint, y: GLint, width: GLsizei, height: GLsizei);
-    fn glReadBuffer(mode: GLenum);
-    fn glEnable(cap: GLenum);
-    fn glDisable(cap: GLenum);
-    fn glIsEnabled(cap: GLenum) -> GLboolean;
-    fn glGetFloatv(pname: GLenum, params: *mut GLfloat);
-    fn glGetIntegerv(pname: GLenum, params: *mut GLint);
-    fn glGetString(name: GLenum) -> *const GLubyte;
-    fn glDepthMask(flag: GLboolean);
-    fn glMatrixMode(mode: GLenum);
+    fn __ctype_b_loc() -> *mut *const libc::c_ushort;
+    fn strlen(_: *const i8) -> u64;
+    fn strstr(_: *const i8, _: *const i8) -> *mut i8;
+    fn strcat(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn memmove(
+        _: *mut libc::c_void,
+        _: *const libc::c_void,
+        _: u64,
+    ) -> *mut libc::c_void;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn exit(_: i32) -> !;
+    fn free(__ptr: *mut libc::c_void);
+    fn realloc(_: *mut libc::c_void, _: u64) -> *mut libc::c_void;
+    fn calloc(_: u64, _: u64) -> *mut libc::c_void;
+    fn malloc(_: u64) -> *mut libc::c_void;
+    fn sprintf(_: *mut i8, _: *const i8, _: ...) -> i32;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    static mut stderr: *mut _IO_FILE;
+    fn XFixesFetchRegion(
+        dpy: *mut Display,
+        region: XserverRegion,
+        nrectanglesRet: *mut i32,
+    ) -> *mut XRectangle;
+    fn XFixesSubtractRegion(
+        dpy: *mut Display,
+        dst: XserverRegion,
+        src1: XserverRegion,
+        src2: XserverRegion,
+    );
+    fn XFixesIntersectRegion(
+        dpy: *mut Display,
+        dst: XserverRegion,
+        src1: XserverRegion,
+        src2: XserverRegion,
+    );
+    fn XFixesUnionRegion(
+        dpy: *mut Display,
+        dst: XserverRegion,
+        src1: XserverRegion,
+        src2: XserverRegion,
+    );
+    fn XFixesCopyRegion(dpy: *mut Display, dst: XserverRegion, src: XserverRegion);
+    fn XFixesDestroyRegion(dpy: *mut Display, region: XserverRegion);
+    fn XFixesCreateRegion(
+        dpy: *mut Display,
+        rectangles: *mut XRectangle,
+        nrectangles: i32,
+    ) -> XserverRegion;
+    fn XGetVisualInfo(
+        _: *mut Display,
+        _: i64,
+        _: *mut XVisualInfo,
+        _: *mut i32,
+    ) -> *mut XVisualInfo;
+    fn XVisualIDFromVisual(_: *mut Visual) -> VisualID;
+    fn XFree(_: *mut libc::c_void) -> i32;
+    fn XGetGeometry(
+        _: *mut Display,
+        _: Drawable,
+        _: *mut Window,
+        _: *mut i32,
+        _: *mut i32,
+        _: *mut u32,
+        _: *mut u32,
+        _: *mut u32,
+        _: *mut u32,
+    ) -> i32;
+    fn setlocale(__category: i32, __locale: *const i8) -> *mut i8;
+    fn vsync_deinit(ps: *mut session_t);
+    fn vsync_init(ps: *mut session_t) -> bool;
+    fn glColor4f(red: GLfloat, green: GLfloat, blue: GLfloat, alpha: GLfloat);
+    fn glVertex3i(x: GLint, y: GLint, z: GLint);
+    fn glVertex3f(x: GLfloat, y: GLfloat, z: GLfloat);
+    fn glEnd();
+    fn glBegin(mode: GLenum);
+    fn glLoadIdentity();
+    fn glViewport(x: GLint, y: GLint, width: GLsizei, height: GLsizei);
     fn glOrtho(
         left: GLdouble,
         right: GLdouble,
@@ -76,13 +148,69 @@ extern "C" {
         near_val: GLdouble,
         far_val: GLdouble,
     );
-    fn glViewport(x: GLint, y: GLint, width: GLsizei, height: GLsizei);
-    fn glLoadIdentity();
-    fn glBegin(mode: GLenum);
-    fn glEnd();
-    fn glVertex3f(x: GLfloat, y: GLfloat, z: GLfloat);
-    fn glVertex3i(x: GLint, y: GLint, z: GLint);
-    fn glColor4f(red: GLfloat, green: GLfloat, blue: GLfloat, alpha: GLfloat);
+    fn glMatrixMode(mode: GLenum);
+    fn glDepthMask(flag: GLboolean);
+    fn glGetString(name: GLenum) -> *const GLubyte;
+    fn glGetIntegerv(pname: GLenum, params: *mut GLint);
+    fn glGetFloatv(pname: GLenum, params: *mut GLfloat);
+    fn glIsEnabled(cap: GLenum) -> GLboolean;
+    fn glDisable(cap: GLenum);
+    fn glEnable(cap: GLenum);
+    fn glReadBuffer(mode: GLenum);
+    fn glScissor(x: GLint, y: GLint, width: GLsizei, height: GLsizei);
+    fn glLogicOp(opcode: GLenum);
+    fn glBlendFunc(sfactor: GLenum, dfactor: GLenum);
+    fn glColorMask(red: GLboolean, green: GLboolean, blue: GLboolean, alpha: GLboolean);
+    fn glClear(mask: GLbitfield);
+    fn glClearColor(red: GLclampf, green: GLclampf, blue: GLclampf, alpha: GLclampf);
+    fn glXCreateContext(
+        dpy: *mut Display,
+        vis: *mut XVisualInfo,
+        shareList: GLXContext,
+        direct: i32,
+    ) -> GLXContext;
+    fn glXDestroyContext(dpy: *mut Display, ctx: GLXContext);
+    fn glXMakeCurrent(dpy: *mut Display, drawable: GLXDrawable, ctx: GLXContext) -> i32;
+    fn glXSwapBuffers(dpy: *mut Display, drawable: GLXDrawable);
+    fn glXQueryExtension(dpy: *mut Display, errorb: *mut i32, event: *mut i32) -> i32;
+    fn glXGetConfig(
+        dpy: *mut Display,
+        visual: *mut XVisualInfo,
+        attrib: i32,
+        value: *mut i32,
+    ) -> i32;
+    fn glXQueryExtensionsString(dpy: *mut Display, screen: i32) -> *const i8;
+    fn glXGetFBConfigAttrib(
+        dpy: *mut Display,
+        config: GLXFBConfig,
+        attribute: i32,
+        value: *mut i32,
+    ) -> i32;
+    fn glXGetFBConfigs(
+        dpy: *mut Display,
+        screen: i32,
+        nelements: *mut i32,
+    ) -> *mut GLXFBConfig;
+    fn glXGetVisualFromFBConfig(
+        dpy: *mut Display,
+        config: GLXFBConfig,
+    ) -> *mut XVisualInfo;
+    fn glXCreatePixmap(
+        dpy: *mut Display,
+        config: GLXFBConfig,
+        pixmap: Pixmap,
+        attribList: *const i32,
+    ) -> GLXPixmap;
+    fn glXDestroyPixmap(dpy: *mut Display, pixmap: GLXPixmap);
+    fn glXQueryDrawable(
+        dpy: *mut Display,
+        draw: GLXDrawable,
+        attribute: i32,
+        value: *mut u32,
+    );
+    fn glXGetProcAddress(
+        procname: *const GLubyte,
+    ) -> Option<unsafe extern "C" fn() -> ()>;
     fn glTexCoord2f(s: GLfloat, t: GLfloat);
     fn glRasterPos2f(x: GLfloat, y: GLfloat);
     fn glRasterPos4fv(v: *const GLfloat);
@@ -138,185 +266,55 @@ extern "C" {
     );
     fn glActiveTexture(texture: GLenum);
     fn glMultiTexCoord2f(target: GLenum, s: GLfloat, t: GLfloat);
-    fn setlocale(
-        __category: libc::c_int,
-        __locale: *const libc::c_char,
-    ) -> *mut libc::c_char;
-    fn vsync_deinit(ps: *mut session_t);
-    fn vsync_init(ps: *mut session_t) -> bool;
-    fn __ctype_b_loc() -> *mut *const libc::c_ushort;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strstr(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strcat(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn memmove(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn exit(_: libc::c_int) -> !;
-    fn free(__ptr: *mut libc::c_void);
-    fn realloc(_: *mut libc::c_void, _: libc::c_ulong) -> *mut libc::c_void;
-    fn calloc(_: libc::c_ulong, _: libc::c_ulong) -> *mut libc::c_void;
-    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
-    fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    static mut stderr: *mut FILE;
-    fn XFixesFetchRegion(
-        dpy: *mut Display,
-        region: XserverRegion,
-        nrectanglesRet: *mut libc::c_int,
-    ) -> *mut XRectangle;
-    fn XFixesSubtractRegion(
-        dpy: *mut Display,
-        dst: XserverRegion,
-        src1: XserverRegion,
-        src2: XserverRegion,
-    );
-    fn XFixesIntersectRegion(
-        dpy: *mut Display,
-        dst: XserverRegion,
-        src1: XserverRegion,
-        src2: XserverRegion,
-    );
-    fn XFixesUnionRegion(
-        dpy: *mut Display,
-        dst: XserverRegion,
-        src1: XserverRegion,
-        src2: XserverRegion,
-    );
-    fn XFixesCopyRegion(dpy: *mut Display, dst: XserverRegion, src: XserverRegion);
-    fn XFixesDestroyRegion(dpy: *mut Display, region: XserverRegion);
-    fn XFixesCreateRegion(
-        dpy: *mut Display,
-        rectangles: *mut XRectangle,
-        nrectangles: libc::c_int,
-    ) -> XserverRegion;
-    fn XGetVisualInfo(
-        _: *mut Display,
-        _: libc::c_long,
-        _: *mut XVisualInfo,
-        _: *mut libc::c_int,
-    ) -> *mut XVisualInfo;
-    fn glXCreateContext(
-        dpy: *mut Display,
-        vis: *mut XVisualInfo,
-        shareList: GLXContext,
-        direct: libc::c_int,
-    ) -> GLXContext;
-    fn glXDestroyContext(dpy: *mut Display, ctx: GLXContext);
-    fn glXMakeCurrent(
-        dpy: *mut Display,
-        drawable: GLXDrawable,
-        ctx: GLXContext,
-    ) -> libc::c_int;
-    fn glXSwapBuffers(dpy: *mut Display, drawable: GLXDrawable);
-    fn glXQueryExtension(
-        dpy: *mut Display,
-        errorb: *mut libc::c_int,
-        event: *mut libc::c_int,
-    ) -> libc::c_int;
-    fn glXGetConfig(
-        dpy: *mut Display,
-        visual: *mut XVisualInfo,
-        attrib: libc::c_int,
-        value: *mut libc::c_int,
-    ) -> libc::c_int;
-    fn glXQueryExtensionsString(
-        dpy: *mut Display,
-        screen: libc::c_int,
-    ) -> *const libc::c_char;
-    fn glXGetFBConfigAttrib(
-        dpy: *mut Display,
-        config: GLXFBConfig,
-        attribute: libc::c_int,
-        value: *mut libc::c_int,
-    ) -> libc::c_int;
-    fn glXGetFBConfigs(
-        dpy: *mut Display,
-        screen: libc::c_int,
-        nelements: *mut libc::c_int,
-    ) -> *mut GLXFBConfig;
-    fn glXGetVisualFromFBConfig(
-        dpy: *mut Display,
-        config: GLXFBConfig,
-    ) -> *mut XVisualInfo;
-    fn glXCreatePixmap(
-        dpy: *mut Display,
-        config: GLXFBConfig,
-        pixmap: Pixmap,
-        attribList: *const libc::c_int,
-    ) -> GLXPixmap;
-    fn glXDestroyPixmap(dpy: *mut Display, pixmap: GLXPixmap);
-    fn glXQueryDrawable(
-        dpy: *mut Display,
-        draw: GLXDrawable,
-        attribute: libc::c_int,
-        value: *mut libc::c_uint,
-    );
-    fn glXGetProcAddress(
-        procname: *const GLubyte,
-    ) -> Option::<unsafe extern "C" fn() -> ()>;
-    fn XVisualIDFromVisual(_: *mut Visual) -> VisualID;
-    fn XFree(_: *mut libc::c_void) -> libc::c_int;
-    fn XGetGeometry(
-        _: *mut Display,
-        _: Drawable,
-        _: *mut Window,
-        _: *mut libc::c_int,
-        _: *mut libc::c_int,
-        _: *mut libc::c_uint,
-        _: *mut libc::c_uint,
-        _: *mut libc::c_uint,
-        _: *mut libc::c_uint,
-    ) -> libc::c_int;
 }
-pub type size_t = libc::c_ulong;
-pub type __uint32_t = libc::c_uint;
-pub type __int64_t = libc::c_long;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __suseconds_t = libc::c_long;
+pub type size_t = u64;
+pub type __uint32_t = u32;
+pub type __int64_t = i64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __suseconds_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
 pub type int64_t = __int64_t;
 #[derive(Copy, Clone)]
@@ -325,14 +323,14 @@ pub struct timeval {
     pub tv_sec: __time_t,
     pub tv_usec: __suseconds_t,
 }
-pub type __fd_mask = libc::c_long;
+pub type __fd_mask = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct fd_set {
     pub fds_bits: [__fd_mask; 16],
 }
 pub type uint32_t = __uint32_t;
-pub type int_fast16_t = libc::c_long;
+pub type int_fast16_t = i64;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -350,7 +348,7 @@ pub enum C2RustUnnamed {
     _ISupper = 256,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::_ISalnum => 8,
             C2RustUnnamed::_ISpunct => 4,
@@ -366,34 +364,93 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
-pub type XID = libc::c_ulong;
-pub type Atom = libc::c_ulong;
-pub type VisualID = libc::c_ulong;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type XID = u64;
+pub type Atom = u64;
+pub type VisualID = u64;
 pub type Window = XID;
 pub type Drawable = XID;
 pub type Pixmap = XID;
 pub type Colormap = XID;
-pub type XPointer = *mut libc::c_char;
+pub type XPointer = *mut i8;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _XExtData {
-    pub number: libc::c_int,
+    pub number: i32,
     pub next: *mut _XExtData,
-    pub free_private: Option::<unsafe extern "C" fn(*mut _XExtData) -> libc::c_int>,
+    pub free_private: Option<unsafe extern "C" fn(*mut _XExtData) -> i32>,
     pub private_data: XPointer,
 }
 pub type XExtData = _XExtData;
@@ -403,18 +460,18 @@ pub type GC = *mut _XGC;
 pub struct Visual {
     pub ext_data: *mut XExtData,
     pub visualid: VisualID,
-    pub class: libc::c_int,
-    pub red_mask: libc::c_ulong,
-    pub green_mask: libc::c_ulong,
-    pub blue_mask: libc::c_ulong,
-    pub bits_per_rgb: libc::c_int,
-    pub map_entries: libc::c_int,
+    pub class: i32,
+    pub red_mask: u64,
+    pub green_mask: u64,
+    pub blue_mask: u64,
+    pub bits_per_rgb: i32,
+    pub map_entries: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct Depth {
-    pub depth: libc::c_int,
-    pub nvisuals: libc::c_int,
+    pub depth: i32,
+    pub nvisuals: i32,
     pub visuals: *mut Visual,
 }
 #[derive(Copy, Clone)]
@@ -423,49 +480,49 @@ pub struct Screen {
     pub ext_data: *mut XExtData,
     pub display: *mut _XDisplay,
     pub root: Window,
-    pub width: libc::c_int,
-    pub height: libc::c_int,
-    pub mwidth: libc::c_int,
-    pub mheight: libc::c_int,
-    pub ndepths: libc::c_int,
+    pub width: i32,
+    pub height: i32,
+    pub mwidth: i32,
+    pub mheight: i32,
+    pub ndepths: i32,
     pub depths: *mut Depth,
-    pub root_depth: libc::c_int,
+    pub root_depth: i32,
     pub root_visual: *mut Visual,
     pub default_gc: GC,
     pub cmap: Colormap,
-    pub white_pixel: libc::c_ulong,
-    pub black_pixel: libc::c_ulong,
-    pub max_maps: libc::c_int,
-    pub min_maps: libc::c_int,
-    pub backing_store: libc::c_int,
-    pub save_unders: libc::c_int,
-    pub root_input_mask: libc::c_long,
+    pub white_pixel: u64,
+    pub black_pixel: u64,
+    pub max_maps: i32,
+    pub min_maps: i32,
+    pub backing_store: i32,
+    pub save_unders: i32,
+    pub root_input_mask: i64,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct XWindowAttributes {
-    pub x: libc::c_int,
-    pub y: libc::c_int,
-    pub width: libc::c_int,
-    pub height: libc::c_int,
-    pub border_width: libc::c_int,
-    pub depth: libc::c_int,
+    pub x: i32,
+    pub y: i32,
+    pub width: i32,
+    pub height: i32,
+    pub border_width: i32,
+    pub depth: i32,
     pub visual: *mut Visual,
     pub root: Window,
-    pub class: libc::c_int,
-    pub bit_gravity: libc::c_int,
-    pub win_gravity: libc::c_int,
-    pub backing_store: libc::c_int,
-    pub backing_planes: libc::c_ulong,
-    pub backing_pixel: libc::c_ulong,
-    pub save_under: libc::c_int,
+    pub class: i32,
+    pub bit_gravity: i32,
+    pub win_gravity: i32,
+    pub backing_store: i32,
+    pub backing_planes: u64,
+    pub backing_pixel: u64,
+    pub save_under: i32,
     pub colormap: Colormap,
-    pub map_installed: libc::c_int,
-    pub map_state: libc::c_int,
-    pub all_event_masks: libc::c_long,
-    pub your_event_mask: libc::c_long,
-    pub do_not_propagate_mask: libc::c_long,
-    pub override_redirect: libc::c_int,
+    pub map_installed: i32,
+    pub map_state: i32,
+    pub all_event_masks: i64,
+    pub your_event_mask: i64,
+    pub do_not_propagate_mask: i64,
+    pub override_redirect: i32,
     pub screen: *mut Screen,
 }
 #[derive(Copy, Clone)]
@@ -480,33 +537,33 @@ pub type Display = _XDisplay;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct XConfigureEvent {
-    pub type_0: libc::c_int,
-    pub serial: libc::c_ulong,
-    pub send_event: libc::c_int,
+    pub type_0: i32,
+    pub serial: u64,
+    pub send_event: i32,
     pub display: *mut Display,
     pub event: Window,
     pub window: Window,
-    pub x: libc::c_int,
-    pub y: libc::c_int,
-    pub width: libc::c_int,
-    pub height: libc::c_int,
-    pub border_width: libc::c_int,
+    pub x: i32,
+    pub y: i32,
+    pub width: i32,
+    pub height: i32,
+    pub border_width: i32,
     pub above: Window,
-    pub override_redirect: libc::c_int,
+    pub override_redirect: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct XVisualInfo {
     pub visual: *mut Visual,
     pub visualid: VisualID,
-    pub screen: libc::c_int,
-    pub depth: libc::c_int,
-    pub class: libc::c_int,
-    pub red_mask: libc::c_ulong,
-    pub green_mask: libc::c_ulong,
-    pub blue_mask: libc::c_ulong,
-    pub colormap_size: libc::c_int,
-    pub bits_per_rgb: libc::c_int,
+    pub screen: i32,
+    pub depth: i32,
+    pub class: i32,
+    pub red_mask: u64,
+    pub green_mask: u64,
+    pub blue_mask: u64,
+    pub colormap_size: i32,
+    pub bits_per_rgb: i32,
 }
 pub type XserverRegion = XID;
 pub type Damage = XID;
@@ -528,42 +585,42 @@ pub struct XRenderDirectFormat {
 #[repr(C)]
 pub struct XRenderPictFormat {
     pub id: PictFormat,
-    pub type_0: libc::c_int,
-    pub depth: libc::c_int,
+    pub type_0: i32,
+    pub depth: i32,
     pub direct: XRenderDirectFormat,
     pub colormap: Colormap,
 }
 pub type XDouble = libc::c_double;
-pub type XFixed = libc::c_int;
+pub type XFixed = i32;
 pub type XdbeBackBuffer = Drawable;
 pub type XSyncFence = XID;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct XineramaScreenInfo {
-    pub screen_number: libc::c_int,
+    pub screen_number: i32,
     pub x_org: libc::c_short,
     pub y_org: libc::c_short,
     pub width: libc::c_short,
     pub height: libc::c_short,
 }
-pub type GLenum = libc::c_uint;
-pub type GLboolean = libc::c_uchar;
-pub type GLbitfield = libc::c_uint;
+pub type GLenum = u32;
+pub type GLboolean = u8;
+pub type GLbitfield = u32;
 pub type GLvoid = ();
-pub type GLint = libc::c_int;
-pub type GLubyte = libc::c_uchar;
-pub type GLuint = libc::c_uint;
-pub type GLsizei = libc::c_int;
+pub type GLint = i32;
+pub type GLubyte = u8;
+pub type GLuint = u32;
+pub type GLsizei = i32;
 pub type GLfloat = libc::c_float;
 pub type GLclampf = libc::c_float;
 pub type GLdouble = libc::c_double;
-pub type GLchar = libc::c_char;
+pub type GLchar = i8;
 pub type GLXContext = *mut __GLXcontextRec;
 pub type GLXPixmap = XID;
 pub type GLXDrawable = XID;
 pub type GLXFBConfig = *mut __GLXFBConfigRec;
 pub type opacity_t = uint32_t;
-pub type time_ms_t = libc::c_long;
+pub type time_ms_t = i64;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum wintype_t {
@@ -585,7 +642,7 @@ pub enum wintype_t {
     NUM_WINTYPES,
 }
 impl wintype_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             wintype_t::WINTYPE_UNKNOWN => 0,
             wintype_t::WINTYPE_DESKTOP => 1,
@@ -605,24 +662,83 @@ impl wintype_t {
             wintype_t::NUM_WINTYPES => 15,
         }
     }
+    fn from_libc_c_uint(value: u32) -> wintype_t {
+        match value {
+            0 => wintype_t::WINTYPE_UNKNOWN,
+            1 => wintype_t::WINTYPE_DESKTOP,
+            2 => wintype_t::WINTYPE_DOCK,
+            3 => wintype_t::WINTYPE_TOOLBAR,
+            4 => wintype_t::WINTYPE_MENU,
+            5 => wintype_t::WINTYPE_UTILITY,
+            6 => wintype_t::WINTYPE_SPLASH,
+            7 => wintype_t::WINTYPE_DIALOG,
+            8 => wintype_t::WINTYPE_NORMAL,
+            9 => wintype_t::WINTYPE_DROPDOWN_MENU,
+            10 => wintype_t::WINTYPE_POPUP_MENU,
+            11 => wintype_t::WINTYPE_TOOLTIP,
+            12 => wintype_t::WINTYPE_NOTIFY,
+            13 => wintype_t::WINTYPE_COMBO,
+            14 => wintype_t::WINTYPE_DND,
+            15 => wintype_t::NUM_WINTYPES,
+            _ => panic!("Invalid value for wintype_t: {}", value),
+        }
+    }
 }
-
-pub const NUM_WINTYPES: wintype_t = 15;
-pub const WINTYPE_DND: wintype_t = 14;
-pub const WINTYPE_COMBO: wintype_t = 13;
-pub const WINTYPE_NOTIFY: wintype_t = 12;
-pub const WINTYPE_TOOLTIP: wintype_t = 11;
-pub const WINTYPE_POPUP_MENU: wintype_t = 10;
-pub const WINTYPE_DROPDOWN_MENU: wintype_t = 9;
-pub const WINTYPE_NORMAL: wintype_t = 8;
-pub const WINTYPE_DIALOG: wintype_t = 7;
-pub const WINTYPE_SPLASH: wintype_t = 6;
-pub const WINTYPE_UTILITY: wintype_t = 5;
-pub const WINTYPE_MENU: wintype_t = 4;
-pub const WINTYPE_TOOLBAR: wintype_t = 3;
-pub const WINTYPE_DOCK: wintype_t = 2;
-pub const WINTYPE_DESKTOP: wintype_t = 1;
-pub const WINTYPE_UNKNOWN: wintype_t = 0;
+impl AddAssign<u32> for wintype_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for wintype_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for wintype_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for wintype_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for wintype_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = wintype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for wintype_t {
+    type Output = wintype_t;
+    fn add(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for wintype_t {
+    type Output = wintype_t;
+    fn sub(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for wintype_t {
+    type Output = wintype_t;
+    fn mul(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for wintype_t {
+    type Output = wintype_t;
+    fn div(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for wintype_t {
+    type Output = wintype_t;
+    fn rem(self, rhs: u32) -> wintype_t {
+        wintype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum switch_t {
@@ -631,33 +747,92 @@ pub enum switch_t {
     UNSET,
 }
 impl switch_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             switch_t::OFF => 0,
             switch_t::ON => 1,
             switch_t::UNSET => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> switch_t {
+        match value {
+            0 => switch_t::OFF,
+            1 => switch_t::ON,
+            2 => switch_t::UNSET,
+            _ => panic!("Invalid value for switch_t: {}", value),
+        }
+    }
 }
-
-pub const UNSET: switch_t = 2;
-pub const ON: switch_t = 1;
-pub const OFF: switch_t = 0;
+impl AddAssign<u32> for switch_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for switch_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for switch_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for switch_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for switch_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = switch_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for switch_t {
+    type Output = switch_t;
+    fn add(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for switch_t {
+    type Output = switch_t;
+    fn sub(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for switch_t {
+    type Output = switch_t;
+    fn mul(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for switch_t {
+    type Output = switch_t;
+    fn div(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for switch_t {
+    type Output = switch_t;
+    fn rem(self, rhs: u32) -> switch_t {
+        switch_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct geometry_t {
-    pub wid: libc::c_int,
-    pub hei: libc::c_int,
-    pub x: libc::c_int,
-    pub y: libc::c_int,
+    pub wid: i32,
+    pub hei: i32,
+    pub x: i32,
+    pub y: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct margin_t {
-    pub top: libc::c_int,
-    pub left: libc::c_int,
-    pub bottom: libc::c_int,
-    pub right: libc::c_int,
+    pub top: i32,
+    pub left: i32,
+    pub bottom: i32,
+    pub right: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -667,23 +842,82 @@ pub enum winmode_t {
     WMODE_ARGB,
 }
 impl winmode_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             winmode_t::WMODE_TRANS => 0,
             winmode_t::WMODE_SOLID => 1,
             winmode_t::WMODE_ARGB => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> winmode_t {
+        match value {
+            0 => winmode_t::WMODE_TRANS,
+            1 => winmode_t::WMODE_SOLID,
+            2 => winmode_t::WMODE_ARGB,
+            _ => panic!("Invalid value for winmode_t: {}", value),
+        }
+    }
 }
-
-pub const WMODE_ARGB: winmode_t = 2;
-pub const WMODE_SOLID: winmode_t = 1;
-pub const WMODE_TRANS: winmode_t = 0;
+impl AddAssign<u32> for winmode_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for winmode_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for winmode_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for winmode_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for winmode_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = winmode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for winmode_t {
+    type Output = winmode_t;
+    fn add(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for winmode_t {
+    type Output = winmode_t;
+    fn sub(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for winmode_t {
+    type Output = winmode_t;
+    fn mul(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for winmode_t {
+    type Output = winmode_t;
+    fn div(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for winmode_t {
+    type Output = winmode_t;
+    fn rem(self, rhs: u32) -> winmode_t {
+        winmode_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _ignore {
     pub next: *mut _ignore,
-    pub sequence: libc::c_ulong,
+    pub sequence: u64,
 }
 pub type ignore_t = _ignore;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -698,7 +932,7 @@ pub enum vsync_t {
     NUM_VSYNC,
 }
 impl vsync_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             vsync_t::VSYNC_NONE => 0,
             vsync_t::VSYNC_DRM => 1,
@@ -709,15 +943,74 @@ impl vsync_t {
             vsync_t::NUM_VSYNC => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> vsync_t {
+        match value {
+            0 => vsync_t::VSYNC_NONE,
+            1 => vsync_t::VSYNC_DRM,
+            2 => vsync_t::VSYNC_OPENGL,
+            3 => vsync_t::VSYNC_OPENGL_OML,
+            4 => vsync_t::VSYNC_OPENGL_SWC,
+            5 => vsync_t::VSYNC_OPENGL_MSWC,
+            6 => vsync_t::NUM_VSYNC,
+            _ => panic!("Invalid value for vsync_t: {}", value),
+        }
+    }
 }
-
-pub const NUM_VSYNC: vsync_t = 6;
-pub const VSYNC_OPENGL_MSWC: vsync_t = 5;
-pub const VSYNC_OPENGL_SWC: vsync_t = 4;
-pub const VSYNC_OPENGL_OML: vsync_t = 3;
-pub const VSYNC_OPENGL: vsync_t = 2;
-pub const VSYNC_DRM: vsync_t = 1;
-pub const VSYNC_NONE: vsync_t = 0;
+impl AddAssign<u32> for vsync_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for vsync_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for vsync_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for vsync_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for vsync_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = vsync_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for vsync_t {
+    type Output = vsync_t;
+    fn add(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for vsync_t {
+    type Output = vsync_t;
+    fn sub(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for vsync_t {
+    type Output = vsync_t;
+    fn mul(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for vsync_t {
+    type Output = vsync_t;
+    fn div(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for vsync_t {
+    type Output = vsync_t;
+    fn rem(self, rhs: u32) -> vsync_t {
+        vsync_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backend {
@@ -727,7 +1020,7 @@ pub enum backend {
     NUM_BKEND,
 }
 impl backend {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             backend::BKEND_XRENDER => 0,
             backend::BKEND_GLX => 1,
@@ -735,13 +1028,72 @@ impl backend {
             backend::NUM_BKEND => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> backend {
+        match value {
+            0 => backend::BKEND_XRENDER,
+            1 => backend::BKEND_GLX,
+            2 => backend::BKEND_XR_GLX_HYBRID,
+            3 => backend::NUM_BKEND,
+            _ => panic!("Invalid value for backend: {}", value),
+        }
+    }
 }
-
-pub const NUM_BKEND: backend = 3;
-pub const BKEND_XR_GLX_HYBRID: backend = 2;
-pub const BKEND_GLX: backend = 1;
-pub const BKEND_XRENDER: backend = 0;
-pub type C2RustUnnamed_0 = libc::c_int;
+impl AddAssign<u32> for backend {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for backend {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for backend {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for backend {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for backend {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = backend::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for backend {
+    type Output = backend;
+    fn add(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for backend {
+    type Output = backend;
+    fn sub(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for backend {
+    type Output = backend;
+    fn mul(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for backend {
+    type Output = backend;
+    fn div(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for backend {
+    type Output = backend;
+    fn rem(self, rhs: u32) -> backend {
+        backend::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type C2RustUnnamed_0 = i32;
 pub const SWAPM_EXCHANGE: C2RustUnnamed_0 = 2;
 pub const SWAPM_COPY: C2RustUnnamed_0 = 1;
 pub const SWAPM_UNDEFINED: C2RustUnnamed_0 = 0;
@@ -753,28 +1105,24 @@ pub struct _glx_texture {
     pub glpixmap: GLXPixmap,
     pub pixmap: Pixmap,
     pub target: GLenum,
-    pub width: libc::c_uint,
-    pub height: libc::c_uint,
-    pub depth: libc::c_uint,
+    pub width: u32,
+    pub height: u32,
+    pub depth: u32,
     pub y_inverted: bool,
 }
 pub type glx_texture_t = _glx_texture;
-pub type f_WaitVideoSync = Option::<
-    unsafe extern "C" fn(libc::c_int, libc::c_int, *mut libc::c_uint) -> libc::c_int,
->;
-pub type f_GetVideoSync = Option::<
-    unsafe extern "C" fn(*mut libc::c_uint) -> libc::c_int,
->;
-pub type f_GetSyncValuesOML = Option::<
+pub type f_WaitVideoSync = Option<unsafe extern "C" fn(i32, i32, *mut u32) -> i32>;
+pub type f_GetVideoSync = Option<unsafe extern "C" fn(*mut u32) -> i32>;
+pub type f_GetSyncValuesOML = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
         *mut int64_t,
         *mut int64_t,
         *mut int64_t,
-    ) -> libc::c_int,
+    ) -> i32,
 >;
-pub type f_WaitForMscOML = Option::<
+pub type f_WaitForMscOML = Option<
     unsafe extern "C" fn(
         *mut Display,
         GLXDrawable,
@@ -784,32 +1132,18 @@ pub type f_WaitForMscOML = Option::<
         *mut int64_t,
         *mut int64_t,
         *mut int64_t,
-    ) -> libc::c_int,
+    ) -> i32,
 >;
-pub type f_SwapIntervalSGI = Option::<unsafe extern "C" fn(libc::c_int) -> libc::c_int>;
-pub type f_SwapIntervalMESA = Option::<
-    unsafe extern "C" fn(libc::c_uint) -> libc::c_int,
+pub type f_SwapIntervalSGI = Option<unsafe extern "C" fn(i32) -> i32>;
+pub type f_SwapIntervalMESA = Option<unsafe extern "C" fn(u32) -> i32>;
+pub type f_BindTexImageEXT = Option<
+    unsafe extern "C" fn(*mut Display, GLXDrawable, i32, *const i32) -> (),
 >;
-pub type f_BindTexImageEXT = Option::<
-    unsafe extern "C" fn(
-        *mut Display,
-        GLXDrawable,
-        libc::c_int,
-        *const libc::c_int,
-    ) -> (),
+pub type f_ReleaseTexImageEXT = Option<
+    unsafe extern "C" fn(*mut Display, GLXDrawable, i32) -> (),
 >;
-pub type f_ReleaseTexImageEXT = Option::<
-    unsafe extern "C" fn(*mut Display, GLXDrawable, libc::c_int) -> (),
->;
-pub type f_CopySubBuffer = Option::<
-    unsafe extern "C" fn(
-        *mut Display,
-        GLXDrawable,
-        libc::c_int,
-        libc::c_int,
-        libc::c_int,
-        libc::c_int,
-    ) -> (),
+pub type f_CopySubBuffer = Option<
+    unsafe extern "C" fn(*mut Display, GLXDrawable, i32, i32, i32, i32) -> (),
 >;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -833,8 +1167,8 @@ pub struct glx_blur_pass_t {
 pub struct glx_blur_cache_t {
     pub fbo: GLuint,
     pub textures: [GLuint; 2],
-    pub width: libc::c_int,
-    pub height: libc::c_int,
+    pub width: i32,
+    pub height: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -854,7 +1188,7 @@ pub struct paint_t {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct conv {
-    pub size: libc::c_int,
+    pub size: i32,
     pub data: *mut libc::c_double,
 }
 #[derive(Copy, Clone)]
@@ -868,16 +1202,14 @@ pub type latom_t = _latom;
 #[repr(C)]
 pub struct reg_data_t {
     pub rects: *mut XRectangle,
-    pub nrects: libc::c_int,
+    pub nrects: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _timeout_t {
     pub enabled: bool,
     pub data: *mut libc::c_void,
-    pub callback: Option::<
-        unsafe extern "C" fn(*mut session_t, *mut _timeout_t) -> bool,
-    >,
+    pub callback: Option<unsafe extern "C" fn(*mut session_t, *mut _timeout_t) -> bool>,
     pub interval: time_ms_t,
     pub firstrun: time_ms_t,
     pub lastrun: time_ms_t,
@@ -888,12 +1220,12 @@ pub type session_t = _session_t;
 #[repr(C)]
 pub struct _session_t {
     pub dpy: *mut Display,
-    pub scr: libc::c_int,
+    pub scr: i32,
     pub vis: *mut Visual,
-    pub depth: libc::c_int,
+    pub depth: i32,
     pub root: Window,
-    pub root_height: libc::c_int,
-    pub root_width: libc::c_int,
+    pub root_height: i32,
+    pub root_width: i32,
     pub overlay: Window,
     pub root_tile_fill: bool,
     pub root_tile_paint: paint_t,
@@ -909,7 +1241,7 @@ pub struct _session_t {
     pub pfds_read: *mut fd_set,
     pub pfds_write: *mut fd_set,
     pub pfds_except: *mut fd_set,
-    pub nfds_max: libc::c_int,
+    pub nfds_max: i32,
     pub tmout_lst: *mut _timeout_t,
     pub tmout_unredir: *mut _timeout_t,
     pub tmout_unredir_hit: bool,
@@ -927,8 +1259,8 @@ pub struct _session_t {
     pub blur_kerns_cache: [*mut XFixed; 5],
     pub reset: bool,
     pub expose_rects: *mut XRectangle,
-    pub size_expose: libc::c_int,
-    pub n_expose: libc::c_int,
+    pub size_expose: i32,
+    pub n_expose: i32,
     pub list: *mut _win,
     pub active_win: *mut _win,
     pub active_leader: Window,
@@ -936,41 +1268,41 @@ pub struct _session_t {
     pub cshadow_picture: Picture,
     pub white_picture: Picture,
     pub gaussian_map: *mut conv,
-    pub cgsize: libc::c_int,
-    pub shadow_corner: *mut libc::c_uchar,
-    pub shadow_top: *mut libc::c_uchar,
+    pub cgsize: i32,
+    pub shadow_corner: *mut u8,
+    pub shadow_top: *mut u8,
     pub shadow_exclude_reg: XserverRegion,
     pub refresh_rate: libc::c_short,
-    pub refresh_intv: libc::c_long,
-    pub paint_tm_offset: libc::c_long,
-    pub drm_fd: libc::c_int,
-    pub xfixes_event: libc::c_int,
-    pub xfixes_error: libc::c_int,
-    pub damage_event: libc::c_int,
-    pub damage_error: libc::c_int,
-    pub render_event: libc::c_int,
-    pub render_error: libc::c_int,
-    pub composite_event: libc::c_int,
-    pub composite_error: libc::c_int,
-    pub composite_opcode: libc::c_int,
+    pub refresh_intv: i64,
+    pub paint_tm_offset: i64,
+    pub drm_fd: i32,
+    pub xfixes_event: i32,
+    pub xfixes_error: i32,
+    pub damage_event: i32,
+    pub damage_error: i32,
+    pub render_event: i32,
+    pub render_error: i32,
+    pub composite_event: i32,
+    pub composite_error: i32,
+    pub composite_opcode: i32,
     pub has_name_pixmap: bool,
     pub shape_exists: bool,
-    pub shape_event: libc::c_int,
-    pub shape_error: libc::c_int,
+    pub shape_event: i32,
+    pub shape_error: i32,
     pub randr_exists: bool,
-    pub randr_event: libc::c_int,
-    pub randr_error: libc::c_int,
+    pub randr_event: i32,
+    pub randr_error: i32,
     pub glx_exists: bool,
-    pub glx_event: libc::c_int,
-    pub glx_error: libc::c_int,
+    pub glx_event: i32,
+    pub glx_error: i32,
     pub dbe_exists: bool,
     pub xinerama_exists: bool,
     pub xinerama_scrs: *mut XineramaScreenInfo,
     pub xinerama_scr_regs: *mut XserverRegion,
-    pub xinerama_nscrs: libc::c_int,
+    pub xinerama_nscrs: i32,
     pub xsync_exists: bool,
-    pub xsync_event: libc::c_int,
-    pub xsync_error: libc::c_int,
+    pub xsync_event: i32,
+    pub xsync_error: i32,
     pub xrfilter_convolution_exists: bool,
     pub atom_opacity: Atom,
     pub atom_frame_extents: Atom,
@@ -987,7 +1319,7 @@ pub struct _session_t {
     pub atoms_wintypes: [Atom; 15],
     pub track_atom_lst: *mut latom_t,
     pub dbus_conn: *mut DBusConnection,
-    pub dbus_service: *mut libc::c_char,
+    pub dbus_service: *mut i8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -996,7 +1328,7 @@ pub struct _win {
     pub prev_trans: *mut _win,
     pub id: Window,
     pub a: XWindowAttributes,
-    pub xinerama_scr: libc::c_int,
+    pub xinerama_scr: i32,
     pub pictfmt: *mut XRenderPictFormat,
     pub mode: winmode_t,
     pub damaged: bool,
@@ -1010,8 +1342,8 @@ pub struct _win {
     pub need_configure: bool,
     pub queue_configure: XConfigureEvent,
     pub reg_ignore: XserverRegion,
-    pub widthb: libc::c_int,
-    pub heightb: libc::c_int,
+    pub widthb: i32,
+    pub heightb: i32,
     pub destroyed: bool,
     pub bounding_shaped: bool,
     pub rounded_corners: bool,
@@ -1026,10 +1358,10 @@ pub struct _win {
     pub cache_leader: Window,
     pub focused: bool,
     pub focused_force: switch_t,
-    pub name: *mut libc::c_char,
-    pub class_instance: *mut libc::c_char,
-    pub class_general: *mut libc::c_char,
-    pub role: *mut libc::c_char,
+    pub name: *mut i8,
+    pub class_instance: *mut i8,
+    pub class_general: *mut i8,
+    pub role: *mut i8,
     pub cache_sblst: *const c2_lptr_t,
     pub cache_fblst: *const c2_lptr_t,
     pub cache_fcblst: *const c2_lptr_t,
@@ -1046,19 +1378,19 @@ pub struct _win {
     pub fade: bool,
     pub fade_last: bool,
     pub fade_force: switch_t,
-    pub fade_callback: Option::<unsafe extern "C" fn(*mut session_t, *mut _win) -> ()>,
+    pub fade_callback: Option<unsafe extern "C" fn(*mut session_t, *mut _win) -> ()>,
     pub frame_opacity: libc::c_double,
     pub frame_extents: margin_t,
     pub shadow: bool,
     pub shadow_last: bool,
     pub shadow_force: switch_t,
     pub shadow_opacity: libc::c_double,
-    pub shadow_dx: libc::c_int,
-    pub shadow_dy: libc::c_int,
-    pub shadow_width: libc::c_int,
-    pub shadow_height: libc::c_int,
+    pub shadow_dx: i32,
+    pub shadow_dy: i32,
+    pub shadow_width: i32,
+    pub shadow_height: i32,
     pub shadow_paint: paint_t,
-    pub prop_shadow: libc::c_long,
+    pub prop_shadow: i64,
     pub dim: bool,
     pub invert_color: bool,
     pub invert_color_last: bool,
@@ -1072,10 +1404,10 @@ pub type options_t = _options_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _options_t {
-    pub config_file: *mut libc::c_char,
-    pub write_pid_path: *mut libc::c_char,
-    pub display: *mut libc::c_char,
-    pub display_repr: *mut libc::c_char,
+    pub config_file: *mut i8,
+    pub write_pid_path: *mut i8,
+    pub display: *mut i8,
+    pub display_repr: *mut i8,
     pub backend: backend,
     pub xrender_sync: bool,
     pub xrender_sync_fence: bool,
@@ -1083,15 +1415,15 @@ pub struct _options_t {
     pub glx_copy_from_front: bool,
     pub glx_use_copysubbuffermesa: bool,
     pub glx_no_rebind_pixmap: bool,
-    pub glx_swap_method: libc::c_int,
+    pub glx_swap_method: i32,
     pub glx_use_gpushader4: bool,
-    pub glx_fshader_win_str: *mut libc::c_char,
+    pub glx_fshader_win_str: *mut i8,
     pub glx_prog_win: glx_prog_main_t,
     pub fork_after_register: bool,
     pub detect_rounded_corners: bool,
     pub paint_on_overlay: bool,
     pub force_win_blend: bool,
-    pub resize_damage: libc::c_int,
+    pub resize_damage: i32,
     pub unredir_if_possible: bool,
     pub unredir_if_possible_blacklist: *mut c2_lptr_t,
     pub unredir_if_possible_delay: time_ms_t,
@@ -1100,15 +1432,15 @@ pub struct _options_t {
     pub reredir_on_root_change: bool,
     pub glx_reinit_on_root_change: bool,
     pub dbus: bool,
-    pub logpath: *mut libc::c_char,
-    pub benchmark: libc::c_int,
+    pub logpath: *mut i8,
+    pub benchmark: i32,
     pub benchmark_wid: Window,
     pub paint_blacklist: *mut c2_lptr_t,
     pub no_name_pixmap: bool,
     pub synchronize: bool,
     pub show_all_xerrors: bool,
     pub no_x_selection: bool,
-    pub refresh_rate: libc::c_int,
+    pub refresh_rate: i32,
     pub sw_opti: bool,
     pub vsync: vsync_t,
     pub dbe: bool,
@@ -1118,9 +1450,9 @@ pub struct _options_t {
     pub shadow_red: libc::c_double,
     pub shadow_green: libc::c_double,
     pub shadow_blue: libc::c_double,
-    pub shadow_radius: libc::c_int,
-    pub shadow_offset_x: libc::c_int,
-    pub shadow_offset_y: libc::c_int,
+    pub shadow_radius: i32,
+    pub shadow_offset_x: i32,
+    pub shadow_offset_y: i32,
     pub shadow_opacity: libc::c_double,
     pub clear_shadow: bool,
     pub shadow_exclude_reg_geom: geometry_t,
@@ -1176,7 +1508,7 @@ pub struct glx_session_t {
     pub glXBindTexImageProc: f_BindTexImageEXT,
     pub glXReleaseTexImageProc: f_ReleaseTexImageEXT,
     pub glXCopySubBufferProc: f_CopySubBuffer,
-    pub z: libc::c_int,
+    pub z: i32,
     pub fbconfigs: [*mut glx_fbconfig_t; 33],
     pub blur_passes: [glx_blur_pass_t; 5],
 }
@@ -1201,45 +1533,27 @@ unsafe extern "C" fn get_visualinfo_from_visual(
         };
         init
     };
-    let mut nitems: libc::c_int = 0 as libc::c_int;
-    return XGetVisualInfo(
-        (*ps).dpy,
-        0x1 as libc::c_int as libc::c_long,
-        &mut vreq,
-        &mut nitems,
-    );
+    let mut nitems: i32 = 0 as i32;
+    return XGetVisualInfo((*ps).dpy, 0x1 as i32 as i64, &mut vreq, &mut nitems);
 }
 #[inline]
-unsafe extern "C" fn glx_hasglxext(
-    mut ps: *mut session_t,
-    mut ext: *const libc::c_char,
-) -> bool {
-    let mut glx_exts: *const libc::c_char = glXQueryExtensionsString(
-        (*ps).dpy,
-        (*ps).scr,
-    );
+unsafe extern "C" fn glx_hasglxext(mut ps: *mut session_t, mut ext: *const i8) -> bool {
+    let mut glx_exts: *const i8 = glXQueryExtensionsString((*ps).dpy, (*ps).scr);
     if glx_exts.is_null() {
         fprintf(
             stderr,
-            b"%s(): Failed get GLX extension list.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 14],
-                &[libc::c_char; 14],
-            >(b"glx_hasglxext\0"))
+            b"%s(): Failed get GLX extension list.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_hasglxext\0"))
                 .as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     let mut found: bool = wd_is_in_str(glx_exts, ext);
     if !found {
         fprintf(
             stderr,
-            b"%s(): Missing GLX extension %s.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 14],
-                &[libc::c_char; 14],
-            >(b"glx_hasglxext\0"))
+            b"%s(): Missing GLX extension %s.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_hasglxext\0"))
                 .as_ptr(),
             ext,
         );
@@ -1248,65 +1562,50 @@ unsafe extern "C" fn glx_hasglxext(
 }
 #[inline]
 unsafe extern "C" fn wd_is_in_str(
-    mut haystick: *const libc::c_char,
-    mut needle: *const libc::c_char,
+    mut haystick: *const i8,
+    mut needle: *const i8,
 ) -> bool {
     if haystick.is_null() {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    let mut pos: *const libc::c_char = haystick.offset(-(1 as libc::c_int as isize));
+    let mut pos: *const i8 = haystick.offset(-(1 as i32 as isize));
     loop {
-        pos = strstr(pos.offset(1 as libc::c_int as isize), needle);
+        pos = strstr(pos.offset(1 as i32 as isize), needle);
         if pos.is_null() {
             break;
         }
-        if pos.offset_from(haystick) as libc::c_long != 0
+        if pos.offset_from(haystick) as i64 != 0
             && *(*__ctype_b_loc())
-                .offset(
-                    *pos.offset(-(1 as libc::c_int as isize)) as libc::c_int as isize,
-                ) as libc::c_int
-                & _ISspace as libc::c_int as libc::c_ushort as libc::c_int == 0
+                .offset(*pos.offset(-(1 as i32 as isize)) as i32 as isize) as i32
+                & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 == 0
             || strlen(pos) > strlen(needle)
                 && *(*__ctype_b_loc())
-                    .offset(*pos.offset(strlen(needle) as isize) as libc::c_int as isize)
-                    as libc::c_int
-                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int == 0
+                    .offset(*pos.offset(strlen(needle) as isize) as i32 as isize) as i32
+                    & C2RustUnnamed::_ISspace as i32 as libc::c_ushort as i32 == 0
         {
             continue;
         }
-        return 1 as libc::c_int != 0;
+        return 1 as i32 != 0;
     }
-    return 0 as libc::c_int != 0;
+    return 0 as i32 != 0;
 }
 #[inline]
-unsafe extern "C" fn glx_hasglext(
-    mut ps: *mut session_t,
-    mut ext: *const libc::c_char,
-) -> bool {
-    let mut gl_exts: *const libc::c_char = glGetString(0x1f03 as libc::c_int as GLenum)
-        as *const libc::c_char;
+unsafe extern "C" fn glx_hasglext(mut ps: *mut session_t, mut ext: *const i8) -> bool {
+    let mut gl_exts: *const i8 = glGetString(0x1f03 as i32 as GLenum) as *const i8;
     if gl_exts.is_null() {
         fprintf(
             stderr,
-            b"%s(): Failed get GL extension list.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 13],
-                &[libc::c_char; 13],
-            >(b"glx_hasglext\0"))
-                .as_ptr(),
+            b"%s(): Failed get GL extension list.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 13], &[i8; 13]>(b"glx_hasglext\0")).as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     let mut found: bool = wd_is_in_str(gl_exts, ext);
     if !found {
         fprintf(
             stderr,
-            b"%s(): Missing GL extension %s.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 13],
-                &[libc::c_char; 13],
-            >(b"glx_hasglext\0"))
+            b"%s(): Missing GL extension %s.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 13], &[i8; 13]>(b"glx_hasglext\0"))
                 .as_ptr(),
             ext,
         );
@@ -1334,15 +1633,15 @@ unsafe extern "C" fn free_paint_glx(mut ps: *mut session_t, mut ppaint: *mut pai
 #[inline]
 unsafe extern "C" fn free_glx_fbo(mut ps: *mut session_t, mut pfbo: *mut GLuint) {
     if *pfbo != 0 {
-        glDeleteFramebuffers(1 as libc::c_int, pfbo);
-        *pfbo = 0 as libc::c_int as GLuint;
+        glDeleteFramebuffers(1 as i32, pfbo);
+        *pfbo = 0 as i32 as GLuint;
     }
 }
 #[inline]
 unsafe extern "C" fn free_texture_r(mut ps: *mut session_t, mut ptexture: *mut GLuint) {
     if *ptexture != 0 {
-        glDeleteTextures(1 as libc::c_int, ptexture);
-        *ptexture = 0 as libc::c_int as GLuint;
+        glDeleteTextures(1 as i32, ptexture);
+        *ptexture = 0 as i32 as GLuint;
     }
 }
 #[inline]
@@ -1350,16 +1649,10 @@ unsafe extern "C" fn free_glx_bc_resize(
     mut ps: *mut session_t,
     mut pbc: *mut glx_blur_cache_t,
 ) {
-    free_texture_r(
-        ps,
-        &mut *((*pbc).textures).as_mut_ptr().offset(0 as libc::c_int as isize),
-    );
-    free_texture_r(
-        ps,
-        &mut *((*pbc).textures).as_mut_ptr().offset(1 as libc::c_int as isize),
-    );
-    (*pbc).width = 0 as libc::c_int;
-    (*pbc).height = 0 as libc::c_int;
+    free_texture_r(ps, &mut *((*pbc).textures).as_mut_ptr().offset(0 as i32 as isize));
+    free_texture_r(ps, &mut *((*pbc).textures).as_mut_ptr().offset(1 as i32 as isize));
+    (*pbc).width = 0 as i32;
+    (*pbc).height = 0 as i32;
 }
 #[inline]
 unsafe extern "C" fn free_glx_bc(
@@ -1378,14 +1671,14 @@ unsafe extern "C" fn free_win_res_glx(mut ps: *mut session_t, mut w: *mut win) {
 #[inline]
 unsafe extern "C" fn rect_is_fullscreen(
     mut ps: *mut session_t,
-    mut x: libc::c_int,
-    mut y: libc::c_int,
-    mut wid: libc::c_uint,
-    mut hei: libc::c_uint,
+    mut x: i32,
+    mut y: i32,
+    mut wid: u32,
+    mut hei: u32,
 ) -> bool {
-    return x <= 0 as libc::c_int && y <= 0 as libc::c_int
-        && (x as libc::c_uint).wrapping_add(wid) >= (*ps).root_width as libc::c_uint
-        && (y as libc::c_uint).wrapping_add(hei) >= (*ps).root_height as libc::c_uint;
+    return x <= 0 as i32 && y <= 0 as i32
+        && (x as u32).wrapping_add(wid) >= (*ps).root_width as u32
+        && (y as u32).wrapping_add(hei) >= (*ps).root_height as u32;
 }
 #[inline]
 unsafe extern "C" fn rect_crop(
@@ -1393,34 +1686,28 @@ unsafe extern "C" fn rect_crop(
     mut psrc: *const XRectangle,
     mut pbound: *const XRectangle,
 ) {
-    (*pdst)
-        .x = max_i((*psrc).x as libc::c_int, (*pbound).x as libc::c_int)
-        as libc::c_short;
-    (*pdst)
-        .y = max_i((*psrc).y as libc::c_int, (*pbound).y as libc::c_int)
-        as libc::c_short;
-    (*pdst)
-        .width = max_i(
-        0 as libc::c_int,
+    (*pdst).x = max_i((*psrc).x as i32, (*pbound).x as i32) as libc::c_short;
+    (*pdst).y = max_i((*psrc).y as i32, (*pbound).y as i32) as libc::c_short;
+    (*pdst).width = max_i(
+        0 as i32,
         min_i(
-            (*psrc).x as libc::c_int + (*psrc).width as libc::c_int,
-            (*pbound).x as libc::c_int + (*pbound).width as libc::c_int,
-        ) - (*pdst).x as libc::c_int,
+            (*psrc).x as i32 + (*psrc).width as i32,
+            (*pbound).x as i32 + (*pbound).width as i32,
+        ) - (*pdst).x as i32,
     ) as libc::c_ushort;
-    (*pdst)
-        .height = max_i(
-        0 as libc::c_int,
+    (*pdst).height = max_i(
+        0 as i32,
         min_i(
-            (*psrc).y as libc::c_int + (*psrc).height as libc::c_int,
-            (*pbound).y as libc::c_int + (*pbound).height as libc::c_int,
-        ) - (*pdst).y as libc::c_int,
+            (*psrc).y as i32 + (*psrc).height as i32,
+            (*pbound).y as i32 + (*pbound).height as i32,
+        ) - (*pdst).y as i32,
     ) as libc::c_ushort;
 }
 #[inline]
 unsafe extern "C" fn free_region(mut ps: *mut session_t, mut p: *mut XserverRegion) {
     if *p != 0 {
         XFixesDestroyRegion((*ps).dpy, *p);
-        *p = 0 as libc::c_long as XserverRegion;
+        *p = 0 as i64 as XserverRegion;
     }
 }
 #[inline]
@@ -1429,23 +1716,19 @@ unsafe extern "C" fn copy_region(
     mut oldregion: XserverRegion,
 ) -> XserverRegion {
     if oldregion == 0 {
-        return 0 as libc::c_long as XserverRegion;
+        return 0 as i64 as XserverRegion;
     }
     let mut region: XserverRegion = XFixesCreateRegion(
         (*ps).dpy,
         0 as *mut XRectangle,
-        0 as libc::c_int,
+        0 as i32,
     );
     XFixesCopyRegion((*ps).dpy, region, oldregion);
     return region;
 }
 #[inline]
 unsafe extern "C" fn get_tgt_window(mut ps: *mut session_t) -> Window {
-    return if (*ps).o.paint_on_overlay as libc::c_int != 0 {
-        (*ps).overlay
-    } else {
-        (*ps).root
-    };
+    return if (*ps).o.paint_on_overlay as i32 != 0 { (*ps).overlay } else { (*ps).root };
 }
 #[inline]
 unsafe extern "C" fn cxfree(mut data: *mut libc::c_void) {
@@ -1454,60 +1737,52 @@ unsafe extern "C" fn cxfree(mut data: *mut libc::c_void) {
     }
 }
 #[inline]
-unsafe extern "C" fn min_i(mut a: libc::c_int, mut b: libc::c_int) -> libc::c_int {
+unsafe extern "C" fn min_i(mut a: i32, mut b: i32) -> i32 {
     return if a > b { b } else { a };
 }
 #[inline]
-unsafe extern "C" fn max_i(mut a: libc::c_int, mut b: libc::c_int) -> libc::c_int {
+unsafe extern "C" fn max_i(mut a: i32, mut b: i32) -> i32 {
     return if a > b { a } else { b };
 }
 #[inline]
-unsafe extern "C" fn mstrextend(
-    mut psrc1: *mut *mut libc::c_char,
-    mut src2: *const libc::c_char,
-) {
+unsafe extern "C" fn mstrextend(mut psrc1: *mut *mut i8, mut src2: *const i8) {
     *psrc1 = allocchk_(
-        (*::core::mem::transmute::<&[u8; 11], &[libc::c_char; 11]>(b"mstrextend\0"))
-            .as_ptr(),
+        (*::core::mem::transmute::<&[u8; 11], &[i8; 11]>(b"mstrextend\0")).as_ptr(),
         realloc(
             *psrc1 as *mut libc::c_void,
-            (if !(*psrc1).is_null() {
-                strlen(*psrc1)
-            } else {
-                0 as libc::c_int as libc::c_ulong
-            })
+            (if !(*psrc1).is_null() { strlen(*psrc1) } else { 0 as i32 as u64 })
                 .wrapping_add(strlen(src2))
-                .wrapping_add(1 as libc::c_int as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
+                .wrapping_add(1 as i32 as u64)
+                .wrapping_mul(::core::mem::size_of::<i8>() as u64),
         ),
-    ) as *mut libc::c_char;
+    ) as *mut i8;
     strcat(*psrc1, src2);
 }
 #[inline]
-unsafe extern "C" fn mstrcpy(mut src: *const libc::c_char) -> *mut libc::c_char {
-    let mut str: *mut libc::c_char = allocchk_(
-        (*::core::mem::transmute::<&[u8; 8], &[libc::c_char; 8]>(b"mstrcpy\0")).as_ptr(),
+unsafe extern "C" fn mstrcpy(mut src: *const i8) -> *mut i8 {
+    let mut str: *mut i8 = allocchk_(
+        (*::core::mem::transmute::<&[u8; 8], &[i8; 8]>(b"mstrcpy\0")).as_ptr(),
         malloc(
             (strlen(src))
-                .wrapping_add(1 as libc::c_int as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
+                .wrapping_add(1 as i32 as u64)
+                .wrapping_mul(::core::mem::size_of::<i8>() as u64),
         ),
-    ) as *mut libc::c_char;
+    ) as *mut i8;
     strcpy(str, src);
     return str;
 }
 #[inline]
 unsafe extern "C" fn allocchk_(
-    mut func_name: *const libc::c_char,
+    mut func_name: *const i8,
     mut ptr: *mut libc::c_void,
 ) -> *mut libc::c_void {
     if ptr.is_null() {
         fprintf(
             stderr,
-            b"%s(): Failed to allocate memory.\n\0" as *const u8 as *const libc::c_char,
+            b"%s(): Failed to allocate memory.\n\0" as *const u8 as *const i8,
             func_name,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     return ptr;
 }
@@ -1518,21 +1793,20 @@ pub unsafe extern "C" fn glx_init(
 ) -> bool {
     let mut psglx: *mut glx_session_t = 0 as *mut glx_session_t;
     let mut current_block: u64;
-    let mut success: bool = 0 as libc::c_int != 0;
+    let mut success: bool = 0 as i32 != 0;
     let mut pvis: *mut XVisualInfo = 0 as *mut XVisualInfo;
     if !(*ps).glx_exists {
         if glXQueryExtension((*ps).dpy, &mut (*ps).glx_event, &mut (*ps).glx_error) != 0
         {
-            (*ps).glx_exists = 1 as libc::c_int != 0;
+            (*ps).glx_exists = 1 as i32 != 0;
             current_block = 7502529970979898288;
         } else {
             fprintf(
                 stderr,
-                b"%s(): No GLX extension.\n\0" as *const u8 as *const libc::c_char,
-                (*::core::mem::transmute::<&[u8; 9], &[libc::c_char; 9]>(b"glx_init\0"))
-                    .as_ptr(),
+                b"%s(): No GLX extension.\n\0" as *const u8 as *const i8,
+                (*::core::mem::transmute::<&[u8; 9], &[i8; 9]>(b"glx_init\0")).as_ptr(),
             );
-            current_block = 4395476253999582535;
+            current_block = 2983252860377664303;
         }
     } else {
         current_block = 7502529970979898288;
@@ -1544,46 +1818,42 @@ pub unsafe extern "C" fn glx_init(
                 fprintf(
                     stderr,
                     b"%s(): Failed to acquire XVisualInfo for current visual.\n\0"
-                        as *const u8 as *const libc::c_char,
-                    (*::core::mem::transmute::<
-                        &[u8; 9],
-                        &[libc::c_char; 9],
-                    >(b"glx_init\0"))
+                        as *const u8 as *const i8,
+                    (*::core::mem::transmute::<&[u8; 9], &[i8; 9]>(b"glx_init\0"))
                         .as_ptr(),
                 );
             } else {
                 if need_render {
-                    let mut value: libc::c_int = 0 as libc::c_int;
-                    if 0 as libc::c_int
-                        != glXGetConfig((*ps).dpy, pvis, 1 as libc::c_int, &mut value)
+                    let mut value: i32 = 0 as i32;
+                    if 0 as i32 != glXGetConfig((*ps).dpy, pvis, 1 as i32, &mut value)
                         || value == 0
                     {
                         fprintf(
                             stderr,
                             b"%s(): Root visual is not a GL visual.\n\0" as *const u8
-                                as *const libc::c_char,
+                                as *const i8,
                             (*::core::mem::transmute::<
                                 &[u8; 9],
-                                &[libc::c_char; 9],
+                                &[i8; 9],
                             >(b"glx_init\0"))
                                 .as_ptr(),
                         );
-                        current_block = 4395476253999582535;
-                    } else if 0 as libc::c_int
-                        != glXGetConfig((*ps).dpy, pvis, 5 as libc::c_int, &mut value)
+                        current_block = 2983252860377664303;
+                    } else if 0 as i32
+                        != glXGetConfig((*ps).dpy, pvis, 5 as i32, &mut value)
                         || value == 0
                     {
                         fprintf(
                             stderr,
                             b"%s(): Root visual is not a double buffered GL visual.\n\0"
-                                as *const u8 as *const libc::c_char,
+                                as *const u8 as *const i8,
                             (*::core::mem::transmute::<
                                 &[u8; 9],
-                                &[libc::c_char; 9],
+                                &[i8; 9],
                             >(b"glx_init\0"))
                                 .as_ptr(),
                         );
-                        current_block = 4395476253999582535;
+                        current_block = 2983252860377664303;
                     } else {
                         current_block = 13586036798005543211;
                     }
@@ -1591,13 +1861,12 @@ pub unsafe extern "C" fn glx_init(
                     current_block = 13586036798005543211;
                 }
                 match current_block {
-                    4395476253999582535 => {}
+                    2983252860377664303 => {}
                     _ => {
-                        if !(need_render as libc::c_int != 0
+                        if !(need_render as i32 != 0
                             && !glx_hasglxext(
                                 ps,
-                                b"GLX_EXT_texture_from_pixmap\0" as *const u8
-                                    as *const libc::c_char,
+                                b"GLX_EXT_texture_from_pixmap\0" as *const u8 as *const i8,
                             ))
                         {
                             if ((*ps).psglx).is_null() {
@@ -1627,17 +1896,16 @@ pub unsafe extern "C" fn glx_init(
                                     };
                                     init
                                 };
-                                (*ps)
-                                    .psglx = allocchk_(
+                                (*ps).psglx = allocchk_(
                                     (*::core::mem::transmute::<
                                         &[u8; 9],
-                                        &[libc::c_char; 9],
+                                        &[i8; 9],
                                     >(b"glx_init\0"))
                                         .as_ptr(),
                                     malloc(
-                                        (1 as libc::c_int as libc::c_ulong)
+                                        (1 as i32 as u64)
                                             .wrapping_mul(
-                                                ::core::mem::size_of::<glx_session_t>() as libc::c_ulong,
+                                                ::core::mem::size_of::<glx_session_t>() as u64,
                                             ),
                                     ),
                                 ) as *mut glx_session_t;
@@ -1645,42 +1913,41 @@ pub unsafe extern "C" fn glx_init(
                                     (*ps).psglx as *mut libc::c_void,
                                     &CGLX_SESSION_DEF as *const glx_session_t
                                         as *const libc::c_void,
-                                    ::core::mem::size_of::<glx_session_t>() as libc::c_ulong,
+                                    ::core::mem::size_of::<glx_session_t>() as u64,
                                 );
-                                let mut i: libc::c_int = 0 as libc::c_int;
-                                while i < 5 as libc::c_int {
+                                let mut i: i32 = 0 as i32;
+                                while i < 5 as i32 {
                                     let mut ppass: *mut glx_blur_pass_t = &mut *((*(*ps).psglx)
                                         .blur_passes)
                                         .as_mut_ptr()
                                         .offset(i as isize) as *mut glx_blur_pass_t;
-                                    (*ppass).unifm_factor_center = -(1 as libc::c_int);
-                                    (*ppass).unifm_offset_x = -(1 as libc::c_int);
-                                    (*ppass).unifm_offset_y = -(1 as libc::c_int);
+                                    (*ppass).unifm_factor_center = -(1 as i32);
+                                    (*ppass).unifm_offset_x = -(1 as i32);
+                                    (*ppass).unifm_offset_y = -(1 as i32);
                                     i += 1;
                                     i;
                                 }
                             }
                             psglx = (*ps).psglx;
                             if ((*psglx).context).is_null() {
-                                (*psglx)
-                                    .context = glXCreateContext(
+                                (*psglx).context = glXCreateContext(
                                     (*ps).dpy,
                                     pvis,
                                     0 as GLXContext,
-                                    1 as libc::c_int,
+                                    1 as i32,
                                 );
                                 if ((*psglx).context).is_null() {
                                     fprintf(
                                         stderr,
                                         b"%s(): Failed to get GLX context.\n\0" as *const u8
-                                            as *const libc::c_char,
+                                            as *const i8,
                                         (*::core::mem::transmute::<
                                             &[u8; 9],
-                                            &[libc::c_char; 9],
+                                            &[i8; 9],
                                         >(b"glx_init\0"))
                                             .as_ptr(),
                                     );
-                                    current_block = 4395476253999582535;
+                                    current_block = 2983252860377664303;
                                 } else if glXMakeCurrent(
                                     (*ps).dpy,
                                     get_tgt_window(ps),
@@ -1690,14 +1957,14 @@ pub unsafe extern "C" fn glx_init(
                                     fprintf(
                                         stderr,
                                         b"%s(): Failed to attach GLX context.\n\0" as *const u8
-                                            as *const libc::c_char,
+                                            as *const i8,
                                         (*::core::mem::transmute::<
                                             &[u8; 9],
-                                            &[libc::c_char; 9],
+                                            &[i8; 9],
                                         >(b"glx_init\0"))
                                             .as_ptr(),
                                     );
-                                    current_block = 4395476253999582535;
+                                    current_block = 2983252860377664303;
                                 } else {
                                     current_block = 16924917904204750491;
                                 }
@@ -1705,25 +1972,23 @@ pub unsafe extern "C" fn glx_init(
                                 current_block = 16924917904204750491;
                             }
                             match current_block {
-                                4395476253999582535 => {}
+                                2983252860377664303 => {}
                                 _ => {
-                                    if need_render as libc::c_int != 0
-                                        && !(*ps).o.glx_no_stencil
-                                    {
-                                        let mut val: GLint = 0 as libc::c_int;
-                                        glGetIntegerv(0xd57 as libc::c_int as GLenum, &mut val);
+                                    if need_render as i32 != 0 && !(*ps).o.glx_no_stencil {
+                                        let mut val: GLint = 0 as i32;
+                                        glGetIntegerv(0xd57 as i32 as GLenum, &mut val);
                                         if val == 0 {
                                             fprintf(
                                                 stderr,
                                                 b"%s(): Target window doesn't have stencil buffer.\n\0"
-                                                    as *const u8 as *const libc::c_char,
+                                                    as *const u8 as *const i8,
                                                 (*::core::mem::transmute::<
                                                     &[u8; 9],
-                                                    &[libc::c_char; 9],
+                                                    &[i8; 9],
                                                 >(b"glx_init\0"))
                                                     .as_ptr(),
                                             );
-                                            current_block = 4395476253999582535;
+                                            current_block = 2983252860377664303;
                                         } else {
                                             current_block = 8704759739624374314;
                                         }
@@ -1731,35 +1996,32 @@ pub unsafe extern "C" fn glx_init(
                                         current_block = 8704759739624374314;
                                     }
                                     match current_block {
-                                        4395476253999582535 => {}
+                                        2983252860377664303 => {}
                                         _ => {
                                             if need_render {
-                                                (*psglx)
-                                                    .has_texture_non_power_of_two = glx_hasglext(
+                                                (*psglx).has_texture_non_power_of_two = glx_hasglext(
                                                     ps,
                                                     b"GL_ARB_texture_non_power_of_two\0" as *const u8
-                                                        as *const libc::c_char,
+                                                        as *const i8,
                                                 );
                                             }
                                             if need_render {
-                                                (*psglx)
-                                                    .glXBindTexImageProc = ::core::mem::transmute::<
-                                                    Option::<unsafe extern "C" fn() -> ()>,
+                                                (*psglx).glXBindTexImageProc = ::core::mem::transmute::<
+                                                    Option<unsafe extern "C" fn() -> ()>,
                                                     f_BindTexImageEXT,
                                                 >(
                                                     glXGetProcAddress(
-                                                        b"glXBindTexImageEXT\0" as *const u8 as *const libc::c_char
+                                                        b"glXBindTexImageEXT\0" as *const u8 as *const i8
                                                             as *const GLubyte,
                                                     ),
                                                 );
-                                                (*psglx)
-                                                    .glXReleaseTexImageProc = ::core::mem::transmute::<
-                                                    Option::<unsafe extern "C" fn() -> ()>,
+                                                (*psglx).glXReleaseTexImageProc = ::core::mem::transmute::<
+                                                    Option<unsafe extern "C" fn() -> ()>,
                                                     f_ReleaseTexImageEXT,
                                                 >(
                                                     glXGetProcAddress(
-                                                        b"glXReleaseTexImageEXT\0" as *const u8
-                                                            as *const libc::c_char as *const GLubyte,
+                                                        b"glXReleaseTexImageEXT\0" as *const u8 as *const i8
+                                                            as *const GLubyte,
                                                     ),
                                                 );
                                                 if ((*psglx).glXBindTexImageProc).is_none()
@@ -1768,37 +2030,36 @@ pub unsafe extern "C" fn glx_init(
                                                     fprintf(
                                                         stderr,
                                                         b"%s(): Failed to acquire glXBindTexImageEXT() / glXReleaseTexImageEXT().\n\0"
-                                                            as *const u8 as *const libc::c_char,
+                                                            as *const u8 as *const i8,
                                                         (*::core::mem::transmute::<
                                                             &[u8; 9],
-                                                            &[libc::c_char; 9],
+                                                            &[i8; 9],
                                                         >(b"glx_init\0"))
                                                             .as_ptr(),
                                                     );
-                                                    current_block = 4395476253999582535;
+                                                    current_block = 2983252860377664303;
                                                 } else if (*ps).o.glx_use_copysubbuffermesa {
-                                                    (*psglx)
-                                                        .glXCopySubBufferProc = ::core::mem::transmute::<
-                                                        Option::<unsafe extern "C" fn() -> ()>,
+                                                    (*psglx).glXCopySubBufferProc = ::core::mem::transmute::<
+                                                        Option<unsafe extern "C" fn() -> ()>,
                                                         f_CopySubBuffer,
                                                     >(
                                                         glXGetProcAddress(
-                                                            b"glXCopySubBufferMESA\0" as *const u8
-                                                                as *const libc::c_char as *const GLubyte,
+                                                            b"glXCopySubBufferMESA\0" as *const u8 as *const i8
+                                                                as *const GLubyte,
                                                         ),
                                                     );
                                                     if ((*psglx).glXCopySubBufferProc).is_none() {
                                                         fprintf(
                                                             stderr,
                                                             b"%s(): Failed to acquire glXCopySubBufferMESA().\n\0"
-                                                                as *const u8 as *const libc::c_char,
+                                                                as *const u8 as *const i8,
                                                             (*::core::mem::transmute::<
                                                                 &[u8; 9],
-                                                                &[libc::c_char; 9],
+                                                                &[i8; 9],
                                                             >(b"glx_init\0"))
                                                                 .as_ptr(),
                                                         );
-                                                        current_block = 4395476253999582535;
+                                                        current_block = 2983252860377664303;
                                                     } else {
                                                         current_block = 790185930182612747;
                                                     }
@@ -1809,34 +2070,32 @@ pub unsafe extern "C" fn glx_init(
                                                 current_block = 790185930182612747;
                                             }
                                             match current_block {
-                                                4395476253999582535 => {}
+                                                2983252860377664303 => {}
                                                 _ => {
-                                                    if !(need_render as libc::c_int != 0
-                                                        && !glx_update_fbconfig(ps))
-                                                    {
+                                                    if !(need_render as i32 != 0 && !glx_update_fbconfig(ps)) {
                                                         if need_render {
                                                             glx_on_root_change(ps);
-                                                            glDisable(0xb71 as libc::c_int as GLenum);
-                                                            glDepthMask(0 as libc::c_int as GLboolean);
+                                                            glDisable(0xb71 as i32 as GLenum);
+                                                            glDepthMask(0 as i32 as GLboolean);
                                                             glTexEnvi(
-                                                                0x2300 as libc::c_int as GLenum,
-                                                                0x2200 as libc::c_int as GLenum,
-                                                                0x1e01 as libc::c_int,
+                                                                0x2300 as i32 as GLenum,
+                                                                0x2200 as i32 as GLenum,
+                                                                0x1e01 as i32,
                                                             );
-                                                            glDisable(0xbe2 as libc::c_int as GLenum);
+                                                            glDisable(0xbe2 as i32 as GLenum);
                                                             if !(*ps).o.glx_no_stencil {
-                                                                glClear(0x400 as libc::c_int as GLbitfield);
-                                                                glDisable(0xb90 as libc::c_int as GLenum);
-                                                                glStencilMask(0x1 as libc::c_int as GLuint);
+                                                                glClear(0x400 as i32 as GLbitfield);
+                                                                glDisable(0xb90 as i32 as GLenum);
+                                                                glStencilMask(0x1 as i32 as GLuint);
                                                                 glStencilFunc(
-                                                                    0x202 as libc::c_int as GLenum,
-                                                                    0x1 as libc::c_int,
-                                                                    0x1 as libc::c_int as GLuint,
+                                                                    0x202 as i32 as GLenum,
+                                                                    0x1 as i32,
+                                                                    0x1 as i32 as GLuint,
                                                                 );
                                                             }
                                                             glClearColor(0.0f32, 0.0f32, 0.0f32, 1.0f32);
                                                         }
-                                                        success = 1 as libc::c_int != 0;
+                                                        success = 1 as i32 != 0;
                                                     }
                                                 }
                                             }
@@ -1866,11 +2125,11 @@ unsafe extern "C" fn glx_free_prog_main(
     }
     if (*pprogram).prog != 0 {
         glDeleteProgram((*pprogram).prog);
-        (*pprogram).prog = 0 as libc::c_int as GLuint;
+        (*pprogram).prog = 0 as i32 as GLuint;
     }
-    (*pprogram).unifm_opacity = -(1 as libc::c_int);
-    (*pprogram).unifm_invert_color = -(1 as libc::c_int);
-    (*pprogram).unifm_tex = -(1 as libc::c_int);
+    (*pprogram).unifm_opacity = -(1 as i32);
+    (*pprogram).unifm_invert_color = -(1 as i32);
+    (*pprogram).unifm_tex = -(1 as i32);
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_destroy(mut ps: *mut session_t) {
@@ -1882,8 +2141,8 @@ pub unsafe extern "C" fn glx_destroy(mut ps: *mut session_t) {
         free_win_res_glx(ps, w);
         w = (*w).next;
     }
-    let mut i: libc::c_int = 0 as libc::c_int;
-    while i < 5 as libc::c_int {
+    let mut i: i32 = 0 as i32;
+    while i < 5 as i32 {
         let mut ppass: *mut glx_blur_pass_t = &mut *((*(*ps).psglx).blur_passes)
             .as_mut_ptr()
             .offset(i as isize) as *mut glx_blur_pass_t;
@@ -1897,8 +2156,8 @@ pub unsafe extern "C" fn glx_destroy(mut ps: *mut session_t) {
         i;
     }
     glx_free_prog_main(ps, &mut (*ps).o.glx_prog_win);
-    let mut i_0: libc::c_int = 0 as libc::c_int;
-    while i_0 <= 32 as libc::c_int {
+    let mut i_0: i32 = 0 as i32;
+    while i_0 <= 32 as i32 {
         free((*(*ps).psglx).fbconfigs[i_0 as usize] as *mut libc::c_void);
         (*(*ps).psglx).fbconfigs[i_0 as usize] = 0 as *mut glx_fbconfig_t;
         i_0 += 1;
@@ -1921,103 +2180,93 @@ pub unsafe extern "C" fn glx_reinit(
     if !glx_init(ps, need_render) {
         fprintf(
             stderr,
-            b"%s(): Failed to initialize GLX.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<&[u8; 11], &[libc::c_char; 11]>(b"glx_reinit\0"))
-                .as_ptr(),
+            b"%s(): Failed to initialize GLX.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 11], &[i8; 11]>(b"glx_reinit\0")).as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     if !vsync_init(ps) {
         fprintf(
             stderr,
-            b"%s(): Failed to initialize VSync.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<&[u8; 11], &[libc::c_char; 11]>(b"glx_reinit\0"))
-                .as_ptr(),
+            b"%s(): Failed to initialize VSync.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 11], &[i8; 11]>(b"glx_reinit\0")).as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_on_root_change(mut ps: *mut session_t) {
-    glViewport(0 as libc::c_int, 0 as libc::c_int, (*ps).root_width, (*ps).root_height);
-    glMatrixMode(0x1701 as libc::c_int as GLenum);
+    glViewport(0 as i32, 0 as i32, (*ps).root_width, (*ps).root_height);
+    glMatrixMode(0x1701 as i32 as GLenum);
     glLoadIdentity();
     glOrtho(
-        0 as libc::c_int as GLdouble,
+        0 as i32 as GLdouble,
         (*ps).root_width as GLdouble,
-        0 as libc::c_int as GLdouble,
+        0 as i32 as GLdouble,
         (*ps).root_height as GLdouble,
         -1000.0f64,
         1000.0f64,
     );
-    glMatrixMode(0x1700 as libc::c_int as GLenum);
+    glMatrixMode(0x1700 as i32 as GLenum);
     glLoadIdentity();
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_init_blur(mut ps: *mut session_t) -> bool {
-    if !((*ps).o.blur_kerns[1 as libc::c_int as usize]).is_null() {
-        let mut fbo: GLuint = 0 as libc::c_int as GLuint;
-        glGenFramebuffers(1 as libc::c_int, &mut fbo);
+    if !((*ps).o.blur_kerns[1 as i32 as usize]).is_null() {
+        let mut fbo: GLuint = 0 as i32 as GLuint;
+        glGenFramebuffers(1 as i32, &mut fbo);
         if fbo == 0 {
             fprintf(
                 stderr,
                 b"%s(): Failed to generate Framebuffer. Cannot do multi-pass blur with GLX backend.\n\0"
-                    as *const u8 as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 14],
-                    &[libc::c_char; 14],
-                >(b"glx_init_blur\0"))
+                    as *const u8 as *const i8,
+                (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                     .as_ptr(),
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
-        glDeleteFramebuffers(1 as libc::c_int, &mut fbo);
+        glDeleteFramebuffers(1 as i32, &mut fbo);
     }
-    let mut lc_numeric_old: *mut libc::c_char = mstrcpy(
-        setlocale(1 as libc::c_int, 0 as *const libc::c_char),
-    );
-    setlocale(1 as libc::c_int, b"C\0" as *const u8 as *const libc::c_char);
-    static mut FRAG_SHADER_BLUR_PREFIX: *const libc::c_char = b"#version 110\n%suniform float offset_x;\nuniform float offset_y;\nuniform float factor_center;\nuniform %s tex_scr;\n\nvoid main() {\n  vec4 sum = vec4(0.0, 0.0, 0.0, 0.0);\n\0"
-        as *const u8 as *const libc::c_char;
-    static mut FRAG_SHADER_BLUR_ADD: *const libc::c_char = b"  sum += float(%.7g) * %s(tex_scr, vec2(gl_TexCoord[0].x + offset_x * float(%d), gl_TexCoord[0].y + offset_y * float(%d)));\n\0"
-        as *const u8 as *const libc::c_char;
-    static mut FRAG_SHADER_BLUR_ADD_GPUSHADER4: *const libc::c_char = b"  sum += float(%.7g) * %sOffset(tex_scr, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y), ivec2(%d, %d));\n\0"
-        as *const u8 as *const libc::c_char;
-    static mut FRAG_SHADER_BLUR_SUFFIX: *const libc::c_char = b"  sum += %s(tex_scr, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y)) * factor_center;\n  gl_FragColor = sum / (factor_center + float(%.7g));\n}\n\0"
-        as *const u8 as *const libc::c_char;
+    let mut lc_numeric_old: *mut i8 = mstrcpy(setlocale(1 as i32, 0 as *const i8));
+    setlocale(1 as i32, b"C\0" as *const u8 as *const i8);
+    static mut FRAG_SHADER_BLUR_PREFIX: *const i8 = b"#version 110\n%suniform float offset_x;\nuniform float offset_y;\nuniform float factor_center;\nuniform %s tex_scr;\n\nvoid main() {\n  vec4 sum = vec4(0.0, 0.0, 0.0, 0.0);\n\0"
+        as *const u8 as *const i8;
+    static mut FRAG_SHADER_BLUR_ADD: *const i8 = b"  sum += float(%.7g) * %s(tex_scr, vec2(gl_TexCoord[0].x + offset_x * float(%d), gl_TexCoord[0].y + offset_y * float(%d)));\n\0"
+        as *const u8 as *const i8;
+    static mut FRAG_SHADER_BLUR_ADD_GPUSHADER4: *const i8 = b"  sum += float(%.7g) * %sOffset(tex_scr, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y), ivec2(%d, %d));\n\0"
+        as *const u8 as *const i8;
+    static mut FRAG_SHADER_BLUR_SUFFIX: *const i8 = b"  sum += %s(tex_scr, vec2(gl_TexCoord[0].x, gl_TexCoord[0].y)) * factor_center;\n  gl_FragColor = sum / (factor_center + float(%.7g));\n}\n\0"
+        as *const u8 as *const i8;
     let use_texture_rect: bool = !(*(*ps).psglx).has_texture_non_power_of_two;
-    let mut sampler_type: *const libc::c_char = if use_texture_rect as libc::c_int != 0 {
-        b"sampler2DRect\0" as *const u8 as *const libc::c_char
+    let mut sampler_type: *const i8 = if use_texture_rect as i32 != 0 {
+        b"sampler2DRect\0" as *const u8 as *const i8
     } else {
-        b"sampler2D\0" as *const u8 as *const libc::c_char
+        b"sampler2D\0" as *const u8 as *const i8
     };
-    let mut texture_func: *const libc::c_char = if use_texture_rect as libc::c_int != 0 {
-        b"texture2DRect\0" as *const u8 as *const libc::c_char
+    let mut texture_func: *const i8 = if use_texture_rect as i32 != 0 {
+        b"texture2DRect\0" as *const u8 as *const i8
     } else {
-        b"texture2D\0" as *const u8 as *const libc::c_char
+        b"texture2D\0" as *const u8 as *const i8
     };
-    let mut shader_add: *const libc::c_char = FRAG_SHADER_BLUR_ADD;
-    let mut extension: *mut libc::c_char = mstrcpy(
-        b"\0" as *const u8 as *const libc::c_char,
-    );
+    let mut shader_add: *const i8 = FRAG_SHADER_BLUR_ADD;
+    let mut extension: *mut i8 = mstrcpy(b"\0" as *const u8 as *const i8);
     if use_texture_rect {
         mstrextend(
             &mut extension,
             b"#extension GL_ARB_texture_rectangle : require\n\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
         );
     }
     if (*ps).o.glx_use_gpushader4 {
         mstrextend(
             &mut extension,
-            b"#extension GL_EXT_gpu_shader4 : require\n\0" as *const u8
-                as *const libc::c_char,
+            b"#extension GL_EXT_gpu_shader4 : require\n\0" as *const u8 as *const i8,
         );
         shader_add = FRAG_SHADER_BLUR_ADD_GPUSHADER4;
     }
-    let mut i: libc::c_int = 0 as libc::c_int;
-    while i < 5 as libc::c_int && !((*ps).o.blur_kerns[i as usize]).is_null() {
+    let mut i: i32 = 0 as i32;
+    while i < 5 as i32 && !((*ps).o.blur_kerns[i as usize]).is_null() {
         let mut kern: *mut XFixed = (*ps).o.blur_kerns[i as usize];
         if kern.is_null() {
             break;
@@ -2025,54 +2274,51 @@ pub unsafe extern "C" fn glx_init_blur(mut ps: *mut session_t) -> bool {
         let mut ppass: *mut glx_blur_pass_t = &mut *((*(*ps).psglx).blur_passes)
             .as_mut_ptr()
             .offset(i as isize) as *mut glx_blur_pass_t;
-        let mut wid: libc::c_int = (*kern.offset(0 as libc::c_int as isize) as XDouble
-            / 65536 as libc::c_int as libc::c_double) as libc::c_int;
-        let mut hei: libc::c_int = (*kern.offset(1 as libc::c_int as isize) as XDouble
-            / 65536 as libc::c_int as libc::c_double) as libc::c_int;
-        let mut nele: libc::c_int = wid * hei - 1 as libc::c_int;
-        let mut len: libc::c_int = (strlen(FRAG_SHADER_BLUR_PREFIX))
+        let mut wid: i32 = (*kern.offset(0 as i32 as isize) as XDouble
+            / 65536 as i32 as libc::c_double) as i32;
+        let mut hei: i32 = (*kern.offset(1 as i32 as isize) as XDouble
+            / 65536 as i32 as libc::c_double) as i32;
+        let mut nele: i32 = wid * hei - 1 as i32;
+        let mut len: i32 = (strlen(FRAG_SHADER_BLUR_PREFIX))
             .wrapping_add(strlen(sampler_type))
             .wrapping_add(strlen(extension))
             .wrapping_add(
                 (strlen(shader_add))
                     .wrapping_add(strlen(texture_func))
-                    .wrapping_add(42 as libc::c_int as libc::c_ulong)
-                    .wrapping_mul(nele as libc::c_ulong),
+                    .wrapping_add(42 as i32 as u64)
+                    .wrapping_mul(nele as u64),
             )
             .wrapping_add(strlen(FRAG_SHADER_BLUR_SUFFIX))
             .wrapping_add(strlen(texture_func))
-            .wrapping_add(12 as libc::c_int as libc::c_ulong)
-            .wrapping_add(1 as libc::c_int as libc::c_ulong) as libc::c_int;
-        let mut shader_str: *mut libc::c_char = calloc(
-            len as libc::c_ulong,
-            ::core::mem::size_of::<libc::c_char>() as libc::c_ulong,
-        ) as *mut libc::c_char;
+            .wrapping_add(12 as i32 as u64)
+            .wrapping_add(1 as i32 as u64) as i32;
+        let mut shader_str: *mut i8 = calloc(
+            len as u64,
+            ::core::mem::size_of::<i8>() as u64,
+        ) as *mut i8;
         if shader_str.is_null() {
             fprintf(
                 stderr,
                 b"%s(): Failed to allocate %d bytes for shader string.\n\0" as *const u8
-                    as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 14],
-                    &[libc::c_char; 14],
-                >(b"glx_init_blur\0"))
+                    as *const i8,
+                (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                     .as_ptr(),
                 len,
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
-        let mut pc: *mut libc::c_char = shader_str;
+        let mut pc: *mut i8 = shader_str;
         sprintf(pc, FRAG_SHADER_BLUR_PREFIX, extension, sampler_type);
         pc = pc.offset(strlen(pc) as isize);
         let mut sum: libc::c_double = 0.0f64;
-        let mut j: libc::c_int = 0 as libc::c_int;
+        let mut j: i32 = 0 as i32;
         while j < hei {
-            let mut k: libc::c_int = 0 as libc::c_int;
+            let mut k: i32 = 0 as i32;
             while k < wid {
-                if !(hei / 2 as libc::c_int == j && wid / 2 as libc::c_int == k) {
+                if !(hei / 2 as i32 == j && wid / 2 as i32 == k) {
                     let mut val: libc::c_double = *kern
-                        .offset((2 as libc::c_int + j * wid + k) as isize) as XDouble
-                        / 65536 as libc::c_int as libc::c_double;
+                        .offset((2 as i32 + j * wid + k) as isize) as XDouble
+                        / 65536 as i32 as libc::c_double;
                     if !(0.0f64 == val) {
                         sum += val;
                         sprintf(
@@ -2080,8 +2326,8 @@ pub unsafe extern "C" fn glx_init_blur(mut ps: *mut session_t) -> bool {
                             shader_add,
                             val,
                             texture_func,
-                            k - wid / 2 as libc::c_int,
-                            j - hei / 2 as libc::c_int,
+                            k - wid / 2 as i32,
+                            j - hei / 2 as i32,
                         );
                         pc = pc.offset(strlen(pc) as isize);
                     }
@@ -2093,91 +2339,68 @@ pub unsafe extern "C" fn glx_init_blur(mut ps: *mut session_t) -> bool {
             j;
         }
         sprintf(pc, FRAG_SHADER_BLUR_SUFFIX, texture_func, sum);
-        (*ppass)
-            .frag_shader = glx_create_shader(
-            0x8b30 as libc::c_int as GLenum,
-            shader_str,
-        );
+        (*ppass).frag_shader = glx_create_shader(0x8b30 as i32 as GLenum, shader_str);
         free(shader_str as *mut libc::c_void);
         if (*ppass).frag_shader == 0 {
             fprintf(
                 stderr,
                 b"%s(): Failed to create fragment shader %d.\n\0" as *const u8
-                    as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 14],
-                    &[libc::c_char; 14],
-                >(b"glx_init_blur\0"))
+                    as *const i8,
+                (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                     .as_ptr(),
                 i,
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
-        (*ppass).prog = glx_create_program(&mut (*ppass).frag_shader, 1 as libc::c_int);
+        (*ppass).prog = glx_create_program(&mut (*ppass).frag_shader, 1 as i32);
         if (*ppass).prog == 0 {
             fprintf(
                 stderr,
-                b"%s(): Failed to create GLSL program.\n\0" as *const u8
-                    as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 14],
-                    &[libc::c_char; 14],
-                >(b"glx_init_blur\0"))
+                b"%s(): Failed to create GLSL program.\n\0" as *const u8 as *const i8,
+                (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                     .as_ptr(),
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
-        (*ppass)
-            .unifm_factor_center = glGetUniformLocation(
+        (*ppass).unifm_factor_center = glGetUniformLocation(
             (*ppass).prog,
-            b"factor_center\0" as *const u8 as *const libc::c_char,
+            b"factor_center\0" as *const u8 as *const i8,
         );
-        if (*ppass).unifm_factor_center < 0 as libc::c_int {
+        if (*ppass).unifm_factor_center < 0 as i32 {
             fprintf(
                 stderr,
                 b"%s(): Failed to get location of %d-th uniform 'factor_center'. Might be troublesome.\n\0"
-                    as *const u8 as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 14],
-                    &[libc::c_char; 14],
-                >(b"glx_init_blur\0"))
+                    as *const u8 as *const i8,
+                (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                     .as_ptr(),
                 i,
             );
         }
         if !(*ps).o.glx_use_gpushader4 {
-            (*ppass)
-                .unifm_offset_x = glGetUniformLocation(
+            (*ppass).unifm_offset_x = glGetUniformLocation(
                 (*ppass).prog,
-                b"offset_x\0" as *const u8 as *const libc::c_char,
+                b"offset_x\0" as *const u8 as *const i8,
             );
-            if (*ppass).unifm_offset_x < 0 as libc::c_int {
+            if (*ppass).unifm_offset_x < 0 as i32 {
                 fprintf(
                     stderr,
                     b"%s(): Failed to get location of %d-th uniform 'offset_x'. Might be troublesome.\n\0"
-                        as *const u8 as *const libc::c_char,
-                    (*::core::mem::transmute::<
-                        &[u8; 14],
-                        &[libc::c_char; 14],
-                    >(b"glx_init_blur\0"))
+                        as *const u8 as *const i8,
+                    (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                         .as_ptr(),
                     i,
                 );
             }
-            (*ppass)
-                .unifm_offset_y = glGetUniformLocation(
+            (*ppass).unifm_offset_y = glGetUniformLocation(
                 (*ppass).prog,
-                b"offset_y\0" as *const u8 as *const libc::c_char,
+                b"offset_y\0" as *const u8 as *const i8,
             );
-            if (*ppass).unifm_offset_y < 0 as libc::c_int {
+            if (*ppass).unifm_offset_y < 0 as i32 {
                 fprintf(
                     stderr,
                     b"%s(): Failed to get location of %d-th uniform 'offset_y'. Might be troublesome.\n\0"
-                        as *const u8 as *const libc::c_char,
-                    (*::core::mem::transmute::<
-                        &[u8; 14],
-                        &[libc::c_char; 14],
-                    >(b"glx_init_blur\0"))
+                        as *const u8 as *const i8,
+                    (*::core::mem::transmute::<&[u8; 14], &[i8; 14]>(b"glx_init_blur\0"))
                         .as_ptr(),
                     i,
                 );
@@ -2187,106 +2410,87 @@ pub unsafe extern "C" fn glx_init_blur(mut ps: *mut session_t) -> bool {
         i;
     }
     free(extension as *mut libc::c_void);
-    setlocale(1 as libc::c_int, lc_numeric_old);
+    setlocale(1 as i32, lc_numeric_old);
     free(lc_numeric_old as *mut libc::c_void);
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_load_prog_main(
     mut ps: *mut session_t,
-    mut vshader_str: *const libc::c_char,
-    mut fshader_str: *const libc::c_char,
+    mut vshader_str: *const i8,
+    mut fshader_str: *const i8,
     mut pprogram: *mut glx_prog_main_t,
 ) -> bool {
     (*pprogram).prog = glx_create_program_from_str(vshader_str, fshader_str);
     if (*pprogram).prog == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to create GLSL program.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"glx_load_prog_main\0"))
+            b"%s(): Failed to create GLSL program.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"glx_load_prog_main\0"))
                 .as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    (*pprogram)
-        .unifm_opacity = glGetUniformLocation(
+    (*pprogram).unifm_opacity = glGetUniformLocation(
         (*pprogram).prog,
-        b"opacity\0" as *const u8 as *const libc::c_char,
+        b"opacity\0" as *const u8 as *const i8,
     );
-    if (*pprogram).unifm_opacity < 0 as libc::c_int {
+    if (*pprogram).unifm_opacity < 0 as i32 {
         fprintf(
             stderr,
             b"%s(): Failed to get location of uniform 'opacity'. Might be troublesome.\n\0"
-                as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"glx_load_prog_main\0"))
+                as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"glx_load_prog_main\0"))
                 .as_ptr(),
         );
     }
-    (*pprogram)
-        .unifm_invert_color = glGetUniformLocation(
+    (*pprogram).unifm_invert_color = glGetUniformLocation(
         (*pprogram).prog,
-        b"invert_color\0" as *const u8 as *const libc::c_char,
+        b"invert_color\0" as *const u8 as *const i8,
     );
-    if (*pprogram).unifm_invert_color < 0 as libc::c_int {
+    if (*pprogram).unifm_invert_color < 0 as i32 {
         fprintf(
             stderr,
             b"%s(): Failed to get location of uniform 'invert_color'. Might be troublesome.\n\0"
-                as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"glx_load_prog_main\0"))
+                as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"glx_load_prog_main\0"))
                 .as_ptr(),
         );
     }
-    (*pprogram)
-        .unifm_tex = glGetUniformLocation(
+    (*pprogram).unifm_tex = glGetUniformLocation(
         (*pprogram).prog,
-        b"tex\0" as *const u8 as *const libc::c_char,
+        b"tex\0" as *const u8 as *const i8,
     );
-    if (*pprogram).unifm_tex < 0 as libc::c_int {
+    if (*pprogram).unifm_tex < 0 as i32 {
         fprintf(
             stderr,
             b"%s(): Failed to get location of uniform 'tex'. Might be troublesome.\n\0"
-                as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"glx_load_prog_main\0"))
+                as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"glx_load_prog_main\0"))
                 .as_ptr(),
         );
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[inline]
 unsafe extern "C" fn glx_update_fbconfig_bydepth(
     mut ps: *mut session_t,
-    mut depth: libc::c_int,
+    mut depth: i32,
     mut pfbcfg: *mut glx_fbconfig_t,
 ) {
-    if depth < 0 as libc::c_int || depth > 32 as libc::c_int {
+    if depth < 0 as i32 || depth > 32 as i32 {
         return;
     }
-    if glx_cmp_fbconfig(ps, (*(*ps).psglx).fbconfigs[depth as usize], pfbcfg)
-        < 0 as libc::c_int
+    if glx_cmp_fbconfig(ps, (*(*ps).psglx).fbconfigs[depth as usize], pfbcfg) < 0 as i32
     {
         if ((*(*ps).psglx).fbconfigs[depth as usize]).is_null() {
-            (*(*ps).psglx)
-                .fbconfigs[depth
-                as usize] = malloc(
-                ::core::mem::size_of::<glx_fbconfig_t>() as libc::c_ulong,
+            (*(*ps).psglx).fbconfigs[depth as usize] = malloc(
+                ::core::mem::size_of::<glx_fbconfig_t>() as u64,
             ) as *mut glx_fbconfig_t;
             allocchk_(
                 (*::core::mem::transmute::<
                     &[u8; 28],
-                    &[libc::c_char; 28],
+                    &[i8; 28],
                 >(b"glx_update_fbconfig_bydepth\0"))
                     .as_ptr(),
                 (*(*ps).psglx).fbconfigs[depth as usize] as *mut libc::c_void,
@@ -2296,70 +2500,67 @@ unsafe extern "C" fn glx_update_fbconfig_bydepth(
     }
 }
 unsafe extern "C" fn glx_update_fbconfig(mut ps: *mut session_t) -> bool {
-    let mut nele: libc::c_int = 0 as libc::c_int;
+    let mut nele: i32 = 0 as i32;
     let mut pfbcfgs: *mut GLXFBConfig = glXGetFBConfigs((*ps).dpy, (*ps).scr, &mut nele);
     let mut pcur: *mut GLXFBConfig = pfbcfgs;
     while pcur < pfbcfgs.offset(nele as isize) {
         let mut fbinfo: glx_fbconfig_t = {
             let mut init = glx_fbconfig_t {
                 cfg: *pcur,
-                texture_fmt: 0 as libc::c_int,
-                texture_tgts: 0 as libc::c_int,
-                y_inverted: 0 as libc::c_int != 0,
+                texture_fmt: 0 as i32,
+                texture_tgts: 0 as i32,
+                y_inverted: 0 as i32 != 0,
             };
             init
         };
-        let mut id: libc::c_int = pcur.offset_from(pfbcfgs) as libc::c_long
-            as libc::c_int;
-        let mut depth: libc::c_int = 0 as libc::c_int;
-        let mut depth_alpha: libc::c_int = 0 as libc::c_int;
-        let mut val: libc::c_int = 0 as libc::c_int;
-        if !(0 as libc::c_int
-            == glXGetFBConfigAttrib((*ps).dpy, *pcur, 0x186a1 as libc::c_int, &mut val)
-            && val > 1 as libc::c_int)
+        let mut id: i32 = pcur.offset_from(pfbcfgs) as i64 as i32;
+        let mut depth: i32 = 0 as i32;
+        let mut depth_alpha: i32 = 0 as i32;
+        let mut val: i32 = 0 as i32;
+        if !(0 as i32 == glXGetFBConfigAttrib((*ps).dpy, *pcur, 0x186a1 as i32, &mut val)
+            && val > 1 as i32)
         {
-            if 0 as libc::c_int
-                != glXGetFBConfigAttrib((*ps).dpy, *pcur, 2 as libc::c_int, &mut depth)
-                || 0 as libc::c_int
+            if 0 as i32 != glXGetFBConfigAttrib((*ps).dpy, *pcur, 2 as i32, &mut depth)
+                || 0 as i32
                     != glXGetFBConfigAttrib(
                         (*ps).dpy,
                         *pcur,
-                        11 as libc::c_int,
+                        11 as i32,
                         &mut depth_alpha,
                     )
             {
                 fprintf(
                     stderr,
                     b"%s(): Failed to retrieve buffer size and alpha size of FBConfig %d.\n\0"
-                        as *const u8 as *const libc::c_char,
+                        as *const u8 as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 20],
-                        &[libc::c_char; 20],
+                        &[i8; 20],
                     >(b"glx_update_fbconfig\0"))
                         .as_ptr(),
                     id,
                 );
-            } else if 0 as libc::c_int
+            } else if 0 as i32
                 != glXGetFBConfigAttrib(
                     (*ps).dpy,
                     *pcur,
-                    0x20d3 as libc::c_int,
+                    0x20d3 as i32,
                     &mut fbinfo.texture_tgts,
                 )
             {
                 fprintf(
                     stderr,
                     b"%s(): Failed to retrieve BIND_TO_TEXTURE_TARGETS_EXT of FBConfig %d.\n\0"
-                        as *const u8 as *const libc::c_char,
+                        as *const u8 as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 20],
-                        &[libc::c_char; 20],
+                        &[i8; 20],
                     >(b"glx_update_fbconfig\0"))
                         .as_ptr(),
                     id,
                 );
             } else {
-                let mut visualdepth: libc::c_int = 0 as libc::c_int;
+                let mut visualdepth: i32 = 0 as i32;
                 let mut pvi: *mut XVisualInfo = glXGetVisualFromFBConfig(
                     (*ps).dpy,
                     *pcur,
@@ -2367,48 +2568,46 @@ unsafe extern "C" fn glx_update_fbconfig(mut ps: *mut session_t) -> bool {
                 if !pvi.is_null() {
                     visualdepth = (*pvi).depth;
                     cxfree(pvi as *mut libc::c_void);
-                    let mut rgb: bool = 0 as libc::c_int != 0;
-                    let mut rgba: bool = 0 as libc::c_int != 0;
-                    if depth >= 32 as libc::c_int && depth_alpha != 0
-                        && 0 as libc::c_int
+                    let mut rgb: bool = 0 as i32 != 0;
+                    let mut rgba: bool = 0 as i32 != 0;
+                    if depth >= 32 as i32 && depth_alpha != 0
+                        && 0 as i32
                             == glXGetFBConfigAttrib(
                                 (*ps).dpy,
                                 *pcur,
-                                0x20d1 as libc::c_int,
+                                0x20d1 as i32,
                                 &mut val,
                             ) && val != 0
                     {
-                        rgba = 1 as libc::c_int != 0;
+                        rgba = 1 as i32 != 0;
                     }
-                    if 0 as libc::c_int
+                    if 0 as i32
                         == glXGetFBConfigAttrib(
                             (*ps).dpy,
                             *pcur,
-                            0x20d0 as libc::c_int,
+                            0x20d0 as i32,
                             &mut val,
                         ) && val != 0
                     {
-                        rgb = 1 as libc::c_int != 0;
+                        rgb = 1 as i32 != 0;
                     }
-                    if 0 as libc::c_int
+                    if 0 as i32
                         == glXGetFBConfigAttrib(
                             (*ps).dpy,
                             *pcur,
-                            0x20d4 as libc::c_int,
+                            0x20d4 as i32,
                             &mut val,
                         )
                     {
                         fbinfo.y_inverted = val != 0;
                     }
-                    let mut tgtdpt: libc::c_int = depth - depth_alpha;
-                    if tgtdpt == visualdepth && tgtdpt < 32 as libc::c_int
-                        && rgb as libc::c_int != 0
-                    {
-                        fbinfo.texture_fmt = 0x20d9 as libc::c_int;
+                    let mut tgtdpt: i32 = depth - depth_alpha;
+                    if tgtdpt == visualdepth && tgtdpt < 32 as i32 && rgb as i32 != 0 {
+                        fbinfo.texture_fmt = 0x20d9 as i32;
                         glx_update_fbconfig_bydepth(ps, tgtdpt, &mut fbinfo);
                     }
-                    if depth == visualdepth && rgba as libc::c_int != 0 {
-                        fbinfo.texture_fmt = 0x20da as libc::c_int;
+                    if depth == visualdepth && rgba as i32 != 0 {
+                        fbinfo.texture_fmt = 0x20da as i32;
                         glx_update_fbconfig_bydepth(ps, depth, &mut fbinfo);
                     }
                 }
@@ -2422,39 +2621,33 @@ unsafe extern "C" fn glx_update_fbconfig(mut ps: *mut session_t) -> bool {
         fprintf(
             stderr,
             b"%s(): No FBConfig found for default depth %d.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 20],
-                &[libc::c_char; 20],
-            >(b"glx_update_fbconfig\0"))
+                as *const i8,
+            (*::core::mem::transmute::<&[u8; 20], &[i8; 20]>(b"glx_update_fbconfig\0"))
                 .as_ptr(),
             (*ps).depth,
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    if ((*(*ps).psglx).fbconfigs[32 as libc::c_int as usize]).is_null() {
+    if ((*(*ps).psglx).fbconfigs[32 as i32 as usize]).is_null() {
         fprintf(
             stderr,
             b"%s(): No FBConfig found for depth 32. Expect crazy things.\n\0"
-                as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 20],
-                &[libc::c_char; 20],
-            >(b"glx_update_fbconfig\0"))
+                as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 20], &[i8; 20]>(b"glx_update_fbconfig\0"))
                 .as_ptr(),
         );
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[inline]
 unsafe extern "C" fn glx_cmp_fbconfig_cmpattr(
     mut ps: *mut session_t,
     mut pfbc_a: *const glx_fbconfig_t,
     mut pfbc_b: *const glx_fbconfig_t,
-    mut attr: libc::c_int,
-) -> libc::c_int {
-    let mut attr_a: libc::c_int = 0 as libc::c_int;
-    let mut attr_b: libc::c_int = 0 as libc::c_int;
+    mut attr: i32,
+) -> i32 {
+    let mut attr_a: i32 = 0 as i32;
+    let mut attr_b: i32 = 0 as i32;
     glXGetFBConfigAttrib((*ps).dpy, (*pfbc_a).cfg, attr, &mut attr_a);
     glXGetFBConfigAttrib((*ps).dpy, (*pfbc_b).cfg, attr, &mut attr_b);
     return attr_a - attr_b;
@@ -2463,89 +2656,83 @@ unsafe extern "C" fn glx_cmp_fbconfig(
     mut ps: *mut session_t,
     mut pfbc_a: *const glx_fbconfig_t,
     mut pfbc_b: *const glx_fbconfig_t,
-) -> libc::c_int {
-    let mut result: libc::c_int = 0 as libc::c_int;
+) -> i32 {
+    let mut result: i32 = 0 as i32;
     if pfbc_a.is_null() {
-        return -(1 as libc::c_int);
+        return -(1 as i32);
     }
     if pfbc_b.is_null() {
-        return 1 as libc::c_int;
+        return 1 as i32;
     }
-    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 0x20d1 as libc::c_int);
+    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 0x20d1 as i32);
     if result != 0 {
         return -result;
     }
-    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 5 as libc::c_int);
+    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 5 as i32);
     if result != 0 {
         return -result;
     }
-    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 13 as libc::c_int);
+    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 13 as i32);
     if result != 0 {
         return -result;
     }
-    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 12 as libc::c_int);
+    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 12 as i32);
     if result != 0 {
         return -result;
     }
-    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 0x20d2 as libc::c_int);
+    result = glx_cmp_fbconfig_cmpattr(ps, pfbc_a, pfbc_b, 0x20d2 as i32);
     if result != 0 {
         return result;
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_bind_pixmap(
     mut ps: *mut session_t,
     mut pptex: *mut *mut glx_texture_t,
     mut pixmap: Pixmap,
-    mut width: libc::c_uint,
-    mut height: libc::c_uint,
-    mut depth: libc::c_uint,
+    mut width: u32,
+    mut height: u32,
+    mut depth: u32,
 ) -> bool {
     if pixmap == 0 {
         fprintf(
             stderr,
             b"%s(%#010lx): Binding to an empty pixmap. This can't work.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 16],
-                &[libc::c_char; 16],
-            >(b"glx_bind_pixmap\0"))
+                as *const i8,
+            (*::core::mem::transmute::<&[u8; 16], &[i8; 16]>(b"glx_bind_pixmap\0"))
                 .as_ptr(),
             pixmap,
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     let mut ptex: *mut glx_texture_t = *pptex;
-    let mut need_release: bool = 1 as libc::c_int != 0;
+    let mut need_release: bool = 1 as i32 != 0;
     if ptex.is_null() {
         static mut GLX_TEX_DEF: glx_texture_t = {
             let mut init = _glx_texture {
-                texture: 0 as libc::c_int as GLuint,
-                glpixmap: 0 as libc::c_int as GLXPixmap,
-                pixmap: 0 as libc::c_int as Pixmap,
-                target: 0 as libc::c_int as GLenum,
-                width: 0 as libc::c_int as libc::c_uint,
-                height: 0 as libc::c_int as libc::c_uint,
-                depth: 0 as libc::c_int as libc::c_uint,
-                y_inverted: 0 as libc::c_int != 0,
+                texture: 0 as i32 as GLuint,
+                glpixmap: 0 as i32 as GLXPixmap,
+                pixmap: 0 as i32 as Pixmap,
+                target: 0 as i32 as GLenum,
+                width: 0 as i32 as u32,
+                height: 0 as i32 as u32,
+                depth: 0 as i32 as u32,
+                y_inverted: 0 as i32 != 0,
             };
             init
         };
-        ptex = malloc(::core::mem::size_of::<glx_texture_t>() as libc::c_ulong)
+        ptex = malloc(::core::mem::size_of::<glx_texture_t>() as u64)
             as *mut glx_texture_t;
         allocchk_(
-            (*::core::mem::transmute::<
-                &[u8; 16],
-                &[libc::c_char; 16],
-            >(b"glx_bind_pixmap\0"))
+            (*::core::mem::transmute::<&[u8; 16], &[i8; 16]>(b"glx_bind_pixmap\0"))
                 .as_ptr(),
             ptex as *mut libc::c_void,
         );
         memcpy(
             ptex as *mut libc::c_void,
             &GLX_TEX_DEF as *const glx_texture_t as *const libc::c_void,
-            ::core::mem::size_of::<glx_texture_t>() as libc::c_ulong,
+            ::core::mem::size_of::<glx_texture_t>() as u64,
         );
         *pptex = ptex;
     }
@@ -2553,12 +2740,12 @@ pub unsafe extern "C" fn glx_bind_pixmap(
         glx_release_pixmap(ps, ptex);
     }
     if (*ptex).glpixmap == 0 {
-        need_release = 0 as libc::c_int != 0;
+        need_release = 0 as i32 != 0;
         if !(width != 0 && height != 0 && depth != 0) {
-            let mut rroot: Window = 0 as libc::c_long as Window;
-            let mut rx: libc::c_int = 0 as libc::c_int;
-            let mut ry: libc::c_int = 0 as libc::c_int;
-            let mut rbdwid: libc::c_uint = 0 as libc::c_int as libc::c_uint;
+            let mut rroot: Window = 0 as i64 as Window;
+            let mut rx: i32 = 0 as i32;
+            let mut ry: i32 = 0 as i32;
+            let mut rbdwid: u32 = 0 as i32 as u32;
             if XGetGeometry(
                 (*ps).dpy,
                 pixmap,
@@ -2574,30 +2761,30 @@ pub unsafe extern "C" fn glx_bind_pixmap(
                 fprintf(
                     stderr,
                     b"%s(%#010lx): Failed to query Pixmap info.\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 16],
-                        &[libc::c_char; 16],
+                        &[i8; 16],
                     >(b"glx_bind_pixmap\0"))
                         .as_ptr(),
                     pixmap,
                 );
-                return 0 as libc::c_int != 0;
+                return 0 as i32 != 0;
             }
-            if depth > 32 as libc::c_int as libc::c_uint {
+            if depth > 32 as i32 as u32 {
                 fprintf(
                     stderr,
                     b"%s(%d): Requested depth higher than %d.\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 16],
-                        &[libc::c_char; 16],
+                        &[i8; 16],
                     >(b"glx_bind_pixmap\0"))
                         .as_ptr(),
                     depth,
-                    32 as libc::c_int,
+                    32 as i32,
                 );
-                return 0 as libc::c_int != 0;
+                return 0 as i32 != 0;
             }
         }
         let mut pcfg: *const glx_fbconfig_t = (*(*ps).psglx).fbconfigs[depth as usize];
@@ -2605,48 +2792,43 @@ pub unsafe extern "C" fn glx_bind_pixmap(
             fprintf(
                 stderr,
                 b"%s(%d): Couldn't find FBConfig with requested depth.\n\0" as *const u8
-                    as *const libc::c_char,
-                (*::core::mem::transmute::<
-                    &[u8; 16],
-                    &[libc::c_char; 16],
-                >(b"glx_bind_pixmap\0"))
+                    as *const i8,
+                (*::core::mem::transmute::<&[u8; 16], &[i8; 16]>(b"glx_bind_pixmap\0"))
                     .as_ptr(),
                 depth,
             );
-            return 0 as libc::c_int != 0;
+            return 0 as i32 != 0;
         }
-        let mut tex_tgt: GLenum = 0 as libc::c_int as GLenum;
-        if 0x2 as libc::c_int & (*pcfg).texture_tgts != 0
-            && (*(*ps).psglx).has_texture_non_power_of_two as libc::c_int != 0
+        let mut tex_tgt: GLenum = 0 as i32 as GLenum;
+        if 0x2 as i32 & (*pcfg).texture_tgts != 0
+            && (*(*ps).psglx).has_texture_non_power_of_two as i32 != 0
         {
-            tex_tgt = 0x20dc as libc::c_int as GLenum;
-        } else if 0x4 as libc::c_int & (*pcfg).texture_tgts != 0 {
-            tex_tgt = 0x20dd as libc::c_int as GLenum;
-        } else if 0x2 as libc::c_int & (*pcfg).texture_tgts == 0 {
-            tex_tgt = 0x20dd as libc::c_int as GLenum;
+            tex_tgt = 0x20dc as i32 as GLenum;
+        } else if 0x4 as i32 & (*pcfg).texture_tgts != 0 {
+            tex_tgt = 0x20dd as i32 as GLenum;
+        } else if 0x2 as i32 & (*pcfg).texture_tgts == 0 {
+            tex_tgt = 0x20dd as i32 as GLenum;
         } else {
-            tex_tgt = 0x20dc as libc::c_int as GLenum;
+            tex_tgt = 0x20dc as i32 as GLenum;
         }
         let mut attrs: [GLint; 5] = [
-            0x20d5 as libc::c_int,
+            0x20d5 as i32,
             (*pcfg).texture_fmt,
-            0x20d6 as libc::c_int,
+            0x20d6 as i32,
             tex_tgt as GLint,
-            0 as libc::c_int,
+            0 as i32,
         ];
-        (*ptex)
-            .glpixmap = glXCreatePixmap(
+        (*ptex).glpixmap = glXCreatePixmap(
             (*ps).dpy,
             (*pcfg).cfg,
             pixmap,
             attrs.as_mut_ptr(),
         );
         (*ptex).pixmap = pixmap;
-        (*ptex)
-            .target = (if 0x20dc as libc::c_int as libc::c_uint == tex_tgt {
-            0xde1 as libc::c_int
+        (*ptex).target = (if 0x20dc as i32 as u32 == tex_tgt {
+            0xde1 as i32
         } else {
-            0x84f5 as libc::c_int
+            0x84f5 as i32
         }) as GLenum;
         (*ptex).width = width;
         (*ptex).height = height;
@@ -2656,71 +2838,48 @@ pub unsafe extern "C" fn glx_bind_pixmap(
     if (*ptex).glpixmap == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to allocate GLX pixmap.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 16],
-                &[libc::c_char; 16],
-            >(b"glx_bind_pixmap\0"))
+            b"%s(): Failed to allocate GLX pixmap.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 16], &[i8; 16]>(b"glx_bind_pixmap\0"))
                 .as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     glEnable((*ptex).target);
     if (*ptex).texture == 0 {
-        need_release = 0 as libc::c_int != 0;
-        let mut texture: GLuint = 0 as libc::c_int as GLuint;
-        glGenTextures(1 as libc::c_int, &mut texture);
+        need_release = 0 as i32 != 0;
+        let mut texture: GLuint = 0 as i32 as GLuint;
+        glGenTextures(1 as i32, &mut texture);
         glBindTexture((*ptex).target, texture);
-        glTexParameteri(
-            (*ptex).target,
-            0x2801 as libc::c_int as GLenum,
-            0x2600 as libc::c_int,
-        );
-        glTexParameteri(
-            (*ptex).target,
-            0x2800 as libc::c_int as GLenum,
-            0x2600 as libc::c_int,
-        );
-        glTexParameteri(
-            (*ptex).target,
-            0x2802 as libc::c_int as GLenum,
-            0x812f as libc::c_int,
-        );
-        glTexParameteri(
-            (*ptex).target,
-            0x2803 as libc::c_int as GLenum,
-            0x812f as libc::c_int,
-        );
-        glBindTexture((*ptex).target, 0 as libc::c_int as GLuint);
+        glTexParameteri((*ptex).target, 0x2801 as i32 as GLenum, 0x2600 as i32);
+        glTexParameteri((*ptex).target, 0x2800 as i32 as GLenum, 0x2600 as i32);
+        glTexParameteri((*ptex).target, 0x2802 as i32 as GLenum, 0x812f as i32);
+        glTexParameteri((*ptex).target, 0x2803 as i32 as GLenum, 0x812f as i32);
+        glBindTexture((*ptex).target, 0 as i32 as GLuint);
         (*ptex).texture = texture;
     }
     if (*ptex).texture == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to allocate texture.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 16],
-                &[libc::c_char; 16],
-            >(b"glx_bind_pixmap\0"))
+            b"%s(): Failed to allocate texture.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 16], &[i8; 16]>(b"glx_bind_pixmap\0"))
                 .as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     glBindTexture((*ptex).target, (*ptex).texture);
     if need_release {
         ((*(*ps).psglx).glXReleaseTexImageProc)
             .expect(
                 "non-null function pointer",
-            )((*ps).dpy, (*ptex).glpixmap, 0x20de as libc::c_int);
+            )((*ps).dpy, (*ptex).glpixmap, 0x20de as i32);
     }
     ((*(*ps).psglx).glXBindTexImageProc)
         .expect(
             "non-null function pointer",
-        )((*ps).dpy, (*ptex).glpixmap, 0x20de as libc::c_int, 0 as *const libc::c_int);
-    glBindTexture((*ptex).target, 0 as libc::c_int as GLuint);
+        )((*ps).dpy, (*ptex).glpixmap, 0x20de as i32, 0 as *const i32);
+    glBindTexture((*ptex).target, 0 as i32 as GLuint);
     glDisable((*ptex).target);
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_release_pixmap(
@@ -2732,12 +2891,12 @@ pub unsafe extern "C" fn glx_release_pixmap(
         ((*(*ps).psglx).glXReleaseTexImageProc)
             .expect(
                 "non-null function pointer",
-            )((*ps).dpy, (*ptex).glpixmap, 0x20de as libc::c_int);
-        glBindTexture((*ptex).target, 0 as libc::c_int as GLuint);
+            )((*ps).dpy, (*ptex).glpixmap, 0x20de as i32);
+        glBindTexture((*ptex).target, 0 as i32 as GLuint);
     }
     if (*ptex).glpixmap != 0 {
         glXDestroyPixmap((*ps).dpy, (*ptex).glpixmap);
-        (*ptex).glpixmap = 0 as libc::c_int as GLXPixmap;
+        (*ptex).glpixmap = 0 as i32 as GLXPixmap;
     }
 }
 #[no_mangle]
@@ -2745,34 +2904,29 @@ pub unsafe extern "C" fn glx_paint_pre(
     mut ps: *mut session_t,
     mut preg: *mut XserverRegion,
 ) {
-    (*(*ps).psglx).z = 0.0f64 as libc::c_int;
-    let mut trace_damage: bool = (*ps).o.glx_swap_method < 0 as libc::c_int
-        || (*ps).o.glx_swap_method > 1 as libc::c_int;
-    let mut newdamage: XserverRegion = 0 as libc::c_long as XserverRegion;
-    if trace_damage as libc::c_int != 0 && *preg != 0 {
+    (*(*ps).psglx).z = 0.0f64 as i32;
+    let mut trace_damage: bool = (*ps).o.glx_swap_method < 0 as i32
+        || (*ps).o.glx_swap_method > 1 as i32;
+    let mut newdamage: XserverRegion = 0 as i64 as XserverRegion;
+    if trace_damage as i32 != 0 && *preg != 0 {
         newdamage = copy_region(ps, *preg);
     }
-    if !((*ps).o.glx_use_copysubbuffermesa as libc::c_int != 0 || *preg == 0) {
-        let mut buffer_age: libc::c_int = (*ps).o.glx_swap_method;
-        if SWAPM_BUFFER_AGE as libc::c_int == buffer_age {
-            let mut val: libc::c_uint = 0 as libc::c_int as libc::c_uint;
-            glXQueryDrawable(
-                (*ps).dpy,
-                get_tgt_window(ps),
-                0x20f4 as libc::c_int,
-                &mut val,
-            );
-            buffer_age = val as libc::c_int;
+    if !((*ps).o.glx_use_copysubbuffermesa as i32 != 0 || *preg == 0) {
+        let mut buffer_age: i32 = (*ps).o.glx_swap_method;
+        if SWAPM_BUFFER_AGE as i32 == buffer_age {
+            let mut val: u32 = 0 as i32 as u32;
+            glXQueryDrawable((*ps).dpy, get_tgt_window(ps), 0x20f4 as i32, &mut val);
+            buffer_age = val as i32;
         }
-        if buffer_age > 5 as libc::c_int + 1 as libc::c_int {
-            buffer_age = 0 as libc::c_int;
+        if buffer_age > 5 as i32 + 1 as i32 {
+            buffer_age = 0 as i32;
         }
-        buffer_age = max_i(buffer_age, 0 as libc::c_int);
-        if buffer_age > 1 as libc::c_int {
-            let mut i: libc::c_int = 0 as libc::c_int;
-            while i < buffer_age - 1 as libc::c_int {
+        buffer_age = max_i(buffer_age, 0 as i32);
+        if buffer_age > 1 as i32 {
+            let mut i: i32 = 0 as i32;
+            while i < buffer_age - 1 as i32 {
                 if (*ps).all_damage_last[i as usize] == 0 {
-                    buffer_age = 0 as libc::c_int;
+                    buffer_age = 0 as i32;
                     break;
                 } else {
                     i += 1;
@@ -2780,18 +2934,18 @@ pub unsafe extern "C" fn glx_paint_pre(
                 }
             }
         }
-        if 1 as libc::c_int != buffer_age {
+        if 1 as i32 != buffer_age {
             if (*ps).o.glx_copy_from_front {
                 let mut reg_copy: XserverRegion = XFixesCreateRegion(
                     (*ps).dpy,
                     0 as *mut XRectangle,
-                    0 as libc::c_int,
+                    0 as i32,
                 );
                 if buffer_age == 0 {
                     XFixesSubtractRegion((*ps).dpy, reg_copy, (*ps).screen_reg, *preg);
                 } else {
-                    let mut i_0: libc::c_int = 0 as libc::c_int;
-                    while i_0 < buffer_age - 1 as libc::c_int {
+                    let mut i_0: i32 = 0 as i32;
+                    while i_0 < buffer_age - 1 as i32 {
                         XFixesUnionRegion(
                             (*ps).dpy,
                             reg_copy,
@@ -2806,26 +2960,26 @@ pub unsafe extern "C" fn glx_paint_pre(
                 let mut raster_pos: [GLfloat; 4] = [0.; 4];
                 let mut curx: GLfloat = 0.0f32;
                 let mut cury: GLfloat = 0.0f32;
-                glGetFloatv(0xb07 as libc::c_int as GLenum, raster_pos.as_mut_ptr());
-                glReadBuffer(0x404 as libc::c_int as GLenum);
+                glGetFloatv(0xb07 as i32 as GLenum, raster_pos.as_mut_ptr());
+                glReadBuffer(0x404 as i32 as GLenum);
                 glRasterPos2f(0.0f64 as GLfloat, 0.0f64 as GLfloat);
-                let mut nrects: libc::c_int = 0 as libc::c_int;
+                let mut nrects: i32 = 0 as i32;
                 let mut rects: *mut XRectangle = XFixesFetchRegion(
                     (*ps).dpy,
                     reg_copy,
                     &mut nrects,
                 );
-                let mut i_1: libc::c_int = 0 as libc::c_int;
+                let mut i_1: i32 = 0 as i32;
                 while i_1 < nrects {
-                    let x: libc::c_int = (*rects.offset(i_1 as isize)).x as libc::c_int;
-                    let y: libc::c_int = (*ps).root_height
-                        - (*rects.offset(i_1 as isize)).y as libc::c_int
-                        - (*rects.offset(i_1 as isize)).height as libc::c_int;
+                    let x: i32 = (*rects.offset(i_1 as isize)).x as i32;
+                    let y: i32 = (*ps).root_height
+                        - (*rects.offset(i_1 as isize)).y as i32
+                        - (*rects.offset(i_1 as isize)).height as i32;
                     glBitmap(
-                        0 as libc::c_int,
-                        0 as libc::c_int,
-                        0 as libc::c_int as GLfloat,
-                        0 as libc::c_int as GLfloat,
+                        0 as i32,
+                        0 as i32,
+                        0 as i32 as GLfloat,
+                        0 as i32 as GLfloat,
                         x as libc::c_float - curx,
                         y as libc::c_float - cury,
                         0 as *const GLubyte,
@@ -2837,20 +2991,20 @@ pub unsafe extern "C" fn glx_paint_pre(
                         y,
                         (*rects.offset(i_1 as isize)).width as GLsizei,
                         (*rects.offset(i_1 as isize)).height as GLsizei,
-                        0x1800 as libc::c_int as GLenum,
+                        0x1800 as i32 as GLenum,
                     );
                     i_1 += 1;
                     i_1;
                 }
                 cxfree(rects as *mut libc::c_void);
-                glReadBuffer(0x405 as libc::c_int as GLenum);
+                glReadBuffer(0x405 as i32 as GLenum);
                 glRasterPos4fv(raster_pos.as_mut_ptr());
                 free_region(ps, &mut reg_copy);
             }
             if !(*ps).o.glx_copy_from_front {
                 if buffer_age != 0 {
-                    let mut i_2: libc::c_int = 0 as libc::c_int;
-                    while i_2 < buffer_age - 1 as libc::c_int {
+                    let mut i_2: i32 = 0 as i32;
+                    while i_2 < buffer_age - 1 as i32 {
                         XFixesUnionRegion(
                             (*ps).dpy,
                             *preg,
@@ -2871,16 +3025,16 @@ pub unsafe extern "C" fn glx_paint_pre(
             ps,
             &mut *((*ps).all_damage_last)
                 .as_mut_ptr()
-                .offset((5 as libc::c_int - 1 as libc::c_int) as isize),
+                .offset((5 as i32 - 1 as i32) as isize),
         );
         memmove(
-            ((*ps).all_damage_last).as_mut_ptr().offset(1 as libc::c_int as isize)
+            ((*ps).all_damage_last).as_mut_ptr().offset(1 as i32 as isize)
                 as *mut libc::c_void,
             ((*ps).all_damage_last).as_mut_ptr() as *const libc::c_void,
-            ((5 as libc::c_int - 1 as libc::c_int) as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<XserverRegion>() as libc::c_ulong),
+            ((5 as i32 - 1 as i32) as u64)
+                .wrapping_mul(::core::mem::size_of::<XserverRegion>() as u64),
         );
-        (*ps).all_damage_last[0 as libc::c_int as usize] = newdamage;
+        (*ps).all_damage_last[0 as i32 as usize] = newdamage;
     }
     glx_set_clip(ps, *preg, 0 as *const reg_data_t);
 }
@@ -2895,19 +3049,19 @@ pub unsafe extern "C" fn glx_set_clip(
     }
     static mut rect_blank: XRectangle = {
         let mut init = XRectangle {
-            x: 0 as libc::c_int as libc::c_short,
-            y: 0 as libc::c_int as libc::c_short,
-            width: 0 as libc::c_int as libc::c_ushort,
-            height: 0 as libc::c_int as libc::c_ushort,
+            x: 0 as i32 as libc::c_short,
+            y: 0 as i32 as libc::c_short,
+            width: 0 as i32 as libc::c_ushort,
+            height: 0 as i32 as libc::c_ushort,
         };
         init
     };
-    glDisable(0xb90 as libc::c_int as GLenum);
-    glDisable(0xc11 as libc::c_int as GLenum);
+    glDisable(0xb90 as i32 as GLenum);
+    glDisable(0xc11 as i32 as GLenum);
     if reg == 0 {
         return;
     }
-    let mut nrects: libc::c_int = 0 as libc::c_int;
+    let mut nrects: i32 = 0 as i32;
     let mut rects_free: *mut XRectangle = 0 as *mut XRectangle;
     let mut rects: *const XRectangle = 0 as *const XRectangle;
     if !pcache_reg.is_null() {
@@ -2915,50 +3069,48 @@ pub unsafe extern "C" fn glx_set_clip(
         nrects = (*pcache_reg).nrects;
     }
     if rects.is_null() {
-        nrects = 0 as libc::c_int;
+        nrects = 0 as i32;
         rects_free = XFixesFetchRegion((*ps).dpy, reg, &mut nrects);
         rects = rects_free;
     }
     if nrects == 0 {
         cxfree(rects_free as *mut libc::c_void);
         rects_free = 0 as *mut XRectangle;
-        nrects = 1 as libc::c_int;
+        nrects = 1 as i32;
         rects = &mut rect_blank;
     }
-    if 1 as libc::c_int == nrects {
-        glEnable(0xc11 as libc::c_int as GLenum);
+    if 1 as i32 == nrects {
+        glEnable(0xc11 as i32 as GLenum);
         glScissor(
-            (*rects.offset(0 as libc::c_int as isize)).x as GLint,
-            (*ps).root_height
-                - (*rects.offset(0 as libc::c_int as isize)).y as libc::c_int
-                - (*rects.offset(0 as libc::c_int as isize)).height as libc::c_int,
-            (*rects.offset(0 as libc::c_int as isize)).width as GLsizei,
-            (*rects.offset(0 as libc::c_int as isize)).height as GLsizei,
+            (*rects.offset(0 as i32 as isize)).x as GLint,
+            (*ps).root_height - (*rects.offset(0 as i32 as isize)).y as i32
+                - (*rects.offset(0 as i32 as isize)).height as i32,
+            (*rects.offset(0 as i32 as isize)).width as GLsizei,
+            (*rects.offset(0 as i32 as isize)).height as GLsizei,
         );
     } else {
-        glEnable(0xb90 as libc::c_int as GLenum);
-        glClear(0x400 as libc::c_int as GLbitfield);
+        glEnable(0xb90 as i32 as GLenum);
+        glClear(0x400 as i32 as GLbitfield);
         glColorMask(
-            0 as libc::c_int as GLboolean,
-            0 as libc::c_int as GLboolean,
-            0 as libc::c_int as GLboolean,
-            0 as libc::c_int as GLboolean,
+            0 as i32 as GLboolean,
+            0 as i32 as GLboolean,
+            0 as i32 as GLboolean,
+            0 as i32 as GLboolean,
         );
-        glDepthMask(0 as libc::c_int as GLboolean);
+        glDepthMask(0 as i32 as GLboolean);
         glStencilOp(
-            0x1e01 as libc::c_int as GLenum,
-            0x1e00 as libc::c_int as GLenum,
-            0x1e00 as libc::c_int as GLenum,
+            0x1e01 as i32 as GLenum,
+            0x1e00 as i32 as GLenum,
+            0x1e00 as i32 as GLenum,
         );
-        glBegin(0x7 as libc::c_int as GLenum);
-        let mut i: libc::c_int = 0 as libc::c_int;
+        glBegin(0x7 as i32 as GLenum);
+        let mut i: i32 = 0 as i32;
         while i < nrects {
             let mut rx: GLint = (*rects.offset(i as isize)).x as GLint;
-            let mut ry: GLint = (*ps).root_height
-                - (*rects.offset(i as isize)).y as libc::c_int;
-            let mut rxe: GLint = rx + (*rects.offset(i as isize)).width as libc::c_int;
-            let mut rye: GLint = ry - (*rects.offset(i as isize)).height as libc::c_int;
-            let mut z: GLint = 0 as libc::c_int;
+            let mut ry: GLint = (*ps).root_height - (*rects.offset(i as isize)).y as i32;
+            let mut rxe: GLint = rx + (*rects.offset(i as isize)).width as i32;
+            let mut rye: GLint = ry - (*rects.offset(i as isize)).height as i32;
+            let mut z: GLint = 0 as i32;
             glVertex3i(rx, ry, z);
             glVertex3i(rxe, ry, z);
             glVertex3i(rxe, rye, z);
@@ -2968,15 +3120,15 @@ pub unsafe extern "C" fn glx_set_clip(
         }
         glEnd();
         glStencilOp(
-            0x1e00 as libc::c_int as GLenum,
-            0x1e00 as libc::c_int as GLenum,
-            0x1e00 as libc::c_int as GLenum,
+            0x1e00 as i32 as GLenum,
+            0x1e00 as i32 as GLenum,
+            0x1e00 as i32 as GLenum,
         );
         glColorMask(
-            1 as libc::c_int as GLboolean,
-            1 as libc::c_int as GLboolean,
-            1 as libc::c_int as GLboolean,
-            1 as libc::c_int as GLboolean,
+            1 as i32 as GLboolean,
+            1 as i32 as GLboolean,
+            1 as i32 as GLboolean,
+            1 as i32 as GLboolean,
         );
     }
     cxfree(rects_free as *mut libc::c_void);
@@ -2985,49 +3137,49 @@ pub unsafe extern "C" fn glx_set_clip(
 unsafe extern "C" fn glx_gen_texture(
     mut ps: *mut session_t,
     mut tex_tgt: GLenum,
-    mut width: libc::c_int,
-    mut height: libc::c_int,
+    mut width: i32,
+    mut height: i32,
 ) -> GLuint {
-    let mut tex: GLuint = 0 as libc::c_int as GLuint;
-    glGenTextures(1 as libc::c_int, &mut tex);
+    let mut tex: GLuint = 0 as i32 as GLuint;
+    glGenTextures(1 as i32, &mut tex);
     if tex == 0 {
-        return 0 as libc::c_int as GLuint;
+        return 0 as i32 as GLuint;
     }
     glEnable(tex_tgt);
     glBindTexture(tex_tgt, tex);
-    glTexParameteri(tex_tgt, 0x2801 as libc::c_int as GLenum, 0x2601 as libc::c_int);
-    glTexParameteri(tex_tgt, 0x2800 as libc::c_int as GLenum, 0x2601 as libc::c_int);
-    glTexParameteri(tex_tgt, 0x2802 as libc::c_int as GLenum, 0x812f as libc::c_int);
-    glTexParameteri(tex_tgt, 0x2803 as libc::c_int as GLenum, 0x812f as libc::c_int);
+    glTexParameteri(tex_tgt, 0x2801 as i32 as GLenum, 0x2601 as i32);
+    glTexParameteri(tex_tgt, 0x2800 as i32 as GLenum, 0x2601 as i32);
+    glTexParameteri(tex_tgt, 0x2802 as i32 as GLenum, 0x812f as i32);
+    glTexParameteri(tex_tgt, 0x2803 as i32 as GLenum, 0x812f as i32);
     glTexImage2D(
         tex_tgt,
-        0 as libc::c_int,
-        0x1907 as libc::c_int,
+        0 as i32,
+        0x1907 as i32,
         width,
         height,
-        0 as libc::c_int,
-        0x1907 as libc::c_int as GLenum,
-        0x1401 as libc::c_int as GLenum,
+        0 as i32,
+        0x1907 as i32 as GLenum,
+        0x1401 as i32 as GLenum,
         0 as *const libc::c_void,
     );
-    glBindTexture(tex_tgt, 0 as libc::c_int as GLuint);
+    glBindTexture(tex_tgt, 0 as i32 as GLuint);
     return tex;
 }
 #[inline]
 unsafe extern "C" fn glx_copy_region_to_tex(
     mut ps: *mut session_t,
     mut tex_tgt: GLenum,
-    mut basex: libc::c_int,
-    mut basey: libc::c_int,
-    mut dx: libc::c_int,
-    mut dy: libc::c_int,
-    mut width: libc::c_int,
-    mut height: libc::c_int,
+    mut basex: i32,
+    mut basey: i32,
+    mut dx: i32,
+    mut dy: i32,
+    mut width: i32,
+    mut height: i32,
 ) {
-    if width > 0 as libc::c_int && height > 0 as libc::c_int {
+    if width > 0 as i32 && height > 0 as i32 {
         glCopyTexSubImage2D(
             tex_tgt,
-            0 as libc::c_int,
+            0 as i32,
             dx - basex,
             dy - basey,
             dx,
@@ -3040,10 +3192,10 @@ unsafe extern "C" fn glx_copy_region_to_tex(
 #[no_mangle]
 pub unsafe extern "C" fn glx_blur_dst(
     mut ps: *mut session_t,
-    mut dx: libc::c_int,
-    mut dy: libc::c_int,
-    mut width: libc::c_int,
-    mut height: libc::c_int,
+    mut dx: i32,
+    mut dy: i32,
+    mut width: i32,
+    mut height: i32,
     mut z: libc::c_float,
     mut factor_center: GLfloat,
     mut reg_tgt: XserverRegion,
@@ -3054,73 +3206,68 @@ pub unsafe extern "C" fn glx_blur_dst(
     let mut texfac_y: GLfloat = 0.;
     let mut last_pass: bool = false;
     let mut current_block: u64;
-    let more_passes: bool = (*(*ps).psglx).blur_passes[1 as libc::c_int as usize].prog
-        != 0;
-    let have_scissors: bool = glIsEnabled(0xc11 as libc::c_int as GLenum) != 0;
-    let have_stencil: bool = glIsEnabled(0xb90 as libc::c_int as GLenum) != 0;
-    let mut ret: bool = 0 as libc::c_int != 0;
+    let more_passes: bool = (*(*ps).psglx).blur_passes[1 as i32 as usize].prog != 0;
+    let have_scissors: bool = glIsEnabled(0xc11 as i32 as GLenum) != 0;
+    let have_stencil: bool = glIsEnabled(0xb90 as i32 as GLenum) != 0;
+    let mut ret: bool = 0 as i32 != 0;
     let mut ibc: glx_blur_cache_t = {
         let mut init = glx_blur_cache_t {
             fbo: 0,
             textures: [0; 2],
-            width: 0 as libc::c_int,
-            height: 0 as libc::c_int,
+            width: 0 as i32,
+            height: 0 as i32,
         };
         init
     };
     if pbc.is_null() {
         pbc = &mut ibc;
     }
-    let mut mdx: libc::c_int = dx;
-    let mut mdy: libc::c_int = dy;
-    let mut mwidth: libc::c_int = width;
-    let mut mheight: libc::c_int = height;
-    let mut tex_tgt: GLenum = 0x84f5 as libc::c_int as GLenum;
+    let mut mdx: i32 = dx;
+    let mut mdy: i32 = dy;
+    let mut mwidth: i32 = width;
+    let mut mheight: i32 = height;
+    let mut tex_tgt: GLenum = 0x84f5 as i32 as GLenum;
     if (*(*ps).psglx).has_texture_non_power_of_two {
-        tex_tgt = 0xde1 as libc::c_int as GLenum;
+        tex_tgt = 0xde1 as i32 as GLenum;
     }
     if mwidth != (*pbc).width || mheight != (*pbc).height {
         free_glx_bc_resize(ps, pbc);
     }
-    if (*pbc).textures[0 as libc::c_int as usize] == 0 {
-        (*pbc)
-            .textures[0 as libc::c_int
-            as usize] = glx_gen_texture(ps, tex_tgt, mwidth, mheight);
+    if (*pbc).textures[0 as i32 as usize] == 0 {
+        (*pbc).textures[0 as i32 as usize] = glx_gen_texture(
+            ps,
+            tex_tgt,
+            mwidth,
+            mheight,
+        );
     }
-    let mut tex_scr: GLuint = (*pbc).textures[0 as libc::c_int as usize];
-    if more_passes as libc::c_int != 0 && (*pbc).textures[1 as libc::c_int as usize] == 0
-    {
-        (*pbc)
-            .textures[1 as libc::c_int
-            as usize] = glx_gen_texture(ps, tex_tgt, mwidth, mheight);
+    let mut tex_scr: GLuint = (*pbc).textures[0 as i32 as usize];
+    if more_passes as i32 != 0 && (*pbc).textures[1 as i32 as usize] == 0 {
+        (*pbc).textures[1 as i32 as usize] = glx_gen_texture(
+            ps,
+            tex_tgt,
+            mwidth,
+            mheight,
+        );
     }
     (*pbc).width = mwidth;
     (*pbc).height = mheight;
-    let mut tex_scr2: GLuint = (*pbc).textures[1 as libc::c_int as usize];
-    if more_passes as libc::c_int != 0 && (*pbc).fbo == 0 {
-        glGenFramebuffers(1 as libc::c_int, &mut (*pbc).fbo);
+    let mut tex_scr2: GLuint = (*pbc).textures[1 as i32 as usize];
+    if more_passes as i32 != 0 && (*pbc).fbo == 0 {
+        glGenFramebuffers(1 as i32, &mut (*pbc).fbo);
     }
     let fbo: GLuint = (*pbc).fbo;
-    if tex_scr == 0 || more_passes as libc::c_int != 0 && tex_scr2 == 0 {
+    if tex_scr == 0 || more_passes as i32 != 0 && tex_scr2 == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to allocate texture.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 13],
-                &[libc::c_char; 13],
-            >(b"glx_blur_dst\0"))
-                .as_ptr(),
+            b"%s(): Failed to allocate texture.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 13], &[i8; 13]>(b"glx_blur_dst\0")).as_ptr(),
         );
-    } else if more_passes as libc::c_int != 0 && fbo == 0 {
+    } else if more_passes as i32 != 0 && fbo == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to allocate framebuffer.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 13],
-                &[libc::c_char; 13],
-            >(b"glx_blur_dst\0"))
-                .as_ptr(),
+            b"%s(): Failed to allocate framebuffer.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 13], &[i8; 13]>(b"glx_blur_dst\0")).as_ptr(),
         );
     } else {
         glEnable(tex_tgt);
@@ -3128,84 +3275,76 @@ pub unsafe extern "C" fn glx_blur_dst(
         glx_copy_region_to_tex(ps, tex_tgt, mdx, mdy, mdx, mdy, mwidth, mheight);
         texfac_x = 1.0f32;
         texfac_y = 1.0f32;
-        if 0xde1 as libc::c_int as libc::c_uint == tex_tgt {
+        if 0xde1 as i32 as u32 == tex_tgt {
             texfac_x /= mwidth as libc::c_float;
             texfac_y /= mheight as libc::c_float;
         }
         if more_passes {
-            glDisable(0xb90 as libc::c_int as GLenum);
-            glDisable(0xc11 as libc::c_int as GLenum);
+            glDisable(0xb90 as i32 as GLenum);
+            glDisable(0xc11 as i32 as GLenum);
         }
-        last_pass = 0 as libc::c_int != 0;
-        let mut i: libc::c_int = 0 as libc::c_int;
+        last_pass = 0 as i32 != 0;
+        let mut i: i32 = 0 as i32;
         loop {
             if last_pass {
                 current_block = 17688141731389699982;
                 break;
             }
-            last_pass = (*(*ps).psglx).blur_passes[(i + 1 as libc::c_int) as usize].prog
-                == 0;
+            last_pass = (*(*ps).psglx).blur_passes[(i + 1 as i32) as usize].prog == 0;
             let mut ppass: *const glx_blur_pass_t = &mut *((*(*ps).psglx).blur_passes)
                 .as_mut_ptr()
                 .offset(i as isize) as *mut glx_blur_pass_t;
             glBindTexture(tex_tgt, tex_scr);
             if !last_pass {
-                static mut DRAWBUFS: [GLenum; 2] = [0x8ce0 as libc::c_int as GLenum, 0];
-                glBindFramebuffer(0x8d40 as libc::c_int as GLenum, fbo);
+                static mut DRAWBUFS: [GLenum; 2] = [0x8ce0 as i32 as GLenum, 0];
+                glBindFramebuffer(0x8d40 as i32 as GLenum, fbo);
                 glFramebufferTexture2D(
-                    0x8d40 as libc::c_int as GLenum,
-                    0x8ce0 as libc::c_int as GLenum,
-                    0xde1 as libc::c_int as GLenum,
+                    0x8d40 as i32 as GLenum,
+                    0x8ce0 as i32 as GLenum,
+                    0xde1 as i32 as GLenum,
                     tex_scr2,
-                    0 as libc::c_int,
+                    0 as i32,
                 );
-                glDrawBuffers(1 as libc::c_int, DRAWBUFS.as_ptr());
-                if glCheckFramebufferStatus(0x8d40 as libc::c_int as GLenum)
-                    != 0x8cd5 as libc::c_int as libc::c_uint
+                glDrawBuffers(1 as i32, DRAWBUFS.as_ptr());
+                if glCheckFramebufferStatus(0x8d40 as i32 as GLenum)
+                    != 0x8cd5 as i32 as u32
                 {
                     fprintf(
                         stderr,
                         b"%s(): Framebuffer attachment failed.\n\0" as *const u8
-                            as *const libc::c_char,
+                            as *const i8,
                         (*::core::mem::transmute::<
                             &[u8; 13],
-                            &[libc::c_char; 13],
+                            &[i8; 13],
                         >(b"glx_blur_dst\0"))
                             .as_ptr(),
                     );
-                    current_block = 16103973629397080661;
+                    current_block = 3166805666782026053;
                     break;
                 }
             } else {
-                static mut DRAWBUFS_0: [GLenum; 2] = [0x405 as libc::c_int as GLenum, 0];
-                glBindFramebuffer(
-                    0x8d40 as libc::c_int as GLenum,
-                    0 as libc::c_int as GLuint,
-                );
-                glDrawBuffers(1 as libc::c_int, DRAWBUFS_0.as_ptr());
+                static mut DRAWBUFS_0: [GLenum; 2] = [0x405 as i32 as GLenum, 0];
+                glBindFramebuffer(0x8d40 as i32 as GLenum, 0 as i32 as GLuint);
+                glDrawBuffers(1 as i32, DRAWBUFS_0.as_ptr());
                 if have_scissors {
-                    glEnable(0xc11 as libc::c_int as GLenum);
+                    glEnable(0xc11 as i32 as GLenum);
                 }
                 if have_stencil {
-                    glEnable(0xb90 as libc::c_int as GLenum);
+                    glEnable(0xb90 as i32 as GLenum);
                 }
             }
-            glTexEnvi(
-                0x2300 as libc::c_int as GLenum,
-                0x2200 as libc::c_int as GLenum,
-                0x1e01 as libc::c_int,
-            );
+            glTexEnvi(0x2300 as i32 as GLenum, 0x2200 as i32 as GLenum, 0x1e01 as i32);
             glUseProgram((*ppass).prog);
-            if (*ppass).unifm_offset_x >= 0 as libc::c_int {
+            if (*ppass).unifm_offset_x >= 0 as i32 {
                 glUniform1f((*ppass).unifm_offset_x, texfac_x);
             }
-            if (*ppass).unifm_offset_y >= 0 as libc::c_int {
+            if (*ppass).unifm_offset_y >= 0 as i32 {
                 glUniform1f((*ppass).unifm_offset_y, texfac_y);
             }
-            if (*ppass).unifm_factor_center >= 0 as libc::c_int {
+            if (*ppass).unifm_factor_center >= 0 as i32 {
                 glUniform1f((*ppass).unifm_factor_center, factor_center);
             }
-            let mut reg_new: XserverRegion = 0 as libc::c_long as XserverRegion;
+            let mut reg_new: XserverRegion = 0 as i64 as XserverRegion;
             let mut rec_all: XRectangle = {
                 let mut init = XRectangle {
                     x: dx as libc::c_short,
@@ -3216,24 +3355,20 @@ pub unsafe extern "C" fn glx_blur_dst(
                 init
             };
             let mut rects: *mut XRectangle = &mut rec_all;
-            let mut nrects: libc::c_int = 1 as libc::c_int;
-            if (*ps).o.glx_no_stencil as libc::c_int != 0 && reg_tgt != 0 {
+            let mut nrects: i32 = 1 as i32;
+            if (*ps).o.glx_no_stencil as i32 != 0 && reg_tgt != 0 {
                 if !pcache_reg.is_null() {
                     rects = (*pcache_reg).rects;
                     nrects = (*pcache_reg).nrects;
                 } else {
-                    reg_new = XFixesCreateRegion(
-                        (*ps).dpy,
-                        &mut rec_all,
-                        1 as libc::c_int,
-                    );
+                    reg_new = XFixesCreateRegion((*ps).dpy, &mut rec_all, 1 as i32);
                     XFixesIntersectRegion((*ps).dpy, reg_new, reg_new, reg_tgt);
-                    nrects = 0 as libc::c_int;
+                    nrects = 0 as i32;
                     rects = XFixesFetchRegion((*ps).dpy, reg_new, &mut nrects);
                 }
             }
-            glBegin(0x7 as libc::c_int as GLenum);
-            let mut ri: libc::c_int = 0 as libc::c_int;
+            glBegin(0x7 as i32 as GLenum);
+            let mut ri: i32 = 0 as i32;
             while ri < nrects {
                 let mut crect: XRectangle = XRectangle {
                     x: 0,
@@ -3243,26 +3378,22 @@ pub unsafe extern "C" fn glx_blur_dst(
                 };
                 rect_crop(&mut crect, &mut *rects.offset(ri as isize), &mut rec_all);
                 if !(crect.width == 0 || crect.height == 0) {
-                    let rx: GLfloat = (crect.x as libc::c_int - mdx) as libc::c_float
-                        * texfac_x;
-                    let ry: GLfloat = (mheight - (crect.y as libc::c_int - mdy))
-                        as libc::c_float * texfac_y;
+                    let rx: GLfloat = (crect.x as i32 - mdx) as libc::c_float * texfac_x;
+                    let ry: GLfloat = (mheight - (crect.y as i32 - mdy)) as libc::c_float
+                        * texfac_y;
                     let rxe: GLfloat = rx
-                        + crect.width as libc::c_int as libc::c_float * texfac_x;
+                        + crect.width as i32 as libc::c_float * texfac_x;
                     let rye: GLfloat = ry
-                        - crect.height as libc::c_int as libc::c_float * texfac_y;
-                    let mut rdx: GLfloat = (crect.x as libc::c_int - mdx) as GLfloat;
-                    let mut rdy: GLfloat = (mheight - crect.y as libc::c_int + mdy)
-                        as GLfloat;
-                    let mut rdxe: GLfloat = rdx
-                        + crect.width as libc::c_int as libc::c_float;
-                    let mut rdye: GLfloat = rdy
-                        - crect.height as libc::c_int as libc::c_float;
+                        - crect.height as i32 as libc::c_float * texfac_y;
+                    let mut rdx: GLfloat = (crect.x as i32 - mdx) as GLfloat;
+                    let mut rdy: GLfloat = (mheight - crect.y as i32 + mdy) as GLfloat;
+                    let mut rdxe: GLfloat = rdx + crect.width as i32 as libc::c_float;
+                    let mut rdye: GLfloat = rdy - crect.height as i32 as libc::c_float;
                     if last_pass {
                         rdx = crect.x as GLfloat;
-                        rdy = ((*ps).root_height - crect.y as libc::c_int) as GLfloat;
-                        rdxe = rdx + crect.width as libc::c_int as libc::c_float;
-                        rdye = rdy - crect.height as libc::c_int as libc::c_float;
+                        rdy = ((*ps).root_height - crect.y as i32) as GLfloat;
+                        rdxe = rdx + crect.width as i32 as libc::c_float;
+                        rdye = rdy - crect.height as i32 as libc::c_float;
                     }
                     glTexCoord2f(rx, ry);
                     glVertex3f(rdx, rdy, z);
@@ -3283,7 +3414,7 @@ pub unsafe extern "C" fn glx_blur_dst(
                 cxfree(rects as *mut libc::c_void);
             }
             free_region(ps, &mut reg_new);
-            glUseProgram(0 as libc::c_int as GLuint);
+            glUseProgram(0 as i32 as GLuint);
             let mut tmp: GLuint = tex_scr2;
             tex_scr2 = tex_scr;
             tex_scr = tmp;
@@ -3291,20 +3422,20 @@ pub unsafe extern "C" fn glx_blur_dst(
             i;
         }
         match current_block {
-            16103973629397080661 => {}
+            3166805666782026053 => {}
             _ => {
-                ret = 1 as libc::c_int != 0;
+                ret = 1 as i32 != 0;
             }
         }
     }
-    glBindFramebuffer(0x8d40 as libc::c_int as GLenum, 0 as libc::c_int as GLuint);
-    glBindTexture(tex_tgt, 0 as libc::c_int as GLuint);
+    glBindFramebuffer(0x8d40 as i32 as GLenum, 0 as i32 as GLuint);
+    glBindTexture(tex_tgt, 0 as i32 as GLuint);
     glDisable(tex_tgt);
     if have_scissors {
-        glEnable(0xc11 as libc::c_int as GLenum);
+        glEnable(0xc11 as i32 as GLenum);
     }
     if have_stencil {
-        glEnable(0xb90 as libc::c_int as GLenum);
+        glEnable(0xb90 as i32 as GLenum);
     }
     if &mut ibc as *mut glx_blur_cache_t == pbc {
         free_glx_bc(ps, pbc);
@@ -3314,19 +3445,19 @@ pub unsafe extern "C" fn glx_blur_dst(
 #[no_mangle]
 pub unsafe extern "C" fn glx_dim_dst(
     mut ps: *mut session_t,
-    mut dx: libc::c_int,
-    mut dy: libc::c_int,
-    mut width: libc::c_int,
-    mut height: libc::c_int,
+    mut dx: i32,
+    mut dy: i32,
+    mut width: i32,
+    mut height: i32,
     mut z: libc::c_float,
     mut factor: GLfloat,
     mut reg_tgt: XserverRegion,
     mut pcache_reg: *const reg_data_t,
 ) -> bool {
-    glEnable(0xbe2 as libc::c_int as GLenum);
-    glBlendFunc(1 as libc::c_int as GLenum, 0x303 as libc::c_int as GLenum);
+    glEnable(0xbe2 as i32 as GLenum);
+    glBlendFunc(1 as i32 as GLenum, 0x303 as i32 as GLenum);
     glColor4f(0.0f32, 0.0f32, 0.0f32, factor);
-    let mut reg_new: XserverRegion = 0 as libc::c_long as XserverRegion;
+    let mut reg_new: XserverRegion = 0 as i64 as XserverRegion;
     let mut rec_all: XRectangle = {
         let mut init = XRectangle {
             x: dx as libc::c_short,
@@ -3337,20 +3468,20 @@ pub unsafe extern "C" fn glx_dim_dst(
         init
     };
     let mut rects: *mut XRectangle = &mut rec_all;
-    let mut nrects: libc::c_int = 1 as libc::c_int;
-    if (*ps).o.glx_no_stencil as libc::c_int != 0 && reg_tgt != 0 {
+    let mut nrects: i32 = 1 as i32;
+    if (*ps).o.glx_no_stencil as i32 != 0 && reg_tgt != 0 {
         if !pcache_reg.is_null() {
             rects = (*pcache_reg).rects;
             nrects = (*pcache_reg).nrects;
         } else {
-            reg_new = XFixesCreateRegion((*ps).dpy, &mut rec_all, 1 as libc::c_int);
+            reg_new = XFixesCreateRegion((*ps).dpy, &mut rec_all, 1 as i32);
             XFixesIntersectRegion((*ps).dpy, reg_new, reg_new, reg_tgt);
-            nrects = 0 as libc::c_int;
+            nrects = 0 as i32;
             rects = XFixesFetchRegion((*ps).dpy, reg_new, &mut nrects);
         }
     }
-    glBegin(0x7 as libc::c_int as GLenum);
-    let mut ri: libc::c_int = 0 as libc::c_int;
+    glBegin(0x7 as i32 as GLenum);
+    let mut ri: i32 = 0 as i32;
     while ri < nrects {
         let mut crect: XRectangle = XRectangle {
             x: 0,
@@ -3361,9 +3492,9 @@ pub unsafe extern "C" fn glx_dim_dst(
         rect_crop(&mut crect, &mut *rects.offset(ri as isize), &mut rec_all);
         if !(crect.width == 0 || crect.height == 0) {
             let mut rdx: GLint = crect.x as GLint;
-            let mut rdy: GLint = (*ps).root_height - crect.y as libc::c_int;
-            let mut rdxe: GLint = rdx + crect.width as libc::c_int;
-            let mut rdye: GLint = rdy - crect.height as libc::c_int;
+            let mut rdy: GLint = (*ps).root_height - crect.y as i32;
+            let mut rdxe: GLint = rdx + crect.width as i32;
+            let mut rdye: GLint = rdy - crect.height as i32;
             glVertex3i(rdx, rdy, z as GLint);
             glVertex3i(rdxe, rdy, z as GLint);
             glVertex3i(rdxe, rdye, z as GLint);
@@ -3381,20 +3512,20 @@ pub unsafe extern "C" fn glx_dim_dst(
     free_region(ps, &mut reg_new);
     glEnd();
     glColor4f(0.0f32, 0.0f32, 0.0f32, 0.0f32);
-    glDisable(0xbe2 as libc::c_int as GLenum);
-    return 1 as libc::c_int != 0;
+    glDisable(0xbe2 as i32 as GLenum);
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_render_(
     mut ps: *mut session_t,
     mut ptex: *const glx_texture_t,
-    mut x: libc::c_int,
-    mut y: libc::c_int,
-    mut dx: libc::c_int,
-    mut dy: libc::c_int,
-    mut width: libc::c_int,
-    mut height: libc::c_int,
-    mut z: libc::c_int,
+    mut x: i32,
+    mut y: i32,
+    mut dx: i32,
+    mut dy: i32,
+    mut width: i32,
+    mut height: i32,
+    mut z: i32,
     mut opacity: libc::c_double,
     mut argb: bool,
     mut neg: bool,
@@ -3405,26 +3536,21 @@ pub unsafe extern "C" fn glx_render_(
     if ptex.is_null() || (*ptex).texture == 0 {
         fprintf(
             stderr,
-            b"%s(): Missing texture.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<&[u8; 12], &[libc::c_char; 12]>(b"glx_render_\0"))
-                .as_ptr(),
+            b"%s(): Missing texture.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 12], &[i8; 12]>(b"glx_render_\0")).as_ptr(),
         );
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
-    argb = argb as libc::c_int != 0
-        || 0x20da as libc::c_int
+    argb = argb as i32 != 0
+        || 0x20da as i32
             == (*(*(*ps).psglx).fbconfigs[(*ptex).depth as usize]).texture_fmt;
     let has_prog: bool = !pprogram.is_null() && (*pprogram).prog != 0;
-    let mut dual_texture: bool = 0 as libc::c_int != 0;
+    let mut dual_texture: bool = 0 as i32 != 0;
     glEnable((*ptex).target);
-    if opacity < 1.0f64 || argb as libc::c_int != 0 {
-        glEnable(0xbe2 as libc::c_int as GLenum);
-        glTexEnvi(
-            0x2300 as libc::c_int as GLenum,
-            0x2200 as libc::c_int as GLenum,
-            0x2100 as libc::c_int,
-        );
-        glBlendFunc(1 as libc::c_int as GLenum, 0x303 as libc::c_int as GLenum);
+    if opacity < 1.0f64 || argb as i32 != 0 {
+        glEnable(0xbe2 as i32 as GLenum);
+        glTexEnvi(0x2300 as i32 as GLenum, 0x2200 as i32 as GLenum, 0x2100 as i32);
+        glBlendFunc(1 as i32 as GLenum, 0x303 as i32 as GLenum);
         glColor4f(
             opacity as GLfloat,
             opacity as GLfloat,
@@ -3434,193 +3560,193 @@ pub unsafe extern "C" fn glx_render_(
     }
     if !has_prog {
         if neg {
-            if glIsEnabled(0xbe2 as libc::c_int as GLenum) == 0 {
-                glEnable(0xbf2 as libc::c_int as GLenum);
-                glLogicOp(0x150c as libc::c_int as GLenum);
+            if glIsEnabled(0xbe2 as i32 as GLenum) == 0 {
+                glEnable(0xbf2 as i32 as GLenum);
+                glLogicOp(0x150c as i32 as GLenum);
             } else if argb {
-                dual_texture = 1 as libc::c_int != 0;
-                glActiveTexture(0x84c0 as libc::c_int as GLenum);
+                dual_texture = 1 as i32 != 0;
+                glActiveTexture(0x84c0 as i32 as GLenum);
                 glTexEnvf(
-                    0x2300 as libc::c_int as GLenum,
-                    0x2200 as libc::c_int as GLenum,
-                    0x8570 as libc::c_int as GLfloat,
+                    0x2300 as i32 as GLenum,
+                    0x2200 as i32 as GLenum,
+                    0x8570 as i32 as GLfloat,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8571 as libc::c_int as GLenum,
-                    0x84e7 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8571 as i32 as GLenum,
+                    0x84e7 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8580 as libc::c_int as GLenum,
-                    0x1702 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8580 as i32 as GLenum,
+                    0x1702 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8590 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8590 as i32 as GLenum,
+                    0x302 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8581 as libc::c_int as GLenum,
-                    0x1702 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8581 as i32 as GLenum,
+                    0x1702 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8591 as libc::c_int as GLenum,
-                    0x300 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8591 as i32 as GLenum,
+                    0x300 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8572 as libc::c_int as GLenum,
-                    0x1e01 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8572 as i32 as GLenum,
+                    0x1e01 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8588 as libc::c_int as GLenum,
-                    0x1702 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8588 as i32 as GLenum,
+                    0x1702 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8598 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8598 as i32 as GLenum,
+                    0x302 as i32,
                 );
-                glActiveTexture(0x84c1 as libc::c_int as GLenum);
+                glActiveTexture(0x84c1 as i32 as GLenum);
                 glEnable((*ptex).target);
                 glBindTexture((*ptex).target, (*ptex).texture);
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x2200 as libc::c_int as GLenum,
-                    0x8570 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x2200 as i32 as GLenum,
+                    0x8570 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8571 as libc::c_int as GLenum,
-                    0x2100 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8571 as i32 as GLenum,
+                    0x2100 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8580 as libc::c_int as GLenum,
-                    0x8578 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8580 as i32 as GLenum,
+                    0x8578 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8590 as libc::c_int as GLenum,
-                    0x300 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8590 as i32 as GLenum,
+                    0x300 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8581 as libc::c_int as GLenum,
-                    0x8577 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8581 as i32 as GLenum,
+                    0x8577 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8591 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8591 as i32 as GLenum,
+                    0x302 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8572 as libc::c_int as GLenum,
-                    0x2100 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8572 as i32 as GLenum,
+                    0x2100 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8588 as libc::c_int as GLenum,
-                    0x8578 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8588 as i32 as GLenum,
+                    0x8578 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8598 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8598 as i32 as GLenum,
+                    0x302 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8589 as libc::c_int as GLenum,
-                    0x8577 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8589 as i32 as GLenum,
+                    0x8577 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8599 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8599 as i32 as GLenum,
+                    0x302 as i32,
                 );
-                glActiveTexture(0x84c0 as libc::c_int as GLenum);
+                glActiveTexture(0x84c0 as i32 as GLenum);
             } else {
                 glTexEnvf(
-                    0x2300 as libc::c_int as GLenum,
-                    0x2200 as libc::c_int as GLenum,
-                    0x8570 as libc::c_int as GLfloat,
+                    0x2300 as i32 as GLenum,
+                    0x2200 as i32 as GLenum,
+                    0x8570 as i32 as GLfloat,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8571 as libc::c_int as GLenum,
-                    0x2100 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8571 as i32 as GLenum,
+                    0x2100 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8580 as libc::c_int as GLenum,
-                    0x1702 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8580 as i32 as GLenum,
+                    0x1702 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8590 as libc::c_int as GLenum,
-                    0x301 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8590 as i32 as GLenum,
+                    0x301 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8581 as libc::c_int as GLenum,
-                    0x8577 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8581 as i32 as GLenum,
+                    0x8577 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8591 as libc::c_int as GLenum,
-                    0x300 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8591 as i32 as GLenum,
+                    0x300 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8572 as libc::c_int as GLenum,
-                    0x2100 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8572 as i32 as GLenum,
+                    0x2100 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8588 as libc::c_int as GLenum,
-                    0x1702 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8588 as i32 as GLenum,
+                    0x1702 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8598 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8598 as i32 as GLenum,
+                    0x302 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8589 as libc::c_int as GLenum,
-                    0x8577 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8589 as i32 as GLenum,
+                    0x8577 as i32,
                 );
                 glTexEnvi(
-                    0x2300 as libc::c_int as GLenum,
-                    0x8599 as libc::c_int as GLenum,
-                    0x302 as libc::c_int,
+                    0x2300 as i32 as GLenum,
+                    0x8599 as i32 as GLenum,
+                    0x302 as i32,
                 );
             }
         }
     } else {
         glUseProgram((*pprogram).prog);
-        if (*pprogram).unifm_opacity >= 0 as libc::c_int {
+        if (*pprogram).unifm_opacity >= 0 as i32 {
             glUniform1f((*pprogram).unifm_opacity, opacity as GLfloat);
         }
-        if (*pprogram).unifm_invert_color >= 0 as libc::c_int {
+        if (*pprogram).unifm_invert_color >= 0 as i32 {
             glUniform1i((*pprogram).unifm_invert_color, neg as GLint);
         }
-        if (*pprogram).unifm_tex >= 0 as libc::c_int {
-            glUniform1i((*pprogram).unifm_tex, 0 as libc::c_int);
+        if (*pprogram).unifm_tex >= 0 as i32 {
+            glUniform1i((*pprogram).unifm_tex, 0 as i32);
         }
     }
     glBindTexture((*ptex).target, (*ptex).texture);
     if dual_texture {
-        glActiveTexture(0x84c1 as libc::c_int as GLenum);
+        glActiveTexture(0x84c1 as i32 as GLenum);
         glBindTexture((*ptex).target, (*ptex).texture);
-        glActiveTexture(0x84c0 as libc::c_int as GLenum);
+        glActiveTexture(0x84c0 as i32 as GLenum);
     }
-    let mut reg_new: XserverRegion = 0 as libc::c_long as XserverRegion;
+    let mut reg_new: XserverRegion = 0 as i64 as XserverRegion;
     let mut rec_all: XRectangle = {
         let mut init = XRectangle {
             x: dx as libc::c_short,
@@ -3631,20 +3757,20 @@ pub unsafe extern "C" fn glx_render_(
         init
     };
     let mut rects: *mut XRectangle = &mut rec_all;
-    let mut nrects: libc::c_int = 1 as libc::c_int;
-    if (*ps).o.glx_no_stencil as libc::c_int != 0 && reg_tgt != 0 {
+    let mut nrects: i32 = 1 as i32;
+    if (*ps).o.glx_no_stencil as i32 != 0 && reg_tgt != 0 {
         if !pcache_reg.is_null() {
             rects = (*pcache_reg).rects;
             nrects = (*pcache_reg).nrects;
         } else {
-            reg_new = XFixesCreateRegion((*ps).dpy, &mut rec_all, 1 as libc::c_int);
+            reg_new = XFixesCreateRegion((*ps).dpy, &mut rec_all, 1 as i32);
             XFixesIntersectRegion((*ps).dpy, reg_new, reg_new, reg_tgt);
-            nrects = 0 as libc::c_int;
+            nrects = 0 as i32;
             rects = XFixesFetchRegion((*ps).dpy, reg_new, &mut nrects);
         }
     }
-    glBegin(0x7 as libc::c_int as GLenum);
-    let mut ri: libc::c_int = 0 as libc::c_int;
+    glBegin(0x7 as i32 as GLenum);
+    let mut ri: i32 = 0 as i32;
     while ri < nrects {
         let mut crect: XRectangle = XRectangle {
             x: 0,
@@ -3654,52 +3780,50 @@ pub unsafe extern "C" fn glx_render_(
         };
         rect_crop(&mut crect, &mut *rects.offset(ri as isize), &mut rec_all);
         if !(crect.width == 0 || crect.height == 0) {
-            let mut rx: GLfloat = (crect.x as libc::c_int - dx + x) as libc::c_double
-                as GLfloat;
-            let mut ry: GLfloat = (crect.y as libc::c_int - dy + y) as libc::c_double
-                as GLfloat;
+            let mut rx: GLfloat = (crect.x as i32 - dx + x) as libc::c_double as GLfloat;
+            let mut ry: GLfloat = (crect.y as i32 - dy + y) as libc::c_double as GLfloat;
             let mut rxe: GLfloat = (rx as libc::c_double + crect.width as libc::c_double)
                 as GLfloat;
             let mut rye: GLfloat = (ry as libc::c_double
                 + crect.height as libc::c_double) as GLfloat;
-            if 0xde1 as libc::c_int as libc::c_uint == (*ptex).target {
+            if 0xde1 as i32 as u32 == (*ptex).target {
                 rx = rx / (*ptex).width as libc::c_float;
                 ry = ry / (*ptex).height as libc::c_float;
                 rxe = rxe / (*ptex).width as libc::c_float;
                 rye = rye / (*ptex).height as libc::c_float;
             }
             let mut rdx: GLint = crect.x as GLint;
-            let mut rdy: GLint = (*ps).root_height - crect.y as libc::c_int;
-            let mut rdxe: GLint = rdx + crect.width as libc::c_int;
-            let mut rdye: GLint = rdy - crect.height as libc::c_int;
+            let mut rdy: GLint = (*ps).root_height - crect.y as i32;
+            let mut rdxe: GLint = rdx + crect.width as i32;
+            let mut rdye: GLint = rdy - crect.height as i32;
             if !(*ptex).y_inverted {
                 ry = (1.0f64 - ry as libc::c_double) as GLfloat;
                 rye = (1.0f64 - rye as libc::c_double) as GLfloat;
             }
             if dual_texture {
-                glMultiTexCoord2f(0x84c0 as libc::c_int as GLenum, rx, ry);
-                glMultiTexCoord2f(0x84c1 as libc::c_int as GLenum, rx, ry);
+                glMultiTexCoord2f(0x84c0 as i32 as GLenum, rx, ry);
+                glMultiTexCoord2f(0x84c1 as i32 as GLenum, rx, ry);
             } else {
                 glTexCoord2f(rx, ry);
             }
             glVertex3i(rdx, rdy, z);
             if dual_texture {
-                glMultiTexCoord2f(0x84c0 as libc::c_int as GLenum, rxe, ry);
-                glMultiTexCoord2f(0x84c1 as libc::c_int as GLenum, rxe, ry);
+                glMultiTexCoord2f(0x84c0 as i32 as GLenum, rxe, ry);
+                glMultiTexCoord2f(0x84c1 as i32 as GLenum, rxe, ry);
             } else {
                 glTexCoord2f(rxe, ry);
             }
             glVertex3i(rdxe, rdy, z);
             if dual_texture {
-                glMultiTexCoord2f(0x84c0 as libc::c_int as GLenum, rxe, rye);
-                glMultiTexCoord2f(0x84c1 as libc::c_int as GLenum, rxe, rye);
+                glMultiTexCoord2f(0x84c0 as i32 as GLenum, rxe, rye);
+                glMultiTexCoord2f(0x84c1 as i32 as GLenum, rxe, rye);
             } else {
                 glTexCoord2f(rxe, rye);
             }
             glVertex3i(rdxe, rdye, z);
             if dual_texture {
-                glMultiTexCoord2f(0x84c0 as libc::c_int as GLenum, rx, rye);
-                glMultiTexCoord2f(0x84c1 as libc::c_int as GLenum, rx, rye);
+                glMultiTexCoord2f(0x84c0 as i32 as GLenum, rx, rye);
+                glMultiTexCoord2f(0x84c1 as i32 as GLenum, rx, rye);
             } else {
                 glTexCoord2f(rx, rye);
             }
@@ -3715,54 +3839,49 @@ pub unsafe extern "C" fn glx_render_(
         cxfree(rects as *mut libc::c_void);
     }
     free_region(ps, &mut reg_new);
-    glBindTexture((*ptex).target, 0 as libc::c_int as GLuint);
+    glBindTexture((*ptex).target, 0 as i32 as GLuint);
     glColor4f(0.0f32, 0.0f32, 0.0f32, 0.0f32);
-    glTexEnvi(
-        0x2300 as libc::c_int as GLenum,
-        0x2200 as libc::c_int as GLenum,
-        0x1e01 as libc::c_int,
-    );
-    glDisable(0xbe2 as libc::c_int as GLenum);
-    glDisable(0xbf2 as libc::c_int as GLenum);
+    glTexEnvi(0x2300 as i32 as GLenum, 0x2200 as i32 as GLenum, 0x1e01 as i32);
+    glDisable(0xbe2 as i32 as GLenum);
+    glDisable(0xbf2 as i32 as GLenum);
     glDisable((*ptex).target);
     if dual_texture {
-        glActiveTexture(0x84c1 as libc::c_int as GLenum);
-        glBindTexture((*ptex).target, 0 as libc::c_int as GLuint);
+        glActiveTexture(0x84c1 as i32 as GLenum);
+        glBindTexture((*ptex).target, 0 as i32 as GLuint);
         glDisable((*ptex).target);
-        glActiveTexture(0x84c0 as libc::c_int as GLenum);
+        glActiveTexture(0x84c0 as i32 as GLenum);
     }
     if has_prog {
-        glUseProgram(0 as libc::c_int as GLuint);
+        glUseProgram(0 as i32 as GLuint);
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_swap_copysubbuffermesa(
     mut ps: *mut session_t,
     mut reg: XserverRegion,
 ) {
-    let mut nrects: libc::c_int = 0 as libc::c_int;
+    let mut nrects: i32 = 0 as i32;
     let mut rects: *mut XRectangle = XFixesFetchRegion((*ps).dpy, reg, &mut nrects);
-    if 1 as libc::c_int == nrects
+    if 1 as i32 == nrects
         && rect_is_fullscreen(
             ps,
-            (*rects.offset(0 as libc::c_int as isize)).x as libc::c_int,
-            (*rects.offset(0 as libc::c_int as isize)).y as libc::c_int,
-            (*rects.offset(0 as libc::c_int as isize)).width as libc::c_uint,
-            (*rects.offset(0 as libc::c_int as isize)).height as libc::c_uint,
-        ) as libc::c_int != 0
+            (*rects.offset(0 as i32 as isize)).x as i32,
+            (*rects.offset(0 as i32 as isize)).y as i32,
+            (*rects.offset(0 as i32 as isize)).width as u32,
+            (*rects.offset(0 as i32 as isize)).height as u32,
+        ) as i32 != 0
     {
         glXSwapBuffers((*ps).dpy, get_tgt_window(ps));
     } else {
-        glx_set_clip(ps, 0 as libc::c_long as XserverRegion, 0 as *const reg_data_t);
-        let mut i: libc::c_int = 0 as libc::c_int;
+        glx_set_clip(ps, 0 as i64 as XserverRegion, 0 as *const reg_data_t);
+        let mut i: i32 = 0 as i32;
         while i < nrects {
-            let x: libc::c_int = (*rects.offset(i as isize)).x as libc::c_int;
-            let y: libc::c_int = (*ps).root_height
-                - (*rects.offset(i as isize)).y as libc::c_int
-                - (*rects.offset(i as isize)).height as libc::c_int;
-            let wid: libc::c_int = (*rects.offset(i as isize)).width as libc::c_int;
-            let hei: libc::c_int = (*rects.offset(i as isize)).height as libc::c_int;
+            let x: i32 = (*rects.offset(i as isize)).x as i32;
+            let y: i32 = (*ps).root_height - (*rects.offset(i as isize)).y as i32
+                - (*rects.offset(i as isize)).height as i32;
+            let wid: i32 = (*rects.offset(i as isize)).width as i32;
+            let hei: i32 = (*rects.offset(i as isize)).height as i32;
             ((*(*ps).psglx).glXCopySubBufferProc)
                 .expect(
                     "non-null function pointer",
@@ -3776,85 +3895,75 @@ pub unsafe extern "C" fn glx_swap_copysubbuffermesa(
 #[no_mangle]
 pub unsafe extern "C" fn glx_take_screenshot(
     mut ps: *mut session_t,
-    mut out_length: *mut libc::c_int,
-) -> *mut libc::c_uchar {
-    let mut length: libc::c_int = 3 as libc::c_int * (*ps).root_width
-        * (*ps).root_height;
-    let mut unpack_align_old: GLint = 0 as libc::c_int;
-    glGetIntegerv(0xcf5 as libc::c_int as GLenum, &mut unpack_align_old);
-    glPixelStorei(0xcf5 as libc::c_int as GLenum, 1 as libc::c_int);
-    let mut buf: *mut libc::c_uchar = allocchk_(
-        (*::core::mem::transmute::<
-            &[u8; 20],
-            &[libc::c_char; 20],
-        >(b"glx_take_screenshot\0"))
+    mut out_length: *mut i32,
+) -> *mut u8 {
+    let mut length: i32 = 3 as i32 * (*ps).root_width * (*ps).root_height;
+    let mut unpack_align_old: GLint = 0 as i32;
+    glGetIntegerv(0xcf5 as i32 as GLenum, &mut unpack_align_old);
+    glPixelStorei(0xcf5 as i32 as GLenum, 1 as i32);
+    let mut buf: *mut u8 = allocchk_(
+        (*::core::mem::transmute::<&[u8; 20], &[i8; 20]>(b"glx_take_screenshot\0"))
             .as_ptr(),
-        malloc(
-            (length as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<libc::c_uchar>() as libc::c_ulong),
-        ),
-    ) as *mut libc::c_uchar;
-    glReadBuffer(0x404 as libc::c_int as GLenum);
+        malloc((length as u64).wrapping_mul(::core::mem::size_of::<u8>() as u64)),
+    ) as *mut u8;
+    glReadBuffer(0x404 as i32 as GLenum);
     glReadPixels(
-        0 as libc::c_int,
-        0 as libc::c_int,
+        0 as i32,
+        0 as i32,
         (*ps).root_width,
         (*ps).root_height,
-        0x1907 as libc::c_int as GLenum,
-        0x1401 as libc::c_int as GLenum,
+        0x1907 as i32 as GLenum,
+        0x1401 as i32 as GLenum,
         buf as *mut libc::c_void,
     );
-    glReadBuffer(0x405 as libc::c_int as GLenum);
-    glPixelStorei(0xcf5 as libc::c_int as GLenum, unpack_align_old);
+    glReadBuffer(0x405 as i32 as GLenum);
+    glPixelStorei(0xcf5 as i32 as GLenum, unpack_align_old);
     if !out_length.is_null() {
-        *out_length = (::core::mem::size_of::<libc::c_uchar>() as libc::c_ulong)
-            .wrapping_mul(length as libc::c_ulong) as libc::c_int;
+        *out_length = (::core::mem::size_of::<u8>() as u64).wrapping_mul(length as u64)
+            as i32;
     }
     return buf;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_create_shader(
     mut shader_type: GLenum,
-    mut shader_str: *const libc::c_char,
+    mut shader_str: *const i8,
 ) -> GLuint {
-    let mut success: bool = 0 as libc::c_int != 0;
+    let mut success: bool = 0 as i32 != 0;
     let mut shader: GLuint = glCreateShader(shader_type);
     if shader == 0 {
         fprintf(
             stderr,
             b"%s(): Failed to create shader with type %#x.\n\0" as *const u8
-                as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 18],
-                &[libc::c_char; 18],
-            >(b"glx_create_shader\0"))
+                as *const i8,
+            (*::core::mem::transmute::<&[u8; 18], &[i8; 18]>(b"glx_create_shader\0"))
                 .as_ptr(),
             shader_type,
         );
     } else {
         glShaderSource(
             shader,
-            1 as libc::c_int,
-            &mut shader_str as *mut *const libc::c_char as *const *const GLchar,
+            1 as i32,
+            &mut shader_str as *mut *const i8 as *const *const GLchar,
             0 as *const GLint,
         );
         glCompileShader(shader);
-        let mut status: GLint = 0 as libc::c_int;
-        glGetShaderiv(shader, 0x8b81 as libc::c_int as GLenum, &mut status);
-        if 0 as libc::c_int == status {
-            let mut log_len: GLint = 0 as libc::c_int;
-            glGetShaderiv(shader, 0x8b84 as libc::c_int as GLenum, &mut log_len);
+        let mut status: GLint = 0 as i32;
+        glGetShaderiv(shader, 0x8b81 as i32 as GLenum, &mut status);
+        if 0 as i32 == status {
+            let mut log_len: GLint = 0 as i32;
+            glGetShaderiv(shader, 0x8b84 as i32 as GLenum, &mut log_len);
             if log_len != 0 {
-                let vla = (log_len + 1 as libc::c_int) as usize;
-                let mut log: Vec::<libc::c_char> = ::std::vec::from_elem(0, vla);
+                let vla = (log_len + 1 as i32) as usize;
+                let mut log: Vec<i8> = ::std::vec::from_elem(0, vla);
                 glGetShaderInfoLog(shader, log_len, 0 as *mut GLsizei, log.as_mut_ptr());
                 fprintf(
                     stderr,
                     b"%s(): Failed to compile shader with type %d: %s\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 18],
-                        &[libc::c_char; 18],
+                        &[i8; 18],
                     >(b"glx_create_shader\0"))
                         .as_ptr(),
                     shader_type,
@@ -3862,48 +3971,45 @@ pub unsafe extern "C" fn glx_create_shader(
                 );
             }
         } else {
-            success = 1 as libc::c_int != 0;
+            success = 1 as i32 != 0;
         }
     }
     if shader != 0 && !success {
         glDeleteShader(shader);
-        shader = 0 as libc::c_int as GLuint;
+        shader = 0 as i32 as GLuint;
     }
     return shader;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_create_program(
     shaders: *const GLuint,
-    mut nshaders: libc::c_int,
+    mut nshaders: i32,
 ) -> GLuint {
-    let mut success: bool = 0 as libc::c_int != 0;
+    let mut success: bool = 0 as i32 != 0;
     let mut program: GLuint = glCreateProgram();
     if program == 0 {
         fprintf(
             stderr,
-            b"%s(): Failed to create program.\n\0" as *const u8 as *const libc::c_char,
-            (*::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"glx_create_program\0"))
+            b"%s(): Failed to create program.\n\0" as *const u8 as *const i8,
+            (*::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"glx_create_program\0"))
                 .as_ptr(),
         );
     } else {
-        let mut i: libc::c_int = 0 as libc::c_int;
+        let mut i: i32 = 0 as i32;
         while i < nshaders {
             glAttachShader(program, *shaders.offset(i as isize));
             i += 1;
             i;
         }
         glLinkProgram(program);
-        let mut status: GLint = 0 as libc::c_int;
-        glGetProgramiv(program, 0x8b82 as libc::c_int as GLenum, &mut status);
-        if 0 as libc::c_int == status {
-            let mut log_len: GLint = 0 as libc::c_int;
-            glGetProgramiv(program, 0x8b84 as libc::c_int as GLenum, &mut log_len);
+        let mut status: GLint = 0 as i32;
+        glGetProgramiv(program, 0x8b82 as i32 as GLenum, &mut status);
+        if 0 as i32 == status {
+            let mut log_len: GLint = 0 as i32;
+            glGetProgramiv(program, 0x8b84 as i32 as GLenum, &mut log_len);
             if log_len != 0 {
-                let vla = (log_len + 1 as libc::c_int) as usize;
-                let mut log: Vec::<libc::c_char> = ::std::vec::from_elem(0, vla);
+                let vla = (log_len + 1 as i32) as usize;
+                let mut log: Vec<i8> = ::std::vec::from_elem(0, vla);
                 glGetProgramInfoLog(
                     program,
                     log_len,
@@ -3912,22 +4018,21 @@ pub unsafe extern "C" fn glx_create_program(
                 );
                 fprintf(
                     stderr,
-                    b"%s(): Failed to link program: %s\n\0" as *const u8
-                        as *const libc::c_char,
+                    b"%s(): Failed to link program: %s\n\0" as *const u8 as *const i8,
                     (*::core::mem::transmute::<
                         &[u8; 19],
-                        &[libc::c_char; 19],
+                        &[i8; 19],
                     >(b"glx_create_program\0"))
                         .as_ptr(),
                     log.as_mut_ptr(),
                 );
             }
         } else {
-            success = 1 as libc::c_int != 0;
+            success = 1 as i32 != 0;
         }
     }
     if program != 0 {
-        let mut i_0: libc::c_int = 0 as libc::c_int;
+        let mut i_0: i32 = 0 as i32;
         while i_0 < nshaders {
             glDetachShader(program, *shaders.offset(i_0 as isize));
             i_0 += 1;
@@ -3936,32 +4041,26 @@ pub unsafe extern "C" fn glx_create_program(
     }
     if program != 0 && !success {
         glDeleteProgram(program);
-        program = 0 as libc::c_int as GLuint;
+        program = 0 as i32 as GLuint;
     }
     return program;
 }
 #[no_mangle]
 pub unsafe extern "C" fn glx_create_program_from_str(
-    mut vert_shader_str: *const libc::c_char,
-    mut frag_shader_str: *const libc::c_char,
+    mut vert_shader_str: *const i8,
+    mut frag_shader_str: *const i8,
 ) -> GLuint {
-    let mut vert_shader: GLuint = 0 as libc::c_int as GLuint;
-    let mut frag_shader: GLuint = 0 as libc::c_int as GLuint;
-    let mut prog: GLuint = 0 as libc::c_int as GLuint;
+    let mut vert_shader: GLuint = 0 as i32 as GLuint;
+    let mut frag_shader: GLuint = 0 as i32 as GLuint;
+    let mut prog: GLuint = 0 as i32 as GLuint;
     if !vert_shader_str.is_null() {
-        vert_shader = glx_create_shader(
-            0x8b31 as libc::c_int as GLenum,
-            vert_shader_str,
-        );
+        vert_shader = glx_create_shader(0x8b31 as i32 as GLenum, vert_shader_str);
     }
     if !frag_shader_str.is_null() {
-        frag_shader = glx_create_shader(
-            0x8b30 as libc::c_int as GLenum,
-            frag_shader_str,
-        );
+        frag_shader = glx_create_shader(0x8b30 as i32 as GLenum, frag_shader_str);
     }
     let mut shaders: [GLuint; 2] = [0; 2];
-    let mut count: libc::c_int = 0 as libc::c_int;
+    let mut count: i32 = 0 as i32;
     if vert_shader != 0 {
         let fresh0 = count;
         count = count + 1;

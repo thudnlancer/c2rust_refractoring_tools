@@ -1,1 +1,1 @@
-["../c_prog/webdis/webdis", "../c_prog/webdis/src/pool.rs", "../c_prog/webdis/src/conf.rs", "../c_prog/webdis/src/client.rs", "../c_prog/webdis/src/acl.rs", "../c_prog/webdis/src/hiredis/read.rs", "../c_prog/webdis/src/md5/md5.rs", "../c_prog/webdis/src/jansson/src/hashtable_seed.rs"]
+["../c_prog/webdis/src/slog.rs", "../c_prog/webdis/webdis", "../c_prog/webdis/src/hiredis/async.rs", "../c_prog/webdis/src/hiredis/sds.rs"]

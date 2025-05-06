@@ -1,5 +1,16 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type wlink;
     pub type atat;
@@ -10,69 +21,65 @@ extern "C" {
     pub type lockdef;
     pub type link;
     static mut top: *mut top;
-    fn perror(__s: *const libc::c_char);
-    fn thank_you_and_goodnight(how: libc::c_int);
-    fn __errno_location() -> *mut libc::c_int;
-    fn signal(__sig: libc::c_int, __handler: __sighandler_t) -> __sighandler_t;
-    fn psiginfo(__pinfo: *const siginfo_t, __s: *const libc::c_char);
-    fn sigemptyset(__set: *mut sigset_t) -> libc::c_int;
-    fn sigaddset(__set: *mut sigset_t, __signo: libc::c_int) -> libc::c_int;
-    fn sigaction(
-        __sig: libc::c_int,
-        __act: *const sigaction,
-        __oact: *mut sigaction,
-    ) -> libc::c_int;
-    fn sigaltstack(__ss: *const stack_t, __oss: *mut stack_t) -> libc::c_int;
-    fn write(__fd: libc::c_int, __buf: *const libc::c_void, __n: size_t) -> ssize_t;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strsignal(__sig: libc::c_int) -> *mut libc::c_char;
-    fn fatal_sys(who: *const libc::c_char);
+    fn perror(__s: *const i8);
+    fn thank_you_and_goodnight(how: i32);
+    fn __errno_location() -> *mut i32;
+    fn signal(__sig: i32, __handler: __sighandler_t) -> __sighandler_t;
+    fn psiginfo(__pinfo: *const siginfo_t, __s: *const i8);
+    fn sigemptyset(__set: *mut sigset_t) -> i32;
+    fn sigaddset(__set: *mut sigset_t, __signo: i32) -> i32;
+    fn sigaction(__sig: i32, __act: *const sigaction, __oact: *mut sigaction) -> i32;
+    fn sigaltstack(__ss: *const stack_t, __oss: *mut stack_t) -> i32;
+    fn write(__fd: i32, __buf: *const libc::c_void, __n: size_t) -> ssize_t;
+    fn strlen(_: *const i8) -> u64;
+    fn strsignal(__sig: i32) -> *mut i8;
+    fn fatal_sys(who: *const i8);
     static mut plexus: *mut divvy;
     fn alloc(divvy: *mut divvy, len: size_t) -> *mut libc::c_void;
     fn zlloc(divvy: *mut divvy, len: size_t) -> *mut libc::c_void;
     fn setrid();
 }
-pub type __uint32_t = libc::c_uint;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __pid_t = libc::c_int;
-pub type __clock_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __ssize_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
-pub type __sig_atomic_t = libc::c_int;
-pub type size_t = libc::c_ulong;
+pub type __uint32_t = u32;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __pid_t = i32;
+pub type __clock_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __ssize_t = i64;
+pub type __syscall_slong_t = i64;
+pub type __sig_atomic_t = i32;
+pub type size_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -80,8 +87,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -89,7 +96,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 pub type off_t = __off_t;
@@ -99,9 +106,9 @@ pub type ssize_t = __ssize_t;
 pub struct obstack {
     pub chunk_size: size_t,
     pub chunk: *mut _obstack_chunk,
-    pub object_base: *mut libc::c_char,
-    pub next_free: *mut libc::c_char,
-    pub chunk_limit: *mut libc::c_char,
+    pub object_base: *mut i8,
+    pub next_free: *mut i8,
+    pub chunk_limit: *mut i8,
     pub temp: C2RustUnnamed_1,
     pub alignment_mask: size_t,
     pub chunkfun: C2RustUnnamed_0,
@@ -117,16 +124,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -139,14 +144,14 @@ pub union C2RustUnnamed_1 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _obstack_chunk {
-    pub limit: *mut libc::c_char,
+    pub limit: *mut i8,
     pub prev: *mut _obstack_chunk,
-    pub contents: [libc::c_char; 0],
+    pub contents: [i8; 0],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct __sigset_t {
-    pub __val: [libc::c_ulong; 16],
+    pub __val: [u64; 16],
 }
 pub type sigset_t = __sigset_t;
 #[derive(Copy, Clone)]
@@ -159,7 +164,7 @@ pub type __sigval_t = sigval;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union sigval {
-    pub sival_int: libc::c_int,
+    pub sival_int: i32,
     pub sival_ptr: *mut libc::c_void,
 }
 #[derive(Copy, Clone)]
@@ -171,7 +176,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -184,23 +189,23 @@ pub struct stat {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
-    pub string: *const libc::c_char,
+    pub string: *const i8,
     pub size: size_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct delta {
-    pub num: *const libc::c_char,
-    pub date: *const libc::c_char,
-    pub author: *const libc::c_char,
-    pub lockedby: *const libc::c_char,
-    pub state: *const libc::c_char,
+    pub num: *const i8,
+    pub date: *const i8,
+    pub author: *const i8,
+    pub lockedby: *const i8,
+    pub state: *const i8,
     pub log: *mut atat,
     pub text: *mut atat,
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub pretty_log: cbuf,
     pub branches: *mut wlink,
-    pub commitid: *const libc::c_char,
+    pub commitid: *const i8,
     pub ilk: *mut delta,
     pub selector: bool,
     pub neck: off_t,
@@ -208,7 +213,7 @@ pub struct delta {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct divvy {
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub space: obstack,
     pub first: *mut libc::c_void,
     pub count: size_t,
@@ -216,11 +221,11 @@ pub struct divvy {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct program {
-    pub invoke: *const libc::c_char,
-    pub name: *const libc::c_char,
-    pub desc: *const libc::c_char,
-    pub help: *const libc::c_char,
-    pub tyag: libc::c_int,
+    pub invoke: *const i8,
+    pub name: *const i8,
+    pub desc: *const i8,
+    pub help: *const i8,
+    pub tyag: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -230,28 +235,87 @@ pub enum maker {
     notmade = 0,
 }
 impl maker {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             maker::effective => 2,
             maker::real => 1,
             maker::notmade => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> maker {
+        match value {
+            2 => maker::effective,
+            1 => maker::real,
+            0 => maker::notmade,
+            _ => panic!("Invalid value for maker: {}", value),
+        }
+    }
 }
-
-pub const effective: maker = 2;
-pub const real: maker = 1;
-pub const notmade: maker = 0;
+impl AddAssign<u32> for maker {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for maker {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for maker {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for maker {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for maker {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for maker {
+    type Output = maker;
+    fn add(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for maker {
+    type Output = maker;
+    fn sub(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for maker {
+    type Output = maker;
+    fn mul(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for maker {
+    type Output = maker;
+    fn div(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for maker {
+    type Output = maker;
+    fn rem(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
-    pub filename: *const libc::c_char,
+    pub filename: *const i8,
     pub disposition: maker,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct behavior {
-    pub invdir: *const libc::c_char,
+    pub invdir: *const i8,
     pub unbuffered: bool,
     pub quiet: bool,
     pub interactive_valid: bool,
@@ -259,21 +323,21 @@ pub struct behavior {
     pub inclusive_of_Locker_in_Id_val: bool,
     pub strictly_locking: bool,
     pub version_set: bool,
-    pub version: libc::c_int,
+    pub version: i32,
     pub stick_with_euid: bool,
-    pub ruid: libc::c_int,
-    pub euid: libc::c_int,
+    pub ruid: i32,
+    pub euid: i32,
     pub ruid_cached: bool,
     pub euid_cached: bool,
     pub already_setuid: bool,
-    pub kws: libc::c_int,
-    pub pe: *const libc::c_char,
+    pub kws: i32,
+    pub pe: *const i8,
     pub zone_offset: zone_offset,
-    pub username: *mut libc::c_char,
+    pub username: *mut i8,
     pub now: timespec,
     pub fixed_SIGCHLD: bool,
     pub Oerrloop: bool,
-    pub cwd: *mut libc::c_char,
+    pub cwd: *mut i8,
     pub mem_limit: off_t,
     pub sff: *mut sff,
     pub isr: *mut isr_scratch,
@@ -287,7 +351,7 @@ pub struct isr_scratch {
     pub level: sig_atomic_t,
     pub bufinfo: siginfo_t,
     pub held_info: *mut siginfo_t,
-    pub access_name: *const libc::c_char,
+    pub access_name: *const i8,
     pub catching: C2RustUnnamed_2,
     pub be_quiet: *mut bool,
 }
@@ -300,16 +364,16 @@ pub struct C2RustUnnamed_2 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct siginfo_t {
-    pub si_signo: libc::c_int,
-    pub si_errno: libc::c_int,
-    pub si_code: libc::c_int,
-    pub __pad0: libc::c_int,
+    pub si_signo: i32,
+    pub si_errno: i32,
+    pub si_code: i32,
+    pub __pad0: i32,
     pub _sifields: C2RustUnnamed_3,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_3 {
-    pub _pad: [libc::c_int; 28],
+    pub _pad: [i32; 28],
     pub _kill: C2RustUnnamed_12,
     pub _timer: C2RustUnnamed_11,
     pub _rt: C2RustUnnamed_10,
@@ -322,14 +386,14 @@ pub union C2RustUnnamed_3 {
 #[repr(C)]
 pub struct C2RustUnnamed_4 {
     pub _call_addr: *mut libc::c_void,
-    pub _syscall: libc::c_int,
-    pub _arch: libc::c_uint,
+    pub _syscall: i32,
+    pub _arch: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_5 {
-    pub si_band: libc::c_long,
-    pub si_fd: libc::c_int,
+    pub si_band: i64,
+    pub si_fd: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -355,7 +419,7 @@ pub struct C2RustUnnamed_8 {
 pub struct C2RustUnnamed_9 {
     pub si_pid: __pid_t,
     pub si_uid: __uid_t,
-    pub si_status: libc::c_int,
+    pub si_status: i32,
     pub si_utime: __clock_t,
     pub si_stime: __clock_t,
 }
@@ -369,8 +433,8 @@ pub struct C2RustUnnamed_10 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_11 {
-    pub si_tid: libc::c_int,
-    pub si_overrun: libc::c_int,
+    pub si_tid: i32,
+    pub si_overrun: i32,
     pub si_sigval: __sigval_t,
 }
 #[derive(Copy, Clone)]
@@ -384,12 +448,12 @@ pub type sig_atomic_t = __sig_atomic_t;
 #[repr(C)]
 pub struct zone_offset {
     pub valid: bool,
-    pub seconds: libc::c_long,
+    pub seconds: i64,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct manifestation {
-    pub filename: *mut libc::c_char,
+    pub filename: *mut i8,
     pub standard_output: *mut FILE,
     pub prev: C2RustUnnamed_13,
 }
@@ -397,17 +461,17 @@ pub struct manifestation {
 #[repr(C)]
 pub struct C2RustUnnamed_13 {
     pub valid: bool,
-    pub author: *mut libc::c_char,
-    pub date: *mut libc::c_char,
-    pub name: *mut libc::c_char,
-    pub rev: *mut libc::c_char,
-    pub state: *mut libc::c_char,
+    pub author: *mut i8,
+    pub date: *mut i8,
+    pub name: *mut i8,
+    pub rev: *mut i8,
+    pub state: *mut i8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct repo {
-    pub head: *const libc::c_char,
-    pub branch: *const libc::c_char,
+    pub head: *const i8,
+    pub branch: *const i8,
     pub access_count: size_t,
     pub access: *mut link,
     pub symbols_count: size_t,
@@ -417,7 +481,7 @@ pub struct repo {
     pub strict: bool,
     pub integrity: *mut atat,
     pub comment: *mut atat,
-    pub expand: libc::c_int,
+    pub expand: i32,
     pub deltas_count: size_t,
     pub deltas: *mut wlink,
     pub desc: *mut atat,
@@ -428,8 +492,8 @@ pub struct repo {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct repository {
-    pub filename: *const libc::c_char,
-    pub fd_lock: libc::c_int,
+    pub filename: *const i8,
+    pub fd_lock: i32,
     pub stat: stat,
     pub r: *mut repo,
     pub tip: *mut delta,
@@ -442,7 +506,7 @@ pub struct flow {
     pub rewr: *mut FILE,
     pub to: *mut FILE,
     pub res: *mut FILE,
-    pub result: *const libc::c_char,
+    pub result: *const i8,
     pub erroneous: bool,
 }
 #[derive(Copy, Clone)]
@@ -454,28 +518,28 @@ pub struct top {
     pub repository: repository,
     pub flow: flow,
 }
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type __sighandler_t = Option<unsafe extern "C" fn(i32) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sigaction {
     pub __sigaction_handler: C2RustUnnamed_14,
     pub sa_mask: __sigset_t,
-    pub sa_flags: libc::c_int,
-    pub sa_restorer: Option::<unsafe extern "C" fn() -> ()>,
+    pub sa_flags: i32,
+    pub sa_restorer: Option<unsafe extern "C" fn() -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_14 {
     pub sa_handler: __sighandler_t,
-    pub sa_sigaction: Option::<
-        unsafe extern "C" fn(libc::c_int, *mut siginfo_t, *mut libc::c_void) -> (),
+    pub sa_sigaction: Option<
+        unsafe extern "C" fn(i32, *mut siginfo_t, *mut libc::c_void) -> (),
     >,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stack_t {
     pub ss_sp: *mut libc::c_void,
-    pub ss_flags: libc::c_int,
+    pub ss_flags: i32,
     pub ss_size: size_t,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -487,7 +551,7 @@ pub enum isr_actions {
     ISR_CATCHINTS = 0,
 }
 impl isr_actions {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             isr_actions::ISR_CATCHMMAPINTS => 3,
             isr_actions::ISR_RESTOREINTS => 2,
@@ -495,46 +559,102 @@ impl isr_actions {
             isr_actions::ISR_CATCHINTS => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> isr_actions {
+        match value {
+            3 => isr_actions::ISR_CATCHMMAPINTS,
+            2 => isr_actions::ISR_RESTOREINTS,
+            1 => isr_actions::ISR_IGNOREINTS,
+            0 => isr_actions::ISR_CATCHINTS,
+            _ => panic!("Invalid value for isr_actions: {}", value),
+        }
+    }
 }
-
-pub const ISR_CATCHMMAPINTS: isr_actions = 3;
-pub const ISR_RESTOREINTS: isr_actions = 2;
-pub const ISR_IGNOREINTS: isr_actions = 1;
-pub const ISR_CATCHINTS: isr_actions = 0;
+impl AddAssign<u32> for isr_actions {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for isr_actions {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for isr_actions {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for isr_actions {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for isr_actions {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for isr_actions {
+    type Output = isr_actions;
+    fn add(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for isr_actions {
+    type Output = isr_actions;
+    fn sub(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for isr_actions {
+    type Output = isr_actions;
+    fn mul(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for isr_actions {
+    type Output = isr_actions;
+    fn div(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for isr_actions {
+    type Output = isr_actions;
+    fn rem(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[no_mangle]
 pub unsafe extern "C" fn maybe_reset_sigchld() {
-    signal(17 as libc::c_int, None);
+    signal(17 as i32, None);
 }
-unsafe extern "C" fn werr(mut s: *const libc::c_char) {
+unsafe extern "C" fn werr(mut s: *const i8) {
     let mut len: ssize_t = 0;
     len = strlen(s) as ssize_t;
     if len == 0 {
         return;
     }
-    if len != write(2 as libc::c_int, s as *const libc::c_void, len as size_t) {
+    if len != write(2 as i32, s as *const libc::c_void, len as size_t) {
         thank_you_and_goodnight((*(*top).program).tyag);
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn complain_signal(
-    mut msg: *const libc::c_char,
-    mut signo: libc::c_int,
-) {
+pub unsafe extern "C" fn complain_signal(mut msg: *const i8, mut signo: i32) {
     werr(msg);
-    werr(b": \0" as *const u8 as *const libc::c_char);
+    werr(b": \0" as *const u8 as *const i8);
     werr(strsignal(signo));
-    werr(b"\n\0" as *const u8 as *const libc::c_char);
+    werr(b"\n\0" as *const u8 as *const i8);
 }
 #[no_mangle]
 pub unsafe extern "C" fn access_page(
     mut scratch: *mut isr_scratch,
-    mut filename: *const libc::c_char,
-    mut p: *const libc::c_char,
-) -> libc::c_char {
-    let mut t: libc::c_char = 0;
+    mut filename: *const i8,
+    mut p: *const i8,
+) -> i8 {
+    let mut t: i8 = 0;
     (*scratch).access_name = filename;
-    ::core::ptr::write_volatile(&mut t as *mut libc::c_char, *p);
-    (*scratch).access_name = 0 as *const libc::c_char;
+    ::core::ptr::write_volatile(&mut t as *mut i8, *p);
+    (*scratch).access_name = 0 as *const i8;
     return t;
 }
 unsafe extern "C" fn ignore(mut scratch: *mut isr_scratch) {
@@ -547,12 +667,12 @@ unsafe extern "C" fn ignore(mut scratch: *mut isr_scratch) {
     ::core::ptr::read_volatile::<sig_atomic_t>(&(*scratch).level as *const sig_atomic_t);
 }
 unsafe extern "C" fn catchsigaction(
-    mut signo: libc::c_int,
+    mut signo: i32,
     mut info: *mut siginfo_t,
     mut uc: *mut libc::c_void,
 ) {
     let mut scratch: *mut isr_scratch = (*top).behavior.isr;
-    let mut from_mmap: bool = 7 as libc::c_int != 0 && 7 as libc::c_int == signo;
+    let mut from_mmap: bool = 7 as i32 != 0 && 7 as i32 == signo;
     if (*scratch).level != 0 {
         ::core::ptr::write_volatile(&mut (*scratch).held as *mut sig_atomic_t, signo);
         if !info.is_null() {
@@ -567,11 +687,9 @@ unsafe extern "C" fn catchsigaction(
     ignore(scratch);
     setrid();
     if !*(*scratch).be_quiet {
-        if !(from_mmap as libc::c_int != 0 && !((*scratch).access_name).is_null()) {
-            let mut nRCS: *mut libc::c_char = b"\nRCS\0" as *const u8
-                as *const libc::c_char as *mut libc::c_char;
-            if from_mmap as libc::c_int != 0 && !info.is_null() && (*info).si_errno != 0
-            {
+        if !(from_mmap as i32 != 0 && !((*scratch).access_name).is_null()) {
+            let mut nRCS: *mut i8 = b"\nRCS\0" as *const u8 as *const i8 as *mut i8;
+            if from_mmap as i32 != 0 && !info.is_null() && (*info).si_errno != 0 {
                 *__errno_location() = (*info).si_errno;
                 let fresh0 = nRCS;
                 nRCS = nRCS.offset(1);
@@ -583,23 +701,23 @@ unsafe extern "C" fn catchsigaction(
                 complain_signal(nRCS, signo);
             }
         }
-        werr(b"RCS: \0" as *const u8 as *const libc::c_char);
+        werr(b"RCS: \0" as *const u8 as *const i8);
         if from_mmap {
             if !((*scratch).access_name).is_null() {
                 werr((*scratch).access_name);
-                werr(b": Permission denied.  \0" as *const u8 as *const libc::c_char);
+                werr(b": Permission denied.  \0" as *const u8 as *const i8);
             } else {
                 werr(
                     b"Was a file changed by some other process?  \0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                 );
             }
         }
-        werr(b"Cleaning up.\n\0" as *const u8 as *const libc::c_char);
+        werr(b"Cleaning up.\n\0" as *const u8 as *const i8);
     }
     thank_you_and_goodnight((*(*top).program).tyag);
 }
-unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_int) {
+unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const i32) {
     let mut i_0: size_t = 0;
     let mut act: sigaction = sigaction {
         __sigaction_handler: C2RustUnnamed_14 {
@@ -609,17 +727,17 @@ unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_i
         sa_flags: 0,
         sa_restorer: None,
     };
-    let mut sig: libc::c_int = 0;
+    let mut sig: i32 = 0;
     let mut current_block: u64;
     let mut blocked: sigset_t = sigset_t { __val: [0; 16] };
     sigemptyset(&mut blocked);
-    let mut i: size_t = 0 as libc::c_int as size_t;
+    let mut i: size_t = 0 as i32 as size_t;
     loop {
         if !(i < count) {
             current_block = 4644295000439058019;
             break;
         }
-        if 0 as libc::c_int > sigaddset(&mut blocked, *set.offset(i as isize)) {
+        if 0 as i32 > sigaddset(&mut blocked, *set.offset(i as isize)) {
             current_block = 11219620342505264191;
             break;
         }
@@ -628,7 +746,7 @@ unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_i
     }
     match current_block {
         4644295000439058019 => {
-            i_0 = 0 as libc::c_int as size_t;
+            i_0 = 0 as i32 as size_t;
             current_block = 17778012151635330486;
         }
         _ => {}
@@ -636,7 +754,7 @@ unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_i
     loop {
         match current_block {
             11219620342505264191 => {
-                fatal_sys(b"signal handling\0" as *const u8 as *const libc::c_char);
+                fatal_sys(b"signal handling\0" as *const u8 as *const i8);
             }
             _ => {
                 if !(i_0 < count) {
@@ -651,29 +769,26 @@ unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_i
                     sa_restorer: None,
                 };
                 sig = *set.offset(i_0 as isize);
-                if 0 as libc::c_int > sigaction(sig, 0 as *const sigaction, &mut act) {
+                if 0 as i32 > sigaction(sig, 0 as *const sigaction, &mut act) {
                     current_block = 11219620342505264191;
                     continue;
                 }
                 if ::core::mem::transmute::<
                     libc::intptr_t,
                     __sighandler_t,
-                >(1 as libc::c_int as libc::intptr_t)
-                    != act.__sigaction_handler.sa_handler
+                >(1 as i32 as libc::intptr_t) != act.__sigaction_handler.sa_handler
                 {
-                    act
-                        .__sigaction_handler
-                        .sa_sigaction = Some(
+                    act.__sigaction_handler.sa_sigaction = Some(
                         catchsigaction
                             as unsafe extern "C" fn(
-                                libc::c_int,
+                                i32,
                                 *mut siginfo_t,
                                 *mut libc::c_void,
                             ) -> (),
                     );
-                    act.sa_flags |= 4 as libc::c_int | 0x8000000 as libc::c_int;
+                    act.sa_flags |= 4 as i32 | 0x8000000 as i32;
                     act.sa_mask = blocked;
-                    if 0 as libc::c_int > sigaction(sig, &mut act, 0 as *mut sigaction) {
+                    if 0 as i32 > sigaction(sig, &mut act, 0 as *mut sigaction) {
                         current_block = 11219620342505264191;
                         continue;
                     }
@@ -689,43 +804,41 @@ unsafe extern "C" fn setup_catchsig(mut count: size_t, mut set: *const libc::c_i
 pub unsafe extern "C" fn isr_init(mut be_quiet: *mut bool) -> *mut isr_scratch {
     let mut scratch: *mut isr_scratch = zlloc(
         plexus,
-        (::core::mem::size_of::<isr_scratch>() as libc::c_ulong)
-            .wrapping_mul(1 as libc::c_int as libc::c_ulong),
+        (::core::mem::size_of::<isr_scratch>() as u64).wrapping_mul(1 as i32 as u64),
     ) as *mut isr_scratch;
     let mut ss: stack_t = {
         let mut init = stack_t {
-            ss_sp: alloc(plexus, (10 as libc::c_int * 8192 as libc::c_int) as size_t),
-            ss_flags: 0 as libc::c_int,
-            ss_size: (10 as libc::c_int * 8192 as libc::c_int) as size_t,
+            ss_sp: alloc(plexus, (10 as i32 * 8192 as i32) as size_t),
+            ss_flags: 0 as i32,
+            ss_size: (10 as i32 * 8192 as i32) as size_t,
         };
         init
     };
-    if 0 as libc::c_int > sigaltstack(&mut ss, 0 as *mut stack_t) {
-        fatal_sys(b"sigaltstack\0" as *const u8 as *const libc::c_char);
+    if 0 as i32 > sigaltstack(&mut ss, 0 as *mut stack_t) {
+        fatal_sys(b"sigaltstack\0" as *const u8 as *const i8);
     }
     (*scratch).be_quiet = be_quiet;
     return scratch;
 }
 #[no_mangle]
 pub unsafe extern "C" fn isr_do(mut scratch: *mut isr_scratch, mut action: isr_actions) {
-    match action as libc::c_uint {
+    match action as u32 {
         0 => {
-            let regular: [libc::c_int; 7] = [
-                1 as libc::c_int,
-                2 as libc::c_int,
-                3 as libc::c_int,
-                13 as libc::c_int,
-                15 as libc::c_int,
-                24 as libc::c_int,
-                25 as libc::c_int,
+            let regular: [i32; 7] = [
+                1 as i32,
+                2 as i32,
+                3 as i32,
+                13 as i32,
+                15 as i32,
+                24 as i32,
+                25 as i32,
             ];
             if !(*scratch).catching.regular {
-                (*scratch).catching.regular = 1 as libc::c_int != 0;
+                (*scratch).catching.regular = 1 as i32 != 0;
                 setup_catchsig(
-                    (::core::mem::size_of::<[libc::c_int; 7]>() as libc::c_ulong)
-                        .wrapping_div(
-                            ::core::mem::size_of::<libc::c_int>() as libc::c_ulong,
-                        ) as libc::c_int as size_t,
+                    (::core::mem::size_of::<[i32; 7]>() as u64)
+                        .wrapping_div(::core::mem::size_of::<i32>() as u64) as i32
+                        as size_t,
                     regular.as_ptr(),
                 );
             }
@@ -752,14 +865,13 @@ pub unsafe extern "C" fn isr_do(mut scratch: *mut isr_scratch, mut action: isr_a
             }
         }
         3 => {
-            let mmapsigs: [libc::c_int; 1] = [7 as libc::c_int];
-            if 7 as libc::c_int != 0 && !(*scratch).catching.memory_map {
-                (*scratch).catching.memory_map = 1 as libc::c_int != 0;
+            let mmapsigs: [i32; 1] = [7 as i32];
+            if 7 as i32 != 0 && !(*scratch).catching.memory_map {
+                (*scratch).catching.memory_map = 1 as i32 != 0;
                 setup_catchsig(
-                    (::core::mem::size_of::<[libc::c_int; 1]>() as libc::c_ulong)
-                        .wrapping_div(
-                            ::core::mem::size_of::<libc::c_int>() as libc::c_ulong,
-                        ) as libc::c_int as size_t,
+                    (::core::mem::size_of::<[i32; 1]>() as u64)
+                        .wrapping_div(::core::mem::size_of::<i32>() as u64) as i32
+                        as size_t,
                     mmapsigs.as_ptr(),
                 );
             }

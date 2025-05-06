@@ -1,0 +1,165 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+extern "C" {
+    fn cblas_xerbla(p: i32, rout: *const i8, form: *const i8, _: ...);
+}
+pub type CBLAS_ORDER = u32;
+pub const CblasColMajor: CBLAS_ORDER = 102;
+pub const CblasRowMajor: CBLAS_ORDER = 101;
+pub type CBLAS_UPLO = u32;
+pub const CblasLower: CBLAS_UPLO = 122;
+pub const CblasUpper: CBLAS_UPLO = 121;
+#[no_mangle]
+pub unsafe extern "C" fn cblas_sspr2(
+    order: CBLAS_ORDER,
+    Uplo: CBLAS_UPLO,
+    N: i32,
+    alpha: libc::c_float,
+    mut X: *const libc::c_float,
+    incX: i32,
+    mut Y: *const libc::c_float,
+    incY: i32,
+    mut Ap: *mut libc::c_float,
+) {
+    let mut i: i32 = 0;
+    let mut j: i32 = 0;
+    let mut pos: i32 = 0 as i32;
+    if order as u32 != CblasRowMajor as i32 as u32
+        && order as u32 != CblasColMajor as i32 as u32
+    {
+        pos = 1 as i32;
+    }
+    if Uplo as u32 != CblasUpper as i32 as u32 && Uplo as u32 != CblasLower as i32 as u32
+    {
+        pos = 2 as i32;
+    }
+    if N < 0 as i32 {
+        pos = 3 as i32;
+    }
+    if incX == 0 as i32 {
+        pos = 6 as i32;
+    }
+    if incY == 0 as i32 {
+        pos = 8 as i32;
+    }
+    if pos != 0 {
+        cblas_xerbla(
+            pos,
+            b"./source_spr2.h\0" as *const u8 as *const i8,
+            b"\0" as *const u8 as *const i8,
+        );
+    }
+    if N == 0 as i32 {
+        return;
+    }
+    if alpha as libc::c_double == 0.0f64 {
+        return;
+    }
+    if order as u32 == CblasRowMajor as i32 as u32
+        && Uplo as u32 == CblasUpper as i32 as u32
+        || order as u32 == CblasColMajor as i32 as u32
+            && Uplo as u32 == CblasLower as i32 as u32
+    {
+        let mut ix: i32 = if incX > 0 as i32 {
+            0 as i32
+        } else {
+            (N - 1 as i32) * -incX
+        };
+        let mut iy: i32 = if incY > 0 as i32 {
+            0 as i32
+        } else {
+            (N - 1 as i32) * -incY
+        };
+        i = 0 as i32;
+        while i < N {
+            let tmp1: libc::c_double = (alpha * *X.offset(ix as isize))
+                as libc::c_double;
+            let tmp2: libc::c_double = (alpha * *Y.offset(iy as isize))
+                as libc::c_double;
+            let mut jx: i32 = ix;
+            let mut jy: i32 = iy;
+            j = i;
+            while j < N {
+                let ref mut fresh0 = *Ap
+                    .offset(
+                        ((i - 1 as i32 + 1 as i32) * (2 as i32 * N - (i - 1 as i32))
+                            / 2 as i32 + j - i) as isize,
+                    );
+                *fresh0 = (*fresh0 as libc::c_double
+                    + (tmp1 * *Y.offset(jy as isize) as libc::c_double
+                        + tmp2 * *X.offset(jx as isize) as libc::c_double))
+                    as libc::c_float;
+                jx += incX;
+                jy += incY;
+                j += 1;
+                j;
+            }
+            ix += incX;
+            iy += incY;
+            i += 1;
+            i;
+        }
+    } else if order as u32 == CblasRowMajor as i32 as u32
+        && Uplo as u32 == CblasLower as i32 as u32
+        || order as u32 == CblasColMajor as i32 as u32
+            && Uplo as u32 == CblasUpper as i32 as u32
+    {
+        let mut ix_0: i32 = if incX > 0 as i32 {
+            0 as i32
+        } else {
+            (N - 1 as i32) * -incX
+        };
+        let mut iy_0: i32 = if incY > 0 as i32 {
+            0 as i32
+        } else {
+            (N - 1 as i32) * -incY
+        };
+        i = 0 as i32;
+        while i < N {
+            let tmp1_0: libc::c_double = (alpha * *X.offset(ix_0 as isize))
+                as libc::c_double;
+            let tmp2_0: libc::c_double = (alpha * *Y.offset(iy_0 as isize))
+                as libc::c_double;
+            let mut jx_0: i32 = if incX > 0 as i32 {
+                0 as i32
+            } else {
+                (N - 1 as i32) * -incX
+            };
+            let mut jy_0: i32 = if incY > 0 as i32 {
+                0 as i32
+            } else {
+                (N - 1 as i32) * -incY
+            };
+            j = 0 as i32;
+            while j <= i {
+                let ref mut fresh1 = *Ap
+                    .offset((i * (i + 1 as i32) / 2 as i32 + j) as isize);
+                *fresh1 = (*fresh1 as libc::c_double
+                    + (tmp1_0 * *Y.offset(jy_0 as isize) as libc::c_double
+                        + tmp2_0 * *X.offset(jx_0 as isize) as libc::c_double))
+                    as libc::c_float;
+                jx_0 += incX;
+                jy_0 += incY;
+                j += 1;
+                j;
+            }
+            ix_0 += incX;
+            iy_0 += incY;
+            i += 1;
+            i;
+        }
+    } else {
+        cblas_xerbla(
+            0 as i32,
+            b"./source_spr2.h\0" as *const u8 as *const i8,
+            b"unrecognized operation\0" as *const u8 as *const i8,
+        );
+    };
+}

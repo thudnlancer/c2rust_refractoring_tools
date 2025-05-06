@@ -1,0 +1,1 @@
+/home/c2rust/Desktop/project/rust_code_analyzer/target/release/rust_code_analyzer: /home/c2rust/Desktop/project/rust_code_analyzer/src/cast.rs /home/c2rust/Desktop/project/rust_code_analyzer/src/main.rs

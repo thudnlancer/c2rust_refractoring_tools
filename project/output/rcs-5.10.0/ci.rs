@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type maketimestuff;
     pub type ephemstuff;
@@ -46,7 +56,7 @@ extern "C" {
     fn pairnames(
         argc: libc::c_int,
         argv: *mut *mut libc::c_char,
-        rcsopen: Option::<open_rcsfile_fn>,
+        rcsopen: Option<open_rcsfile_fn>,
         mustread: bool,
         quiet: bool,
     ) -> libc::c_int;
@@ -276,16 +286,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -350,14 +358,73 @@ impl kwsub {
             kwsub::kwsub_b => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> kwsub {
+        match value {
+            0 => kwsub::kwsub_kv,
+            1 => kwsub::kwsub_kvl,
+            2 => kwsub::kwsub_k,
+            3 => kwsub::kwsub_v,
+            4 => kwsub::kwsub_o,
+            5 => kwsub::kwsub_b,
+            _ => panic!("Invalid value for kwsub: {}", value),
+        }
+    }
 }
-
-pub const kwsub_b: kwsub = 5;
-pub const kwsub_o: kwsub = 4;
-pub const kwsub_v: kwsub = 3;
-pub const kwsub_k: kwsub = 2;
-pub const kwsub_kvl: kwsub = 1;
-pub const kwsub_kv: kwsub = 0;
+impl AddAssign<u32> for kwsub {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for kwsub {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for kwsub {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for kwsub {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for kwsub {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for kwsub {
+    type Output = kwsub;
+    fn add(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for kwsub {
+    type Output = kwsub;
+    fn sub(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for kwsub {
+    type Output = kwsub;
+    fn mul(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for kwsub {
+    type Output = kwsub;
+    fn div(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for kwsub {
+    type Output = kwsub;
+    fn rem(self, rhs: u32) -> kwsub {
+        kwsub::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cbuf {
@@ -407,7 +474,7 @@ pub struct fro {
     pub ptr: *mut libc::c_char,
     pub lim: *mut libc::c_char,
     pub base: *mut libc::c_char,
-    pub deallocate: Option::<unsafe extern "C" fn(*mut fro) -> ()>,
+    pub deallocate: Option<unsafe extern "C" fn(*mut fro) -> ()>,
     pub stream: *mut FILE,
     pub verbatim: off_t,
 }
@@ -426,11 +493,70 @@ impl readmethod {
             readmethod::RM_STDIO => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> readmethod {
+        match value {
+            0 => readmethod::RM_MMAP,
+            1 => readmethod::RM_MEM,
+            2 => readmethod::RM_STDIO,
+            _ => panic!("Invalid value for readmethod: {}", value),
+        }
+    }
 }
-
-pub const RM_STDIO: readmethod = 2;
-pub const RM_MEM: readmethod = 1;
-pub const RM_MMAP: readmethod = 0;
+impl AddAssign<u32> for readmethod {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for readmethod {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for readmethod {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for readmethod {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for readmethod {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for readmethod {
+    type Output = readmethod;
+    fn add(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for readmethod {
+    type Output = readmethod;
+    fn sub(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for readmethod {
+    type Output = readmethod;
+    fn mul(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for readmethod {
+    type Output = readmethod;
+    fn div(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for readmethod {
+    type Output = readmethod;
+    fn rem(self, rhs: u32) -> readmethod {
+        readmethod::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct rcslock {
@@ -458,7 +584,7 @@ pub struct tinysym {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct maybe {
-    pub open: Option::<open_rcsfile_fn>,
+    pub open: Option<open_rcsfile_fn>,
     pub mustread: bool,
     pub tentative: cbuf,
     pub space: *mut divvy,
@@ -499,11 +625,70 @@ impl maker {
             maker::effective => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> maker {
+        match value {
+            0 => maker::notmade,
+            1 => maker::real,
+            2 => maker::effective,
+            _ => panic!("Invalid value for maker: {}", value),
+        }
+    }
 }
-
-pub const effective: maker = 2;
-pub const real: maker = 1;
-pub const notmade: maker = 0;
+impl AddAssign<u32> for maker {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for maker {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for maker {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for maker {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for maker {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = maker::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for maker {
+    type Output = maker;
+    fn add(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for maker {
+    type Output = maker;
+    fn sub(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for maker {
+    type Output = maker;
+    fn mul(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for maker {
+    type Output = maker;
+    fn div(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for maker {
+    type Output = maker;
+    fn rem(self, rhs: u32) -> maker {
+        maker::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sff {
@@ -655,20 +840,79 @@ impl C2RustUnnamed_3 {
             C2RustUnnamed_3::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_3 {
+        match value {
+            8 => C2RustUnnamed_3::_ISalnum,
+            4 => C2RustUnnamed_3::_ISpunct,
+            2 => C2RustUnnamed_3::_IScntrl,
+            1 => C2RustUnnamed_3::_ISblank,
+            32768 => C2RustUnnamed_3::_ISgraph,
+            16384 => C2RustUnnamed_3::_ISprint,
+            8192 => C2RustUnnamed_3::_ISspace,
+            4096 => C2RustUnnamed_3::_ISxdigit,
+            2048 => C2RustUnnamed_3::_ISdigit,
+            1024 => C2RustUnnamed_3::_ISalpha,
+            512 => C2RustUnnamed_3::_ISlower,
+            256 => C2RustUnnamed_3::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed_3 = 8;
-pub const _ISpunct: C2RustUnnamed_3 = 4;
-pub const _IScntrl: C2RustUnnamed_3 = 2;
-pub const _ISblank: C2RustUnnamed_3 = 1;
-pub const _ISgraph: C2RustUnnamed_3 = 32768;
-pub const _ISprint: C2RustUnnamed_3 = 16384;
-pub const _ISspace: C2RustUnnamed_3 = 8192;
-pub const _ISxdigit: C2RustUnnamed_3 = 4096;
-pub const _ISdigit: C2RustUnnamed_3 = 2048;
-pub const _ISalpha: C2RustUnnamed_3 = 1024;
-pub const _ISlower: C2RustUnnamed_3 = 512;
-pub const _ISupper: C2RustUnnamed_3 = 256;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type submain_t = unsafe extern "C" fn(
     *const libc::c_char,
     libc::c_int,
@@ -677,7 +921,7 @@ pub type submain_t = unsafe extern "C" fn(
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yacmd {
-    pub func: Option::<submain_t>,
+    pub func: Option<submain_t>,
     pub aka: *const uint8_t,
     pub pr: *mut program,
 }
@@ -698,12 +942,71 @@ impl isr_actions {
             isr_actions::ISR_CATCHMMAPINTS => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> isr_actions {
+        match value {
+            0 => isr_actions::ISR_CATCHINTS,
+            1 => isr_actions::ISR_IGNOREINTS,
+            2 => isr_actions::ISR_RESTOREINTS,
+            3 => isr_actions::ISR_CATCHMMAPINTS,
+            _ => panic!("Invalid value for isr_actions: {}", value),
+        }
+    }
 }
-
-pub const ISR_CATCHMMAPINTS: isr_actions = 3;
-pub const ISR_RESTOREINTS: isr_actions = 2;
-pub const ISR_IGNOREINTS: isr_actions = 1;
-pub const ISR_CATCHINTS: isr_actions = 0;
+impl AddAssign<u32> for isr_actions {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for isr_actions {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for isr_actions {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for isr_actions {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for isr_actions {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = isr_actions::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for isr_actions {
+    type Output = isr_actions;
+    fn add(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for isr_actions {
+    type Output = isr_actions;
+    fn sub(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for isr_actions {
+    type Output = isr_actions;
+    fn mul(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for isr_actions {
+    type Output = isr_actions;
+    fn div(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for isr_actions {
+    type Output = isr_actions;
+    fn rem(self, rhs: u32) -> isr_actions {
+        isr_actions::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expctx {
@@ -801,7 +1104,8 @@ unsafe extern "C" fn incnum(mut onum: *const libc::c_char, mut nnum: *mut cbuf) 
     while np != tp {
         tp = tp.offset(-1);
         if *(*__ctype_b_loc()).offset(*tp as libc::c_int as isize) as libc::c_int
-            & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+            & C2RustUnnamed_3::_ISdigit as libc::c_int as libc::c_ushort as libc::c_int
+            != 0
         {
             if *tp as libc::c_int != '9' as i32 {
                 *tp += 1;
@@ -946,8 +1250,7 @@ unsafe extern "C" fn addbranch(
                 (*num).string = finish_string(plexus, &mut (*num).size);
             }
         } else {
-            (*bud)
-                .target = gr_revno(
+            (*bud).target = gr_revno(
                 (take(0 as libc::c_int as size_t, (*num).string)).string,
                 tp_deltas,
             );
@@ -1253,7 +1556,7 @@ unsafe extern "C" fn xpandfile(
         return -(1 as libc::c_int);
     }
     r = 0 as libc::c_int;
-    if kwsub_o as libc::c_int <= (*top).behavior.kws {
+    if kwsub::kwsub_o as libc::c_int <= (*top).behavior.kws {
         fro_spew((*work).fro, (*work).ex);
     } else {
         let mut ctx: expctx = {
@@ -1330,8 +1633,7 @@ unsafe extern "C" fn getlogmsg(mut reason: *mut reason, mut bud: *mut bud) -> cb
             return (*reason).delayed;
         }
     }
-    (*reason)
-        .delayed = getsstdin(
+    (*reason).delayed = getsstdin(
         b"m\0" as *const u8 as *const libc::c_char,
         b"log message\0" as *const u8 as *const libc::c_char,
         b"\0" as *const u8 as *const libc::c_char,
@@ -1771,8 +2073,7 @@ unsafe extern "C" fn ci_main(
                         (*top).repository.filename,
                         mani_filename,
                     );
-                    work
-                        .fro = fro_open(
+                    work.fro = fro_open(
                         mani_filename,
                         b"r\0" as *const u8 as *const libc::c_char,
                         &mut work.st,
@@ -1862,9 +2163,7 @@ unsafe extern "C" fn ci_main(
                                                 bud.d.lockedby = 0 as *const libc::c_char;
                                                 bud.d.selector = 1 as libc::c_int != 0;
                                                 bud.d.name = 0 as *const libc::c_char;
-                                                bud
-                                                    .d
-                                                    .author = if !author.is_null() {
+                                                bud.d.author = if !author.is_null() {
                                                     author
                                                 } else if bud.keep as libc::c_int != 0
                                                     && {
@@ -1876,9 +2175,7 @@ unsafe extern "C" fn ci_main(
                                                 } else {
                                                     getcaller()
                                                 };
-                                                bud
-                                                    .d
-                                                    .state = if !state.is_null() {
+                                                bud.d.state = if !state.is_null() {
                                                     state
                                                 } else if bud.keep as libc::c_int != 0
                                                     && {
@@ -1952,9 +2249,9 @@ unsafe extern "C" fn ci_main(
                                                                 putdesc(&mut newdesc, 0 as libc::c_int != 0, textfile);
                                                                 changework = (kws
                                                                     < (if 0 as libc::c_int != 0 {
-                                                                        kwsub_b as libc::c_int
+                                                                        kwsub::kwsub_b as libc::c_int
                                                                     } else {
-                                                                        kwsub_o as libc::c_int
+                                                                        kwsub::kwsub_o as libc::c_int
                                                                     })) as libc::c_int;
                                                                 dolog = 1 as libc::c_int != 0;
                                                                 lockthis = lockflag;
@@ -2020,8 +2317,7 @@ unsafe extern "C" fn ci_main(
                                                                             || !symbolic_names.is_null()) as libc::c_int;
                                                                         if changedRCS == 0 {
                                                                             workdelta = bud.target;
-                                                                            (*from)
-                                                                                .verbatim = *((*(*bud.target).text).holes)
+                                                                            (*from).verbatim = *((*(*bud.target).text).holes)
                                                                                 .as_mut_ptr()
                                                                                 .offset(
                                                                                     ((*(*bud.target).text).count)
@@ -2095,8 +2391,7 @@ unsafe extern "C" fn ci_main(
                                                                             bud.d.num,
                                                                             (*bud.target).num,
                                                                         );
-                                                                        (*from)
-                                                                            .verbatim = *((*(*bud.target).text).holes)
+                                                                        (*from).verbatim = *((*(*bud.target).text).holes)
                                                                             .as_mut_ptr()
                                                                             .offset(
                                                                                 ((*(*bud.target).text).count)
@@ -2113,7 +2408,9 @@ unsafe extern "C" fn ci_main(
                                                                         *diffp = prog_diff.as_ptr();
                                                                         diffp = diffp.offset(1);
                                                                         *diffp = diff_flags.as_ptr();
-                                                                        if 0 as libc::c_int != 0 && kws == kwsub_b as libc::c_int {
+                                                                        if 0 as libc::c_int != 0
+                                                                            && kws == kwsub::kwsub_b as libc::c_int
+                                                                        {
                                                                             diffp = diffp.offset(1);
                                                                             *diffp = b"--binary\0" as *const u8 as *const libc::c_char;
                                                                         }
@@ -2236,7 +2533,7 @@ unsafe extern "C" fn ci_main(
                                                                                         | 0o200 as libc::c_int >> 3 as libc::c_int
                                                                                         | 0o200 as libc::c_int >> 3 as libc::c_int
                                                                                             >> 3 as libc::c_int) as mode_t
-                                                                                    | (if !(kws == kwsub_v as libc::c_int
+                                                                                    | (if !(kws == kwsub::kwsub_v as libc::c_int
                                                                                         || (lockthis as libc::c_int)
                                                                                             < (*top).behavior.strictly_locking as libc::c_int)
                                                                                     {
@@ -2257,8 +2554,7 @@ unsafe extern "C" fn ci_main(
                                                                                 {
                                                                                     fro_move(work.fro, 0 as libc::c_int as off_t);
                                                                                     (*top).behavior.inclusive_of_Locker_in_Id_val = lockthis;
-                                                                                    (*workdelta)
-                                                                                        .name = namedrev(
+                                                                                    (*workdelta).name = namedrev(
                                                                                         if !symbolic_names.is_null() {
                                                                                             first_meaningful_symbolic_name(symbolic_names)
                                                                                         } else if bud.keep as libc::c_int != 0
@@ -2301,7 +2597,7 @@ unsafe extern "C" fn ci_main(
                                                                                                 _ => {
                                                                                                     fro_zclose(&mut work.fro);
                                                                                                     aflush(work.ex);
-                                                                                                    isr_do((*top).behavior.isr, ISR_IGNOREINTS);
+                                                                                                    isr_do((*top).behavior.isr, isr_actions::ISR_IGNOREINTS);
                                                                                                     r = chnamemod(
                                                                                                         &mut work.ex,
                                                                                                         newworkname,
@@ -2311,7 +2607,7 @@ unsafe extern "C" fn ci_main(
                                                                                                         mtime,
                                                                                                     );
                                                                                                     keepdirtemp(newworkname);
-                                                                                                    isr_do((*top).behavior.isr, ISR_RESTOREINTS);
+                                                                                                    isr_do((*top).behavior.isr, isr_actions::ISR_RESTOREINTS);
                                                                                                     current_block_194 = 5577234879133443219;
                                                                                                 }
                                                                                             }
@@ -2338,7 +2634,7 @@ unsafe extern "C" fn ci_main(
                                                                                                 _ => {
                                                                                                     fro_zclose(&mut work.fro);
                                                                                                     aflush(work.ex);
-                                                                                                    isr_do((*top).behavior.isr, ISR_IGNOREINTS);
+                                                                                                    isr_do((*top).behavior.isr, isr_actions::ISR_IGNOREINTS);
                                                                                                     r = chnamemod(
                                                                                                         &mut work.ex,
                                                                                                         newworkname,
@@ -2348,7 +2644,7 @@ unsafe extern "C" fn ci_main(
                                                                                                         mtime,
                                                                                                     );
                                                                                                     keepdirtemp(newworkname);
-                                                                                                    isr_do((*top).behavior.isr, ISR_RESTOREINTS);
+                                                                                                    isr_do((*top).behavior.isr, isr_actions::ISR_RESTOREINTS);
                                                                                                     current_block_194 = 5577234879133443219;
                                                                                                 }
                                                                                             }

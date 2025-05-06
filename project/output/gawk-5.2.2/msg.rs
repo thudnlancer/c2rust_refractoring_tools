@@ -1,77 +1,84 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(c_variadic, extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type re_dfa_t;
     pub type dfa;
     pub type break_point;
-    fn longjmp(_: *mut __jmp_buf_tag, _: libc::c_int) -> !;
-    fn vfprintf(
-        _: *mut FILE,
-        _: *const libc::c_char,
-        _: ::core::ffi::VaList,
-    ) -> libc::c_int;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn fflush(__stream: *mut FILE) -> libc::c_int;
+    fn longjmp(_: *mut __jmp_buf_tag, _: i32) -> !;
+    fn vfprintf(_: *mut FILE, _: *const i8, _: ::core::ffi::VaList) -> i32;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn fflush(__stream: *mut FILE) -> i32;
     static mut stderr: *mut _IO_FILE;
-    fn _IO_putc(__c: libc::c_int, __fp: *mut _IO_FILE) -> libc::c_int;
-    fn getenv(__name: *const libc::c_char) -> *mut libc::c_char;
-    fn exit(_: libc::c_int) -> !;
+    fn _IO_putc(__c: i32, __fp: *mut _IO_FILE) -> i32;
+    fn getenv(__name: *const i8) -> *mut i8;
+    fn exit(_: i32) -> !;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    static mut FNR: libc::c_long;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    static mut FNR: i64;
     static mut FILENAME_node: *mut NODE;
     static mut do_flags: do_flag_values;
-    static mut exit_val: libc::c_int;
-    static mut myname: *const libc::c_char;
+    static mut exit_val: i32;
+    static mut myname: *const i8;
     fn close_extensions();
-    fn run_ext_exit_handlers(exitval: libc::c_int);
-    fn lookup(name: *const libc::c_char) -> *mut NODE;
+    fn run_ext_exit_handlers(exitval: i32);
+    fn lookup(name: *const i8) -> *mut NODE;
     static mut output_fp: *mut FILE;
 }
 pub type __builtin_va_list = [__va_list_tag; 1];
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct __va_list_tag {
-    pub gp_offset: libc::c_uint,
-    pub fp_offset: libc::c_uint,
+    pub gp_offset: u32,
+    pub fp_offset: u32,
     pub overflow_arg_area: *mut libc::c_void,
     pub reg_save_area: *mut libc::c_void,
 }
-pub type size_t = libc::c_ulong;
-pub type wchar_t = libc::c_int;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type wchar_t = i32;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct __sigset_t {
-    pub __val: [libc::c_ulong; 16],
+    pub __val: [u64; 16],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -79,8 +86,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -88,22 +95,22 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 pub type va_list = __builtin_va_list;
-pub type __jmp_buf = [libc::c_long; 8];
+pub type __jmp_buf = [i64; 8];
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct __jmp_buf_tag {
     pub __jmpbuf: __jmp_buf,
-    pub __mask_was_saved: libc::c_int,
+    pub __mask_was_saved: i32,
     pub __saved_mask: __sigset_t,
 }
 pub type jmp_buf = [__jmp_buf_tag; 1];
-pub type __re_size_t = libc::c_uint;
-pub type __re_long_size_t = libc::c_ulong;
-pub type reg_syntax_t = libc::c_ulong;
+pub type __re_size_t = u32;
+pub type __re_long_size_t = u64;
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
@@ -111,8 +118,8 @@ pub struct re_pattern_buffer {
     pub allocated: __re_long_size_t,
     pub used: __re_long_size_t,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_uchar,
+    pub fastmap: *mut i8,
+    pub translate: *mut u8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -125,7 +132,7 @@ pub struct re_pattern_buffer {
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 7],
 }
-pub type regoff_t = libc::c_int;
+pub type regoff_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct re_registers {
@@ -149,21 +156,80 @@ pub enum awk_bool {
     awk_true,
 }
 impl awk_bool {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             awk_bool::awk_false => 0,
             awk_bool::awk_true => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> awk_bool {
+        match value {
+            0 => awk_bool::awk_false,
+            1 => awk_bool::awk_true,
+            _ => panic!("Invalid value for awk_bool: {}", value),
+        }
+    }
 }
-
-pub const awk_true: awk_bool = 1;
-pub const awk_false: awk_bool = 0;
+impl AddAssign<u32> for awk_bool {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for awk_bool {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for awk_bool {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for awk_bool {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for awk_bool {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = awk_bool::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for awk_bool {
+    type Output = awk_bool;
+    fn add(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for awk_bool {
+    type Output = awk_bool;
+    fn sub(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for awk_bool {
+    type Output = awk_bool;
+    fn mul(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for awk_bool {
+    type Output = awk_bool;
+    fn div(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for awk_bool {
+    type Output = awk_bool;
+    fn rem(self, rhs: u32) -> awk_bool {
+        awk_bool::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type awk_bool_t = awk_bool;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_string {
-    pub str_0: *mut libc::c_char,
+    pub str_0: *mut i8,
     pub len: size_t,
 }
 pub type awk_string_t = awk_string;
@@ -175,18 +241,77 @@ pub enum AWK_NUMBER_TYPE {
     AWK_NUMBER_TYPE_MPZ,
 }
 impl AWK_NUMBER_TYPE {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE => 0,
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR => 1,
             AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> AWK_NUMBER_TYPE {
+        match value {
+            0 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_DOUBLE,
+            1 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPFR,
+            2 => AWK_NUMBER_TYPE::AWK_NUMBER_TYPE_MPZ,
+            _ => panic!("Invalid value for AWK_NUMBER_TYPE: {}", value),
+        }
+    }
 }
-
-pub const AWK_NUMBER_TYPE_MPZ: AWK_NUMBER_TYPE = 2;
-pub const AWK_NUMBER_TYPE_MPFR: AWK_NUMBER_TYPE = 1;
-pub const AWK_NUMBER_TYPE_DOUBLE: AWK_NUMBER_TYPE = 0;
+impl AddAssign<u32> for AWK_NUMBER_TYPE {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for AWK_NUMBER_TYPE {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for AWK_NUMBER_TYPE {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for AWK_NUMBER_TYPE {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for AWK_NUMBER_TYPE {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn add(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn sub(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn mul(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn div(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for AWK_NUMBER_TYPE {
+    type Output = AWK_NUMBER_TYPE;
+    fn rem(self, rhs: u32) -> AWK_NUMBER_TYPE {
+        AWK_NUMBER_TYPE::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_number {
@@ -212,7 +337,7 @@ pub enum awk_valtype_t {
     AWK_BOOL,
 }
 impl awk_valtype_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             awk_valtype_t::AWK_UNDEFINED => 0,
             awk_valtype_t::AWK_NUMBER => 1,
@@ -225,17 +350,76 @@ impl awk_valtype_t {
             awk_valtype_t::AWK_BOOL => 8,
         }
     }
+    fn from_libc_c_uint(value: u32) -> awk_valtype_t {
+        match value {
+            0 => awk_valtype_t::AWK_UNDEFINED,
+            1 => awk_valtype_t::AWK_NUMBER,
+            2 => awk_valtype_t::AWK_STRING,
+            3 => awk_valtype_t::AWK_REGEX,
+            4 => awk_valtype_t::AWK_STRNUM,
+            5 => awk_valtype_t::AWK_ARRAY,
+            6 => awk_valtype_t::AWK_SCALAR,
+            7 => awk_valtype_t::AWK_VALUE_COOKIE,
+            8 => awk_valtype_t::AWK_BOOL,
+            _ => panic!("Invalid value for awk_valtype_t: {}", value),
+        }
+    }
 }
-
-pub const AWK_BOOL: awk_valtype_t = 8;
-pub const AWK_VALUE_COOKIE: awk_valtype_t = 7;
-pub const AWK_SCALAR: awk_valtype_t = 6;
-pub const AWK_ARRAY: awk_valtype_t = 5;
-pub const AWK_STRNUM: awk_valtype_t = 4;
-pub const AWK_REGEX: awk_valtype_t = 3;
-pub const AWK_STRING: awk_valtype_t = 2;
-pub const AWK_NUMBER: awk_valtype_t = 1;
-pub const AWK_UNDEFINED: awk_valtype_t = 0;
+impl AddAssign<u32> for awk_valtype_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for awk_valtype_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for awk_valtype_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for awk_valtype_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for awk_valtype_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn add(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn sub(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn mul(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn div(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for awk_valtype_t {
+    type Output = awk_valtype_t;
+    fn rem(self, rhs: u32) -> awk_valtype_t {
+        awk_valtype_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_value {
@@ -256,10 +440,10 @@ pub type awk_value_t = awk_value;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct awk_ext_func {
-    pub name: *const libc::c_char,
-    pub function: Option::<
+    pub name: *const i8,
+    pub function: Option<
         unsafe extern "C" fn(
-            libc::c_int,
+            i32,
             *mut awk_value_t,
             *mut awk_ext_func,
         ) -> *mut awk_value_t,
@@ -295,7 +479,7 @@ pub enum nodevals {
     Node_final,
 }
 impl nodevals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             nodevals::Node_illegal => 0,
             nodevals::Node_val => 1,
@@ -319,28 +503,87 @@ impl nodevals {
             nodevals::Node_final => 19,
         }
     }
+    fn from_libc_c_uint(value: u32) -> nodevals {
+        match value {
+            0 => nodevals::Node_illegal,
+            1 => nodevals::Node_val,
+            2 => nodevals::Node_regex,
+            3 => nodevals::Node_dynregex,
+            4 => nodevals::Node_var,
+            5 => nodevals::Node_var_array,
+            6 => nodevals::Node_var_new,
+            7 => nodevals::Node_elem_new,
+            8 => nodevals::Node_param_list,
+            9 => nodevals::Node_func,
+            10 => nodevals::Node_ext_func,
+            11 => nodevals::Node_builtin_func,
+            12 => nodevals::Node_array_ref,
+            13 => nodevals::Node_array_tree,
+            14 => nodevals::Node_array_leaf,
+            15 => nodevals::Node_dump_array,
+            16 => nodevals::Node_arrayfor,
+            17 => nodevals::Node_frame,
+            18 => nodevals::Node_instruction,
+            19 => nodevals::Node_final,
+            _ => panic!("Invalid value for nodevals: {}", value),
+        }
+    }
 }
-
-pub const Node_final: nodevals = 19;
-pub const Node_instruction: nodevals = 18;
-pub const Node_frame: nodevals = 17;
-pub const Node_arrayfor: nodevals = 16;
-pub const Node_dump_array: nodevals = 15;
-pub const Node_array_leaf: nodevals = 14;
-pub const Node_array_tree: nodevals = 13;
-pub const Node_array_ref: nodevals = 12;
-pub const Node_builtin_func: nodevals = 11;
-pub const Node_ext_func: nodevals = 10;
-pub const Node_func: nodevals = 9;
-pub const Node_param_list: nodevals = 8;
-pub const Node_elem_new: nodevals = 7;
-pub const Node_var_new: nodevals = 6;
-pub const Node_var_array: nodevals = 5;
-pub const Node_var: nodevals = 4;
-pub const Node_dynregex: nodevals = 3;
-pub const Node_regex: nodevals = 2;
-pub const Node_val: nodevals = 1;
-pub const Node_illegal: nodevals = 0;
+impl AddAssign<u32> for nodevals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for nodevals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for nodevals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for nodevals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for nodevals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = nodevals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for nodevals {
+    type Output = nodevals;
+    fn add(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for nodevals {
+    type Output = nodevals;
+    fn sub(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for nodevals {
+    type Output = nodevals;
+    fn mul(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for nodevals {
+    type Output = nodevals;
+    fn div(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for nodevals {
+    type Output = nodevals;
+    fn rem(self, rhs: u32) -> nodevals {
+        nodevals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type NODETYPE = nodevals;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -348,7 +591,7 @@ pub struct exp_node {
     pub sub: C2RustUnnamed_0,
     pub type_0: NODETYPE,
     pub flags: flagvals,
-    pub valref: libc::c_long,
+    pub valref: i64,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -375,7 +618,7 @@ pub enum flagvals {
     MALLOC = 1,
 }
 impl flagvals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             flagvals::REGEX => 524288,
             flagvals::NUMCONSTSTR => 262144,
@@ -399,28 +642,87 @@ impl flagvals {
             flagvals::MALLOC => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> flagvals {
+        match value {
+            524288 => flagvals::REGEX,
+            262144 => flagvals::NUMCONSTSTR,
+            131072 => flagvals::XARRAY,
+            65536 => flagvals::HALFHAT,
+            32768 => flagvals::ARRAYMAXED,
+            16384 => flagvals::NULL_FIELD,
+            8192 => flagvals::NO_EXT_SET,
+            4096 => flagvals::MPZN,
+            2048 => flagvals::MPFN,
+            1024 => flagvals::WSTRCUR,
+            512 => flagvals::INTIND,
+            256 => flagvals::NUMINT,
+            128 => flagvals::INTLSTR,
+            64 => flagvals::BOOLVAL,
+            32 => flagvals::USER_INPUT,
+            16 => flagvals::NUMBER,
+            8 => flagvals::NUMCUR,
+            4 => flagvals::STRCUR,
+            2 => flagvals::STRING,
+            1 => flagvals::MALLOC,
+            _ => panic!("Invalid value for flagvals: {}", value),
+        }
+    }
 }
-
-pub const REGEX: flagvals = 524288;
-pub const NUMCONSTSTR: flagvals = 262144;
-pub const XARRAY: flagvals = 131072;
-pub const HALFHAT: flagvals = 65536;
-pub const ARRAYMAXED: flagvals = 32768;
-pub const NULL_FIELD: flagvals = 16384;
-pub const NO_EXT_SET: flagvals = 8192;
-pub const MPZN: flagvals = 4096;
-pub const MPFN: flagvals = 2048;
-pub const WSTRCUR: flagvals = 1024;
-pub const INTIND: flagvals = 512;
-pub const NUMINT: flagvals = 256;
-pub const INTLSTR: flagvals = 128;
-pub const BOOLVAL: flagvals = 64;
-pub const USER_INPUT: flagvals = 32;
-pub const NUMBER: flagvals = 16;
-pub const NUMCUR: flagvals = 8;
-pub const STRCUR: flagvals = 4;
-pub const STRING: flagvals = 2;
-pub const MALLOC: flagvals = 1;
+impl AddAssign<u32> for flagvals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for flagvals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for flagvals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for flagvals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for flagvals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = flagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for flagvals {
+    type Output = flagvals;
+    fn add(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for flagvals {
+    type Output = flagvals;
+    fn sub(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for flagvals {
+    type Output = flagvals;
+    fn mul(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for flagvals {
+    type Output = flagvals;
+    fn div(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for flagvals {
+    type Output = flagvals;
+    fn rem(self, rhs: u32) -> flagvals {
+        flagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
@@ -431,9 +733,9 @@ pub union C2RustUnnamed_0 {
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
     pub fltnum: libc::c_double,
-    pub sp: *mut libc::c_char,
+    pub sp: *mut i8,
     pub slen: size_t,
-    pub idx: libc::c_int,
+    pub idx: i32,
     pub wsp: *mut wchar_t,
     pub wslen: size_t,
     pub typre: *mut exp_node,
@@ -447,28 +749,87 @@ pub enum commenttype {
     EOL_COMMENT = 1,
 }
 impl commenttype {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             commenttype::FOR_COMMENT => 3,
             commenttype::BLOCK_COMMENT => 2,
             commenttype::EOL_COMMENT => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> commenttype {
+        match value {
+            3 => commenttype::FOR_COMMENT,
+            2 => commenttype::BLOCK_COMMENT,
+            1 => commenttype::EOL_COMMENT,
+            _ => panic!("Invalid value for commenttype: {}", value),
+        }
+    }
 }
-
-pub const FOR_COMMENT: commenttype = 3;
-pub const BLOCK_COMMENT: commenttype = 2;
-pub const EOL_COMMENT: commenttype = 1;
+impl AddAssign<u32> for commenttype {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for commenttype {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for commenttype {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for commenttype {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for commenttype {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = commenttype::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for commenttype {
+    type Output = commenttype;
+    fn add(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for commenttype {
+    type Output = commenttype;
+    fn sub(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for commenttype {
+    type Output = commenttype;
+    fn mul(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for commenttype {
+    type Output = commenttype;
+    fn div(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for commenttype {
+    type Output = commenttype;
+    fn rem(self, rhs: u32) -> commenttype {
+        commenttype::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
     pub l: C2RustUnnamed_9,
     pub r: C2RustUnnamed_4,
     pub x: C2RustUnnamed_3,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub reserved: size_t,
     pub rn: *mut exp_node,
-    pub cnt: libc::c_ulong,
+    pub cnt: u64,
     pub reflags: reflagvals,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -478,22 +839,81 @@ pub enum reflagvals {
     FS_DFLT = 2,
 }
 impl reflagvals {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             reflagvals::CONSTANT => 1,
             reflagvals::FS_DFLT => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> reflagvals {
+        match value {
+            1 => reflagvals::CONSTANT,
+            2 => reflagvals::FS_DFLT,
+            _ => panic!("Invalid value for reflagvals: {}", value),
+        }
+    }
 }
-
-pub const FS_DFLT: reflagvals = 2;
-pub const CONSTANT: reflagvals = 1;
+impl AddAssign<u32> for reflagvals {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for reflagvals {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for reflagvals {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for reflagvals {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for reflagvals {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = reflagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for reflagvals {
+    type Output = reflagvals;
+    fn add(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for reflagvals {
+    type Output = reflagvals;
+    fn sub(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for reflagvals {
+    type Output = reflagvals;
+    fn mul(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for reflagvals {
+    type Output = reflagvals;
+    fn div(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for reflagvals {
+    type Output = reflagvals;
+    fn rem(self, rhs: u32) -> reflagvals {
+        reflagvals::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_3 {
     pub extra: *mut exp_node,
-    pub aptr: Option::<unsafe extern "C" fn() -> ()>,
-    pub xl: libc::c_long,
+    pub aptr: Option<unsafe extern "C" fn() -> ()>,
+    pub xl: i64,
     pub cmnt: *mut libc::c_void,
 }
 #[derive(Copy, Clone)]
@@ -503,7 +923,7 @@ pub union C2RustUnnamed_4 {
     pub preg: [*mut Regexp; 2],
     pub av: *mut *mut exp_node,
     pub bv: *mut *mut BUCKET,
-    pub uptr: Option::<unsafe extern "C" fn() -> ()>,
+    pub uptr: Option<unsafe extern "C" fn() -> ()>,
     pub iptr: *mut exp_instruction,
 }
 #[derive(Copy, Clone)]
@@ -646,7 +1066,7 @@ pub enum opcodeval {
     Op_illegal = 0,
 }
 impl opcodeval {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             opcodeval::Op_final => 122,
             opcodeval::Op_parens => 121,
@@ -773,137 +1193,196 @@ impl opcodeval {
             opcodeval::Op_illegal => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> opcodeval {
+        match value {
+            122 => opcodeval::Op_final,
+            121 => opcodeval::Op_parens,
+            120 => opcodeval::Op_cond_exp,
+            119 => opcodeval::Op_K_function,
+            118 => opcodeval::Op_K_else,
+            117 => opcodeval::Op_K_if,
+            116 => opcodeval::Op_K_switch,
+            115 => opcodeval::Op_K_while,
+            114 => opcodeval::Op_K_arrayfor,
+            113 => opcodeval::Op_K_for,
+            112 => opcodeval::Op_K_do,
+            111 => opcodeval::Op_list,
+            110 => opcodeval::Op_symbol,
+            109 => opcodeval::Op_token,
+            108 => opcodeval::Op_stop,
+            107 => opcodeval::Op_atexit,
+            106 => opcodeval::Op_lint_plus,
+            105 => opcodeval::Op_lint,
+            104 => opcodeval::Op_breakpoint,
+            103 => opcodeval::Op_exec_count,
+            102 => opcodeval::Op_comment,
+            101 => opcodeval::Op_func,
+            100 => opcodeval::Op_after_endfile,
+            99 => opcodeval::Op_after_beginfile,
+            98 => opcodeval::Op_subscript_assign,
+            97 => opcodeval::Op_field_assign,
+            96 => opcodeval::Op_var_assign,
+            95 => opcodeval::Op_var_update,
+            94 => opcodeval::Op_arrayfor_final,
+            93 => opcodeval::Op_arrayfor_incr,
+            92 => opcodeval::Op_arrayfor_init,
+            91 => opcodeval::Op_newfile,
+            90 => opcodeval::Op_get_record,
+            89 => opcodeval::Op_jmp_false,
+            88 => opcodeval::Op_jmp_true,
+            87 => opcodeval::Op_jmp,
+            86 => opcodeval::Op_pop,
+            85 => opcodeval::Op_no_op,
+            84 => opcodeval::Op_field_spec_lhs,
+            83 => opcodeval::Op_subscript_lhs,
+            82 => opcodeval::Op_push_lhs,
+            81 => opcodeval::Op_push_param,
+            80 => opcodeval::Op_push_array,
+            79 => opcodeval::Op_push_re,
+            78 => opcodeval::Op_push_i,
+            77 => opcodeval::Op_push_arg_untyped,
+            76 => opcodeval::Op_push_arg,
+            75 => opcodeval::Op_push,
+            74 => opcodeval::Op_indirect_func_call,
+            73 => opcodeval::Op_func_call,
+            72 => opcodeval::Op_in_array,
+            71 => opcodeval::Op_ext_builtin,
+            70 => opcodeval::Op_sub_builtin,
+            69 => opcodeval::Op_builtin,
+            68 => opcodeval::Op_K_namespace,
+            67 => opcodeval::Op_K_nextfile,
+            66 => opcodeval::Op_K_getline,
+            65 => opcodeval::Op_K_getline_redir,
+            64 => opcodeval::Op_K_delete_loop,
+            63 => opcodeval::Op_K_delete,
+            62 => opcodeval::Op_K_return_from_eval,
+            61 => opcodeval::Op_K_return,
+            60 => opcodeval::Op_K_exit,
+            59 => opcodeval::Op_K_next,
+            58 => opcodeval::Op_K_printf,
+            57 => opcodeval::Op_K_print_rec,
+            56 => opcodeval::Op_K_print,
+            55 => opcodeval::Op_K_continue,
+            54 => opcodeval::Op_K_break,
+            53 => opcodeval::Op_K_default,
+            52 => opcodeval::Op_K_case,
+            51 => opcodeval::Op_rule,
+            50 => opcodeval::Op_nomatch,
+            49 => opcodeval::Op_match_rec,
+            48 => opcodeval::Op_match,
+            47 => opcodeval::Op_geq,
+            46 => opcodeval::Op_leq,
+            45 => opcodeval::Op_greater,
+            44 => opcodeval::Op_less,
+            43 => opcodeval::Op_notequal,
+            42 => opcodeval::Op_equal,
+            41 => opcodeval::Op_or_final,
+            40 => opcodeval::Op_or,
+            39 => opcodeval::Op_and_final,
+            38 => opcodeval::Op_and,
+            37 => opcodeval::Op_assign_concat,
+            36 => opcodeval::Op_assign_exp,
+            35 => opcodeval::Op_assign_minus,
+            34 => opcodeval::Op_assign_plus,
+            33 => opcodeval::Op_assign_mod,
+            32 => opcodeval::Op_assign_quotient,
+            31 => opcodeval::Op_assign_times,
+            30 => opcodeval::Op_store_field_exp,
+            29 => opcodeval::Op_store_field,
+            28 => opcodeval::Op_store_sub,
+            27 => opcodeval::Op_store_var,
+            26 => opcodeval::Op_assign,
+            25 => opcodeval::Op_not,
+            24 => opcodeval::Op_field_spec,
+            23 => opcodeval::Op_unary_plus,
+            22 => opcodeval::Op_unary_minus,
+            21 => opcodeval::Op_postdecrement,
+            20 => opcodeval::Op_postincrement,
+            19 => opcodeval::Op_predecrement,
+            18 => opcodeval::Op_preincrement,
+            17 => opcodeval::Op_sub_array,
+            16 => opcodeval::Op_subscript,
+            15 => opcodeval::Op_cond_pair,
+            14 => opcodeval::Op_line_range,
+            13 => opcodeval::Op_concat,
+            12 => opcodeval::Op_exp_i,
+            11 => opcodeval::Op_exp,
+            10 => opcodeval::Op_minus_i,
+            9 => opcodeval::Op_minus,
+            8 => opcodeval::Op_plus_i,
+            7 => opcodeval::Op_plus,
+            6 => opcodeval::Op_mod_i,
+            5 => opcodeval::Op_mod,
+            4 => opcodeval::Op_quotient_i,
+            3 => opcodeval::Op_quotient,
+            2 => opcodeval::Op_times_i,
+            1 => opcodeval::Op_times,
+            0 => opcodeval::Op_illegal,
+            _ => panic!("Invalid value for opcodeval: {}", value),
+        }
+    }
 }
-
-pub const Op_final: opcodeval = 122;
-pub const Op_parens: opcodeval = 121;
-pub const Op_cond_exp: opcodeval = 120;
-pub const Op_K_function: opcodeval = 119;
-pub const Op_K_else: opcodeval = 118;
-pub const Op_K_if: opcodeval = 117;
-pub const Op_K_switch: opcodeval = 116;
-pub const Op_K_while: opcodeval = 115;
-pub const Op_K_arrayfor: opcodeval = 114;
-pub const Op_K_for: opcodeval = 113;
-pub const Op_K_do: opcodeval = 112;
-pub const Op_list: opcodeval = 111;
-pub const Op_symbol: opcodeval = 110;
-pub const Op_token: opcodeval = 109;
-pub const Op_stop: opcodeval = 108;
-pub const Op_atexit: opcodeval = 107;
-pub const Op_lint_plus: opcodeval = 106;
-pub const Op_lint: opcodeval = 105;
-pub const Op_breakpoint: opcodeval = 104;
-pub const Op_exec_count: opcodeval = 103;
-pub const Op_comment: opcodeval = 102;
-pub const Op_func: opcodeval = 101;
-pub const Op_after_endfile: opcodeval = 100;
-pub const Op_after_beginfile: opcodeval = 99;
-pub const Op_subscript_assign: opcodeval = 98;
-pub const Op_field_assign: opcodeval = 97;
-pub const Op_var_assign: opcodeval = 96;
-pub const Op_var_update: opcodeval = 95;
-pub const Op_arrayfor_final: opcodeval = 94;
-pub const Op_arrayfor_incr: opcodeval = 93;
-pub const Op_arrayfor_init: opcodeval = 92;
-pub const Op_newfile: opcodeval = 91;
-pub const Op_get_record: opcodeval = 90;
-pub const Op_jmp_false: opcodeval = 89;
-pub const Op_jmp_true: opcodeval = 88;
-pub const Op_jmp: opcodeval = 87;
-pub const Op_pop: opcodeval = 86;
-pub const Op_no_op: opcodeval = 85;
-pub const Op_field_spec_lhs: opcodeval = 84;
-pub const Op_subscript_lhs: opcodeval = 83;
-pub const Op_push_lhs: opcodeval = 82;
-pub const Op_push_param: opcodeval = 81;
-pub const Op_push_array: opcodeval = 80;
-pub const Op_push_re: opcodeval = 79;
-pub const Op_push_i: opcodeval = 78;
-pub const Op_push_arg_untyped: opcodeval = 77;
-pub const Op_push_arg: opcodeval = 76;
-pub const Op_push: opcodeval = 75;
-pub const Op_indirect_func_call: opcodeval = 74;
-pub const Op_func_call: opcodeval = 73;
-pub const Op_in_array: opcodeval = 72;
-pub const Op_ext_builtin: opcodeval = 71;
-pub const Op_sub_builtin: opcodeval = 70;
-pub const Op_builtin: opcodeval = 69;
-pub const Op_K_namespace: opcodeval = 68;
-pub const Op_K_nextfile: opcodeval = 67;
-pub const Op_K_getline: opcodeval = 66;
-pub const Op_K_getline_redir: opcodeval = 65;
-pub const Op_K_delete_loop: opcodeval = 64;
-pub const Op_K_delete: opcodeval = 63;
-pub const Op_K_return_from_eval: opcodeval = 62;
-pub const Op_K_return: opcodeval = 61;
-pub const Op_K_exit: opcodeval = 60;
-pub const Op_K_next: opcodeval = 59;
-pub const Op_K_printf: opcodeval = 58;
-pub const Op_K_print_rec: opcodeval = 57;
-pub const Op_K_print: opcodeval = 56;
-pub const Op_K_continue: opcodeval = 55;
-pub const Op_K_break: opcodeval = 54;
-pub const Op_K_default: opcodeval = 53;
-pub const Op_K_case: opcodeval = 52;
-pub const Op_rule: opcodeval = 51;
-pub const Op_nomatch: opcodeval = 50;
-pub const Op_match_rec: opcodeval = 49;
-pub const Op_match: opcodeval = 48;
-pub const Op_geq: opcodeval = 47;
-pub const Op_leq: opcodeval = 46;
-pub const Op_greater: opcodeval = 45;
-pub const Op_less: opcodeval = 44;
-pub const Op_notequal: opcodeval = 43;
-pub const Op_equal: opcodeval = 42;
-pub const Op_or_final: opcodeval = 41;
-pub const Op_or: opcodeval = 40;
-pub const Op_and_final: opcodeval = 39;
-pub const Op_and: opcodeval = 38;
-pub const Op_assign_concat: opcodeval = 37;
-pub const Op_assign_exp: opcodeval = 36;
-pub const Op_assign_minus: opcodeval = 35;
-pub const Op_assign_plus: opcodeval = 34;
-pub const Op_assign_mod: opcodeval = 33;
-pub const Op_assign_quotient: opcodeval = 32;
-pub const Op_assign_times: opcodeval = 31;
-pub const Op_store_field_exp: opcodeval = 30;
-pub const Op_store_field: opcodeval = 29;
-pub const Op_store_sub: opcodeval = 28;
-pub const Op_store_var: opcodeval = 27;
-pub const Op_assign: opcodeval = 26;
-pub const Op_not: opcodeval = 25;
-pub const Op_field_spec: opcodeval = 24;
-pub const Op_unary_plus: opcodeval = 23;
-pub const Op_unary_minus: opcodeval = 22;
-pub const Op_postdecrement: opcodeval = 21;
-pub const Op_postincrement: opcodeval = 20;
-pub const Op_predecrement: opcodeval = 19;
-pub const Op_preincrement: opcodeval = 18;
-pub const Op_sub_array: opcodeval = 17;
-pub const Op_subscript: opcodeval = 16;
-pub const Op_cond_pair: opcodeval = 15;
-pub const Op_line_range: opcodeval = 14;
-pub const Op_concat: opcodeval = 13;
-pub const Op_exp_i: opcodeval = 12;
-pub const Op_exp: opcodeval = 11;
-pub const Op_minus_i: opcodeval = 10;
-pub const Op_minus: opcodeval = 9;
-pub const Op_plus_i: opcodeval = 8;
-pub const Op_plus: opcodeval = 7;
-pub const Op_mod_i: opcodeval = 6;
-pub const Op_mod: opcodeval = 5;
-pub const Op_quotient_i: opcodeval = 4;
-pub const Op_quotient: opcodeval = 3;
-pub const Op_times_i: opcodeval = 2;
-pub const Op_times: opcodeval = 1;
-pub const Op_illegal: opcodeval = 0;
+impl AddAssign<u32> for opcodeval {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for opcodeval {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for opcodeval {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for opcodeval {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for opcodeval {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = opcodeval::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for opcodeval {
+    type Output = opcodeval;
+    fn add(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for opcodeval {
+    type Output = opcodeval;
+    fn sub(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for opcodeval {
+    type Output = opcodeval;
+    fn mul(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for opcodeval {
+    type Output = opcodeval;
+    fn div(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for opcodeval {
+    type Output = opcodeval;
+    fn rem(self, rhs: u32) -> opcodeval {
+        opcodeval::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_5 {
-    pub xl: libc::c_long,
+    pub xl: i64,
     pub xn: *mut NODE,
-    pub aptr: Option::<unsafe extern "C" fn() -> ()>,
+    pub aptr: Option<unsafe extern "C" fn() -> ()>,
     pub xi: *mut exp_instruction,
     pub bpt: *mut break_point,
     pub exf: *mut awk_ext_func_t,
@@ -914,17 +1393,17 @@ pub type NODE = exp_node;
 pub union C2RustUnnamed_6 {
     pub dn: *mut NODE,
     pub di: *mut exp_instruction,
-    pub fptr: Option::<unsafe extern "C" fn(libc::c_int) -> *mut NODE>,
-    pub efptr: Option::<
+    pub fptr: Option<unsafe extern "C" fn(i32) -> *mut NODE>,
+    pub efptr: Option<
         unsafe extern "C" fn(
-            libc::c_int,
+            i32,
             *mut awk_value_t,
             *mut awk_ext_func,
         ) -> *mut awk_value_t,
     >,
-    pub dl: libc::c_long,
+    pub dl: i64,
     pub ldl: exec_count_t,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
 }
 pub type exec_count_t = libc::c_ulonglong;
 pub type BUCKET = bucket_item;
@@ -938,7 +1417,7 @@ pub union bucket_item {
 #[repr(C)]
 pub struct C2RustUnnamed_7 {
     pub next: *mut bucket_item,
-    pub li: [libc::c_long; 2],
+    pub li: [i64; 2],
     pub val: [*mut exp_node; 2],
     pub cnt: size_t,
 }
@@ -946,7 +1425,7 @@ pub struct C2RustUnnamed_7 {
 #[repr(C)]
 pub struct C2RustUnnamed_8 {
     pub next: *mut bucket_item,
-    pub str_0: *mut libc::c_char,
+    pub str_0: *mut i8,
     pub len: size_t,
     pub code: size_t,
     pub name: *mut exp_node,
@@ -957,13 +1436,13 @@ pub struct C2RustUnnamed_8 {
 pub union C2RustUnnamed_9 {
     pub lptr: *mut exp_node,
     pub li: *mut exp_instruction,
-    pub ll: libc::c_long,
+    pub ll: i64,
     pub lp: *const array_funcs_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct array_funcs_t {
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub init: afunc_t,
     pub type_of: afunc_t,
     pub lookup: afunc_t,
@@ -975,7 +1454,7 @@ pub struct array_funcs_t {
     pub dump: afunc_t,
     pub store: afunc_t,
 }
-pub type afunc_t = Option::<
+pub type afunc_t = Option<
     unsafe extern "C" fn(*mut exp_node, *mut exp_node) -> *mut *mut exp_node,
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -1000,7 +1479,7 @@ pub enum do_flag_values {
     DO_FLAG_NONE = 0,
 }
 impl do_flag_values {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             do_flag_values::DO_MPFR => 32768,
             do_flag_values::DO_DEBUG => 16384,
@@ -1021,31 +1500,90 @@ impl do_flag_values {
             do_flag_values::DO_FLAG_NONE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> do_flag_values {
+        match value {
+            32768 => do_flag_values::DO_MPFR,
+            16384 => do_flag_values::DO_DEBUG,
+            8192 => do_flag_values::DO_PROFILE,
+            4096 => do_flag_values::DO_SANDBOX,
+            2048 => do_flag_values::DO_TIDY_MEM,
+            1024 => do_flag_values::DO_DUMP_VARS,
+            512 => do_flag_values::DO_PRETTY_PRINT,
+            256 => do_flag_values::DO_INTERVALS,
+            128 => do_flag_values::DO_NON_DEC_DATA,
+            64 => do_flag_values::DO_INTL,
+            32 => do_flag_values::DO_POSIX,
+            16 => do_flag_values::DO_TRADITIONAL,
+            8 => do_flag_values::DO_LINT_OLD,
+            4 => do_flag_values::DO_LINT_ALL,
+            2 => do_flag_values::DO_LINT_EXTENSIONS,
+            1 => do_flag_values::DO_LINT_INVALID,
+            0 => do_flag_values::DO_FLAG_NONE,
+            _ => panic!("Invalid value for do_flag_values: {}", value),
+        }
+    }
 }
-
-pub const DO_MPFR: do_flag_values = 32768;
-pub const DO_DEBUG: do_flag_values = 16384;
-pub const DO_PROFILE: do_flag_values = 8192;
-pub const DO_SANDBOX: do_flag_values = 4096;
-pub const DO_TIDY_MEM: do_flag_values = 2048;
-pub const DO_DUMP_VARS: do_flag_values = 1024;
-pub const DO_PRETTY_PRINT: do_flag_values = 512;
-pub const DO_INTERVALS: do_flag_values = 256;
-pub const DO_NON_DEC_DATA: do_flag_values = 128;
-pub const DO_INTL: do_flag_values = 64;
-pub const DO_POSIX: do_flag_values = 32;
-pub const DO_TRADITIONAL: do_flag_values = 16;
-pub const DO_LINT_OLD: do_flag_values = 8;
-pub const DO_LINT_ALL: do_flag_values = 4;
-pub const DO_LINT_EXTENSIONS: do_flag_values = 2;
-pub const DO_LINT_INVALID: do_flag_values = 1;
-pub const DO_FLAG_NONE: do_flag_values = 0;
+impl AddAssign<u32> for do_flag_values {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for do_flag_values {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for do_flag_values {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for do_flag_values {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for do_flag_values {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = do_flag_values::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn add(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn sub(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn mul(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn div(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for do_flag_values {
+    type Output = do_flag_values;
+    fn rem(self, rhs: u32) -> do_flag_values {
+        do_flag_values::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[no_mangle]
-pub static mut sourceline: libc::c_int = 0 as libc::c_int;
+pub static mut sourceline: i32 = 0 as i32;
 #[no_mangle]
-pub static mut source: *mut libc::c_char = 0 as *const libc::c_char as *mut libc::c_char;
-static mut srcfile: *const libc::c_char = 0 as *const libc::c_char;
-static mut srcline: libc::c_int = 0;
+pub static mut source: *mut i8 = 0 as *const i8 as *mut i8;
+static mut srcfile: *const i8 = 0 as *const i8;
+static mut srcline: i32 = 0;
 #[no_mangle]
 pub static mut fatal_tag: jmp_buf = [__jmp_buf_tag {
     __jmpbuf: [0; 8],
@@ -1053,162 +1591,128 @@ pub static mut fatal_tag: jmp_buf = [__jmp_buf_tag {
     __saved_mask: __sigset_t { __val: [0; 16] },
 }; 1];
 #[no_mangle]
-pub static mut fatal_tag_valid: libc::c_int = 0 as libc::c_int;
+pub static mut fatal_tag_valid: i32 = 0 as i32;
 #[no_mangle]
 pub unsafe extern "C" fn err(
     mut isfatal: bool,
-    mut s: *const libc::c_char,
-    mut emsg: *const libc::c_char,
+    mut s: *const i8,
+    mut emsg: *const i8,
     mut argp: ::core::ffi::VaList,
 ) {
-    let mut file: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut me: *const libc::c_char = 0 as *const libc::c_char;
-    static mut first: bool = 1 as libc::c_int != 0;
-    static mut add_src_info: bool = 0 as libc::c_int != 0;
-    static mut lineno_val: libc::c_long = 0 as libc::c_int as libc::c_long;
+    let mut file: *mut i8 = 0 as *mut i8;
+    let mut me: *const i8 = 0 as *const i8;
+    static mut first: bool = 1 as i32 != 0;
+    static mut add_src_info: bool = 0 as i32 != 0;
+    static mut lineno_val: i64 = 0 as i32 as i64;
     if first {
-        first = 0 as libc::c_int != 0;
-        add_src_info = !(getenv(b"GAWK_MSG_SRC\0" as *const u8 as *const libc::c_char))
-            .is_null();
-        if do_flags as libc::c_uint & DO_TRADITIONAL as libc::c_int as libc::c_uint == 0
-        {
-            let mut n: *mut NODE = lookup(
-                b"LINENO\0" as *const u8 as *const libc::c_char,
-            );
-            if !n.is_null()
-                && (*n).type_0 as libc::c_uint == Node_var as libc::c_int as libc::c_uint
-            {
-                lineno_val = (*(*n).sub.nodep.l.lptr).sub.val.fltnum as libc::c_long;
+        first = 0 as i32 != 0;
+        add_src_info = !(getenv(b"GAWK_MSG_SRC\0" as *const u8 as *const i8)).is_null();
+        if do_flags as u32 & do_flag_values::DO_TRADITIONAL as i32 as u32 == 0 {
+            let mut n: *mut NODE = lookup(b"LINENO\0" as *const u8 as *const i8);
+            if !n.is_null() && (*n).type_0 as u32 == nodevals::Node_var as i32 as u32 {
+                lineno_val = (*(*n).sub.nodep.l.lptr).sub.val.fltnum as i64;
             }
         }
     }
     fflush(output_fp);
     me = myname;
-    fprintf(stderr, b"%s: \0" as *const u8 as *const libc::c_char, me);
-    if !srcfile.is_null() && add_src_info as libc::c_int != 0 {
-        fprintf(
-            stderr,
-            b"%s:%d:\0" as *const u8 as *const libc::c_char,
-            srcfile,
-            srcline,
-        );
-        srcfile = 0 as *const libc::c_char;
+    fprintf(stderr, b"%s: \0" as *const u8 as *const i8, me);
+    if !srcfile.is_null() && add_src_info as i32 != 0 {
+        fprintf(stderr, b"%s:%d:\0" as *const u8 as *const i8, srcfile, srcline);
+        srcfile = 0 as *const i8;
     }
-    if sourceline > 0 as libc::c_int {
+    if sourceline > 0 as i32 {
         if !source.is_null() {
-            fprintf(stderr, b"%s:\0" as *const u8 as *const libc::c_char, source);
+            fprintf(stderr, b"%s:\0" as *const u8 as *const i8, source);
         } else {
             fprintf(
                 stderr,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"cmd. line:\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"cmd. line:\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
             );
         }
         fprintf(
             stderr,
-            b"%ld: \0" as *const u8 as *const libc::c_char,
-            sourceline as libc::c_long + lineno_val,
+            b"%ld: \0" as *const u8 as *const i8,
+            sourceline as i64 + lineno_val,
         );
     }
-    if FNR > 0 as libc::c_int as libc::c_long {
-        let mut len: libc::c_int = (*(*FILENAME_node).sub.nodep.l.lptr).sub.val.slen
-            as libc::c_int;
+    if FNR > 0 as i32 as i64 {
+        let mut len: i32 = (*(*FILENAME_node).sub.nodep.l.lptr).sub.val.slen as i32;
         file = (*(*FILENAME_node).sub.nodep.l.lptr).sub.val.sp;
         _IO_putc('(' as i32, stderr);
         if !file.is_null() {
-            fprintf(
-                stderr,
-                b"FILENAME=%.*s \0" as *const u8 as *const libc::c_char,
-                len,
-                file,
-            );
+            fprintf(stderr, b"FILENAME=%.*s \0" as *const u8 as *const i8, len, file);
         }
-        fprintf(stderr, b"FNR=%ld) \0" as *const u8 as *const libc::c_char, FNR);
+        fprintf(stderr, b"FNR=%ld) \0" as *const u8 as *const i8, FNR);
     }
-    fprintf(stderr, b"%s\0" as *const u8 as *const libc::c_char, s);
+    fprintf(stderr, b"%s\0" as *const u8 as *const i8, s);
     vfprintf(stderr, emsg, argp.as_va_list());
-    fprintf(stderr, b"\n\0" as *const u8 as *const libc::c_char);
+    fprintf(stderr, b"\n\0" as *const u8 as *const i8);
     fflush(stderr);
     if isfatal {
-        gawk_exit(2 as libc::c_int);
+        gawk_exit(2 as i32);
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn msg(mut mesg: *const libc::c_char, mut args: ...) {
+pub unsafe extern "C" fn msg(mut mesg: *const i8, mut args: ...) {
+    let mut args_0: ::core::ffi::VaListImpl;
+    args_0 = args.clone();
+    err(0 as i32 != 0, b"\0" as *const u8 as *const i8, mesg, args_0.as_va_list());
+}
+#[no_mangle]
+pub unsafe extern "C" fn r_warning(mut mesg: *const i8, mut args: ...) {
     let mut args_0: ::core::ffi::VaListImpl;
     args_0 = args.clone();
     err(
-        0 as libc::c_int != 0,
-        b"\0" as *const u8 as *const libc::c_char,
+        0 as i32 != 0,
+        dcgettext(0 as *const i8, b"warning: \0" as *const u8 as *const i8, 5 as i32),
         mesg,
         args_0.as_va_list(),
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn r_warning(mut mesg: *const libc::c_char, mut args: ...) {
+pub unsafe extern "C" fn error(mut mesg: *const i8, mut args: ...) {
     let mut args_0: ::core::ffi::VaListImpl;
     args_0 = args.clone();
     err(
-        0 as libc::c_int != 0,
-        dcgettext(
-            0 as *const libc::c_char,
-            b"warning: \0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
-        ),
+        0 as i32 != 0,
+        dcgettext(0 as *const i8, b"error: \0" as *const u8 as *const i8, 5 as i32),
         mesg,
         args_0.as_va_list(),
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn error(mut mesg: *const libc::c_char, mut args: ...) {
-    let mut args_0: ::core::ffi::VaListImpl;
-    args_0 = args.clone();
-    err(
-        0 as libc::c_int != 0,
-        dcgettext(
-            0 as *const libc::c_char,
-            b"error: \0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
-        ),
-        mesg,
-        args_0.as_va_list(),
-    );
-}
-#[no_mangle]
-pub unsafe extern "C" fn set_loc(mut file: *const libc::c_char, mut line: libc::c_int) {
+pub unsafe extern "C" fn set_loc(mut file: *const i8, mut line: i32) {
     srcfile = file;
     srcline = line;
     file = srcfile;
     line = srcline;
 }
 #[no_mangle]
-pub unsafe extern "C" fn r_fatal(mut mesg: *const libc::c_char, mut args: ...) {
+pub unsafe extern "C" fn r_fatal(mut mesg: *const i8, mut args: ...) {
     let mut args_0: ::core::ffi::VaListImpl;
     args_0 = args.clone();
     err(
-        1 as libc::c_int != 0,
-        dcgettext(
-            0 as *const libc::c_char,
-            b"fatal: \0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
-        ),
+        1 as i32 != 0,
+        dcgettext(0 as *const i8, b"fatal: \0" as *const u8 as *const i8, 5 as i32),
         mesg,
         args_0.as_va_list(),
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn gawk_exit(mut status: libc::c_int) {
+pub unsafe extern "C" fn gawk_exit(mut status: i32) {
     if fatal_tag_valid != 0 {
         exit_val = status;
-        longjmp(fatal_tag.as_mut_ptr(), 1 as libc::c_int);
+        longjmp(fatal_tag.as_mut_ptr(), 1 as i32);
     }
     final_exit(status);
 }
 #[no_mangle]
-pub unsafe extern "C" fn final_exit(mut status: libc::c_int) -> ! {
+pub unsafe extern "C" fn final_exit(mut status: i32) -> ! {
     run_ext_exit_handlers(status);
     close_extensions();
     exit(status);

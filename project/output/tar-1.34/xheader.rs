@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type exclist;
@@ -70,7 +80,7 @@ extern "C" {
     ) -> *mut libc::c_char;
     fn imaxtostr(_: intmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn umaxtostr(_: uintmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     static mut exit_status: libc::c_int;
     fn fatal_exit() -> !;
     fn safer_name_suffix(
@@ -125,8 +135,8 @@ extern "C" {
         _: *mut obstack,
         _: size_t,
         _: size_t,
-        _: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-        _: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+        _: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+        _: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     ) -> libc::c_int;
     fn quote(arg: *const libc::c_char) -> *const libc::c_char;
     fn utf8_convert(
@@ -194,20 +204,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type ptrdiff_t = libc::c_long;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -251,16 +320,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -451,7 +518,7 @@ pub struct keyword_list {
 #[repr(C)]
 pub struct xhdr_tab {
     pub keyword: *const libc::c_char,
-    pub coder: Option::<
+    pub coder: Option<
         unsafe extern "C" fn(
             *const tar_stat_info,
             *const libc::c_char,
@@ -459,7 +526,7 @@ pub struct xhdr_tab {
             *const libc::c_void,
         ) -> (),
     >,
-    pub decoder: Option::<
+    pub decoder: Option<
         unsafe extern "C" fn(
             *mut tar_stat_info,
             *const libc::c_char,
@@ -483,8 +550,69 @@ impl C2RustUnnamed_3 {
             C2RustUnnamed_3::pax_global_header => 1,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_3 {
+        match value {
+            0 => C2RustUnnamed_3::pax_file_header,
+            1 => C2RustUnnamed_3::pax_global_header,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn strtoimax(
     mut nptr: *const libc::c_char,
@@ -522,8 +650,8 @@ unsafe extern "C" fn x_obstack_grow(
     }
     memcpy((*__o).next_free as *mut libc::c_void, ptr as *const libc::c_void, __len);
     (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-    (*xhdr)
-        .size = ((*xhdr).size as libc::c_ulong).wrapping_add(length) as size_t as size_t;
+    (*xhdr).size = ((*xhdr).size as libc::c_ulong).wrapping_add(length) as size_t
+        as size_t;
 }
 unsafe extern "C" fn x_obstack_1grow(mut xhdr: *mut xheader, mut c: libc::c_char) {
     let mut __o: *mut obstack = (*xhdr).stk;
@@ -551,8 +679,8 @@ unsafe extern "C" fn x_obstack_blank(mut xhdr: *mut xheader, mut length: size_t)
         _obstack_newchunk(__o, __len);
     }
     (*__o).next_free = ((*__o).next_free).offset(__len as isize);
-    (*xhdr)
-        .size = ((*xhdr).size as libc::c_ulong).wrapping_add(length) as size_t as size_t;
+    (*xhdr).size = ((*xhdr).size as libc::c_ulong).wrapping_add(length) as size_t
+        as size_t;
 }
 static mut keyword_pattern_list: *mut keyword_list = 0 as *const keyword_list
     as *mut keyword_list;
@@ -696,7 +824,8 @@ unsafe extern "C" fn xheader_set_keyword_equal(
     }
     while p > kw
         && *(*__ctype_b_loc()).offset(*p as libc::c_uchar as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
     {
         p = p.offset(-1);
@@ -706,7 +835,8 @@ unsafe extern "C" fn xheader_set_keyword_equal(
     p = eq.offset(1 as libc::c_int as isize);
     while *p as libc::c_int != 0
         && *(*__ctype_b_loc()).offset(*p as libc::c_uchar as libc::c_int as isize)
-            as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            as libc::c_int
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
             != 0
     {
         p = p.offset(1);
@@ -964,7 +1094,7 @@ pub unsafe extern "C" fn xheader_xhdr_name(
     if exthdr_name.is_null() {
         assign_string(
             &mut exthdr_name,
-            header_template[pax_file_header as libc::c_int
+            header_template[C2RustUnnamed_3::pax_file_header as libc::c_int
                 as usize][posixly_correct as usize],
         );
     }
@@ -974,7 +1104,7 @@ pub unsafe extern "C" fn xheader_xhdr_name(
 pub unsafe extern "C" fn xheader_ghdr_name() -> *mut libc::c_char {
     if globexthdr_name.is_null() {
         let mut len: size_t = 0;
-        let mut global_header_template: *const libc::c_char = header_template[pax_global_header
+        let mut global_header_template: *const libc::c_char = header_template[C2RustUnnamed_3::pax_global_header
             as libc::c_int as usize][posixly_correct as usize];
         let mut tmp: *const libc::c_char = getenv(
             b"TMPDIR\0" as *const u8 as *const libc::c_char,
@@ -1268,7 +1398,7 @@ unsafe extern "C" fn xheader_protected_keyword_p(
 unsafe extern "C" fn decode_record(
     mut xhdr: *mut xheader,
     mut ptr: *mut *mut libc::c_char,
-    mut handler: Option::<
+    mut handler: Option<
         unsafe extern "C" fn(
             *mut libc::c_void,
             *const libc::c_char,
@@ -1529,8 +1659,7 @@ pub unsafe extern "C" fn xheader_decode_global(mut xhdr: *mut xheader) {
 }
 unsafe extern "C" fn xheader_init(mut xhdr: *mut xheader) {
     if ((*xhdr).stk).is_null() {
-        (*xhdr)
-            .stk = xmalloc(::core::mem::size_of::<obstack>() as libc::c_ulong)
+        (*xhdr).stk = xmalloc(::core::mem::size_of::<obstack>() as libc::c_ulong)
             as *mut obstack;
         _obstack_begin(
             (*xhdr).stk,
@@ -1581,8 +1710,7 @@ pub unsafe extern "C" fn xheader_read(
     }
     size += 512 as libc::c_int as libc::c_long;
     (*xhdr).size = size as size_t;
-    (*xhdr)
-        .buffer = xmalloc((size + 1 as libc::c_int as libc::c_long) as size_t)
+    (*xhdr).buffer = xmalloc((size + 1 as libc::c_int as libc::c_long) as size_t)
         as *mut libc::c_char;
     *((*xhdr).buffer).offset(size as isize) = '\0' as i32 as libc::c_char;
     loop {
@@ -1718,15 +1846,13 @@ pub unsafe extern "C" fn xheader_finish(mut xhdr: *mut xheader) {
         code_string((*kp).value, (*kp).pattern, xhdr);
         kp = (*kp).next;
     }
-    (*xhdr)
-        .buffer = ({
+    (*xhdr).buffer = ({
         let mut __o1: *mut obstack = (*xhdr).stk;
         let mut __value: *mut libc::c_void = (*__o1).object_base as *mut libc::c_void;
         if (*__o1).next_free == __value as *mut libc::c_char {
             (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
         }
-        (*__o1)
-            .next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+        (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
             < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
         {
             (*__o1).object_base
@@ -1793,9 +1919,8 @@ pub unsafe extern "C" fn xheader_string_add(
         return;
     }
     xheader_init(xhdr);
-    (*xhdr)
-        .string_length = ((*xhdr).string_length as libc::c_ulong).wrapping_add(strlen(s))
-        as uintmax_t as uintmax_t;
+    (*xhdr).string_length = ((*xhdr).string_length as libc::c_ulong)
+        .wrapping_add(strlen(s)) as uintmax_t as uintmax_t;
     x_obstack_grow(xhdr, s, strlen(s));
 }
 #[no_mangle]
@@ -1860,8 +1985,8 @@ pub unsafe extern "C" fn xheader_string_end(
             if (*__o1).next_free == __value as *mut libc::c_char {
                 (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
             }
-            (*__o1)
-                .next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+            (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                as libc::c_ulong)
                 < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
             {
                 (*__o1).object_base
@@ -2499,9 +2624,10 @@ unsafe extern "C" fn sparse_numblocks_decoder(
     let mut u: uintmax_t = 0;
     if decode_num(&mut u, arg, 18446744073709551615 as libc::c_ulong, keyword) {
         (*st).sparse_map_size = u;
-        (*st)
-            .sparse_map = xcalloc(u, ::core::mem::size_of::<sp_array>() as libc::c_ulong)
-            as *mut sp_array;
+        (*st).sparse_map = xcalloc(
+            u,
+            ::core::mem::size_of::<sp_array>() as libc::c_ulong,
+        ) as *mut sp_array;
         (*st).sparse_map_avail = 0 as libc::c_int as size_t;
     }
 }
@@ -2541,8 +2667,8 @@ unsafe extern "C" fn sparse_offset_decoder(
         keyword,
     ) {
         if (*st).sparse_map_avail < (*st).sparse_map_size {
-            (*((*st).sparse_map).offset((*st).sparse_map_avail as isize))
-                .offset = u as off_t;
+            (*((*st).sparse_map).offset((*st).sparse_map_avail as isize)).offset = u
+                as off_t;
         } else {
             if error_hook.is_some() {
                 error_hook.expect("non-null function pointer")();
@@ -2935,8 +3061,7 @@ unsafe extern "C" fn xattr_acls_a_decoder(
     mut arg: *const libc::c_char,
     mut size: size_t,
 ) {
-    (*st)
-        .acls_a_ptr = xmemdup(
+    (*st).acls_a_ptr = xmemdup(
         arg as *const libc::c_void,
         size.wrapping_add(1 as libc::c_int as libc::c_ulong),
     ) as *mut libc::c_char;
@@ -2956,8 +3081,7 @@ unsafe extern "C" fn xattr_acls_d_decoder(
     mut arg: *const libc::c_char,
     mut size: size_t,
 ) {
-    (*st)
-        .acls_d_ptr = xmemdup(
+    (*st).acls_d_ptr = xmemdup(
         arg as *const libc::c_void,
         size.wrapping_add(1 as libc::c_int as libc::c_ulong),
     ) as *mut libc::c_char;

@@ -1,0 +1,1630 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/gawk-5.2.2)
+error: expected one of `(`, `,`, `=`, `{`, or `}`, found `::`
+    --> support/dfa.rs:1238:20
+     |
+1238 |     C2RustUnnamed_6::E,
+     |                    ^^ expected one of `(`, `,`, `=`, `{`, or `}`
+
+error: expected one of `!` or `::`, found `,`
+    --> support/dfa.rs:1238:23
+     |
+1238 |     C2RustUnnamed_6::E,
+     |                       ^ expected one of `!` or `::`
+
+error: Binary expression is not supposed to be used
+     --> debug.rs:10220:25
+      |
+10220 |                         compile_error!("Binary expression is not supposed to be used")
+      |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+     --> debug.rs:10234:17
+      |
+10234 |                 compile_error!("Conditional expression is not supposed to be used");
+      |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:31
+   |
+14 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:16:19
+   |
+16 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+     --> awkgram.rs:14736:49
+      |
+14736 | ...                   __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+      |                               ^
+...
+14740 | ...                   });
+      |                        ^
+      |
+      = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+      |
+14736 ~                                         __res = if __c < -(128 as i32) || __c > 255 as i32 {
+14737 |                                             __c
+14738 |                                         } else {
+14739 |                                             *(*__ctype_tolower_loc()).offset(__c as isize)
+14740 ~                                         };
+      |
+
+warning: unnecessary parentheses around block return value
+    --> builtin.rs:3059:9
+     |
+3059 |         ({
+     |         ^
+...
+3086 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+3059 ~         {
+3060 |             let mut __ptr: *const i8 = ptr as *const i8;
+   ...
+3085 |             size.wrapping_mul(count).wrapping_sub(__cnt).wrapping_div(size)
+3086 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> builtin.rs:3088:9
+     |
+3088 |         (if 0 != 0 && size == 0 as i32 as u64 || 0 != 0 && count == 0 as i32 as u64 {
+     |         ^
+...
+3092 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+3088 ~         if 0 != 0 && size == 0 as i32 as u64 || 0 != 0 && count == 0 as i32 as u64 {
+3089 |             0 as i32 as size_t
+3090 |         } else {
+3091 |             fwrite_unlocked(ptr, size, count, fp)
+3092 ~         }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> builtin.rs:4551:49
+     |
+4551 | ...                   __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+     |                               ^
+...
+4555 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4551 ~                                         __res = if __c < -(128 as i32) || __c > 255 as i32 {
+4552 |                                             __c
+4553 |                                         } else {
+4554 |                                             *(*__ctype_tolower_loc()).offset(__c as isize)
+4555 ~                                         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> builtin.rs:5948:45
+     |
+5948 | ...                   __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+     |                               ^
+...
+5952 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5948 ~                                     __res = if __c < -(128 as i32) || __c > 255 as i32 {
+5949 |                                         __c
+5950 |                                     } else {
+5951 |                                         *(*__ctype_tolower_loc()).offset(__c as isize)
+5952 ~                                     };
+     |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10882:9
+      |
+10882 |         (if ::core::mem::size_of::<libc::c_double>() as u64
+      |         ^
+...
+10888 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+10882 ~         if ::core::mem::size_of::<libc::c_double>() as u64
+10883 |             == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+10887 |             __isnanl(f128::f128::new((*n).sub.val.fltnum))
+10888 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10895:13
+      |
+10895 |             (if ::core::mem::size_of::<libc::c_double>() as u64
+      |             ^
+...
+10901 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+10895 ~             if ::core::mem::size_of::<libc::c_double>() as u64
+10896 |                 == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+10900 |                 __isinfl(f128::f128::new((*n).sub.val.fltnum))
+10901 ~             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> builtin.rs:10927:17
+      |
+10927 |                 (if ::core::mem::size_of::<libc::c_double>() as u64
+      |                 ^
+...
+10933 |                 })
+      |                  ^
+      |
+help: remove these parentheses
+      |
+10927 ~                 if ::core::mem::size_of::<libc::c_double>() as u64
+10928 |                     == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+10932 |                     (f128::f128::new(val)).is_sign_negative() as i32
+10933 ~                 }
+      |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:3762:21
+     |
+3762 |                     ({
+     |                     ^
+...
+3794 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3762 ~                     {
+3763 |                         let mut __ptr: *const i8 = linebuf as *const i8;
+   ...
+3793 |                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+3794 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:3796:21
+     |
+3796 |                     (if 0 != 0 && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+     |                     ^
+...
+3807 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3796 ~                     if 0 != 0 && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+3797 |                         || 0 != 0 && len as size_t == 0 as i32 as u64
+   ...
+3806 |                         )
+3807 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:9081:17
+     |
+9081 |                 ({
+     |                 ^
+...
+9113 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+9081 ~                 {
+9082 |                     let mut __ptr: *const i8 = p as *const i8;
+   ...
+9112 |                         .wrapping_div(::core::mem::size_of::<i8>() as u64)
+9113 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> debug.rs:9115:17
+     |
+9115 |                 (if 0 != 0 && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+     |                 ^
+...
+9126 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+9115 ~                 if 0 != 0 && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+9116 |                     || 0 != 0 && cnt as size_t == 0 as i32 as u64
+   ...
+9125 |                     )
+9126 ~                 }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> eval.rs:3288:37
+     |
+3288 | ...                   __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+     |                               ^
+...
+3292 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3288 ~                             __res = if __c < -(128 as i32) || __c > 255 as i32 {
+3289 |                                 __c
+3290 |                             } else {
+3291 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+3292 ~                             };
+     |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:12849:9
+      |
+12849 |         (if ::core::mem::size_of::<libc::c_double>() as u64
+      |         ^
+...
+12855 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+12849 ~         if ::core::mem::size_of::<libc::c_double>() as u64
+12850 |             == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+12854 |             __isnanl(f128::f128::new(left))
+12855 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:12862:13
+      |
+12862 |             (if ::core::mem::size_of::<libc::c_double>() as u64
+      |             ^
+...
+12868 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+12862 ~             if ::core::mem::size_of::<libc::c_double>() as u64
+12863 |                 == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+12867 |                 (f128::f128::new(left)).is_sign_negative() as i32
+12868 ~             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:12877:9
+      |
+12877 |         (if ::core::mem::size_of::<libc::c_double>() as u64
+      |         ^
+...
+12883 |         })
+      |          ^
+      |
+help: remove these parentheses
+      |
+12877 ~         if ::core::mem::size_of::<libc::c_double>() as u64
+12878 |             == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+12882 |             __isnanl(f128::f128::new(right))
+12883 ~         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> eval.rs:12890:13
+      |
+12890 |             (if ::core::mem::size_of::<libc::c_double>() as u64
+      |             ^
+...
+12896 |             })
+      |              ^
+      |
+help: remove these parentheses
+      |
+12890 ~             if ::core::mem::size_of::<libc::c_double>() as u64
+12891 |                 == ::core::mem::size_of::<libc::c_double>() as u64
+    ...
+12895 |                 (f128::f128::new(right)).is_sign_negative() as i32
+12896 ~             }
+      |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:641:25
+    |
+641 |                 major = ({
+    |                         ^
+...
+664 |                 });
+    |                  ^
+    |
+help: remove these parentheses
+    |
+641 ~                 major = {
+642 |                     let mut __v: libc::c_uint = 0;
+  ...
+663 |                     __v
+664 ~                 };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:672:29
+    |
+672 |                     minor = ({
+    |                             ^
+...
+695 |                     });
+    |                      ^
+    |
+help: remove these parentheses
+    |
+672 ~                     minor = {
+673 |                         let mut __v: libc::c_uint = 0;
+  ...
+694 |                         __v
+695 ~                     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:839:13
+    |
+839 |     count = ({
+    |             ^
+...
+858 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+839 ~     count = {
+840 |         let mut __v: libc::c_uint = 0;
+  ...
+857 |         __v
+858 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:905:20
+    |
+905 |     indexval_len = ({
+    |                    ^
+...
+924 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+905 ~     indexval_len = {
+906 |         let mut __v: libc::c_uint = 0;
+  ...
+923 |         __v
+924 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> extension/rwarray.rs:954:16
+    |
+954 |         code = ({
+    |                ^
+...
+974 |         });
+    |          ^
+    |
+help: remove these parentheses
+    |
+954 ~         code = {
+955 |             let mut __v: libc::c_uint = 0;
+  ...
+973 |             __v
+974 ~         };
+    |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:991:20
+     |
+991  |             code = ({
+     |                    ^
+...
+1014 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+991  ~             code = {
+992  |                 let mut __v: libc::c_uint = 0;
+   ...
+1013 |                 __v
+1014 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1017:20
+     |
+1017 |             code = ({
+     |                    ^
+...
+1040 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1017 ~             code = {
+1018 |                 let mut __v: libc::c_uint = 0;
+   ...
+1039 |                 __v
+1040 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1043:20
+     |
+1043 |             code = ({
+     |                    ^
+...
+1066 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1043 ~             code = {
+1044 |                 let mut __v: libc::c_uint = 0;
+   ...
+1065 |                 __v
+1066 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1069:20
+     |
+1069 |             code = ({
+     |                    ^
+...
+1092 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1069 ~             code = {
+1070 |                 let mut __v: libc::c_uint = 0;
+   ...
+1091 |                 __v
+1092 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1095:20
+     |
+1095 |             code = ({
+     |                    ^
+...
+1118 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1095 ~             code = {
+1096 |                 let mut __v: libc::c_uint = 0;
+   ...
+1117 |                 __v
+1118 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1121:20
+     |
+1121 |             code = ({
+     |                    ^
+...
+1144 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1121 ~             code = {
+1122 |                 let mut __v: libc::c_uint = 0;
+   ...
+1143 |                 __v
+1144 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1197:15
+     |
+1197 |         len = ({
+     |               ^
+...
+1217 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1197 ~         len = {
+1198 |             let mut __v: libc::c_uint = 0;
+   ...
+1216 |             __v
+1217 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1240:15
+     |
+1240 |         len = ({
+     |               ^
+...
+1260 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1240 ~         len = {
+1241 |             let mut __v: libc::c_uint = 0;
+   ...
+1259 |             __v
+1260 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1293:16
+     |
+1293 |         code = ({
+     |                ^
+...
+1313 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1293 ~         code = {
+1294 |             let mut __v: libc::c_uint = 0;
+   ...
+1312 |             __v
+1313 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1330:29
+     |
+1330 |         network_order_len = ({
+     |                             ^
+...
+1350 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+1330 ~         network_order_len = {
+1331 |             let mut __v: libc::c_uint = 0;
+   ...
+1349 |             __v
+1350 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1544:13
+     |
+1544 |     count = ({
+     |             ^
+...
+1563 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1544 ~     count = {
+1545 |         let mut __v: libc::c_uint = 0;
+   ...
+1562 |         __v
+1563 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1681:25
+     |
+1681 |                 major = ({
+     |                         ^
+...
+1704 |                 });
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1681 ~                 major = {
+1682 |                     let mut __v: libc::c_uint = 0;
+   ...
+1703 |                     __v
+1704 ~                 };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1717:29
+     |
+1717 |                     minor = ({
+     |                             ^
+...
+1745 |                     });
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1717 ~                     minor = {
+1718 |                         let mut __v: libc::c_uint = 0;
+   ...
+1744 |                         __v
+1745 ~                     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1867:13
+     |
+1867 |     count = ({
+     |             ^
+...
+1886 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1867 ~     count = {
+1868 |         let mut __v: libc::c_uint = 0;
+   ...
+1885 |         __v
+1886 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:1937:17
+     |
+1937 |     index_len = ({
+     |                 ^
+...
+1956 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1937 ~     index_len = {
+1938 |         let mut __v: libc::c_uint = 0;
+   ...
+1955 |         __v
+1956 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2033:12
+     |
+2033 |     code = ({
+     |            ^
+...
+2052 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+2033 ~     code = {
+2034 |         let mut __v: libc::c_uint = 0;
+   ...
+2051 |         __v
+2052 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2076:15
+     |
+2076 |         len = ({
+     |               ^
+...
+2096 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+2076 ~         len = {
+2077 |             let mut __v: libc::c_uint = 0;
+   ...
+2095 |             __v
+2096 ~         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> extension/rwarray.rs:2194:15
+     |
+2194 |         len = ({
+     |               ^
+...
+2214 |         });
+     |          ^
+     |
+help: remove these parentheses
+     |
+2194 ~         len = {
+2195 |             let mut __v: libc::c_uint = 0;
+   ...
+2213 |             __v
+2214 ~         };
+     |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:17:9
+   |
+17 |         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |         ^
+...
+23 |         })
+   |          ^
+   |
+help: remove these parentheses
+   |
+17 ~         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+18 |             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+22 |             24 as libc::c_int
+23 ~         }
+   |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:39:21
+   |
+39 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |                     ^
+...
+45 |                     })
+   |                      ^
+   |
+help: remove these parentheses
+   |
+39 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+40 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+44 |                         24 as libc::c_int
+45 ~                     }
+   |
+
+warning: unnecessary parentheses around block return value
+  --> floatcomp.rs:59:17
+   |
+59 |                 (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   |                 ^
+...
+65 |                 })
+   |                  ^
+   |
+help: remove these parentheses
+   |
+59 ~                 if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+60 |                     == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+ ...
+64 |                     24 as libc::c_int
+65 ~                 }
+   |
+
+warning: unnecessary parentheses around function argument
+    --> io.rs:6812:13
+     |
+6812 |             (if interesting != 0 { 0 as i32 } else { 1 as i32 }),
+     |             ^                                                  ^
+     |
+help: remove these parentheses
+     |
+6812 -             (if interesting != 0 { 0 as i32 } else { 1 as i32 }),
+6812 +             if interesting != 0 { 0 as i32 } else { 1 as i32 },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> io.rs:9011:9
+     |
+9011 |         ({
+     |         ^
+...
+9038 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+9011 ~         {
+9012 |             let mut __ptr: *const i8 = buf as *const i8;
+   ...
+9037 |             size.wrapping_mul(count).wrapping_sub(__cnt).wrapping_div(size)
+9038 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> node.rs:2167:29
+     |
+2167 | ...                   (if ::core::mem::size_of::<libc::c_double>() as u64
+     |                       ^
+...
+2173 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2167 ~                             if ::core::mem::size_of::<libc::c_double>() as u64
+2168 |                                 == ::core::mem::size_of::<libc::c_double>() as u64
+   ...
+2172 |                                 __isnanl(f128::f128::new((*n).sub.val.fltnum))
+2173 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> node.rs:2181:33
+     |
+2181 | ...                   (if ::core::mem::size_of::<libc::c_double>() as u64
+     |                       ^
+...
+2188 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2181 ~                                 if ::core::mem::size_of::<libc::c_double>() as u64
+2182 |                                     == ::core::mem::size_of::<libc::c_double>() as u64
+   ...
+2187 |                                         as i32
+2188 ~                                 }
+     |
+
+warning: unused import: `::libc`
+ --> replace.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+    --> support/regex.rs:1961:45
+     |
+1961 | ...                   (if i_0 < mbclen {
+     |                       ^
+...
+1965 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1961 ~                                             if i_0 < mbclen {
+1962 |                                                 i_0
+1963 |                                             } else {
+1964 |                                                 mbclen.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1965 ~                                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4409:17
+     |
+4409 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4415 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4409 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4410 |                     < max_i18n_object_size
+   ...
+4414 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4415 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4420:13
+     |
+4420 |             (if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+     |             ^
+...
+4438 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+4420 ~             if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+4421 |                 < (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+   ...
+4437 |                 ::core::mem::size_of::<re_node_set>() as libc::c_ulong
+4438 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4429:17
+     |
+4429 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4435 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4429 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4430 |                     < max_i18n_object_size
+   ...
+4434 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4435 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> support/regex.rs:4453:17
+     |
+4453 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4459 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4453 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4454 |                     < max_i18n_object_size
+   ...
+4458 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4459 ~                 }
+     |
+
+warning: crate-level attribute should be in the root module
+  --> array.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> awkgram.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> builtin.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> cint_array.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> command.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> debug.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> eval.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> ext.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> field.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> gawkapi.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> gawkmisc.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> int_array.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> io.rs:10:1
+   |
+10 | #![feature(asm, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> main.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> mpfr.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> msg.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> node.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> profile.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> re.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> str_array.rs:10:1
+   |
+10 | #![feature(extern_types, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> symbol.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0308]: mismatched types
+     --> awkgram.rs:12002:61
+      |
+12002 |         *::core::mem::transmute::<&[u8; 14], &mut [i8; 14]>(b"(defrule::END OF FILE)\0")
+      |          -------------------------------------------------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected an array with a fixed size of 14 elements, found one with 23 elements
+      |          |
+      |          arguments to this function are incorrect
+      |
+note: function defined here
+     --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/intrinsics.rs:1469:12
+      |
+1469  |     pub fn transmute<T, U>(e: T) -> U;
+      |            ^^^^^^^^^
+
+error[E0641]: cannot cast to a pointer of an unknown kind
+    --> builtin.rs:8069:57
+     |
+8069 | static mut state: *mut i8 = unsafe { istate.as_ptr() as *mut _ as *mut i8 };
+     |                                                         ^^^^^^ needs more type information
+     |
+     = note: the type information given here is insufficient to check whether the pointer cast is valid
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3940:23
+     |
+3940 |                   mode: (redirect_flags::RED_FILE as i32 | redirect_flags::RED_READ as i32)
+     |  _______________________^
+3941 | |                     as redirect_flags_t,
+     | |_______________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3942:29
+     |
+3942 |                   other_mode: (redirect_flags::RED_PIPE as i32
+     |  _____________________________^
+3943 | |                     | redirect_flags::RED_WRITE as i32) as redirect_flags_t,
+     | |___________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3951:25
+     |
+3951 |                   common: (redirect_flags::RED_FILE as i32
+     |  _________________________^
+3952 | |                     | redirect_flags::RED_WRITE as i32) as redirect_flags_t,
+     | |___________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3953:23
+     |
+3953 |                   mode: (redirect_flags::RED_FILE as i32
+     |  _______________________^
+3954 | |                     | redirect_flags::RED_WRITE as i32) as redirect_flags_t,
+     | |___________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3964:23
+     |
+3964 |                   mode: (redirect_flags::RED_FILE as i32
+     |  _______________________^
+3965 | |                     | redirect_flags::RED_WRITE as i32) as redirect_flags_t,
+     | |___________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:3966:29
+     |
+3966 |                   other_mode: (redirect_flags::RED_PIPE as i32
+     |  _____________________________^
+3967 | |                     | redirect_flags::RED_READ as i32) as redirect_flags_t,
+     | |__________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `array::flagvals` as `array::assoc_kind_t`
+    --> array.rs:4182:18
+     |
+4182 |     assoc_kind = akind.flags as assoc_kind_t;
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0054]: cannot cast as `bool`
+     --> awkgram.rs:16462:15
+      |
+16462 |     *shadow = (*shadow as i32 | ret as i32) as bool;
+      |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: compare with zero instead: `(*shadow as i32 | ret as i32) != 0`
+
+error[E0605]: non-primitive cast: `i32` as `awkgram::opcodeval`
+     --> awkgram.rs:18141:17
+      |
+18141 |       final_opc = (if opc as u32 == opcodeval::Op_or as i32 as u32 {
+      |  _________________^
+18142 | |         opcodeval::Op_or_final as i32
+18143 | |     } else {
+18144 | |         opcodeval::Op_and_final as i32
+18145 | |     }) as OPCODE;
+      | |________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `cint_array::flagvals` as `cint_array::assoc_kind_t`
+    --> cint_array.rs:2439:18
+     |
+2439 |     assoc_kind = (*t).flags as assoc_kind_t;
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i64` as `debug::opcodeval`
+    --> debug.rs:8168:32
+     |
+8168 |                     opcode2str((*pc).d.dl as OPCODE),
+     |                                ^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i64` as `eval::redirval`
+    --> eval.rs:9022:57
+     |
+9022 |                 r = do_getline_redir((*pc).x.xl as i32, (*pc).d.dl as redirval);
+     |                                                         ^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i64` as `eval::redirval`
+     --> eval.rs:12276:57
+      |
+12276 |                 r = do_getline_redir((*pc).x.xl as i32, (*pc).d.dl as redirval);
+      |                                                         ^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:657:36
+    |
+657 | ...                   "bswap {0}", inlateout(reg)
+    |                              ^^^
+658 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh0, fresh2) => fresh1,
+    |                       -------------------------------------------------- for this argument
+    |
+    = note: `#[warn(asm_sub_register)]` on by default
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:688:40
+    |
+688 | ...                   "bswap {0}", inlateout(reg)
+    |                              ^^^
+689 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh3, fresh5) =>
+    |                       -------------------------------------------------- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:852:24
+    |
+852 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh6,
+    |  ________________________^^^__________________-
+853 | |                 fresh8) => fresh7, options(preserves_flags, pure, readonly, att_syntax)
+    | |_______________________- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:918:24
+    |
+918 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh9,
+    |  ________________________^^^__________________-
+919 | |                 fresh11) => fresh10, options(preserves_flags, pure, readonly, att_syntax)
+    | |________________________- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+   --> extension/rwarray.rs:967:28
+    |
+967 |                     "bswap {0}", inlateout(reg)
+    |                            ^^^
+968 |                     c2rust_asm_casts::AsmCast::cast_in(fresh12, fresh14) => fresh13,
+    |                     ---------------------------------------------------- for this argument
+    |
+    = help: use the `e` modifier to have the register formatted as `eax`
+    = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1007:32
+     |
+1007 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1008 |                         c2rust_asm_casts::AsmCast::cast_in(fresh15, fresh17) => fresh16,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1033:32
+     |
+1033 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1034 |                         c2rust_asm_casts::AsmCast::cast_in(fresh18, fresh20) => fresh19,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1059:32
+     |
+1059 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1060 |                         c2rust_asm_casts::AsmCast::cast_in(fresh21, fresh23) => fresh22,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1085:32
+     |
+1085 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1086 |                         c2rust_asm_casts::AsmCast::cast_in(fresh24, fresh26) => fresh25,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1111:32
+     |
+1111 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1112 |                         c2rust_asm_casts::AsmCast::cast_in(fresh27, fresh29) => fresh28,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1137:32
+     |
+1137 |                         "bswap {0}", inlateout(reg)
+     |                                ^^^
+1138 |                         c2rust_asm_casts::AsmCast::cast_in(fresh30, fresh32) => fresh31,
+     |                         ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1183:28
+     |
+1183 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1184 |                     c2rust_asm_casts::AsmCast::cast_in(fresh33, fresh35) => fresh34,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1210:28
+     |
+1210 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1211 |                     c2rust_asm_casts::AsmCast::cast_in(fresh36, fresh38) => fresh37,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1253:28
+     |
+1253 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1254 |                     c2rust_asm_casts::AsmCast::cast_in(fresh39, fresh41) => fresh40,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1306:28
+     |
+1306 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1307 |                     c2rust_asm_casts::AsmCast::cast_in(fresh42, fresh44) => fresh43,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1343:28
+     |
+1343 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+1344 |                     c2rust_asm_casts::AsmCast::cast_in(fresh45, fresh47) => fresh46,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1557:24
+     |
+1557 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh48,
+     |  ________________________^^^__________________-
+1558 | |                 fresh50) => fresh49, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1697:36
+     |
+1697 | ...                   "bswap {0}", inlateout(reg)
+     |                              ^^^
+1698 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh51, fresh53) =>
+     |                       ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1733:40
+     |
+1733 | ...                   "bswap {0}", inlateout(reg)
+     |                              ^^^
+1734 | ...                   c2rust_asm_casts::AsmCast::cast_in(fresh54, fresh56) =>
+     |                       ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1880:24
+     |
+1880 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh57,
+     |  ________________________^^^__________________-
+1881 | |                 fresh59) => fresh58, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:1950:24
+     |
+1950 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh60,
+     |  ________________________^^^__________________-
+1951 | |                 fresh62) => fresh61, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2046:24
+     |
+2046 |                   "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh63,
+     |  ________________________^^^__________________-
+2047 | |                 fresh65) => fresh64, options(preserves_flags, pure, readonly, att_syntax)
+     | |________________________- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2089:28
+     |
+2089 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+2090 |                     c2rust_asm_casts::AsmCast::cast_in(fresh66, fresh68) => fresh67,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+warning: formatting may not be suitable for sub-register argument
+    --> extension/rwarray.rs:2207:28
+     |
+2207 |                     "bswap {0}", inlateout(reg)
+     |                            ^^^
+2208 |                     c2rust_asm_casts::AsmCast::cast_in(fresh69, fresh71) => fresh70,
+     |                     ---------------------------------------------------- for this argument
+     |
+     = help: use the `e` modifier to have the register formatted as `eax`
+     = help: or use the `r` modifier to keep the default formatting of `rax`
+
+error[E0605]: non-primitive cast: `i32` as `gawkapi::awk_bool`
+    --> gawkapi.rs:3343:18
+     |
+3343 |       (*val).u.b = (if (*node).sub.val.fltnum as i64 != 0 as i32 as i64 {
+     |  __________________^
+3344 | |         awk_bool::awk_true as i32
+3345 | |     } else {
+3346 | |         awk_bool::awk_false as i32
+3347 | |     }) as awk_bool_t;
+     | |____________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `gawkapi::awk_bool`
+    --> gawkapi.rs:4316:12
+     |
+4316 |     return (*result != 0 as *mut libc::c_void) as i32 as awk_bool_t;
+     |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `int_array::flagvals` as `int_array::assoc_kind_t`
+    --> int_array.rs:2655:18
+     |
+2655 |     assoc_kind = (*t).flags as assoc_kind_t;
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0308]: mismatched types
+    --> io.rs:4139:9
+     |
+1813 |     redirect_append = 2,
+     |     --------------- unit variant defined here
+...
+4138 |     match redirtype {
+     |           --------- this expression has type `i32`
+4139 |         redirval::redirect_append => {}
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i32`, found enum `io::redirval`
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:4144:21
+     |
+4144 |               tflag = (redirect_flags::RED_PIPE as i32 | redirect_flags::RED_WRITE as i32)
+     |  _____________________^
+4145 | |                 as redirect_flags_t;
+     | |___________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:4150:21
+     |
+4150 |               tflag = (redirect_flags::RED_PIPE as i32 | redirect_flags::RED_READ as i32)
+     |  _____________________^
+4151 | |                 as redirect_flags_t;
+     | |___________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:4156:21
+     |
+4156 |               tflag = (redirect_flags::RED_FILE as i32 | redirect_flags::RED_READ as i32)
+     |  _____________________^
+4157 | |                 as redirect_flags_t;
+     | |___________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:4162:21
+     |
+4162 |               tflag = (redirect_flags::RED_READ as i32 | redirect_flags::RED_WRITE as i32
+     |  _____________________^
+4163 | |                 | redirect_flags::RED_TWOWAY as i32) as redirect_flags_t;
+     | |________________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `io::redirect_flags`
+    --> io.rs:4180:23
+     |
+4180 |               outflag = (redirect_flags::RED_FILE as i32
+     |  _______________________^
+4181 | |                 | redirect_flags::RED_WRITE as i32) as redirect_flags_t;
+     | |_______________________________________________________________________^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `i32` as `profile::nodevals`
+    --> profile.rs:2357:19
+     |
+2357 |     (*n).type_0 = type_0 as NODETYPE;
+     |                   ^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `profile::nodevals` as `profile::opcodeval`
+    --> profile.rs:2732:28
+     |
+2732 |                         || (*t1).type_0 as OPCODE as u32 == (*pc).opcode as u32
+     |                            ^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `str_array::flagvals` as `str_array::assoc_kind_t`
+    --> str_array.rs:2342:18
+     |
+2342 |     assoc_kind = (*t).flags as assoc_kind_t;
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0606]: casting `str_array::reflagvals` as `f64` is invalid
+    --> str_array.rs:2474:9
+     |
+2474 |         (*symbol).sub.nodep.reflags as libc::c_double
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+     |
+     = help: cast through an integer first
+
+error[E0599]: no method named `set_field` found for enum `re_token_type_t` in the current scope
+   --> support/regex.rs:178:23
+    |
+178 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `re_token_type_t`
+...
+195 | pub enum re_token_type_t {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `re_token_type_t: FieldType` is not satisfied
+   --> support/regex.rs:178:23
+    |
+178 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `re_token_type_t`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0054, E0277, E0308, E0599, E0605, E0606, E0641.
+For more information about an error, try `rustc --explain E0054`.
+warning: `c2rust_out` (lib) generated 101 warnings
+error: could not compile `c2rust_out` due to 34 previous errors; 101 warnings emitted

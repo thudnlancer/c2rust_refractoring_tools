@@ -3,6 +3,327 @@
         "arguments": [
             "cc",
             "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/fnmatch.o",
+            "fnmatch.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "fnmatch.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/intdiv.o",
+            "intdiv.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "intdiv.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "getopt1.o",
+            "getopt1.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "getopt1.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/readfile.o",
+            "readfile.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "readfile.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "main.o",
+            "main.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "main.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "localeinfo.o",
+            "localeinfo.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "localeinfo.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/revtwoway.o",
+            "revtwoway.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "revtwoway.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "node.o",
+            "node.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "node.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "debug.o",
+            "debug.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "debug.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/fork.o",
+            "fork.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "fork.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "regex.o",
+            "regex.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "regex.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "re.o",
+            "re.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "re.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "pma.o",
+            "pma.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "pma.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "gawkapi.o",
+            "gawkapi.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "gawkapi.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
             "-DDEFPATH=\".:/usr/local/share/awk\"",
             "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
             "-DSHLIBEXT=\"so\"",
@@ -28,6 +349,31 @@
         "arguments": [
             "cc",
             "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "floatcomp.o",
+            "floatcomp.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "floatcomp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
             "-DGAWK",
             "-DHAVE_CONFIG_H",
             "-I./..",
@@ -42,11 +388,35 @@
             "-DNDEBUG",
             "-DNDEBUG",
             "-o",
-            "malloc/dynarray_at_failure.o",
-            "malloc/dynarray_at_failure.c"
+            "dfa.o",
+            "dfa.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "malloc/dynarray_at_failure.c"
+        "file": "dfa.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "malloc/dynarray_finalize.o",
+            "malloc/dynarray_finalize.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "malloc/dynarray_finalize.c"
     },
     {
         "arguments": [
@@ -67,11 +437,36 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "builtin.o",
-            "builtin.c"
+            "array.o",
+            "array.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "builtin.c"
+        "file": "array.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "command.o",
+            "command.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "command.c"
     },
     {
         "arguments": [
@@ -87,11 +482,31 @@
             "-fPIC",
             "-DPIC",
             "-o",
-            ".libs/time.o",
-            "time.c"
+            ".libs/readdir.o",
+            "readdir.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "time.c"
+        "file": "readdir.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/gawkfts.o",
+            "gawkfts.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "gawkfts.c"
     },
     {
         "arguments": [
@@ -132,36 +547,31 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "msg.o",
-            "msg.c"
+            "int_array.o",
+            "int_array.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "msg.c"
+        "file": "int_array.c"
     },
     {
         "arguments": [
             "cc",
             "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
             "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
             "-I.",
+            "-I./..",
             "-g",
             "-O2",
+            "-Wall",
             "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
             "-o",
-            "ext.o",
-            "ext.c"
+            ".libs/testext.o",
+            "testext.c"
         ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "ext.c"
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "testext.c"
     },
     {
         "arguments": [
@@ -187,26 +597,6 @@
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
         "file": "str_array.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/ordchr.o",
-            "ordchr.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "ordchr.c"
     },
     {
         "arguments": [
@@ -252,11 +642,11 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "profile.o",
-            "profile.c"
+            "awkgram.o",
+            "awkgram.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "profile.c"
+        "file": "awkgram.c"
     },
     {
         "arguments": [
@@ -264,19 +654,39 @@
             "-c",
             "-DHAVE_CONFIG_H",
             "-I.",
-            "-I..",
-            "-I..",
-            "-I..",
-            "-I../support",
+            "-I./..",
             "-g",
             "-O2",
+            "-Wall",
             "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
             "-o",
-            "grcat.o",
-            "grcat.c"
+            ".libs/inplace.o",
+            "inplace.c"
         ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awklib",
-        "file": "grcat.c"
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "inplace.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/revoutput.o",
+            "revoutput.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "revoutput.c"
     },
     {
         "arguments": [
@@ -297,11 +707,55 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "floatcomp.o",
-            "floatcomp.c"
+            "gawkmisc.o",
+            "gawkmisc.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "floatcomp.c"
+        "file": "gawkmisc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/readdir_test.o",
+            "readdir_test.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "readdir_test.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "malloc/dynarray_resize_clear.o",
+            "malloc/dynarray_resize_clear.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "malloc/dynarray_resize_clear.c"
     },
     {
         "arguments": [
@@ -347,11 +801,11 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "cint_array.o",
-            "cint_array.c"
+            "io.o",
+            "io.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "cint_array.c"
+        "file": "io.c"
     },
     {
         "arguments": [
@@ -371,11 +825,160 @@
             "-DNDEBUG",
             "-DNDEBUG",
             "-o",
-            "dfa.o",
-            "dfa.c"
+            "getopt.o",
+            "getopt.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "dfa.c"
+        "file": "getopt.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I..",
+            "-I..",
+            "-I..",
+            "-I../support",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "grcat.o",
+            "grcat.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/awklib",
+        "file": "grcat.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DGAWK",
+            "-DHAVE_CONFIG_H",
+            "-I./..",
+            "-I.",
+            "-I..",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-DNDEBUG",
+            "-o",
+            "malloc/dynarray_at_failure.o",
+            "malloc/dynarray_at_failure.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
+        "file": "malloc/dynarray_at_failure.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/stack.o",
+            "stack.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "stack.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/filefuncs.o",
+            "filefuncs.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "filefuncs.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "eval.o",
+            "eval.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "eval.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/time.o",
+            "time.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "time.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I./..",
+            "-g",
+            "-O2",
+            "-Wall",
+            "-DNDEBUG",
+            "-fPIC",
+            "-DPIC",
+            "-o",
+            ".libs/rwarray.o",
+            "rwarray.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
+        "file": "rwarray.c"
     },
     {
         "arguments": [
@@ -421,31 +1024,11 @@
             "-O2",
             "-DNDEBUG",
             "-o",
-            "eval.o",
-            "eval.c"
+            "ext.o",
+            "ext.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "eval.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/fnmatch.o",
-            "fnmatch.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "fnmatch.c"
+        "file": "ext.c"
     },
     {
         "arguments": [
@@ -500,238 +1083,6 @@
         "arguments": [
             "cc",
             "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/revtwoway.o",
-            "revtwoway.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "revtwoway.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "getopt.o",
-            "getopt.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "getopt.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/rwarray.o",
-            "rwarray.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "rwarray.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "command.o",
-            "command.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "command.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "awkgram.o",
-            "awkgram.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "awkgram.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/filefuncs.o",
-            "filefuncs.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "filefuncs.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "main.o",
-            "main.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "main.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "gawkmisc.o",
-            "gawkmisc.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "gawkmisc.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "localeinfo.o",
-            "localeinfo.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "localeinfo.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "malloc/dynarray_finalize.o",
-            "malloc/dynarray_finalize.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "malloc/dynarray_finalize.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
             "-DGAWK",
             "-DHAVE_CONFIG_H",
             "-I./..",
@@ -756,41 +1107,101 @@
         "arguments": [
             "cc",
             "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
             "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
             "-I.",
-            "-I./..",
             "-g",
             "-O2",
-            "-Wall",
             "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
             "-o",
-            ".libs/testext.o",
-            "testext.c"
+            "msg.o",
+            "msg.c"
         ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "testext.c"
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "msg.c"
     },
     {
         "arguments": [
             "cc",
             "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
             "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
             "-I.",
-            "-I./..",
             "-g",
             "-O2",
-            "-Wall",
             "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
             "-o",
-            ".libs/intdiv.o",
-            "intdiv.c"
+            "profile.o",
+            "profile.c"
         ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "intdiv.c"
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "profile.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "cint_array.o",
+            "cint_array.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "cint_array.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DDEFPATH=\".:/usr/local/share/awk\"",
+            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
+            "-DSHLIBEXT=\"so\"",
+            "-DHAVE_CONFIG_H",
+            "-DGAWK",
+            "-DLOCALEDIR=\"/usr/local/share/locale\"",
+            "-I./support",
+            "-I.",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-g",
+            "-O2",
+            "-DNDEBUG",
+            "-o",
+            "builtin.o",
+            "builtin.c"
+        ],
+        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
+        "file": "builtin.c"
     },
     {
         "arguments": [
@@ -830,421 +1241,10 @@
             "-fPIC",
             "-DPIC",
             "-o",
-            ".libs/gawkfts.o",
-            "gawkfts.c"
+            ".libs/ordchr.o",
+            "ordchr.c"
         ],
         "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "gawkfts.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "pma.o",
-            "pma.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "pma.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "getopt1.o",
-            "getopt1.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "getopt1.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "regex.o",
-            "regex.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "regex.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/readfile.o",
-            "readfile.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "readfile.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/revoutput.o",
-            "revoutput.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "revoutput.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DGAWK",
-            "-DHAVE_CONFIG_H",
-            "-I./..",
-            "-I.",
-            "-I..",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-DNDEBUG",
-            "-o",
-            "malloc/dynarray_resize_clear.o",
-            "malloc/dynarray_resize_clear.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/support",
-        "file": "malloc/dynarray_resize_clear.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/fork.o",
-            "fork.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "fork.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "re.o",
-            "re.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "re.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/readdir_test.o",
-            "readdir_test.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "readdir_test.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "int_array.o",
-            "int_array.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "int_array.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "node.o",
-            "node.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "node.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/readdir.o",
-            "readdir.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "readdir.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "io.o",
-            "io.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "io.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "gawkapi.o",
-            "gawkapi.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "gawkapi.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/stack.o",
-            "stack.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "stack.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DHAVE_CONFIG_H",
-            "-I.",
-            "-I./..",
-            "-g",
-            "-O2",
-            "-Wall",
-            "-DNDEBUG",
-            "-fPIC",
-            "-DPIC",
-            "-o",
-            ".libs/inplace.o",
-            "inplace.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2/extension",
-        "file": "inplace.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "array.o",
-            "array.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "array.c"
-    },
-    {
-        "arguments": [
-            "cc",
-            "-c",
-            "-DDEFPATH=\".:/usr/local/share/awk\"",
-            "-DDEFLIBPATH=\"/usr/local/lib/gawk\"",
-            "-DSHLIBEXT=\"so\"",
-            "-DHAVE_CONFIG_H",
-            "-DGAWK",
-            "-DLOCALEDIR=\"/usr/local/share/locale\"",
-            "-I./support",
-            "-I.",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-g",
-            "-O2",
-            "-DNDEBUG",
-            "-o",
-            "debug.o",
-            "debug.c"
-        ],
-        "directory": "/home/c2rust/Desktop/c_prog/gawk-5.2.2",
-        "file": "debug.c"
+        "file": "ordchr.c"
     }
 ]

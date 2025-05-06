@@ -1,14 +1,21 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
-#![feature(extern_types)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
-    static mut stdin: *mut FILE;
-    static mut stdout: *mut FILE;
-    static mut stderr: *mut FILE;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn getc(__stream: *mut FILE) -> libc::c_int;
+    static mut stdin: *mut _IO_FILE;
+    static mut stdout: *mut _IO_FILE;
+    static mut stderr: *mut _IO_FILE;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn _IO_getc(__fp: *mut _IO_FILE) -> i32;
     fn fread(
         __ptr: *mut libc::c_void,
         __size: size_t,
@@ -21,107 +28,103 @@ extern "C" {
         __n: size_t,
         __s: *mut FILE,
     ) -> size_t;
-    fn ferror(__stream: *mut FILE) -> libc::c_int;
-    fn fileno(__stream: *mut FILE) -> libc::c_int;
-    fn isatty(__fd: libc::c_int) -> libc::c_int;
-    fn strtod(
-        __nptr: *const libc::c_char,
-        __endptr: *mut *mut libc::c_char,
-    ) -> libc::c_double;
-    fn strtol(
-        __nptr: *const libc::c_char,
-        __endptr: *mut *mut libc::c_char,
-        __base: libc::c_int,
-    ) -> libc::c_long;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn yyerror(msg: *mut libc::c_char);
-    fn realloc(_: *mut libc::c_void, _: libc::c_ulong) -> *mut libc::c_void;
+    fn ferror(__stream: *mut FILE) -> i32;
+    fn fileno(__stream: *mut FILE) -> i32;
+    fn isatty(__fd: i32) -> i32;
+    fn strtod(__nptr: *const i8, __endptr: *mut *mut i8) -> libc::c_double;
+    fn strtol(__nptr: *const i8, __endptr: *mut *mut i8, __base: i32) -> i64;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn yyerror(msg: *mut i8);
+    fn realloc(_: *mut libc::c_void, _: u64) -> *mut libc::c_void;
     fn node_alloc(type_0: NodeType) -> *mut Node;
     fn free(__ptr: *mut libc::c_void);
-    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
-    fn exit(_: libc::c_int) -> !;
-    static mut linenum: libc::c_uint;
+    fn malloc(_: u64) -> *mut libc::c_void;
+    fn exit(_: i32) -> !;
+    static mut linenum: u32;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
     fn xmalloc(size: size_t) -> *mut libc::c_void;
     fn xrealloc(ptr: *mut libc::c_void, size: size_t) -> *mut libc::c_void;
     fn xfree(ptr: *mut libc::c_void);
-    fn xstrdup(_: *mut libc::c_char) -> *mut libc::c_char;
+    fn xstrdup(_: *mut i8) -> *mut i8;
     static mut yylval: YYSTYPE;
 }
-pub type size_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct yy_buffer_state {
     pub yy_input_file: *mut FILE,
-    pub yy_ch_buf: *mut libc::c_char,
-    pub yy_buf_pos: *mut libc::c_char,
+    pub yy_ch_buf: *mut i8,
+    pub yy_buf_pos: *mut i8,
     pub yy_buf_size: yy_size_t,
-    pub yy_n_chars: libc::c_int,
-    pub yy_is_our_buffer: libc::c_int,
-    pub yy_is_interactive: libc::c_int,
-    pub yy_at_bol: libc::c_int,
-    pub yy_fill_buffer: libc::c_int,
-    pub yy_buffer_status: libc::c_int,
+    pub yy_n_chars: i32,
+    pub yy_is_our_buffer: i32,
+    pub yy_is_interactive: i32,
+    pub yy_at_bol: i32,
+    pub yy_fill_buffer: i32,
+    pub yy_buffer_status: i32,
 }
-pub type yy_size_t = libc::c_uint;
+pub type yy_size_t = u32;
 pub type YY_BUFFER_STATE = *mut yy_buffer_state;
-pub type YY_CHAR = libc::c_uchar;
-pub type yy_state_type = libc::c_int;
-pub type reg_syntax_t = libc::c_ulong;
+pub type YY_CHAR = u8;
+pub type yy_state_type = i32;
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
-    pub buffer: *mut libc::c_uchar,
-    pub allocated: libc::c_ulong,
-    pub used: libc::c_ulong,
+    pub buffer: *mut u8,
+    pub allocated: u64,
+    pub used: u64,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_char,
+    pub fastmap: *mut i8,
+    pub translate: *mut i8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -135,11 +138,11 @@ pub struct re_pattern_buffer {
     pub c2rust_padding: [u8; 7],
 }
 pub type regex_t = re_pattern_buffer;
-pub type regoff_t = libc::c_int;
+pub type regoff_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct re_registers {
-    pub num_regs: libc::c_uint,
+    pub num_regs: u32,
     pub start: *mut regoff_t,
     pub end: *mut regoff_t,
 }
@@ -169,7 +172,7 @@ pub enum NodeType {
     nARRAY,
 }
 impl NodeType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             NodeType::nVOID => 0,
             NodeType::nSTRING => 1,
@@ -180,21 +183,80 @@ impl NodeType {
             NodeType::nARRAY => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> NodeType {
+        match value {
+            0 => NodeType::nVOID,
+            1 => NodeType::nSTRING,
+            2 => NodeType::nREGEXP,
+            3 => NodeType::nINTEGER,
+            4 => NodeType::nREAL,
+            5 => NodeType::nSYMBOL,
+            6 => NodeType::nARRAY,
+            _ => panic!("Invalid value for NodeType: {}", value),
+        }
+    }
 }
-
-pub const nARRAY: NodeType = 6;
-pub const nSYMBOL: NodeType = 5;
-pub const nREAL: NodeType = 4;
-pub const nINTEGER: NodeType = 3;
-pub const nREGEXP: NodeType = 2;
-pub const nSTRING: NodeType = 1;
-pub const nVOID: NodeType = 0;
+impl AddAssign<u32> for NodeType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for NodeType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for NodeType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for NodeType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for NodeType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for NodeType {
+    type Output = NodeType;
+    fn add(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for NodeType {
+    type Output = NodeType;
+    fn sub(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for NodeType {
+    type Output = NodeType;
+    fn mul(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for NodeType {
+    type Output = NodeType;
+    fn div(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for NodeType {
+    type Output = NodeType;
+    fn rem(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {
     pub type_0: NodeType,
-    pub refcount: libc::c_uint,
-    pub linenum: libc::c_uint,
+    pub refcount: u32,
+    pub linenum: u32,
     pub u: C2RustUnnamed,
 }
 #[derive(Copy, Clone)]
@@ -202,32 +264,32 @@ pub struct node_st {
 pub union C2RustUnnamed {
     pub str_0: C2RustUnnamed_2,
     pub re: C2RustUnnamed_1,
-    pub integer: libc::c_int,
+    pub integer: i32,
     pub real: libc::c_double,
-    pub sym: *mut libc::c_char,
+    pub sym: *mut i8,
     pub array: C2RustUnnamed_0,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_0 {
     pub array: *mut *mut node_st,
-    pub len: libc::c_uint,
-    pub allocated: libc::c_uint,
+    pub len: u32,
+    pub allocated: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
-    pub flags: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
+    pub flags: u32,
     pub compiled: regex_t,
     pub matches: re_registers,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
 }
 pub type Node = node_st;
 #[derive(Copy, Clone)]
@@ -273,7 +335,7 @@ pub enum ExprType {
     eLE,
 }
 impl ExprType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             ExprType::eSTRING => 0,
             ExprType::eREGEXP => 1,
@@ -308,44 +370,103 @@ impl ExprType {
             ExprType::eLE => 30,
         }
     }
+    fn from_libc_c_uint(value: u32) -> ExprType {
+        match value {
+            0 => ExprType::eSTRING,
+            1 => ExprType::eREGEXP,
+            2 => ExprType::eINTEGER,
+            3 => ExprType::eREAL,
+            4 => ExprType::eSYMBOL,
+            5 => ExprType::eNOT,
+            6 => ExprType::eAND,
+            7 => ExprType::eOR,
+            8 => ExprType::eFCALL,
+            9 => ExprType::eASSIGN,
+            10 => ExprType::eADDASSIGN,
+            11 => ExprType::eSUBASSIGN,
+            12 => ExprType::eMULASSIGN,
+            13 => ExprType::eDIVASSIGN,
+            14 => ExprType::ePOSTFIXADD,
+            15 => ExprType::ePOSTFIXSUB,
+            16 => ExprType::ePREFIXADD,
+            17 => ExprType::ePREFIXSUB,
+            18 => ExprType::eARRAYASSIGN,
+            19 => ExprType::eARRAYREF,
+            20 => ExprType::eQUESTCOLON,
+            21 => ExprType::eMULT,
+            22 => ExprType::eDIV,
+            23 => ExprType::ePLUS,
+            24 => ExprType::eMINUS,
+            25 => ExprType::eLT,
+            26 => ExprType::eGT,
+            27 => ExprType::eEQ,
+            28 => ExprType::eNE,
+            29 => ExprType::eGE,
+            30 => ExprType::eLE,
+            _ => panic!("Invalid value for ExprType: {}", value),
+        }
+    }
 }
-
-pub const eLE: ExprType = 30;
-pub const eGE: ExprType = 29;
-pub const eNE: ExprType = 28;
-pub const eEQ: ExprType = 27;
-pub const eGT: ExprType = 26;
-pub const eLT: ExprType = 25;
-pub const eMINUS: ExprType = 24;
-pub const ePLUS: ExprType = 23;
-pub const eDIV: ExprType = 22;
-pub const eMULT: ExprType = 21;
-pub const eQUESTCOLON: ExprType = 20;
-pub const eARRAYREF: ExprType = 19;
-pub const eARRAYASSIGN: ExprType = 18;
-pub const ePREFIXSUB: ExprType = 17;
-pub const ePREFIXADD: ExprType = 16;
-pub const ePOSTFIXSUB: ExprType = 15;
-pub const ePOSTFIXADD: ExprType = 14;
-pub const eDIVASSIGN: ExprType = 13;
-pub const eMULASSIGN: ExprType = 12;
-pub const eSUBASSIGN: ExprType = 11;
-pub const eADDASSIGN: ExprType = 10;
-pub const eASSIGN: ExprType = 9;
-pub const eFCALL: ExprType = 8;
-pub const eOR: ExprType = 7;
-pub const eAND: ExprType = 6;
-pub const eNOT: ExprType = 5;
-pub const eSYMBOL: ExprType = 4;
-pub const eREAL: ExprType = 3;
-pub const eINTEGER: ExprType = 2;
-pub const eREGEXP: ExprType = 1;
-pub const eSTRING: ExprType = 0;
+impl AddAssign<u32> for ExprType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for ExprType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for ExprType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for ExprType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for ExprType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for ExprType {
+    type Output = ExprType;
+    fn add(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for ExprType {
+    type Output = ExprType;
+    fn sub(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for ExprType {
+    type Output = ExprType;
+    fn mul(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for ExprType {
+    type Output = ExprType;
+    fn div(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for ExprType {
+    type Output = ExprType;
+    fn rem(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expr_st {
     pub type_0: ExprType,
-    pub linenum: libc::c_uint,
+    pub linenum: u32,
     pub u: C2RustUnnamed_3,
 }
 #[derive(Copy, Clone)]
@@ -411,7 +532,7 @@ pub enum StmtType {
     sFOR,
 }
 impl StmtType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             StmtType::sRETURN => 0,
             StmtType::sDEFSUB => 1,
@@ -422,20 +543,79 @@ impl StmtType {
             StmtType::sFOR => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> StmtType {
+        match value {
+            0 => StmtType::sRETURN,
+            1 => StmtType::sDEFSUB,
+            2 => StmtType::sBLOCK,
+            3 => StmtType::sIF,
+            4 => StmtType::sEXPR,
+            5 => StmtType::sWHILE,
+            6 => StmtType::sFOR,
+            _ => panic!("Invalid value for StmtType: {}", value),
+        }
+    }
 }
-
-pub const sFOR: StmtType = 6;
-pub const sWHILE: StmtType = 5;
-pub const sEXPR: StmtType = 4;
-pub const sIF: StmtType = 3;
-pub const sBLOCK: StmtType = 2;
-pub const sDEFSUB: StmtType = 1;
-pub const sRETURN: StmtType = 0;
+impl AddAssign<u32> for StmtType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for StmtType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for StmtType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for StmtType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for StmtType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for StmtType {
+    type Output = StmtType;
+    fn add(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for StmtType {
+    type Output = StmtType;
+    fn sub(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for StmtType {
+    type Output = StmtType;
+    fn mul(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for StmtType {
+    type Output = StmtType;
+    fn div(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for StmtType {
+    type Output = StmtType;
+    fn rem(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stmt_st {
     pub type_0: StmtType,
-    pub linenum: libc::c_uint,
+    pub linenum: u32,
     pub u: C2RustUnnamed_10,
 }
 #[derive(Copy, Clone)]
@@ -486,22 +666,18 @@ pub union YYSTYPE {
     pub expr: *mut Expr,
 }
 #[inline]
-unsafe extern "C" fn atof(mut __nptr: *const libc::c_char) -> libc::c_double {
-    return strtod(__nptr, 0 as *mut libc::c_void as *mut *mut libc::c_char);
+unsafe extern "C" fn atof(mut __nptr: *const i8) -> libc::c_double {
+    return strtod(__nptr, 0 as *mut libc::c_void as *mut *mut i8);
 }
 #[inline]
-unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
-    return strtol(
-        __nptr,
-        0 as *mut libc::c_void as *mut *mut libc::c_char,
-        10 as libc::c_int,
-    ) as libc::c_int;
+unsafe extern "C" fn atoi(mut __nptr: *const i8) -> i32 {
+    return strtol(__nptr, 0 as *mut libc::c_void as *mut *mut i8, 10 as i32) as i32;
 }
 unsafe extern "C" fn eat_comment() {
-    let mut c: libc::c_int = 0;
+    let mut c: i32 = 0;
     loop {
         c = input();
-        if !(c != -(1 as libc::c_int)) {
+        if !(c != -(1 as i32)) {
             break;
         }
         if c == '\n' as i32 {
@@ -515,12 +691,12 @@ unsafe extern "C" fn eat_comment() {
             if c == '/' as i32 {
                 return;
             }
-            if c == -(1 as libc::c_int) {
+            if c == -(1 as i32) {
                 yyerror(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"error: EOF in comment\0" as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"error: EOF in comment\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
                 break;
@@ -531,25 +707,23 @@ unsafe extern "C" fn eat_comment() {
     }
     yyerror(
         dcgettext(
-            0 as *const libc::c_char,
-            b"error: EOF in comment\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"error: EOF in comment\0" as *const u8 as *const i8,
+            5 as i32,
         ),
     );
 }
 #[no_mangle]
-pub unsafe extern "C" fn yywrap() -> libc::c_int {
-    return 1 as libc::c_int;
+pub unsafe extern "C" fn yywrap() -> i32 {
+    return 1 as i32;
 }
-unsafe extern "C" fn read_string(
-    mut len_return: *mut libc::c_uint,
-) -> *mut libc::c_char {
-    let mut buf: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut buf2: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut buflen: libc::c_int = 0 as libc::c_int;
-    let mut bufpos: libc::c_int = 0 as libc::c_int;
-    let mut ch: libc::c_int = 0;
-    let mut done: libc::c_int = 0 as libc::c_int;
+unsafe extern "C" fn read_string(mut len_return: *mut u32) -> *mut i8 {
+    let mut buf: *mut i8 = 0 as *mut i8;
+    let mut buf2: *mut i8 = 0 as *mut i8;
+    let mut buflen: i32 = 0 as i32;
+    let mut bufpos: i32 = 0 as i32;
+    let mut ch: i32 = 0;
+    let mut done: i32 = 0 as i32;
     while done == 0 {
         ch = input();
         if ch == '\n' as i32 {
@@ -559,27 +733,27 @@ unsafe extern "C" fn read_string(
         let mut current_block_26: u64;
         match ch {
             -1 => {
-                current_block_26 = 13509395632502472069;
+                current_block_26 = 6394203536652651481;
             }
             34 => {
-                done = 1 as libc::c_int;
+                done = 1 as i32;
                 current_block_26 = 6417057564578538666;
             }
             92 => {
                 ch = input();
                 match ch {
                     110 => {
-                        current_block_26 = 16598926681669342143;
+                        current_block_26 = 15050610111240922756;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -590,42 +764,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     116 => {
-                        current_block_26 = 13262478452272424093;
+                        current_block_26 = 11053768700258126603;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -636,42 +810,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     118 => {
-                        current_block_26 = 7369904960316564698;
+                        current_block_26 = 18401480588297710244;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -682,42 +856,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     98 => {
-                        current_block_26 = 15109432795376173018;
+                        current_block_26 = 13624143383088606119;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -728,42 +902,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     114 => {
-                        current_block_26 = 7103576243689391462;
+                        current_block_26 = 3142581409041571743;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -774,42 +948,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     102 => {
-                        current_block_26 = 16626929343264605553;
+                        current_block_26 = 2346692697102523595;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -820,42 +994,42 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     97 => {
-                        current_block_26 = 18272008333722400074;
+                        current_block_26 = 3049831026159303899;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -866,45 +1040,45 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                     -1 => {
-                        current_block_26 = 13509395632502472069;
+                        current_block_26 = 6394203536652651481;
                     }
                     _ => {
-                        current_block_26 = 11665363508214832611;
+                        current_block_26 = 6496932521762800249;
                         match current_block_26 {
-                            11665363508214832611 => {
+                            6496932521762800249 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -915,229 +1089,224 @@ unsafe extern "C" fn read_string(
                                     ch = val;
                                 }
                             }
-                            16598926681669342143 => {
+                            15050610111240922756 => {
                                 ch = '\n' as i32;
                             }
-                            7369904960316564698 => {
+                            18401480588297710244 => {
                                 ch = '\u{b}' as i32;
                             }
-                            15109432795376173018 => {
+                            13624143383088606119 => {
                                 ch = '\u{8}' as i32;
                             }
-                            7103576243689391462 => {
+                            3142581409041571743 => {
                                 ch = '\r' as i32;
                             }
-                            16626929343264605553 => {
+                            2346692697102523595 => {
                                 ch = '\u{c}' as i32;
                             }
-                            18272008333722400074 => {
+                            3049831026159303899 => {
                                 ch = '\u{7}' as i32;
                             }
                             _ => {
                                 ch = '\t' as i32;
                             }
                         }
-                        current_block_26 = 9606193718916044350;
+                        current_block_26 = 11520128967991814264;
                     }
                 }
             }
             _ => {
-                current_block_26 = 9606193718916044350;
+                current_block_26 = 11520128967991814264;
             }
         }
         match current_block_26 {
-            9606193718916044350 => {
+            11520128967991814264 => {
                 if bufpos >= buflen {
-                    buflen += 1024 as libc::c_int;
+                    buflen += 1024 as i32;
                     buf = xrealloc(buf as *mut libc::c_void, buflen as size_t)
-                        as *mut libc::c_char;
+                        as *mut i8;
                 }
                 let fresh0 = bufpos;
                 bufpos = bufpos + 1;
-                *buf.offset(fresh0 as isize) = ch as libc::c_char;
+                *buf.offset(fresh0 as isize) = ch as i8;
             }
-            13509395632502472069 => {
+            6394203536652651481 => {
                 yyerror(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"error: EOF in string constant\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"error: EOF in string constant\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
-                done = 1 as libc::c_int;
+                done = 1 as i32;
             }
             _ => {}
         }
     }
-    buf2 = xmalloc((bufpos + 1 as libc::c_int) as size_t) as *mut libc::c_char;
-    memcpy(
-        buf2 as *mut libc::c_void,
-        buf as *const libc::c_void,
-        bufpos as libc::c_ulong,
-    );
-    *buf2.offset(bufpos as isize) = '\0' as i32 as libc::c_char;
+    buf2 = xmalloc((bufpos + 1 as i32) as size_t) as *mut i8;
+    memcpy(buf2 as *mut libc::c_void, buf as *const libc::c_void, bufpos as u64);
+    *buf2.offset(bufpos as isize) = '\0' as i32 as i8;
     xfree(buf as *mut libc::c_void);
-    *len_return = bufpos as libc::c_uint;
+    *len_return = bufpos as u32;
     return buf2;
 }
 static mut yy_current_buffer: YY_BUFFER_STATE = 0 as *const yy_buffer_state
     as YY_BUFFER_STATE;
-static mut yy_hold_char: libc::c_char = 0;
-static mut yy_n_chars: libc::c_int = 0;
+static mut yy_hold_char: i8 = 0;
+static mut yy_n_chars: i32 = 0;
 #[no_mangle]
-pub static mut yyleng: libc::c_int = 0;
-static mut yy_c_buf_p: *mut libc::c_char = 0 as *const libc::c_char as *mut libc::c_char;
-static mut yy_init: libc::c_int = 1 as libc::c_int;
-static mut yy_start: libc::c_int = 0 as libc::c_int;
-static mut yy_did_buffer_switch_on_eof: libc::c_int = 0;
+pub static mut yyleng: i32 = 0;
+static mut yy_c_buf_p: *mut i8 = 0 as *const i8 as *mut i8;
+static mut yy_init: i32 = 1 as i32;
+static mut yy_start: i32 = 0 as i32;
+static mut yy_did_buffer_switch_on_eof: i32 = 0;
 #[no_mangle]
 pub static mut yyin: *mut FILE = 0 as *const FILE as *mut FILE;
 #[no_mangle]
 pub static mut yyout: *mut FILE = 0 as *const FILE as *mut FILE;
 static mut yy_accept: [libc::c_short; 108] = [
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    39 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    2 as libc::c_int as libc::c_short,
-    3 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    4 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    7 as libc::c_int as libc::c_short,
-    35 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    23 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    26 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    32 as libc::c_int as libc::c_short,
-    28 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    35 as libc::c_int as libc::c_short,
-    30 as libc::c_int as libc::c_short,
-    29 as libc::c_int as libc::c_short,
-    31 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    24 as libc::c_int as libc::c_short,
-    22 as libc::c_int as libc::c_short,
-    25 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    27 as libc::c_int as libc::c_short,
-    5 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    9 as libc::c_int as libc::c_short,
-    10 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    12 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    20 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    6 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    33 as libc::c_int as libc::c_short,
-    11 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    8 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    17 as libc::c_int as libc::c_short,
-    19 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    16 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    15 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    18 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    39 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    2 as i32 as libc::c_short,
+    3 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    4 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    7 as i32 as libc::c_short,
+    35 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    23 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    26 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    32 as i32 as libc::c_short,
+    28 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    35 as i32 as libc::c_short,
+    30 as i32 as libc::c_short,
+    29 as i32 as libc::c_short,
+    31 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    24 as i32 as libc::c_short,
+    22 as i32 as libc::c_short,
+    25 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    27 as i32 as libc::c_short,
+    5 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    9 as i32 as libc::c_short,
+    10 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    12 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    20 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    6 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    33 as i32 as libc::c_short,
+    11 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    8 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    17 as i32 as libc::c_short,
+    19 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    16 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    15 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    18 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
 ];
 unsafe extern "C" fn read_regexp(mut node: *mut Node) {
-    let mut buf: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut buf2: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut buflen: libc::c_int = 0 as libc::c_int;
-    let mut bufpos: libc::c_int = 0 as libc::c_int;
-    let mut ch: libc::c_int = 0;
-    let mut done: libc::c_int = 0 as libc::c_int;
+    let mut buf: *mut i8 = 0 as *mut i8;
+    let mut buf2: *mut i8 = 0 as *mut i8;
+    let mut buflen: i32 = 0 as i32;
+    let mut bufpos: i32 = 0 as i32;
+    let mut ch: i32 = 0;
+    let mut done: i32 = 0 as i32;
     let mut current_block_25: u64;
     while done == 0 {
         ch = input();
         match ch {
             -1 => {
-                current_block_25 = 17481033863940419519;
+                current_block_25 = 4217509901795835879;
             }
             47 => {
-                done = 1 as libc::c_int;
+                done = 1 as i32;
                 continue;
             }
             92 => {
                 ch = input();
                 match ch {
                     10 => {
-                        current_block_25 = 14279995577508924856;
+                        current_block_25 = 5321835445146156721;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1151,39 +1320,39 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     110 => {
-                        current_block_25 = 7350512134151601729;
+                        current_block_25 = 6083747870733027739;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1197,39 +1366,39 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     114 => {
-                        current_block_25 = 465876046698638192;
+                        current_block_25 = 709216604931675506;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1243,39 +1412,39 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     102 => {
-                        current_block_25 = 7264131456114942388;
+                        current_block_25 = 11933556806527724267;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1289,39 +1458,39 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     116 => {
-                        current_block_25 = 16301682354449893158;
+                        current_block_25 = 1732048935134695626;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1335,39 +1504,39 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     47 | 92 => {
-                        current_block_25 = 1830506787698777107;
+                        current_block_25 = 16793976072624171809;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1381,42 +1550,42 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                     -1 => {
-                        current_block_25 = 17481033863940419519;
+                        current_block_25 = 4217509901795835879;
                     }
                     _ => {
-                        current_block_25 = 4108458233072306692;
+                        current_block_25 = 3196496897725958382;
                         match current_block_25 {
-                            4108458233072306692 => {
+                            3196496897725958382 => {
                                 if ch == '0' as i32 {
-                                    let mut i: libc::c_int = 0;
-                                    let mut val: libc::c_int = 0 as libc::c_int;
-                                    i = 0 as libc::c_int;
-                                    while i < 3 as libc::c_int {
+                                    let mut i: i32 = 0;
+                                    let mut val: i32 = 0 as i32;
+                                    i = 0 as i32;
+                                    while i < 3 as i32 {
                                         ch = input();
                                         if '0' as i32 <= ch && ch <= '7' as i32 {
-                                            val = val * 8 as libc::c_int + ch - '0' as i32;
+                                            val = val * 8 as i32 + ch - '0' as i32;
                                             i += 1;
                                             i;
                                         } else {
@@ -1430,988 +1599,982 @@ unsafe extern "C" fn read_regexp(mut node: *mut Node) {
                                     ch = '\\' as i32;
                                 }
                             }
-                            7350512134151601729 => {
+                            6083747870733027739 => {
                                 ch = '\n' as i32;
                             }
-                            465876046698638192 => {
+                            709216604931675506 => {
                                 ch = '\r' as i32;
                             }
-                            7264131456114942388 => {
+                            11933556806527724267 => {
                                 ch = '\u{c}' as i32;
                             }
-                            16301682354449893158 => {
+                            1732048935134695626 => {
                                 ch = '\t' as i32;
                             }
-                            1830506787698777107 => {}
+                            16793976072624171809 => {}
                             _ => {
                                 linenum = linenum.wrapping_add(1);
                                 linenum;
                                 continue;
                             }
                         }
-                        current_block_25 = 809521523908297035;
+                        current_block_25 = 6225258385525537431;
                     }
                 }
             }
             _ => {
-                current_block_25 = 809521523908297035;
+                current_block_25 = 6225258385525537431;
             }
         }
         match current_block_25 {
-            809521523908297035 => {
+            6225258385525537431 => {
                 if bufpos >= buflen {
-                    buflen += 1024 as libc::c_int;
+                    buflen += 1024 as i32;
                     buf = xrealloc(buf as *mut libc::c_void, buflen as size_t)
-                        as *mut libc::c_char;
+                        as *mut i8;
                 }
                 let fresh1 = bufpos;
                 bufpos = bufpos + 1;
-                *buf.offset(fresh1 as isize) = ch as libc::c_char;
+                *buf.offset(fresh1 as isize) = ch as i8;
             }
             _ => {
                 yyerror(
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"error: EOF in regular expression\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"error: EOF in regular expression\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
-                done = 1 as libc::c_int;
+                done = 1 as i32;
             }
         }
     }
-    done = 0 as libc::c_int;
+    done = 0 as i32;
     while done == 0 {
         ch = input();
         match ch {
             105 => {
-                (*node).u.re.flags |= 1 as libc::c_int as libc::c_uint;
+                (*node).u.re.flags |= 1 as i32 as u32;
             }
             _ => {
                 yyunput(ch, yytext);
-                done = 1 as libc::c_int;
+                done = 1 as i32;
             }
         }
     }
-    buf2 = xmalloc((bufpos + 1 as libc::c_int) as size_t) as *mut libc::c_char;
-    memcpy(
-        buf2 as *mut libc::c_void,
-        buf as *const libc::c_void,
-        bufpos as libc::c_ulong,
-    );
-    *buf2.offset(bufpos as isize) = '\0' as i32 as libc::c_char;
+    buf2 = xmalloc((bufpos + 1 as i32) as size_t) as *mut i8;
+    memcpy(buf2 as *mut libc::c_void, buf as *const libc::c_void, bufpos as u64);
+    *buf2.offset(bufpos as isize) = '\0' as i32 as i8;
     xfree(buf as *mut libc::c_void);
     (*node).u.re.data = buf2;
-    (*node).u.re.len = bufpos as libc::c_uint;
+    (*node).u.re.len = bufpos as u32;
 }
-static mut yy_ec: [libc::c_int; 256] = [
-    0 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    2 as libc::c_int,
-    3 as libc::c_int,
-    1 as libc::c_int,
-    2 as libc::c_int,
-    2 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    2 as libc::c_int,
-    4 as libc::c_int,
-    5 as libc::c_int,
-    1 as libc::c_int,
-    6 as libc::c_int,
-    1 as libc::c_int,
-    7 as libc::c_int,
-    8 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    9 as libc::c_int,
-    10 as libc::c_int,
-    1 as libc::c_int,
-    11 as libc::c_int,
-    12 as libc::c_int,
-    13 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    14 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    15 as libc::c_int,
-    16 as libc::c_int,
-    17 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    18 as libc::c_int,
-    19 as libc::c_int,
-    18 as libc::c_int,
-    20 as libc::c_int,
-    21 as libc::c_int,
-    18 as libc::c_int,
-    22 as libc::c_int,
-    18 as libc::c_int,
-    23 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    24 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    1 as libc::c_int,
-    25 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    18 as libc::c_int,
-    1 as libc::c_int,
-    26 as libc::c_int,
-    27 as libc::c_int,
-    28 as libc::c_int,
-    29 as libc::c_int,
-    30 as libc::c_int,
-    31 as libc::c_int,
-    18 as libc::c_int,
-    32 as libc::c_int,
-    33 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    34 as libc::c_int,
-    35 as libc::c_int,
-    36 as libc::c_int,
-    37 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    38 as libc::c_int,
-    39 as libc::c_int,
-    40 as libc::c_int,
-    41 as libc::c_int,
-    42 as libc::c_int,
-    43 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    18 as libc::c_int,
-    1 as libc::c_int,
-    44 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
+static mut yy_ec: [i32; 256] = [
+    0 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    2 as i32,
+    3 as i32,
+    1 as i32,
+    2 as i32,
+    2 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    2 as i32,
+    4 as i32,
+    5 as i32,
+    1 as i32,
+    6 as i32,
+    1 as i32,
+    7 as i32,
+    8 as i32,
+    1 as i32,
+    1 as i32,
+    9 as i32,
+    10 as i32,
+    1 as i32,
+    11 as i32,
+    12 as i32,
+    13 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    14 as i32,
+    1 as i32,
+    1 as i32,
+    15 as i32,
+    16 as i32,
+    17 as i32,
+    1 as i32,
+    1 as i32,
+    18 as i32,
+    19 as i32,
+    18 as i32,
+    20 as i32,
+    21 as i32,
+    18 as i32,
+    22 as i32,
+    18 as i32,
+    23 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    24 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    1 as i32,
+    25 as i32,
+    1 as i32,
+    1 as i32,
+    18 as i32,
+    1 as i32,
+    26 as i32,
+    27 as i32,
+    28 as i32,
+    29 as i32,
+    30 as i32,
+    31 as i32,
+    18 as i32,
+    32 as i32,
+    33 as i32,
+    18 as i32,
+    18 as i32,
+    34 as i32,
+    35 as i32,
+    36 as i32,
+    37 as i32,
+    18 as i32,
+    18 as i32,
+    38 as i32,
+    39 as i32,
+    40 as i32,
+    41 as i32,
+    42 as i32,
+    43 as i32,
+    18 as i32,
+    18 as i32,
+    18 as i32,
+    1 as i32,
+    44 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
 ];
-static mut yy_meta: [libc::c_int; 45] = [
-    0 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    2 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    3 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    1 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    1 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    3 as libc::c_int,
-    1 as libc::c_int,
+static mut yy_meta: [i32; 45] = [
+    0 as i32,
+    1 as i32,
+    1 as i32,
+    2 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    3 as i32,
+    1 as i32,
+    1 as i32,
+    1 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    1 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    3 as i32,
+    1 as i32,
 ];
 static mut yy_base: [libc::c_short; 112] = [
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    130 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    113 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    121 as libc::c_int as libc::c_short,
-    102 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    35 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    111 as libc::c_int as libc::c_short,
-    115 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    106 as libc::c_int as libc::c_short,
-    105 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    99 as libc::c_int as libc::c_short,
-    95 as libc::c_int as libc::c_short,
-    85 as libc::c_int as libc::c_short,
-    83 as libc::c_int as libc::c_short,
-    79 as libc::c_int as libc::c_short,
-    84 as libc::c_int as libc::c_short,
-    77 as libc::c_int as libc::c_short,
-    87 as libc::c_int as libc::c_short,
-    82 as libc::c_int as libc::c_short,
-    18 as libc::c_int as libc::c_short,
-    79 as libc::c_int as libc::c_short,
-    66 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    101 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    94 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    93 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    92 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    83 as libc::c_int as libc::c_short,
-    84 as libc::c_int as libc::c_short,
-    61 as libc::c_int as libc::c_short,
-    63 as libc::c_int as libc::c_short,
-    63 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    72 as libc::c_int as libc::c_short,
-    64 as libc::c_int as libc::c_short,
-    58 as libc::c_int as libc::c_short,
-    71 as libc::c_int as libc::c_short,
-    69 as libc::c_int as libc::c_short,
-    62 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    86 as libc::c_int as libc::c_short,
-    79 as libc::c_int as libc::c_short,
-    69 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    75 as libc::c_int as libc::c_short,
-    60 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    63 as libc::c_int as libc::c_short,
-    58 as libc::c_int as libc::c_short,
-    46 as libc::c_int as libc::c_short,
-    22 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    52 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    61 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    50 as libc::c_int as libc::c_short,
-    45 as libc::c_int as libc::c_short,
-    44 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    50 as libc::c_int as libc::c_short,
-    49 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    38 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    33 as libc::c_int as libc::c_short,
-    43 as libc::c_int as libc::c_short,
-    38 as libc::c_int as libc::c_short,
-    31 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    22 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    131 as libc::c_int as libc::c_short,
-    62 as libc::c_int as libc::c_short,
-    65 as libc::c_int as libc::c_short,
-    47 as libc::c_int as libc::c_short,
-    68 as libc::c_int as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    130 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    113 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    121 as i32 as libc::c_short,
+    102 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    35 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    111 as i32 as libc::c_short,
+    115 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    106 as i32 as libc::c_short,
+    105 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    99 as i32 as libc::c_short,
+    95 as i32 as libc::c_short,
+    85 as i32 as libc::c_short,
+    83 as i32 as libc::c_short,
+    79 as i32 as libc::c_short,
+    84 as i32 as libc::c_short,
+    77 as i32 as libc::c_short,
+    87 as i32 as libc::c_short,
+    82 as i32 as libc::c_short,
+    18 as i32 as libc::c_short,
+    79 as i32 as libc::c_short,
+    66 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    101 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    94 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    93 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    92 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    83 as i32 as libc::c_short,
+    84 as i32 as libc::c_short,
+    61 as i32 as libc::c_short,
+    63 as i32 as libc::c_short,
+    63 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    72 as i32 as libc::c_short,
+    64 as i32 as libc::c_short,
+    58 as i32 as libc::c_short,
+    71 as i32 as libc::c_short,
+    69 as i32 as libc::c_short,
+    62 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    86 as i32 as libc::c_short,
+    79 as i32 as libc::c_short,
+    69 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    75 as i32 as libc::c_short,
+    60 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    63 as i32 as libc::c_short,
+    58 as i32 as libc::c_short,
+    46 as i32 as libc::c_short,
+    22 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    52 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    61 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    50 as i32 as libc::c_short,
+    45 as i32 as libc::c_short,
+    44 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    50 as i32 as libc::c_short,
+    49 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    38 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    33 as i32 as libc::c_short,
+    43 as i32 as libc::c_short,
+    38 as i32 as libc::c_short,
+    31 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    22 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    131 as i32 as libc::c_short,
+    62 as i32 as libc::c_short,
+    65 as i32 as libc::c_short,
+    47 as i32 as libc::c_short,
+    68 as i32 as libc::c_short,
 ];
 static mut yy_def: [libc::c_short; 112] = [
-    0 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    108 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    109 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    111 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    0 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
+    0 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    108 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    109 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    111 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    0 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
 ];
 static mut yy_nxt: [libc::c_short; 176] = [
-    0 as libc::c_int as libc::c_short,
-    4 as libc::c_int as libc::c_short,
-    5 as libc::c_int as libc::c_short,
-    6 as libc::c_int as libc::c_short,
-    7 as libc::c_int as libc::c_short,
-    8 as libc::c_int as libc::c_short,
-    9 as libc::c_int as libc::c_short,
-    10 as libc::c_int as libc::c_short,
-    11 as libc::c_int as libc::c_short,
-    12 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    15 as libc::c_int as libc::c_short,
-    16 as libc::c_int as libc::c_short,
-    17 as libc::c_int as libc::c_short,
-    18 as libc::c_int as libc::c_short,
-    19 as libc::c_int as libc::c_short,
-    20 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    22 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    23 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    4 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    24 as libc::c_int as libc::c_short,
-    25 as libc::c_int as libc::c_short,
-    26 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    27 as libc::c_int as libc::c_short,
-    28 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    29 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    30 as libc::c_int as libc::c_short,
-    31 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    21 as libc::c_int as libc::c_short,
-    32 as libc::c_int as libc::c_short,
-    33 as libc::c_int as libc::c_short,
-    40 as libc::c_int as libc::c_short,
-    48 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    52 as libc::c_int as libc::c_short,
-    43 as libc::c_int as libc::c_short,
-    44 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    48 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    45 as libc::c_int as libc::c_short,
-    62 as libc::c_int as libc::c_short,
-    63 as libc::c_int as libc::c_short,
-    87 as libc::c_int as libc::c_short,
-    106 as libc::c_int as libc::c_short,
-    88 as libc::c_int as libc::c_short,
-    35 as libc::c_int as libc::c_short,
-    105 as libc::c_int as libc::c_short,
-    35 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    67 as libc::c_int as libc::c_short,
-    104 as libc::c_int as libc::c_short,
-    67 as libc::c_int as libc::c_short,
-    103 as libc::c_int as libc::c_short,
-    102 as libc::c_int as libc::c_short,
-    101 as libc::c_int as libc::c_short,
-    100 as libc::c_int as libc::c_short,
-    99 as libc::c_int as libc::c_short,
-    98 as libc::c_int as libc::c_short,
-    97 as libc::c_int as libc::c_short,
-    96 as libc::c_int as libc::c_short,
-    95 as libc::c_int as libc::c_short,
-    94 as libc::c_int as libc::c_short,
-    93 as libc::c_int as libc::c_short,
-    92 as libc::c_int as libc::c_short,
-    91 as libc::c_int as libc::c_short,
-    90 as libc::c_int as libc::c_short,
-    89 as libc::c_int as libc::c_short,
-    86 as libc::c_int as libc::c_short,
-    85 as libc::c_int as libc::c_short,
-    84 as libc::c_int as libc::c_short,
-    83 as libc::c_int as libc::c_short,
-    82 as libc::c_int as libc::c_short,
-    81 as libc::c_int as libc::c_short,
-    68 as libc::c_int as libc::c_short,
-    80 as libc::c_int as libc::c_short,
-    79 as libc::c_int as libc::c_short,
-    78 as libc::c_int as libc::c_short,
-    77 as libc::c_int as libc::c_short,
-    76 as libc::c_int as libc::c_short,
-    75 as libc::c_int as libc::c_short,
-    74 as libc::c_int as libc::c_short,
-    73 as libc::c_int as libc::c_short,
-    72 as libc::c_int as libc::c_short,
-    71 as libc::c_int as libc::c_short,
-    70 as libc::c_int as libc::c_short,
-    69 as libc::c_int as libc::c_short,
-    68 as libc::c_int as libc::c_short,
-    46 as libc::c_int as libc::c_short,
-    46 as libc::c_int as libc::c_short,
-    66 as libc::c_int as libc::c_short,
-    65 as libc::c_int as libc::c_short,
-    64 as libc::c_int as libc::c_short,
-    61 as libc::c_int as libc::c_short,
-    60 as libc::c_int as libc::c_short,
-    59 as libc::c_int as libc::c_short,
-    58 as libc::c_int as libc::c_short,
-    57 as libc::c_int as libc::c_short,
-    56 as libc::c_int as libc::c_short,
-    55 as libc::c_int as libc::c_short,
-    54 as libc::c_int as libc::c_short,
-    53 as libc::c_int as libc::c_short,
-    51 as libc::c_int as libc::c_short,
-    50 as libc::c_int as libc::c_short,
-    49 as libc::c_int as libc::c_short,
-    47 as libc::c_int as libc::c_short,
-    46 as libc::c_int as libc::c_short,
-    39 as libc::c_int as libc::c_short,
-    38 as libc::c_int as libc::c_short,
-    36 as libc::c_int as libc::c_short,
-    34 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    3 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
+    0 as i32 as libc::c_short,
+    4 as i32 as libc::c_short,
+    5 as i32 as libc::c_short,
+    6 as i32 as libc::c_short,
+    7 as i32 as libc::c_short,
+    8 as i32 as libc::c_short,
+    9 as i32 as libc::c_short,
+    10 as i32 as libc::c_short,
+    11 as i32 as libc::c_short,
+    12 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    15 as i32 as libc::c_short,
+    16 as i32 as libc::c_short,
+    17 as i32 as libc::c_short,
+    18 as i32 as libc::c_short,
+    19 as i32 as libc::c_short,
+    20 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    22 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    23 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    4 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    24 as i32 as libc::c_short,
+    25 as i32 as libc::c_short,
+    26 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    27 as i32 as libc::c_short,
+    28 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    29 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    30 as i32 as libc::c_short,
+    31 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    21 as i32 as libc::c_short,
+    32 as i32 as libc::c_short,
+    33 as i32 as libc::c_short,
+    40 as i32 as libc::c_short,
+    48 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    52 as i32 as libc::c_short,
+    43 as i32 as libc::c_short,
+    44 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    48 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    45 as i32 as libc::c_short,
+    62 as i32 as libc::c_short,
+    63 as i32 as libc::c_short,
+    87 as i32 as libc::c_short,
+    106 as i32 as libc::c_short,
+    88 as i32 as libc::c_short,
+    35 as i32 as libc::c_short,
+    105 as i32 as libc::c_short,
+    35 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    67 as i32 as libc::c_short,
+    104 as i32 as libc::c_short,
+    67 as i32 as libc::c_short,
+    103 as i32 as libc::c_short,
+    102 as i32 as libc::c_short,
+    101 as i32 as libc::c_short,
+    100 as i32 as libc::c_short,
+    99 as i32 as libc::c_short,
+    98 as i32 as libc::c_short,
+    97 as i32 as libc::c_short,
+    96 as i32 as libc::c_short,
+    95 as i32 as libc::c_short,
+    94 as i32 as libc::c_short,
+    93 as i32 as libc::c_short,
+    92 as i32 as libc::c_short,
+    91 as i32 as libc::c_short,
+    90 as i32 as libc::c_short,
+    89 as i32 as libc::c_short,
+    86 as i32 as libc::c_short,
+    85 as i32 as libc::c_short,
+    84 as i32 as libc::c_short,
+    83 as i32 as libc::c_short,
+    82 as i32 as libc::c_short,
+    81 as i32 as libc::c_short,
+    68 as i32 as libc::c_short,
+    80 as i32 as libc::c_short,
+    79 as i32 as libc::c_short,
+    78 as i32 as libc::c_short,
+    77 as i32 as libc::c_short,
+    76 as i32 as libc::c_short,
+    75 as i32 as libc::c_short,
+    74 as i32 as libc::c_short,
+    73 as i32 as libc::c_short,
+    72 as i32 as libc::c_short,
+    71 as i32 as libc::c_short,
+    70 as i32 as libc::c_short,
+    69 as i32 as libc::c_short,
+    68 as i32 as libc::c_short,
+    46 as i32 as libc::c_short,
+    46 as i32 as libc::c_short,
+    66 as i32 as libc::c_short,
+    65 as i32 as libc::c_short,
+    64 as i32 as libc::c_short,
+    61 as i32 as libc::c_short,
+    60 as i32 as libc::c_short,
+    59 as i32 as libc::c_short,
+    58 as i32 as libc::c_short,
+    57 as i32 as libc::c_short,
+    56 as i32 as libc::c_short,
+    55 as i32 as libc::c_short,
+    54 as i32 as libc::c_short,
+    53 as i32 as libc::c_short,
+    51 as i32 as libc::c_short,
+    50 as i32 as libc::c_short,
+    49 as i32 as libc::c_short,
+    47 as i32 as libc::c_short,
+    46 as i32 as libc::c_short,
+    39 as i32 as libc::c_short,
+    38 as i32 as libc::c_short,
+    36 as i32 as libc::c_short,
+    34 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    3 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
 ];
 static mut yy_chk: [libc::c_short; 176] = [
-    0 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    1 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    17 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    17 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    110 as libc::c_int as libc::c_short,
-    13 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    42 as libc::c_int as libc::c_short,
-    14 as libc::c_int as libc::c_short,
-    31 as libc::c_int as libc::c_short,
-    31 as libc::c_int as libc::c_short,
-    77 as libc::c_int as libc::c_short,
-    105 as libc::c_int as libc::c_short,
-    77 as libc::c_int as libc::c_short,
-    108 as libc::c_int as libc::c_short,
-    103 as libc::c_int as libc::c_short,
-    108 as libc::c_int as libc::c_short,
-    109 as libc::c_int as libc::c_short,
-    109 as libc::c_int as libc::c_short,
-    109 as libc::c_int as libc::c_short,
-    111 as libc::c_int as libc::c_short,
-    102 as libc::c_int as libc::c_short,
-    111 as libc::c_int as libc::c_short,
-    101 as libc::c_int as libc::c_short,
-    100 as libc::c_int as libc::c_short,
-    99 as libc::c_int as libc::c_short,
-    97 as libc::c_int as libc::c_short,
-    94 as libc::c_int as libc::c_short,
-    93 as libc::c_int as libc::c_short,
-    92 as libc::c_int as libc::c_short,
-    89 as libc::c_int as libc::c_short,
-    88 as libc::c_int as libc::c_short,
-    87 as libc::c_int as libc::c_short,
-    86 as libc::c_int as libc::c_short,
-    85 as libc::c_int as libc::c_short,
-    84 as libc::c_int as libc::c_short,
-    81 as libc::c_int as libc::c_short,
-    79 as libc::c_int as libc::c_short,
-    76 as libc::c_int as libc::c_short,
-    75 as libc::c_int as libc::c_short,
-    74 as libc::c_int as libc::c_short,
-    72 as libc::c_int as libc::c_short,
-    71 as libc::c_int as libc::c_short,
-    69 as libc::c_int as libc::c_short,
-    68 as libc::c_int as libc::c_short,
-    67 as libc::c_int as libc::c_short,
-    64 as libc::c_int as libc::c_short,
-    63 as libc::c_int as libc::c_short,
-    62 as libc::c_int as libc::c_short,
-    61 as libc::c_int as libc::c_short,
-    60 as libc::c_int as libc::c_short,
-    59 as libc::c_int as libc::c_short,
-    57 as libc::c_int as libc::c_short,
-    56 as libc::c_int as libc::c_short,
-    55 as libc::c_int as libc::c_short,
-    54 as libc::c_int as libc::c_short,
-    53 as libc::c_int as libc::c_short,
-    48 as libc::c_int as libc::c_short,
-    46 as libc::c_int as libc::c_short,
-    41 as libc::c_int as libc::c_short,
-    37 as libc::c_int as libc::c_short,
-    33 as libc::c_int as libc::c_short,
-    32 as libc::c_int as libc::c_short,
-    30 as libc::c_int as libc::c_short,
-    29 as libc::c_int as libc::c_short,
-    28 as libc::c_int as libc::c_short,
-    27 as libc::c_int as libc::c_short,
-    26 as libc::c_int as libc::c_short,
-    25 as libc::c_int as libc::c_short,
-    24 as libc::c_int as libc::c_short,
-    23 as libc::c_int as libc::c_short,
-    22 as libc::c_int as libc::c_short,
-    20 as libc::c_int as libc::c_short,
-    19 as libc::c_int as libc::c_short,
-    18 as libc::c_int as libc::c_short,
-    16 as libc::c_int as libc::c_short,
-    15 as libc::c_int as libc::c_short,
-    12 as libc::c_int as libc::c_short,
-    11 as libc::c_int as libc::c_short,
-    10 as libc::c_int as libc::c_short,
-    7 as libc::c_int as libc::c_short,
-    3 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
-    107 as libc::c_int as libc::c_short,
+    0 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    1 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    17 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    17 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    110 as i32 as libc::c_short,
+    13 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    42 as i32 as libc::c_short,
+    14 as i32 as libc::c_short,
+    31 as i32 as libc::c_short,
+    31 as i32 as libc::c_short,
+    77 as i32 as libc::c_short,
+    105 as i32 as libc::c_short,
+    77 as i32 as libc::c_short,
+    108 as i32 as libc::c_short,
+    103 as i32 as libc::c_short,
+    108 as i32 as libc::c_short,
+    109 as i32 as libc::c_short,
+    109 as i32 as libc::c_short,
+    109 as i32 as libc::c_short,
+    111 as i32 as libc::c_short,
+    102 as i32 as libc::c_short,
+    111 as i32 as libc::c_short,
+    101 as i32 as libc::c_short,
+    100 as i32 as libc::c_short,
+    99 as i32 as libc::c_short,
+    97 as i32 as libc::c_short,
+    94 as i32 as libc::c_short,
+    93 as i32 as libc::c_short,
+    92 as i32 as libc::c_short,
+    89 as i32 as libc::c_short,
+    88 as i32 as libc::c_short,
+    87 as i32 as libc::c_short,
+    86 as i32 as libc::c_short,
+    85 as i32 as libc::c_short,
+    84 as i32 as libc::c_short,
+    81 as i32 as libc::c_short,
+    79 as i32 as libc::c_short,
+    76 as i32 as libc::c_short,
+    75 as i32 as libc::c_short,
+    74 as i32 as libc::c_short,
+    72 as i32 as libc::c_short,
+    71 as i32 as libc::c_short,
+    69 as i32 as libc::c_short,
+    68 as i32 as libc::c_short,
+    67 as i32 as libc::c_short,
+    64 as i32 as libc::c_short,
+    63 as i32 as libc::c_short,
+    62 as i32 as libc::c_short,
+    61 as i32 as libc::c_short,
+    60 as i32 as libc::c_short,
+    59 as i32 as libc::c_short,
+    57 as i32 as libc::c_short,
+    56 as i32 as libc::c_short,
+    55 as i32 as libc::c_short,
+    54 as i32 as libc::c_short,
+    53 as i32 as libc::c_short,
+    48 as i32 as libc::c_short,
+    46 as i32 as libc::c_short,
+    41 as i32 as libc::c_short,
+    37 as i32 as libc::c_short,
+    33 as i32 as libc::c_short,
+    32 as i32 as libc::c_short,
+    30 as i32 as libc::c_short,
+    29 as i32 as libc::c_short,
+    28 as i32 as libc::c_short,
+    27 as i32 as libc::c_short,
+    26 as i32 as libc::c_short,
+    25 as i32 as libc::c_short,
+    24 as i32 as libc::c_short,
+    23 as i32 as libc::c_short,
+    22 as i32 as libc::c_short,
+    20 as i32 as libc::c_short,
+    19 as i32 as libc::c_short,
+    18 as i32 as libc::c_short,
+    16 as i32 as libc::c_short,
+    15 as i32 as libc::c_short,
+    12 as i32 as libc::c_short,
+    11 as i32 as libc::c_short,
+    10 as i32 as libc::c_short,
+    7 as i32 as libc::c_short,
+    3 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
+    107 as i32 as libc::c_short,
 ];
 static mut yy_last_accepting_state: yy_state_type = 0;
-static mut yy_last_accepting_cpos: *mut libc::c_char = 0 as *const libc::c_char
-    as *mut libc::c_char;
+static mut yy_last_accepting_cpos: *mut i8 = 0 as *const i8 as *mut i8;
 #[no_mangle]
-pub static mut yytext: *mut libc::c_char = 0 as *const libc::c_char as *mut libc::c_char;
+pub static mut yytext: *mut i8 = 0 as *const i8 as *mut i8;
 #[no_mangle]
-pub unsafe extern "C" fn yylex() -> libc::c_int {
-    let mut yy_amount_of_matched_text: libc::c_int = 0;
+pub unsafe extern "C" fn yylex() -> i32 {
+    let mut yy_amount_of_matched_text: i32 = 0;
     let mut yy_next_state: yy_state_type = 0;
     let mut current_block: u64;
     let mut yy_current_state: yy_state_type = 0;
-    let mut yy_cp: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut yy_bp: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut yy_act: libc::c_int = 0;
+    let mut yy_cp: *mut i8 = 0 as *mut i8;
+    let mut yy_bp: *mut i8 = 0 as *mut i8;
+    let mut yy_act: i32 = 0;
     if yy_init != 0 {
-        yy_init = 0 as libc::c_int;
+        yy_init = 0 as i32;
         if yy_start == 0 {
-            yy_start = 1 as libc::c_int;
+            yy_start = 1 as i32;
         }
         if yyin.is_null() {
             yyin = stdin;
@@ -2420,7 +2583,7 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
             yyout = stdout;
         }
         if yy_current_buffer.is_null() {
-            yy_current_buffer = yy_create_buffer(yyin, 16384 as libc::c_int);
+            yy_current_buffer = yy_create_buffer(yyin, 16384 as i32);
         }
         yy_load_buffer_state();
     }
@@ -2431,42 +2594,38 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
         yy_current_state = yy_start;
         '_yy_match: loop {
             loop {
-                let mut yy_c: YY_CHAR = yy_ec[*yy_cp as libc::c_uchar as libc::c_uint
-                    as usize] as YY_CHAR;
+                let mut yy_c: YY_CHAR = yy_ec[*yy_cp as u8 as u32 as usize] as YY_CHAR;
                 if yy_accept[yy_current_state as usize] != 0 {
                     yy_last_accepting_state = yy_current_state;
                     yy_last_accepting_cpos = yy_cp;
                 }
-                while yy_chk[(yy_base[yy_current_state as usize] as libc::c_int
-                    + yy_c as libc::c_int) as usize] as libc::c_int != yy_current_state
+                while yy_chk[(yy_base[yy_current_state as usize] as i32 + yy_c as i32)
+                    as usize] as i32 != yy_current_state
                 {
-                    yy_current_state = yy_def[yy_current_state as usize] as libc::c_int;
-                    if yy_current_state >= 108 as libc::c_int {
-                        yy_c = yy_meta[yy_c as libc::c_uint as usize] as YY_CHAR;
+                    yy_current_state = yy_def[yy_current_state as usize] as i32;
+                    if yy_current_state >= 108 as i32 {
+                        yy_c = yy_meta[yy_c as u32 as usize] as YY_CHAR;
                     }
                 }
-                yy_current_state = yy_nxt[(yy_base[yy_current_state as usize]
-                    as libc::c_uint)
-                    .wrapping_add(yy_c as libc::c_uint) as usize] as yy_state_type;
+                yy_current_state = yy_nxt[(yy_base[yy_current_state as usize] as u32)
+                    .wrapping_add(yy_c as u32) as usize] as yy_state_type;
                 yy_cp = yy_cp.offset(1);
                 yy_cp;
-                if !(yy_base[yy_current_state as usize] as libc::c_int
-                    != 131 as libc::c_int)
-                {
+                if !(yy_base[yy_current_state as usize] as i32 != 131 as i32) {
                     break;
                 }
             }
             '_yy_find_action: loop {
-                yy_act = yy_accept[yy_current_state as usize] as libc::c_int;
-                if yy_act == 0 as libc::c_int {
+                yy_act = yy_accept[yy_current_state as usize] as i32;
+                if yy_act == 0 as i32 {
                     yy_cp = yy_last_accepting_cpos;
                     yy_current_state = yy_last_accepting_state;
-                    yy_act = yy_accept[yy_current_state as usize] as libc::c_int;
+                    yy_act = yy_accept[yy_current_state as usize] as i32;
                 }
                 yytext = yy_bp;
-                yyleng = yy_cp.offset_from(yy_bp) as libc::c_long as libc::c_int;
+                yyleng = yy_cp.offset_from(yy_bp) as i64 as i32;
                 yy_hold_char = *yy_cp;
-                *yy_cp = '\0' as i32 as libc::c_char;
+                *yy_cp = '\0' as i32 as i8;
                 yy_c_buf_p = yy_cp;
                 loop {
                     match yy_act {
@@ -2489,26 +2648,21 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                             break '_yy_match;
                         }
                         4 => {
-                            yylval.node = node_alloc(nSTRING);
-                            (*yylval.node)
-                                .u
-                                .str_0
-                                .data = read_string(&mut (*yylval.node).u.str_0.len);
-                            return 260 as libc::c_int;
+                            yylval.node = node_alloc(NodeType::nSTRING);
+                            (*yylval.node).u.str_0.data = read_string(
+                                &mut (*yylval.node).u.str_0.len,
+                            );
+                            return 260 as i32;
                         }
                         5 => {
-                            yylval.node = node_alloc(nINTEGER);
-                            (*yylval.node)
-                                .u
-                                .integer = *yytext.offset(1 as libc::c_int as isize)
-                                as libc::c_int;
-                            return 261 as libc::c_int;
+                            yylval.node = node_alloc(NodeType::nINTEGER);
+                            (*yylval.node).u.integer = *yytext.offset(1 as i32 as isize)
+                                as i32;
+                            return 261 as i32;
                         }
                         6 => {
-                            yylval.node = node_alloc(nINTEGER);
-                            match *yytext.offset(2 as libc::c_int as isize)
-                                as libc::c_int
-                            {
+                            yylval.node = node_alloc(NodeType::nINTEGER);
+                            match *yytext.offset(2 as i32 as isize) as i32 {
                                 110 => {
                                     (*yylval.node).u.integer = '\n' as i32;
                                 }
@@ -2531,94 +2685,90 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                                     (*yylval.node).u.integer = '\u{7}' as i32;
                                 }
                                 _ => {
-                                    (*yylval.node)
-                                        .u
-                                        .integer = *yytext.offset(2 as libc::c_int as isize)
-                                        as libc::c_int;
+                                    (*yylval.node).u.integer = *yytext.offset(2 as i32 as isize)
+                                        as i32;
                                 }
                             }
-                            return 261 as libc::c_int;
+                            return 261 as i32;
                         }
                         7 => {
-                            yylval.node = node_alloc(nREGEXP);
+                            yylval.node = node_alloc(NodeType::nREGEXP);
                             read_regexp(yylval.node);
-                            return 259 as libc::c_int;
+                            return 259 as i32;
                         }
-                        8 => return 268 as libc::c_int,
-                        9 => return 269 as libc::c_int,
-                        10 => return 286 as libc::c_int,
-                        11 => return 272 as libc::c_int,
-                        12 => return 275 as libc::c_int,
-                        13 => return 271 as libc::c_int,
-                        14 => return 273 as libc::c_int,
-                        15 => return 267 as libc::c_int,
-                        16 => return 270 as libc::c_int,
-                        17 => return 265 as libc::c_int,
-                        18 => return 266 as libc::c_int,
-                        19 => return 264 as libc::c_int,
-                        20 => return 263 as libc::c_int,
-                        21 => return 274 as libc::c_int,
-                        22 => return 282 as libc::c_int,
-                        23 => return 283 as libc::c_int,
-                        24 => return 285 as libc::c_int,
-                        25 => return 284 as libc::c_int,
-                        26 => return 281 as libc::c_int,
-                        27 => return 280 as libc::c_int,
-                        28 => return 287 as libc::c_int,
-                        29 => return 288 as libc::c_int,
-                        30 => return 276 as libc::c_int,
-                        31 => return 277 as libc::c_int,
-                        32 => return 278 as libc::c_int,
-                        33 => return 279 as libc::c_int,
+                        8 => return 268 as i32,
+                        9 => return 269 as i32,
+                        10 => return 286 as i32,
+                        11 => return 272 as i32,
+                        12 => return 275 as i32,
+                        13 => return 271 as i32,
+                        14 => return 273 as i32,
+                        15 => return 267 as i32,
+                        16 => return 270 as i32,
+                        17 => return 265 as i32,
+                        18 => return 266 as i32,
+                        19 => return 264 as i32,
+                        20 => return 263 as i32,
+                        21 => return 274 as i32,
+                        22 => return 282 as i32,
+                        23 => return 283 as i32,
+                        24 => return 285 as i32,
+                        25 => return 284 as i32,
+                        26 => return 281 as i32,
+                        27 => return 280 as i32,
+                        28 => return 287 as i32,
+                        29 => return 288 as i32,
+                        30 => return 276 as i32,
+                        31 => return 277 as i32,
+                        32 => return 278 as i32,
+                        33 => return 279 as i32,
                         34 => {
-                            yylval.node = node_alloc(nREAL);
+                            yylval.node = node_alloc(NodeType::nREAL);
                             (*yylval.node).u.real = atof(yytext);
-                            return 262 as libc::c_int;
+                            return 262 as i32;
                         }
                         35 => {
-                            yylval.node = node_alloc(nINTEGER);
+                            yylval.node = node_alloc(NodeType::nINTEGER);
                             (*yylval.node).u.integer = atoi(yytext);
-                            return 261 as libc::c_int;
+                            return 261 as i32;
                         }
                         36 => {
-                            yylval.node = node_alloc(nSYMBOL);
+                            yylval.node = node_alloc(NodeType::nSYMBOL);
                             (*yylval.node).u.sym = xstrdup(yytext);
-                            return 258 as libc::c_int;
+                            return 258 as i32;
                         }
                         37 => {
-                            return *yytext.offset(0 as libc::c_int as isize)
-                                as libc::c_int;
+                            return *yytext.offset(0 as i32 as isize) as i32;
                         }
                         38 => {
                             fwrite(
                                 yytext as *const libc::c_void,
                                 yyleng as size_t,
-                                1 as libc::c_int as size_t,
+                                1 as i32 as size_t,
                                 yyout,
                             );
                             break '_yy_match;
                         }
-                        40 => return 0 as libc::c_int,
+                        40 => return 0 as i32,
                         39 => {
-                            yy_amount_of_matched_text = yy_cp.offset_from(yytext)
-                                as libc::c_long as libc::c_int - 1 as libc::c_int;
+                            yy_amount_of_matched_text = yy_cp.offset_from(yytext) as i64
+                                as i32 - 1 as i32;
                             *yy_cp = yy_hold_char;
-                            if (*yy_current_buffer).yy_buffer_status == 0 as libc::c_int
-                            {
+                            if (*yy_current_buffer).yy_buffer_status == 0 as i32 {
                                 yy_n_chars = (*yy_current_buffer).yy_n_chars;
                                 (*yy_current_buffer).yy_input_file = yyin;
-                                (*yy_current_buffer).yy_buffer_status = 1 as libc::c_int;
+                                (*yy_current_buffer).yy_buffer_status = 1 as i32;
                             }
                             if yy_c_buf_p
                                 <= &mut *((*yy_current_buffer).yy_ch_buf)
-                                    .offset(yy_n_chars as isize) as *mut libc::c_char
+                                    .offset(yy_n_chars as isize) as *mut i8
                             {
                                 yy_next_state = 0;
                                 yy_c_buf_p = yytext
                                     .offset(yy_amount_of_matched_text as isize);
                                 yy_current_state = yy_get_previous_state();
                                 yy_next_state = yy_try_NUL_trans(yy_current_state);
-                                yy_bp = yytext.offset(0 as libc::c_int as isize);
+                                yy_bp = yytext.offset(0 as i32 as isize);
                                 if yy_next_state != 0 {
                                     current_block = 12608488225262500095;
                                     break;
@@ -2629,12 +2779,11 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                             } else {
                                 match yy_get_next_buffer() {
                                     1 => {
-                                        yy_did_buffer_switch_on_eof = 0 as libc::c_int;
+                                        yy_did_buffer_switch_on_eof = 0 as i32;
                                         if yywrap() != 0 {
-                                            yy_c_buf_p = yytext.offset(0 as libc::c_int as isize);
-                                            yy_act = 39 as libc::c_int
-                                                + (yy_start - 1 as libc::c_int) / 2 as libc::c_int
-                                                + 1 as libc::c_int;
+                                            yy_c_buf_p = yytext.offset(0 as i32 as isize);
+                                            yy_act = 39 as i32 + (yy_start - 1 as i32) / 2 as i32
+                                                + 1 as i32;
                                         } else {
                                             if yy_did_buffer_switch_on_eof == 0 {
                                                 yyrestart(yyin);
@@ -2647,15 +2796,15 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                                             .offset(yy_amount_of_matched_text as isize);
                                         yy_current_state = yy_get_previous_state();
                                         yy_cp = yy_c_buf_p;
-                                        yy_bp = yytext.offset(0 as libc::c_int as isize);
+                                        yy_bp = yytext.offset(0 as i32 as isize);
                                         break '_yy_find_action;
                                     }
                                     2 => {
                                         yy_c_buf_p = &mut *((*yy_current_buffer).yy_ch_buf)
-                                            .offset(yy_n_chars as isize) as *mut libc::c_char;
+                                            .offset(yy_n_chars as isize) as *mut i8;
                                         yy_current_state = yy_get_previous_state();
                                         yy_cp = yy_c_buf_p;
-                                        yy_bp = yytext.offset(0 as libc::c_int as isize);
+                                        yy_bp = yytext.offset(0 as i32 as isize);
                                         continue '_yy_find_action;
                                     }
                                     _ => {
@@ -2667,7 +2816,7 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
                         _ => {
                             yy_fatal_error(
                                 b"fatal flex scanner internal error--no action found\0"
-                                    as *const u8 as *const libc::c_char,
+                                    as *const u8 as *const i8,
                             );
                             break '_yy_match;
                         }
@@ -2688,33 +2837,30 @@ pub unsafe extern "C" fn yylex() -> libc::c_int {
         }
     };
 }
-unsafe extern "C" fn yy_get_next_buffer() -> libc::c_int {
-    let mut dest: *mut libc::c_char = (*yy_current_buffer).yy_ch_buf;
-    let mut source: *mut libc::c_char = yytext;
-    let mut number_to_move: libc::c_int = 0;
-    let mut i: libc::c_int = 0;
-    let mut ret_val: libc::c_int = 0;
+unsafe extern "C" fn yy_get_next_buffer() -> i32 {
+    let mut dest: *mut i8 = (*yy_current_buffer).yy_ch_buf;
+    let mut source: *mut i8 = yytext;
+    let mut number_to_move: i32 = 0;
+    let mut i: i32 = 0;
+    let mut ret_val: i32 = 0;
     if yy_c_buf_p
-        > &mut *((*yy_current_buffer).yy_ch_buf)
-            .offset((yy_n_chars + 1 as libc::c_int) as isize) as *mut libc::c_char
+        > &mut *((*yy_current_buffer).yy_ch_buf).offset((yy_n_chars + 1 as i32) as isize)
+            as *mut i8
     {
         yy_fatal_error(
             b"fatal flex scanner internal error--end of buffer missed\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
         );
     }
-    if (*yy_current_buffer).yy_fill_buffer == 0 as libc::c_int {
-        if yy_c_buf_p.offset_from(yytext) as libc::c_long
-            - 0 as libc::c_int as libc::c_long == 1 as libc::c_int as libc::c_long
-        {
-            return 1 as libc::c_int
+    if (*yy_current_buffer).yy_fill_buffer == 0 as i32 {
+        if yy_c_buf_p.offset_from(yytext) as i64 - 0 as i32 as i64 == 1 as i32 as i64 {
+            return 1 as i32
         } else {
-            return 2 as libc::c_int
+            return 2 as i32
         }
     }
-    number_to_move = yy_c_buf_p.offset_from(yytext) as libc::c_long as libc::c_int
-        - 1 as libc::c_int;
-    i = 0 as libc::c_int;
+    number_to_move = yy_c_buf_p.offset_from(yytext) as i64 as i32 - 1 as i32;
+    i = 0 as i32;
     while i < number_to_move {
         let fresh2 = source;
         source = source.offset(1);
@@ -2724,69 +2870,63 @@ unsafe extern "C" fn yy_get_next_buffer() -> libc::c_int {
         i += 1;
         i;
     }
-    if (*yy_current_buffer).yy_buffer_status == 2 as libc::c_int {
-        yy_n_chars = 0 as libc::c_int;
+    if (*yy_current_buffer).yy_buffer_status == 2 as i32 {
+        yy_n_chars = 0 as i32;
         (*yy_current_buffer).yy_n_chars = yy_n_chars;
     } else {
-        let mut num_to_read: libc::c_int = ((*yy_current_buffer).yy_buf_size)
-            .wrapping_sub(number_to_move as libc::c_uint)
-            .wrapping_sub(1 as libc::c_int as libc::c_uint) as libc::c_int;
-        while num_to_read <= 0 as libc::c_int {
+        let mut num_to_read: i32 = ((*yy_current_buffer).yy_buf_size)
+            .wrapping_sub(number_to_move as u32)
+            .wrapping_sub(1 as i32 as u32) as i32;
+        while num_to_read <= 0 as i32 {
             let mut b: YY_BUFFER_STATE = yy_current_buffer;
-            let mut yy_c_buf_p_offset: libc::c_int = yy_c_buf_p
-                .offset_from((*b).yy_ch_buf) as libc::c_long as libc::c_int;
+            let mut yy_c_buf_p_offset: i32 = yy_c_buf_p.offset_from((*b).yy_ch_buf)
+                as i64 as i32;
             if (*b).yy_is_our_buffer != 0 {
-                let mut new_size: libc::c_int = ((*b).yy_buf_size)
-                    .wrapping_mul(2 as libc::c_int as libc::c_uint) as libc::c_int;
-                if new_size <= 0 as libc::c_int {
-                    (*b)
-                        .yy_buf_size = ((*b).yy_buf_size as libc::c_uint)
-                        .wrapping_add(
-                            ((*b).yy_buf_size)
-                                .wrapping_div(8 as libc::c_int as libc::c_uint),
-                        ) as yy_size_t as yy_size_t;
+                let mut new_size: i32 = ((*b).yy_buf_size).wrapping_mul(2 as i32 as u32)
+                    as i32;
+                if new_size <= 0 as i32 {
+                    (*b).yy_buf_size = ((*b).yy_buf_size as u32)
+                        .wrapping_add(((*b).yy_buf_size).wrapping_div(8 as i32 as u32))
+                        as yy_size_t as yy_size_t;
                 } else {
-                    (*b)
-                        .yy_buf_size = ((*b).yy_buf_size as libc::c_uint)
-                        .wrapping_mul(2 as libc::c_int as libc::c_uint) as yy_size_t
-                        as yy_size_t;
+                    (*b).yy_buf_size = ((*b).yy_buf_size as u32)
+                        .wrapping_mul(2 as i32 as u32) as yy_size_t as yy_size_t;
                 }
-                (*b)
-                    .yy_ch_buf = yy_flex_realloc(
+                (*b).yy_ch_buf = yy_flex_realloc(
                     (*b).yy_ch_buf as *mut libc::c_void,
-                    ((*b).yy_buf_size).wrapping_add(2 as libc::c_int as libc::c_uint),
-                ) as *mut libc::c_char;
+                    ((*b).yy_buf_size).wrapping_add(2 as i32 as u32),
+                ) as *mut i8;
             } else {
-                (*b).yy_ch_buf = 0 as *mut libc::c_char;
+                (*b).yy_ch_buf = 0 as *mut i8;
             }
             if ((*b).yy_ch_buf).is_null() {
                 yy_fatal_error(
                     b"fatal error - scanner input buffer overflow\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                 );
             }
             yy_c_buf_p = &mut *((*b).yy_ch_buf).offset(yy_c_buf_p_offset as isize)
-                as *mut libc::c_char;
+                as *mut i8;
             num_to_read = ((*yy_current_buffer).yy_buf_size)
-                .wrapping_sub(number_to_move as libc::c_uint)
-                .wrapping_sub(1 as libc::c_int as libc::c_uint) as libc::c_int;
+                .wrapping_sub(number_to_move as u32)
+                .wrapping_sub(1 as i32 as u32) as i32;
         }
-        if num_to_read > 8192 as libc::c_int {
-            num_to_read = 8192 as libc::c_int;
+        if num_to_read > 8192 as i32 {
+            num_to_read = 8192 as i32;
         }
         if (*yy_current_buffer).yy_is_interactive != 0 {
-            let mut c: libc::c_int = '*' as i32;
-            let mut n: libc::c_int = 0;
-            n = 0 as libc::c_int;
+            let mut c: i32 = '*' as i32;
+            let mut n: i32 = 0;
+            n = 0 as i32;
             while n < num_to_read
                 && {
-                    c = getc(yyin);
-                    c != -(1 as libc::c_int)
+                    c = _IO_getc(yyin);
+                    c != -(1 as i32)
                 } && c != '\n' as i32
             {
                 *(&mut *((*yy_current_buffer).yy_ch_buf).offset(number_to_move as isize)
-                    as *mut libc::c_char)
-                    .offset(n as isize) = c as libc::c_char;
+                    as *mut i8)
+                    .offset(n as isize) = c as i8;
                 n += 1;
                 n;
             }
@@ -2794,78 +2934,74 @@ unsafe extern "C" fn yy_get_next_buffer() -> libc::c_int {
                 let fresh4 = n;
                 n = n + 1;
                 *(&mut *((*yy_current_buffer).yy_ch_buf).offset(number_to_move as isize)
-                    as *mut libc::c_char)
-                    .offset(fresh4 as isize) = c as libc::c_char;
+                    as *mut i8)
+                    .offset(fresh4 as isize) = c as i8;
             }
-            if c == -(1 as libc::c_int) && ferror(yyin) != 0 {
+            if c == -(1 as i32) && ferror(yyin) != 0 {
                 yy_fatal_error(
-                    b"input in flex scanner failed\0" as *const u8 as *const libc::c_char,
+                    b"input in flex scanner failed\0" as *const u8 as *const i8,
                 );
             }
             yy_n_chars = n;
         } else {
             yy_n_chars = fread(
                 &mut *((*yy_current_buffer).yy_ch_buf).offset(number_to_move as isize)
-                    as *mut libc::c_char as *mut libc::c_void,
-                1 as libc::c_int as size_t,
+                    as *mut i8 as *mut libc::c_void,
+                1 as i32 as size_t,
                 num_to_read as size_t,
                 yyin,
-            ) as libc::c_int;
-            if yy_n_chars == 0 as libc::c_int && ferror(yyin) != 0 {
+            ) as i32;
+            if yy_n_chars == 0 as i32 && ferror(yyin) != 0 {
                 yy_fatal_error(
-                    b"input in flex scanner failed\0" as *const u8 as *const libc::c_char,
+                    b"input in flex scanner failed\0" as *const u8 as *const i8,
                 );
             }
         }
         (*yy_current_buffer).yy_n_chars = yy_n_chars;
     }
-    if yy_n_chars == 0 as libc::c_int {
-        if number_to_move == 0 as libc::c_int {
-            ret_val = 1 as libc::c_int;
+    if yy_n_chars == 0 as i32 {
+        if number_to_move == 0 as i32 {
+            ret_val = 1 as i32;
             yyrestart(yyin);
         } else {
-            ret_val = 2 as libc::c_int;
-            (*yy_current_buffer).yy_buffer_status = 2 as libc::c_int;
+            ret_val = 2 as i32;
+            (*yy_current_buffer).yy_buffer_status = 2 as i32;
         }
     } else {
-        ret_val = 0 as libc::c_int;
+        ret_val = 0 as i32;
     }
     yy_n_chars += number_to_move;
-    *((*yy_current_buffer).yy_ch_buf)
-        .offset(yy_n_chars as isize) = 0 as libc::c_int as libc::c_char;
-    *((*yy_current_buffer).yy_ch_buf)
-        .offset(
-            (yy_n_chars + 1 as libc::c_int) as isize,
-        ) = 0 as libc::c_int as libc::c_char;
-    yytext = &mut *((*yy_current_buffer).yy_ch_buf).offset(0 as libc::c_int as isize)
-        as *mut libc::c_char;
+    *((*yy_current_buffer).yy_ch_buf).offset(yy_n_chars as isize) = 0 as i32 as i8;
+    *((*yy_current_buffer).yy_ch_buf).offset((yy_n_chars + 1 as i32) as isize) = 0 as i32
+        as i8;
+    yytext = &mut *((*yy_current_buffer).yy_ch_buf).offset(0 as i32 as isize) as *mut i8;
     return ret_val;
 }
 unsafe extern "C" fn yy_get_previous_state() -> yy_state_type {
     let mut yy_current_state: yy_state_type = 0;
-    let mut yy_cp: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut yy_cp: *mut i8 = 0 as *mut i8;
     yy_current_state = yy_start;
-    yy_cp = yytext.offset(0 as libc::c_int as isize);
+    yy_cp = yytext.offset(0 as i32 as isize);
     while yy_cp < yy_c_buf_p {
-        let mut yy_c: YY_CHAR = (if *yy_cp as libc::c_int != 0 {
-            yy_ec[*yy_cp as libc::c_uchar as libc::c_uint as usize]
+        let mut yy_c: YY_CHAR = (if *yy_cp as i32 != 0 {
+            yy_ec[*yy_cp as u8 as u32 as usize]
         } else {
-            1 as libc::c_int
+            1 as i32
         }) as YY_CHAR;
         if yy_accept[yy_current_state as usize] != 0 {
             yy_last_accepting_state = yy_current_state;
             yy_last_accepting_cpos = yy_cp;
         }
-        while yy_chk[(yy_base[yy_current_state as usize] as libc::c_int
-            + yy_c as libc::c_int) as usize] as libc::c_int != yy_current_state
+        while yy_chk[(yy_base[yy_current_state as usize] as i32 + yy_c as i32) as usize]
+            as i32 != yy_current_state
         {
-            yy_current_state = yy_def[yy_current_state as usize] as libc::c_int;
-            if yy_current_state >= 108 as libc::c_int {
-                yy_c = yy_meta[yy_c as libc::c_uint as usize] as YY_CHAR;
+            yy_current_state = yy_def[yy_current_state as usize] as i32;
+            if yy_current_state >= 108 as i32 {
+                yy_c = yy_meta[yy_c as u32 as usize] as YY_CHAR;
             }
         }
-        yy_current_state = yy_nxt[(yy_base[yy_current_state as usize] as libc::c_uint)
-            .wrapping_add(yy_c as libc::c_uint) as usize] as yy_state_type;
+        yy_current_state = yy_nxt[(yy_base[yy_current_state as usize] as u32)
+            .wrapping_add(yy_c as u32) as usize] as yy_state_type;
         yy_cp = yy_cp.offset(1);
         yy_cp;
     }
@@ -2874,83 +3010,79 @@ unsafe extern "C" fn yy_get_previous_state() -> yy_state_type {
 unsafe extern "C" fn yy_try_NUL_trans(
     mut yy_current_state: yy_state_type,
 ) -> yy_state_type {
-    let mut yy_is_jam: libc::c_int = 0;
-    let mut yy_cp: *mut libc::c_char = yy_c_buf_p;
-    let mut yy_c: YY_CHAR = 1 as libc::c_int as YY_CHAR;
+    let mut yy_is_jam: i32 = 0;
+    let mut yy_cp: *mut i8 = yy_c_buf_p;
+    let mut yy_c: YY_CHAR = 1 as i32 as YY_CHAR;
     if yy_accept[yy_current_state as usize] != 0 {
         yy_last_accepting_state = yy_current_state;
         yy_last_accepting_cpos = yy_cp;
     }
-    while yy_chk[(yy_base[yy_current_state as usize] as libc::c_int
-        + yy_c as libc::c_int) as usize] as libc::c_int != yy_current_state
+    while yy_chk[(yy_base[yy_current_state as usize] as i32 + yy_c as i32) as usize]
+        as i32 != yy_current_state
     {
-        yy_current_state = yy_def[yy_current_state as usize] as libc::c_int;
-        if yy_current_state >= 108 as libc::c_int {
-            yy_c = yy_meta[yy_c as libc::c_uint as usize] as YY_CHAR;
+        yy_current_state = yy_def[yy_current_state as usize] as i32;
+        if yy_current_state >= 108 as i32 {
+            yy_c = yy_meta[yy_c as u32 as usize] as YY_CHAR;
         }
     }
-    yy_current_state = yy_nxt[(yy_base[yy_current_state as usize] as libc::c_uint)
-        .wrapping_add(yy_c as libc::c_uint) as usize] as yy_state_type;
-    yy_is_jam = (yy_current_state == 107 as libc::c_int) as libc::c_int;
-    return if yy_is_jam != 0 { 0 as libc::c_int } else { yy_current_state };
+    yy_current_state = yy_nxt[(yy_base[yy_current_state as usize] as u32)
+        .wrapping_add(yy_c as u32) as usize] as yy_state_type;
+    yy_is_jam = (yy_current_state == 107 as i32) as i32;
+    return if yy_is_jam != 0 { 0 as i32 } else { yy_current_state };
 }
-unsafe extern "C" fn yyunput(mut c: libc::c_int, mut yy_bp: *mut libc::c_char) {
-    let mut yy_cp: *mut libc::c_char = yy_c_buf_p;
+unsafe extern "C" fn yyunput(mut c: i32, mut yy_bp: *mut i8) {
+    let mut yy_cp: *mut i8 = yy_c_buf_p;
     *yy_cp = yy_hold_char;
-    if yy_cp < ((*yy_current_buffer).yy_ch_buf).offset(2 as libc::c_int as isize) {
-        let mut number_to_move: libc::c_int = yy_n_chars + 2 as libc::c_int;
-        let mut dest: *mut libc::c_char = &mut *((*yy_current_buffer).yy_ch_buf)
+    if yy_cp < ((*yy_current_buffer).yy_ch_buf).offset(2 as i32 as isize) {
+        let mut number_to_move: i32 = yy_n_chars + 2 as i32;
+        let mut dest: *mut i8 = &mut *((*yy_current_buffer).yy_ch_buf)
             .offset(
-                ((*yy_current_buffer).yy_buf_size)
-                    .wrapping_add(2 as libc::c_int as libc::c_uint) as isize,
-            ) as *mut libc::c_char;
-        let mut source: *mut libc::c_char = &mut *((*yy_current_buffer).yy_ch_buf)
-            .offset(number_to_move as isize) as *mut libc::c_char;
+                ((*yy_current_buffer).yy_buf_size).wrapping_add(2 as i32 as u32) as isize,
+            ) as *mut i8;
+        let mut source: *mut i8 = &mut *((*yy_current_buffer).yy_ch_buf)
+            .offset(number_to_move as isize) as *mut i8;
         while source > (*yy_current_buffer).yy_ch_buf {
             source = source.offset(-1);
             dest = dest.offset(-1);
             *dest = *source;
         }
-        yy_cp = yy_cp
-            .offset(dest.offset_from(source) as libc::c_long as libc::c_int as isize);
-        yy_bp = yy_bp
-            .offset(dest.offset_from(source) as libc::c_long as libc::c_int as isize);
-        yy_n_chars = (*yy_current_buffer).yy_buf_size as libc::c_int;
+        yy_cp = yy_cp.offset(dest.offset_from(source) as i64 as i32 as isize);
+        yy_bp = yy_bp.offset(dest.offset_from(source) as i64 as i32 as isize);
+        yy_n_chars = (*yy_current_buffer).yy_buf_size as i32;
         (*yy_current_buffer).yy_n_chars = yy_n_chars;
-        if yy_cp < ((*yy_current_buffer).yy_ch_buf).offset(2 as libc::c_int as isize) {
+        if yy_cp < ((*yy_current_buffer).yy_ch_buf).offset(2 as i32 as isize) {
             yy_fatal_error(
-                b"flex scanner push-back overflow\0" as *const u8 as *const libc::c_char,
+                b"flex scanner push-back overflow\0" as *const u8 as *const i8,
             );
         }
     }
     yy_cp = yy_cp.offset(-1);
-    *yy_cp = c as libc::c_char;
+    *yy_cp = c as i8;
     yytext = yy_bp;
     yy_hold_char = *yy_cp;
     yy_c_buf_p = yy_cp;
 }
-unsafe extern "C" fn input() -> libc::c_int {
-    let mut c: libc::c_int = 0;
+unsafe extern "C" fn input() -> i32 {
+    let mut c: i32 = 0;
     *yy_c_buf_p = yy_hold_char;
-    if *yy_c_buf_p as libc::c_int == 0 as libc::c_int {
+    if *yy_c_buf_p as i32 == 0 as i32 {
         if yy_c_buf_p
             < &mut *((*yy_current_buffer).yy_ch_buf).offset(yy_n_chars as isize)
-                as *mut libc::c_char
+                as *mut i8
         {
-            *yy_c_buf_p = '\0' as i32 as libc::c_char;
+            *yy_c_buf_p = '\0' as i32 as i8;
         } else {
-            let mut offset: libc::c_int = yy_c_buf_p.offset_from(yytext) as libc::c_long
-                as libc::c_int;
+            let mut offset: i32 = yy_c_buf_p.offset_from(yytext) as i64 as i32;
             yy_c_buf_p = yy_c_buf_p.offset(1);
             yy_c_buf_p;
             let mut current_block_10: u64;
             match yy_get_next_buffer() {
                 2 => {
                     yyrestart(yyin);
-                    current_block_10 = 1409304843480750738;
+                    current_block_10 = 7609812572866202773;
                 }
                 1 => {
-                    current_block_10 = 1409304843480750738;
+                    current_block_10 = 7609812572866202773;
                 }
                 0 => {
                     yy_c_buf_p = yytext.offset(offset as isize);
@@ -2964,7 +3096,7 @@ unsafe extern "C" fn input() -> libc::c_int {
                 7746791466490516765 => {}
                 _ => {
                     if yywrap() != 0 {
-                        return -(1 as libc::c_int);
+                        return -(1 as i32);
                     }
                     if yy_did_buffer_switch_on_eof == 0 {
                         yyrestart(yyin);
@@ -2974,8 +3106,8 @@ unsafe extern "C" fn input() -> libc::c_int {
             }
         }
     }
-    c = *(yy_c_buf_p as *mut libc::c_uchar) as libc::c_int;
-    *yy_c_buf_p = '\0' as i32 as libc::c_char;
+    c = *(yy_c_buf_p as *mut u8) as i32;
+    *yy_c_buf_p = '\0' as i32 as i8;
     yy_c_buf_p = yy_c_buf_p.offset(1);
     yy_hold_char = *yy_c_buf_p;
     return c;
@@ -2983,7 +3115,7 @@ unsafe extern "C" fn input() -> libc::c_int {
 #[no_mangle]
 pub unsafe extern "C" fn yyrestart(mut input_file: *mut FILE) {
     if yy_current_buffer.is_null() {
-        yy_current_buffer = yy_create_buffer(yyin, 16384 as libc::c_int);
+        yy_current_buffer = yy_create_buffer(yyin, 16384 as i32);
     }
     yy_init_buffer(yy_current_buffer, input_file);
     yy_load_buffer_state();
@@ -3000,7 +3132,7 @@ pub unsafe extern "C" fn yy_switch_to_buffer(mut new_buffer: YY_BUFFER_STATE) {
     }
     yy_current_buffer = new_buffer;
     yy_load_buffer_state();
-    yy_did_buffer_switch_on_eof = 1 as libc::c_int;
+    yy_did_buffer_switch_on_eof = 1 as i32;
 }
 #[no_mangle]
 pub unsafe extern "C" fn yy_load_buffer_state() {
@@ -3013,30 +3145,25 @@ pub unsafe extern "C" fn yy_load_buffer_state() {
 #[no_mangle]
 pub unsafe extern "C" fn yy_create_buffer(
     mut file: *mut FILE,
-    mut size: libc::c_int,
+    mut size: i32,
 ) -> YY_BUFFER_STATE {
     let mut b: YY_BUFFER_STATE = 0 as *mut yy_buffer_state;
-    b = yy_flex_alloc(
-        ::core::mem::size_of::<yy_buffer_state>() as libc::c_ulong as yy_size_t,
-    ) as YY_BUFFER_STATE;
+    b = yy_flex_alloc(::core::mem::size_of::<yy_buffer_state>() as u64 as yy_size_t)
+        as YY_BUFFER_STATE;
     if b.is_null() {
         yy_fatal_error(
-            b"out of dynamic memory in yy_create_buffer()\0" as *const u8
-                as *const libc::c_char,
+            b"out of dynamic memory in yy_create_buffer()\0" as *const u8 as *const i8,
         );
     }
     (*b).yy_buf_size = size as yy_size_t;
-    (*b)
-        .yy_ch_buf = yy_flex_alloc(
-        ((*b).yy_buf_size).wrapping_add(2 as libc::c_int as libc::c_uint),
-    ) as *mut libc::c_char;
+    (*b).yy_ch_buf = yy_flex_alloc(((*b).yy_buf_size).wrapping_add(2 as i32 as u32))
+        as *mut i8;
     if ((*b).yy_ch_buf).is_null() {
         yy_fatal_error(
-            b"out of dynamic memory in yy_create_buffer()\0" as *const u8
-                as *const libc::c_char,
+            b"out of dynamic memory in yy_create_buffer()\0" as *const u8 as *const i8,
         );
     }
-    (*b).yy_is_our_buffer = 1 as libc::c_int;
+    (*b).yy_is_our_buffer = 1 as i32;
     yy_init_buffer(b, file);
     return b;
 }
@@ -3057,12 +3184,11 @@ pub unsafe extern "C" fn yy_delete_buffer(mut b: YY_BUFFER_STATE) {
 pub unsafe extern "C" fn yy_init_buffer(mut b: YY_BUFFER_STATE, mut file: *mut FILE) {
     yy_flush_buffer(b);
     (*b).yy_input_file = file;
-    (*b).yy_fill_buffer = 1 as libc::c_int;
-    (*b)
-        .yy_is_interactive = if !file.is_null() {
-        (isatty(fileno(file)) > 0 as libc::c_int) as libc::c_int
+    (*b).yy_fill_buffer = 1 as i32;
+    (*b).yy_is_interactive = if !file.is_null() {
+        (isatty(fileno(file)) > 0 as i32) as i32
     } else {
-        0 as libc::c_int
+        0 as i32
     };
 }
 #[no_mangle]
@@ -3070,62 +3196,52 @@ pub unsafe extern "C" fn yy_flush_buffer(mut b: YY_BUFFER_STATE) {
     if b.is_null() {
         return;
     }
-    (*b).yy_n_chars = 0 as libc::c_int;
-    *((*b).yy_ch_buf)
-        .offset(0 as libc::c_int as isize) = 0 as libc::c_int as libc::c_char;
-    *((*b).yy_ch_buf)
-        .offset(1 as libc::c_int as isize) = 0 as libc::c_int as libc::c_char;
-    (*b)
-        .yy_buf_pos = &mut *((*b).yy_ch_buf).offset(0 as libc::c_int as isize)
-        as *mut libc::c_char;
-    (*b).yy_at_bol = 1 as libc::c_int;
-    (*b).yy_buffer_status = 0 as libc::c_int;
+    (*b).yy_n_chars = 0 as i32;
+    *((*b).yy_ch_buf).offset(0 as i32 as isize) = 0 as i32 as i8;
+    *((*b).yy_ch_buf).offset(1 as i32 as isize) = 0 as i32 as i8;
+    (*b).yy_buf_pos = &mut *((*b).yy_ch_buf).offset(0 as i32 as isize) as *mut i8;
+    (*b).yy_at_bol = 1 as i32;
+    (*b).yy_buffer_status = 0 as i32;
     if b == yy_current_buffer {
         yy_load_buffer_state();
     }
 }
 #[no_mangle]
 pub unsafe extern "C" fn yy_scan_buffer(
-    mut base: *mut libc::c_char,
+    mut base: *mut i8,
     mut size: yy_size_t,
 ) -> YY_BUFFER_STATE {
     let mut b: YY_BUFFER_STATE = 0 as *mut yy_buffer_state;
-    if size < 2 as libc::c_int as libc::c_uint
-        || *base.offset(size.wrapping_sub(2 as libc::c_int as libc::c_uint) as isize)
-            as libc::c_int != 0 as libc::c_int
-        || *base.offset(size.wrapping_sub(1 as libc::c_int as libc::c_uint) as isize)
-            as libc::c_int != 0 as libc::c_int
+    if size < 2 as i32 as u32
+        || *base.offset(size.wrapping_sub(2 as i32 as u32) as isize) as i32 != 0 as i32
+        || *base.offset(size.wrapping_sub(1 as i32 as u32) as isize) as i32 != 0 as i32
     {
         return 0 as YY_BUFFER_STATE;
     }
-    b = yy_flex_alloc(
-        ::core::mem::size_of::<yy_buffer_state>() as libc::c_ulong as yy_size_t,
-    ) as YY_BUFFER_STATE;
+    b = yy_flex_alloc(::core::mem::size_of::<yy_buffer_state>() as u64 as yy_size_t)
+        as YY_BUFFER_STATE;
     if b.is_null() {
         yy_fatal_error(
-            b"out of dynamic memory in yy_scan_buffer()\0" as *const u8
-                as *const libc::c_char,
+            b"out of dynamic memory in yy_scan_buffer()\0" as *const u8 as *const i8,
         );
     }
-    (*b).yy_buf_size = size.wrapping_sub(2 as libc::c_int as libc::c_uint);
+    (*b).yy_buf_size = size.wrapping_sub(2 as i32 as u32);
     (*b).yy_ch_buf = base;
     (*b).yy_buf_pos = (*b).yy_ch_buf;
-    (*b).yy_is_our_buffer = 0 as libc::c_int;
+    (*b).yy_is_our_buffer = 0 as i32;
     (*b).yy_input_file = 0 as *mut FILE;
-    (*b).yy_n_chars = (*b).yy_buf_size as libc::c_int;
-    (*b).yy_is_interactive = 0 as libc::c_int;
-    (*b).yy_at_bol = 1 as libc::c_int;
-    (*b).yy_fill_buffer = 0 as libc::c_int;
-    (*b).yy_buffer_status = 0 as libc::c_int;
+    (*b).yy_n_chars = (*b).yy_buf_size as i32;
+    (*b).yy_is_interactive = 0 as i32;
+    (*b).yy_at_bol = 1 as i32;
+    (*b).yy_fill_buffer = 0 as i32;
+    (*b).yy_buffer_status = 0 as i32;
     yy_switch_to_buffer(b);
     return b;
 }
 #[no_mangle]
-pub unsafe extern "C" fn yy_scan_string(
-    mut yy_str: *const libc::c_char,
-) -> YY_BUFFER_STATE {
-    let mut len: libc::c_int = 0;
-    len = 0 as libc::c_int;
+pub unsafe extern "C" fn yy_scan_string(mut yy_str: *const i8) -> YY_BUFFER_STATE {
+    let mut len: i32 = 0;
+    len = 0 as i32;
     while *yy_str.offset(len as isize) != 0 {
         len += 1;
         len;
@@ -3134,51 +3250,48 @@ pub unsafe extern "C" fn yy_scan_string(
 }
 #[no_mangle]
 pub unsafe extern "C" fn yy_scan_bytes(
-    mut bytes: *const libc::c_char,
-    mut len: libc::c_int,
+    mut bytes: *const i8,
+    mut len: i32,
 ) -> YY_BUFFER_STATE {
     let mut b: YY_BUFFER_STATE = 0 as *mut yy_buffer_state;
-    let mut buf: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut buf: *mut i8 = 0 as *mut i8;
     let mut n: yy_size_t = 0;
-    let mut i: libc::c_int = 0;
-    n = (len + 2 as libc::c_int) as yy_size_t;
-    buf = yy_flex_alloc(n) as *mut libc::c_char;
+    let mut i: i32 = 0;
+    n = (len + 2 as i32) as yy_size_t;
+    buf = yy_flex_alloc(n) as *mut i8;
     if buf.is_null() {
         yy_fatal_error(
-            b"out of dynamic memory in yy_scan_bytes()\0" as *const u8
-                as *const libc::c_char,
+            b"out of dynamic memory in yy_scan_bytes()\0" as *const u8 as *const i8,
         );
     }
-    i = 0 as libc::c_int;
+    i = 0 as i32;
     while i < len {
         *buf.offset(i as isize) = *bytes.offset(i as isize);
         i += 1;
         i;
     }
-    let ref mut fresh5 = *buf.offset((len + 1 as libc::c_int) as isize);
-    *fresh5 = 0 as libc::c_int as libc::c_char;
+    let ref mut fresh5 = *buf.offset((len + 1 as i32) as isize);
+    *fresh5 = 0 as i32 as i8;
     *buf.offset(len as isize) = *fresh5;
     b = yy_scan_buffer(buf, n);
     if b.is_null() {
-        yy_fatal_error(
-            b"bad buffer in yy_scan_bytes()\0" as *const u8 as *const libc::c_char,
-        );
+        yy_fatal_error(b"bad buffer in yy_scan_bytes()\0" as *const u8 as *const i8);
     }
-    (*b).yy_is_our_buffer = 1 as libc::c_int;
+    (*b).yy_is_our_buffer = 1 as i32;
     return b;
 }
-unsafe extern "C" fn yy_fatal_error(mut msg: *const libc::c_char) {
-    fprintf(stderr, b"%s\n\0" as *const u8 as *const libc::c_char, msg);
-    exit(2 as libc::c_int);
+unsafe extern "C" fn yy_fatal_error(mut msg: *const i8) {
+    fprintf(stderr, b"%s\n\0" as *const u8 as *const i8, msg);
+    exit(2 as i32);
 }
 unsafe extern "C" fn yy_flex_alloc(mut size: yy_size_t) -> *mut libc::c_void {
-    return malloc(size as libc::c_ulong);
+    return malloc(size as u64);
 }
 unsafe extern "C" fn yy_flex_realloc(
     mut ptr: *mut libc::c_void,
     mut size: yy_size_t,
 ) -> *mut libc::c_void {
-    return realloc(ptr as *mut libc::c_char as *mut libc::c_void, size as libc::c_ulong);
+    return realloc(ptr as *mut i8 as *mut libc::c_void, size as u64);
 }
 unsafe extern "C" fn yy_flex_free(mut ptr: *mut libc::c_void) {
     free(ptr);

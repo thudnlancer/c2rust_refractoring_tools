@@ -1,57 +1,61 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type commands;
-    fn free(__ptr: *mut libc::c_void);
-    fn xmalloc(_: size_t) -> *mut libc::c_void;
-    fn xstrdup(_: *const libc::c_char) -> *mut libc::c_char;
     static mut reading_file: *const floc;
-    fn allocated_variable_expand_for_file(
-        line: *const libc::c_char,
-        file: *mut file,
-    ) -> *mut libc::c_char;
-    fn install_variable_buffer(bufp: *mut *mut libc::c_char, lenp: *mut size_t);
-    fn restore_variable_buffer(buf: *mut libc::c_char, len: size_t);
+    fn xstrdup(_: *const i8) -> *mut i8;
+    fn xmalloc(_: size_t) -> *mut libc::c_void;
+    fn free(__ptr: *mut libc::c_void);
+    fn allocated_variable_expand_for_file(line: *const i8, file: *mut file) -> *mut i8;
+    fn install_variable_buffer(bufp: *mut *mut i8, lenp: *mut size_t);
+    fn restore_variable_buffer(buf: *mut i8, len: size_t);
     fn define_new_function(
         flocp: *const floc,
-        name: *const libc::c_char,
-        min: libc::c_uint,
-        max: libc::c_uint,
-        flags: libc::c_uint,
+        name: *const i8,
+        min: u32,
+        max: u32,
+        flags: u32,
         func: gmk_func_ptr,
     );
-    fn eval_buffer(buffer: *mut libc::c_char, floc: *const floc);
+    fn eval_buffer(buffer: *mut i8, floc: *const floc);
 }
-pub type size_t = libc::c_ulong;
+pub type size_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct gmk_floc {
-    pub filenm: *const libc::c_char,
-    pub lineno: libc::c_ulong,
+    pub filenm: *const i8,
+    pub lineno: u64,
 }
-pub type gmk_func_ptr = Option::<
-    unsafe extern "C" fn(
-        *const libc::c_char,
-        libc::c_uint,
-        *mut *mut libc::c_char,
-    ) -> *mut libc::c_char,
+pub type gmk_func_ptr = Option<
+    unsafe extern "C" fn(*const i8, u32, *mut *mut i8) -> *mut i8,
 >;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct floc {
-    pub filenm: *const libc::c_char,
-    pub lineno: libc::c_ulong,
-    pub offset: libc::c_ulong,
+    pub filenm: *const i8,
+    pub lineno: u64,
+    pub offset: u64,
 }
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct file {
-    pub name: *const libc::c_char,
-    pub hname: *const libc::c_char,
-    pub vpath: *const libc::c_char,
+    pub name: *const i8,
+    pub hname: *const i8,
+    pub vpath: *const i8,
     pub deps: *mut dep,
     pub cmds: *mut commands,
-    pub stem: *const libc::c_char,
+    pub stem: *const i8,
     pub also_make: *mut dep,
     pub prev: *mut file,
     pub last: *mut file,
@@ -62,8 +66,8 @@ pub struct file {
     pub double_colon: *mut file,
     pub last_mtime: uintmax_t,
     pub mtime_before_update: uintmax_t,
-    pub considered: libc::c_uint,
-    pub command_flags: libc::c_int,
+    pub considered: u32,
+    pub command_flags: i32,
     #[bitfield(name = "update_status", ty = "update_status", bits = "0..=1")]
     #[bitfield(name = "command_state", ty = "cmd_state", bits = "2..=3")]
     #[bitfield(name = "builtin", ty = "libc::c_uint", bits = "4..=4")]
@@ -100,7 +104,7 @@ pub enum cmd_state {
     cs_not_started = 0,
 }
 impl cmd_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             cmd_state::cs_finished => 3,
             cmd_state::cs_running => 2,
@@ -108,12 +112,71 @@ impl cmd_state {
             cmd_state::cs_not_started => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> cmd_state {
+        match value {
+            3 => cmd_state::cs_finished,
+            2 => cmd_state::cs_running,
+            1 => cmd_state::cs_deps_running,
+            0 => cmd_state::cs_not_started,
+            _ => panic!("Invalid value for cmd_state: {}", value),
+        }
+    }
 }
-
-pub const cs_finished: cmd_state = 3;
-pub const cs_running: cmd_state = 2;
-pub const cs_deps_running: cmd_state = 1;
-pub const cs_not_started: cmd_state = 0;
+impl AddAssign<u32> for cmd_state {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for cmd_state {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for cmd_state {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for cmd_state {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for cmd_state {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for cmd_state {
+    type Output = cmd_state;
+    fn add(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for cmd_state {
+    type Output = cmd_state;
+    fn sub(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for cmd_state {
+    type Output = cmd_state;
+    fn mul(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for cmd_state {
+    type Output = cmd_state;
+    fn div(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for cmd_state {
+    type Output = cmd_state;
+    fn rem(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -123,7 +186,7 @@ pub enum update_status {
     us_success = 0,
 }
 impl update_status {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             update_status::us_failed => 3,
             update_status::us_question => 2,
@@ -131,20 +194,79 @@ impl update_status {
             update_status::us_success => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> update_status {
+        match value {
+            3 => update_status::us_failed,
+            2 => update_status::us_question,
+            1 => update_status::us_none,
+            0 => update_status::us_success,
+            _ => panic!("Invalid value for update_status: {}", value),
+        }
+    }
 }
-
-pub const us_failed: update_status = 3;
-pub const us_question: update_status = 2;
-pub const us_none: update_status = 1;
-pub const us_success: update_status = 0;
+impl AddAssign<u32> for update_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for update_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for update_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for update_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for update_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for update_status {
+    type Output = update_status;
+    fn add(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for update_status {
+    type Output = update_status;
+    fn sub(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for update_status {
+    type Output = update_status;
+    fn mul(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for update_status {
+    type Output = update_status;
+    fn div(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for update_status {
+    type Output = update_status;
+    fn rem(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type uintmax_t = __uintmax_t;
-pub type __uintmax_t = libc::c_ulong;
+pub type __uintmax_t = u64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct variable_set_list {
     pub next: *mut variable_set_list,
     pub set: *mut variable_set,
-    pub next_is_parent: libc::c_int,
+    pub next_is_parent: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -158,28 +280,26 @@ pub struct hash_table {
     pub ht_hash_1: hash_func_t,
     pub ht_hash_2: hash_func_t,
     pub ht_compare: hash_cmp_func_t,
-    pub ht_size: libc::c_ulong,
-    pub ht_capacity: libc::c_ulong,
-    pub ht_fill: libc::c_ulong,
-    pub ht_empty_slots: libc::c_ulong,
-    pub ht_collisions: libc::c_ulong,
-    pub ht_lookups: libc::c_ulong,
-    pub ht_rehashes: libc::c_uint,
+    pub ht_size: u64,
+    pub ht_capacity: u64,
+    pub ht_fill: u64,
+    pub ht_empty_slots: u64,
+    pub ht_collisions: u64,
+    pub ht_lookups: u64,
+    pub ht_rehashes: u32,
 }
-pub type hash_cmp_func_t = Option::<
-    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
+pub type hash_cmp_func_t = Option<
+    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
 >;
-pub type hash_func_t = Option::<
-    unsafe extern "C" fn(*const libc::c_void) -> libc::c_ulong,
->;
+pub type hash_func_t = Option<unsafe extern "C" fn(*const libc::c_void) -> u64>;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct dep {
     pub next: *mut dep,
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub file: *mut file,
     pub shuf: *mut dep,
-    pub stem: *const libc::c_char,
+    pub stem: *const i8,
     #[bitfield(name = "flags", ty = "libc::c_uint", bits = "0..=7")]
     #[bitfield(name = "changed", ty = "libc::c_uint", bits = "8..=8")]
     #[bitfield(name = "ignore_mtime", ty = "libc::c_uint", bits = "9..=9")]
@@ -193,23 +313,20 @@ pub struct dep {
     pub c2rust_padding: [u8; 6],
 }
 #[no_mangle]
-pub unsafe extern "C" fn gmk_alloc(mut len: libc::c_uint) -> *mut libc::c_char {
-    return xmalloc(len as size_t) as *mut libc::c_char;
+pub unsafe extern "C" fn gmk_alloc(mut len: u32) -> *mut i8 {
+    return xmalloc(len as size_t) as *mut i8;
 }
 #[no_mangle]
-pub unsafe extern "C" fn gmk_free(mut s: *mut libc::c_char) {
+pub unsafe extern "C" fn gmk_free(mut s: *mut i8) {
     free(s as *mut libc::c_void);
 }
 #[no_mangle]
-pub unsafe extern "C" fn gmk_eval(
-    mut buffer: *const libc::c_char,
-    mut gfloc: *const gmk_floc,
-) {
-    let mut pbuf: *mut libc::c_char = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn gmk_eval(mut buffer: *const i8, mut gfloc: *const gmk_floc) {
+    let mut pbuf: *mut i8 = 0 as *mut i8;
     let mut plen: size_t = 0;
-    let mut s: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut s: *mut i8 = 0 as *mut i8;
     let mut fl: floc = floc {
-        filenm: 0 as *const libc::c_char,
+        filenm: 0 as *const i8,
         lineno: 0,
         offset: 0,
     };
@@ -217,7 +334,7 @@ pub unsafe extern "C" fn gmk_eval(
     if !gfloc.is_null() {
         fl.filenm = (*gfloc).filenm;
         fl.lineno = (*gfloc).lineno;
-        fl.offset = 0 as libc::c_int as libc::c_ulong;
+        fl.offset = 0 as i32 as u64;
         flp = &mut fl;
     } else {
         flp = 0 as *mut floc;
@@ -229,18 +346,16 @@ pub unsafe extern "C" fn gmk_eval(
     restore_variable_buffer(pbuf, plen);
 }
 #[no_mangle]
-pub unsafe extern "C" fn gmk_expand(
-    mut ref_0: *const libc::c_char,
-) -> *mut libc::c_char {
+pub unsafe extern "C" fn gmk_expand(mut ref_0: *const i8) -> *mut i8 {
     return allocated_variable_expand_for_file(ref_0, 0 as *mut file);
 }
 #[no_mangle]
 pub unsafe extern "C" fn gmk_add_function(
-    mut name: *const libc::c_char,
+    mut name: *const i8,
     mut func: gmk_func_ptr,
-    mut min: libc::c_uint,
-    mut max: libc::c_uint,
-    mut flags: libc::c_uint,
+    mut min: u32,
+    mut max: u32,
+    mut flags: u32,
 ) {
     define_new_function(reading_file, name, min, max, flags, func);
 }

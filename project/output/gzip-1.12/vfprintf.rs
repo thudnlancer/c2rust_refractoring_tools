@@ -1,0 +1,111 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+extern "C" {
+    fn fwrite(
+        __ptr: *const libc::c_void,
+        __size: size_t,
+        __n: size_t,
+        __s: *mut FILE,
+    ) -> size_t;
+    fn __errno_location() -> *mut i32;
+    fn rpl_free(ptr: *mut libc::c_void);
+    fn fseterr(fp: *mut FILE);
+    fn vasnprintf(
+        resultbuf: *mut i8,
+        lengthp: *mut size_t,
+        format: *const i8,
+        args: ::core::ffi::VaList,
+    ) -> *mut i8;
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct __va_list_tag {
+    pub gp_offset: u32,
+    pub fp_offset: u32,
+    pub overflow_arg_area: *mut libc::c_void,
+    pub reg_save_area: *mut libc::c_void,
+}
+pub type size_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_FILE {
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
+    pub _markers: *mut _IO_marker,
+    pub _chain: *mut _IO_FILE,
+    pub _fileno: i32,
+    pub _flags2: i32,
+    pub _old_offset: __off_t,
+    pub _cur_column: libc::c_ushort,
+    pub _vtable_offset: libc::c_schar,
+    pub _shortbuf: [i8; 1],
+    pub _lock: *mut libc::c_void,
+    pub _offset: __off64_t,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
+    pub __pad5: size_t,
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
+}
+pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
+pub type FILE = _IO_FILE;
+#[no_mangle]
+pub unsafe extern "C" fn rpl_vfprintf(
+    mut fp: *mut FILE,
+    mut format: *const i8,
+    mut args: ::core::ffi::VaList,
+) -> i32 {
+    let mut buf: [i8; 2000] = [0; 2000];
+    let mut output: *mut i8 = 0 as *mut i8;
+    let mut len: size_t = 0;
+    let mut lenbuf: size_t = ::core::mem::size_of::<[i8; 2000]>() as u64;
+    output = vasnprintf(buf.as_mut_ptr(), &mut lenbuf, format, args.as_va_list());
+    len = lenbuf;
+    if output.is_null() {
+        fseterr(fp);
+        return -(1 as i32);
+    }
+    if fwrite(output as *const libc::c_void, 1 as i32 as size_t, len, fp) < len {
+        if output != buf.as_mut_ptr() {
+            rpl_free(output as *mut libc::c_void);
+        }
+        return -(1 as i32);
+    }
+    if output != buf.as_mut_ptr() {
+        rpl_free(output as *mut libc::c_void);
+    }
+    if len > 2147483647 as i32 as u64 {
+        *__errno_location() = 75 as i32;
+        fseterr(fp);
+        return -(1 as i32);
+    }
+    return len as i32;
+}

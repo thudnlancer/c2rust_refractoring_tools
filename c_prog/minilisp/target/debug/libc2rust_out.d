@@ -1,0 +1,1 @@
+/home/c2rust/Desktop/c_prog/minilisp/target/debug/libc2rust_out.a: /home/c2rust/Desktop/c_prog/minilisp/build.rs /home/c2rust/Desktop/c_prog/minilisp/c2rust-lib.rs /home/c2rust/Desktop/c_prog/minilisp/minilisp.rs

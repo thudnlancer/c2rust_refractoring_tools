@@ -1,71 +1,70 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type hash_table;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn memchr(
-        _: *const libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strcspn(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_ulong;
-    fn strspn(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_ulong;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strerror(_: libc::c_int) -> *mut libc::c_char;
-    fn strcasecmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn memchr(_: *const libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn strchr(_: *const i8, _: i32) -> *mut i8;
+    fn strcspn(_: *const i8, _: *const i8) -> u64;
+    fn strspn(_: *const i8, _: *const i8) -> u64;
+    fn strlen(_: *const i8) -> u64;
+    fn strerror(_: i32) -> *mut i8;
+    fn strcasecmp(_: *const i8, _: *const i8) -> i32;
     fn rpl_free(_: *mut libc::c_void);
     static mut opt: options;
-    fn rpl_strtol(
-        string: *const libc::c_char,
-        endptr: *mut *mut libc::c_char,
-        base: libc::c_int,
-    ) -> libc::c_long;
+    fn rpl_strtol(string: *const i8, endptr: *mut *mut i8, base: i32) -> i64;
     fn xcalloc(n: size_t, s: size_t) -> *mut libc::c_void;
-    fn xstrdup(str: *const libc::c_char) -> *mut libc::c_char;
-    fn set_content_encoding(i: *mut iri, charset: *const libc::c_char);
-    fn set_uri_encoding(i: *mut iri, charset: *const libc::c_char, force: bool);
+    fn xstrdup(str: *const i8) -> *mut i8;
+    fn set_content_encoding(i: *mut iri, charset: *const i8);
+    fn set_uri_encoding(i: *mut iri, charset: *const i8, force: bool);
     fn iri_free(i: *mut iri);
     fn iri_new() -> *mut iri;
-    fn parse_charset(str: *const libc::c_char) -> *mut libc::c_char;
-    fn quotearg_n_style(
-        n: libc::c_int,
-        s: quoting_style,
-        arg: *const libc::c_char,
-    ) -> *mut libc::c_char;
-    fn quote(arg: *const libc::c_char) -> *const libc::c_char;
-    fn quote_n(n: libc::c_int, arg: *const libc::c_char) -> *const libc::c_char;
-    fn debug_logprintf(_: *const libc::c_char, _: ...);
-    fn logprintf(_: log_options, _: *const libc::c_char, _: ...);
-    fn __errno_location() -> *mut libc::c_int;
+    fn parse_charset(str: *const i8) -> *mut i8;
+    fn quotearg_n_style(n: i32, s: quoting_style, arg: *const i8) -> *mut i8;
+    fn quote(arg: *const i8) -> *const i8;
+    fn quote_n(n: i32, arg: *const i8) -> *const i8;
+    fn debug_logprintf(_: *const i8, _: ...);
+    fn logprintf(_: log_options, _: *const i8, _: ...);
+    fn __errno_location() -> *mut i32;
     fn inform_exit_status(err: uerr_t);
     fn map_html_tags(
-        _: *const libc::c_char,
-        _: libc::c_int,
-        _: Option::<unsafe extern "C" fn(*mut taginfo, *mut libc::c_void) -> ()>,
+        _: *const i8,
+        _: i32,
+        _: Option<unsafe extern "C" fn(*mut taginfo, *mut libc::c_void) -> ()>,
         _: *mut libc::c_void,
-        _: libc::c_int,
+        _: i32,
         _: *const hash_table,
         _: *const hash_table,
     );
     fn url_parse(
-        _: *const libc::c_char,
-        _: *mut libc::c_int,
+        _: *const i8,
+        _: *mut i32,
         iri: *mut iri,
         percent_encode: bool,
     ) -> *mut url;
-    fn url_error(_: libc::c_int) -> *const libc::c_char;
-    fn url_has_scheme(_: *const libc::c_char) -> bool;
-    fn uri_merge(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn rewrite_shorthand_url(_: *const libc::c_char) -> *mut libc::c_char;
-    fn strdupdelim(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn wget_read_file(_: *const libc::c_char) -> *mut file_memory;
+    fn url_error(_: i32) -> *const i8;
+    fn url_has_scheme(_: *const i8) -> bool;
+    fn uri_merge(_: *const i8, _: *const i8) -> *mut i8;
+    fn rewrite_shorthand_url(_: *const i8) -> *mut i8;
+    fn strdupdelim(_: *const i8, _: *const i8) -> *mut i8;
+    fn wget_read_file(_: *const i8) -> *mut file_memory;
     fn wget_read_file_free(_: *mut file_memory);
-    fn number_to_static_string(_: wgint) -> *mut libc::c_char;
+    fn number_to_static_string(_: wgint) -> *mut i8;
     fn hash_table_destroy(_: *mut hash_table);
     fn hash_table_get(_: *const hash_table, _: *const libc::c_void) -> *mut libc::c_void;
     fn hash_table_put(
@@ -73,113 +72,107 @@ extern "C" {
         _: *const libc::c_void,
         _: *const libc::c_void,
     );
-    fn hash_table_remove(_: *mut hash_table, _: *const libc::c_void) -> libc::c_int;
-    fn make_nocase_string_hash_table(_: libc::c_int) -> *mut hash_table;
-    fn get_urls_css(_: *mut map_context, _: libc::c_int, _: libc::c_int);
-    fn c_strcasecmp(s1: *const libc::c_char, s2: *const libc::c_char) -> libc::c_int;
-    fn c_strncasecmp(
-        s1: *const libc::c_char,
-        s2: *const libc::c_char,
-        n: size_t,
-    ) -> libc::c_int;
+    fn hash_table_remove(_: *mut hash_table, _: *const libc::c_void) -> i32;
+    fn make_nocase_string_hash_table(_: i32) -> *mut hash_table;
+    fn get_urls_css(_: *mut map_context, _: i32, _: i32);
+    fn c_strcasecmp(s1: *const i8, s2: *const i8) -> i32;
+    fn c_strncasecmp(s1: *const i8, s2: *const i8, n: size_t) -> i32;
 }
-pub type __int64_t = libc::c_long;
-pub type size_t = libc::c_ulong;
+pub type __int64_t = i64;
+pub type size_t = u64;
 pub type int64_t = __int64_t;
 pub type wgint = int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
-    pub verbose: libc::c_int,
+    pub verbose: i32,
     pub quiet: bool,
-    pub ntry: libc::c_int,
+    pub ntry: i32,
     pub retry_connrefused: bool,
     pub retry_on_host_error: bool,
-    pub retry_on_http_error: *mut libc::c_char,
+    pub retry_on_http_error: *mut i8,
     pub background: bool,
     pub ignore_length: bool,
     pub recursive: bool,
     pub spanhost: bool,
-    pub max_redirect: libc::c_int,
+    pub max_redirect: i32,
     pub relative_only: bool,
     pub no_parent: bool,
-    pub reclevel: libc::c_int,
+    pub reclevel: i32,
     pub dirstruct: bool,
     pub no_dirstruct: bool,
-    pub cut_dirs: libc::c_int,
+    pub cut_dirs: i32,
     pub add_hostdir: bool,
     pub protocol_directories: bool,
     pub noclobber: bool,
     pub unlink_requested: bool,
-    pub dir_prefix: *mut libc::c_char,
-    pub lfilename: *mut libc::c_char,
-    pub input_filename: *mut libc::c_char,
-    pub choose_config: *mut libc::c_char,
+    pub dir_prefix: *mut i8,
+    pub lfilename: *mut i8,
+    pub input_filename: *mut i8,
+    pub choose_config: *mut i8,
     pub noconfig: bool,
     pub force_html: bool,
-    pub default_page: *mut libc::c_char,
+    pub default_page: *mut i8,
     pub spider: bool,
-    pub accepts: *mut *mut libc::c_char,
-    pub rejects: *mut *mut libc::c_char,
-    pub excludes: *mut *const libc::c_char,
-    pub includes: *mut *const libc::c_char,
+    pub accepts: *mut *mut i8,
+    pub rejects: *mut *mut i8,
+    pub excludes: *mut *const i8,
+    pub includes: *mut *const i8,
     pub ignore_case: bool,
-    pub acceptregex_s: *mut libc::c_char,
-    pub rejectregex_s: *mut libc::c_char,
+    pub acceptregex_s: *mut i8,
+    pub rejectregex_s: *mut i8,
     pub acceptregex: *mut libc::c_void,
     pub rejectregex: *mut libc::c_void,
     pub regex_type: C2RustUnnamed_3,
-    pub regex_compile_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_void,
+    pub regex_compile_fun: Option<unsafe extern "C" fn(*const i8) -> *mut libc::c_void>,
+    pub regex_match_fun: Option<
+        unsafe extern "C" fn(*const libc::c_void, *const i8) -> bool,
     >,
-    pub regex_match_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_void, *const libc::c_char) -> bool,
-    >,
-    pub domains: *mut *mut libc::c_char,
-    pub exclude_domains: *mut *mut libc::c_char,
+    pub domains: *mut *mut i8,
+    pub exclude_domains: *mut *mut i8,
     pub dns_cache: bool,
-    pub follow_tags: *mut *mut libc::c_char,
-    pub ignore_tags: *mut *mut libc::c_char,
+    pub follow_tags: *mut *mut i8,
+    pub ignore_tags: *mut *mut i8,
     pub follow_ftp: bool,
     pub retr_symlinks: bool,
-    pub output_document: *mut libc::c_char,
-    pub warc_filename: *mut libc::c_char,
-    pub warc_tempdir: *mut libc::c_char,
-    pub warc_cdx_dedup_filename: *mut libc::c_char,
+    pub output_document: *mut i8,
+    pub warc_filename: *mut i8,
+    pub warc_tempdir: *mut i8,
+    pub warc_cdx_dedup_filename: *mut i8,
     pub warc_maxsize: wgint,
     pub warc_compression_enabled: bool,
     pub warc_digests_enabled: bool,
     pub warc_cdx_enabled: bool,
     pub warc_keep_log: bool,
-    pub warc_user_headers: *mut *mut libc::c_char,
+    pub warc_user_headers: *mut *mut i8,
     pub enable_xattr: bool,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
     pub ask_passwd: bool,
-    pub use_askpass: *mut libc::c_char,
+    pub use_askpass: *mut i8,
     pub always_rest: bool,
     pub start_pos: wgint,
-    pub ftp_user: *mut libc::c_char,
-    pub ftp_passwd: *mut libc::c_char,
+    pub ftp_user: *mut i8,
+    pub ftp_passwd: *mut i8,
     pub netrc: bool,
     pub ftp_glob: bool,
     pub ftp_pasv: bool,
-    pub http_user: *mut libc::c_char,
-    pub http_passwd: *mut libc::c_char,
-    pub user_headers: *mut *mut libc::c_char,
+    pub http_user: *mut i8,
+    pub http_passwd: *mut i8,
+    pub user_headers: *mut *mut i8,
     pub http_keep_alive: bool,
     pub use_proxy: bool,
     pub allow_cache: bool,
-    pub http_proxy: *mut libc::c_char,
-    pub ftp_proxy: *mut libc::c_char,
-    pub https_proxy: *mut libc::c_char,
-    pub no_proxy: *mut *mut libc::c_char,
-    pub base_href: *mut libc::c_char,
-    pub progress_type: *mut libc::c_char,
-    pub show_progress: libc::c_int,
+    pub http_proxy: *mut i8,
+    pub ftp_proxy: *mut i8,
+    pub https_proxy: *mut i8,
+    pub no_proxy: *mut *mut i8,
+    pub base_href: *mut i8,
+    pub progress_type: *mut i8,
+    pub show_progress: i32,
     pub noscroll: bool,
-    pub proxy_user: *mut libc::c_char,
-    pub proxy_passwd: *mut libc::c_char,
+    pub proxy_user: *mut i8,
+    pub proxy_passwd: *mut i8,
     pub read_timeout: libc::c_double,
     pub dns_timeout: libc::c_double,
     pub connect_timeout: libc::c_double,
@@ -196,50 +189,50 @@ pub struct options {
     pub timestamping: bool,
     pub if_modified_since: bool,
     pub backup_converted: bool,
-    pub backups: libc::c_int,
-    pub useragent: *mut libc::c_char,
-    pub referer: *mut libc::c_char,
+    pub backups: i32,
+    pub useragent: *mut i8,
+    pub referer: *mut i8,
     pub convert_links: bool,
     pub convert_file_only: bool,
     pub remove_listing: bool,
     pub htmlify: bool,
-    pub dot_style: *mut libc::c_char,
+    pub dot_style: *mut i8,
     pub dot_bytes: wgint,
-    pub dots_in_line: libc::c_int,
-    pub dot_spacing: libc::c_int,
+    pub dots_in_line: i32,
+    pub dot_spacing: i32,
     pub delete_after: bool,
     pub adjust_extension: bool,
     pub page_requisites: bool,
-    pub bind_address: *mut libc::c_char,
+    pub bind_address: *mut i8,
     pub secure_protocol: C2RustUnnamed_2,
-    pub secure_protocol_name: [libc::c_char; 8],
-    pub check_cert: libc::c_int,
-    pub cert_file: *mut libc::c_char,
-    pub private_key: *mut libc::c_char,
+    pub secure_protocol_name: [i8; 8],
+    pub check_cert: i32,
+    pub cert_file: *mut i8,
+    pub private_key: *mut i8,
     pub cert_type: keyfile_type,
     pub private_key_type: keyfile_type,
-    pub ca_directory: *mut libc::c_char,
-    pub ca_cert: *mut libc::c_char,
-    pub crl_file: *mut libc::c_char,
-    pub pinnedpubkey: *mut libc::c_char,
-    pub random_file: *mut libc::c_char,
-    pub egd_file: *mut libc::c_char,
+    pub ca_directory: *mut i8,
+    pub ca_cert: *mut i8,
+    pub crl_file: *mut i8,
+    pub pinnedpubkey: *mut i8,
+    pub random_file: *mut i8,
+    pub egd_file: *mut i8,
     pub https_only: bool,
     pub ftps_resume_ssl: bool,
     pub ftps_fallback_to_ftp: bool,
     pub ftps_implicit: bool,
     pub ftps_clear_data_connection: bool,
-    pub tls_ciphers_string: *mut libc::c_char,
+    pub tls_ciphers_string: *mut i8,
     pub cookies: bool,
-    pub cookies_input: *mut libc::c_char,
-    pub cookies_output: *mut libc::c_char,
+    pub cookies_input: *mut i8,
+    pub cookies_output: *mut i8,
     pub keep_badhash: bool,
     pub keep_session_cookies: bool,
-    pub post_data: *mut libc::c_char,
-    pub post_file_name: *mut libc::c_char,
-    pub method: *mut libc::c_char,
-    pub body_data: *mut libc::c_char,
-    pub body_file: *mut libc::c_char,
+    pub post_data: *mut i8,
+    pub post_file_name: *mut i8,
+    pub method: *mut i8,
+    pub body_data: *mut i8,
+    pub body_file: *mut i8,
     pub restrict_files_os: C2RustUnnamed_1,
     pub restrict_files_ctrl: bool,
     pub restrict_files_nonascii: bool,
@@ -252,18 +245,18 @@ pub struct options {
     pub content_disposition: bool,
     pub auth_without_challenge: bool,
     pub enable_iri: bool,
-    pub encoding_remote: *mut libc::c_char,
-    pub locale: *const libc::c_char,
+    pub encoding_remote: *mut i8,
+    pub locale: *const i8,
     pub trustservernames: bool,
     pub useservertimestamps: bool,
     pub show_all_dns_entries: bool,
     pub report_bps: bool,
     pub compression: compression_options,
-    pub rejected_log: *mut libc::c_char,
+    pub rejected_log: *mut i8,
     pub hsts: bool,
-    pub hsts_file: *mut libc::c_char,
-    pub homedir: *const libc::c_char,
-    pub wgetrcfile: *const libc::c_char,
+    pub hsts_file: *mut i8,
+    pub homedir: *const i8,
+    pub wgetrcfile: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -273,18 +266,77 @@ pub enum compression_options {
     compression_auto = 0,
 }
 impl compression_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             compression_options::compression_none => 2,
             compression_options::compression_gzip => 1,
             compression_options::compression_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> compression_options {
+        match value {
+            2 => compression_options::compression_none,
+            1 => compression_options::compression_gzip,
+            0 => compression_options::compression_auto,
+            _ => panic!("Invalid value for compression_options: {}", value),
+        }
+    }
 }
-
-pub const compression_none: compression_options = 2;
-pub const compression_gzip: compression_options = 1;
-pub const compression_auto: compression_options = 0;
+impl AddAssign<u32> for compression_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for compression_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for compression_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for compression_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for compression_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for compression_options {
+    type Output = compression_options;
+    fn add(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for compression_options {
+    type Output = compression_options;
+    fn sub(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for compression_options {
+    type Output = compression_options;
+    fn mul(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for compression_options {
+    type Output = compression_options;
+    fn div(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for compression_options {
+    type Output = compression_options;
+    fn rem(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -293,18 +345,77 @@ pub enum C2RustUnnamed {
     prefer_ipv4 = 0,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::prefer_none => 2,
             C2RustUnnamed::prefer_ipv6 => 1,
             C2RustUnnamed::prefer_ipv4 => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            2 => C2RustUnnamed::prefer_none,
+            1 => C2RustUnnamed::prefer_ipv6,
+            0 => C2RustUnnamed::prefer_ipv4,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const prefer_none: C2RustUnnamed = 2;
-pub const prefer_ipv6: C2RustUnnamed = 1;
-pub const prefer_ipv4: C2RustUnnamed = 0;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -313,18 +424,77 @@ pub enum C2RustUnnamed_0 {
     restrict_no_case_restriction = 0,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::restrict_uppercase => 2,
             C2RustUnnamed_0::restrict_lowercase => 1,
             C2RustUnnamed_0::restrict_no_case_restriction => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            2 => C2RustUnnamed_0::restrict_uppercase,
+            1 => C2RustUnnamed_0::restrict_lowercase,
+            0 => C2RustUnnamed_0::restrict_no_case_restriction,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const restrict_uppercase: C2RustUnnamed_0 = 2;
-pub const restrict_lowercase: C2RustUnnamed_0 = 1;
-pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -333,18 +503,77 @@ pub enum C2RustUnnamed_1 {
     restrict_unix = 0,
 }
 impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_1::restrict_windows => 2,
             C2RustUnnamed_1::restrict_vms => 1,
             C2RustUnnamed_1::restrict_unix => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_1 {
+        match value {
+            2 => C2RustUnnamed_1::restrict_windows,
+            1 => C2RustUnnamed_1::restrict_vms,
+            0 => C2RustUnnamed_1::restrict_unix,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
-pub const restrict_windows: C2RustUnnamed_1 = 2;
-pub const restrict_vms: C2RustUnnamed_1 = 1;
-pub const restrict_unix: C2RustUnnamed_1 = 0;
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
@@ -352,16 +581,75 @@ pub enum keyfile_type {
     keyfile_pem = 0,
 }
 impl keyfile_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             keyfile_type::keyfile_asn1 => 1,
             keyfile_type::keyfile_pem => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> keyfile_type {
+        match value {
+            1 => keyfile_type::keyfile_asn1,
+            0 => keyfile_type::keyfile_pem,
+            _ => panic!("Invalid value for keyfile_type: {}", value),
+        }
+    }
 }
-
-pub const keyfile_asn1: keyfile_type = 1;
-pub const keyfile_pem: keyfile_type = 0;
+impl AddAssign<u32> for keyfile_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for keyfile_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for keyfile_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for keyfile_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for keyfile_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn add(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn sub(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn mul(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn div(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn rem(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -375,7 +663,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_auto = 0,
 }
 impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_2::secure_protocol_pfs => 7,
             C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
@@ -387,16 +675,75 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::secure_protocol_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_2 {
+        match value {
+            7 => C2RustUnnamed_2::secure_protocol_pfs,
+            6 => C2RustUnnamed_2::secure_protocol_tlsv1_3,
+            5 => C2RustUnnamed_2::secure_protocol_tlsv1_2,
+            4 => C2RustUnnamed_2::secure_protocol_tlsv1_1,
+            3 => C2RustUnnamed_2::secure_protocol_tlsv1,
+            2 => C2RustUnnamed_2::secure_protocol_sslv3,
+            1 => C2RustUnnamed_2::secure_protocol_sslv2,
+            0 => C2RustUnnamed_2::secure_protocol_auto,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
-pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
-pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
-pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
-pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
-pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
-pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
-pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
-pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -404,16 +751,75 @@ pub enum C2RustUnnamed_3 {
     regex_type_pcre = 0,
 }
 impl C2RustUnnamed_3 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_3::regex_type_posix => 1,
             C2RustUnnamed_3::regex_type_pcre => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_3 {
+        match value {
+            1 => C2RustUnnamed_3::regex_type_posix,
+            0 => C2RustUnnamed_3::regex_type_pcre,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const regex_type_posix: C2RustUnnamed_3 = 1;
-pub const regex_type_pcre: C2RustUnnamed_3 = 0;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -424,7 +830,7 @@ pub enum log_options {
     LOG_VERBOSE = 0,
 }
 impl log_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             log_options::LOG_PROGRESS => 4,
             log_options::LOG_ALWAYS => 3,
@@ -433,13 +839,72 @@ impl log_options {
             log_options::LOG_VERBOSE => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> log_options {
+        match value {
+            4 => log_options::LOG_PROGRESS,
+            3 => log_options::LOG_ALWAYS,
+            2 => log_options::LOG_NONVERBOSE,
+            1 => log_options::LOG_NOTQUIET,
+            0 => log_options::LOG_VERBOSE,
+            _ => panic!("Invalid value for log_options: {}", value),
+        }
+    }
 }
-
-pub const LOG_PROGRESS: log_options = 4;
-pub const LOG_ALWAYS: log_options = 3;
-pub const LOG_NONVERBOSE: log_options = 2;
-pub const LOG_NOTQUIET: log_options = 1;
-pub const LOG_VERBOSE: log_options = 0;
+impl AddAssign<u32> for log_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for log_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for log_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for log_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for log_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for log_options {
+    type Output = log_options;
+    fn add(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for log_options {
+    type Output = log_options;
+    fn sub(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for log_options {
+    type Output = log_options;
+    fn mul(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for log_options {
+    type Output = log_options;
+    fn div(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for log_options {
+    type Output = log_options;
+    fn rem(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -456,7 +921,7 @@ pub enum quoting_style {
     literal_quoting_style = 0,
 }
 impl quoting_style {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             quoting_style::custom_quoting_style => 10,
             quoting_style::clocale_quoting_style => 9,
@@ -471,25 +936,84 @@ impl quoting_style {
             quoting_style::literal_quoting_style => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> quoting_style {
+        match value {
+            10 => quoting_style::custom_quoting_style,
+            9 => quoting_style::clocale_quoting_style,
+            8 => quoting_style::locale_quoting_style,
+            7 => quoting_style::escape_quoting_style,
+            6 => quoting_style::c_maybe_quoting_style,
+            5 => quoting_style::c_quoting_style,
+            4 => quoting_style::shell_escape_always_quoting_style,
+            3 => quoting_style::shell_escape_quoting_style,
+            2 => quoting_style::shell_always_quoting_style,
+            1 => quoting_style::shell_quoting_style,
+            0 => quoting_style::literal_quoting_style,
+            _ => panic!("Invalid value for quoting_style: {}", value),
+        }
+    }
 }
-
-pub const custom_quoting_style: quoting_style = 10;
-pub const clocale_quoting_style: quoting_style = 9;
-pub const locale_quoting_style: quoting_style = 8;
-pub const escape_quoting_style: quoting_style = 7;
-pub const c_maybe_quoting_style: quoting_style = 6;
-pub const c_quoting_style: quoting_style = 5;
-pub const shell_escape_always_quoting_style: quoting_style = 4;
-pub const shell_escape_quoting_style: quoting_style = 3;
-pub const shell_always_quoting_style: quoting_style = 2;
-pub const shell_quoting_style: quoting_style = 1;
-pub const literal_quoting_style: quoting_style = 0;
+impl AddAssign<u32> for quoting_style {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for quoting_style {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for quoting_style {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for quoting_style {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for quoting_style {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for quoting_style {
+    type Output = quoting_style;
+    fn add(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for quoting_style {
+    type Output = quoting_style;
+    fn sub(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for quoting_style {
+    type Output = quoting_style;
+    fn mul(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for quoting_style {
+    type Output = quoting_style;
+    fn div(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for quoting_style {
+    type Output = quoting_style;
+    fn rem(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct iri {
-    pub uri_encoding: *mut libc::c_char,
-    pub content_encoding: *mut libc::c_char,
-    pub orig_url: *mut libc::c_char,
+    pub uri_encoding: *mut i8,
+    pub content_encoding: *mut i8,
+    pub orig_url: *mut i8,
     pub utf8_encode: bool,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -560,7 +1084,7 @@ pub enum uerr_t {
     NOCONERROR = 0,
 }
 impl uerr_t {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             uerr_t::METALINK_SIZE_ERROR => 62,
             uerr_t::RETR_WITH_METALINK => 61,
@@ -627,92 +1151,151 @@ impl uerr_t {
             uerr_t::NOCONERROR => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> uerr_t {
+        match value {
+            62 => uerr_t::METALINK_SIZE_ERROR,
+            61 => uerr_t::RETR_WITH_METALINK,
+            60 => uerr_t::METALINK_MISSING_RESOURCE,
+            59 => uerr_t::METALINK_SIG_ERROR,
+            58 => uerr_t::METALINK_CHKSUM_ERROR,
+            57 => uerr_t::METALINK_RETR_ERROR,
+            56 => uerr_t::METALINK_PARSE_ERROR,
+            55 => uerr_t::TIMECONV_ERR,
+            54 => uerr_t::WARC_TMP_FWRITEERR,
+            53 => uerr_t::WARC_TMP_FOPENERR,
+            52 => uerr_t::WARC_ERR,
+            51 => uerr_t::UNKNOWNATTR,
+            50 => uerr_t::ATTRMISSING,
+            49 => uerr_t::CLOSEFAILED,
+            48 => uerr_t::NEWLOCATION_KEEP_POST,
+            47 => uerr_t::UNLINKERR,
+            46 => uerr_t::VERIFCERTERR,
+            45 => uerr_t::SSLINITFAILED,
+            44 => uerr_t::WRITEFAILED,
+            43 => uerr_t::QUOTEXC,
+            42 => uerr_t::AUTHFAILED,
+            41 => uerr_t::PROXERR,
+            40 => uerr_t::RETRBADPATTERN,
+            39 => uerr_t::RANGEERR,
+            38 => uerr_t::FILEBADFILE,
+            37 => uerr_t::TRYLIMEXC,
+            36 => uerr_t::READERR,
+            35 => uerr_t::RETRFINISHED,
+            34 => uerr_t::RETRUNNEEDED,
+            33 => uerr_t::CONTNOTSUPPORTED,
+            32 => uerr_t::FTPNOAUTH,
+            31 => uerr_t::FTPNOPROT,
+            30 => uerr_t::FTPNOPBSZ,
+            29 => uerr_t::FTPNOPASV,
+            28 => uerr_t::FTPINVPASV,
+            27 => uerr_t::WRONGCODE,
+            26 => uerr_t::RECLEVELEXC,
+            25 => uerr_t::RETROK,
+            24 => uerr_t::HERR,
+            23 => uerr_t::GATEWAYTIMEOUT,
+            22 => uerr_t::HEOF,
+            21 => uerr_t::FWRITEERR,
+            20 => uerr_t::FOPEN_EXCL_ERR,
+            19 => uerr_t::FOPENERR,
+            18 => uerr_t::URLERROR,
+            17 => uerr_t::FTPRESTFAIL,
+            16 => uerr_t::FTPRETRINT,
+            15 => uerr_t::FTPSRVERR,
+            14 => uerr_t::FTPRERR,
+            13 => uerr_t::FTPUNKNOWNTYPE,
+            12 => uerr_t::FTPNSFOD,
+            11 => uerr_t::FTPSYSERR,
+            10 => uerr_t::FTPPORTERR,
+            9 => uerr_t::FTPLOGREFUSED,
+            8 => uerr_t::FTPLOGINC,
+            7 => uerr_t::FTPOK,
+            6 => uerr_t::NEWLOCATION,
+            5 => uerr_t::CONIMPOSSIBLE,
+            4 => uerr_t::CONSSLERR,
+            3 => uerr_t::CONERROR,
+            2 => uerr_t::CONSOCKERR,
+            1 => uerr_t::HOSTERR,
+            0 => uerr_t::NOCONERROR,
+            _ => panic!("Invalid value for uerr_t: {}", value),
+        }
+    }
 }
-
-pub const METALINK_SIZE_ERROR: uerr_t = 62;
-pub const RETR_WITH_METALINK: uerr_t = 61;
-pub const METALINK_MISSING_RESOURCE: uerr_t = 60;
-pub const METALINK_SIG_ERROR: uerr_t = 59;
-pub const METALINK_CHKSUM_ERROR: uerr_t = 58;
-pub const METALINK_RETR_ERROR: uerr_t = 57;
-pub const METALINK_PARSE_ERROR: uerr_t = 56;
-pub const TIMECONV_ERR: uerr_t = 55;
-pub const WARC_TMP_FWRITEERR: uerr_t = 54;
-pub const WARC_TMP_FOPENERR: uerr_t = 53;
-pub const WARC_ERR: uerr_t = 52;
-pub const UNKNOWNATTR: uerr_t = 51;
-pub const ATTRMISSING: uerr_t = 50;
-pub const CLOSEFAILED: uerr_t = 49;
-pub const NEWLOCATION_KEEP_POST: uerr_t = 48;
-pub const UNLINKERR: uerr_t = 47;
-pub const VERIFCERTERR: uerr_t = 46;
-pub const SSLINITFAILED: uerr_t = 45;
-pub const WRITEFAILED: uerr_t = 44;
-pub const QUOTEXC: uerr_t = 43;
-pub const AUTHFAILED: uerr_t = 42;
-pub const PROXERR: uerr_t = 41;
-pub const RETRBADPATTERN: uerr_t = 40;
-pub const RANGEERR: uerr_t = 39;
-pub const FILEBADFILE: uerr_t = 38;
-pub const TRYLIMEXC: uerr_t = 37;
-pub const READERR: uerr_t = 36;
-pub const RETRFINISHED: uerr_t = 35;
-pub const RETRUNNEEDED: uerr_t = 34;
-pub const CONTNOTSUPPORTED: uerr_t = 33;
-pub const FTPNOAUTH: uerr_t = 32;
-pub const FTPNOPROT: uerr_t = 31;
-pub const FTPNOPBSZ: uerr_t = 30;
-pub const FTPNOPASV: uerr_t = 29;
-pub const FTPINVPASV: uerr_t = 28;
-pub const WRONGCODE: uerr_t = 27;
-pub const RECLEVELEXC: uerr_t = 26;
-pub const RETROK: uerr_t = 25;
-pub const HERR: uerr_t = 24;
-pub const GATEWAYTIMEOUT: uerr_t = 23;
-pub const HEOF: uerr_t = 22;
-pub const FWRITEERR: uerr_t = 21;
-pub const FOPEN_EXCL_ERR: uerr_t = 20;
-pub const FOPENERR: uerr_t = 19;
-pub const URLERROR: uerr_t = 18;
-pub const FTPRESTFAIL: uerr_t = 17;
-pub const FTPRETRINT: uerr_t = 16;
-pub const FTPSRVERR: uerr_t = 15;
-pub const FTPRERR: uerr_t = 14;
-pub const FTPUNKNOWNTYPE: uerr_t = 13;
-pub const FTPNSFOD: uerr_t = 12;
-pub const FTPSYSERR: uerr_t = 11;
-pub const FTPPORTERR: uerr_t = 10;
-pub const FTPLOGREFUSED: uerr_t = 9;
-pub const FTPLOGINC: uerr_t = 8;
-pub const FTPOK: uerr_t = 7;
-pub const NEWLOCATION: uerr_t = 6;
-pub const CONIMPOSSIBLE: uerr_t = 5;
-pub const CONSSLERR: uerr_t = 4;
-pub const CONERROR: uerr_t = 3;
-pub const CONSOCKERR: uerr_t = 2;
-pub const HOSTERR: uerr_t = 1;
-pub const NOCONERROR: uerr_t = 0;
+impl AddAssign<u32> for uerr_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = uerr_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for uerr_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = uerr_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for uerr_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = uerr_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for uerr_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = uerr_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for uerr_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = uerr_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for uerr_t {
+    type Output = uerr_t;
+    fn add(self, rhs: u32) -> uerr_t {
+        uerr_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for uerr_t {
+    type Output = uerr_t;
+    fn sub(self, rhs: u32) -> uerr_t {
+        uerr_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for uerr_t {
+    type Output = uerr_t;
+    fn mul(self, rhs: u32) -> uerr_t {
+        uerr_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for uerr_t {
+    type Output = uerr_t;
+    fn div(self, rhs: u32) -> uerr_t {
+        uerr_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for uerr_t {
+    type Output = uerr_t;
+    fn rem(self, rhs: u32) -> uerr_t {
+        uerr_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct attr_pair {
-    pub name: *mut libc::c_char,
-    pub value: *mut libc::c_char,
-    pub value_raw_beginning: *const libc::c_char,
-    pub value_raw_size: libc::c_int,
-    pub name_pool_index: libc::c_int,
-    pub value_pool_index: libc::c_int,
+    pub name: *mut i8,
+    pub value: *mut i8,
+    pub value_raw_beginning: *const i8,
+    pub value_raw_size: i32,
+    pub name_pool_index: i32,
+    pub value_pool_index: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct taginfo {
-    pub name: *mut libc::c_char,
-    pub end_tag_p: libc::c_int,
-    pub nattrs: libc::c_int,
+    pub name: *mut i8,
+    pub end_tag_p: i32,
+    pub nattrs: i32,
     pub attrs: *mut attr_pair,
-    pub start_position: *const libc::c_char,
-    pub end_position: *const libc::c_char,
-    pub contents_begin: *const libc::c_char,
-    pub contents_end: *const libc::c_char,
+    pub start_position: *const i8,
+    pub end_position: *const i8,
+    pub contents_begin: *const i8,
+    pub contents_end: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -724,7 +1307,7 @@ pub enum url_scheme {
     SCHEME_HTTP = 0,
 }
 impl url_scheme {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             url_scheme::SCHEME_INVALID => 4,
             url_scheme::SCHEME_FTPS => 3,
@@ -733,35 +1316,94 @@ impl url_scheme {
             url_scheme::SCHEME_HTTP => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> url_scheme {
+        match value {
+            4 => url_scheme::SCHEME_INVALID,
+            3 => url_scheme::SCHEME_FTPS,
+            2 => url_scheme::SCHEME_FTP,
+            1 => url_scheme::SCHEME_HTTPS,
+            0 => url_scheme::SCHEME_HTTP,
+            _ => panic!("Invalid value for url_scheme: {}", value),
+        }
+    }
 }
-
-pub const SCHEME_INVALID: url_scheme = 4;
-pub const SCHEME_FTPS: url_scheme = 3;
-pub const SCHEME_FTP: url_scheme = 2;
-pub const SCHEME_HTTPS: url_scheme = 1;
-pub const SCHEME_HTTP: url_scheme = 0;
+impl AddAssign<u32> for url_scheme {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for url_scheme {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for url_scheme {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for url_scheme {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for url_scheme {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for url_scheme {
+    type Output = url_scheme;
+    fn add(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for url_scheme {
+    type Output = url_scheme;
+    fn sub(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for url_scheme {
+    type Output = url_scheme;
+    fn mul(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for url_scheme {
+    type Output = url_scheme;
+    fn div(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for url_scheme {
+    type Output = url_scheme;
+    fn rem(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct url {
-    pub url: *mut libc::c_char,
+    pub url: *mut i8,
     pub scheme: url_scheme,
-    pub host: *mut libc::c_char,
-    pub port: libc::c_int,
-    pub path: *mut libc::c_char,
-    pub params: *mut libc::c_char,
-    pub query: *mut libc::c_char,
-    pub fragment: *mut libc::c_char,
-    pub dir: *mut libc::c_char,
-    pub file: *mut libc::c_char,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub host: *mut i8,
+    pub port: i32,
+    pub path: *mut i8,
+    pub params: *mut i8,
+    pub query: *mut i8,
+    pub fragment: *mut i8,
+    pub dir: *mut i8,
+    pub file: *mut i8,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct file_memory {
-    pub content: *mut libc::c_char,
-    pub length: libc::c_long,
-    pub mmap_p: libc::c_int,
+    pub content: *mut i8,
+    pub length: i64,
+    pub mmap_p: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -773,7 +1415,7 @@ pub enum convert_options {
     CO_NOCONVERT = 0,
 }
 impl convert_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             convert_options::CO_NULLIFY_BASE => 4,
             convert_options::CO_CONVERT_TO_COMPLETE => 3,
@@ -782,18 +1424,77 @@ impl convert_options {
             convert_options::CO_NOCONVERT => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> convert_options {
+        match value {
+            4 => convert_options::CO_NULLIFY_BASE,
+            3 => convert_options::CO_CONVERT_TO_COMPLETE,
+            2 => convert_options::CO_CONVERT_BASENAME_ONLY,
+            1 => convert_options::CO_CONVERT_TO_RELATIVE,
+            0 => convert_options::CO_NOCONVERT,
+            _ => panic!("Invalid value for convert_options: {}", value),
+        }
+    }
 }
-
-pub const CO_NULLIFY_BASE: convert_options = 4;
-pub const CO_CONVERT_TO_COMPLETE: convert_options = 3;
-pub const CO_CONVERT_BASENAME_ONLY: convert_options = 2;
-pub const CO_CONVERT_TO_RELATIVE: convert_options = 1;
-pub const CO_NOCONVERT: convert_options = 0;
+impl AddAssign<u32> for convert_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = convert_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for convert_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = convert_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for convert_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = convert_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for convert_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = convert_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for convert_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = convert_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for convert_options {
+    type Output = convert_options;
+    fn add(self, rhs: u32) -> convert_options {
+        convert_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for convert_options {
+    type Output = convert_options;
+    fn sub(self, rhs: u32) -> convert_options {
+        convert_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for convert_options {
+    type Output = convert_options;
+    fn mul(self, rhs: u32) -> convert_options {
+        convert_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for convert_options {
+    type Output = convert_options;
+    fn div(self, rhs: u32) -> convert_options {
+        convert_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for convert_options {
+    type Output = convert_options;
+    fn rem(self, rhs: u32) -> convert_options {
+        convert_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct urlpos {
     pub url: *mut url,
-    pub local_name: *mut libc::c_char,
+    pub local_name: *mut i8,
     #[bitfield(name = "ignore_when_downloading", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "link_relative_p", ty = "libc::c_uint", bits = "1..=1")]
     #[bitfield(name = "link_complete_p", ty = "libc::c_uint", bits = "2..=2")]
@@ -807,38 +1508,38 @@ pub struct urlpos {
     pub ignore_when_downloading_link_relative_p_link_complete_p_link_base_p_link_inline_p_link_css_p_link_noquote_html_p_link_expect_html_link_expect_css_link_refresh_p: [u8; 2],
     #[bitfield(padding)]
     pub c2rust_padding: [u8; 2],
-    pub refresh_timeout: libc::c_int,
+    pub refresh_timeout: i32,
     pub convert: convert_options,
-    pub pos: libc::c_int,
-    pub size: libc::c_int,
+    pub pos: i32,
+    pub size: i32,
     pub next: *mut urlpos,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct map_context {
-    pub text: *mut libc::c_char,
-    pub base: *mut libc::c_char,
-    pub parent_base: *const libc::c_char,
-    pub document_file: *const libc::c_char,
+    pub text: *mut i8,
+    pub base: *mut i8,
+    pub parent_base: *const i8,
+    pub document_file: *const i8,
     pub nofollow: bool,
     pub head: *mut urlpos,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct known_tag {
-    pub tagid: libc::c_int,
-    pub name: *const libc::c_char,
+    pub tagid: i32,
+    pub name: *const i8,
     pub handler: tag_handler_t,
 }
-pub type tag_handler_t = Option::<
-    unsafe extern "C" fn(libc::c_int, *mut taginfo, *mut map_context) -> (),
+pub type tag_handler_t = Option<
+    unsafe extern "C" fn(i32, *mut taginfo, *mut map_context) -> (),
 >;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_4 {
-    pub tagid: libc::c_int,
-    pub attr_name: *const libc::c_char,
-    pub flags: libc::c_int,
+    pub tagid: i32,
+    pub attr_name: *const i8,
+    pub flags: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -870,7 +1571,7 @@ pub enum C2RustUnnamed_5 {
     TAG_BASE = 3,
 }
 impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_5::TAG_SOURCE => 24,
             C2RustUnnamed_5::TAG_AUDIO => 23,
@@ -899,17 +1600,101 @@ impl C2RustUnnamed_5 {
             C2RustUnnamed_5::TAG_BASE => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_5 {
+        match value {
+            24 => C2RustUnnamed_5::TAG_SOURCE,
+            23 => C2RustUnnamed_5::TAG_AUDIO,
+            22 => C2RustUnnamed_5::TAG_VIDEO,
+            21 => C2RustUnnamed_5::TAG_TH,
+            20 => C2RustUnnamed_5::TAG_TD,
+            19 => C2RustUnnamed_5::TAG_TABLE,
+            18 => C2RustUnnamed_5::TAG_SCRIPT,
+            17 => C2RustUnnamed_5::TAG_OVERLAY,
+            16 => C2RustUnnamed_5::TAG_OBJECT,
+            13 => C2RustUnnamed_5::TAG_LAYER,
+            12 => C2RustUnnamed_5::TAG_INPUT,
+            11 => C2RustUnnamed_5::TAG_IMG,
+            10 => C2RustUnnamed_5::TAG_IFRAME,
+            9 => C2RustUnnamed_5::TAG_FRAME,
+            7 => C2RustUnnamed_5::TAG_FIG,
+            6 => C2RustUnnamed_5::TAG_EMBED,
+            5 => C2RustUnnamed_5::TAG_BODY,
+            4 => C2RustUnnamed_5::TAG_BGSOUND,
+            2 => C2RustUnnamed_5::TAG_AREA,
+            1 => C2RustUnnamed_5::TAG_APPLET,
+            0 => C2RustUnnamed_5::TAG_A,
+            15 => C2RustUnnamed_5::TAG_META,
+            14 => C2RustUnnamed_5::TAG_LINK,
+            8 => C2RustUnnamed_5::TAG_FORM,
+            3 => C2RustUnnamed_5::TAG_BASE,
+            _ => panic!("Invalid value for C2RustUnnamed_5: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_5 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_5 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_5 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_5 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_5 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn add(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn div(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
-unsafe extern "C" fn c_isspace(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isspace(mut c: i32) -> bool {
     match c {
-        32 | 9 | 10 | 11 | 12 | 13 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        32 | 9 | 10 | 11 | 12 | 13 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_toupper(mut c: libc::c_int) -> libc::c_int {
+unsafe extern "C" fn c_toupper(mut c: i32) -> i32 {
     match c {
         97 | 98 | 99 | 100 | 101 | 102 | 103 | 104 | 105 | 106 | 107 | 108 | 109 | 110
         | 111 | 112 | 113 | 114 | 115 | 116 | 117 | 118 | 119 | 120 | 121 | 122 => {
@@ -922,12 +1707,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
     [
         {
             let mut init = known_tag {
-                tagid: TAG_A as libc::c_int,
-                name: b"a\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_A as i32,
+                name: b"a\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -937,12 +1722,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_APPLET as libc::c_int,
-                name: b"applet\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_APPLET as i32,
+                name: b"applet\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -952,12 +1737,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_AREA as libc::c_int,
-                name: b"area\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_AREA as i32,
+                name: b"area\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -967,12 +1752,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_BASE as libc::c_int,
-                name: b"base\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_BASE as i32,
+                name: b"base\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_handle_base
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -982,12 +1767,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_BGSOUND as libc::c_int,
-                name: b"bgsound\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_BGSOUND as i32,
+                name: b"bgsound\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -997,12 +1782,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_BODY as libc::c_int,
-                name: b"body\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_BODY as i32,
+                name: b"body\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1012,12 +1797,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_EMBED as libc::c_int,
-                name: b"embed\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_EMBED as i32,
+                name: b"embed\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1027,12 +1812,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_FIG as libc::c_int,
-                name: b"fig\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_FIG as i32,
+                name: b"fig\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1042,12 +1827,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_FORM as libc::c_int,
-                name: b"form\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_FORM as i32,
+                name: b"form\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_handle_form
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1057,12 +1842,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_FRAME as libc::c_int,
-                name: b"frame\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_FRAME as i32,
+                name: b"frame\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1072,12 +1857,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_IFRAME as libc::c_int,
-                name: b"iframe\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_IFRAME as i32,
+                name: b"iframe\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1087,12 +1872,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_IMG as libc::c_int,
-                name: b"img\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_IMG as i32,
+                name: b"img\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_handle_img
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1102,12 +1887,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_INPUT as libc::c_int,
-                name: b"input\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_INPUT as i32,
+                name: b"input\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1117,12 +1902,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_LAYER as libc::c_int,
-                name: b"layer\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_LAYER as i32,
+                name: b"layer\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1132,12 +1917,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_LINK as libc::c_int,
-                name: b"link\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_LINK as i32,
+                name: b"link\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_handle_link
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1147,12 +1932,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_META as libc::c_int,
-                name: b"meta\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_META as i32,
+                name: b"meta\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_handle_meta
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1162,12 +1947,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_OBJECT as libc::c_int,
-                name: b"object\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_OBJECT as i32,
+                name: b"object\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1177,12 +1962,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_OVERLAY as libc::c_int,
-                name: b"overlay\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_OVERLAY as i32,
+                name: b"overlay\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1192,12 +1977,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_SCRIPT as libc::c_int,
-                name: b"script\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_SCRIPT as i32,
+                name: b"script\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1207,12 +1992,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_TABLE as libc::c_int,
-                name: b"table\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_TABLE as i32,
+                name: b"table\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1222,12 +2007,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_TD as libc::c_int,
-                name: b"td\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_TD as i32,
+                name: b"td\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1237,12 +2022,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_TH as libc::c_int,
-                name: b"th\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_TH as i32,
+                name: b"th\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1252,12 +2037,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_VIDEO as libc::c_int,
-                name: b"video\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_VIDEO as i32,
+                name: b"video\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1267,12 +2052,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_AUDIO as libc::c_int,
-                name: b"audio\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_AUDIO as i32,
+                name: b"audio\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1282,12 +2067,12 @@ static mut known_tags: [known_tag; 25] = unsafe {
         },
         {
             let mut init = known_tag {
-                tagid: TAG_SOURCE as libc::c_int,
-                name: b"source\0" as *const u8 as *const libc::c_char,
+                tagid: C2RustUnnamed_5::TAG_SOURCE as i32,
+                name: b"source\0" as *const u8 as *const i8,
                 handler: Some(
                     tag_find_urls
                         as unsafe extern "C" fn(
-                            libc::c_int,
+                            i32,
                             *mut taginfo,
                             *mut map_context,
                         ) -> (),
@@ -1300,239 +2085,237 @@ static mut known_tags: [known_tag; 25] = unsafe {
 static mut tag_url_attributes: [C2RustUnnamed_4; 26] = [
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_A as libc::c_int,
-            attr_name: b"href\0" as *const u8 as *const libc::c_char,
-            flags: 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_A as i32,
+            attr_name: b"href\0" as *const u8 as *const i8,
+            flags: 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_APPLET as libc::c_int,
-            attr_name: b"code\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_APPLET as i32,
+            attr_name: b"code\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_AREA as libc::c_int,
-            attr_name: b"href\0" as *const u8 as *const libc::c_char,
-            flags: 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_AREA as i32,
+            attr_name: b"href\0" as *const u8 as *const i8,
+            flags: 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_BGSOUND as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_BGSOUND as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_BODY as libc::c_int,
-            attr_name: b"background\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_BODY as i32,
+            attr_name: b"background\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_EMBED as libc::c_int,
-            attr_name: b"href\0" as *const u8 as *const libc::c_char,
-            flags: 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_EMBED as i32,
+            attr_name: b"href\0" as *const u8 as *const i8,
+            flags: 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_EMBED as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int | 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_EMBED as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32 | 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_FIG as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_FIG as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_FRAME as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int | 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_FRAME as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32 | 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_IFRAME as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int | 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_IFRAME as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32 | 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_IMG as libc::c_int,
-            attr_name: b"href\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_IMG as i32,
+            attr_name: b"href\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_IMG as libc::c_int,
-            attr_name: b"lowsrc\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_IMG as i32,
+            attr_name: b"lowsrc\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_IMG as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_IMG as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_INPUT as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_INPUT as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_LAYER as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int | 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_LAYER as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32 | 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_OBJECT as libc::c_int,
-            attr_name: b"data\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_OBJECT as i32,
+            attr_name: b"data\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_OVERLAY as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int | 2 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_OVERLAY as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32 | 2 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_SCRIPT as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_SCRIPT as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_TABLE as libc::c_int,
-            attr_name: b"background\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_TABLE as i32,
+            attr_name: b"background\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_TD as libc::c_int,
-            attr_name: b"background\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_TD as i32,
+            attr_name: b"background\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_TH as libc::c_int,
-            attr_name: b"background\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_TH as i32,
+            attr_name: b"background\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_VIDEO as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_VIDEO as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_VIDEO as libc::c_int,
-            attr_name: b"poster\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_VIDEO as i32,
+            attr_name: b"poster\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_AUDIO as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_AUDIO as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_AUDIO as libc::c_int,
-            attr_name: b"poster\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_AUDIO as i32,
+            attr_name: b"poster\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
     {
         let mut init = C2RustUnnamed_4 {
-            tagid: TAG_SOURCE as libc::c_int,
-            attr_name: b"src\0" as *const u8 as *const libc::c_char,
-            flags: 1 as libc::c_int,
+            tagid: C2RustUnnamed_5::TAG_SOURCE as i32,
+            attr_name: b"src\0" as *const u8 as *const i8,
+            flags: 1 as i32,
         };
         init
     },
 ];
-static mut additional_attributes: [*const libc::c_char; 8] = [
-    b"rel\0" as *const u8 as *const libc::c_char,
-    b"type\0" as *const u8 as *const libc::c_char,
-    b"http-equiv\0" as *const u8 as *const libc::c_char,
-    b"name\0" as *const u8 as *const libc::c_char,
-    b"content\0" as *const u8 as *const libc::c_char,
-    b"action\0" as *const u8 as *const libc::c_char,
-    b"style\0" as *const u8 as *const libc::c_char,
-    b"srcset\0" as *const u8 as *const libc::c_char,
+static mut additional_attributes: [*const i8; 8] = [
+    b"rel\0" as *const u8 as *const i8,
+    b"type\0" as *const u8 as *const i8,
+    b"http-equiv\0" as *const u8 as *const i8,
+    b"name\0" as *const u8 as *const i8,
+    b"content\0" as *const u8 as *const i8,
+    b"action\0" as *const u8 as *const i8,
+    b"style\0" as *const u8 as *const i8,
+    b"srcset\0" as *const u8 as *const i8,
 ];
 static mut interesting_tags: *mut hash_table = 0 as *const hash_table as *mut hash_table;
 static mut interesting_attributes: *mut hash_table = 0 as *const hash_table
     as *mut hash_table;
-static mut meta_charset: *mut libc::c_char = 0 as *const libc::c_char
-    as *mut libc::c_char;
+static mut meta_charset: *mut i8 = 0 as *const i8 as *mut i8;
 unsafe extern "C" fn init_interesting() {
     let mut i: size_t = 0;
     interesting_tags = make_nocase_string_hash_table(
-        (::core::mem::size_of::<[known_tag; 25]>() as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<known_tag>() as libc::c_ulong)
-            as libc::c_int,
+        (::core::mem::size_of::<[known_tag; 25]>() as u64)
+            .wrapping_div(::core::mem::size_of::<known_tag>() as u64) as i32,
     );
-    i = 0 as libc::c_int as size_t;
+    i = 0 as i32 as size_t;
     while i
-        < (::core::mem::size_of::<[known_tag; 25]>() as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<known_tag>() as libc::c_ulong)
+        < (::core::mem::size_of::<[known_tag; 25]>() as u64)
+            .wrapping_div(::core::mem::size_of::<known_tag>() as u64)
     {
         hash_table_put(
             interesting_tags,
@@ -1543,7 +2326,7 @@ unsafe extern "C" fn init_interesting() {
         i;
     }
     if !(opt.ignore_tags).is_null() {
-        let mut ignored: *mut *mut libc::c_char = 0 as *mut *mut libc::c_char;
+        let mut ignored: *mut *mut i8 = 0 as *mut *mut i8;
         ignored = opt.ignore_tags;
         while !(*ignored).is_null() {
             hash_table_remove(interesting_tags, *ignored as *const libc::c_void);
@@ -1552,10 +2335,8 @@ unsafe extern "C" fn init_interesting() {
         }
     }
     if !(opt.follow_tags).is_null() {
-        let mut intersect: *mut hash_table = make_nocase_string_hash_table(
-            0 as libc::c_int,
-        );
-        let mut followed: *mut *mut libc::c_char = 0 as *mut *mut libc::c_char;
+        let mut intersect: *mut hash_table = make_nocase_string_hash_table(0 as i32);
+        let mut followed: *mut *mut i8 = 0 as *mut *mut i8;
         followed = opt.follow_tags;
         while !(*followed).is_null() {
             let mut t: *mut known_tag = hash_table_get(
@@ -1575,29 +2356,29 @@ unsafe extern "C" fn init_interesting() {
         hash_table_destroy(interesting_tags);
         interesting_tags = intersect;
     }
-    interesting_attributes = make_nocase_string_hash_table(10 as libc::c_int);
-    i = 0 as libc::c_int as size_t;
+    interesting_attributes = make_nocase_string_hash_table(10 as i32);
+    i = 0 as i32 as size_t;
     while i
-        < (::core::mem::size_of::<[*const libc::c_char; 8]>() as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<*const libc::c_char>() as libc::c_ulong)
+        < (::core::mem::size_of::<[*const i8; 8]>() as u64)
+            .wrapping_div(::core::mem::size_of::<*const i8>() as u64)
     {
         hash_table_put(
             interesting_attributes,
             additional_attributes[i as usize] as *const libc::c_void,
-            b"1\0" as *const u8 as *const libc::c_char as *const libc::c_void,
+            b"1\0" as *const u8 as *const i8 as *const libc::c_void,
         );
         i = i.wrapping_add(1);
         i;
     }
-    i = 0 as libc::c_int as size_t;
+    i = 0 as i32 as size_t;
     while i
-        < (::core::mem::size_of::<[C2RustUnnamed_4; 26]>() as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as libc::c_ulong)
+        < (::core::mem::size_of::<[C2RustUnnamed_4; 26]>() as u64)
+            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as u64)
     {
         hash_table_put(
             interesting_attributes,
             tag_url_attributes[i as usize].attr_name as *const libc::c_void,
-            b"1\0" as *const u8 as *const libc::c_char as *const libc::c_void,
+            b"1\0" as *const u8 as *const i8 as *const libc::c_void,
         );
         i = i.wrapping_add(1);
         i;
@@ -1605,11 +2386,11 @@ unsafe extern "C" fn init_interesting() {
 }
 unsafe extern "C" fn find_attr(
     mut tag: *mut taginfo,
-    mut name: *const libc::c_char,
-    mut attrind: *mut libc::c_int,
-) -> *mut libc::c_char {
-    let mut i: libc::c_int = 0;
-    i = 0 as libc::c_int;
+    mut name: *const i8,
+    mut attrind: *mut i32,
+) -> *mut i8 {
+    let mut i: i32 = 0;
+    i = 0 as i32;
     while i < (*tag).nattrs {
         if c_strcasecmp((*((*tag).attrs).offset(i as isize)).name, name) == 0 {
             if !attrind.is_null() {
@@ -1620,43 +2401,42 @@ unsafe extern "C" fn find_attr(
         i += 1;
         i;
     }
-    return 0 as *mut libc::c_char;
+    return 0 as *mut i8;
 }
 #[no_mangle]
 pub unsafe extern "C" fn append_url(
-    mut link_uri: *const libc::c_char,
-    mut position: libc::c_int,
-    mut size: libc::c_int,
+    mut link_uri: *const i8,
+    mut position: i32,
+    mut size: i32,
     mut ctx: *mut map_context,
 ) -> *mut urlpos {
-    let mut link_has_scheme: libc::c_int = url_has_scheme(link_uri) as libc::c_int;
+    let mut link_has_scheme: i32 = url_has_scheme(link_uri) as i32;
     let mut newel: *mut urlpos = 0 as *mut urlpos;
-    let mut base: *const libc::c_char = if !((*ctx).base).is_null() {
+    let mut base: *const i8 = if !((*ctx).base).is_null() {
         (*ctx).base
     } else {
         (*ctx).parent_base
     };
     let mut url: *mut url = 0 as *mut url;
     let mut iri: *mut iri = iri_new();
-    set_uri_encoding(iri, opt.locale, 1 as libc::c_int != 0);
-    (*iri).utf8_encode = 1 as libc::c_int != 0;
+    set_uri_encoding(iri, opt.locale, 1 as i32 != 0);
+    (*iri).utf8_encode = 1 as i32 != 0;
     if base.is_null() {
-        if opt.debug as libc::c_long != 0 {
+        if opt.debug as i64 != 0 {
             debug_logprintf(
-                b"%s: no base, merge will use \"%s\".\n\0" as *const u8
-                    as *const libc::c_char,
+                b"%s: no base, merge will use \"%s\".\n\0" as *const u8 as *const i8,
                 (*ctx).document_file,
                 link_uri,
             );
         }
         if link_has_scheme == 0 {
             logprintf(
-                LOG_NOTQUIET,
+                log_options::LOG_NOTQUIET,
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"%s: Cannot resolve incomplete link %s.\n\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
                 (*ctx).document_file,
                 link_uri,
@@ -1664,12 +2444,11 @@ pub unsafe extern "C" fn append_url(
             iri_free(iri);
             return 0 as *mut urlpos;
         }
-        url = url_parse(link_uri, 0 as *mut libc::c_int, iri, 0 as libc::c_int != 0);
+        url = url_parse(link_uri, 0 as *mut i32, iri, 0 as i32 != 0);
         if url.is_null() {
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
-                    b"%s: link \"%s\" doesn't parse.\n\0" as *const u8
-                        as *const libc::c_char,
+                    b"%s: link \"%s\" doesn't parse.\n\0" as *const u8 as *const i8,
                     (*ctx).document_file,
                     link_uri,
                 );
@@ -1678,56 +2457,58 @@ pub unsafe extern "C" fn append_url(
             return 0 as *mut urlpos;
         }
     } else {
-        let mut complete_uri: *mut libc::c_char = uri_merge(base, link_uri);
-        if opt.debug as libc::c_long != 0 {
+        let mut complete_uri: *mut i8 = uri_merge(base, link_uri);
+        if opt.debug as i64 != 0 {
             debug_logprintf(
-                b"%s: merge(%s, %s) -> %s\n\0" as *const u8 as *const libc::c_char,
+                b"%s: merge(%s, %s) -> %s\n\0" as *const u8 as *const i8,
                 quotearg_n_style(
-                    0 as libc::c_int,
-                    escape_quoting_style,
+                    0 as i32,
+                    quoting_style::escape_quoting_style,
                     (*ctx).document_file,
                 ),
-                quote_n(1 as libc::c_int, base),
-                quote_n(2 as libc::c_int, link_uri),
-                quotearg_n_style(3 as libc::c_int, escape_quoting_style, complete_uri),
+                quote_n(1 as i32, base),
+                quote_n(2 as i32, link_uri),
+                quotearg_n_style(
+                    3 as i32,
+                    quoting_style::escape_quoting_style,
+                    complete_uri,
+                ),
             );
         }
-        url = url_parse(complete_uri, 0 as *mut libc::c_int, iri, 0 as libc::c_int != 0);
+        url = url_parse(complete_uri, 0 as *mut i32, iri, 0 as i32 != 0);
         if url.is_null() {
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
                     b"%s: merged link \"%s\" doesn't parse.\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     (*ctx).document_file,
                     complete_uri,
                 );
             }
             rpl_free(complete_uri as *mut libc::c_void);
-            complete_uri = 0 as *mut libc::c_char;
+            complete_uri = 0 as *mut i8;
             iri_free(iri);
             return 0 as *mut urlpos;
         }
         rpl_free(complete_uri as *mut libc::c_void);
-        complete_uri = 0 as *mut libc::c_char;
+        complete_uri = 0 as *mut i8;
     }
     iri_free(iri);
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"appending %s to urlpos.\n\0" as *const u8 as *const libc::c_char,
+            b"appending %s to urlpos.\n\0" as *const u8 as *const i8,
             quote((*url).url),
         );
     }
-    newel = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<urlpos>() as libc::c_ulong,
-    ) as *mut urlpos;
+    newel = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<urlpos>() as u64)
+        as *mut urlpos;
     (*newel).url = url;
     (*newel).pos = position;
     (*newel).size = size;
-    if link_has_scheme == 0 && *link_uri as libc::c_int != '/' as i32 {
-        (*newel).set_link_relative_p(1 as libc::c_int as libc::c_uint);
+    if link_has_scheme == 0 && *link_uri as i32 != '/' as i32 {
+        (*newel).set_link_relative_p(1 as i32 as u32);
     } else if link_has_scheme != 0 {
-        (*newel).set_link_complete_p(1 as libc::c_int as libc::c_uint);
+        (*newel).set_link_complete_p(1 as i32 as u32);
     }
     if ((*ctx).head).is_null() {
         (*ctx).head = newel;
@@ -1749,62 +2530,60 @@ pub unsafe extern "C" fn append_url(
     return newel;
 }
 unsafe extern "C" fn check_style_attr(mut tag: *mut taginfo, mut ctx: *mut map_context) {
-    let mut attrind: libc::c_int = 0;
-    let mut raw_start: libc::c_int = 0;
-    let mut raw_len: libc::c_int = 0;
-    let mut style: *mut libc::c_char = find_attr(
+    let mut attrind: i32 = 0;
+    let mut raw_start: i32 = 0;
+    let mut raw_len: i32 = 0;
+    let mut style: *mut i8 = find_attr(
         tag,
-        b"style\0" as *const u8 as *const libc::c_char,
+        b"style\0" as *const u8 as *const i8,
         &mut attrind,
     );
     if style.is_null() {
         return;
     }
     raw_start = ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-        .offset_from((*ctx).text) as libc::c_long as libc::c_int;
+        .offset_from((*ctx).text) as i64 as i32;
     raw_len = (*((*tag).attrs).offset(attrind as isize)).value_raw_size;
-    if *((*ctx).text).offset(raw_start as isize) as libc::c_int == '\'' as i32
-        || *((*ctx).text).offset(raw_start as isize) as libc::c_int == '"' as i32
+    if *((*ctx).text).offset(raw_start as isize) as i32 == '\'' as i32
+        || *((*ctx).text).offset(raw_start as isize) as i32 == '"' as i32
     {
-        raw_start += 1 as libc::c_int;
-        raw_len -= 2 as libc::c_int;
+        raw_start += 1 as i32;
+        raw_len -= 2 as i32;
     }
-    if raw_len <= 0 as libc::c_int {
+    if raw_len <= 0 as i32 {
         return;
     }
     get_urls_css(ctx, raw_start, raw_len);
 }
 unsafe extern "C" fn tag_find_urls(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
     let mut i: size_t = 0;
-    let mut attrind: libc::c_int = 0;
-    let mut first: libc::c_int = -(1 as libc::c_int);
-    i = 0 as libc::c_int as size_t;
+    let mut attrind: i32 = 0;
+    let mut first: i32 = -(1 as i32);
+    i = 0 as i32 as size_t;
     while i
-        < (::core::mem::size_of::<[C2RustUnnamed_4; 26]>() as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as libc::c_ulong)
+        < (::core::mem::size_of::<[C2RustUnnamed_4; 26]>() as u64)
+            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as u64)
     {
         if tag_url_attributes[i as usize].tagid == tagid {
-            first = i as libc::c_int;
+            first = i as i32;
             break;
         } else {
             i = i.wrapping_add(1);
             i;
         }
     }
-    attrind = 0 as libc::c_int;
+    attrind = 0 as i32;
     while attrind < (*tag).nattrs {
-        let mut link: *mut libc::c_char = (*((*tag).attrs).offset(attrind as isize))
-            .value;
-        let size: size_t = (::core::mem::size_of::<[C2RustUnnamed_4; 26]>()
-            as libc::c_ulong)
-            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as libc::c_ulong);
+        let mut link: *mut i8 = (*((*tag).attrs).offset(attrind as isize)).value;
+        let size: size_t = (::core::mem::size_of::<[C2RustUnnamed_4; 26]>() as u64)
+            .wrapping_div(::core::mem::size_of::<C2RustUnnamed_4>() as u64);
         i = first as size_t;
         while i < size && tag_url_attributes[i as usize].tagid == tagid {
-            if 0 as libc::c_int
+            if 0 as i32
                 == strcasecmp(
                     (*((*tag).attrs).offset(attrind as isize)).name,
                     tag_url_attributes[i as usize].attr_name,
@@ -1813,17 +2592,17 @@ unsafe extern "C" fn tag_find_urls(
                 let mut up: *mut urlpos = append_url(
                     link,
                     ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-                        .offset_from((*ctx).text) as libc::c_long as libc::c_int,
+                        .offset_from((*ctx).text) as i64 as i32,
                     (*((*tag).attrs).offset(attrind as isize)).value_raw_size,
                     ctx,
                 );
                 if !up.is_null() {
-                    let mut flags: libc::c_int = tag_url_attributes[i as usize].flags;
-                    if flags & 1 as libc::c_int != 0 {
-                        (*up).set_link_inline_p(1 as libc::c_int as libc::c_uint);
+                    let mut flags: i32 = tag_url_attributes[i as usize].flags;
+                    if flags & 1 as i32 != 0 {
+                        (*up).set_link_inline_p(1 as i32 as u32);
                     }
-                    if flags & 2 as libc::c_int != 0 {
-                        (*up).set_link_expect_html(1 as libc::c_int as libc::c_uint);
+                    if flags & 2 as i32 != 0 {
+                        (*up).set_link_expect_html(1 as i32 as u32);
                     }
                 }
             }
@@ -1835,15 +2614,15 @@ unsafe extern "C" fn tag_find_urls(
     }
 }
 unsafe extern "C" fn tag_handle_base(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
     let mut base_urlpos: *mut urlpos = 0 as *mut urlpos;
-    let mut attrind: libc::c_int = 0;
-    let mut newbase: *mut libc::c_char = find_attr(
+    let mut attrind: i32 = 0;
+    let mut newbase: *mut i8 = find_attr(
         tag,
-        b"href\0" as *const u8 as *const libc::c_char,
+        b"href\0" as *const u8 as *const i8,
         &mut attrind,
     );
     if newbase.is_null() {
@@ -1852,17 +2631,17 @@ unsafe extern "C" fn tag_handle_base(
     base_urlpos = append_url(
         newbase,
         ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-            .offset_from((*ctx).text) as libc::c_long as libc::c_int,
+            .offset_from((*ctx).text) as i64 as i32,
         (*((*tag).attrs).offset(attrind as isize)).value_raw_size,
         ctx,
     );
     if base_urlpos.is_null() {
         return;
     }
-    (*base_urlpos).set_ignore_when_downloading(1 as libc::c_int as libc::c_uint);
-    (*base_urlpos).set_link_base_p(1 as libc::c_int as libc::c_uint);
+    (*base_urlpos).set_ignore_when_downloading(1 as i32 as u32);
+    (*base_urlpos).set_link_base_p(1 as i32 as u32);
     rpl_free((*ctx).base as *mut libc::c_void);
-    (*ctx).base = 0 as *mut libc::c_char;
+    (*ctx).base = 0 as *mut i8;
     if !((*ctx).parent_base).is_null() {
         (*ctx).base = uri_merge((*ctx).parent_base, newbase);
     } else {
@@ -1870,100 +2649,85 @@ unsafe extern "C" fn tag_handle_base(
     };
 }
 unsafe extern "C" fn tag_handle_form(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
-    let mut attrind: libc::c_int = 0;
-    let mut action: *mut libc::c_char = find_attr(
+    let mut attrind: i32 = 0;
+    let mut action: *mut i8 = find_attr(
         tag,
-        b"action\0" as *const u8 as *const libc::c_char,
+        b"action\0" as *const u8 as *const i8,
         &mut attrind,
     );
     if !action.is_null() {
         let mut up: *mut urlpos = append_url(
             action,
             ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-                .offset_from((*ctx).text) as libc::c_long as libc::c_int,
+                .offset_from((*ctx).text) as i64 as i32,
             (*((*tag).attrs).offset(attrind as isize)).value_raw_size,
             ctx,
         );
         if !up.is_null() {
-            (*up).set_ignore_when_downloading(1 as libc::c_int as libc::c_uint);
+            (*up).set_ignore_when_downloading(1 as i32 as u32);
         }
     }
 }
 unsafe extern "C" fn tag_handle_link(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
-    let mut attrind: libc::c_int = 0;
-    let mut href: *mut libc::c_char = find_attr(
+    let mut attrind: i32 = 0;
+    let mut href: *mut i8 = find_attr(
         tag,
-        b"href\0" as *const u8 as *const libc::c_char,
+        b"href\0" as *const u8 as *const i8,
         &mut attrind,
     );
     if !href.is_null() {
         let mut up: *mut urlpos = append_url(
             href,
             ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-                .offset_from((*ctx).text) as libc::c_long as libc::c_int,
+                .offset_from((*ctx).text) as i64 as i32,
             (*((*tag).attrs).offset(attrind as isize)).value_raw_size,
             ctx,
         );
         if !up.is_null() {
-            let mut rel: *mut libc::c_char = find_attr(
+            let mut rel: *mut i8 = find_attr(
                 tag,
-                b"rel\0" as *const u8 as *const libc::c_char,
-                0 as *mut libc::c_int,
+                b"rel\0" as *const u8 as *const i8,
+                0 as *mut i32,
             );
             if !rel.is_null() {
-                if 0 as libc::c_int
-                    == c_strcasecmp(
-                        rel,
-                        b"stylesheet\0" as *const u8 as *const libc::c_char,
-                    )
-                    || 0 as libc::c_int
+                if 0 as i32
+                    == c_strcasecmp(rel, b"stylesheet\0" as *const u8 as *const i8)
+                    || 0 as i32
                         == c_strcasecmp(
                             rel,
-                            b"alternate stylesheet\0" as *const u8 as *const libc::c_char,
+                            b"alternate stylesheet\0" as *const u8 as *const i8,
                         )
                 {
-                    (*up).set_link_inline_p(1 as libc::c_int as libc::c_uint);
-                    (*up).set_link_expect_css(1 as libc::c_int as libc::c_uint);
-                } else if 0 as libc::c_int
-                    == c_strcasecmp(
-                        rel,
-                        b"shortcut icon\0" as *const u8 as *const libc::c_char,
-                    )
-                    || 0 as libc::c_int
-                        == c_strcasecmp(
-                            rel,
-                            b"icon\0" as *const u8 as *const libc::c_char,
-                        )
+                    (*up).set_link_inline_p(1 as i32 as u32);
+                    (*up).set_link_expect_css(1 as i32 as u32);
+                } else if 0 as i32
+                    == c_strcasecmp(rel, b"shortcut icon\0" as *const u8 as *const i8)
+                    || 0 as i32 == c_strcasecmp(rel, b"icon\0" as *const u8 as *const i8)
                 {
-                    (*up).set_link_inline_p(1 as libc::c_int as libc::c_uint);
-                } else if 0 as libc::c_int
-                    == c_strcasecmp(
-                        rel,
-                        b"manifest\0" as *const u8 as *const libc::c_char,
-                    )
+                    (*up).set_link_inline_p(1 as i32 as u32);
+                } else if 0 as i32
+                    == c_strcasecmp(rel, b"manifest\0" as *const u8 as *const i8)
                 {
-                    (*up).set_link_inline_p(1 as libc::c_int as libc::c_uint);
+                    (*up).set_link_inline_p(1 as i32 as u32);
                 } else {
-                    let mut type_0: *mut libc::c_char = find_attr(
+                    let mut type_0: *mut i8 = find_attr(
                         tag,
-                        b"type\0" as *const u8 as *const libc::c_char,
-                        0 as *mut libc::c_int,
+                        b"type\0" as *const u8 as *const i8,
+                        0 as *mut i32,
                     );
                     if type_0.is_null()
-                        || c_strcasecmp(
-                            type_0,
-                            b"text/html\0" as *const u8 as *const libc::c_char,
-                        ) == 0 as libc::c_int
+                        || c_strcasecmp(type_0, b"text/html\0" as *const u8 as *const i8)
+                            == 0 as i32
                     {
-                        (*up).set_link_expect_html(1 as libc::c_int as libc::c_uint);
+                        (*up).set_link_expect_html(1 as i32 as u32);
                     }
                 }
             }
@@ -1971,88 +2735,82 @@ unsafe extern "C" fn tag_handle_link(
     }
 }
 unsafe extern "C" fn tag_handle_meta(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
-    let mut name: *mut libc::c_char = find_attr(
+    let mut name: *mut i8 = find_attr(
         tag,
-        b"name\0" as *const u8 as *const libc::c_char,
-        0 as *mut libc::c_int,
+        b"name\0" as *const u8 as *const i8,
+        0 as *mut i32,
     );
-    let mut http_equiv: *mut libc::c_char = find_attr(
+    let mut http_equiv: *mut i8 = find_attr(
         tag,
-        b"http-equiv\0" as *const u8 as *const libc::c_char,
-        0 as *mut libc::c_int,
+        b"http-equiv\0" as *const u8 as *const i8,
+        0 as *mut i32,
     );
     if !http_equiv.is_null()
-        && 0 as libc::c_int
-            == c_strcasecmp(http_equiv, b"refresh\0" as *const u8 as *const libc::c_char)
+        && 0 as i32 == c_strcasecmp(http_equiv, b"refresh\0" as *const u8 as *const i8)
     {
         let mut entry: *mut urlpos = 0 as *mut urlpos;
-        let mut attrind: libc::c_int = 0;
-        let mut timeout: libc::c_int = 0;
-        let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
-        let mut refresh: *mut libc::c_char = find_attr(
+        let mut attrind: i32 = 0;
+        let mut timeout: i32 = 0;
+        let mut p: *mut i8 = 0 as *mut i8;
+        let mut refresh: *mut i8 = find_attr(
             tag,
-            b"content\0" as *const u8 as *const libc::c_char,
+            b"content\0" as *const u8 as *const i8,
             &mut attrind,
         );
         if refresh.is_null() {
             return;
         }
-        timeout = rpl_strtol(refresh, &mut p, 10 as libc::c_int) as libc::c_int;
-        if timeout < 0 as libc::c_int
+        timeout = rpl_strtol(refresh, &mut p, 10 as i32) as i32;
+        if timeout < 0 as i32
             || {
                 let fresh0 = p;
                 p = p.offset(1);
-                *fresh0 as libc::c_int != ';' as i32
+                *fresh0 as i32 != ';' as i32
             }
         {
             return;
         }
-        while c_isspace(*p as libc::c_int) {
+        while c_isspace(*p as i32) {
             p = p.offset(1);
             p;
         }
-        if !(c_toupper(*p as libc::c_int) == 'U' as i32
-            && c_toupper(*p.offset(1 as libc::c_int as isize) as libc::c_int)
-                == 'R' as i32
-            && c_toupper(*p.offset(2 as libc::c_int as isize) as libc::c_int)
-                == 'L' as i32
-            && *p.offset(3 as libc::c_int as isize) as libc::c_int == '=' as i32)
+        if !(c_toupper(*p as i32) == 'U' as i32
+            && c_toupper(*p.offset(1 as i32 as isize) as i32) == 'R' as i32
+            && c_toupper(*p.offset(2 as i32 as isize) as i32) == 'L' as i32
+            && *p.offset(3 as i32 as isize) as i32 == '=' as i32)
         {
             return;
         }
-        p = p.offset(4 as libc::c_int as isize);
-        while c_isspace(*p as libc::c_int) {
+        p = p.offset(4 as i32 as isize);
+        while c_isspace(*p as i32) {
             p = p.offset(1);
             p;
         }
         entry = append_url(
             p,
             ((*((*tag).attrs).offset(attrind as isize)).value_raw_beginning)
-                .offset_from((*ctx).text) as libc::c_long as libc::c_int,
+                .offset_from((*ctx).text) as i64 as i32,
             (*((*tag).attrs).offset(attrind as isize)).value_raw_size,
             ctx,
         );
         if !entry.is_null() {
-            (*entry).set_link_refresh_p(1 as libc::c_int as libc::c_uint);
+            (*entry).set_link_refresh_p(1 as i32 as u32);
             (*entry).refresh_timeout = timeout;
-            (*entry).set_link_expect_html(1 as libc::c_int as libc::c_uint);
+            (*entry).set_link_expect_html(1 as i32 as u32);
         }
     } else if !http_equiv.is_null()
-        && 0 as libc::c_int
-            == c_strcasecmp(
-                http_equiv,
-                b"content-type\0" as *const u8 as *const libc::c_char,
-            )
+        && 0 as i32
+            == c_strcasecmp(http_equiv, b"content-type\0" as *const u8 as *const i8)
     {
-        let mut mcharset: *mut libc::c_char = 0 as *mut libc::c_char;
-        let mut content: *mut libc::c_char = find_attr(
+        let mut mcharset: *mut i8 = 0 as *mut i8;
+        let mut content: *mut i8 = find_attr(
             tag,
-            b"content\0" as *const u8 as *const libc::c_char,
-            0 as *mut libc::c_int,
+            b"content\0" as *const u8 as *const i8,
+            0 as *mut i32,
         );
         if content.is_null() {
             return;
@@ -2062,48 +2820,45 @@ unsafe extern "C" fn tag_handle_meta(
             return;
         }
         rpl_free(meta_charset as *mut libc::c_void);
-        meta_charset = 0 as *mut libc::c_char;
+        meta_charset = 0 as *mut i8;
         meta_charset = mcharset;
     } else if !name.is_null()
-        && 0 as libc::c_int
-            == c_strcasecmp(name, b"robots\0" as *const u8 as *const libc::c_char)
+        && 0 as i32 == c_strcasecmp(name, b"robots\0" as *const u8 as *const i8)
     {
-        let mut content_0: *mut libc::c_char = find_attr(
+        let mut content_0: *mut i8 = find_attr(
             tag,
-            b"content\0" as *const u8 as *const libc::c_char,
-            0 as *mut libc::c_int,
+            b"content\0" as *const u8 as *const i8,
+            0 as *mut i32,
         );
         if content_0.is_null() {
             return;
         }
-        if c_strcasecmp(content_0, b"none\0" as *const u8 as *const libc::c_char) == 0 {
-            (*ctx).nofollow = 1 as libc::c_int != 0;
+        if c_strcasecmp(content_0, b"none\0" as *const u8 as *const i8) == 0 {
+            (*ctx).nofollow = 1 as i32 != 0;
         } else {
             while *content_0 != 0 {
-                let mut end: *mut libc::c_char = 0 as *mut libc::c_char;
+                let mut end: *mut i8 = 0 as *mut i8;
                 content_0 = content_0
                     .offset(
-                        strspn(
-                            content_0,
-                            b" \x0C\n\r\t\x0B\0" as *const u8 as *const libc::c_char,
-                        ) as isize,
+                        strspn(content_0, b" \x0C\n\r\t\x0B\0" as *const u8 as *const i8)
+                            as isize,
                     );
                 end = content_0
                     .offset(
                         strcspn(
                             content_0,
-                            b", \x0C\n\r\t\x0B\0" as *const u8 as *const libc::c_char,
+                            b", \x0C\n\r\t\x0B\0" as *const u8 as *const i8,
                         ) as isize,
                     );
                 if c_strncasecmp(
                     content_0,
-                    b"nofollow\0" as *const u8 as *const libc::c_char,
-                    end.offset_from(content_0) as libc::c_long as size_t,
+                    b"nofollow\0" as *const u8 as *const i8,
+                    end.offset_from(content_0) as i64 as size_t,
                 ) == 0
                 {
-                    (*ctx).nofollow = 1 as libc::c_int != 0;
+                    (*ctx).nofollow = 1 as i32 != 0;
                 }
-                if *end as libc::c_int == ',' as i32 {
+                if *end as i32 == ',' as i32 {
                     end = end.offset(1);
                     end;
                 } else {
@@ -2121,62 +2876,57 @@ unsafe extern "C" fn tag_handle_meta(
     }
 }
 unsafe extern "C" fn tag_handle_img(
-    mut tagid: libc::c_int,
+    mut tagid: i32,
     mut tag: *mut taginfo,
     mut ctx: *mut map_context,
 ) {
-    let mut attrind: libc::c_int = 0;
-    let mut srcset: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut attrind: i32 = 0;
+    let mut srcset: *mut i8 = 0 as *mut i8;
     tag_find_urls(tagid, tag, ctx);
-    srcset = find_attr(
-        tag,
-        b"srcset\0" as *const u8 as *const libc::c_char,
-        &mut attrind,
-    );
+    srcset = find_attr(tag, b"srcset\0" as *const u8 as *const i8, &mut attrind);
     if !srcset.is_null() {
-        let mut base_ind: libc::c_int = ((*((*tag).attrs).offset(attrind as isize))
+        let mut base_ind: i32 = ((*((*tag).attrs).offset(attrind as isize))
             .value_raw_beginning)
-            .offset_from((*ctx).text) as libc::c_long as libc::c_int;
-        let mut size: libc::c_int = strlen(srcset) as libc::c_int;
-        let mut offset: libc::c_int = 0;
-        let mut url_start: libc::c_int = 0;
-        let mut url_end: libc::c_int = 0;
-        if *((*ctx).text).offset(base_ind as isize) as libc::c_int == '"' as i32
-            || *((*ctx).text).offset(base_ind as isize) as libc::c_int == '\'' as i32
+            .offset_from((*ctx).text) as i64 as i32;
+        let mut size: i32 = strlen(srcset) as i32;
+        let mut offset: i32 = 0;
+        let mut url_start: i32 = 0;
+        let mut url_end: i32 = 0;
+        if *((*ctx).text).offset(base_ind as isize) as i32 == '"' as i32
+            || *((*ctx).text).offset(base_ind as isize) as i32 == '\'' as i32
         {
             base_ind += 1;
             base_ind;
         }
-        offset = 0 as libc::c_int;
+        offset = 0 as i32;
         while offset < size {
-            let mut has_descriptor: bool = 1 as libc::c_int != 0;
-            url_start = (offset as libc::c_ulong)
+            let mut has_descriptor: bool = 1 as i32 != 0;
+            url_start = (offset as u64)
                 .wrapping_add(
                     strspn(
                         srcset.offset(offset as isize),
-                        b" \x0C\n\r\t,\0" as *const u8 as *const libc::c_char,
+                        b" \x0C\n\r\t,\0" as *const u8 as *const i8,
                     ),
-                ) as libc::c_int;
+                ) as i32;
             if url_start == size {
                 return;
             }
-            url_end = (url_start as libc::c_ulong)
+            url_end = (url_start as u64)
                 .wrapping_add(
                     strcspn(
                         srcset.offset(url_start as isize),
-                        b" \x0C\n\r\t\0" as *const u8 as *const libc::c_char,
+                        b" \x0C\n\r\t\0" as *const u8 as *const i8,
                     ),
-                ) as libc::c_int;
-            while url_end - 1 as libc::c_int > url_start
-                && *srcset.offset((url_end - 1 as libc::c_int) as isize) as libc::c_int
-                    == ',' as i32
+                ) as i32;
+            while url_end - 1 as i32 > url_start
+                && *srcset.offset((url_end - 1 as i32) as isize) as i32 == ',' as i32
             {
-                has_descriptor = 0 as libc::c_int != 0;
+                has_descriptor = 0 as i32 != 0;
                 url_end -= 1;
                 url_end;
             }
             if url_end > url_start {
-                let mut url_text: *mut libc::c_char = strdupdelim(
+                let mut url_text: *mut i8 = strdupdelim(
                     srcset.offset(url_start as isize),
                     srcset.offset(url_end as isize),
                 );
@@ -2187,24 +2937,22 @@ unsafe extern "C" fn tag_handle_img(
                     ctx,
                 );
                 if !up.is_null() {
-                    (*up).set_link_inline_p(1 as libc::c_int as libc::c_uint);
-                    (*up).set_link_noquote_html_p(1 as libc::c_int as libc::c_uint);
+                    (*up).set_link_inline_p(1 as i32 as u32);
+                    (*up).set_link_noquote_html_p(1 as i32 as u32);
                 }
                 rpl_free(url_text as *mut libc::c_void);
-                url_text = 0 as *mut libc::c_char;
+                url_text = 0 as *mut i8;
             }
             if has_descriptor {
-                let mut in_paren: bool = 0 as libc::c_int != 0;
+                let mut in_paren: bool = 0 as i32 != 0;
                 offset = url_end;
                 while offset < size {
-                    let mut c: libc::c_char = *srcset.offset(offset as isize);
-                    if c as libc::c_int == '(' as i32 {
-                        in_paren = 1 as libc::c_int != 0;
-                    } else if c as libc::c_int == ')' as i32
-                        && in_paren as libc::c_int != 0
-                    {
-                        in_paren = 0 as libc::c_int != 0;
-                    } else if c as libc::c_int == ',' as i32 && !in_paren {
+                    let mut c: i8 = *srcset.offset(offset as isize);
+                    if c as i32 == '(' as i32 {
+                        in_paren = 1 as i32 != 0;
+                    } else if c as i32 == ')' as i32 && in_paren as i32 != 0 {
+                        in_paren = 0 as i32 != 0;
+                    } else if c as i32 == ',' as i32 && !in_paren {
                         break;
                     }
                     offset += 1;
@@ -2230,53 +2978,50 @@ unsafe extern "C" fn collect_tags_mapper(
     }
     check_style_attr(tag, ctx);
     if (*tag).end_tag_p != 0
-        && 0 as libc::c_int
-            == c_strcasecmp((*tag).name, b"style\0" as *const u8 as *const libc::c_char)
+        && 0 as i32 == c_strcasecmp((*tag).name, b"style\0" as *const u8 as *const i8)
         && !((*tag).contents_begin).is_null() && !((*tag).contents_end).is_null()
         && (*tag).contents_begin <= (*tag).contents_end
     {
         get_urls_css(
             ctx,
-            ((*tag).contents_begin).offset_from((*ctx).text) as libc::c_long
-                as libc::c_int,
-            ((*tag).contents_end).offset_from((*tag).contents_begin) as libc::c_long
-                as libc::c_int,
+            ((*tag).contents_begin).offset_from((*ctx).text) as i64 as i32,
+            ((*tag).contents_end).offset_from((*tag).contents_begin) as i64 as i32,
         );
     }
 }
 #[no_mangle]
 pub unsafe extern "C" fn get_urls_html_fm(
-    mut file: *const libc::c_char,
+    mut file: *const i8,
     mut fm: *const file_memory,
-    mut url: *const libc::c_char,
+    mut url: *const i8,
     mut meta_disallow_follow: *mut bool,
     mut iri: *mut iri,
 ) -> *mut urlpos {
     let mut ctx: map_context = map_context {
-        text: 0 as *mut libc::c_char,
-        base: 0 as *mut libc::c_char,
-        parent_base: 0 as *const libc::c_char,
-        document_file: 0 as *const libc::c_char,
+        text: 0 as *mut i8,
+        base: 0 as *mut i8,
+        parent_base: 0 as *const i8,
+        document_file: 0 as *const i8,
         nofollow: false,
         head: 0 as *mut urlpos,
     };
-    let mut flags: libc::c_int = 0;
+    let mut flags: i32 = 0;
     ctx.text = (*fm).content;
     ctx.head = 0 as *mut urlpos;
-    ctx.base = 0 as *mut libc::c_char;
+    ctx.base = 0 as *mut i8;
     ctx.parent_base = if !url.is_null() { url } else { opt.base_href };
     ctx.document_file = file;
-    ctx.nofollow = 0 as libc::c_int != 0;
+    ctx.nofollow = 0 as i32 != 0;
     if interesting_tags.is_null() {
         init_interesting();
     }
-    flags = 2 as libc::c_int;
+    flags = 2 as i32;
     if opt.strict_comments {
-        flags |= 1 as libc::c_int;
+        flags |= 1 as i32;
     }
     map_html_tags(
         (*fm).content,
-        (*fm).length as libc::c_int,
+        (*fm).length as i32,
         Some(
             collect_tags_mapper
                 as unsafe extern "C" fn(*mut taginfo, *mut libc::c_void) -> (),
@@ -2290,25 +3035,25 @@ pub unsafe extern "C" fn get_urls_html_fm(
         set_content_encoding(iri, meta_charset);
     }
     rpl_free(meta_charset as *mut libc::c_void);
-    meta_charset = 0 as *mut libc::c_char;
-    if opt.debug as libc::c_long != 0 {
+    meta_charset = 0 as *mut i8;
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"nofollow in %s: %d\n\0" as *const u8 as *const libc::c_char,
+            b"nofollow in %s: %d\n\0" as *const u8 as *const i8,
             file,
-            ctx.nofollow as libc::c_int,
+            ctx.nofollow as i32,
         );
     }
     if !meta_disallow_follow.is_null() {
         *meta_disallow_follow = ctx.nofollow;
     }
     rpl_free(ctx.base as *mut libc::c_void);
-    ctx.base = 0 as *mut libc::c_char;
+    ctx.base = 0 as *mut i8;
     return ctx.head;
 }
 #[no_mangle]
 pub unsafe extern "C" fn get_urls_html(
-    mut file: *const libc::c_char,
-    mut url: *const libc::c_char,
+    mut file: *const i8,
+    mut url: *const i8,
     mut meta_disallow_follow: *mut bool,
     mut iri: *mut iri,
 ) -> *mut urlpos {
@@ -2317,16 +3062,16 @@ pub unsafe extern "C" fn get_urls_html(
     fm = wget_read_file(file);
     if fm.is_null() {
         logprintf(
-            LOG_NOTQUIET,
-            b"%s: %s\n\0" as *const u8 as *const libc::c_char,
+            log_options::LOG_NOTQUIET,
+            b"%s: %s\n\0" as *const u8 as *const i8,
             file,
             strerror(*__errno_location()),
         );
         return 0 as *mut urlpos;
     }
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"Loaded %s (size %s).\n\0" as *const u8 as *const libc::c_char,
+            b"Loaded %s (size %s).\n\0" as *const u8 as *const i8,
             file,
             number_to_static_string((*fm).length),
         );
@@ -2336,25 +3081,25 @@ pub unsafe extern "C" fn get_urls_html(
     return urls;
 }
 #[no_mangle]
-pub unsafe extern "C" fn get_urls_file(mut file: *const libc::c_char) -> *mut urlpos {
+pub unsafe extern "C" fn get_urls_file(mut file: *const i8) -> *mut urlpos {
     let mut fm: *mut file_memory = 0 as *mut file_memory;
     let mut head: *mut urlpos = 0 as *mut urlpos;
     let mut tail: *mut urlpos = 0 as *mut urlpos;
-    let mut text: *const libc::c_char = 0 as *const libc::c_char;
-    let mut text_end: *const libc::c_char = 0 as *const libc::c_char;
+    let mut text: *const i8 = 0 as *const i8;
+    let mut text_end: *const i8 = 0 as *const i8;
     fm = wget_read_file(file);
     if fm.is_null() {
         logprintf(
-            LOG_NOTQUIET,
-            b"%s: %s\n\0" as *const u8 as *const libc::c_char,
+            log_options::LOG_NOTQUIET,
+            b"%s: %s\n\0" as *const u8 as *const i8,
             file,
             strerror(*__errno_location()),
         );
         return 0 as *mut urlpos;
     }
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"Loaded %s (size %s).\n\0" as *const u8 as *const libc::c_char,
+            b"Loaded %s (size %s).\n\0" as *const u8 as *const i8,
             file,
             number_to_static_string((*fm).length),
         );
@@ -2364,17 +3109,17 @@ pub unsafe extern "C" fn get_urls_file(mut file: *const libc::c_char) -> *mut ur
     text = (*fm).content;
     text_end = ((*fm).content).offset((*fm).length as isize);
     while text < text_end {
-        let mut up_error_code: libc::c_int = 0;
-        let mut url_text: *mut libc::c_char = 0 as *mut libc::c_char;
-        let mut new_url: *mut libc::c_char = 0 as *mut libc::c_char;
+        let mut up_error_code: i32 = 0;
+        let mut url_text: *mut i8 = 0 as *mut i8;
+        let mut new_url: *mut i8 = 0 as *mut i8;
         let mut entry: *mut urlpos = 0 as *mut urlpos;
         let mut url: *mut url = 0 as *mut url;
-        let mut line_beg: *const libc::c_char = text;
-        let mut line_end: *const libc::c_char = memchr(
+        let mut line_beg: *const i8 = text;
+        let mut line_end: *const i8 = memchr(
             text as *const libc::c_void,
             '\n' as i32,
-            text_end.offset_from(text) as libc::c_long as libc::c_ulong,
-        ) as *const libc::c_char;
+            text_end.offset_from(text) as i64 as u64,
+        ) as *const i8;
         if line_end.is_null() {
             line_end = text_end;
         } else {
@@ -2382,15 +3127,12 @@ pub unsafe extern "C" fn get_urls_file(mut file: *const libc::c_char) -> *mut ur
             line_end;
         }
         text = line_end;
-        while line_beg < line_end
-            && c_isspace(*line_beg as libc::c_int) as libc::c_int != 0
-        {
+        while line_beg < line_end && c_isspace(*line_beg as i32) as i32 != 0 {
             line_beg = line_beg.offset(1);
             line_beg;
         }
         while line_end > line_beg
-            && c_isspace(*line_end.offset(-(1 as libc::c_int as isize)) as libc::c_int)
-                as libc::c_int != 0
+            && c_isspace(*line_end.offset(-(1 as i32 as isize)) as i32) as i32 != 0
         {
             line_end = line_end.offset(-1);
             line_end;
@@ -2400,45 +3142,38 @@ pub unsafe extern "C" fn get_urls_file(mut file: *const libc::c_char) -> *mut ur
         }
         url_text = strdupdelim(line_beg, line_end);
         if !(opt.base_href).is_null() {
-            let mut merged: *mut libc::c_char = uri_merge(opt.base_href, url_text);
+            let mut merged: *mut i8 = uri_merge(opt.base_href, url_text);
             rpl_free(url_text as *mut libc::c_void);
-            url_text = 0 as *mut libc::c_char;
+            url_text = 0 as *mut i8;
             url_text = merged;
         }
         new_url = rewrite_shorthand_url(url_text);
         if !new_url.is_null() {
             rpl_free(url_text as *mut libc::c_void);
-            url_text = 0 as *mut libc::c_char;
+            url_text = 0 as *mut i8;
             url_text = new_url;
         }
-        url = url_parse(
-            url_text,
-            &mut up_error_code,
-            0 as *mut iri,
-            0 as libc::c_int != 0,
-        );
+        url = url_parse(url_text, &mut up_error_code, 0 as *mut iri, 0 as i32 != 0);
         if url.is_null() {
             logprintf(
-                LOG_NOTQUIET,
+                log_options::LOG_NOTQUIET,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"%s: Invalid URL %s: %s\n\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"%s: Invalid URL %s: %s\n\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 file,
                 url_text,
                 url_error(up_error_code),
             );
             rpl_free(url_text as *mut libc::c_void);
-            url_text = 0 as *mut libc::c_char;
-            inform_exit_status(URLERROR);
+            url_text = 0 as *mut i8;
+            inform_exit_status(uerr_t::URLERROR);
         } else {
             rpl_free(url_text as *mut libc::c_void);
-            url_text = 0 as *mut libc::c_char;
-            entry = xcalloc(
-                1 as libc::c_int as size_t,
-                ::core::mem::size_of::<urlpos>() as libc::c_ulong,
-            ) as *mut urlpos;
+            url_text = 0 as *mut i8;
+            entry = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<urlpos>() as u64)
+                as *mut urlpos;
             (*entry).url = url;
             if head.is_null() {
                 head = entry;

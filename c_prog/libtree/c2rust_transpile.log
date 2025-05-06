@@ -1,0 +1,1934 @@
+2025-04-18 02:40:52,649 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-18 02:40:52,918 [INFO] c2rust transpile succeeded
+2025-04-18 02:40:52,919 [INFO] Running: cargo build
+2025-04-18 02:40:53,798 [INFO] Updating `rsproxy` index
+2025-04-18 02:40:54,373 [INFO] Compiling libc v0.2.171
+2025-04-18 02:40:54,374 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-18 02:40:56,011 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,011 [INFO] --> libtree.rs:427:9
+2025-04-18 02:40:56,011 [INFO] |
+2025-04-18 02:40:56,011 [INFO] 427 |         i;
+2025-04-18 02:40:56,011 [INFO] |         ^^
+2025-04-18 02:40:56,011 [INFO] |
+2025-04-18 02:40:56,012 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-18 02:40:56,012 [INFO] 
+2025-04-18 02:40:56,012 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,012 [INFO] --> libtree.rs:511:9
+2025-04-18 02:40:56,012 [INFO] |
+2025-04-18 02:40:56,012 [INFO] 511 |         j;
+2025-04-18 02:40:56,012 [INFO] |         ^^
+2025-04-18 02:40:56,013 [INFO] 
+2025-04-18 02:40:56,013 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,013 [INFO] --> libtree.rs:572:5
+2025-04-18 02:40:56,013 [INFO] |
+2025-04-18 02:40:56,013 [INFO] 572 |     end;
+2025-04-18 02:40:56,013 [INFO] |     ^^^^
+2025-04-18 02:40:56,013 [INFO] 
+2025-04-18 02:40:56,014 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,014 [INFO] --> libtree.rs:578:9
+2025-04-18 02:40:56,014 [INFO] |
+2025-04-18 02:40:56,014 [INFO] 578 |         end;
+2025-04-18 02:40:56,014 [INFO] |         ^^^^
+2025-04-18 02:40:56,015 [INFO] 
+2025-04-18 02:40:56,015 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,015 [INFO] --> libtree.rs:588:13
+2025-04-18 02:40:56,015 [INFO] |
+2025-04-18 02:40:56,015 [INFO] 588 |             j;
+2025-04-18 02:40:56,016 [INFO] |             ^^
+2025-04-18 02:40:56,016 [INFO] 
+2025-04-18 02:40:56,016 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,017 [INFO] --> libtree.rs:610:9
+2025-04-18 02:40:56,017 [INFO] |
+2025-04-18 02:40:56,017 [INFO] 610 |         i;
+2025-04-18 02:40:56,017 [INFO] |         ^^
+2025-04-18 02:40:56,018 [INFO] 
+2025-04-18 02:40:56,018 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,022 [INFO] --> libtree.rs:651:13
+2025-04-18 02:40:56,022 [INFO] |
+2025-04-18 02:40:56,023 [INFO] 651 |             i;
+2025-04-18 02:40:56,023 [INFO] |             ^^
+2025-04-18 02:40:56,023 [INFO] 
+2025-04-18 02:40:56,023 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,023 [INFO] --> libtree.rs:673:13
+2025-04-18 02:40:56,024 [INFO] |
+2025-04-18 02:40:56,024 [INFO] 673 |             i;
+2025-04-18 02:40:56,024 [INFO] |             ^^
+2025-04-18 02:40:56,024 [INFO] 
+2025-04-18 02:40:56,024 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,025 [INFO] --> libtree.rs:769:13
+2025-04-18 02:40:56,025 [INFO] |
+2025-04-18 02:40:56,025 [INFO] 769 |             offset;
+2025-04-18 02:40:56,026 [INFO] |             ^^^^^^^
+2025-04-18 02:40:56,026 [INFO] 
+2025-04-18 02:40:56,026 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,026 [INFO] --> libtree.rs:841:17
+2025-04-18 02:40:56,027 [INFO] |
+2025-04-18 02:40:56,027 [INFO] 841 |                 i;
+2025-04-18 02:40:56,027 [INFO] |                 ^^
+2025-04-18 02:40:56,028 [INFO] 
+2025-04-18 02:40:56,028 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,028 [INFO] --> libtree.rs:866:9
+2025-04-18 02:40:56,033 [INFO] |
+2025-04-18 02:40:56,033 [INFO] 866 |         curr_src;
+2025-04-18 02:40:56,034 [INFO] |         ^^^^^^^^^
+2025-04-18 02:40:56,034 [INFO] 
+2025-04-18 02:40:56,034 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,035 [INFO] --> libtree.rs:871:13
+2025-04-18 02:40:56,035 [INFO] |
+2025-04-18 02:40:56,035 [INFO] 871 |             curr_src;
+2025-04-18 02:40:56,035 [INFO] |             ^^^^^^^^^
+2025-04-18 02:40:56,036 [INFO] 
+2025-04-18 02:40:56,036 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,036 [INFO] --> libtree.rs:928:13
+2025-04-18 02:40:56,036 [INFO] |
+2025-04-18 02:40:56,037 [INFO] 928 |             curr_src;
+2025-04-18 02:40:56,037 [INFO] |             ^^^^^^^^^
+2025-04-18 02:40:56,037 [INFO] 
+2025-04-18 02:40:56,037 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,038 [INFO] --> libtree.rs:977:13
+2025-04-18 02:40:56,038 [INFO] |
+2025-04-18 02:40:56,038 [INFO] 977 |             start;
+2025-04-18 02:40:56,038 [INFO] |             ^^^^^^
+2025-04-18 02:40:56,038 [INFO] 
+2025-04-18 02:40:56,039 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,039 [INFO] --> libtree.rs:1112:9
+2025-04-18 02:40:56,039 [INFO] |
+2025-04-18 02:40:56,039 [INFO] 1112 |         i;
+2025-04-18 02:40:56,039 [INFO] |         ^^
+2025-04-18 02:40:56,040 [INFO] 
+2025-04-18 02:40:56,040 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,040 [INFO] --> libtree.rs:1151:9
+2025-04-18 02:40:56,041 [INFO] |
+2025-04-18 02:40:56,042 [INFO] 1151 |         i_0;
+2025-04-18 02:40:56,042 [INFO] |         ^^^^
+2025-04-18 02:40:56,042 [INFO] 
+2025-04-18 02:40:56,042 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,043 [INFO] --> libtree.rs:1208:13
+2025-04-18 02:40:56,050 [INFO] |
+2025-04-18 02:40:56,050 [INFO] 1208 |             j;
+2025-04-18 02:40:56,050 [INFO] |             ^^
+2025-04-18 02:40:56,051 [INFO] 
+2025-04-18 02:40:56,051 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,051 [INFO] --> libtree.rs:1304:9
+2025-04-18 02:40:56,051 [INFO] |
+2025-04-18 02:40:56,051 [INFO] 1304 |         i;
+2025-04-18 02:40:56,052 [INFO] |         ^^
+2025-04-18 02:40:56,052 [INFO] 
+2025-04-18 02:40:56,052 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,052 [INFO] --> libtree.rs:1522:13
+2025-04-18 02:40:56,052 [INFO] |
+2025-04-18 02:40:56,052 [INFO] 1522 |             i;
+2025-04-18 02:40:56,052 [INFO] |             ^^
+2025-04-18 02:40:56,053 [INFO] 
+2025-04-18 02:40:56,053 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,053 [INFO] --> libtree.rs:1546:13
+2025-04-18 02:40:56,053 [INFO] |
+2025-04-18 02:40:56,053 [INFO] 1546 |             i_0;
+2025-04-18 02:40:56,053 [INFO] |             ^^^^
+2025-04-18 02:40:56,053 [INFO] 
+2025-04-18 02:40:56,054 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,054 [INFO] --> libtree.rs:1710:9
+2025-04-18 02:40:56,054 [INFO] |
+2025-04-18 02:40:56,054 [INFO] 1710 |         vaddr_idx;
+2025-04-18 02:40:56,054 [INFO] |         ^^^^^^^^^^
+2025-04-18 02:40:56,054 [INFO] 
+2025-04-18 02:40:56,054 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,055 [INFO] --> libtree.rs:1857:9
+2025-04-18 02:40:56,055 [INFO] |
+2025-04-18 02:40:56,055 [INFO] 1857 |         i_1;
+2025-04-18 02:40:56,055 [INFO] |         ^^^^
+2025-04-18 02:40:56,055 [INFO] 
+2025-04-18 02:40:56,055 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,055 [INFO] --> libtree.rs:1930:13
+2025-04-18 02:40:56,055 [INFO] |
+2025-04-18 02:40:56,056 [INFO] 1930 |             j;
+2025-04-18 02:40:56,056 [INFO] |             ^^
+2025-04-18 02:40:56,056 [INFO] 
+2025-04-18 02:40:56,056 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,056 [INFO] --> libtree.rs:2061:9
+2025-04-18 02:40:56,056 [INFO] |
+2025-04-18 02:40:56,056 [INFO] 2061 |         i;
+2025-04-18 02:40:56,056 [INFO] |         ^^
+2025-04-18 02:40:56,057 [INFO] 
+2025-04-18 02:40:56,057 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,057 [INFO] --> libtree.rs:2097:13
+2025-04-18 02:40:56,057 [INFO] |
+2025-04-18 02:40:56,057 [INFO] 2097 |             begin;
+2025-04-18 02:40:56,057 [INFO] |             ^^^^^^
+2025-04-18 02:40:56,057 [INFO] 
+2025-04-18 02:40:56,058 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,058 [INFO] --> libtree.rs:2131:17
+2025-04-18 02:40:56,058 [INFO] |
+2025-04-18 02:40:56,058 [INFO] 2131 |                 begin;
+2025-04-18 02:40:56,058 [INFO] |                 ^^^^^^
+2025-04-18 02:40:56,058 [INFO] 
+2025-04-18 02:40:56,059 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,059 [INFO] --> libtree.rs:2373:9
+2025-04-18 02:40:56,059 [INFO] |
+2025-04-18 02:40:56,059 [INFO] 2373 |         i;
+2025-04-18 02:40:56,059 [INFO] |         ^^
+2025-04-18 02:40:56,059 [INFO] 
+2025-04-18 02:40:56,059 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,060 [INFO] --> libtree.rs:2457:13
+2025-04-18 02:40:56,060 [INFO] |
+2025-04-18 02:40:56,060 [INFO] 2457 |             arg;
+2025-04-18 02:40:56,060 [INFO] |             ^^^^
+2025-04-18 02:40:56,060 [INFO] 
+2025-04-18 02:40:56,060 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,060 [INFO] --> libtree.rs:2460:17
+2025-04-18 02:40:56,061 [INFO] |
+2025-04-18 02:40:56,061 [INFO] 2460 |                 arg;
+2025-04-18 02:40:56,064 [INFO] |                 ^^^^
+2025-04-18 02:40:56,064 [INFO] 
+2025-04-18 02:40:56,064 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,065 [INFO] --> libtree.rs:2549:21
+2025-04-18 02:40:56,065 [INFO] |
+2025-04-18 02:40:56,065 [INFO] 2549 |                     arg;
+2025-04-18 02:40:56,065 [INFO] |                     ^^^^
+2025-04-18 02:40:56,066 [INFO] 
+2025-04-18 02:40:56,066 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,066 [INFO] --> libtree.rs:2554:9
+2025-04-18 02:40:56,066 [INFO] |
+2025-04-18 02:40:56,066 [INFO] 2554 |         i;
+2025-04-18 02:40:56,067 [INFO] |         ^^
+2025-04-18 02:40:56,067 [INFO] 
+2025-04-18 02:40:56,074 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,074 [INFO] --> libtree.rs:2557:5
+2025-04-18 02:40:56,074 [INFO] |
+2025-04-18 02:40:56,075 [INFO] 2557 |     argv;
+2025-04-18 02:40:56,075 [INFO] |     ^^^^^
+2025-04-18 02:40:56,075 [INFO] 
+2025-04-18 02:40:56,076 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,076 [INFO] --> libtree.rs:2559:5
+2025-04-18 02:40:56,076 [INFO] |
+2025-04-18 02:40:56,076 [INFO] 2559 |     positional;
+2025-04-18 02:40:56,076 [INFO] |     ^^^^^^^^^^^
+2025-04-18 02:40:56,077 [INFO] 
+2025-04-18 02:40:56,077 [INFO] warning: path statement with no effect
+2025-04-18 02:40:56,077 [INFO] --> libtree.rs:2590:13
+2025-04-18 02:40:56,077 [INFO] |
+2025-04-18 02:40:56,078 [INFO] 2590 |             j;
+2025-04-18 02:40:56,078 [INFO] |             ^^
+2025-04-18 02:40:56,078 [INFO] 
+2025-04-18 02:40:56,206 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-18 02:40:56,206 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 3.07s
+2025-04-18 02:40:56,209 [INFO] Running: cargo build
+2025-04-18 02:40:56,477 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-18 02:40:56,763 [INFO] error[E0004]: non-exhaustive patterns: `0_u32`, `3_u32`, `5_u32..=7_u32` and 9 more not covered
+2025-04-18 02:40:56,763 [INFO] --> libtree.rs:180:15
+2025-04-18 02:40:56,763 [INFO] |
+2025-04-18 02:40:56,763 [INFO] 180 |         match value {
+2025-04-18 02:40:56,763 [INFO] |               ^^^^^ patterns `0_u32`, `3_u32`, `5_u32..=7_u32` and 9 more not covered
+2025-04-18 02:40:56,763 [INFO] |
+2025-04-18 02:40:56,764 [INFO] = note: the matched value is of type `u32`
+2025-04-18 02:40:56,764 [INFO] help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern as shown, or multiple match arms
+2025-04-18 02:40:56,764 [INFO] |
+2025-04-18 02:40:56,764 [INFO] 192 ~             256 => C2RustUnnamed::_ISupper,
+2025-04-18 02:40:56,764 [INFO] 193 ~             _ => todo!(),
+2025-04-18 02:40:56,764 [INFO] |
+2025-04-18 02:40:56,765 [INFO] 
+2025-04-18 02:40:56,765 [INFO] error[E0004]: non-exhaustive patterns: `7_u32..=u32::MAX` not covered
+2025-04-18 02:40:56,765 [INFO] --> libtree.rs:354:15
+2025-04-18 02:40:56,765 [INFO] |
+2025-04-18 02:40:56,765 [INFO] 354 |         match value {
+2025-04-18 02:40:56,766 [INFO] |               ^^^^^ pattern `7_u32..=u32::MAX` not covered
+2025-04-18 02:40:56,766 [INFO] |
+2025-04-18 02:40:56,766 [INFO] = note: the matched value is of type `u32`
+2025-04-18 02:40:56,766 [INFO] help: ensure that all possible cases are being handled by adding a match arm with a wildcard pattern or an explicit pattern as shown
+2025-04-18 02:40:56,766 [INFO] |
+2025-04-18 02:40:56,766 [INFO] 361 ~             6 => how_t::DEFAULT,
+2025-04-18 02:40:56,767 [INFO] 362 ~             7_u32..=u32::MAX => todo!(),
+2025-04-18 02:40:56,767 [INFO] |
+2025-04-18 02:40:56,767 [INFO] 
+2025-04-18 02:40:56,789 [INFO] For more information about this error, try `rustc --explain E0004`.
+2025-04-18 02:40:56,792 [INFO] error: could not compile `c2rust_out` due to 2 previous errors
+2025-04-18 02:40:56,793 [ERROR] cargo build failed with code 101
+2025-04-18 02:43:19,437 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-18 02:43:19,819 [INFO] c2rust transpile succeeded
+2025-04-18 02:43:19,819 [INFO] Running: cargo build
+2025-04-18 02:43:20,059 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-18 02:43:20,619 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,619 [INFO] --> libtree.rs:427:9
+2025-04-18 02:43:20,619 [INFO] |
+2025-04-18 02:43:20,619 [INFO] 427 |         i;
+2025-04-18 02:43:20,619 [INFO] |         ^^
+2025-04-18 02:43:20,619 [INFO] |
+2025-04-18 02:43:20,619 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-18 02:43:20,620 [INFO] 
+2025-04-18 02:43:20,620 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,620 [INFO] --> libtree.rs:511:9
+2025-04-18 02:43:20,620 [INFO] |
+2025-04-18 02:43:20,620 [INFO] 511 |         j;
+2025-04-18 02:43:20,620 [INFO] |         ^^
+2025-04-18 02:43:20,620 [INFO] 
+2025-04-18 02:43:20,621 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,621 [INFO] --> libtree.rs:572:5
+2025-04-18 02:43:20,621 [INFO] |
+2025-04-18 02:43:20,621 [INFO] 572 |     end;
+2025-04-18 02:43:20,621 [INFO] |     ^^^^
+2025-04-18 02:43:20,621 [INFO] 
+2025-04-18 02:43:20,621 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,622 [INFO] --> libtree.rs:578:9
+2025-04-18 02:43:20,622 [INFO] |
+2025-04-18 02:43:20,622 [INFO] 578 |         end;
+2025-04-18 02:43:20,622 [INFO] |         ^^^^
+2025-04-18 02:43:20,622 [INFO] 
+2025-04-18 02:43:20,622 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,623 [INFO] --> libtree.rs:588:13
+2025-04-18 02:43:20,623 [INFO] |
+2025-04-18 02:43:20,623 [INFO] 588 |             j;
+2025-04-18 02:43:20,623 [INFO] |             ^^
+2025-04-18 02:43:20,623 [INFO] 
+2025-04-18 02:43:20,623 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,623 [INFO] --> libtree.rs:610:9
+2025-04-18 02:43:20,623 [INFO] |
+2025-04-18 02:43:20,624 [INFO] 610 |         i;
+2025-04-18 02:43:20,624 [INFO] |         ^^
+2025-04-18 02:43:20,624 [INFO] 
+2025-04-18 02:43:20,625 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,625 [INFO] --> libtree.rs:651:13
+2025-04-18 02:43:20,625 [INFO] |
+2025-04-18 02:43:20,626 [INFO] 651 |             i;
+2025-04-18 02:43:20,626 [INFO] |             ^^
+2025-04-18 02:43:20,626 [INFO] 
+2025-04-18 02:43:20,626 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,627 [INFO] --> libtree.rs:673:13
+2025-04-18 02:43:20,627 [INFO] |
+2025-04-18 02:43:20,627 [INFO] 673 |             i;
+2025-04-18 02:43:20,627 [INFO] |             ^^
+2025-04-18 02:43:20,627 [INFO] 
+2025-04-18 02:43:20,628 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,628 [INFO] --> libtree.rs:769:13
+2025-04-18 02:43:20,628 [INFO] |
+2025-04-18 02:43:20,628 [INFO] 769 |             offset;
+2025-04-18 02:43:20,628 [INFO] |             ^^^^^^^
+2025-04-18 02:43:20,629 [INFO] 
+2025-04-18 02:43:20,629 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,629 [INFO] --> libtree.rs:841:17
+2025-04-18 02:43:20,629 [INFO] |
+2025-04-18 02:43:20,630 [INFO] 841 |                 i;
+2025-04-18 02:43:20,630 [INFO] |                 ^^
+2025-04-18 02:43:20,630 [INFO] 
+2025-04-18 02:43:20,631 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,631 [INFO] --> libtree.rs:866:9
+2025-04-18 02:43:20,631 [INFO] |
+2025-04-18 02:43:20,632 [INFO] 866 |         curr_src;
+2025-04-18 02:43:20,632 [INFO] |         ^^^^^^^^^
+2025-04-18 02:43:20,632 [INFO] 
+2025-04-18 02:43:20,632 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,632 [INFO] --> libtree.rs:871:13
+2025-04-18 02:43:20,632 [INFO] |
+2025-04-18 02:43:20,633 [INFO] 871 |             curr_src;
+2025-04-18 02:43:20,633 [INFO] |             ^^^^^^^^^
+2025-04-18 02:43:20,633 [INFO] 
+2025-04-18 02:43:20,633 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,633 [INFO] --> libtree.rs:928:13
+2025-04-18 02:43:20,634 [INFO] |
+2025-04-18 02:43:20,634 [INFO] 928 |             curr_src;
+2025-04-18 02:43:20,635 [INFO] |             ^^^^^^^^^
+2025-04-18 02:43:20,635 [INFO] 
+2025-04-18 02:43:20,635 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,636 [INFO] --> libtree.rs:977:13
+2025-04-18 02:43:20,636 [INFO] |
+2025-04-18 02:43:20,636 [INFO] 977 |             start;
+2025-04-18 02:43:20,637 [INFO] |             ^^^^^^
+2025-04-18 02:43:20,637 [INFO] 
+2025-04-18 02:43:20,637 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,637 [INFO] --> libtree.rs:1112:9
+2025-04-18 02:43:20,637 [INFO] |
+2025-04-18 02:43:20,637 [INFO] 1112 |         i;
+2025-04-18 02:43:20,638 [INFO] |         ^^
+2025-04-18 02:43:20,638 [INFO] 
+2025-04-18 02:43:20,638 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,638 [INFO] --> libtree.rs:1151:9
+2025-04-18 02:43:20,638 [INFO] |
+2025-04-18 02:43:20,639 [INFO] 1151 |         i_0;
+2025-04-18 02:43:20,639 [INFO] |         ^^^^
+2025-04-18 02:43:20,639 [INFO] 
+2025-04-18 02:43:20,639 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,639 [INFO] --> libtree.rs:1208:13
+2025-04-18 02:43:20,639 [INFO] |
+2025-04-18 02:43:20,640 [INFO] 1208 |             j;
+2025-04-18 02:43:20,640 [INFO] |             ^^
+2025-04-18 02:43:20,640 [INFO] 
+2025-04-18 02:43:20,640 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,640 [INFO] --> libtree.rs:1304:9
+2025-04-18 02:43:20,641 [INFO] |
+2025-04-18 02:43:20,641 [INFO] 1304 |         i;
+2025-04-18 02:43:20,641 [INFO] |         ^^
+2025-04-18 02:43:20,641 [INFO] 
+2025-04-18 02:43:20,642 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,642 [INFO] --> libtree.rs:1522:13
+2025-04-18 02:43:20,642 [INFO] |
+2025-04-18 02:43:20,642 [INFO] 1522 |             i;
+2025-04-18 02:43:20,642 [INFO] |             ^^
+2025-04-18 02:43:20,642 [INFO] 
+2025-04-18 02:43:20,642 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,643 [INFO] --> libtree.rs:1546:13
+2025-04-18 02:43:20,643 [INFO] |
+2025-04-18 02:43:20,643 [INFO] 1546 |             i_0;
+2025-04-18 02:43:20,643 [INFO] |             ^^^^
+2025-04-18 02:43:20,643 [INFO] 
+2025-04-18 02:43:20,643 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,643 [INFO] --> libtree.rs:1710:9
+2025-04-18 02:43:20,644 [INFO] |
+2025-04-18 02:43:20,644 [INFO] 1710 |         vaddr_idx;
+2025-04-18 02:43:20,644 [INFO] |         ^^^^^^^^^^
+2025-04-18 02:43:20,644 [INFO] 
+2025-04-18 02:43:20,644 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,645 [INFO] --> libtree.rs:1857:9
+2025-04-18 02:43:20,645 [INFO] |
+2025-04-18 02:43:20,645 [INFO] 1857 |         i_1;
+2025-04-18 02:43:20,645 [INFO] |         ^^^^
+2025-04-18 02:43:20,646 [INFO] 
+2025-04-18 02:43:20,646 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,646 [INFO] --> libtree.rs:1930:13
+2025-04-18 02:43:20,646 [INFO] |
+2025-04-18 02:43:20,647 [INFO] 1930 |             j;
+2025-04-18 02:43:20,647 [INFO] |             ^^
+2025-04-18 02:43:20,647 [INFO] 
+2025-04-18 02:43:20,647 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,647 [INFO] --> libtree.rs:2061:9
+2025-04-18 02:43:20,648 [INFO] |
+2025-04-18 02:43:20,648 [INFO] 2061 |         i;
+2025-04-18 02:43:20,648 [INFO] |         ^^
+2025-04-18 02:43:20,648 [INFO] 
+2025-04-18 02:43:20,648 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,649 [INFO] --> libtree.rs:2097:13
+2025-04-18 02:43:20,649 [INFO] |
+2025-04-18 02:43:20,649 [INFO] 2097 |             begin;
+2025-04-18 02:43:20,649 [INFO] |             ^^^^^^
+2025-04-18 02:43:20,649 [INFO] 
+2025-04-18 02:43:20,649 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,649 [INFO] --> libtree.rs:2131:17
+2025-04-18 02:43:20,650 [INFO] |
+2025-04-18 02:43:20,650 [INFO] 2131 |                 begin;
+2025-04-18 02:43:20,650 [INFO] |                 ^^^^^^
+2025-04-18 02:43:20,650 [INFO] 
+2025-04-18 02:43:20,650 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,651 [INFO] --> libtree.rs:2373:9
+2025-04-18 02:43:20,651 [INFO] |
+2025-04-18 02:43:20,651 [INFO] 2373 |         i;
+2025-04-18 02:43:20,651 [INFO] |         ^^
+2025-04-18 02:43:20,651 [INFO] 
+2025-04-18 02:43:20,651 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,652 [INFO] --> libtree.rs:2457:13
+2025-04-18 02:43:20,652 [INFO] |
+2025-04-18 02:43:20,652 [INFO] 2457 |             arg;
+2025-04-18 02:43:20,652 [INFO] |             ^^^^
+2025-04-18 02:43:20,652 [INFO] 
+2025-04-18 02:43:20,652 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,652 [INFO] --> libtree.rs:2460:17
+2025-04-18 02:43:20,653 [INFO] |
+2025-04-18 02:43:20,653 [INFO] 2460 |                 arg;
+2025-04-18 02:43:20,653 [INFO] |                 ^^^^
+2025-04-18 02:43:20,654 [INFO] 
+2025-04-18 02:43:20,654 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,654 [INFO] --> libtree.rs:2549:21
+2025-04-18 02:43:20,654 [INFO] |
+2025-04-18 02:43:20,654 [INFO] 2549 |                     arg;
+2025-04-18 02:43:20,654 [INFO] |                     ^^^^
+2025-04-18 02:43:20,655 [INFO] 
+2025-04-18 02:43:20,655 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,655 [INFO] --> libtree.rs:2554:9
+2025-04-18 02:43:20,655 [INFO] |
+2025-04-18 02:43:20,655 [INFO] 2554 |         i;
+2025-04-18 02:43:20,655 [INFO] |         ^^
+2025-04-18 02:43:20,656 [INFO] 
+2025-04-18 02:43:20,656 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,656 [INFO] --> libtree.rs:2557:5
+2025-04-18 02:43:20,656 [INFO] |
+2025-04-18 02:43:20,656 [INFO] 2557 |     argv;
+2025-04-18 02:43:20,657 [INFO] |     ^^^^^
+2025-04-18 02:43:20,657 [INFO] 
+2025-04-18 02:43:20,657 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,657 [INFO] --> libtree.rs:2559:5
+2025-04-18 02:43:20,657 [INFO] |
+2025-04-18 02:43:20,657 [INFO] 2559 |     positional;
+2025-04-18 02:43:20,657 [INFO] |     ^^^^^^^^^^^
+2025-04-18 02:43:20,657 [INFO] 
+2025-04-18 02:43:20,658 [INFO] warning: path statement with no effect
+2025-04-18 02:43:20,658 [INFO] --> libtree.rs:2590:13
+2025-04-18 02:43:20,658 [INFO] |
+2025-04-18 02:43:20,658 [INFO] 2590 |             j;
+2025-04-18 02:43:20,658 [INFO] |             ^^
+2025-04-18 02:43:20,658 [INFO] 
+2025-04-18 02:43:20,736 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-18 02:43:20,736 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.69s
+2025-04-18 02:43:20,738 [INFO] Running: cargo build
+2025-04-18 02:43:20,978 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-18 02:43:21,280 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,280 [INFO] --> libtree.rs:495:9
+2025-04-18 02:43:21,281 [INFO] |
+2025-04-18 02:43:21,281 [INFO] 495 |         i;
+2025-04-18 02:43:21,281 [INFO] |         ^^
+2025-04-18 02:43:21,282 [INFO] |
+2025-04-18 02:43:21,282 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-18 02:43:21,282 [INFO] 
+2025-04-18 02:43:21,282 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,283 [INFO] --> libtree.rs:579:9
+2025-04-18 02:43:21,283 [INFO] |
+2025-04-18 02:43:21,283 [INFO] 579 |         j;
+2025-04-18 02:43:21,283 [INFO] |         ^^
+2025-04-18 02:43:21,283 [INFO] 
+2025-04-18 02:43:21,283 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,283 [INFO] --> libtree.rs:640:5
+2025-04-18 02:43:21,283 [INFO] |
+2025-04-18 02:43:21,284 [INFO] 640 |     end;
+2025-04-18 02:43:21,284 [INFO] |     ^^^^
+2025-04-18 02:43:21,284 [INFO] 
+2025-04-18 02:43:21,284 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,284 [INFO] --> libtree.rs:646:9
+2025-04-18 02:43:21,284 [INFO] |
+2025-04-18 02:43:21,284 [INFO] 646 |         end;
+2025-04-18 02:43:21,284 [INFO] |         ^^^^
+2025-04-18 02:43:21,284 [INFO] 
+2025-04-18 02:43:21,285 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,285 [INFO] --> libtree.rs:656:13
+2025-04-18 02:43:21,285 [INFO] |
+2025-04-18 02:43:21,285 [INFO] 656 |             j;
+2025-04-18 02:43:21,285 [INFO] |             ^^
+2025-04-18 02:43:21,285 [INFO] 
+2025-04-18 02:43:21,285 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,286 [INFO] --> libtree.rs:678:9
+2025-04-18 02:43:21,286 [INFO] |
+2025-04-18 02:43:21,286 [INFO] 678 |         i;
+2025-04-18 02:43:21,286 [INFO] |         ^^
+2025-04-18 02:43:21,286 [INFO] 
+2025-04-18 02:43:21,287 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,287 [INFO] --> libtree.rs:719:13
+2025-04-18 02:43:21,287 [INFO] |
+2025-04-18 02:43:21,288 [INFO] 719 |             i;
+2025-04-18 02:43:21,288 [INFO] |             ^^
+2025-04-18 02:43:21,288 [INFO] 
+2025-04-18 02:43:21,288 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,288 [INFO] --> libtree.rs:741:13
+2025-04-18 02:43:21,288 [INFO] |
+2025-04-18 02:43:21,289 [INFO] 741 |             i;
+2025-04-18 02:43:21,289 [INFO] |             ^^
+2025-04-18 02:43:21,290 [INFO] 
+2025-04-18 02:43:21,290 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,290 [INFO] --> libtree.rs:837:13
+2025-04-18 02:43:21,290 [INFO] |
+2025-04-18 02:43:21,291 [INFO] 837 |             offset;
+2025-04-18 02:43:21,291 [INFO] |             ^^^^^^^
+2025-04-18 02:43:21,291 [INFO] 
+2025-04-18 02:43:21,292 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,292 [INFO] --> libtree.rs:909:17
+2025-04-18 02:43:21,292 [INFO] |
+2025-04-18 02:43:21,292 [INFO] 909 |                 i;
+2025-04-18 02:43:21,293 [INFO] |                 ^^
+2025-04-18 02:43:21,293 [INFO] 
+2025-04-18 02:43:21,293 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,293 [INFO] --> libtree.rs:934:9
+2025-04-18 02:43:21,293 [INFO] |
+2025-04-18 02:43:21,293 [INFO] 934 |         curr_src;
+2025-04-18 02:43:21,294 [INFO] |         ^^^^^^^^^
+2025-04-18 02:43:21,294 [INFO] 
+2025-04-18 02:43:21,294 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,294 [INFO] --> libtree.rs:939:13
+2025-04-18 02:43:21,295 [INFO] |
+2025-04-18 02:43:21,295 [INFO] 939 |             curr_src;
+2025-04-18 02:43:21,295 [INFO] |             ^^^^^^^^^
+2025-04-18 02:43:21,296 [INFO] 
+2025-04-18 02:43:21,296 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,296 [INFO] --> libtree.rs:996:13
+2025-04-18 02:43:21,296 [INFO] |
+2025-04-18 02:43:21,297 [INFO] 996 |             curr_src;
+2025-04-18 02:43:21,297 [INFO] |             ^^^^^^^^^
+2025-04-18 02:43:21,298 [INFO] 
+2025-04-18 02:43:21,298 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,298 [INFO] --> libtree.rs:1045:13
+2025-04-18 02:43:21,298 [INFO] |
+2025-04-18 02:43:21,299 [INFO] 1045 |             start;
+2025-04-18 02:43:21,299 [INFO] |             ^^^^^^
+2025-04-18 02:43:21,299 [INFO] 
+2025-04-18 02:43:21,299 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,300 [INFO] --> libtree.rs:1180:9
+2025-04-18 02:43:21,300 [INFO] |
+2025-04-18 02:43:21,300 [INFO] 1180 |         i;
+2025-04-18 02:43:21,301 [INFO] |         ^^
+2025-04-18 02:43:21,301 [INFO] 
+2025-04-18 02:43:21,301 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,301 [INFO] --> libtree.rs:1219:9
+2025-04-18 02:43:21,301 [INFO] |
+2025-04-18 02:43:21,302 [INFO] 1219 |         i_0;
+2025-04-18 02:43:21,302 [INFO] |         ^^^^
+2025-04-18 02:43:21,302 [INFO] 
+2025-04-18 02:43:21,303 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,303 [INFO] --> libtree.rs:1276:13
+2025-04-18 02:43:21,303 [INFO] |
+2025-04-18 02:43:21,303 [INFO] 1276 |             j;
+2025-04-18 02:43:21,304 [INFO] |             ^^
+2025-04-18 02:43:21,304 [INFO] 
+2025-04-18 02:43:21,304 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,304 [INFO] --> libtree.rs:1372:9
+2025-04-18 02:43:21,304 [INFO] |
+2025-04-18 02:43:21,305 [INFO] 1372 |         i;
+2025-04-18 02:43:21,305 [INFO] |         ^^
+2025-04-18 02:43:21,305 [INFO] 
+2025-04-18 02:43:21,305 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,306 [INFO] --> libtree.rs:1590:13
+2025-04-18 02:43:21,306 [INFO] |
+2025-04-18 02:43:21,306 [INFO] 1590 |             i;
+2025-04-18 02:43:21,306 [INFO] |             ^^
+2025-04-18 02:43:21,307 [INFO] 
+2025-04-18 02:43:21,307 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,307 [INFO] --> libtree.rs:1614:13
+2025-04-18 02:43:21,308 [INFO] |
+2025-04-18 02:43:21,308 [INFO] 1614 |             i_0;
+2025-04-18 02:43:21,308 [INFO] |             ^^^^
+2025-04-18 02:43:21,308 [INFO] 
+2025-04-18 02:43:21,308 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,309 [INFO] --> libtree.rs:1778:9
+2025-04-18 02:43:21,309 [INFO] |
+2025-04-18 02:43:21,309 [INFO] 1778 |         vaddr_idx;
+2025-04-18 02:43:21,309 [INFO] |         ^^^^^^^^^^
+2025-04-18 02:43:21,309 [INFO] 
+2025-04-18 02:43:21,310 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,310 [INFO] --> libtree.rs:1925:9
+2025-04-18 02:43:21,310 [INFO] |
+2025-04-18 02:43:21,310 [INFO] 1925 |         i_1;
+2025-04-18 02:43:21,311 [INFO] |         ^^^^
+2025-04-18 02:43:21,311 [INFO] 
+2025-04-18 02:43:21,311 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,311 [INFO] --> libtree.rs:1998:13
+2025-04-18 02:43:21,312 [INFO] |
+2025-04-18 02:43:21,312 [INFO] 1998 |             j;
+2025-04-18 02:43:21,312 [INFO] |             ^^
+2025-04-18 02:43:21,312 [INFO] 
+2025-04-18 02:43:21,313 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,313 [INFO] --> libtree.rs:2129:9
+2025-04-18 02:43:21,313 [INFO] |
+2025-04-18 02:43:21,313 [INFO] 2129 |         i;
+2025-04-18 02:43:21,313 [INFO] |         ^^
+2025-04-18 02:43:21,314 [INFO] 
+2025-04-18 02:43:21,314 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,314 [INFO] --> libtree.rs:2165:13
+2025-04-18 02:43:21,315 [INFO] |
+2025-04-18 02:43:21,315 [INFO] 2165 |             begin;
+2025-04-18 02:43:21,315 [INFO] |             ^^^^^^
+2025-04-18 02:43:21,316 [INFO] 
+2025-04-18 02:43:21,317 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,317 [INFO] --> libtree.rs:2199:17
+2025-04-18 02:43:21,317 [INFO] |
+2025-04-18 02:43:21,317 [INFO] 2199 |                 begin;
+2025-04-18 02:43:21,318 [INFO] |                 ^^^^^^
+2025-04-18 02:43:21,318 [INFO] 
+2025-04-18 02:43:21,318 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,319 [INFO] --> libtree.rs:2441:9
+2025-04-18 02:43:21,319 [INFO] |
+2025-04-18 02:43:21,319 [INFO] 2441 |         i;
+2025-04-18 02:43:21,320 [INFO] |         ^^
+2025-04-18 02:43:21,320 [INFO] 
+2025-04-18 02:43:21,320 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,321 [INFO] --> libtree.rs:2525:13
+2025-04-18 02:43:21,321 [INFO] |
+2025-04-18 02:43:21,321 [INFO] 2525 |             arg;
+2025-04-18 02:43:21,321 [INFO] |             ^^^^
+2025-04-18 02:43:21,322 [INFO] 
+2025-04-18 02:43:21,322 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,322 [INFO] --> libtree.rs:2528:17
+2025-04-18 02:43:21,323 [INFO] |
+2025-04-18 02:43:21,323 [INFO] 2528 |                 arg;
+2025-04-18 02:43:21,323 [INFO] |                 ^^^^
+2025-04-18 02:43:21,323 [INFO] 
+2025-04-18 02:43:21,323 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,323 [INFO] --> libtree.rs:2617:21
+2025-04-18 02:43:21,324 [INFO] |
+2025-04-18 02:43:21,324 [INFO] 2617 |                     arg;
+2025-04-18 02:43:21,324 [INFO] |                     ^^^^
+2025-04-18 02:43:21,324 [INFO] 
+2025-04-18 02:43:21,324 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,324 [INFO] --> libtree.rs:2622:9
+2025-04-18 02:43:21,325 [INFO] |
+2025-04-18 02:43:21,325 [INFO] 2622 |         i;
+2025-04-18 02:43:21,325 [INFO] |         ^^
+2025-04-18 02:43:21,325 [INFO] 
+2025-04-18 02:43:21,325 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,326 [INFO] --> libtree.rs:2625:5
+2025-04-18 02:43:21,326 [INFO] |
+2025-04-18 02:43:21,326 [INFO] 2625 |     argv;
+2025-04-18 02:43:21,326 [INFO] |     ^^^^^
+2025-04-18 02:43:21,326 [INFO] 
+2025-04-18 02:43:21,327 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,327 [INFO] --> libtree.rs:2627:5
+2025-04-18 02:43:21,327 [INFO] |
+2025-04-18 02:43:21,327 [INFO] 2627 |     positional;
+2025-04-18 02:43:21,328 [INFO] |     ^^^^^^^^^^^
+2025-04-18 02:43:21,328 [INFO] 
+2025-04-18 02:43:21,328 [INFO] warning: path statement with no effect
+2025-04-18 02:43:21,328 [INFO] --> libtree.rs:2658:13
+2025-04-18 02:43:21,328 [INFO] |
+2025-04-18 02:43:21,329 [INFO] 2658 |             j;
+2025-04-18 02:43:21,329 [INFO] |             ^^
+2025-04-18 02:43:21,329 [INFO] 
+2025-04-18 02:43:21,418 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-18 02:43:21,418 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.46s
+2025-04-23 08:07:35,357 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-23 08:07:35,646 [INFO] c2rust transpile succeeded
+2025-04-23 08:07:35,647 [INFO] Running: cargo build
+2025-04-23 08:07:35,914 [INFO] Compiling libc v0.2.171
+2025-04-23 08:07:35,915 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-23 08:07:38,008 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,008 [INFO] --> libtree.rs:427:9
+2025-04-23 08:07:38,008 [INFO] |
+2025-04-23 08:07:38,009 [INFO] 427 |         i;
+2025-04-23 08:07:38,009 [INFO] |         ^^
+2025-04-23 08:07:38,009 [INFO] |
+2025-04-23 08:07:38,009 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-23 08:07:38,009 [INFO] 
+2025-04-23 08:07:38,009 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,009 [INFO] --> libtree.rs:511:9
+2025-04-23 08:07:38,010 [INFO] |
+2025-04-23 08:07:38,010 [INFO] 511 |         j;
+2025-04-23 08:07:38,010 [INFO] |         ^^
+2025-04-23 08:07:38,010 [INFO] 
+2025-04-23 08:07:38,011 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,011 [INFO] --> libtree.rs:572:5
+2025-04-23 08:07:38,011 [INFO] |
+2025-04-23 08:07:38,012 [INFO] 572 |     end;
+2025-04-23 08:07:38,012 [INFO] |     ^^^^
+2025-04-23 08:07:38,012 [INFO] 
+2025-04-23 08:07:38,012 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,013 [INFO] --> libtree.rs:578:9
+2025-04-23 08:07:38,013 [INFO] |
+2025-04-23 08:07:38,013 [INFO] 578 |         end;
+2025-04-23 08:07:38,014 [INFO] |         ^^^^
+2025-04-23 08:07:38,014 [INFO] 
+2025-04-23 08:07:38,015 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,015 [INFO] --> libtree.rs:588:13
+2025-04-23 08:07:38,015 [INFO] |
+2025-04-23 08:07:38,016 [INFO] 588 |             j;
+2025-04-23 08:07:38,016 [INFO] |             ^^
+2025-04-23 08:07:38,016 [INFO] 
+2025-04-23 08:07:38,017 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,017 [INFO] --> libtree.rs:610:9
+2025-04-23 08:07:38,018 [INFO] |
+2025-04-23 08:07:38,019 [INFO] 610 |         i;
+2025-04-23 08:07:38,019 [INFO] |         ^^
+2025-04-23 08:07:38,021 [INFO] 
+2025-04-23 08:07:38,021 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,021 [INFO] --> libtree.rs:651:13
+2025-04-23 08:07:38,022 [INFO] |
+2025-04-23 08:07:38,022 [INFO] 651 |             i;
+2025-04-23 08:07:38,023 [INFO] |             ^^
+2025-04-23 08:07:38,023 [INFO] 
+2025-04-23 08:07:38,024 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,024 [INFO] --> libtree.rs:673:13
+2025-04-23 08:07:38,024 [INFO] |
+2025-04-23 08:07:38,024 [INFO] 673 |             i;
+2025-04-23 08:07:38,025 [INFO] |             ^^
+2025-04-23 08:07:38,025 [INFO] 
+2025-04-23 08:07:38,025 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,026 [INFO] --> libtree.rs:769:13
+2025-04-23 08:07:38,026 [INFO] |
+2025-04-23 08:07:38,027 [INFO] 769 |             offset;
+2025-04-23 08:07:38,027 [INFO] |             ^^^^^^^
+2025-04-23 08:07:38,027 [INFO] 
+2025-04-23 08:07:38,028 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,029 [INFO] --> libtree.rs:841:17
+2025-04-23 08:07:38,029 [INFO] |
+2025-04-23 08:07:38,029 [INFO] 841 |                 i;
+2025-04-23 08:07:38,029 [INFO] |                 ^^
+2025-04-23 08:07:38,031 [INFO] 
+2025-04-23 08:07:38,032 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,032 [INFO] --> libtree.rs:866:9
+2025-04-23 08:07:38,032 [INFO] |
+2025-04-23 08:07:38,032 [INFO] 866 |         curr_src;
+2025-04-23 08:07:38,032 [INFO] |         ^^^^^^^^^
+2025-04-23 08:07:38,032 [INFO] 
+2025-04-23 08:07:38,032 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,033 [INFO] --> libtree.rs:871:13
+2025-04-23 08:07:38,033 [INFO] |
+2025-04-23 08:07:38,033 [INFO] 871 |             curr_src;
+2025-04-23 08:07:38,034 [INFO] |             ^^^^^^^^^
+2025-04-23 08:07:38,034 [INFO] 
+2025-04-23 08:07:38,034 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,034 [INFO] --> libtree.rs:928:13
+2025-04-23 08:07:38,036 [INFO] |
+2025-04-23 08:07:38,037 [INFO] 928 |             curr_src;
+2025-04-23 08:07:38,037 [INFO] |             ^^^^^^^^^
+2025-04-23 08:07:38,037 [INFO] 
+2025-04-23 08:07:38,037 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,038 [INFO] --> libtree.rs:977:13
+2025-04-23 08:07:38,038 [INFO] |
+2025-04-23 08:07:38,038 [INFO] 977 |             start;
+2025-04-23 08:07:38,038 [INFO] |             ^^^^^^
+2025-04-23 08:07:38,038 [INFO] 
+2025-04-23 08:07:38,039 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,041 [INFO] --> libtree.rs:1112:9
+2025-04-23 08:07:38,042 [INFO] |
+2025-04-23 08:07:38,042 [INFO] 1112 |         i;
+2025-04-23 08:07:38,042 [INFO] |         ^^
+2025-04-23 08:07:38,042 [INFO] 
+2025-04-23 08:07:38,042 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,042 [INFO] --> libtree.rs:1151:9
+2025-04-23 08:07:38,043 [INFO] |
+2025-04-23 08:07:38,043 [INFO] 1151 |         i_0;
+2025-04-23 08:07:38,043 [INFO] |         ^^^^
+2025-04-23 08:07:38,043 [INFO] 
+2025-04-23 08:07:38,043 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,043 [INFO] --> libtree.rs:1208:13
+2025-04-23 08:07:38,044 [INFO] |
+2025-04-23 08:07:38,044 [INFO] 1208 |             j;
+2025-04-23 08:07:38,044 [INFO] |             ^^
+2025-04-23 08:07:38,044 [INFO] 
+2025-04-23 08:07:38,047 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,047 [INFO] --> libtree.rs:1304:9
+2025-04-23 08:07:38,047 [INFO] |
+2025-04-23 08:07:38,047 [INFO] 1304 |         i;
+2025-04-23 08:07:38,048 [INFO] |         ^^
+2025-04-23 08:07:38,048 [INFO] 
+2025-04-23 08:07:38,048 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,048 [INFO] --> libtree.rs:1522:13
+2025-04-23 08:07:38,048 [INFO] |
+2025-04-23 08:07:38,048 [INFO] 1522 |             i;
+2025-04-23 08:07:38,049 [INFO] |             ^^
+2025-04-23 08:07:38,049 [INFO] 
+2025-04-23 08:07:38,049 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,049 [INFO] --> libtree.rs:1546:13
+2025-04-23 08:07:38,054 [INFO] |
+2025-04-23 08:07:38,054 [INFO] 1546 |             i_0;
+2025-04-23 08:07:38,054 [INFO] |             ^^^^
+2025-04-23 08:07:38,054 [INFO] 
+2025-04-23 08:07:38,054 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,054 [INFO] --> libtree.rs:1710:9
+2025-04-23 08:07:38,055 [INFO] |
+2025-04-23 08:07:38,055 [INFO] 1710 |         vaddr_idx;
+2025-04-23 08:07:38,055 [INFO] |         ^^^^^^^^^^
+2025-04-23 08:07:38,055 [INFO] 
+2025-04-23 08:07:38,056 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,056 [INFO] --> libtree.rs:1857:9
+2025-04-23 08:07:38,056 [INFO] |
+2025-04-23 08:07:38,056 [INFO] 1857 |         i_1;
+2025-04-23 08:07:38,056 [INFO] |         ^^^^
+2025-04-23 08:07:38,057 [INFO] 
+2025-04-23 08:07:38,057 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,060 [INFO] --> libtree.rs:1930:13
+2025-04-23 08:07:38,060 [INFO] |
+2025-04-23 08:07:38,060 [INFO] 1930 |             j;
+2025-04-23 08:07:38,060 [INFO] |             ^^
+2025-04-23 08:07:38,061 [INFO] 
+2025-04-23 08:07:38,061 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,061 [INFO] --> libtree.rs:2061:9
+2025-04-23 08:07:38,062 [INFO] |
+2025-04-23 08:07:38,062 [INFO] 2061 |         i;
+2025-04-23 08:07:38,062 [INFO] |         ^^
+2025-04-23 08:07:38,063 [INFO] 
+2025-04-23 08:07:38,063 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,063 [INFO] --> libtree.rs:2097:13
+2025-04-23 08:07:38,063 [INFO] |
+2025-04-23 08:07:38,065 [INFO] 2097 |             begin;
+2025-04-23 08:07:38,066 [INFO] |             ^^^^^^
+2025-04-23 08:07:38,066 [INFO] 
+2025-04-23 08:07:38,067 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,067 [INFO] --> libtree.rs:2131:17
+2025-04-23 08:07:38,068 [INFO] |
+2025-04-23 08:07:38,068 [INFO] 2131 |                 begin;
+2025-04-23 08:07:38,069 [INFO] |                 ^^^^^^
+2025-04-23 08:07:38,069 [INFO] 
+2025-04-23 08:07:38,071 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,072 [INFO] --> libtree.rs:2373:9
+2025-04-23 08:07:38,075 [INFO] |
+2025-04-23 08:07:38,075 [INFO] 2373 |         i;
+2025-04-23 08:07:38,075 [INFO] |         ^^
+2025-04-23 08:07:38,076 [INFO] 
+2025-04-23 08:07:38,076 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,078 [INFO] --> libtree.rs:2457:13
+2025-04-23 08:07:38,079 [INFO] |
+2025-04-23 08:07:38,079 [INFO] 2457 |             arg;
+2025-04-23 08:07:38,080 [INFO] |             ^^^^
+2025-04-23 08:07:38,080 [INFO] 
+2025-04-23 08:07:38,081 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,081 [INFO] --> libtree.rs:2460:17
+2025-04-23 08:07:38,081 [INFO] |
+2025-04-23 08:07:38,082 [INFO] 2460 |                 arg;
+2025-04-23 08:07:38,082 [INFO] |                 ^^^^
+2025-04-23 08:07:38,083 [INFO] 
+2025-04-23 08:07:38,083 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,084 [INFO] --> libtree.rs:2549:21
+2025-04-23 08:07:38,084 [INFO] |
+2025-04-23 08:07:38,085 [INFO] 2549 |                     arg;
+2025-04-23 08:07:38,086 [INFO] |                     ^^^^
+2025-04-23 08:07:38,086 [INFO] 
+2025-04-23 08:07:38,087 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,087 [INFO] --> libtree.rs:2554:9
+2025-04-23 08:07:38,087 [INFO] |
+2025-04-23 08:07:38,088 [INFO] 2554 |         i;
+2025-04-23 08:07:38,089 [INFO] |         ^^
+2025-04-23 08:07:38,089 [INFO] 
+2025-04-23 08:07:38,090 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,090 [INFO] --> libtree.rs:2557:5
+2025-04-23 08:07:38,090 [INFO] |
+2025-04-23 08:07:38,091 [INFO] 2557 |     argv;
+2025-04-23 08:07:38,091 [INFO] |     ^^^^^
+2025-04-23 08:07:38,091 [INFO] 
+2025-04-23 08:07:38,092 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,092 [INFO] --> libtree.rs:2559:5
+2025-04-23 08:07:38,092 [INFO] |
+2025-04-23 08:07:38,093 [INFO] 2559 |     positional;
+2025-04-23 08:07:38,093 [INFO] |     ^^^^^^^^^^^
+2025-04-23 08:07:38,093 [INFO] 
+2025-04-23 08:07:38,094 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,094 [INFO] --> libtree.rs:2590:13
+2025-04-23 08:07:38,095 [INFO] |
+2025-04-23 08:07:38,095 [INFO] 2590 |             j;
+2025-04-23 08:07:38,095 [INFO] |             ^^
+2025-04-23 08:07:38,096 [INFO] 
+2025-04-23 08:07:38,311 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-23 08:07:38,312 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 2.42s
+2025-04-23 08:07:38,314 [INFO] Running: cargo build
+2025-04-23 08:07:38,553 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-23 08:07:38,819 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,820 [INFO] --> libtree.rs:427:9
+2025-04-23 08:07:38,820 [INFO] |
+2025-04-23 08:07:38,820 [INFO] 427 |         i;
+2025-04-23 08:07:38,820 [INFO] |         ^^
+2025-04-23 08:07:38,820 [INFO] |
+2025-04-23 08:07:38,820 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-23 08:07:38,820 [INFO] 
+2025-04-23 08:07:38,820 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,821 [INFO] --> libtree.rs:511:9
+2025-04-23 08:07:38,821 [INFO] |
+2025-04-23 08:07:38,821 [INFO] 511 |         j;
+2025-04-23 08:07:38,821 [INFO] |         ^^
+2025-04-23 08:07:38,821 [INFO] 
+2025-04-23 08:07:38,821 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,822 [INFO] --> libtree.rs:572:5
+2025-04-23 08:07:38,822 [INFO] |
+2025-04-23 08:07:38,822 [INFO] 572 |     end;
+2025-04-23 08:07:38,822 [INFO] |     ^^^^
+2025-04-23 08:07:38,823 [INFO] 
+2025-04-23 08:07:38,823 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,823 [INFO] --> libtree.rs:578:9
+2025-04-23 08:07:38,823 [INFO] |
+2025-04-23 08:07:38,824 [INFO] 578 |         end;
+2025-04-23 08:07:38,824 [INFO] |         ^^^^
+2025-04-23 08:07:38,824 [INFO] 
+2025-04-23 08:07:38,825 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,825 [INFO] --> libtree.rs:588:13
+2025-04-23 08:07:38,825 [INFO] |
+2025-04-23 08:07:38,825 [INFO] 588 |             j;
+2025-04-23 08:07:38,825 [INFO] |             ^^
+2025-04-23 08:07:38,826 [INFO] 
+2025-04-23 08:07:38,828 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,829 [INFO] --> libtree.rs:610:9
+2025-04-23 08:07:38,829 [INFO] |
+2025-04-23 08:07:38,829 [INFO] 610 |         i;
+2025-04-23 08:07:38,829 [INFO] |         ^^
+2025-04-23 08:07:38,830 [INFO] 
+2025-04-23 08:07:38,830 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,830 [INFO] --> libtree.rs:651:13
+2025-04-23 08:07:38,831 [INFO] |
+2025-04-23 08:07:38,831 [INFO] 651 |             i;
+2025-04-23 08:07:38,831 [INFO] |             ^^
+2025-04-23 08:07:38,831 [INFO] 
+2025-04-23 08:07:38,832 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,832 [INFO] --> libtree.rs:673:13
+2025-04-23 08:07:38,832 [INFO] |
+2025-04-23 08:07:38,832 [INFO] 673 |             i;
+2025-04-23 08:07:38,832 [INFO] |             ^^
+2025-04-23 08:07:38,833 [INFO] 
+2025-04-23 08:07:38,833 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,833 [INFO] --> libtree.rs:769:13
+2025-04-23 08:07:38,833 [INFO] |
+2025-04-23 08:07:38,833 [INFO] 769 |             offset;
+2025-04-23 08:07:38,834 [INFO] |             ^^^^^^^
+2025-04-23 08:07:38,834 [INFO] 
+2025-04-23 08:07:38,835 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,836 [INFO] --> libtree.rs:841:17
+2025-04-23 08:07:38,836 [INFO] |
+2025-04-23 08:07:38,837 [INFO] 841 |                 i;
+2025-04-23 08:07:38,837 [INFO] |                 ^^
+2025-04-23 08:07:38,837 [INFO] 
+2025-04-23 08:07:38,839 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,840 [INFO] --> libtree.rs:866:9
+2025-04-23 08:07:38,840 [INFO] |
+2025-04-23 08:07:38,841 [INFO] 866 |         curr_src;
+2025-04-23 08:07:38,841 [INFO] |         ^^^^^^^^^
+2025-04-23 08:07:38,841 [INFO] 
+2025-04-23 08:07:38,841 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,842 [INFO] --> libtree.rs:871:13
+2025-04-23 08:07:38,842 [INFO] |
+2025-04-23 08:07:38,843 [INFO] 871 |             curr_src;
+2025-04-23 08:07:38,843 [INFO] |             ^^^^^^^^^
+2025-04-23 08:07:38,843 [INFO] 
+2025-04-23 08:07:38,843 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,843 [INFO] --> libtree.rs:928:13
+2025-04-23 08:07:38,843 [INFO] |
+2025-04-23 08:07:38,843 [INFO] 928 |             curr_src;
+2025-04-23 08:07:38,844 [INFO] |             ^^^^^^^^^
+2025-04-23 08:07:38,844 [INFO] 
+2025-04-23 08:07:38,844 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,844 [INFO] --> libtree.rs:977:13
+2025-04-23 08:07:38,844 [INFO] |
+2025-04-23 08:07:38,844 [INFO] 977 |             start;
+2025-04-23 08:07:38,844 [INFO] |             ^^^^^^
+2025-04-23 08:07:38,844 [INFO] 
+2025-04-23 08:07:38,844 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,844 [INFO] --> libtree.rs:1112:9
+2025-04-23 08:07:38,844 [INFO] |
+2025-04-23 08:07:38,844 [INFO] 1112 |         i;
+2025-04-23 08:07:38,844 [INFO] |         ^^
+2025-04-23 08:07:38,845 [INFO] 
+2025-04-23 08:07:38,845 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,845 [INFO] --> libtree.rs:1151:9
+2025-04-23 08:07:38,845 [INFO] |
+2025-04-23 08:07:38,845 [INFO] 1151 |         i_0;
+2025-04-23 08:07:38,845 [INFO] |         ^^^^
+2025-04-23 08:07:38,845 [INFO] 
+2025-04-23 08:07:38,845 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,845 [INFO] --> libtree.rs:1208:13
+2025-04-23 08:07:38,845 [INFO] |
+2025-04-23 08:07:38,846 [INFO] 1208 |             j;
+2025-04-23 08:07:38,846 [INFO] |             ^^
+2025-04-23 08:07:38,846 [INFO] 
+2025-04-23 08:07:38,846 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,846 [INFO] --> libtree.rs:1304:9
+2025-04-23 08:07:38,846 [INFO] |
+2025-04-23 08:07:38,846 [INFO] 1304 |         i;
+2025-04-23 08:07:38,846 [INFO] |         ^^
+2025-04-23 08:07:38,846 [INFO] 
+2025-04-23 08:07:38,846 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,846 [INFO] --> libtree.rs:1522:13
+2025-04-23 08:07:38,846 [INFO] |
+2025-04-23 08:07:38,847 [INFO] 1522 |             i;
+2025-04-23 08:07:38,847 [INFO] |             ^^
+2025-04-23 08:07:38,847 [INFO] 
+2025-04-23 08:07:38,847 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,847 [INFO] --> libtree.rs:1546:13
+2025-04-23 08:07:38,847 [INFO] |
+2025-04-23 08:07:38,847 [INFO] 1546 |             i_0;
+2025-04-23 08:07:38,847 [INFO] |             ^^^^
+2025-04-23 08:07:38,847 [INFO] 
+2025-04-23 08:07:38,847 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,847 [INFO] --> libtree.rs:1710:9
+2025-04-23 08:07:38,848 [INFO] |
+2025-04-23 08:07:38,848 [INFO] 1710 |         vaddr_idx;
+2025-04-23 08:07:38,848 [INFO] |         ^^^^^^^^^^
+2025-04-23 08:07:38,848 [INFO] 
+2025-04-23 08:07:38,848 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,848 [INFO] --> libtree.rs:1857:9
+2025-04-23 08:07:38,848 [INFO] |
+2025-04-23 08:07:38,848 [INFO] 1857 |         i_1;
+2025-04-23 08:07:38,848 [INFO] |         ^^^^
+2025-04-23 08:07:38,848 [INFO] 
+2025-04-23 08:07:38,848 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,849 [INFO] --> libtree.rs:1930:13
+2025-04-23 08:07:38,849 [INFO] |
+2025-04-23 08:07:38,849 [INFO] 1930 |             j;
+2025-04-23 08:07:38,849 [INFO] |             ^^
+2025-04-23 08:07:38,849 [INFO] 
+2025-04-23 08:07:38,849 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,849 [INFO] --> libtree.rs:2061:9
+2025-04-23 08:07:38,849 [INFO] |
+2025-04-23 08:07:38,849 [INFO] 2061 |         i;
+2025-04-23 08:07:38,849 [INFO] |         ^^
+2025-04-23 08:07:38,850 [INFO] 
+2025-04-23 08:07:38,850 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,850 [INFO] --> libtree.rs:2097:13
+2025-04-23 08:07:38,850 [INFO] |
+2025-04-23 08:07:38,850 [INFO] 2097 |             begin;
+2025-04-23 08:07:38,850 [INFO] |             ^^^^^^
+2025-04-23 08:07:38,850 [INFO] 
+2025-04-23 08:07:38,850 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,850 [INFO] --> libtree.rs:2131:17
+2025-04-23 08:07:38,850 [INFO] |
+2025-04-23 08:07:38,850 [INFO] 2131 |                 begin;
+2025-04-23 08:07:38,850 [INFO] |                 ^^^^^^
+2025-04-23 08:07:38,851 [INFO] 
+2025-04-23 08:07:38,851 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,851 [INFO] --> libtree.rs:2373:9
+2025-04-23 08:07:38,851 [INFO] |
+2025-04-23 08:07:38,851 [INFO] 2373 |         i;
+2025-04-23 08:07:38,851 [INFO] |         ^^
+2025-04-23 08:07:38,851 [INFO] 
+2025-04-23 08:07:38,851 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,851 [INFO] --> libtree.rs:2457:13
+2025-04-23 08:07:38,851 [INFO] |
+2025-04-23 08:07:38,851 [INFO] 2457 |             arg;
+2025-04-23 08:07:38,852 [INFO] |             ^^^^
+2025-04-23 08:07:38,852 [INFO] 
+2025-04-23 08:07:38,852 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,852 [INFO] --> libtree.rs:2460:17
+2025-04-23 08:07:38,852 [INFO] |
+2025-04-23 08:07:38,852 [INFO] 2460 |                 arg;
+2025-04-23 08:07:38,852 [INFO] |                 ^^^^
+2025-04-23 08:07:38,852 [INFO] 
+2025-04-23 08:07:38,852 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,852 [INFO] --> libtree.rs:2549:21
+2025-04-23 08:07:38,852 [INFO] |
+2025-04-23 08:07:38,853 [INFO] 2549 |                     arg;
+2025-04-23 08:07:38,853 [INFO] |                     ^^^^
+2025-04-23 08:07:38,853 [INFO] 
+2025-04-23 08:07:38,853 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,853 [INFO] --> libtree.rs:2554:9
+2025-04-23 08:07:38,853 [INFO] |
+2025-04-23 08:07:38,853 [INFO] 2554 |         i;
+2025-04-23 08:07:38,853 [INFO] |         ^^
+2025-04-23 08:07:38,853 [INFO] 
+2025-04-23 08:07:38,853 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,853 [INFO] --> libtree.rs:2557:5
+2025-04-23 08:07:38,854 [INFO] |
+2025-04-23 08:07:38,854 [INFO] 2557 |     argv;
+2025-04-23 08:07:38,854 [INFO] |     ^^^^^
+2025-04-23 08:07:38,854 [INFO] 
+2025-04-23 08:07:38,854 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,854 [INFO] --> libtree.rs:2559:5
+2025-04-23 08:07:38,854 [INFO] |
+2025-04-23 08:07:38,854 [INFO] 2559 |     positional;
+2025-04-23 08:07:38,854 [INFO] |     ^^^^^^^^^^^
+2025-04-23 08:07:38,854 [INFO] 
+2025-04-23 08:07:38,854 [INFO] warning: path statement with no effect
+2025-04-23 08:07:38,854 [INFO] --> libtree.rs:2590:13
+2025-04-23 08:07:38,855 [INFO] |
+2025-04-23 08:07:38,855 [INFO] 2590 |             j;
+2025-04-23 08:07:38,855 [INFO] |             ^^
+2025-04-23 08:07:38,855 [INFO] 
+2025-04-23 08:07:38,926 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-23 08:07:38,926 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.39s
+2025-04-24 07:50:36,530 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-24 07:50:36,812 [INFO] c2rust transpile succeeded
+2025-04-24 07:50:36,813 [INFO] Running: cargo build
+2025-04-24 07:50:37,063 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-24 07:50:37,692 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,693 [INFO] --> libtree.rs:427:9
+2025-04-24 07:50:37,693 [INFO] |
+2025-04-24 07:50:37,693 [INFO] 427 |         i;
+2025-04-24 07:50:37,693 [INFO] |         ^^
+2025-04-24 07:50:37,693 [INFO] |
+2025-04-24 07:50:37,693 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-24 07:50:37,693 [INFO] 
+2025-04-24 07:50:37,695 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,696 [INFO] --> libtree.rs:511:9
+2025-04-24 07:50:37,696 [INFO] |
+2025-04-24 07:50:37,696 [INFO] 511 |         j;
+2025-04-24 07:50:37,696 [INFO] |         ^^
+2025-04-24 07:50:37,696 [INFO] 
+2025-04-24 07:50:37,696 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,696 [INFO] --> libtree.rs:572:5
+2025-04-24 07:50:37,697 [INFO] |
+2025-04-24 07:50:37,697 [INFO] 572 |     end;
+2025-04-24 07:50:37,697 [INFO] |     ^^^^
+2025-04-24 07:50:37,697 [INFO] 
+2025-04-24 07:50:37,697 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,697 [INFO] --> libtree.rs:578:9
+2025-04-24 07:50:37,697 [INFO] |
+2025-04-24 07:50:37,697 [INFO] 578 |         end;
+2025-04-24 07:50:37,697 [INFO] |         ^^^^
+2025-04-24 07:50:37,697 [INFO] 
+2025-04-24 07:50:37,697 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,698 [INFO] --> libtree.rs:588:13
+2025-04-24 07:50:37,698 [INFO] |
+2025-04-24 07:50:37,698 [INFO] 588 |             j;
+2025-04-24 07:50:37,698 [INFO] |             ^^
+2025-04-24 07:50:37,698 [INFO] 
+2025-04-24 07:50:37,698 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,698 [INFO] --> libtree.rs:610:9
+2025-04-24 07:50:37,698 [INFO] |
+2025-04-24 07:50:37,698 [INFO] 610 |         i;
+2025-04-24 07:50:37,698 [INFO] |         ^^
+2025-04-24 07:50:37,698 [INFO] 
+2025-04-24 07:50:37,699 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,699 [INFO] --> libtree.rs:651:13
+2025-04-24 07:50:37,699 [INFO] |
+2025-04-24 07:50:37,699 [INFO] 651 |             i;
+2025-04-24 07:50:37,699 [INFO] |             ^^
+2025-04-24 07:50:37,699 [INFO] 
+2025-04-24 07:50:37,699 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,699 [INFO] --> libtree.rs:673:13
+2025-04-24 07:50:37,699 [INFO] |
+2025-04-24 07:50:37,699 [INFO] 673 |             i;
+2025-04-24 07:50:37,700 [INFO] |             ^^
+2025-04-24 07:50:37,700 [INFO] 
+2025-04-24 07:50:37,700 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,700 [INFO] --> libtree.rs:769:13
+2025-04-24 07:50:37,700 [INFO] |
+2025-04-24 07:50:37,700 [INFO] 769 |             offset;
+2025-04-24 07:50:37,701 [INFO] |             ^^^^^^^
+2025-04-24 07:50:37,701 [INFO] 
+2025-04-24 07:50:37,701 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,701 [INFO] --> libtree.rs:841:17
+2025-04-24 07:50:37,701 [INFO] |
+2025-04-24 07:50:37,701 [INFO] 841 |                 i;
+2025-04-24 07:50:37,701 [INFO] |                 ^^
+2025-04-24 07:50:37,701 [INFO] 
+2025-04-24 07:50:37,702 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,702 [INFO] --> libtree.rs:866:9
+2025-04-24 07:50:37,703 [INFO] |
+2025-04-24 07:50:37,703 [INFO] 866 |         curr_src;
+2025-04-24 07:50:37,703 [INFO] |         ^^^^^^^^^
+2025-04-24 07:50:37,703 [INFO] 
+2025-04-24 07:50:37,703 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,704 [INFO] --> libtree.rs:871:13
+2025-04-24 07:50:37,704 [INFO] |
+2025-04-24 07:50:37,704 [INFO] 871 |             curr_src;
+2025-04-24 07:50:37,705 [INFO] |             ^^^^^^^^^
+2025-04-24 07:50:37,705 [INFO] 
+2025-04-24 07:50:37,705 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,705 [INFO] --> libtree.rs:928:13
+2025-04-24 07:50:37,705 [INFO] |
+2025-04-24 07:50:37,706 [INFO] 928 |             curr_src;
+2025-04-24 07:50:37,706 [INFO] |             ^^^^^^^^^
+2025-04-24 07:50:37,707 [INFO] 
+2025-04-24 07:50:37,707 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,707 [INFO] --> libtree.rs:977:13
+2025-04-24 07:50:37,708 [INFO] |
+2025-04-24 07:50:37,708 [INFO] 977 |             start;
+2025-04-24 07:50:37,708 [INFO] |             ^^^^^^
+2025-04-24 07:50:37,708 [INFO] 
+2025-04-24 07:50:37,709 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,709 [INFO] --> libtree.rs:1112:9
+2025-04-24 07:50:37,710 [INFO] |
+2025-04-24 07:50:37,710 [INFO] 1112 |         i;
+2025-04-24 07:50:37,710 [INFO] |         ^^
+2025-04-24 07:50:37,710 [INFO] 
+2025-04-24 07:50:37,711 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,711 [INFO] --> libtree.rs:1151:9
+2025-04-24 07:50:37,711 [INFO] |
+2025-04-24 07:50:37,713 [INFO] 1151 |         i_0;
+2025-04-24 07:50:37,713 [INFO] |         ^^^^
+2025-04-24 07:50:37,713 [INFO] 
+2025-04-24 07:50:37,713 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,714 [INFO] --> libtree.rs:1208:13
+2025-04-24 07:50:37,715 [INFO] |
+2025-04-24 07:50:37,715 [INFO] 1208 |             j;
+2025-04-24 07:50:37,715 [INFO] |             ^^
+2025-04-24 07:50:37,716 [INFO] 
+2025-04-24 07:50:37,716 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,716 [INFO] --> libtree.rs:1304:9
+2025-04-24 07:50:37,716 [INFO] |
+2025-04-24 07:50:37,717 [INFO] 1304 |         i;
+2025-04-24 07:50:37,717 [INFO] |         ^^
+2025-04-24 07:50:37,717 [INFO] 
+2025-04-24 07:50:37,718 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,718 [INFO] --> libtree.rs:1522:13
+2025-04-24 07:50:37,718 [INFO] |
+2025-04-24 07:50:37,719 [INFO] 1522 |             i;
+2025-04-24 07:50:37,719 [INFO] |             ^^
+2025-04-24 07:50:37,719 [INFO] 
+2025-04-24 07:50:37,719 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,720 [INFO] --> libtree.rs:1546:13
+2025-04-24 07:50:37,720 [INFO] |
+2025-04-24 07:50:37,721 [INFO] 1546 |             i_0;
+2025-04-24 07:50:37,721 [INFO] |             ^^^^
+2025-04-24 07:50:37,721 [INFO] 
+2025-04-24 07:50:37,722 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,723 [INFO] --> libtree.rs:1710:9
+2025-04-24 07:50:37,723 [INFO] |
+2025-04-24 07:50:37,723 [INFO] 1710 |         vaddr_idx;
+2025-04-24 07:50:37,724 [INFO] |         ^^^^^^^^^^
+2025-04-24 07:50:37,724 [INFO] 
+2025-04-24 07:50:37,725 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,725 [INFO] --> libtree.rs:1857:9
+2025-04-24 07:50:37,725 [INFO] |
+2025-04-24 07:50:37,726 [INFO] 1857 |         i_1;
+2025-04-24 07:50:37,726 [INFO] |         ^^^^
+2025-04-24 07:50:37,726 [INFO] 
+2025-04-24 07:50:37,726 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,727 [INFO] --> libtree.rs:1930:13
+2025-04-24 07:50:37,727 [INFO] |
+2025-04-24 07:50:37,727 [INFO] 1930 |             j;
+2025-04-24 07:50:37,727 [INFO] |             ^^
+2025-04-24 07:50:37,727 [INFO] 
+2025-04-24 07:50:37,729 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,730 [INFO] --> libtree.rs:2061:9
+2025-04-24 07:50:37,730 [INFO] |
+2025-04-24 07:50:37,730 [INFO] 2061 |         i;
+2025-04-24 07:50:37,731 [INFO] |         ^^
+2025-04-24 07:50:37,731 [INFO] 
+2025-04-24 07:50:37,731 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,731 [INFO] --> libtree.rs:2097:13
+2025-04-24 07:50:37,732 [INFO] |
+2025-04-24 07:50:37,732 [INFO] 2097 |             begin;
+2025-04-24 07:50:37,732 [INFO] |             ^^^^^^
+2025-04-24 07:50:37,732 [INFO] 
+2025-04-24 07:50:37,733 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,733 [INFO] --> libtree.rs:2131:17
+2025-04-24 07:50:37,733 [INFO] |
+2025-04-24 07:50:37,734 [INFO] 2131 |                 begin;
+2025-04-24 07:50:37,734 [INFO] |                 ^^^^^^
+2025-04-24 07:50:37,734 [INFO] 
+2025-04-24 07:50:37,734 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,734 [INFO] --> libtree.rs:2373:9
+2025-04-24 07:50:37,734 [INFO] |
+2025-04-24 07:50:37,735 [INFO] 2373 |         i;
+2025-04-24 07:50:37,735 [INFO] |         ^^
+2025-04-24 07:50:37,735 [INFO] 
+2025-04-24 07:50:37,735 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,736 [INFO] --> libtree.rs:2457:13
+2025-04-24 07:50:37,736 [INFO] |
+2025-04-24 07:50:37,736 [INFO] 2457 |             arg;
+2025-04-24 07:50:37,737 [INFO] |             ^^^^
+2025-04-24 07:50:37,737 [INFO] 
+2025-04-24 07:50:37,737 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,738 [INFO] --> libtree.rs:2460:17
+2025-04-24 07:50:37,738 [INFO] |
+2025-04-24 07:50:37,739 [INFO] 2460 |                 arg;
+2025-04-24 07:50:37,739 [INFO] |                 ^^^^
+2025-04-24 07:50:37,739 [INFO] 
+2025-04-24 07:50:37,740 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,740 [INFO] --> libtree.rs:2549:21
+2025-04-24 07:50:37,741 [INFO] |
+2025-04-24 07:50:37,741 [INFO] 2549 |                     arg;
+2025-04-24 07:50:37,741 [INFO] |                     ^^^^
+2025-04-24 07:50:37,741 [INFO] 
+2025-04-24 07:50:37,742 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,742 [INFO] --> libtree.rs:2554:9
+2025-04-24 07:50:37,743 [INFO] |
+2025-04-24 07:50:37,743 [INFO] 2554 |         i;
+2025-04-24 07:50:37,743 [INFO] |         ^^
+2025-04-24 07:50:37,744 [INFO] 
+2025-04-24 07:50:37,744 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,745 [INFO] --> libtree.rs:2557:5
+2025-04-24 07:50:37,745 [INFO] |
+2025-04-24 07:50:37,746 [INFO] 2557 |     argv;
+2025-04-24 07:50:37,746 [INFO] |     ^^^^^
+2025-04-24 07:50:37,746 [INFO] 
+2025-04-24 07:50:37,746 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,747 [INFO] --> libtree.rs:2559:5
+2025-04-24 07:50:37,747 [INFO] |
+2025-04-24 07:50:37,747 [INFO] 2559 |     positional;
+2025-04-24 07:50:37,748 [INFO] |     ^^^^^^^^^^^
+2025-04-24 07:50:37,748 [INFO] 
+2025-04-24 07:50:37,748 [INFO] warning: path statement with no effect
+2025-04-24 07:50:37,748 [INFO] --> libtree.rs:2590:13
+2025-04-24 07:50:37,749 [INFO] |
+2025-04-24 07:50:37,749 [INFO] 2590 |             j;
+2025-04-24 07:50:37,749 [INFO] |             ^^
+2025-04-24 07:50:37,750 [INFO] 
+2025-04-24 07:50:37,873 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-24 07:50:37,873 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.83s
+2025-04-24 07:50:37,876 [INFO] Running: cargo build
+2025-04-24 07:50:38,126 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-04-24 07:50:38,474 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,474 [INFO] --> libtree.rs:608:9
+2025-04-24 07:50:38,474 [INFO] |
+2025-04-24 07:50:38,474 [INFO] 608 |         i;
+2025-04-24 07:50:38,475 [INFO] |         ^^
+2025-04-24 07:50:38,475 [INFO] |
+2025-04-24 07:50:38,475 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-24 07:50:38,475 [INFO] 
+2025-04-24 07:50:38,475 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,475 [INFO] --> libtree.rs:690:9
+2025-04-24 07:50:38,476 [INFO] |
+2025-04-24 07:50:38,476 [INFO] 690 |         j;
+2025-04-24 07:50:38,476 [INFO] |         ^^
+2025-04-24 07:50:38,476 [INFO] 
+2025-04-24 07:50:38,476 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,476 [INFO] --> libtree.rs:750:5
+2025-04-24 07:50:38,477 [INFO] |
+2025-04-24 07:50:38,477 [INFO] 750 |     end;
+2025-04-24 07:50:38,477 [INFO] |     ^^^^
+2025-04-24 07:50:38,477 [INFO] 
+2025-04-24 07:50:38,477 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,477 [INFO] --> libtree.rs:756:9
+2025-04-24 07:50:38,477 [INFO] |
+2025-04-24 07:50:38,478 [INFO] 756 |         end;
+2025-04-24 07:50:38,478 [INFO] |         ^^^^
+2025-04-24 07:50:38,478 [INFO] 
+2025-04-24 07:50:38,479 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,479 [INFO] --> libtree.rs:766:13
+2025-04-24 07:50:38,479 [INFO] |
+2025-04-24 07:50:38,479 [INFO] 766 |             j;
+2025-04-24 07:50:38,479 [INFO] |             ^^
+2025-04-24 07:50:38,480 [INFO] 
+2025-04-24 07:50:38,480 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,480 [INFO] --> libtree.rs:788:9
+2025-04-24 07:50:38,480 [INFO] |
+2025-04-24 07:50:38,481 [INFO] 788 |         i;
+2025-04-24 07:50:38,481 [INFO] |         ^^
+2025-04-24 07:50:38,481 [INFO] 
+2025-04-24 07:50:38,481 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,481 [INFO] --> libtree.rs:826:13
+2025-04-24 07:50:38,482 [INFO] |
+2025-04-24 07:50:38,482 [INFO] 826 |             i;
+2025-04-24 07:50:38,482 [INFO] |             ^^
+2025-04-24 07:50:38,482 [INFO] 
+2025-04-24 07:50:38,483 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,483 [INFO] --> libtree.rs:848:13
+2025-04-24 07:50:38,484 [INFO] |
+2025-04-24 07:50:38,485 [INFO] 848 |             i;
+2025-04-24 07:50:38,485 [INFO] |             ^^
+2025-04-24 07:50:38,485 [INFO] 
+2025-04-24 07:50:38,485 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,487 [INFO] --> libtree.rs:942:13
+2025-04-24 07:50:38,487 [INFO] |
+2025-04-24 07:50:38,487 [INFO] 942 |             offset;
+2025-04-24 07:50:38,487 [INFO] |             ^^^^^^^
+2025-04-24 07:50:38,487 [INFO] 
+2025-04-24 07:50:38,487 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,487 [INFO] --> libtree.rs:1010:17
+2025-04-24 07:50:38,488 [INFO] |
+2025-04-24 07:50:38,488 [INFO] 1010 |                 i;
+2025-04-24 07:50:38,488 [INFO] |                 ^^
+2025-04-24 07:50:38,491 [INFO] 
+2025-04-24 07:50:38,492 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,492 [INFO] --> libtree.rs:1035:9
+2025-04-24 07:50:38,492 [INFO] |
+2025-04-24 07:50:38,492 [INFO] 1035 |         curr_src;
+2025-04-24 07:50:38,493 [INFO] |         ^^^^^^^^^
+2025-04-24 07:50:38,493 [INFO] 
+2025-04-24 07:50:38,494 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,494 [INFO] --> libtree.rs:1040:13
+2025-04-24 07:50:38,494 [INFO] |
+2025-04-24 07:50:38,495 [INFO] 1040 |             curr_src;
+2025-04-24 07:50:38,495 [INFO] |             ^^^^^^^^^
+2025-04-24 07:50:38,495 [INFO] 
+2025-04-24 07:50:38,495 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,496 [INFO] --> libtree.rs:1097:13
+2025-04-24 07:50:38,496 [INFO] |
+2025-04-24 07:50:38,497 [INFO] 1097 |             curr_src;
+2025-04-24 07:50:38,498 [INFO] |             ^^^^^^^^^
+2025-04-24 07:50:38,498 [INFO] 
+2025-04-24 07:50:38,498 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,498 [INFO] --> libtree.rs:1142:13
+2025-04-24 07:50:38,499 [INFO] |
+2025-04-24 07:50:38,499 [INFO] 1142 |             start;
+2025-04-24 07:50:38,500 [INFO] |             ^^^^^^
+2025-04-24 07:50:38,500 [INFO] 
+2025-04-24 07:50:38,500 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,501 [INFO] --> libtree.rs:1279:9
+2025-04-24 07:50:38,501 [INFO] |
+2025-04-24 07:50:38,502 [INFO] 1279 |         i;
+2025-04-24 07:50:38,502 [INFO] |         ^^
+2025-04-24 07:50:38,502 [INFO] 
+2025-04-24 07:50:38,502 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,502 [INFO] --> libtree.rs:1318:9
+2025-04-24 07:50:38,503 [INFO] |
+2025-04-24 07:50:38,503 [INFO] 1318 |         i_0;
+2025-04-24 07:50:38,503 [INFO] |         ^^^^
+2025-04-24 07:50:38,504 [INFO] 
+2025-04-24 07:50:38,504 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,504 [INFO] --> libtree.rs:1375:13
+2025-04-24 07:50:38,505 [INFO] |
+2025-04-24 07:50:38,505 [INFO] 1375 |             j;
+2025-04-24 07:50:38,505 [INFO] |             ^^
+2025-04-24 07:50:38,506 [INFO] 
+2025-04-24 07:50:38,506 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,507 [INFO] --> libtree.rs:1472:9
+2025-04-24 07:50:38,507 [INFO] |
+2025-04-24 07:50:38,507 [INFO] 1472 |         i;
+2025-04-24 07:50:38,507 [INFO] |         ^^
+2025-04-24 07:50:38,508 [INFO] 
+2025-04-24 07:50:38,508 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,509 [INFO] --> libtree.rs:1688:13
+2025-04-24 07:50:38,509 [INFO] |
+2025-04-24 07:50:38,509 [INFO] 1688 |             i;
+2025-04-24 07:50:38,510 [INFO] |             ^^
+2025-04-24 07:50:38,517 [INFO] 
+2025-04-24 07:50:38,517 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,517 [INFO] --> libtree.rs:1712:13
+2025-04-24 07:50:38,518 [INFO] |
+2025-04-24 07:50:38,518 [INFO] 1712 |             i_0;
+2025-04-24 07:50:38,518 [INFO] |             ^^^^
+2025-04-24 07:50:38,518 [INFO] 
+2025-04-24 07:50:38,519 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,519 [INFO] --> libtree.rs:1876:9
+2025-04-24 07:50:38,519 [INFO] |
+2025-04-24 07:50:38,519 [INFO] 1876 |         vaddr_idx;
+2025-04-24 07:50:38,519 [INFO] |         ^^^^^^^^^^
+2025-04-24 07:50:38,520 [INFO] 
+2025-04-24 07:50:38,520 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,520 [INFO] --> libtree.rs:2023:9
+2025-04-24 07:50:38,520 [INFO] |
+2025-04-24 07:50:38,520 [INFO] 2023 |         i_1;
+2025-04-24 07:50:38,520 [INFO] |         ^^^^
+2025-04-24 07:50:38,520 [INFO] 
+2025-04-24 07:50:38,521 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,521 [INFO] --> libtree.rs:2096:13
+2025-04-24 07:50:38,521 [INFO] |
+2025-04-24 07:50:38,521 [INFO] 2096 |             j;
+2025-04-24 07:50:38,521 [INFO] |             ^^
+2025-04-24 07:50:38,521 [INFO] 
+2025-04-24 07:50:38,522 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,522 [INFO] --> libtree.rs:2233:9
+2025-04-24 07:50:38,522 [INFO] |
+2025-04-24 07:50:38,522 [INFO] 2233 |         i;
+2025-04-24 07:50:38,522 [INFO] |         ^^
+2025-04-24 07:50:38,522 [INFO] 
+2025-04-24 07:50:38,522 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,523 [INFO] --> libtree.rs:2270:13
+2025-04-24 07:50:38,523 [INFO] |
+2025-04-24 07:50:38,523 [INFO] 2270 |             begin;
+2025-04-24 07:50:38,523 [INFO] |             ^^^^^^
+2025-04-24 07:50:38,523 [INFO] 
+2025-04-24 07:50:38,523 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,524 [INFO] --> libtree.rs:2307:17
+2025-04-24 07:50:38,524 [INFO] |
+2025-04-24 07:50:38,524 [INFO] 2307 |                 begin;
+2025-04-24 07:50:38,525 [INFO] |                 ^^^^^^
+2025-04-24 07:50:38,525 [INFO] 
+2025-04-24 07:50:38,525 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,526 [INFO] --> libtree.rs:2548:9
+2025-04-24 07:50:38,526 [INFO] |
+2025-04-24 07:50:38,526 [INFO] 2548 |         i;
+2025-04-24 07:50:38,526 [INFO] |         ^^
+2025-04-24 07:50:38,527 [INFO] 
+2025-04-24 07:50:38,527 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,528 [INFO] --> libtree.rs:2629:13
+2025-04-24 07:50:38,528 [INFO] |
+2025-04-24 07:50:38,528 [INFO] 2629 |             arg;
+2025-04-24 07:50:38,528 [INFO] |             ^^^^
+2025-04-24 07:50:38,529 [INFO] 
+2025-04-24 07:50:38,529 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,530 [INFO] --> libtree.rs:2632:17
+2025-04-24 07:50:38,530 [INFO] |
+2025-04-24 07:50:38,530 [INFO] 2632 |                 arg;
+2025-04-24 07:50:38,531 [INFO] |                 ^^^^
+2025-04-24 07:50:38,531 [INFO] 
+2025-04-24 07:50:38,531 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,532 [INFO] --> libtree.rs:2720:21
+2025-04-24 07:50:38,532 [INFO] |
+2025-04-24 07:50:38,533 [INFO] 2720 |                     arg;
+2025-04-24 07:50:38,533 [INFO] |                     ^^^^
+2025-04-24 07:50:38,534 [INFO] 
+2025-04-24 07:50:38,534 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,534 [INFO] --> libtree.rs:2725:9
+2025-04-24 07:50:38,534 [INFO] |
+2025-04-24 07:50:38,534 [INFO] 2725 |         i;
+2025-04-24 07:50:38,535 [INFO] |         ^^
+2025-04-24 07:50:38,535 [INFO] 
+2025-04-24 07:50:38,535 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,535 [INFO] --> libtree.rs:2728:5
+2025-04-24 07:50:38,535 [INFO] |
+2025-04-24 07:50:38,535 [INFO] 2728 |     argv;
+2025-04-24 07:50:38,535 [INFO] |     ^^^^^
+2025-04-24 07:50:38,535 [INFO] 
+2025-04-24 07:50:38,536 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,537 [INFO] --> libtree.rs:2730:5
+2025-04-24 07:50:38,537 [INFO] |
+2025-04-24 07:50:38,537 [INFO] 2730 |     positional;
+2025-04-24 07:50:38,538 [INFO] |     ^^^^^^^^^^^
+2025-04-24 07:50:38,539 [INFO] 
+2025-04-24 07:50:38,539 [INFO] warning: path statement with no effect
+2025-04-24 07:50:38,539 [INFO] --> libtree.rs:2761:13
+2025-04-24 07:50:38,540 [INFO] |
+2025-04-24 07:50:38,540 [INFO] 2761 |             j;
+2025-04-24 07:50:38,540 [INFO] |             ^^
+2025-04-24 07:50:38,541 [INFO] 
+2025-04-24 07:50:38,673 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-04-24 07:50:38,674 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.56s
+2025-05-04 20:34:56,819 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-05-04 20:34:57,139 [INFO] c2rust transpile succeeded
+2025-05-04 20:34:57,140 [INFO] Running: cargo build
+2025-05-04 20:34:57,395 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-05-04 20:34:58,083 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,084 [INFO] --> libtree.rs:427:9
+2025-05-04 20:34:58,084 [INFO] |
+2025-05-04 20:34:58,084 [INFO] 427 |         i;
+2025-05-04 20:34:58,084 [INFO] |         ^^
+2025-05-04 20:34:58,084 [INFO] |
+2025-05-04 20:34:58,084 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-05-04 20:34:58,085 [INFO] 
+2025-05-04 20:34:58,085 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,085 [INFO] --> libtree.rs:511:9
+2025-05-04 20:34:58,085 [INFO] |
+2025-05-04 20:34:58,085 [INFO] 511 |         j;
+2025-05-04 20:34:58,085 [INFO] |         ^^
+2025-05-04 20:34:58,085 [INFO] 
+2025-05-04 20:34:58,086 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,086 [INFO] --> libtree.rs:572:5
+2025-05-04 20:34:58,086 [INFO] |
+2025-05-04 20:34:58,086 [INFO] 572 |     end;
+2025-05-04 20:34:58,086 [INFO] |     ^^^^
+2025-05-04 20:34:58,086 [INFO] 
+2025-05-04 20:34:58,086 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,086 [INFO] --> libtree.rs:578:9
+2025-05-04 20:34:58,087 [INFO] |
+2025-05-04 20:34:58,087 [INFO] 578 |         end;
+2025-05-04 20:34:58,087 [INFO] |         ^^^^
+2025-05-04 20:34:58,087 [INFO] 
+2025-05-04 20:34:58,087 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,087 [INFO] --> libtree.rs:588:13
+2025-05-04 20:34:58,088 [INFO] |
+2025-05-04 20:34:58,088 [INFO] 588 |             j;
+2025-05-04 20:34:58,088 [INFO] |             ^^
+2025-05-04 20:34:58,088 [INFO] 
+2025-05-04 20:34:58,088 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,088 [INFO] --> libtree.rs:610:9
+2025-05-04 20:34:58,088 [INFO] |
+2025-05-04 20:34:58,088 [INFO] 610 |         i;
+2025-05-04 20:34:58,089 [INFO] |         ^^
+2025-05-04 20:34:58,089 [INFO] 
+2025-05-04 20:34:58,089 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,089 [INFO] --> libtree.rs:651:13
+2025-05-04 20:34:58,089 [INFO] |
+2025-05-04 20:34:58,089 [INFO] 651 |             i;
+2025-05-04 20:34:58,089 [INFO] |             ^^
+2025-05-04 20:34:58,090 [INFO] 
+2025-05-04 20:34:58,090 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,090 [INFO] --> libtree.rs:673:13
+2025-05-04 20:34:58,090 [INFO] |
+2025-05-04 20:34:58,090 [INFO] 673 |             i;
+2025-05-04 20:34:58,090 [INFO] |             ^^
+2025-05-04 20:34:58,090 [INFO] 
+2025-05-04 20:34:58,093 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,093 [INFO] --> libtree.rs:769:13
+2025-05-04 20:34:58,093 [INFO] |
+2025-05-04 20:34:58,094 [INFO] 769 |             offset;
+2025-05-04 20:34:58,094 [INFO] |             ^^^^^^^
+2025-05-04 20:34:58,094 [INFO] 
+2025-05-04 20:34:58,094 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,094 [INFO] --> libtree.rs:841:17
+2025-05-04 20:34:58,094 [INFO] |
+2025-05-04 20:34:58,094 [INFO] 841 |                 i;
+2025-05-04 20:34:58,095 [INFO] |                 ^^
+2025-05-04 20:34:58,095 [INFO] 
+2025-05-04 20:34:58,096 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,096 [INFO] --> libtree.rs:866:9
+2025-05-04 20:34:58,097 [INFO] |
+2025-05-04 20:34:58,097 [INFO] 866 |         curr_src;
+2025-05-04 20:34:58,097 [INFO] |         ^^^^^^^^^
+2025-05-04 20:34:58,097 [INFO] 
+2025-05-04 20:34:58,097 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,097 [INFO] --> libtree.rs:871:13
+2025-05-04 20:34:58,097 [INFO] |
+2025-05-04 20:34:58,098 [INFO] 871 |             curr_src;
+2025-05-04 20:34:58,098 [INFO] |             ^^^^^^^^^
+2025-05-04 20:34:58,099 [INFO] 
+2025-05-04 20:34:58,099 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,100 [INFO] --> libtree.rs:928:13
+2025-05-04 20:34:58,100 [INFO] |
+2025-05-04 20:34:58,105 [INFO] 928 |             curr_src;
+2025-05-04 20:34:58,106 [INFO] |             ^^^^^^^^^
+2025-05-04 20:34:58,106 [INFO] 
+2025-05-04 20:34:58,106 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,106 [INFO] --> libtree.rs:977:13
+2025-05-04 20:34:58,106 [INFO] |
+2025-05-04 20:34:58,107 [INFO] 977 |             start;
+2025-05-04 20:34:58,107 [INFO] |             ^^^^^^
+2025-05-04 20:34:58,107 [INFO] 
+2025-05-04 20:34:58,107 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,107 [INFO] --> libtree.rs:1112:9
+2025-05-04 20:34:58,108 [INFO] |
+2025-05-04 20:34:58,108 [INFO] 1112 |         i;
+2025-05-04 20:34:58,108 [INFO] |         ^^
+2025-05-04 20:34:58,108 [INFO] 
+2025-05-04 20:34:58,108 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,108 [INFO] --> libtree.rs:1151:9
+2025-05-04 20:34:58,108 [INFO] |
+2025-05-04 20:34:58,109 [INFO] 1151 |         i_0;
+2025-05-04 20:34:58,109 [INFO] |         ^^^^
+2025-05-04 20:34:58,109 [INFO] 
+2025-05-04 20:34:58,109 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,109 [INFO] --> libtree.rs:1208:13
+2025-05-04 20:34:58,109 [INFO] |
+2025-05-04 20:34:58,109 [INFO] 1208 |             j;
+2025-05-04 20:34:58,109 [INFO] |             ^^
+2025-05-04 20:34:58,110 [INFO] 
+2025-05-04 20:34:58,110 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,110 [INFO] --> libtree.rs:1304:9
+2025-05-04 20:34:58,110 [INFO] |
+2025-05-04 20:34:58,110 [INFO] 1304 |         i;
+2025-05-04 20:34:58,110 [INFO] |         ^^
+2025-05-04 20:34:58,110 [INFO] 
+2025-05-04 20:34:58,111 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,111 [INFO] --> libtree.rs:1522:13
+2025-05-04 20:34:58,111 [INFO] |
+2025-05-04 20:34:58,111 [INFO] 1522 |             i;
+2025-05-04 20:34:58,111 [INFO] |             ^^
+2025-05-04 20:34:58,111 [INFO] 
+2025-05-04 20:34:58,111 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,111 [INFO] --> libtree.rs:1546:13
+2025-05-04 20:34:58,112 [INFO] |
+2025-05-04 20:34:58,113 [INFO] 1546 |             i_0;
+2025-05-04 20:34:58,113 [INFO] |             ^^^^
+2025-05-04 20:34:58,114 [INFO] 
+2025-05-04 20:34:58,115 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,115 [INFO] --> libtree.rs:1710:9
+2025-05-04 20:34:58,115 [INFO] |
+2025-05-04 20:34:58,116 [INFO] 1710 |         vaddr_idx;
+2025-05-04 20:34:58,116 [INFO] |         ^^^^^^^^^^
+2025-05-04 20:34:58,116 [INFO] 
+2025-05-04 20:34:58,118 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,118 [INFO] --> libtree.rs:1857:9
+2025-05-04 20:34:58,118 [INFO] |
+2025-05-04 20:34:58,119 [INFO] 1857 |         i_1;
+2025-05-04 20:34:58,119 [INFO] |         ^^^^
+2025-05-04 20:34:58,120 [INFO] 
+2025-05-04 20:34:58,120 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,120 [INFO] --> libtree.rs:1930:13
+2025-05-04 20:34:58,120 [INFO] |
+2025-05-04 20:34:58,121 [INFO] 1930 |             j;
+2025-05-04 20:34:58,121 [INFO] |             ^^
+2025-05-04 20:34:58,122 [INFO] 
+2025-05-04 20:34:58,122 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,122 [INFO] --> libtree.rs:2061:9
+2025-05-04 20:34:58,123 [INFO] |
+2025-05-04 20:34:58,125 [INFO] 2061 |         i;
+2025-05-04 20:34:58,126 [INFO] |         ^^
+2025-05-04 20:34:58,127 [INFO] 
+2025-05-04 20:34:58,127 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,128 [INFO] --> libtree.rs:2097:13
+2025-05-04 20:34:58,129 [INFO] |
+2025-05-04 20:34:58,130 [INFO] 2097 |             begin;
+2025-05-04 20:34:58,131 [INFO] |             ^^^^^^
+2025-05-04 20:34:58,131 [INFO] 
+2025-05-04 20:34:58,132 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,132 [INFO] --> libtree.rs:2131:17
+2025-05-04 20:34:58,132 [INFO] |
+2025-05-04 20:34:58,133 [INFO] 2131 |                 begin;
+2025-05-04 20:34:58,134 [INFO] |                 ^^^^^^
+2025-05-04 20:34:58,134 [INFO] 
+2025-05-04 20:34:58,135 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,135 [INFO] --> libtree.rs:2373:9
+2025-05-04 20:34:58,135 [INFO] |
+2025-05-04 20:34:58,136 [INFO] 2373 |         i;
+2025-05-04 20:34:58,136 [INFO] |         ^^
+2025-05-04 20:34:58,137 [INFO] 
+2025-05-04 20:34:58,138 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,144 [INFO] --> libtree.rs:2457:13
+2025-05-04 20:34:58,144 [INFO] |
+2025-05-04 20:34:58,144 [INFO] 2457 |             arg;
+2025-05-04 20:34:58,144 [INFO] |             ^^^^
+2025-05-04 20:34:58,144 [INFO] 
+2025-05-04 20:34:58,145 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,145 [INFO] --> libtree.rs:2460:17
+2025-05-04 20:34:58,145 [INFO] |
+2025-05-04 20:34:58,145 [INFO] 2460 |                 arg;
+2025-05-04 20:34:58,145 [INFO] |                 ^^^^
+2025-05-04 20:34:58,145 [INFO] 
+2025-05-04 20:34:58,145 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,145 [INFO] --> libtree.rs:2549:21
+2025-05-04 20:34:58,146 [INFO] |
+2025-05-04 20:34:58,146 [INFO] 2549 |                     arg;
+2025-05-04 20:34:58,148 [INFO] |                     ^^^^
+2025-05-04 20:34:58,148 [INFO] 
+2025-05-04 20:34:58,148 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,148 [INFO] --> libtree.rs:2554:9
+2025-05-04 20:34:58,148 [INFO] |
+2025-05-04 20:34:58,150 [INFO] 2554 |         i;
+2025-05-04 20:34:58,150 [INFO] |         ^^
+2025-05-04 20:34:58,150 [INFO] 
+2025-05-04 20:34:58,150 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,150 [INFO] --> libtree.rs:2557:5
+2025-05-04 20:34:58,150 [INFO] |
+2025-05-04 20:34:58,150 [INFO] 2557 |     argv;
+2025-05-04 20:34:58,150 [INFO] |     ^^^^^
+2025-05-04 20:34:58,150 [INFO] 
+2025-05-04 20:34:58,150 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,150 [INFO] --> libtree.rs:2559:5
+2025-05-04 20:34:58,151 [INFO] |
+2025-05-04 20:34:58,151 [INFO] 2559 |     positional;
+2025-05-04 20:34:58,151 [INFO] |     ^^^^^^^^^^^
+2025-05-04 20:34:58,151 [INFO] 
+2025-05-04 20:34:58,151 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,151 [INFO] --> libtree.rs:2590:13
+2025-05-04 20:34:58,151 [INFO] |
+2025-05-04 20:34:58,151 [INFO] 2590 |             j;
+2025-05-04 20:34:58,151 [INFO] |             ^^
+2025-05-04 20:34:58,151 [INFO] 
+2025-05-04 20:34:58,348 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-05-04 20:34:58,348 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.98s
+2025-05-04 20:34:58,351 [INFO] Running: cargo build
+2025-05-04 20:34:58,583 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+2025-05-04 20:34:58,910 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,910 [INFO] --> libtree.rs:608:9
+2025-05-04 20:34:58,910 [INFO] |
+2025-05-04 20:34:58,910 [INFO] 608 |         i;
+2025-05-04 20:34:58,910 [INFO] |         ^^
+2025-05-04 20:34:58,911 [INFO] |
+2025-05-04 20:34:58,911 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-05-04 20:34:58,911 [INFO] 
+2025-05-04 20:34:58,911 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,911 [INFO] --> libtree.rs:690:9
+2025-05-04 20:34:58,911 [INFO] |
+2025-05-04 20:34:58,911 [INFO] 690 |         j;
+2025-05-04 20:34:58,911 [INFO] |         ^^
+2025-05-04 20:34:58,911 [INFO] 
+2025-05-04 20:34:58,912 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,912 [INFO] --> libtree.rs:750:5
+2025-05-04 20:34:58,912 [INFO] |
+2025-05-04 20:34:58,912 [INFO] 750 |     end;
+2025-05-04 20:34:58,912 [INFO] |     ^^^^
+2025-05-04 20:34:58,912 [INFO] 
+2025-05-04 20:34:58,912 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,912 [INFO] --> libtree.rs:756:9
+2025-05-04 20:34:58,913 [INFO] |
+2025-05-04 20:34:58,913 [INFO] 756 |         end;
+2025-05-04 20:34:58,913 [INFO] |         ^^^^
+2025-05-04 20:34:58,913 [INFO] 
+2025-05-04 20:34:58,913 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,913 [INFO] --> libtree.rs:766:13
+2025-05-04 20:34:58,914 [INFO] |
+2025-05-04 20:34:58,914 [INFO] 766 |             j;
+2025-05-04 20:34:58,914 [INFO] |             ^^
+2025-05-04 20:34:58,914 [INFO] 
+2025-05-04 20:34:58,914 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,914 [INFO] --> libtree.rs:788:9
+2025-05-04 20:34:58,914 [INFO] |
+2025-05-04 20:34:58,915 [INFO] 788 |         i;
+2025-05-04 20:34:58,915 [INFO] |         ^^
+2025-05-04 20:34:58,915 [INFO] 
+2025-05-04 20:34:58,915 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,915 [INFO] --> libtree.rs:826:13
+2025-05-04 20:34:58,915 [INFO] |
+2025-05-04 20:34:58,915 [INFO] 826 |             i;
+2025-05-04 20:34:58,915 [INFO] |             ^^
+2025-05-04 20:34:58,915 [INFO] 
+2025-05-04 20:34:58,916 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,916 [INFO] --> libtree.rs:848:13
+2025-05-04 20:34:58,916 [INFO] |
+2025-05-04 20:34:58,916 [INFO] 848 |             i;
+2025-05-04 20:34:58,916 [INFO] |             ^^
+2025-05-04 20:34:58,916 [INFO] 
+2025-05-04 20:34:58,918 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,918 [INFO] --> libtree.rs:942:13
+2025-05-04 20:34:58,918 [INFO] |
+2025-05-04 20:34:58,918 [INFO] 942 |             offset;
+2025-05-04 20:34:58,918 [INFO] |             ^^^^^^^
+2025-05-04 20:34:58,918 [INFO] 
+2025-05-04 20:34:58,919 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,919 [INFO] --> libtree.rs:1010:17
+2025-05-04 20:34:58,921 [INFO] |
+2025-05-04 20:34:58,922 [INFO] 1010 |                 i;
+2025-05-04 20:34:58,922 [INFO] |                 ^^
+2025-05-04 20:34:58,922 [INFO] 
+2025-05-04 20:34:58,922 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,922 [INFO] --> libtree.rs:1035:9
+2025-05-04 20:34:58,922 [INFO] |
+2025-05-04 20:34:58,924 [INFO] 1035 |         curr_src;
+2025-05-04 20:34:58,924 [INFO] |         ^^^^^^^^^
+2025-05-04 20:34:58,924 [INFO] 
+2025-05-04 20:34:58,924 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,924 [INFO] --> libtree.rs:1040:13
+2025-05-04 20:34:58,924 [INFO] |
+2025-05-04 20:34:58,924 [INFO] 1040 |             curr_src;
+2025-05-04 20:34:58,925 [INFO] |             ^^^^^^^^^
+2025-05-04 20:34:58,925 [INFO] 
+2025-05-04 20:34:58,925 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,925 [INFO] --> libtree.rs:1097:13
+2025-05-04 20:34:58,925 [INFO] |
+2025-05-04 20:34:58,925 [INFO] 1097 |             curr_src;
+2025-05-04 20:34:58,925 [INFO] |             ^^^^^^^^^
+2025-05-04 20:34:58,926 [INFO] 
+2025-05-04 20:34:58,926 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,926 [INFO] --> libtree.rs:1142:13
+2025-05-04 20:34:58,927 [INFO] |
+2025-05-04 20:34:58,927 [INFO] 1142 |             start;
+2025-05-04 20:34:58,927 [INFO] |             ^^^^^^
+2025-05-04 20:34:58,928 [INFO] 
+2025-05-04 20:34:58,929 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,930 [INFO] --> libtree.rs:1279:9
+2025-05-04 20:34:58,930 [INFO] |
+2025-05-04 20:34:58,931 [INFO] 1279 |         i;
+2025-05-04 20:34:58,931 [INFO] |         ^^
+2025-05-04 20:34:58,931 [INFO] 
+2025-05-04 20:34:58,932 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,932 [INFO] --> libtree.rs:1318:9
+2025-05-04 20:34:58,932 [INFO] |
+2025-05-04 20:34:58,932 [INFO] 1318 |         i_0;
+2025-05-04 20:34:58,933 [INFO] |         ^^^^
+2025-05-04 20:34:58,933 [INFO] 
+2025-05-04 20:34:58,933 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,934 [INFO] --> libtree.rs:1375:13
+2025-05-04 20:34:58,934 [INFO] |
+2025-05-04 20:34:58,934 [INFO] 1375 |             j;
+2025-05-04 20:34:58,935 [INFO] |             ^^
+2025-05-04 20:34:58,935 [INFO] 
+2025-05-04 20:34:58,935 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,936 [INFO] --> libtree.rs:1472:9
+2025-05-04 20:34:58,936 [INFO] |
+2025-05-04 20:34:58,936 [INFO] 1472 |         i;
+2025-05-04 20:34:58,936 [INFO] |         ^^
+2025-05-04 20:34:58,936 [INFO] 
+2025-05-04 20:34:58,937 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,937 [INFO] --> libtree.rs:1688:13
+2025-05-04 20:34:58,938 [INFO] |
+2025-05-04 20:34:58,938 [INFO] 1688 |             i;
+2025-05-04 20:34:58,938 [INFO] |             ^^
+2025-05-04 20:34:58,938 [INFO] 
+2025-05-04 20:34:58,938 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,939 [INFO] --> libtree.rs:1712:13
+2025-05-04 20:34:58,939 [INFO] |
+2025-05-04 20:34:58,939 [INFO] 1712 |             i_0;
+2025-05-04 20:34:58,940 [INFO] |             ^^^^
+2025-05-04 20:34:58,940 [INFO] 
+2025-05-04 20:34:58,940 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,940 [INFO] --> libtree.rs:1876:9
+2025-05-04 20:34:58,941 [INFO] |
+2025-05-04 20:34:58,941 [INFO] 1876 |         vaddr_idx;
+2025-05-04 20:34:58,942 [INFO] |         ^^^^^^^^^^
+2025-05-04 20:34:58,942 [INFO] 
+2025-05-04 20:34:58,942 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,942 [INFO] --> libtree.rs:2023:9
+2025-05-04 20:34:58,943 [INFO] |
+2025-05-04 20:34:58,943 [INFO] 2023 |         i_1;
+2025-05-04 20:34:58,943 [INFO] |         ^^^^
+2025-05-04 20:34:58,944 [INFO] 
+2025-05-04 20:34:58,945 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,945 [INFO] --> libtree.rs:2096:13
+2025-05-04 20:34:58,945 [INFO] |
+2025-05-04 20:34:58,945 [INFO] 2096 |             j;
+2025-05-04 20:34:58,946 [INFO] |             ^^
+2025-05-04 20:34:58,946 [INFO] 
+2025-05-04 20:34:58,946 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,947 [INFO] --> libtree.rs:2233:9
+2025-05-04 20:34:58,947 [INFO] |
+2025-05-04 20:34:58,947 [INFO] 2233 |         i;
+2025-05-04 20:34:58,947 [INFO] |         ^^
+2025-05-04 20:34:58,947 [INFO] 
+2025-05-04 20:34:58,948 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,948 [INFO] --> libtree.rs:2270:13
+2025-05-04 20:34:58,948 [INFO] |
+2025-05-04 20:34:58,948 [INFO] 2270 |             begin;
+2025-05-04 20:34:58,949 [INFO] |             ^^^^^^
+2025-05-04 20:34:58,949 [INFO] 
+2025-05-04 20:34:58,949 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,949 [INFO] --> libtree.rs:2307:17
+2025-05-04 20:34:58,949 [INFO] |
+2025-05-04 20:34:58,950 [INFO] 2307 |                 begin;
+2025-05-04 20:34:58,950 [INFO] |                 ^^^^^^
+2025-05-04 20:34:58,950 [INFO] 
+2025-05-04 20:34:58,950 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,951 [INFO] --> libtree.rs:2548:9
+2025-05-04 20:34:58,951 [INFO] |
+2025-05-04 20:34:58,951 [INFO] 2548 |         i;
+2025-05-04 20:34:58,951 [INFO] |         ^^
+2025-05-04 20:34:58,952 [INFO] 
+2025-05-04 20:34:58,952 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,952 [INFO] --> libtree.rs:2629:13
+2025-05-04 20:34:58,952 [INFO] |
+2025-05-04 20:34:58,953 [INFO] 2629 |             arg;
+2025-05-04 20:34:58,953 [INFO] |             ^^^^
+2025-05-04 20:34:58,953 [INFO] 
+2025-05-04 20:34:58,954 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,954 [INFO] --> libtree.rs:2632:17
+2025-05-04 20:34:58,954 [INFO] |
+2025-05-04 20:34:58,954 [INFO] 2632 |                 arg;
+2025-05-04 20:34:58,954 [INFO] |                 ^^^^
+2025-05-04 20:34:58,955 [INFO] 
+2025-05-04 20:34:58,955 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,955 [INFO] --> libtree.rs:2720:21
+2025-05-04 20:34:58,955 [INFO] |
+2025-05-04 20:34:58,955 [INFO] 2720 |                     arg;
+2025-05-04 20:34:58,956 [INFO] |                     ^^^^
+2025-05-04 20:34:58,956 [INFO] 
+2025-05-04 20:34:58,956 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,956 [INFO] --> libtree.rs:2725:9
+2025-05-04 20:34:58,957 [INFO] |
+2025-05-04 20:34:58,957 [INFO] 2725 |         i;
+2025-05-04 20:34:58,957 [INFO] |         ^^
+2025-05-04 20:34:58,957 [INFO] 
+2025-05-04 20:34:58,958 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,958 [INFO] --> libtree.rs:2728:5
+2025-05-04 20:34:58,958 [INFO] |
+2025-05-04 20:34:58,959 [INFO] 2728 |     argv;
+2025-05-04 20:34:58,959 [INFO] |     ^^^^^
+2025-05-04 20:34:58,959 [INFO] 
+2025-05-04 20:34:58,959 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,960 [INFO] --> libtree.rs:2730:5
+2025-05-04 20:34:58,960 [INFO] |
+2025-05-04 20:34:58,960 [INFO] 2730 |     positional;
+2025-05-04 20:34:58,960 [INFO] |     ^^^^^^^^^^^
+2025-05-04 20:34:58,960 [INFO] 
+2025-05-04 20:34:58,961 [INFO] warning: path statement with no effect
+2025-05-04 20:34:58,961 [INFO] --> libtree.rs:2761:13
+2025-05-04 20:34:58,961 [INFO] |
+2025-05-04 20:34:58,961 [INFO] 2761 |             j;
+2025-05-04 20:34:58,962 [INFO] |             ^^
+2025-05-04 20:34:58,962 [INFO] 
+2025-05-04 20:34:59,113 [INFO] warning: `c2rust_out` (lib) generated 34 warnings
+2025-05-04 20:34:59,113 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.55s

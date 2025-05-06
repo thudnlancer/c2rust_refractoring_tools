@@ -1,0 +1,1553 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/hiredis)
+warning: unnecessary parentheses around assigned value
+    --> async.rs:1567:29
+     |
+1567 |                     __res = (if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+     |                             ^
+...
+1571 |                     });
+     |                      ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+1567 ~                     __res = if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+1568 |                         __c
+1569 |                     } else {
+1570 |                         *(*__ctype_tolower_loc()).offset(__c as isize)
+1571 ~                     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> async.rs:1720:25
+     |
+1720 |                 __res = (if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+     |                         ^
+...
+1724 |                 });
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1720 ~                 __res = if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+1721 |                     __c
+1722 |                 } else {
+1723 |                     *(*__ctype_tolower_loc()).offset(__c as isize)
+1724 ~                 };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> async.rs:2123:25
+     |
+2123 |                 __res = (if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+     |                         ^
+...
+2127 |                 });
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2123 ~                 __res = if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+2124 |                     __c
+2125 |                 } else {
+2126 |                     *(*__ctype_tolower_loc()).offset(__c as isize)
+2127 ~                 };
+     |
+
+warning: unnecessary parentheses around block return value
+   --> read.rs:682:25
+    |
+682 |                         (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    |                         ^
+...
+688 |                         })
+    |                          ^
+    |
+help: remove these parentheses
+    |
+682 ~                         if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+683 |                             == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+  ...
+687 |                             __finitel(f128::f128::new(d))
+688 ~                         }
+    |
+
+warning: unused import: `::libc`
+ --> sockcompat.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2864:13
+     |
+2864 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2870 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2864 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2865 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2869 |                 __isinfl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2870 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2899:13
+     |
+2899 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2905 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2899 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2900 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2904 |                 __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2905 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2935:13
+     |
+2935 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2941 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2935 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2936 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2940 |                 __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2941 ~             }
+     |
+
+warning: crate-level attribute should be in the root module
+  --> hiredis.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> net.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> async.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> test.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused variable: `privdata`
+    --> hiredis.rs:1683:9
+     |
+1683 |     mut privdata: *mut libc::c_void,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_privdata`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `privdata`
+   --> async.rs:967:9
+    |
+967 |     mut privdata: *mut libc::c_void,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_privdata`
+
+warning: unused variable: `privdata`
+   --> async.rs:984:9
+    |
+984 |     mut privdata: *mut libc::c_void,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_privdata`
+
+warning: unused variable: `privdata`
+   --> async.rs:998:9
+    |
+998 |     mut privdata: *mut libc::c_void,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_privdata`
+
+warning: unused variable: `privdata`
+    --> async.rs:1004:9
+     |
+1004 |     mut privdata: *mut libc::c_void,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_privdata`
+
+warning: unused variable: `c`
+    --> test.rs:1284:43
+     |
+1284 | unsafe extern "C" fn do_ssl_handshake(mut c: *mut redisContext) {}
+     |                                           ^ help: if this is intentional, prefix it with an underscore: `_c`
+
+warning: unused variable: `size`
+    --> test.rs:3313:41
+     |
+3313 | unsafe extern "C" fn hi_malloc_fail(mut size: size_t) -> *mut libc::c_void {
+     |                                         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `nmemb`
+    --> test.rs:3317:9
+     |
+3317 |     mut nmemb: size_t,
+     |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_nmemb`
+
+warning: unused variable: `size`
+    --> test.rs:3318:9
+     |
+3318 |     mut size: size_t,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `nmemb`
+    --> test.rs:3323:9
+     |
+3323 |     mut nmemb: size_t,
+     |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_nmemb`
+
+warning: unused variable: `size`
+    --> test.rs:3324:9
+     |
+3324 |     mut size: size_t,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `ptr`
+    --> test.rs:3331:9
+     |
+3331 |     mut ptr: *mut libc::c_void,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_ptr`
+
+warning: unused variable: `size`
+    --> test.rs:3332:9
+     |
+3332 |     mut size: size_t,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `ac`
+    --> test.rs:3645:9
+     |
+3645 |     mut ac: *mut redisAsyncContext,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ac`
+
+warning: unused variable: `reply`
+    --> test.rs:3646:9
+     |
+3646 |     mut reply: *mut libc::c_void,
+     |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_reply`
+
+error: reference to packed field is unaligned
+   --> sds.rs:269:17
+    |
+269 |             let ref mut fresh1 = (*(s
+    |                 ^^^^^^^^^^^^^^
+    |
+    = note: `#[deny(unaligned_references)]` on by default
+    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+    = note: for more information, see issue #82523 <https://github.com/rust-lang/rust/issues/82523>
+    = note: fields of packed structs are not properly aligned, and creating a misaligned reference is undefined behavior (even if that reference is never dereferenced)
+    = help: copy the field contents to a local variable, or replace the reference with a raw pointer and use `read_unaligned`/`write_unaligned` (loads and stores via `*p` must be properly aligned even when using raw pointers)
+
+error: reference to packed field is unaligned
+   --> sds.rs:277:17
+    |
+277 |             let ref mut fresh2 = (*(s
+    |                 ^^^^^^^^^^^^^^
+    |
+    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+    = note: for more information, see issue #82523 <https://github.com/rust-lang/rust/issues/82523>
+    = note: fields of packed structs are not properly aligned, and creating a misaligned reference is undefined behavior (even if that reference is never dereferenced)
+    = help: copy the field contents to a local variable, or replace the reference with a raw pointer and use `read_unaligned`/`write_unaligned` (loads and stores via `*p` must be properly aligned even when using raw pointers)
+
+error: reference to packed field is unaligned
+   --> sds.rs:285:17
+    |
+285 |             let ref mut fresh3 = (*(s
+    |                 ^^^^^^^^^^^^^^
+    |
+    = warning: this was previously accepted by the compiler but is being phased out; it will become a hard error in a future release!
+    = note: for more information, see issue #82523 <https://github.com/rust-lang/rust/issues/82523>
+    = note: fields of packed structs are not properly aligned, and creating a misaligned reference is undefined behavior (even if that reference is never dereferenced)
+    = help: copy the field contents to a local variable, or replace the reference with a raw pointer and use `read_unaligned`/`write_unaligned` (loads and stores via `*p` must be properly aligned even when using raw pointers)
+
+warning: unnecessary `unsafe` block
+  --> alloc.rs:24:53
+   |
+24 | pub static mut hiredisAllocFns: hiredisAllocFuncs = unsafe {
+   |                                                     ^^^^^^ unnecessary `unsafe` block
+   |
+   = note: `#[warn(unused_unsafe)]` on by default
+
+warning: unnecessary `unsafe` block
+   --> hiredis.rs:636:58
+    |
+636 | static mut redisContextDefaultFuncs: redisContextFuncs = unsafe {
+    |                                                          ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> hiredis.rs:662:58
+    |
+662 | static mut defaultFunctions: redisReplyObjectFunctions = unsafe {
+    |                                                          ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> async.rs:1009:37
+     |
+1009 | static mut callbackDict: dictType = unsafe {
+     |                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: `__redisSetError` redeclared with a different signature
+  --> async.rs:80:5
+   |
+80 | /     fn __redisSetError(
+81 | |         c: *mut redisContext,
+82 | |         type_0: libc::c_int,
+83 | |         str: *const libc::c_char,
+84 | |     );
+   | |______^ this signature doesn't match the previous declaration
+   |
+  ::: net.rs:93:5
+   |
+93 | /     fn __redisSetError(
+94 | |         c: *mut redisContext,
+95 | |         type_0: libc::c_int,
+96 | |         str: *const libc::c_char,
+97 | |     );
+   | |______- `__redisSetError` previously declared here
+   |
+   = note: `#[warn(clashing_extern_declarations)]` on by default
+   = note: expected `unsafe extern "C" fn(*mut net::redisContext, i32, *const i8)`
+              found `unsafe extern "C" fn(*mut async::redisContext, i32, *const i8)`
+
+warning: `redisConnectWithOptions` redeclared with a different signature
+   --> test.rs:112:5
+    |
+112 |     fn redisConnectWithOptions(options: *const redisOptions) -> *mut redisContext;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: async.rs:62:5
+    |
+62  |     fn redisConnectWithOptions(options: *const redisOptions) -> *mut redisContext;
+    |     ------------------------------------------------------------------------------ `redisConnectWithOptions` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const async::redisOptions) -> *mut async::redisContext`
+               found `unsafe extern "C" fn(*const test::redisOptions) -> *mut test::redisContext`
+
+warning: `redisFree` redeclared with a different signature
+   --> test.rs:136:5
+    |
+136 |     fn redisFree(c: *mut redisContext);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: async.rs:63:5
+    |
+63  |     fn redisFree(c: *mut redisContext);
+    |     ----------------------------------- `redisFree` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*mut async::redisContext)`
+               found `unsafe extern "C" fn(*mut test::redisContext)`
+
+warning: `redisGetReply` redeclared with a different signature
+   --> test.rs:138:5
+    |
+138 |     fn redisGetReply(c: *mut redisContext, reply: *mut *mut libc::c_void) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: async.rs:66:5
+    |
+66  |     fn redisGetReply(c: *mut redisContext, reply: *mut *mut libc::c_void) -> libc::c_int;
+    |     ------------------------------------------------------------------------------------- `redisGetReply` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*mut async::redisContext, *mut *mut c_void) -> i32`
+               found `unsafe extern "C" fn(*mut test::redisContext, *mut *mut c_void) -> i32`
+
+warning: path statement with no effect
+   --> hiredis.rs:741:21
+    |
+741 |                     j;
+    |                     ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+    --> hiredis.rs:1199:25
+     |
+1199 |                         _p;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1208:25
+     |
+1208 |                         _p;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1212:25
+     |
+1212 |                         _p;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1220:29
+     |
+1220 | ...                   _p;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1318:13
+     |
+1318 |             c;
+     |             ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1325:9
+     |
+1325 |         c;
+     |         ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1396:29
+     |
+1396 | ...                   j;
+     |                       ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1489:9
+     |
+1489 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1522:9
+     |
+1522 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1573:9
+     |
+1573 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> hiredis.rs:1609:9
+     |
+1609 |         j;
+     |         ^^
+
+warning: path statement with no effect
+   --> async.rs:621:9
+    |
+621 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> async.rs:892:9
+    |
+892 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> read.rs:404:5
+    |
+404 |     len;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> read.rs:414:9
+    |
+414 |         ret;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> read.rs:445:9
+    |
+445 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> read.rs:447:9
+    |
+447 |         plen;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> read.rs:458:9
+    |
+458 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> read.rs:460:9
+    |
+460 |         plen;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> read.rs:499:9
+    |
+499 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> read.rs:501:9
+    |
+501 |         plen;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> read.rs:764:17
+    |
+764 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> read.rs:786:17
+    |
+786 |                 i_0;
+    |                 ^^^^
+
+warning: path statement with no effect
+    --> read.rs:1176:13
+     |
+1176 |             i;
+     |             ^^
+
+warning: path statement with no effect
+   --> sds.rs:886:5
+    |
+886 |     p;
+    |     ^^
+
+warning: path statement with no effect
+   --> sds.rs:892:9
+    |
+892 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> sds.rs:894:9
+    |
+894 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> sds.rs:921:5
+    |
+921 |     p;
+    |     ^^
+
+warning: path statement with no effect
+   --> sds.rs:927:9
+    |
+927 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> sds.rs:929:9
+    |
+929 |         p;
+    |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1032:17
+     |
+1032 |                 f;
+     |                 ^^
+
+warning: path statement with no effect
+    --> sds.rs:1121:9
+     |
+1121 |         f;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1142:9
+     |
+1142 |         sp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> sds.rs:1146:9
+     |
+1146 |         ep;
+     |         ^^^
+
+warning: path statement with no effect
+    --> sds.rs:1247:9
+     |
+1247 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1281:9
+     |
+1281 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1366:13
+     |
+1366 |             elements;
+     |             ^^^^^^^^^
+
+warning: path statement with no effect
+    --> sds.rs:1371:9
+     |
+1371 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1382:17
+     |
+1382 |                 elements;
+     |                 ^^^^^^^^^
+
+warning: path statement with no effect
+    --> sds.rs:1394:9
+     |
+1394 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1494:9
+     |
+1494 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1539:13
+     |
+1539 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> sds.rs:1583:25
+     |
+1583 |                         p;
+     |                         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1636:25
+     |
+1636 |                         p;
+     |                         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1687:21
+     |
+1687 |                     p;
+     |                     ^^
+
+warning: unused unary operation that must be used
+    --> sds.rs:1705:13
+     |
+1705 |             *argc;
+     |             ^^^^^ the unary operation produces a value
+     |
+     = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+     |
+1705 |             let _ = *argc;
+     |             +++++++
+
+warning: path statement with no effect
+    --> sds.rs:1752:17
+     |
+1752 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> sds.rs:1756:9
+     |
+1756 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1775:9
+     |
+1775 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> sds.rs:1795:9
+     |
+1795 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:1381:9
+     |
+1381 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1412:9
+     |
+1412 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1443:9
+     |
+1443 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1474:9
+     |
+1474 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1507:9
+     |
+1507 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1540:9
+     |
+1540 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1566:9
+     |
+1566 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1597:9
+     |
+1597 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1628:9
+     |
+1628 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1659:9
+     |
+1659 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1690:9
+     |
+1690 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1721:9
+     |
+1721 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1752:9
+     |
+1752 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1783:9
+     |
+1783 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1814:9
+     |
+1814 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1845:9
+     |
+1845 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1876:9
+     |
+1876 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1907:9
+     |
+1907 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1938:9
+     |
+1938 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1959:9
+     |
+1959 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:1976:9
+     |
+1976 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2012:9
+     |
+2012 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2039:9
+     |
+2039 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2072:9
+     |
+2072 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2104:9
+     |
+2104 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2126:9
+     |
+2126 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2160:9
+     |
+2160 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2171:9
+     |
+2171 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2190:9
+     |
+2190 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2212:9
+     |
+2212 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2244:9
+     |
+2244 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2278:9
+     |
+2278 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2296:9
+     |
+2296 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:2313:9
+     |
+2313 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2355:9
+     |
+2355 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2378:9
+     |
+2378 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2402:9
+     |
+2402 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2425:9
+     |
+2425 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2449:9
+     |
+2449 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2473:9
+     |
+2473 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2497:9
+     |
+2497 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2525:9
+     |
+2525 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2563:9
+     |
+2563 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2585:9
+     |
+2585 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2625:9
+     |
+2625 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2659:9
+     |
+2659 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2702:9
+     |
+2702 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2727:9
+     |
+2727 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2754:9
+     |
+2754 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2789:9
+     |
+2789 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2817:9
+     |
+2817 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2841:9
+     |
+2841 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2878:9
+     |
+2878 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2912:9
+     |
+2912 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2948:9
+     |
+2948 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2969:9
+     |
+2969 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:2993:9
+     |
+2993 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3015:9
+     |
+3015 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3037:9
+     |
+3037 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3061:9
+     |
+3061 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3110:9
+     |
+3110 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3158:9
+     |
+3158 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3211:9
+     |
+3211 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3239:9
+     |
+3239 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3276:9
+     |
+3276 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3296:9
+     |
+3296 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3310:9
+     |
+3310 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3327:5
+     |
+3327 |     insecure_calloc_calls;
+     |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3376:9
+     |
+3376 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3389:9
+     |
+3389 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3412:9
+     |
+3412 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3502:13
+     |
+3502 |             fails;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3553:9
+     |
+3553 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3585:9
+     |
+3585 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3603:9
+     |
+3603 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3691:9
+     |
+3691 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3746:9
+     |
+3746 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3779:9
+     |
+3779 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3830:9
+     |
+3830 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3859:9
+     |
+3859 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3952:9
+     |
+3952 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:3981:9
+     |
+3981 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4011:9
+     |
+4011 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4048:9
+     |
+4048 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4086:9
+     |
+4086 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4151:9
+     |
+4151 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4165:9
+     |
+4165 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4186:9
+     |
+4186 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4204:9
+     |
+4204 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4227:9
+     |
+4227 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4255:9
+     |
+4255 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4265:9
+     |
+4265 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4278:9
+     |
+4278 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4293:9
+     |
+4293 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4326:9
+     |
+4326 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4372:9
+     |
+4372 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4399:9
+     |
+4399 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4425:9
+     |
+4425 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4496:9
+     |
+4496 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4538:13
+     |
+4538 |             fails;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4545:9
+     |
+4545 |         skips;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4564:9
+     |
+4564 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4586:9
+     |
+4586 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4616:13
+     |
+4616 |             fails;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4624:9
+     |
+4624 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4678:9
+     |
+4678 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4732:9
+     |
+4732 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4785:9
+     |
+4785 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:4817:9
+     |
+4817 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4846:9
+     |
+4846 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4853:9
+     |
+4853 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4905:9
+     |
+4905 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4912:9
+     |
+4912 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4950:9
+     |
+4950 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4957:9
+     |
+4957 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:4974:9
+     |
+4974 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5013:9
+     |
+5013 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5020:9
+     |
+5020 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5039:9
+     |
+5039 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5094:9
+     |
+5094 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5101:9
+     |
+5101 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5122:9
+     |
+5122 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5161:9
+     |
+5161 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5168:9
+     |
+5168 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> test.rs:5567:9
+     |
+5567 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5614:9
+     |
+5614 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5683:13
+     |
+5683 |             fails;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5727:9
+     |
+5727 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5779:13
+     |
+5779 |             fails;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5822:9
+     |
+5822 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5875:9
+     |
+5875 |         fails;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5914:5
+     |
+5914 |     argv;
+     |     ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5916:5
+     |
+5916 |     argc;
+     |     ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5925:13
+     |
+5925 |             argv;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5927:13
+     |
+5927 |             argc;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5936:13
+     |
+5936 |             argv;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5938:13
+     |
+5938 |             argc;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5947:13
+     |
+5947 |             argv;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5949:13
+     |
+5949 |             argc;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5981:9
+     |
+5981 |         argv;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:5983:9
+     |
+5983 |         argc;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> test.rs:6034:9
+     |
+6034 |         skips;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> test.rs:6068:13
+     |
+6068 |             skips;
+     |             ^^^^^^
+
+warning: `c2rust_out` (lib) generated 229 warnings
+error: could not compile `c2rust_out` due to 6 previous errors; 229 warnings emitted

@@ -1,9 +1,16 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type hash_table;
     fn __ctype_toupper_loc() -> *mut *const __int32_t;
     fn memcpy(
@@ -58,17 +65,23 @@ extern "C" {
         __owner: __uid_t,
         __group: __gid_t,
     ) -> libc::c_int;
-    fn symlink(__from: *const libc::c_char, __to: *const libc::c_char) -> libc::c_int;
-    fn unlink(__name: *const libc::c_char) -> libc::c_int;
-    fn rmdir(__path: *const libc::c_char) -> libc::c_int;
-    static mut stdout: *mut FILE;
-    static mut stderr: *mut FILE;
+    fn unlink_error(_: *const libc::c_char);
+    fn symlink_error(_: *const libc::c_char, _: *const libc::c_char);
+    fn stat_error(_: *const libc::c_char);
+    fn open_fatal(_: *const libc::c_char);
+    fn open_error(_: *const libc::c_char);
+    fn mknod_error(_: *const libc::c_char);
+    fn close_error(_: *const libc::c_char);
+    fn chown_error_details(name: *const libc::c_char, uid: uid_t, gid: gid_t);
+    fn chmod_error_details(name: *const libc::c_char, mode: mode_t);
+    fn __overflow(_: *mut _IO_FILE, _: libc::c_int) -> libc::c_int;
+    static mut stdout: *mut _IO_FILE;
+    static mut stderr: *mut _IO_FILE;
     fn fclose(__stream: *mut FILE) -> libc::c_int;
     fn fflush_unlocked(__stream: *mut FILE) -> libc::c_int;
     fn fopen(__filename: *const libc::c_char, __modes: *const libc::c_char) -> *mut FILE;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn __overflow(_: *mut FILE, _: libc::c_int) -> libc::c_int;
     fn error(
         __status: libc::c_int,
         __errnum: libc::c_int,
@@ -92,15 +105,9 @@ extern "C" {
         __n: libc::c_ulong,
         __category: libc::c_int,
     ) -> *mut libc::c_char;
-    fn chmod_error_details(name: *const libc::c_char, mode: mode_t);
-    fn chown_error_details(name: *const libc::c_char, uid: uid_t, gid: gid_t);
-    fn close_error(_: *const libc::c_char);
-    fn mknod_error(_: *const libc::c_char);
-    fn open_error(_: *const libc::c_char);
-    fn open_fatal(_: *const libc::c_char);
-    fn stat_error(_: *const libc::c_char);
-    fn symlink_error(_: *const libc::c_char, _: *const libc::c_char);
-    fn unlink_error(_: *const libc::c_char);
+    fn rmdir(__path: *const libc::c_char) -> libc::c_int;
+    fn unlink(__name: *const libc::c_char) -> libc::c_int;
+    fn symlink(__from: *const libc::c_char, __to: *const libc::c_char) -> libc::c_int;
     fn cpio_file_stat_free(file_hdr: *mut cpio_file_stat);
     fn cpio_set_c_name(file_hdr: *mut cpio_file_stat, name: *mut libc::c_char);
     fn cpio_realloc_c_name(file_hdr: *mut cpio_file_stat, len: size_t);
@@ -112,22 +119,7 @@ extern "C" {
         s: *mut dynamic_string,
         eos: libc::c_char,
     ) -> *mut libc::c_char;
-    static mut archive_format: archive_format;
-    static mut io_block_size: libc::c_int;
-    static mut create_dir_flag: libc::c_int;
-    static mut rename_flag: libc::c_int;
-    static mut rename_batch_file: *mut libc::c_char;
-    static mut table_flag: libc::c_int;
-    static mut unconditional_flag: libc::c_int;
-    static mut verbose_flag: libc::c_int;
-    static mut dot_flag: libc::c_int;
-    static mut retain_time_flag: libc::c_int;
-    static mut crc_i_flag: libc::c_int;
-    static mut append_flag: libc::c_int;
-    static mut swap_bytes_flag: libc::c_int;
-    static mut swap_halfwords_flag: libc::c_int;
-    static mut swapping_bytes: libc::c_int;
-    static mut swapping_halfwords: libc::c_int;
+    fn quotearg(arg: *const libc::c_char) -> *mut libc::c_char;
     static mut set_owner_flag: libc::c_int;
     static mut set_owner: uid_t;
     static mut set_group_flag: libc::c_int;
@@ -153,59 +145,74 @@ extern "C" {
     static mut input_is_special: libc::c_char;
     static mut input_is_seekable: libc::c_char;
     static mut output_is_seekable: libc::c_char;
+    fn tape_buffered_read(
+        in_buf: *mut libc::c_char,
+        in_des: libc::c_int,
+        num_bytes: off_t,
+    );
+    fn tape_toss_input(in_des: libc::c_int, num_bytes: off_t);
+    static mut swapping_bytes: libc::c_int;
+    static mut swapping_halfwords: libc::c_int;
+    static mut swap_halfwords_flag: libc::c_int;
+    fn read_in_tar_header(file_hdr: *mut cpio_file_stat, in_des: libc::c_int);
+    fn is_tar_header(buf: *mut libc::c_char) -> libc::c_int;
+    static mut swap_bytes_flag: libc::c_int;
+    static mut append_flag: libc::c_int;
+    fn tape_buffered_peek(
+        peek_buf: *mut libc::c_char,
+        in_des: libc::c_int,
+        num_bytes: libc::c_int,
+    ) -> libc::c_int;
+    static mut crc_i_flag: libc::c_int;
+    fn set_perms(fd: libc::c_int, header: *mut cpio_file_stat);
+    static mut retain_time_flag: libc::c_int;
+    static mut dot_flag: libc::c_int;
+    fn create_all_directories(name: *const libc::c_char);
     fn link_to_maj_min_ino(
         file_name: *mut libc::c_char,
         st_dev_maj: libc::c_int,
         st_dev_min: libc::c_int,
         st_ino: ino_t,
     ) -> libc::c_int;
-    fn link_to_name(
-        link_name: *const libc::c_char,
-        link_target: *const libc::c_char,
-    ) -> libc::c_int;
-    fn mode_string(mode: libc::c_uint, str: *mut libc::c_char);
-    fn getgroup(gid: gid_t) -> *mut libc::c_char;
-    fn getuser(uid: uid_t) -> *mut libc::c_char;
-    fn read_in_tar_header(file_hdr: *mut cpio_file_stat, in_des: libc::c_int);
-    fn is_tar_header(buf: *mut libc::c_char) -> libc::c_int;
-    fn disk_empty_output_buffer(out_des: libc::c_int, flush: bool);
-    fn tape_buffered_read(
-        in_buf: *mut libc::c_char,
-        in_des: libc::c_int,
-        num_bytes: off_t,
-    );
-    fn tape_buffered_peek(
-        peek_buf: *mut libc::c_char,
-        in_des: libc::c_int,
-        num_bytes: libc::c_int,
-    ) -> libc::c_int;
-    fn tape_toss_input(in_des: libc::c_int, num_bytes: off_t);
-    fn copy_files_tape_to_disk(
-        in_des: libc::c_int,
-        out_des: libc::c_int,
-        num_bytes: off_t,
-    );
-    fn create_all_directories(name: *const libc::c_char);
-    fn set_perms(fd: libc::c_int, header: *mut cpio_file_stat);
+    static mut verbose_flag: libc::c_int;
+    static mut unconditional_flag: libc::c_int;
+    static mut table_flag: libc::c_int;
+    static mut rename_batch_file: *mut libc::c_char;
+    static mut rename_flag: libc::c_int;
+    static mut create_dir_flag: libc::c_int;
+    static mut io_block_size: libc::c_int;
     fn set_file_times(
         fd: libc::c_int,
         name: *const libc::c_char,
         atime: libc::c_ulong,
         mtime: libc::c_ulong,
     );
+    static mut archive_format: archive_format;
+    fn link_to_name(
+        link_name: *const libc::c_char,
+        link_target: *const libc::c_char,
+    ) -> libc::c_int;
+    fn cpio_create_dir(
+        file_hdr: *mut cpio_file_stat,
+        existing_dir: libc::c_int,
+    ) -> libc::c_int;
+    fn disk_empty_output_buffer(out_des: libc::c_int, flush: bool);
+    fn copy_files_tape_to_disk(
+        in_des: libc::c_int,
+        out_des: libc::c_int,
+        num_bytes: off_t,
+    );
+    fn change_dir();
     fn cpio_safer_name_suffix(
         name: *mut libc::c_char,
         link_target: bool,
         absolute_names: bool,
         strip_leading_dots: bool,
     );
-    fn cpio_create_dir(
-        file_hdr: *mut cpio_file_stat,
-        existing_dir: libc::c_int,
-    ) -> libc::c_int;
-    fn change_dir();
+    fn getgroup(gid: gid_t) -> *mut libc::c_char;
+    fn getuser(uid: uid_t) -> *mut libc::c_char;
+    fn mode_string(mode: libc::c_uint, str: *mut libc::c_char);
     fn apply_delayed_set_stat();
-    fn quotearg(arg: *const libc::c_char) -> *mut libc::c_char;
     fn create_deferment(file_hdr: *mut cpio_file_stat) -> *mut deferment;
     fn free_deferment(d: *mut deferment);
     fn fnmatch(
@@ -305,15 +312,22 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
 pub type FILE = _IO_FILE;
 pub type uint32_t = __uint32_t;
 pub type uintmax_t = __uintmax_t;
@@ -420,17 +434,76 @@ impl archive_format {
             archive_format::arf_hpbinary => 8,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> archive_format {
+        match value {
+            0 => archive_format::arf_unknown,
+            1 => archive_format::arf_binary,
+            2 => archive_format::arf_oldascii,
+            3 => archive_format::arf_newascii,
+            4 => archive_format::arf_crcascii,
+            5 => archive_format::arf_tar,
+            6 => archive_format::arf_ustar,
+            7 => archive_format::arf_hpoldascii,
+            8 => archive_format::arf_hpbinary,
+            _ => panic!("Invalid value for archive_format: {}", value),
+        }
+    }
 }
-
-pub const arf_hpbinary: archive_format = 8;
-pub const arf_hpoldascii: archive_format = 7;
-pub const arf_ustar: archive_format = 6;
-pub const arf_tar: archive_format = 5;
-pub const arf_crcascii: archive_format = 4;
-pub const arf_newascii: archive_format = 3;
-pub const arf_oldascii: archive_format = 2;
-pub const arf_binary: archive_format = 1;
-pub const arf_unknown: archive_format = 0;
+impl AddAssign<u32> for archive_format {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for archive_format {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for archive_format {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for archive_format {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for archive_format {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for archive_format {
+    type Output = archive_format;
+    fn add(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for archive_format {
+    type Output = archive_format;
+    fn sub(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for archive_format {
+    type Output = archive_format;
+    fn mul(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for archive_format {
+    type Output = archive_format;
+    fn div(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for archive_format {
+    type Output = archive_format;
+    fn rem(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
@@ -473,13 +546,34 @@ pub struct hash_tuning {
     pub growth_factor: libc::c_float,
     pub is_n_buckets: bool,
 }
-pub type Hash_data_freer = Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
-pub type Hash_comparator = Option::<
+pub type Hash_data_freer = Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
+pub type Hash_comparator = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> bool,
 >;
-pub type Hash_hasher = Option::<
+pub type Hash_hasher = Option<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
+#[inline]
+unsafe extern "C" fn gnu_dev_minor(mut __dev: __dev_t) -> libc::c_uint {
+    let mut __minor: libc::c_uint = 0;
+    __minor = ((__dev & 0xff as libc::c_uint as __dev_t) >> 0 as libc::c_int)
+        as libc::c_uint;
+    __minor = (__minor as libc::c_ulong
+        | (__dev & 0xffffff00000 as libc::c_ulong) >> 12 as libc::c_int) as libc::c_uint;
+    return __minor;
+}
+#[inline]
+unsafe extern "C" fn gnu_dev_makedev(
+    mut __major: libc::c_uint,
+    mut __minor: libc::c_uint,
+) -> __dev_t {
+    let mut __dev: __dev_t = 0;
+    __dev = ((__major & 0xfff as libc::c_uint) as __dev_t) << 8 as libc::c_int;
+    __dev |= ((__major & 0xfffff000 as libc::c_uint) as __dev_t) << 32 as libc::c_int;
+    __dev |= ((__minor & 0xff as libc::c_uint) as __dev_t) << 0 as libc::c_int;
+    __dev |= ((__minor & 0xffffff00 as libc::c_uint) as __dev_t) << 12 as libc::c_int;
+    return __dev;
+}
 #[inline]
 unsafe extern "C" fn toupper(mut __c: libc::c_int) -> libc::c_int {
     return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {
@@ -519,27 +613,6 @@ unsafe extern "C" fn gnu_dev_major(mut __dev: __dev_t) -> libc::c_uint {
         | (__dev & 0xfffff00000000000 as libc::c_ulong) >> 32 as libc::c_int)
         as libc::c_uint;
     return __major;
-}
-#[inline]
-unsafe extern "C" fn gnu_dev_minor(mut __dev: __dev_t) -> libc::c_uint {
-    let mut __minor: libc::c_uint = 0;
-    __minor = ((__dev & 0xff as libc::c_uint as __dev_t) >> 0 as libc::c_int)
-        as libc::c_uint;
-    __minor = (__minor as libc::c_ulong
-        | (__dev & 0xffffff00000 as libc::c_ulong) >> 12 as libc::c_int) as libc::c_uint;
-    return __minor;
-}
-#[inline]
-unsafe extern "C" fn gnu_dev_makedev(
-    mut __major: libc::c_uint,
-    mut __minor: libc::c_uint,
-) -> __dev_t {
-    let mut __dev: __dev_t = 0;
-    __dev = ((__major & 0xfff as libc::c_uint) as __dev_t) << 8 as libc::c_int;
-    __dev |= ((__major & 0xfffff000 as libc::c_uint) as __dev_t) << 32 as libc::c_int;
-    __dev |= ((__minor & 0xff as libc::c_uint) as __dev_t) << 0 as libc::c_int;
-    __dev |= ((__minor & 0xffffff00 as libc::c_uint) as __dev_t) << 12 as libc::c_int;
-    return __dev;
 }
 #[inline]
 unsafe extern "C" fn fputc_unlocked(
@@ -639,20 +712,26 @@ unsafe extern "C" fn query_rename(
 }
 unsafe extern "C" fn tape_skip_padding(mut in_file_des: libc::c_int, mut offset: off_t) {
     let mut pad: off_t = 0;
-    if archive_format as libc::c_uint == arf_crcascii as libc::c_int as libc::c_uint
-        || archive_format as libc::c_uint == arf_newascii as libc::c_int as libc::c_uint
+    if archive_format as libc::c_uint
+        == archive_format::arf_crcascii as libc::c_int as libc::c_uint
+        || archive_format as libc::c_uint
+            == archive_format::arf_newascii as libc::c_int as libc::c_uint
     {
         pad = (4 as libc::c_int as libc::c_long
             - offset % 4 as libc::c_int as libc::c_long)
             % 4 as libc::c_int as libc::c_long;
-    } else if archive_format as libc::c_uint == arf_binary as libc::c_int as libc::c_uint
-        || archive_format as libc::c_uint == arf_hpbinary as libc::c_int as libc::c_uint
+    } else if archive_format as libc::c_uint
+        == archive_format::arf_binary as libc::c_int as libc::c_uint
+        || archive_format as libc::c_uint
+            == archive_format::arf_hpbinary as libc::c_int as libc::c_uint
     {
         pad = (2 as libc::c_int as libc::c_long
             - offset % 2 as libc::c_int as libc::c_long)
             % 2 as libc::c_int as libc::c_long;
-    } else if archive_format as libc::c_uint == arf_tar as libc::c_int as libc::c_uint
-        || archive_format as libc::c_uint == arf_ustar as libc::c_int as libc::c_uint
+    } else if archive_format as libc::c_uint
+        == archive_format::arf_tar as libc::c_int as libc::c_uint
+        || archive_format as libc::c_uint
+            == archive_format::arf_ustar as libc::c_int as libc::c_uint
     {
         pad = (512 as libc::c_int as libc::c_long
             - offset % 512 as libc::c_int as libc::c_long)
@@ -704,9 +783,10 @@ unsafe extern "C" fn list_file(
         if (*file_hdr).c_mode & 0o170000 as libc::c_int as libc::c_uint
             == 0o120000 as libc::c_int as libc::c_uint
         {
-            if archive_format as libc::c_uint != arf_tar as libc::c_int as libc::c_uint
+            if archive_format as libc::c_uint
+                != archive_format::arf_tar as libc::c_int as libc::c_uint
                 && archive_format as libc::c_uint
-                    != arf_ustar as libc::c_int as libc::c_uint
+                    != archive_format::arf_ustar as libc::c_int as libc::c_uint
             {
                 let mut link_name: *mut libc::c_char = get_link_name(
                     file_hdr,
@@ -967,9 +1047,9 @@ unsafe extern "C" fn copyin_regular_file(
     } else {
         if (*file_hdr).c_nlink > 1 as libc::c_int as libc::c_ulong
             && (archive_format as libc::c_uint
-                == arf_newascii as libc::c_int as libc::c_uint
+                == archive_format::arf_newascii as libc::c_int as libc::c_uint
                 || archive_format as libc::c_uint
-                    == arf_crcascii as libc::c_int as libc::c_uint)
+                    == archive_format::arf_crcascii as libc::c_int as libc::c_uint)
         {
             let mut link_res: libc::c_int = 0;
             if (*file_hdr).c_filesize == 0 as libc::c_int as libc::c_long {
@@ -990,8 +1070,10 @@ unsafe extern "C" fn copyin_regular_file(
                 return;
             }
         } else if (*file_hdr).c_nlink > 1 as libc::c_int as libc::c_ulong
-            && archive_format as libc::c_uint != arf_tar as libc::c_int as libc::c_uint
-            && archive_format as libc::c_uint != arf_ustar as libc::c_int as libc::c_uint
+            && archive_format as libc::c_uint
+                != archive_format::arf_tar as libc::c_int as libc::c_uint
+            && archive_format as libc::c_uint
+                != archive_format::arf_ustar as libc::c_int as libc::c_uint
         {
             let mut link_res_0: libc::c_int = 0;
             link_res_0 = link_to_maj_min_ino(
@@ -1006,9 +1088,9 @@ unsafe extern "C" fn copyin_regular_file(
                 return;
             }
         } else if (archive_format as libc::c_uint
-            == arf_tar as libc::c_int as libc::c_uint
+            == archive_format::arf_tar as libc::c_int as libc::c_uint
             || archive_format as libc::c_uint
-                == arf_ustar as libc::c_int as libc::c_uint)
+                == archive_format::arf_ustar as libc::c_int as libc::c_uint)
             && !((*file_hdr).c_tar_linkname).is_null()
             && *((*file_hdr).c_tar_linkname).offset(0 as libc::c_int as isize)
                 as libc::c_int != '\0' as i32
@@ -1092,7 +1174,8 @@ unsafe extern "C" fn copyin_regular_file(
     copy_files_tape_to_disk(in_file_des, out_file_des, (*file_hdr).c_filesize);
     disk_empty_output_buffer(out_file_des, 1 as libc::c_int != 0);
     if to_stdout_option {
-        if archive_format as libc::c_uint == arf_crcascii as libc::c_int as libc::c_uint
+        if archive_format as libc::c_uint
+            == archive_format::arf_crcascii as libc::c_int as libc::c_uint
         {
             if crc != (*file_hdr).c_chksum {
                 error(
@@ -1117,7 +1200,9 @@ unsafe extern "C" fn copyin_regular_file(
     if close(out_file_des) < 0 as libc::c_int {
         close_error((*file_hdr).c_name);
     }
-    if archive_format as libc::c_uint == arf_crcascii as libc::c_int as libc::c_uint {
+    if archive_format as libc::c_uint
+        == archive_format::arf_crcascii as libc::c_int as libc::c_uint
+    {
         if crc != (*file_hdr).c_chksum {
             error(
                 0 as libc::c_int,
@@ -1136,9 +1221,10 @@ unsafe extern "C" fn copyin_regular_file(
     }
     tape_skip_padding(in_file_des, (*file_hdr).c_filesize);
     if (*file_hdr).c_nlink > 1 as libc::c_int as libc::c_ulong
-        && (archive_format as libc::c_uint == arf_newascii as libc::c_int as libc::c_uint
+        && (archive_format as libc::c_uint
+            == archive_format::arf_newascii as libc::c_int as libc::c_uint
             || archive_format as libc::c_uint
-                == arf_crcascii as libc::c_int as libc::c_uint)
+                == archive_format::arf_crcascii as libc::c_int as libc::c_uint)
     {
         create_defered_links(file_hdr);
     }
@@ -1149,8 +1235,10 @@ unsafe extern "C" fn copyin_device(mut file_hdr: *mut cpio_file_stat) {
         return;
     }
     if (*file_hdr).c_nlink > 1 as libc::c_int as libc::c_ulong
-        && archive_format as libc::c_uint != arf_tar as libc::c_int as libc::c_uint
-        && archive_format as libc::c_uint != arf_ustar as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::arf_tar as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::arf_ustar as libc::c_int as libc::c_uint
     {
         let mut link_res: libc::c_int = 0;
         link_res = link_to_maj_min_ino(
@@ -1162,7 +1250,8 @@ unsafe extern "C" fn copyin_device(mut file_hdr: *mut cpio_file_stat) {
         if link_res == 0 as libc::c_int {
             return;
         }
-    } else if archive_format as libc::c_uint == arf_ustar as libc::c_int as libc::c_uint
+    } else if archive_format as libc::c_uint
+        == archive_format::arf_ustar as libc::c_int as libc::c_uint
         && !((*file_hdr).c_tar_linkname).is_null()
         && *((*file_hdr).c_tar_linkname).offset(0 as libc::c_int as isize) as libc::c_int
             != '\0' as i32
@@ -1308,8 +1397,7 @@ unsafe extern "C" fn symlink_placeholder(
     (*p).gid = (*file_stat).c_gid;
     (*p).mtime = (*file_stat).c_mtime;
     strcpy(((*p).target).as_mut_ptr(), newpath);
-    (*p)
-        .source = ((*p).target)
+    (*p).source = ((*p).target)
         .as_mut_ptr()
         .offset(newlen as isize)
         .offset(1 as libc::c_int as isize);
@@ -1410,8 +1498,10 @@ unsafe extern "C" fn copyin_link(
 ) {
     let mut link_name: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut res: libc::c_int = 0;
-    if archive_format as libc::c_uint != arf_tar as libc::c_int as libc::c_uint
-        && archive_format as libc::c_uint != arf_ustar as libc::c_int as libc::c_uint
+    if archive_format as libc::c_uint
+        != archive_format::arf_tar as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::arf_ustar as libc::c_int as libc::c_uint
     {
         if to_stdout_option {
             tape_toss_input(in_file_des, (*file_hdr).c_filesize);
@@ -1755,12 +1845,14 @@ pub unsafe extern "C" fn read_in_header(
 ) {
     let mut magic: C2RustUnnamed = C2RustUnnamed { str_0: [0; 6] };
     let mut bytes_skipped: libc::c_long = 0 as libc::c_int as libc::c_long;
-    if archive_format as libc::c_uint == arf_unknown as libc::c_int as libc::c_uint {
+    if archive_format as libc::c_uint
+        == archive_format::arf_unknown as libc::c_int as libc::c_uint
+    {
         let mut tmpbuf: C2RustUnnamed_0 = C2RustUnnamed_0 { s: [0; 512] };
         let mut check_tar: libc::c_int = 0;
         let mut peeked_bytes: libc::c_int = 0;
         while archive_format as libc::c_uint
-            == arf_unknown as libc::c_int as libc::c_uint
+            == archive_format::arf_unknown as libc::c_int as libc::c_uint
         {
             peeked_bytes = tape_buffered_peek(
                 (tmpbuf.s).as_mut_ptr(),
@@ -1785,21 +1877,21 @@ pub unsafe extern "C" fn read_in_header(
                 6 as libc::c_int as libc::c_ulong,
             ) == 0
             {
-                archive_format = arf_newascii;
+                archive_format = archive_format::arf_newascii;
             } else if strncmp(
                 (tmpbuf.s).as_mut_ptr(),
                 b"070707\0" as *const u8 as *const libc::c_char,
                 6 as libc::c_int as libc::c_ulong,
             ) == 0
             {
-                archive_format = arf_oldascii;
+                archive_format = archive_format::arf_oldascii;
             } else if strncmp(
                 (tmpbuf.s).as_mut_ptr(),
                 b"070702\0" as *const u8 as *const libc::c_char,
                 6 as libc::c_int as libc::c_ulong,
             ) == 0
             {
-                archive_format = arf_crcascii;
+                archive_format = archive_format::arf_crcascii;
                 crc_i_flag = 1 as libc::c_int;
             } else if tmpbuf.us as libc::c_int == 0o70707 as libc::c_int
                 || tmpbuf.us as libc::c_int
@@ -1808,7 +1900,7 @@ pub unsafe extern "C" fn read_in_header(
                         | 0o70707 as libc::c_int as libc::c_ushort as libc::c_int
                             >> 8 as libc::c_int & 0xff as libc::c_int
             {
-                archive_format = arf_binary;
+                archive_format = archive_format::arf_binary;
             } else if peeked_bytes >= 512 as libc::c_int
                 && {
                     check_tar = is_tar_header((tmpbuf.s).as_mut_ptr());
@@ -1816,9 +1908,9 @@ pub unsafe extern "C" fn read_in_header(
                 }
             {
                 if check_tar == 2 as libc::c_int {
-                    archive_format = arf_ustar;
+                    archive_format = archive_format::arf_ustar;
                 } else {
-                    archive_format = arf_tar;
+                    archive_format = archive_format::arf_tar;
                 }
             } else {
                 tape_buffered_read((tmpbuf.s).as_mut_ptr(), in_des, 1 as libc::c_long);
@@ -1827,8 +1919,10 @@ pub unsafe extern "C" fn read_in_header(
             }
         }
     }
-    if archive_format as libc::c_uint == arf_tar as libc::c_int as libc::c_uint
-        || archive_format as libc::c_uint == arf_ustar as libc::c_int as libc::c_uint
+    if archive_format as libc::c_uint
+        == archive_format::arf_tar as libc::c_int as libc::c_uint
+        || archive_format as libc::c_uint
+            == archive_format::arf_ustar as libc::c_int as libc::c_uint
     {
         if append_flag != 0 {
             last_header_start = input_bytes - io_block_size as libc::c_long
@@ -1852,7 +1946,8 @@ pub unsafe extern "C" fn read_in_header(
                 + in_buff.offset_from(input_buffer) as libc::c_long
                 - 6 as libc::c_int as libc::c_long;
         }
-        if archive_format as libc::c_uint == arf_newascii as libc::c_int as libc::c_uint
+        if archive_format as libc::c_uint
+            == archive_format::arf_newascii as libc::c_int as libc::c_uint
             && strncmp(
                 (magic.str_0).as_mut_ptr(),
                 b"070701\0" as *const u8 as *const libc::c_char,
@@ -1866,7 +1961,7 @@ pub unsafe extern "C" fn read_in_header(
             read_in_new_ascii(file_hdr, in_des);
             break;
         } else if archive_format as libc::c_uint
-            == arf_crcascii as libc::c_int as libc::c_uint
+            == archive_format::arf_crcascii as libc::c_int as libc::c_uint
             && strncmp(
                 (magic.str_0).as_mut_ptr(),
                 b"070702\0" as *const u8 as *const libc::c_char,
@@ -1880,9 +1975,9 @@ pub unsafe extern "C" fn read_in_header(
             read_in_new_ascii(file_hdr, in_des);
             break;
         } else if (archive_format as libc::c_uint
-            == arf_oldascii as libc::c_int as libc::c_uint
+            == archive_format::arf_oldascii as libc::c_int as libc::c_uint
             || archive_format as libc::c_uint
-                == arf_hpoldascii as libc::c_int as libc::c_uint)
+                == archive_format::arf_hpoldascii as libc::c_int as libc::c_uint)
             && strncmp(
                 (magic.str_0).as_mut_ptr(),
                 b"070707\0" as *const u8 as *const libc::c_char,
@@ -1896,9 +1991,9 @@ pub unsafe extern "C" fn read_in_header(
             read_in_old_ascii(file_hdr, in_des);
             break;
         } else if (archive_format as libc::c_uint
-            == arf_binary as libc::c_int as libc::c_uint
+            == archive_format::arf_binary as libc::c_int as libc::c_uint
             || archive_format as libc::c_uint
-                == arf_hpbinary as libc::c_int as libc::c_uint)
+                == archive_format::arf_hpbinary as libc::c_int as libc::c_uint)
             && (magic.num as libc::c_int == 0o70707 as libc::c_int
                 || magic.num as libc::c_int
                     == (0o70707 as libc::c_int as libc::c_ushort as libc::c_int)
@@ -2007,32 +2102,27 @@ pub unsafe extern "C" fn read_in_old_ascii(
     );
     (*file_hdr).c_dev_maj = gnu_dev_major(dev);
     (*file_hdr).c_dev_min = gnu_dev_minor(dev);
-    (*file_hdr)
-        .c_ino = from_ascii(
+    (*file_hdr).c_ino = from_ascii(
         (ascii_header.c_ino).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
     );
-    (*file_hdr)
-        .c_mode = from_ascii(
+    (*file_hdr).c_mode = from_ascii(
         (ascii_header.c_mode).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
     ) as mode_t;
-    (*file_hdr)
-        .c_uid = from_ascii(
+    (*file_hdr).c_uid = from_ascii(
         (ascii_header.c_uid).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
     ) as uid_t;
-    (*file_hdr)
-        .c_gid = from_ascii(
+    (*file_hdr).c_gid = from_ascii(
         (ascii_header.c_gid).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
     ) as gid_t;
-    (*file_hdr)
-        .c_nlink = from_ascii(
+    (*file_hdr).c_nlink = from_ascii(
         (ascii_header.c_nlink).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
@@ -2044,14 +2134,12 @@ pub unsafe extern "C" fn read_in_old_ascii(
     );
     (*file_hdr).c_rdev_maj = gnu_dev_major(dev);
     (*file_hdr).c_rdev_min = gnu_dev_minor(dev);
-    (*file_hdr)
-        .c_mtime = from_ascii(
+    (*file_hdr).c_mtime = from_ascii(
         (ascii_header.c_mtime).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 11]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
     ) as time_t;
-    (*file_hdr)
-        .c_filesize = from_ascii(
+    (*file_hdr).c_filesize = from_ascii(
         (ascii_header.c_filesize).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 11]>() as libc::c_ulong,
         3 as libc::c_int as libc::c_uint,
@@ -2071,10 +2159,12 @@ pub unsafe extern "C" fn read_in_old_ascii(
                 && (*file_hdr).c_rdev_maj == 0 as libc::c_int as libc::c_uint
                 && (*file_hdr).c_rdev_min == 1 as libc::c_int as libc::c_uint
             {
-                (*file_hdr)
-                    .c_rdev_maj = gnu_dev_major((*file_hdr).c_filesize as __dev_t);
-                (*file_hdr)
-                    .c_rdev_min = gnu_dev_minor((*file_hdr).c_filesize as __dev_t);
+                (*file_hdr).c_rdev_maj = gnu_dev_major(
+                    (*file_hdr).c_filesize as __dev_t,
+                );
+                (*file_hdr).c_rdev_min = gnu_dev_minor(
+                    (*file_hdr).c_filesize as __dev_t,
+                );
                 (*file_hdr).c_filesize = 0 as libc::c_int as off_t;
             }
         }
@@ -2109,74 +2199,62 @@ pub unsafe extern "C" fn read_in_new_ascii(
             .wrapping_sub(::core::mem::size_of::<[libc::c_char; 6]>() as libc::c_ulong)
             as off_t,
     );
-    (*file_hdr)
-        .c_ino = from_ascii(
+    (*file_hdr).c_ino = from_ascii(
         (ascii_header.c_ino).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     );
-    (*file_hdr)
-        .c_mode = from_ascii(
+    (*file_hdr).c_mode = from_ascii(
         (ascii_header.c_mode).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as mode_t;
-    (*file_hdr)
-        .c_uid = from_ascii(
+    (*file_hdr).c_uid = from_ascii(
         (ascii_header.c_uid).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as uid_t;
-    (*file_hdr)
-        .c_gid = from_ascii(
+    (*file_hdr).c_gid = from_ascii(
         (ascii_header.c_gid).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as gid_t;
-    (*file_hdr)
-        .c_nlink = from_ascii(
+    (*file_hdr).c_nlink = from_ascii(
         (ascii_header.c_nlink).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     );
-    (*file_hdr)
-        .c_mtime = from_ascii(
+    (*file_hdr).c_mtime = from_ascii(
         (ascii_header.c_mtime).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as time_t;
-    (*file_hdr)
-        .c_filesize = from_ascii(
+    (*file_hdr).c_filesize = from_ascii(
         (ascii_header.c_filesize).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as off_t;
-    (*file_hdr)
-        .c_dev_maj = from_ascii(
+    (*file_hdr).c_dev_maj = from_ascii(
         (ascii_header.c_dev_maj).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as libc::c_uint;
-    (*file_hdr)
-        .c_dev_min = from_ascii(
+    (*file_hdr).c_dev_min = from_ascii(
         (ascii_header.c_dev_min).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as libc::c_uint;
-    (*file_hdr)
-        .c_rdev_maj = from_ascii(
+    (*file_hdr).c_rdev_maj = from_ascii(
         (ascii_header.c_rdev_maj).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as libc::c_uint;
-    (*file_hdr)
-        .c_rdev_min = from_ascii(
+    (*file_hdr).c_rdev_min = from_ascii(
         (ascii_header.c_rdev_min).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
     ) as libc::c_uint;
-    (*file_hdr)
-        .c_chksum = from_ascii(
+    (*file_hdr).c_chksum = from_ascii(
         (ascii_header.c_chksum).as_mut_ptr(),
         ::core::mem::size_of::<[libc::c_char; 8]>() as libc::c_ulong,
         4 as libc::c_int as libc::c_uint,
@@ -2240,12 +2318,10 @@ pub unsafe extern "C" fn read_in_binary(
     (*file_hdr).c_nlink = (*short_hdr).c_nlink as size_t;
     (*file_hdr).c_rdev_maj = gnu_dev_major((*short_hdr).c_rdev as __dev_t);
     (*file_hdr).c_rdev_min = gnu_dev_minor((*short_hdr).c_rdev as __dev_t);
-    (*file_hdr)
-        .c_mtime = (((*short_hdr).c_mtimes[0 as libc::c_int as usize] as libc::c_ulong)
-        << 16 as libc::c_int
+    (*file_hdr).c_mtime = (((*short_hdr).c_mtimes[0 as libc::c_int as usize]
+        as libc::c_ulong) << 16 as libc::c_int
         | (*short_hdr).c_mtimes[1 as libc::c_int as usize] as libc::c_ulong) as time_t;
-    (*file_hdr)
-        .c_filesize = (((*short_hdr).c_filesizes[0 as libc::c_int as usize]
+    (*file_hdr).c_filesize = (((*short_hdr).c_filesizes[0 as libc::c_int as usize]
         as libc::c_ulong) << 16 as libc::c_int
         | (*short_hdr).c_filesizes[1 as libc::c_int as usize] as libc::c_ulong) as off_t;
     read_name_from_file(file_hdr, in_des, (*short_hdr).c_namesize as uintmax_t);
@@ -2258,10 +2334,12 @@ pub unsafe extern "C" fn read_in_binary(
                 && (*file_hdr).c_rdev_maj == 0 as libc::c_int as libc::c_uint
                 && (*file_hdr).c_rdev_min == 1 as libc::c_int as libc::c_uint
             {
-                (*file_hdr)
-                    .c_rdev_maj = gnu_dev_major((*file_hdr).c_filesize as __dev_t);
-                (*file_hdr)
-                    .c_rdev_min = gnu_dev_minor((*file_hdr).c_filesize as __dev_t);
+                (*file_hdr).c_rdev_maj = gnu_dev_major(
+                    (*file_hdr).c_filesize as __dev_t,
+                );
+                (*file_hdr).c_rdev_min = gnu_dev_minor(
+                    (*file_hdr).c_filesize as __dev_t,
+                );
                 (*file_hdr).c_filesize = 0 as libc::c_int as off_t;
             }
         }
@@ -2443,9 +2521,9 @@ pub unsafe extern "C" fn process_copy_in() {
         if skip_file != 0 {
             if file_hdr.c_nlink > 1 as libc::c_int as libc::c_ulong
                 && (archive_format as libc::c_uint
-                    == arf_newascii as libc::c_int as libc::c_uint
+                    == archive_format::arf_newascii as libc::c_int as libc::c_uint
                     || archive_format as libc::c_uint
-                        == arf_crcascii as libc::c_int as libc::c_uint)
+                        == archive_format::arf_crcascii as libc::c_int as libc::c_uint)
             {
                 if create_defered_links_to_skipped(&mut file_hdr, in_file_des)
                     < 0 as libc::c_int
@@ -2467,9 +2545,9 @@ pub unsafe extern "C" fn process_copy_in() {
                 == 0o120000 as libc::c_int as libc::c_uint
             {
                 if archive_format as libc::c_uint
-                    != arf_tar as libc::c_int as libc::c_uint
+                    != archive_format::arf_tar as libc::c_int as libc::c_uint
                     && archive_format as libc::c_uint
-                        != arf_ustar as libc::c_int as libc::c_uint
+                        != archive_format::arf_ustar as libc::c_int as libc::c_uint
                 {
                     tape_toss_input(in_file_des, file_hdr.c_filesize);
                     tape_skip_padding(in_file_des, file_hdr.c_filesize);
@@ -2536,8 +2614,10 @@ pub unsafe extern "C" fn process_copy_in() {
     if append_flag != 0 {
         return;
     }
-    if archive_format as libc::c_uint == arf_newascii as libc::c_int as libc::c_uint
-        || archive_format as libc::c_uint == arf_crcascii as libc::c_int as libc::c_uint
+    if archive_format as libc::c_uint
+        == archive_format::arf_newascii as libc::c_int as libc::c_uint
+        || archive_format as libc::c_uint
+            == archive_format::arf_crcascii as libc::c_int as libc::c_uint
     {
         create_final_defers();
     }

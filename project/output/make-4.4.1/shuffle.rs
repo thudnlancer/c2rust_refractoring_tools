@@ -1,37 +1,48 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type variable_set_list;
     pub type commands;
-    fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
+    static mut not_parallel: i32;
+    fn sprintf(_: *mut i8, _: *const i8, _: ...) -> i32;
     fn free(__ptr: *mut libc::c_void);
-    fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strcasecmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
+    fn strcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
+    fn strcasecmp(_: *const i8, _: *const i8) -> i32;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn fatal(flocp: *const floc, length: size_t, fmt: *const libc::c_char, _: ...) -> !;
-    fn make_toui(_: *const libc::c_char, _: *mut *const libc::c_char) -> libc::c_uint;
-    fn make_seed(_: libc::c_uint);
-    fn make_rand() -> libc::c_uint;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn fatal(flocp: *const floc, length: size_t, fmt: *const i8, _: ...) -> !;
+    fn make_toui(_: *const i8, _: *mut *const i8) -> u32;
+    fn make_seed(_: u32);
+    fn make_rand() -> u32;
     fn xmalloc(_: size_t) -> *mut libc::c_void;
-    static mut not_parallel: libc::c_int;
 }
-pub type size_t = libc::c_ulong;
-pub type __uintmax_t = libc::c_ulong;
+pub type size_t = u64;
+pub type __uintmax_t = u64;
 pub type uintmax_t = __uintmax_t;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct file {
-    pub name: *const libc::c_char,
-    pub hname: *const libc::c_char,
-    pub vpath: *const libc::c_char,
+    pub name: *const i8,
+    pub hname: *const i8,
+    pub vpath: *const i8,
     pub deps: *mut dep,
     pub cmds: *mut commands,
-    pub stem: *const libc::c_char,
+    pub stem: *const i8,
     pub also_make: *mut dep,
     pub prev: *mut file,
     pub last: *mut file,
@@ -42,8 +53,8 @@ pub struct file {
     pub double_colon: *mut file,
     pub last_mtime: uintmax_t,
     pub mtime_before_update: uintmax_t,
-    pub considered: libc::c_uint,
-    pub command_flags: libc::c_int,
+    pub considered: u32,
+    pub command_flags: i32,
     #[bitfield(name = "update_status", ty = "update_status", bits = "0..=1")]
     #[bitfield(name = "command_state", ty = "cmd_state", bits = "2..=3")]
     #[bitfield(name = "builtin", ty = "libc::c_uint", bits = "4..=4")]
@@ -80,7 +91,7 @@ pub enum cmd_state {
     cs_not_started = 0,
 }
 impl cmd_state {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             cmd_state::cs_finished => 3,
             cmd_state::cs_running => 2,
@@ -88,12 +99,71 @@ impl cmd_state {
             cmd_state::cs_not_started => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> cmd_state {
+        match value {
+            3 => cmd_state::cs_finished,
+            2 => cmd_state::cs_running,
+            1 => cmd_state::cs_deps_running,
+            0 => cmd_state::cs_not_started,
+            _ => panic!("Invalid value for cmd_state: {}", value),
+        }
+    }
 }
-
-pub const cs_finished: cmd_state = 3;
-pub const cs_running: cmd_state = 2;
-pub const cs_deps_running: cmd_state = 1;
-pub const cs_not_started: cmd_state = 0;
+impl AddAssign<u32> for cmd_state {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for cmd_state {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for cmd_state {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for cmd_state {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for cmd_state {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for cmd_state {
+    type Output = cmd_state;
+    fn add(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for cmd_state {
+    type Output = cmd_state;
+    fn sub(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for cmd_state {
+    type Output = cmd_state;
+    fn mul(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for cmd_state {
+    type Output = cmd_state;
+    fn div(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for cmd_state {
+    type Output = cmd_state;
+    fn rem(self, rhs: u32) -> cmd_state {
+        cmd_state::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum update_status {
@@ -103,7 +173,7 @@ pub enum update_status {
     us_success = 0,
 }
 impl update_status {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             update_status::us_failed => 3,
             update_status::us_question => 2,
@@ -111,20 +181,79 @@ impl update_status {
             update_status::us_success => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> update_status {
+        match value {
+            3 => update_status::us_failed,
+            2 => update_status::us_question,
+            1 => update_status::us_none,
+            0 => update_status::us_success,
+            _ => panic!("Invalid value for update_status: {}", value),
+        }
+    }
 }
-
-pub const us_failed: update_status = 3;
-pub const us_question: update_status = 2;
-pub const us_none: update_status = 1;
-pub const us_success: update_status = 0;
+impl AddAssign<u32> for update_status {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for update_status {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for update_status {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for update_status {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for update_status {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for update_status {
+    type Output = update_status;
+    fn add(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for update_status {
+    type Output = update_status;
+    fn sub(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for update_status {
+    type Output = update_status;
+    fn mul(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for update_status {
+    type Output = update_status;
+    fn div(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for update_status {
+    type Output = update_status;
+    fn rem(self, rhs: u32) -> update_status {
+        update_status::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct dep {
     pub next: *mut dep,
-    pub name: *const libc::c_char,
+    pub name: *const i8,
     pub file: *mut file,
     pub shuf: *mut dep,
-    pub stem: *const libc::c_char,
+    pub stem: *const i8,
     #[bitfield(name = "flags", ty = "libc::c_uint", bits = "0..=7")]
     #[bitfield(name = "changed", ty = "libc::c_uint", bits = "8..=8")]
     #[bitfield(name = "ignore_mtime", ty = "libc::c_uint", bits = "9..=9")]
@@ -140,17 +269,17 @@ pub struct dep {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct floc {
-    pub filenm: *const libc::c_char,
-    pub lineno: libc::c_ulong,
-    pub offset: libc::c_ulong,
+    pub filenm: *const i8,
+    pub lineno: u64,
+    pub offset: u64,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed {
     pub mode: shuffle_mode,
-    pub seed: libc::c_uint,
-    pub shuffler: Option::<unsafe extern "C" fn(*mut *mut libc::c_void, size_t) -> ()>,
-    pub strval: [libc::c_char; 23],
+    pub seed: u32,
+    pub shuffler: Option<unsafe extern "C" fn(*mut *mut libc::c_void, size_t) -> ()>,
+    pub strval: [i8; 23],
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -161,7 +290,7 @@ pub enum shuffle_mode {
     sm_identity,
 }
 impl shuffle_mode {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             shuffle_mode::sm_none => 0,
             shuffle_mode::sm_random => 1,
@@ -169,100 +298,141 @@ impl shuffle_mode {
             shuffle_mode::sm_identity => 3,
         }
     }
+    fn from_libc_c_uint(value: u32) -> shuffle_mode {
+        match value {
+            0 => shuffle_mode::sm_none,
+            1 => shuffle_mode::sm_random,
+            2 => shuffle_mode::sm_reverse,
+            3 => shuffle_mode::sm_identity,
+            _ => panic!("Invalid value for shuffle_mode: {}", value),
+        }
+    }
 }
-
-pub const sm_identity: shuffle_mode = 3;
-pub const sm_reverse: shuffle_mode = 2;
-pub const sm_random: shuffle_mode = 1;
-pub const sm_none: shuffle_mode = 0;
+impl AddAssign<u32> for shuffle_mode {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for shuffle_mode {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for shuffle_mode {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for shuffle_mode {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for shuffle_mode {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for shuffle_mode {
+    type Output = shuffle_mode;
+    fn add(self, rhs: u32) -> shuffle_mode {
+        shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for shuffle_mode {
+    type Output = shuffle_mode;
+    fn sub(self, rhs: u32) -> shuffle_mode {
+        shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for shuffle_mode {
+    type Output = shuffle_mode;
+    fn mul(self, rhs: u32) -> shuffle_mode {
+        shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for shuffle_mode {
+    type Output = shuffle_mode;
+    fn div(self, rhs: u32) -> shuffle_mode {
+        shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for shuffle_mode {
+    type Output = shuffle_mode;
+    fn rem(self, rhs: u32) -> shuffle_mode {
+        shuffle_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 static mut config: C2RustUnnamed = unsafe {
     {
         let mut init = C2RustUnnamed {
-            mode: sm_none,
-            seed: 0 as libc::c_int as libc::c_uint,
+            mode: shuffle_mode::sm_none,
+            seed: 0 as i32 as u32,
             shuffler: None,
             strval: *::core::mem::transmute::<
                 &[u8; 23],
-                &mut [libc::c_char; 23],
+                &mut [i8; 23],
             >(b"\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0\0"),
         };
         init
     }
 };
 #[no_mangle]
-pub unsafe extern "C" fn shuffle_get_mode() -> *const libc::c_char {
-    return if config.strval[0 as libc::c_int as usize] as libc::c_int == '\0' as i32 {
-        0 as *mut libc::c_char
+pub unsafe extern "C" fn shuffle_get_mode() -> *const i8 {
+    return if config.strval[0 as i32 as usize] as i32 == '\0' as i32 {
+        0 as *mut i8
     } else {
         (config.strval).as_mut_ptr()
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn shuffle_set_mode(mut cmdarg: *const libc::c_char) {
-    if strcasecmp(cmdarg, b"reverse\0" as *const u8 as *const libc::c_char)
-        == 0 as libc::c_int
-    {
-        config.mode = sm_reverse;
-        config
-            .shuffler = Some(
+pub unsafe extern "C" fn shuffle_set_mode(mut cmdarg: *const i8) {
+    if strcasecmp(cmdarg, b"reverse\0" as *const u8 as *const i8) == 0 as i32 {
+        config.mode = shuffle_mode::sm_reverse;
+        config.shuffler = Some(
             reverse_shuffle_array
                 as unsafe extern "C" fn(*mut *mut libc::c_void, size_t) -> (),
         );
-        strcpy(
-            (config.strval).as_mut_ptr(),
-            b"reverse\0" as *const u8 as *const libc::c_char,
-        );
-    } else if strcasecmp(cmdarg, b"identity\0" as *const u8 as *const libc::c_char)
-        == 0 as libc::c_int
-    {
-        config.mode = sm_identity;
-        config
-            .shuffler = Some(
+        strcpy((config.strval).as_mut_ptr(), b"reverse\0" as *const u8 as *const i8);
+    } else if strcasecmp(cmdarg, b"identity\0" as *const u8 as *const i8) == 0 as i32 {
+        config.mode = shuffle_mode::sm_identity;
+        config.shuffler = Some(
             identity_shuffle_array
                 as unsafe extern "C" fn(*mut *mut libc::c_void, size_t) -> (),
         );
-        strcpy(
-            (config.strval).as_mut_ptr(),
-            b"identity\0" as *const u8 as *const libc::c_char,
-        );
-    } else if strcasecmp(cmdarg, b"none\0" as *const u8 as *const libc::c_char)
-        == 0 as libc::c_int
-    {
-        config.mode = sm_none;
+        strcpy((config.strval).as_mut_ptr(), b"identity\0" as *const u8 as *const i8);
+    } else if strcasecmp(cmdarg, b"none\0" as *const u8 as *const i8) == 0 as i32 {
+        config.mode = shuffle_mode::sm_none;
         config.shuffler = None;
-        config.strval[0 as libc::c_int as usize] = '\0' as i32 as libc::c_char;
+        config.strval[0 as i32 as usize] = '\0' as i32 as i8;
     } else {
-        if strcasecmp(cmdarg, b"random\0" as *const u8 as *const libc::c_char)
-            == 0 as libc::c_int
-        {
+        if strcasecmp(cmdarg, b"random\0" as *const u8 as *const i8) == 0 as i32 {
             config.seed = make_rand();
         } else {
-            let mut err: *const libc::c_char = 0 as *const libc::c_char;
+            let mut err: *const i8 = 0 as *const i8;
             config.seed = make_toui(cmdarg, &mut err);
             if !err.is_null() {
                 fatal(
                     0 as *mut floc,
                     (strlen(err)).wrapping_add(strlen(cmdarg)),
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"invalid shuffle mode: %s: '%s'\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"invalid shuffle mode: %s: '%s'\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     err,
                     cmdarg,
                 );
             }
         }
-        config.mode = sm_random;
-        config
-            .shuffler = Some(
+        config.mode = shuffle_mode::sm_random;
+        config.shuffler = Some(
             random_shuffle_array
                 as unsafe extern "C" fn(*mut *mut libc::c_void, size_t) -> (),
         );
         sprintf(
             (config.strval).as_mut_ptr(),
-            b"%u\0" as *const u8 as *const libc::c_char,
+            b"%u\0" as *const u8 as *const i8,
             config.seed,
         );
     };
@@ -272,12 +442,11 @@ unsafe extern "C" fn random_shuffle_array(
     mut len: size_t,
 ) {
     let mut i: size_t = 0;
-    i = 0 as libc::c_int as size_t;
+    i = 0 as i32 as size_t;
     while i < len {
         let mut t: *mut libc::c_void = 0 as *mut libc::c_void;
-        let mut j: libc::c_uint = (make_rand() as libc::c_ulong).wrapping_rem(len)
-            as libc::c_uint;
-        if !(i == j as libc::c_ulong) {
+        let mut j: u32 = (make_rand() as u64).wrapping_rem(len) as u32;
+        if !(i == j as u64) {
             t = *a.offset(i as isize);
             let ref mut fresh0 = *a.offset(i as isize);
             *fresh0 = *a.offset(j as isize);
@@ -293,12 +462,10 @@ unsafe extern "C" fn reverse_shuffle_array(
     mut len: size_t,
 ) {
     let mut i: size_t = 0;
-    i = 0 as libc::c_int as size_t;
-    while i < len.wrapping_div(2 as libc::c_int as libc::c_ulong) {
+    i = 0 as i32 as size_t;
+    while i < len.wrapping_div(2 as i32 as u64) {
         let mut t: *mut libc::c_void = 0 as *mut libc::c_void;
-        let mut j: size_t = len
-            .wrapping_sub(1 as libc::c_int as libc::c_ulong)
-            .wrapping_sub(i);
+        let mut j: size_t = len.wrapping_sub(1 as i32 as u64).wrapping_sub(i);
         t = *a.offset(i as isize);
         let ref mut fresh2 = *a.offset(i as isize);
         *fresh2 = *a.offset(j as isize);
@@ -313,7 +480,7 @@ unsafe extern "C" fn identity_shuffle_array(
     mut len: size_t,
 ) {}
 unsafe extern "C" fn shuffle_deps(mut deps: *mut dep) {
-    let mut ndeps: size_t = 0 as libc::c_int as size_t;
+    let mut ndeps: size_t = 0 as i32 as size_t;
     let mut dep: *mut dep = 0 as *mut dep;
     let mut da: *mut *mut libc::c_void = 0 as *mut *mut libc::c_void;
     let mut dp: *mut *mut libc::c_void = 0 as *mut *mut libc::c_void;
@@ -326,12 +493,11 @@ unsafe extern "C" fn shuffle_deps(mut deps: *mut dep) {
         ndeps;
         dep = (*dep).next;
     }
-    if ndeps == 0 as libc::c_int as libc::c_ulong {
+    if ndeps == 0 as i32 as u64 {
         return;
     }
-    da = xmalloc(
-        (::core::mem::size_of::<*mut dep>() as libc::c_ulong).wrapping_mul(ndeps),
-    ) as *mut *mut libc::c_void;
+    da = xmalloc((::core::mem::size_of::<*mut dep>() as u64).wrapping_mul(ndeps))
+        as *mut *mut libc::c_void;
     dep = deps;
     dp = da;
     while !dep.is_null() {
@@ -359,7 +525,7 @@ unsafe extern "C" fn shuffle_file_deps_recursive(mut f: *mut file) {
     if (*f).was_shuffled() != 0 {
         return;
     }
-    (*f).set_was_shuffled(1 as libc::c_int as libc::c_uint);
+    (*f).set_was_shuffled(1 as i32 as u32);
     shuffle_deps((*f).deps);
     dep = (*f).deps;
     while !dep.is_null() {
@@ -370,13 +536,13 @@ unsafe extern "C" fn shuffle_file_deps_recursive(mut f: *mut file) {
 #[no_mangle]
 pub unsafe extern "C" fn shuffle_deps_recursive(mut deps: *mut dep) {
     let mut dep: *mut dep = 0 as *mut dep;
-    if config.mode as libc::c_uint == sm_none as libc::c_int as libc::c_uint {
+    if config.mode as u32 == shuffle_mode::sm_none as i32 as u32 {
         return;
     }
     if not_parallel != 0 {
         return;
     }
-    if config.mode as libc::c_uint == sm_random as libc::c_int as libc::c_uint {
+    if config.mode as u32 == shuffle_mode::sm_random as i32 as u32 {
         make_seed(config.seed);
     }
     shuffle_deps(deps);

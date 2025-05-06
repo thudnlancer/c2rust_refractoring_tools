@@ -1,6 +1,17 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    fn generic_fatal(who: *const libc::c_char, fmt: *const libc::c_char, _: ...);
+    fn generic_fatal(who: *const i8, fmt: *const i8, _: ...);
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -22,7 +33,7 @@ pub enum tokens {
     STRING,
 }
 impl tokens {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             tokens::DELIM => 0,
             tokens::DIGIT => 1,
@@ -41,297 +52,356 @@ impl tokens {
             tokens::STRING => 14,
         }
     }
+    fn from_libc_c_uint(value: u32) -> tokens {
+        match value {
+            0 => tokens::DELIM,
+            1 => tokens::DIGIT,
+            2 => tokens::IDCHAR,
+            3 => tokens::NEWLN,
+            4 => tokens::LETTER,
+            5 => tokens::Letter,
+            6 => tokens::PERIOD,
+            7 => tokens::SBEGIN,
+            8 => tokens::SPACE,
+            9 => tokens::UNKN,
+            10 => tokens::COLON,
+            11 => tokens::ID,
+            12 => tokens::NUM,
+            13 => tokens::SEMI,
+            14 => tokens::STRING,
+            _ => panic!("Invalid value for tokens: {}", value),
+        }
+    }
 }
-
-pub const STRING: tokens = 14;
-pub const SEMI: tokens = 13;
-pub const NUM: tokens = 12;
-pub const ID: tokens = 11;
-pub const COLON: tokens = 10;
-pub const UNKN: tokens = 9;
-pub const SPACE: tokens = 8;
-pub const SBEGIN: tokens = 7;
-pub const PERIOD: tokens = 6;
-pub const Letter: tokens = 5;
-pub const LETTER: tokens = 4;
-pub const NEWLN: tokens = 3;
-pub const IDCHAR: tokens = 2;
-pub const DIGIT: tokens = 1;
-pub const DELIM: tokens = 0;
+impl AddAssign<u32> for tokens {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = tokens::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for tokens {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = tokens::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for tokens {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = tokens::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for tokens {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = tokens::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for tokens {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = tokens::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for tokens {
+    type Output = tokens;
+    fn add(self, rhs: u32) -> tokens {
+        tokens::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for tokens {
+    type Output = tokens;
+    fn sub(self, rhs: u32) -> tokens {
+        tokens::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for tokens {
+    type Output = tokens;
+    fn mul(self, rhs: u32) -> tokens {
+        tokens::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for tokens {
+    type Output = tokens;
+    fn div(self, rhs: u32) -> tokens {
+        tokens::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for tokens {
+    type Output = tokens;
+    fn rem(self, rhs: u32) -> tokens {
+        tokens::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[no_mangle]
 pub static mut ctab: [tokens; 256] = [
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    SPACE,
-    SPACE,
-    NEWLN,
-    SPACE,
-    SPACE,
-    SPACE,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    SPACE,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    DELIM,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    DELIM,
-    IDCHAR,
-    PERIOD,
-    IDCHAR,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    DIGIT,
-    COLON,
-    SEMI,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    SBEGIN,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    UNKN,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    IDCHAR,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    IDCHAR,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    LETTER,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    IDCHAR,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
-    Letter,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::SPACE,
+    tokens::SPACE,
+    tokens::NEWLN,
+    tokens::SPACE,
+    tokens::SPACE,
+    tokens::SPACE,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::SPACE,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::DELIM,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::DELIM,
+    tokens::IDCHAR,
+    tokens::PERIOD,
+    tokens::IDCHAR,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::DIGIT,
+    tokens::COLON,
+    tokens::SEMI,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::SBEGIN,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::UNKN,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::IDCHAR,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::IDCHAR,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::LETTER,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::IDCHAR,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
+    tokens::Letter,
 ];
 unsafe extern "C" fn checkidentifier(
-    mut id: *const libc::c_char,
-    mut delimiter: libc::c_int,
+    mut id: *const i8,
+    mut delimiter: i32,
     mut dotok: bool,
-) -> *const libc::c_char {
-    let mut temp: *const libc::c_char = 0 as *const libc::c_char;
-    let mut c: libc::c_char = 0;
-    let mut delim: libc::c_char = delimiter as libc::c_char;
-    let mut isid: bool = 0 as libc::c_int != 0;
+) -> *const i8 {
+    let mut temp: *const i8 = 0 as *const i8;
+    let mut c: i8 = 0;
+    let mut delim: i8 = delimiter as i8;
+    let mut isid: bool = 0 as i32 != 0;
     temp = id;
     loop {
         c = *id;
-        match ctab[c as libc::c_uchar as usize] as libc::c_uint {
+        match ctab[c as u8 as usize] as u32 {
             1 | 2 | 4 | 5 => {
-                isid = 1 as libc::c_int != 0;
+                isid = 1 as i32 != 0;
             }
             6 => {
                 if !dotok {
@@ -346,17 +416,15 @@ unsafe extern "C" fn checkidentifier(
         id;
     }
     if !isid
-        || c as libc::c_int != 0
+        || c as i32 != 0
             && (delim == 0
-                || c as libc::c_int != delim as libc::c_int
-                    && c as libc::c_int != ' ' as i32 && c as libc::c_int != '\t' as i32
-                    && c as libc::c_int != '\n' as i32)
+                || c as i32 != delim as i32 && c as i32 != ' ' as i32
+                    && c as i32 != '\t' as i32 && c as i32 != '\n' as i32)
     {
         loop {
             c = *id;
-            if !(c as libc::c_int != 0 && c as libc::c_int != ' ' as i32
-                && c as libc::c_int != '\t' as i32 && c as libc::c_int != '\n' as i32
-                && c as libc::c_int != delim as libc::c_int)
+            if !(c as i32 != 0 && c as i32 != ' ' as i32 && c as i32 != '\t' as i32
+                && c as i32 != '\n' as i32 && c as i32 != delim as i32)
             {
                 break;
             }
@@ -364,38 +432,32 @@ unsafe extern "C" fn checkidentifier(
             id;
         }
         generic_fatal(
-            0 as *const libc::c_char,
-            b"invalid %s `%.*s'\0" as *const u8 as *const libc::c_char,
-            if dotok as libc::c_int != 0 {
-                b"identifier\0" as *const u8 as *const libc::c_char
+            0 as *const i8,
+            b"invalid %s `%.*s'\0" as *const u8 as *const i8,
+            if dotok as i32 != 0 {
+                b"identifier\0" as *const u8 as *const i8
             } else {
-                b"symbol\0" as *const u8 as *const libc::c_char
+                b"symbol\0" as *const u8 as *const i8
             },
-            id.offset_from(temp) as libc::c_long as libc::c_int,
+            id.offset_from(temp) as i64 as i32,
             temp,
         );
     }
     return id;
 }
 #[no_mangle]
-pub unsafe extern "C" fn checkid(
-    mut id: *const libc::c_char,
-    mut delimiter: libc::c_int,
-) -> *const libc::c_char {
-    return checkidentifier(id, delimiter, 1 as libc::c_int != 0);
+pub unsafe extern "C" fn checkid(mut id: *const i8, mut delimiter: i32) -> *const i8 {
+    return checkidentifier(id, delimiter, 1 as i32 != 0);
 }
 #[no_mangle]
-pub unsafe extern "C" fn checksym(
-    mut sym: *const libc::c_char,
-    mut delimiter: libc::c_int,
-) -> *const libc::c_char {
-    return checkidentifier(sym, delimiter, 0 as libc::c_int != 0);
+pub unsafe extern "C" fn checksym(mut sym: *const i8, mut delimiter: i32) -> *const i8 {
+    return checkidentifier(sym, delimiter, 0 as i32 != 0);
 }
 #[no_mangle]
-pub unsafe extern "C" fn checksid(mut id: *const libc::c_char) {
-    checkid(id, 0 as libc::c_int);
+pub unsafe extern "C" fn checksid(mut id: *const i8) {
+    checkid(id, 0 as i32);
 }
 #[no_mangle]
-pub unsafe extern "C" fn checkssym(mut sym: *const libc::c_char) {
-    checksym(sym, 0 as libc::c_int);
+pub unsafe extern "C" fn checkssym(mut sym: *const i8) {
+    checksym(sym, 0 as i32);
 }

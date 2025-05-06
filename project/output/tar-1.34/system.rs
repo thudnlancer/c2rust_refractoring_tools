@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type exclist;
@@ -68,7 +78,7 @@ extern "C" {
     fn open_fatal(_: *const libc::c_char) -> !;
     fn exec_fatal(_: *const libc::c_char) -> !;
     static mut exit_status: libc::c_int;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     fn umaxtostr(_: uintmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn rpl_free(ptr: *mut libc::c_void);
     fn snprintf(
@@ -206,7 +216,7 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type __sighandler_t = Option<unsafe extern "C" fn(libc::c_int) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
@@ -272,16 +282,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -412,15 +420,74 @@ impl archive_format {
             archive_format::GNU_FORMAT => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> archive_format {
+        match value {
+            0 => archive_format::DEFAULT_FORMAT,
+            1 => archive_format::V7_FORMAT,
+            2 => archive_format::OLDGNU_FORMAT,
+            3 => archive_format::USTAR_FORMAT,
+            4 => archive_format::POSIX_FORMAT,
+            5 => archive_format::STAR_FORMAT,
+            6 => archive_format::GNU_FORMAT,
+            _ => panic!("Invalid value for archive_format: {}", value),
+        }
+    }
 }
-
-pub const GNU_FORMAT: archive_format = 6;
-pub const STAR_FORMAT: archive_format = 5;
-pub const POSIX_FORMAT: archive_format = 4;
-pub const USTAR_FORMAT: archive_format = 3;
-pub const OLDGNU_FORMAT: archive_format = 2;
-pub const V7_FORMAT: archive_format = 1;
-pub const DEFAULT_FORMAT: archive_format = 0;
+impl AddAssign<u32> for archive_format {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for archive_format {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for archive_format {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for archive_format {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for archive_format {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for archive_format {
+    type Output = archive_format;
+    fn add(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for archive_format {
+    type Output = archive_format;
+    fn sub(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for archive_format {
+    type Output = archive_format;
+    fn mul(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for archive_format {
+    type Output = archive_format;
+    fn div(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for archive_format {
+    type Output = archive_format;
+    fn rem(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -521,18 +588,77 @@ impl subcommand {
             subcommand::TEST_LABEL_SUBCOMMAND => 9,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> subcommand {
+        match value {
+            0 => subcommand::UNKNOWN_SUBCOMMAND,
+            1 => subcommand::APPEND_SUBCOMMAND,
+            2 => subcommand::CAT_SUBCOMMAND,
+            3 => subcommand::CREATE_SUBCOMMAND,
+            4 => subcommand::DELETE_SUBCOMMAND,
+            5 => subcommand::DIFF_SUBCOMMAND,
+            6 => subcommand::EXTRACT_SUBCOMMAND,
+            7 => subcommand::LIST_SUBCOMMAND,
+            8 => subcommand::UPDATE_SUBCOMMAND,
+            9 => subcommand::TEST_LABEL_SUBCOMMAND,
+            _ => panic!("Invalid value for subcommand: {}", value),
+        }
+    }
 }
-
-pub const TEST_LABEL_SUBCOMMAND: subcommand = 9;
-pub const UPDATE_SUBCOMMAND: subcommand = 8;
-pub const LIST_SUBCOMMAND: subcommand = 7;
-pub const EXTRACT_SUBCOMMAND: subcommand = 6;
-pub const DIFF_SUBCOMMAND: subcommand = 5;
-pub const DELETE_SUBCOMMAND: subcommand = 4;
-pub const CREATE_SUBCOMMAND: subcommand = 3;
-pub const CAT_SUBCOMMAND: subcommand = 2;
-pub const APPEND_SUBCOMMAND: subcommand = 1;
-pub const UNKNOWN_SUBCOMMAND: subcommand = 0;
+impl AddAssign<u32> for subcommand {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for subcommand {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for subcommand {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for subcommand {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for subcommand {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for subcommand {
+    type Output = subcommand;
+    fn add(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for subcommand {
+    type Output = subcommand;
+    fn sub(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for subcommand {
+    type Output = subcommand;
+    fn mul(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for subcommand {
+    type Output = subcommand;
+    fn div(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for subcommand {
+    type Output = subcommand;
+    fn rem(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct wordsplit {
@@ -547,14 +673,14 @@ pub struct wordsplit {
     pub ws_delim: *const libc::c_char,
     pub ws_comment: *const libc::c_char,
     pub ws_escape: [*const libc::c_char; 2],
-    pub ws_alloc_die: Option::<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
-    pub ws_error: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_debug: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
+    pub ws_alloc_die: Option<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
+    pub ws_error: Option<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
+    pub ws_debug: Option<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
     pub ws_env: *mut *const libc::c_char,
     pub ws_envbuf: *mut *mut libc::c_char,
     pub ws_envidx: size_t,
     pub ws_envsiz: size_t,
-    pub ws_getvar: Option::<
+    pub ws_getvar: Option<
         unsafe extern "C" fn(
             *mut *mut libc::c_char,
             *const libc::c_char,
@@ -563,7 +689,7 @@ pub struct wordsplit {
         ) -> libc::c_int,
     >,
     pub ws_closure: *mut libc::c_void,
-    pub ws_command: Option::<
+    pub ws_command: Option<
         unsafe extern "C" fn(
             *mut *mut libc::c_char,
             *const libc::c_char,
@@ -629,11 +755,10 @@ unsafe extern "C" fn priv_set_restore_linkdir() -> libc::c_int {
 }
 unsafe extern "C" fn xexec(mut cmd: *const libc::c_char) {
     let mut argv: [*mut libc::c_char; 4] = [0 as *mut libc::c_char; 4];
-    argv[0 as libc::c_int
-        as usize] = b"/bin/sh\0" as *const u8 as *const libc::c_char
+    argv[0 as libc::c_int as usize] = b"/bin/sh\0" as *const u8 as *const libc::c_char
         as *mut libc::c_char;
-    argv[1 as libc::c_int
-        as usize] = b"-c\0" as *const u8 as *const libc::c_char as *mut libc::c_char;
+    argv[1 as libc::c_int as usize] = b"-c\0" as *const u8 as *const libc::c_char
+        as *mut libc::c_char;
     argv[2 as libc::c_int as usize] = cmd as *mut libc::c_char;
     argv[3 as libc::c_int as usize] = 0 as *mut libc::c_char;
     execv(
@@ -1481,13 +1606,15 @@ unsafe extern "C" fn stat_to_env(
     str_to_env(
         b"TAR_FORMAT\0" as *const u8 as *const libc::c_char,
         archive_format_string(
-            (if current_format as libc::c_uint
-                == DEFAULT_FORMAT as libc::c_int as libc::c_uint
-            {
-                archive_format as libc::c_uint
-            } else {
-                current_format as libc::c_uint
-            }) as archive_format,
+            archive_format::from_libc_c_uint(
+                (if current_format as libc::c_uint
+                    == archive_format::DEFAULT_FORMAT as libc::c_int as libc::c_uint
+                {
+                    archive_format as libc::c_uint
+                } else {
+                    current_format as libc::c_uint
+                }) as u32,
+            ),
         ),
     );
     chr_to_env(b"TAR_FILETYPE\0" as *const u8 as *const libc::c_char, type_0);
@@ -1542,7 +1669,7 @@ unsafe extern "C" fn stat_to_env(
     };
 }
 static mut global_pid: pid_t = 0;
-static mut pipe_handler: Option::<unsafe extern "C" fn(libc::c_int) -> ()> = None;
+static mut pipe_handler: Option<unsafe extern "C" fn(libc::c_int) -> ()> = None;
 #[no_mangle]
 pub unsafe extern "C" fn sys_exec_command(
     mut file_name: *mut libc::c_char,
@@ -1650,7 +1777,7 @@ pub unsafe extern "C" fn sys_exec_info_script(
     let mut pid: pid_t = 0;
     let mut uintbuf: [libc::c_char; 21] = [0; 21];
     let mut p: [libc::c_int; 2] = [0; 2];
-    static mut saved_handler: Option::<unsafe extern "C" fn(libc::c_int) -> ()> = None;
+    static mut saved_handler: Option<unsafe extern "C" fn(libc::c_int) -> ()> = None;
     xpipe(p.as_mut_ptr());
     saved_handler = signal(
         13 as libc::c_int,
@@ -1729,13 +1856,15 @@ pub unsafe extern "C" fn sys_exec_info_script(
     setenv(
         b"TAR_FORMAT\0" as *const u8 as *const libc::c_char,
         archive_format_string(
-            (if current_format as libc::c_uint
-                == DEFAULT_FORMAT as libc::c_int as libc::c_uint
-            {
-                archive_format as libc::c_uint
-            } else {
-                current_format as libc::c_uint
-            }) as archive_format,
+            archive_format::from_libc_c_uint(
+                (if current_format as libc::c_uint
+                    == archive_format::DEFAULT_FORMAT as libc::c_int as libc::c_uint
+                {
+                    archive_format as libc::c_uint
+                } else {
+                    current_format as libc::c_uint
+                }) as u32,
+            ),
         ),
         1 as libc::c_int,
     );
@@ -1797,13 +1926,15 @@ pub unsafe extern "C" fn sys_exec_checkpoint_script(
     setenv(
         b"TAR_FORMAT\0" as *const u8 as *const libc::c_char,
         archive_format_string(
-            (if current_format as libc::c_uint
-                == DEFAULT_FORMAT as libc::c_int as libc::c_uint
-            {
-                archive_format as libc::c_uint
-            } else {
-                current_format as libc::c_uint
-            }) as archive_format,
+            archive_format::from_libc_c_uint(
+                (if current_format as libc::c_uint
+                    == archive_format::DEFAULT_FORMAT as libc::c_int as libc::c_uint
+                {
+                    archive_format as libc::c_uint
+                } else {
+                    current_format as libc::c_uint
+                }) as u32,
+            ),
         ),
         1 as libc::c_int,
     );

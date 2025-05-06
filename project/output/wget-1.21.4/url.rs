@@ -1,103 +1,83 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    fn __xstat(
-        __ver: libc::c_int,
-        __filename: *const libc::c_char,
-        __stat_buf: *mut stat,
-    ) -> libc::c_int;
+    fn __xstat(__ver: i32, __filename: *const i8, __stat_buf: *mut stat) -> i32;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memchr(
-        _: *const libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memrchr(
-        __s: *const libc::c_void,
-        __c: libc::c_int,
-        __n: size_t,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strrchr(_: *const libc::c_char, _: libc::c_int) -> *mut libc::c_char;
-    fn strspn(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_ulong;
-    fn strpbrk(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
-    fn strerror(_: libc::c_int) -> *mut libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn memchr(_: *const libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn memrchr(__s: *const libc::c_void, __c: i32, __n: size_t) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strchr(_: *const i8, _: i32) -> *mut i8;
+    fn strrchr(_: *const i8, _: i32) -> *mut i8;
+    fn strspn(_: *const i8, _: *const i8) -> u64;
+    fn strpbrk(_: *const i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
+    fn strerror(_: i32) -> *mut i8;
     fn rpl_free(_: *mut libc::c_void);
     static mut opt: options;
     fn xmalloc(s: size_t) -> *mut libc::c_void;
     fn xcalloc(n: size_t, s: size_t) -> *mut libc::c_void;
     fn xrealloc(p: *mut libc::c_void, s: size_t) -> *mut libc::c_void;
-    fn xstrdup(str: *const libc::c_char) -> *mut libc::c_char;
-    fn logprintf(_: log_options, _: *const libc::c_char, _: ...);
-    fn debug_logprintf(_: *const libc::c_char, _: ...);
-    fn quote_n(n: libc::c_int, arg: *const libc::c_char) -> *const libc::c_char;
-    fn idn_encode(i: *const iri, host: *const libc::c_char) -> *mut libc::c_char;
-    fn remote_to_utf8(
-        i: *const iri,
-        str: *const libc::c_char,
-        newstr: *mut *mut libc::c_char,
-    ) -> bool;
-    fn unlink(__name: *const libc::c_char) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
-    fn strdupdelim(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn aprintf(_: *const libc::c_char, _: ...) -> *mut libc::c_char;
-    fn concat_strings(_: *const libc::c_char, _: ...) -> *mut libc::c_char;
-    fn file_exists_p(_: *const libc::c_char, _: *mut file_stats_t) -> bool;
-    fn file_non_directory_p(_: *const libc::c_char) -> bool;
-    fn make_directory(_: *const libc::c_char) -> libc::c_int;
-    fn unique_name_passthrough(_: *const libc::c_char) -> *mut libc::c_char;
-    fn numdigit(_: wgint) -> libc::c_int;
-    fn number_to_string(_: *mut libc::c_char, _: wgint) -> *mut libc::c_char;
-    fn get_max_length(
-        path: *const libc::c_char,
-        length: libc::c_int,
-        name: libc::c_int,
-    ) -> libc::c_long;
-    fn is_valid_ipv6_address(_: *const libc::c_char, _: *const libc::c_char) -> bool;
-    fn c_strncasecmp(
-        s1: *const libc::c_char,
-        s2: *const libc::c_char,
-        n: size_t,
-    ) -> libc::c_int;
-    fn iconv_open(
-        __tocode: *const libc::c_char,
-        __fromcode: *const libc::c_char,
-    ) -> iconv_t;
+    fn xstrdup(str: *const i8) -> *mut i8;
+    fn logprintf(_: log_options, _: *const i8, _: ...);
+    fn debug_logprintf(_: *const i8, _: ...);
+    fn quote_n(n: i32, arg: *const i8) -> *const i8;
+    fn idn_encode(i: *const iri, host: *const i8) -> *mut i8;
+    fn remote_to_utf8(i: *const iri, str: *const i8, newstr: *mut *mut i8) -> bool;
+    fn unlink(__name: *const i8) -> i32;
+    fn __errno_location() -> *mut i32;
+    fn strdupdelim(_: *const i8, _: *const i8) -> *mut i8;
+    fn aprintf(_: *const i8, _: ...) -> *mut i8;
+    fn concat_strings(_: *const i8, _: ...) -> *mut i8;
+    fn file_exists_p(_: *const i8, _: *mut file_stats_t) -> bool;
+    fn file_non_directory_p(_: *const i8) -> bool;
+    fn make_directory(_: *const i8) -> i32;
+    fn unique_name_passthrough(_: *const i8) -> *mut i8;
+    fn numdigit(_: wgint) -> i32;
+    fn number_to_string(_: *mut i8, _: wgint) -> *mut i8;
+    fn get_max_length(path: *const i8, length: i32, name: i32) -> i64;
+    fn is_valid_ipv6_address(_: *const i8, _: *const i8) -> bool;
+    fn c_strncasecmp(s1: *const i8, s2: *const i8, n: size_t) -> i32;
+    fn iconv_open(__tocode: *const i8, __fromcode: *const i8) -> iconv_t;
     fn iconv(
         __cd: iconv_t,
-        __inbuf: *mut *mut libc::c_char,
+        __inbuf: *mut *mut i8,
         __inbytesleft: *mut size_t,
-        __outbuf: *mut *mut libc::c_char,
+        __outbuf: *mut *mut i8,
         __outbytesleft: *mut size_t,
     ) -> size_t;
-    fn iconv_close(__cd: iconv_t) -> libc::c_int;
-    fn nl_langinfo(__item: nl_item) -> *mut libc::c_char;
+    fn iconv_close(__cd: iconv_t) -> i32;
+    fn nl_langinfo(__item: nl_item) -> *mut i8;
 }
-pub type __int64_t = libc::c_long;
-pub type __dev_t = libc::c_ulong;
-pub type __uid_t = libc::c_uint;
-pub type __gid_t = libc::c_uint;
-pub type __ino_t = libc::c_ulong;
-pub type __mode_t = libc::c_uint;
-pub type __nlink_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __blksize_t = libc::c_long;
-pub type __blkcnt_t = libc::c_long;
-pub type __syscall_slong_t = libc::c_long;
+pub type __int64_t = i64;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __syscall_slong_t = i64;
 pub type ino_t = __ino_t;
 pub type dev_t = __dev_t;
-pub type size_t = libc::c_ulong;
+pub type size_t = u64;
 pub type int64_t = __int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -114,7 +94,7 @@ pub struct stat {
     pub st_mode: __mode_t,
     pub st_uid: __uid_t,
     pub st_gid: __gid_t,
-    pub __pad0: libc::c_int,
+    pub __pad0: i32,
     pub st_rdev: __dev_t,
     pub st_size: __off_t,
     pub st_blksize: __blksize_t,
@@ -128,96 +108,94 @@ pub type wgint = int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
-    pub verbose: libc::c_int,
+    pub verbose: i32,
     pub quiet: bool,
-    pub ntry: libc::c_int,
+    pub ntry: i32,
     pub retry_connrefused: bool,
     pub retry_on_host_error: bool,
-    pub retry_on_http_error: *mut libc::c_char,
+    pub retry_on_http_error: *mut i8,
     pub background: bool,
     pub ignore_length: bool,
     pub recursive: bool,
     pub spanhost: bool,
-    pub max_redirect: libc::c_int,
+    pub max_redirect: i32,
     pub relative_only: bool,
     pub no_parent: bool,
-    pub reclevel: libc::c_int,
+    pub reclevel: i32,
     pub dirstruct: bool,
     pub no_dirstruct: bool,
-    pub cut_dirs: libc::c_int,
+    pub cut_dirs: i32,
     pub add_hostdir: bool,
     pub protocol_directories: bool,
     pub noclobber: bool,
     pub unlink_requested: bool,
-    pub dir_prefix: *mut libc::c_char,
-    pub lfilename: *mut libc::c_char,
-    pub input_filename: *mut libc::c_char,
-    pub choose_config: *mut libc::c_char,
+    pub dir_prefix: *mut i8,
+    pub lfilename: *mut i8,
+    pub input_filename: *mut i8,
+    pub choose_config: *mut i8,
     pub noconfig: bool,
     pub force_html: bool,
-    pub default_page: *mut libc::c_char,
+    pub default_page: *mut i8,
     pub spider: bool,
-    pub accepts: *mut *mut libc::c_char,
-    pub rejects: *mut *mut libc::c_char,
-    pub excludes: *mut *const libc::c_char,
-    pub includes: *mut *const libc::c_char,
+    pub accepts: *mut *mut i8,
+    pub rejects: *mut *mut i8,
+    pub excludes: *mut *const i8,
+    pub includes: *mut *const i8,
     pub ignore_case: bool,
-    pub acceptregex_s: *mut libc::c_char,
-    pub rejectregex_s: *mut libc::c_char,
+    pub acceptregex_s: *mut i8,
+    pub rejectregex_s: *mut i8,
     pub acceptregex: *mut libc::c_void,
     pub rejectregex: *mut libc::c_void,
     pub regex_type: C2RustUnnamed_3,
-    pub regex_compile_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_void,
+    pub regex_compile_fun: Option<unsafe extern "C" fn(*const i8) -> *mut libc::c_void>,
+    pub regex_match_fun: Option<
+        unsafe extern "C" fn(*const libc::c_void, *const i8) -> bool,
     >,
-    pub regex_match_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_void, *const libc::c_char) -> bool,
-    >,
-    pub domains: *mut *mut libc::c_char,
-    pub exclude_domains: *mut *mut libc::c_char,
+    pub domains: *mut *mut i8,
+    pub exclude_domains: *mut *mut i8,
     pub dns_cache: bool,
-    pub follow_tags: *mut *mut libc::c_char,
-    pub ignore_tags: *mut *mut libc::c_char,
+    pub follow_tags: *mut *mut i8,
+    pub ignore_tags: *mut *mut i8,
     pub follow_ftp: bool,
     pub retr_symlinks: bool,
-    pub output_document: *mut libc::c_char,
-    pub warc_filename: *mut libc::c_char,
-    pub warc_tempdir: *mut libc::c_char,
-    pub warc_cdx_dedup_filename: *mut libc::c_char,
+    pub output_document: *mut i8,
+    pub warc_filename: *mut i8,
+    pub warc_tempdir: *mut i8,
+    pub warc_cdx_dedup_filename: *mut i8,
     pub warc_maxsize: wgint,
     pub warc_compression_enabled: bool,
     pub warc_digests_enabled: bool,
     pub warc_cdx_enabled: bool,
     pub warc_keep_log: bool,
-    pub warc_user_headers: *mut *mut libc::c_char,
+    pub warc_user_headers: *mut *mut i8,
     pub enable_xattr: bool,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
     pub ask_passwd: bool,
-    pub use_askpass: *mut libc::c_char,
+    pub use_askpass: *mut i8,
     pub always_rest: bool,
     pub start_pos: wgint,
-    pub ftp_user: *mut libc::c_char,
-    pub ftp_passwd: *mut libc::c_char,
+    pub ftp_user: *mut i8,
+    pub ftp_passwd: *mut i8,
     pub netrc: bool,
     pub ftp_glob: bool,
     pub ftp_pasv: bool,
-    pub http_user: *mut libc::c_char,
-    pub http_passwd: *mut libc::c_char,
-    pub user_headers: *mut *mut libc::c_char,
+    pub http_user: *mut i8,
+    pub http_passwd: *mut i8,
+    pub user_headers: *mut *mut i8,
     pub http_keep_alive: bool,
     pub use_proxy: bool,
     pub allow_cache: bool,
-    pub http_proxy: *mut libc::c_char,
-    pub ftp_proxy: *mut libc::c_char,
-    pub https_proxy: *mut libc::c_char,
-    pub no_proxy: *mut *mut libc::c_char,
-    pub base_href: *mut libc::c_char,
-    pub progress_type: *mut libc::c_char,
-    pub show_progress: libc::c_int,
+    pub http_proxy: *mut i8,
+    pub ftp_proxy: *mut i8,
+    pub https_proxy: *mut i8,
+    pub no_proxy: *mut *mut i8,
+    pub base_href: *mut i8,
+    pub progress_type: *mut i8,
+    pub show_progress: i32,
     pub noscroll: bool,
-    pub proxy_user: *mut libc::c_char,
-    pub proxy_passwd: *mut libc::c_char,
+    pub proxy_user: *mut i8,
+    pub proxy_passwd: *mut i8,
     pub read_timeout: libc::c_double,
     pub dns_timeout: libc::c_double,
     pub connect_timeout: libc::c_double,
@@ -234,50 +212,50 @@ pub struct options {
     pub timestamping: bool,
     pub if_modified_since: bool,
     pub backup_converted: bool,
-    pub backups: libc::c_int,
-    pub useragent: *mut libc::c_char,
-    pub referer: *mut libc::c_char,
+    pub backups: i32,
+    pub useragent: *mut i8,
+    pub referer: *mut i8,
     pub convert_links: bool,
     pub convert_file_only: bool,
     pub remove_listing: bool,
     pub htmlify: bool,
-    pub dot_style: *mut libc::c_char,
+    pub dot_style: *mut i8,
     pub dot_bytes: wgint,
-    pub dots_in_line: libc::c_int,
-    pub dot_spacing: libc::c_int,
+    pub dots_in_line: i32,
+    pub dot_spacing: i32,
     pub delete_after: bool,
     pub adjust_extension: bool,
     pub page_requisites: bool,
-    pub bind_address: *mut libc::c_char,
+    pub bind_address: *mut i8,
     pub secure_protocol: C2RustUnnamed_2,
-    pub secure_protocol_name: [libc::c_char; 8],
-    pub check_cert: libc::c_int,
-    pub cert_file: *mut libc::c_char,
-    pub private_key: *mut libc::c_char,
+    pub secure_protocol_name: [i8; 8],
+    pub check_cert: i32,
+    pub cert_file: *mut i8,
+    pub private_key: *mut i8,
     pub cert_type: keyfile_type,
     pub private_key_type: keyfile_type,
-    pub ca_directory: *mut libc::c_char,
-    pub ca_cert: *mut libc::c_char,
-    pub crl_file: *mut libc::c_char,
-    pub pinnedpubkey: *mut libc::c_char,
-    pub random_file: *mut libc::c_char,
-    pub egd_file: *mut libc::c_char,
+    pub ca_directory: *mut i8,
+    pub ca_cert: *mut i8,
+    pub crl_file: *mut i8,
+    pub pinnedpubkey: *mut i8,
+    pub random_file: *mut i8,
+    pub egd_file: *mut i8,
     pub https_only: bool,
     pub ftps_resume_ssl: bool,
     pub ftps_fallback_to_ftp: bool,
     pub ftps_implicit: bool,
     pub ftps_clear_data_connection: bool,
-    pub tls_ciphers_string: *mut libc::c_char,
+    pub tls_ciphers_string: *mut i8,
     pub cookies: bool,
-    pub cookies_input: *mut libc::c_char,
-    pub cookies_output: *mut libc::c_char,
+    pub cookies_input: *mut i8,
+    pub cookies_output: *mut i8,
     pub keep_badhash: bool,
     pub keep_session_cookies: bool,
-    pub post_data: *mut libc::c_char,
-    pub post_file_name: *mut libc::c_char,
-    pub method: *mut libc::c_char,
-    pub body_data: *mut libc::c_char,
-    pub body_file: *mut libc::c_char,
+    pub post_data: *mut i8,
+    pub post_file_name: *mut i8,
+    pub method: *mut i8,
+    pub body_data: *mut i8,
+    pub body_file: *mut i8,
     pub restrict_files_os: C2RustUnnamed_1,
     pub restrict_files_ctrl: bool,
     pub restrict_files_nonascii: bool,
@@ -290,18 +268,18 @@ pub struct options {
     pub content_disposition: bool,
     pub auth_without_challenge: bool,
     pub enable_iri: bool,
-    pub encoding_remote: *mut libc::c_char,
-    pub locale: *const libc::c_char,
+    pub encoding_remote: *mut i8,
+    pub locale: *const i8,
     pub trustservernames: bool,
     pub useservertimestamps: bool,
     pub show_all_dns_entries: bool,
     pub report_bps: bool,
     pub compression: compression_options,
-    pub rejected_log: *mut libc::c_char,
+    pub rejected_log: *mut i8,
     pub hsts: bool,
-    pub hsts_file: *mut libc::c_char,
-    pub homedir: *const libc::c_char,
-    pub wgetrcfile: *const libc::c_char,
+    pub hsts_file: *mut i8,
+    pub homedir: *const i8,
+    pub wgetrcfile: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -311,18 +289,77 @@ pub enum compression_options {
     compression_auto = 0,
 }
 impl compression_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             compression_options::compression_none => 2,
             compression_options::compression_gzip => 1,
             compression_options::compression_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> compression_options {
+        match value {
+            2 => compression_options::compression_none,
+            1 => compression_options::compression_gzip,
+            0 => compression_options::compression_auto,
+            _ => panic!("Invalid value for compression_options: {}", value),
+        }
+    }
 }
-
-pub const compression_none: compression_options = 2;
-pub const compression_gzip: compression_options = 1;
-pub const compression_auto: compression_options = 0;
+impl AddAssign<u32> for compression_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for compression_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for compression_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for compression_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for compression_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for compression_options {
+    type Output = compression_options;
+    fn add(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for compression_options {
+    type Output = compression_options;
+    fn sub(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for compression_options {
+    type Output = compression_options;
+    fn mul(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for compression_options {
+    type Output = compression_options;
+    fn div(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for compression_options {
+    type Output = compression_options;
+    fn rem(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -331,18 +368,77 @@ pub enum C2RustUnnamed {
     prefer_ipv4 = 0,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::prefer_none => 2,
             C2RustUnnamed::prefer_ipv6 => 1,
             C2RustUnnamed::prefer_ipv4 => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            2 => C2RustUnnamed::prefer_none,
+            1 => C2RustUnnamed::prefer_ipv6,
+            0 => C2RustUnnamed::prefer_ipv4,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const prefer_none: C2RustUnnamed = 2;
-pub const prefer_ipv6: C2RustUnnamed = 1;
-pub const prefer_ipv4: C2RustUnnamed = 0;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -351,18 +447,77 @@ pub enum C2RustUnnamed_0 {
     restrict_no_case_restriction = 0,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::restrict_uppercase => 2,
             C2RustUnnamed_0::restrict_lowercase => 1,
             C2RustUnnamed_0::restrict_no_case_restriction => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            2 => C2RustUnnamed_0::restrict_uppercase,
+            1 => C2RustUnnamed_0::restrict_lowercase,
+            0 => C2RustUnnamed_0::restrict_no_case_restriction,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const restrict_uppercase: C2RustUnnamed_0 = 2;
-pub const restrict_lowercase: C2RustUnnamed_0 = 1;
-pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -371,18 +526,77 @@ pub enum C2RustUnnamed_1 {
     restrict_unix = 0,
 }
 impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_1::restrict_windows => 2,
             C2RustUnnamed_1::restrict_vms => 1,
             C2RustUnnamed_1::restrict_unix => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_1 {
+        match value {
+            2 => C2RustUnnamed_1::restrict_windows,
+            1 => C2RustUnnamed_1::restrict_vms,
+            0 => C2RustUnnamed_1::restrict_unix,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
-pub const restrict_windows: C2RustUnnamed_1 = 2;
-pub const restrict_vms: C2RustUnnamed_1 = 1;
-pub const restrict_unix: C2RustUnnamed_1 = 0;
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
@@ -390,16 +604,75 @@ pub enum keyfile_type {
     keyfile_pem = 0,
 }
 impl keyfile_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             keyfile_type::keyfile_asn1 => 1,
             keyfile_type::keyfile_pem => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> keyfile_type {
+        match value {
+            1 => keyfile_type::keyfile_asn1,
+            0 => keyfile_type::keyfile_pem,
+            _ => panic!("Invalid value for keyfile_type: {}", value),
+        }
+    }
 }
-
-pub const keyfile_asn1: keyfile_type = 1;
-pub const keyfile_pem: keyfile_type = 0;
+impl AddAssign<u32> for keyfile_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for keyfile_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for keyfile_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for keyfile_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for keyfile_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn add(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn sub(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn mul(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn div(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn rem(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -413,7 +686,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_auto = 0,
 }
 impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_2::secure_protocol_pfs => 7,
             C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
@@ -425,16 +698,75 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::secure_protocol_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_2 {
+        match value {
+            7 => C2RustUnnamed_2::secure_protocol_pfs,
+            6 => C2RustUnnamed_2::secure_protocol_tlsv1_3,
+            5 => C2RustUnnamed_2::secure_protocol_tlsv1_2,
+            4 => C2RustUnnamed_2::secure_protocol_tlsv1_1,
+            3 => C2RustUnnamed_2::secure_protocol_tlsv1,
+            2 => C2RustUnnamed_2::secure_protocol_sslv3,
+            1 => C2RustUnnamed_2::secure_protocol_sslv2,
+            0 => C2RustUnnamed_2::secure_protocol_auto,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
-pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
-pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
-pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
-pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
-pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
-pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
-pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
-pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -442,16 +774,75 @@ pub enum C2RustUnnamed_3 {
     regex_type_pcre = 0,
 }
 impl C2RustUnnamed_3 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_3::regex_type_posix => 1,
             C2RustUnnamed_3::regex_type_pcre => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_3 {
+        match value {
+            1 => C2RustUnnamed_3::regex_type_posix,
+            0 => C2RustUnnamed_3::regex_type_pcre,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const regex_type_posix: C2RustUnnamed_3 = 1;
-pub const regex_type_pcre: C2RustUnnamed_3 = 0;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -462,7 +853,7 @@ pub enum log_options {
     LOG_PROGRESS,
 }
 impl log_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             log_options::LOG_VERBOSE => 0,
             log_options::LOG_NOTQUIET => 1,
@@ -471,19 +862,78 @@ impl log_options {
             log_options::LOG_PROGRESS => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> log_options {
+        match value {
+            0 => log_options::LOG_VERBOSE,
+            1 => log_options::LOG_NOTQUIET,
+            2 => log_options::LOG_NONVERBOSE,
+            3 => log_options::LOG_ALWAYS,
+            4 => log_options::LOG_PROGRESS,
+            _ => panic!("Invalid value for log_options: {}", value),
+        }
+    }
 }
-
-pub const LOG_PROGRESS: log_options = 4;
-pub const LOG_ALWAYS: log_options = 3;
-pub const LOG_NONVERBOSE: log_options = 2;
-pub const LOG_NOTQUIET: log_options = 1;
-pub const LOG_VERBOSE: log_options = 0;
+impl AddAssign<u32> for log_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for log_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for log_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for log_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for log_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for log_options {
+    type Output = log_options;
+    fn add(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for log_options {
+    type Output = log_options;
+    fn sub(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for log_options {
+    type Output = log_options;
+    fn mul(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for log_options {
+    type Output = log_options;
+    fn div(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for log_options {
+    type Output = log_options;
+    fn rem(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct iri {
-    pub uri_encoding: *mut libc::c_char,
-    pub content_encoding: *mut libc::c_char,
-    pub orig_url: *mut libc::c_char,
+    pub uri_encoding: *mut i8,
+    pub content_encoding: *mut i8,
+    pub orig_url: *mut i8,
     pub utf8_encode: bool,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -512,7 +962,7 @@ pub enum C2RustUnnamed_4 {
     _PC_LINK_MAX = 0,
 }
 impl C2RustUnnamed_4 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_4::_PC_2_SYMLINKS => 20,
             C2RustUnnamed_4::_PC_SYMLINK_MAX => 19,
@@ -537,33 +987,92 @@ impl C2RustUnnamed_4 {
             C2RustUnnamed_4::_PC_LINK_MAX => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_4 {
+        match value {
+            20 => C2RustUnnamed_4::_PC_2_SYMLINKS,
+            19 => C2RustUnnamed_4::_PC_SYMLINK_MAX,
+            18 => C2RustUnnamed_4::_PC_ALLOC_SIZE_MIN,
+            17 => C2RustUnnamed_4::_PC_REC_XFER_ALIGN,
+            16 => C2RustUnnamed_4::_PC_REC_MIN_XFER_SIZE,
+            15 => C2RustUnnamed_4::_PC_REC_MAX_XFER_SIZE,
+            14 => C2RustUnnamed_4::_PC_REC_INCR_XFER_SIZE,
+            13 => C2RustUnnamed_4::_PC_FILESIZEBITS,
+            12 => C2RustUnnamed_4::_PC_SOCK_MAXBUF,
+            11 => C2RustUnnamed_4::_PC_PRIO_IO,
+            10 => C2RustUnnamed_4::_PC_ASYNC_IO,
+            9 => C2RustUnnamed_4::_PC_SYNC_IO,
+            8 => C2RustUnnamed_4::_PC_VDISABLE,
+            7 => C2RustUnnamed_4::_PC_NO_TRUNC,
+            6 => C2RustUnnamed_4::_PC_CHOWN_RESTRICTED,
+            5 => C2RustUnnamed_4::_PC_PIPE_BUF,
+            4 => C2RustUnnamed_4::_PC_PATH_MAX,
+            3 => C2RustUnnamed_4::_PC_NAME_MAX,
+            2 => C2RustUnnamed_4::_PC_MAX_INPUT,
+            1 => C2RustUnnamed_4::_PC_MAX_CANON,
+            0 => C2RustUnnamed_4::_PC_LINK_MAX,
+            _ => panic!("Invalid value for C2RustUnnamed_4: {}", value),
+        }
+    }
 }
-
-pub const _PC_2_SYMLINKS: C2RustUnnamed_4 = 20;
-pub const _PC_SYMLINK_MAX: C2RustUnnamed_4 = 19;
-pub const _PC_ALLOC_SIZE_MIN: C2RustUnnamed_4 = 18;
-pub const _PC_REC_XFER_ALIGN: C2RustUnnamed_4 = 17;
-pub const _PC_REC_MIN_XFER_SIZE: C2RustUnnamed_4 = 16;
-pub const _PC_REC_MAX_XFER_SIZE: C2RustUnnamed_4 = 15;
-pub const _PC_REC_INCR_XFER_SIZE: C2RustUnnamed_4 = 14;
-pub const _PC_FILESIZEBITS: C2RustUnnamed_4 = 13;
-pub const _PC_SOCK_MAXBUF: C2RustUnnamed_4 = 12;
-pub const _PC_PRIO_IO: C2RustUnnamed_4 = 11;
-pub const _PC_ASYNC_IO: C2RustUnnamed_4 = 10;
-pub const _PC_SYNC_IO: C2RustUnnamed_4 = 9;
-pub const _PC_VDISABLE: C2RustUnnamed_4 = 8;
-pub const _PC_NO_TRUNC: C2RustUnnamed_4 = 7;
-pub const _PC_CHOWN_RESTRICTED: C2RustUnnamed_4 = 6;
-pub const _PC_PIPE_BUF: C2RustUnnamed_4 = 5;
-pub const _PC_PATH_MAX: C2RustUnnamed_4 = 4;
-pub const _PC_NAME_MAX: C2RustUnnamed_4 = 3;
-pub const _PC_MAX_INPUT: C2RustUnnamed_4 = 2;
-pub const _PC_MAX_CANON: C2RustUnnamed_4 = 1;
-pub const _PC_LINK_MAX: C2RustUnnamed_4 = 0;
+impl AddAssign<u32> for C2RustUnnamed_4 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_4 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_4 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_4 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_4 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn add(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn div(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct file_stat_s {
-    pub access_err: libc::c_int,
+    pub access_err: i32,
     pub st_ino: ino_t,
     pub st_dev: dev_t,
 }
@@ -576,18 +1085,77 @@ pub enum url_auth_mode {
     URL_AUTH_HIDE,
 }
 impl url_auth_mode {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             url_auth_mode::URL_AUTH_SHOW => 0,
             url_auth_mode::URL_AUTH_HIDE_PASSWD => 1,
             url_auth_mode::URL_AUTH_HIDE => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> url_auth_mode {
+        match value {
+            0 => url_auth_mode::URL_AUTH_SHOW,
+            1 => url_auth_mode::URL_AUTH_HIDE_PASSWD,
+            2 => url_auth_mode::URL_AUTH_HIDE,
+            _ => panic!("Invalid value for url_auth_mode: {}", value),
+        }
+    }
 }
-
-pub const URL_AUTH_HIDE: url_auth_mode = 2;
-pub const URL_AUTH_HIDE_PASSWD: url_auth_mode = 1;
-pub const URL_AUTH_SHOW: url_auth_mode = 0;
+impl AddAssign<u32> for url_auth_mode {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for url_auth_mode {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for url_auth_mode {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for url_auth_mode {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for url_auth_mode {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for url_auth_mode {
+    type Output = url_auth_mode;
+    fn add(self, rhs: u32) -> url_auth_mode {
+        url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for url_auth_mode {
+    type Output = url_auth_mode;
+    fn sub(self, rhs: u32) -> url_auth_mode {
+        url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for url_auth_mode {
+    type Output = url_auth_mode;
+    fn mul(self, rhs: u32) -> url_auth_mode {
+        url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for url_auth_mode {
+    type Output = url_auth_mode;
+    fn div(self, rhs: u32) -> url_auth_mode {
+        url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for url_auth_mode {
+    type Output = url_auth_mode;
+    fn rem(self, rhs: u32) -> url_auth_mode {
+        url_auth_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum url_scheme {
@@ -598,7 +1166,7 @@ pub enum url_scheme {
     SCHEME_INVALID,
 }
 impl url_scheme {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             url_scheme::SCHEME_HTTP => 0,
             url_scheme::SCHEME_HTTPS => 1,
@@ -607,28 +1175,87 @@ impl url_scheme {
             url_scheme::SCHEME_INVALID => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> url_scheme {
+        match value {
+            0 => url_scheme::SCHEME_HTTP,
+            1 => url_scheme::SCHEME_HTTPS,
+            2 => url_scheme::SCHEME_FTP,
+            3 => url_scheme::SCHEME_FTPS,
+            4 => url_scheme::SCHEME_INVALID,
+            _ => panic!("Invalid value for url_scheme: {}", value),
+        }
+    }
 }
-
-pub const SCHEME_INVALID: url_scheme = 4;
-pub const SCHEME_FTPS: url_scheme = 3;
-pub const SCHEME_FTP: url_scheme = 2;
-pub const SCHEME_HTTPS: url_scheme = 1;
-pub const SCHEME_HTTP: url_scheme = 0;
+impl AddAssign<u32> for url_scheme {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for url_scheme {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for url_scheme {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for url_scheme {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for url_scheme {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = url_scheme::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for url_scheme {
+    type Output = url_scheme;
+    fn add(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for url_scheme {
+    type Output = url_scheme;
+    fn sub(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for url_scheme {
+    type Output = url_scheme;
+    fn mul(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for url_scheme {
+    type Output = url_scheme;
+    fn div(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for url_scheme {
+    type Output = url_scheme;
+    fn rem(self, rhs: u32) -> url_scheme {
+        url_scheme::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct url {
-    pub url: *mut libc::c_char,
+    pub url: *mut i8,
     pub scheme: url_scheme,
-    pub host: *mut libc::c_char,
-    pub port: libc::c_int,
-    pub path: *mut libc::c_char,
-    pub params: *mut libc::c_char,
-    pub query: *mut libc::c_char,
-    pub fragment: *mut libc::c_char,
-    pub dir: *mut libc::c_char,
-    pub file: *mut libc::c_char,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub host: *mut i8,
+    pub port: i32,
+    pub path: *mut i8,
+    pub params: *mut i8,
+    pub query: *mut i8,
+    pub fragment: *mut i8,
+    pub dir: *mut i8,
+    pub file: *mut i8,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -637,21 +1264,82 @@ pub enum C2RustUnnamed_7 {
     urlchr_unsafe = 2,
 }
 impl C2RustUnnamed_7 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_7::urlchr_reserved => 1,
             C2RustUnnamed_7::urlchr_unsafe => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_7 {
+        match value {
+            1 => C2RustUnnamed_7::urlchr_reserved,
+            2 => C2RustUnnamed_7::urlchr_unsafe,
+            _ => panic!("Invalid value for C2RustUnnamed_7: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_7 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_7 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_7 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_7 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_7 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn add(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn div(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct scheme_data {
-    pub name: *const libc::c_char,
-    pub leading_string: *const libc::c_char,
-    pub default_port: libc::c_int,
-    pub flags: libc::c_int,
+    pub name: *const i8,
+    pub leading_string: *const i8,
+    pub default_port: i32,
+    pub flags: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -662,7 +1350,7 @@ pub enum C2RustUnnamed_6 {
     scm_has_fragment = 8,
 }
 impl C2RustUnnamed_6 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_6::scm_disabled => 1,
             C2RustUnnamed_6::scm_has_params => 2,
@@ -670,8 +1358,71 @@ impl C2RustUnnamed_6 {
             C2RustUnnamed_6::scm_has_fragment => 8,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_6 {
+        match value {
+            1 => C2RustUnnamed_6::scm_disabled,
+            2 => C2RustUnnamed_6::scm_has_params,
+            4 => C2RustUnnamed_6::scm_has_query,
+            8 => C2RustUnnamed_6::scm_has_fragment,
+            _ => panic!("Invalid value for C2RustUnnamed_6: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_6 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_6 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_6 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_6 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_6 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_6 {
+    type Output = C2RustUnnamed_6;
+    fn add(self, rhs: u32) -> C2RustUnnamed_6 {
+        C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_6 {
+    type Output = C2RustUnnamed_6;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_6 {
+        C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_6 {
+    type Output = C2RustUnnamed_6;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_6 {
+        C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_6 {
+    type Output = C2RustUnnamed_6;
+    fn div(self, rhs: u32) -> C2RustUnnamed_6 {
+        C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_6 {
+    type Output = C2RustUnnamed_6;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_6 {
+        C2RustUnnamed_6::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_8 {
@@ -688,7 +1439,7 @@ pub enum C2RustUnnamed_8 {
     PE_INVALID_IPV6_ADDRESS,
 }
 impl C2RustUnnamed_8 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_8::PE_NO_ERROR => 0,
             C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME => 1,
@@ -703,794 +1454,88 @@ impl C2RustUnnamed_8 {
             C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS => 10,
         }
     }
-}
-
-#[derive(Copy, Clone)]
-#[repr(C)]
-pub struct growable {
-    pub base: *mut libc::c_char,
-    pub size: libc::c_int,
-    pub tail: libc::c_int,
-}
-pub type iconv_t = *mut libc::c_void;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    CODESET = 14,
-    _NL_NUM = 786449,
-    _NL_NUM_LC_IDENTIFICATION = 786448,
-    _NL_IDENTIFICATION_CODESET = 786447,
-    _NL_IDENTIFICATION_CATEGORY = 786446,
-    _NL_IDENTIFICATION_DATE = 786445,
-    _NL_IDENTIFICATION_REVISION = 786444,
-    _NL_IDENTIFICATION_ABBREVIATION = 786443,
-    _NL_IDENTIFICATION_APPLICATION = 786442,
-    _NL_IDENTIFICATION_AUDIENCE = 786441,
-    _NL_IDENTIFICATION_TERRITORY = 786440,
-    _NL_IDENTIFICATION_LANGUAGE = 786439,
-    _NL_IDENTIFICATION_FAX = 786438,
-    _NL_IDENTIFICATION_TEL = 786437,
-    _NL_IDENTIFICATION_EMAIL = 786436,
-    _NL_IDENTIFICATION_CONTACT = 786435,
-    _NL_IDENTIFICATION_ADDRESS = 786434,
-    _NL_IDENTIFICATION_SOURCE = 786433,
-    _NL_IDENTIFICATION_TITLE = 786432,
-    _NL_NUM_LC_MEASUREMENT = 720898,
-    _NL_MEASUREMENT_CODESET = 720897,
-    _NL_MEASUREMENT_MEASUREMENT = 720896,
-    _NL_NUM_LC_TELEPHONE = 655365,
-    _NL_TELEPHONE_CODESET = 655364,
-    _NL_TELEPHONE_INT_PREFIX = 655363,
-    _NL_TELEPHONE_INT_SELECT = 655362,
-    _NL_TELEPHONE_TEL_DOM_FMT = 655361,
-    _NL_TELEPHONE_TEL_INT_FMT = 655360,
-    _NL_NUM_LC_ADDRESS = 589837,
-    _NL_ADDRESS_CODESET = 589836,
-    _NL_ADDRESS_LANG_LIB = 589835,
-    _NL_ADDRESS_LANG_TERM = 589834,
-    _NL_ADDRESS_LANG_AB = 589833,
-    _NL_ADDRESS_LANG_NAME = 589832,
-    _NL_ADDRESS_COUNTRY_ISBN = 589831,
-    _NL_ADDRESS_COUNTRY_NUM = 589830,
-    _NL_ADDRESS_COUNTRY_CAR = 589829,
-    _NL_ADDRESS_COUNTRY_AB3 = 589828,
-    _NL_ADDRESS_COUNTRY_AB2 = 589827,
-    _NL_ADDRESS_COUNTRY_POST = 589826,
-    _NL_ADDRESS_COUNTRY_NAME = 589825,
-    _NL_ADDRESS_POSTAL_FMT = 589824,
-    _NL_NUM_LC_NAME = 524295,
-    _NL_NAME_CODESET = 524294,
-    _NL_NAME_NAME_MS = 524293,
-    _NL_NAME_NAME_MISS = 524292,
-    _NL_NAME_NAME_MRS = 524291,
-    _NL_NAME_NAME_MR = 524290,
-    _NL_NAME_NAME_GEN = 524289,
-    _NL_NAME_NAME_FMT = 524288,
-    _NL_NUM_LC_PAPER = 458755,
-    _NL_PAPER_CODESET = 458754,
-    _NL_PAPER_WIDTH = 458753,
-    _NL_PAPER_HEIGHT = 458752,
-    _NL_NUM_LC_MESSAGES = 327685,
-    _NL_MESSAGES_CODESET = 327684,
-    __NOSTR = 327683,
-    __YESSTR = 327682,
-    __NOEXPR = 327681,
-    __YESEXPR = 327680,
-    _NL_NUM_LC_NUMERIC = 65542,
-    _NL_NUMERIC_CODESET = 65541,
-    _NL_NUMERIC_THOUSANDS_SEP_WC = 65540,
-    _NL_NUMERIC_DECIMAL_POINT_WC = 65539,
-    __GROUPING = 65538,
-    THOUSEP = 65537,
-    __THOUSANDS_SEP = 65537,
-    RADIXCHAR = 65536,
-    __DECIMAL_POINT = 65536,
-    _NL_NUM_LC_MONETARY = 262190,
-    _NL_MONETARY_CODESET = 262189,
-    _NL_MONETARY_THOUSANDS_SEP_WC = 262188,
-    _NL_MONETARY_DECIMAL_POINT_WC = 262187,
-    _NL_MONETARY_CONVERSION_RATE = 262186,
-    _NL_MONETARY_DUO_VALID_TO = 262185,
-    _NL_MONETARY_DUO_VALID_FROM = 262184,
-    _NL_MONETARY_UNO_VALID_TO = 262183,
-    _NL_MONETARY_UNO_VALID_FROM = 262182,
-    _NL_MONETARY_DUO_INT_N_SIGN_POSN = 262181,
-    _NL_MONETARY_DUO_INT_P_SIGN_POSN = 262180,
-    _NL_MONETARY_DUO_N_SIGN_POSN = 262179,
-    _NL_MONETARY_DUO_P_SIGN_POSN = 262178,
-    _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE = 262177,
-    _NL_MONETARY_DUO_INT_N_CS_PRECEDES = 262176,
-    _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE = 262175,
-    _NL_MONETARY_DUO_INT_P_CS_PRECEDES = 262174,
-    _NL_MONETARY_DUO_N_SEP_BY_SPACE = 262173,
-    _NL_MONETARY_DUO_N_CS_PRECEDES = 262172,
-    _NL_MONETARY_DUO_P_SEP_BY_SPACE = 262171,
-    _NL_MONETARY_DUO_P_CS_PRECEDES = 262170,
-    _NL_MONETARY_DUO_FRAC_DIGITS = 262169,
-    _NL_MONETARY_DUO_INT_FRAC_DIGITS = 262168,
-    _NL_MONETARY_DUO_CURRENCY_SYMBOL = 262167,
-    _NL_MONETARY_DUO_INT_CURR_SYMBOL = 262166,
-    __INT_N_SIGN_POSN = 262165,
-    __INT_P_SIGN_POSN = 262164,
-    __INT_N_SEP_BY_SPACE = 262163,
-    __INT_N_CS_PRECEDES = 262162,
-    __INT_P_SEP_BY_SPACE = 262161,
-    __INT_P_CS_PRECEDES = 262160,
-    _NL_MONETARY_CRNCYSTR = 262159,
-    __N_SIGN_POSN = 262158,
-    __P_SIGN_POSN = 262157,
-    __N_SEP_BY_SPACE = 262156,
-    __N_CS_PRECEDES = 262155,
-    __P_SEP_BY_SPACE = 262154,
-    __P_CS_PRECEDES = 262153,
-    __FRAC_DIGITS = 262152,
-    __INT_FRAC_DIGITS = 262151,
-    __NEGATIVE_SIGN = 262150,
-    __POSITIVE_SIGN = 262149,
-    __MON_GROUPING = 262148,
-    __MON_THOUSANDS_SEP = 262147,
-    __MON_DECIMAL_POINT = 262146,
-    __CURRENCY_SYMBOL = 262145,
-    __INT_CURR_SYMBOL = 262144,
-    _NL_NUM_LC_CTYPE = 86,
-    _NL_CTYPE_EXTRA_MAP_14 = 85,
-    _NL_CTYPE_EXTRA_MAP_13 = 84,
-    _NL_CTYPE_EXTRA_MAP_12 = 83,
-    _NL_CTYPE_EXTRA_MAP_11 = 82,
-    _NL_CTYPE_EXTRA_MAP_10 = 81,
-    _NL_CTYPE_EXTRA_MAP_9 = 80,
-    _NL_CTYPE_EXTRA_MAP_8 = 79,
-    _NL_CTYPE_EXTRA_MAP_7 = 78,
-    _NL_CTYPE_EXTRA_MAP_6 = 77,
-    _NL_CTYPE_EXTRA_MAP_5 = 76,
-    _NL_CTYPE_EXTRA_MAP_4 = 75,
-    _NL_CTYPE_EXTRA_MAP_3 = 74,
-    _NL_CTYPE_EXTRA_MAP_2 = 73,
-    _NL_CTYPE_EXTRA_MAP_1 = 72,
-    _NL_CTYPE_NONASCII_CASE = 71,
-    _NL_CTYPE_MAP_TO_NONASCII = 70,
-    _NL_CTYPE_TRANSLIT_IGNORE = 69,
-    _NL_CTYPE_TRANSLIT_IGNORE_LEN = 68,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING = 67,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN = 66,
-    _NL_CTYPE_TRANSLIT_TO_TBL = 65,
-    _NL_CTYPE_TRANSLIT_TO_IDX = 64,
-    _NL_CTYPE_TRANSLIT_FROM_TBL = 63,
-    _NL_CTYPE_TRANSLIT_FROM_IDX = 62,
-    _NL_CTYPE_TRANSLIT_TAB_SIZE = 61,
-    _NL_CTYPE_OUTDIGIT9_WC = 60,
-    _NL_CTYPE_OUTDIGIT8_WC = 59,
-    _NL_CTYPE_OUTDIGIT7_WC = 58,
-    _NL_CTYPE_OUTDIGIT6_WC = 57,
-    _NL_CTYPE_OUTDIGIT5_WC = 56,
-    _NL_CTYPE_OUTDIGIT4_WC = 55,
-    _NL_CTYPE_OUTDIGIT3_WC = 54,
-    _NL_CTYPE_OUTDIGIT2_WC = 53,
-    _NL_CTYPE_OUTDIGIT1_WC = 52,
-    _NL_CTYPE_OUTDIGIT0_WC = 51,
-    _NL_CTYPE_OUTDIGIT9_MB = 50,
-    _NL_CTYPE_OUTDIGIT8_MB = 49,
-    _NL_CTYPE_OUTDIGIT7_MB = 48,
-    _NL_CTYPE_OUTDIGIT6_MB = 47,
-    _NL_CTYPE_OUTDIGIT5_MB = 46,
-    _NL_CTYPE_OUTDIGIT4_MB = 45,
-    _NL_CTYPE_OUTDIGIT3_MB = 44,
-    _NL_CTYPE_OUTDIGIT2_MB = 43,
-    _NL_CTYPE_OUTDIGIT1_MB = 42,
-    _NL_CTYPE_OUTDIGIT0_MB = 41,
-    _NL_CTYPE_INDIGITS9_WC = 40,
-    _NL_CTYPE_INDIGITS8_WC = 39,
-    _NL_CTYPE_INDIGITS7_WC = 38,
-    _NL_CTYPE_INDIGITS6_WC = 37,
-    _NL_CTYPE_INDIGITS5_WC = 36,
-    _NL_CTYPE_INDIGITS4_WC = 35,
-    _NL_CTYPE_INDIGITS3_WC = 34,
-    _NL_CTYPE_INDIGITS2_WC = 33,
-    _NL_CTYPE_INDIGITS1_WC = 32,
-    _NL_CTYPE_INDIGITS0_WC = 31,
-    _NL_CTYPE_INDIGITS_WC_LEN = 30,
-    _NL_CTYPE_INDIGITS9_MB = 29,
-    _NL_CTYPE_INDIGITS8_MB = 28,
-    _NL_CTYPE_INDIGITS7_MB = 27,
-    _NL_CTYPE_INDIGITS6_MB = 26,
-    _NL_CTYPE_INDIGITS5_MB = 25,
-    _NL_CTYPE_INDIGITS4_MB = 24,
-    _NL_CTYPE_INDIGITS3_MB = 23,
-    _NL_CTYPE_INDIGITS2_MB = 22,
-    _NL_CTYPE_INDIGITS1_MB = 21,
-    _NL_CTYPE_INDIGITS0_MB = 20,
-    _NL_CTYPE_INDIGITS_MB_LEN = 19,
-    _NL_CTYPE_MAP_OFFSET = 18,
-    _NL_CTYPE_CLASS_OFFSET = 17,
-    _NL_CTYPE_TOLOWER32 = 16,
-    _NL_CTYPE_TOUPPER32 = 15,
-    _NL_CTYPE_CODESET_NAME = 14,
-    _NL_CTYPE_MB_CUR_MAX = 13,
-    _NL_CTYPE_WIDTH = 12,
-    _NL_CTYPE_MAP_NAMES = 11,
-    _NL_CTYPE_CLASS_NAMES = 10,
-    _NL_CTYPE_GAP6 = 9,
-    _NL_CTYPE_GAP5 = 8,
-    _NL_CTYPE_GAP4 = 7,
-    _NL_CTYPE_GAP3 = 6,
-    _NL_CTYPE_CLASS32 = 5,
-    _NL_CTYPE_GAP2 = 4,
-    _NL_CTYPE_TOLOWER = 3,
-    _NL_CTYPE_GAP1 = 2,
-    _NL_CTYPE_TOUPPER = 1,
-    _NL_CTYPE_CLASS = 0,
-    _NL_NUM_LC_COLLATE = 196627,
-    _NL_COLLATE_CODESET = 196626,
-    _NL_COLLATE_COLLSEQWC = 196625,
-    _NL_COLLATE_COLLSEQMB = 196624,
-    _NL_COLLATE_SYMB_EXTRAMB = 196623,
-    _NL_COLLATE_SYMB_TABLEMB = 196622,
-    _NL_COLLATE_SYMB_HASH_SIZEMB = 196621,
-    _NL_COLLATE_INDIRECTWC = 196620,
-    _NL_COLLATE_EXTRAWC = 196619,
-    _NL_COLLATE_WEIGHTWC = 196618,
-    _NL_COLLATE_TABLEWC = 196617,
-    _NL_COLLATE_GAP3 = 196616,
-    _NL_COLLATE_GAP2 = 196615,
-    _NL_COLLATE_GAP1 = 196614,
-    _NL_COLLATE_INDIRECTMB = 196613,
-    _NL_COLLATE_EXTRAMB = 196612,
-    _NL_COLLATE_WEIGHTMB = 196611,
-    _NL_COLLATE_TABLEMB = 196610,
-    _NL_COLLATE_RULESETS = 196609,
-    _NL_COLLATE_NRULES = 196608,
-    _NL_NUM_LC_TIME = 131231,
-    _NL_WABALTMON_12 = 131230,
-    _NL_WABALTMON_11 = 131229,
-    _NL_WABALTMON_10 = 131228,
-    _NL_WABALTMON_9 = 131227,
-    _NL_WABALTMON_8 = 131226,
-    _NL_WABALTMON_7 = 131225,
-    _NL_WABALTMON_6 = 131224,
-    _NL_WABALTMON_5 = 131223,
-    _NL_WABALTMON_4 = 131222,
-    _NL_WABALTMON_3 = 131221,
-    _NL_WABALTMON_2 = 131220,
-    _NL_WABALTMON_1 = 131219,
-    _NL_ABALTMON_12 = 131218,
-    _NL_ABALTMON_11 = 131217,
-    _NL_ABALTMON_10 = 131216,
-    _NL_ABALTMON_9 = 131215,
-    _NL_ABALTMON_8 = 131214,
-    _NL_ABALTMON_7 = 131213,
-    _NL_ABALTMON_6 = 131212,
-    _NL_ABALTMON_5 = 131211,
-    _NL_ABALTMON_4 = 131210,
-    _NL_ABALTMON_3 = 131209,
-    _NL_ABALTMON_2 = 131208,
-    _NL_ABALTMON_1 = 131207,
-    _NL_WALTMON_12 = 131206,
-    _NL_WALTMON_11 = 131205,
-    _NL_WALTMON_10 = 131204,
-    _NL_WALTMON_9 = 131203,
-    _NL_WALTMON_8 = 131202,
-    _NL_WALTMON_7 = 131201,
-    _NL_WALTMON_6 = 131200,
-    _NL_WALTMON_5 = 131199,
-    _NL_WALTMON_4 = 131198,
-    _NL_WALTMON_3 = 131197,
-    _NL_WALTMON_2 = 131196,
-    _NL_WALTMON_1 = 131195,
-    __ALTMON_12 = 131194,
-    __ALTMON_11 = 131193,
-    __ALTMON_10 = 131192,
-    __ALTMON_9 = 131191,
-    __ALTMON_8 = 131190,
-    __ALTMON_7 = 131189,
-    __ALTMON_6 = 131188,
-    __ALTMON_5 = 131187,
-    __ALTMON_4 = 131186,
-    __ALTMON_3 = 131185,
-    __ALTMON_2 = 131184,
-    __ALTMON_1 = 131183,
-    _NL_TIME_CODESET = 131182,
-    _NL_W_DATE_FMT = 131181,
-    _DATE_FMT = 131180,
-    _NL_TIME_TIMEZONE = 131179,
-    _NL_TIME_CAL_DIRECTION = 131178,
-    _NL_TIME_FIRST_WORKDAY = 131177,
-    _NL_TIME_FIRST_WEEKDAY = 131176,
-    _NL_TIME_WEEK_1STWEEK = 131175,
-    _NL_TIME_WEEK_1STDAY = 131174,
-    _NL_TIME_WEEK_NDAYS = 131173,
-    _NL_WERA_T_FMT = 131172,
-    _NL_WERA_D_T_FMT = 131171,
-    _NL_WALT_DIGITS = 131170,
-    _NL_WERA_D_FMT = 131169,
-    _NL_WERA_YEAR = 131168,
-    _NL_WT_FMT_AMPM = 131167,
-    _NL_WT_FMT = 131166,
-    _NL_WD_FMT = 131165,
-    _NL_WD_T_FMT = 131164,
-    _NL_WPM_STR = 131163,
-    _NL_WAM_STR = 131162,
-    _NL_WMON_12 = 131161,
-    _NL_WMON_11 = 131160,
-    _NL_WMON_10 = 131159,
-    _NL_WMON_9 = 131158,
-    _NL_WMON_8 = 131157,
-    _NL_WMON_7 = 131156,
-    _NL_WMON_6 = 131155,
-    _NL_WMON_5 = 131154,
-    _NL_WMON_4 = 131153,
-    _NL_WMON_3 = 131152,
-    _NL_WMON_2 = 131151,
-    _NL_WMON_1 = 131150,
-    _NL_WABMON_12 = 131149,
-    _NL_WABMON_11 = 131148,
-    _NL_WABMON_10 = 131147,
-    _NL_WABMON_9 = 131146,
-    _NL_WABMON_8 = 131145,
-    _NL_WABMON_7 = 131144,
-    _NL_WABMON_6 = 131143,
-    _NL_WABMON_5 = 131142,
-    _NL_WABMON_4 = 131141,
-    _NL_WABMON_3 = 131140,
-    _NL_WABMON_2 = 131139,
-    _NL_WABMON_1 = 131138,
-    _NL_WDAY_7 = 131137,
-    _NL_WDAY_6 = 131136,
-    _NL_WDAY_5 = 131135,
-    _NL_WDAY_4 = 131134,
-    _NL_WDAY_3 = 131133,
-    _NL_WDAY_2 = 131132,
-    _NL_WDAY_1 = 131131,
-    _NL_WABDAY_7 = 131130,
-    _NL_WABDAY_6 = 131129,
-    _NL_WABDAY_5 = 131128,
-    _NL_WABDAY_4 = 131127,
-    _NL_WABDAY_3 = 131126,
-    _NL_WABDAY_2 = 131125,
-    _NL_WABDAY_1 = 131124,
-    _NL_TIME_ERA_ENTRIES = 131123,
-    _NL_TIME_ERA_NUM_ENTRIES = 131122,
-    ERA_T_FMT = 131121,
-    ERA_D_T_FMT = 131120,
-    ALT_DIGITS = 131119,
-    ERA_D_FMT = 131118,
-    __ERA_YEAR = 131117,
-    ERA = 131116,
-    T_FMT_AMPM = 131115,
-    T_FMT = 131114,
-    D_FMT = 131113,
-    D_T_FMT = 131112,
-    PM_STR = 131111,
-    AM_STR = 131110,
-    MON_12 = 131109,
-    MON_11 = 131108,
-    MON_10 = 131107,
-    MON_9 = 131106,
-    MON_8 = 131105,
-    MON_7 = 131104,
-    MON_6 = 131103,
-    MON_5 = 131102,
-    MON_4 = 131101,
-    MON_3 = 131100,
-    MON_2 = 131099,
-    MON_1 = 131098,
-    ABMON_12 = 131097,
-    ABMON_11 = 131096,
-    ABMON_10 = 131095,
-    ABMON_9 = 131094,
-    ABMON_8 = 131093,
-    ABMON_7 = 131092,
-    ABMON_6 = 131091,
-    ABMON_5 = 131090,
-    ABMON_4 = 131089,
-    ABMON_3 = 131088,
-    ABMON_2 = 131087,
-    ABMON_1 = 131086,
-    DAY_7 = 131085,
-    DAY_6 = 131084,
-    DAY_5 = 131083,
-    DAY_4 = 131082,
-    DAY_3 = 131081,
-    DAY_2 = 131080,
-    DAY_1 = 131079,
-    ABDAY_7 = 131078,
-    ABDAY_6 = 131077,
-    ABDAY_5 = 131076,
-    ABDAY_4 = 131075,
-    ABDAY_3 = 131074,
-    ABDAY_2 = 131073,
-    ABDAY_1 = 131072,
-}
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::CODESET => 14,
-            C2RustUnnamed_5::_NL_NUM => 786449,
-            C2RustUnnamed_5::_NL_NUM_LC_IDENTIFICATION => 786448,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CODESET => 786447,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CATEGORY => 786446,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_DATE => 786445,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_REVISION => 786444,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ABBREVIATION => 786443,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_APPLICATION => 786442,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_AUDIENCE => 786441,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TERRITORY => 786440,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_LANGUAGE => 786439,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_FAX => 786438,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TEL => 786437,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_EMAIL => 786436,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CONTACT => 786435,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ADDRESS => 786434,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_SOURCE => 786433,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TITLE => 786432,
-            C2RustUnnamed_5::_NL_NUM_LC_MEASUREMENT => 720898,
-            C2RustUnnamed_5::_NL_MEASUREMENT_CODESET => 720897,
-            C2RustUnnamed_5::_NL_MEASUREMENT_MEASUREMENT => 720896,
-            C2RustUnnamed_5::_NL_NUM_LC_TELEPHONE => 655365,
-            C2RustUnnamed_5::_NL_TELEPHONE_CODESET => 655364,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_PREFIX => 655363,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_SELECT => 655362,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_DOM_FMT => 655361,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_INT_FMT => 655360,
-            C2RustUnnamed_5::_NL_NUM_LC_ADDRESS => 589837,
-            C2RustUnnamed_5::_NL_ADDRESS_CODESET => 589836,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_LIB => 589835,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_TERM => 589834,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_AB => 589833,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_NAME => 589832,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_5::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_5::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_5::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_5::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_5::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_5::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_5::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_5::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_5::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_5::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_5::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_5::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_5::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_5::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_5::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_5::__NOSTR => 327683,
-            C2RustUnnamed_5::__YESSTR => 327682,
-            C2RustUnnamed_5::__NOEXPR => 327681,
-            C2RustUnnamed_5::__YESEXPR => 327680,
-            C2RustUnnamed_5::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_5::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_5::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_5::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_5::__GROUPING => 65538,
-            C2RustUnnamed_5::THOUSEP => 65537,
-            C2RustUnnamed_5::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_5::RADIXCHAR => 65536,
-            C2RustUnnamed_5::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_5::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_5::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_5::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_5::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_5::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_5::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_5::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_5::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_5::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_5::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_5::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_5::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_5::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_5::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_5::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_5::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_5::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_5::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_5::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_5::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_5::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_5::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_5::__MON_GROUPING => 262148,
-            C2RustUnnamed_5::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_5::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_5::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_5::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_5::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_5::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_5::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_5::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_5::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_5::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_5::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_5::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_5::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_5::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_5::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_5::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_5::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_5::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_5::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_5::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_5::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_5::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_5::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_5::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_5::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_5::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_5::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_5::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_5::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_5::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_5::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_5::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_5::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_5::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_5::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_5::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_5::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_5::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_5::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_5::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_5::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_5::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_5::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_5::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_5::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_5::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_5::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_5::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_5::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_5::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_5::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_5::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_5::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_5::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_5::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_5::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_5::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_5::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_5::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_5::__ALTMON_12 => 131194,
-            C2RustUnnamed_5::__ALTMON_11 => 131193,
-            C2RustUnnamed_5::__ALTMON_10 => 131192,
-            C2RustUnnamed_5::__ALTMON_9 => 131191,
-            C2RustUnnamed_5::__ALTMON_8 => 131190,
-            C2RustUnnamed_5::__ALTMON_7 => 131189,
-            C2RustUnnamed_5::__ALTMON_6 => 131188,
-            C2RustUnnamed_5::__ALTMON_5 => 131187,
-            C2RustUnnamed_5::__ALTMON_4 => 131186,
-            C2RustUnnamed_5::__ALTMON_3 => 131185,
-            C2RustUnnamed_5::__ALTMON_2 => 131184,
-            C2RustUnnamed_5::__ALTMON_1 => 131183,
-            C2RustUnnamed_5::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_5::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_5::_DATE_FMT => 131180,
-            C2RustUnnamed_5::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_5::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_5::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_5::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_5::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_5::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_5::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_5::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_5::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_5::_NL_WT_FMT => 131166,
-            C2RustUnnamed_5::_NL_WD_FMT => 131165,
-            C2RustUnnamed_5::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_5::_NL_WPM_STR => 131163,
-            C2RustUnnamed_5::_NL_WAM_STR => 131162,
-            C2RustUnnamed_5::_NL_WMON_12 => 131161,
-            C2RustUnnamed_5::_NL_WMON_11 => 131160,
-            C2RustUnnamed_5::_NL_WMON_10 => 131159,
-            C2RustUnnamed_5::_NL_WMON_9 => 131158,
-            C2RustUnnamed_5::_NL_WMON_8 => 131157,
-            C2RustUnnamed_5::_NL_WMON_7 => 131156,
-            C2RustUnnamed_5::_NL_WMON_6 => 131155,
-            C2RustUnnamed_5::_NL_WMON_5 => 131154,
-            C2RustUnnamed_5::_NL_WMON_4 => 131153,
-            C2RustUnnamed_5::_NL_WMON_3 => 131152,
-            C2RustUnnamed_5::_NL_WMON_2 => 131151,
-            C2RustUnnamed_5::_NL_WMON_1 => 131150,
-            C2RustUnnamed_5::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_5::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_5::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_5::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_5::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_5::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_5::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_5::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_5::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_5::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_5::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_5::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_5::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_5::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_5::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_5::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_5::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_5::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_5::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_5::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_5::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_5::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_5::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_5::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_5::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_5::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_5::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_5::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_5::ERA_T_FMT => 131121,
-            C2RustUnnamed_5::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_5::ALT_DIGITS => 131119,
-            C2RustUnnamed_5::ERA_D_FMT => 131118,
-            C2RustUnnamed_5::__ERA_YEAR => 131117,
-            C2RustUnnamed_5::ERA => 131116,
-            C2RustUnnamed_5::T_FMT_AMPM => 131115,
-            C2RustUnnamed_5::T_FMT => 131114,
-            C2RustUnnamed_5::D_FMT => 131113,
-            C2RustUnnamed_5::D_T_FMT => 131112,
-            C2RustUnnamed_5::PM_STR => 131111,
-            C2RustUnnamed_5::AM_STR => 131110,
-            C2RustUnnamed_5::MON_12 => 131109,
-            C2RustUnnamed_5::MON_11 => 131108,
-            C2RustUnnamed_5::MON_10 => 131107,
-            C2RustUnnamed_5::MON_9 => 131106,
-            C2RustUnnamed_5::MON_8 => 131105,
-            C2RustUnnamed_5::MON_7 => 131104,
-            C2RustUnnamed_5::MON_6 => 131103,
-            C2RustUnnamed_5::MON_5 => 131102,
-            C2RustUnnamed_5::MON_4 => 131101,
-            C2RustUnnamed_5::MON_3 => 131100,
-            C2RustUnnamed_5::MON_2 => 131099,
-            C2RustUnnamed_5::MON_1 => 131098,
-            C2RustUnnamed_5::ABMON_12 => 131097,
-            C2RustUnnamed_5::ABMON_11 => 131096,
-            C2RustUnnamed_5::ABMON_10 => 131095,
-            C2RustUnnamed_5::ABMON_9 => 131094,
-            C2RustUnnamed_5::ABMON_8 => 131093,
-            C2RustUnnamed_5::ABMON_7 => 131092,
-            C2RustUnnamed_5::ABMON_6 => 131091,
-            C2RustUnnamed_5::ABMON_5 => 131090,
-            C2RustUnnamed_5::ABMON_4 => 131089,
-            C2RustUnnamed_5::ABMON_3 => 131088,
-            C2RustUnnamed_5::ABMON_2 => 131087,
-            C2RustUnnamed_5::ABMON_1 => 131086,
-            C2RustUnnamed_5::DAY_7 => 131085,
-            C2RustUnnamed_5::DAY_6 => 131084,
-            C2RustUnnamed_5::DAY_5 => 131083,
-            C2RustUnnamed_5::DAY_4 => 131082,
-            C2RustUnnamed_5::DAY_3 => 131081,
-            C2RustUnnamed_5::DAY_2 => 131080,
-            C2RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_8 {
+        match value {
+            0 => C2RustUnnamed_8::PE_NO_ERROR,
+            1 => C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME,
+            2 => C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_HTTPS,
+            3 => C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_FTPS,
+            4 => C2RustUnnamed_8::PE_MISSING_SCHEME,
+            5 => C2RustUnnamed_8::PE_INVALID_HOST_NAME,
+            6 => C2RustUnnamed_8::PE_BAD_PORT_NUMBER,
+            7 => C2RustUnnamed_8::PE_INVALID_USER_NAME,
+            8 => C2RustUnnamed_8::PE_UNTERMINATED_IPV6_ADDRESS,
+            9 => C2RustUnnamed_8::PE_IPV6_NOT_SUPPORTED,
+            10 => C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS,
+            _ => panic!("Invalid value for C2RustUnnamed_8: {}", value),
         }
     }
 }
-
-pub type nl_item = libc::c_int;
+impl AddAssign<u32> for C2RustUnnamed_8 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_8 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_8 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_8 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_8 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_8 {
+    type Output = C2RustUnnamed_8;
+    fn add(self, rhs: u32) -> C2RustUnnamed_8 {
+        C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_8 {
+    type Output = C2RustUnnamed_8;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_8 {
+        C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_8 {
+    type Output = C2RustUnnamed_8;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_8 {
+        C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_8 {
+    type Output = C2RustUnnamed_8;
+    fn div(self, rhs: u32) -> C2RustUnnamed_8 {
+        C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_8 {
+    type Output = C2RustUnnamed_8;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_8 {
+        C2RustUnnamed_8::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct growable {
+    pub base: *mut i8,
+    pub size: i32,
+    pub tail: i32,
+}
+pub type iconv_t = *mut libc::c_void;
+pub const CODESET: C2RustUnnamed_5 = 14;
+pub type nl_item = i32;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_9 {
@@ -1500,7 +1545,7 @@ pub enum C2RustUnnamed_9 {
     filechr_control = 8,
 }
 impl C2RustUnnamed_9 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_9::filechr_not_unix => 1,
             C2RustUnnamed_9::filechr_not_vms => 2,
@@ -1508,28 +1553,471 @@ impl C2RustUnnamed_9 {
             C2RustUnnamed_9::filechr_control => 8,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_9 {
+        match value {
+            1 => C2RustUnnamed_9::filechr_not_unix,
+            2 => C2RustUnnamed_9::filechr_not_vms,
+            4 => C2RustUnnamed_9::filechr_not_windows,
+            8 => C2RustUnnamed_9::filechr_control,
+            _ => panic!("Invalid value for C2RustUnnamed_9: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_9 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_9 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_9 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_9 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_9 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn add(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn div(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type C2RustUnnamed_5 = u32;
+pub const _NL_NUM: C2RustUnnamed_5 = 786449;
+pub const _NL_NUM_LC_IDENTIFICATION: C2RustUnnamed_5 = 786448;
+pub const _NL_IDENTIFICATION_CODESET: C2RustUnnamed_5 = 786447;
+pub const _NL_IDENTIFICATION_CATEGORY: C2RustUnnamed_5 = 786446;
+pub const _NL_IDENTIFICATION_DATE: C2RustUnnamed_5 = 786445;
+pub const _NL_IDENTIFICATION_REVISION: C2RustUnnamed_5 = 786444;
+pub const _NL_IDENTIFICATION_ABBREVIATION: C2RustUnnamed_5 = 786443;
+pub const _NL_IDENTIFICATION_APPLICATION: C2RustUnnamed_5 = 786442;
+pub const _NL_IDENTIFICATION_AUDIENCE: C2RustUnnamed_5 = 786441;
+pub const _NL_IDENTIFICATION_TERRITORY: C2RustUnnamed_5 = 786440;
+pub const _NL_IDENTIFICATION_LANGUAGE: C2RustUnnamed_5 = 786439;
+pub const _NL_IDENTIFICATION_FAX: C2RustUnnamed_5 = 786438;
+pub const _NL_IDENTIFICATION_TEL: C2RustUnnamed_5 = 786437;
+pub const _NL_IDENTIFICATION_EMAIL: C2RustUnnamed_5 = 786436;
+pub const _NL_IDENTIFICATION_CONTACT: C2RustUnnamed_5 = 786435;
+pub const _NL_IDENTIFICATION_ADDRESS: C2RustUnnamed_5 = 786434;
+pub const _NL_IDENTIFICATION_SOURCE: C2RustUnnamed_5 = 786433;
+pub const _NL_IDENTIFICATION_TITLE: C2RustUnnamed_5 = 786432;
+pub const _NL_NUM_LC_MEASUREMENT: C2RustUnnamed_5 = 720898;
+pub const _NL_MEASUREMENT_CODESET: C2RustUnnamed_5 = 720897;
+pub const _NL_MEASUREMENT_MEASUREMENT: C2RustUnnamed_5 = 720896;
+pub const _NL_NUM_LC_TELEPHONE: C2RustUnnamed_5 = 655365;
+pub const _NL_TELEPHONE_CODESET: C2RustUnnamed_5 = 655364;
+pub const _NL_TELEPHONE_INT_PREFIX: C2RustUnnamed_5 = 655363;
+pub const _NL_TELEPHONE_INT_SELECT: C2RustUnnamed_5 = 655362;
+pub const _NL_TELEPHONE_TEL_DOM_FMT: C2RustUnnamed_5 = 655361;
+pub const _NL_TELEPHONE_TEL_INT_FMT: C2RustUnnamed_5 = 655360;
+pub const _NL_NUM_LC_ADDRESS: C2RustUnnamed_5 = 589837;
+pub const _NL_ADDRESS_CODESET: C2RustUnnamed_5 = 589836;
+pub const _NL_ADDRESS_LANG_LIB: C2RustUnnamed_5 = 589835;
+pub const _NL_ADDRESS_LANG_TERM: C2RustUnnamed_5 = 589834;
+pub const _NL_ADDRESS_LANG_AB: C2RustUnnamed_5 = 589833;
+pub const _NL_ADDRESS_LANG_NAME: C2RustUnnamed_5 = 589832;
+pub const _NL_ADDRESS_COUNTRY_ISBN: C2RustUnnamed_5 = 589831;
+pub const _NL_ADDRESS_COUNTRY_NUM: C2RustUnnamed_5 = 589830;
+pub const _NL_ADDRESS_COUNTRY_CAR: C2RustUnnamed_5 = 589829;
+pub const _NL_ADDRESS_COUNTRY_AB3: C2RustUnnamed_5 = 589828;
+pub const _NL_ADDRESS_COUNTRY_AB2: C2RustUnnamed_5 = 589827;
+pub const _NL_ADDRESS_COUNTRY_POST: C2RustUnnamed_5 = 589826;
+pub const _NL_ADDRESS_COUNTRY_NAME: C2RustUnnamed_5 = 589825;
+pub const _NL_ADDRESS_POSTAL_FMT: C2RustUnnamed_5 = 589824;
+pub const _NL_NUM_LC_NAME: C2RustUnnamed_5 = 524295;
+pub const _NL_NAME_CODESET: C2RustUnnamed_5 = 524294;
+pub const _NL_NAME_NAME_MS: C2RustUnnamed_5 = 524293;
+pub const _NL_NAME_NAME_MISS: C2RustUnnamed_5 = 524292;
+pub const _NL_NAME_NAME_MRS: C2RustUnnamed_5 = 524291;
+pub const _NL_NAME_NAME_MR: C2RustUnnamed_5 = 524290;
+pub const _NL_NAME_NAME_GEN: C2RustUnnamed_5 = 524289;
+pub const _NL_NAME_NAME_FMT: C2RustUnnamed_5 = 524288;
+pub const _NL_NUM_LC_PAPER: C2RustUnnamed_5 = 458755;
+pub const _NL_PAPER_CODESET: C2RustUnnamed_5 = 458754;
+pub const _NL_PAPER_WIDTH: C2RustUnnamed_5 = 458753;
+pub const _NL_PAPER_HEIGHT: C2RustUnnamed_5 = 458752;
+pub const _NL_NUM_LC_MESSAGES: C2RustUnnamed_5 = 327685;
+pub const _NL_MESSAGES_CODESET: C2RustUnnamed_5 = 327684;
+pub const __NOSTR: C2RustUnnamed_5 = 327683;
+pub const __YESSTR: C2RustUnnamed_5 = 327682;
+pub const __NOEXPR: C2RustUnnamed_5 = 327681;
+pub const __YESEXPR: C2RustUnnamed_5 = 327680;
+pub const _NL_NUM_LC_NUMERIC: C2RustUnnamed_5 = 65542;
+pub const _NL_NUMERIC_CODESET: C2RustUnnamed_5 = 65541;
+pub const _NL_NUMERIC_THOUSANDS_SEP_WC: C2RustUnnamed_5 = 65540;
+pub const _NL_NUMERIC_DECIMAL_POINT_WC: C2RustUnnamed_5 = 65539;
+pub const __GROUPING: C2RustUnnamed_5 = 65538;
+pub const THOUSEP: C2RustUnnamed_5 = 65537;
+pub const __THOUSANDS_SEP: C2RustUnnamed_5 = 65537;
+pub const RADIXCHAR: C2RustUnnamed_5 = 65536;
+pub const __DECIMAL_POINT: C2RustUnnamed_5 = 65536;
+pub const _NL_NUM_LC_MONETARY: C2RustUnnamed_5 = 262190;
+pub const _NL_MONETARY_CODESET: C2RustUnnamed_5 = 262189;
+pub const _NL_MONETARY_THOUSANDS_SEP_WC: C2RustUnnamed_5 = 262188;
+pub const _NL_MONETARY_DECIMAL_POINT_WC: C2RustUnnamed_5 = 262187;
+pub const _NL_MONETARY_CONVERSION_RATE: C2RustUnnamed_5 = 262186;
+pub const _NL_MONETARY_DUO_VALID_TO: C2RustUnnamed_5 = 262185;
+pub const _NL_MONETARY_DUO_VALID_FROM: C2RustUnnamed_5 = 262184;
+pub const _NL_MONETARY_UNO_VALID_TO: C2RustUnnamed_5 = 262183;
+pub const _NL_MONETARY_UNO_VALID_FROM: C2RustUnnamed_5 = 262182;
+pub const _NL_MONETARY_DUO_INT_N_SIGN_POSN: C2RustUnnamed_5 = 262181;
+pub const _NL_MONETARY_DUO_INT_P_SIGN_POSN: C2RustUnnamed_5 = 262180;
+pub const _NL_MONETARY_DUO_N_SIGN_POSN: C2RustUnnamed_5 = 262179;
+pub const _NL_MONETARY_DUO_P_SIGN_POSN: C2RustUnnamed_5 = 262178;
+pub const _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262177;
+pub const _NL_MONETARY_DUO_INT_N_CS_PRECEDES: C2RustUnnamed_5 = 262176;
+pub const _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262175;
+pub const _NL_MONETARY_DUO_INT_P_CS_PRECEDES: C2RustUnnamed_5 = 262174;
+pub const _NL_MONETARY_DUO_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262173;
+pub const _NL_MONETARY_DUO_N_CS_PRECEDES: C2RustUnnamed_5 = 262172;
+pub const _NL_MONETARY_DUO_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262171;
+pub const _NL_MONETARY_DUO_P_CS_PRECEDES: C2RustUnnamed_5 = 262170;
+pub const _NL_MONETARY_DUO_FRAC_DIGITS: C2RustUnnamed_5 = 262169;
+pub const _NL_MONETARY_DUO_INT_FRAC_DIGITS: C2RustUnnamed_5 = 262168;
+pub const _NL_MONETARY_DUO_CURRENCY_SYMBOL: C2RustUnnamed_5 = 262167;
+pub const _NL_MONETARY_DUO_INT_CURR_SYMBOL: C2RustUnnamed_5 = 262166;
+pub const __INT_N_SIGN_POSN: C2RustUnnamed_5 = 262165;
+pub const __INT_P_SIGN_POSN: C2RustUnnamed_5 = 262164;
+pub const __INT_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262163;
+pub const __INT_N_CS_PRECEDES: C2RustUnnamed_5 = 262162;
+pub const __INT_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262161;
+pub const __INT_P_CS_PRECEDES: C2RustUnnamed_5 = 262160;
+pub const _NL_MONETARY_CRNCYSTR: C2RustUnnamed_5 = 262159;
+pub const __N_SIGN_POSN: C2RustUnnamed_5 = 262158;
+pub const __P_SIGN_POSN: C2RustUnnamed_5 = 262157;
+pub const __N_SEP_BY_SPACE: C2RustUnnamed_5 = 262156;
+pub const __N_CS_PRECEDES: C2RustUnnamed_5 = 262155;
+pub const __P_SEP_BY_SPACE: C2RustUnnamed_5 = 262154;
+pub const __P_CS_PRECEDES: C2RustUnnamed_5 = 262153;
+pub const __FRAC_DIGITS: C2RustUnnamed_5 = 262152;
+pub const __INT_FRAC_DIGITS: C2RustUnnamed_5 = 262151;
+pub const __NEGATIVE_SIGN: C2RustUnnamed_5 = 262150;
+pub const __POSITIVE_SIGN: C2RustUnnamed_5 = 262149;
+pub const __MON_GROUPING: C2RustUnnamed_5 = 262148;
+pub const __MON_THOUSANDS_SEP: C2RustUnnamed_5 = 262147;
+pub const __MON_DECIMAL_POINT: C2RustUnnamed_5 = 262146;
+pub const __CURRENCY_SYMBOL: C2RustUnnamed_5 = 262145;
+pub const __INT_CURR_SYMBOL: C2RustUnnamed_5 = 262144;
+pub const _NL_NUM_LC_CTYPE: C2RustUnnamed_5 = 86;
+pub const _NL_CTYPE_EXTRA_MAP_14: C2RustUnnamed_5 = 85;
+pub const _NL_CTYPE_EXTRA_MAP_13: C2RustUnnamed_5 = 84;
+pub const _NL_CTYPE_EXTRA_MAP_12: C2RustUnnamed_5 = 83;
+pub const _NL_CTYPE_EXTRA_MAP_11: C2RustUnnamed_5 = 82;
+pub const _NL_CTYPE_EXTRA_MAP_10: C2RustUnnamed_5 = 81;
+pub const _NL_CTYPE_EXTRA_MAP_9: C2RustUnnamed_5 = 80;
+pub const _NL_CTYPE_EXTRA_MAP_8: C2RustUnnamed_5 = 79;
+pub const _NL_CTYPE_EXTRA_MAP_7: C2RustUnnamed_5 = 78;
+pub const _NL_CTYPE_EXTRA_MAP_6: C2RustUnnamed_5 = 77;
+pub const _NL_CTYPE_EXTRA_MAP_5: C2RustUnnamed_5 = 76;
+pub const _NL_CTYPE_EXTRA_MAP_4: C2RustUnnamed_5 = 75;
+pub const _NL_CTYPE_EXTRA_MAP_3: C2RustUnnamed_5 = 74;
+pub const _NL_CTYPE_EXTRA_MAP_2: C2RustUnnamed_5 = 73;
+pub const _NL_CTYPE_EXTRA_MAP_1: C2RustUnnamed_5 = 72;
+pub const _NL_CTYPE_NONASCII_CASE: C2RustUnnamed_5 = 71;
+pub const _NL_CTYPE_MAP_TO_NONASCII: C2RustUnnamed_5 = 70;
+pub const _NL_CTYPE_TRANSLIT_IGNORE: C2RustUnnamed_5 = 69;
+pub const _NL_CTYPE_TRANSLIT_IGNORE_LEN: C2RustUnnamed_5 = 68;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING: C2RustUnnamed_5 = 67;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN: C2RustUnnamed_5 = 66;
+pub const _NL_CTYPE_TRANSLIT_TO_TBL: C2RustUnnamed_5 = 65;
+pub const _NL_CTYPE_TRANSLIT_TO_IDX: C2RustUnnamed_5 = 64;
+pub const _NL_CTYPE_TRANSLIT_FROM_TBL: C2RustUnnamed_5 = 63;
+pub const _NL_CTYPE_TRANSLIT_FROM_IDX: C2RustUnnamed_5 = 62;
+pub const _NL_CTYPE_TRANSLIT_TAB_SIZE: C2RustUnnamed_5 = 61;
+pub const _NL_CTYPE_OUTDIGIT9_WC: C2RustUnnamed_5 = 60;
+pub const _NL_CTYPE_OUTDIGIT8_WC: C2RustUnnamed_5 = 59;
+pub const _NL_CTYPE_OUTDIGIT7_WC: C2RustUnnamed_5 = 58;
+pub const _NL_CTYPE_OUTDIGIT6_WC: C2RustUnnamed_5 = 57;
+pub const _NL_CTYPE_OUTDIGIT5_WC: C2RustUnnamed_5 = 56;
+pub const _NL_CTYPE_OUTDIGIT4_WC: C2RustUnnamed_5 = 55;
+pub const _NL_CTYPE_OUTDIGIT3_WC: C2RustUnnamed_5 = 54;
+pub const _NL_CTYPE_OUTDIGIT2_WC: C2RustUnnamed_5 = 53;
+pub const _NL_CTYPE_OUTDIGIT1_WC: C2RustUnnamed_5 = 52;
+pub const _NL_CTYPE_OUTDIGIT0_WC: C2RustUnnamed_5 = 51;
+pub const _NL_CTYPE_OUTDIGIT9_MB: C2RustUnnamed_5 = 50;
+pub const _NL_CTYPE_OUTDIGIT8_MB: C2RustUnnamed_5 = 49;
+pub const _NL_CTYPE_OUTDIGIT7_MB: C2RustUnnamed_5 = 48;
+pub const _NL_CTYPE_OUTDIGIT6_MB: C2RustUnnamed_5 = 47;
+pub const _NL_CTYPE_OUTDIGIT5_MB: C2RustUnnamed_5 = 46;
+pub const _NL_CTYPE_OUTDIGIT4_MB: C2RustUnnamed_5 = 45;
+pub const _NL_CTYPE_OUTDIGIT3_MB: C2RustUnnamed_5 = 44;
+pub const _NL_CTYPE_OUTDIGIT2_MB: C2RustUnnamed_5 = 43;
+pub const _NL_CTYPE_OUTDIGIT1_MB: C2RustUnnamed_5 = 42;
+pub const _NL_CTYPE_OUTDIGIT0_MB: C2RustUnnamed_5 = 41;
+pub const _NL_CTYPE_INDIGITS9_WC: C2RustUnnamed_5 = 40;
+pub const _NL_CTYPE_INDIGITS8_WC: C2RustUnnamed_5 = 39;
+pub const _NL_CTYPE_INDIGITS7_WC: C2RustUnnamed_5 = 38;
+pub const _NL_CTYPE_INDIGITS6_WC: C2RustUnnamed_5 = 37;
+pub const _NL_CTYPE_INDIGITS5_WC: C2RustUnnamed_5 = 36;
+pub const _NL_CTYPE_INDIGITS4_WC: C2RustUnnamed_5 = 35;
+pub const _NL_CTYPE_INDIGITS3_WC: C2RustUnnamed_5 = 34;
+pub const _NL_CTYPE_INDIGITS2_WC: C2RustUnnamed_5 = 33;
+pub const _NL_CTYPE_INDIGITS1_WC: C2RustUnnamed_5 = 32;
+pub const _NL_CTYPE_INDIGITS0_WC: C2RustUnnamed_5 = 31;
+pub const _NL_CTYPE_INDIGITS_WC_LEN: C2RustUnnamed_5 = 30;
+pub const _NL_CTYPE_INDIGITS9_MB: C2RustUnnamed_5 = 29;
+pub const _NL_CTYPE_INDIGITS8_MB: C2RustUnnamed_5 = 28;
+pub const _NL_CTYPE_INDIGITS7_MB: C2RustUnnamed_5 = 27;
+pub const _NL_CTYPE_INDIGITS6_MB: C2RustUnnamed_5 = 26;
+pub const _NL_CTYPE_INDIGITS5_MB: C2RustUnnamed_5 = 25;
+pub const _NL_CTYPE_INDIGITS4_MB: C2RustUnnamed_5 = 24;
+pub const _NL_CTYPE_INDIGITS3_MB: C2RustUnnamed_5 = 23;
+pub const _NL_CTYPE_INDIGITS2_MB: C2RustUnnamed_5 = 22;
+pub const _NL_CTYPE_INDIGITS1_MB: C2RustUnnamed_5 = 21;
+pub const _NL_CTYPE_INDIGITS0_MB: C2RustUnnamed_5 = 20;
+pub const _NL_CTYPE_INDIGITS_MB_LEN: C2RustUnnamed_5 = 19;
+pub const _NL_CTYPE_MAP_OFFSET: C2RustUnnamed_5 = 18;
+pub const _NL_CTYPE_CLASS_OFFSET: C2RustUnnamed_5 = 17;
+pub const _NL_CTYPE_TOLOWER32: C2RustUnnamed_5 = 16;
+pub const _NL_CTYPE_TOUPPER32: C2RustUnnamed_5 = 15;
+pub const _NL_CTYPE_CODESET_NAME: C2RustUnnamed_5 = 14;
+pub const _NL_CTYPE_MB_CUR_MAX: C2RustUnnamed_5 = 13;
+pub const _NL_CTYPE_WIDTH: C2RustUnnamed_5 = 12;
+pub const _NL_CTYPE_MAP_NAMES: C2RustUnnamed_5 = 11;
+pub const _NL_CTYPE_CLASS_NAMES: C2RustUnnamed_5 = 10;
+pub const _NL_CTYPE_GAP6: C2RustUnnamed_5 = 9;
+pub const _NL_CTYPE_GAP5: C2RustUnnamed_5 = 8;
+pub const _NL_CTYPE_GAP4: C2RustUnnamed_5 = 7;
+pub const _NL_CTYPE_GAP3: C2RustUnnamed_5 = 6;
+pub const _NL_CTYPE_CLASS32: C2RustUnnamed_5 = 5;
+pub const _NL_CTYPE_GAP2: C2RustUnnamed_5 = 4;
+pub const _NL_CTYPE_TOLOWER: C2RustUnnamed_5 = 3;
+pub const _NL_CTYPE_GAP1: C2RustUnnamed_5 = 2;
+pub const _NL_CTYPE_TOUPPER: C2RustUnnamed_5 = 1;
+pub const _NL_CTYPE_CLASS: C2RustUnnamed_5 = 0;
+pub const _NL_NUM_LC_COLLATE: C2RustUnnamed_5 = 196627;
+pub const _NL_COLLATE_CODESET: C2RustUnnamed_5 = 196626;
+pub const _NL_COLLATE_COLLSEQWC: C2RustUnnamed_5 = 196625;
+pub const _NL_COLLATE_COLLSEQMB: C2RustUnnamed_5 = 196624;
+pub const _NL_COLLATE_SYMB_EXTRAMB: C2RustUnnamed_5 = 196623;
+pub const _NL_COLLATE_SYMB_TABLEMB: C2RustUnnamed_5 = 196622;
+pub const _NL_COLLATE_SYMB_HASH_SIZEMB: C2RustUnnamed_5 = 196621;
+pub const _NL_COLLATE_INDIRECTWC: C2RustUnnamed_5 = 196620;
+pub const _NL_COLLATE_EXTRAWC: C2RustUnnamed_5 = 196619;
+pub const _NL_COLLATE_WEIGHTWC: C2RustUnnamed_5 = 196618;
+pub const _NL_COLLATE_TABLEWC: C2RustUnnamed_5 = 196617;
+pub const _NL_COLLATE_GAP3: C2RustUnnamed_5 = 196616;
+pub const _NL_COLLATE_GAP2: C2RustUnnamed_5 = 196615;
+pub const _NL_COLLATE_GAP1: C2RustUnnamed_5 = 196614;
+pub const _NL_COLLATE_INDIRECTMB: C2RustUnnamed_5 = 196613;
+pub const _NL_COLLATE_EXTRAMB: C2RustUnnamed_5 = 196612;
+pub const _NL_COLLATE_WEIGHTMB: C2RustUnnamed_5 = 196611;
+pub const _NL_COLLATE_TABLEMB: C2RustUnnamed_5 = 196610;
+pub const _NL_COLLATE_RULESETS: C2RustUnnamed_5 = 196609;
+pub const _NL_COLLATE_NRULES: C2RustUnnamed_5 = 196608;
+pub const _NL_NUM_LC_TIME: C2RustUnnamed_5 = 131231;
+pub const _NL_WABALTMON_12: C2RustUnnamed_5 = 131230;
+pub const _NL_WABALTMON_11: C2RustUnnamed_5 = 131229;
+pub const _NL_WABALTMON_10: C2RustUnnamed_5 = 131228;
+pub const _NL_WABALTMON_9: C2RustUnnamed_5 = 131227;
+pub const _NL_WABALTMON_8: C2RustUnnamed_5 = 131226;
+pub const _NL_WABALTMON_7: C2RustUnnamed_5 = 131225;
+pub const _NL_WABALTMON_6: C2RustUnnamed_5 = 131224;
+pub const _NL_WABALTMON_5: C2RustUnnamed_5 = 131223;
+pub const _NL_WABALTMON_4: C2RustUnnamed_5 = 131222;
+pub const _NL_WABALTMON_3: C2RustUnnamed_5 = 131221;
+pub const _NL_WABALTMON_2: C2RustUnnamed_5 = 131220;
+pub const _NL_WABALTMON_1: C2RustUnnamed_5 = 131219;
+pub const _NL_ABALTMON_12: C2RustUnnamed_5 = 131218;
+pub const _NL_ABALTMON_11: C2RustUnnamed_5 = 131217;
+pub const _NL_ABALTMON_10: C2RustUnnamed_5 = 131216;
+pub const _NL_ABALTMON_9: C2RustUnnamed_5 = 131215;
+pub const _NL_ABALTMON_8: C2RustUnnamed_5 = 131214;
+pub const _NL_ABALTMON_7: C2RustUnnamed_5 = 131213;
+pub const _NL_ABALTMON_6: C2RustUnnamed_5 = 131212;
+pub const _NL_ABALTMON_5: C2RustUnnamed_5 = 131211;
+pub const _NL_ABALTMON_4: C2RustUnnamed_5 = 131210;
+pub const _NL_ABALTMON_3: C2RustUnnamed_5 = 131209;
+pub const _NL_ABALTMON_2: C2RustUnnamed_5 = 131208;
+pub const _NL_ABALTMON_1: C2RustUnnamed_5 = 131207;
+pub const _NL_WALTMON_12: C2RustUnnamed_5 = 131206;
+pub const _NL_WALTMON_11: C2RustUnnamed_5 = 131205;
+pub const _NL_WALTMON_10: C2RustUnnamed_5 = 131204;
+pub const _NL_WALTMON_9: C2RustUnnamed_5 = 131203;
+pub const _NL_WALTMON_8: C2RustUnnamed_5 = 131202;
+pub const _NL_WALTMON_7: C2RustUnnamed_5 = 131201;
+pub const _NL_WALTMON_6: C2RustUnnamed_5 = 131200;
+pub const _NL_WALTMON_5: C2RustUnnamed_5 = 131199;
+pub const _NL_WALTMON_4: C2RustUnnamed_5 = 131198;
+pub const _NL_WALTMON_3: C2RustUnnamed_5 = 131197;
+pub const _NL_WALTMON_2: C2RustUnnamed_5 = 131196;
+pub const _NL_WALTMON_1: C2RustUnnamed_5 = 131195;
+pub const __ALTMON_12: C2RustUnnamed_5 = 131194;
+pub const __ALTMON_11: C2RustUnnamed_5 = 131193;
+pub const __ALTMON_10: C2RustUnnamed_5 = 131192;
+pub const __ALTMON_9: C2RustUnnamed_5 = 131191;
+pub const __ALTMON_8: C2RustUnnamed_5 = 131190;
+pub const __ALTMON_7: C2RustUnnamed_5 = 131189;
+pub const __ALTMON_6: C2RustUnnamed_5 = 131188;
+pub const __ALTMON_5: C2RustUnnamed_5 = 131187;
+pub const __ALTMON_4: C2RustUnnamed_5 = 131186;
+pub const __ALTMON_3: C2RustUnnamed_5 = 131185;
+pub const __ALTMON_2: C2RustUnnamed_5 = 131184;
+pub const __ALTMON_1: C2RustUnnamed_5 = 131183;
+pub const _NL_TIME_CODESET: C2RustUnnamed_5 = 131182;
+pub const _NL_W_DATE_FMT: C2RustUnnamed_5 = 131181;
+pub const _DATE_FMT: C2RustUnnamed_5 = 131180;
+pub const _NL_TIME_TIMEZONE: C2RustUnnamed_5 = 131179;
+pub const _NL_TIME_CAL_DIRECTION: C2RustUnnamed_5 = 131178;
+pub const _NL_TIME_FIRST_WORKDAY: C2RustUnnamed_5 = 131177;
+pub const _NL_TIME_FIRST_WEEKDAY: C2RustUnnamed_5 = 131176;
+pub const _NL_TIME_WEEK_1STWEEK: C2RustUnnamed_5 = 131175;
+pub const _NL_TIME_WEEK_1STDAY: C2RustUnnamed_5 = 131174;
+pub const _NL_TIME_WEEK_NDAYS: C2RustUnnamed_5 = 131173;
+pub const _NL_WERA_T_FMT: C2RustUnnamed_5 = 131172;
+pub const _NL_WERA_D_T_FMT: C2RustUnnamed_5 = 131171;
+pub const _NL_WALT_DIGITS: C2RustUnnamed_5 = 131170;
+pub const _NL_WERA_D_FMT: C2RustUnnamed_5 = 131169;
+pub const _NL_WERA_YEAR: C2RustUnnamed_5 = 131168;
+pub const _NL_WT_FMT_AMPM: C2RustUnnamed_5 = 131167;
+pub const _NL_WT_FMT: C2RustUnnamed_5 = 131166;
+pub const _NL_WD_FMT: C2RustUnnamed_5 = 131165;
+pub const _NL_WD_T_FMT: C2RustUnnamed_5 = 131164;
+pub const _NL_WPM_STR: C2RustUnnamed_5 = 131163;
+pub const _NL_WAM_STR: C2RustUnnamed_5 = 131162;
+pub const _NL_WMON_12: C2RustUnnamed_5 = 131161;
+pub const _NL_WMON_11: C2RustUnnamed_5 = 131160;
+pub const _NL_WMON_10: C2RustUnnamed_5 = 131159;
+pub const _NL_WMON_9: C2RustUnnamed_5 = 131158;
+pub const _NL_WMON_8: C2RustUnnamed_5 = 131157;
+pub const _NL_WMON_7: C2RustUnnamed_5 = 131156;
+pub const _NL_WMON_6: C2RustUnnamed_5 = 131155;
+pub const _NL_WMON_5: C2RustUnnamed_5 = 131154;
+pub const _NL_WMON_4: C2RustUnnamed_5 = 131153;
+pub const _NL_WMON_3: C2RustUnnamed_5 = 131152;
+pub const _NL_WMON_2: C2RustUnnamed_5 = 131151;
+pub const _NL_WMON_1: C2RustUnnamed_5 = 131150;
+pub const _NL_WABMON_12: C2RustUnnamed_5 = 131149;
+pub const _NL_WABMON_11: C2RustUnnamed_5 = 131148;
+pub const _NL_WABMON_10: C2RustUnnamed_5 = 131147;
+pub const _NL_WABMON_9: C2RustUnnamed_5 = 131146;
+pub const _NL_WABMON_8: C2RustUnnamed_5 = 131145;
+pub const _NL_WABMON_7: C2RustUnnamed_5 = 131144;
+pub const _NL_WABMON_6: C2RustUnnamed_5 = 131143;
+pub const _NL_WABMON_5: C2RustUnnamed_5 = 131142;
+pub const _NL_WABMON_4: C2RustUnnamed_5 = 131141;
+pub const _NL_WABMON_3: C2RustUnnamed_5 = 131140;
+pub const _NL_WABMON_2: C2RustUnnamed_5 = 131139;
+pub const _NL_WABMON_1: C2RustUnnamed_5 = 131138;
+pub const _NL_WDAY_7: C2RustUnnamed_5 = 131137;
+pub const _NL_WDAY_6: C2RustUnnamed_5 = 131136;
+pub const _NL_WDAY_5: C2RustUnnamed_5 = 131135;
+pub const _NL_WDAY_4: C2RustUnnamed_5 = 131134;
+pub const _NL_WDAY_3: C2RustUnnamed_5 = 131133;
+pub const _NL_WDAY_2: C2RustUnnamed_5 = 131132;
+pub const _NL_WDAY_1: C2RustUnnamed_5 = 131131;
+pub const _NL_WABDAY_7: C2RustUnnamed_5 = 131130;
+pub const _NL_WABDAY_6: C2RustUnnamed_5 = 131129;
+pub const _NL_WABDAY_5: C2RustUnnamed_5 = 131128;
+pub const _NL_WABDAY_4: C2RustUnnamed_5 = 131127;
+pub const _NL_WABDAY_3: C2RustUnnamed_5 = 131126;
+pub const _NL_WABDAY_2: C2RustUnnamed_5 = 131125;
+pub const _NL_WABDAY_1: C2RustUnnamed_5 = 131124;
+pub const _NL_TIME_ERA_ENTRIES: C2RustUnnamed_5 = 131123;
+pub const _NL_TIME_ERA_NUM_ENTRIES: C2RustUnnamed_5 = 131122;
+pub const ERA_T_FMT: C2RustUnnamed_5 = 131121;
+pub const ERA_D_T_FMT: C2RustUnnamed_5 = 131120;
+pub const ALT_DIGITS: C2RustUnnamed_5 = 131119;
+pub const ERA_D_FMT: C2RustUnnamed_5 = 131118;
+pub const __ERA_YEAR: C2RustUnnamed_5 = 131117;
+pub const ERA: C2RustUnnamed_5 = 131116;
+pub const T_FMT_AMPM: C2RustUnnamed_5 = 131115;
+pub const T_FMT: C2RustUnnamed_5 = 131114;
+pub const D_FMT: C2RustUnnamed_5 = 131113;
+pub const D_T_FMT: C2RustUnnamed_5 = 131112;
+pub const PM_STR: C2RustUnnamed_5 = 131111;
+pub const AM_STR: C2RustUnnamed_5 = 131110;
+pub const MON_12: C2RustUnnamed_5 = 131109;
+pub const MON_11: C2RustUnnamed_5 = 131108;
+pub const MON_10: C2RustUnnamed_5 = 131107;
+pub const MON_9: C2RustUnnamed_5 = 131106;
+pub const MON_8: C2RustUnnamed_5 = 131105;
+pub const MON_7: C2RustUnnamed_5 = 131104;
+pub const MON_6: C2RustUnnamed_5 = 131103;
+pub const MON_5: C2RustUnnamed_5 = 131102;
+pub const MON_4: C2RustUnnamed_5 = 131101;
+pub const MON_3: C2RustUnnamed_5 = 131100;
+pub const MON_2: C2RustUnnamed_5 = 131099;
+pub const MON_1: C2RustUnnamed_5 = 131098;
+pub const ABMON_12: C2RustUnnamed_5 = 131097;
+pub const ABMON_11: C2RustUnnamed_5 = 131096;
+pub const ABMON_10: C2RustUnnamed_5 = 131095;
+pub const ABMON_9: C2RustUnnamed_5 = 131094;
+pub const ABMON_8: C2RustUnnamed_5 = 131093;
+pub const ABMON_7: C2RustUnnamed_5 = 131092;
+pub const ABMON_6: C2RustUnnamed_5 = 131091;
+pub const ABMON_5: C2RustUnnamed_5 = 131090;
+pub const ABMON_4: C2RustUnnamed_5 = 131089;
+pub const ABMON_3: C2RustUnnamed_5 = 131088;
+pub const ABMON_2: C2RustUnnamed_5 = 131087;
+pub const ABMON_1: C2RustUnnamed_5 = 131086;
+pub const DAY_7: C2RustUnnamed_5 = 131085;
+pub const DAY_6: C2RustUnnamed_5 = 131084;
+pub const DAY_5: C2RustUnnamed_5 = 131083;
+pub const DAY_4: C2RustUnnamed_5 = 131082;
+pub const DAY_3: C2RustUnnamed_5 = 131081;
+pub const DAY_2: C2RustUnnamed_5 = 131080;
+pub const DAY_1: C2RustUnnamed_5 = 131079;
+pub const ABDAY_7: C2RustUnnamed_5 = 131078;
+pub const ABDAY_6: C2RustUnnamed_5 = 131077;
+pub const ABDAY_5: C2RustUnnamed_5 = 131076;
+pub const ABDAY_4: C2RustUnnamed_5 = 131075;
+pub const ABDAY_3: C2RustUnnamed_5 = 131074;
+pub const ABDAY_2: C2RustUnnamed_5 = 131073;
+pub const ABDAY_1: C2RustUnnamed_5 = 131072;
 #[inline]
-unsafe extern "C" fn stat(
-    mut __path: *const libc::c_char,
-    mut __statbuf: *mut stat,
-) -> libc::c_int {
-    return __xstat(1 as libc::c_int, __path, __statbuf);
+unsafe extern "C" fn stat(mut __path: *const i8, mut __statbuf: *mut stat) -> i32 {
+    return __xstat(1 as i32, __path, __statbuf);
 }
 #[inline]
-unsafe extern "C" fn c_isalnum(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isalnum(mut c: i32) -> bool {
     match c {
         48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 97 | 98 | 99 | 100 | 101 | 102
         | 103 | 104 | 105 | 106 | 107 | 108 | 109 | 110 | 111 | 112 | 113 | 114 | 115
         | 116 | 117 | 118 | 119 | 120 | 121 | 122 | 65 | 66 | 67 | 68 | 69 | 70 | 71 | 72
         | 73 | 74 | 75 | 76 | 77 | 78 | 79 | 80 | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88
-        | 89 | 90 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        | 89 | 90 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_isascii(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isascii(mut c: i32) -> bool {
     match c {
         32 | 7 | 8 | 12 | 10 | 13 | 9 | 11 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 14 | 15 | 16
         | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 127
@@ -1539,45 +2027,45 @@ unsafe extern "C" fn c_isascii(mut c: libc::c_int) -> bool {
         | 39 | 40 | 41 | 42 | 43 | 44 | 45 | 46 | 47 | 58 | 59 | 60 | 61 | 62 | 63 | 64
         | 91 | 92 | 93 | 94 | 95 | 96 | 123 | 124 | 125 | 126 | 65 | 66 | 67 | 68 | 69
         | 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79 | 80 | 81 | 82 | 83 | 84 | 85
-        | 86 | 87 | 88 | 89 | 90 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        | 86 | 87 | 88 | 89 | 90 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_iscntrl(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_iscntrl(mut c: i32) -> bool {
     match c {
         7 | 8 | 12 | 10 | 13 | 9 | 11 | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 14 | 15 | 16 | 17
         | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 127 => {
-            return 1 as libc::c_int != 0;
+            return 1 as i32 != 0;
         }
-        _ => return 0 as libc::c_int != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_isdigit(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isdigit(mut c: i32) -> bool {
     match c {
-        48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_isupper(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isupper(mut c: i32) -> bool {
     match c {
         65 | 66 | 67 | 68 | 69 | 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79 | 80
-        | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89 | 90 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89 | 90 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_isxdigit(mut c: libc::c_int) -> bool {
+unsafe extern "C" fn c_isxdigit(mut c: i32) -> bool {
     match c {
         48 | 49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 | 97 | 98 | 99 | 100 | 101 | 102
-        | 65 | 66 | 67 | 68 | 69 | 70 => return 1 as libc::c_int != 0,
-        _ => return 0 as libc::c_int != 0,
+        | 65 | 66 | 67 | 68 | 69 | 70 => return 1 as i32 != 0,
+        _ => return 0 as i32 != 0,
     };
 }
 #[inline]
-unsafe extern "C" fn c_tolower(mut c: libc::c_int) -> libc::c_int {
+unsafe extern "C" fn c_tolower(mut c: i32) -> i32 {
     match c {
         65 | 66 | 67 | 68 | 69 | 70 | 71 | 72 | 73 | 74 | 75 | 76 | 77 | 78 | 79 | 80
         | 81 | 82 | 83 | 84 | 85 | 86 | 87 | 88 | 89 | 90 => {
@@ -1587,7 +2075,7 @@ unsafe extern "C" fn c_tolower(mut c: libc::c_int) -> libc::c_int {
     };
 }
 #[inline]
-unsafe extern "C" fn c_toupper(mut c: libc::c_int) -> libc::c_int {
+unsafe extern "C" fn c_toupper(mut c: i32) -> i32 {
     match c {
         97 | 98 | 99 | 100 | 101 | 102 | 103 | 104 | 105 | 106 | 107 | 108 | 109 | 110
         | 111 | 112 | 113 | 114 | 115 | 116 | 117 | 118 | 119 | 120 | 121 | 122 => {
@@ -1597,349 +2085,353 @@ unsafe extern "C" fn c_toupper(mut c: libc::c_int) -> libc::c_int {
     };
 }
 #[inline]
-unsafe extern "C" fn _unhex(mut c: libc::c_uchar) -> libc::c_uchar {
-    return (if c as libc::c_int <= '9' as i32 {
-        c as libc::c_int - '0' as i32
-    } else if c as libc::c_int <= 'F' as i32 {
-        c as libc::c_int - 'A' as i32 + 10 as libc::c_int
+unsafe extern "C" fn _unhex(mut c: u8) -> u8 {
+    return (if c as i32 <= '9' as i32 {
+        c as i32 - '0' as i32
+    } else if c as i32 <= 'F' as i32 {
+        c as i32 - 'A' as i32 + 10 as i32
     } else {
-        c as libc::c_int - 'a' as i32 + 10 as libc::c_int
-    }) as libc::c_uchar;
+        c as i32 - 'a' as i32 + 10 as i32
+    }) as u8;
 }
 static mut supported_schemes: [scheme_data; 5] = [
     {
         let mut init = scheme_data {
-            name: b"http\0" as *const u8 as *const libc::c_char,
-            leading_string: b"http://\0" as *const u8 as *const libc::c_char,
-            default_port: 80 as libc::c_int,
-            flags: scm_has_query as libc::c_int | scm_has_fragment as libc::c_int,
+            name: b"http\0" as *const u8 as *const i8,
+            leading_string: b"http://\0" as *const u8 as *const i8,
+            default_port: 80 as i32,
+            flags: C2RustUnnamed_6::scm_has_query as i32
+                | C2RustUnnamed_6::scm_has_fragment as i32,
         };
         init
     },
     {
         let mut init = scheme_data {
-            name: b"https\0" as *const u8 as *const libc::c_char,
-            leading_string: b"https://\0" as *const u8 as *const libc::c_char,
-            default_port: 443 as libc::c_int,
-            flags: scm_has_query as libc::c_int | scm_has_fragment as libc::c_int,
+            name: b"https\0" as *const u8 as *const i8,
+            leading_string: b"https://\0" as *const u8 as *const i8,
+            default_port: 443 as i32,
+            flags: C2RustUnnamed_6::scm_has_query as i32
+                | C2RustUnnamed_6::scm_has_fragment as i32,
         };
         init
     },
     {
         let mut init = scheme_data {
-            name: b"ftp\0" as *const u8 as *const libc::c_char,
-            leading_string: b"ftp://\0" as *const u8 as *const libc::c_char,
-            default_port: 21 as libc::c_int,
-            flags: scm_has_params as libc::c_int | scm_has_fragment as libc::c_int,
+            name: b"ftp\0" as *const u8 as *const i8,
+            leading_string: b"ftp://\0" as *const u8 as *const i8,
+            default_port: 21 as i32,
+            flags: C2RustUnnamed_6::scm_has_params as i32
+                | C2RustUnnamed_6::scm_has_fragment as i32,
         };
         init
     },
     {
         let mut init = scheme_data {
-            name: b"ftps\0" as *const u8 as *const libc::c_char,
-            leading_string: b"ftps://\0" as *const u8 as *const libc::c_char,
-            default_port: 21 as libc::c_int,
-            flags: scm_has_params as libc::c_int | scm_has_fragment as libc::c_int,
+            name: b"ftps\0" as *const u8 as *const i8,
+            leading_string: b"ftps://\0" as *const u8 as *const i8,
+            default_port: 21 as i32,
+            flags: C2RustUnnamed_6::scm_has_params as i32
+                | C2RustUnnamed_6::scm_has_fragment as i32,
         };
         init
     },
     {
         let mut init = scheme_data {
-            name: 0 as *const libc::c_char,
-            leading_string: 0 as *const libc::c_char,
-            default_port: -(1 as libc::c_int),
-            flags: 0 as libc::c_int,
+            name: 0 as *const i8,
+            leading_string: 0 as *const i8,
+            default_port: -(1 as i32),
+            flags: 0 as i32,
         };
         init
     },
 ];
-static mut urlchr_table: [libc::c_uchar; 256] = [
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    (urlchr_reserved as libc::c_int | urlchr_unsafe as libc::c_int) as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    (urlchr_reserved as libc::c_int | urlchr_unsafe as libc::c_int) as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_reserved as libc::c_int as libc::c_uchar,
-    (urlchr_reserved as libc::c_int | urlchr_unsafe as libc::c_int) as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    (urlchr_reserved as libc::c_int | urlchr_unsafe as libc::c_int) as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    (urlchr_reserved as libc::c_int | urlchr_unsafe as libc::c_int) as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
-    urlchr_unsafe as libc::c_int as libc::c_uchar,
+static mut urlchr_table: [u8; 256] = [
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    (C2RustUnnamed_7::urlchr_reserved as i32 | C2RustUnnamed_7::urlchr_unsafe as i32)
+        as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    (C2RustUnnamed_7::urlchr_reserved as i32 | C2RustUnnamed_7::urlchr_unsafe as i32)
+        as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_reserved as i32 as u8,
+    (C2RustUnnamed_7::urlchr_reserved as i32 | C2RustUnnamed_7::urlchr_unsafe as i32)
+        as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    (C2RustUnnamed_7::urlchr_reserved as i32 | C2RustUnnamed_7::urlchr_unsafe as i32)
+        as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    (C2RustUnnamed_7::urlchr_reserved as i32 | C2RustUnnamed_7::urlchr_unsafe as i32)
+        as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
+    C2RustUnnamed_7::urlchr_unsafe as i32 as u8,
 ];
-unsafe extern "C" fn url_unescape_1(mut s: *mut libc::c_char, mut mask: libc::c_uchar) {
+unsafe extern "C" fn url_unescape_1(mut s: *mut i8, mut mask: u8) {
     let mut current_block: u64;
-    let mut t: *mut libc::c_uchar = s as *mut libc::c_uchar;
-    let mut h: *mut libc::c_uchar = s as *mut libc::c_uchar;
+    let mut t: *mut u8 = s as *mut u8;
+    let mut h: *mut u8 = s as *mut u8;
     while *h != 0 {
-        if *h as libc::c_int != '%' as i32 {
+        if *h as i32 != '%' as i32 {
             current_block = 18150253981776513775;
         } else {
-            let mut c: libc::c_uchar = 0;
-            if *h.offset(1 as libc::c_int as isize) == 0
-                || *h.offset(2 as libc::c_int as isize) == 0
-                || !(c_isxdigit(*h.offset(1 as libc::c_int as isize) as libc::c_int)
-                    as libc::c_int != 0
-                    && c_isxdigit(*h.offset(2 as libc::c_int as isize) as libc::c_int)
-                        as libc::c_int != 0)
+            let mut c: u8 = 0;
+            if *h.offset(1 as i32 as isize) == 0 || *h.offset(2 as i32 as isize) == 0
+                || !(c_isxdigit(*h.offset(1 as i32 as isize) as i32) as i32 != 0
+                    && c_isxdigit(*h.offset(2 as i32 as isize) as i32) as i32 != 0)
             {
                 current_block = 18150253981776513775;
             } else {
-                c = (((_unhex(*h.offset(1 as libc::c_int as isize)) as libc::c_int)
-                    << 4 as libc::c_int)
-                    + _unhex(*h.offset(2 as libc::c_int as isize)) as libc::c_int)
-                    as libc::c_uchar;
-                if urlchr_table[c as usize] as libc::c_int & mask as libc::c_int != 0 {
+                c = (((_unhex(*h.offset(1 as i32 as isize)) as i32) << 4 as i32)
+                    + _unhex(*h.offset(2 as i32 as isize)) as i32) as u8;
+                if urlchr_table[c as usize] as i32 & mask as i32 != 0 {
                     current_block = 18150253981776513775;
-                } else if c as libc::c_int == '\0' as i32 {
+                } else if c as i32 == '\0' as i32 {
                     current_block = 18150253981776513775;
                 } else {
                     *t = c;
-                    h = h.offset(2 as libc::c_int as isize);
+                    h = h.offset(2 as i32 as isize);
                     current_block = 16668937799742929182;
                 }
             }
@@ -1955,72 +2447,63 @@ unsafe extern "C" fn url_unescape_1(mut s: *mut libc::c_char, mut mask: libc::c_
         t = t.offset(1);
         t;
     }
-    *t = '\0' as i32 as libc::c_uchar;
+    *t = '\0' as i32 as u8;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_unescape(mut s: *mut libc::c_char) {
-    url_unescape_1(s, 0 as libc::c_int as libc::c_uchar);
+pub unsafe extern "C" fn url_unescape(mut s: *mut i8) {
+    url_unescape_1(s, 0 as i32 as u8);
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_unescape_except_reserved(mut s: *mut libc::c_char) {
-    url_unescape_1(s, urlchr_reserved as libc::c_int as libc::c_uchar);
+pub unsafe extern "C" fn url_unescape_except_reserved(mut s: *mut i8) {
+    url_unescape_1(s, C2RustUnnamed_7::urlchr_reserved as i32 as u8);
 }
 unsafe extern "C" fn url_escape_1(
-    mut s: *const libc::c_char,
-    mut mask: libc::c_uchar,
+    mut s: *const i8,
+    mut mask: u8,
     mut allow_passthrough: bool,
-) -> *mut libc::c_char {
-    let mut p1: *const libc::c_char = 0 as *const libc::c_char;
-    let mut p2: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut newstr: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut newlen: libc::c_int = 0;
-    let mut addition: libc::c_int = 0 as libc::c_int;
+) -> *mut i8 {
+    let mut p1: *const i8 = 0 as *const i8;
+    let mut p2: *mut i8 = 0 as *mut i8;
+    let mut newstr: *mut i8 = 0 as *mut i8;
+    let mut newlen: i32 = 0;
+    let mut addition: i32 = 0 as i32;
     p1 = s;
     while *p1 != 0 {
-        if urlchr_table[*p1 as libc::c_uchar as usize] as libc::c_int
-            & mask as libc::c_int != 0
-        {
-            addition += 2 as libc::c_int;
+        if urlchr_table[*p1 as u8 as usize] as i32 & mask as i32 != 0 {
+            addition += 2 as i32;
         }
         p1 = p1.offset(1);
         p1;
     }
     if addition == 0 {
-        return if allow_passthrough as libc::c_int != 0 {
-            s as *mut libc::c_char
-        } else {
-            xstrdup(s)
-        };
+        return if allow_passthrough as i32 != 0 { s as *mut i8 } else { xstrdup(s) };
     }
-    newlen = (p1.offset_from(s) as libc::c_long + addition as libc::c_long)
-        as libc::c_int;
-    newstr = xmalloc((newlen + 1 as libc::c_int) as size_t) as *mut libc::c_char;
+    newlen = (p1.offset_from(s) as i64 + addition as i64) as i32;
+    newstr = xmalloc((newlen + 1 as i32) as size_t) as *mut i8;
     p1 = s;
     p2 = newstr;
     while *p1 != 0 {
-        if urlchr_table[*p1 as libc::c_uchar as usize] as libc::c_int
-            & mask as libc::c_int != 0
-        {
+        if urlchr_table[*p1 as u8 as usize] as i32 & mask as i32 != 0 {
             let fresh0 = p1;
             p1 = p1.offset(1);
-            let mut c: libc::c_uchar = *fresh0 as libc::c_uchar;
+            let mut c: u8 = *fresh0 as u8;
             let fresh1 = p2;
             p2 = p2.offset(1);
-            *fresh1 = '%' as i32 as libc::c_char;
+            *fresh1 = '%' as i32 as i8;
             let fresh2 = p2;
             p2 = p2.offset(1);
             *fresh2 = ((*::core::mem::transmute::<
                 &[u8; 17],
-                &[libc::c_char; 17],
-            >(b"0123456789ABCDEF\0"))[(c as libc::c_int >> 4 as libc::c_int) as usize]
-                as libc::c_int + 0 as libc::c_int) as libc::c_char;
+                &[i8; 17],
+            >(b"0123456789ABCDEF\0"))[(c as i32 >> 4 as i32) as usize] as i32 + 0 as i32)
+                as i8;
             let fresh3 = p2;
             p2 = p2.offset(1);
             *fresh3 = ((*::core::mem::transmute::<
                 &[u8; 17],
-                &[libc::c_char; 17],
-            >(b"0123456789ABCDEF\0"))[(c as libc::c_int & 0xf as libc::c_int) as usize]
-                as libc::c_int + 0 as libc::c_int) as libc::c_char;
+                &[i8; 17],
+            >(b"0123456789ABCDEF\0"))[(c as i32 & 0xf as i32) as usize] as i32
+                + 0 as i32) as i8;
         } else {
             let fresh4 = p1;
             p1 = p1.offset(1);
@@ -2029,65 +2512,52 @@ unsafe extern "C" fn url_escape_1(
             *fresh5 = *fresh4;
         }
     }
-    *p2 = '\0' as i32 as libc::c_char;
+    *p2 = '\0' as i32 as i8;
     return newstr;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_escape(mut s: *const libc::c_char) -> *mut libc::c_char {
-    return url_escape_1(
-        s,
-        urlchr_unsafe as libc::c_int as libc::c_uchar,
-        0 as libc::c_int != 0,
-    );
+pub unsafe extern "C" fn url_escape(mut s: *const i8) -> *mut i8 {
+    return url_escape_1(s, C2RustUnnamed_7::urlchr_unsafe as i32 as u8, 0 as i32 != 0);
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_escape_unsafe_and_reserved(
-    mut s: *const libc::c_char,
-) -> *mut libc::c_char {
+pub unsafe extern "C" fn url_escape_unsafe_and_reserved(mut s: *const i8) -> *mut i8 {
     return url_escape_1(
         s,
-        (urlchr_unsafe as libc::c_int | urlchr_reserved as libc::c_int) as libc::c_uchar,
-        0 as libc::c_int != 0,
+        (C2RustUnnamed_7::urlchr_unsafe as i32 | C2RustUnnamed_7::urlchr_reserved as i32)
+            as u8,
+        0 as i32 != 0,
     );
 }
-unsafe extern "C" fn url_escape_allow_passthrough(
-    mut s: *const libc::c_char,
-) -> *mut libc::c_char {
-    return url_escape_1(
-        s,
-        urlchr_unsafe as libc::c_int as libc::c_uchar,
-        1 as libc::c_int != 0,
-    );
+unsafe extern "C" fn url_escape_allow_passthrough(mut s: *const i8) -> *mut i8 {
+    return url_escape_1(s, C2RustUnnamed_7::urlchr_unsafe as i32 as u8, 1 as i32 != 0);
 }
 #[inline]
-unsafe extern "C" fn char_needs_escaping(mut p: *const libc::c_char) -> bool {
-    if *p as libc::c_int == '%' as i32 {
-        if c_isxdigit(*p.offset(1 as libc::c_int as isize) as libc::c_int) as libc::c_int
-            != 0
-            && c_isxdigit(*p.offset(2 as libc::c_int as isize) as libc::c_int)
-                as libc::c_int != 0
+unsafe extern "C" fn char_needs_escaping(mut p: *const i8) -> bool {
+    if *p as i32 == '%' as i32 {
+        if c_isxdigit(*p.offset(1 as i32 as isize) as i32) as i32 != 0
+            && c_isxdigit(*p.offset(2 as i32 as isize) as i32) as i32 != 0
         {
-            return 0 as libc::c_int != 0
+            return 0 as i32 != 0
         } else {
-            return 1 as libc::c_int != 0
+            return 1 as i32 != 0
         }
-    } else if urlchr_table[*p as libc::c_uchar as usize] as libc::c_int
-        & urlchr_unsafe as libc::c_int != 0
-        && urlchr_table[*p as libc::c_uchar as usize] as libc::c_int
-            & urlchr_reserved as libc::c_int == 0
+    } else if urlchr_table[*p as u8 as usize] as i32
+        & C2RustUnnamed_7::urlchr_unsafe as i32 != 0
+        && urlchr_table[*p as u8 as usize] as i32
+            & C2RustUnnamed_7::urlchr_reserved as i32 == 0
     {
-        return 1 as libc::c_int != 0
+        return 1 as i32 != 0
     } else {
-        return 0 as libc::c_int != 0
+        return 0 as i32 != 0
     };
 }
-unsafe extern "C" fn reencode_escapes(mut s: *const libc::c_char) -> *mut libc::c_char {
-    let mut p1: *const libc::c_char = 0 as *const libc::c_char;
-    let mut newstr: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut p2: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut oldlen: libc::c_int = 0;
-    let mut newlen: libc::c_int = 0;
-    let mut encode_count: libc::c_int = 0 as libc::c_int;
+unsafe extern "C" fn reencode_escapes(mut s: *const i8) -> *mut i8 {
+    let mut p1: *const i8 = 0 as *const i8;
+    let mut newstr: *mut i8 = 0 as *mut i8;
+    let mut p2: *mut i8 = 0 as *mut i8;
+    let mut oldlen: i32 = 0;
+    let mut newlen: i32 = 0;
+    let mut encode_count: i32 = 0 as i32;
     p1 = s;
     while *p1 != 0 {
         if char_needs_escaping(p1) {
@@ -2098,35 +2568,35 @@ unsafe extern "C" fn reencode_escapes(mut s: *const libc::c_char) -> *mut libc::
         p1;
     }
     if encode_count == 0 {
-        return s as *mut libc::c_char;
+        return s as *mut i8;
     }
-    oldlen = p1.offset_from(s) as libc::c_long as libc::c_int;
-    newlen = oldlen + 2 as libc::c_int * encode_count;
-    newstr = xmalloc((newlen + 1 as libc::c_int) as size_t) as *mut libc::c_char;
+    oldlen = p1.offset_from(s) as i64 as i32;
+    newlen = oldlen + 2 as i32 * encode_count;
+    newstr = xmalloc((newlen + 1 as i32) as size_t) as *mut i8;
     p1 = s;
     p2 = newstr;
     while *p1 != 0 {
         if char_needs_escaping(p1) {
             let fresh6 = p1;
             p1 = p1.offset(1);
-            let mut c: libc::c_uchar = *fresh6 as libc::c_uchar;
+            let mut c: u8 = *fresh6 as u8;
             let fresh7 = p2;
             p2 = p2.offset(1);
-            *fresh7 = '%' as i32 as libc::c_char;
+            *fresh7 = '%' as i32 as i8;
             let fresh8 = p2;
             p2 = p2.offset(1);
             *fresh8 = ((*::core::mem::transmute::<
                 &[u8; 17],
-                &[libc::c_char; 17],
-            >(b"0123456789ABCDEF\0"))[(c as libc::c_int >> 4 as libc::c_int) as usize]
-                as libc::c_int + 0 as libc::c_int) as libc::c_char;
+                &[i8; 17],
+            >(b"0123456789ABCDEF\0"))[(c as i32 >> 4 as i32) as usize] as i32 + 0 as i32)
+                as i8;
             let fresh9 = p2;
             p2 = p2.offset(1);
             *fresh9 = ((*::core::mem::transmute::<
                 &[u8; 17],
-                &[libc::c_char; 17],
-            >(b"0123456789ABCDEF\0"))[(c as libc::c_int & 0xf as libc::c_int) as usize]
-                as libc::c_int + 0 as libc::c_int) as libc::c_char;
+                &[i8; 17],
+            >(b"0123456789ABCDEF\0"))[(c as i32 & 0xf as i32) as usize] as i32
+                + 0 as i32) as i8;
         } else {
             let fresh10 = p1;
             p1 = p1.offset(1);
@@ -2135,154 +2605,143 @@ unsafe extern "C" fn reencode_escapes(mut s: *const libc::c_char) -> *mut libc::
             *fresh11 = *fresh10;
         }
     }
-    *p2 = '\0' as i32 as libc::c_char;
+    *p2 = '\0' as i32 as i8;
     return newstr;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_scheme(mut url: *const libc::c_char) -> url_scheme {
-    let mut i: libc::c_int = 0;
-    i = 0 as libc::c_int;
+pub unsafe extern "C" fn url_scheme(mut url: *const i8) -> url_scheme {
+    let mut i: i32 = 0;
+    i = 0 as i32;
     while !(supported_schemes[i as usize].leading_string).is_null() {
-        if 0 as libc::c_int
+        if 0 as i32
             == c_strncasecmp(
                 url,
                 supported_schemes[i as usize].leading_string,
                 strlen(supported_schemes[i as usize].leading_string),
             )
         {
-            if supported_schemes[i as usize].flags & scm_disabled as libc::c_int == 0 {
-                return i as url_scheme
+            if supported_schemes[i as usize].flags & C2RustUnnamed_6::scm_disabled as i32
+                == 0
+            {
+                return url_scheme::from_libc_c_uint(i as u32)
             } else {
-                return SCHEME_INVALID
+                return url_scheme::SCHEME_INVALID
             }
         }
         i += 1;
         i;
     }
-    return SCHEME_INVALID;
+    return url_scheme::SCHEME_INVALID;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_has_scheme(mut url: *const libc::c_char) -> bool {
-    let mut p: *const libc::c_char = url;
+pub unsafe extern "C" fn url_has_scheme(mut url: *const i8) -> bool {
+    let mut p: *const i8 = url;
     if *p == 0
-        || !(c_isalnum(*p as libc::c_int) as libc::c_int != 0
-            || *p as libc::c_int == '-' as i32 || *p as libc::c_int == '+' as i32)
+        || !(c_isalnum(*p as i32) as i32 != 0 || *p as i32 == '-' as i32
+            || *p as i32 == '+' as i32)
     {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     p = p.offset(1);
     p;
-    while *p as libc::c_int != 0
-        && (c_isalnum(*p as libc::c_int) as libc::c_int != 0
-            || *p as libc::c_int == '-' as i32 || *p as libc::c_int == '+' as i32)
+    while *p as i32 != 0
+        && (c_isalnum(*p as i32) as i32 != 0 || *p as i32 == '-' as i32
+            || *p as i32 == '+' as i32)
     {
         p = p.offset(1);
         p;
     }
-    return *p as libc::c_int == ':' as i32;
+    return *p as i32 == ':' as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_valid_scheme(mut url: *const libc::c_char) -> bool {
+pub unsafe extern "C" fn url_valid_scheme(mut url: *const i8) -> bool {
     let mut scheme: url_scheme = url_scheme(url);
-    return scheme as libc::c_uint != SCHEME_INVALID as libc::c_int as libc::c_uint;
+    return scheme as u32 != url_scheme::SCHEME_INVALID as i32 as u32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn scheme_default_port(mut scheme: url_scheme) -> libc::c_int {
+pub unsafe extern "C" fn scheme_default_port(mut scheme: url_scheme) -> i32 {
     return supported_schemes[scheme as usize].default_port;
 }
 #[no_mangle]
 pub unsafe extern "C" fn scheme_disable(mut scheme: url_scheme) {
-    supported_schemes[scheme as usize].flags |= scm_disabled as libc::c_int;
+    supported_schemes[scheme as usize].flags |= C2RustUnnamed_6::scm_disabled as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn scheme_leading_string(
-    mut scheme: url_scheme,
-) -> *const libc::c_char {
+pub unsafe extern "C" fn scheme_leading_string(mut scheme: url_scheme) -> *const i8 {
     return supported_schemes[scheme as usize].leading_string;
 }
-unsafe extern "C" fn url_skip_credentials(
-    mut url: *const libc::c_char,
-) -> *const libc::c_char {
-    let mut p: *const libc::c_char = strpbrk(
-        url,
-        b"@/?#;\0" as *const u8 as *const libc::c_char,
-    ) as *const libc::c_char;
-    if p.is_null() || *p as libc::c_int != '@' as i32 {
+unsafe extern "C" fn url_skip_credentials(mut url: *const i8) -> *const i8 {
+    let mut p: *const i8 = strpbrk(url, b"@/?#;\0" as *const u8 as *const i8)
+        as *const i8;
+    if p.is_null() || *p as i32 != '@' as i32 {
         return url;
     }
-    return p.offset(1 as libc::c_int as isize);
+    return p.offset(1 as i32 as isize);
 }
 unsafe extern "C" fn parse_credentials(
-    mut beg: *const libc::c_char,
-    mut end: *const libc::c_char,
-    mut user: *mut *mut libc::c_char,
-    mut passwd: *mut *mut libc::c_char,
+    mut beg: *const i8,
+    mut end: *const i8,
+    mut user: *mut *mut i8,
+    mut passwd: *mut *mut i8,
 ) -> bool {
-    let mut colon: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut userend: *const libc::c_char = 0 as *const libc::c_char;
+    let mut colon: *mut i8 = 0 as *mut i8;
+    let mut userend: *const i8 = 0 as *const i8;
     if beg == end {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     colon = memchr(
         beg as *const libc::c_void,
         ':' as i32,
-        end.offset_from(beg) as libc::c_long as libc::c_ulong,
-    ) as *mut libc::c_char;
-    if colon == beg as *mut libc::c_char {
-        return 0 as libc::c_int != 0;
+        end.offset_from(beg) as i64 as u64,
+    ) as *mut i8;
+    if colon == beg as *mut i8 {
+        return 0 as i32 != 0;
     }
     if !colon.is_null() {
-        *passwd = strdupdelim(colon.offset(1 as libc::c_int as isize), end);
+        *passwd = strdupdelim(colon.offset(1 as i32 as isize), end);
         userend = colon;
         url_unescape(*passwd);
     } else {
-        *passwd = 0 as *mut libc::c_char;
+        *passwd = 0 as *mut i8;
         userend = end;
     }
     *user = strdupdelim(beg, userend);
     url_unescape(*user);
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
-pub unsafe extern "C" fn rewrite_shorthand_url(
-    mut url: *const libc::c_char,
-) -> *mut libc::c_char {
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
-    let mut ret: *mut libc::c_char = 0 as *mut libc::c_char;
-    if url_scheme(url) as libc::c_uint != SCHEME_INVALID as libc::c_int as libc::c_uint {
-        return 0 as *mut libc::c_char;
+pub unsafe extern "C" fn rewrite_shorthand_url(mut url: *const i8) -> *mut i8 {
+    let mut p: *const i8 = 0 as *const i8;
+    let mut ret: *mut i8 = 0 as *mut i8;
+    if url_scheme(url) as u32 != url_scheme::SCHEME_INVALID as i32 as u32 {
+        return 0 as *mut i8;
     }
-    p = strpbrk(url, b":/\0" as *const u8 as *const libc::c_char);
+    p = strpbrk(url, b":/\0" as *const u8 as *const i8);
     if p == url {
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
-    if !p.is_null() && *p.offset(0 as libc::c_int as isize) as libc::c_int == ':' as i32
-        && *p.offset(1 as libc::c_int as isize) as libc::c_int == '/' as i32
-        && *p.offset(2 as libc::c_int as isize) as libc::c_int == '/' as i32
+    if !p.is_null() && *p.offset(0 as i32 as isize) as i32 == ':' as i32
+        && *p.offset(1 as i32 as isize) as i32 == '/' as i32
+        && *p.offset(2 as i32 as isize) as i32 == '/' as i32
     {
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
     let mut current_block_9: u64;
-    if !p.is_null() && *p as libc::c_int == ':' as i32 {
-        let mut digits: libc::c_int = strspn(
-            p.offset(1 as libc::c_int as isize),
-            b"0123456789\0" as *const u8 as *const libc::c_char,
-        ) as libc::c_int;
+    if !p.is_null() && *p as i32 == ':' as i32 {
+        let mut digits: i32 = strspn(
+            p.offset(1 as i32 as isize),
+            b"0123456789\0" as *const u8 as *const i8,
+        ) as i32;
         if digits != 0
-            && (*p.offset((1 as libc::c_int + digits) as isize) as libc::c_int
-                == '/' as i32
-                || *p.offset((1 as libc::c_int + digits) as isize) as libc::c_int
-                    == '\0' as i32)
+            && (*p.offset((1 as i32 + digits) as isize) as i32 == '/' as i32
+                || *p.offset((1 as i32 + digits) as isize) as i32 == '\0' as i32)
         {
             current_block_9 = 9810375517332381765;
         } else {
-            ret = aprintf(b"ftp://%s\0" as *const u8 as *const libc::c_char, url);
+            ret = aprintf(b"ftp://%s\0" as *const u8 as *const i8, url);
             if !ret.is_null() {
-                *ret
-                    .offset(
-                        (6 as libc::c_int as libc::c_long
-                            + p.offset_from(url) as libc::c_long) as isize,
-                    ) = '/' as i32 as libc::c_char;
+                *ret.offset((6 as i32 as i64 + p.offset_from(url) as i64) as isize) = '/'
+                    as i32 as i8;
             }
             current_block_9 = 7746791466490516765;
         }
@@ -2291,146 +2750,142 @@ pub unsafe extern "C" fn rewrite_shorthand_url(
     }
     match current_block_9 {
         9810375517332381765 => {
-            ret = aprintf(b"http://%s\0" as *const u8 as *const libc::c_char, url);
+            ret = aprintf(b"http://%s\0" as *const u8 as *const i8, url);
         }
         _ => {}
     }
     return ret;
 }
 #[inline]
-unsafe extern "C" fn strpbrk_or_eos(
-    mut s: *const libc::c_char,
-    mut accept: *const libc::c_char,
-) -> *mut libc::c_char {
-    let mut p: *mut libc::c_char = strpbrk(s, accept);
+unsafe extern "C" fn strpbrk_or_eos(mut s: *const i8, mut accept: *const i8) -> *mut i8 {
+    let mut p: *mut i8 = strpbrk(s, accept);
     if p.is_null() {
         p = strchr(s, '\0' as i32);
     }
     return p;
 }
-unsafe extern "C" fn lowercase_str(mut str: *mut libc::c_char) -> bool {
-    let mut changed: bool = 0 as libc::c_int != 0;
+unsafe extern "C" fn lowercase_str(mut str: *mut i8) -> bool {
+    let mut changed: bool = 0 as i32 != 0;
     while *str != 0 {
-        if c_isupper(*str as libc::c_int) {
-            changed = 1 as libc::c_int != 0;
-            *str = c_tolower(*str as libc::c_int) as libc::c_char;
+        if c_isupper(*str as i32) {
+            changed = 1 as i32 != 0;
+            *str = c_tolower(*str as i32) as i8;
         }
         str = str.offset(1);
         str;
     }
     return changed;
 }
-unsafe extern "C" fn init_seps(mut scheme: url_scheme) -> *const libc::c_char {
-    static mut seps: [libc::c_char; 8] = unsafe {
-        *::core::mem::transmute::<&[u8; 8], &mut [libc::c_char; 8]>(b":/\0\0\0\0\0\0")
+unsafe extern "C" fn init_seps(mut scheme: url_scheme) -> *const i8 {
+    static mut seps: [i8; 8] = unsafe {
+        *::core::mem::transmute::<&[u8; 8], &mut [i8; 8]>(b":/\0\0\0\0\0\0")
     };
-    let mut p: *mut libc::c_char = seps.as_mut_ptr().offset(2 as libc::c_int as isize);
-    let mut flags: libc::c_int = supported_schemes[scheme as usize].flags;
-    if flags & scm_has_params as libc::c_int != 0 {
+    let mut p: *mut i8 = seps.as_mut_ptr().offset(2 as i32 as isize);
+    let mut flags: i32 = supported_schemes[scheme as usize].flags;
+    if flags & C2RustUnnamed_6::scm_has_params as i32 != 0 {
         let fresh12 = p;
         p = p.offset(1);
-        *fresh12 = ';' as i32 as libc::c_char;
+        *fresh12 = ';' as i32 as i8;
     }
-    if flags & scm_has_query as libc::c_int != 0 {
+    if flags & C2RustUnnamed_6::scm_has_query as i32 != 0 {
         let fresh13 = p;
         p = p.offset(1);
-        *fresh13 = '?' as i32 as libc::c_char;
+        *fresh13 = '?' as i32 as i8;
     }
-    if flags & scm_has_fragment as libc::c_int != 0 {
+    if flags & C2RustUnnamed_6::scm_has_fragment as i32 != 0 {
         let fresh14 = p;
         p = p.offset(1);
-        *fresh14 = '#' as i32 as libc::c_char;
+        *fresh14 = '#' as i32 as i8;
     }
-    *p = '\0' as i32 as libc::c_char;
+    *p = '\0' as i32 as i8;
     return seps.as_mut_ptr();
 }
-static mut parse_errors: [*const libc::c_char; 11] = [
-    b"No error\0" as *const u8 as *const libc::c_char,
-    b"Unsupported scheme\0" as *const u8 as *const libc::c_char,
-    b"HTTPS support not compiled in\0" as *const u8 as *const libc::c_char,
-    b"FTPS support not compiled in\0" as *const u8 as *const libc::c_char,
-    b"Scheme missing\0" as *const u8 as *const libc::c_char,
-    b"Invalid host name\0" as *const u8 as *const libc::c_char,
-    b"Bad port number\0" as *const u8 as *const libc::c_char,
-    b"Invalid user name\0" as *const u8 as *const libc::c_char,
-    b"Unterminated IPv6 numeric address\0" as *const u8 as *const libc::c_char,
-    b"IPv6 addresses not supported\0" as *const u8 as *const libc::c_char,
-    b"Invalid IPv6 numeric address\0" as *const u8 as *const libc::c_char,
+static mut parse_errors: [*const i8; 11] = [
+    b"No error\0" as *const u8 as *const i8,
+    b"Unsupported scheme\0" as *const u8 as *const i8,
+    b"HTTPS support not compiled in\0" as *const u8 as *const i8,
+    b"FTPS support not compiled in\0" as *const u8 as *const i8,
+    b"Scheme missing\0" as *const u8 as *const i8,
+    b"Invalid host name\0" as *const u8 as *const i8,
+    b"Bad port number\0" as *const u8 as *const i8,
+    b"Invalid user name\0" as *const u8 as *const i8,
+    b"Unterminated IPv6 numeric address\0" as *const u8 as *const i8,
+    b"IPv6 addresses not supported\0" as *const u8 as *const i8,
+    b"Invalid IPv6 numeric address\0" as *const u8 as *const i8,
 ];
 #[no_mangle]
 pub unsafe extern "C" fn url_parse(
-    mut url: *const libc::c_char,
-    mut error: *mut libc::c_int,
+    mut url: *const i8,
+    mut error: *mut i32,
     mut iri: *mut iri,
     mut percent_encode: bool,
 ) -> *mut url {
     let mut current_block: u64;
     let mut u: *mut url = 0 as *mut url;
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
+    let mut p: *const i8 = 0 as *const i8;
     let mut path_modified: bool = false;
     let mut host_modified: bool = false;
-    let mut scheme: url_scheme = SCHEME_HTTP;
-    let mut seps: *const libc::c_char = 0 as *const libc::c_char;
-    let mut uname_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut uname_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut host_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut host_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut path_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut path_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut params_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut params_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut query_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut query_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut fragment_b: *const libc::c_char = 0 as *const libc::c_char;
-    let mut fragment_e: *const libc::c_char = 0 as *const libc::c_char;
-    let mut port: libc::c_int = 0;
-    let mut user: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut passwd: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut url_encoded: *const libc::c_char = 0 as *const libc::c_char;
-    let mut error_code: libc::c_int = 0;
+    let mut scheme: url_scheme = url_scheme::SCHEME_HTTP;
+    let mut seps: *const i8 = 0 as *const i8;
+    let mut uname_b: *const i8 = 0 as *const i8;
+    let mut uname_e: *const i8 = 0 as *const i8;
+    let mut host_b: *const i8 = 0 as *const i8;
+    let mut host_e: *const i8 = 0 as *const i8;
+    let mut path_b: *const i8 = 0 as *const i8;
+    let mut path_e: *const i8 = 0 as *const i8;
+    let mut params_b: *const i8 = 0 as *const i8;
+    let mut params_e: *const i8 = 0 as *const i8;
+    let mut query_b: *const i8 = 0 as *const i8;
+    let mut query_e: *const i8 = 0 as *const i8;
+    let mut fragment_b: *const i8 = 0 as *const i8;
+    let mut fragment_e: *const i8 = 0 as *const i8;
+    let mut port: i32 = 0;
+    let mut user: *mut i8 = 0 as *mut i8;
+    let mut passwd: *mut i8 = 0 as *mut i8;
+    let mut url_encoded: *const i8 = 0 as *const i8;
+    let mut error_code: i32 = 0;
     scheme = url_scheme(url);
-    if scheme as libc::c_uint == SCHEME_INVALID as libc::c_int as libc::c_uint {
+    if scheme as u32 == url_scheme::SCHEME_INVALID as i32 as u32 {
         if !url_has_scheme(url) {
-            error_code = PE_MISSING_SCHEME as libc::c_int;
+            error_code = C2RustUnnamed_8::PE_MISSING_SCHEME as i32;
         } else if c_strncasecmp(
             url,
-            b"https:\0" as *const u8 as *const libc::c_char,
-            6 as libc::c_int as size_t,
+            b"https:\0" as *const u8 as *const i8,
+            6 as i32 as size_t,
         ) == 0
         {
-            error_code = PE_UNSUPPORTED_SCHEME_HTTPS as libc::c_int;
+            error_code = C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_HTTPS as i32;
         } else if c_strncasecmp(
             url,
-            b"ftps:\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int as size_t,
+            b"ftps:\0" as *const u8 as *const i8,
+            5 as i32 as size_t,
         ) == 0
         {
-            error_code = PE_UNSUPPORTED_SCHEME_FTPS as libc::c_int;
+            error_code = C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME_FTPS as i32;
         } else {
-            error_code = PE_UNSUPPORTED_SCHEME as libc::c_int;
+            error_code = C2RustUnnamed_8::PE_UNSUPPORTED_SCHEME as i32;
         }
     } else {
         url_encoded = url;
-        if !iri.is_null() && (*iri).utf8_encode as libc::c_int != 0 {
-            let mut new_url: *mut libc::c_char = 0 as *mut libc::c_char;
-            (*iri)
-                .utf8_encode = remote_to_utf8(
+        if !iri.is_null() && (*iri).utf8_encode as i32 != 0 {
+            let mut new_url: *mut i8 = 0 as *mut i8;
+            (*iri).utf8_encode = remote_to_utf8(
                 iri,
                 if !((*iri).orig_url).is_null() { (*iri).orig_url } else { url },
                 &mut new_url,
             );
             if !(*iri).utf8_encode {
-                new_url = 0 as *mut libc::c_char;
+                new_url = 0 as *mut i8;
             } else {
                 rpl_free((*iri).orig_url as *mut libc::c_void);
-                (*iri).orig_url = 0 as *mut libc::c_char;
+                (*iri).orig_url = 0 as *mut i8;
                 (*iri).orig_url = xstrdup(url);
                 url_encoded = reencode_escapes(new_url);
                 if url_encoded != new_url {
                     rpl_free(new_url as *mut libc::c_void);
-                    new_url = 0 as *mut libc::c_char;
+                    new_url = 0 as *mut i8;
                 }
-                percent_encode = 0 as libc::c_int != 0;
+                percent_encode = 0 as i32 != 0;
             }
         }
         if percent_encode {
@@ -2441,29 +2896,29 @@ pub unsafe extern "C" fn url_parse(
         uname_b = p;
         p = url_skip_credentials(p);
         uname_e = p;
-        path_e = 0 as *const libc::c_char;
+        path_e = 0 as *const i8;
         path_b = path_e;
-        params_e = 0 as *const libc::c_char;
+        params_e = 0 as *const i8;
         params_b = params_e;
-        query_e = 0 as *const libc::c_char;
+        query_e = 0 as *const i8;
         query_b = query_e;
-        fragment_e = 0 as *const libc::c_char;
+        fragment_e = 0 as *const i8;
         fragment_b = fragment_e;
         seps = init_seps(scheme);
         host_b = p;
-        if *p as libc::c_int == '[' as i32 {
-            host_b = p.offset(1 as libc::c_int as isize);
+        if *p as i32 == '[' as i32 {
+            host_b = p.offset(1 as i32 as isize);
             host_e = strchr(host_b, ']' as i32);
             if host_e.is_null() {
-                error_code = PE_UNTERMINATED_IPV6_ADDRESS as libc::c_int;
+                error_code = C2RustUnnamed_8::PE_UNTERMINATED_IPV6_ADDRESS as i32;
                 current_block = 11473658817087337075;
             } else if !is_valid_ipv6_address(host_b, host_e) {
-                error_code = PE_INVALID_IPV6_ADDRESS as libc::c_int;
+                error_code = C2RustUnnamed_8::PE_INVALID_IPV6_ADDRESS as i32;
                 current_block = 11473658817087337075;
             } else {
-                p = host_e.offset(1 as libc::c_int as isize);
-                if (strchr(seps, *p as libc::c_int)).is_null() {
-                    error_code = PE_INVALID_HOST_NAME as libc::c_int;
+                p = host_e.offset(1 as i32 as isize);
+                if (strchr(seps, *p as i32)).is_null() {
+                    error_code = C2RustUnnamed_8::PE_INVALID_HOST_NAME as i32;
                     current_block = 11473658817087337075;
                 } else {
                     current_block = 1924505913685386279;
@@ -2480,35 +2935,34 @@ pub unsafe extern "C" fn url_parse(
                 seps = seps.offset(1);
                 seps;
                 if host_b == host_e {
-                    error_code = PE_INVALID_HOST_NAME as libc::c_int;
+                    error_code = C2RustUnnamed_8::PE_INVALID_HOST_NAME as i32;
                 } else {
                     port = scheme_default_port(scheme);
-                    if *p as libc::c_int == ':' as i32 {
-                        let mut port_b: *const libc::c_char = 0 as *const libc::c_char;
-                        let mut port_e: *const libc::c_char = 0 as *const libc::c_char;
-                        let mut pp: *const libc::c_char = 0 as *const libc::c_char;
+                    if *p as i32 == ':' as i32 {
+                        let mut port_b: *const i8 = 0 as *const i8;
+                        let mut port_e: *const i8 = 0 as *const i8;
+                        let mut pp: *const i8 = 0 as *const i8;
                         p = p.offset(1);
                         p;
                         port_b = p;
                         p = strpbrk_or_eos(p, seps);
                         port_e = p;
                         if port_b != port_e {
-                            port = 0 as libc::c_int;
+                            port = 0 as i32;
                             pp = port_b;
                             loop {
                                 if !(pp < port_e) {
                                     current_block = 3580086814630675314;
                                     break;
                                 }
-                                if !c_isdigit(*pp as libc::c_int) {
-                                    error_code = PE_BAD_PORT_NUMBER as libc::c_int;
+                                if !c_isdigit(*pp as i32) {
+                                    error_code = C2RustUnnamed_8::PE_BAD_PORT_NUMBER as i32;
                                     current_block = 11473658817087337075;
                                     break;
                                 } else {
-                                    port = 10 as libc::c_int * port
-                                        + (*pp as libc::c_int - '0' as i32);
-                                    if port > 0xffff as libc::c_int {
-                                        error_code = PE_BAD_PORT_NUMBER as libc::c_int;
+                                    port = 10 as i32 * port + (*pp as i32 - '0' as i32);
+                                    if port > 0xffff as i32 {
+                                        error_code = C2RustUnnamed_8::PE_BAD_PORT_NUMBER as i32;
                                         current_block = 11473658817087337075;
                                         break;
                                     } else {
@@ -2528,7 +2982,7 @@ pub unsafe extern "C" fn url_parse(
                         _ => {
                             seps = seps.offset(1);
                             seps;
-                            if *p as libc::c_int == '/' as i32 {
+                            if *p as i32 == '/' as i32 {
                                 p = p.offset(1);
                                 path_b = p;
                                 p = strpbrk_or_eos(p, seps);
@@ -2537,9 +2991,9 @@ pub unsafe extern "C" fn url_parse(
                             seps = seps.offset(1);
                             seps;
                             if supported_schemes[scheme as usize].flags
-                                & scm_has_params as libc::c_int != 0
+                                & C2RustUnnamed_6::scm_has_params as i32 != 0
                             {
-                                if *p as libc::c_int == ';' as i32 {
+                                if *p as i32 == ';' as i32 {
                                     p = p.offset(1);
                                     params_b = p;
                                     p = strpbrk_or_eos(p, seps);
@@ -2549,9 +3003,9 @@ pub unsafe extern "C" fn url_parse(
                                 seps;
                             }
                             if supported_schemes[scheme as usize].flags
-                                & scm_has_query as libc::c_int != 0
+                                & C2RustUnnamed_6::scm_has_query as i32 != 0
                             {
-                                if *p as libc::c_int == '?' as i32 {
+                                if *p as i32 == '?' as i32 {
                                     p = p.offset(1);
                                     query_b = p;
                                     p = strpbrk_or_eos(p, seps);
@@ -2561,9 +3015,9 @@ pub unsafe extern "C" fn url_parse(
                                 seps;
                             }
                             if supported_schemes[scheme as usize].flags
-                                & scm_has_fragment as libc::c_int != 0
+                                & C2RustUnnamed_6::scm_has_fragment as i32 != 0
                             {
-                                if *p as libc::c_int == '#' as i32 {
+                                if *p as i32 == '#' as i32 {
                                     p = p.offset(1);
                                     fragment_b = p;
                                     p = strpbrk_or_eos(p, seps);
@@ -2575,11 +3029,11 @@ pub unsafe extern "C" fn url_parse(
                             if uname_b != uname_e {
                                 if !parse_credentials(
                                     uname_b,
-                                    uname_e.offset(-(1 as libc::c_int as isize)),
+                                    uname_e.offset(-(1 as i32 as isize)),
                                     &mut user,
                                     &mut passwd,
                                 ) {
-                                    error_code = PE_INVALID_USER_NAME as libc::c_int;
+                                    error_code = C2RustUnnamed_8::PE_INVALID_USER_NAME as i32;
                                     current_block = 11473658817087337075;
                                 } else {
                                     current_block = 200744462051969938;
@@ -2591,8 +3045,8 @@ pub unsafe extern "C" fn url_parse(
                                 11473658817087337075 => {}
                                 _ => {
                                     u = xcalloc(
-                                        1 as libc::c_int as size_t,
-                                        ::core::mem::size_of::<url>() as libc::c_ulong,
+                                        1 as i32 as size_t,
+                                        ::core::mem::size_of::<url>() as u64,
                                     ) as *mut url;
                                     (*u).scheme = scheme;
                                     (*u).host = strdupdelim(host_b, host_e);
@@ -2605,16 +3059,16 @@ pub unsafe extern "C" fn url_parse(
                                     host_modified = lowercase_str((*u).host);
                                     if !(strchr((*u).host, '%' as i32)).is_null() {
                                         url_unescape((*u).host);
-                                        host_modified = 1 as libc::c_int != 0;
+                                        host_modified = 1 as i32 != 0;
                                         p = (*u).host;
                                         loop {
                                             if !(*p != 0) {
                                                 current_block = 5700653730392116747;
                                                 break;
                                             }
-                                            if c_iscntrl(*p as libc::c_int) {
+                                            if c_iscntrl(*p as i32) {
                                                 url_free(u);
-                                                error_code = PE_INVALID_HOST_NAME as libc::c_int;
+                                                error_code = C2RustUnnamed_8::PE_INVALID_HOST_NAME as i32;
                                                 current_block = 11473658817087337075;
                                                 break;
                                             } else {
@@ -2625,13 +3079,13 @@ pub unsafe extern "C" fn url_parse(
                                         match current_block {
                                             11473658817087337075 => {}
                                             _ => {
-                                                if opt.enable_iri as libc::c_int != 0 && !iri.is_null() {
-                                                    let mut new: *mut libc::c_char = idn_encode(iri, (*u).host);
+                                                if opt.enable_iri as i32 != 0 && !iri.is_null() {
+                                                    let mut new: *mut i8 = idn_encode(iri, (*u).host);
                                                     if !new.is_null() {
                                                         rpl_free((*u).host as *mut libc::c_void);
-                                                        (*u).host = 0 as *mut libc::c_char;
+                                                        (*u).host = 0 as *mut i8;
                                                         (*u).host = new;
-                                                        host_modified = 1 as libc::c_int != 0;
+                                                        host_modified = 1 as i32 != 0;
                                                     }
                                                 }
                                                 current_block = 9775647934248138666;
@@ -2652,20 +3106,19 @@ pub unsafe extern "C" fn url_parse(
                                             if !fragment_b.is_null() {
                                                 (*u).fragment = strdupdelim(fragment_b, fragment_e);
                                             }
-                                            if opt.enable_iri as libc::c_int != 0
-                                                || path_modified as libc::c_int != 0
-                                                || !((*u).fragment).is_null()
-                                                || host_modified as libc::c_int != 0 || path_b == path_e
+                                            if opt.enable_iri as i32 != 0 || path_modified as i32 != 0
+                                                || !((*u).fragment).is_null() || host_modified as i32 != 0
+                                                || path_b == path_e
                                             {
-                                                (*u).url = url_string(u, URL_AUTH_SHOW);
+                                                (*u).url = url_string(u, url_auth_mode::URL_AUTH_SHOW);
                                                 if url_encoded != url {
                                                     rpl_free(url_encoded as *mut libc::c_void);
-                                                    url_encoded = 0 as *const libc::c_char;
+                                                    url_encoded = 0 as *const i8;
                                                 }
                                             } else if url_encoded == url {
                                                 (*u).url = xstrdup(url);
                                             } else {
-                                                (*u).url = url_encoded as *mut libc::c_char;
+                                                (*u).url = url_encoded as *mut i8;
                                             }
                                             return u;
                                         }
@@ -2680,7 +3133,7 @@ pub unsafe extern "C" fn url_parse(
     }
     if !url_encoded.is_null() && url_encoded != url {
         rpl_free(url_encoded as *mut libc::c_void);
-        url_encoded = 0 as *const libc::c_char;
+        url_encoded = 0 as *const i8;
     }
     if !error.is_null() {
         *error = error_code;
@@ -2688,136 +3141,108 @@ pub unsafe extern "C" fn url_parse(
     return 0 as *mut url;
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_error(mut error_code: libc::c_int) -> *const libc::c_char {
-    if error_code >= 0 as libc::c_int
+pub unsafe extern "C" fn url_error(mut error_code: i32) -> *const i8 {
+    if error_code >= 0 as i32
         && error_code
-            < (::core::mem::size_of::<[*const libc::c_char; 11]>() as libc::c_ulong)
-                .wrapping_div(
-                    ::core::mem::size_of::<*const libc::c_char>() as libc::c_ulong,
-                ) as libc::c_int
+            < (::core::mem::size_of::<[*const i8; 11]>() as u64)
+                .wrapping_div(::core::mem::size_of::<*const i8>() as u64) as i32
     {
-        return dcgettext(
-            0 as *const libc::c_char,
-            parse_errors[error_code as usize],
-            5 as libc::c_int,
-        );
+        return dcgettext(0 as *const i8, parse_errors[error_code as usize], 5 as i32);
     }
-    return b"\0" as *const u8 as *const libc::c_char;
+    return b"\0" as *const u8 as *const i8;
 }
 unsafe extern "C" fn split_path(
-    mut path: *const libc::c_char,
-    mut dir: *mut *mut libc::c_char,
-    mut file: *mut *mut libc::c_char,
+    mut path: *const i8,
+    mut dir: *mut *mut i8,
+    mut file: *mut *mut i8,
 ) {
-    let mut last_slash: *mut libc::c_char = strrchr(path, '/' as i32);
+    let mut last_slash: *mut i8 = strrchr(path, '/' as i32);
     if last_slash.is_null() {
-        *dir = xstrdup(b"\0" as *const u8 as *const libc::c_char);
+        *dir = xstrdup(b"\0" as *const u8 as *const i8);
         *file = xstrdup(path);
     } else {
         *dir = strdupdelim(path, last_slash);
-        *file = xstrdup(last_slash.offset(1 as libc::c_int as isize));
+        *file = xstrdup(last_slash.offset(1 as i32 as isize));
     }
     url_unescape(*dir);
     url_unescape(*file);
 }
-unsafe extern "C" fn full_path_length(mut url: *const url) -> libc::c_int {
-    let mut len: libc::c_int = 0 as libc::c_int;
+unsafe extern "C" fn full_path_length(mut url: *const url) -> i32 {
+    let mut len: i32 = 0 as i32;
     if !((*url).path).is_null() {
-        len = (len as libc::c_ulong)
-            .wrapping_add(
-                (1 as libc::c_int as libc::c_ulong).wrapping_add(strlen((*url).path)),
-            ) as libc::c_int as libc::c_int;
+        len = (len as u64)
+            .wrapping_add((1 as i32 as u64).wrapping_add(strlen((*url).path))) as i32
+            as i32;
     }
     if !((*url).params).is_null() {
-        len = (len as libc::c_ulong)
-            .wrapping_add(
-                (1 as libc::c_int as libc::c_ulong).wrapping_add(strlen((*url).params)),
-            ) as libc::c_int as libc::c_int;
+        len = (len as u64)
+            .wrapping_add((1 as i32 as u64).wrapping_add(strlen((*url).params))) as i32
+            as i32;
     }
     if !((*url).query).is_null() {
-        len = (len as libc::c_ulong)
-            .wrapping_add(
-                (1 as libc::c_int as libc::c_ulong).wrapping_add(strlen((*url).query)),
-            ) as libc::c_int as libc::c_int;
+        len = (len as u64)
+            .wrapping_add((1 as i32 as u64).wrapping_add(strlen((*url).query))) as i32
+            as i32;
     }
     return len;
 }
-unsafe extern "C" fn full_path_write(
-    mut url: *const url,
-    mut where_0: *mut libc::c_char,
-) {
-    let mut f_el: *mut libc::c_char = (*url).path;
+unsafe extern "C" fn full_path_write(mut url: *const url, mut where_0: *mut i8) {
+    let mut f_el: *mut i8 = (*url).path;
     if !f_el.is_null() {
-        let mut l: libc::c_int = strlen(f_el) as libc::c_int;
+        let mut l: i32 = strlen(f_el) as i32;
         let fresh15 = where_0;
         where_0 = where_0.offset(1);
-        *fresh15 = '/' as i32 as libc::c_char;
-        memcpy(
-            where_0 as *mut libc::c_void,
-            f_el as *const libc::c_void,
-            l as libc::c_ulong,
-        );
+        *fresh15 = '/' as i32 as i8;
+        memcpy(where_0 as *mut libc::c_void, f_el as *const libc::c_void, l as u64);
         where_0 = where_0.offset(l as isize);
     }
-    let mut f_el_0: *mut libc::c_char = (*url).params;
+    let mut f_el_0: *mut i8 = (*url).params;
     if !f_el_0.is_null() {
-        let mut l_0: libc::c_int = strlen(f_el_0) as libc::c_int;
+        let mut l_0: i32 = strlen(f_el_0) as i32;
         let fresh16 = where_0;
         where_0 = where_0.offset(1);
-        *fresh16 = ';' as i32 as libc::c_char;
-        memcpy(
-            where_0 as *mut libc::c_void,
-            f_el_0 as *const libc::c_void,
-            l_0 as libc::c_ulong,
-        );
+        *fresh16 = ';' as i32 as i8;
+        memcpy(where_0 as *mut libc::c_void, f_el_0 as *const libc::c_void, l_0 as u64);
         where_0 = where_0.offset(l_0 as isize);
     }
-    let mut f_el_1: *mut libc::c_char = (*url).query;
+    let mut f_el_1: *mut i8 = (*url).query;
     if !f_el_1.is_null() {
-        let mut l_1: libc::c_int = strlen(f_el_1) as libc::c_int;
+        let mut l_1: i32 = strlen(f_el_1) as i32;
         let fresh17 = where_0;
         where_0 = where_0.offset(1);
-        *fresh17 = '?' as i32 as libc::c_char;
-        memcpy(
-            where_0 as *mut libc::c_void,
-            f_el_1 as *const libc::c_void,
-            l_1 as libc::c_ulong,
-        );
+        *fresh17 = '?' as i32 as i8;
+        memcpy(where_0 as *mut libc::c_void, f_el_1 as *const libc::c_void, l_1 as u64);
         where_0 = where_0.offset(l_1 as isize);
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_full_path(mut url: *const url) -> *mut libc::c_char {
-    let mut length: libc::c_int = full_path_length(url);
-    let mut full_path: *mut libc::c_char = xmalloc((length + 1 as libc::c_int) as size_t)
-        as *mut libc::c_char;
+pub unsafe extern "C" fn url_full_path(mut url: *const url) -> *mut i8 {
+    let mut length: i32 = full_path_length(url);
+    let mut full_path: *mut i8 = xmalloc((length + 1 as i32) as size_t) as *mut i8;
     full_path_write(url, full_path);
-    *full_path.offset(length as isize) = '\0' as i32 as libc::c_char;
+    *full_path.offset(length as isize) = '\0' as i32 as i8;
     return full_path;
 }
-unsafe extern "C" fn unescape_single_char(
-    mut str: *mut libc::c_char,
-    mut chr: libc::c_char,
-) {
-    let c1: libc::c_char = ((*::core::mem::transmute::<
+unsafe extern "C" fn unescape_single_char(mut str: *mut i8, mut chr: i8) {
+    let c1: i8 = ((*::core::mem::transmute::<
         &[u8; 17],
-        &[libc::c_char; 17],
-    >(b"0123456789ABCDEF\0"))[(chr as libc::c_int >> 4 as libc::c_int) as usize]
-        as libc::c_int + 0 as libc::c_int) as libc::c_char;
-    let c2: libc::c_char = ((*::core::mem::transmute::<
+        &[i8; 17],
+    >(b"0123456789ABCDEF\0"))[(chr as i32 >> 4 as i32) as usize] as i32 + 0 as i32)
+        as i8;
+    let c2: i8 = ((*::core::mem::transmute::<
         &[u8; 17],
-        &[libc::c_char; 17],
-    >(b"0123456789ABCDEF\0"))[(chr as libc::c_int & 0xf as libc::c_int) as usize]
-        as libc::c_int + 0 as libc::c_int) as libc::c_char;
-    let mut h: *mut libc::c_char = str;
-    let mut t: *mut libc::c_char = str;
+        &[i8; 17],
+    >(b"0123456789ABCDEF\0"))[(chr as i32 & 0xf as i32) as usize] as i32 + 0 as i32)
+        as i8;
+    let mut h: *mut i8 = str;
+    let mut t: *mut i8 = str;
     while *h != 0 {
-        if *h.offset(0 as libc::c_int as isize) as libc::c_int == '%' as i32
-            && *h.offset(1 as libc::c_int as isize) as libc::c_int == c1 as libc::c_int
-            && *h.offset(2 as libc::c_int as isize) as libc::c_int == c2 as libc::c_int
+        if *h.offset(0 as i32 as isize) as i32 == '%' as i32
+            && *h.offset(1 as i32 as isize) as i32 == c1 as i32
+            && *h.offset(2 as i32 as isize) as i32 == c2 as i32
         {
             *t = chr;
-            h = h.offset(2 as libc::c_int as isize);
+            h = h.offset(2 as i32 as isize);
         } else {
             *t = *h;
         }
@@ -2826,88 +3251,74 @@ unsafe extern "C" fn unescape_single_char(
         t = t.offset(1);
         t;
     }
-    *t = '\0' as i32 as libc::c_char;
+    *t = '\0' as i32 as i8;
 }
-unsafe extern "C" fn url_escape_dir(mut dir: *const libc::c_char) -> *mut libc::c_char {
-    let mut newdir: *mut libc::c_char = url_escape_1(
+unsafe extern "C" fn url_escape_dir(mut dir: *const i8) -> *mut i8 {
+    let mut newdir: *mut i8 = url_escape_1(
         dir,
-        (urlchr_unsafe as libc::c_int | urlchr_reserved as libc::c_int) as libc::c_uchar,
-        1 as libc::c_int != 0,
+        (C2RustUnnamed_7::urlchr_unsafe as i32 | C2RustUnnamed_7::urlchr_reserved as i32)
+            as u8,
+        1 as i32 != 0,
     );
-    if newdir == dir as *mut libc::c_char {
-        return dir as *mut libc::c_char;
+    if newdir == dir as *mut i8 {
+        return dir as *mut i8;
     }
-    unescape_single_char(newdir, '/' as i32 as libc::c_char);
+    unescape_single_char(newdir, '/' as i32 as i8);
     return newdir;
 }
 unsafe extern "C" fn sync_path(mut u: *mut url) {
-    let mut newpath: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut efile: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut edir: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut newpath: *mut i8 = 0 as *mut i8;
+    let mut efile: *mut i8 = 0 as *mut i8;
+    let mut edir: *mut i8 = 0 as *mut i8;
     rpl_free((*u).path as *mut libc::c_void);
-    (*u).path = 0 as *mut libc::c_char;
+    (*u).path = 0 as *mut i8;
     edir = url_escape_dir((*u).dir);
     efile = url_escape_1(
         (*u).file,
-        (urlchr_unsafe as libc::c_int | urlchr_reserved as libc::c_int) as libc::c_uchar,
-        1 as libc::c_int != 0,
+        (C2RustUnnamed_7::urlchr_unsafe as i32 | C2RustUnnamed_7::urlchr_reserved as i32)
+            as u8,
+        1 as i32 != 0,
     );
     if *edir == 0 {
         newpath = xstrdup(efile);
     } else {
-        let mut dirlen: libc::c_int = strlen(edir) as libc::c_int;
-        let mut filelen: libc::c_int = strlen(efile) as libc::c_int;
-        newpath = xmalloc(
-            (dirlen + 1 as libc::c_int + filelen + 1 as libc::c_int) as size_t,
-        ) as *mut libc::c_char;
-        let mut p: *mut libc::c_char = newpath;
-        memcpy(
-            p as *mut libc::c_void,
-            edir as *const libc::c_void,
-            dirlen as libc::c_ulong,
-        );
+        let mut dirlen: i32 = strlen(edir) as i32;
+        let mut filelen: i32 = strlen(efile) as i32;
+        newpath = xmalloc((dirlen + 1 as i32 + filelen + 1 as i32) as size_t) as *mut i8;
+        let mut p: *mut i8 = newpath;
+        memcpy(p as *mut libc::c_void, edir as *const libc::c_void, dirlen as u64);
         p = p.offset(dirlen as isize);
         let fresh18 = p;
         p = p.offset(1);
-        *fresh18 = '/' as i32 as libc::c_char;
-        memcpy(
-            p as *mut libc::c_void,
-            efile as *const libc::c_void,
-            filelen as libc::c_ulong,
-        );
+        *fresh18 = '/' as i32 as i8;
+        memcpy(p as *mut libc::c_void, efile as *const libc::c_void, filelen as u64);
         p = p.offset(filelen as isize);
-        *p = '\0' as i32 as libc::c_char;
+        *p = '\0' as i32 as i8;
     }
     (*u).path = newpath;
     if edir != (*u).dir {
         rpl_free(edir as *mut libc::c_void);
-        edir = 0 as *mut libc::c_char;
+        edir = 0 as *mut i8;
     }
     if efile != (*u).file {
         rpl_free(efile as *mut libc::c_void);
-        efile = 0 as *mut libc::c_char;
+        efile = 0 as *mut i8;
     }
     rpl_free((*u).url as *mut libc::c_void);
-    (*u).url = 0 as *mut libc::c_char;
-    (*u).url = url_string(u, URL_AUTH_SHOW);
+    (*u).url = 0 as *mut i8;
+    (*u).url = url_string(u, url_auth_mode::URL_AUTH_SHOW);
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_set_dir(
-    mut url: *mut url,
-    mut newdir: *const libc::c_char,
-) {
+pub unsafe extern "C" fn url_set_dir(mut url: *mut url, mut newdir: *const i8) {
     rpl_free((*url).dir as *mut libc::c_void);
-    (*url).dir = 0 as *mut libc::c_char;
+    (*url).dir = 0 as *mut i8;
     (*url).dir = xstrdup(newdir);
     sync_path(url);
 }
 #[no_mangle]
-pub unsafe extern "C" fn url_set_file(
-    mut url: *mut url,
-    mut newfile: *const libc::c_char,
-) {
+pub unsafe extern "C" fn url_set_file(mut url: *mut url, mut newfile: *const i8) {
     rpl_free((*url).file as *mut libc::c_void);
-    (*url).file = 0 as *mut libc::c_char;
+    (*url).file = 0 as *mut i8;
     (*url).file = xstrdup(newfile);
     sync_path(url);
 }
@@ -2915,33 +3326,33 @@ pub unsafe extern "C" fn url_set_file(
 pub unsafe extern "C" fn url_free(mut url: *mut url) {
     if !url.is_null() {
         rpl_free((*url).host as *mut libc::c_void);
-        (*url).host = 0 as *mut libc::c_char;
+        (*url).host = 0 as *mut i8;
         rpl_free((*url).path as *mut libc::c_void);
-        (*url).path = 0 as *mut libc::c_char;
+        (*url).path = 0 as *mut i8;
         rpl_free((*url).url as *mut libc::c_void);
-        (*url).url = 0 as *mut libc::c_char;
+        (*url).url = 0 as *mut i8;
         rpl_free((*url).params as *mut libc::c_void);
-        (*url).params = 0 as *mut libc::c_char;
+        (*url).params = 0 as *mut i8;
         rpl_free((*url).query as *mut libc::c_void);
-        (*url).query = 0 as *mut libc::c_char;
+        (*url).query = 0 as *mut i8;
         rpl_free((*url).fragment as *mut libc::c_void);
-        (*url).fragment = 0 as *mut libc::c_char;
+        (*url).fragment = 0 as *mut i8;
         rpl_free((*url).user as *mut libc::c_void);
-        (*url).user = 0 as *mut libc::c_char;
+        (*url).user = 0 as *mut i8;
         rpl_free((*url).passwd as *mut libc::c_void);
-        (*url).passwd = 0 as *mut libc::c_char;
+        (*url).passwd = 0 as *mut i8;
         rpl_free((*url).dir as *mut libc::c_void);
-        (*url).dir = 0 as *mut libc::c_char;
+        (*url).dir = 0 as *mut i8;
         rpl_free((*url).file as *mut libc::c_void);
-        (*url).file = 0 as *mut libc::c_char;
+        (*url).file = 0 as *mut i8;
         rpl_free(url as *mut libc::c_void);
         url = 0 as *mut url;
     }
 }
 #[no_mangle]
-pub unsafe extern "C" fn mkalldirs(mut path: *const libc::c_char) -> libc::c_int {
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
-    let mut t: *mut libc::c_char = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn mkalldirs(mut path: *const i8) -> i32 {
+    let mut p: *const i8 = 0 as *const i8;
+    let mut t: *mut i8 = 0 as *mut i8;
     let mut st: stat = stat {
         st_dev: 0,
         st_ino: 0,
@@ -2959,33 +3370,30 @@ pub unsafe extern "C" fn mkalldirs(mut path: *const libc::c_char) -> libc::c_int
         st_ctim: timespec { tv_sec: 0, tv_nsec: 0 },
         __glibc_reserved: [0; 3],
     };
-    let mut res: libc::c_int = 0;
+    let mut res: i32 = 0;
     p = strrchr(path, '/' as i32);
     p = if p.is_null() { path } else { p };
-    if p == path && *p as libc::c_int != '/' as i32 {
-        return 0 as libc::c_int;
+    if p == path && *p as i32 != '/' as i32 {
+        return 0 as i32;
     }
     t = strdupdelim(path, p);
-    if stat(t, &mut st) == 0 as libc::c_int {
-        if st.st_mode & 0o170000 as libc::c_int as libc::c_uint
-            == 0o40000 as libc::c_int as libc::c_uint
-        {
+    if stat(t, &mut st) == 0 as i32 {
+        if st.st_mode & 0o170000 as i32 as u32 == 0o40000 as i32 as u32 {
             rpl_free(t as *mut libc::c_void);
-            t = 0 as *mut libc::c_char;
-            return 0 as libc::c_int;
+            t = 0 as *mut i8;
+            return 0 as i32;
         } else {
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
                     b"Removing %s because of directory danger!\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     t,
                 );
             }
             if unlink(t) != 0 {
                 logprintf(
-                    LOG_NOTQUIET,
-                    b"Failed to unlink %s (%d): %s\n\0" as *const u8
-                        as *const libc::c_char,
+                    log_options::LOG_NOTQUIET,
+                    b"Failed to unlink %s (%d): %s\n\0" as *const u8 as *const i8,
                     t,
                     *__errno_location(),
                     strerror(*__errno_location()),
@@ -2994,423 +3402,434 @@ pub unsafe extern "C" fn mkalldirs(mut path: *const libc::c_char) -> libc::c_int
         }
     }
     res = make_directory(t);
-    if res != 0 as libc::c_int {
+    if res != 0 as i32 {
         logprintf(
-            LOG_NOTQUIET,
-            b"%s: %s\n\0" as *const u8 as *const libc::c_char,
+            log_options::LOG_NOTQUIET,
+            b"%s: %s\n\0" as *const u8 as *const i8,
             t,
             strerror(*__errno_location()),
         );
     }
     rpl_free(t as *mut libc::c_void);
-    t = 0 as *mut libc::c_char;
+    t = 0 as *mut i8;
     return res;
 }
 unsafe extern "C" fn append_null(mut dest: *mut growable) {
     let mut G_: *mut growable = dest;
-    let mut DR_needed_size: libc::c_long = ((*G_).tail + 1 as libc::c_int)
-        as libc::c_long;
-    let mut DR_newsize: libc::c_long = 0 as libc::c_int as libc::c_long;
-    while ((*G_).size as libc::c_long) < DR_needed_size {
-        DR_newsize = ((*G_).size << 1 as libc::c_int) as libc::c_long;
-        if DR_newsize < 16 as libc::c_int as libc::c_long {
-            DR_newsize = 16 as libc::c_int as libc::c_long;
+    let mut DR_needed_size: i64 = ((*G_).tail + 1 as i32) as i64;
+    let mut DR_newsize: i64 = 0 as i32 as i64;
+    while ((*G_).size as i64) < DR_needed_size {
+        DR_newsize = ((*G_).size << 1 as i32) as i64;
+        if DR_newsize < 16 as i32 as i64 {
+            DR_newsize = 16 as i32 as i64;
         }
-        (*G_).size = DR_newsize as libc::c_int;
+        (*G_).size = DR_newsize as i32;
     }
     if DR_newsize != 0 {
-        (*G_)
-            .base = xrealloc(
+        (*G_).base = xrealloc(
             (*G_).base as *mut libc::c_void,
-            (DR_newsize as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
-        ) as *mut libc::c_char;
+            (DR_newsize as u64).wrapping_mul(::core::mem::size_of::<i8>() as u64),
+        ) as *mut i8;
     }
-    *((*dest).base).offset((*dest).tail as isize) = 0 as libc::c_int as libc::c_char;
+    *((*dest).base).offset((*dest).tail as isize) = 0 as i32 as i8;
 }
-unsafe extern "C" fn append_char(mut ch: libc::c_char, mut dest: *mut growable) {
+unsafe extern "C" fn append_char(mut ch: i8, mut dest: *mut growable) {
     if ch != 0 {
         let mut G_: *mut growable = dest;
-        let mut DR_needed_size: libc::c_long = ((*G_).tail + 1 as libc::c_int)
-            as libc::c_long;
-        let mut DR_newsize: libc::c_long = 0 as libc::c_int as libc::c_long;
-        while ((*G_).size as libc::c_long) < DR_needed_size {
-            DR_newsize = ((*G_).size << 1 as libc::c_int) as libc::c_long;
-            if DR_newsize < 16 as libc::c_int as libc::c_long {
-                DR_newsize = 16 as libc::c_int as libc::c_long;
+        let mut DR_needed_size: i64 = ((*G_).tail + 1 as i32) as i64;
+        let mut DR_newsize: i64 = 0 as i32 as i64;
+        while ((*G_).size as i64) < DR_needed_size {
+            DR_newsize = ((*G_).size << 1 as i32) as i64;
+            if DR_newsize < 16 as i32 as i64 {
+                DR_newsize = 16 as i32 as i64;
             }
-            (*G_).size = DR_newsize as libc::c_int;
+            (*G_).size = DR_newsize as i32;
         }
         if DR_newsize != 0 {
-            (*G_)
-                .base = xrealloc(
+            (*G_).base = xrealloc(
                 (*G_).base as *mut libc::c_void,
-                (DR_newsize as libc::c_ulong)
-                    .wrapping_mul(
-                        ::core::mem::size_of::<libc::c_char>() as libc::c_ulong,
-                    ),
-            ) as *mut libc::c_char;
+                (DR_newsize as u64).wrapping_mul(::core::mem::size_of::<i8>() as u64),
+            ) as *mut i8;
         }
         *((*dest).base).offset((*dest).tail as isize) = ch;
-        (*dest).tail += 1 as libc::c_int;
+        (*dest).tail += 1 as i32;
     }
     append_null(dest);
 }
-unsafe extern "C" fn append_string(
-    mut str: *const libc::c_char,
-    mut dest: *mut growable,
-) {
-    let mut l: libc::c_int = strlen(str) as libc::c_int;
+unsafe extern "C" fn append_string(mut str: *const i8, mut dest: *mut growable) {
+    let mut l: i32 = strlen(str) as i32;
     if l != 0 {
         let mut G_: *mut growable = dest;
-        let mut DR_needed_size: libc::c_long = ((*G_).tail + l) as libc::c_long;
-        let mut DR_newsize: libc::c_long = 0 as libc::c_int as libc::c_long;
-        while ((*G_).size as libc::c_long) < DR_needed_size {
-            DR_newsize = ((*G_).size << 1 as libc::c_int) as libc::c_long;
-            if DR_newsize < 16 as libc::c_int as libc::c_long {
-                DR_newsize = 16 as libc::c_int as libc::c_long;
+        let mut DR_needed_size: i64 = ((*G_).tail + l) as i64;
+        let mut DR_newsize: i64 = 0 as i32 as i64;
+        while ((*G_).size as i64) < DR_needed_size {
+            DR_newsize = ((*G_).size << 1 as i32) as i64;
+            if DR_newsize < 16 as i32 as i64 {
+                DR_newsize = 16 as i32 as i64;
             }
-            (*G_).size = DR_newsize as libc::c_int;
+            (*G_).size = DR_newsize as i32;
         }
         if DR_newsize != 0 {
-            (*G_)
-                .base = xrealloc(
+            (*G_).base = xrealloc(
                 (*G_).base as *mut libc::c_void,
-                (DR_newsize as libc::c_ulong)
-                    .wrapping_mul(
-                        ::core::mem::size_of::<libc::c_char>() as libc::c_ulong,
-                    ),
-            ) as *mut libc::c_char;
+                (DR_newsize as u64).wrapping_mul(::core::mem::size_of::<i8>() as u64),
+            ) as *mut i8;
         }
         memcpy(
             ((*dest).base).offset((*dest).tail as isize) as *mut libc::c_void,
             str as *const libc::c_void,
-            l as libc::c_ulong,
+            l as u64,
         );
         (*dest).tail += l;
     }
     append_null(dest);
 }
-static mut filechr_table: [libc::c_uchar; 256] = [
-    (filechr_not_unix as libc::c_int | filechr_not_vms as libc::c_int
-        | filechr_not_windows as libc::c_int | filechr_control as libc::c_int)
-        as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_control as libc::c_int) as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_not_windows as libc::c_int)
-        as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    (filechr_not_unix as libc::c_int | filechr_not_windows as libc::c_int)
-        as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    (filechr_not_vms as libc::c_int | filechr_not_windows as libc::c_int)
-        as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_not_windows as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    filechr_control as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
-    0 as libc::c_int as libc::c_uchar,
+static mut filechr_table: [u8; 256] = [
+    (C2RustUnnamed_9::filechr_not_unix as i32 | C2RustUnnamed_9::filechr_not_vms as i32
+        | C2RustUnnamed_9::filechr_not_windows as i32
+        | C2RustUnnamed_9::filechr_control as i32) as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32 | C2RustUnnamed_9::filechr_control as i32)
+        as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32
+        | C2RustUnnamed_9::filechr_not_windows as i32) as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    (C2RustUnnamed_9::filechr_not_unix as i32
+        | C2RustUnnamed_9::filechr_not_windows as i32) as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    (C2RustUnnamed_9::filechr_not_vms as i32
+        | C2RustUnnamed_9::filechr_not_windows as i32) as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_not_windows as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    C2RustUnnamed_9::filechr_control as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
+    0 as i32 as u8,
 ];
 unsafe extern "C" fn append_uri_pathel(
-    mut b: *const libc::c_char,
-    mut e: *const libc::c_char,
+    mut b: *const i8,
+    mut e: *const i8,
     mut escaped: bool,
     mut dest: *mut growable,
 ) {
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
-    let mut buf: [libc::c_char; 1024] = [0; 1024];
-    let mut unescaped: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut quoted: libc::c_int = 0;
-    let mut outlen: libc::c_int = 0;
-    let mut mask: libc::c_int = 0;
-    let mut max_length: libc::c_int = 0;
+    let mut p: *const i8 = 0 as *const i8;
+    let mut buf: [i8; 1024] = [0; 1024];
+    let mut unescaped: *mut i8 = 0 as *mut i8;
+    let mut quoted: i32 = 0;
+    let mut outlen: i32 = 0;
+    let mut mask: i32 = 0;
+    let mut max_length: i32 = 0;
     if dest.is_null() {
         return;
     }
-    if opt.restrict_files_os as libc::c_uint
-        == restrict_unix as libc::c_int as libc::c_uint
+    if opt.restrict_files_os as u32 == C2RustUnnamed_1::restrict_unix as i32 as u32 {
+        mask = C2RustUnnamed_9::filechr_not_unix as i32;
+    } else if opt.restrict_files_os as u32 == C2RustUnnamed_1::restrict_vms as i32 as u32
     {
-        mask = filechr_not_unix as libc::c_int;
-    } else if opt.restrict_files_os as libc::c_uint
-        == restrict_vms as libc::c_int as libc::c_uint
-    {
-        mask = filechr_not_vms as libc::c_int;
+        mask = C2RustUnnamed_9::filechr_not_vms as i32;
     } else {
-        mask = filechr_not_windows as libc::c_int;
+        mask = C2RustUnnamed_9::filechr_not_windows as i32;
     }
     if opt.restrict_files_ctrl {
-        mask |= filechr_control as libc::c_int;
+        mask |= C2RustUnnamed_9::filechr_control as i32;
     }
     if escaped {
-        let mut len: size_t = e.offset_from(b) as libc::c_long as size_t;
-        if len < ::core::mem::size_of::<[libc::c_char; 1024]>() as libc::c_ulong {
+        let mut len: size_t = e.offset_from(b) as i64 as size_t;
+        if len < ::core::mem::size_of::<[i8; 1024]>() as u64 {
             unescaped = buf.as_mut_ptr();
         } else {
-            unescaped = xmalloc(len.wrapping_add(1 as libc::c_int as libc::c_ulong))
-                as *mut libc::c_char;
+            unescaped = xmalloc(len.wrapping_add(1 as i32 as u64)) as *mut i8;
         }
         memcpy(unescaped as *mut libc::c_void, b as *const libc::c_void, len);
-        *unescaped.offset(len as isize) = 0 as libc::c_int as libc::c_char;
+        *unescaped.offset(len as isize) = 0 as i32 as i8;
         url_unescape(unescaped);
         b = unescaped;
         e = unescaped.offset(strlen(unescaped) as isize);
     }
-    if e.offset_from(b) as libc::c_long == 2 as libc::c_int as libc::c_long
-        && *b.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
-        && *b.offset(1 as libc::c_int as isize) as libc::c_int == '.' as i32
+    if e.offset_from(b) as i64 == 2 as i32 as i64
+        && *b.offset(0 as i32 as isize) as i32 == '.' as i32
+        && *b.offset(1 as i32 as isize) as i32 == '.' as i32
     {
-        b = b"%2E%2E\0" as *const u8 as *const libc::c_char;
-        e = b.offset(6 as libc::c_int as isize);
+        b = b"%2E%2E\0" as *const u8 as *const i8;
+        e = b.offset(6 as i32 as isize);
     }
-    quoted = 0 as libc::c_int;
+    quoted = 0 as i32;
     p = b;
     while p < e {
-        if opt.restrict_files_nonascii as libc::c_int != 0
-            && !c_isascii(*p as libc::c_uchar as libc::c_int)
-            || filechr_table[*p as libc::c_uchar as usize] as libc::c_int & mask != 0
+        if opt.restrict_files_nonascii as i32 != 0 && !c_isascii(*p as u8 as i32)
+            || filechr_table[*p as u8 as usize] as i32 & mask != 0
         {
             quoted += 1;
             quoted;
@@ -3418,38 +3837,38 @@ unsafe extern "C" fn append_uri_pathel(
         p = p.offset(1);
         p;
     }
-    outlen = (e.offset_from(b) as libc::c_long
-        + (2 as libc::c_int * quoted) as libc::c_long) as libc::c_int;
-    max_length = get_max_length((*dest).base, (*dest).tail, _PC_NAME_MAX as libc::c_int)
-        as libc::c_int;
-    max_length -= 19 as libc::c_int;
-    if max_length > 0 as libc::c_int && outlen > max_length {
+    outlen = (e.offset_from(b) as i64 + (2 as i32 * quoted) as i64) as i32;
+    max_length = get_max_length(
+        (*dest).base,
+        (*dest).tail,
+        C2RustUnnamed_4::_PC_NAME_MAX as i32,
+    ) as i32;
+    max_length -= 19 as i32;
+    if max_length > 0 as i32 && outlen > max_length {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             b"The destination name is too long (%d), reducing to %d\n\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
             outlen,
             max_length,
         );
         outlen = max_length;
     }
     let mut G_: *mut growable = dest;
-    let mut DR_needed_size: libc::c_long = ((*G_).tail + outlen) as libc::c_long;
-    let mut DR_newsize: libc::c_long = 0 as libc::c_int as libc::c_long;
-    while ((*G_).size as libc::c_long) < DR_needed_size {
-        DR_newsize = ((*G_).size << 1 as libc::c_int) as libc::c_long;
-        if DR_newsize < 16 as libc::c_int as libc::c_long {
-            DR_newsize = 16 as libc::c_int as libc::c_long;
+    let mut DR_needed_size: i64 = ((*G_).tail + outlen) as i64;
+    let mut DR_newsize: i64 = 0 as i32 as i64;
+    while ((*G_).size as i64) < DR_needed_size {
+        DR_newsize = ((*G_).size << 1 as i32) as i64;
+        if DR_newsize < 16 as i32 as i64 {
+            DR_newsize = 16 as i32 as i64;
         }
-        (*G_).size = DR_newsize as libc::c_int;
+        (*G_).size = DR_newsize as i32;
     }
     if DR_newsize != 0 {
-        (*G_)
-            .base = xrealloc(
+        (*G_).base = xrealloc(
             (*G_).base as *mut libc::c_void,
-            (DR_newsize as libc::c_ulong)
-                .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
-        ) as *mut libc::c_char;
+            (DR_newsize as u64).wrapping_mul(::core::mem::size_of::<i8>() as u64),
+        ) as *mut i8;
     }
     if ((*dest).base).is_null() {
         return;
@@ -3458,18 +3877,16 @@ unsafe extern "C" fn append_uri_pathel(
         memcpy(
             ((*dest).base).offset((*dest).tail as isize) as *mut libc::c_void,
             b as *const libc::c_void,
-            outlen as libc::c_ulong,
+            outlen as u64,
         );
     } else {
-        let mut q: *mut libc::c_char = ((*dest).base).offset((*dest).tail as isize);
-        let mut i: libc::c_int = 0;
-        i = 0 as libc::c_int;
+        let mut q: *mut i8 = ((*dest).base).offset((*dest).tail as isize);
+        let mut i: i32 = 0;
+        i = 0 as i32;
         p = b;
         while p < e {
-            if !(opt.restrict_files_nonascii as libc::c_int != 0
-                && !c_isascii(*p as libc::c_uchar as libc::c_int)
-                || filechr_table[*p as libc::c_uchar as usize] as libc::c_int & mask
-                    != 0)
+            if !(opt.restrict_files_nonascii as i32 != 0 && !c_isascii(*p as u8 as i32)
+                || filechr_table[*p as u8 as usize] as i32 & mask != 0)
             {
                 if i == outlen {
                     break;
@@ -3480,52 +3897,48 @@ unsafe extern "C" fn append_uri_pathel(
                 i += 1;
                 i;
             } else {
-                if i + 3 as libc::c_int > outlen {
+                if i + 3 as i32 > outlen {
                     break;
                 }
-                let mut ch: libc::c_uchar = *p as libc::c_uchar;
+                let mut ch: u8 = *p as u8;
                 let fresh20 = q;
                 q = q.offset(1);
-                *fresh20 = '%' as i32 as libc::c_char;
+                *fresh20 = '%' as i32 as i8;
                 let fresh21 = q;
                 q = q.offset(1);
                 *fresh21 = ((*::core::mem::transmute::<
                     &[u8; 17],
-                    &[libc::c_char; 17],
-                >(
-                    b"0123456789ABCDEF\0",
-                ))[(ch as libc::c_int >> 4 as libc::c_int) as usize] as libc::c_int
-                    + 0 as libc::c_int) as libc::c_char;
+                    &[i8; 17],
+                >(b"0123456789ABCDEF\0"))[(ch as i32 >> 4 as i32) as usize] as i32
+                    + 0 as i32) as i8;
                 let fresh22 = q;
                 q = q.offset(1);
                 *fresh22 = ((*::core::mem::transmute::<
                     &[u8; 17],
-                    &[libc::c_char; 17],
-                >(
-                    b"0123456789ABCDEF\0",
-                ))[(ch as libc::c_int & 0xf as libc::c_int) as usize] as libc::c_int
-                    + 0 as libc::c_int) as libc::c_char;
-                i += 3 as libc::c_int;
+                    &[i8; 17],
+                >(b"0123456789ABCDEF\0"))[(ch as i32 & 0xf as i32) as usize] as i32
+                    + 0 as i32) as i8;
+                i += 3 as i32;
             }
             p = p.offset(1);
             p;
         }
     }
-    if opt.restrict_files_case as libc::c_uint
-        == restrict_lowercase as libc::c_int as libc::c_uint
-        || opt.restrict_files_case as libc::c_uint
-            == restrict_uppercase as libc::c_int as libc::c_uint
+    if opt.restrict_files_case as u32
+        == C2RustUnnamed_0::restrict_lowercase as i32 as u32
+        || opt.restrict_files_case as u32
+            == C2RustUnnamed_0::restrict_uppercase as i32 as u32
     {
-        let mut q_0: *mut libc::c_char = 0 as *mut libc::c_char;
+        let mut q_0: *mut i8 = 0 as *mut i8;
         q_0 = ((*dest).base).offset((*dest).tail as isize);
         while q_0 < ((*dest).base).offset((*dest).tail as isize).offset(outlen as isize)
         {
-            if opt.restrict_files_case as libc::c_uint
-                == restrict_lowercase as libc::c_int as libc::c_uint
+            if opt.restrict_files_case as u32
+                == C2RustUnnamed_0::restrict_lowercase as i32 as u32
             {
-                *q_0 = c_tolower(*q_0 as libc::c_int) as libc::c_char;
+                *q_0 = c_tolower(*q_0 as i32) as i8;
             } else {
-                *q_0 = c_toupper(*q_0 as libc::c_int) as libc::c_char;
+                *q_0 = c_toupper(*q_0 as i32) as i8;
             }
             q_0 = q_0.offset(1);
             q_0;
@@ -3537,72 +3950,61 @@ unsafe extern "C" fn append_uri_pathel(
         rpl_free(unescaped as *mut libc::c_void);
     }
 }
-unsafe extern "C" fn convert_fname(mut fname: *mut libc::c_char) -> *mut libc::c_char {
-    let mut converted_fname: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut from_encoding: *const libc::c_char = opt.encoding_remote;
-    let mut to_encoding: *const libc::c_char = opt.locale;
+unsafe extern "C" fn convert_fname(mut fname: *mut i8) -> *mut i8 {
+    let mut converted_fname: *mut i8 = 0 as *mut i8;
+    let mut from_encoding: *const i8 = opt.encoding_remote;
+    let mut to_encoding: *const i8 = opt.locale;
     let mut cd: iconv_t = 0 as *mut libc::c_void;
     let mut len: size_t = 0;
     let mut done: size_t = 0;
     let mut inlen: size_t = 0;
     let mut outlen: size_t = 0;
-    let mut s: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut orig_fname: *const libc::c_char = 0 as *const libc::c_char;
+    let mut s: *mut i8 = 0 as *mut i8;
+    let mut orig_fname: *const i8 = 0 as *const i8;
     if from_encoding.is_null() {
-        from_encoding = b"UTF-8\0" as *const u8 as *const libc::c_char;
+        from_encoding = b"UTF-8\0" as *const u8 as *const i8;
     }
     if to_encoding.is_null() {
-        to_encoding = nl_langinfo(CODESET as libc::c_int);
+        to_encoding = nl_langinfo(CODESET as i32);
     }
     cd = iconv_open(to_encoding, from_encoding);
-    if cd == -(1 as libc::c_int) as iconv_t {
+    if cd == -(1 as i32) as iconv_t {
         logprintf(
-            LOG_VERBOSE,
+            log_options::LOG_VERBOSE,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"Conversion from %s to %s isn't supported\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
-            quote_n(0 as libc::c_int, from_encoding),
-            quote_n(1 as libc::c_int, to_encoding),
+            quote_n(0 as i32, from_encoding),
+            quote_n(1 as i32, to_encoding),
         );
         return fname;
     }
     orig_fname = fname;
     inlen = strlen(fname);
-    outlen = inlen.wrapping_mul(2 as libc::c_int as libc::c_ulong);
+    outlen = inlen.wrapping_mul(2 as i32 as u64);
     len = outlen;
-    s = xmalloc(outlen.wrapping_add(1 as libc::c_int as libc::c_ulong))
-        as *mut libc::c_char;
+    s = xmalloc(outlen.wrapping_add(1 as i32 as u64)) as *mut i8;
     converted_fname = s;
-    done = 0 as libc::c_int as size_t;
+    done = 0 as i32 as size_t;
     loop {
-        *__errno_location() = 0 as libc::c_int;
-        if iconv(
-            cd,
-            &mut fname as *mut *mut libc::c_char,
-            &mut inlen,
-            &mut s,
-            &mut outlen,
-        ) == 0 as libc::c_int as libc::c_ulong
-            && iconv(
-                cd,
-                0 as *mut *mut libc::c_char,
-                0 as *mut size_t,
-                &mut s,
-                &mut outlen,
-            ) == 0 as libc::c_int as libc::c_ulong
+        *__errno_location() = 0 as i32;
+        if iconv(cd, &mut fname as *mut *mut i8, &mut inlen, &mut s, &mut outlen)
+            == 0 as i32 as u64
+            && iconv(cd, 0 as *mut *mut i8, 0 as *mut size_t, &mut s, &mut outlen)
+                == 0 as i32 as u64
         {
             *converted_fname
                 .offset(len as isize)
                 .offset(-(outlen as isize))
-                .offset(-(done as isize)) = '\0' as i32 as libc::c_char;
+                .offset(-(done as isize)) = '\0' as i32 as i8;
             iconv_close(cd);
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
                     b"Converted file name '%s' (%s) -> '%s' (%s)\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                     orig_fname,
                     from_encoding,
                     converted_fname,
@@ -3610,68 +4012,66 @@ unsafe extern "C" fn convert_fname(mut fname: *mut libc::c_char) -> *mut libc::c
                 );
             }
             rpl_free(orig_fname as *mut libc::c_void);
-            orig_fname = 0 as *const libc::c_char;
+            orig_fname = 0 as *const i8;
             return converted_fname;
         }
-        if *__errno_location() == 22 as libc::c_int
-            || *__errno_location() == 84 as libc::c_int
-            || *__errno_location() == 0 as libc::c_int
+        if *__errno_location() == 22 as i32 || *__errno_location() == 84 as i32
+            || *__errno_location() == 0 as i32
         {
             if *__errno_location() != 0 {
                 logprintf(
-                    LOG_VERBOSE,
+                    log_options::LOG_VERBOSE,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"Incomplete or invalid multibyte sequence encountered\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                 );
             } else {
                 logprintf(
-                    LOG_VERBOSE,
+                    log_options::LOG_VERBOSE,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"Unconvertable multibyte sequence encountered\n\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                 );
             }
             rpl_free(converted_fname as *mut libc::c_void);
-            converted_fname = 0 as *mut libc::c_char;
-            converted_fname = orig_fname as *mut libc::c_char;
+            converted_fname = 0 as *mut i8;
+            converted_fname = orig_fname as *mut i8;
             break;
-        } else if *__errno_location() == 7 as libc::c_int {
+        } else if *__errno_location() == 7 as i32 {
             done = len;
-            outlen = done
-                .wrapping_add(inlen.wrapping_mul(2 as libc::c_int as libc::c_ulong));
+            outlen = done.wrapping_add(inlen.wrapping_mul(2 as i32 as u64));
             len = outlen;
             converted_fname = xrealloc(
                 converted_fname as *mut libc::c_void,
-                outlen.wrapping_add(1 as libc::c_int as libc::c_ulong),
-            ) as *mut libc::c_char;
+                outlen.wrapping_add(1 as i32 as u64),
+            ) as *mut i8;
             s = converted_fname.offset(done as isize);
         } else {
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Unhandled errno %d\n\0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Unhandled errno %d\n\0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 *__errno_location(),
             );
             rpl_free(converted_fname as *mut libc::c_void);
-            converted_fname = 0 as *mut libc::c_char;
-            converted_fname = orig_fname as *mut libc::c_char;
+            converted_fname = 0 as *mut i8;
+            converted_fname = orig_fname as *mut i8;
             break;
         }
     }
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
             b"Failed to convert file name '%s' (%s) -> '?' (%s)\n\0" as *const u8
-                as *const libc::c_char,
+                as *const i8,
             orig_fname,
             from_encoding,
             to_encoding,
@@ -3681,9 +4081,9 @@ unsafe extern "C" fn convert_fname(mut fname: *mut libc::c_char) -> *mut libc::c
     return converted_fname;
 }
 unsafe extern "C" fn append_dir_structure(mut u: *const url, mut dest: *mut growable) {
-    let mut pathel: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut next: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut cut: libc::c_int = opt.cut_dirs;
+    let mut pathel: *mut i8 = 0 as *mut i8;
+    let mut next: *mut i8 = 0 as *mut i8;
+    let mut cut: i32 = opt.cut_dirs;
     pathel = (*u).path;
     loop {
         next = strchr(pathel, '/' as i32);
@@ -3692,44 +4092,43 @@ unsafe extern "C" fn append_dir_structure(mut u: *const url, mut dest: *mut grow
         }
         let fresh23 = cut;
         cut = cut - 1;
-        if !(fresh23 > 0 as libc::c_int) {
+        if !(fresh23 > 0 as i32) {
             if !(pathel == next) {
                 if (*dest).tail != 0 {
-                    append_char('/' as i32 as libc::c_char, dest);
+                    append_char('/' as i32 as i8, dest);
                 }
-                append_uri_pathel(pathel, next, 1 as libc::c_int != 0, dest);
+                append_uri_pathel(pathel, next, 1 as i32 != 0, dest);
             }
         }
-        pathel = next.offset(1 as libc::c_int as isize);
+        pathel = next.offset(1 as i32 as isize);
     };
 }
 #[no_mangle]
 pub unsafe extern "C" fn url_file_name(
     mut u: *const url,
-    mut replaced_filename: *mut libc::c_char,
-) -> *mut libc::c_char {
+    mut replaced_filename: *mut i8,
+) -> *mut i8 {
     let mut fnres: growable = growable {
-        base: 0 as *mut libc::c_char,
+        base: 0 as *mut i8,
         size: 0,
         tail: 0,
     };
     let mut temp_fnres: growable = growable {
-        base: 0 as *mut libc::c_char,
+        base: 0 as *mut i8,
         size: 0,
         tail: 0,
     };
-    let mut u_file: *const libc::c_char = 0 as *const libc::c_char;
-    let mut fname: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut unique: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut fname_len_check: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut index_filename: *const libc::c_char = b"index.html\0" as *const u8
-        as *const libc::c_char;
-    fnres.base = 0 as *mut libc::c_char;
-    fnres.size = 0 as libc::c_int;
-    fnres.tail = 0 as libc::c_int;
-    temp_fnres.base = 0 as *mut libc::c_char;
-    temp_fnres.size = 0 as libc::c_int;
-    temp_fnres.tail = 0 as libc::c_int;
+    let mut u_file: *const i8 = 0 as *const i8;
+    let mut fname: *mut i8 = 0 as *mut i8;
+    let mut unique: *mut i8 = 0 as *mut i8;
+    let mut fname_len_check: *mut i8 = 0 as *mut i8;
+    let mut index_filename: *const i8 = b"index.html\0" as *const u8 as *const i8;
+    fnres.base = 0 as *mut i8;
+    fnres.size = 0 as i32;
+    fnres.tail = 0 as i32;
+    temp_fnres.base = 0 as *mut i8;
+    temp_fnres.size = 0 as i32;
+    temp_fnres.tail = 0 as i32;
     if !(opt.default_page).is_null() {
         index_filename = opt.default_page;
     }
@@ -3739,35 +4138,30 @@ pub unsafe extern "C" fn url_file_name(
     if opt.dirstruct {
         if opt.protocol_directories {
             if temp_fnres.tail != 0 {
-                append_char('/' as i32 as libc::c_char, &mut temp_fnres);
+                append_char('/' as i32 as i8, &mut temp_fnres);
             }
             append_string(supported_schemes[(*u).scheme as usize].name, &mut temp_fnres);
         }
         if opt.add_hostdir {
             if temp_fnres.tail != 0 {
-                append_char('/' as i32 as libc::c_char, &mut temp_fnres);
+                append_char('/' as i32 as i8, &mut temp_fnres);
             }
-            if 0 as libc::c_int
-                != strcmp((*u).host, b"..\0" as *const u8 as *const libc::c_char)
-            {
+            if 0 as i32 != strcmp((*u).host, b"..\0" as *const u8 as *const i8) {
                 append_string((*u).host, &mut temp_fnres);
             } else {
-                append_string(
-                    b"%2E%2E\0" as *const u8 as *const libc::c_char,
-                    &mut temp_fnres,
-                );
+                append_string(b"%2E%2E\0" as *const u8 as *const i8, &mut temp_fnres);
             }
             if (*u).port != scheme_default_port((*u).scheme) {
-                let mut portstr: [libc::c_char; 24] = [0; 24];
+                let mut portstr: [i8; 24] = [0; 24];
                 number_to_string(portstr.as_mut_ptr(), (*u).port as wgint);
                 append_char(
-                    (if opt.restrict_files_os as libc::c_uint
-                        != restrict_windows as libc::c_int as libc::c_uint
+                    (if opt.restrict_files_os as u32
+                        != C2RustUnnamed_1::restrict_windows as i32 as u32
                     {
                         ':' as i32
                     } else {
                         '+' as i32
-                    }) as libc::c_char,
+                    }) as i8,
                     &mut temp_fnres,
                 );
                 append_string(portstr.as_mut_ptr(), &mut temp_fnres);
@@ -3776,18 +4170,18 @@ pub unsafe extern "C" fn url_file_name(
         append_dir_structure(u, &mut temp_fnres);
     }
     if replaced_filename.is_null() {
-        u_file = if *(*u).file as libc::c_int != 0 { (*u).file } else { index_filename };
+        u_file = if *(*u).file as i32 != 0 { (*u).file } else { index_filename };
         if !((*u).query).is_null() {
             fname_len_check = concat_strings(
                 u_file,
-                if opt.restrict_files_os as libc::c_uint
-                    != restrict_vms as libc::c_int as libc::c_uint
-                    && opt.restrict_files_os as libc::c_uint
-                        != restrict_windows as libc::c_int as libc::c_uint
+                if opt.restrict_files_os as u32
+                    != C2RustUnnamed_1::restrict_vms as i32 as u32
+                    && opt.restrict_files_os as u32
+                        != C2RustUnnamed_1::restrict_windows as i32 as u32
                 {
-                    b"?\0" as *const u8 as *const libc::c_char
+                    b"?\0" as *const u8 as *const i8
                 } else {
-                    b"@\0" as *const u8 as *const libc::c_char
+                    b"@\0" as *const u8 as *const i8
                 },
                 (*u).query,
                 0 as *mut libc::c_void,
@@ -3803,35 +4197,35 @@ pub unsafe extern "C" fn url_file_name(
         fname_len_check = strdupdelim(u_file, u_file.offset(strlen(u_file) as isize));
     }
     if temp_fnres.tail != 0 {
-        append_char('/' as i32 as libc::c_char, &mut temp_fnres);
+        append_char('/' as i32 as i8, &mut temp_fnres);
     }
     append_uri_pathel(
         fname_len_check,
         fname_len_check.offset(strlen(fname_len_check) as isize),
-        1 as libc::c_int != 0,
+        1 as i32 != 0,
         &mut temp_fnres,
     );
-    append_char('\0' as i32 as libc::c_char, &mut temp_fnres);
+    append_char('\0' as i32 as i8, &mut temp_fnres);
     fname = convert_fname(temp_fnres.base);
-    temp_fnres.base = 0 as *mut libc::c_char;
-    temp_fnres.size = 0 as libc::c_int;
-    temp_fnres.tail = 0 as libc::c_int;
+    temp_fnres.base = 0 as *mut i8;
+    temp_fnres.size = 0 as i32;
+    temp_fnres.tail = 0 as i32;
     append_string(fname, &mut temp_fnres);
     rpl_free(fname as *mut libc::c_void);
-    fname = 0 as *mut libc::c_char;
+    fname = 0 as *mut i8;
     rpl_free(fname_len_check as *mut libc::c_void);
-    fname_len_check = 0 as *mut libc::c_char;
+    fname_len_check = 0 as *mut i8;
     if fnres.tail != 0 {
-        append_char('/' as i32 as libc::c_char, &mut fnres);
+        append_char('/' as i32 as i8, &mut fnres);
     }
     append_string(temp_fnres.base, &mut fnres);
     fname = fnres.base;
     rpl_free(temp_fnres.base as *mut libc::c_void);
-    temp_fnres.base = 0 as *mut libc::c_char;
-    if (opt.noclobber as libc::c_int != 0 || opt.always_rest as libc::c_int != 0
-        || opt.timestamping as libc::c_int != 0 || opt.dirstruct as libc::c_int != 0
-        || !(opt.output_document).is_null() || opt.backups > 0 as libc::c_int)
-        && !(file_exists_p(fname, 0 as *mut file_stats_t) as libc::c_int != 0
+    temp_fnres.base = 0 as *mut i8;
+    if (opt.noclobber as i32 != 0 || opt.always_rest as i32 != 0
+        || opt.timestamping as i32 != 0 || opt.dirstruct as i32 != 0
+        || !(opt.output_document).is_null() || opt.backups > 0 as i32)
+        && !(file_exists_p(fname, 0 as *mut file_stats_t) as i32 != 0
             && !file_non_directory_p(fname))
     {
         unique = fname;
@@ -3839,50 +4233,42 @@ pub unsafe extern "C" fn url_file_name(
         unique = unique_name_passthrough(fname);
         if unique != fname {
             rpl_free(fname as *mut libc::c_void);
-            fname = 0 as *mut libc::c_char;
+            fname = 0 as *mut i8;
         }
     }
     return unique;
 }
-unsafe extern "C" fn path_simplify(
-    mut scheme: url_scheme,
-    mut path: *mut libc::c_char,
-) -> bool {
-    let mut h: *mut libc::c_char = path;
-    let mut t: *mut libc::c_char = path;
-    let mut beg: *mut libc::c_char = path;
-    let mut end: *mut libc::c_char = strchr(path, '\0' as i32);
+unsafe extern "C" fn path_simplify(mut scheme: url_scheme, mut path: *mut i8) -> bool {
+    let mut h: *mut i8 = path;
+    let mut t: *mut i8 = path;
+    let mut beg: *mut i8 = path;
+    let mut end: *mut i8 = strchr(path, '\0' as i32);
     while h < end {
-        if *h.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
-            && (*h.offset(1 as libc::c_int as isize) as libc::c_int == '/' as i32
-                || *h.offset(1 as libc::c_int as isize) as libc::c_int == '\0' as i32)
+        if *h.offset(0 as i32 as isize) as i32 == '.' as i32
+            && (*h.offset(1 as i32 as isize) as i32 == '/' as i32
+                || *h.offset(1 as i32 as isize) as i32 == '\0' as i32)
         {
-            h = h.offset(2 as libc::c_int as isize);
+            h = h.offset(2 as i32 as isize);
         } else {
             let mut current_block_18: u64;
-            if *h.offset(0 as libc::c_int as isize) as libc::c_int == '.' as i32
-                && *h.offset(1 as libc::c_int as isize) as libc::c_int == '.' as i32
-                && (*h.offset(2 as libc::c_int as isize) as libc::c_int == '/' as i32
-                    || *h.offset(2 as libc::c_int as isize) as libc::c_int
-                        == '\0' as i32)
+            if *h.offset(0 as i32 as isize) as i32 == '.' as i32
+                && *h.offset(1 as i32 as isize) as i32 == '.' as i32
+                && (*h.offset(2 as i32 as isize) as i32 == '/' as i32
+                    || *h.offset(2 as i32 as isize) as i32 == '\0' as i32)
             {
                 if t > beg {
                     t = t.offset(-1);
                     t;
-                    while t > beg
-                        && *t.offset(-(1 as libc::c_int) as isize) as libc::c_int
-                            != '/' as i32
+                    while t > beg && *t.offset(-(1 as i32) as isize) as i32 != '/' as i32
                     {
                         t = t.offset(-1);
                         t;
                     }
                     current_block_18 = 2968425633554183086;
-                } else if scheme as libc::c_uint
-                    == SCHEME_FTP as libc::c_int as libc::c_uint
-                    || scheme as libc::c_uint
-                        == SCHEME_FTPS as libc::c_int as libc::c_uint
+                } else if scheme as u32 == url_scheme::SCHEME_FTP as i32 as u32
+                    || scheme as u32 == url_scheme::SCHEME_FTPS as i32 as u32
                 {
-                    beg = t.offset(3 as libc::c_int as isize);
+                    beg = t.offset(3 as i32 as isize);
                     current_block_18 = 3511509469051899454;
                 } else {
                     current_block_18 = 2968425633554183086;
@@ -3890,7 +4276,7 @@ unsafe extern "C" fn path_simplify(
                 match current_block_18 {
                     3511509469051899454 => {}
                     _ => {
-                        h = h.offset(3 as libc::c_int as isize);
+                        h = h.offset(3 as i32 as isize);
                         current_block_18 = 11307063007268554308;
                     }
                 }
@@ -3900,7 +4286,7 @@ unsafe extern "C" fn path_simplify(
             match current_block_18 {
                 3511509469051899454 => {
                     if t == h {
-                        while h < end && *h as libc::c_int != '/' as i32 {
+                        while h < end && *h as i32 != '/' as i32 {
                             t = t.offset(1);
                             t;
                             h = h.offset(1);
@@ -3913,7 +4299,7 @@ unsafe extern "C" fn path_simplify(
                             h;
                         }
                     } else {
-                        while h < end && *h as libc::c_int != '/' as i32 {
+                        while h < end && *h as i32 != '/' as i32 {
                             let fresh24 = h;
                             h = h.offset(1);
                             let fresh25 = t;
@@ -3934,197 +4320,174 @@ unsafe extern "C" fn path_simplify(
         }
     }
     if t != h {
-        *t = '\0' as i32 as libc::c_char;
+        *t = '\0' as i32 as i8;
     }
     return t != h;
 }
-unsafe extern "C" fn path_end(mut url: *const libc::c_char) -> *const libc::c_char {
+unsafe extern "C" fn path_end(mut url: *const i8) -> *const i8 {
     let mut scheme: url_scheme = url_scheme(url);
-    let mut seps: *const libc::c_char = 0 as *const libc::c_char;
-    if scheme as libc::c_uint == SCHEME_INVALID as libc::c_int as libc::c_uint {
-        scheme = SCHEME_HTTP;
+    let mut seps: *const i8 = 0 as *const i8;
+    if scheme as u32 == url_scheme::SCHEME_INVALID as i32 as u32 {
+        scheme = url_scheme::SCHEME_HTTP;
     }
-    seps = (init_seps(scheme)).offset(2 as libc::c_int as isize);
+    seps = (init_seps(scheme)).offset(2 as i32 as isize);
     return strpbrk_or_eos(url, seps);
 }
 #[no_mangle]
-pub unsafe extern "C" fn uri_merge(
-    mut base: *const libc::c_char,
-    mut link: *const libc::c_char,
-) -> *mut libc::c_char {
-    let mut linklength: libc::c_int = 0;
-    let mut end: *const libc::c_char = 0 as *const libc::c_char;
-    let mut merge: *mut libc::c_char = 0 as *mut libc::c_char;
+pub unsafe extern "C" fn uri_merge(mut base: *const i8, mut link: *const i8) -> *mut i8 {
+    let mut linklength: i32 = 0;
+    let mut end: *const i8 = 0 as *const i8;
+    let mut merge: *mut i8 = 0 as *mut i8;
     if url_has_scheme(link) {
         return xstrdup(link);
     }
     end = path_end(base);
-    linklength = strlen(link) as libc::c_int;
+    linklength = strlen(link) as i32;
     if *link == 0 {
         return xstrdup(base)
-    } else if *link as libc::c_int == '?' as i32 {
-        let mut baselength: libc::c_int = end.offset_from(base) as libc::c_long
-            as libc::c_int;
-        merge = xmalloc((baselength + linklength + 1 as libc::c_int) as size_t)
-            as *mut libc::c_char;
+    } else if *link as i32 == '?' as i32 {
+        let mut baselength: i32 = end.offset_from(base) as i64 as i32;
+        merge = xmalloc((baselength + linklength + 1 as i32) as size_t) as *mut i8;
         memcpy(
             merge as *mut libc::c_void,
             base as *const libc::c_void,
-            baselength as libc::c_ulong,
+            baselength as u64,
         );
         memcpy(
             merge.offset(baselength as isize) as *mut libc::c_void,
             link as *const libc::c_void,
-            linklength as libc::c_ulong,
+            linklength as u64,
         );
-        *merge.offset((baselength + linklength) as isize) = '\0' as i32 as libc::c_char;
-    } else if *link as libc::c_int == '#' as i32 {
-        let mut baselength_0: libc::c_int = 0;
-        let mut end1: *const libc::c_char = strchr(base, '#' as i32);
+        *merge.offset((baselength + linklength) as isize) = '\0' as i32 as i8;
+    } else if *link as i32 == '#' as i32 {
+        let mut baselength_0: i32 = 0;
+        let mut end1: *const i8 = strchr(base, '#' as i32);
         if end1.is_null() {
             end1 = base.offset(strlen(base) as isize);
         }
-        baselength_0 = end1.offset_from(base) as libc::c_long as libc::c_int;
-        merge = xmalloc((baselength_0 + linklength + 1 as libc::c_int) as size_t)
-            as *mut libc::c_char;
+        baselength_0 = end1.offset_from(base) as i64 as i32;
+        merge = xmalloc((baselength_0 + linklength + 1 as i32) as size_t) as *mut i8;
         memcpy(
             merge as *mut libc::c_void,
             base as *const libc::c_void,
-            baselength_0 as libc::c_ulong,
+            baselength_0 as u64,
         );
         memcpy(
             merge.offset(baselength_0 as isize) as *mut libc::c_void,
             link as *const libc::c_void,
-            linklength as libc::c_ulong,
+            linklength as u64,
         );
-        *merge
-            .offset((baselength_0 + linklength) as isize) = '\0' as i32 as libc::c_char;
-    } else if *link as libc::c_int == '/' as i32
-        && *link.offset(1 as libc::c_int as isize) as libc::c_int == '/' as i32
+        *merge.offset((baselength_0 + linklength) as isize) = '\0' as i32 as i8;
+    } else if *link as i32 == '/' as i32
+        && *link.offset(1 as i32 as isize) as i32 == '/' as i32
     {
-        let mut span: libc::c_int = 0;
-        let mut slash: *const libc::c_char = 0 as *const libc::c_char;
-        let mut start_insert: *const libc::c_char = 0 as *const libc::c_char;
+        let mut span: i32 = 0;
+        let mut slash: *const i8 = 0 as *const i8;
+        let mut start_insert: *const i8 = 0 as *const i8;
         slash = memchr(
             base as *const libc::c_void,
             '/' as i32,
-            end.offset_from(base) as libc::c_long as libc::c_ulong,
-        ) as *const libc::c_char;
-        if !slash.is_null()
-            && *slash.offset(1 as libc::c_int as isize) as libc::c_int == '/' as i32
-        {
+            end.offset_from(base) as i64 as u64,
+        ) as *const i8;
+        if !slash.is_null() && *slash.offset(1 as i32 as isize) as i32 == '/' as i32 {
             start_insert = slash;
         } else {
             start_insert = base;
         }
-        span = start_insert.offset_from(base) as libc::c_long as libc::c_int;
-        merge = xmalloc((span + linklength + 1 as libc::c_int) as size_t)
-            as *mut libc::c_char;
+        span = start_insert.offset_from(base) as i64 as i32;
+        merge = xmalloc((span + linklength + 1 as i32) as size_t) as *mut i8;
         if span != 0 {
-            memcpy(
-                merge as *mut libc::c_void,
-                base as *const libc::c_void,
-                span as libc::c_ulong,
-            );
+            memcpy(merge as *mut libc::c_void, base as *const libc::c_void, span as u64);
         }
         memcpy(
             merge.offset(span as isize) as *mut libc::c_void,
             link as *const libc::c_void,
-            linklength as libc::c_ulong,
+            linklength as u64,
         );
-        *merge.offset((span + linklength) as isize) = '\0' as i32 as libc::c_char;
-    } else if *link as libc::c_int == '/' as i32 {
-        let mut span_0: libc::c_int = 0;
-        let mut slash_0: *const libc::c_char = 0 as *const libc::c_char;
-        let mut start_insert_0: *const libc::c_char = 0 as *const libc::c_char;
-        let mut pos: *const libc::c_char = base;
-        let mut seen_slash_slash: bool = 0 as libc::c_int != 0;
+        *merge.offset((span + linklength) as isize) = '\0' as i32 as i8;
+    } else if *link as i32 == '/' as i32 {
+        let mut span_0: i32 = 0;
+        let mut slash_0: *const i8 = 0 as *const i8;
+        let mut start_insert_0: *const i8 = 0 as *const i8;
+        let mut pos: *const i8 = base;
+        let mut seen_slash_slash: bool = 0 as i32 != 0;
         loop {
             slash_0 = memchr(
                 pos as *const libc::c_void,
                 '/' as i32,
-                end.offset_from(pos) as libc::c_long as libc::c_ulong,
-            ) as *const libc::c_char;
+                end.offset_from(pos) as i64 as u64,
+            ) as *const i8;
             if !(!slash_0.is_null() && !seen_slash_slash) {
                 break;
             }
-            if !(*slash_0.offset(1 as libc::c_int as isize) as libc::c_int == '/' as i32)
-            {
+            if !(*slash_0.offset(1 as i32 as isize) as i32 == '/' as i32) {
                 break;
             }
-            pos = slash_0.offset(2 as libc::c_int as isize);
-            seen_slash_slash = 1 as libc::c_int != 0;
+            pos = slash_0.offset(2 as i32 as isize);
+            seen_slash_slash = 1 as i32 != 0;
         }
         if slash_0.is_null() && !seen_slash_slash {
             start_insert_0 = base;
-        } else if slash_0.is_null() && seen_slash_slash as libc::c_int != 0 {
+        } else if slash_0.is_null() && seen_slash_slash as i32 != 0 {
             start_insert_0 = end;
         } else if !slash_0.is_null() && !seen_slash_slash {
             start_insert_0 = base;
-        } else if !slash_0.is_null() && seen_slash_slash as libc::c_int != 0 {
+        } else if !slash_0.is_null() && seen_slash_slash as i32 != 0 {
             start_insert_0 = slash_0;
         }
-        span_0 = start_insert_0.offset_from(base) as libc::c_long as libc::c_int;
-        merge = xmalloc((span_0 + linklength + 1 as libc::c_int) as size_t)
-            as *mut libc::c_char;
+        span_0 = start_insert_0.offset_from(base) as i64 as i32;
+        merge = xmalloc((span_0 + linklength + 1 as i32) as size_t) as *mut i8;
         if span_0 != 0 {
             memcpy(
                 merge as *mut libc::c_void,
                 base as *const libc::c_void,
-                span_0 as libc::c_ulong,
+                span_0 as u64,
             );
         }
         memcpy(
             merge.offset(span_0 as isize) as *mut libc::c_void,
             link as *const libc::c_void,
-            linklength as libc::c_ulong,
+            linklength as u64,
         );
-        *merge.offset((span_0 + linklength) as isize) = '\0' as i32 as libc::c_char;
+        *merge.offset((span_0 + linklength) as isize) = '\0' as i32 as i8;
     } else {
-        let mut need_explicit_slash: bool = 0 as libc::c_int != 0;
-        let mut span_1: libc::c_int = 0;
-        let mut start_insert_1: *const libc::c_char = 0 as *const libc::c_char;
-        let mut last_slash: *const libc::c_char = memrchr(
+        let mut need_explicit_slash: bool = 0 as i32 != 0;
+        let mut span_1: i32 = 0;
+        let mut start_insert_1: *const i8 = 0 as *const i8;
+        let mut last_slash: *const i8 = memrchr(
             base as *const libc::c_void,
             '/' as i32,
-            end.offset_from(base) as libc::c_long as size_t,
-        ) as *const libc::c_char;
+            end.offset_from(base) as i64 as size_t,
+        ) as *const i8;
         if last_slash.is_null() {
             start_insert_1 = base;
-        } else if !last_slash.is_null()
-            && last_slash >= base.offset(2 as libc::c_int as isize)
-            && *last_slash.offset(-(2 as libc::c_int) as isize) as libc::c_int
-                == ':' as i32
-            && *last_slash.offset(-(1 as libc::c_int) as isize) as libc::c_int
-                == '/' as i32
+        } else if !last_slash.is_null() && last_slash >= base.offset(2 as i32 as isize)
+            && *last_slash.offset(-(2 as i32) as isize) as i32 == ':' as i32
+            && *last_slash.offset(-(1 as i32) as isize) as i32 == '/' as i32
         {
-            start_insert_1 = end.offset(1 as libc::c_int as isize);
-            need_explicit_slash = 1 as libc::c_int != 0;
+            start_insert_1 = end.offset(1 as i32 as isize);
+            need_explicit_slash = 1 as i32 != 0;
         } else {
-            start_insert_1 = last_slash.offset(1 as libc::c_int as isize);
+            start_insert_1 = last_slash.offset(1 as i32 as isize);
         }
-        span_1 = start_insert_1.offset_from(base) as libc::c_long as libc::c_int;
-        merge = xmalloc((span_1 + linklength + 1 as libc::c_int) as size_t)
-            as *mut libc::c_char;
+        span_1 = start_insert_1.offset_from(base) as i64 as i32;
+        merge = xmalloc((span_1 + linklength + 1 as i32) as size_t) as *mut i8;
         if span_1 != 0 {
             memcpy(
                 merge as *mut libc::c_void,
                 base as *const libc::c_void,
-                span_1 as libc::c_ulong,
+                span_1 as u64,
             );
         }
         if need_explicit_slash {
-            *merge
-                .offset(
-                    (span_1 - 1 as libc::c_int) as isize,
-                ) = '/' as i32 as libc::c_char;
+            *merge.offset((span_1 - 1 as i32) as isize) = '/' as i32 as i8;
         }
         memcpy(
             merge.offset(span_1 as isize) as *mut libc::c_void,
             link as *const libc::c_void,
-            linklength as libc::c_ulong,
+            linklength as u64,
         );
-        *merge.offset((span_1 + linklength) as isize) = '\0' as i32 as libc::c_char;
+        *merge.offset((span_1 + linklength) as isize) = '\0' as i32 as i8;
     }
     return merge;
 }
@@ -4132,28 +4495,25 @@ pub unsafe extern "C" fn uri_merge(
 pub unsafe extern "C" fn url_string(
     mut url: *const url,
     mut auth_mode: url_auth_mode,
-) -> *mut libc::c_char {
-    let mut size: libc::c_int = 0;
-    let mut result: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut p: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut quoted_host: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut quoted_user: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut quoted_passwd: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut scheme_port: libc::c_int = supported_schemes[(*url).scheme as usize]
-        .default_port;
-    let mut scheme_str: *const libc::c_char = supported_schemes[(*url).scheme as usize]
+) -> *mut i8 {
+    let mut size: i32 = 0;
+    let mut result: *mut i8 = 0 as *mut i8;
+    let mut p: *mut i8 = 0 as *mut i8;
+    let mut quoted_host: *mut i8 = 0 as *mut i8;
+    let mut quoted_user: *mut i8 = 0 as *mut i8;
+    let mut quoted_passwd: *mut i8 = 0 as *mut i8;
+    let mut scheme_port: i32 = supported_schemes[(*url).scheme as usize].default_port;
+    let mut scheme_str: *const i8 = supported_schemes[(*url).scheme as usize]
         .leading_string;
-    let mut fplen: libc::c_int = full_path_length(url);
+    let mut fplen: i32 = full_path_length(url);
     let mut brackets_around_host: bool = false;
     if !((*url).user).is_null() {
-        if auth_mode as libc::c_uint != URL_AUTH_HIDE as libc::c_int as libc::c_uint {
+        if auth_mode as u32 != url_auth_mode::URL_AUTH_HIDE as i32 as u32 {
             quoted_user = url_escape_allow_passthrough((*url).user);
             if !((*url).passwd).is_null() {
-                if auth_mode as libc::c_uint
-                    == URL_AUTH_HIDE_PASSWD as libc::c_int as libc::c_uint
+                if auth_mode as u32 == url_auth_mode::URL_AUTH_HIDE_PASSWD as i32 as u32
                 {
-                    quoted_passwd = b"*password*\0" as *const u8 as *const libc::c_char
-                        as *mut libc::c_char;
+                    quoted_passwd = b"*password*\0" as *const u8 as *const i8 as *mut i8;
                 } else {
                     quoted_passwd = url_escape_allow_passthrough((*url).passwd);
                 }
@@ -4162,111 +4522,92 @@ pub unsafe extern "C" fn url_string(
     }
     quoted_host = url_escape_allow_passthrough((*url).host);
     if quoted_host != (*url).host {
-        unescape_single_char(quoted_host, ':' as i32 as libc::c_char);
+        unescape_single_char(quoted_host, ':' as i32 as i8);
     }
     brackets_around_host = !(strchr(quoted_host, ':' as i32)).is_null();
     size = (strlen(scheme_str))
         .wrapping_add(strlen(quoted_host))
         .wrapping_add(
-            (if brackets_around_host as libc::c_int != 0 {
-                2 as libc::c_int
-            } else {
-                0 as libc::c_int
-            }) as libc::c_ulong,
+            (if brackets_around_host as i32 != 0 { 2 as i32 } else { 0 as i32 }) as u64,
         )
-        .wrapping_add(fplen as libc::c_ulong)
-        .wrapping_add(1 as libc::c_int as libc::c_ulong) as libc::c_int;
+        .wrapping_add(fplen as u64)
+        .wrapping_add(1 as i32 as u64) as i32;
     if (*url).port != scheme_port {
-        size += 1 as libc::c_int + numdigit((*url).port as wgint);
+        size += 1 as i32 + numdigit((*url).port as wgint);
     }
     if !quoted_user.is_null() {
-        size = (size as libc::c_ulong)
-            .wrapping_add(
-                (1 as libc::c_int as libc::c_ulong).wrapping_add(strlen(quoted_user)),
-            ) as libc::c_int as libc::c_int;
+        size = (size as u64)
+            .wrapping_add((1 as i32 as u64).wrapping_add(strlen(quoted_user))) as i32
+            as i32;
         if !quoted_passwd.is_null() {
-            size = (size as libc::c_ulong)
-                .wrapping_add(
-                    (1 as libc::c_int as libc::c_ulong)
-                        .wrapping_add(strlen(quoted_passwd)),
-                ) as libc::c_int as libc::c_int;
+            size = (size as u64)
+                .wrapping_add((1 as i32 as u64).wrapping_add(strlen(quoted_passwd)))
+                as i32 as i32;
         }
     }
-    result = xmalloc(size as size_t) as *mut libc::c_char;
+    result = xmalloc(size as size_t) as *mut i8;
     p = result;
-    let mut len: libc::c_int = strlen(scheme_str) as libc::c_int;
-    memcpy(
-        p as *mut libc::c_void,
-        scheme_str as *const libc::c_void,
-        len as libc::c_ulong,
-    );
+    let mut len: i32 = strlen(scheme_str) as i32;
+    memcpy(p as *mut libc::c_void, scheme_str as *const libc::c_void, len as u64);
     p = p.offset(len as isize);
     if !quoted_user.is_null() {
-        let mut len_0: libc::c_int = strlen(quoted_user) as libc::c_int;
-        memcpy(
-            p as *mut libc::c_void,
-            quoted_user as *const libc::c_void,
-            len_0 as libc::c_ulong,
-        );
+        let mut len_0: i32 = strlen(quoted_user) as i32;
+        memcpy(p as *mut libc::c_void, quoted_user as *const libc::c_void, len_0 as u64);
         p = p.offset(len_0 as isize);
         if !quoted_passwd.is_null() {
             let fresh28 = p;
             p = p.offset(1);
-            *fresh28 = ':' as i32 as libc::c_char;
-            let mut len_1: libc::c_int = strlen(quoted_passwd) as libc::c_int;
+            *fresh28 = ':' as i32 as i8;
+            let mut len_1: i32 = strlen(quoted_passwd) as i32;
             memcpy(
                 p as *mut libc::c_void,
                 quoted_passwd as *const libc::c_void,
-                len_1 as libc::c_ulong,
+                len_1 as u64,
             );
             p = p.offset(len_1 as isize);
         }
         let fresh29 = p;
         p = p.offset(1);
-        *fresh29 = '@' as i32 as libc::c_char;
+        *fresh29 = '@' as i32 as i8;
     }
     if brackets_around_host {
         let fresh30 = p;
         p = p.offset(1);
-        *fresh30 = '[' as i32 as libc::c_char;
+        *fresh30 = '[' as i32 as i8;
     }
-    let mut len_2: libc::c_int = strlen(quoted_host) as libc::c_int;
-    memcpy(
-        p as *mut libc::c_void,
-        quoted_host as *const libc::c_void,
-        len_2 as libc::c_ulong,
-    );
+    let mut len_2: i32 = strlen(quoted_host) as i32;
+    memcpy(p as *mut libc::c_void, quoted_host as *const libc::c_void, len_2 as u64);
     p = p.offset(len_2 as isize);
     if brackets_around_host {
         let fresh31 = p;
         p = p.offset(1);
-        *fresh31 = ']' as i32 as libc::c_char;
+        *fresh31 = ']' as i32 as i8;
     }
     if (*url).port != scheme_port {
         let fresh32 = p;
         p = p.offset(1);
-        *fresh32 = ':' as i32 as libc::c_char;
+        *fresh32 = ':' as i32 as i8;
         p = number_to_string(p, (*url).port as wgint);
     }
     full_path_write(url, p);
     p = p.offset(fplen as isize);
     let fresh33 = p;
     p = p.offset(1);
-    *fresh33 = '\0' as i32 as libc::c_char;
+    *fresh33 = '\0' as i32 as i8;
     if !quoted_user.is_null() && quoted_user != (*url).user {
         rpl_free(quoted_user as *mut libc::c_void);
-        quoted_user = 0 as *mut libc::c_char;
+        quoted_user = 0 as *mut i8;
     }
     if !quoted_passwd.is_null()
-        && auth_mode as libc::c_uint == URL_AUTH_SHOW as libc::c_int as libc::c_uint
+        && auth_mode as u32 == url_auth_mode::URL_AUTH_SHOW as i32 as u32
         && quoted_passwd != (*url).passwd
     {
         rpl_free(quoted_passwd as *mut libc::c_void);
-        quoted_passwd = 0 as *mut libc::c_char;
+        quoted_passwd = 0 as *mut i8;
     }
     if quoted_host != (*url).host {
         rpl_free(quoted_host as *mut libc::c_void);
-        quoted_host = 0 as *mut libc::c_char;
+        quoted_host = 0 as *mut i8;
     }
     return result;
 }
@@ -4275,65 +4616,60 @@ pub unsafe extern "C" fn schemes_are_similar_p(
     mut a: url_scheme,
     mut b: url_scheme,
 ) -> bool {
-    if a as libc::c_uint == b as libc::c_uint {
-        return 1 as libc::c_int != 0;
+    if a as u32 == b as u32 {
+        return 1 as i32 != 0;
     }
-    if a as libc::c_uint == SCHEME_HTTP as libc::c_int as libc::c_uint
-        && b as libc::c_uint == SCHEME_HTTPS as libc::c_int as libc::c_uint
-        || a as libc::c_uint == SCHEME_HTTPS as libc::c_int as libc::c_uint
-            && b as libc::c_uint == SCHEME_HTTP as libc::c_int as libc::c_uint
+    if a as u32 == url_scheme::SCHEME_HTTP as i32 as u32
+        && b as u32 == url_scheme::SCHEME_HTTPS as i32 as u32
+        || a as u32 == url_scheme::SCHEME_HTTPS as i32 as u32
+            && b as u32 == url_scheme::SCHEME_HTTP as i32 as u32
     {
-        return 1 as libc::c_int != 0;
+        return 1 as i32 != 0;
     }
-    return 0 as libc::c_int != 0;
+    return 0 as i32 != 0;
 }
 unsafe extern "C" fn getchar_from_escaped_string(
-    mut str: *const libc::c_char,
-    mut c: *mut libc::c_char,
-) -> libc::c_int {
-    let mut p: *const libc::c_char = str;
-    if *p.offset(0 as libc::c_int as isize) as libc::c_int == '%' as i32 {
-        if !c_isxdigit(*p.offset(1 as libc::c_int as isize) as libc::c_int)
-            || !c_isxdigit(*p.offset(2 as libc::c_int as isize) as libc::c_int)
+    mut str: *const i8,
+    mut c: *mut i8,
+) -> i32 {
+    let mut p: *const i8 = str;
+    if *p.offset(0 as i32 as isize) as i32 == '%' as i32 {
+        if !c_isxdigit(*p.offset(1 as i32 as isize) as i32)
+            || !c_isxdigit(*p.offset(2 as i32 as isize) as i32)
         {
-            *c = '%' as i32 as libc::c_char;
-            return 1 as libc::c_int;
+            *c = '%' as i32 as i8;
+            return 1 as i32;
         } else {
-            if *p.offset(2 as libc::c_int as isize) as libc::c_int == 0 as libc::c_int {
-                return 0 as libc::c_int;
+            if *p.offset(2 as i32 as isize) as i32 == 0 as i32 {
+                return 0 as i32;
             }
-            *c = (((_unhex(*p.offset(1 as libc::c_int as isize) as libc::c_uchar)
-                as libc::c_int) << 4 as libc::c_int)
-                + _unhex(*p.offset(2 as libc::c_int as isize) as libc::c_uchar)
-                    as libc::c_int) as libc::c_char;
-            if urlchr_table[*c as libc::c_uchar as usize] as libc::c_int
-                & urlchr_reserved as libc::c_int != 0
+            *c = (((_unhex(*p.offset(1 as i32 as isize) as u8) as i32) << 4 as i32)
+                + _unhex(*p.offset(2 as i32 as isize) as u8) as i32) as i8;
+            if urlchr_table[*c as u8 as usize] as i32
+                & C2RustUnnamed_7::urlchr_reserved as i32 != 0
             {
-                *c = '%' as i32 as libc::c_char;
-                return 1 as libc::c_int;
+                *c = '%' as i32 as i8;
+                return 1 as i32;
             } else {
-                return 3 as libc::c_int
+                return 3 as i32
             }
         }
     } else {
-        *c = *p.offset(0 as libc::c_int as isize);
+        *c = *p.offset(0 as i32 as isize);
     }
-    return 1 as libc::c_int;
+    return 1 as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn are_urls_equal(
-    mut u1: *const libc::c_char,
-    mut u2: *const libc::c_char,
-) -> bool {
-    let mut p: *const libc::c_char = 0 as *const libc::c_char;
-    let mut q: *const libc::c_char = 0 as *const libc::c_char;
-    let mut pp: libc::c_int = 0;
-    let mut qq: libc::c_int = 0;
-    let mut ch1: libc::c_char = 0;
-    let mut ch2: libc::c_char = 0;
+pub unsafe extern "C" fn are_urls_equal(mut u1: *const i8, mut u2: *const i8) -> bool {
+    let mut p: *const i8 = 0 as *const i8;
+    let mut q: *const i8 = 0 as *const i8;
+    let mut pp: i32 = 0;
+    let mut qq: i32 = 0;
+    let mut ch1: i8 = 0;
+    let mut ch2: i8 = 0;
     p = u1;
     q = u2;
-    while *p as libc::c_int != 0 && *q as libc::c_int != 0
+    while *p as i32 != 0 && *q as i32 != 0
         && {
             pp = getchar_from_escaped_string(p, &mut ch1);
             pp != 0
@@ -4341,16 +4677,14 @@ pub unsafe extern "C" fn are_urls_equal(
         && {
             qq = getchar_from_escaped_string(q, &mut ch2);
             qq != 0
-        } && c_tolower(ch1 as libc::c_int) == c_tolower(ch2 as libc::c_int)
+        } && c_tolower(ch1 as i32) == c_tolower(ch2 as i32)
     {
         p = p.offset(pp as isize);
         q = q.offset(qq as isize);
     }
-    return if *p as libc::c_int == 0 as libc::c_int
-        && *q as libc::c_int == 0 as libc::c_int
-    {
-        1 as libc::c_int
+    return if *p as i32 == 0 as i32 && *q as i32 == 0 as i32 {
+        1 as i32
     } else {
-        0 as libc::c_int
+        0 as i32
     } != 0;
 }

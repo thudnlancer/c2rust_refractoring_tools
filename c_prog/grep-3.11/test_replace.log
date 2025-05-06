@@ -1,0 +1,4975 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/grep-3.11)
+error[E0583]: file not found for module `asnprintf`
+  --> c2rust-lib.rs:17:1
+   |
+17 | pub mod asnprintf;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `asnprintf`, create file "gnulib_tests/asnprintf.rs" or "gnulib_tests/asnprintf/mod.rs"
+
+error[E0583]: file not found for module `c_strcasestr`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod c_strcasestr;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `c_strcasestr`, create file "gnulib_tests/c_strcasestr.rs" or "gnulib_tests/c_strcasestr/mod.rs"
+
+error[E0583]: file not found for module `thread`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod thread;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `hash_pjw`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod hash_pjw;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `hash_pjw`, create file "gnulib_tests/hash_pjw.rs" or "gnulib_tests/hash_pjw/mod.rs"
+
+error[E0583]: file not found for module `imaxtostr`
+  --> c2rust-lib.rs:23:1
+   |
+23 | pub mod imaxtostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `imaxtostr`, create file "gnulib_tests/imaxtostr.rs" or "gnulib_tests/imaxtostr/mod.rs"
+
+error[E0583]: file not found for module `inttostr`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod inttostr;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `inttostr`, create file "gnulib_tests/inttostr.rs" or "gnulib_tests/inttostr/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+  --> c2rust-lib.rs:25:1
+   |
+25 | pub mod ioctl;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+  --> c2rust-lib.rs:26:1
+   |
+26 | pub mod locale;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+  --> c2rust-lib.rs:27:1
+   |
+27 | pub mod localename;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod localename_table;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod nanosleep;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `offtostr`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod offtostr;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `offtostr`, create file "gnulib_tests/offtostr.rs" or "gnulib_tests/offtostr/mod.rs"
+
+error[E0583]: file not found for module `printf_args`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod printf_args;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `printf_args`, create file "gnulib_tests/printf_args.rs" or "gnulib_tests/printf_args/mod.rs"
+
+error[E0583]: file not found for module `printf_parse`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod printf_parse;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `printf_parse`, create file "gnulib_tests/printf_parse.rs" or "gnulib_tests/printf_parse/mod.rs"
+
+error[E0583]: file not found for module `sockets`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod sockets;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sockets`, create file "gnulib_tests/sockets.rs" or "gnulib_tests/sockets/mod.rs"
+
+error[E0583]: file not found for module `strerror_r`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod strerror_r;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `strerror_r`, create file "gnulib_tests/strerror_r.rs" or "gnulib_tests/strerror_r/mod.rs"
+
+error[E0583]: file not found for module `sys_socket`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod sys_socket;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sys_socket`, create file "gnulib_tests/sys_socket.rs" or "gnulib_tests/sys_socket/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod test_localcharset;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `time`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod time;
+   | ^^^^^^^^^^^^^
+   |
+   = help: to create the module `time`, create file "gnulib_tests/time.rs" or "gnulib_tests/time/mod.rs"
+
+error[E0583]: file not found for module `uinttostr`
+  --> c2rust-lib.rs:38:1
+   |
+38 | pub mod uinttostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `uinttostr`, create file "gnulib_tests/uinttostr.rs" or "gnulib_tests/uinttostr/mod.rs"
+
+error[E0583]: file not found for module `umaxtostr`
+  --> c2rust-lib.rs:39:1
+   |
+39 | pub mod umaxtostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `umaxtostr`, create file "gnulib_tests/umaxtostr.rs" or "gnulib_tests/umaxtostr/mod.rs"
+
+error[E0583]: file not found for module `vasnprintf`
+  --> c2rust-lib.rs:40:1
+   |
+40 | pub mod vasnprintf;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `vasnprintf`, create file "gnulib_tests/vasnprintf.rs" or "gnulib_tests/vasnprintf/mod.rs"
+
+error[E0583]: file not found for module `xsize`
+  --> c2rust-lib.rs:41:1
+   |
+41 | pub mod xsize;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `xsize`, create file "gnulib_tests/xsize.rs" or "gnulib_tests/xsize/mod.rs"
+
+error[E0583]: file not found for module `xstrtol_error`
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod xstrtol_error;
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `xstrtol_error`, create file "gnulib_tests/xstrtol_error.rs" or "gnulib_tests/xstrtol_error/mod.rs"
+
+error: expected one of `(`, `,`, `=`, `{`, or `}`, found `::`
+    --> lib/dfa.rs:1183:20
+     |
+1183 |     C2RustUnnamed_5::E,
+     |                    ^^ expected one of `(`, `,`, `=`, `{`, or `}`
+
+error: expected one of `!` or `::`, found `,`
+    --> lib/dfa.rs:1183:23
+     |
+1183 |     C2RustUnnamed_5::E,
+     |                       ^ expected one of `!` or `::`
+
+error: expected `where`, `{`, `(`, or `;` after struct name, found `::`
+   --> lib/exclude.rs:338:24
+    |
+338 | pub struct exclude_type::exclude_pattern {
+    |                        ^^ expected `where`, `{`, `(`, or `;` after struct name
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/c_stack.rs:40:35
+   |
+40 |     pub __clang_max_align_nonce2: f128::f128,
+   |                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/c_stack.rs:111:31
+    |
+111 |     __clang_max_align_nonce2: f128::f128::ZERO,
+    |                               ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:146:48
+    |
+146 |         alignment = if ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                                ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:155:37
+    |
+155 |             ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                     ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:167:44
+    |
+167 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:176:44
+    |
+176 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:188:43
+    |
+188 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:197:40
+    |
+197 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:210:44
+    |
+210 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:219:44
+    |
+219 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:231:43
+    |
+231 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:240:40
+    |
+240 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+warning: unused label
+  --> lib/chdir_long.rs:59:9
+   |
+59 |         'c_1375: {
+   |         ^^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> lib/chdir_long.rs:120:5
+    |
+120 |     'c_1968: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:146:5
+    |
+146 |     'c_1930: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:208:13
+    |
+208 |             'c_1759: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:234:13
+    |
+234 |             'c_1720: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:280:17
+    |
+280 |                 'c_1640: {
+    |                 ^^^^^^^
+
+warning: unused label
+  --> lib/cycle_check.rs:89:5
+   |
+89 |     'c_1285: {
+   |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/fd_hook.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around function argument
+   --> lib/fts.rs:986:17
+    |
+986 |                 (if (*sp).fts_options & 0x200 as i32 != 0 as i32 {
+    |                 ^
+...
+990 |                 }),
+    |                  ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+986 ~                 if (*sp).fts_options & 0x200 as i32 != 0 as i32 {
+987 |                     -(100 as i32)
+988 |                 } else {
+989 |                     (*sp).fts_rfd
+990 ~                 },
+    |
+
+warning: unnecessary parentheses around function argument
+    --> lib/fts.rs:996:17
+     |
+996  |                 (if (*sp).fts_options & 0x200 as i32 != 0 as i32 {
+     |                 ^
+...
+1000 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+996  ~                 if (*sp).fts_options & 0x200 as i32 != 0 as i32 {
+997  |                     -(100 as i32)
+998  |                 } else {
+999  |                     (*sp).fts_rfd
+1000 ~                 },
+     |
+
+warning: unused import: `::libc`
+ --> lib/glthread/threadlib.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:116:9
+    |
+116 |         'c_1667: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:168:21
+    |
+168 |                     'c_1506: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:195:21
+    |
+195 |                     'c_1459: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:124:9
+    |
+124 |         'c_1126: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:173:21
+    |
+173 |                     'c_950: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:200:21
+    |
+200 |                     'c_903: {
+    |                     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+   --> lib/mbscasecmp.rs:359:17
+    |
+359 |                 ({
+    |                 ^
+...
+381 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+359 ~                 {
+360 |                     let mut __res: libc::c_int = 0;
+  ...
+380 |                     __res
+381 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/mbscasecmp.rs:389:17
+    |
+389 |                 ({
+    |                 ^
+...
+411 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+389 ~                 {
+390 |                     let mut __res: libc::c_int = 0;
+  ...
+410 |                     __res
+411 ~                 }
+    |
+
+warning: unused label
+  --> lib/mbslen.rs:93:9
+   |
+93 |         'c_768: {
+   |         ^^^^^^
+
+warning: unused label
+   --> lib/mbslen.rs:142:21
+    |
+142 |                     'c_593: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbslen.rs:169:21
+    |
+169 |                     'c_546: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:108:9
+    |
+108 |         'c_1477: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:157:21
+    |
+157 |                     'c_1303: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:184:21
+    |
+184 |                     'c_1256: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:126:9
+    |
+126 |         'c_2845: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:175:21
+    |
+175 |                     'c_2682: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:202:21
+    |
+202 |                     'c_2635: {
+    |                     ^^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:210:17
+    |
+210 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+228 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+210 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+211 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+227 |                     })
+228 ~                 },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:167:17
+    |
+167 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+185 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+167 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+168 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+184 |                     })
+185 ~                 },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:178:21
+    |
+178 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+184 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+178 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+179 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+183 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+184 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:199:17
+    |
+199 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+205 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+199 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+200 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+204 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+205 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:221:21
+    |
+221 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+227 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+221 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+222 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+226 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+227 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:242:17
+    |
+242 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+248 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+242 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+243 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+247 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+248 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:273:21
+    |
+273 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+279 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+273 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+274 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+278 |                         0 as *mut libc::c_char
+279 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:364:21
+    |
+364 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+370 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+364 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+365 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+369 |                         0 as *mut libc::c_char
+370 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:392:29
+    |
+392 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+399 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+392 ~                             if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+393 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+398 |                                 0 as *mut libc::c_char
+399 ~                             },
+    |
+
+warning: unused label
+   --> lib/propername.rs:139:9
+    |
+139 |         'c_786: {
+    |         ^^^^^^
+
+warning: unused label
+   --> lib/propername.rs:188:21
+    |
+188 |                     'c_610: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/propername.rs:215:21
+    |
+215 |                     'c_563: {
+    |                     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+    --> lib/regex.rs:2009:45
+     |
+2009 | ...                   (if i_0 < mbclen {
+     |                       ^
+...
+2013 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2009 ~                                             if i_0 < mbclen {
+2010 |                                                 i_0
+2011 |                                             } else {
+2012 |                                                 mbclen.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2013 ~                                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4531:17
+     |
+4531 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4537 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4531 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4532 |                     < max_i18n_object_size
+   ...
+4536 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4537 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4542:13
+     |
+4542 |             (if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+     |             ^
+...
+4560 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+4542 ~             if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+4543 |                 < (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+   ...
+4559 |                 ::core::mem::size_of::<re_node_set>() as libc::c_ulong
+4560 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4551:17
+     |
+4551 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4557 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4551 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4552 |                     < max_i18n_object_size
+   ...
+4556 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4557 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4575:17
+     |
+4575 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4581 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4575 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4576 |                     < max_i18n_object_size
+   ...
+4580 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4581 ~                 }
+     |
+
+warning: unnecessary parentheses around assigned value
+  --> lib/strtoll.rs:79:37
+   |
+79 | ...                   __res = (if __c < -(128 as libc::c_int)
+   |                               ^
+...
+85 | ...                   });
+   |                        ^
+   |
+help: remove these parentheses
+   |
+79 ~                             __res = if __c < -(128 as libc::c_int)
+80 |                                 || __c > 255 as libc::c_int
+ ...
+84 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+85 ~                             };
+   |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:114:37
+    |
+114 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+120 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+114 ~                             __res = if __c < -(128 as libc::c_int)
+115 |                                 || __c > 255 as libc::c_int
+  ...
+119 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+120 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:177:37
+    |
+177 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+183 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+177 ~                             __res = if __c < -(128 as libc::c_int)
+178 |                                 || __c > 255 as libc::c_int
+  ...
+182 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+183 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:247:33
+    |
+247 |                         __res = (if __c < -(128 as libc::c_int)
+    |                                 ^
+...
+253 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+247 ~                         __res = if __c < -(128 as libc::c_int)
+248 |                             || __c > 255 as libc::c_int
+  ...
+252 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+253 ~                         };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:278:37
+    |
+278 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+284 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+278 ~                             __res = if __c < -(128 as libc::c_int)
+279 |                                 || __c > 255 as libc::c_int
+  ...
+283 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+284 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+  --> lib/strtoull.rs:79:37
+   |
+79 | ...                   __res = (if __c < -(128 as libc::c_int)
+   |                               ^
+...
+85 | ...                   });
+   |                        ^
+   |
+help: remove these parentheses
+   |
+79 ~                             __res = if __c < -(128 as libc::c_int)
+80 |                                 || __c > 255 as libc::c_int
+ ...
+84 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+85 ~                             };
+   |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:114:37
+    |
+114 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+120 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+114 ~                             __res = if __c < -(128 as libc::c_int)
+115 |                                 || __c > 255 as libc::c_int
+  ...
+119 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+120 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:177:37
+    |
+177 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+183 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+177 ~                             __res = if __c < -(128 as libc::c_int)
+178 |                                 || __c > 255 as libc::c_int
+  ...
+182 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+183 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:230:33
+    |
+230 |                         __res = (if __c < -(128 as libc::c_int)
+    |                                 ^
+...
+236 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+230 ~                         __res = if __c < -(128 as libc::c_int)
+231 |                             || __c > 255 as libc::c_int
+  ...
+235 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+236 ~                         };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:261:37
+    |
+261 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+267 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+261 ~                             __res = if __c < -(128 as libc::c_int)
+262 |                                 || __c > 255 as libc::c_int
+  ...
+266 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+267 ~                             };
+    |
+
+warning: unused label
+   --> lib/trim.rs:116:9
+    |
+116 |         'c_1962: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/trim.rs:168:21
+    |
+168 |                     'c_1794: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/trim.rs:195:21
+    |
+195 |                     'c_1747: {
+    |                     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/unistd.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/unistr/u8_uctomb.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/wctype_h.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3537:21
+     |
+3537 |                     (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |                     ^
+...
+4208 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3537 ~                     if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+   ...
+4207 |                         })
+4208 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3538:25
+     |
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3883 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3538 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3539 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3882 |                             0 as libc::c_int
+3883 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3539:29
+     |
+3539 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3744 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3539 ~                             if n < 0 as libc::c_int as libc::c_long {
+3540 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+3743 |                                 })
+3744 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3540:33
+     |
+3540 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3621 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3540 ~                                 if ((if 1 as libc::c_int != 0 {
+3541 |                                     0 as libc::c_int as libc::c_long
+   ...
+3620 |                                         as libc::c_int
+3621 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3623:33
+     |
+3623 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3743 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3623 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3624 |                                     0 as libc::c_int as libc::c_long
+   ...
+3742 |                                         / s < n) as libc::c_int
+3743 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3722:37
+     |
+3722 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3739 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3722 ~                                     if ((if 1 as libc::c_int != 0 {
+3723 |                                         0 as libc::c_int as libc::c_long
+   ...
+3738 |                                             as libc::c_int
+3739 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3746:29
+     |
+3746 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3873 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3746 ~                             if s == 0 as libc::c_int as libc::c_long {
+3747 |                                 0 as libc::c_int
+   ...
+3872 |                                 })
+3873 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3749:33
+     |
+3749 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3872 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3749 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3750 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3871 |                                     (127 as libc::c_int as libc::c_long / s < n) as libc::c_int
+3872 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3750:37
+     |
+3750 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3869 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3750 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3751 |                                         0 as libc::c_int as libc::c_long
+   ...
+3868 |                                             / n < s) as libc::c_int
+3869 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3849:41
+     |
+3849 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3865 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3849 ~                                         if ((if 1 as libc::c_int != 0 {
+3850 |                                             0 as libc::c_int as libc::c_long
+   ...
+3864 |                                                 as libc::c_int
+3865 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3885:25
+     |
+3885 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4207 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3885 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3886 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4206 |                             0 as libc::c_int
+4207 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3886:29
+     |
+3886 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4082 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3886 ~                             if n < 0 as libc::c_int as libc::c_long {
+3887 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4081 |                                 })
+4082 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3887:33
+     |
+3887 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3973 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3887 ~                                 if ((if 1 as libc::c_int != 0 {
+3888 |                                     0 as libc::c_int as libc::c_long
+   ...
+3972 |                                         as libc::c_int
+3973 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3975:33
+     |
+3975 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4081 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3975 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3976 |                                     0 as libc::c_int as libc::c_long
+   ...
+4080 |                                     (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4081 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4064:37
+     |
+4064 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4078 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4064 ~                                     if ((if 1 as libc::c_int != 0 {
+4065 |                                         0 as libc::c_int as libc::c_long
+   ...
+4077 |                                             as libc::c_int
+4078 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4084:29
+     |
+4084 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4197 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4084 ~                             if s == 0 as libc::c_int as libc::c_long {
+4085 |                                 0 as libc::c_int
+   ...
+4196 |                                 })
+4197 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4087:33
+     |
+4087 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4087 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4088 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4195 |                                         as libc::c_long / s < n) as libc::c_int
+4196 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4088:37
+     |
+4088 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4192 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4088 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4089 |                                         0 as libc::c_int as libc::c_long
+   ...
+4191 |                                         (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4192 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4177:41
+     |
+4177 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4189 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4177 ~                                         if ((if 1 as libc::c_int != 0 {
+4178 |                                             0 as libc::c_int as libc::c_long
+   ...
+4188 |                                                 < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4189 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4210:21
+     |
+4210 |                     (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                     ^
+...
+7043 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4210 ~                     if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4211 |                         == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+7042 |                         })
+7043 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4213:25
+     |
+4213 |                         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+     |                         ^
+...
+4899 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4213 ~                         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+4214 |                         {
+   ...
+4898 |                             })
+4899 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4215:29
+     |
+4215 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4574 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4215 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4216 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4573 |                                 0 as libc::c_int
+4574 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4216:33
+     |
+4216 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4428 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4216 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4217 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4427 |                                     })
+4428 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4217:37
+     |
+4217 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4299 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4217 ~                                     if ((if 1 as libc::c_int != 0 {
+4218 |                                         0 as libc::c_int as libc::c_long
+   ...
+4298 |                                             as libc::c_int
+4299 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4301:37
+     |
+4301 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4427 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4301 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4302 |                                         0 as libc::c_int as libc::c_long
+   ...
+4426 |                                             as libc::c_long / s < n) as libc::c_int
+4427 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4406:41
+     |
+4406 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4423 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4406 ~                                         if ((if 1 as libc::c_int != 0 {
+4407 |                                             0 as libc::c_int as libc::c_long
+   ...
+4422 |                                                 as libc::c_int
+4423 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4430:33
+     |
+4430 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4564 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4430 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4431 |                                     0 as libc::c_int
+   ...
+4563 |                                     })
+4564 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4433:37
+     |
+4433 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4563 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4433 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4434 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4562 |                                             as libc::c_int
+4563 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4434:41
+     |
+4434 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4559 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4434 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4435 |                                             0 as libc::c_int as libc::c_long
+   ...
+4558 |                                                 as libc::c_long / n < s) as libc::c_int
+4559 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4539:45
+     |
+4539 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4555 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4539 ~                                             if ((if 1 as libc::c_int != 0 {
+4540 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4554 |                                                     as libc::c_int
+4555 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4576:29
+     |
+4576 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4898 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4576 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4577 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4897 |                                 0 as libc::c_int
+4898 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4577:33
+     |
+4577 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4773 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4577 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4578 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4772 |                                     })
+4773 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4578:37
+     |
+4578 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4664 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4578 ~                                     if ((if 1 as libc::c_int != 0 {
+4579 |                                         0 as libc::c_int as libc::c_long
+   ...
+4663 |                                             as libc::c_int
+4664 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4666:37
+     |
+4666 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4772 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4666 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4667 |                                         0 as libc::c_int as libc::c_long
+   ...
+4771 |                                         (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4772 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4755:41
+     |
+4755 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4769 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4755 ~                                         if ((if 1 as libc::c_int != 0 {
+4756 |                                             0 as libc::c_int as libc::c_long
+   ...
+4768 |                                                 as libc::c_int
+4769 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4775:33
+     |
+4775 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4888 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4775 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4776 |                                     0 as libc::c_int
+   ...
+4887 |                                     })
+4888 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4778:37
+     |
+4778 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4887 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4778 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4779 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4886 |                                             + 1 as libc::c_int) as libc::c_long / s < n) as libc::c_int
+4887 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4779:41
+     |
+4779 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4883 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4779 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4780 |                                             0 as libc::c_int as libc::c_long
+   ...
+4882 |                                             (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4883 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4868:45
+     |
+4868 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4880 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4868 ~                                             if ((if 1 as libc::c_int != 0 {
+4869 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4879 |                                                     < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4880 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4901:25
+     |
+4901 |                         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                         ^
+...
+7042 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4901 ~                         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4902 |                             == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+7041 |                             })
+7042 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4904:29
+     |
+4904 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5603 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4904 ~                             if ((if 1 as libc::c_int != 0 {
+4905 |                                 0 as libc::c_int as libc::c_long
+   ...
+5602 |                                 })
+5603 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4911:33
+     |
+4911 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5270 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4911 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+4912 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5269 |                                     0 as libc::c_int
+5270 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4912:37
+     |
+4912 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5124 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4912 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4913 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5123 |                                         })
+5124 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4913:41
+     |
+4913 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4995 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4913 ~                                         if ((if 1 as libc::c_int != 0 {
+4914 |                                             0 as libc::c_int as libc::c_long
+   ...
+4994 |                                                 as libc::c_int
+4995 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4997:41
+     |
+4997 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5123 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4997 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4998 |                                             0 as libc::c_int as libc::c_long
+   ...
+5122 |                                                 as libc::c_long / s < n) as libc::c_int
+5123 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5102:45
+     |
+5102 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5119 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5102 ~                                             if ((if 1 as libc::c_int != 0 {
+5103 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5118 |                                                     as libc::c_int
+5119 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5126:37
+     |
+5126 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5260 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5126 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5127 |                                         0 as libc::c_int
+   ...
+5259 |                                         })
+5260 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5129:41
+     |
+5129 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5259 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5129 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5130 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5258 |                                                 as libc::c_int
+5259 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5130:45
+     |
+5130 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5255 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5130 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5131 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5254 |                                                     as libc::c_long / n < s) as libc::c_int
+5255 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5235:49
+     |
+5235 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5251 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5235 ~                                                 if ((if 1 as libc::c_int != 0 {
+5236 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5250 |                                                         as libc::c_int
+5251 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5272:33
+     |
+5272 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5602 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5272 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+5273 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5601 |                                     0 as libc::c_int
+5602 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5273:37
+     |
+5273 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5475 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5273 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5274 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5474 |                                         })
+5475 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5274:41
+     |
+5274 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5366 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5274 ~                                         if ((if 1 as libc::c_int != 0 {
+5275 |                                             0 as libc::c_int as libc::c_long
+   ...
+5365 |                                                 as libc::c_int
+5366 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5368:41
+     |
+5368 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5474 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5368 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5369 |                                             0 as libc::c_int as libc::c_long
+   ...
+5473 |                                             (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+5474 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5457:45
+     |
+5457 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5471 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5457 ~                                             if ((if 1 as libc::c_int != 0 {
+5458 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5470 |                                                     as libc::c_int
+5471 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5477:37
+     |
+5477 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5477 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5478 |                                         0 as libc::c_int
+   ...
+5591 |                                         })
+5592 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5480:41
+     |
+5480 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5591 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5480 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5481 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5590 |                                                 as libc::c_int
+5591 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5481:45
+     |
+5481 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5585 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5481 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5482 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5584 |                                                 (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+5585 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5570:49
+     |
+5570 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5582 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5570 ~                                                 if ((if 1 as libc::c_int != 0 {
+5571 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5581 |                                                         < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+5582 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5605:29
+     |
+5605 | ...                   (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                       ^
+...
+7041 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5605 ~                             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+5606 |                                 == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+7040 |                                 })
+7041 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5608:33
+     |
+5608 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5608 ~                                 if ((if 1 as libc::c_int != 0 {
+5609 |                                     0 as libc::c_int as libc::c_long
+   ...
+6311 |                                     })
+6312 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5615:37
+     |
+5615 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5972 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5615 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5616 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5971 |                                         0 as libc::c_int
+5972 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5616:41
+     |
+5616 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5827 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5616 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5617 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+5826 |                                             })
+5827 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5617:45
+     |
+5617 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5698 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5617 ~                                             if ((if 1 as libc::c_int != 0 {
+5618 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5697 |                                                     as libc::c_int
+5698 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5700:45
+     |
+5700 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5700 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5701 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5825 |                                                     - 1 as libc::c_long) / s < n) as libc::c_int
+5826 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5805:49
+     |
+5805 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5822 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5805 ~                                                 if ((if 1 as libc::c_int != 0 {
+5806 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5821 |                                                         as libc::c_int
+5822 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5829:41
+     |
+5829 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5962 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5829 ~                                         if s == 0 as libc::c_int as libc::c_long {
+5830 |                                             0 as libc::c_int
+   ...
+5961 |                                             })
+5962 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5832:45
+     |
+5832 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5961 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5832 ~                                             if n < 0 as libc::c_int as libc::c_long {
+5833 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5960 |                                                 (9223372036854775807 as libc::c_long / s < n) as libc::c_int
+5961 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5833:49
+     |
+5833 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5958 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5833 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+5834 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5957 |                                                         - 1 as libc::c_long) / n < s) as libc::c_int
+5958 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5938:53
+     |
+5938 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5954 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5938 ~                                                     if ((if 1 as libc::c_int != 0 {
+5939 |                                                         0 as libc::c_int as libc::c_long
+   ...
+5953 |                                                             as libc::c_int
+5954 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5974:37
+     |
+5974 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6311 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5974 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5975 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6310 |                                         0 as libc::c_int
+6311 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5975:41
+     |
+5975 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6183 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5975 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5976 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6182 |                                             })
+6183 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5976:45
+     |
+5976 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6074 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5976 ~                                             if (if 1 as libc::c_int != 0 {
+5977 |                                                 0 as libc::c_int as libc::c_ulong
+   ...
+6073 |                                                         as libc::c_ulong) as libc::c_int
+6074 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6076:45
+     |
+6076 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6182 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6076 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6077 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6181 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6182 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6165:49
+     |
+6165 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6179 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6165 ~                                                 if ((if 1 as libc::c_int != 0 {
+6166 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6178 |                                                         as libc::c_int
+6179 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6185:41
+     |
+6185 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6301 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6185 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6186 |                                             0 as libc::c_int
+   ...
+6300 |                                             })
+6301 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6188:45
+     |
+6188 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6300 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6188 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6189 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6299 |                                                     as libc::c_int
+6300 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6189:49
+     |
+6189 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6293 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6189 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6190 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6292 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+6293 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6278:53
+     |
+6278 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6290 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6278 ~                                                     if ((if 1 as libc::c_int != 0 {
+6279 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6289 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+6290 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6314:33
+     |
+6314 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7040 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6314 ~                                 if ((if 1 as libc::c_int != 0 {
+6315 |                                     0 as libc::c_int as libc::c_long
+   ...
+7039 |                                     })
+7040 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6321:37
+     |
+6321 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6695 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6321 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6322 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6694 |                                         0 as libc::c_int
+6695 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6322:41
+     |
+6322 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6542 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6322 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6323 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+6541 |                                             })
+6542 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6323:45
+     |
+6323 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6409 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6323 ~                                             if ((if 1 as libc::c_int != 0 {
+6324 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6408 |                                                         as libc::c_longlong) as libc::c_int
+6409 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6411:45
+     |
+6411 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6541 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6411 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6412 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6540 |                                                     < n as libc::c_longlong) as libc::c_int
+6541 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6518:49
+     |
+6518 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6536 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6518 ~                                                 if ((if 1 as libc::c_int != 0 {
+6519 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6535 |                                                                 as libc::c_longlong) as libc::c_int
+6536 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6544:41
+     |
+6544 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6683 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6544 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6545 |                                             0 as libc::c_int
+   ...
+6682 |                                             })
+6683 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6547:45
+     |
+6547 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6682 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6547 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6548 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6681 |                                                     as libc::c_int
+6682 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6548:49
+     |
+6548 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6677 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6548 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6549 |                                                     0 as libc::c_int as libc::c_longlong
+   ...
+6676 |                                                         < s as libc::c_longlong) as libc::c_int
+6677 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6655:53
+     |
+6655 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6672 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6655 ~                                                     if ((if 1 as libc::c_int != 0 {
+6656 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6671 |                                                                 as libc::c_longlong) as libc::c_int
+6672 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6697:37
+     |
+6697 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7039 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6697 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6698 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7038 |                                         0 as libc::c_int
+7039 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6698:41
+     |
+6698 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6910 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6698 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6699 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6909 |                                             })
+6910 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6699:45
+     |
+6699 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6699 ~                                             if (if 1 as libc::c_int != 0 {
+6700 |                                                 0 as libc::c_int as libc::c_ulonglong
+   ...
+6800 |                                                         as libc::c_ulonglong) as libc::c_int
+6801 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6803:45
+     |
+6803 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6909 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6803 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6804 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6908 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6909 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6892:49
+     |
+6892 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6906 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6892 ~                                                 if ((if 1 as libc::c_int != 0 {
+6893 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6905 |                                                         as libc::c_int
+6906 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6912:41
+     |
+6912 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7029 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6912 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6913 |                                             0 as libc::c_int
+   ...
+7028 |                                             })
+7029 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6915:45
+     |
+6915 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7028 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6915 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6916 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7027 |                                                     < n as libc::c_ulonglong) as libc::c_int
+7028 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6916:49
+     |
+6916 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7020 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6916 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6917 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7019 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+7020 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:7005:53
+     |
+7005 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7017 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7005 ~                                                     if ((if 1 as libc::c_int != 0 {
+7006 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7016 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+7017 ~                                                     }
+     |
+
+warning: unused label
+   --> lib/xstrtoimax.rs:250:5
+    |
+250 |     'c_11726: {
+    |     ^^^^^^^^
+
+warning: unused label
+    --> lib/xstrtol.rs:2488:5
+     |
+2488 |     'c_11674: {
+     |     ^^^^^^^^
+
+warning: unused label
+   --> lib/xstrtoul.rs:243:5
+    |
+243 |     'c_11713: {
+    |     ^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> src/grep.rs:2245:9
+     |
+2245 |         ({
+     |         ^
+...
+2275 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+2245 ~         {
+2246 |             let mut __ptr: *const i8 = ptr as *const i8;
+   ...
+2274 |                 .wrapping_div(size as size_t)
+2275 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/grep.rs:2277:9
+     |
+2277 |         (if 0 != 0 && size as size_t == 0 as i32 as u64
+     |         ^
+...
+2283 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+2277 ~         if 0 != 0 && size as size_t == 0 as i32 as u64
+2278 |             || 0 != 0 && nmemb as size_t == 0 as i32 as u64
+   ...
+2282 |             fwrite_unlocked(ptr, size as size_t, nmemb as size_t, stdout)
+2283 ~         }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> src/grep.rs:5032:29
+     |
+5032 |                     __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+     |                             ^
+...
+5036 |                     });
+     |                      ^
+     |
+help: remove these parentheses
+     |
+5032 ~                     __res = if __c < -(128 as i32) || __c > 255 as i32 {
+5033 |                         __c
+5034 |                     } else {
+5035 |                         *(*__ctype_toupper_loc()).offset(__c as isize)
+5036 ~                     };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/grep.rs:5509:25
+     |
+5509 |                         ({
+     |                         ^
+...
+5543 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+5509 ~                         {
+5510 |                             let mut __ptr: *mut i8 = keys.offset(newkeycc as isize);
+   ...
+5542 |                                 .wrapping_div(1 as i32 as size_t)
+5543 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+   --> src/kwset.rs:316:9
+    |
+316 |         ({
+    |         ^
+...
+352 |         })
+    |          ^
+    |
+help: remove these parentheses
+    |
+316 ~         {
+317 |             let mut __o1: *mut obstack = __h;
+  ...
+351 |             __value
+352 ~         }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/kwset.rs:333:29
+    |
+333 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                       ^
+...
+339 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+333 ~                             if (::core::mem::size_of::<ptrdiff_t>() as u64)
+334 |                                 < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+338 |                                 0 as *mut i8
+339 ~                             },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/kwset.rs:453:17
+    |
+453 |                 ({
+    |                 ^
+...
+490 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+453 ~                 {
+454 |                     let mut __o1: *mut obstack = __h;
+  ...
+489 |                     __value
+490 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/kwset.rs:470:37
+    |
+470 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                       ^
+...
+476 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+470 ~                                     if (::core::mem::size_of::<ptrdiff_t>() as u64)
+471 |                                         < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+475 |                                         0 as *mut i8
+476 ~                                     },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/kwset.rs:506:17
+    |
+506 |                 ({
+    |                 ^
+...
+543 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+506 ~                 {
+507 |                     let mut __o1: *mut obstack = __h;
+  ...
+542 |                     __value
+543 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/kwset.rs:523:37
+    |
+523 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                       ^
+...
+529 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+523 ~                                     if (::core::mem::size_of::<ptrdiff_t>() as u64)
+524 |                                         < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+528 |                                         0 as *mut i8
+529 ~                                     },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/kwset.rs:814:13
+    |
+814 |             ({
+    |             ^
+...
+851 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+814 ~             {
+815 |                 let mut __o1: *mut obstack = __h;
+  ...
+850 |                 __value
+851 ~             }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/kwset.rs:831:33
+    |
+831 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                       ^
+...
+837 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+831 ~                                 if (::core::mem::size_of::<ptrdiff_t>() as u64)
+832 |                                     < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+836 |                                     0 as *mut i8
+837 ~                                 },
+    |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:985:13
+     |
+985  |             ({
+     |             ^
+...
+1022 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+985  ~             {
+986  |                 let mut __o1: *mut obstack = __h;
+   ...
+1021 |                 __value
+1022 ~             }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/kwset.rs:1002:33
+     |
+1002 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+1008 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1002 ~                                 if (::core::mem::size_of::<ptrdiff_t>() as u64)
+1003 |                                     < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+1007 |                                     0 as *mut i8
+1008 ~                                 },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1048:17
+     |
+1048 |                 ({
+     |                 ^
+...
+1085 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1048 ~                 {
+1049 |                     let mut __o1: *mut obstack = __h;
+   ...
+1084 |                     __value
+1085 ~                 }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/kwset.rs:1065:37
+     |
+1065 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+1071 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1065 ~                                     if (::core::mem::size_of::<ptrdiff_t>() as u64)
+1066 |                                         < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+1070 |                                         0 as *mut i8
+1071 ~                                     },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1253:9
+     |
+1253 |         (if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+     |         ^
+...
+1680 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+1253 ~         if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+1254 |             (if (if (12 as i32) < 0 as i32 {
+   ...
+1679 |             })
+1680 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1254:13
+     |
+1254 |             (if (if (12 as i32) < 0 as i32 {
+     |             ^
+...
+1467 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1254 ~             if (if (12 as i32) < 0 as i32 {
+1255 |                 (if len < 0 as i32 as i64 {
+   ...
+1466 |                 0 as i32
+1467 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1255:17
+     |
+1255 |                 (if len < 0 as i32 as i64 {
+     |                 ^
+...
+1377 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1255 ~                 if len < 0 as i32 as i64 {
+1256 |                     (if ((if 1 as i32 != 0 {
+   ...
+1376 |                     })
+1377 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1256:21
+     |
+1256 |                     (if ((if 1 as i32 != 0 {
+     |                     ^
+...
+1303 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1256 ~                     if ((if 1 as i32 != 0 {
+1257 |                         0 as i32
+   ...
+1302 |                         }) as i64 <= -(1 as i32) as i64 - len) as i32
+1303 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1305:21
+     |
+1305 |                     (if (if (if ((if 1 as i32 != 0 {
+     |                     ^
+...
+1376 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1305 ~                     if (if (if ((if 1 as i32 != 0 {
+1306 |                         0 as i32
+   ...
+1375 |                         ((((-(127 as i32) - 1 as i32) / 12 as i32) as i64) < len) as i32
+1376 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1364:25
+     |
+1364 |                         (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                         ^
+...
+1373 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1364 ~                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+1365 |                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+1372 |                                     < len - 1 as i32 as i64) as i32
+1373 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1379:17
+     |
+1379 |                 (if 12 as i32 == 0 as i32 {
+     |                 ^
+...
+1457 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1379 ~                 if 12 as i32 == 0 as i32 {
+1380 |                     0 as i32
+   ...
+1456 |                     })
+1457 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1382:21
+     |
+1382 |                     (if len < 0 as i32 as i64 {
+     |                     ^
+...
+1456 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1382 ~                     if len < 0 as i32 as i64 {
+1383 |                         (if (if (if ((if 1 as i32 != 0 {
+   ...
+1455 |                         (((127 as i32 / 12 as i32) as i64) < len) as i32
+1456 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1383:25
+     |
+1383 |                         (if (if (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+1453 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1383 ~                         if (if (if ((if 1 as i32 != 0 {
+1384 |                             0 as i32 as i64
+   ...
+1452 |                                 as i32
+1453 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1442:29
+     |
+1442 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+1449 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1442 ~                             if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+1443 |                                 - 1 as i32) < 0 as i32
+   ...
+1448 |                                     < 12 as i32 - 1 as i32) as i32
+1449 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1469:13
+     |
+1469 |             (if (if (12 as i32) < 0 as i32 {
+     |             ^
+...
+1679 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1469 ~             if (if (12 as i32) < 0 as i32 {
+1470 |                 (if len < 0 as i32 as i64 {
+   ...
+1678 |                 0 as i32
+1679 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1470:17
+     |
+1470 |                 (if len < 0 as i32 as i64 {
+     |                 ^
+...
+1592 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1470 ~                 if len < 0 as i32 as i64 {
+1471 |                     (if ((if 1 as i32 != 0 {
+   ...
+1591 |                     })
+1592 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1471:21
+     |
+1471 |                     (if ((if 1 as i32 != 0 {
+     |                     ^
+...
+1523 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1471 ~                     if ((if 1 as i32 != 0 {
+1472 |                         0 as i32
+   ...
+1522 |                         }) as i64 <= -(1 as i32) as i64 - len) as i32
+1523 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1525:21
+     |
+1525 |                     (if (if (if ((if 1 as i32 != 0 {
+     |                     ^
+...
+1591 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1525 ~                     if (if (if ((if 1 as i32 != 0 {
+1526 |                         0 as i32
+   ...
+1590 |                         (((0 as i32 / 12 as i32) as i64) < len) as i32
+1591 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1580:25
+     |
+1580 |                         (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                         ^
+...
+1588 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1580 ~                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+1581 |                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+1587 |                                     < len - 1 as i32 as i64) as i32
+1588 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1594:17
+     |
+1594 |                 (if 12 as i32 == 0 as i32 {
+     |                 ^
+...
+1671 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1594 ~                 if 12 as i32 == 0 as i32 {
+1595 |                     0 as i32
+   ...
+1670 |                     })
+1671 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1597:21
+     |
+1597 |                     (if len < 0 as i32 as i64 {
+     |                     ^
+...
+1670 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1597 ~                     if len < 0 as i32 as i64 {
+1598 |                         (if (if (if ((if 1 as i32 != 0 {
+   ...
+1669 |                             as i32
+1670 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1598:25
+     |
+1598 |                         (if (if (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+1666 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1598 ~                         if (if (if ((if 1 as i32 != 0 {
+1599 |                             0 as i32 as i64
+   ...
+1665 |                             (0 as i32 as i64 / len < 12 as i32 as i64) as i32
+1666 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1657:29
+     |
+1657 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+1663 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1657 ~                             if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+1658 |                                 - 1 as i32) < 0 as i32
+   ...
+1662 |                                 ((-(1 as i32) - 0 as i32) < 12 as i32 - 1 as i32) as i32
+1663 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1682:9
+     |
+1682 |         (if ::core::mem::size_of::<idx_t>() as u64
+     |         ^
+...
+3606 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+1682 ~         if ::core::mem::size_of::<idx_t>() as u64
+1683 |             == ::core::mem::size_of::<libc::c_short>() as u64
+   ...
+3605 |             })
+3606 ~         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1685:13
+     |
+1685 |             (if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+     |             ^
+...
+2129 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1685 ~             if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+1686 |                 (if (if (12 as i32) < 0 as i32 {
+   ...
+2128 |                 })
+2129 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1686:17
+     |
+1686 |                 (if (if (12 as i32) < 0 as i32 {
+     |                 ^
+...
+1906 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1686 ~                 if (if (12 as i32) < 0 as i32 {
+1687 |                     (if len < 0 as i32 as i64 {
+   ...
+1905 |                     0 as i32
+1906 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1687:21
+     |
+1687 |                     (if len < 0 as i32 as i64 {
+     |                     ^
+...
+1815 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1687 ~                     if len < 0 as i32 as i64 {
+1688 |                         (if ((if 1 as i32 != 0 {
+   ...
+1814 |                         })
+1815 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1688:25
+     |
+1688 |                         (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+1740 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1688 ~                         if ((if 1 as i32 != 0 {
+1689 |                             0 as i32
+   ...
+1739 |                             }) as i64 <= -(1 as i32) as i64 - len) as i32
+1740 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1742:25
+     |
+1742 |                         (if (if (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+1814 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1742 ~                         if (if (if ((if 1 as i32 != 0 {
+1743 |                             0 as i32
+   ...
+1813 |                                 as i32
+1814 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1801:29
+     |
+1801 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+1810 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1801 ~                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+1802 |                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+1809 |                                         < len - 1 as i32 as i64) as i32
+1810 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1817:21
+     |
+1817 |                     (if 12 as i32 == 0 as i32 {
+     |                     ^
+...
+1896 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1817 ~                     if 12 as i32 == 0 as i32 {
+1818 |                         0 as i32
+   ...
+1895 |                         })
+1896 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1820:25
+     |
+1820 |                         (if len < 0 as i32 as i64 {
+     |                         ^
+...
+1895 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1820 ~                         if len < 0 as i32 as i64 {
+1821 |                             (if (if (if ((if 1 as i32 != 0 {
+   ...
+1894 |                             (((32767 as i32 / 12 as i32) as i64) < len) as i32
+1895 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1821:29
+     |
+1821 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+1892 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1821 ~                             if (if (if ((if 1 as i32 != 0 {
+1822 |                                 0 as i32 as i64
+   ...
+1891 |                                     < 12 as i32 as i64) as i32
+1892 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1880:33
+     |
+1880 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+1888 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1880 ~                                 if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+1881 |                                     - 1 as i32) < 0 as i32
+   ...
+1887 |                                         < 12 as i32 - 1 as i32) as i32
+1888 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1908:17
+     |
+1908 |                 (if (if (12 as i32) < 0 as i32 {
+     |                 ^
+...
+2128 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1908 ~                 if (if (12 as i32) < 0 as i32 {
+1909 |                     (if len < 0 as i32 as i64 {
+   ...
+2127 |                     0 as i32
+2128 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1909:21
+     |
+1909 |                     (if len < 0 as i32 as i64 {
+     |                     ^
+...
+2039 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1909 ~                     if len < 0 as i32 as i64 {
+1910 |                         (if ((if 1 as i32 != 0 {
+   ...
+2038 |                         })
+2039 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1910:25
+     |
+1910 |                         (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+1967 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1910 ~                         if ((if 1 as i32 != 0 {
+1911 |                             0 as i32
+   ...
+1966 |                             }) as i64 <= -(1 as i32) as i64 - len) as i32
+1967 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:1969:25
+     |
+1969 |                         (if (if (if ((if 1 as i32 != 0 {
+     |                         ^
+...
+2038 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1969 ~                         if (if (if ((if 1 as i32 != 0 {
+1970 |                             0 as i32
+   ...
+2037 |                             (((0 as i32 / 12 as i32) as i64) < len) as i32
+2038 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2027:29
+     |
+2027 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+2035 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2027 ~                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+2028 |                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2034 |                                         < len - 1 as i32 as i64) as i32
+2035 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2041:21
+     |
+2041 |                     (if 12 as i32 == 0 as i32 {
+     |                     ^
+...
+2118 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2041 ~                     if 12 as i32 == 0 as i32 {
+2042 |                         0 as i32
+   ...
+2117 |                         })
+2118 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2044:25
+     |
+2044 |                         (if len < 0 as i32 as i64 {
+     |                         ^
+...
+2117 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2044 ~                         if len < 0 as i32 as i64 {
+2045 |                             (if (if (if ((if 1 as i32 != 0 {
+   ...
+2116 |                                 < len) as i32
+2117 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2045:29
+     |
+2045 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2113 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2045 ~                             if (if (if ((if 1 as i32 != 0 {
+2046 |                                 0 as i32 as i64
+   ...
+2112 |                                 (0 as i32 as i64 / len < 12 as i32 as i64) as i32
+2113 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2104:33
+     |
+2104 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+2110 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2104 ~                                 if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+2105 |                                     - 1 as i32) < 0 as i32
+   ...
+2109 |                                     ((-(1 as i32) - 0 as i32) < 12 as i32 - 1 as i32) as i32
+2110 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2131:13
+     |
+2131 |             (if ::core::mem::size_of::<idx_t>() as u64
+     |             ^
+...
+3605 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2131 ~             if ::core::mem::size_of::<idx_t>() as u64
+2132 |                 == ::core::mem::size_of::<i32>() as u64
+   ...
+3604 |                 })
+3605 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2134:17
+     |
+2134 |                 (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+     |                 ^
+...
+2594 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2134 ~                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+2135 |                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2593 |                     })
+2594 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2137:21
+     |
+2137 |                     (if (if (12 as i32) < 0 as i32 {
+     |                     ^
+...
+2357 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2137 ~                     if (if (12 as i32) < 0 as i32 {
+2138 |                         (if len < 0 as i32 as i64 {
+   ...
+2356 |                         0 as i32
+2357 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2138:25
+     |
+2138 |                         (if len < 0 as i32 as i64 {
+     |                         ^
+...
+2266 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2138 ~                         if len < 0 as i32 as i64 {
+2139 |                             (if ((if 1 as i32 != 0 {
+   ...
+2265 |                             })
+2266 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2139:29
+     |
+2139 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2191 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2139 ~                             if ((if 1 as i32 != 0 {
+2140 |                                 0 as i32
+   ...
+2190 |                                 }) as i64 <= -(1 as i32) as i64 - len) as i32
+2191 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2193:29
+     |
+2193 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2265 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2193 ~                             if (if (if ((if 1 as i32 != 0 {
+2194 |                                 0 as i32
+   ...
+2264 |                                     < len) as i32
+2265 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2252:33
+     |
+2252 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+2261 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2252 ~                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+2253 |                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2260 |                                             as i64) < len - 1 as i32 as i64) as i32
+2261 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2268:25
+     |
+2268 |                         (if 12 as i32 == 0 as i32 {
+     |                         ^
+...
+2347 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2268 ~                         if 12 as i32 == 0 as i32 {
+2269 |                             0 as i32
+   ...
+2346 |                             })
+2347 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2271:29
+     |
+2271 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+2346 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2271 ~                             if len < 0 as i32 as i64 {
+2272 |                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+2345 |                                 (((2147483647 as i32 / 12 as i32) as i64) < len) as i32
+2346 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2272:33
+     |
+2272 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2343 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2272 ~                                 if (if (if ((if 1 as i32 != 0 {
+2273 |                                     0 as i32 as i64
+   ...
+2342 |                                         < 12 as i32 as i64) as i32
+2343 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2331:37
+     |
+2331 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+2339 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2331 ~                                     if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+2332 |                                         - 1 as i32) < 0 as i32
+   ...
+2338 |                                             < 12 as i32 - 1 as i32) as i32
+2339 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2359:21
+     |
+2359 |                     (if (if (12 as i32) < 0 as i32 {
+     |                     ^
+...
+2593 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2359 ~                     if (if (12 as i32) < 0 as i32 {
+2360 |                         (if len < 0 as i32 as i64 {
+   ...
+2592 |                         0 as i32
+2593 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2360:25
+     |
+2360 |                         (if len < 0 as i32 as i64 {
+     |                         ^
+...
+2504 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2360 ~                         if len < 0 as i32 as i64 {
+2361 |                             (if (if 1 as i32 != 0 {
+   ...
+2503 |                             })
+2504 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2361:29
+     |
+2361 | ...                   (if (if 1 as i32 != 0 {
+     |                       ^
+...
+2431 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2361 ~                             if (if 1 as i32 != 0 {
+2362 |                                 0 as i32 as u32
+   ...
+2430 |                                 }) as i64 <= -(1 as i32) as i64 - len) as i32
+2431 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2433:29
+     |
+2433 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2503 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2433 ~                             if (if (if ((if 1 as i32 != 0 {
+2434 |                                 0 as i32
+   ...
+2502 |                                 (((0 as i32 / 12 as i32) as i64) < len) as i32
+2503 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2492:33
+     |
+2492 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+2500 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2492 ~                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+2493 |                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2499 |                                             < len - 1 as i32 as i64) as i32
+2500 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2506:25
+     |
+2506 |                         (if 12 as i32 == 0 as i32 {
+     |                         ^
+...
+2585 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2506 ~                         if 12 as i32 == 0 as i32 {
+2507 |                             0 as i32
+   ...
+2584 |                             })
+2585 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2509:29
+     |
+2509 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+2584 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2509 ~                             if len < 0 as i32 as i64 {
+2510 |                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+2583 |                                     .wrapping_div(12 as i32 as u32) as i64) < len) as i32
+2584 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2510:33
+     |
+2510 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2578 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2510 ~                                 if (if (if ((if 1 as i32 != 0 {
+2511 |                                     0 as i32 as i64
+   ...
+2577 |                                     (0 as i32 as i64 / len < 12 as i32 as i64) as i32
+2578 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2569:37
+     |
+2569 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+2575 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2569 ~                                     if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+2570 |                                         - 1 as i32) < 0 as i32
+   ...
+2574 |                                         ((-(1 as i32) - 0 as i32) < 12 as i32 - 1 as i32) as i32
+2575 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2596:17
+     |
+2596 |                 (if ::core::mem::size_of::<idx_t>() as u64
+     |                 ^
+...
+3604 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2596 ~                 if ::core::mem::size_of::<idx_t>() as u64
+2597 |                     == ::core::mem::size_of::<i64>() as u64
+   ...
+3603 |                     })
+3604 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2599:21
+     |
+2599 |                     (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+     |                     ^
+...
+3064 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2599 ~                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+2600 |                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3063 |                         })
+3064 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2602:25
+     |
+2602 |                         (if (if (12 as i32) < 0 as i32 {
+     |                         ^
+...
+2827 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2602 ~                         if (if (12 as i32) < 0 as i32 {
+2603 |                             (if len < 0 as i32 as i64 {
+   ...
+2826 |                             0 as i32
+2827 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2603:29
+     |
+2603 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+2735 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2603 ~                             if len < 0 as i32 as i64 {
+2604 |                                 (if ((if 1 as i32 != 0 {
+   ...
+2734 |                                 })
+2735 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2604:33
+     |
+2604 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2659 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2604 ~                                 if ((if 1 as i32 != 0 {
+2605 |                                     0 as i32 as i64
+   ...
+2658 |                                     }) <= -(1 as i32) as i64 - len) as i32
+2659 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2661:33
+     |
+2661 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2734 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2661 ~                                 if (if (if ((if 1 as i32 != 0 {
+2662 |                                     0 as i32 as i64
+   ...
+2733 |                                         / 12 as i32 as i64) < len) as i32
+2734 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2720:37
+     |
+2720 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+2730 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2720 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+2721 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2729 |                                                 < len - 1 as i32 as i64) as i32
+2730 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2737:29
+     |
+2737 | ...                   (if 12 as i32 == 0 as i32 {
+     |                       ^
+...
+2819 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2737 ~                             if 12 as i32 == 0 as i32 {
+2738 |                                 0 as i32
+   ...
+2818 |                                 })
+2819 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2740:33
+     |
+2740 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+2818 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2740 ~                                 if len < 0 as i32 as i64 {
+2741 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+2817 |                                         as i32
+2818 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2741:37
+     |
+2741 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2814 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2741 ~                                     if (if (if ((if 1 as i32 != 0 {
+2742 |                                         0 as i32 as i64
+   ...
+2813 |                                             < 12 as i32 as i64) as i32
+2814 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2800:41
+     |
+2800 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+2810 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2800 ~                                         if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+2801 |                                             - 1 as i32) < 0 as i32
+   ...
+2809 |                                                 < (12 as i32 - 1 as i32) as i64) as i32
+2810 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2829:25
+     |
+2829 |                         (if (if (12 as i32) < 0 as i32 {
+     |                         ^
+...
+3063 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2829 ~                         if (if (12 as i32) < 0 as i32 {
+2830 |                             (if len < 0 as i32 as i64 {
+   ...
+3062 |                             0 as i32
+3063 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2830:29
+     |
+2830 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+2974 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2830 ~                             if len < 0 as i32 as i64 {
+2831 |                                 (if (if 1 as i32 != 0 {
+   ...
+2973 |                                 })
+2974 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2831:33
+     |
+2831 | ...                   (if (if 1 as i32 != 0 {
+     |                       ^
+...
+2901 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2831 ~                                 if (if 1 as i32 != 0 {
+2832 |                                     0 as i32 as u64
+   ...
+2900 |                                     }) <= (-(1 as i32) as i64 - len) as u64) as i32
+2901 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2903:33
+     |
+2903 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2973 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2903 ~                                 if (if (if ((if 1 as i32 != 0 {
+2904 |                                     0 as i32
+   ...
+2972 |                                     (((0 as i32 / 12 as i32) as i64) < len) as i32
+2973 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2962:37
+     |
+2962 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+2970 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2962 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+2963 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2969 |                                                 < len - 1 as i32 as i64) as i32
+2970 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2976:29
+     |
+2976 | ...                   (if 12 as i32 == 0 as i32 {
+     |                       ^
+...
+3055 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2976 ~                             if 12 as i32 == 0 as i32 {
+2977 |                                 0 as i32
+   ...
+3054 |                                 })
+3055 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2979:33
+     |
+2979 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+3054 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2979 ~                                 if len < 0 as i32 as i64 {
+2980 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+3053 |                                         .wrapping_div(12 as i32 as u64) < len as u64) as i32
+3054 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:2980:37
+     |
+2980 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3048 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2980 ~                                     if (if (if ((if 1 as i32 != 0 {
+2981 |                                         0 as i32 as i64
+   ...
+3047 |                                         (0 as i32 as i64 / len < 12 as i32 as i64) as i32
+3048 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3039:41
+     |
+3039 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+3045 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3039 ~                                         if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+3040 |                                             - 1 as i32) < 0 as i32
+   ...
+3044 |                                             ((-(1 as i32) - 0 as i32) < 12 as i32 - 1 as i32) as i32
+3045 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3066:21
+     |
+3066 |                     (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+     |                     ^
+...
+3603 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3066 ~                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len12 })
+3067 |                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3602 |                         })
+3603 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3069:25
+     |
+3069 |                         (if (if (12 as i32) < 0 as i32 {
+     |                         ^
+...
+3355 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3069 ~                         if (if (12 as i32) < 0 as i32 {
+3070 |                             (if len < 0 as i32 as i64 {
+   ...
+3354 |                             0 as i32
+3355 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3070:29
+     |
+3070 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+3233 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3070 ~                             if len < 0 as i32 as i64 {
+3071 |                                 (if ((if 1 as i32 != 0 {
+   ...
+3232 |                                 })
+3233 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3071:33
+     |
+3071 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3131 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3071 ~                                 if ((if 1 as i32 != 0 {
+3072 |                                     0 as i32 as libc::c_longlong
+   ...
+3130 |                                     }) <= (-(1 as i32) as i64 - len) as libc::c_longlong) as i32
+3131 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3133:33
+     |
+3133 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3232 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3133 ~                                 if (if (if ((if 1 as i32 != 0 {
+3134 |                                     0 as i32 as libc::c_longlong
+   ...
+3231 |                                         < len as libc::c_longlong) as i32
+3232 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3214:37
+     |
+3214 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+3227 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3214 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+3215 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3226 |                                                 < (len - 1 as i32 as i64) as libc::c_longlong) as i32
+3227 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3235:29
+     |
+3235 | ...                   (if 12 as i32 == 0 as i32 {
+     |                       ^
+...
+3343 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3235 ~                             if 12 as i32 == 0 as i32 {
+3236 |                                 0 as i32
+   ...
+3342 |                                 })
+3343 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3238:33
+     |
+3238 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+3342 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3238 ~                                 if len < 0 as i32 as i64 {
+3239 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+3341 |                                         as i32
+3342 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3239:37
+     |
+3239 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3337 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3239 ~                                     if (if (if ((if 1 as i32 != 0 {
+3240 |                                         0 as i32 as libc::c_longlong
+   ...
+3336 |                                             < 12 as i32 as libc::c_longlong) as i32
+3337 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3320:41
+     |
+3320 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+3332 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3320 ~                                         if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+3321 |                                             - 1 as i32) < 0 as i32
+   ...
+3331 |                                                 < (12 as i32 - 1 as i32) as libc::c_longlong) as i32
+3332 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3357:25
+     |
+3357 |                         (if (if (12 as i32) < 0 as i32 {
+     |                         ^
+...
+3602 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3357 ~                         if (if (12 as i32) < 0 as i32 {
+3358 |                             (if len < 0 as i32 as i64 {
+   ...
+3601 |                             0 as i32
+3602 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3358:29
+     |
+3358 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+3509 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3358 ~                             if len < 0 as i32 as i64 {
+3359 |                                 (if (if 1 as i32 != 0 {
+   ...
+3508 |                                 })
+3509 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3359:33
+     |
+3359 | ...                   (if (if 1 as i32 != 0 {
+     |                       ^
+...
+3436 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3359 ~                                 if (if 1 as i32 != 0 {
+3360 |                                     0 as i32 as libc::c_ulonglong
+   ...
+3435 |                                         as i32
+3436 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3438:33
+     |
+3438 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3508 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3438 ~                                 if (if (if ((if 1 as i32 != 0 {
+3439 |                                     0 as i32
+   ...
+3507 |                                     (((0 as i32 / 12 as i32) as i64) < len) as i32
+3508 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3497:37
+     |
+3497 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+     |                       ^
+...
+3505 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3497 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { len })
+3498 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3504 |                                                 < len - 1 as i32 as i64) as i32
+3505 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3511:29
+     |
+3511 | ...                   (if 12 as i32 == 0 as i32 {
+     |                       ^
+...
+3592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3511 ~                             if 12 as i32 == 0 as i32 {
+3512 |                                 0 as i32
+   ...
+3591 |                                 })
+3592 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3514:33
+     |
+3514 | ...                   (if len < 0 as i32 as i64 {
+     |                       ^
+...
+3591 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3514 ~                                 if len < 0 as i32 as i64 {
+3515 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+3590 |                                         < len as libc::c_ulonglong) as i32
+3591 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3515:37
+     |
+3515 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3583 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3515 ~                                     if (if (if ((if 1 as i32 != 0 {
+3516 |                                         0 as i32 as i64
+   ...
+3582 |                                         (0 as i32 as i64 / len < 12 as i32 as i64) as i32
+3583 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> src/kwset.rs:3574:41
+     |
+3574 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+     |                       ^
+...
+3580 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3574 ~                                         if ((if 1 as i32 != 0 { 0 as i32 } else { 12 as i32 })
+3575 |                                             - 1 as i32) < 0 as i32
+   ...
+3579 |                                             ((-(1 as i32) - 0 as i32) < 12 as i32 - 1 as i32) as i32
+3580 ~                                         }
+     |
+
+warning: crate-level attribute should be in the root module
+  --> lib/fts.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> lib/version_etc.rs:10:1
+   |
+10 | #![feature(c_variadic)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/xstrtoimax.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/xstrtol.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/xstrtoul.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/dfasearch.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/grep.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/searchutils.rs:10:1
+   |
+10 | #![feature(extern_types, linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> lib/malloca.rs:25:46
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus);
+    |                              --------------- ^^^^ expected `u64`, found `i32`
+    |                              |
+    |                              arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/mod.rs:852:5
+    |
+852 | /     uint_impl! { u64, u64, i64, NonZeroU64, 64, 18446744073709551615, 12, "0xaa00000000006e1", "0x6e10aa",
+853 | |     "0x1234567890123456", "0x5634129078563412", "0x6a2c48091e6a2c48",
+854 | |     "[0x56, 0x34, 0x12, 0x90, 0x78, 0x56, 0x34, 0x12]",
+855 | |     "[0x12, 0x34, 0x56, 0x78, 0x90, 0x12, 0x34, 0x56]",
+856 | |     "", "", ""}
+    | |_______________^
+    = note: this error originates in the macro `uint_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u64` and panic if the converted value doesn't fit
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus.try_into().unwrap());
+    |                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> lib/malloca.rs:26:35
+   |
+26 |     *(&mut nplus as *mut idx_t) = fresh0;
+   |     ---------------------------   ^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     expected due to the type of this binding
+
+error[E0599]: no method named `set_field` found for enum `re_token_type_t` in the current scope
+   --> lib/regex.rs:223:23
+    |
+223 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `re_token_type_t`
+...
+240 | pub enum re_token_type_t {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `re_token_type_t: FieldType` is not satisfied
+   --> lib/regex.rs:223:23
+    |
+223 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `re_token_type_t`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0054]: cannot cast as `bool`
+   --> src/dfasearch.rs:398:25
+    |
+398 |         (*dc).begline = ((*dc).begline as i32 | (*dm).begline as i32) as bool;
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: compare with zero instead: `((*dc).begline as i32 | (*dm).begline as i32) != 0`
+
+error[E0054]: cannot cast as `bool`
+    --> src/grep.rs:3880:20
+     |
+3880 |       command_line = (command_line as i32 & ((*ent).fts_level == 0 as i32 as i64) as i32)
+     |  ____________________^
+3881 | |         as bool;
+     | |_______________^ help: compare with zero instead: `(command_line as i32 & ((*ent).fts_level == 0 as i32 as i64) as i32) != 0`
+
+error[E0054]: cannot cast as `bool`
+    --> src/grep.rs:4123:30
+     |
+4123 |                       status = (status as i32 & grepdirent(fts, ent, command_line) as i32)
+     |  ______________________________^
+4124 | |                         as bool;
+     | |_______________________________^ help: compare with zero instead: `(status as i32 & grepdirent(fts, ent, command_line) as i32) != 0`
+
+error[E0054]: cannot cast as `bool`
+    --> src/grep.rs:5915:26
+     |
+5915 |             out_invert = (out_invert as i32 ^ 1 as i32) as bool;
+     |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: compare with zero instead: `(out_invert as i32 ^ 1 as i32) != 0`
+
+error[E0054]: cannot cast as `bool`
+    --> src/grep.rs:6167:18
+     |
+6167 |         status = (status as i32 & grep_command_line_arg(*fresh21) as i32) as bool;
+     |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ help: compare with zero instead: `(status as i32 & grep_command_line_arg(*fresh21) as i32) != 0`
+
+Some errors have detailed explanations: E0054, E0277, E0308, E0433, E0583, E0599.
+For more information about an error, try `rustc --explain E0054`.
+warning: `c2rust_out` (lib) generated 284 warnings
+error: could not compile `c2rust_out` due to 48 previous errors; 284 warnings emitted

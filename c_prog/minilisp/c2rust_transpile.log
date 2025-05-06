@@ -1,0 +1,946 @@
+2025-04-18 02:55:16,182 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-18 02:55:16,422 [INFO] c2rust transpile succeeded
+2025-04-18 02:55:16,423 [INFO] Running: cargo build
+2025-04-18 02:55:17,297 [INFO] Updating `rsproxy` index
+2025-04-18 02:55:17,536 [INFO] error: failed to get `libc` as a dependency of package `c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)`
+2025-04-18 02:55:17,537 [INFO] 
+2025-04-18 02:55:17,537 [INFO] Caused by:
+2025-04-18 02:55:17,537 [INFO] failed to load source for dependency `libc`
+2025-04-18 02:55:17,537 [INFO] 
+2025-04-18 02:55:17,537 [INFO] Caused by:
+2025-04-18 02:55:17,537 [INFO] Unable to update registry `crates-io`
+2025-04-18 02:55:17,537 [INFO] 
+2025-04-18 02:55:17,538 [INFO] Caused by:
+2025-04-18 02:55:17,538 [INFO] failed to update replaced source registry `crates-io`
+2025-04-18 02:55:17,538 [INFO] 
+2025-04-18 02:55:17,538 [INFO] Caused by:
+2025-04-18 02:55:17,538 [INFO] failed to fetch `https://rsproxy.cn/crates.io-index`
+2025-04-18 02:55:17,538 [INFO] 
+2025-04-18 02:55:17,538 [INFO] Caused by:
+2025-04-18 02:55:17,539 [INFO] process didn't exit successfully: `git fetch --force --update-head-ok 'https://rsproxy.cn/crates.io-index' '+HEAD:refs/remotes/origin/HEAD'` (exit status: 128)
+2025-04-18 02:55:17,539 [INFO] --- stderr
+2025-04-18 02:55:17,539 [INFO] fatal: repository 'https://rsproxy.cn/crates.io-index/' not found
+2025-04-18 02:55:17,539 [ERROR] cargo build failed with code 101
+2025-04-18 02:55:17,542 [INFO] Running: cargo build
+2025-04-18 02:55:18,457 [INFO] Updating `rsproxy` index
+2025-04-18 02:55:18,668 [INFO] error: failed to get `libc` as a dependency of package `c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)`
+2025-04-18 02:55:18,668 [INFO] 
+2025-04-18 02:55:18,668 [INFO] Caused by:
+2025-04-18 02:55:18,668 [INFO] failed to load source for dependency `libc`
+2025-04-18 02:55:18,669 [INFO] 
+2025-04-18 02:55:18,669 [INFO] Caused by:
+2025-04-18 02:55:18,669 [INFO] Unable to update registry `crates-io`
+2025-04-18 02:55:18,669 [INFO] 
+2025-04-18 02:55:18,669 [INFO] Caused by:
+2025-04-18 02:55:18,669 [INFO] failed to update replaced source registry `crates-io`
+2025-04-18 02:55:18,669 [INFO] 
+2025-04-18 02:55:18,669 [INFO] Caused by:
+2025-04-18 02:55:18,670 [INFO] failed to fetch `https://rsproxy.cn/crates.io-index`
+2025-04-18 02:55:18,670 [INFO] 
+2025-04-18 02:55:18,670 [INFO] Caused by:
+2025-04-18 02:55:18,670 [INFO] process didn't exit successfully: `git fetch --force --update-head-ok 'https://rsproxy.cn/crates.io-index' '+HEAD:refs/remotes/origin/HEAD'` (exit status: 128)
+2025-04-18 02:55:18,670 [INFO] --- stderr
+2025-04-18 02:55:18,670 [INFO] fatal: repository 'https://rsproxy.cn/crates.io-index/' not found
+2025-04-18 02:55:18,671 [ERROR] cargo build failed with code 101
+2025-04-24 07:57:54,518 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-04-24 07:57:54,776 [INFO] c2rust transpile succeeded
+2025-04-24 07:57:54,777 [INFO] Running: cargo build
+2025-04-24 07:57:55,694 [INFO] Updating `tuna` index
+2025-04-24 07:57:56,120 [INFO] Compiling libc v0.2.172
+2025-04-24 07:57:56,125 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+2025-04-24 07:57:57,735 [INFO] warning: unused label
+2025-04-24 07:57:57,735 [INFO] --> minilisp.rs:322:5
+2025-04-24 07:57:57,735 [INFO] |
+2025-04-24 07:57:57,736 [INFO] 322 |     'c_3062: {
+2025-04-24 07:57:57,736 [INFO] |     ^^^^^^^
+2025-04-24 07:57:57,736 [INFO] |
+2025-04-24 07:57:57,736 [INFO] = note: `#[warn(unused_labels)]` on by default
+2025-04-24 07:57:57,737 [INFO] 
+2025-04-24 07:57:57,737 [INFO] warning: unused label
+2025-04-24 07:57:57,737 [INFO] --> minilisp.rs:474:5
+2025-04-24 07:57:57,737 [INFO] |
+2025-04-24 07:57:57,737 [INFO] 474 |     'c_3428: {
+2025-04-24 07:57:57,737 [INFO] |     ^^^^^^^
+2025-04-24 07:57:57,738 [INFO] 
+2025-04-24 07:57:57,772 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:57,772 [INFO] --> minilisp.rs:986:9
+2025-04-24 07:57:57,772 [INFO] |
+2025-04-24 07:57:57,773 [INFO] 986 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:57,773 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:57,773 [INFO] |
+2025-04-24 07:57:57,773 [INFO] = note: `#[warn(unused_variables)]` on by default
+2025-04-24 07:57:57,773 [INFO] 
+2025-04-24 07:57:57,774 [INFO] warning: unused variable: `root`
+2025-04-24 07:57:57,774 [INFO] --> minilisp.rs:1173:9
+2025-04-24 07:57:57,774 [INFO] |
+2025-04-24 07:57:57,774 [INFO] 1173 |     mut root: *mut libc::c_void,
+2025-04-24 07:57:57,774 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+2025-04-24 07:57:57,775 [INFO] 
+2025-04-24 07:57:57,775 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:57,775 [INFO] --> minilisp.rs:1174:9
+2025-04-24 07:57:57,775 [INFO] |
+2025-04-24 07:57:57,775 [INFO] 1174 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:57,776 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:57,777 [INFO] 
+2025-04-24 07:57:57,777 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:57,777 [INFO] --> minilisp.rs:1359:9
+2025-04-24 07:57:57,777 [INFO] |
+2025-04-24 07:57:57,778 [INFO] 1359 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:57,778 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:57,778 [INFO] 
+2025-04-24 07:57:57,779 [INFO] warning: unused variable: `list`
+2025-04-24 07:57:57,779 [INFO] --> minilisp.rs:1360:9
+2025-04-24 07:57:57,779 [INFO] |
+2025-04-24 07:57:57,779 [INFO] 1360 |     mut list: *mut *mut Obj,
+2025-04-24 07:57:57,780 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+2025-04-24 07:57:57,780 [INFO] 
+2025-04-24 07:57:57,780 [INFO] warning: unused variable: `argc`
+2025-04-24 07:57:57,780 [INFO] --> minilisp.rs:2065:9
+2025-04-24 07:57:57,780 [INFO] |
+2025-04-24 07:57:57,781 [INFO] 2065 |     mut argc: libc::c_int,
+2025-04-24 07:57:57,781 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+2025-04-24 07:57:57,781 [INFO] 
+2025-04-24 07:57:57,781 [INFO] warning: unused variable: `argv`
+2025-04-24 07:57:57,782 [INFO] --> minilisp.rs:2066:9
+2025-04-24 07:57:57,782 [INFO] |
+2025-04-24 07:57:57,782 [INFO] 2066 |     mut argv: *mut *mut libc::c_char,
+2025-04-24 07:57:57,782 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+2025-04-24 07:57:57,784 [INFO] 
+2025-04-24 07:57:57,801 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,801 [INFO] --> minilisp.rs:304:13
+2025-04-24 07:57:57,802 [INFO] |
+2025-04-24 07:57:57,802 [INFO] 304 |             i;
+2025-04-24 07:57:57,802 [INFO] |             ^^
+2025-04-24 07:57:57,802 [INFO] |
+2025-04-24 07:57:57,802 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-24 07:57:57,802 [INFO] 
+2025-04-24 07:57:57,803 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,803 [INFO] --> minilisp.rs:529:9
+2025-04-24 07:57:57,803 [INFO] |
+2025-04-24 07:57:57,803 [INFO] 529 |         i;
+2025-04-24 07:57:57,804 [INFO] |         ^^
+2025-04-24 07:57:57,804 [INFO] 
+2025-04-24 07:57:57,804 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,804 [INFO] --> minilisp.rs:580:9
+2025-04-24 07:57:57,804 [INFO] |
+2025-04-24 07:57:57,805 [INFO] 580 |         i;
+2025-04-24 07:57:57,805 [INFO] |         ^^
+2025-04-24 07:57:57,805 [INFO] 
+2025-04-24 07:57:57,805 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,806 [INFO] --> minilisp.rs:642:9
+2025-04-24 07:57:57,806 [INFO] |
+2025-04-24 07:57:57,806 [INFO] 642 |         i;
+2025-04-24 07:57:57,806 [INFO] |         ^^
+2025-04-24 07:57:57,807 [INFO] 
+2025-04-24 07:57:57,807 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,807 [INFO] --> minilisp.rs:661:9
+2025-04-24 07:57:57,807 [INFO] |
+2025-04-24 07:57:57,808 [INFO] 661 |         i;
+2025-04-24 07:57:57,809 [INFO] |         ^^
+2025-04-24 07:57:57,809 [INFO] 
+2025-04-24 07:57:57,809 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,809 [INFO] --> minilisp.rs:836:9
+2025-04-24 07:57:57,810 [INFO] |
+2025-04-24 07:57:57,810 [INFO] 836 |         len;
+2025-04-24 07:57:57,810 [INFO] |         ^^^^
+2025-04-24 07:57:57,810 [INFO] 
+2025-04-24 07:57:57,810 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,810 [INFO] --> minilisp.rs:853:9
+2025-04-24 07:57:57,811 [INFO] |
+2025-04-24 07:57:57,811 [INFO] 853 |         i;
+2025-04-24 07:57:57,811 [INFO] |         ^^
+2025-04-24 07:57:57,812 [INFO] 
+2025-04-24 07:57:57,812 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,812 [INFO] --> minilisp.rs:880:9
+2025-04-24 07:57:57,812 [INFO] |
+2025-04-24 07:57:57,812 [INFO] 880 |         i;
+2025-04-24 07:57:57,813 [INFO] |         ^^
+2025-04-24 07:57:57,813 [INFO] 
+2025-04-24 07:57:57,813 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,814 [INFO] --> minilisp.rs:924:9
+2025-04-24 07:57:57,814 [INFO] |
+2025-04-24 07:57:57,814 [INFO] 924 |         i;
+2025-04-24 07:57:57,814 [INFO] |         ^^
+2025-04-24 07:57:57,814 [INFO] 
+2025-04-24 07:57:57,815 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,815 [INFO] --> minilisp.rs:954:9
+2025-04-24 07:57:57,815 [INFO] |
+2025-04-24 07:57:57,815 [INFO] 954 |         i;
+2025-04-24 07:57:57,816 [INFO] |         ^^
+2025-04-24 07:57:57,817 [INFO] 
+2025-04-24 07:57:57,818 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,818 [INFO] --> minilisp.rs:996:9
+2025-04-24 07:57:57,818 [INFO] |
+2025-04-24 07:57:57,819 [INFO] 996 |         i;
+2025-04-24 07:57:57,819 [INFO] |         ^^
+2025-04-24 07:57:57,819 [INFO] 
+2025-04-24 07:57:57,819 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,820 [INFO] --> minilisp.rs:1039:13
+2025-04-24 07:57:57,820 [INFO] |
+2025-04-24 07:57:57,820 [INFO] 1039 |             i;
+2025-04-24 07:57:57,821 [INFO] |             ^^
+2025-04-24 07:57:57,821 [INFO] 
+2025-04-24 07:57:57,821 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,821 [INFO] --> minilisp.rs:1083:9
+2025-04-24 07:57:57,822 [INFO] |
+2025-04-24 07:57:57,822 [INFO] 1083 |         i;
+2025-04-24 07:57:57,823 [INFO] |         ^^
+2025-04-24 07:57:57,823 [INFO] 
+2025-04-24 07:57:57,823 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,823 [INFO] --> minilisp.rs:1132:17
+2025-04-24 07:57:57,824 [INFO] |
+2025-04-24 07:57:57,824 [INFO] 1132 |                 i;
+2025-04-24 07:57:57,825 [INFO] |                 ^^
+2025-04-24 07:57:57,825 [INFO] 
+2025-04-24 07:57:57,825 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,826 [INFO] --> minilisp.rs:1258:9
+2025-04-24 07:57:57,826 [INFO] |
+2025-04-24 07:57:57,826 [INFO] 1258 |         i;
+2025-04-24 07:57:57,826 [INFO] |         ^^
+2025-04-24 07:57:57,826 [INFO] 
+2025-04-24 07:57:57,827 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,827 [INFO] --> minilisp.rs:1297:9
+2025-04-24 07:57:57,827 [INFO] |
+2025-04-24 07:57:57,828 [INFO] 1297 |         i;
+2025-04-24 07:57:57,828 [INFO] |         ^^
+2025-04-24 07:57:57,828 [INFO] 
+2025-04-24 07:57:57,828 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,829 [INFO] --> minilisp.rs:1339:9
+2025-04-24 07:57:57,829 [INFO] |
+2025-04-24 07:57:57,829 [INFO] 1339 |         i;
+2025-04-24 07:57:57,830 [INFO] |         ^^
+2025-04-24 07:57:57,830 [INFO] 
+2025-04-24 07:57:57,830 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,830 [INFO] --> minilisp.rs:1488:9
+2025-04-24 07:57:57,831 [INFO] |
+2025-04-24 07:57:57,831 [INFO] 1488 |         i;
+2025-04-24 07:57:57,831 [INFO] |         ^^
+2025-04-24 07:57:57,832 [INFO] 
+2025-04-24 07:57:57,832 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,832 [INFO] --> minilisp.rs:1529:9
+2025-04-24 07:57:57,833 [INFO] |
+2025-04-24 07:57:57,833 [INFO] 1529 |         i;
+2025-04-24 07:57:57,833 [INFO] |         ^^
+2025-04-24 07:57:57,834 [INFO] 
+2025-04-24 07:57:57,835 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,835 [INFO] --> minilisp.rs:1575:9
+2025-04-24 07:57:57,836 [INFO] |
+2025-04-24 07:57:57,836 [INFO] 1575 |         i;
+2025-04-24 07:57:57,837 [INFO] |         ^^
+2025-04-24 07:57:57,837 [INFO] 
+2025-04-24 07:57:57,837 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,838 [INFO] --> minilisp.rs:1619:9
+2025-04-24 07:57:57,838 [INFO] |
+2025-04-24 07:57:57,838 [INFO] 1619 |         i;
+2025-04-24 07:57:57,838 [INFO] |         ^^
+2025-04-24 07:57:57,839 [INFO] 
+2025-04-24 07:57:57,839 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,839 [INFO] --> minilisp.rs:1641:9
+2025-04-24 07:57:57,839 [INFO] |
+2025-04-24 07:57:57,839 [INFO] 1641 |         i;
+2025-04-24 07:57:57,839 [INFO] |         ^^
+2025-04-24 07:57:57,840 [INFO] 
+2025-04-24 07:57:57,841 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,841 [INFO] --> minilisp.rs:1670:9
+2025-04-24 07:57:57,841 [INFO] |
+2025-04-24 07:57:57,841 [INFO] 1670 |         i;
+2025-04-24 07:57:57,841 [INFO] |         ^^
+2025-04-24 07:57:57,842 [INFO] 
+2025-04-24 07:57:57,842 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,843 [INFO] --> minilisp.rs:1759:9
+2025-04-24 07:57:57,843 [INFO] |
+2025-04-24 07:57:57,843 [INFO] 1759 |         i;
+2025-04-24 07:57:57,843 [INFO] |         ^^
+2025-04-24 07:57:57,843 [INFO] 
+2025-04-24 07:57:57,844 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,844 [INFO] --> minilisp.rs:1784:9
+2025-04-24 07:57:57,844 [INFO] |
+2025-04-24 07:57:57,845 [INFO] 1784 |         i;
+2025-04-24 07:57:57,845 [INFO] |         ^^
+2025-04-24 07:57:57,845 [INFO] 
+2025-04-24 07:57:57,846 [INFO] warning: path statement with no effect
+2025-04-24 07:57:57,846 [INFO] --> minilisp.rs:2083:9
+2025-04-24 07:57:57,846 [INFO] |
+2025-04-24 07:57:57,847 [INFO] 2083 |         i;
+2025-04-24 07:57:57,847 [INFO] |         ^^
+2025-04-24 07:57:57,847 [INFO] 
+2025-04-24 07:57:57,966 [INFO] warning: `c2rust_out` (lib) generated 35 warnings
+2025-04-24 07:57:57,966 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 2.96s
+2025-04-24 07:57:57,968 [INFO] Running: cargo build
+2025-04-24 07:57:58,227 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+2025-04-24 07:57:58,476 [INFO] warning: unused label
+2025-04-24 07:57:58,476 [INFO] --> minilisp.rs:519:5
+2025-04-24 07:57:58,476 [INFO] |
+2025-04-24 07:57:58,476 [INFO] 519 |     'c_3062: {
+2025-04-24 07:57:58,476 [INFO] |     ^^^^^^^
+2025-04-24 07:57:58,476 [INFO] |
+2025-04-24 07:57:58,476 [INFO] = note: `#[warn(unused_labels)]` on by default
+2025-04-24 07:57:58,477 [INFO] 
+2025-04-24 07:57:58,477 [INFO] warning: unused label
+2025-04-24 07:57:58,477 [INFO] --> minilisp.rs:667:5
+2025-04-24 07:57:58,477 [INFO] |
+2025-04-24 07:57:58,477 [INFO] 667 |     'c_3428: {
+2025-04-24 07:57:58,477 [INFO] |     ^^^^^^^
+2025-04-24 07:57:58,477 [INFO] 
+2025-04-24 07:57:58,483 [INFO] warning: crate-level attribute should be in the root module
+2025-04-24 07:57:58,483 [INFO] --> minilisp.rs:10:1
+2025-04-24 07:57:58,483 [INFO] |
+2025-04-24 07:57:58,483 [INFO] 10 | #![feature(c_variadic, label_break_value)]
+2025-04-24 07:57:58,484 [INFO] | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-04-24 07:57:58,484 [INFO] |
+2025-04-24 07:57:58,485 [INFO] = note: `#[warn(unused_attributes)]` on by default
+2025-04-24 07:57:58,485 [INFO] 
+2025-04-24 07:57:58,547 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:58,548 [INFO] --> minilisp.rs:1182:9
+2025-04-24 07:57:58,548 [INFO] |
+2025-04-24 07:57:58,548 [INFO] 1182 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:58,548 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:58,549 [INFO] |
+2025-04-24 07:57:58,549 [INFO] = note: `#[warn(unused_variables)]` on by default
+2025-04-24 07:57:58,549 [INFO] 
+2025-04-24 07:57:58,549 [INFO] warning: unused variable: `root`
+2025-04-24 07:57:58,550 [INFO] --> minilisp.rs:1371:9
+2025-04-24 07:57:58,550 [INFO] |
+2025-04-24 07:57:58,550 [INFO] 1371 |     mut root: *mut libc::c_void,
+2025-04-24 07:57:58,550 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+2025-04-24 07:57:58,551 [INFO] 
+2025-04-24 07:57:58,551 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:58,551 [INFO] --> minilisp.rs:1372:9
+2025-04-24 07:57:58,551 [INFO] |
+2025-04-24 07:57:58,552 [INFO] 1372 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:58,552 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:58,552 [INFO] 
+2025-04-24 07:57:58,553 [INFO] warning: unused variable: `env`
+2025-04-24 07:57:58,553 [INFO] --> minilisp.rs:1561:9
+2025-04-24 07:57:58,554 [INFO] |
+2025-04-24 07:57:58,554 [INFO] 1561 |     mut env: *mut *mut Obj,
+2025-04-24 07:57:58,554 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-04-24 07:57:58,554 [INFO] 
+2025-04-24 07:57:58,555 [INFO] warning: unused variable: `list`
+2025-04-24 07:57:58,556 [INFO] --> minilisp.rs:1562:9
+2025-04-24 07:57:58,556 [INFO] |
+2025-04-24 07:57:58,556 [INFO] 1562 |     mut list: *mut *mut Obj,
+2025-04-24 07:57:58,556 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+2025-04-24 07:57:58,557 [INFO] 
+2025-04-24 07:57:58,558 [INFO] warning: unused variable: `argc`
+2025-04-24 07:57:58,559 [INFO] --> minilisp.rs:2281:9
+2025-04-24 07:57:58,559 [INFO] |
+2025-04-24 07:57:58,559 [INFO] 2281 |     mut argc: libc::c_int,
+2025-04-24 07:57:58,559 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+2025-04-24 07:57:58,560 [INFO] 
+2025-04-24 07:57:58,560 [INFO] warning: unused variable: `argv`
+2025-04-24 07:57:58,560 [INFO] --> minilisp.rs:2282:9
+2025-04-24 07:57:58,561 [INFO] |
+2025-04-24 07:57:58,561 [INFO] 2282 |     mut argv: *mut *mut libc::c_char,
+2025-04-24 07:57:58,562 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+2025-04-24 07:57:58,562 [INFO] 
+2025-04-24 07:57:58,595 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,595 [INFO] --> minilisp.rs:501:13
+2025-04-24 07:57:58,595 [INFO] |
+2025-04-24 07:57:58,595 [INFO] 501 |             i;
+2025-04-24 07:57:58,596 [INFO] |             ^^
+2025-04-24 07:57:58,596 [INFO] |
+2025-04-24 07:57:58,596 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-04-24 07:57:58,596 [INFO] 
+2025-04-24 07:57:58,597 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,597 [INFO] --> minilisp.rs:723:9
+2025-04-24 07:57:58,597 [INFO] |
+2025-04-24 07:57:58,597 [INFO] 723 |         i;
+2025-04-24 07:57:58,597 [INFO] |         ^^
+2025-04-24 07:57:58,597 [INFO] 
+2025-04-24 07:57:58,598 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,598 [INFO] --> minilisp.rs:774:9
+2025-04-24 07:57:58,598 [INFO] |
+2025-04-24 07:57:58,598 [INFO] 774 |         i;
+2025-04-24 07:57:58,599 [INFO] |         ^^
+2025-04-24 07:57:58,599 [INFO] 
+2025-04-24 07:57:58,599 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,599 [INFO] --> minilisp.rs:836:9
+2025-04-24 07:57:58,599 [INFO] |
+2025-04-24 07:57:58,600 [INFO] 836 |         i;
+2025-04-24 07:57:58,600 [INFO] |         ^^
+2025-04-24 07:57:58,600 [INFO] 
+2025-04-24 07:57:58,601 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,601 [INFO] --> minilisp.rs:855:9
+2025-04-24 07:57:58,601 [INFO] |
+2025-04-24 07:57:58,602 [INFO] 855 |         i;
+2025-04-24 07:57:58,602 [INFO] |         ^^
+2025-04-24 07:57:58,602 [INFO] 
+2025-04-24 07:57:58,603 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,603 [INFO] --> minilisp.rs:1032:9
+2025-04-24 07:57:58,603 [INFO] |
+2025-04-24 07:57:58,603 [INFO] 1032 |         len;
+2025-04-24 07:57:58,603 [INFO] |         ^^^^
+2025-04-24 07:57:58,604 [INFO] 
+2025-04-24 07:57:58,604 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,605 [INFO] --> minilisp.rs:1049:9
+2025-04-24 07:57:58,605 [INFO] |
+2025-04-24 07:57:58,605 [INFO] 1049 |         i;
+2025-04-24 07:57:58,605 [INFO] |         ^^
+2025-04-24 07:57:58,606 [INFO] 
+2025-04-24 07:57:58,606 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,607 [INFO] --> minilisp.rs:1076:9
+2025-04-24 07:57:58,607 [INFO] |
+2025-04-24 07:57:58,607 [INFO] 1076 |         i;
+2025-04-24 07:57:58,607 [INFO] |         ^^
+2025-04-24 07:57:58,608 [INFO] 
+2025-04-24 07:57:58,609 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,609 [INFO] --> minilisp.rs:1120:9
+2025-04-24 07:57:58,609 [INFO] |
+2025-04-24 07:57:58,610 [INFO] 1120 |         i;
+2025-04-24 07:57:58,610 [INFO] |         ^^
+2025-04-24 07:57:58,610 [INFO] 
+2025-04-24 07:57:58,611 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,612 [INFO] --> minilisp.rs:1150:9
+2025-04-24 07:57:58,612 [INFO] |
+2025-04-24 07:57:58,612 [INFO] 1150 |         i;
+2025-04-24 07:57:58,612 [INFO] |         ^^
+2025-04-24 07:57:58,613 [INFO] 
+2025-04-24 07:57:58,613 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,613 [INFO] --> minilisp.rs:1192:9
+2025-04-24 07:57:58,614 [INFO] |
+2025-04-24 07:57:58,614 [INFO] 1192 |         i;
+2025-04-24 07:57:58,615 [INFO] |         ^^
+2025-04-24 07:57:58,616 [INFO] 
+2025-04-24 07:57:58,616 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,617 [INFO] --> minilisp.rs:1235:13
+2025-04-24 07:57:58,617 [INFO] |
+2025-04-24 07:57:58,618 [INFO] 1235 |             i;
+2025-04-24 07:57:58,619 [INFO] |             ^^
+2025-04-24 07:57:58,620 [INFO] 
+2025-04-24 07:57:58,621 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,621 [INFO] --> minilisp.rs:1280:9
+2025-04-24 07:57:58,622 [INFO] |
+2025-04-24 07:57:58,622 [INFO] 1280 |         i;
+2025-04-24 07:57:58,624 [INFO] |         ^^
+2025-04-24 07:57:58,625 [INFO] 
+2025-04-24 07:57:58,625 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,625 [INFO] --> minilisp.rs:1330:17
+2025-04-24 07:57:58,626 [INFO] |
+2025-04-24 07:57:58,626 [INFO] 1330 |                 i;
+2025-04-24 07:57:58,626 [INFO] |                 ^^
+2025-04-24 07:57:58,626 [INFO] 
+2025-04-24 07:57:58,627 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,627 [INFO] --> minilisp.rs:1459:9
+2025-04-24 07:57:58,628 [INFO] |
+2025-04-24 07:57:58,628 [INFO] 1459 |         i;
+2025-04-24 07:57:58,628 [INFO] |         ^^
+2025-04-24 07:57:58,629 [INFO] 
+2025-04-24 07:57:58,629 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,630 [INFO] --> minilisp.rs:1498:9
+2025-04-24 07:57:58,630 [INFO] |
+2025-04-24 07:57:58,630 [INFO] 1498 |         i;
+2025-04-24 07:57:58,632 [INFO] |         ^^
+2025-04-24 07:57:58,632 [INFO] 
+2025-04-24 07:57:58,632 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,633 [INFO] --> minilisp.rs:1541:9
+2025-04-24 07:57:58,633 [INFO] |
+2025-04-24 07:57:58,634 [INFO] 1541 |         i;
+2025-04-24 07:57:58,634 [INFO] |         ^^
+2025-04-24 07:57:58,635 [INFO] 
+2025-04-24 07:57:58,637 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,638 [INFO] --> minilisp.rs:1699:9
+2025-04-24 07:57:58,638 [INFO] |
+2025-04-24 07:57:58,638 [INFO] 1699 |         i;
+2025-04-24 07:57:58,638 [INFO] |         ^^
+2025-04-24 07:57:58,639 [INFO] 
+2025-04-24 07:57:58,641 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,642 [INFO] --> minilisp.rs:1742:9
+2025-04-24 07:57:58,642 [INFO] |
+2025-04-24 07:57:58,642 [INFO] 1742 |         i;
+2025-04-24 07:57:58,643 [INFO] |         ^^
+2025-04-24 07:57:58,643 [INFO] 
+2025-04-24 07:57:58,643 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,644 [INFO] --> minilisp.rs:1789:9
+2025-04-24 07:57:58,644 [INFO] |
+2025-04-24 07:57:58,644 [INFO] 1789 |         i;
+2025-04-24 07:57:58,644 [INFO] |         ^^
+2025-04-24 07:57:58,645 [INFO] 
+2025-04-24 07:57:58,647 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,647 [INFO] --> minilisp.rs:1833:9
+2025-04-24 07:57:58,648 [INFO] |
+2025-04-24 07:57:58,648 [INFO] 1833 |         i;
+2025-04-24 07:57:58,648 [INFO] |         ^^
+2025-04-24 07:57:58,649 [INFO] 
+2025-04-24 07:57:58,649 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,649 [INFO] --> minilisp.rs:1855:9
+2025-04-24 07:57:58,649 [INFO] |
+2025-04-24 07:57:58,650 [INFO] 1855 |         i;
+2025-04-24 07:57:58,650 [INFO] |         ^^
+2025-04-24 07:57:58,650 [INFO] 
+2025-04-24 07:57:58,650 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,653 [INFO] --> minilisp.rs:1884:9
+2025-04-24 07:57:58,653 [INFO] |
+2025-04-24 07:57:58,654 [INFO] 1884 |         i;
+2025-04-24 07:57:58,654 [INFO] |         ^^
+2025-04-24 07:57:58,654 [INFO] 
+2025-04-24 07:57:58,654 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,655 [INFO] --> minilisp.rs:1975:9
+2025-04-24 07:57:58,655 [INFO] |
+2025-04-24 07:57:58,656 [INFO] 1975 |         i;
+2025-04-24 07:57:58,656 [INFO] |         ^^
+2025-04-24 07:57:58,656 [INFO] 
+2025-04-24 07:57:58,656 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,657 [INFO] --> minilisp.rs:2000:9
+2025-04-24 07:57:58,657 [INFO] |
+2025-04-24 07:57:58,657 [INFO] 2000 |         i;
+2025-04-24 07:57:58,657 [INFO] |         ^^
+2025-04-24 07:57:58,658 [INFO] 
+2025-04-24 07:57:58,660 [INFO] warning: path statement with no effect
+2025-04-24 07:57:58,660 [INFO] --> minilisp.rs:2299:9
+2025-04-24 07:57:58,660 [INFO] |
+2025-04-24 07:57:58,660 [INFO] 2299 |         i;
+2025-04-24 07:57:58,661 [INFO] |         ^^
+2025-04-24 07:57:58,661 [INFO] 
+2025-04-24 07:57:58,783 [INFO] warning: `c2rust_out` (lib) generated 36 warnings
+2025-04-24 07:57:58,784 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.58s
+2025-05-04 20:39:02,743 [INFO] Running: c2rust transpile -e compile_commands.json
+2025-05-04 20:39:02,989 [INFO] c2rust transpile succeeded
+2025-05-04 20:39:02,990 [INFO] Running: cargo build
+2025-05-04 20:39:03,234 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+2025-05-04 20:39:03,817 [INFO] warning: unused label
+2025-05-04 20:39:03,817 [INFO] --> minilisp.rs:322:5
+2025-05-04 20:39:03,817 [INFO] |
+2025-05-04 20:39:03,818 [INFO] 322 |     'c_3062: {
+2025-05-04 20:39:03,818 [INFO] |     ^^^^^^^
+2025-05-04 20:39:03,818 [INFO] |
+2025-05-04 20:39:03,818 [INFO] = note: `#[warn(unused_labels)]` on by default
+2025-05-04 20:39:03,818 [INFO] 
+2025-05-04 20:39:03,818 [INFO] warning: unused label
+2025-05-04 20:39:03,819 [INFO] --> minilisp.rs:474:5
+2025-05-04 20:39:03,819 [INFO] |
+2025-05-04 20:39:03,819 [INFO] 474 |     'c_3428: {
+2025-05-04 20:39:03,819 [INFO] |     ^^^^^^^
+2025-05-04 20:39:03,820 [INFO] 
+2025-05-04 20:39:03,878 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:03,878 [INFO] --> minilisp.rs:986:9
+2025-05-04 20:39:03,878 [INFO] |
+2025-05-04 20:39:03,879 [INFO] 986 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:03,879 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:03,879 [INFO] |
+2025-05-04 20:39:03,879 [INFO] = note: `#[warn(unused_variables)]` on by default
+2025-05-04 20:39:03,879 [INFO] 
+2025-05-04 20:39:03,880 [INFO] warning: unused variable: `root`
+2025-05-04 20:39:03,880 [INFO] --> minilisp.rs:1173:9
+2025-05-04 20:39:03,880 [INFO] |
+2025-05-04 20:39:03,880 [INFO] 1173 |     mut root: *mut libc::c_void,
+2025-05-04 20:39:03,880 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+2025-05-04 20:39:03,880 [INFO] 
+2025-05-04 20:39:03,881 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:03,881 [INFO] --> minilisp.rs:1174:9
+2025-05-04 20:39:03,881 [INFO] |
+2025-05-04 20:39:03,881 [INFO] 1174 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:03,881 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:03,881 [INFO] 
+2025-05-04 20:39:03,882 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:03,882 [INFO] --> minilisp.rs:1359:9
+2025-05-04 20:39:03,882 [INFO] |
+2025-05-04 20:39:03,882 [INFO] 1359 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:03,882 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:03,883 [INFO] 
+2025-05-04 20:39:03,883 [INFO] warning: unused variable: `list`
+2025-05-04 20:39:03,883 [INFO] --> minilisp.rs:1360:9
+2025-05-04 20:39:03,884 [INFO] |
+2025-05-04 20:39:03,884 [INFO] 1360 |     mut list: *mut *mut Obj,
+2025-05-04 20:39:03,884 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+2025-05-04 20:39:03,884 [INFO] 
+2025-05-04 20:39:03,884 [INFO] warning: unused variable: `argc`
+2025-05-04 20:39:03,885 [INFO] --> minilisp.rs:2065:9
+2025-05-04 20:39:03,885 [INFO] |
+2025-05-04 20:39:03,885 [INFO] 2065 |     mut argc: libc::c_int,
+2025-05-04 20:39:03,885 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+2025-05-04 20:39:03,886 [INFO] 
+2025-05-04 20:39:03,886 [INFO] warning: unused variable: `argv`
+2025-05-04 20:39:03,886 [INFO] --> minilisp.rs:2066:9
+2025-05-04 20:39:03,886 [INFO] |
+2025-05-04 20:39:03,886 [INFO] 2066 |     mut argv: *mut *mut libc::c_char,
+2025-05-04 20:39:03,887 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+2025-05-04 20:39:03,887 [INFO] 
+2025-05-04 20:39:03,914 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,914 [INFO] --> minilisp.rs:304:13
+2025-05-04 20:39:03,915 [INFO] |
+2025-05-04 20:39:03,915 [INFO] 304 |             i;
+2025-05-04 20:39:03,915 [INFO] |             ^^
+2025-05-04 20:39:03,915 [INFO] |
+2025-05-04 20:39:03,916 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-05-04 20:39:03,916 [INFO] 
+2025-05-04 20:39:03,916 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,916 [INFO] --> minilisp.rs:529:9
+2025-05-04 20:39:03,916 [INFO] |
+2025-05-04 20:39:03,917 [INFO] 529 |         i;
+2025-05-04 20:39:03,917 [INFO] |         ^^
+2025-05-04 20:39:03,917 [INFO] 
+2025-05-04 20:39:03,917 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,917 [INFO] --> minilisp.rs:580:9
+2025-05-04 20:39:03,918 [INFO] |
+2025-05-04 20:39:03,918 [INFO] 580 |         i;
+2025-05-04 20:39:03,918 [INFO] |         ^^
+2025-05-04 20:39:03,918 [INFO] 
+2025-05-04 20:39:03,918 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,919 [INFO] --> minilisp.rs:642:9
+2025-05-04 20:39:03,919 [INFO] |
+2025-05-04 20:39:03,919 [INFO] 642 |         i;
+2025-05-04 20:39:03,920 [INFO] |         ^^
+2025-05-04 20:39:03,920 [INFO] 
+2025-05-04 20:39:03,920 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,920 [INFO] --> minilisp.rs:661:9
+2025-05-04 20:39:03,920 [INFO] |
+2025-05-04 20:39:03,921 [INFO] 661 |         i;
+2025-05-04 20:39:03,921 [INFO] |         ^^
+2025-05-04 20:39:03,922 [INFO] 
+2025-05-04 20:39:03,922 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,922 [INFO] --> minilisp.rs:836:9
+2025-05-04 20:39:03,922 [INFO] |
+2025-05-04 20:39:03,922 [INFO] 836 |         len;
+2025-05-04 20:39:03,923 [INFO] |         ^^^^
+2025-05-04 20:39:03,924 [INFO] 
+2025-05-04 20:39:03,924 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,924 [INFO] --> minilisp.rs:853:9
+2025-05-04 20:39:03,924 [INFO] |
+2025-05-04 20:39:03,925 [INFO] 853 |         i;
+2025-05-04 20:39:03,925 [INFO] |         ^^
+2025-05-04 20:39:03,925 [INFO] 
+2025-05-04 20:39:03,925 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,925 [INFO] --> minilisp.rs:880:9
+2025-05-04 20:39:03,926 [INFO] |
+2025-05-04 20:39:03,926 [INFO] 880 |         i;
+2025-05-04 20:39:03,926 [INFO] |         ^^
+2025-05-04 20:39:03,927 [INFO] 
+2025-05-04 20:39:03,927 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,928 [INFO] --> minilisp.rs:924:9
+2025-05-04 20:39:03,928 [INFO] |
+2025-05-04 20:39:03,928 [INFO] 924 |         i;
+2025-05-04 20:39:03,938 [INFO] |         ^^
+2025-05-04 20:39:03,940 [INFO] 
+2025-05-04 20:39:03,942 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,942 [INFO] --> minilisp.rs:954:9
+2025-05-04 20:39:03,942 [INFO] |
+2025-05-04 20:39:03,943 [INFO] 954 |         i;
+2025-05-04 20:39:03,943 [INFO] |         ^^
+2025-05-04 20:39:03,943 [INFO] 
+2025-05-04 20:39:03,943 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,944 [INFO] --> minilisp.rs:996:9
+2025-05-04 20:39:03,944 [INFO] |
+2025-05-04 20:39:03,945 [INFO] 996 |         i;
+2025-05-04 20:39:03,945 [INFO] |         ^^
+2025-05-04 20:39:03,946 [INFO] 
+2025-05-04 20:39:03,946 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,946 [INFO] --> minilisp.rs:1039:13
+2025-05-04 20:39:03,946 [INFO] |
+2025-05-04 20:39:03,947 [INFO] 1039 |             i;
+2025-05-04 20:39:03,947 [INFO] |             ^^
+2025-05-04 20:39:03,947 [INFO] 
+2025-05-04 20:39:03,948 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,949 [INFO] --> minilisp.rs:1083:9
+2025-05-04 20:39:03,949 [INFO] |
+2025-05-04 20:39:03,950 [INFO] 1083 |         i;
+2025-05-04 20:39:03,950 [INFO] |         ^^
+2025-05-04 20:39:03,950 [INFO] 
+2025-05-04 20:39:03,951 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,951 [INFO] --> minilisp.rs:1132:17
+2025-05-04 20:39:03,952 [INFO] |
+2025-05-04 20:39:03,952 [INFO] 1132 |                 i;
+2025-05-04 20:39:03,953 [INFO] |                 ^^
+2025-05-04 20:39:03,953 [INFO] 
+2025-05-04 20:39:03,953 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,954 [INFO] --> minilisp.rs:1258:9
+2025-05-04 20:39:03,954 [INFO] |
+2025-05-04 20:39:03,954 [INFO] 1258 |         i;
+2025-05-04 20:39:03,954 [INFO] |         ^^
+2025-05-04 20:39:03,955 [INFO] 
+2025-05-04 20:39:03,955 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,956 [INFO] --> minilisp.rs:1297:9
+2025-05-04 20:39:03,956 [INFO] |
+2025-05-04 20:39:03,957 [INFO] 1297 |         i;
+2025-05-04 20:39:03,957 [INFO] |         ^^
+2025-05-04 20:39:03,958 [INFO] 
+2025-05-04 20:39:03,958 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,958 [INFO] --> minilisp.rs:1339:9
+2025-05-04 20:39:03,958 [INFO] |
+2025-05-04 20:39:03,959 [INFO] 1339 |         i;
+2025-05-04 20:39:03,960 [INFO] |         ^^
+2025-05-04 20:39:03,960 [INFO] 
+2025-05-04 20:39:03,960 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,960 [INFO] --> minilisp.rs:1488:9
+2025-05-04 20:39:03,961 [INFO] |
+2025-05-04 20:39:03,961 [INFO] 1488 |         i;
+2025-05-04 20:39:03,961 [INFO] |         ^^
+2025-05-04 20:39:03,961 [INFO] 
+2025-05-04 20:39:03,962 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,962 [INFO] --> minilisp.rs:1529:9
+2025-05-04 20:39:03,962 [INFO] |
+2025-05-04 20:39:03,963 [INFO] 1529 |         i;
+2025-05-04 20:39:03,963 [INFO] |         ^^
+2025-05-04 20:39:03,964 [INFO] 
+2025-05-04 20:39:03,964 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,965 [INFO] --> minilisp.rs:1575:9
+2025-05-04 20:39:03,965 [INFO] |
+2025-05-04 20:39:03,965 [INFO] 1575 |         i;
+2025-05-04 20:39:03,965 [INFO] |         ^^
+2025-05-04 20:39:03,967 [INFO] 
+2025-05-04 20:39:03,967 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,968 [INFO] --> minilisp.rs:1619:9
+2025-05-04 20:39:03,968 [INFO] |
+2025-05-04 20:39:03,968 [INFO] 1619 |         i;
+2025-05-04 20:39:03,970 [INFO] |         ^^
+2025-05-04 20:39:03,970 [INFO] 
+2025-05-04 20:39:03,970 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,970 [INFO] --> minilisp.rs:1641:9
+2025-05-04 20:39:03,971 [INFO] |
+2025-05-04 20:39:03,972 [INFO] 1641 |         i;
+2025-05-04 20:39:03,972 [INFO] |         ^^
+2025-05-04 20:39:03,972 [INFO] 
+2025-05-04 20:39:03,972 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,973 [INFO] --> minilisp.rs:1670:9
+2025-05-04 20:39:03,973 [INFO] |
+2025-05-04 20:39:03,974 [INFO] 1670 |         i;
+2025-05-04 20:39:03,974 [INFO] |         ^^
+2025-05-04 20:39:03,974 [INFO] 
+2025-05-04 20:39:03,974 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,976 [INFO] --> minilisp.rs:1759:9
+2025-05-04 20:39:03,976 [INFO] |
+2025-05-04 20:39:03,977 [INFO] 1759 |         i;
+2025-05-04 20:39:03,977 [INFO] |         ^^
+2025-05-04 20:39:03,977 [INFO] 
+2025-05-04 20:39:03,977 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,977 [INFO] --> minilisp.rs:1784:9
+2025-05-04 20:39:03,977 [INFO] |
+2025-05-04 20:39:03,977 [INFO] 1784 |         i;
+2025-05-04 20:39:03,978 [INFO] |         ^^
+2025-05-04 20:39:03,978 [INFO] 
+2025-05-04 20:39:03,978 [INFO] warning: path statement with no effect
+2025-05-04 20:39:03,978 [INFO] --> minilisp.rs:2083:9
+2025-05-04 20:39:03,979 [INFO] |
+2025-05-04 20:39:03,979 [INFO] 2083 |         i;
+2025-05-04 20:39:03,979 [INFO] |         ^^
+2025-05-04 20:39:03,979 [INFO] 
+2025-05-04 20:39:04,157 [INFO] warning: `c2rust_out` (lib) generated 35 warnings
+2025-05-04 20:39:04,157 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.95s
+2025-05-04 20:39:04,161 [INFO] Running: cargo build
+2025-05-04 20:39:04,434 [INFO] Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+2025-05-04 20:39:04,719 [INFO] warning: unused label
+2025-05-04 20:39:04,719 [INFO] --> minilisp.rs:493:5
+2025-05-04 20:39:04,719 [INFO] |
+2025-05-04 20:39:04,719 [INFO] 493 |     'c_3062: {
+2025-05-04 20:39:04,719 [INFO] |     ^^^^^^^
+2025-05-04 20:39:04,719 [INFO] |
+2025-05-04 20:39:04,719 [INFO] = note: `#[warn(unused_labels)]` on by default
+2025-05-04 20:39:04,719 [INFO] 
+2025-05-04 20:39:04,720 [INFO] warning: unused label
+2025-05-04 20:39:04,720 [INFO] --> minilisp.rs:632:5
+2025-05-04 20:39:04,720 [INFO] |
+2025-05-04 20:39:04,720 [INFO] 632 |     'c_3428: {
+2025-05-04 20:39:04,721 [INFO] |     ^^^^^^^
+2025-05-04 20:39:04,721 [INFO] 
+2025-05-04 20:39:04,729 [INFO] warning: crate-level attribute should be in the root module
+2025-05-04 20:39:04,729 [INFO] --> minilisp.rs:10:1
+2025-05-04 20:39:04,729 [INFO] |
+2025-05-04 20:39:04,730 [INFO] 10 | #![feature(c_variadic, label_break_value)]
+2025-05-04 20:39:04,730 [INFO] | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2025-05-04 20:39:04,730 [INFO] |
+2025-05-04 20:39:04,730 [INFO] = note: `#[warn(unused_attributes)]` on by default
+2025-05-04 20:39:04,730 [INFO] 
+2025-05-04 20:39:04,794 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:04,794 [INFO] --> minilisp.rs:1098:9
+2025-05-04 20:39:04,794 [INFO] |
+2025-05-04 20:39:04,794 [INFO] 1098 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:04,795 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:04,795 [INFO] |
+2025-05-04 20:39:04,795 [INFO] = note: `#[warn(unused_variables)]` on by default
+2025-05-04 20:39:04,795 [INFO] 
+2025-05-04 20:39:04,796 [INFO] warning: unused variable: `root`
+2025-05-04 20:39:04,796 [INFO] --> minilisp.rs:1276:9
+2025-05-04 20:39:04,796 [INFO] |
+2025-05-04 20:39:04,796 [INFO] 1276 |     mut root: *mut libc::c_void,
+2025-05-04 20:39:04,796 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+2025-05-04 20:39:04,797 [INFO] 
+2025-05-04 20:39:04,797 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:04,797 [INFO] --> minilisp.rs:1277:9
+2025-05-04 20:39:04,797 [INFO] |
+2025-05-04 20:39:04,797 [INFO] 1277 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:04,797 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:04,797 [INFO] 
+2025-05-04 20:39:04,798 [INFO] warning: unused variable: `env`
+2025-05-04 20:39:04,798 [INFO] --> minilisp.rs:1442:9
+2025-05-04 20:39:04,798 [INFO] |
+2025-05-04 20:39:04,798 [INFO] 1442 |     mut env: *mut *mut Obj,
+2025-05-04 20:39:04,798 [INFO] |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+2025-05-04 20:39:04,798 [INFO] 
+2025-05-04 20:39:04,798 [INFO] warning: unused variable: `list`
+2025-05-04 20:39:04,798 [INFO] --> minilisp.rs:1443:9
+2025-05-04 20:39:04,799 [INFO] |
+2025-05-04 20:39:04,799 [INFO] 1443 |     mut list: *mut *mut Obj,
+2025-05-04 20:39:04,799 [INFO] |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+2025-05-04 20:39:04,800 [INFO] 
+2025-05-04 20:39:04,800 [INFO] warning: unused variable: `argc`
+2025-05-04 20:39:04,800 [INFO] --> minilisp.rs:2103:22
+2025-05-04 20:39:04,800 [INFO] |
+2025-05-04 20:39:04,801 [INFO] 2103 | unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
+2025-05-04 20:39:04,801 [INFO] |                      ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+2025-05-04 20:39:04,801 [INFO] 
+2025-05-04 20:39:04,801 [INFO] warning: unused variable: `argv`
+2025-05-04 20:39:04,802 [INFO] --> minilisp.rs:2103:37
+2025-05-04 20:39:04,803 [INFO] |
+2025-05-04 20:39:04,803 [INFO] 2103 | unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
+2025-05-04 20:39:04,803 [INFO] |                                     ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+2025-05-04 20:39:04,803 [INFO] 
+2025-05-04 20:39:04,858 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,858 [INFO] --> minilisp.rs:478:13
+2025-05-04 20:39:04,859 [INFO] |
+2025-05-04 20:39:04,859 [INFO] 478 |             i;
+2025-05-04 20:39:04,859 [INFO] |             ^^
+2025-05-04 20:39:04,859 [INFO] |
+2025-05-04 20:39:04,859 [INFO] = note: `#[warn(path_statements)]` on by default
+2025-05-04 20:39:04,859 [INFO] 
+2025-05-04 20:39:04,860 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,860 [INFO] --> minilisp.rs:686:9
+2025-05-04 20:39:04,860 [INFO] |
+2025-05-04 20:39:04,860 [INFO] 686 |         i;
+2025-05-04 20:39:04,860 [INFO] |         ^^
+2025-05-04 20:39:04,860 [INFO] 
+2025-05-04 20:39:04,861 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,861 [INFO] --> minilisp.rs:735:9
+2025-05-04 20:39:04,861 [INFO] |
+2025-05-04 20:39:04,861 [INFO] 735 |         i;
+2025-05-04 20:39:04,861 [INFO] |         ^^
+2025-05-04 20:39:04,861 [INFO] 
+2025-05-04 20:39:04,861 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,861 [INFO] --> minilisp.rs:787:9
+2025-05-04 20:39:04,862 [INFO] |
+2025-05-04 20:39:04,862 [INFO] 787 |         i;
+2025-05-04 20:39:04,862 [INFO] |         ^^
+2025-05-04 20:39:04,862 [INFO] 
+2025-05-04 20:39:04,862 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,863 [INFO] --> minilisp.rs:804:9
+2025-05-04 20:39:04,863 [INFO] |
+2025-05-04 20:39:04,863 [INFO] 804 |         i;
+2025-05-04 20:39:04,863 [INFO] |         ^^
+2025-05-04 20:39:04,863 [INFO] 
+2025-05-04 20:39:04,864 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,864 [INFO] --> minilisp.rs:963:9
+2025-05-04 20:39:04,865 [INFO] |
+2025-05-04 20:39:04,865 [INFO] 963 |         len;
+2025-05-04 20:39:04,865 [INFO] |         ^^^^
+2025-05-04 20:39:04,865 [INFO] 
+2025-05-04 20:39:04,865 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,865 [INFO] --> minilisp.rs:980:9
+2025-05-04 20:39:04,866 [INFO] |
+2025-05-04 20:39:04,866 [INFO] 980 |         i;
+2025-05-04 20:39:04,866 [INFO] |         ^^
+2025-05-04 20:39:04,866 [INFO] 
+2025-05-04 20:39:04,866 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,866 [INFO] --> minilisp.rs:1004:9
+2025-05-04 20:39:04,867 [INFO] |
+2025-05-04 20:39:04,867 [INFO] 1004 |         i;
+2025-05-04 20:39:04,867 [INFO] |         ^^
+2025-05-04 20:39:04,867 [INFO] 
+2025-05-04 20:39:04,868 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,868 [INFO] --> minilisp.rs:1044:9
+2025-05-04 20:39:04,868 [INFO] |
+2025-05-04 20:39:04,868 [INFO] 1044 |         i;
+2025-05-04 20:39:04,869 [INFO] |         ^^
+2025-05-04 20:39:04,869 [INFO] 
+2025-05-04 20:39:04,870 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,870 [INFO] --> minilisp.rs:1071:9
+2025-05-04 20:39:04,871 [INFO] |
+2025-05-04 20:39:04,871 [INFO] 1071 |         i;
+2025-05-04 20:39:04,872 [INFO] |         ^^
+2025-05-04 20:39:04,872 [INFO] 
+2025-05-04 20:39:04,873 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,873 [INFO] --> minilisp.rs:1108:9
+2025-05-04 20:39:04,873 [INFO] |
+2025-05-04 20:39:04,874 [INFO] 1108 |         i;
+2025-05-04 20:39:04,874 [INFO] |         ^^
+2025-05-04 20:39:04,875 [INFO] 
+2025-05-04 20:39:04,875 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,875 [INFO] --> minilisp.rs:1144:13
+2025-05-04 20:39:04,875 [INFO] |
+2025-05-04 20:39:04,876 [INFO] 1144 |             i;
+2025-05-04 20:39:04,876 [INFO] |             ^^
+2025-05-04 20:39:04,876 [INFO] 
+2025-05-04 20:39:04,876 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,876 [INFO] --> minilisp.rs:1189:9
+2025-05-04 20:39:04,877 [INFO] |
+2025-05-04 20:39:04,877 [INFO] 1189 |         i;
+2025-05-04 20:39:04,877 [INFO] |         ^^
+2025-05-04 20:39:04,878 [INFO] 
+2025-05-04 20:39:04,878 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,879 [INFO] --> minilisp.rs:1235:17
+2025-05-04 20:39:04,879 [INFO] |
+2025-05-04 20:39:04,879 [INFO] 1235 |                 i;
+2025-05-04 20:39:04,879 [INFO] |                 ^^
+2025-05-04 20:39:04,879 [INFO] 
+2025-05-04 20:39:04,880 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,880 [INFO] --> minilisp.rs:1354:9
+2025-05-04 20:39:04,881 [INFO] |
+2025-05-04 20:39:04,881 [INFO] 1354 |         i;
+2025-05-04 20:39:04,881 [INFO] |         ^^
+2025-05-04 20:39:04,881 [INFO] 
+2025-05-04 20:39:04,881 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,882 [INFO] --> minilisp.rs:1389:9
+2025-05-04 20:39:04,882 [INFO] |
+2025-05-04 20:39:04,882 [INFO] 1389 |         i;
+2025-05-04 20:39:04,883 [INFO] |         ^^
+2025-05-04 20:39:04,883 [INFO] 
+2025-05-04 20:39:04,883 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,884 [INFO] --> minilisp.rs:1425:9
+2025-05-04 20:39:04,884 [INFO] |
+2025-05-04 20:39:04,885 [INFO] 1425 |         i;
+2025-05-04 20:39:04,885 [INFO] |         ^^
+2025-05-04 20:39:04,885 [INFO] 
+2025-05-04 20:39:04,886 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,886 [INFO] --> minilisp.rs:1560:9
+2025-05-04 20:39:04,886 [INFO] |
+2025-05-04 20:39:04,887 [INFO] 1560 |         i;
+2025-05-04 20:39:04,887 [INFO] |         ^^
+2025-05-04 20:39:04,889 [INFO] 
+2025-05-04 20:39:04,889 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,889 [INFO] --> minilisp.rs:1598:9
+2025-05-04 20:39:04,889 [INFO] |
+2025-05-04 20:39:04,889 [INFO] 1598 |         i;
+2025-05-04 20:39:04,889 [INFO] |         ^^
+2025-05-04 20:39:04,890 [INFO] 
+2025-05-04 20:39:04,890 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,890 [INFO] --> minilisp.rs:1638:9
+2025-05-04 20:39:04,890 [INFO] |
+2025-05-04 20:39:04,890 [INFO] 1638 |         i;
+2025-05-04 20:39:04,891 [INFO] |         ^^
+2025-05-04 20:39:04,892 [INFO] 
+2025-05-04 20:39:04,892 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,892 [INFO] --> minilisp.rs:1676:9
+2025-05-04 20:39:04,892 [INFO] |
+2025-05-04 20:39:04,892 [INFO] 1676 |         i;
+2025-05-04 20:39:04,893 [INFO] |         ^^
+2025-05-04 20:39:04,893 [INFO] 
+2025-05-04 20:39:04,893 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,894 [INFO] --> minilisp.rs:1696:9
+2025-05-04 20:39:04,894 [INFO] |
+2025-05-04 20:39:04,894 [INFO] 1696 |         i;
+2025-05-04 20:39:04,895 [INFO] |         ^^
+2025-05-04 20:39:04,895 [INFO] 
+2025-05-04 20:39:04,895 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,896 [INFO] --> minilisp.rs:1721:9
+2025-05-04 20:39:04,896 [INFO] |
+2025-05-04 20:39:04,897 [INFO] 1721 |         i;
+2025-05-04 20:39:04,897 [INFO] |         ^^
+2025-05-04 20:39:04,897 [INFO] 
+2025-05-04 20:39:04,898 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,899 [INFO] --> minilisp.rs:1803:9
+2025-05-04 20:39:04,899 [INFO] |
+2025-05-04 20:39:04,899 [INFO] 1803 |         i;
+2025-05-04 20:39:04,899 [INFO] |         ^^
+2025-05-04 20:39:04,900 [INFO] 
+2025-05-04 20:39:04,900 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,901 [INFO] --> minilisp.rs:1825:9
+2025-05-04 20:39:04,901 [INFO] |
+2025-05-04 20:39:04,901 [INFO] 1825 |         i;
+2025-05-04 20:39:04,901 [INFO] |         ^^
+2025-05-04 20:39:04,902 [INFO] 
+2025-05-04 20:39:04,903 [INFO] warning: path statement with no effect
+2025-05-04 20:39:04,903 [INFO] --> minilisp.rs:2115:9
+2025-05-04 20:39:04,903 [INFO] |
+2025-05-04 20:39:04,904 [INFO] 2115 |         i;
+2025-05-04 20:39:04,905 [INFO] |         ^^
+2025-05-04 20:39:04,905 [INFO] 
+2025-05-04 20:39:05,077 [INFO] warning: `c2rust_out` (lib) generated 36 warnings
+2025-05-04 20:39:05,077 [INFO] Finished dev [unoptimized + debuginfo] target(s) in 0.67s

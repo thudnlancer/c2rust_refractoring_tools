@@ -1,0 +1,2301 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+#![feature(asm)]
+use c2rust_asm_casts::AsmCastTrait;
+use core::arch::asm;
+extern "C" {
+    static mut stderr: *mut _IO_FILE;
+    fn fclose(__stream: *mut FILE) -> i32;
+    fn fopen(__filename: *const i8, __modes: *const i8) -> *mut FILE;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn sprintf(_: *mut i8, _: *const i8, _: ...) -> i32;
+    fn sscanf(_: *const i8, _: *const i8, _: ...) -> i32;
+    fn fread(
+        __ptr: *mut libc::c_void,
+        __size: size_t,
+        __n: size_t,
+        __stream: *mut FILE,
+    ) -> size_t;
+    fn fwrite(
+        __ptr: *const libc::c_void,
+        __size: size_t,
+        __n: size_t,
+        __s: *mut FILE,
+    ) -> size_t;
+    fn __errno_location() -> *mut i32;
+    fn exit(_: i32) -> !;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn memset(_: *mut libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strstr(_: *const i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
+    fn unlink(__name: *const i8) -> i32;
+    fn dcgettext(
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+}
+pub type size_t = u64;
+pub type __uint32_t = u32;
+pub type __dev_t = u64;
+pub type __uid_t = u32;
+pub type __gid_t = u32;
+pub type __ino_t = u64;
+pub type __mode_t = u32;
+pub type __nlink_t = u64;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __time_t = i64;
+pub type __blksize_t = i64;
+pub type __blkcnt_t = i64;
+pub type __ssize_t = i64;
+pub type __syscall_slong_t = i64;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_FILE {
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
+    pub _markers: *mut _IO_marker,
+    pub _chain: *mut _IO_FILE,
+    pub _fileno: i32,
+    pub _flags2: i32,
+    pub _old_offset: __off_t,
+    pub _cur_column: libc::c_ushort,
+    pub _vtable_offset: libc::c_schar,
+    pub _shortbuf: [i8; 1],
+    pub _lock: *mut libc::c_void,
+    pub _offset: __off64_t,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
+    pub __pad5: size_t,
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
+}
+pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
+pub type FILE = _IO_FILE;
+pub type ssize_t = __ssize_t;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct timespec {
+    pub tv_sec: __time_t,
+    pub tv_nsec: __syscall_slong_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct stat {
+    pub st_dev: __dev_t,
+    pub st_ino: __ino_t,
+    pub st_nlink: __nlink_t,
+    pub st_mode: __mode_t,
+    pub st_uid: __uid_t,
+    pub st_gid: __gid_t,
+    pub __pad0: i32,
+    pub st_rdev: __dev_t,
+    pub st_size: __off_t,
+    pub st_blksize: __blksize_t,
+    pub st_blocks: __blkcnt_t,
+    pub st_atim: timespec,
+    pub st_mtim: timespec,
+    pub st_ctim: timespec,
+    pub __glibc_reserved: [__syscall_slong_t; 3],
+}
+pub type uint32_t = __uint32_t;
+pub type awk_bool = u32;
+pub const awk_true: awk_bool = 1;
+pub const awk_false: awk_bool = 0;
+pub type awk_bool_t = awk_bool;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_fieldwidth_info_t {
+    pub use_chars: awk_bool_t,
+    pub nf: size_t,
+    pub fields: [awk_field_info; 1],
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_field_info {
+    pub skip: size_t,
+    pub len: size_t,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_input {
+    pub name: *const i8,
+    pub fd: i32,
+    pub opaque: *mut libc::c_void,
+    pub get_record: Option<
+        unsafe extern "C" fn(
+            *mut *mut i8,
+            *mut awk_input,
+            *mut i32,
+            *mut *mut i8,
+            *mut size_t,
+            *mut *const awk_fieldwidth_info_t,
+        ) -> i32,
+    >,
+    pub read_func: Option<
+        unsafe extern "C" fn(i32, *mut libc::c_void, size_t) -> ssize_t,
+    >,
+    pub close_func: Option<unsafe extern "C" fn(*mut awk_input) -> ()>,
+    pub sbuf: stat,
+}
+pub type awk_input_buf_t = awk_input;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_input_parser {
+    pub name: *const i8,
+    pub can_take_file: Option<
+        unsafe extern "C" fn(*const awk_input_buf_t) -> awk_bool_t,
+    >,
+    pub take_control_of: Option<
+        unsafe extern "C" fn(*mut awk_input_buf_t) -> awk_bool_t,
+    >,
+    pub next: *const awk_input_parser,
+}
+pub type awk_input_parser_t = awk_input_parser;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_output_buf {
+    pub name: *const i8,
+    pub mode: *const i8,
+    pub fp: *mut FILE,
+    pub redirected: awk_bool_t,
+    pub opaque: *mut libc::c_void,
+    pub gawk_fwrite: Option<
+        unsafe extern "C" fn(
+            *const libc::c_void,
+            size_t,
+            size_t,
+            *mut FILE,
+            *mut libc::c_void,
+        ) -> size_t,
+    >,
+    pub gawk_fflush: Option<unsafe extern "C" fn(*mut FILE, *mut libc::c_void) -> i32>,
+    pub gawk_ferror: Option<unsafe extern "C" fn(*mut FILE, *mut libc::c_void) -> i32>,
+    pub gawk_fclose: Option<unsafe extern "C" fn(*mut FILE, *mut libc::c_void) -> i32>,
+}
+pub type awk_output_buf_t = awk_output_buf;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_output_wrapper {
+    pub name: *const i8,
+    pub can_take_file: Option<
+        unsafe extern "C" fn(*const awk_output_buf_t) -> awk_bool_t,
+    >,
+    pub take_control_of: Option<
+        unsafe extern "C" fn(*mut awk_output_buf_t) -> awk_bool_t,
+    >,
+    pub next: *const awk_output_wrapper,
+}
+pub type awk_output_wrapper_t = awk_output_wrapper;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_two_way_processor {
+    pub name: *const i8,
+    pub can_take_two_way: Option<unsafe extern "C" fn(*const i8) -> awk_bool_t>,
+    pub take_control_of: Option<
+        unsafe extern "C" fn(
+            *const i8,
+            *mut awk_input_buf_t,
+            *mut awk_output_buf_t,
+        ) -> awk_bool_t,
+    >,
+    pub next: *const awk_two_way_processor,
+}
+pub type awk_two_way_processor_t = awk_two_way_processor;
+pub type C2RustUnnamed = u32;
+pub const GAWK_API_MINOR_VERSION: C2RustUnnamed = 2;
+pub const GAWK_API_MAJOR_VERSION: C2RustUnnamed = 3;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_string {
+    pub str_0: *mut i8,
+    pub len: size_t,
+}
+pub type awk_string_t = awk_string;
+pub type AWK_NUMBER_TYPE = u32;
+pub const AWK_NUMBER_TYPE_MPZ: AWK_NUMBER_TYPE = 2;
+pub const AWK_NUMBER_TYPE_MPFR: AWK_NUMBER_TYPE = 1;
+pub const AWK_NUMBER_TYPE_DOUBLE: AWK_NUMBER_TYPE = 0;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_number {
+    pub d: libc::c_double,
+    pub type_0: AWK_NUMBER_TYPE,
+    pub ptr: *mut libc::c_void,
+}
+pub type awk_number_t = awk_number;
+pub type awk_array_t = *mut libc::c_void;
+pub type awk_scalar_t = *mut libc::c_void;
+pub type awk_value_cookie_t = *mut libc::c_void;
+pub type awk_valtype_t = u32;
+pub const AWK_BOOL: awk_valtype_t = 8;
+pub const AWK_VALUE_COOKIE: awk_valtype_t = 7;
+pub const AWK_SCALAR: awk_valtype_t = 6;
+pub const AWK_ARRAY: awk_valtype_t = 5;
+pub const AWK_STRNUM: awk_valtype_t = 4;
+pub const AWK_REGEX: awk_valtype_t = 3;
+pub const AWK_STRING: awk_valtype_t = 2;
+pub const AWK_NUMBER: awk_valtype_t = 1;
+pub const AWK_UNDEFINED: awk_valtype_t = 0;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_value {
+    pub val_type: awk_valtype_t,
+    pub u: C2RustUnnamed_0,
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub union C2RustUnnamed_0 {
+    pub s: awk_string_t,
+    pub n: awk_number_t,
+    pub a: awk_array_t,
+    pub scl: awk_scalar_t,
+    pub vc: awk_value_cookie_t,
+    pub b: awk_bool_t,
+}
+pub type awk_value_t = awk_value;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_element {
+    pub next: *mut awk_element,
+    pub flags: C2RustUnnamed_1,
+    pub index: awk_value_t,
+    pub value: awk_value_t,
+}
+pub type C2RustUnnamed_1 = u32;
+pub const AWK_ELEMENT_DELETE: C2RustUnnamed_1 = 1;
+pub const AWK_ELEMENT_DEFAULT: C2RustUnnamed_1 = 0;
+pub type awk_element_t = awk_element;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_flat_array {
+    pub opaque1: *const libc::c_void,
+    pub opaque2: *const libc::c_void,
+    pub count: size_t,
+    pub elements: [awk_element_t; 1],
+}
+pub type awk_flat_array_t = awk_flat_array;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct awk_ext_func {
+    pub name: *const i8,
+    pub function: Option<
+        unsafe extern "C" fn(
+            i32,
+            *mut awk_value_t,
+            *mut awk_ext_func,
+        ) -> *mut awk_value_t,
+    >,
+    pub max_expected_args: size_t,
+    pub min_required_args: size_t,
+    pub suppress_lint: awk_bool_t,
+    pub data: *mut libc::c_void,
+}
+pub type awk_ext_func_t = awk_ext_func;
+pub type awk_ext_id_t = *mut libc::c_void;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct gawk_api {
+    pub major_version: i32,
+    pub minor_version: i32,
+    pub gmp_major_version: i32,
+    pub gmp_minor_version: i32,
+    pub mpfr_major_version: i32,
+    pub mpfr_minor_version: i32,
+    pub do_flags: [i32; 6],
+    pub api_add_ext_func: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *const i8, *mut awk_ext_func_t) -> awk_bool_t,
+    >,
+    pub api_register_input_parser: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *mut awk_input_parser_t) -> (),
+    >,
+    pub api_register_output_wrapper: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *mut awk_output_wrapper_t) -> (),
+    >,
+    pub api_register_two_way_processor: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *mut awk_two_way_processor_t) -> (),
+    >,
+    pub api_awk_atexit: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            Option<unsafe extern "C" fn(*mut libc::c_void, i32) -> ()>,
+            *mut libc::c_void,
+        ) -> (),
+    >,
+    pub api_register_ext_version: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *const i8) -> (),
+    >,
+    pub api_fatal: Option<unsafe extern "C" fn(awk_ext_id_t, *const i8, ...) -> ()>,
+    pub api_warning: Option<unsafe extern "C" fn(awk_ext_id_t, *const i8, ...) -> ()>,
+    pub api_lintwarn: Option<unsafe extern "C" fn(awk_ext_id_t, *const i8, ...) -> ()>,
+    pub api_nonfatal: Option<unsafe extern "C" fn(awk_ext_id_t, *const i8, ...) -> ()>,
+    pub api_update_ERRNO_int: Option<unsafe extern "C" fn(awk_ext_id_t, i32) -> ()>,
+    pub api_update_ERRNO_string: Option<
+        unsafe extern "C" fn(awk_ext_id_t, *const i8) -> (),
+    >,
+    pub api_unset_ERRNO: Option<unsafe extern "C" fn(awk_ext_id_t) -> ()>,
+    pub api_get_argument: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            size_t,
+            awk_valtype_t,
+            *mut awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_set_argument: Option<
+        unsafe extern "C" fn(awk_ext_id_t, size_t, awk_array_t) -> awk_bool_t,
+    >,
+    pub api_sym_lookup: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            *const i8,
+            *const i8,
+            awk_valtype_t,
+            *mut awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_sym_update: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            *const i8,
+            *const i8,
+            *mut awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_sym_lookup_scalar: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            awk_scalar_t,
+            awk_valtype_t,
+            *mut awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_sym_update_scalar: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_scalar_t, *mut awk_value_t) -> awk_bool_t,
+    >,
+    pub api_create_value: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            *mut awk_value_t,
+            *mut awk_value_cookie_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_release_value: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_value_cookie_t) -> awk_bool_t,
+    >,
+    pub api_get_element_count: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_array_t, *mut size_t) -> awk_bool_t,
+    >,
+    pub api_get_array_element: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            awk_array_t,
+            *const awk_value_t,
+            awk_valtype_t,
+            *mut awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_set_array_element: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            awk_array_t,
+            *const awk_value_t,
+            *const awk_value_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_del_array_element: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_array_t, *const awk_value_t) -> awk_bool_t,
+    >,
+    pub api_create_array: Option<unsafe extern "C" fn(awk_ext_id_t) -> awk_array_t>,
+    pub api_clear_array: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_array_t) -> awk_bool_t,
+    >,
+    pub api_flatten_array_typed: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            awk_array_t,
+            *mut *mut awk_flat_array_t,
+            awk_valtype_t,
+            awk_valtype_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_release_flattened_array: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            awk_array_t,
+            *mut awk_flat_array_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_malloc: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub api_calloc: Option<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
+    pub api_realloc: Option<
+        unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
+    >,
+    pub api_free: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub api_get_mpfr: Option<unsafe extern "C" fn(awk_ext_id_t) -> *mut libc::c_void>,
+    pub api_get_mpz: Option<unsafe extern "C" fn(awk_ext_id_t) -> *mut libc::c_void>,
+    pub api_get_file: Option<
+        unsafe extern "C" fn(
+            awk_ext_id_t,
+            *const i8,
+            size_t,
+            *const i8,
+            i32,
+            *mut *const awk_input_buf_t,
+            *mut *const awk_output_buf_t,
+        ) -> awk_bool_t,
+    >,
+    pub api_destroy_array: Option<
+        unsafe extern "C" fn(awk_ext_id_t, awk_array_t) -> awk_bool_t,
+    >,
+}
+pub type gawk_api_t = gawk_api;
+pub type value_storage = i32;
+#[inline]
+unsafe extern "C" fn r_make_string_type(
+    mut api_0: *const gawk_api_t,
+    mut ext_id_0: awk_ext_id_t,
+    mut string: *const i8,
+    mut length: size_t,
+    mut duplicate: awk_bool_t,
+    mut result: *mut awk_value_t,
+    mut val_type: awk_valtype_t,
+) -> *mut awk_value_t {
+    let mut cp: *mut i8 = 0 as *mut i8;
+    memset(
+        result as *mut libc::c_void,
+        0 as i32,
+        ::core::mem::size_of::<awk_value_t>() as u64,
+    );
+    (*result).val_type = val_type;
+    (*result).u.s.len = length;
+    if duplicate as u64 != 0 {
+        cp = ((*api_0).api_malloc)
+            .expect("non-null function pointer")(length.wrapping_add(1 as i32 as u64))
+            as *mut i8;
+        if cp.is_null() {
+            ((*api_0).api_fatal)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id_0,
+                b"%s: malloc of %d bytes failed\0" as *const u8 as *const i8,
+                b"r_make_string\0" as *const u8 as *const i8,
+                length.wrapping_add(1 as i32 as u64),
+            );
+        }
+        memcpy(cp as *mut libc::c_void, string as *const libc::c_void, length);
+        *cp.offset(length as isize) = '\0' as i32 as i8;
+        (*result).u.s.str_0 = cp;
+    } else {
+        (*result).u.s.str_0 = string as *mut i8;
+    }
+    return result;
+}
+#[inline]
+unsafe extern "C" fn r_make_string(
+    mut api_0: *const gawk_api_t,
+    mut ext_id_0: awk_ext_id_t,
+    mut string: *const i8,
+    mut length: size_t,
+    mut duplicate: awk_bool_t,
+    mut result: *mut awk_value_t,
+) -> *mut awk_value_t {
+    return r_make_string_type(
+        api_0,
+        ext_id_0,
+        string,
+        length,
+        duplicate,
+        result,
+        AWK_STRING,
+    );
+}
+#[inline]
+unsafe extern "C" fn make_null_string(mut result: *mut awk_value_t) -> *mut awk_value_t {
+    memset(
+        result as *mut libc::c_void,
+        0 as i32,
+        ::core::mem::size_of::<awk_value_t>() as u64,
+    );
+    (*result).val_type = AWK_UNDEFINED;
+    return result;
+}
+#[inline]
+unsafe extern "C" fn make_number(
+    mut num: libc::c_double,
+    mut result: *mut awk_value_t,
+) -> *mut awk_value_t {
+    (*result).val_type = AWK_NUMBER;
+    (*result).u.n.d = num;
+    (*result).u.n.type_0 = AWK_NUMBER_TYPE_DOUBLE;
+    return result;
+}
+static mut api: *const gawk_api_t = 0 as *const gawk_api_t;
+static mut ext_id: awk_ext_id_t = 0 as *const libc::c_void as *mut libc::c_void;
+static mut ext_version: *const i8 = b"rwarray extension: version 2.1\0" as *const u8
+    as *const i8;
+static mut init_func: Option<unsafe extern "C" fn() -> awk_bool_t> = None;
+#[no_mangle]
+pub static mut plugin_is_GPL_compatible: i32 = 0;
+unsafe extern "C" fn write_backend(
+    mut result: *mut awk_value_t,
+    mut array: awk_array_t,
+    mut name: *const i8,
+) -> *mut awk_value_t {
+    let mut filename: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    let mut fp: *mut FILE = 0 as *mut FILE;
+    let mut major: uint32_t = 4 as i32 as uint32_t;
+    let mut minor: uint32_t = 1 as i32 as uint32_t;
+    make_number(0.0f64, result);
+    if ((*api).api_get_argument)
+        .expect(
+            "non-null function pointer",
+        )(ext_id, 0 as i32 as size_t, AWK_STRING, &mut filename) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"%s: first argument is not a string\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+            name,
+        );
+        *__errno_location() = 22 as i32;
+    } else {
+        fp = fopen(filename.u.s.str_0, b"wb\0" as *const u8 as *const i8);
+        if !fp.is_null() {
+            if !(fwrite(
+                b"awkrulz\n\0" as *const u8 as *const i8 as *const libc::c_void,
+                1 as i32 as size_t,
+                strlen(b"awkrulz\n\0" as *const u8 as *const i8),
+                fp,
+            ) != strlen(b"awkrulz\n\0" as *const u8 as *const i8))
+            {
+                major = ({
+                    let mut __v: u32 = 0;
+                    let mut __x: u32 = major;
+                    if 0 != 0 {
+                        __v = (__x & 0xff000000 as u32) >> 24 as i32
+                            | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                            | (__x & 0xff00 as i32 as u32) << 8 as i32
+                            | (__x & 0xff as i32 as u32) << 24 as i32;
+                    } else {
+                        let fresh0 = &mut __v;
+                        let fresh1;
+                        let fresh2 = __x;
+                        asm!(
+                            "bswap {0}", inlateout(reg)
+                            c2rust_asm_casts::AsmCast::cast_in(fresh0, fresh2) => fresh1,
+                            options(preserves_flags, pure, readonly, att_syntax)
+                        );
+                        c2rust_asm_casts::AsmCast::cast_out(fresh0, fresh2, fresh1);
+                    }
+                    __v
+                });
+                if !(fwrite(
+                    &mut major as *mut uint32_t as *const libc::c_void,
+                    1 as i32 as size_t,
+                    ::core::mem::size_of::<uint32_t>() as u64,
+                    fp,
+                ) != ::core::mem::size_of::<uint32_t>() as u64)
+                {
+                    minor = ({
+                        let mut __v: u32 = 0;
+                        let mut __x: u32 = minor;
+                        if 0 != 0 {
+                            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                                | (__x & 0xff as i32 as u32) << 24 as i32;
+                        } else {
+                            let fresh3 = &mut __v;
+                            let fresh4;
+                            let fresh5 = __x;
+                            asm!(
+                                "bswap {0}", inlateout(reg)
+                                c2rust_asm_casts::AsmCast::cast_in(fresh3, fresh5) =>
+                                fresh4, options(preserves_flags, pure, readonly, att_syntax)
+                            );
+                            c2rust_asm_casts::AsmCast::cast_out(fresh3, fresh5, fresh4);
+                        }
+                        __v
+                    });
+                    if !(fwrite(
+                        &mut minor as *mut uint32_t as *const libc::c_void,
+                        1 as i32 as size_t,
+                        ::core::mem::size_of::<uint32_t>() as u64,
+                        fp,
+                    ) != ::core::mem::size_of::<uint32_t>() as u64)
+                    {
+                        if write_array(fp, array) as u64 != 0 {
+                            make_number(1.0f64, result);
+                            fclose(fp);
+                            return result;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    ((*api).api_update_ERRNO_int)
+        .expect("non-null function pointer")(ext_id, *__errno_location());
+    if !fp.is_null() {
+        fclose(fp);
+        unlink(filename.u.s.str_0);
+    }
+    return result;
+}
+unsafe extern "C" fn do_writea(
+    mut nargs: i32,
+    mut result: *mut awk_value_t,
+    mut unused: *mut awk_ext_func,
+) -> *mut awk_value_t {
+    let mut array: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    if ((*api).api_get_argument)
+        .expect(
+            "non-null function pointer",
+        )(ext_id, 1 as i32 as size_t, AWK_ARRAY, &mut array) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"writea: second argument is not an array\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+        *__errno_location() = 22 as i32;
+        ((*api).api_update_ERRNO_int)
+            .expect("non-null function pointer")(ext_id, *__errno_location());
+        make_number(0.0f64, result);
+        return result;
+    }
+    return write_backend(result, array.u.a, b"writea\0" as *const u8 as *const i8);
+}
+unsafe extern "C" fn do_writeall(
+    mut nargs: i32,
+    mut result: *mut awk_value_t,
+    mut unused: *mut awk_ext_func,
+) -> *mut awk_value_t {
+    let mut array: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    if ((*api).api_sym_lookup)
+        .expect(
+            "non-null function pointer",
+        )(
+        ext_id,
+        b"\0" as *const u8 as *const i8,
+        b"SYMTAB\0" as *const u8 as *const i8,
+        AWK_ARRAY,
+        &mut array,
+    ) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"writeall: unable to find SYMTAB array\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+        *__errno_location() = 22 as i32;
+        ((*api).api_update_ERRNO_int)
+            .expect("non-null function pointer")(ext_id, *__errno_location());
+        make_number(0.0f64, result);
+        return result;
+    }
+    return write_backend(result, array.u.a, b"writeall\0" as *const u8 as *const i8);
+}
+unsafe extern "C" fn write_array(
+    mut fp: *mut FILE,
+    mut array: awk_array_t,
+) -> awk_bool_t {
+    let mut i: uint32_t = 0;
+    let mut count: uint32_t = 0;
+    let mut flat_array: *mut awk_flat_array_t = 0 as *mut awk_flat_array_t;
+    if ((*api).api_flatten_array_typed)
+        .expect(
+            "non-null function pointer",
+        )(ext_id, array, &mut flat_array, AWK_STRING, AWK_UNDEFINED) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"write_array: could not flatten array\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+        return awk_false;
+    }
+    count = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = (*flat_array).count as u32;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh6 = &mut __v;
+            let fresh7;
+            let fresh8 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh6,
+                fresh8) => fresh7, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh6, fresh8, fresh7);
+        }
+        __v
+    });
+    if fwrite(
+        &mut count as *mut uint32_t as *const libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    i = 0 as i32 as uint32_t;
+    while (i as u64) < (*flat_array).count {
+        if write_elem(fp, &mut *((*flat_array).elements).as_mut_ptr().offset(i as isize))
+            as u64 == 0
+        {
+            ((*api).api_release_flattened_array)
+                .expect("non-null function pointer")(ext_id, array, flat_array);
+            return awk_false;
+        }
+        i = i.wrapping_add(1);
+        i;
+    }
+    if ((*api).api_release_flattened_array)
+        .expect("non-null function pointer")(ext_id, array, flat_array) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"write_array: could not release flattened array\0" as *const u8
+                    as *const i8,
+                5 as i32,
+            ),
+        );
+        return awk_false;
+    }
+    return awk_true;
+}
+unsafe extern "C" fn write_elem(
+    mut fp: *mut FILE,
+    mut element: *mut awk_element_t,
+) -> awk_bool_t {
+    let mut indexval_len: uint32_t = 0;
+    let mut write_count: ssize_t = 0;
+    indexval_len = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = (*element).index.u.s.len as u32;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh9 = &mut __v;
+            let fresh10;
+            let fresh11 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh9,
+                fresh11) => fresh10, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh9, fresh11, fresh10);
+        }
+        __v
+    });
+    if fwrite(
+        &mut indexval_len as *mut uint32_t as *const libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    if (*element).index.u.s.len > 0 as i32 as u64 {
+        write_count = fwrite(
+            (*element).index.u.s.str_0 as *const libc::c_void,
+            1 as i32 as size_t,
+            (*element).index.u.s.len,
+            fp,
+        ) as ssize_t;
+        if write_count != (*element).index.u.s.len as ssize_t {
+            return awk_false;
+        }
+    }
+    return write_value(fp, &mut (*element).value);
+}
+unsafe extern "C" fn write_value(
+    mut fp: *mut FILE,
+    mut val: *mut awk_value_t,
+) -> awk_bool_t {
+    let mut code: uint32_t = 0;
+    let mut len: uint32_t = 0;
+    if (*val).val_type as u32 == AWK_ARRAY as i32 as u32 {
+        code = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = 5 as i32 as u32;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh12 = &mut __v;
+                let fresh13;
+                let fresh14 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh12, fresh14) => fresh13,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh12, fresh14, fresh13);
+            }
+            __v
+        });
+        if fwrite(
+            &mut code as *mut uint32_t as *const libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        return write_array(fp, (*val).u.a);
+    }
+    if (*val).val_type as u32 == AWK_NUMBER as i32 as u32 {
+        return write_number(fp, val);
+    }
+    match (*val).val_type as u32 {
+        2 => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 1 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh15 = &mut __v;
+                    let fresh16;
+                    let fresh17 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh15, fresh17) => fresh16,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh15, fresh17, fresh16);
+                }
+                __v
+            });
+        }
+        4 => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 7 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh18 = &mut __v;
+                    let fresh19;
+                    let fresh20 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh18, fresh20) => fresh19,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh18, fresh20, fresh19);
+                }
+                __v
+            });
+        }
+        3 => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 6 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh21 = &mut __v;
+                    let fresh22;
+                    let fresh23 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh21, fresh23) => fresh22,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh21, fresh23, fresh22);
+                }
+                __v
+            });
+        }
+        8 => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 8 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh24 = &mut __v;
+                    let fresh25;
+                    let fresh26 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh24, fresh26) => fresh25,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh24, fresh26, fresh25);
+                }
+                __v
+            });
+        }
+        0 => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 20 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh27 = &mut __v;
+                    let fresh28;
+                    let fresh29 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh27, fresh29) => fresh28,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh27, fresh29, fresh28);
+                }
+                __v
+            });
+        }
+        _ => {
+            code = ({
+                let mut __v: u32 = 0;
+                let mut __x: u32 = 20 as i32 as u32;
+                if 0 != 0 {
+                    __v = (__x & 0xff000000 as u32) >> 24 as i32
+                        | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                        | (__x & 0xff00 as i32 as u32) << 8 as i32
+                        | (__x & 0xff as i32 as u32) << 24 as i32;
+                } else {
+                    let fresh30 = &mut __v;
+                    let fresh31;
+                    let fresh32 = __x;
+                    asm!(
+                        "bswap {0}", inlateout(reg)
+                        c2rust_asm_casts::AsmCast::cast_in(fresh30, fresh32) => fresh31,
+                        options(preserves_flags, pure, readonly, att_syntax)
+                    );
+                    c2rust_asm_casts::AsmCast::cast_out(fresh30, fresh32, fresh31);
+                }
+                __v
+            });
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                dcgettext(
+                    0 as *const i8,
+                    b"array value has unknown type %d\0" as *const u8 as *const i8,
+                    5 as i32,
+                ),
+                (*val).val_type as u32,
+            );
+        }
+    }
+    if fwrite(
+        &mut code as *mut uint32_t as *const libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    if code
+        == ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = 8 as i32 as u32;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh33 = &mut __v;
+                let fresh34;
+                let fresh35 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh33, fresh35) => fresh34,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh33, fresh35, fresh34);
+            }
+            __v
+        })
+    {
+        len = (if (*val).u.b as u32 == awk_true as i32 as u32 {
+            4 as i32
+        } else {
+            5 as i32
+        }) as uint32_t;
+        len = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = len;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh36 = &mut __v;
+                let fresh37;
+                let fresh38 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh36, fresh38) => fresh37,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh36, fresh38, fresh37);
+            }
+            __v
+        });
+        let mut s: *const i8 = if (*val).u.b as u32 == awk_true as i32 as u32 {
+            b"TRUE\0" as *const u8 as *const i8
+        } else {
+            b"FALSE\0" as *const u8 as *const i8
+        };
+        if fwrite(
+            &mut len as *mut uint32_t as *const libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        if fwrite(s as *const libc::c_void, 1 as i32 as size_t, strlen(s), fp)
+            != strlen(s) as ssize_t as u64
+        {
+            return awk_false;
+        }
+    } else {
+        len = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = (*val).u.s.len as u32;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh39 = &mut __v;
+                let fresh40;
+                let fresh41 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh39, fresh41) => fresh40,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh39, fresh41, fresh40);
+            }
+            __v
+        });
+        if fwrite(
+            &mut len as *mut uint32_t as *const libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        if fwrite(
+            (*val).u.s.str_0 as *const libc::c_void,
+            1 as i32 as size_t,
+            (*val).u.s.len,
+            fp,
+        ) != (*val).u.s.len as ssize_t as u64
+        {
+            return awk_false;
+        }
+    }
+    return awk_true;
+}
+unsafe extern "C" fn write_number(
+    mut fp: *mut FILE,
+    mut val: *mut awk_value_t,
+) -> awk_bool_t {
+    let mut len: uint32_t = 0;
+    let mut code: uint32_t = 0;
+    let mut buffer: [i8; 8192] = [0; 8192];
+    if (*val).u.n.type_0 as u32 == AWK_NUMBER_TYPE_DOUBLE as i32 as u32 {
+        let mut network_order_len: uint32_t = 0;
+        code = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = 2 as i32 as u32;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh42 = &mut __v;
+                let fresh43;
+                let fresh44 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh42, fresh44) => fresh43,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh42, fresh44, fresh43);
+            }
+            __v
+        });
+        if fwrite(
+            &mut code as *mut uint32_t as *const libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        sprintf(buffer.as_mut_ptr(), b"%.17g\0" as *const u8 as *const i8, (*val).u.n.d);
+        len = (strlen(buffer.as_mut_ptr())).wrapping_add(1 as i32 as u64) as uint32_t;
+        network_order_len = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = len;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh45 = &mut __v;
+                let fresh46;
+                let fresh47 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh45, fresh47) => fresh46,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh45, fresh47, fresh46);
+            }
+            __v
+        });
+        if fwrite(
+            &mut network_order_len as *mut uint32_t as *const libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        if fwrite(
+            buffer.as_mut_ptr() as *const libc::c_void,
+            1 as i32 as size_t,
+            len as size_t,
+            fp,
+        ) != len as u64
+        {
+            return awk_false;
+        }
+    } else {
+        ((*api).api_fatal)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"rwarray extension: received GMP/MPFR value but compiled without GMP/MPFR support.\0"
+                    as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+    }
+    return awk_true;
+}
+unsafe extern "C" fn free_value(mut v: *mut awk_value_t) {
+    match (*v).val_type as u32 {
+        5 => {
+            ((*api).api_destroy_array)
+                .expect("non-null function pointer")(ext_id, (*v).u.a);
+        }
+        2 | 3 | 4 | 0 => {
+            ((*api).api_free)
+                .expect(
+                    "non-null function pointer",
+                )((*v).u.s.str_0 as *mut libc::c_void);
+        }
+        8 => {}
+        1 => {
+            match (*v).u.n.type_0 as u32 {
+                0 => {}
+                _ => {
+                    ((*api).api_warning)
+                        .expect(
+                            "non-null function pointer",
+                        )(
+                        ext_id,
+                        dcgettext(
+                            0 as *const i8,
+                            b"cannot free number with unknown type %d\0" as *const u8
+                                as *const i8,
+                            5 as i32,
+                        ),
+                        (*v).u.n.type_0 as u32,
+                    );
+                }
+            }
+        }
+        _ => {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                dcgettext(
+                    0 as *const i8,
+                    b"cannot free value with unhandled type %d\0" as *const u8
+                        as *const i8,
+                    5 as i32,
+                ),
+                (*v).val_type as u32,
+            );
+        }
+    };
+}
+unsafe extern "C" fn do_poke(mut e: *mut awk_element_t) -> awk_bool_t {
+    let mut t: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    if (*e).index.val_type as u32 != AWK_STRING as i32 as u32 {
+        return awk_false;
+    }
+    let mut p: *mut i8 = strstr((*e).index.u.s.str_0, b"::\0" as *const u8 as *const i8);
+    let mut ns: *mut i8 = 0 as *mut i8;
+    let mut ident: *mut i8 = 0 as *mut i8;
+    if !p.is_null() {
+        ns = (*e).index.u.s.str_0;
+        ident = p.offset(2 as i32 as isize);
+        *p = '\0' as i32 as i8;
+    } else {
+        ns = b"\0" as *const u8 as *const i8 as *mut i8;
+        ident = (*e).index.u.s.str_0;
+    }
+    if ((*api).api_sym_lookup)
+        .expect("non-null function pointer")(ext_id, ns, ident, AWK_UNDEFINED, &mut t)
+        as u32 != 0 && t.val_type as u32 != AWK_UNDEFINED as i32 as u32
+    {
+        return awk_false;
+    }
+    if ((*api).api_sym_update)
+        .expect("non-null function pointer")(ext_id, ns, ident, &mut (*e).value) as u64
+        == 0
+    {
+        if *ns.offset(0 as i32 as isize) != 0 {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                dcgettext(
+                    0 as *const i8,
+                    b"readall: unable to set %s::%s\0" as *const u8 as *const i8,
+                    5 as i32,
+                ),
+                ns,
+                ident,
+            );
+        } else {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                dcgettext(
+                    0 as *const i8,
+                    b"readall: unable to set %s\0" as *const u8 as *const i8,
+                    5 as i32,
+                ),
+                ident,
+            );
+        }
+        return awk_false;
+    }
+    return awk_true;
+}
+unsafe extern "C" fn read_global(
+    mut fp: *mut FILE,
+    mut unused: awk_array_t,
+) -> awk_bool_t {
+    let mut i: uint32_t = 0;
+    let mut count: uint32_t = 0;
+    let mut new_elem: awk_element_t = awk_element_t {
+        next: 0 as *mut awk_element,
+        flags: AWK_ELEMENT_DEFAULT,
+        index: awk_value_t {
+            val_type: AWK_UNDEFINED,
+            u: C2RustUnnamed_0 {
+                s: awk_string_t {
+                    str_0: 0 as *mut i8,
+                    len: 0,
+                },
+            },
+        },
+        value: awk_value_t {
+            val_type: AWK_UNDEFINED,
+            u: C2RustUnnamed_0 {
+                s: awk_string_t {
+                    str_0: 0 as *mut i8,
+                    len: 0,
+                },
+            },
+        },
+    };
+    let mut vs: value_storage = 0;
+    if fread(
+        &mut count as *mut uint32_t as *mut libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    count = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = count;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh48 = &mut __v;
+            let fresh49;
+            let fresh50 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh48,
+                fresh50) => fresh49, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh48, fresh50, fresh49);
+        }
+        __v
+    });
+    i = 0 as i32 as uint32_t;
+    while i < count {
+        if read_elem(fp, &mut new_elem, &mut vs) as u64 != 0 {
+            if do_poke(&mut new_elem) as u64 == 0 {
+                free_value(&mut new_elem.value);
+            }
+            if new_elem.index.u.s.len != 0 {
+                ((*api).api_free)
+                    .expect(
+                        "non-null function pointer",
+                    )(new_elem.index.u.s.str_0 as *mut libc::c_void);
+            }
+        } else {
+            return awk_false
+        }
+        i = i.wrapping_add(1);
+        i;
+    }
+    return awk_true;
+}
+unsafe extern "C" fn read_one(mut fp: *mut FILE, mut array: awk_array_t) -> awk_bool_t {
+    if ((*api).api_clear_array).expect("non-null function pointer")(ext_id, array) as u64
+        == 0
+    {
+        *__errno_location() = 12 as i32;
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"reada: clear_array failed\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+        return awk_false;
+    }
+    return read_array(fp, array);
+}
+unsafe extern "C" fn read_backend(
+    mut result: *mut awk_value_t,
+    mut array: awk_array_t,
+    mut name: *const i8,
+    mut func: Option<unsafe extern "C" fn(*mut FILE, awk_array_t) -> awk_bool_t>,
+) -> *mut awk_value_t {
+    let mut current_block: u64;
+    let mut filename: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    let mut fp: *mut FILE = 0 as *mut FILE;
+    let mut major: uint32_t = 0;
+    let mut minor: uint32_t = 0;
+    let mut magic_buf: [i8; 30] = [0; 30];
+    make_number(0.0f64, result);
+    if ((*api).api_get_argument)
+        .expect(
+            "non-null function pointer",
+        )(ext_id, 0 as i32 as size_t, AWK_STRING, &mut filename) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"%s: first argument is not a string\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+            name,
+        );
+        *__errno_location() = 22 as i32;
+        current_block = 3010026441672575126;
+    } else {
+        fp = fopen(filename.u.s.str_0, b"rb\0" as *const u8 as *const i8);
+        if fp.is_null() {
+            current_block = 3010026441672575126;
+        } else {
+            memset(
+                magic_buf.as_mut_ptr() as *mut libc::c_void,
+                '\0' as i32,
+                ::core::mem::size_of::<[i8; 30]>() as u64,
+            );
+            if fread(
+                magic_buf.as_mut_ptr() as *mut libc::c_void,
+                1 as i32 as size_t,
+                strlen(b"awkrulz\n\0" as *const u8 as *const i8),
+                fp,
+            ) != strlen(b"awkrulz\n\0" as *const u8 as *const i8)
+            {
+                *__errno_location() = 9 as i32;
+                current_block = 3010026441672575126;
+            } else if strcmp(
+                magic_buf.as_mut_ptr(),
+                b"awkrulz\n\0" as *const u8 as *const i8,
+            ) != 0 as i32
+            {
+                *__errno_location() = 9 as i32;
+                current_block = 3010026441672575126;
+            } else if fread(
+                &mut major as *mut uint32_t as *mut libc::c_void,
+                1 as i32 as size_t,
+                ::core::mem::size_of::<uint32_t>() as u64,
+                fp,
+            ) != ::core::mem::size_of::<uint32_t>() as u64
+            {
+                *__errno_location() = 9 as i32;
+                current_block = 3010026441672575126;
+            } else {
+                major = ({
+                    let mut __v: u32 = 0;
+                    let mut __x: u32 = major;
+                    if 0 != 0 {
+                        __v = (__x & 0xff000000 as u32) >> 24 as i32
+                            | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                            | (__x & 0xff00 as i32 as u32) << 8 as i32
+                            | (__x & 0xff as i32 as u32) << 24 as i32;
+                    } else {
+                        let fresh51 = &mut __v;
+                        let fresh52;
+                        let fresh53 = __x;
+                        asm!(
+                            "bswap {0}", inlateout(reg)
+                            c2rust_asm_casts::AsmCast::cast_in(fresh51, fresh53) =>
+                            fresh52, options(preserves_flags, pure, readonly, att_syntax)
+                        );
+                        c2rust_asm_casts::AsmCast::cast_out(fresh51, fresh53, fresh52);
+                    }
+                    __v
+                });
+                if major != 4 as i32 as u32 {
+                    *__errno_location() = 9 as i32;
+                    current_block = 3010026441672575126;
+                } else if fread(
+                    &mut minor as *mut uint32_t as *mut libc::c_void,
+                    1 as i32 as size_t,
+                    ::core::mem::size_of::<uint32_t>() as u64,
+                    fp,
+                ) != ::core::mem::size_of::<uint32_t>() as u64
+                {
+                    current_block = 3010026441672575126;
+                } else {
+                    minor = ({
+                        let mut __v: u32 = 0;
+                        let mut __x: u32 = minor;
+                        if 0 != 0 {
+                            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                                | (__x & 0xff as i32 as u32) << 24 as i32;
+                        } else {
+                            let fresh54 = &mut __v;
+                            let fresh55;
+                            let fresh56 = __x;
+                            asm!(
+                                "bswap {0}", inlateout(reg)
+                                c2rust_asm_casts::AsmCast::cast_in(fresh54, fresh56) =>
+                                fresh55, options(preserves_flags, pure, readonly,
+                                att_syntax)
+                            );
+                            c2rust_asm_casts::AsmCast::cast_out(
+                                fresh54,
+                                fresh56,
+                                fresh55,
+                            );
+                        }
+                        __v
+                    });
+                    if minor != 1 as i32 as u32 {
+                        *__errno_location() = 9 as i32;
+                        current_block = 3010026441672575126;
+                    } else if (Some(func.expect("non-null function pointer")))
+                        .expect("non-null function pointer")(fp, array) as u64 != 0
+                    {
+                        make_number(1.0f64, result);
+                        current_block = 7508502601102140063;
+                    } else {
+                        current_block = 3010026441672575126;
+                    }
+                }
+            }
+        }
+    }
+    match current_block {
+        3010026441672575126 => {
+            ((*api).api_update_ERRNO_int)
+                .expect("non-null function pointer")(ext_id, *__errno_location());
+        }
+        _ => {}
+    }
+    if !fp.is_null() {
+        fclose(fp);
+    }
+    return result;
+}
+unsafe extern "C" fn do_reada(
+    mut nargs: i32,
+    mut result: *mut awk_value_t,
+    mut unused: *mut awk_ext_func,
+) -> *mut awk_value_t {
+    let mut array: awk_value_t = awk_value_t {
+        val_type: AWK_UNDEFINED,
+        u: C2RustUnnamed_0 {
+            s: awk_string_t {
+                str_0: 0 as *mut i8,
+                len: 0,
+            },
+        },
+    };
+    if ((*api).api_get_argument)
+        .expect(
+            "non-null function pointer",
+        )(ext_id, 1 as i32 as size_t, AWK_ARRAY, &mut array) as u64 == 0
+    {
+        ((*api).api_warning)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"reada: second argument is not an array\0" as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+        *__errno_location() = 22 as i32;
+        ((*api).api_update_ERRNO_int)
+            .expect("non-null function pointer")(ext_id, *__errno_location());
+        make_number(0.0f64, result);
+        return result;
+    }
+    return read_backend(
+        result,
+        array.u.a,
+        b"read\0" as *const u8 as *const i8,
+        Some(read_one as unsafe extern "C" fn(*mut FILE, awk_array_t) -> awk_bool_t),
+    );
+}
+unsafe extern "C" fn do_readall(
+    mut nargs: i32,
+    mut result: *mut awk_value_t,
+    mut unused: *mut awk_ext_func,
+) -> *mut awk_value_t {
+    return read_backend(
+        result,
+        0 as *mut libc::c_void,
+        b"readall\0" as *const u8 as *const i8,
+        Some(read_global as unsafe extern "C" fn(*mut FILE, awk_array_t) -> awk_bool_t),
+    );
+}
+unsafe extern "C" fn read_array(
+    mut fp: *mut FILE,
+    mut array: awk_array_t,
+) -> awk_bool_t {
+    let mut i: uint32_t = 0;
+    let mut count: uint32_t = 0;
+    let mut new_elem: awk_element_t = awk_element_t {
+        next: 0 as *mut awk_element,
+        flags: AWK_ELEMENT_DEFAULT,
+        index: awk_value_t {
+            val_type: AWK_UNDEFINED,
+            u: C2RustUnnamed_0 {
+                s: awk_string_t {
+                    str_0: 0 as *mut i8,
+                    len: 0,
+                },
+            },
+        },
+        value: awk_value_t {
+            val_type: AWK_UNDEFINED,
+            u: C2RustUnnamed_0 {
+                s: awk_string_t {
+                    str_0: 0 as *mut i8,
+                    len: 0,
+                },
+            },
+        },
+    };
+    let mut vs: value_storage = 0;
+    if fread(
+        &mut count as *mut uint32_t as *mut libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    count = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = count;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh57 = &mut __v;
+            let fresh58;
+            let fresh59 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh57,
+                fresh59) => fresh58, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh57, fresh59, fresh58);
+        }
+        __v
+    });
+    i = 0 as i32 as uint32_t;
+    while i < count {
+        if !(read_elem(fp, &mut new_elem, &mut vs) as u64 != 0) {
+            break;
+        }
+        if ((*api).api_set_array_element)
+            .expect(
+                "non-null function pointer",
+            )(ext_id, array, &mut new_elem.index, &mut new_elem.value) as u64 == 0
+        {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                dcgettext(
+                    0 as *const i8,
+                    b"read_array: set_array_element failed\0" as *const u8 as *const i8,
+                    5 as i32,
+                ),
+            );
+            return awk_false;
+        }
+        i = i.wrapping_add(1);
+        i;
+    }
+    if i != count {
+        return awk_false;
+    }
+    return awk_true;
+}
+unsafe extern "C" fn read_elem(
+    mut fp: *mut FILE,
+    mut element: *mut awk_element_t,
+    mut vs: *mut value_storage,
+) -> awk_bool_t {
+    let mut index_len: uint32_t = 0;
+    static mut buffer: *mut i8 = 0 as *const i8 as *mut i8;
+    static mut buflen: uint32_t = 0;
+    let mut ret: ssize_t = 0;
+    ret = fread(
+        &mut index_len as *mut uint32_t as *mut libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) as ssize_t;
+    if ret as u64 != ::core::mem::size_of::<uint32_t>() as u64 {
+        return awk_false;
+    }
+    index_len = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = index_len;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh60 = &mut __v;
+            let fresh61;
+            let fresh62 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh60,
+                fresh62) => fresh61, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh60, fresh62, fresh61);
+        }
+        __v
+    });
+    memset(
+        element as *mut libc::c_void,
+        0 as i32,
+        ::core::mem::size_of::<awk_element_t>() as u64,
+    );
+    if index_len > 0 as i32 as u32 {
+        if buffer.is_null() {
+            buffer = ((*api).api_malloc)
+                .expect("non-null function pointer")(index_len as size_t) as *mut i8;
+            if buffer.is_null() {
+                ((*api).api_fatal)
+                    .expect(
+                        "non-null function pointer",
+                    )(
+                    ext_id,
+                    b"%s: malloc of %d bytes failed\0" as *const u8 as *const i8,
+                    b"read_elem\0" as *const u8 as *const i8,
+                    index_len,
+                );
+            }
+            buflen = index_len;
+        } else if buflen < index_len {
+            let mut cp: *mut i8 = ((*api).api_realloc)
+                .expect(
+                    "non-null function pointer",
+                )(buffer as *mut libc::c_void, index_len as size_t) as *mut i8;
+            if cp.is_null() {
+                return awk_false;
+            }
+            buffer = cp;
+            buflen = index_len;
+        }
+        if fread(
+            buffer as *mut libc::c_void,
+            1 as i32 as size_t,
+            index_len as size_t,
+            fp,
+        ) != index_len as ssize_t as u64
+        {
+            return awk_false;
+        }
+        r_make_string(
+            api,
+            ext_id,
+            buffer,
+            index_len as size_t,
+            awk_true,
+            &mut (*element).index,
+        );
+    } else {
+        make_null_string(&mut (*element).index);
+    }
+    if read_value(fp, &mut (*element).value, &mut (*element).index, vs) as u64 == 0 {
+        return awk_false;
+    }
+    return awk_true;
+}
+unsafe extern "C" fn read_value(
+    mut fp: *mut FILE,
+    mut value: *mut awk_value_t,
+    mut idx: *mut awk_value_t,
+    mut vs: *mut value_storage,
+) -> awk_bool_t {
+    let mut code: uint32_t = 0;
+    let mut len: uint32_t = 0;
+    if fread(
+        &mut code as *mut uint32_t as *mut libc::c_void,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<uint32_t>() as u64,
+        fp,
+    ) != ::core::mem::size_of::<uint32_t>() as u64
+    {
+        return awk_false;
+    }
+    code = ({
+        let mut __v: u32 = 0;
+        let mut __x: u32 = code;
+        if 0 != 0 {
+            __v = (__x & 0xff000000 as u32) >> 24 as i32
+                | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                | (__x & 0xff00 as i32 as u32) << 8 as i32
+                | (__x & 0xff as i32 as u32) << 24 as i32;
+        } else {
+            let fresh63 = &mut __v;
+            let fresh64;
+            let fresh65 = __x;
+            asm!(
+                "bswap {0}", inlateout(reg) c2rust_asm_casts::AsmCast::cast_in(fresh63,
+                fresh65) => fresh64, options(preserves_flags, pure, readonly, att_syntax)
+            );
+            c2rust_asm_casts::AsmCast::cast_out(fresh63, fresh65, fresh64);
+        }
+        __v
+    });
+    if code == 5 as i32 as u32 {
+        let mut array: awk_array_t = ((*api).api_create_array)
+            .expect("non-null function pointer")(ext_id);
+        if read_array(fp, array) as u64 == 0 {
+            return awk_false;
+        }
+        (*value).val_type = AWK_ARRAY;
+        (*value).u.a = array;
+    } else if code == 2 as i32 as u32 || code == 3 as i32 as u32
+        || code == 4 as i32 as u32
+    {
+        return read_number(fp, value, code, vs)
+    } else {
+        if fread(
+            &mut len as *mut uint32_t as *mut libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        len = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = len;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh66 = &mut __v;
+                let fresh67;
+                let fresh68 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh66, fresh68) => fresh67,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh66, fresh68, fresh67);
+            }
+            __v
+        });
+        match code {
+            1 => {
+                (*value).val_type = AWK_STRING;
+            }
+            6 => {
+                (*value).val_type = AWK_REGEX;
+            }
+            7 => {
+                (*value).val_type = AWK_STRNUM;
+            }
+            20 => {
+                (*value).val_type = AWK_UNDEFINED;
+            }
+            8 => {
+                (*value).val_type = AWK_BOOL;
+            }
+            _ => {
+                ((*api).api_warning)
+                    .expect(
+                        "non-null function pointer",
+                    )(
+                    ext_id,
+                    dcgettext(
+                        0 as *const i8,
+                        b"treating recovered value with unknown type code %d as a string\0"
+                            as *const u8 as *const i8,
+                        5 as i32,
+                    ),
+                    code,
+                );
+                (*value).val_type = AWK_STRING;
+            }
+        }
+        (*value).u.s.len = len as size_t;
+        (*value).u.s.str_0 = ((*api).api_malloc)
+            .expect(
+                "non-null function pointer",
+            )(len.wrapping_add(1 as i32 as u32) as size_t) as *mut i8;
+        if fread(
+            (*value).u.s.str_0 as *mut libc::c_void,
+            1 as i32 as size_t,
+            len as size_t,
+            fp,
+        ) != len as ssize_t as u64
+        {
+            ((*api).api_free)
+                .expect(
+                    "non-null function pointer",
+                )((*value).u.s.str_0 as *mut libc::c_void);
+            return awk_false;
+        }
+        *((*value).u.s.str_0).offset(len as isize) = '\0' as i32 as i8;
+        (*value).u.s.len = len as size_t;
+        if code == 8 as i32 as u32 {
+            let mut val: bool = strcmp(
+                (*value).u.s.str_0,
+                b"TRUE\0" as *const u8 as *const i8,
+            ) == 0 as i32;
+            ((*api).api_free)
+                .expect(
+                    "non-null function pointer",
+                )((*value).u.s.str_0 as *mut libc::c_void);
+            (*value).u.s.str_0 = 0 as *mut i8;
+            (*value).u.b = (if val as i32 != 0 {
+                awk_true as i32
+            } else {
+                awk_false as i32
+            }) as awk_bool_t;
+        }
+    }
+    return awk_true;
+}
+unsafe extern "C" fn read_number(
+    mut fp: *mut FILE,
+    mut value: *mut awk_value_t,
+    mut code: uint32_t,
+    mut vs: *mut value_storage,
+) -> awk_bool_t {
+    let mut len: uint32_t = 0;
+    if code == 2 as i32 as u32 {
+        let mut buffer: [i8; 8192] = [0; 8192];
+        let mut d: libc::c_double = 0.;
+        if fread(
+            &mut len as *mut uint32_t as *mut libc::c_void,
+            1 as i32 as size_t,
+            ::core::mem::size_of::<uint32_t>() as u64,
+            fp,
+        ) != ::core::mem::size_of::<uint32_t>() as u64
+        {
+            return awk_false;
+        }
+        len = ({
+            let mut __v: u32 = 0;
+            let mut __x: u32 = len;
+            if 0 != 0 {
+                __v = (__x & 0xff000000 as u32) >> 24 as i32
+                    | (__x & 0xff0000 as i32 as u32) >> 8 as i32
+                    | (__x & 0xff00 as i32 as u32) << 8 as i32
+                    | (__x & 0xff as i32 as u32) << 24 as i32;
+            } else {
+                let fresh69 = &mut __v;
+                let fresh70;
+                let fresh71 = __x;
+                asm!(
+                    "bswap {0}", inlateout(reg)
+                    c2rust_asm_casts::AsmCast::cast_in(fresh69, fresh71) => fresh70,
+                    options(preserves_flags, pure, readonly, att_syntax)
+                );
+                c2rust_asm_casts::AsmCast::cast_out(fresh69, fresh71, fresh70);
+            }
+            __v
+        });
+        if fread(
+            buffer.as_mut_ptr() as *mut libc::c_void,
+            1 as i32 as size_t,
+            len as size_t,
+            fp,
+        ) != len as u64
+        {
+            return awk_false;
+        }
+        sscanf(
+            buffer.as_mut_ptr(),
+            b"%lg\0" as *const u8 as *const i8,
+            &mut d as *mut libc::c_double,
+        );
+        value = make_number(d, value);
+    } else {
+        ((*api).api_fatal)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            dcgettext(
+                0 as *const i8,
+                b"rwarray extension: GMP/MPFR value in file but compiled without GMP/MPFR support.\0"
+                    as *const u8 as *const i8,
+                5 as i32,
+            ),
+        );
+    }
+    return awk_true;
+}
+static mut func_table: [awk_ext_func_t; 4] = unsafe {
+    [
+        {
+            let mut init = awk_ext_func {
+                name: b"writea\0" as *const u8 as *const i8,
+                function: Some(
+                    do_writea
+                        as unsafe extern "C" fn(
+                            i32,
+                            *mut awk_value_t,
+                            *mut awk_ext_func,
+                        ) -> *mut awk_value_t,
+                ),
+                max_expected_args: 2 as i32 as size_t,
+                min_required_args: 2 as i32 as size_t,
+                suppress_lint: awk_false,
+                data: 0 as *const libc::c_void as *mut libc::c_void,
+            };
+            init
+        },
+        {
+            let mut init = awk_ext_func {
+                name: b"reada\0" as *const u8 as *const i8,
+                function: Some(
+                    do_reada
+                        as unsafe extern "C" fn(
+                            i32,
+                            *mut awk_value_t,
+                            *mut awk_ext_func,
+                        ) -> *mut awk_value_t,
+                ),
+                max_expected_args: 2 as i32 as size_t,
+                min_required_args: 2 as i32 as size_t,
+                suppress_lint: awk_false,
+                data: 0 as *const libc::c_void as *mut libc::c_void,
+            };
+            init
+        },
+        {
+            let mut init = awk_ext_func {
+                name: b"writeall\0" as *const u8 as *const i8,
+                function: Some(
+                    do_writeall
+                        as unsafe extern "C" fn(
+                            i32,
+                            *mut awk_value_t,
+                            *mut awk_ext_func,
+                        ) -> *mut awk_value_t,
+                ),
+                max_expected_args: 1 as i32 as size_t,
+                min_required_args: 1 as i32 as size_t,
+                suppress_lint: awk_false,
+                data: 0 as *const libc::c_void as *mut libc::c_void,
+            };
+            init
+        },
+        {
+            let mut init = awk_ext_func {
+                name: b"readall\0" as *const u8 as *const i8,
+                function: Some(
+                    do_readall
+                        as unsafe extern "C" fn(
+                            i32,
+                            *mut awk_value_t,
+                            *mut awk_ext_func,
+                        ) -> *mut awk_value_t,
+                ),
+                max_expected_args: 1 as i32 as size_t,
+                min_required_args: 1 as i32 as size_t,
+                suppress_lint: awk_false,
+                data: 0 as *const libc::c_void as *mut libc::c_void,
+            };
+            init
+        },
+    ]
+};
+#[no_mangle]
+pub unsafe extern "C" fn dl_load(api_p: *const gawk_api_t, mut id: awk_ext_id_t) -> i32 {
+    let mut i: size_t = 0;
+    let mut j: size_t = 0;
+    let mut errors: i32 = 0 as i32;
+    api = api_p;
+    ext_id = id as *mut *mut libc::c_void as awk_ext_id_t;
+    if (*api).major_version != GAWK_API_MAJOR_VERSION as i32
+        || (*api).minor_version < GAWK_API_MINOR_VERSION as i32
+    {
+        fprintf(
+            stderr,
+            b"rwarray: version mismatch with gawk!\n\0" as *const u8 as *const i8,
+        );
+        fprintf(
+            stderr,
+            b"\tmy version (API %d.%d), gawk version (API %d.%d)\n\0" as *const u8
+                as *const i8,
+            GAWK_API_MAJOR_VERSION as i32,
+            GAWK_API_MINOR_VERSION as i32,
+            (*api).major_version,
+            (*api).minor_version,
+        );
+        exit(1 as i32);
+    }
+    i = 0 as i32 as size_t;
+    j = (::core::mem::size_of::<[awk_ext_func_t; 4]>() as u64)
+        .wrapping_div(::core::mem::size_of::<awk_ext_func_t>() as u64);
+    while i < j {
+        if (func_table[i as usize].name).is_null() {
+            break;
+        }
+        if ((*api).api_add_ext_func)
+            .expect(
+                "non-null function pointer",
+            )(
+            ext_id,
+            b"\0" as *const u8 as *const i8,
+            &mut *func_table.as_mut_ptr().offset(i as isize),
+        ) as u64 == 0
+        {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                b"rwarray: could not add %s\0" as *const u8 as *const i8,
+                func_table[i as usize].name,
+            );
+            errors += 1;
+            errors;
+        }
+        i = i.wrapping_add(1);
+        i;
+    }
+    if init_func.is_some() {
+        if init_func.expect("non-null function pointer")() as u64 == 0 {
+            ((*api).api_warning)
+                .expect(
+                    "non-null function pointer",
+                )(
+                ext_id,
+                b"rwarray: initialization function failed\0" as *const u8 as *const i8,
+            );
+            errors += 1;
+            errors;
+        }
+    }
+    if !ext_version.is_null() {
+        ((*api).api_register_ext_version)
+            .expect("non-null function pointer")(ext_id, ext_version);
+    }
+    return (errors == 0 as i32) as i32;
+}

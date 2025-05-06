@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type hash_table;
@@ -59,7 +69,7 @@ extern "C" {
     fn open_error(_: *const libc::c_char);
     fn close_error(_: *const libc::c_char);
     static mut exit_status: libc::c_int;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     fn umaxtostr(_: uintmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn offtostr(_: off_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn imaxtostr(_: intmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
@@ -218,7 +228,7 @@ extern "C" {
     fn file_removed_diag(
         name: *const libc::c_char,
         top_level: bool,
-        diagfn: Option::<unsafe extern "C" fn(*const libc::c_char) -> ()>,
+        diagfn: Option<unsafe extern "C" fn(*const libc::c_char) -> ()>,
     );
     fn tar_stat_init(st: *mut tar_stat_info);
     fn excluded_name(name: *const libc::c_char, st: *mut tar_stat_info) -> bool;
@@ -232,8 +242,8 @@ extern "C" {
         _: *mut obstack,
         _: size_t,
         _: size_t,
-        _: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-        _: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+        _: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+        _: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     ) -> libc::c_int;
     fn _obstack_free(_: *mut obstack, _: *mut libc::c_void);
     fn _obstack_newchunk(_: *mut obstack, _: size_t);
@@ -295,7 +305,7 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub type __compar_fn_t = Option::<
+pub type __compar_fn_t = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
 >;
 #[derive(Copy, Clone)]
@@ -363,16 +373,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -403,16 +411,16 @@ pub struct hash_tuning {
 }
 pub type Hash_tuning = hash_tuning;
 pub type Hash_table = hash_table;
-pub type Hash_processor = Option::<
+pub type Hash_processor = Option<
     unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> bool,
 >;
-pub type Hash_hasher = Option::<
+pub type Hash_hasher = Option<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
-pub type Hash_comparator = Option::<
+pub type Hash_comparator = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> bool,
 >;
-pub type Hash_data_freer = Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
+pub type Hash_data_freer = Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct posix_header {
@@ -590,12 +598,71 @@ impl exclusion_tag_type {
             exclusion_tag_type::exclusion_tag_all => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> exclusion_tag_type {
+        match value {
+            0 => exclusion_tag_type::exclusion_tag_none,
+            1 => exclusion_tag_type::exclusion_tag_contents,
+            2 => exclusion_tag_type::exclusion_tag_under,
+            3 => exclusion_tag_type::exclusion_tag_all,
+            _ => panic!("Invalid value for exclusion_tag_type: {}", value),
+        }
+    }
 }
-
-pub const exclusion_tag_all: exclusion_tag_type = 3;
-pub const exclusion_tag_under: exclusion_tag_type = 2;
-pub const exclusion_tag_contents: exclusion_tag_type = 1;
-pub const exclusion_tag_none: exclusion_tag_type = 0;
+impl AddAssign<u32> for exclusion_tag_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for exclusion_tag_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for exclusion_tag_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for exclusion_tag_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for exclusion_tag_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for exclusion_tag_type {
+    type Output = exclusion_tag_type;
+    fn add(self, rhs: u32) -> exclusion_tag_type {
+        exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for exclusion_tag_type {
+    type Output = exclusion_tag_type;
+    fn sub(self, rhs: u32) -> exclusion_tag_type {
+        exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for exclusion_tag_type {
+    type Output = exclusion_tag_type;
+    fn mul(self, rhs: u32) -> exclusion_tag_type {
+        exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for exclusion_tag_type {
+    type Output = exclusion_tag_type;
+    fn div(self, rhs: u32) -> exclusion_tag_type {
+        exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for exclusion_tag_type {
+    type Output = exclusion_tag_type;
+    fn rem(self, rhs: u32) -> exclusion_tag_type {
+        exclusion_tag_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct directory {
@@ -627,11 +694,70 @@ impl children {
             children::ALL_CHILDREN => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> children {
+        match value {
+            0 => children::NO_CHILDREN,
+            1 => children::CHANGED_CHILDREN,
+            2 => children::ALL_CHILDREN,
+            _ => panic!("Invalid value for children: {}", value),
+        }
+    }
 }
-
-pub const ALL_CHILDREN: children = 2;
-pub const CHANGED_CHILDREN: children = 1;
-pub const NO_CHILDREN: children = 0;
+impl AddAssign<u32> for children {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = children::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for children {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = children::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for children {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = children::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for children {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = children::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for children {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = children::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for children {
+    type Output = children;
+    fn add(self, rhs: u32) -> children {
+        children::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for children {
+    type Output = children;
+    fn sub(self, rhs: u32) -> children {
+        children::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for children {
+    type Output = children;
+    fn mul(self, rhs: u32) -> children {
+        children::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for children {
+    type Output = children;
+    fn div(self, rhs: u32) -> children {
+        children::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for children {
+    type Output = children;
+    fn rem(self, rhs: u32) -> children {
+        children::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct dumpdir {
@@ -685,8 +811,69 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::LOG10_BILLION => 9,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_2 {
+        match value {
+            1000000000 => C2RustUnnamed_2::BILLION,
+            9 => C2RustUnnamed_2::LOG10_BILLION,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
@@ -702,11 +889,70 @@ impl remove_option {
             remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> remove_option {
+        match value {
+            0 => remove_option::ORDINARY_REMOVE_OPTION,
+            1 => remove_option::RECURSIVE_REMOVE_OPTION,
+            2 => remove_option::WANT_DIRECTORY_REMOVE_OPTION,
+            _ => panic!("Invalid value for remove_option: {}", value),
+        }
+    }
 }
-
-pub const WANT_DIRECTORY_REMOVE_OPTION: remove_option = 2;
-pub const RECURSIVE_REMOVE_OPTION: remove_option = 1;
-pub const ORDINARY_REMOVE_OPTION: remove_option = 0;
+impl AddAssign<u32> for remove_option {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for remove_option {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for remove_option {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for remove_option {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for remove_option {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for remove_option {
+    type Output = remove_option;
+    fn add(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for remove_option {
+    type Output = remove_option;
+    fn sub(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for remove_option {
+    type Output = remove_option;
+    fn mul(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for remove_option {
+    type Output = remove_option;
+    fn div(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for remove_option {
+    type Output = remove_option;
+    fn rem(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn fstat(
     mut __fd: libc::c_int,
@@ -858,8 +1104,7 @@ unsafe extern "C" fn dumpdir_create0(
     );
     (*dump).total = total;
     (*dump).elc = i;
-    (*dump)
-        .elv = xcalloc(
+    (*dump).elv = xcalloc(
         i.wrapping_add(1 as libc::c_int as libc::c_ulong),
         ::core::mem::size_of::<*mut libc::c_char>() as libc::c_ulong,
     ) as *mut *mut libc::c_char;
@@ -931,8 +1176,7 @@ unsafe extern "C" fn dumpdir_next(mut itr: *mut dumpdir_iter) -> *mut libc::c_ch
         if *ret as libc::c_int == 0 as libc::c_int {
             return 0 as *mut libc::c_char;
         }
-        (*itr)
-            .next = ((*itr).next as libc::c_ulong)
+        (*itr).next = ((*itr).next as libc::c_ulong)
             .wrapping_add((strlen(ret)).wrapping_add(1 as libc::c_int as libc::c_ulong))
             as size_t as size_t;
     } else if cur < (*(*itr).dump).elc {
@@ -1026,8 +1270,7 @@ unsafe extern "C" fn make_directory(
         namelen = namelen.wrapping_sub(1);
         namelen;
     }
-    (*directory)
-        .name = xmalloc(namelen.wrapping_add(1 as libc::c_int as libc::c_ulong))
+    (*directory).name = xmalloc(namelen.wrapping_add(1 as libc::c_int as libc::c_ulong))
         as *mut libc::c_char;
     memcpy((*directory).name as *mut libc::c_void, name as *const libc::c_void, namelen);
     *((*directory).name).offset(namelen as isize) = 0 as libc::c_int as libc::c_char;
@@ -1095,7 +1338,7 @@ unsafe extern "C" fn note_directory(
     (*directory).mtime = mtime;
     (*directory).device_number = dev;
     (*directory).inode_number = ino;
-    (*directory).children = CHANGED_CHILDREN;
+    (*directory).children = children::CHANGED_CHILDREN;
     if nfs {
         (*directory).flags |= 0x2 as libc::c_int as libc::c_uint;
     }
@@ -1299,10 +1542,10 @@ unsafe extern "C" fn procdir(
                     (*d).flags &= !(0x10 as libc::c_int) as libc::c_uint;
                     dirlist_replace_prefix((*d).name, name_buffer);
                 }
-                (*directory).children = CHANGED_CHILDREN;
+                (*directory).children = children::CHANGED_CHILDREN;
             } else {
                 perhaps_renamed = 1 as libc::c_int != 0;
-                (*directory).children = ALL_CHILDREN;
+                (*directory).children = children::ALL_CHILDREN;
                 (*directory).device_number = (*stat_data).st_dev;
                 (*directory).inode_number = (*stat_data).st_ino;
             }
@@ -1310,7 +1553,7 @@ unsafe extern "C" fn procdir(
                 (*directory).flags |= 0x2 as libc::c_int as libc::c_uint;
             }
         } else {
-            (*directory).children = CHANGED_CHILDREN;
+            (*directory).children = children::CHANGED_CHILDREN;
         }
         (*directory).flags |= 0x4 as libc::c_int as libc::c_uint;
     } else {
@@ -1351,7 +1594,7 @@ unsafe extern "C" fn procdir(
                 (*d_0).flags &= !(0x10 as libc::c_int) as libc::c_uint;
                 dirlist_replace_prefix((*d_0).name, name_buffer);
             }
-            (*directory).children = CHANGED_CHILDREN;
+            (*directory).children = children::CHANGED_CHILDREN;
         } else {
             (*directory).flags |= 0x8 as libc::c_int as libc::c_uint;
             if warning_option & 0x1000 as libc::c_int != 0 {
@@ -1369,18 +1612,21 @@ unsafe extern "C" fn procdir(
                     quotearg_colon(name_buffer),
                 );
             }
-            (*directory)
-                .children = (if !listed_incremental_option.is_null()
-                || (timespec_cmp(get_stat_mtime(stat_data), newer_mtime_option)
-                    < 0 as libc::c_int
-                    || after_date_option != 0
-                        && timespec_cmp(get_stat_ctime(stat_data), newer_mtime_option)
-                            < 0 as libc::c_int)
-            {
-                ALL_CHILDREN as libc::c_int
-            } else {
-                CHANGED_CHILDREN as libc::c_int
-            }) as children;
+            (*directory).children = children::from_libc_c_uint(
+                (if !listed_incremental_option.is_null()
+                    || (timespec_cmp(get_stat_mtime(stat_data), newer_mtime_option)
+                        < 0 as libc::c_int
+                        || after_date_option != 0
+                            && timespec_cmp(
+                                get_stat_ctime(stat_data),
+                                newer_mtime_option,
+                            ) < 0 as libc::c_int)
+                {
+                    children::ALL_CHILDREN as libc::c_int
+                } else {
+                    children::CHANGED_CHILDREN as libc::c_int
+                }) as u32,
+            );
         }
     }
     if one_file_system_option as libc::c_int != 0 && !((*st).parent).is_null()
@@ -1402,16 +1648,18 @@ unsafe extern "C" fn procdir(
                 quotearg_colon((*directory).name),
             );
         }
-        (*directory).children = NO_CHILDREN;
+        (*directory).children = children::NO_CHILDREN;
         if !((*directory).dump).is_null() {
             dumpdir_free((*directory).dump);
             (*directory).dump = 0 as *mut dumpdir;
         }
         perhaps_renamed = 0 as libc::c_int != 0;
     } else if flag & 0x10 as libc::c_int != 0 {
-        (*directory).children = (flag & 3 as libc::c_int) as children;
+        (*directory).children = children::from_libc_c_uint(
+            (flag & 3 as libc::c_int) as u32,
+        );
         if (*directory).children as libc::c_uint
-            == NO_CHILDREN as libc::c_int as libc::c_uint
+            == children::NO_CHILDREN as libc::c_int as libc::c_uint
         {
             *entry = 'N' as i32 as libc::c_char;
         }
@@ -1436,7 +1684,7 @@ unsafe extern "C" fn procdir(
     }
     (*directory).flags |= 0x1 as libc::c_int as libc::c_uint;
     if (*directory).children as libc::c_uint
-        != NO_CHILDREN as libc::c_int as libc::c_uint
+        != children::NO_CHILDREN as libc::c_int as libc::c_uint
     {
         let mut tag_file_name: *const libc::c_char = 0 as *const libc::c_char;
         match check_exclusion_tags(st, &mut tag_file_name) as libc::c_uint {
@@ -1451,7 +1699,7 @@ unsafe extern "C" fn procdir(
                     ),
                 );
                 *entry = 'N' as i32 as libc::c_char;
-                (*directory).children = NO_CHILDREN;
+                (*directory).children = children::NO_CHILDREN;
             }
             1 => {
                 exclusion_tag_warning(
@@ -1463,7 +1711,7 @@ unsafe extern "C" fn procdir(
                         5 as libc::c_int,
                     ),
                 );
-                (*directory).children = NO_CHILDREN;
+                (*directory).children = children::NO_CHILDREN;
                 (*directory).tagfile = tag_file_name;
             }
             2 => {
@@ -1496,7 +1744,7 @@ unsafe extern "C" fn makedumpdir(
     let mut new_dump_ptr: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut dump: *mut dumpdir = 0 as *mut dumpdir;
     if (*directory).children as libc::c_uint
-        == ALL_CHILDREN as libc::c_int as libc::c_uint
+        == children::ALL_CHILDREN as libc::c_int as libc::c_uint
     {
         dump = 0 as *mut dumpdir;
     } else if !((*directory).orig).is_null() {
@@ -1609,10 +1857,8 @@ unsafe extern "C" fn maketagdumpdir(mut directory: *mut directory) {
         (*directory).tagfile as *const libc::c_void,
         len,
     );
-    *new_dump
-        .offset(
-            len.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize,
-        ) = 0 as libc::c_int as libc::c_char;
+    *new_dump.offset(len.wrapping_add(1 as libc::c_int as libc::c_ulong) as isize) = 0
+        as libc::c_int as libc::c_char;
     (*directory).idump = (*directory).dump;
     (*directory).dump = dumpdir_create0(new_dump, 0 as *const libc::c_char);
     rpl_free(new_dump as *mut libc::c_void);
@@ -1643,7 +1889,7 @@ pub unsafe extern "C" fn scan_directory(mut st: *mut tar_stat_info) -> *mut dire
     nbuf = namebuf_create(dir);
     if !dirp.is_null() {
         if (*directory).children as libc::c_uint
-            != NO_CHILDREN as libc::c_int as libc::c_uint
+            != children::NO_CHILDREN as libc::c_int as libc::c_uint
         {
             let mut entry: *mut libc::c_char = 0 as *mut libc::c_char;
             let mut itr: *mut dumpdir_iter = 0 as *mut dumpdir_iter;
@@ -1660,7 +1906,7 @@ pub unsafe extern "C" fn scan_directory(mut st: *mut tar_stat_info) -> *mut dire
                     *entry = 'N' as i32 as libc::c_char;
                 } else {
                     let mut fd: libc::c_int = (*st).fd;
-                    let mut diag: Option::<
+                    let mut diag: Option<
                         unsafe extern "C" fn(*const libc::c_char) -> (),
                     > = None;
                     let mut stsub: tar_stat_info = tar_stat_info {
@@ -1768,11 +2014,15 @@ pub unsafe extern "C" fn scan_directory(mut st: *mut tar_stat_info) -> *mut dire
                     {
                         let mut pd_flag: libc::c_int = 0 as libc::c_int;
                         if recursion_option == 0 {
-                            pd_flag |= 0x10 as libc::c_int | NO_CHILDREN as libc::c_int;
+                            pd_flag
+                                |= 0x10 as libc::c_int
+                                    | children::NO_CHILDREN as libc::c_int;
                         } else if (*directory).children as libc::c_uint
-                            == ALL_CHILDREN as libc::c_int as libc::c_uint
+                            == children::ALL_CHILDREN as libc::c_int as libc::c_uint
                         {
-                            pd_flag |= 0x10 as libc::c_int | ALL_CHILDREN as libc::c_int;
+                            pd_flag
+                                |= 0x10 as libc::c_int
+                                    | children::ALL_CHILDREN as libc::c_int;
                         }
                         *entry = 'D' as i32 as libc::c_char;
                         stsub.parent = st;
@@ -2034,8 +2284,7 @@ pub unsafe extern "C" fn append_incremental_renames(mut dir: *mut directory) {
         (*__o_0).next_free = ((*__o_0).next_free).offset(1);
         *fresh13 = 0 as libc::c_int as libc::c_char;
         dumpdir_free((*dir).dump);
-        (*dir)
-            .dump = dumpdir_create(
+        (*dir).dump = dumpdir_create(
             ({
                 let mut __o1: *mut obstack = &mut stk as *mut obstack;
                 let mut __value: *mut libc::c_void = (*__o1).object_base
@@ -2043,8 +2292,7 @@ pub unsafe extern "C" fn append_incremental_renames(mut dir: *mut directory) {
                 if (*__o1).next_free == __value as *mut libc::c_char {
                     (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
                 }
-                (*__o1)
-                    .next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
                     as libc::c_ulong)
                     < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
                 {
@@ -2138,7 +2386,9 @@ unsafe extern "C" fn read_incr_db_01(
         let mut buf_ns: *const libc::c_char = ebuf.offset(1 as libc::c_int as isize);
         *__errno_location() = 0 as libc::c_int;
         u = strtoumax(buf_ns, &mut ebuf, 10 as libc::c_int);
-        if *__errno_location() == 0 && BILLION as libc::c_int as libc::c_ulong <= u {
+        if *__errno_location() == 0
+            && C2RustUnnamed_2::BILLION as libc::c_int as libc::c_ulong <= u
+        {
             *__errno_location() = 34 as libc::c_int;
         }
         if *__errno_location() != 0 || buf_ns == ebuf {
@@ -2158,8 +2408,7 @@ unsafe extern "C" fn read_incr_db_01(
                 ),
             );
             exit_status = 2 as libc::c_int;
-            newer_mtime_option
-                .tv_sec = !if (0 as libc::c_int as time_t)
+            newer_mtime_option.tv_sec = !if (0 as libc::c_int as time_t)
                 < -(1 as libc::c_int) as time_t
             {
                 -(1 as libc::c_int) as time_t
@@ -2216,7 +2465,9 @@ unsafe extern "C" fn read_incr_db_01(
             }
             *__errno_location() = 0 as libc::c_int;
             u = strtoumax(strp, &mut ebuf, 10 as libc::c_int);
-            if *__errno_location() == 0 && BILLION as libc::c_int as libc::c_ulong <= u {
+            if *__errno_location() == 0
+                && C2RustUnnamed_2::BILLION as libc::c_int as libc::c_ulong <= u
+            {
                 *__errno_location() = 34 as libc::c_int;
             }
             if *__errno_location() != 0 || strp == ebuf
@@ -2568,7 +2819,7 @@ unsafe extern "C" fn read_timespec(mut fp: *mut FILE, mut pval: *mut timespec) {
             fp,
             b"nsec\0" as *const u8 as *const libc::c_char,
             0 as libc::c_int as intmax_t,
-            (BILLION as libc::c_int - 1 as libc::c_int) as uintmax_t,
+            (C2RustUnnamed_2::BILLION as libc::c_int - 1 as libc::c_int) as uintmax_t,
             &mut ns,
         ) as libc::c_int != 0
     {
@@ -2706,8 +2957,8 @@ unsafe extern "C" fn read_incr_db_2() {
             if (*__o1).next_free == __value as *mut libc::c_char {
                 (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
             }
-            (*__o1)
-                .next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+            (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                as libc::c_ulong)
                 < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
             {
                 (*__o1).object_base
@@ -2771,8 +3022,8 @@ unsafe extern "C" fn read_incr_db_2() {
             if (*__o1).next_free == __value as *mut libc::c_char {
                 (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
             }
-            (*__o1)
-                .next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+            (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                as libc::c_ulong)
                 < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
             {
                 (*__o1).object_base
@@ -3029,8 +3280,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh18 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh19 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh19 = *fresh18;
                         *fresh19 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3106,8 +3357,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh21 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh22 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh22 = *fresh21;
                         *fresh22 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3166,8 +3417,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh24 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh25 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh25 = *fresh24;
                         *fresh25 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3251,8 +3502,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh27 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh28 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh28 = *fresh27;
                         *fresh28 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3336,8 +3587,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh30 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh31 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh31 = *fresh30;
                         *fresh31 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3397,8 +3648,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh33 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh34 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh34 = *fresh33;
                         *fresh34 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -3467,8 +3718,8 @@ unsafe extern "C" fn write_directory_file_entry(
                                 let fresh36 = __ptr;
                                 __ptr = __ptr.offset(1);
                                 let fresh37 = (*__stream)._IO_write_ptr;
-                                (*__stream)
-                                    ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                                (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                                    .offset(1);
                                 *fresh37 = *fresh36;
                                 *fresh37 as libc::c_uchar as libc::c_int
                             }) == -(1 as libc::c_int)
@@ -3528,8 +3779,8 @@ unsafe extern "C" fn write_directory_file_entry(
                         let fresh39 = __ptr;
                         __ptr = __ptr.offset(1);
                         let fresh40 = (*__stream)._IO_write_ptr;
-                        (*__stream)
-                            ._IO_write_ptr = ((*__stream)._IO_write_ptr).offset(1);
+                        (*__stream)._IO_write_ptr = ((*__stream)._IO_write_ptr)
+                            .offset(1);
                         *fresh40 = *fresh39;
                         *fresh40 as libc::c_uchar as libc::c_int
                     }) == -(1 as libc::c_int)
@@ -4119,7 +4370,7 @@ unsafe extern "C" fn try_purge_directory(
                             quote(p),
                         );
                     }
-                    if remove_any_file(p, RECURSIVE_REMOVE_OPTION) == 0 {
+                    if remove_any_file(p, remove_option::RECURSIVE_REMOVE_OPTION) == 0 {
                         let mut e: libc::c_int = *__errno_location();
                         if error_hook.is_some() {
                             error_hook.expect("non-null function pointer")();
@@ -4237,7 +4488,8 @@ unsafe extern "C" fn run_static_initializers() {
             let mut init = field_range {
                 fieldname: b"timestamp_nsec\0" as *const u8 as *const libc::c_char,
                 min_val: 0 as libc::c_int as intmax_t,
-                max_val: (BILLION as libc::c_int - 1 as libc::c_int) as uintmax_t,
+                max_val: (C2RustUnnamed_2::BILLION as libc::c_int - 1 as libc::c_int)
+                    as uintmax_t,
             };
             init
         },

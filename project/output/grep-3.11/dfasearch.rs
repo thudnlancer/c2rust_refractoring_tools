@@ -1,19 +1,32 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type re_dfa_t;
     pub type dfa;
     pub type kwset;
+    fn abort() -> !;
+    fn exit(_: i32) -> !;
     fn rpl_free(_: *mut libc::c_void);
     fn rpl_re_set_syntax(__syntax: reg_syntax_t) -> reg_syntax_t;
     fn rpl_re_compile_pattern(
-        __pattern: *const libc::c_char,
+        __pattern: *const i8,
         __length: size_t,
         __buffer: *mut re_pattern_buffer,
-    ) -> *const libc::c_char;
+    ) -> *const i8;
     fn rpl_re_search(
         __buffer: *mut re_pattern_buffer,
-        __String: *const libc::c_char,
+        __String: *const i8,
         __length: regoff_t,
         __start: regoff_t,
         __range: regoff_t,
@@ -21,64 +34,50 @@ extern "C" {
     ) -> regoff_t;
     fn rpl_re_match(
         __buffer: *mut re_pattern_buffer,
-        __String: *const libc::c_char,
+        __String: *const i8,
         __length: regoff_t,
         __start: regoff_t,
         __regs: *mut re_registers,
     ) -> regoff_t;
     fn rpl_regfree(__preg: *mut regex_t);
-    fn abort() -> !;
-    fn exit(_: libc::c_int) -> !;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memchr(
-        _: *const libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn rawmemchr(__s: *const libc::c_void, __c: libc::c_int) -> *mut libc::c_void;
-    fn memrchr(
-        __s: *const libc::c_void,
-        __c: libc::c_int,
-        __n: size_t,
-    ) -> *mut libc::c_void;
-    fn strcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn memchr(_: *const libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn rawmemchr(__s: *const libc::c_void, __c: i32) -> *mut libc::c_void;
+    fn memrchr(__s: *const libc::c_void, __c: i32, __n: size_t) -> *mut libc::c_void;
+    fn strcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
     static mut match_icase: bool;
     static mut match_words: bool;
     static mut match_lines: bool;
-    static mut eolbyte: libc::c_char;
-    fn pattern_file_name(_: idx_t, _: *mut idx_t) -> *const libc::c_char;
+    static mut eolbyte: i8;
+    fn pattern_file_name(_: idx_t, _: *mut idx_t) -> *const i8;
     fn dfaalloc() -> *mut dfa;
-    fn dfasyntax(_: *mut dfa, _: *const localeinfo, _: reg_syntax_t, _: libc::c_int);
-    fn dfaparse(_: *const libc::c_char, _: idx_t, _: *mut dfa);
+    fn dfasyntax(_: *mut dfa, _: *const localeinfo, _: reg_syntax_t, _: i32);
+    fn dfaparse(_: *const i8, _: idx_t, _: *mut dfa);
     fn dfamustfree(_: *mut dfamust);
     fn dfamust(_: *const dfa) -> *mut dfamust;
-    fn dfacomp(_: *const libc::c_char, _: idx_t, _: *mut dfa, _: bool);
+    fn dfacomp(_: *const i8, _: idx_t, _: *mut dfa, _: bool);
     fn dfaexec(
         d: *mut dfa,
-        begin: *const libc::c_char,
-        end: *mut libc::c_char,
+        begin: *const i8,
+        end: *mut i8,
         allow_nl: bool,
         count: *mut idx_t,
         backref: *mut bool,
-    ) -> *mut libc::c_char;
+    ) -> *mut i8;
     fn dfasuperset(d: *const dfa) -> *mut dfa;
     fn dfaisfast(_: *const dfa) -> bool;
     fn dfasupported(_: *const dfa) -> bool;
-    fn kwsincr(_: kwset_t, _: *const libc::c_char, _: idx_t);
+    fn kwsincr(_: kwset_t, _: *const i8, _: idx_t);
     fn kwsprep(_: kwset_t);
     fn kwsexec(
         _: kwset_t,
-        _: *const libc::c_char,
+        _: *const i8,
         _: idx_t,
         _: *mut kwsmatch,
         _: bool,
@@ -96,33 +95,24 @@ extern "C" {
         s: idx_t,
     ) -> *mut libc::c_void;
     fn kwsinit(_: bool) -> kwset_t;
-    fn wordchar_next(_: *const libc::c_char, _: *const libc::c_char) -> idx_t;
-    fn wordchar_prev(
-        _: *const libc::c_char,
-        _: *const libc::c_char,
-        _: *const libc::c_char,
-    ) -> idx_t;
+    fn wordchar_next(_: *const i8, _: *const i8) -> idx_t;
+    fn wordchar_prev(_: *const i8, _: *const i8, _: *const i8) -> idx_t;
     fn mb_goback(
-        _: *mut *const libc::c_char,
+        _: *mut *const i8,
         _: *mut idx_t,
-        _: *const libc::c_char,
-        _: *const libc::c_char,
+        _: *const i8,
+        _: *const i8,
     ) -> ptrdiff_t;
     static mut localeinfo: localeinfo;
-    fn error(
-        __status: libc::c_int,
-        __errnum: libc::c_int,
-        __format: *const libc::c_char,
-        _: ...
-    );
+    fn error(__status: i32, __errnum: i32, __format: *const i8, _: ...);
 }
-pub type __ssize_t = libc::c_long;
+pub type __ssize_t = i64;
 pub type ssize_t = __ssize_t;
-pub type size_t = libc::c_ulong;
-pub type wint_t = libc::c_uint;
+pub type size_t = u64;
+pub type wint_t = u32;
 pub type __re_size_t = size_t;
 pub type __re_long_size_t = size_t;
-pub type reg_syntax_t = libc::c_ulong;
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
@@ -130,8 +120,8 @@ pub struct re_pattern_buffer {
     pub allocated: __re_long_size_t,
     pub used: __re_long_size_t,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_uchar,
+    pub fastmap: *mut i8,
+    pub translate: *mut u8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -153,21 +143,80 @@ pub struct re_registers {
     pub start: *mut regoff_t,
     pub end: *mut regoff_t,
 }
-pub type ptrdiff_t = libc::c_long;
+pub type ptrdiff_t = i64;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
     EXIT_TROUBLE = 2,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::EXIT_TROUBLE => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            2 => C2RustUnnamed::EXIT_TROUBLE,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const EXIT_TROUBLE: C2RustUnnamed = 2;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type idx_t = ptrdiff_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -184,7 +233,7 @@ pub struct dfamust {
     pub exact: bool,
     pub begline: bool,
     pub endline: bool,
-    pub must: [libc::c_char; 0],
+    pub must: [i8; 0],
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -197,7 +246,7 @@ pub enum C2RustUnnamed_0 {
     DFA_ANCHOR = 1,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::DFA_PLUS_WARN => 32,
             C2RustUnnamed_0::DFA_STAR_WARN => 16,
@@ -207,18 +256,77 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::DFA_ANCHOR => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            32 => C2RustUnnamed_0::DFA_PLUS_WARN,
+            16 => C2RustUnnamed_0::DFA_STAR_WARN,
+            8 => C2RustUnnamed_0::DFA_STRAY_BACKSLASH_WARN,
+            4 => C2RustUnnamed_0::DFA_CONFUSING_BRACKETS_ERROR,
+            2 => C2RustUnnamed_0::DFA_EOL_NUL,
+            1 => C2RustUnnamed_0::DFA_ANCHOR,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const DFA_PLUS_WARN: C2RustUnnamed_0 = 32;
-pub const DFA_STAR_WARN: C2RustUnnamed_0 = 16;
-pub const DFA_STRAY_BACKSLASH_WARN: C2RustUnnamed_0 = 8;
-pub const DFA_CONFUSING_BRACKETS_ERROR: C2RustUnnamed_0 = 4;
-pub const DFA_EOL_NUL: C2RustUnnamed_0 = 2;
-pub const DFA_ANCHOR: C2RustUnnamed_0 = 1;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
-    pub _gl_dummy: libc::c_int,
+    pub _gl_dummy: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -240,39 +348,35 @@ pub struct dfa_comp {
     pub begline: bool,
 }
 #[no_mangle]
-pub unsafe extern "C" fn dfaerror(mut mesg: *const libc::c_char) {
-    if ::core::mem::size_of::<C2RustUnnamed_1>() as libc::c_ulong != 0 {
+pub unsafe extern "C" fn dfaerror(mut mesg: *const i8) {
+    if ::core::mem::size_of::<C2RustUnnamed_1>() as u64 != 0 {
         error(
-            EXIT_TROUBLE as libc::c_int,
-            0 as libc::c_int,
-            b"%s\0" as *const u8 as *const libc::c_char,
+            C2RustUnnamed::EXIT_TROUBLE as i32,
+            0 as i32,
+            b"%s\0" as *const u8 as *const i8,
             mesg,
         );
-        if 0 as libc::c_int != 0 {} else {
+        if 0 as i32 != 0 {} else {
             unreachable!();
         };
     } else {
         error(
-            EXIT_TROUBLE as libc::c_int,
-            0 as libc::c_int,
-            b"%s\0" as *const u8 as *const libc::c_char,
+            C2RustUnnamed::EXIT_TROUBLE as i32,
+            0 as i32,
+            b"%s\0" as *const u8 as *const i8,
             mesg,
         );
-        if 0 as libc::c_int != 0 {} else {
+        if 0 as i32 != 0 {} else {
             unreachable!();
         };
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn dfawarn(mut mesg: *const libc::c_char) {
+pub unsafe extern "C" fn dfawarn(mut mesg: *const i8) {
     error(
-        0 as libc::c_int,
-        0 as libc::c_int,
-        dcgettext(
-            0 as *const libc::c_char,
-            b"warning: %s\0" as *const u8 as *const libc::c_char,
-            5 as libc::c_int,
-        ),
+        0 as i32,
+        0 as i32,
+        dcgettext(0 as *const i8, b"warning: %s\0" as *const u8 as *const i8, 5 as i32),
         mesg,
     );
 }
@@ -281,24 +385,21 @@ unsafe extern "C" fn kwsmusts(mut dc: *mut dfa_comp) {
     if dm.is_null() {
         return;
     }
-    (*dc).kwset = kwsinit(0 as libc::c_int != 0);
+    (*dc).kwset = kwsinit(0 as i32 != 0);
     if (*dm).exact {
         (*dc).kwset_exact_matches += 1;
         (*dc).kwset_exact_matches;
         let mut old_len: idx_t = strlen(((*dm).must).as_mut_ptr()) as idx_t;
-        let mut new_len: idx_t = old_len + (*dm).begline as libc::c_long
-            + (*dm).endline as libc::c_long;
-        let mut must: *mut libc::c_char = ximalloc(new_len) as *mut libc::c_char;
-        let mut mp: *mut libc::c_char = must;
+        let mut new_len: idx_t = old_len + (*dm).begline as i64 + (*dm).endline as i64;
+        let mut must: *mut i8 = ximalloc(new_len) as *mut i8;
+        let mut mp: *mut i8 = must;
         *mp = eolbyte;
-        mp = mp.offset((*dm).begline as libc::c_int as isize);
-        (*dc)
-            .begline = ((*dc).begline as libc::c_int | (*dm).begline as libc::c_int)
-            as bool;
+        mp = mp.offset((*dm).begline as i32 as isize);
+        (*dc).begline = ((*dc).begline as i32 | (*dm).begline as i32) as bool;
         memcpy(
             mp as *mut libc::c_void,
             ((*dm).must).as_mut_ptr() as *const libc::c_void,
-            old_len as libc::c_ulong,
+            old_len as u64,
         );
         if (*dm).endline {
             *mp.offset(old_len as isize) = eolbyte;
@@ -316,35 +417,35 @@ unsafe extern "C" fn kwsmusts(mut dc: *mut dfa_comp) {
     dfamustfree(dm);
 }
 unsafe extern "C" fn possible_backrefs_in_pattern(
-    mut keys: *const libc::c_char,
+    mut keys: *const i8,
     mut len: idx_t,
     mut bs_safe: bool,
 ) -> bool {
-    let mut second_backslash: libc::c_int = if bs_safe as libc::c_int != 0 {
+    let mut second_backslash: i32 = if bs_safe as i32 != 0 {
         '\\' as i32
     } else {
-        127 as libc::c_int + 1 as libc::c_int
+        127 as i32 + 1 as i32
     };
     len -= 1;
     len;
-    if 0 as libc::c_int as libc::c_long <= len {
-        let mut lim: *const libc::c_char = keys.offset(len as isize);
-        let mut p: *const libc::c_char = keys;
+    if 0 as i32 as i64 <= len {
+        let mut lim: *const i8 = keys.offset(len as isize);
+        let mut p: *const i8 = keys;
         loop {
             p = memchr(
                 p as *const libc::c_void,
                 '\\' as i32,
-                lim.offset_from(p) as libc::c_long as libc::c_ulong,
-            ) as *const libc::c_char;
+                lim.offset_from(p) as i64 as u64,
+            ) as *const i8;
             if p.is_null() {
                 break;
             }
-            if '1' as i32 <= *p.offset(1 as libc::c_int as isize) as libc::c_int
-                && *p.offset(1 as libc::c_int as isize) as libc::c_int <= '9' as i32
+            if '1' as i32 <= *p.offset(1 as i32 as isize) as i32
+                && *p.offset(1 as i32 as isize) as i32 <= '9' as i32
             {
-                return 1 as libc::c_int != 0;
+                return 1 as i32 != 0;
             }
-            if *p.offset(1 as libc::c_int as isize) as libc::c_int == second_backslash {
+            if *p.offset(1 as i32 as isize) as i32 == second_backslash {
                 p = p.offset(1);
                 p;
                 if p == lim {
@@ -355,11 +456,11 @@ unsafe extern "C" fn possible_backrefs_in_pattern(
             p;
         }
     }
-    return 0 as libc::c_int != 0;
+    return 0 as i32 != 0;
 }
 unsafe extern "C" fn regex_compile(
     mut dc: *mut dfa_comp,
-    mut p: *const libc::c_char,
+    mut p: *const i8,
     mut len: idx_t,
     mut pcount: idx_t,
     mut lineno: idx_t,
@@ -371,185 +472,159 @@ unsafe extern "C" fn regex_compile(
         allocated: 0,
         used: 0,
         syntax: 0,
-        fastmap: 0 as *mut libc::c_char,
-        translate: 0 as *mut libc::c_uchar,
+        fastmap: 0 as *mut i8,
+        translate: 0 as *mut u8,
         re_nsub: 0,
         can_be_null_regs_allocated_fastmap_accurate_no_sub_not_bol_not_eol_newline_anchor: [0; 1],
         c2rust_padding: [0; 7],
     };
     pat.buffer = 0 as *mut re_dfa_t;
-    pat.allocated = 0 as libc::c_int as __re_long_size_t;
-    let mut uchar_max: idx_t = (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int)
-        as idx_t;
-    pat
-        .fastmap = (if syntax_only as libc::c_int | match_icase as libc::c_int != 0 {
+    pat.allocated = 0 as i32 as __re_long_size_t;
+    let mut uchar_max: idx_t = (127 as i32 * 2 as i32 + 1 as i32) as idx_t;
+    pat.fastmap = (if syntax_only as i32 | match_icase as i32 != 0 {
         0 as *mut libc::c_void
     } else {
-        ximalloc(uchar_max + 1 as libc::c_int as libc::c_long)
-    }) as *mut libc::c_char;
-    pat.translate = 0 as *mut libc::c_uchar;
+        ximalloc(uchar_max + 1 as i32 as i64)
+    }) as *mut i8;
+    pat.translate = 0 as *mut u8;
     if syntax_only {
         rpl_re_set_syntax(
             syntax_bits
-                | (((((((((((((((((((((((((1 as libc::c_int as libc::c_ulong)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int,
+                | (((((((((((((((((((((((((1 as i32 as u64) << 1 as i32) << 1 as i32)
+                    << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                    << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                    << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                    << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                    << 1 as i32) << 1 as i32) << 1 as i32,
         );
     } else {
         rpl_re_set_syntax(syntax_bits);
     }
-    let mut err: *const libc::c_char = rpl_re_compile_pattern(
-        p,
-        len as size_t,
-        &mut pat,
-    );
+    let mut err: *const i8 = rpl_re_compile_pattern(p, len as size_t, &mut pat);
     if err.is_null() {
         if syntax_only {
             rpl_regfree(&mut pat);
         } else {
             *((*dc).patterns).offset(pcount as isize) = pat;
         }
-        return 1 as libc::c_int != 0;
+        return 1 as i32 != 0;
     }
     rpl_free(pat.fastmap as *mut libc::c_void);
     let mut pat_lineno: idx_t = 0;
-    let mut pat_filename: *const libc::c_char = if lineno
-        < 0 as libc::c_int as libc::c_long
-    {
-        b"\0" as *const u8 as *const libc::c_char
+    let mut pat_filename: *const i8 = if lineno < 0 as i32 as i64 {
+        b"\0" as *const u8 as *const i8
     } else {
         pattern_file_name(lineno, &mut pat_lineno)
     };
-    if *pat_filename as libc::c_int == '\0' as i32 {
-        error(
-            0 as libc::c_int,
-            0 as libc::c_int,
-            b"%s\0" as *const u8 as *const libc::c_char,
-            err,
-        );
+    if *pat_filename as i32 == '\0' as i32 {
+        error(0 as i32, 0 as i32, b"%s\0" as *const u8 as *const i8, err);
     } else {
         let mut n: ptrdiff_t = pat_lineno;
         error(
-            0 as libc::c_int,
-            0 as libc::c_int,
-            b"%s:%td: %s\0" as *const u8 as *const libc::c_char,
+            0 as i32,
+            0 as i32,
+            b"%s:%td: %s\0" as *const u8 as *const i8,
             pat_filename,
             n,
             err,
         );
     }
-    return 0 as libc::c_int != 0;
+    return 0 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn GEAcompile(
-    mut pattern: *mut libc::c_char,
+    mut pattern: *mut i8,
     mut size: idx_t,
     mut syntax_bits: reg_syntax_t,
     mut exact: bool,
 ) -> *mut libc::c_void {
-    let mut motif: *mut libc::c_char = 0 as *mut libc::c_char;
+    let mut motif: *mut i8 = 0 as *mut i8;
     let mut dc: *mut dfa_comp = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<dfa_comp>() as libc::c_ulong,
+        1 as i32 as size_t,
+        ::core::mem::size_of::<dfa_comp>() as u64,
     ) as *mut dfa_comp;
     (*dc).dfa = dfaalloc();
     if match_icase {
         syntax_bits
-            |= ((((((((((((((((((((((1 as libc::c_int as libc::c_ulong)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int;
+            |= ((((((((((((((((((((((1 as i32 as u64) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32;
     }
-    let mut dfaopts: libc::c_int = DFA_CONFUSING_BRACKETS_ERROR as libc::c_int
-        | DFA_STRAY_BACKSLASH_WARN as libc::c_int | DFA_PLUS_WARN as libc::c_int
+    let mut dfaopts: i32 = C2RustUnnamed_0::DFA_CONFUSING_BRACKETS_ERROR as i32
+        | C2RustUnnamed_0::DFA_STRAY_BACKSLASH_WARN as i32
+        | C2RustUnnamed_0::DFA_PLUS_WARN as i32
         | (if syntax_bits
-            & ((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
+            & ((((1 as i32 as u64) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32
+            != 0
         {
-            DFA_STAR_WARN as libc::c_int
+            C2RustUnnamed_0::DFA_STAR_WARN as i32
         } else {
-            0 as libc::c_int
+            0 as i32
         })
-        | (if eolbyte as libc::c_int != 0 {
-            0 as libc::c_int
+        | (if eolbyte as i32 != 0 {
+            0 as i32
         } else {
-            DFA_EOL_NUL as libc::c_int
+            C2RustUnnamed_0::DFA_EOL_NUL as i32
         });
     dfasyntax((*dc).dfa, &mut localeinfo, syntax_bits, dfaopts);
-    let mut bs_safe: bool = !localeinfo.multibyte as libc::c_int
-        | localeinfo.using_utf8 as libc::c_int != 0;
-    let mut p: *const libc::c_char = pattern;
-    let mut patlim: *const libc::c_char = pattern.offset(size as isize);
-    let mut compilation_failed: bool = 0 as libc::c_int != 0;
-    (*dc)
-        .patterns = xmalloc(::core::mem::size_of::<re_pattern_buffer>() as libc::c_ulong)
+    let mut bs_safe: bool = !localeinfo.multibyte as i32 | localeinfo.using_utf8 as i32
+        != 0;
+    let mut p: *const i8 = pattern;
+    let mut patlim: *const i8 = pattern.offset(size as isize);
+    let mut compilation_failed: bool = 0 as i32 != 0;
+    (*dc).patterns = xmalloc(::core::mem::size_of::<re_pattern_buffer>() as u64)
         as *mut re_pattern_buffer;
     (*dc).patterns = ((*dc).patterns).offset(1);
     (*dc).patterns;
-    (*dc).pcount = 0 as libc::c_int as idx_t;
-    let mut palloc: idx_t = 1 as libc::c_int as idx_t;
-    let mut prev: *const libc::c_char = pattern;
-    let mut buf: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut buflen: idx_t = 0 as libc::c_int as idx_t;
-    let mut bufalloc: idx_t = 0 as libc::c_int as idx_t;
-    let mut lineno: idx_t = 0 as libc::c_int as idx_t;
+    (*dc).pcount = 0 as i32 as idx_t;
+    let mut palloc: idx_t = 1 as i32 as idx_t;
+    let mut prev: *const i8 = pattern;
+    let mut buf: *mut i8 = 0 as *mut i8;
+    let mut buflen: idx_t = 0 as i32 as idx_t;
+    let mut bufalloc: idx_t = 0 as i32 as idx_t;
+    let mut lineno: idx_t = 0 as i32 as idx_t;
     loop {
-        let mut sep: *const libc::c_char = rawmemchr(
-            p as *const libc::c_void,
-            '\n' as i32,
-        ) as *const libc::c_char;
-        let mut len: idx_t = sep.offset_from(p) as libc::c_long;
+        let mut sep: *const i8 = rawmemchr(p as *const libc::c_void, '\n' as i32)
+            as *const i8;
+        let mut len: idx_t = sep.offset_from(p) as i64;
         let mut backref: bool = possible_backrefs_in_pattern(p, len, bs_safe);
-        if backref as libc::c_int != 0 && prev < p {
-            let mut prevlen: idx_t = p.offset_from(prev) as libc::c_long;
+        if backref as i32 != 0 && prev < p {
+            let mut prevlen: idx_t = p.offset_from(prev) as i64;
             let mut bufshortage: ptrdiff_t = buflen - bufalloc + prevlen;
-            if (0 as libc::c_int as libc::c_long) < bufshortage {
+            if (0 as i32 as i64) < bufshortage {
                 buf = xpalloc(
                     buf as *mut libc::c_void,
                     &mut bufalloc,
                     bufshortage,
-                    -(1 as libc::c_int) as ptrdiff_t,
-                    1 as libc::c_int as idx_t,
-                ) as *mut libc::c_char;
+                    -(1 as i32) as ptrdiff_t,
+                    1 as i32 as idx_t,
+                ) as *mut i8;
             }
             memcpy(
                 buf.offset(buflen as isize) as *mut libc::c_void,
                 prev as *const libc::c_void,
-                prevlen as libc::c_ulong,
+                prevlen as u64,
             );
             buflen += prevlen;
         }
-        let mut shortage: ptrdiff_t = (*dc).pcount - palloc
-            + 2 as libc::c_int as libc::c_long;
-        if (0 as libc::c_int as libc::c_long) < shortage {
-            (*dc)
-                .patterns = xpalloc(
-                ((*dc).patterns).offset(-(1 as libc::c_int as isize))
-                    as *mut libc::c_void,
+        let mut shortage: ptrdiff_t = (*dc).pcount - palloc + 2 as i32 as i64;
+        if (0 as i32 as i64) < shortage {
+            (*dc).patterns = xpalloc(
+                ((*dc).patterns).offset(-(1 as i32 as isize)) as *mut libc::c_void,
                 &mut palloc,
                 shortage,
-                -(1 as libc::c_int) as ptrdiff_t,
-                ::core::mem::size_of::<re_pattern_buffer>() as libc::c_ulong as idx_t,
+                -(1 as i32) as ptrdiff_t,
+                ::core::mem::size_of::<re_pattern_buffer>() as u64 as idx_t,
             ) as *mut re_pattern_buffer;
             (*dc).patterns = ((*dc).patterns).offset(1);
             (*dc).patterns;
         }
         if !regex_compile(dc, p, len, (*dc).pcount, lineno, syntax_bits, !backref) {
-            compilation_failed = 1 as libc::c_int != 0;
+            compilation_failed = 1 as i32 != 0;
         }
-        p = sep.offset(1 as libc::c_int as isize);
+        p = sep.offset(1 as i32 as isize);
         lineno += 1;
         lineno;
         if backref {
@@ -562,79 +637,67 @@ pub unsafe extern "C" fn GEAcompile(
         }
     }
     if compilation_failed {
-        exit(EXIT_TROUBLE as libc::c_int);
+        exit(C2RustUnnamed::EXIT_TROUBLE as i32);
     }
     if patlim < prev {
         buflen -= 1;
         buflen;
-    } else if pattern < prev as *mut libc::c_char {
-        let mut prevlen_0: idx_t = patlim.offset_from(prev) as libc::c_long;
-        buf = xirealloc(buf as *mut libc::c_void, buflen + prevlen_0)
-            as *mut libc::c_char;
+    } else if pattern < prev as *mut i8 {
+        let mut prevlen_0: idx_t = patlim.offset_from(prev) as i64;
+        buf = xirealloc(buf as *mut libc::c_void, buflen + prevlen_0) as *mut i8;
         memcpy(
             buf.offset(buflen as isize) as *mut libc::c_void,
             prev as *const libc::c_void,
-            prevlen_0 as libc::c_ulong,
+            prevlen_0 as u64,
         );
         buflen += prevlen_0;
     } else {
         buf = pattern;
         buflen = size;
     }
-    if match_words as libc::c_int != 0 || match_lines as libc::c_int != 0 {
-        static mut line_beg_no_bk: [libc::c_char; 3] = unsafe {
-            *::core::mem::transmute::<&[u8; 3], &[libc::c_char; 3]>(b"^(\0")
+    if match_words as i32 != 0 || match_lines as i32 != 0 {
+        static mut line_beg_no_bk: [i8; 3] = unsafe {
+            *::core::mem::transmute::<&[u8; 3], &[i8; 3]>(b"^(\0")
         };
-        static mut line_end_no_bk: [libc::c_char; 3] = unsafe {
-            *::core::mem::transmute::<&[u8; 3], &[libc::c_char; 3]>(b")$\0")
+        static mut line_end_no_bk: [i8; 3] = unsafe {
+            *::core::mem::transmute::<&[u8; 3], &[i8; 3]>(b")$\0")
         };
-        static mut word_beg_no_bk: [libc::c_char; 19] = unsafe {
-            *::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b"(^|[^[:alnum:]_])(\0")
+        static mut word_beg_no_bk: [i8; 19] = unsafe {
+            *::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b"(^|[^[:alnum:]_])(\0")
         };
-        static mut word_end_no_bk: [libc::c_char; 19] = unsafe {
-            *::core::mem::transmute::<
-                &[u8; 19],
-                &[libc::c_char; 19],
-            >(b")([^[:alnum:]_]|$)\0")
+        static mut word_end_no_bk: [i8; 19] = unsafe {
+            *::core::mem::transmute::<&[u8; 19], &[i8; 19]>(b")([^[:alnum:]_]|$)\0")
         };
-        static mut line_beg_bk: [libc::c_char; 4] = unsafe {
-            *::core::mem::transmute::<&[u8; 4], &[libc::c_char; 4]>(b"^\\(\0")
+        static mut line_beg_bk: [i8; 4] = unsafe {
+            *::core::mem::transmute::<&[u8; 4], &[i8; 4]>(b"^\\(\0")
         };
-        static mut line_end_bk: [libc::c_char; 4] = unsafe {
-            *::core::mem::transmute::<&[u8; 4], &[libc::c_char; 4]>(b"\\)$\0")
+        static mut line_end_bk: [i8; 4] = unsafe {
+            *::core::mem::transmute::<&[u8; 4], &[i8; 4]>(b"\\)$\0")
         };
-        static mut word_beg_bk: [libc::c_char; 23] = unsafe {
+        static mut word_beg_bk: [i8; 23] = unsafe {
             *::core::mem::transmute::<
                 &[u8; 23],
-                &[libc::c_char; 23],
+                &[i8; 23],
             >(b"\\(^\\|[^[:alnum:]_]\\)\\(\0")
         };
-        static mut word_end_bk: [libc::c_char; 23] = unsafe {
+        static mut word_end_bk: [i8; 23] = unsafe {
             *::core::mem::transmute::<
                 &[u8; 23],
-                &[libc::c_char; 23],
+                &[i8; 23],
             >(b"\\)\\([^[:alnum:]_]\\|$\\)\0")
         };
-        let mut bk: libc::c_int = (syntax_bits
-            & (((((((((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int == 0)
-            as libc::c_int;
-        let mut bracket_bytes: idx_t = (::core::mem::size_of::<[libc::c_char; 23]>()
-            as libc::c_ulong)
-            .wrapping_sub(1 as libc::c_int as libc::c_ulong)
-            .wrapping_add(::core::mem::size_of::<[libc::c_char; 23]>() as libc::c_ulong)
-            as idx_t;
-        let mut n: *mut libc::c_char = ximalloc(size + bracket_bytes)
-            as *mut libc::c_char;
+        let mut bk: i32 = (syntax_bits
+            & (((((((((((((1 as i32 as u64) << 1 as i32) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32)
+                << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32) << 1 as i32 == 0)
+            as i32;
+        let mut bracket_bytes: idx_t = (::core::mem::size_of::<[i8; 23]>() as u64)
+            .wrapping_sub(1 as i32 as u64)
+            .wrapping_add(::core::mem::size_of::<[i8; 23]>() as u64) as idx_t;
+        let mut n: *mut i8 = ximalloc(size + bracket_bytes) as *mut i8;
         strcpy(
             n,
-            if match_lines as libc::c_int != 0 {
+            if match_lines as i32 != 0 {
                 if bk != 0 { line_beg_bk.as_ptr() } else { line_beg_no_bk.as_ptr() }
             } else if bk != 0 {
                 word_beg_bk.as_ptr()
@@ -646,12 +709,12 @@ pub unsafe extern "C" fn GEAcompile(
         memcpy(
             n.offset(total as isize) as *mut libc::c_void,
             pattern as *const libc::c_void,
-            size as libc::c_ulong,
+            size as u64,
         );
         total += size;
         strcpy(
             n.offset(total as isize),
-            if match_lines as libc::c_int != 0 {
+            if match_lines as i32 != 0 {
                 if bk != 0 { line_end_bk.as_ptr() } else { line_end_no_bk.as_ptr() }
             } else if bk != 0 {
                 word_end_bk.as_ptr()
@@ -659,24 +722,19 @@ pub unsafe extern "C" fn GEAcompile(
                 word_end_no_bk.as_ptr()
             },
         );
-        total = (total as libc::c_ulong).wrapping_add(strlen(n.offset(total as isize)))
-            as idx_t as idx_t;
+        total = (total as u64).wrapping_add(strlen(n.offset(total as isize))) as idx_t
+            as idx_t;
         motif = n;
         pattern = motif;
         size = total;
     } else {
-        motif = 0 as *mut libc::c_char;
+        motif = 0 as *mut i8;
     }
     dfaparse(pattern, size, (*dc).dfa);
     kwsmusts(dc);
-    dfacomp(
-        0 as *const libc::c_char,
-        0 as libc::c_int as idx_t,
-        (*dc).dfa,
-        1 as libc::c_int != 0,
-    );
+    dfacomp(0 as *const i8, 0 as i32 as idx_t, (*dc).dfa, 1 as i32 != 0);
     if !buf.is_null() {
-        if exact as libc::c_int != 0 || !dfasupported((*dc).dfa) {
+        if exact as i32 != 0 || !dfasupported((*dc).dfa) {
             (*dc).patterns = ((*dc).patterns).offset(-1);
             (*dc).patterns;
             (*dc).pcount += 1;
@@ -685,10 +743,10 @@ pub unsafe extern "C" fn GEAcompile(
                 dc,
                 buf,
                 buflen,
-                0 as libc::c_int as idx_t,
-                -(1 as libc::c_int) as idx_t,
+                0 as i32 as idx_t,
+                -(1 as i32) as idx_t,
                 syntax_bits,
-                0 as libc::c_int != 0,
+                0 as i32 != 0,
             ) {
                 abort();
             }
@@ -703,20 +761,20 @@ pub unsafe extern "C" fn GEAcompile(
 #[no_mangle]
 pub unsafe extern "C" fn EGexecute(
     mut vdc: *mut libc::c_void,
-    mut buf: *const libc::c_char,
+    mut buf: *const i8,
     mut size: idx_t,
     mut match_size: *mut idx_t,
-    mut start_ptr: *const libc::c_char,
+    mut start_ptr: *const i8,
 ) -> ptrdiff_t {
     let mut current_block: u64;
-    let mut buflim: *const libc::c_char = 0 as *const libc::c_char;
-    let mut beg: *const libc::c_char = 0 as *const libc::c_char;
-    let mut end: *const libc::c_char = 0 as *const libc::c_char;
-    let mut ptr: *const libc::c_char = 0 as *const libc::c_char;
-    let mut match_0: *const libc::c_char = 0 as *const libc::c_char;
-    let mut best_match: *const libc::c_char = 0 as *const libc::c_char;
-    let mut mb_start: *const libc::c_char = 0 as *const libc::c_char;
-    let mut eol: libc::c_char = eolbyte;
+    let mut buflim: *const i8 = 0 as *const i8;
+    let mut beg: *const i8 = 0 as *const i8;
+    let mut end: *const i8 = 0 as *const i8;
+    let mut ptr: *const i8 = 0 as *const i8;
+    let mut match_0: *const i8 = 0 as *const i8;
+    let mut best_match: *const i8 = 0 as *const i8;
+    let mut mb_start: *const i8 = 0 as *const i8;
+    let mut eol: i8 = eolbyte;
     let mut start: regoff_t = 0;
     let mut len: idx_t = 0;
     let mut best_len: idx_t = 0;
@@ -740,94 +798,79 @@ pub unsafe extern "C" fn EGexecute(
         }
         end = buflim;
         if start_ptr.is_null() {
-            let mut next_beg: *const libc::c_char = 0 as *const libc::c_char;
-            let mut dfa_beg: *const libc::c_char = beg;
-            let mut count: idx_t = 0 as libc::c_int as idx_t;
-            let mut exact_kwset_match: bool = 0 as libc::c_int != 0;
-            let mut backref: bool = 0 as libc::c_int != 0;
+            let mut next_beg: *const i8 = 0 as *const i8;
+            let mut dfa_beg: *const i8 = beg;
+            let mut count: idx_t = 0 as i32 as idx_t;
+            let mut exact_kwset_match: bool = 0 as i32 != 0;
+            let mut backref: bool = 0 as i32 != 0;
             if !((*dc).kwset).is_null() {
-                let mut prev_beg: *const libc::c_char = 0 as *const libc::c_char;
+                let mut prev_beg: *const i8 = 0 as *const i8;
                 let mut offset: ptrdiff_t = kwsexec(
                     (*dc).kwset,
-                    beg.offset(-((*dc).begline as libc::c_int as isize)),
-                    buflim.offset_from(beg) as libc::c_long
-                        + (*dc).begline as libc::c_long,
+                    beg.offset(-((*dc).begline as i32 as isize)),
+                    buflim.offset_from(beg) as i64 + (*dc).begline as i64,
                     &mut kwsm,
-                    1 as libc::c_int != 0,
+                    1 as i32 != 0,
                 );
-                if offset < 0 as libc::c_int as libc::c_long {
+                if offset < 0 as i32 as i64 {
                     return offset;
                 }
                 match_0 = beg.offset(offset as isize);
                 prev_beg = beg;
                 beg = memrchr(
                     buf as *const libc::c_void,
-                    eol as libc::c_int,
-                    match_0.offset_from(buf) as libc::c_long as size_t,
-                ) as *const libc::c_char;
-                beg = if !beg.is_null() {
-                    beg.offset(1 as libc::c_int as isize)
-                } else {
-                    buf
-                };
+                    eol as i32,
+                    match_0.offset_from(buf) as i64 as size_t,
+                ) as *const i8;
+                beg = if !beg.is_null() { beg.offset(1 as i32 as isize) } else { buf };
                 dfa_beg = beg;
                 exact_kwset_match = kwsm.index < (*dc).kwset_exact_matches;
-                if exact_kwset_match as libc::c_int != 0 || !dfafast
-                    || (if 16 as libc::c_int as libc::c_long
-                        > match_0.offset_from(beg) as libc::c_long
-                    {
-                        16 as libc::c_int as libc::c_long
+                if exact_kwset_match as i32 != 0 || !dfafast
+                    || (if 16 as i32 as i64 > match_0.offset_from(beg) as i64 {
+                        16 as i32 as i64
                     } else {
-                        match_0.offset_from(beg) as libc::c_long
-                    })
-                        < match_0.offset_from(prev_beg) as libc::c_long
-                            >> 2 as libc::c_int
+                        match_0.offset_from(beg) as i64
+                    }) < match_0.offset_from(prev_beg) as i64 >> 2 as i32
                 {
-                    end = rawmemchr(match_0 as *const libc::c_void, eol as libc::c_int)
-                        as *const libc::c_char;
+                    end = rawmemchr(match_0 as *const libc::c_void, eol as i32)
+                        as *const i8;
                     end = end.offset(1);
                     end;
-                } else if (if 16 as libc::c_int as libc::c_long
-                    > match_0.offset_from(beg) as libc::c_long
-                {
-                    16 as libc::c_int as libc::c_long
+                } else if (if 16 as i32 as i64 > match_0.offset_from(beg) as i64 {
+                    16 as i32 as i64
                 } else {
-                    match_0.offset_from(beg) as libc::c_long
-                }) < buflim.offset_from(prev_beg) as libc::c_long >> 2 as libc::c_int
+                    match_0.offset_from(beg) as i64
+                }) < buflim.offset_from(prev_beg) as i64 >> 2 as i32
                 {
                     end = rawmemchr(
                         prev_beg
                             .offset(
-                                (4 as libc::c_int as libc::c_long
-                                    * (if 16 as libc::c_int as libc::c_long
-                                        > match_0.offset_from(beg) as libc::c_long
-                                    {
-                                        16 as libc::c_int as libc::c_long
+                                (4 as i32 as i64
+                                    * (if 16 as i32 as i64 > match_0.offset_from(beg) as i64 {
+                                        16 as i32 as i64
                                     } else {
-                                        match_0.offset_from(beg) as libc::c_long
+                                        match_0.offset_from(beg) as i64
                                     })) as isize,
                             ) as *const libc::c_void,
-                        eol as libc::c_int,
-                    ) as *const libc::c_char;
+                        eol as i32,
+                    ) as *const i8;
                     end = end.offset(1);
                     end;
                 } else {
                     end = buflim;
                 }
                 if exact_kwset_match {
-                    if !localeinfo.multibyte as libc::c_int
-                        | localeinfo.using_utf8 as libc::c_int != 0
-                    {
-                        current_block = 4884947836398875030;
+                    if !localeinfo.multibyte as i32 | localeinfo.using_utf8 as i32 != 0 {
+                        current_block = 11990273555315142001;
                         break;
                     }
                     if mb_start < beg {
                         mb_start = beg;
                     }
                     if mb_goback(&mut mb_start, 0 as *mut idx_t, match_0, buflim)
-                        == 0 as libc::c_int as libc::c_long
+                        == 0 as i32 as i64
                     {
-                        current_block = 4884947836398875030;
+                        current_block = 11990273555315142001;
                         break;
                     }
                     dfa_beg = mb_start;
@@ -837,29 +880,29 @@ pub unsafe extern "C" fn EGexecute(
                 next_beg = dfaexec(
                     superset,
                     dfa_beg,
-                    end as *mut libc::c_char,
-                    0 as libc::c_int != 0,
+                    end as *mut i8,
+                    0 as i32 != 0,
                     &mut count,
                     0 as *mut bool,
                 );
                 if next_beg.is_null() || next_beg == end {
                     current_block = 15240798224410183470;
                 } else {
-                    if count != 0 as libc::c_int as libc::c_long {
+                    if count != 0 as i32 as i64 {
                         beg = memrchr(
                             buf as *const libc::c_void,
-                            eol as libc::c_int,
-                            next_beg.offset_from(buf) as libc::c_long as size_t,
-                        ) as *const libc::c_char;
+                            eol as i32,
+                            next_beg.offset_from(buf) as i64 as size_t,
+                        ) as *const i8;
                         beg = beg.offset(1);
                         beg;
                         dfa_beg = beg;
                     }
-                    end = rawmemchr(next_beg as *const libc::c_void, eol as libc::c_int)
-                        as *const libc::c_char;
+                    end = rawmemchr(next_beg as *const libc::c_void, eol as i32)
+                        as *const i8;
                     end = end.offset(1);
                     end;
-                    count = 0 as libc::c_int as idx_t;
+                    count = 0 as i32 as idx_t;
                     current_block = 15597372965620363352;
                 }
             } else {
@@ -871,31 +914,29 @@ pub unsafe extern "C" fn EGexecute(
                     next_beg = dfaexec(
                         (*dc).dfa,
                         dfa_beg,
-                        end as *mut libc::c_char,
-                        0 as libc::c_int != 0,
+                        end as *mut i8,
+                        0 as i32 != 0,
                         &mut count,
                         &mut backref,
                     );
                     if next_beg.is_null() || next_beg == end {
                         current_block = 15240798224410183470;
                     } else {
-                        if count != 0 as libc::c_int as libc::c_long {
+                        if count != 0 as i32 as i64 {
                             beg = memrchr(
                                 buf as *const libc::c_void,
-                                eol as libc::c_int,
-                                next_beg.offset_from(buf) as libc::c_long as size_t,
-                            ) as *const libc::c_char;
+                                eol as i32,
+                                next_beg.offset_from(buf) as i64 as size_t,
+                            ) as *const i8;
                             beg = beg.offset(1);
                             beg;
                         }
-                        end = rawmemchr(
-                            next_beg as *const libc::c_void,
-                            eol as libc::c_int,
-                        ) as *const libc::c_char;
+                        end = rawmemchr(next_beg as *const libc::c_void, eol as i32)
+                            as *const i8;
                         end = end.offset(1);
                         end;
                         if !backref {
-                            current_block = 4884947836398875030;
+                            current_block = 11990273555315142001;
                             break;
                         }
                         ptr = beg;
@@ -909,130 +950,115 @@ pub unsafe extern "C" fn EGexecute(
         }
         match current_block {
             10399321362245223758 => {
-                if (if (0 as libc::c_int as regoff_t) < -(1 as libc::c_int) as regoff_t {
-                    -(1 as libc::c_int) as regoff_t
+                if (if (0 as i32 as regoff_t) < -(1 as i32) as regoff_t {
+                    -(1 as i32) as regoff_t
                 } else {
-                    (((1 as libc::c_int as regoff_t)
-                        << (::core::mem::size_of::<regoff_t>() as libc::c_ulong)
-                            .wrapping_mul(8 as libc::c_int as libc::c_ulong)
-                            .wrapping_sub(2 as libc::c_int as libc::c_ulong))
-                        - 1 as libc::c_int as libc::c_long)
-                        * 2 as libc::c_int as libc::c_long
-                        + 1 as libc::c_int as libc::c_long
-                })
-                    < end.offset_from(beg) as libc::c_long
-                        - 1 as libc::c_int as libc::c_long
+                    (((1 as i32 as regoff_t)
+                        << (::core::mem::size_of::<regoff_t>() as u64)
+                            .wrapping_mul(8 as i32 as u64)
+                            .wrapping_sub(2 as i32 as u64)) - 1 as i32 as i64)
+                        * 2 as i32 as i64 + 1 as i32 as i64
+                }) < end.offset_from(beg) as i64 - 1 as i32 as i64
                 {
                     xalloc_die();
                 }
                 best_match = end;
-                best_len = 0 as libc::c_int as idx_t;
-                i = 0 as libc::c_int as idx_t;
+                best_len = 0 as i32 as idx_t;
+                i = 0 as i32 as idx_t;
                 while i < (*dc).pcount {
                     let ref mut fresh0 = *((*dc).patterns).offset(i as isize);
-                    (*fresh0).set_not_eol(0 as libc::c_int as libc::c_uint);
+                    (*fresh0).set_not_eol(0 as i32 as u32);
                     let ref mut fresh1 = *((*dc).patterns).offset(i as isize);
                     (*fresh1)
                         .set_newline_anchor(
-                            (eolbyte as libc::c_int == '\n' as i32) as libc::c_int
-                                as libc::c_uint,
+                            (eolbyte as i32 == '\n' as i32) as i32 as u32,
                         );
                     start = rpl_re_search(
                         &mut *((*dc).patterns).offset(i as isize),
                         beg,
-                        end.offset_from(beg) as libc::c_long
-                            - 1 as libc::c_int as libc::c_long,
-                        ptr.offset_from(beg) as libc::c_long,
-                        end.offset_from(ptr) as libc::c_long
-                            - 1 as libc::c_int as libc::c_long,
+                        end.offset_from(beg) as i64 - 1 as i32 as i64,
+                        ptr.offset_from(beg) as i64,
+                        end.offset_from(ptr) as i64 - 1 as i32 as i64,
                         &mut (*dc).regs,
                     );
-                    if start < -(1 as libc::c_int) as libc::c_long {
+                    if start < -(1 as i32) as i64 {
                         xalloc_die();
-                    } else if 0 as libc::c_int as libc::c_long <= start {
-                        len = *((*dc).regs.end).offset(0 as libc::c_int as isize)
-                            - start;
+                    } else if 0 as i32 as i64 <= start {
+                        len = *((*dc).regs.end).offset(0 as i32 as isize) - start;
                         match_0 = beg.offset(start as isize);
                         if !(match_0 > best_match) {
                             if !start_ptr.is_null() && !match_words {
-                                current_block = 14773508896899378297;
+                                current_block = 13613824696613444011;
                             } else if !match_lines && !match_words
-                                || match_lines as libc::c_int != 0
-                                    && len
-                                        == end.offset_from(ptr) as libc::c_long
-                                            - 1 as libc::c_int as libc::c_long
+                                || match_lines as i32 != 0
+                                    && len == end.offset_from(ptr) as i64 - 1 as i32 as i64
                             {
                                 match_0 = ptr;
-                                len = end.offset_from(ptr) as libc::c_long;
-                                current_block = 14773508896899378297;
-                            } else if !match_lines && match_words as libc::c_int != 0 {
+                                len = end.offset_from(ptr) as i64;
+                                current_block = 13613824696613444011;
+                            } else if !match_lines && match_words as i32 != 0 {
                                 loop {
                                     if !(match_0 <= best_match) {
                                         current_block = 11793792312832361944;
                                         break;
                                     }
-                                    let mut shorter_len: regoff_t = 0 as libc::c_int
-                                        as regoff_t;
+                                    let mut shorter_len: regoff_t = 0 as i32 as regoff_t;
                                     if wordchar_next(
                                         match_0.offset(len as isize),
-                                        end.offset(-(1 as libc::c_int as isize)),
+                                        end.offset(-(1 as i32 as isize)),
                                     ) == 0
                                         && wordchar_prev(
                                             beg,
                                             match_0,
-                                            end.offset(-(1 as libc::c_int as isize)),
+                                            end.offset(-(1 as i32 as isize)),
                                         ) == 0
                                     {
-                                        current_block = 14773508896899378297;
+                                        current_block = 13613824696613444011;
                                         break;
                                     }
-                                    if len > 0 as libc::c_int as libc::c_long {
+                                    if len > 0 as i32 as i64 {
                                         len -= 1;
                                         len;
                                         let ref mut fresh2 = *((*dc).patterns).offset(i as isize);
-                                        (*fresh2).set_not_eol(1 as libc::c_int as libc::c_uint);
+                                        (*fresh2).set_not_eol(1 as i32 as u32);
                                         shorter_len = rpl_re_match(
                                             &mut *((*dc).patterns).offset(i as isize),
                                             beg,
-                                            match_0.offset(len as isize).offset_from(ptr)
-                                                as libc::c_long,
-                                            match_0.offset_from(beg) as libc::c_long,
+                                            match_0.offset(len as isize).offset_from(ptr) as i64,
+                                            match_0.offset_from(beg) as i64,
                                             &mut (*dc).regs,
                                         );
-                                        if shorter_len < -(1 as libc::c_int) as libc::c_long {
+                                        if shorter_len < -(1 as i32) as i64 {
                                             xalloc_die();
                                         }
                                     }
-                                    if (0 as libc::c_int as libc::c_long) < shorter_len {
+                                    if (0 as i32 as i64) < shorter_len {
                                         len = shorter_len;
                                     } else {
-                                        if match_0 == end.offset(-(1 as libc::c_int as isize)) {
+                                        if match_0 == end.offset(-(1 as i32 as isize)) {
                                             current_block = 11793792312832361944;
                                             break;
                                         }
                                         match_0 = match_0.offset(1);
                                         match_0;
                                         let ref mut fresh3 = *((*dc).patterns).offset(i as isize);
-                                        (*fresh3).set_not_eol(0 as libc::c_int as libc::c_uint);
+                                        (*fresh3).set_not_eol(0 as i32 as u32);
                                         start = rpl_re_search(
                                             &mut *((*dc).patterns).offset(i as isize),
                                             beg,
-                                            end.offset_from(beg) as libc::c_long
-                                                - 1 as libc::c_int as libc::c_long,
-                                            match_0.offset_from(beg) as libc::c_long,
-                                            end.offset_from(match_0) as libc::c_long
-                                                - 1 as libc::c_int as libc::c_long,
+                                            end.offset_from(beg) as i64 - 1 as i32 as i64,
+                                            match_0.offset_from(beg) as i64,
+                                            end.offset_from(match_0) as i64 - 1 as i32 as i64,
                                             &mut (*dc).regs,
                                         );
-                                        if start < 0 as libc::c_int as libc::c_long {
-                                            if start < -(1 as libc::c_int) as libc::c_long {
+                                        if start < 0 as i32 as i64 {
+                                            if start < -(1 as i32) as i64 {
                                                 xalloc_die();
                                             }
                                             current_block = 11793792312832361944;
                                             break;
                                         } else {
-                                            len = *((*dc).regs.end).offset(0 as libc::c_int as isize)
-                                                - start;
+                                            len = *((*dc).regs.end).offset(0 as i32 as isize) - start;
                                             match_0 = beg.offset(start as isize);
                                         }
                                     }
@@ -1044,7 +1070,7 @@ pub unsafe extern "C" fn EGexecute(
                                 11793792312832361944 => {}
                                 _ => {
                                     if start_ptr.is_null() {
-                                        current_block = 4884947836398875030;
+                                        current_block = 11990273555315142001;
                                         break 's_26;
                                     }
                                     if match_0 < best_match
@@ -1072,12 +1098,12 @@ pub unsafe extern "C" fn EGexecute(
         beg = end;
     }
     match current_block {
-        12070711452894729854 => return -(1 as libc::c_int) as ptrdiff_t,
-        4884947836398875030 => {
-            len = end.offset_from(beg) as libc::c_long;
+        12070711452894729854 => return -(1 as i32) as ptrdiff_t,
+        11990273555315142001 => {
+            len = end.offset_from(beg) as i64;
         }
         _ => {}
     }
     *match_size = len;
-    return beg.offset_from(buf) as libc::c_long;
+    return beg.offset_from(buf) as i64;
 }

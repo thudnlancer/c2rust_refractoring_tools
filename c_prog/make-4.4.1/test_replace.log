@@ -1,0 +1,2644 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/make-4.4.1)
+error: expected `where`, `{`, `(`, or `;` after struct name, found `::`
+    --> src/main.rs:1114:28
+     |
+1114 | pub struct C2RustUnnamed_11::flag {
+     |                            ^^ expected `where`, `{`, `(`, or `;` after struct name
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:31
+   |
+13 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:27:21
+   |
+27 |                     (if !suffix.is_null() {
+   |                     ^
+...
+31 |                     }),
+   |                      ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+27 ~                     if !suffix.is_null() {
+28 |                         strlen(suffix)
+29 |                     } else {
+30 |                         0 as libc::c_int as libc::c_ulong
+31 ~                     },
+   |
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:53:21
+   |
+53 |                     (if !suffix.is_null() {
+   |                     ^
+...
+57 |                     }),
+   |                      ^
+   |
+help: remove these parentheses
+   |
+53 ~                     if !suffix.is_null() {
+54 |                         strlen(suffix)
+55 |                     } else {
+56 |                         0 as libc::c_int as libc::c_ulong
+57 ~                     },
+   |
+
+warning: unnecessary parentheses around function argument
+    --> src/commands.rs:1000:29
+     |
+1000 | ...                   (if !((*d).name).is_null() {
+     |                       ^
+...
+1004 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1000 ~                             if !((*d).name).is_null() {
+1001 |                                 (*d).name
+1002 |                             } else {
+1003 |                                 (*(*d).file).name
+1004 ~                             },
+     |
+
+warning: unnecessary parentheses around function argument
+    --> src/commands.rs:1012:29
+     |
+1012 | ...                   (if !((*d).name).is_null() {
+     |                       ^
+...
+1016 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1012 ~                             if !((*d).name).is_null() {
+1013 |                                 (*d).name
+1014 |                             } else {
+1015 |                                 (*(*d).file).name
+1016 ~                             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1849:17
+     |
+1849 |                 (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                 ^
+...
+1856 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1849 ~                 if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+1850 |                     0 as i32 as uintmax_t
+   ...
+1855 |                             .wrapping_sub(1 as i32 as u64)
+1856 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1871:21
+     |
+1871 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                     ^
+...
+1878 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1871 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+1872 |                         0 as i32 as uintmax_t
+   ...
+1877 |                                 .wrapping_sub(1 as i32 as u64)
+1878 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1904:21
+     |
+1904 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                     ^
+...
+1911 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1904 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+1905 |                         0 as i32 as uintmax_t
+   ...
+1910 |                                 .wrapping_sub(1 as i32 as u64)
+1911 ~                     },
+     |
+
+warning: unused import: `::libc`
+ --> src/getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> src/getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+    --> src/implicit.rs:1094:61
+     |
+1094 | ...                   (if check_lastslash as i32 != 0 {
+     |                       ^
+...
+1098 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1094 ~                                                             if check_lastslash as i32 != 0 {
+1095 |                                                                 pathlen
+1096 |                                                             } else {
+1097 |                                                                 0 as i32 as u64
+1098 ~                                                             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/implicit.rs:1237:33
+     |
+1237 | ...                   (if check_lastslash_0 as i32 != 0 {
+     |                       ^
+...
+1241 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1237 ~                                 if check_lastslash_0 as i32 != 0 {
+1238 |                                     pathlen
+1239 |                                 } else {
+1240 |                                     0 as i32 as u64
+1241 ~                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/output.rs:594:21
+    |
+594 |                     (if !flocp.is_null() && !((*flocp).filenm).is_null() {
+    |                     ^
+...
+598 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+594 ~                     if !flocp.is_null() && !((*flocp).filenm).is_null() {
+595 |                         strlen((*flocp).filenm)
+596 |                     } else {
+597 |                         0 as libc::c_int as libc::c_ulong
+598 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/output.rs:657:21
+    |
+657 |                     (if !flocp.is_null() && !((*flocp).filenm).is_null() {
+    |                     ^
+...
+661 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+657 ~                     if !flocp.is_null() && !((*flocp).filenm).is_null() {
+658 |                         strlen((*flocp).filenm)
+659 |                     } else {
+660 |                         0 as libc::c_int as libc::c_ulong
+661 ~                     },
+    |
+
+warning: unnecessary parentheses around function argument
+    --> src/read.rs:3503:33
+     |
+3503 | ...                   (if !((*d2).name).is_null() {
+     |                       ^
+...
+3507 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3503 ~                                 if !((*d2).name).is_null() {
+3504 |                                     (*d2).name
+3505 |                                 } else {
+3506 |                                     (*(*d2).file).name
+3507 ~                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/remake.rs:526:21
+    |
+526 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+    |                     ^
+...
+533 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+526 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+527 |                         0 as i32 as uintmax_t
+  ...
+532 |                                 .wrapping_sub(1 as i32 as u64)
+533 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:1025:21
+     |
+1025 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                     ^
+...
+1032 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1025 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+1026 |                         0 as i32 as uintmax_t
+   ...
+1031 |                                 .wrapping_sub(1 as i32 as u64)
+1032 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:1715:21
+     |
+1715 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                     ^
+...
+1722 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1715 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+1716 |                         0 as i32 as uintmax_t
+   ...
+1721 |                                 .wrapping_sub(1 as i32 as u64)
+1722 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:2212:33
+     |
+2212 | ...                   (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                       ^
+...
+2219 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2212 ~                                 if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+2213 |                                     0 as i32 as uintmax_t
+   ...
+2218 |                                             .wrapping_sub(1 as i32 as u64)
+2219 ~                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:2231:21
+     |
+2231 |                     (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+     |                     ^
+...
+2238 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2231 ~                     if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+2232 |                         0 as i32 as uintmax_t
+   ...
+2237 |                                 .wrapping_sub(1 as i32 as u64)
+2238 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/rule.rs:759:29
+    |
+759 | ...                   (if (*dep).wait_here() as i32 != 0 {
+    |                       ^
+...
+764 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+759 ~                             if (*dep).wait_here() as i32 != 0 {
+760 |                                 (::core::mem::size_of::<[i8; 7]>() as u64)
+  ...
+763 |                                 0 as i32 as u64
+764 ~                             },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/rule.rs:752:25
+    |
+752 |                         (if !((*dep).name).is_null() {
+    |                         ^
+...
+756 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+752 ~                         if !((*dep).name).is_null() {
+753 |                             (*dep).name
+754 |                         } else {
+755 |                             (*(*dep).file).name
+756 ~                         },
+    |
+
+warning: unused import: `::libc`
+ --> src/signame.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> src/vpath.rs:663:33
+    |
+663 | ...                   (if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+    |                       ^
+...
+670 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+663 ~                                 if !(-(1 as i32) as uintmax_t <= 0 as i32 as u64) {
+664 |                                     0 as i32 as uintmax_t
+  ...
+669 |                                             .wrapping_sub(1 as i32 as u64)
+670 ~                                 },
+    |
+
+warning: crate-level attribute should be in the root module
+  --> src/ar.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> src/expand.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/job.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/load.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/loadapi.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/misc.rs:10:1
+   |
+10 | #![feature(c_variadic, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/posixos.rs:10:1
+   |
+10 | #![feature(asm)]
+   | ^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/read.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/shuffle.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/vpath.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0599]: no method named `set_field` found for enum `ar::update_status` in the current scope
+   --> src/ar.rs:62:23
+    |
+62  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `ar::update_status`
+...
+194 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `ar::update_status: FieldType` is not satisfied
+  --> src/ar.rs:62:23
+   |
+62 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `ar::update_status`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `ar::cmd_state` in the current scope
+   --> src/ar.rs:62:23
+    |
+62  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `ar::cmd_state`
+...
+112 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `ar::cmd_state: FieldType` is not satisfied
+  --> src/ar.rs:62:23
+   |
+62 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `ar::cmd_state`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::commands::update_status` in the current scope
+   --> src/commands.rs:194:23
+    |
+194 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::commands::update_status`
+...
+326 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::commands::update_status: FieldType` is not satisfied
+   --> src/commands.rs:194:23
+    |
+194 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::commands::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::commands::cmd_state` in the current scope
+   --> src/commands.rs:194:23
+    |
+194 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::commands::cmd_state`
+...
+244 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::commands::cmd_state: FieldType` is not satisfied
+   --> src/commands.rs:194:23
+    |
+194 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::commands::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::commands::variable_flavor` in the current scope
+   --> src/commands.rs:572:23
+    |
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::commands::variable_flavor`
+...
+677 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::commands::variable_flavor: FieldType` is not satisfied
+   --> src/commands.rs:572:23
+    |
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::commands::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::commands::variable_origin` in the current scope
+   --> src/commands.rs:572:23
+    |
+480 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::commands::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::commands::variable_origin: FieldType` is not satisfied
+   --> src/commands.rs:572:23
+    |
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::commands::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::commands::variable_export` in the current scope
+   --> src/commands.rs:572:23
+    |
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::commands::variable_export`
+...
+595 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::commands::variable_export: FieldType` is not satisfied
+   --> src/commands.rs:572:23
+    |
+572 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::commands::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::default::update_status` in the current scope
+   --> src/default.rs:51:23
+    |
+51  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::default::update_status`
+...
+183 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::default::update_status: FieldType` is not satisfied
+  --> src/default.rs:51:23
+   |
+51 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::default::update_status`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::default::cmd_state` in the current scope
+   --> src/default.rs:51:23
+    |
+51  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::default::cmd_state`
+...
+101 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::default::cmd_state: FieldType` is not satisfied
+  --> src/default.rs:51:23
+   |
+51 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::default::cmd_state`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::default::variable_flavor` in the current scope
+   --> src/default.rs:429:23
+    |
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::default::variable_flavor`
+...
+534 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::default::variable_flavor: FieldType` is not satisfied
+   --> src/default.rs:429:23
+    |
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::default::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::default::variable_origin` in the current scope
+   --> src/default.rs:429:23
+    |
+337 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::default::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::default::variable_origin: FieldType` is not satisfied
+   --> src/default.rs:429:23
+    |
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::default::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::default::variable_export` in the current scope
+   --> src/default.rs:429:23
+    |
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::default::variable_export`
+...
+452 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::default::variable_export: FieldType` is not satisfied
+   --> src/default.rs:429:23
+    |
+429 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::default::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `expand::update_status` in the current scope
+   --> src/expand.rs:111:23
+    |
+111 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `expand::update_status`
+...
+243 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `expand::update_status: FieldType` is not satisfied
+   --> src/expand.rs:111:23
+    |
+111 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `expand::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `expand::cmd_state` in the current scope
+   --> src/expand.rs:111:23
+    |
+111 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `expand::cmd_state`
+...
+161 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `expand::cmd_state: FieldType` is not satisfied
+   --> src/expand.rs:111:23
+    |
+111 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `expand::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `expand::variable_flavor` in the current scope
+   --> src/expand.rs:469:23
+    |
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `expand::variable_flavor`
+...
+574 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `expand::variable_flavor: FieldType` is not satisfied
+   --> src/expand.rs:469:23
+    |
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `expand::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `expand::variable_origin` in the current scope
+   --> src/expand.rs:469:23
+    |
+377 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `expand::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `expand::variable_origin: FieldType` is not satisfied
+   --> src/expand.rs:469:23
+    |
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `expand::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `expand::variable_export` in the current scope
+   --> src/expand.rs:469:23
+    |
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `expand::variable_export`
+...
+492 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `expand::variable_export: FieldType` is not satisfied
+   --> src/expand.rs:469:23
+    |
+469 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `expand::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::file::update_status` in the current scope
+   --> src/file.rs:234:23
+    |
+234 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::file::update_status`
+...
+366 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::file::update_status: FieldType` is not satisfied
+   --> src/file.rs:234:23
+    |
+234 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::file::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::file::cmd_state` in the current scope
+   --> src/file.rs:234:23
+    |
+234 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::file::cmd_state`
+...
+284 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::file::cmd_state: FieldType` is not satisfied
+   --> src/file.rs:234:23
+    |
+234 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::file::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::file::variable_flavor` in the current scope
+   --> src/file.rs:612:23
+    |
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::file::variable_flavor`
+...
+717 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::file::variable_flavor: FieldType` is not satisfied
+   --> src/file.rs:612:23
+    |
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::file::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::file::variable_origin` in the current scope
+   --> src/file.rs:612:23
+    |
+520 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::file::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::file::variable_origin: FieldType` is not satisfied
+   --> src/file.rs:612:23
+    |
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::file::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::file::variable_export` in the current scope
+   --> src/file.rs:612:23
+    |
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::file::variable_export`
+...
+635 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::file::variable_export: FieldType` is not satisfied
+   --> src/file.rs:612:23
+    |
+612 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::file::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `function::update_status` in the current scope
+   --> src/function.rs:261:23
+    |
+261 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `function::update_status`
+...
+393 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `function::update_status: FieldType` is not satisfied
+   --> src/function.rs:261:23
+    |
+261 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `function::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `function::cmd_state` in the current scope
+   --> src/function.rs:261:23
+    |
+261 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `function::cmd_state`
+...
+311 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `function::cmd_state: FieldType` is not satisfied
+   --> src/function.rs:261:23
+    |
+261 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `function::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `function::variable_flavor` in the current scope
+   --> src/function.rs:639:23
+    |
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `function::variable_flavor`
+...
+744 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `function::variable_flavor: FieldType` is not satisfied
+   --> src/function.rs:639:23
+    |
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `function::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `function::variable_origin` in the current scope
+   --> src/function.rs:639:23
+    |
+547 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `function::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `function::variable_origin: FieldType` is not satisfied
+   --> src/function.rs:639:23
+    |
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `function::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `function::variable_export` in the current scope
+   --> src/function.rs:639:23
+    |
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `function::variable_export`
+...
+662 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `function::variable_export: FieldType` is not satisfied
+   --> src/function.rs:639:23
+    |
+639 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `function::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `implicit::update_status` in the current scope
+   --> src/implicit.rs:147:23
+    |
+147 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `implicit::update_status`
+...
+279 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `implicit::update_status: FieldType` is not satisfied
+   --> src/implicit.rs:147:23
+    |
+147 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `implicit::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `implicit::cmd_state` in the current scope
+   --> src/implicit.rs:147:23
+    |
+147 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `implicit::cmd_state`
+...
+197 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `implicit::cmd_state: FieldType` is not satisfied
+   --> src/implicit.rs:147:23
+    |
+147 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `implicit::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `implicit::variable_flavor` in the current scope
+   --> src/implicit.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `implicit::variable_flavor`
+...
+630 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `implicit::variable_flavor: FieldType` is not satisfied
+   --> src/implicit.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `implicit::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `implicit::variable_origin` in the current scope
+   --> src/implicit.rs:525:23
+    |
+433 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `implicit::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `implicit::variable_origin: FieldType` is not satisfied
+   --> src/implicit.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `implicit::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `implicit::variable_export` in the current scope
+   --> src/implicit.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `implicit::variable_export`
+...
+548 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `implicit::variable_export: FieldType` is not satisfied
+   --> src/implicit.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `implicit::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `job::update_status` in the current scope
+   --> src/job.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `job::update_status`
+...
+657 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `job::update_status: FieldType` is not satisfied
+   --> src/job.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `job::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `job::cmd_state` in the current scope
+   --> src/job.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `job::cmd_state`
+...
+575 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `job::cmd_state: FieldType` is not satisfied
+   --> src/job.rs:525:23
+    |
+525 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `job::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `job::variable_flavor` in the current scope
+    --> src/job.rs:903:23
+     |
+903  | #[derive(Copy, Clone, BitfieldStruct)]
+     |                       ^^^^^^^^^^^^^^ method not found in `job::variable_flavor`
+...
+1008 | pub enum variable_flavor {
+     | ------------------------ method `set_field` not found for this enum
+     |
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+             candidate #1: `FieldType`
+     = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `job::variable_flavor: FieldType` is not satisfied
+   --> src/job.rs:903:23
+    |
+903 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `job::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `job::variable_origin` in the current scope
+   --> src/job.rs:903:23
+    |
+811 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+903 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `job::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `job::variable_origin: FieldType` is not satisfied
+   --> src/job.rs:903:23
+    |
+903 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `job::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `job::variable_export` in the current scope
+   --> src/job.rs:903:23
+    |
+903 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `job::variable_export`
+...
+926 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `job::variable_export: FieldType` is not satisfied
+   --> src/job.rs:903:23
+    |
+903 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `job::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `load::update_status` in the current scope
+   --> src/load.rs:207:23
+    |
+207 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `load::update_status`
+...
+339 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `load::update_status: FieldType` is not satisfied
+   --> src/load.rs:207:23
+    |
+207 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `load::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `load::cmd_state` in the current scope
+   --> src/load.rs:207:23
+    |
+207 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `load::cmd_state`
+...
+257 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `load::cmd_state: FieldType` is not satisfied
+   --> src/load.rs:207:23
+    |
+207 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `load::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `load::variable_flavor` in the current scope
+   --> src/load.rs:551:23
+    |
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `load::variable_flavor`
+...
+656 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `load::variable_flavor: FieldType` is not satisfied
+   --> src/load.rs:551:23
+    |
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `load::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `load::variable_origin` in the current scope
+   --> src/load.rs:551:23
+    |
+459 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `load::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `load::variable_origin: FieldType` is not satisfied
+   --> src/load.rs:551:23
+    |
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `load::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `load::variable_export` in the current scope
+   --> src/load.rs:551:23
+    |
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `load::variable_export`
+...
+574 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `load::variable_export: FieldType` is not satisfied
+   --> src/load.rs:551:23
+    |
+551 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `load::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `loadapi::update_status` in the current scope
+   --> src/loadapi.rs:50:23
+    |
+50  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `loadapi::update_status`
+...
+182 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `loadapi::update_status: FieldType` is not satisfied
+  --> src/loadapi.rs:50:23
+   |
+50 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `loadapi::update_status`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `loadapi::cmd_state` in the current scope
+   --> src/loadapi.rs:50:23
+    |
+50  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `loadapi::cmd_state`
+...
+100 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `loadapi::cmd_state: FieldType` is not satisfied
+  --> src/loadapi.rs:50:23
+   |
+50 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `loadapi::cmd_state`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `misc::update_status` in the current scope
+   --> src/misc.rs:159:23
+    |
+159 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `misc::update_status`
+...
+291 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `misc::update_status: FieldType` is not satisfied
+   --> src/misc.rs:159:23
+    |
+159 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `misc::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `misc::cmd_state` in the current scope
+   --> src/misc.rs:159:23
+    |
+159 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `misc::cmd_state`
+...
+209 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `misc::cmd_state: FieldType` is not satisfied
+   --> src/misc.rs:159:23
+    |
+159 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `misc::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::update_status` in the current scope
+   --> src/read.rs:269:23
+    |
+269 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::update_status`
+...
+401 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::update_status: FieldType` is not satisfied
+   --> src/read.rs:269:23
+    |
+269 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::cmd_state` in the current scope
+   --> src/read.rs:269:23
+    |
+269 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::cmd_state`
+...
+319 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::cmd_state: FieldType` is not satisfied
+   --> src/read.rs:269:23
+    |
+269 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::variable_flavor` in the current scope
+   --> src/read.rs:647:23
+    |
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::variable_flavor`
+...
+752 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::variable_flavor: FieldType` is not satisfied
+   --> src/read.rs:647:23
+    |
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::variable_origin` in the current scope
+   --> src/read.rs:647:23
+    |
+555 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::variable_origin: FieldType` is not satisfied
+   --> src/read.rs:647:23
+    |
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::variable_export` in the current scope
+   --> src/read.rs:647:23
+    |
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::variable_export`
+...
+670 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::variable_export: FieldType` is not satisfied
+   --> src/read.rs:647:23
+    |
+647 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `read::variable_export` in the current scope
+   --> src/read.rs:901:23
+    |
+670 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+...
+901 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `read::variable_export`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `read::variable_export: FieldType` is not satisfied
+   --> src/read.rs:901:23
+    |
+901 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `read::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `remake::update_status` in the current scope
+   --> src/remake.rs:187:23
+    |
+187 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `remake::update_status`
+...
+319 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `remake::update_status: FieldType` is not satisfied
+   --> src/remake.rs:187:23
+    |
+187 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `remake::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `remake::cmd_state` in the current scope
+   --> src/remake.rs:187:23
+    |
+187 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `remake::cmd_state`
+...
+237 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `remake::cmd_state: FieldType` is not satisfied
+   --> src/remake.rs:187:23
+    |
+187 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `remake::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::rule::update_status` in the current scope
+   --> src/rule.rs:107:23
+    |
+107 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::rule::update_status`
+...
+239 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::rule::update_status: FieldType` is not satisfied
+   --> src/rule.rs:107:23
+    |
+107 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::rule::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::rule::cmd_state` in the current scope
+   --> src/rule.rs:107:23
+    |
+107 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::rule::cmd_state`
+...
+157 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::rule::cmd_state: FieldType` is not satisfied
+   --> src/rule.rs:107:23
+    |
+107 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::rule::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::rule::variable_flavor` in the current scope
+   --> src/rule.rs:485:23
+    |
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::rule::variable_flavor`
+...
+590 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::rule::variable_flavor: FieldType` is not satisfied
+   --> src/rule.rs:485:23
+    |
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::rule::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::rule::variable_origin` in the current scope
+   --> src/rule.rs:485:23
+    |
+393 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::rule::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::rule::variable_origin: FieldType` is not satisfied
+   --> src/rule.rs:485:23
+    |
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::rule::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::rule::variable_export` in the current scope
+   --> src/rule.rs:485:23
+    |
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::rule::variable_export`
+...
+508 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::rule::variable_export: FieldType` is not satisfied
+   --> src/rule.rs:485:23
+    |
+485 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::rule::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `shuffle::update_status` in the current scope
+   --> src/shuffle.rs:37:23
+    |
+37  | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `shuffle::update_status`
+...
+169 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `shuffle::update_status: FieldType` is not satisfied
+  --> src/shuffle.rs:37:23
+   |
+37 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `shuffle::update_status`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `shuffle::cmd_state` in the current scope
+  --> src/shuffle.rs:37:23
+   |
+37 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ method not found in `shuffle::cmd_state`
+...
+87 | pub enum cmd_state {
+   | ------------------ method `set_field` not found for this enum
+   |
+   = help: items from traits can only be used if the trait is implemented and in scope
+   = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+           candidate #1: `FieldType`
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `shuffle::cmd_state: FieldType` is not satisfied
+  --> src/shuffle.rs:37:23
+   |
+37 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `shuffle::cmd_state`
+   |
+   = help: the following other types implement trait `FieldType`:
+             bool
+             i128
+             i16
+             i32
+             i64
+             i8
+             u128
+             u16
+           and 3 others
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::variable::update_status` in the current scope
+   --> src/variable.rs:157:23
+    |
+157 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::variable::update_status`
+...
+289 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::variable::update_status: FieldType` is not satisfied
+   --> src/variable.rs:157:23
+    |
+157 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::variable::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::variable::cmd_state` in the current scope
+   --> src/variable.rs:157:23
+    |
+157 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::variable::cmd_state`
+...
+207 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::variable::cmd_state: FieldType` is not satisfied
+   --> src/variable.rs:157:23
+    |
+157 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::variable::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::variable::variable_flavor` in the current scope
+   --> src/variable.rs:535:23
+    |
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::variable::variable_flavor`
+...
+640 | pub enum variable_flavor {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::variable::variable_flavor: FieldType` is not satisfied
+   --> src/variable.rs:535:23
+    |
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::variable::variable_flavor`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::variable::variable_origin` in the current scope
+   --> src/variable.rs:535:23
+    |
+443 | pub enum variable_origin {
+    | ------------------------ method `set_field` not found for this enum
+...
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::variable::variable_origin`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::variable::variable_origin: FieldType` is not satisfied
+   --> src/variable.rs:535:23
+    |
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::variable::variable_origin`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::variable::variable_export` in the current scope
+   --> src/variable.rs:535:23
+    |
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::variable::variable_export`
+...
+558 | pub enum variable_export {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::variable::variable_export: FieldType` is not satisfied
+   --> src/variable.rs:535:23
+    |
+535 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::variable::variable_export`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::vpath::update_status` in the current scope
+   --> src/vpath.rs:135:23
+    |
+135 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::vpath::update_status`
+...
+267 | pub enum update_status {
+    | ---------------------- method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::vpath::update_status: FieldType` is not satisfied
+   --> src/vpath.rs:135:23
+    |
+135 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::vpath::update_status`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `src::vpath::cmd_state` in the current scope
+   --> src/vpath.rs:135:23
+    |
+135 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `src::vpath::cmd_state`
+...
+185 | pub enum cmd_state {
+    | ------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `src::vpath::cmd_state: FieldType` is not satisfied
+   --> src/vpath.rs:135:23
+    |
+135 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `src::vpath::cmd_state`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 35 warnings
+error: could not compile `c2rust_out` due to 137 previous errors; 35 warnings emitted

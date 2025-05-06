@@ -1,11 +1,22 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     pub type __dirstream;
-    fn closedir(__dirp: *mut DIR) -> libc::c_int;
+    fn closedir(__dirp: *mut DIR) -> i32;
     fn readdir(__dirp: *mut DIR) -> *mut dirent;
-    fn __errno_location() -> *mut libc::c_int;
-    fn opendir_safer(name: *const libc::c_char) -> *mut DIR;
+    fn __errno_location() -> *mut i32;
+    fn opendir_safer(name: *const i8) -> *mut DIR;
     fn qsort(
         __base: *mut libc::c_void,
         __nmemb: size_t,
@@ -13,21 +24,17 @@ extern "C" {
         __compar: __compar_fn_t,
     );
     fn rpl_free(ptr: *mut libc::c_void);
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn stpcpy(_: *mut libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn stpcpy(_: *mut i8, _: *const i8) -> *mut i8;
+    fn strlen(_: *const i8) -> u64;
     fn xrealloc(p: *mut libc::c_void, s: size_t) -> *mut libc::c_void;
     fn xalloc_die();
     fn xmalloc(s: size_t) -> *mut libc::c_void;
-    fn xstrdup(str: *const libc::c_char) -> *mut libc::c_char;
+    fn xstrdup(str: *const i8) -> *mut i8;
 }
-pub type __ino_t = libc::c_ulong;
-pub type __off_t = libc::c_long;
+pub type __ino_t = u64;
+pub type __off_t = i64;
 pub type ino_t = __ino_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -35,30 +42,12 @@ pub struct dirent {
     pub d_ino: __ino_t,
     pub d_off: __off_t,
     pub d_reclen: libc::c_ushort,
-    pub d_type: libc::c_uchar,
-    pub d_name: [libc::c_char; 256],
+    pub d_type: u8,
+    pub d_name: [i8; 256],
 }
 pub type DIR = __dirstream;
-pub type size_t = libc::c_ulong;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum savedir_option {
-    SAVEDIR_SORT_NONE,
-    SAVEDIR_SORT_NAME,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_FASTREAD,
-}
-impl savedir_option {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            savedir_option::SAVEDIR_SORT_NONE => 0,
-            savedir_option::SAVEDIR_SORT_NAME => 1,
-            savedir_option::SAVEDIR_SORT_INODE => 2,
-            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
-        }
-    }
-}
-
+pub type size_t = u64;
+pub type savedir_option = u32;
 pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
 pub const SAVEDIR_SORT_INODE: savedir_option = 2;
 pub const SAVEDIR_SORT_NAME: savedir_option = 1;
@@ -66,14 +55,14 @@ pub const SAVEDIR_SORT_NONE: savedir_option = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct direntry_t {
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub ino: ino_t,
 }
-pub type comparison_function = Option::<
-    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
+pub type comparison_function = Option<
+    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
 >;
-pub type __compar_fn_t = Option::<
-    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
+pub type __compar_fn_t = Option<
+    unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -81,13 +70,73 @@ pub enum C2RustUnnamed {
     DEFAULT_MXFAST = 128,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::DEFAULT_MXFAST => 128,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            128 => C2RustUnnamed::DEFAULT_MXFAST,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn x2nrealloc(
     mut p: *mut libc::c_void,
@@ -97,43 +146,33 @@ unsafe extern "C" fn x2nrealloc(
     let mut n: size_t = *pn;
     if p.is_null() {
         if n == 0 {
-            n = (DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
-            n = (n as libc::c_ulong)
-                .wrapping_add((n == 0) as libc::c_int as libc::c_ulong) as size_t
-                as size_t;
+            n = (C2RustUnnamed::DEFAULT_MXFAST as i32 as u64).wrapping_div(s);
+            n = (n as u64).wrapping_add((n == 0) as i32 as u64) as size_t as size_t;
         }
-        if (if (9223372036854775807 as libc::c_long as libc::c_ulong)
-            < 18446744073709551615 as libc::c_ulong
-        {
-            9223372036854775807 as libc::c_long as libc::c_ulong
+        if (if (9223372036854775807 as i64 as u64) < 18446744073709551615 as u64 {
+            9223372036854775807 as i64 as u64
         } else {
-            (18446744073709551615 as libc::c_ulong)
-                .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+            (18446744073709551615 as u64).wrapping_sub(1 as i32 as u64)
         })
             .wrapping_div(s) < n
         {
             xalloc_die();
         }
     } else {
-        if (if (9223372036854775807 as libc::c_long as libc::c_ulong)
-            < 18446744073709551615 as libc::c_ulong
-        {
-            9223372036854775807 as libc::c_long as libc::c_ulong
+        if (if (9223372036854775807 as i64 as u64) < 18446744073709551615 as u64 {
+            9223372036854775807 as i64 as u64
         } else {
-            18446744073709551615 as libc::c_ulong
+            18446744073709551615 as u64
         })
-            .wrapping_div(3 as libc::c_int as libc::c_ulong)
-            .wrapping_mul(2 as libc::c_int as libc::c_ulong)
+            .wrapping_div(3 as i32 as u64)
+            .wrapping_mul(2 as i32 as u64)
             .wrapping_div(s) <= n
         {
             xalloc_die();
         }
-        n = (n as libc::c_ulong)
-            .wrapping_add(
-                n
-                    .wrapping_div(2 as libc::c_int as libc::c_ulong)
-                    .wrapping_add(1 as libc::c_int as libc::c_ulong),
-            ) as size_t as size_t;
+        n = (n as u64)
+            .wrapping_add(n.wrapping_div(2 as i32 as u64).wrapping_add(1 as i32 as u64))
+            as size_t as size_t;
     }
     *pn = n;
     return xrealloc(p, n.wrapping_mul(s));
@@ -141,7 +180,7 @@ unsafe extern "C" fn x2nrealloc(
 unsafe extern "C" fn direntry_cmp_name(
     mut a: *const libc::c_void,
     mut b: *const libc::c_void,
-) -> libc::c_int {
+) -> i32 {
     let mut dea: *const direntry_t = a as *const direntry_t;
     let mut deb: *const direntry_t = b as *const direntry_t;
     return strcmp((*dea).name, (*deb).name);
@@ -149,28 +188,21 @@ unsafe extern "C" fn direntry_cmp_name(
 unsafe extern "C" fn direntry_cmp_inode(
     mut a: *const libc::c_void,
     mut b: *const libc::c_void,
-) -> libc::c_int {
+) -> i32 {
     let mut dea: *const direntry_t = a as *const direntry_t;
     let mut deb: *const direntry_t = b as *const direntry_t;
-    return ((*dea).ino > (*deb).ino) as libc::c_int
-        - ((*dea).ino < (*deb).ino) as libc::c_int;
+    return ((*dea).ino > (*deb).ino) as i32 - ((*dea).ino < (*deb).ino) as i32;
 }
 static mut comparison_function_table: [comparison_function; 3] = unsafe {
     [
         None,
         Some(
             direntry_cmp_name
-                as unsafe extern "C" fn(
-                    *const libc::c_void,
-                    *const libc::c_void,
-                ) -> libc::c_int,
+                as unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
         ),
         Some(
             direntry_cmp_inode
-                as unsafe extern "C" fn(
-                    *const libc::c_void,
-                    *const libc::c_void,
-                ) -> libc::c_int,
+                as unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32,
         ),
     ]
 };
@@ -178,22 +210,22 @@ static mut comparison_function_table: [comparison_function; 3] = unsafe {
 pub unsafe extern "C" fn streamsavedir(
     mut dirp: *mut DIR,
     mut option: savedir_option,
-) -> *mut libc::c_char {
-    let mut name_space: *mut libc::c_char = 0 as *mut libc::c_char;
-    let mut allocated: size_t = 0 as libc::c_int as size_t;
+) -> *mut i8 {
+    let mut name_space: *mut i8 = 0 as *mut i8;
+    let mut allocated: size_t = 0 as i32 as size_t;
     let mut entries: *mut direntry_t = 0 as *mut direntry_t;
-    let mut entries_allocated: size_t = 0 as libc::c_int as size_t;
-    let mut entries_used: size_t = 0 as libc::c_int as size_t;
-    let mut used: size_t = 0 as libc::c_int as size_t;
-    let mut readdir_errno: libc::c_int = 0;
+    let mut entries_allocated: size_t = 0 as i32 as size_t;
+    let mut entries_used: size_t = 0 as i32 as size_t;
+    let mut used: size_t = 0 as i32 as size_t;
+    let mut readdir_errno: i32 = 0;
     let mut cmp: comparison_function = comparison_function_table[option as usize];
     if dirp.is_null() {
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
     loop {
         let mut dp: *const dirent = 0 as *const dirent;
-        let mut entry: *const libc::c_char = 0 as *const libc::c_char;
-        *__errno_location() = 0 as libc::c_int;
+        let mut entry: *const i8 = 0 as *const i8;
+        *__errno_location() = 0 as i32;
         dp = readdir(dirp);
         if dp.is_null() {
             break;
@@ -201,29 +233,26 @@ pub unsafe extern "C" fn streamsavedir(
         entry = ((*dp).d_name).as_ptr();
         if *entry
             .offset(
-                (if *entry.offset(0 as libc::c_int as isize) as libc::c_int != '.' as i32
-                {
-                    0 as libc::c_int
+                (if *entry.offset(0 as i32 as isize) as i32 != '.' as i32 {
+                    0 as i32
                 } else {
-                    (if *entry.offset(1 as libc::c_int as isize) as libc::c_int
-                        != '.' as i32
-                    {
-                        1 as libc::c_int
+                    (if *entry.offset(1 as i32 as isize) as i32 != '.' as i32 {
+                        1 as i32
                     } else {
-                        2 as libc::c_int
+                        2 as i32
                     })
                 }) as isize,
-            ) as libc::c_int != '\0' as i32
+            ) as i32 != '\0' as i32
         {
             let mut entry_size: size_t = (strlen(((*dp).d_name).as_ptr()))
-                .wrapping_add(1 as libc::c_int as libc::c_ulong);
+                .wrapping_add(1 as i32 as u64);
             if cmp.is_some() {
                 if entries_allocated == entries_used {
                     let mut n: size_t = entries_allocated;
                     entries = x2nrealloc(
                         entries as *mut libc::c_void,
                         &mut n,
-                        ::core::mem::size_of::<direntry_t>() as libc::c_ulong,
+                        ::core::mem::size_of::<direntry_t>() as u64,
                     ) as *mut direntry_t;
                     entries_allocated = n;
                 }
@@ -241,8 +270,8 @@ pub unsafe extern "C" fn streamsavedir(
                     name_space = x2nrealloc(
                         name_space as *mut libc::c_void,
                         &mut n_0,
-                        1 as libc::c_int as size_t,
-                    ) as *mut libc::c_char;
+                        1 as i32 as size_t,
+                    ) as *mut i8;
                     allocated = n_0;
                 }
                 memcpy(
@@ -251,15 +280,15 @@ pub unsafe extern "C" fn streamsavedir(
                     entry_size,
                 );
             }
-            used = (used as libc::c_ulong).wrapping_add(entry_size) as size_t as size_t;
+            used = (used as u64).wrapping_add(entry_size) as size_t as size_t;
         }
     }
     readdir_errno = *__errno_location();
-    if readdir_errno != 0 as libc::c_int {
+    if readdir_errno != 0 as i32 {
         rpl_free(entries as *mut libc::c_void);
         rpl_free(name_space as *mut libc::c_void);
         *__errno_location() = readdir_errno;
-        return 0 as *mut libc::c_char;
+        return 0 as *mut i8;
     }
     if cmp.is_some() {
         let mut i: size_t = 0;
@@ -267,21 +296,19 @@ pub unsafe extern "C" fn streamsavedir(
             qsort(
                 entries as *mut libc::c_void,
                 entries_used,
-                ::core::mem::size_of::<direntry_t>() as libc::c_ulong,
+                ::core::mem::size_of::<direntry_t>() as u64,
                 cmp,
             );
         }
-        name_space = xmalloc(used.wrapping_add(1 as libc::c_int as libc::c_ulong))
-            as *mut libc::c_char;
-        used = 0 as libc::c_int as size_t;
-        i = 0 as libc::c_int as size_t;
+        name_space = xmalloc(used.wrapping_add(1 as i32 as u64)) as *mut i8;
+        used = 0 as i32 as size_t;
+        i = 0 as i32 as size_t;
         while i < entries_used {
-            let mut dest: *mut libc::c_char = name_space.offset(used as isize);
-            used = (used as libc::c_ulong)
+            let mut dest: *mut i8 = name_space.offset(used as isize);
+            used = (used as u64)
                 .wrapping_add(
                     ((stpcpy(dest, (*entries.offset(i as isize)).name)).offset_from(dest)
-                        as libc::c_long + 1 as libc::c_int as libc::c_long)
-                        as libc::c_ulong,
+                        as i64 + 1 as i32 as i64) as u64,
                 ) as size_t as size_t;
             rpl_free((*entries.offset(i as isize)).name as *mut libc::c_void);
             i = i.wrapping_add(1);
@@ -291,27 +318,27 @@ pub unsafe extern "C" fn streamsavedir(
     } else if used == allocated {
         name_space = xrealloc(
             name_space as *mut libc::c_void,
-            used.wrapping_add(1 as libc::c_int as libc::c_ulong),
-        ) as *mut libc::c_char;
+            used.wrapping_add(1 as i32 as u64),
+        ) as *mut i8;
     }
-    *name_space.offset(used as isize) = '\0' as i32 as libc::c_char;
+    *name_space.offset(used as isize) = '\0' as i32 as i8;
     return name_space;
 }
 #[no_mangle]
 pub unsafe extern "C" fn savedir(
-    mut dir: *const libc::c_char,
+    mut dir: *const i8,
     mut option: savedir_option,
-) -> *mut libc::c_char {
+) -> *mut i8 {
     let mut dirp: *mut DIR = opendir_safer(dir);
     if dirp.is_null() {
-        return 0 as *mut libc::c_char
+        return 0 as *mut i8
     } else {
-        let mut name_space: *mut libc::c_char = streamsavedir(dirp, option);
-        if closedir(dirp) != 0 as libc::c_int {
-            let mut closedir_errno: libc::c_int = *__errno_location();
+        let mut name_space: *mut i8 = streamsavedir(dirp, option);
+        if closedir(dirp) != 0 as i32 {
+            let mut closedir_errno: i32 = *__errno_location();
             rpl_free(name_space as *mut libc::c_void);
             *__errno_location() = closedir_errno;
-            return 0 as *mut libc::c_char;
+            return 0 as *mut i8;
         }
         return name_space;
     };

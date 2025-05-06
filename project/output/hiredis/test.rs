@@ -1,10 +1,19 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type dict;
+    fn access(__name: *const libc::c_char, __type: libc::c_int) -> libc::c_int;
+    fn usleep(__useconds: __useconds_t) -> libc::c_int;
     fn poll(__fds: *mut pollfd, __nfds: nfds_t, __timeout: libc::c_int) -> libc::c_int;
     fn freeaddrinfo(__ai: *mut addrinfo);
     fn getaddrinfo(
@@ -13,17 +22,15 @@ extern "C" {
         __req: *const addrinfo,
         __pai: *mut *mut addrinfo,
     ) -> libc::c_int;
-    fn access(__name: *const libc::c_char, __type: libc::c_int) -> libc::c_int;
-    fn usleep(__useconds: __useconds_t) -> libc::c_int;
-    static mut stderr: *mut FILE;
+    static mut stderr: *mut _IO_FILE;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
+    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn snprintf(
         _: *mut libc::c_char,
         _: libc::c_ulong,
         _: *const libc::c_char,
         _: ...
     ) -> libc::c_int;
-    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
     fn strtol(
         __nptr: *const libc::c_char,
         __endptr: *mut *mut libc::c_char,
@@ -52,7 +59,7 @@ extern "C" {
     fn strstr(_: *const libc::c_char, _: *const libc::c_char) -> *mut libc::c_char;
     fn strlen(_: *const libc::c_char) -> libc::c_ulong;
     fn strcasecmp(__s1: *const libc::c_char, __s2: *const libc::c_char) -> libc::c_int;
-    fn gettimeofday(__tv: *mut timeval, __tz: *mut libc::c_void) -> libc::c_int;
+    fn gettimeofday(__tv: *mut timeval, __tz: __timezone_ptr_t) -> libc::c_int;
     fn __assert_fail(
         __assertion: *const libc::c_char,
         __file: *const libc::c_char,
@@ -62,6 +69,12 @@ extern "C" {
     fn signal(__sig: libc::c_int, __handler: __sighandler_t) -> __sighandler_t;
     fn __errno_location() -> *mut libc::c_int;
     fn fabs(_: libc::c_double) -> libc::c_double;
+    fn __isinff(__value: libc::c_float) -> libc::c_int;
+    fn __isnanl(__value: f128::f128) -> libc::c_int;
+    fn __isinfl(__value: f128::f128) -> libc::c_int;
+    fn __isnanf(__value: libc::c_float) -> libc::c_int;
+    fn __isinf(__value: libc::c_double) -> libc::c_int;
+    fn __isnan(__value: libc::c_double) -> libc::c_int;
     fn redisReaderCreate() -> *mut redisReader;
     fn freeReplyObject(reply: *mut libc::c_void);
     fn redisFormatCommand(
@@ -81,6 +94,21 @@ extern "C" {
         argv: *mut *const libc::c_char,
         argvlen: *const size_t,
     ) -> libc::c_longlong;
+    static mut hiredisAllocFns: hiredisAllocFuncs;
+    fn sdsempty() -> sds;
+    fn sdsfree(s: sds);
+    fn hiredisSetAllocators(ha: *mut hiredisAllocFuncs) -> hiredisAllocFuncs;
+    fn hiredisResetAllocators();
+    fn redisReaderGetReply(
+        r: *mut redisReader,
+        reply: *mut *mut libc::c_void,
+    ) -> libc::c_int;
+    fn redisReaderFeed(
+        r: *mut redisReader,
+        buf: *const libc::c_char,
+        len: size_t,
+    ) -> libc::c_int;
+    fn redisReaderFree(r: *mut redisReader);
     fn redisConnectWithOptions(options: *const redisOptions) -> *mut redisContext;
     fn redisConnect(ip: *const libc::c_char, port: libc::c_int) -> *mut redisContext;
     fn redisConnectWithTimeout(
@@ -97,8 +125,8 @@ extern "C" {
     fn redisReconnect(c: *mut redisContext) -> libc::c_int;
     fn redisSetPushCallback(
         c: *mut redisContext,
-        fn_0: Option::<redisPushFn>,
-    ) -> Option::<redisPushFn>;
+        fn_0: Option<redisPushFn>,
+    ) -> Option<redisPushFn>;
     fn redisSetTimeout(c: *mut redisContext, tv: timeval) -> libc::c_int;
     fn redisEnableKeepAlive(c: *mut redisContext) -> libc::c_int;
     fn redisSetTcpUserTimeout(
@@ -112,21 +140,6 @@ extern "C" {
         c: *mut redisContext,
         cmd: *const libc::c_char,
         len: size_t,
-    ) -> libc::c_int;
-    fn sdsempty() -> sds;
-    fn sdsfree(s: sds);
-    fn redisReaderFeed(
-        r: *mut redisReader,
-        buf: *const libc::c_char,
-        len: size_t,
-    ) -> libc::c_int;
-    fn redisReaderFree(r: *mut redisReader);
-    fn hiredisSetAllocators(ha: *mut hiredisAllocFuncs) -> hiredisAllocFuncs;
-    fn hiredisResetAllocators();
-    static mut hiredisAllocFns: hiredisAllocFuncs;
-    fn redisReaderGetReply(
-        r: *mut redisReader,
-        reply: *mut *mut libc::c_void,
     ) -> libc::c_int;
     fn redisAppendCommand(
         c: *mut redisContext,
@@ -149,11 +162,11 @@ extern "C" {
     ) -> *mut redisAsyncContext;
     fn redisAsyncSetConnectCallbackNC(
         ac: *mut redisAsyncContext,
-        fn_0: Option::<redisConnectCallbackNC>,
+        fn_0: Option<redisConnectCallbackNC>,
     ) -> libc::c_int;
     fn redisAsyncSetDisconnectCallback(
         ac: *mut redisAsyncContext,
-        fn_0: Option::<redisDisconnectCallback>,
+        fn_0: Option<redisDisconnectCallback>,
     ) -> libc::c_int;
     fn redisAsyncDisconnect(ac: *mut redisAsyncContext);
     fn redisAsyncFree(ac: *mut redisAsyncContext);
@@ -162,7 +175,7 @@ extern "C" {
     fn redisAsyncHandleTimeout(ac: *mut redisAsyncContext);
     fn redisAsyncCommand(
         ac: *mut redisAsyncContext,
-        fn_0: Option::<redisCallbackFn>,
+        fn_0: Option<redisCallbackFn>,
         privdata: *mut libc::c_void,
         format: *const libc::c_char,
         _: ...
@@ -244,17 +257,25 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
 pub type FILE = _IO_FILE;
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type __timezone_ptr_t = *mut libc::c_void;
+pub type __sighandler_t = Option<unsafe extern "C" fn(libc::c_int) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisReadTask {
@@ -268,20 +289,20 @@ pub struct redisReadTask {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisReplyObjectFunctions {
-    pub createString: Option::<
+    pub createString: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             *mut libc::c_char,
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createArray: Option::<
+    pub createArray: Option<
         unsafe extern "C" fn(*const redisReadTask, size_t) -> *mut libc::c_void,
     >,
-    pub createInteger: Option::<
+    pub createInteger: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_longlong) -> *mut libc::c_void,
     >,
-    pub createDouble: Option::<
+    pub createDouble: Option<
         unsafe extern "C" fn(
             *const redisReadTask,
             libc::c_double,
@@ -289,13 +310,13 @@ pub struct redisReplyObjectFunctions {
             size_t,
         ) -> *mut libc::c_void,
     >,
-    pub createNil: Option::<
+    pub createNil: Option<
         unsafe extern "C" fn(*const redisReadTask) -> *mut libc::c_void,
     >,
-    pub createBool: Option::<
+    pub createBool: Option<
         unsafe extern "C" fn(*const redisReadTask, libc::c_int) -> *mut libc::c_void,
     >,
-    pub freeObject: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub freeObject: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -350,15 +371,13 @@ pub struct sdshdr64 {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct hiredisAllocFuncs {
-    pub mallocFn: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub callocFn: Option::<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
-    pub reallocFn: Option::<
+    pub mallocFn: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub callocFn: Option<unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void>,
+    pub reallocFn: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
-    pub strdupFn: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char,
-    >,
-    pub freeFn: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub strdupFn: Option<unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_char>,
+    pub freeFn: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -367,16 +386,16 @@ pub struct redisAsyncContext {
     pub err: libc::c_int,
     pub errstr: *mut libc::c_char,
     pub data: *mut libc::c_void,
-    pub dataCleanup: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub dataCleanup: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub ev: C2RustUnnamed_0,
-    pub onDisconnect: Option::<redisDisconnectCallback>,
-    pub onConnect: Option::<redisConnectCallback>,
-    pub onConnectNC: Option::<redisConnectCallbackNC>,
+    pub onDisconnect: Option<redisDisconnectCallback>,
+    pub onConnect: Option<redisConnectCallback>,
+    pub onConnectNC: Option<redisConnectCallbackNC>,
     pub replies: redisCallbackList,
     pub saddr: *mut sockaddr,
     pub addrlen: size_t,
     pub sub: C2RustUnnamed,
-    pub push_cb: Option::<redisAsyncPushFn>,
+    pub push_cb: Option<redisAsyncPushFn>,
 }
 pub type redisAsyncPushFn = unsafe extern "C" fn(
     *mut redisAsyncContext,
@@ -400,7 +419,7 @@ pub struct redisCallbackList {
 #[repr(C)]
 pub struct redisCallback {
     pub next: *mut redisCallback,
-    pub fn_0: Option::<redisCallbackFn>,
+    pub fn_0: Option<redisCallbackFn>,
     pub pending_subs: libc::c_int,
     pub unsubscribe_sent: libc::c_int,
     pub privdata: *mut libc::c_void,
@@ -426,12 +445,12 @@ pub type redisDisconnectCallback = unsafe extern "C" fn(
 #[repr(C)]
 pub struct C2RustUnnamed_0 {
     pub data: *mut libc::c_void,
-    pub addRead: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub delRead: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub addWrite: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub delWrite: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub cleanup: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub scheduleTimer: Option::<unsafe extern "C" fn(*mut libc::c_void, timeval) -> ()>,
+    pub addRead: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub delRead: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub addWrite: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub delWrite: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub cleanup: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub scheduleTimer: Option<unsafe extern "C" fn(*mut libc::c_void, timeval) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -451,9 +470,9 @@ pub struct redisContext {
     pub saddr: *mut sockaddr,
     pub addrlen: size_t,
     pub privdata: *mut libc::c_void,
-    pub free_privdata: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub free_privdata: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     pub privctx: *mut libc::c_void,
-    pub push_cb: Option::<redisPushFn>,
+    pub push_cb: Option<redisPushFn>,
 }
 pub type redisPushFn = unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ();
 #[derive(Copy, Clone)]
@@ -483,23 +502,82 @@ impl redisConnectionType {
             redisConnectionType::REDIS_CONN_USERFD => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> redisConnectionType {
+        match value {
+            0 => redisConnectionType::REDIS_CONN_TCP,
+            1 => redisConnectionType::REDIS_CONN_UNIX,
+            2 => redisConnectionType::REDIS_CONN_USERFD,
+            _ => panic!("Invalid value for redisConnectionType: {}", value),
+        }
+    }
 }
-
-pub const REDIS_CONN_USERFD: redisConnectionType = 2;
-pub const REDIS_CONN_UNIX: redisConnectionType = 1;
-pub const REDIS_CONN_TCP: redisConnectionType = 0;
+impl AddAssign<u32> for redisConnectionType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for redisConnectionType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for redisConnectionType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for redisConnectionType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for redisConnectionType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn add(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn sub(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn mul(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn div(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for redisConnectionType {
+    type Output = redisConnectionType;
+    fn rem(self, rhs: u32) -> redisConnectionType {
+        redisConnectionType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type redisFD = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct redisContextFuncs {
-    pub close: Option::<unsafe extern "C" fn(*mut redisContext) -> ()>,
-    pub free_privctx: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub async_read: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub async_write: Option::<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
-    pub read: Option::<
+    pub close: Option<unsafe extern "C" fn(*mut redisContext) -> ()>,
+    pub free_privctx: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub async_read: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub async_write: Option<unsafe extern "C" fn(*mut redisAsyncContext) -> ()>,
+    pub read: Option<
         unsafe extern "C" fn(*mut redisContext, *mut libc::c_char, size_t) -> ssize_t,
     >,
-    pub write: Option::<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
+    pub write: Option<unsafe extern "C" fn(*mut redisContext) -> ssize_t>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -522,9 +600,9 @@ pub struct redisOptions {
     pub command_timeout: *const timeval,
     pub endpoint: C2RustUnnamed_3,
     pub privdata: *mut libc::c_void,
-    pub free_privdata: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub push_cb: Option::<redisPushFn>,
-    pub async_push_cb: Option::<redisAsyncPushFn>,
+    pub free_privdata: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub push_cb: Option<redisPushFn>,
+    pub async_push_cb: Option<redisAsyncPushFn>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -568,12 +646,71 @@ impl connection_type {
             connection_type::CONN_SSL => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> connection_type {
+        match value {
+            0 => connection_type::CONN_TCP,
+            1 => connection_type::CONN_UNIX,
+            2 => connection_type::CONN_FD,
+            3 => connection_type::CONN_SSL,
+            _ => panic!("Invalid value for connection_type: {}", value),
+        }
+    }
 }
-
-pub const CONN_SSL: connection_type = 3;
-pub const CONN_FD: connection_type = 2;
-pub const CONN_UNIX: connection_type = 1;
-pub const CONN_TCP: connection_type = 0;
+impl AddAssign<u32> for connection_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = connection_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for connection_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = connection_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for connection_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = connection_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for connection_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = connection_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for connection_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = connection_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for connection_type {
+    type Output = connection_type;
+    fn add(self, rhs: u32) -> connection_type {
+        connection_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for connection_type {
+    type Output = connection_type;
+    fn sub(self, rhs: u32) -> connection_type {
+        connection_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for connection_type {
+    type Output = connection_type;
+    fn mul(self, rhs: u32) -> connection_type {
+        connection_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for connection_type {
+    type Output = connection_type;
+    fn div(self, rhs: u32) -> connection_type {
+        connection_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for connection_type {
+    type Output = connection_type;
+    fn rem(self, rhs: u32) -> connection_type {
+        connection_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct config {
@@ -635,14 +772,73 @@ impl astest_no {
             astest_no::ASTEST_ISSUE_931_PING => 5,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> astest_no {
+        match value {
+            0 => astest_no::ASTEST_CONNECT,
+            1 => astest_no::ASTEST_CONN_TIMEOUT,
+            2 => astest_no::ASTEST_PINGPONG,
+            3 => astest_no::ASTEST_PINGPONG_TIMEOUT,
+            4 => astest_no::ASTEST_ISSUE_931,
+            5 => astest_no::ASTEST_ISSUE_931_PING,
+            _ => panic!("Invalid value for astest_no: {}", value),
+        }
+    }
 }
-
-pub const ASTEST_ISSUE_931_PING: astest_no = 5;
-pub const ASTEST_ISSUE_931: astest_no = 4;
-pub const ASTEST_PINGPONG_TIMEOUT: astest_no = 3;
-pub const ASTEST_PINGPONG: astest_no = 2;
-pub const ASTEST_CONN_TIMEOUT: astest_no = 1;
-pub const ASTEST_CONNECT: astest_no = 0;
+impl AddAssign<u32> for astest_no {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = astest_no::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for astest_no {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = astest_no::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for astest_no {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = astest_no::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for astest_no {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = astest_no::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for astest_no {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = astest_no::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for astest_no {
+    type Output = astest_no;
+    fn add(self, rhs: u32) -> astest_no {
+        astest_no::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for astest_no {
+    type Output = astest_no;
+    fn sub(self, rhs: u32) -> astest_no {
+        astest_no::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for astest_no {
+    type Output = astest_no;
+    fn mul(self, rhs: u32) -> astest_no {
+        astest_no::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for astest_no {
+    type Output = astest_no;
+    fn div(self, rhs: u32) -> astest_no {
+        astest_no::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for astest_no {
+    type Output = astest_no;
+    fn rem(self, rhs: u32) -> astest_no {
+        astest_no::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _astest {
@@ -665,24 +861,6 @@ unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
         0 as *mut libc::c_void as *mut *mut libc::c_char,
         10 as libc::c_int,
     ) as libc::c_int;
-}
-#[inline]
-unsafe extern "C" fn hi_malloc(mut size: size_t) -> *mut libc::c_void {
-    return (hiredisAllocFns.mallocFn).expect("non-null function pointer")(size);
-}
-#[inline]
-unsafe extern "C" fn hi_calloc(
-    mut nmemb: size_t,
-    mut size: size_t,
-) -> *mut libc::c_void {
-    if (18446744073709551615 as libc::c_ulong).wrapping_div(size) < nmemb {
-        return 0 as *mut libc::c_void;
-    }
-    return (hiredisAllocFns.callocFn).expect("non-null function pointer")(nmemb, size);
-}
-#[inline]
-unsafe extern "C" fn hi_free(mut ptr: *mut libc::c_void) {
-    (hiredisAllocFns.freeFn).expect("non-null function pointer")(ptr);
 }
 #[inline]
 unsafe extern "C" fn sdslen(s: sds) -> size_t {
@@ -717,6 +895,24 @@ unsafe extern "C" fn sdslen(s: sds) -> size_t {
         _ => {}
     }
     return 0 as libc::c_int as size_t;
+}
+#[inline]
+unsafe extern "C" fn hi_malloc(mut size: size_t) -> *mut libc::c_void {
+    return (hiredisAllocFns.mallocFn).expect("non-null function pointer")(size);
+}
+#[inline]
+unsafe extern "C" fn hi_calloc(
+    mut nmemb: size_t,
+    mut size: size_t,
+) -> *mut libc::c_void {
+    if (18446744073709551615 as libc::c_ulong).wrapping_div(size) < nmemb {
+        return 0 as *mut libc::c_void;
+    }
+    return (hiredisAllocFns.callocFn).expect("non-null function pointer")(nmemb, size);
+}
+#[inline]
+unsafe extern "C" fn hi_free(mut ptr: *mut libc::c_void) {
+    (hiredisAllocFns.freeFn).expect("non-null function pointer")(ptr);
 }
 unsafe extern "C" fn redisPollTimevalToDouble(mut tv: *mut timeval) -> libc::c_double {
     if tv.is_null() {
@@ -860,34 +1056,22 @@ unsafe extern "C" fn redisPollAttach(mut ac: *mut redisAsyncContext) -> libc::c_
     (*e).deleted = 0 as libc::c_int as libc::c_char;
     (*e).in_tick = (*e).deleted;
     (*e).deadline = 0.0f64;
-    (*ac)
-        .ev
-        .addRead = Some(
+    (*ac).ev.addRead = Some(
         redisPollAddRead as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
-    (*ac)
-        .ev
-        .delRead = Some(
+    (*ac).ev.delRead = Some(
         redisPollDelRead as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
-    (*ac)
-        .ev
-        .addWrite = Some(
+    (*ac).ev.addWrite = Some(
         redisPollAddWrite as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
-    (*ac)
-        .ev
-        .delWrite = Some(
+    (*ac).ev.delWrite = Some(
         redisPollDelWrite as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
-    (*ac)
-        .ev
-        .scheduleTimer = Some(
+    (*ac).ev.scheduleTimer = Some(
         redisPollScheduleTimer as unsafe extern "C" fn(*mut libc::c_void, timeval) -> (),
     );
-    (*ac)
-        .ev
-        .cleanup = Some(
+    (*ac).ev.cleanup = Some(
         redisPollCleanup as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
     (*ac).ev.data = e as *mut libc::c_void;
@@ -1100,13 +1284,21 @@ unsafe extern "C" fn disconnect(
 unsafe extern "C" fn do_ssl_handshake(mut c: *mut redisContext) {}
 unsafe extern "C" fn do_connect(mut config: config) -> *mut redisContext {
     let mut c: *mut redisContext = 0 as *mut redisContext;
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint {
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+    {
         c = redisConnect(config.tcp.host, config.tcp.port);
-    } else if config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint {
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_SSL as libc::c_int as libc::c_uint
+    {
         c = redisConnect(config.ssl.host, config.ssl.port);
-    } else if config.type_0 as libc::c_uint == CONN_UNIX as libc::c_int as libc::c_uint {
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_UNIX as libc::c_int as libc::c_uint
+    {
         c = redisConnectUnix(config.unix_sock.path);
-    } else if config.type_0 as libc::c_uint == CONN_FD as libc::c_int as libc::c_uint {
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_FD as libc::c_int as libc::c_uint
+    {
         let mut dummy_ctx: *mut redisContext = redisConnectUnix(config.unix_sock.path);
         if !dummy_ctx.is_null() {
             let mut fd: libc::c_int = disconnect(dummy_ctx, 1 as libc::c_int);
@@ -1143,14 +1335,18 @@ unsafe extern "C" fn do_connect(mut config: config) -> *mut redisContext {
         redisFree(c);
         exit(1 as libc::c_int);
     }
-    if config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint {
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_SSL as libc::c_int as libc::c_uint
+    {
         do_ssl_handshake(c);
     }
     return select_database(c);
 }
 unsafe extern "C" fn do_reconnect(mut c: *mut redisContext, mut config: config) {
     redisReconnect(c);
-    if config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint {
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_SSL as libc::c_int as libc::c_uint
+    {
         do_ssl_handshake(c);
     }
 }
@@ -2660,11 +2856,20 @@ unsafe extern "C" fn test_reply_reader() {
     ret = redisReaderGetReply(reader, &mut reply);
     if ret == 0 as libc::c_int
         && (*(reply as *mut redisReply)).type_0 == 7 as libc::c_int
-        && if ((*(reply as *mut redisReply)).dval).is_infinite() {
-            if ((*(reply as *mut redisReply)).dval).is_sign_positive() { 1 } else { -1 }
+        && (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+        {
+            __isinff((*(reply as *mut redisReply)).dval as libc::c_float)
         } else {
-            0
-        } != 0 && (*(reply as *mut redisReply)).dval > 0 as libc::c_int as libc::c_double
+            (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+                == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            {
+                __isinf((*(reply as *mut redisReply)).dval)
+            } else {
+                __isinfl(f128::f128::new((*(reply as *mut redisReply)).dval))
+            })
+        }) != 0
+        && (*(reply as *mut redisReply)).dval > 0 as libc::c_int as libc::c_double
     {
         printf(b"\x1B[0;32mPASSED\x1B[0;0m\n\0" as *const u8 as *const libc::c_char);
     } else {
@@ -2686,7 +2891,19 @@ unsafe extern "C" fn test_reply_reader() {
     ret = redisReaderGetReply(reader, &mut reply);
     if ret == 0 as libc::c_int
         && (*(reply as *mut redisReply)).type_0 == 7 as libc::c_int
-        && ((*(reply as *mut redisReply)).dval).is_nan() as i32 != 0
+        && (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+        {
+            __isnanf((*(reply as *mut redisReply)).dval as libc::c_float)
+        } else {
+            (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+                == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            {
+                __isnan((*(reply as *mut redisReply)).dval)
+            } else {
+                __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+            })
+        }) != 0
     {
         printf(b"\x1B[0;32mPASSED\x1B[0;0m\n\0" as *const u8 as *const libc::c_char);
     } else {
@@ -2710,7 +2927,19 @@ unsafe extern "C" fn test_reply_reader() {
     ret = redisReaderGetReply(reader, &mut reply);
     if ret == 0 as libc::c_int
         && (*(reply as *mut redisReply)).type_0 == 7 as libc::c_int
-        && ((*(reply as *mut redisReply)).dval).is_nan() as i32 != 0
+        && (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            == ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+        {
+            __isnanf((*(reply as *mut redisReply)).dval as libc::c_float)
+        } else {
+            (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+                == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+            {
+                __isnan((*(reply as *mut redisReply)).dval)
+            } else {
+                __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+            })
+        }) != 0
     {
         printf(b"\x1B[0;32mPASSED\x1B[0;0m\n\0" as *const u8 as *const libc::c_char);
     } else {
@@ -3165,8 +3394,7 @@ unsafe extern "C" fn test_allocator_injection() {
         b"hiredis calloc wrapper protects against overflow: \0" as *const u8
             as *const libc::c_char,
     );
-    ha
-        .callocFn = Some(
+    ha.callocFn = Some(
         hi_calloc_insecure as unsafe extern "C" fn(size_t, size_t) -> *mut libc::c_void,
     );
     hiredisSetAllocators(&mut ha);
@@ -3340,7 +3568,7 @@ unsafe extern "C" fn test_blocking_connection_errors() {
     };
     opt.connect_timeout = &mut tv;
     opt.command_timeout = opt.connect_timeout;
-    opt.type_0 = REDIS_CONN_TCP as libc::c_int;
+    opt.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
     opt.endpoint.tcp.ip = b"localhost\0" as *const u8 as *const libc::c_char;
     opt.endpoint.tcp.port = 10337 as libc::c_int;
     c = redisConnectWithOptions(&mut opt);
@@ -3425,7 +3653,7 @@ unsafe extern "C" fn test_resp3_push_handler(mut c: *mut redisContext) {
         };
         init
     };
-    let mut old: Option::<redisPushFn> = None;
+    let mut old: Option<redisPushFn> = None;
     let mut reply: *mut redisReply = 0 as *mut redisReply;
     let mut privdata: *mut libc::c_void = 0 as *mut libc::c_void;
     send_hello(c, 3 as libc::c_int);
@@ -3670,7 +3898,7 @@ pub unsafe extern "C" fn get_redis_tcp_options(mut config: config) -> redisOptio
         };
         init
     };
-    options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
     options.endpoint.tcp.ip = config.tcp.host;
     options.endpoint.tcp.port = config.tcp.port;
     return options;
@@ -3790,8 +4018,7 @@ unsafe extern "C" fn test_resp3_push_options(mut config: config) {
             as *const u8 as *const libc::c_char,
     );
     options = get_redis_tcp_options(config);
-    options
-        .push_cb = Some(
+    options.push_cb = Some(
         push_handler as unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
     );
     c = redisConnectWithOptions(&mut options);
@@ -3828,8 +4055,7 @@ unsafe extern "C" fn test_resp3_push_options(mut config: config) {
             as *const u8 as *const libc::c_char,
     );
     options = get_redis_tcp_options(config);
-    options
-        .async_push_cb = Some(
+    options.async_push_cb = Some(
         push_handler_async
             as unsafe extern "C" fn(*mut redisAsyncContext, *mut libc::c_void) -> (),
     );
@@ -3900,8 +4126,7 @@ unsafe extern "C" fn test_privdata_hooks(mut config: config) {
     );
     options = get_redis_tcp_options(config);
     options.privdata = &mut data as *mut privdata as *mut libc::c_void;
-    options
-        .free_privdata = Some(
+    options.free_privdata = Some(
         free_privdata as unsafe extern "C" fn(*mut libc::c_void) -> (),
     );
     c = redisConnectWithOptions(&mut options);
@@ -4464,15 +4689,19 @@ unsafe extern "C" fn test_invalid_timeout_errors(mut config: config) {
     );
     config.connect_timeout.tv_sec = 0 as libc::c_int as __time_t;
     config.connect_timeout.tv_usec = 10000001 as libc::c_int as __suseconds_t;
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint
-        || config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+        || config.type_0 as libc::c_uint
+            == connection_type::CONN_SSL as libc::c_int as libc::c_uint
     {
         c = redisConnectWithTimeout(
             config.tcp.host,
             config.tcp.port,
             config.connect_timeout,
         );
-    } else if config.type_0 as libc::c_uint == CONN_UNIX as libc::c_int as libc::c_uint {
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_UNIX as libc::c_int as libc::c_uint
+    {
         c = redisConnectUnixWithTimeout(config.unix_sock.path, config.connect_timeout);
     } else {
         fprintf(
@@ -4509,21 +4738,23 @@ unsafe extern "C" fn test_invalid_timeout_errors(mut config: config) {
         b"Set error when an invalid timeout sec value is used during connect: \0"
             as *const u8 as *const libc::c_char,
     );
-    config
-        .connect_timeout
-        .tv_sec = (9223372036854775807 as libc::c_long
+    config.connect_timeout.tv_sec = (9223372036854775807 as libc::c_long
         - 999 as libc::c_int as libc::c_long) / 1000 as libc::c_int as libc::c_long
         + 1 as libc::c_int as libc::c_long;
     config.connect_timeout.tv_usec = 0 as libc::c_int as __suseconds_t;
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint
-        || config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+        || config.type_0 as libc::c_uint
+            == connection_type::CONN_SSL as libc::c_int as libc::c_uint
     {
         c = redisConnectWithTimeout(
             config.tcp.host,
             config.tcp.port,
             config.connect_timeout,
         );
-    } else if config.type_0 as libc::c_uint == CONN_UNIX as libc::c_int as libc::c_uint {
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_UNIX as libc::c_int as libc::c_uint
+    {
         c = redisConnectUnixWithTimeout(config.unix_sock.path, config.connect_timeout);
     } else {
         fprintf(
@@ -4946,7 +5177,7 @@ unsafe extern "C" fn test_throughput(mut config: config) {
 }
 static mut astest: _astest = _astest {
     ac: 0 as *const redisAsyncContext as *mut redisAsyncContext,
-    testno: ASTEST_CONNECT,
+    testno: astest_no::ASTEST_CONNECT,
     counter: 0,
     connects: 0,
     connect_status: 0,
@@ -4995,16 +5226,17 @@ unsafe extern "C" fn connectCallback(
     (*t).connects += 1;
     (*t).connects;
     (*t).connect_status = status;
-    (*t)
-        .connected = if status == 0 as libc::c_int {
+    (*t).connected = if status == 0 as libc::c_int {
         1 as libc::c_int
     } else {
         -(1 as libc::c_int)
     };
-    if (*t).testno as libc::c_uint == ASTEST_ISSUE_931 as libc::c_int as libc::c_uint {
+    if (*t).testno as libc::c_uint
+        == astest_no::ASTEST_ISSUE_931 as libc::c_int as libc::c_uint
+    {
         redisAsyncDisconnect(c);
     } else if (*t).testno as libc::c_uint
-        == ASTEST_ISSUE_931_PING as libc::c_int as libc::c_uint
+        == astest_no::ASTEST_ISSUE_931_PING as libc::c_int as libc::c_uint
     {
         redisAsyncCommand(
             c,
@@ -5079,9 +5311,10 @@ unsafe extern "C" fn commandCallback(
     strcpy(((*t).errstr).as_mut_ptr(), (*ac).errstr);
     (*t).counter += 1;
     (*t).counter;
-    if (*t).testno as libc::c_uint == ASTEST_PINGPONG as libc::c_int as libc::c_uint
+    if (*t).testno as libc::c_uint
+        == astest_no::ASTEST_PINGPONG as libc::c_int as libc::c_uint
         || (*t).testno as libc::c_uint
-            == ASTEST_ISSUE_931_PING as libc::c_int as libc::c_uint
+            == astest_no::ASTEST_ISSUE_931_PING as libc::c_int as libc::c_uint
     {
         if !reply.is_null() && (*reply).type_0 == 5 as libc::c_int
             && strcmp((*reply).str_0, b"PONG\0" as *const u8 as *const libc::c_char)
@@ -5104,7 +5337,7 @@ unsafe extern "C" fn commandCallback(
         redisAsyncFree(ac);
     }
     if (*t).testno as libc::c_uint
-        == ASTEST_PINGPONG_TIMEOUT as libc::c_int as libc::c_uint
+        == astest_no::ASTEST_PINGPONG_TIMEOUT as libc::c_int as libc::c_uint
     {
         if !reply.is_null() && (*reply).type_0 == 5 as libc::c_int
             && strcmp((*reply).str_0, b"PONG\0" as *const u8 as *const libc::c_char)
@@ -5189,23 +5422,31 @@ unsafe extern "C" fn do_aconnect(
     astest.testno = testno;
     astest.disconnect_status = -(2 as libc::c_int);
     astest.connect_status = astest.disconnect_status;
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint {
-        options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+    {
+        options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
         options.connect_timeout = &mut config.connect_timeout;
-        options.type_0 = REDIS_CONN_TCP as libc::c_int;
+        options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
         options.endpoint.tcp.ip = config.tcp.host;
         options.endpoint.tcp.port = config.tcp.port;
-    } else if config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint {
-        options.type_0 = REDIS_CONN_TCP as libc::c_int;
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_SSL as libc::c_int as libc::c_uint
+    {
+        options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
         options.connect_timeout = &mut config.connect_timeout;
-        options.type_0 = REDIS_CONN_TCP as libc::c_int;
+        options.type_0 = redisConnectionType::REDIS_CONN_TCP as libc::c_int;
         options.endpoint.tcp.ip = config.ssl.host;
         options.endpoint.tcp.port = config.ssl.port;
-    } else if config.type_0 as libc::c_uint == CONN_UNIX as libc::c_int as libc::c_uint {
-        options.type_0 = REDIS_CONN_UNIX as libc::c_int;
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_UNIX as libc::c_int as libc::c_uint
+    {
+        options.type_0 = redisConnectionType::REDIS_CONN_UNIX as libc::c_int;
         options.endpoint.unix_socket = config.unix_sock.path;
-    } else if config.type_0 as libc::c_uint == CONN_FD as libc::c_int as libc::c_uint {
-        options.type_0 = REDIS_CONN_USERFD as libc::c_int;
+    } else if config.type_0 as libc::c_uint
+        == connection_type::CONN_FD as libc::c_int as libc::c_uint
+    {
+        options.type_0 = redisConnectionType::REDIS_CONN_USERFD as libc::c_int;
         let mut dummy_ctx: *mut redisContext = redisConnectUnix(config.unix_sock.path);
         if !dummy_ctx.is_null() {
             let mut fd: redisFD = disconnect(dummy_ctx, 1 as libc::c_int);
@@ -5263,7 +5504,7 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
     tests += 1;
     printf(b"#%02d \0" as *const u8 as *const libc::c_char, tests);
     printf(b"Async connect: \0" as *const u8 as *const libc::c_char);
-    c = do_aconnect(config, ASTEST_CONNECT);
+    c = do_aconnect(config, astest_no::ASTEST_CONNECT);
     if !c.is_null() {} else {
         __assert_fail(
             b"c\0" as *const u8 as *const libc::c_char,
@@ -5372,15 +5613,17 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
         fails += 1;
         fails;
     }
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint
-        || config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+        || config.type_0 as libc::c_uint
+            == connection_type::CONN_SSL as libc::c_int as libc::c_uint
     {
         tests += 1;
         printf(b"#%02d \0" as *const u8 as *const libc::c_char, tests);
         printf(b"Async connect timeout: \0" as *const u8 as *const libc::c_char);
         config.tcp.host = b"192.168.254.254\0" as *const u8 as *const libc::c_char;
         config.connect_timeout.tv_usec = 100000 as libc::c_int as __suseconds_t;
-        c = do_aconnect(config, ASTEST_CONN_TIMEOUT);
+        c = do_aconnect(config, astest_no::ASTEST_CONN_TIMEOUT);
         if !c.is_null() {} else {
             __assert_fail(
                 b"c\0" as *const u8 as *const libc::c_char,
@@ -5444,7 +5687,7 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
     tests += 1;
     printf(b"#%02d \0" as *const u8 as *const libc::c_char, tests);
     printf(b"Async PING/PONG: \0" as *const u8 as *const libc::c_char);
-    c = do_aconnect(config, ASTEST_PINGPONG);
+    c = do_aconnect(config, astest_no::ASTEST_PINGPONG);
     while astest.connected == 0 as libc::c_int {
         redisPollTick(c, 0.1f64);
     }
@@ -5483,8 +5726,10 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
         fails += 1;
         fails;
     }
-    if config.type_0 as libc::c_uint == CONN_TCP as libc::c_int as libc::c_uint
-        || config.type_0 as libc::c_uint == CONN_SSL as libc::c_int as libc::c_uint
+    if config.type_0 as libc::c_uint
+        == connection_type::CONN_TCP as libc::c_int as libc::c_uint
+        || config.type_0 as libc::c_uint
+            == connection_type::CONN_SSL as libc::c_int as libc::c_uint
     {
         tests += 1;
         printf(b"#%02d \0" as *const u8 as *const libc::c_char, tests);
@@ -5493,7 +5738,7 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
                 as *const libc::c_char,
         );
         config.connect_timeout.tv_usec = 10000 as libc::c_int as __suseconds_t;
-        c = do_aconnect(config, ASTEST_PINGPONG_TIMEOUT);
+        c = do_aconnect(config, astest_no::ASTEST_PINGPONG_TIMEOUT);
         while astest.connected == 0 as libc::c_int {
             redisPollTick(c, 0.1f64);
         }
@@ -5541,7 +5786,7 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
         b"Disconnect from onConnected callback (Issue #931): \0" as *const u8
             as *const libc::c_char,
     );
-    c = do_aconnect(config, ASTEST_ISSUE_931);
+    c = do_aconnect(config, astest_no::ASTEST_ISSUE_931);
     while astest.disconnects == 0 as libc::c_int {
         redisPollTick(c, 0.1f64);
     }
@@ -5582,7 +5827,7 @@ unsafe extern "C" fn test_async_polling(mut config: config) {
         b"Ping/Pong from onConnected callback (Issue #931): \0" as *const u8
             as *const libc::c_char,
     );
-    c = do_aconnect(config, ASTEST_ISSUE_931_PING);
+    c = do_aconnect(config, astest_no::ASTEST_ISSUE_931_PING);
     while !(astest.ac).is_null() {
         redisPollTick(c, 0.1f64);
     }
@@ -5636,7 +5881,7 @@ unsafe fn main_0(
 ) -> libc::c_int {
     let mut cfg: config = {
         let mut init = config {
-            type_0: CONN_TCP,
+            type_0: connection_type::CONN_TCP,
             connect_timeout: timeval { tv_sec: 0, tv_usec: 0 },
             tcp: {
                 let mut init = C2RustUnnamed_7 {
@@ -5757,7 +6002,7 @@ unsafe fn main_0(
         cfg.tcp.host,
         cfg.tcp.port,
     );
-    cfg.type_0 = CONN_TCP;
+    cfg.type_0 = connection_type::CONN_TCP;
     test_blocking_connection(cfg);
     test_blocking_connection_timeouts(cfg);
     test_blocking_io_errors(cfg);
@@ -5774,7 +6019,7 @@ unsafe fn main_0(
     );
     if test_unix_socket != 0 {
         printf(b"\n\0" as *const u8 as *const libc::c_char);
-        cfg.type_0 = CONN_UNIX;
+        cfg.type_0 = connection_type::CONN_UNIX;
         test_blocking_connection(cfg);
         test_blocking_connection_timeouts(cfg);
         test_blocking_io_errors(cfg);
@@ -5788,7 +6033,7 @@ unsafe fn main_0(
         skips += 1;
         skips;
     }
-    cfg.type_0 = CONN_TCP;
+    cfg.type_0 = connection_type::CONN_TCP;
     printf(
         b"\nTesting asynchronous API using polling_adapter TCP (%s:%d):\n\0" as *const u8
             as *const libc::c_char,
@@ -5797,7 +6042,7 @@ unsafe fn main_0(
     );
     test_async_polling(cfg);
     if test_unix_socket != 0 {
-        cfg.type_0 = CONN_UNIX;
+        cfg.type_0 = connection_type::CONN_UNIX;
         printf(
             b"\nTesting asynchronous API using polling_adapter UNIX (%s):\n\0"
                 as *const u8 as *const libc::c_char,
@@ -5813,7 +6058,7 @@ unsafe fn main_0(
         );
         if test_unix_socket != 0 {
             printf(b"\n\0" as *const u8 as *const libc::c_char);
-            cfg.type_0 = CONN_FD;
+            cfg.type_0 = connection_type::CONN_FD;
             test_blocking_connection(cfg);
         } else {
             printf(
@@ -5843,7 +6088,7 @@ unsafe fn main_0(
     return 0 as libc::c_int;
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut libc::c_char> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))

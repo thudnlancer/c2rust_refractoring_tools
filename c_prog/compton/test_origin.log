@@ -1,0 +1,1070 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/compton)
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:31
+   |
+12 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around assigned value
+    --> src/c2.rs:2323:37
+     |
+2323 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+2329 | ...                   });
+     |                        ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+2323 ~                             __res = if __c < -(128 as libc::c_int)
+2324 |                                 || __c > 255 as libc::c_int
+   ...
+2328 |                                 *(*__ctype_tolower_loc()).offset(__c as isize)
+2329 ~                             };
+     |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+warning: unused variable: `ps`
+    --> src/c2.rs:1769:9
+     |
+1769 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `ps`
+    --> src/c2.rs:2250:9
+     |
+2250 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:3147:41
+     |
+3147 | unsafe extern "C" fn free_texture_r(mut ps: *mut session_t, mut ptexture: *mut GLuint) {
+     |                                         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:3154:39
+     |
+3154 | unsafe extern "C" fn free_glx_fbo(mut ps: *mut session_t, mut pfbo: *mut GLuint) {
+     |                                       ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:3210:9
+     |
+3210 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `func`
+    --> src/compton.rs:3211:9
+     |
+3211 |     mut func: *const libc::c_char,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_func`
+
+warning: unused variable: `xid`
+    --> src/compton.rs:3212:9
+     |
+3212 |     mut xid: XID,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_xid`
+
+warning: unused variable: `start`
+    --> src/compton.rs:3213:9
+     |
+3213 |     mut start: bool,
+     |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_start`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:3216:41
+     |
+3216 | unsafe extern "C" fn glx_mark_frame(mut ps: *mut session_t) {}
+     |                                         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `triggered`
+    --> src/compton.rs:3238:21
+     |
+3238 |             let mut triggered: libc::c_int = 0 as libc::c_int;
+     |                     ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_triggered`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:3770:9
+     |
+3770 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:6827:45
+     |
+6827 | unsafe extern "C" fn win_determine_mode(mut ps: *mut session_t, mut w: *mut win) {
+     |                                             ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `dpy`
+    --> src/compton.rs:7662:9
+     |
+7662 |     mut dpy: *mut Display,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_dpy`
+
+warning: unused variable: `focused_old`
+    --> src/compton.rs:7865:13
+     |
+7865 |     let mut focused_old: bool = (*w).focused;
+     |             ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_focused_old`
+
+warning: unused variable: `ev`
+    --> src/compton.rs:8243:9
+     |
+8243 |     mut ev: *mut XFocusChangeEvent,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ev`
+
+warning: unused variable: `ev`
+    --> src/compton.rs:8250:9
+     |
+8250 |     mut ev: *mut XFocusChangeEvent,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ev`
+
+warning: unused variable: `ev`
+    --> src/compton.rs:8543:9
+     |
+8543 |     mut ev: *mut XRRScreenChangeNotifyEvent,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ev`
+
+warning: unused variable: `ps`
+    --> src/compton.rs:9264:9
+     |
+9264 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+     --> src/compton.rs:12235:9
+      |
+12235 |     mut ps: *mut session_t,
+      |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `signum`
+     --> src/compton.rs:13317:39
+      |
+13317 | unsafe extern "C" fn reset_enable(mut signum: libc::c_int) {
+      |                                       ^^^^^^ help: if this is intentional, prefix it with an underscore: `_signum`
+
+warning: unused variable: `data`
+    --> src/dbus.rs:1657:9
+     |
+1657 |     mut data: *mut libc::c_void,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_data`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1666:9
+     |
+1666 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1703:9
+     |
+1703 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1729:9
+     |
+1729 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1748:9
+     |
+1748 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1767:9
+     |
+1767 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1786:9
+     |
+1786 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1812:9
+     |
+1812 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/dbus.rs:1831:9
+     |
+1831 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `data`
+    --> src/dbus.rs:1862:9
+     |
+1862 |     mut data: *const libc::c_void,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_data`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:1137:9
+     |
+1137 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:1189:39
+     |
+1189 | unsafe extern "C" fn free_glx_fbo(mut ps: *mut session_t, mut pfbo: *mut GLuint) {
+     |                                       ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:1196:41
+     |
+1196 | unsafe extern "C" fn free_texture_r(mut ps: *mut session_t, mut ptexture: *mut GLuint) {
+     |                                         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:1715:9
+     |
+1715 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:2050:9
+     |
+2050 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unused variable: `ps`
+    --> src/opengl.rs:2840:9
+     |
+2840 |     mut ps: *mut session_t,
+     |         ^^ help: if this is intentional, prefix it with an underscore: `_ps`
+
+warning: unnecessary `unsafe` block
+    --> src/compton.rs:4137:9
+     |
+4137 | >; 6] = unsafe {
+     |         ^^^^^^ unnecessary `unsafe` block
+     |
+     = note: `#[warn(unused_unsafe)]` on by default
+
+warning: unnecessary `unsafe` block
+    --> src/compton.rs:4149:9
+     |
+4149 | >; 6] = unsafe {
+     |         ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> src/compton.rs:4163:9
+     |
+4163 | >; 6] = unsafe {
+     |         ^^^^^^ unnecessary `unsafe` block
+
+warning: path statement with no effect
+    --> src/c2.rs:1581:25
+     |
+1581 |                         offset;
+     |                         ^^^^^^^
+     |
+     = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+    --> src/c2.rs:1590:25
+     |
+1590 |                         offset;
+     |                         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1616:21
+     |
+1616 |                     elei;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1684:17
+     |
+1684 |                 offset;
+     |                 ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1697:17
+     |
+1697 |                 elei;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1702:9
+     |
+1702 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1757:21
+     |
+1757 |                     offset;
+     |                     ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1797:9
+     |
+1797 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1804:13
+     |
+1804 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1815:9
+     |
+1815 |         tgtlen;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1817:9
+     |
+1817 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1846:13
+     |
+1846 |             i;
+     |             ^^
+
+warning: unused comparison that must be used
+    --> src/c2.rs:1849:5
+     |
+1849 |     (*pleaf).predef as u64 == 0;
+     |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ the comparison produces a value
+     |
+     = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+     |
+1849 |     let _ = (*pleaf).predef as u64 == 0;
+     |     +++++++
+
+warning: path statement with no effect
+    --> src/c2.rs:1855:9
+     |
+1855 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1860:9
+     |
+1860 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1867:13
+     |
+1867 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1872:9
+     |
+1872 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1879:13
+     |
+1879 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1923:13
+     |
+1923 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1936:9
+     |
+1936 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1943:13
+     |
+1943 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1948:9
+     |
+1948 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1955:13
+     |
+1955 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:1973:13
+     |
+1973 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2034:9
+     |
+2034 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2041:13
+     |
+2041 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2129:9
+     |
+2129 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2134:9
+     |
+2134 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2141:13
+     |
+2141 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2165:9
+     |
+2165 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2172:13
+     |
+2172 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2178:9
+     |
+2178 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2185:13
+     |
+2185 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2224:9
+     |
+2224 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2231:13
+     |
+2231 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2264:9
+     |
+2264 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2346:17
+     |
+2346 |                 offset;
+     |                 ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2353:21
+     |
+2353 |                     offset;
+     |                     ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2362:17
+     |
+2362 |                 offset;
+     |                 ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2499:17
+     |
+2499 |                 offset;
+     |                 ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2512:13
+     |
+2512 |             offset;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2523:9
+     |
+2523 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2712:5
+     |
+2712 |     offset;
+     |     ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2731:9
+     |
+2731 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2734:5
+     |
+2734 |     offset;
+     |     ^^^^^^^
+
+warning: path statement with no effect
+    --> src/c2.rs:2833:17
+     |
+2833 |                 pc;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:2638:9
+     |
+2638 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:2661:9
+     |
+2661 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:2734:9
+     |
+2734 |         pc;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3008:9
+     |
+3008 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3384:9
+     |
+3384 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3506:13
+     |
+3506 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3956:17
+     |
+3956 |                 nnewrects;
+     |                 ^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3959:13
+     |
+3959 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3979:9
+     |
+3979 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:3991:9
+     |
+3991 |         i_0;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4061:9
+     |
+4061 |         s;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4280:13
+     |
+4280 |             x;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4283:9
+     |
+4283 |         y;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4291:13
+     |
+4291 |             x;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4294:9
+     |
+4294 |         y;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4345:13
+     |
+4345 |             fx;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4348:9
+     |
+4348 |         fy;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4399:13
+     |
+4399 |             opacity;
+     |             ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4448:17
+     |
+4448 |                 opacity;
+     |                 ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4451:13
+     |
+4451 |             y;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4454:9
+     |
+4454 |         x;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4552:13
+     |
+4552 |             x;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4555:9
+     |
+4555 |         y;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4592:13
+     |
+4592 |             y;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4615:13
+     |
+4615 |             y;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4618:9
+     |
+4618 |         x;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:4952:13
+     |
+4952 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:5073:13
+     |
+5073 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:5322:9
+     |
+5322 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:5734:9
+     |
+5734 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:5835:17
+     |
+5835 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:6692:13
+     |
+6692 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:6695:9
+     |
+6695 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:8401:21
+     |
+8401 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:8708:13
+     |
+8708 |             len;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:8876:9
+     |
+8876 |         endptr;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:8917:9
+     |
+8917 |         pc;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9025:25
+     |
+9025 |                         i;
+     |                         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9071:37
+     |
+9071 | ...                   pc;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9079:41
+     |
+9079 | ...                   pc;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9087:45
+     |
+9087 | ...                   pc;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9226:9
+     |
+9226 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9236:9
+     |
+9236 |         i_0;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9285:9
+     |
+9285 |         src;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9300:17
+     |
+9300 |                 src;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9315:21
+     |
+9315 |                     src;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9342:25
+     |
+9342 |                         src;
+     |                         ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9375:33
+     |
+9375 | ...                   src;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9408:41
+     |
+9408 | ...                   src;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9487:9
+     |
+9487 |         endptr;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/compton.rs:9504:5
+     |
+9504 |     endptr;
+     |     ^^^^^^^
+
+warning: path statement with no effect
+     --> src/compton.rs:10135:9
+      |
+10135 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:10977:9
+      |
+10977 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:11982:9
+      |
+11982 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:12065:25
+      |
+12065 |                         i;
+      |                         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:12358:9
+      |
+12358 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:12817:9
+      |
+12817 |         pdisp;
+      |         ^^^^^^
+
+warning: path statement with no effect
+     --> src/compton.rs:13086:9
+      |
+13086 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:13141:9
+      |
+13141 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> src/compton.rs:13195:9
+      |
+13195 |         i_0;
+      |         ^^^^
+
+warning: path statement with no effect
+     --> src/compton.rs:13211:9
+      |
+13211 |         i_1;
+      |         ^^^^
+
+warning: path statement with no effect
+     --> src/compton.rs:13304:13
+      |
+13304 |             paint;
+      |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/dbus.rs:1079:9
+     |
+1079 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/dbus.rs:1869:13
+     |
+1869 |             count;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/dbus.rs:1896:13
+     |
+1896 |             pcur;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> src/dbus.rs:2107:9
+     |
+2107 |         count;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:1514:37
+     |
+1514 | ...                   i;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:1751:9
+     |
+1751 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:1759:9
+     |
+1759 |         i_0;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:1944:17
+     |
+1944 |                 k;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:1947:13
+     |
+1947 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2041:9
+     |
+2041 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2272:9
+     |
+2272 |         pcur;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2633:21
+     |
+2633 |                     i;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2656:25
+     |
+2656 |                         i_0;
+     |                         ^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2697:21
+     |
+2697 |                     i_1;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2715:25
+     |
+2715 |                         i_2;
+     |                         ^^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:2821:13
+     |
+2821 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3131:17
+     |
+3131 |                 ri;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3145:13
+     |
+3145 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3227:9
+     |
+3227 |         ri;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3563:9
+     |
+3563 |         ri;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3625:13
+     |
+3625 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3750:13
+     |
+3750 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/opengl.rs:3788:13
+     |
+3788 |             i_0;
+     |             ^^^^
+
+warning: `c2rust_out` (lib) generated 173 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 1.52s

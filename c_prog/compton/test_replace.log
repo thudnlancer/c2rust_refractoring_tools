@@ -1,0 +1,130 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/compton)
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:31
+   |
+12 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around assigned value
+    --> src/c2.rs:3357:37
+     |
+3357 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+3363 | ...                   });
+     |                        ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+3357 ~                             __res = if __c < -(128 as libc::c_int)
+3358 |                                 || __c > 255 as libc::c_int
+   ...
+3362 |                                 *(*__ctype_tolower_loc()).offset(__c as isize)
+3363 ~                             };
+     |
+
+warning: crate-level attribute should be in the root module
+  --> src/c2.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> src/compton.rs:10:1
+   |
+10 | #![feature(asm, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/dbus.rs:10:1
+   |
+10 | #![feature(asm, extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/opengl.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0599]: no method named `set_field` found for enum `c2::C2RustUnnamed_5` in the current scope
+    --> src/c2.rs:1265:23
+     |
+1265 | #[derive(Copy, Clone, BitfieldStruct)]
+     |                       ^^^^^^^^^^^^^^ method not found in `c2::C2RustUnnamed_5`
+...
+1700 | pub enum C2RustUnnamed_5 {
+     | ------------------------ method `set_field` not found for this enum
+     |
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+             candidate #1: `FieldType`
+     = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `c2::C2RustUnnamed_5: FieldType` is not satisfied
+    --> src/c2.rs:1265:23
+     |
+1265 | #[derive(Copy, Clone, BitfieldStruct)]
+     |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `c2::C2RustUnnamed_5`
+     |
+     = help: the following other types implement trait `FieldType`:
+               bool
+               i128
+               i16
+               i32
+               i64
+               i8
+               u128
+               u16
+             and 3 others
+     = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no method named `set_field` found for enum `c2::C2RustUnnamed_4` in the current scope
+    --> src/c2.rs:1265:23
+     |
+1265 | #[derive(Copy, Clone, BitfieldStruct)]
+     |                       ^^^^^^^^^^^^^^ method not found in `c2::C2RustUnnamed_4`
+...
+1615 | pub enum C2RustUnnamed_4 {
+     | ------------------------ method `set_field` not found for this enum
+     |
+     = help: items from traits can only be used if the trait is implemented and in scope
+     = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+             candidate #1: `FieldType`
+     = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `c2::C2RustUnnamed_4: FieldType` is not satisfied
+    --> src/c2.rs:1265:23
+     |
+1265 | #[derive(Copy, Clone, BitfieldStruct)]
+     |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `c2::C2RustUnnamed_4`
+     |
+     = help: the following other types implement trait `FieldType`:
+               bool
+               i128
+               i16
+               i32
+               i64
+               i8
+               u128
+               u16
+             and 3 others
+     = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0277, E0599.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 7 warnings
+error: could not compile `c2rust_out` due to 4 previous errors; 7 warnings emitted

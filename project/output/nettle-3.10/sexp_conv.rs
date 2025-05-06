@@ -1,69 +1,68 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(label_break_value)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     fn __assert_fail(
-        __assertion: *const libc::c_char,
-        __file: *const libc::c_char,
-        __line: libc::c_uint,
-        __function: *const libc::c_char,
+        __assertion: *const i8,
+        __file: *const i8,
+        __line: u32,
+        __function: *const i8,
     ) -> !;
-    fn __errno_location() -> *mut libc::c_int;
+    fn __errno_location() -> *mut i32;
     static mut stdin: *mut _IO_FILE;
     static mut stdout: *mut _IO_FILE;
-    fn fflush(__stream: *mut FILE) -> libc::c_int;
-    fn printf(_: *const libc::c_char, _: ...) -> libc::c_int;
-    fn strtol(
-        __nptr: *const libc::c_char,
-        __endptr: *mut *mut libc::c_char,
-        __base: libc::c_int,
-    ) -> libc::c_long;
+    fn fflush(__stream: *mut FILE) -> i32;
+    fn printf(_: *const i8, _: ...) -> i32;
+    fn strtol(__nptr: *const i8, __endptr: *mut *mut i8, __base: i32) -> i64;
     fn abort() -> !;
-    fn exit(_: libc::c_int) -> !;
-    fn memset(
-        _: *mut libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strerror(_: libc::c_int) -> *mut libc::c_char;
-    static mut optarg: *mut libc::c_char;
-    static mut optind: libc::c_int;
-    fn fcntl(__fd: libc::c_int, __cmd: libc::c_int, _: ...) -> libc::c_int;
+    fn exit(_: i32) -> !;
+    fn memset(_: *mut libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strerror(_: i32) -> *mut i8;
+    static mut optarg: *mut i8;
+    static mut optind: i32;
+    fn fcntl(__fd: i32, __cmd: i32, _: ...) -> i32;
     static nettle_md5: nettle_hash;
     static nettle_sha1: nettle_hash;
     static nettle_sha256: nettle_hash;
     static nettle_base64: nettle_armor;
     fn getopt_long(
-        ___argc: libc::c_int,
-        ___argv: *const *mut libc::c_char,
-        __shortopts: *const libc::c_char,
+        ___argc: i32,
+        ___argv: *const *mut i8,
+        __shortopts: *const i8,
         __longopts: *const option,
-        __longind: *mut libc::c_int,
-    ) -> libc::c_int;
-    fn die(format: *const libc::c_char, _: ...) -> !;
-    fn werror(format: *const libc::c_char, _: ...);
+        __longind: *mut i32,
+    ) -> i32;
+    fn die(format: *const i8, _: ...) -> !;
+    fn werror(format: *const i8, _: ...);
     fn xalloc(size: size_t) -> *mut libc::c_void;
     fn sexp_input_init(input: *mut sexp_input, f: *mut FILE);
     fn sexp_get_char(input: *mut sexp_input);
     fn sexp_output_init(
         output: *mut sexp_output,
         f: *mut FILE,
-        width: libc::c_uint,
-        prefer_hex: libc::c_int,
+        width: u32,
+        prefer_hex: i32,
     );
     fn sexp_output_hash_init(
         output: *mut sexp_output,
         hash: *const nettle_hash,
         ctx: *mut libc::c_void,
     );
-    fn sexp_put_newline(output: *mut sexp_output, indent: libc::c_uint);
-    fn sexp_put_soft_newline(output: *mut sexp_output, indent: libc::c_uint);
+    fn sexp_put_newline(output: *mut sexp_output, indent: u32);
+    fn sexp_put_soft_newline(output: *mut sexp_output, indent: u32);
     fn sexp_put_char(output: *mut sexp_output, c: uint8_t);
-    fn sexp_put_data(
-        output: *mut sexp_output,
-        length: libc::c_uint,
-        data: *const uint8_t,
-    );
+    fn sexp_put_data(output: *mut sexp_output, length: u32, data: *const uint8_t);
     fn sexp_put_code_start(output: *mut sexp_output, coding: *const nettle_armor);
     fn sexp_put_code_end(output: *mut sexp_output);
     fn sexp_put_string(
@@ -81,34 +80,34 @@ extern "C" {
     );
     fn sexp_parse(parser: *mut sexp_parser, token: *mut sexp_compound_token);
 }
-pub type size_t = libc::c_ulong;
-pub type __uint8_t = libc::c_uchar;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
-pub type __pid_t = libc::c_int;
+pub type size_t = u64;
+pub type __uint8_t = u8;
+pub type __off_t = i64;
+pub type __off64_t = i64;
+pub type __pid_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -116,8 +115,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -125,7 +124,7 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
@@ -158,67 +157,65 @@ pub type nettle_armor_length_func = unsafe extern "C" fn(size_t) -> size_t;
 pub type nettle_armor_init_func = unsafe extern "C" fn(*mut libc::c_void) -> ();
 pub type nettle_armor_encode_update_func = unsafe extern "C" fn(
     *mut libc::c_void,
-    *mut libc::c_char,
+    *mut i8,
     size_t,
     *const uint8_t,
 ) -> size_t;
 pub type nettle_armor_encode_final_func = unsafe extern "C" fn(
     *mut libc::c_void,
-    *mut libc::c_char,
+    *mut i8,
 ) -> size_t;
 pub type nettle_armor_decode_update_func = unsafe extern "C" fn(
     *mut libc::c_void,
     *mut size_t,
     *mut uint8_t,
     size_t,
-    *const libc::c_char,
-) -> libc::c_int;
-pub type nettle_armor_decode_final_func = unsafe extern "C" fn(
-    *mut libc::c_void,
-) -> libc::c_int;
+    *const i8,
+) -> i32;
+pub type nettle_armor_decode_final_func = unsafe extern "C" fn(*mut libc::c_void) -> i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct nettle_buffer {
     pub contents: *mut uint8_t,
     pub alloc: size_t,
     pub realloc_ctx: *mut libc::c_void,
-    pub realloc: Option::<nettle_realloc_func>,
+    pub realloc: Option<nettle_realloc_func>,
     pub size: size_t,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct nettle_hash {
-    pub name: *const libc::c_char,
-    pub context_size: libc::c_uint,
-    pub digest_size: libc::c_uint,
-    pub block_size: libc::c_uint,
-    pub init: Option::<nettle_hash_init_func>,
-    pub update: Option::<nettle_hash_update_func>,
-    pub digest: Option::<nettle_hash_digest_func>,
+    pub name: *const i8,
+    pub context_size: u32,
+    pub digest_size: u32,
+    pub block_size: u32,
+    pub init: Option<nettle_hash_init_func>,
+    pub update: Option<nettle_hash_update_func>,
+    pub digest: Option<nettle_hash_digest_func>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct nettle_armor {
-    pub name: *const libc::c_char,
-    pub encode_context_size: libc::c_uint,
-    pub decode_context_size: libc::c_uint,
-    pub encode_final_length: libc::c_uint,
-    pub encode_init: Option::<nettle_armor_init_func>,
-    pub encode_length: Option::<nettle_armor_length_func>,
-    pub encode_update: Option::<nettle_armor_encode_update_func>,
-    pub encode_final: Option::<nettle_armor_encode_final_func>,
-    pub decode_init: Option::<nettle_armor_init_func>,
-    pub decode_length: Option::<nettle_armor_length_func>,
-    pub decode_update: Option::<nettle_armor_decode_update_func>,
-    pub decode_final: Option::<nettle_armor_decode_final_func>,
+    pub name: *const i8,
+    pub encode_context_size: u32,
+    pub decode_context_size: u32,
+    pub encode_final_length: u32,
+    pub encode_init: Option<nettle_armor_init_func>,
+    pub encode_length: Option<nettle_armor_length_func>,
+    pub encode_update: Option<nettle_armor_encode_update_func>,
+    pub encode_final: Option<nettle_armor_encode_final_func>,
+    pub decode_init: Option<nettle_armor_init_func>,
+    pub decode_length: Option<nettle_armor_length_func>,
+    pub decode_update: Option<nettle_armor_decode_update_func>,
+    pub decode_final: Option<nettle_armor_decode_final_func>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option {
-    pub name: *const libc::c_char,
-    pub has_arg: libc::c_int,
-    pub flag: *mut libc::c_int,
-    pub val: libc::c_int,
+    pub name: *const i8,
+    pub has_arg: i32,
+    pub flag: *mut i32,
+    pub val: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -228,18 +225,77 @@ pub enum sexp_mode {
     SEXP_CANONICAL = 0,
 }
 impl sexp_mode {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_mode::SEXP_TRANSPORT => 2,
             sexp_mode::SEXP_ADVANCED => 1,
             sexp_mode::SEXP_CANONICAL => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_mode {
+        match value {
+            2 => sexp_mode::SEXP_TRANSPORT,
+            1 => sexp_mode::SEXP_ADVANCED,
+            0 => sexp_mode::SEXP_CANONICAL,
+            _ => panic!("Invalid value for sexp_mode: {}", value),
+        }
+    }
 }
-
-pub const SEXP_TRANSPORT: sexp_mode = 2;
-pub const SEXP_ADVANCED: sexp_mode = 1;
-pub const SEXP_CANONICAL: sexp_mode = 0;
+impl AddAssign<u32> for sexp_mode {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_mode {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_mode {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_mode {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_mode {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn add(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn sub(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn mul(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn div(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn rem(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_token {
@@ -255,7 +311,7 @@ pub enum sexp_token {
     SEXP_STRING = 0,
 }
 impl sexp_token {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_token::SEXP_CODING_END => 9,
             sexp_token::SEXP_TRANSPORT_START => 8,
@@ -269,31 +325,90 @@ impl sexp_token {
             sexp_token::SEXP_STRING => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_token {
+        match value {
+            9 => sexp_token::SEXP_CODING_END,
+            8 => sexp_token::SEXP_TRANSPORT_START,
+            7 => sexp_token::SEXP_DISPLAY_END,
+            6 => sexp_token::SEXP_DISPLAY_START,
+            5 => sexp_token::SEXP_EOF,
+            4 => sexp_token::SEXP_LIST_END,
+            3 => sexp_token::SEXP_LIST_START,
+            2 => sexp_token::SEXP_COMMENT,
+            1 => sexp_token::SEXP_DISPLAY,
+            0 => sexp_token::SEXP_STRING,
+            _ => panic!("Invalid value for sexp_token: {}", value),
+        }
+    }
 }
-
-pub const SEXP_CODING_END: sexp_token = 9;
-pub const SEXP_TRANSPORT_START: sexp_token = 8;
-pub const SEXP_DISPLAY_END: sexp_token = 7;
-pub const SEXP_DISPLAY_START: sexp_token = 6;
-pub const SEXP_EOF: sexp_token = 5;
-pub const SEXP_LIST_END: sexp_token = 4;
-pub const SEXP_LIST_START: sexp_token = 3;
-pub const SEXP_COMMENT: sexp_token = 2;
-pub const SEXP_DISPLAY: sexp_token = 1;
-pub const SEXP_STRING: sexp_token = 0;
+impl AddAssign<u32> for sexp_token {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_token {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_token {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_token {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_token {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_token {
+    type Output = sexp_token;
+    fn add(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_token {
+    type Output = sexp_token;
+    fn sub(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_token {
+    type Output = sexp_token;
+    fn mul(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_token {
+    type Output = sexp_token;
+    fn div(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_token {
+    type Output = sexp_token;
+    fn rem(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base16_decode_ctx {
-    pub word: libc::c_uchar,
-    pub bits: libc::c_uchar,
+    pub word: u8,
+    pub bits: u8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base64_decode_ctx {
     pub table: *const libc::c_schar,
     pub word: libc::c_ushort,
-    pub bits: libc::c_uchar,
-    pub padding: libc::c_uchar,
+    pub bits: u8,
+    pub padding: u8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -303,18 +418,77 @@ pub enum sexp_char_type {
     SEXP_NORMAL_CHAR = 0,
 }
 impl sexp_char_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_char_type::SEXP_END_CHAR => 2,
             sexp_char_type::SEXP_EOF_CHAR => 1,
             sexp_char_type::SEXP_NORMAL_CHAR => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_char_type {
+        match value {
+            2 => sexp_char_type::SEXP_END_CHAR,
+            1 => sexp_char_type::SEXP_EOF_CHAR,
+            0 => sexp_char_type::SEXP_NORMAL_CHAR,
+            _ => panic!("Invalid value for sexp_char_type: {}", value),
+        }
+    }
 }
-
-pub const SEXP_END_CHAR: sexp_char_type = 2;
-pub const SEXP_EOF_CHAR: sexp_char_type = 1;
-pub const SEXP_NORMAL_CHAR: sexp_char_type = 0;
+impl AddAssign<u32> for sexp_char_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_char_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_char_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_char_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_char_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn add(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn sub(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn mul(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn div(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn rem(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sexp_input {
@@ -336,15 +510,15 @@ pub union C2RustUnnamed {
 #[repr(C)]
 pub struct sexp_output {
     pub f: *mut FILE,
-    pub line_width: libc::c_uint,
+    pub line_width: u32,
     pub coding: *const nettle_armor,
-    pub coding_indent: libc::c_uint,
-    pub prefer_hex: libc::c_int,
+    pub coding_indent: u32,
+    pub prefer_hex: i32,
     pub hash: *const nettle_hash,
     pub ctx: *mut libc::c_void,
     pub base64: base64_decode_ctx,
-    pub pos: libc::c_uint,
-    pub soft_newline: libc::c_int,
+    pub pos: u32,
+    pub soft_newline: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -358,17 +532,17 @@ pub struct sexp_compound_token {
 pub struct sexp_parser {
     pub input: *mut sexp_input,
     pub mode: sexp_mode,
-    pub level: libc::c_uint,
-    pub transport: libc::c_uint,
+    pub level: u32,
+    pub transport: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct conv_options {
     pub mode: sexp_mode,
-    pub prefer_hex: libc::c_int,
-    pub once: libc::c_int,
-    pub lock: libc::c_int,
-    pub width: libc::c_uint,
+    pub prefer_hex: i32,
+    pub once: i32,
+    pub lock: i32,
+    pub width: u32,
     pub hash: *const nettle_hash,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -380,7 +554,7 @@ pub enum C2RustUnnamed_0 {
     OPT_ONCE = 300,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::OPT_HELP => 303,
             C2RustUnnamed_0::OPT_LOCK => 302,
@@ -388,62 +562,117 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::OPT_ONCE => 300,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            303 => C2RustUnnamed_0::OPT_HELP,
+            302 => C2RustUnnamed_0::OPT_LOCK,
+            301 => C2RustUnnamed_0::OPT_HASH,
+            300 => C2RustUnnamed_0::OPT_ONCE,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const OPT_HELP: C2RustUnnamed_0 = 303;
-pub const OPT_LOCK: C2RustUnnamed_0 = 302;
-pub const OPT_HASH: C2RustUnnamed_0 = 301;
-pub const OPT_ONCE: C2RustUnnamed_0 = 300;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 unsafe extern "C" fn sexp_convert_item(
     mut parser: *mut sexp_parser,
     mut token: *mut sexp_compound_token,
     mut output: *mut sexp_output,
     mut mode_out: sexp_mode,
-    mut indent: libc::c_uint,
+    mut indent: u32,
 ) {
-    if mode_out as libc::c_uint == SEXP_TRANSPORT as libc::c_int as libc::c_uint {
+    if mode_out as u32 == sexp_mode::SEXP_TRANSPORT as i32 as u32 {
         sexp_put_char(output, '{' as i32 as uint8_t);
         sexp_put_code_start(output, &nettle_base64);
         sexp_convert_item(
             parser,
             token,
             output,
-            SEXP_CANONICAL,
-            0 as libc::c_int as libc::c_uint,
+            sexp_mode::SEXP_CANONICAL,
+            0 as i32 as u32,
         );
         sexp_put_code_end(output);
         sexp_put_char(output, '}' as i32 as uint8_t);
     } else {
-        match (*token).type_0 as libc::c_uint {
+        match (*token).type_0 as u32 {
             4 => {
-                die(b"Unmatched end of list.\n\0" as *const u8 as *const libc::c_char);
+                die(b"Unmatched end of list.\n\0" as *const u8 as *const i8);
             }
             5 => {
-                die(b"Unexpected end of file.\n\0" as *const u8 as *const libc::c_char);
+                die(b"Unexpected end of file.\n\0" as *const u8 as *const i8);
             }
             9 => {
-                die(
-                    b"Unexpected end of coding.\n\0" as *const u8 as *const libc::c_char,
-                );
+                die(b"Unexpected end of coding.\n\0" as *const u8 as *const i8);
             }
             3 => {
-                let mut item: libc::c_uint = 0;
+                let mut item: u32 = 0;
                 sexp_put_char(output, '(' as i32 as uint8_t);
-                item = 0 as libc::c_int as libc::c_uint;
+                item = 0 as i32 as u32;
                 loop {
                     sexp_parse(parser, token);
-                    if !((*token).type_0 as libc::c_uint
-                        != SEXP_LIST_END as libc::c_int as libc::c_uint)
+                    if !((*token).type_0 as u32
+                        != sexp_token::SEXP_LIST_END as i32 as u32)
                     {
                         break;
                     }
-                    if mode_out as libc::c_uint
-                        == SEXP_ADVANCED as libc::c_int as libc::c_uint
-                    {
+                    if mode_out as u32 == sexp_mode::SEXP_ADVANCED as i32 as u32 {
                         match item {
                             0 => {
-                                if (*token).type_0 as libc::c_uint
-                                    == SEXP_COMMENT as libc::c_int as libc::c_uint
+                                if (*token).type_0 as u32
+                                    == sexp_token::SEXP_COMMENT as i32 as u32
                                 {
                                     indent = (*output).pos;
                                     item = item.wrapping_add(1);
@@ -475,12 +704,10 @@ unsafe extern "C" fn sexp_convert_item(
                 sexp_put_string(output, mode_out, &mut (*token).string);
             }
             2 => {
-                if mode_out as libc::c_uint
-                    == SEXP_ADVANCED as libc::c_int as libc::c_uint
-                {
+                if mode_out as u32 == sexp_mode::SEXP_ADVANCED as i32 as u32 {
                     sexp_put_data(
                         output,
-                        (*token).string.size as libc::c_uint,
+                        (*token).string.size as u32,
                         (*token).string.contents,
                     );
                     sexp_put_soft_newline(output, indent);
@@ -492,18 +719,15 @@ unsafe extern "C" fn sexp_convert_item(
         }
     };
 }
-unsafe extern "C" fn match_argument(
-    mut given: *const libc::c_char,
-    mut name: *const libc::c_char,
-) -> libc::c_int {
+unsafe extern "C" fn match_argument(mut given: *const i8, mut name: *const i8) -> i32 {
     if !given.is_null() && !name.is_null() {} else {
         __assert_fail(
-            b"given != NULL && name != NULL\0" as *const u8 as *const libc::c_char,
-            b"sexp-conv.c\0" as *const u8 as *const libc::c_char,
-            220 as libc::c_int as libc::c_uint,
+            b"given != NULL && name != NULL\0" as *const u8 as *const i8,
+            b"sexp-conv.c\0" as *const u8 as *const i8,
+            220 as i32 as u32,
             (*::core::mem::transmute::<
                 &[u8; 47],
-                &[libc::c_char; 47],
+                &[i8; 47],
             >(b"int match_argument(const char *, const char *)\0"))
                 .as_ptr(),
         );
@@ -511,30 +735,30 @@ unsafe extern "C" fn match_argument(
     'c_3835: {
         if !given.is_null() && !name.is_null() {} else {
             __assert_fail(
-                b"given != NULL && name != NULL\0" as *const u8 as *const libc::c_char,
-                b"sexp-conv.c\0" as *const u8 as *const libc::c_char,
-                220 as libc::c_int as libc::c_uint,
+                b"given != NULL && name != NULL\0" as *const u8 as *const i8,
+                b"sexp-conv.c\0" as *const u8 as *const i8,
+                220 as i32 as u32,
                 (*::core::mem::transmute::<
                     &[u8; 47],
-                    &[libc::c_char; 47],
+                    &[i8; 47],
                 >(b"int match_argument(const char *, const char *)\0"))
                     .as_ptr(),
             );
         }
     };
-    return (strcmp(given, name) == 0) as libc::c_int;
+    return (strcmp(given, name) == 0) as i32;
 }
 unsafe extern "C" fn parse_options(
     mut o: *mut conv_options,
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
+    mut argc: i32,
+    mut argv: *mut *mut i8,
 ) {
-    (*o).mode = SEXP_ADVANCED;
-    (*o).prefer_hex = 0 as libc::c_int;
-    (*o).once = 0 as libc::c_int;
-    (*o).lock = 0 as libc::c_int;
+    (*o).mode = sexp_mode::SEXP_ADVANCED;
+    (*o).prefer_hex = 0 as i32;
+    (*o).once = 0 as i32;
+    (*o).lock = 0 as i32;
     (*o).hash = 0 as *const nettle_hash;
-    (*o).width = 72 as libc::c_int as libc::c_uint;
+    (*o).width = 72 as i32 as u32;
     loop {
         static mut hashes: [*const nettle_hash; 4] = unsafe {
             [
@@ -547,93 +771,93 @@ unsafe extern "C" fn parse_options(
         static mut options: [option; 9] = [
             {
                 let mut init = option {
-                    name: b"help\0" as *const u8 as *const libc::c_char,
-                    has_arg: 0 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: OPT_HELP as libc::c_int,
+                    name: b"help\0" as *const u8 as *const i8,
+                    has_arg: 0 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: C2RustUnnamed_0::OPT_HELP as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"version\0" as *const u8 as *const libc::c_char,
-                    has_arg: 0 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
+                    name: b"version\0" as *const u8 as *const i8,
+                    has_arg: 0 as i32,
+                    flag: 0 as *const i32 as *mut i32,
                     val: 'V' as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"once\0" as *const u8 as *const libc::c_char,
-                    has_arg: 0 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: OPT_ONCE as libc::c_int,
+                    name: b"once\0" as *const u8 as *const i8,
+                    has_arg: 0 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: C2RustUnnamed_0::OPT_ONCE as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"syntax\0" as *const u8 as *const libc::c_char,
-                    has_arg: 1 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
+                    name: b"syntax\0" as *const u8 as *const i8,
+                    has_arg: 1 as i32,
+                    flag: 0 as *const i32 as *mut i32,
                     val: 's' as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"hash\0" as *const u8 as *const libc::c_char,
-                    has_arg: 2 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: OPT_HASH as libc::c_int,
+                    name: b"hash\0" as *const u8 as *const i8,
+                    has_arg: 2 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: C2RustUnnamed_0::OPT_HASH as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"raw-hash\0" as *const u8 as *const libc::c_char,
-                    has_arg: 2 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: OPT_HASH as libc::c_int,
+                    name: b"raw-hash\0" as *const u8 as *const i8,
+                    has_arg: 2 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: C2RustUnnamed_0::OPT_HASH as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"width\0" as *const u8 as *const libc::c_char,
-                    has_arg: 1 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
+                    name: b"width\0" as *const u8 as *const i8,
+                    has_arg: 1 as i32,
+                    flag: 0 as *const i32 as *mut i32,
                     val: 'w' as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: b"lock\0" as *const u8 as *const libc::c_char,
-                    has_arg: 0 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: OPT_LOCK as libc::c_int,
+                    name: b"lock\0" as *const u8 as *const i8,
+                    has_arg: 0 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: C2RustUnnamed_0::OPT_LOCK as i32,
                 };
                 init
             },
             {
                 let mut init = option {
-                    name: 0 as *const libc::c_char,
-                    has_arg: 0 as libc::c_int,
-                    flag: 0 as *const libc::c_int as *mut libc::c_int,
-                    val: 0 as libc::c_int,
+                    name: 0 as *const i8,
+                    has_arg: 0 as i32,
+                    flag: 0 as *const i32 as *mut i32,
+                    val: 0 as i32,
                 };
                 init
             },
         ];
-        let mut c: libc::c_int = 0;
-        let mut option_index: libc::c_int = 0 as libc::c_int;
-        let mut i: libc::c_uint = 0;
+        let mut c: i32 = 0;
+        let mut option_index: i32 = 0 as i32;
+        let mut i: u32 = 0;
         c = getopt_long(
             argc,
             argv,
-            b"Vs:w:\0" as *const u8 as *const libc::c_char,
+            b"Vs:w:\0" as *const u8 as *const i8,
             options.as_ptr(),
             &mut option_index,
         );
@@ -642,25 +866,25 @@ unsafe extern "C" fn parse_options(
                 if optind != argc {
                     die(
                         b"sexp-conv: Command line takes no arguments, only options.\n\0"
-                            as *const u8 as *const libc::c_char,
+                            as *const u8 as *const i8,
                     );
                 }
                 return;
             }
             63 => {
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
             119 => {
-                let mut end: *mut libc::c_char = 0 as *mut libc::c_char;
-                let mut width: libc::c_int = 0;
+                let mut end: *mut i8 = 0 as *mut i8;
+                let mut width: i32 = 0;
                 if !optarg.is_null() {} else {
                     __assert_fail(
-                        b"optarg != NULL\0" as *const u8 as *const libc::c_char,
-                        b"sexp-conv.c\0" as *const u8 as *const libc::c_char,
-                        284 as libc::c_int as libc::c_uint,
+                        b"optarg != NULL\0" as *const u8 as *const i8,
+                        b"sexp-conv.c\0" as *const u8 as *const i8,
+                        284 as i32 as u32,
                         (*::core::mem::transmute::<
                             &[u8; 56],
-                            &[libc::c_char; 56],
+                            &[i8; 56],
                         >(b"void parse_options(struct conv_options *, int, char **)\0"))
                             .as_ptr(),
                     );
@@ -668,12 +892,12 @@ unsafe extern "C" fn parse_options(
                 'c_4267: {
                     if !optarg.is_null() {} else {
                         __assert_fail(
-                            b"optarg != NULL\0" as *const u8 as *const libc::c_char,
-                            b"sexp-conv.c\0" as *const u8 as *const libc::c_char,
-                            284 as libc::c_int as libc::c_uint,
+                            b"optarg != NULL\0" as *const u8 as *const i8,
+                            b"sexp-conv.c\0" as *const u8 as *const i8,
+                            284 as i32 as u32,
                             (*::core::mem::transmute::<
                                 &[u8; 56],
-                                &[libc::c_char; 56],
+                                &[i8; 56],
                             >(
                                 b"void parse_options(struct conv_options *, int, char **)\0",
                             ))
@@ -681,69 +905,61 @@ unsafe extern "C" fn parse_options(
                         );
                     }
                 };
-                width = strtol(optarg, &mut end, 0 as libc::c_int) as libc::c_int;
-                if *optarg == 0 || *end as libc::c_int != 0 || width < 0 as libc::c_int {
+                width = strtol(optarg, &mut end, 0 as i32) as i32;
+                if *optarg == 0 || *end as i32 != 0 || width < 0 as i32 {
                     die(
-                        b"sexp-conv: Invalid width `%s'.\n\0" as *const u8
-                            as *const libc::c_char,
+                        b"sexp-conv: Invalid width `%s'.\n\0" as *const u8 as *const i8,
                         optarg,
                     );
                 }
-                (*o).width = width as libc::c_uint;
+                (*o).width = width as u32;
             }
             115 => {
                 if !((*o).hash).is_null() {
                     werror(
                         b"sexp-conv: Combining --hash and -s usually makes no sense.\n\0"
-                            as *const u8 as *const libc::c_char,
+                            as *const u8 as *const i8,
                     );
                 }
-                if match_argument(
-                    optarg,
-                    b"advanced\0" as *const u8 as *const libc::c_char,
-                ) != 0
-                {
-                    (*o).mode = SEXP_ADVANCED;
+                if match_argument(optarg, b"advanced\0" as *const u8 as *const i8) != 0 {
+                    (*o).mode = sexp_mode::SEXP_ADVANCED;
                 } else if match_argument(
                     optarg,
-                    b"transport\0" as *const u8 as *const libc::c_char,
+                    b"transport\0" as *const u8 as *const i8,
                 ) != 0
                 {
-                    (*o).mode = SEXP_TRANSPORT;
+                    (*o).mode = sexp_mode::SEXP_TRANSPORT;
                 } else if match_argument(
                     optarg,
-                    b"canonical\0" as *const u8 as *const libc::c_char,
+                    b"canonical\0" as *const u8 as *const i8,
                 ) != 0
                 {
-                    (*o).mode = SEXP_CANONICAL;
-                } else if match_argument(
-                    optarg,
-                    b"hex\0" as *const u8 as *const libc::c_char,
-                ) != 0
+                    (*o).mode = sexp_mode::SEXP_CANONICAL;
+                } else if match_argument(optarg, b"hex\0" as *const u8 as *const i8) != 0
                 {
-                    (*o).mode = SEXP_ADVANCED;
-                    (*o).prefer_hex = 1 as libc::c_int;
+                    (*o).mode = sexp_mode::SEXP_ADVANCED;
+                    (*o).prefer_hex = 1 as i32;
                 } else {
                     die(
                         b"Available syntax variants: advanced, transport, canonical\n\0"
-                            as *const u8 as *const libc::c_char,
+                            as *const u8 as *const i8,
                     );
                 }
             }
             300 => {
-                (*o).once = 1 as libc::c_int;
+                (*o).once = 1 as i32;
             }
             301 => {
-                (*o).mode = SEXP_CANONICAL;
+                (*o).mode = sexp_mode::SEXP_CANONICAL;
                 if optarg.is_null() {
                     (*o).hash = &nettle_sha1;
                 } else {
-                    i = 0 as libc::c_int as libc::c_uint;
+                    i = 0 as i32 as u32;
                     loop {
                         if (hashes[i as usize]).is_null() {
                             die(
                                 b"sexp_conv: Unknown hash algorithm `%s'\n\0" as *const u8
-                                    as *const libc::c_char,
+                                    as *const i8,
                                 optarg,
                             );
                         }
@@ -758,20 +974,20 @@ unsafe extern "C" fn parse_options(
                 }
             }
             302 => {
-                (*o).lock = 1 as libc::c_int;
+                (*o).lock = 1 as i32;
             }
             303 => {
                 printf(
                     b"Usage: sexp-conv [OPTION...]\n  Conversion:     sexp-conv [OPTION...] <INPUT-SEXP\n  Fingerprinting: sexp-conv --hash=HASH <INPUT-SEXP\n\nReads an s-expression on stdin, and outputs the same\nsexp on stdout, possibly with a different syntax.\n\n       --hash[=ALGORITHM]   Outputs only the hash of the expression.\n                            Available hash algorithms:\n                            \0"
-                        as *const u8 as *const libc::c_char,
+                        as *const u8 as *const i8,
                 );
-                i = 0 as libc::c_int as libc::c_uint;
+                i = 0 as i32 as u32;
                 while !(hashes[i as usize]).is_null() {
                     if i != 0 {
-                        printf(b", \0" as *const u8 as *const libc::c_char);
+                        printf(b", \0" as *const u8 as *const i8);
                     }
                     printf(
-                        b"%s\0" as *const u8 as *const libc::c_char,
+                        b"%s\0" as *const u8 as *const i8,
                         (*hashes[i as usize]).name,
                     );
                     i = i.wrapping_add(1);
@@ -779,15 +995,13 @@ unsafe extern "C" fn parse_options(
                 }
                 printf(
                     b" (default is sha1).\n   -s, --syntax=SYNTAX      The syntax used for the output. Available\n                            variants: advanced, hex, transport, canonical\n       --once               Process only the first s-expression.\n   -w, --width=WIDTH        Linewidth for base64 encoded data.\n                            Zero means no limit.\n       --lock               Lock output file.\n       --raw-hash           Alias for --hash, for compatibility\n                            with lsh-1.x.\n\nReport bugs to nettle-bugs@lists.lysator.liu.se.\n\0"
-                        as *const u8 as *const libc::c_char,
+                        as *const u8 as *const i8,
                 );
-                exit(0 as libc::c_int);
+                exit(0 as i32);
             }
             86 => {
-                printf(
-                    b"sexp-conv (nettle 3.10)\n\0" as *const u8 as *const libc::c_char,
-                );
-                exit(0 as libc::c_int);
+                printf(b"sexp-conv (nettle 3.10)\n\0" as *const u8 as *const i8);
+                exit(0 as i32);
             }
             _ => {
                 abort();
@@ -795,12 +1009,9 @@ unsafe extern "C" fn parse_options(
         }
     };
 }
-unsafe fn main_0(
-    mut argc: libc::c_int,
-    mut argv: *mut *mut libc::c_char,
-) -> libc::c_int {
+unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
     let mut options: conv_options = conv_options {
-        mode: SEXP_CANONICAL,
+        mode: sexp_mode::SEXP_CANONICAL,
         prefer_hex: 0,
         once: 0,
         lock: 0,
@@ -809,7 +1020,7 @@ unsafe fn main_0(
     };
     let mut input: sexp_input = sexp_input {
         f: 0 as *mut FILE,
-        ctype: SEXP_NORMAL_CHAR,
+        ctype: sexp_char_type::SEXP_NORMAL_CHAR,
         c: 0,
         coding: 0 as *const nettle_armor,
         state: C2RustUnnamed {
@@ -821,16 +1032,16 @@ unsafe fn main_0(
             },
         },
         terminator: 0,
-        token: SEXP_STRING,
+        token: sexp_token::SEXP_STRING,
     };
     let mut parser: sexp_parser = sexp_parser {
         input: 0 as *mut sexp_input,
-        mode: SEXP_CANONICAL,
+        mode: sexp_mode::SEXP_CANONICAL,
         level: 0,
         transport: 0,
     };
     let mut token: sexp_compound_token = sexp_compound_token {
-        type_0: SEXP_STRING,
+        type_0: sexp_token::SEXP_STRING,
         display: nettle_buffer {
             contents: 0 as *mut uint8_t,
             alloc: 0,
@@ -865,7 +1076,7 @@ unsafe fn main_0(
     };
     parse_options(&mut options, argc, argv);
     sexp_input_init(&mut input, stdin);
-    sexp_parse_init(&mut parser, &mut input, SEXP_ADVANCED);
+    sexp_parse_init(&mut parser, &mut input, sexp_mode::SEXP_ADVANCED);
     sexp_compound_token_init(&mut token);
     sexp_output_init(&mut output, stdout, options.width, options.prefer_hex);
     if options.lock != 0 {
@@ -878,19 +1089,16 @@ unsafe fn main_0(
         };
         memset(
             &mut fl as *mut flock as *mut libc::c_void,
-            0 as libc::c_int,
-            ::core::mem::size_of::<flock>() as libc::c_ulong,
+            0 as i32,
+            ::core::mem::size_of::<flock>() as u64,
         );
-        fl.l_type = 1 as libc::c_int as libc::c_short;
-        fl.l_whence = 0 as libc::c_int as libc::c_short;
-        fl.l_start = 0 as libc::c_int as __off_t;
-        fl.l_len = 0 as libc::c_int as __off_t;
-        if fcntl(1 as libc::c_int, 7 as libc::c_int, &mut fl as *mut flock)
-            == -(1 as libc::c_int)
-        {
+        fl.l_type = 1 as i32 as libc::c_short;
+        fl.l_whence = 0 as i32 as libc::c_short;
+        fl.l_start = 0 as i32 as __off_t;
+        fl.l_len = 0 as i32 as __off_t;
+        if fcntl(1 as i32, 7 as i32, &mut fl as *mut flock) == -(1 as i32) {
             die(
-                b"Locking output file failed: %s\n\0" as *const u8
-                    as *const libc::c_char,
+                b"Locking output file failed: %s\n\0" as *const u8 as *const i8,
                 strerror(*__errno_location()),
             );
         }
@@ -901,14 +1109,11 @@ unsafe fn main_0(
     }
     sexp_get_char(&mut input);
     sexp_parse(&mut parser, &mut token);
-    if token.type_0 as libc::c_uint == SEXP_EOF as libc::c_int as libc::c_uint {
+    if token.type_0 as u32 == sexp_token::SEXP_EOF as i32 as u32 {
         if options.once != 0 {
-            die(
-                b"sexp-conv: No input expression.\n\0" as *const u8
-                    as *const libc::c_char,
-            );
+            die(b"sexp-conv: No input expression.\n\0" as *const u8 as *const i8);
         }
-        return 0 as libc::c_int;
+        return 0 as i32;
     }
     loop {
         sexp_convert_item(
@@ -916,34 +1121,32 @@ unsafe fn main_0(
             &mut token,
             &mut output,
             options.mode,
-            0 as libc::c_int as libc::c_uint,
+            0 as i32 as u32,
         );
         if !(options.hash).is_null() {
             sexp_put_digest(&mut output);
-            sexp_put_newline(&mut output, 0 as libc::c_int as libc::c_uint);
-        } else if options.mode as libc::c_uint
-            != SEXP_CANONICAL as libc::c_int as libc::c_uint
-        {
-            sexp_put_newline(&mut output, 0 as libc::c_int as libc::c_uint);
+            sexp_put_newline(&mut output, 0 as i32 as u32);
+        } else if options.mode as u32 != sexp_mode::SEXP_CANONICAL as i32 as u32 {
+            sexp_put_newline(&mut output, 0 as i32 as u32);
         }
         sexp_parse(&mut parser, &mut token);
         if !(options.once == 0
-            && token.type_0 as libc::c_uint != SEXP_EOF as libc::c_int as libc::c_uint)
+            && token.type_0 as u32 != sexp_token::SEXP_EOF as i32 as u32)
         {
             break;
         }
     }
     sexp_compound_token_clear(&mut token);
-    if fflush(output.f) < 0 as libc::c_int {
+    if fflush(output.f) < 0 as i32 {
         die(
-            b"Final fflush failed: %s.\n\0" as *const u8 as *const libc::c_char,
+            b"Final fflush failed: %s.\n\0" as *const u8 as *const i8,
             strerror(*__errno_location()),
         );
     }
-    return 0 as libc::c_int;
+    return 0 as i32;
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut i8> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))
@@ -954,10 +1157,7 @@ pub fn main() {
     args.push(::core::ptr::null_mut());
     unsafe {
         ::std::process::exit(
-            main_0(
-                (args.len() - 1) as libc::c_int,
-                args.as_mut_ptr() as *mut *mut libc::c_char,
-            ) as i32,
+            main_0((args.len() - 1) as i32, args.as_mut_ptr() as *mut *mut i8) as i32,
         )
     }
 }

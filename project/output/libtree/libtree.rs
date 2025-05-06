@@ -1,4 +1,14 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     static mut stdout: *mut _IO_FILE;
     static mut stderr: *mut _IO_FILE;
@@ -60,7 +70,7 @@ extern "C" {
     fn glob(
         __pattern: *const libc::c_char,
         __flags: libc::c_int,
-        __errfunc: Option::<
+        __errfunc: Option<
             unsafe extern "C" fn(*const libc::c_char, libc::c_int) -> libc::c_int,
         >,
         __pglob: *mut glob_t,
@@ -176,20 +186,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type __size_t = libc::c_ulong;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -198,17 +267,15 @@ pub struct glob_t {
     pub gl_pathv: *mut *mut libc::c_char,
     pub gl_offs: __size_t,
     pub gl_flags: libc::c_int,
-    pub gl_closedir: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub gl_readdir: Option::<
-        unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void,
-    >,
-    pub gl_opendir: Option::<
+    pub gl_closedir: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub gl_readdir: Option<unsafe extern "C" fn(*mut libc::c_void) -> *mut libc::c_void>,
+    pub gl_opendir: Option<
         unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_void,
     >,
-    pub gl_lstat: Option::<
+    pub gl_lstat: Option<
         unsafe extern "C" fn(*const libc::c_char, *mut libc::c_void) -> libc::c_int,
     >,
-    pub gl_stat: Option::<
+    pub gl_stat: Option<
         unsafe extern "C" fn(*const libc::c_char, *mut libc::c_void) -> libc::c_int,
     >,
 }
@@ -346,15 +413,74 @@ impl how_t {
             how_t::DEFAULT => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> how_t {
+        match value {
+            0 => how_t::INPUT,
+            1 => how_t::DIRECT,
+            2 => how_t::RPATH,
+            3 => how_t::LD_LIBRARY_PATH,
+            4 => how_t::RUNPATH,
+            5 => how_t::LD_SO_CONF,
+            6 => how_t::DEFAULT,
+            _ => panic!("Invalid value for how_t: {}", value),
+        }
+    }
 }
-
-pub const DEFAULT: how_t = 6;
-pub const LD_SO_CONF: how_t = 5;
-pub const RUNPATH: how_t = 4;
-pub const LD_LIBRARY_PATH: how_t = 3;
-pub const RPATH: how_t = 2;
-pub const DIRECT: how_t = 1;
-pub const INPUT: how_t = 0;
+impl AddAssign<u32> for how_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = how_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for how_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = how_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for how_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = how_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for how_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = how_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for how_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = how_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for how_t {
+    type Output = how_t;
+    fn add(self, rhs: u32) -> how_t {
+        how_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for how_t {
+    type Output = how_t;
+    fn sub(self, rhs: u32) -> how_t {
+        how_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for how_t {
+    type Output = how_t;
+    fn mul(self, rhs: u32) -> how_t {
+        how_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for how_t {
+    type Output = how_t;
+    fn div(self, rhs: u32) -> how_t {
+        how_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for how_t {
+    type Output = how_t;
+    fn rem(self, rhs: u32) -> how_t {
+        how_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct found_t {
@@ -468,10 +594,7 @@ unsafe extern "C" fn utoa(mut str: *mut libc::c_char, mut v: size_t) {
     let mut i: size_t = 0 as libc::c_int as size_t;
     while i < len.wrapping_div(2 as libc::c_int as libc::c_ulong) {
         let mut tmp: libc::c_char = *str.offset(i as isize);
-        *str
-            .offset(
-                i as isize,
-            ) = *str
+        *str.offset(i as isize) = *str
             .offset(
                 len.wrapping_sub(i).wrapping_sub(1 as libc::c_int as libc::c_ulong)
                     as isize,
@@ -507,8 +630,7 @@ unsafe extern "C" fn small_vec_u64_append(
     }
     if (*v).n == 16 as libc::c_int as libc::c_ulong {
         (*v).capacity = (2 as libc::c_int * 16 as libc::c_int) as size_t;
-        (*v)
-            .p = malloc(
+        (*v).p = malloc(
             ((*v).capacity)
                 .wrapping_mul(::core::mem::size_of::<uint64_t>() as libc::c_ulong),
         ) as *mut uint64_t;
@@ -522,8 +644,7 @@ unsafe extern "C" fn small_vec_u64_append(
                 .wrapping_mul(::core::mem::size_of::<uint64_t>() as libc::c_ulong),
         );
     } else if (*v).n == (*v).capacity {
-        (*v)
-            .capacity = ((*v).capacity as libc::c_ulong)
+        (*v).capacity = ((*v).capacity as libc::c_ulong)
             .wrapping_mul(2 as libc::c_int as libc::c_ulong) as size_t as size_t;
         let mut p: *mut uint64_t = realloc(
             (*v).p as *mut libc::c_void,
@@ -574,8 +695,7 @@ unsafe extern "C" fn string_table_maybe_grow(mut t: *mut string_table_t, mut n: 
     if ((*t).n).wrapping_add(n) <= (*t).capacity {
         return;
     }
-    (*t)
-        .capacity = (2 as libc::c_int as libc::c_ulong)
+    (*t).capacity = (2 as libc::c_int as libc::c_ulong)
         .wrapping_mul(((*t).n).wrapping_add(n));
     let mut arr: *mut libc::c_char = realloc(
         (*t).arr as *mut libc::c_void,
@@ -694,10 +814,7 @@ unsafe extern "C" fn apply_exclude_list(
         ) != 0
         {
             let mut tmp: size_t = *((*needed_buf_offsets).p).offset(i as isize);
-            *((*needed_buf_offsets).p)
-                .offset(
-                    i as isize,
-                ) = *((*needed_buf_offsets).p)
+            *((*needed_buf_offsets).p).offset(i as isize) = *((*needed_buf_offsets).p)
                 .offset(
                     (*needed_not_found).wrapping_sub(1 as libc::c_int as libc::c_ulong)
                         as isize,
@@ -745,10 +862,8 @@ unsafe extern "C" fn check_absolute_paths(
                     as *const libc::c_void,
                 len.wrapping_add(1 as libc::c_int as libc::c_ulong),
             );
-            (*s)
-                .found_all_needed[depth
-                as usize] = (*needed_not_found <= 1 as libc::c_int as libc::c_ulong)
-                as libc::c_int as libc::c_char;
+            (*s).found_all_needed[depth as usize] = (*needed_not_found
+                <= 1 as libc::c_int as libc::c_ulong) as libc::c_int as libc::c_char;
             let mut err: *mut libc::c_char = 0 as *mut libc::c_char;
             if path[0 as libc::c_int as usize] as libc::c_int != '/' as i32 {
                 err = b" is not absolute\0" as *const u8 as *const libc::c_char
@@ -761,7 +876,10 @@ unsafe extern "C" fn check_absolute_paths(
                     s,
                     compat,
                     {
-                        let mut init = found_t { how: DIRECT, depth: 0 };
+                        let mut init = found_t {
+                            how: how_t::DIRECT,
+                            depth: 0,
+                        };
                         init
                     },
                 );
@@ -790,10 +908,7 @@ unsafe extern "C" fn check_absolute_paths(
                 );
             }
             let mut tmp: size_t = *((*needed_buf_offsets).p).offset(i as isize);
-            *((*needed_buf_offsets).p)
-                .offset(
-                    i as isize,
-                ) = *((*needed_buf_offsets).p)
+            *((*needed_buf_offsets).p).offset(i as isize) = *((*needed_buf_offsets).p)
                 .offset(
                     (*needed_not_found).wrapping_sub(1 as libc::c_int as libc::c_ulong)
                         as isize,
@@ -868,10 +983,8 @@ unsafe extern "C" fn check_search_paths(
                     as *const libc::c_void,
                 soname_len.wrapping_add(1 as libc::c_int as libc::c_ulong),
             );
-            (*s)
-                .found_all_needed[depth
-                as usize] = (*needed_not_found <= 1 as libc::c_int as libc::c_ulong)
-                as libc::c_int as libc::c_char;
+            (*s).found_all_needed[depth as usize] = (*needed_not_found
+                <= 1 as libc::c_int as libc::c_ulong) as libc::c_int as libc::c_char;
             let mut code: libc::c_int = recurse(
                 path.as_mut_ptr(),
                 depth.wrapping_add(1 as libc::c_int as libc::c_ulong),
@@ -884,10 +997,8 @@ unsafe extern "C" fn check_search_paths(
             }
             if code == 0 as libc::c_int || code == 28 as libc::c_int {
                 let mut tmp: size_t = *((*needed_buf_offsets).p).offset(i as isize);
-                *((*needed_buf_offsets).p)
-                    .offset(
-                        i as isize,
-                    ) = *((*needed_buf_offsets).p)
+                *((*needed_buf_offsets).p).offset(i as isize) = *((*needed_buf_offsets)
+                    .p)
                     .offset(
                         (*needed_not_found)
                             .wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize,
@@ -994,10 +1105,8 @@ unsafe extern "C" fn interpolate_variables(
                 as *const libc::c_void,
             bytes_to_dollar,
         );
-        (*s)
-            .string_table
-            .n = ((*s).string_table.n as libc::c_ulong).wrapping_add(bytes_to_dollar)
-            as size_t as size_t;
+        (*s).string_table.n = ((*s).string_table.n as libc::c_ulong)
+            .wrapping_add(bytes_to_dollar) as size_t as size_t;
         prev_src = curr_src;
         memcpy(
             &mut *((*st).arr).offset((*s).string_table.n as isize) as *mut libc::c_char
@@ -1005,10 +1114,8 @@ unsafe extern "C" fn interpolate_variables(
             var_val as *const libc::c_void,
             var_len,
         );
-        (*s)
-            .string_table
-            .n = ((*s).string_table.n as libc::c_ulong).wrapping_add(var_len) as size_t
-            as size_t;
+        (*s).string_table.n = ((*s).string_table.n as libc::c_ulong)
+            .wrapping_add(var_len) as size_t as size_t;
     }
     if prev_src != src {
         let mut n: size_t = (strlen(((*st).arr).offset(prev_src as isize)))
@@ -1109,7 +1216,10 @@ unsafe extern "C" fn print_line(
             }
         }
         3 => {
-            fputs(b"[LD_LIBRARY_PATH]\0" as *const u8 as *const libc::c_char, stdout);
+            fputs(
+                b"[how_t::LD_LIBRARY_PATH]\0" as *const u8 as *const libc::c_char,
+                stdout,
+            );
         }
         4 => {
             fputs(b"[runpath]\0" as *const u8 as *const libc::c_char, stdout);
@@ -1149,10 +1259,9 @@ unsafe extern "C" fn print_error(
 ) {
     let mut i: size_t = 0 as libc::c_int as size_t;
     while i < needed_not_found {
-        (*s)
-            .found_all_needed[depth
-            as usize] = (i.wrapping_add(1 as libc::c_int as libc::c_ulong)
-            >= needed_not_found) as libc::c_int as libc::c_char;
+        (*s).found_all_needed[depth as usize] = (i
+            .wrapping_add(1 as libc::c_int as libc::c_ulong) >= needed_not_found)
+            as libc::c_int as libc::c_char;
         tree_preamble(s, depth.wrapping_add(1 as libc::c_int as libc::c_ulong));
         if (*s).color != 0 {
             fputs(b"\x1B[1;31m\0" as *const u8 as *const libc::c_char, stdout);
@@ -1272,9 +1381,10 @@ unsafe extern "C" fn print_error(
     }
     fputs(
         if (*s).ld_library_path_offset == 18446744073709551615 as libc::c_ulong {
-            b" 2. LD_LIBRARY_PATH was not set\n\0" as *const u8 as *const libc::c_char
+            b" 2. how_t::LD_LIBRARY_PATH was not set\n\0" as *const u8
+                as *const libc::c_char
         } else {
-            b" 2. LD_LIBRARY_PATH:\n\0" as *const u8 as *const libc::c_char
+            b" 2. how_t::LD_LIBRARY_PATH:\n\0" as *const u8 as *const libc::c_char
         },
         stdout,
     );
@@ -1368,11 +1478,9 @@ unsafe extern "C" fn visited_files_append(
     mut new: *mut stat,
 ) {
     if (*files).n == (*files).capacity {
-        (*files)
-            .capacity = ((*files).capacity as libc::c_ulong)
+        (*files).capacity = ((*files).capacity as libc::c_ulong)
             .wrapping_mul(2 as libc::c_int as libc::c_ulong) as size_t as size_t;
-        (*files)
-            .arr = realloc(
+        (*files).arr = realloc(
             (*files).arr as *mut libc::c_void,
             ((*files).capacity)
                 .wrapping_mul(::core::mem::size_of::<visited_file_t>() as libc::c_ulong),
@@ -1971,7 +2079,7 @@ unsafe extern "C" fn recurse(
                     |= check_search_paths(
                         {
                             let mut init = found_t {
-                                how: RPATH,
+                                how: how_t::RPATH,
                                 depth: j as size_t,
                             };
                             init
@@ -1995,7 +2103,7 @@ unsafe extern "C" fn recurse(
             |= check_search_paths(
                 {
                     let mut init = found_t {
-                        how: LD_LIBRARY_PATH,
+                        how: how_t::LD_LIBRARY_PATH,
                         depth: 0,
                     };
                     init
@@ -2012,7 +2120,10 @@ unsafe extern "C" fn recurse(
         exit_code
             |= check_search_paths(
                 {
-                    let mut init = found_t { how: RUNPATH, depth: 0 };
+                    let mut init = found_t {
+                        how: how_t::RUNPATH,
+                        depth: 0,
+                    };
                     init
                 },
                 runpath_buf_offset,
@@ -2028,7 +2139,7 @@ unsafe extern "C" fn recurse(
             |= check_search_paths(
                 {
                     let mut init = found_t {
-                        how: LD_SO_CONF,
+                        how: how_t::LD_SO_CONF,
                         depth: 0,
                     };
                     init
@@ -2045,7 +2156,10 @@ unsafe extern "C" fn recurse(
         exit_code
             |= check_search_paths(
                 {
-                    let mut init = found_t { how: DEFAULT, depth: 0 };
+                    let mut init = found_t {
+                        how: how_t::DEFAULT,
+                        depth: 0,
+                    };
                     init
                 },
                 (*s).default_paths_offset,
@@ -2149,7 +2263,8 @@ unsafe extern "C" fn parse_ld_config_file(
         let mut begin: *mut libc::c_char = line.as_mut_ptr();
         let mut end: *mut libc::c_char = line.as_mut_ptr().offset(line_len as isize);
         while *(*__ctype_b_loc()).offset(*begin as libc::c_int as isize) as libc::c_int
-            & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
+            != 0
         {
             begin = begin.offset(1);
             begin;
@@ -2161,7 +2276,8 @@ unsafe extern "C" fn parse_ld_config_file(
         while end != begin {
             end = end.offset(-1);
             if *(*__ctype_b_loc()).offset(*end as libc::c_int as isize) as libc::c_int
-                & _ISspace as libc::c_int as libc::c_ushort as libc::c_int == 0
+                & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
+                == 0
             {
                 break;
             }
@@ -2177,12 +2293,14 @@ unsafe extern "C" fn parse_ld_config_file(
         ) == 0 as libc::c_int
             && *(*__ctype_b_loc())
                 .offset(*begin.offset(7 as libc::c_int as isize) as libc::c_int as isize)
-                as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+                as libc::c_int
+                & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
                 != 0
         {
             begin = begin.offset(8 as libc::c_int as isize);
             while *(*__ctype_b_loc()).offset(*begin as libc::c_int as isize)
-                as libc::c_int & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
+                as libc::c_int
+                & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
                 != 0
             {
                 begin = begin.offset(1);
@@ -2247,7 +2365,7 @@ unsafe extern "C" fn parse_ld_so_conf(mut s: *mut libtree_state_t) {
 unsafe extern "C" fn parse_ld_library_path(mut s: *mut libtree_state_t) {
     (*s).ld_library_path_offset = 18446744073709551615 as libc::c_ulong;
     let mut val: *mut libc::c_char = getenv(
-        b"LD_LIBRARY_PATH\0" as *const u8 as *const libc::c_char,
+        b"how_t::LD_LIBRARY_PATH\0" as *const u8 as *const libc::c_char,
     );
     if val.is_null() {
         return;
@@ -2276,17 +2394,13 @@ unsafe extern "C" fn set_default_paths(mut s: *mut libtree_state_t) {
 unsafe extern "C" fn libtree_state_init(mut s: *mut libtree_state_t) {
     (*s).string_table.n = 0 as libc::c_int as size_t;
     (*s).string_table.capacity = 1024 as libc::c_int as size_t;
-    (*s)
-        .string_table
-        .arr = malloc(
+    (*s).string_table.arr = malloc(
         ((*s).string_table.capacity)
             .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
     ) as *mut libc::c_char;
     (*s).visited.n = 0 as libc::c_int as size_t;
     (*s).visited.capacity = 256 as libc::c_int as size_t;
-    (*s)
-        .visited
-        .arr = malloc(
+    (*s).visited.arr = malloc(
         ((*s).visited.capacity)
             .wrapping_mul(::core::mem::size_of::<visited_file_t>() as libc::c_ulong),
     ) as *mut visited_file_t;
@@ -2320,7 +2434,10 @@ unsafe extern "C" fn print_tree(
                 init
             },
             {
-                let mut init = found_t { how: INPUT, depth: 0 };
+                let mut init = found_t {
+                    how: how_t::INPUT,
+                    depth: 0,
+                };
                 init
             },
         );
@@ -2463,8 +2580,7 @@ unsafe fn main_0(
         ld_so_conf_offset: 0,
         found_all_needed: [0; 32],
     };
-    s
-        .color = ((getenv(b"NO_COLOR\0" as *const u8 as *const libc::c_char)).is_null()
+    s.color = ((getenv(b"NO_COLOR\0" as *const u8 as *const libc::c_char)).is_null()
         && isatty(1 as libc::c_int) != 0) as libc::c_int;
     s.verbosity = 0 as libc::c_int;
     s.path = 0 as libc::c_int;
@@ -2484,16 +2600,14 @@ unsafe fn main_0(
     s.PLATFORM = (uname_val.machine).as_mut_ptr();
     s.OSNAME = (uname_val.sysname).as_mut_ptr();
     s.OSREL = (uname_val.release).as_mut_ptr();
-    s
-        .ld_conf_file = b"/etc/ld.so.conf\0" as *const u8 as *const libc::c_char
+    s.ld_conf_file = b"/etc/ld.so.conf\0" as *const u8 as *const libc::c_char
         as *mut libc::c_char;
     if strcmp(
         (uname_val.sysname).as_mut_ptr(),
         b"FreeBSD\0" as *const u8 as *const libc::c_char,
     ) == 0 as libc::c_int
     {
-        s
-            .ld_conf_file = b"/etc/ld-elf.so.conf\0" as *const u8 as *const libc::c_char
+        s.ld_conf_file = b"/etc/ld-elf.so.conf\0" as *const u8 as *const libc::c_char
             as *mut libc::c_char;
     }
     s.LIB = b"lib\0" as *const u8 as *const libc::c_char as *mut libc::c_char;
@@ -2561,8 +2675,7 @@ unsafe fn main_0(
                     }
                     let mut ptr: *mut libc::c_char = 0 as *mut libc::c_char;
                     i += 1;
-                    s
-                        .max_depth = strtoul(
+                    s.max_depth = strtoul(
                         *argv.offset(i as isize),
                         &mut ptr,
                         10 as libc::c_int,
@@ -2670,7 +2783,7 @@ unsafe fn main_0(
     return print_tree(positional, argv, &mut s);
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut libc::c_char> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))

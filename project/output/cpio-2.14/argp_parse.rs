@@ -1,9 +1,7 @@
 #![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
-#![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     fn strtol(
         __nptr: *const libc::c_char,
         __endptr: *mut *mut libc::c_char,
@@ -41,10 +39,12 @@ extern "C" {
         __msgid: *const libc::c_char,
         __category: libc::c_int,
     ) -> *mut libc::c_char;
-    static mut stdout: *mut FILE;
-    static mut stderr: *mut FILE;
+    static mut stdout: *mut _IO_FILE;
+    static mut stderr: *mut _IO_FILE;
     fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
+    static mut program_invocation_name: *mut libc::c_char;
+    static mut program_invocation_short_name: *mut libc::c_char;
     fn argp_state_help(
         __state: *const argp_state,
         __stream: *mut FILE,
@@ -55,8 +55,6 @@ extern "C" {
         unsafe extern "C" fn(*mut FILE, *mut argp_state) -> (),
     >;
     static mut argp_program_version: *const libc::c_char;
-    static mut program_invocation_name: *mut libc::c_char;
-    static mut program_invocation_short_name: *mut libc::c_char;
     fn last_component(filename: *const libc::c_char) -> *mut libc::c_char;
 }
 pub type size_t = libc::c_ulong;
@@ -85,11 +83,71 @@ impl __ord {
             __ord::REQUIRE_ORDER => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> __ord {
+        match value {
+            2 => __ord::RETURN_IN_ORDER,
+            1 => __ord::PERMUTE,
+            0 => __ord::REQUIRE_ORDER,
+            _ => panic!("Invalid value for __ord: {}", value),
+        }
+    }
+}
+impl AddAssign<u32> for __ord {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for __ord {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for __ord {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for __ord {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for __ord {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for __ord {
+    type Output = __ord;
+    fn add(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for __ord {
+    type Output = __ord;
+    fn sub(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for __ord {
+    type Output = __ord;
+    fn mul(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for __ord {
+    type Output = __ord;
+    fn div(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for __ord {
+    type Output = __ord;
+    fn rem(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
 }
 
-pub const RETURN_IN_ORDER: __ord = 2;
-pub const PERMUTE: __ord = 1;
-pub const REQUIRE_ORDER: __ord = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _getopt_data {
@@ -128,15 +186,22 @@ pub struct _IO_FILE {
     pub _shortbuf: [libc::c_char; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
     pub _mode: libc::c_int,
     pub _unused2: [libc::c_char; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: libc::c_int,
+}
 pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -171,20 +236,80 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
+}
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
 }
 
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
 pub type error_t = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -294,6 +419,11 @@ unsafe extern "C" fn atoi(mut __nptr: *const libc::c_char) -> libc::c_int {
     ) as libc::c_int;
 }
 #[inline]
+unsafe extern "C" fn _option_is_end(mut __opt: *const argp_option) -> libc::c_int {
+    return ((*__opt).key == 0 && ((*__opt).name).is_null() && ((*__opt).doc).is_null()
+        && (*__opt).group == 0) as libc::c_int;
+}
+#[inline]
 unsafe extern "C" fn _option_is_short(mut __opt: *const argp_option) -> libc::c_int {
     if (*__opt).flags & 0x8 as libc::c_int != 0 {
         return 0 as libc::c_int
@@ -302,14 +432,9 @@ unsafe extern "C" fn _option_is_short(mut __opt: *const argp_option) -> libc::c_
         return (__key > 0 as libc::c_int
             && __key <= 127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
             && *(*__ctype_b_loc()).offset(__key as isize) as libc::c_int
-                & _ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0)
+                & C2RustUnnamed::_ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0)
             as libc::c_int;
     };
-}
-#[inline]
-unsafe extern "C" fn _option_is_end(mut __opt: *const argp_option) -> libc::c_int {
-    return ((*__opt).key == 0 && ((*__opt).name).is_null() && ((*__opt).doc).is_null()
-        && (*__opt).group == 0) as libc::c_int;
 }
 static mut _argp_hang: libc::c_int = 0;
 static mut argp_default_options: [argp_option; 5] = [
@@ -788,7 +913,7 @@ unsafe extern "C" fn parser_init(
             rpl_optarg: 0 as *mut libc::c_char,
             __initialized: 0,
             __nextchar: 0 as *mut libc::c_char,
-            __ordering: REQUIRE_ORDER,
+            __ordering: __ord::REQUIRE_ORDER,
             __first_nonopt: 0,
             __last_nonopt: 0,
         };
@@ -1263,7 +1388,7 @@ pub unsafe extern "C" fn argp_parse(
             rpl_optarg: 0 as *mut libc::c_char,
             __initialized: 0,
             __nextchar: 0 as *mut libc::c_char,
-            __ordering: REQUIRE_ORDER,
+            __ordering: __ord::REQUIRE_ORDER,
             __first_nonopt: 0,
             __last_nonopt: 0,
         },

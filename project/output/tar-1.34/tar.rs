@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type exclist;
@@ -99,7 +109,7 @@ extern "C" {
         __domainname: *const libc::c_char,
         __dirname: *const libc::c_char,
     ) -> *mut libc::c_char;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     static mut exit_status: libc::c_int;
     fn open_fatal(_: *const libc::c_char) -> !;
     fn stat_error(_: *const libc::c_char);
@@ -152,8 +162,8 @@ extern "C" {
         _: *mut obstack,
         _: size_t,
         _: size_t,
-        _: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-        _: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+        _: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+        _: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
     ) -> libc::c_int;
     static mut program_name: *const libc::c_char;
     fn set_program_name(argv0: *const libc::c_char);
@@ -177,7 +187,7 @@ extern "C" {
     fn xheader_destroy(hdr: *mut xheader);
     fn xheader_xattr_free(vals: *mut xattr_array, sz: size_t);
     fn name_init();
-    fn read_and(do_something: Option::<unsafe extern "C" fn() -> ()>);
+    fn read_and(do_something: Option<unsafe extern "C" fn() -> ()>);
     fn update_archive();
     fn group_map_read(file: *const libc::c_char);
     fn info_free_exclist(dir: *mut tar_stat_info);
@@ -299,20 +309,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type ptrdiff_t = libc::c_long;
 pub type error_t = libc::c_int;
 #[derive(Copy, Clone)]
@@ -334,7 +403,7 @@ pub struct stat {
     pub st_ctim: timespec,
     pub __glibc_reserved: [__syscall_slong_t; 3],
 }
-pub type __sighandler_t = Option::<unsafe extern "C" fn(libc::c_int) -> ()>;
+pub type __sighandler_t = Option<unsafe extern "C" fn(libc::c_int) -> ()>;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
@@ -400,16 +469,14 @@ pub struct obstack {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_0 {
-    pub plain: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
-    pub extra: Option::<
-        unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> (),
-    >,
+    pub plain: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+    pub extra: Option<unsafe extern "C" fn(*mut libc::c_void, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
-    pub plain: Option::<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
-    pub extra: Option::<
+    pub plain: Option<unsafe extern "C" fn(size_t) -> *mut libc::c_void>,
+    pub extra: Option<
         unsafe extern "C" fn(*mut libc::c_void, size_t) -> *mut libc::c_void,
     >,
 }
@@ -428,25 +495,7 @@ pub struct _obstack_chunk {
 }
 pub type uintmax_t = __uintmax_t;
 pub type DIR = __dirstream;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum savedir_option {
-    SAVEDIR_SORT_NONE,
-    SAVEDIR_SORT_NAME,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_FASTREAD,
-}
-impl savedir_option {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            savedir_option::SAVEDIR_SORT_NONE => 0,
-            savedir_option::SAVEDIR_SORT_NAME => 1,
-            savedir_option::SAVEDIR_SORT_INODE => 2,
-            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
-        }
-    }
-}
-
+pub type savedir_option = libc::c_uint;
 pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
 pub const SAVEDIR_SORT_INODE: savedir_option = 2;
 pub const SAVEDIR_SORT_NAME: savedir_option = 1;
@@ -462,8 +511,68 @@ impl C2RustUnnamed_3 {
             C2RustUnnamed_3::DEFAULT_MXFAST => 128,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_3 {
+        match value {
+            128 => C2RustUnnamed_3::DEFAULT_MXFAST,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct argp_option {
@@ -482,7 +591,7 @@ pub struct argp {
     pub args_doc: *const libc::c_char,
     pub doc: *const libc::c_char,
     pub children: *const argp_child,
-    pub help_filter: Option::<
+    pub help_filter: Option<
         unsafe extern "C" fn(
             libc::c_int,
             *const libc::c_char,
@@ -499,7 +608,7 @@ pub struct argp_child {
     pub header: *const libc::c_char,
     pub group: libc::c_int,
 }
-pub type argp_parser_t = Option::<
+pub type argp_parser_t = Option<
     unsafe extern "C" fn(libc::c_int, *mut libc::c_char, *mut argp_state) -> error_t,
 >;
 #[derive(Copy, Clone)]
@@ -632,15 +741,74 @@ impl archive_format {
             archive_format::GNU_FORMAT => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> archive_format {
+        match value {
+            0 => archive_format::DEFAULT_FORMAT,
+            1 => archive_format::V7_FORMAT,
+            2 => archive_format::OLDGNU_FORMAT,
+            3 => archive_format::USTAR_FORMAT,
+            4 => archive_format::POSIX_FORMAT,
+            5 => archive_format::STAR_FORMAT,
+            6 => archive_format::GNU_FORMAT,
+            _ => panic!("Invalid value for archive_format: {}", value),
+        }
+    }
 }
-
-pub const GNU_FORMAT: archive_format = 6;
-pub const STAR_FORMAT: archive_format = 5;
-pub const POSIX_FORMAT: archive_format = 4;
-pub const USTAR_FORMAT: archive_format = 3;
-pub const OLDGNU_FORMAT: archive_format = 2;
-pub const V7_FORMAT: archive_format = 1;
-pub const DEFAULT_FORMAT: archive_format = 0;
+impl AddAssign<u32> for archive_format {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for archive_format {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for archive_format {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for archive_format {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for archive_format {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for archive_format {
+    type Output = archive_format;
+    fn add(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for archive_format {
+    type Output = archive_format;
+    fn sub(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for archive_format {
+    type Output = archive_format;
+    fn mul(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for archive_format {
+    type Output = archive_format;
+    fn div(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for archive_format {
+    type Output = archive_format;
+    fn rem(self, rhs: u32) -> archive_format {
+        archive_format::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sp_array {
@@ -730,12 +898,71 @@ impl backup_type {
             backup_type::numbered_backups => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> backup_type {
+        match value {
+            0 => backup_type::no_backups,
+            1 => backup_type::simple_backups,
+            2 => backup_type::numbered_existing_backups,
+            3 => backup_type::numbered_backups,
+            _ => panic!("Invalid value for backup_type: {}", value),
+        }
+    }
 }
-
-pub const numbered_backups: backup_type = 3;
-pub const numbered_existing_backups: backup_type = 2;
-pub const simple_backups: backup_type = 1;
-pub const no_backups: backup_type = 0;
+impl AddAssign<u32> for backup_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for backup_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for backup_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for backup_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for backup_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for backup_type {
+    type Output = backup_type;
+    fn add(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for backup_type {
+    type Output = backup_type;
+    fn sub(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for backup_type {
+    type Output = backup_type;
+    fn mul(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for backup_type {
+    type Output = backup_type;
+    fn div(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for backup_type {
+    type Output = backup_type;
+    fn rem(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum subcommand {
@@ -765,18 +992,77 @@ impl subcommand {
             subcommand::TEST_LABEL_SUBCOMMAND => 9,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> subcommand {
+        match value {
+            0 => subcommand::UNKNOWN_SUBCOMMAND,
+            1 => subcommand::APPEND_SUBCOMMAND,
+            2 => subcommand::CAT_SUBCOMMAND,
+            3 => subcommand::CREATE_SUBCOMMAND,
+            4 => subcommand::DELETE_SUBCOMMAND,
+            5 => subcommand::DIFF_SUBCOMMAND,
+            6 => subcommand::EXTRACT_SUBCOMMAND,
+            7 => subcommand::LIST_SUBCOMMAND,
+            8 => subcommand::UPDATE_SUBCOMMAND,
+            9 => subcommand::TEST_LABEL_SUBCOMMAND,
+            _ => panic!("Invalid value for subcommand: {}", value),
+        }
+    }
 }
-
-pub const TEST_LABEL_SUBCOMMAND: subcommand = 9;
-pub const UPDATE_SUBCOMMAND: subcommand = 8;
-pub const LIST_SUBCOMMAND: subcommand = 7;
-pub const EXTRACT_SUBCOMMAND: subcommand = 6;
-pub const DIFF_SUBCOMMAND: subcommand = 5;
-pub const DELETE_SUBCOMMAND: subcommand = 4;
-pub const CREATE_SUBCOMMAND: subcommand = 3;
-pub const CAT_SUBCOMMAND: subcommand = 2;
-pub const APPEND_SUBCOMMAND: subcommand = 1;
-pub const UNKNOWN_SUBCOMMAND: subcommand = 0;
+impl AddAssign<u32> for subcommand {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for subcommand {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for subcommand {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for subcommand {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for subcommand {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = subcommand::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for subcommand {
+    type Output = subcommand;
+    fn add(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for subcommand {
+    type Output = subcommand;
+    fn sub(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for subcommand {
+    type Output = subcommand;
+    fn mul(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for subcommand {
+    type Output = subcommand;
+    fn div(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for subcommand {
+    type Output = subcommand;
+    fn rem(self, rhs: u32) -> subcommand {
+        subcommand::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum atime_preserve {
@@ -792,11 +1078,70 @@ impl atime_preserve {
             atime_preserve::system_atime_preserve => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> atime_preserve {
+        match value {
+            0 => atime_preserve::no_atime_preserve,
+            1 => atime_preserve::replace_atime_preserve,
+            2 => atime_preserve::system_atime_preserve,
+            _ => panic!("Invalid value for atime_preserve: {}", value),
+        }
+    }
 }
-
-pub const system_atime_preserve: atime_preserve = 2;
-pub const replace_atime_preserve: atime_preserve = 1;
-pub const no_atime_preserve: atime_preserve = 0;
+impl AddAssign<u32> for atime_preserve {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = atime_preserve::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for atime_preserve {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = atime_preserve::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for atime_preserve {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = atime_preserve::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for atime_preserve {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = atime_preserve::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for atime_preserve {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = atime_preserve::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for atime_preserve {
+    type Output = atime_preserve;
+    fn add(self, rhs: u32) -> atime_preserve {
+        atime_preserve::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for atime_preserve {
+    type Output = atime_preserve;
+    fn sub(self, rhs: u32) -> atime_preserve {
+        atime_preserve::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for atime_preserve {
+    type Output = atime_preserve;
+    fn mul(self, rhs: u32) -> atime_preserve {
+        atime_preserve::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for atime_preserve {
+    type Output = atime_preserve;
+    fn div(self, rhs: u32) -> atime_preserve {
+        atime_preserve::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for atime_preserve {
+    type Output = atime_preserve;
+    fn rem(self, rhs: u32) -> atime_preserve {
+        atime_preserve::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum old_files {
@@ -820,15 +1165,74 @@ impl old_files {
             old_files::KEEP_NEWER_FILES => 6,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> old_files {
+        match value {
+            0 => old_files::DEFAULT_OLD_FILES,
+            1 => old_files::NO_OVERWRITE_DIR_OLD_FILES,
+            2 => old_files::OVERWRITE_OLD_FILES,
+            3 => old_files::UNLINK_FIRST_OLD_FILES,
+            4 => old_files::KEEP_OLD_FILES,
+            5 => old_files::SKIP_OLD_FILES,
+            6 => old_files::KEEP_NEWER_FILES,
+            _ => panic!("Invalid value for old_files: {}", value),
+        }
+    }
 }
-
-pub const KEEP_NEWER_FILES: old_files = 6;
-pub const SKIP_OLD_FILES: old_files = 5;
-pub const KEEP_OLD_FILES: old_files = 4;
-pub const UNLINK_FIRST_OLD_FILES: old_files = 3;
-pub const OVERWRITE_OLD_FILES: old_files = 2;
-pub const NO_OVERWRITE_DIR_OLD_FILES: old_files = 1;
-pub const DEFAULT_OLD_FILES: old_files = 0;
+impl AddAssign<u32> for old_files {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = old_files::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for old_files {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = old_files::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for old_files {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = old_files::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for old_files {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = old_files::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for old_files {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = old_files::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for old_files {
+    type Output = old_files;
+    fn add(self, rhs: u32) -> old_files {
+        old_files::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for old_files {
+    type Output = old_files;
+    fn sub(self, rhs: u32) -> old_files {
+        old_files::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for old_files {
+    type Output = old_files;
+    fn mul(self, rhs: u32) -> old_files {
+        old_files::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for old_files {
+    type Output = old_files;
+    fn div(self, rhs: u32) -> old_files {
+        old_files::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for old_files {
+    type Output = old_files;
+    fn rem(self, rhs: u32) -> old_files {
+        old_files::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum set_mtime_option_mode {
@@ -844,11 +1248,70 @@ impl set_mtime_option_mode {
             set_mtime_option_mode::CLAMP_MTIME => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> set_mtime_option_mode {
+        match value {
+            0 => set_mtime_option_mode::USE_FILE_MTIME,
+            1 => set_mtime_option_mode::FORCE_MTIME,
+            2 => set_mtime_option_mode::CLAMP_MTIME,
+            _ => panic!("Invalid value for set_mtime_option_mode: {}", value),
+        }
+    }
 }
-
-pub const CLAMP_MTIME: set_mtime_option_mode = 2;
-pub const FORCE_MTIME: set_mtime_option_mode = 1;
-pub const USE_FILE_MTIME: set_mtime_option_mode = 0;
+impl AddAssign<u32> for set_mtime_option_mode {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for set_mtime_option_mode {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for set_mtime_option_mode {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for set_mtime_option_mode {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for set_mtime_option_mode {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for set_mtime_option_mode {
+    type Output = set_mtime_option_mode;
+    fn add(self, rhs: u32) -> set_mtime_option_mode {
+        set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for set_mtime_option_mode {
+    type Output = set_mtime_option_mode;
+    fn sub(self, rhs: u32) -> set_mtime_option_mode {
+        set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for set_mtime_option_mode {
+    type Output = set_mtime_option_mode;
+    fn mul(self, rhs: u32) -> set_mtime_option_mode {
+        set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for set_mtime_option_mode {
+    type Output = set_mtime_option_mode;
+    fn div(self, rhs: u32) -> set_mtime_option_mode {
+        set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for set_mtime_option_mode {
+    type Output = set_mtime_option_mode;
+    fn rem(self, rhs: u32) -> set_mtime_option_mode {
+        set_mtime_option_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum hole_detection_method {
@@ -864,11 +1327,70 @@ impl hole_detection_method {
             hole_detection_method::HOLE_DETECTION_SEEK => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> hole_detection_method {
+        match value {
+            0 => hole_detection_method::HOLE_DETECTION_DEFAULT,
+            1 => hole_detection_method::HOLE_DETECTION_RAW,
+            2 => hole_detection_method::HOLE_DETECTION_SEEK,
+            _ => panic!("Invalid value for hole_detection_method: {}", value),
+        }
+    }
 }
-
-pub const HOLE_DETECTION_SEEK: hole_detection_method = 2;
-pub const HOLE_DETECTION_RAW: hole_detection_method = 1;
-pub const HOLE_DETECTION_DEFAULT: hole_detection_method = 0;
+impl AddAssign<u32> for hole_detection_method {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for hole_detection_method {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for hole_detection_method {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for hole_detection_method {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for hole_detection_method {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn add(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn sub(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn mul(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn div(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for hole_detection_method {
+    type Output = hole_detection_method;
+    fn rem(self, rhs: u32) -> hole_detection_method {
+        hole_detection_method::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum files_count {
@@ -884,11 +1406,70 @@ impl files_count {
             files_count::FILES_MANY => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> files_count {
+        match value {
+            0 => files_count::FILES_NONE,
+            1 => files_count::FILES_ONE,
+            2 => files_count::FILES_MANY,
+            _ => panic!("Invalid value for files_count: {}", value),
+        }
+    }
 }
-
-pub const FILES_MANY: files_count = 2;
-pub const FILES_ONE: files_count = 1;
-pub const FILES_NONE: files_count = 0;
+impl AddAssign<u32> for files_count {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = files_count::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for files_count {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = files_count::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for files_count {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = files_count::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for files_count {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = files_count::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for files_count {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = files_count::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for files_count {
+    type Output = files_count;
+    fn add(self, rhs: u32) -> files_count {
+        files_count::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for files_count {
+    type Output = files_count;
+    fn sub(self, rhs: u32) -> files_count {
+        files_count::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for files_count {
+    type Output = files_count;
+    fn mul(self, rhs: u32) -> files_count {
+        files_count::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for files_count {
+    type Output = files_count;
+    fn div(self, rhs: u32) -> files_count {
+        files_count::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for files_count {
+    type Output = files_count;
+    fn rem(self, rhs: u32) -> files_count {
+        files_count::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -920,8 +1501,78 @@ impl quoting_style {
             quoting_style::custom_quoting_style => 10,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> quoting_style {
+        match value {
+            0 => quoting_style::literal_quoting_style,
+            1 => quoting_style::shell_quoting_style,
+            2 => quoting_style::shell_always_quoting_style,
+            3 => quoting_style::shell_escape_quoting_style,
+            4 => quoting_style::shell_escape_always_quoting_style,
+            5 => quoting_style::c_quoting_style,
+            6 => quoting_style::c_maybe_quoting_style,
+            7 => quoting_style::escape_quoting_style,
+            8 => quoting_style::locale_quoting_style,
+            9 => quoting_style::clocale_quoting_style,
+            10 => quoting_style::custom_quoting_style,
+            _ => panic!("Invalid value for quoting_style: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for quoting_style {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for quoting_style {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for quoting_style {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for quoting_style {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for quoting_style {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for quoting_style {
+    type Output = quoting_style;
+    fn add(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for quoting_style {
+    type Output = quoting_style;
+    fn sub(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for quoting_style {
+    type Output = quoting_style;
+    fn mul(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for quoting_style {
+    type Output = quoting_style;
+    fn div(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for quoting_style {
+    type Output = quoting_style;
+    fn rem(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct fmttab {
@@ -1097,8 +1748,147 @@ impl C2RustUnnamed_4 {
             C2RustUnnamed_4::NO_AUTO_COMPRESS_OPTION => 155,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_4 {
+        match value {
+            207 => C2RustUnnamed_4::ZSTD_OPTION,
+            150 => C2RustUnnamed_4::LZOP_OPTION,
+            149 => C2RustUnnamed_4::LZMA_OPTION,
+            148 => C2RustUnnamed_4::LZIP_OPTION,
+            185 => C2RustUnnamed_4::SAME_OWNER_OPTION,
+            206 => C2RustUnnamed_4::XATTR_INCLUDE,
+            205 => C2RustUnnamed_4::XATTR_EXCLUDE,
+            165 => C2RustUnnamed_4::NO_XATTR_OPTION,
+            204 => C2RustUnnamed_4::XATTR_OPTION,
+            164 => C2RustUnnamed_4::NO_SELINUX_CONTEXT_OPTION,
+            186 => C2RustUnnamed_4::SELINUX_CONTEXT_OPTION,
+            154 => C2RustUnnamed_4::NO_ACLS_OPTION,
+            128 => C2RustUnnamed_4::ACLS_OPTION,
+            162 => C2RustUnnamed_4::NO_SAME_PERMISSIONS_OPTION,
+            161 => C2RustUnnamed_4::NO_SAME_OWNER_OPTION,
+            202 => C2RustUnnamed_4::VOLNO_FILE_OPTION,
+            198 => C2RustUnnamed_4::TOTALS_OPTION,
+            199 => C2RustUnnamed_4::TO_COMMAND_OPTION,
+            196 => C2RustUnnamed_4::SUFFIX_OPTION,
+            192 => C2RustUnnamed_4::SORT_OPTION,
+            190 => C2RustUnnamed_4::SHOW_TRANSFORMED_NAMES_OPTION,
+            188 => C2RustUnnamed_4::SHOW_OMITTED_DIRS_OPTION,
+            195 => C2RustUnnamed_4::STRIP_COMPONENTS_OPTION,
+            189 => C2RustUnnamed_4::SHOW_SNAPSHOT_FIELD_RANGES_OPTION,
+            187 => C2RustUnnamed_4::SHOW_DEFAULTS_OPTION,
+            184 => C2RustUnnamed_4::RSH_COMMAND_OPTION,
+            183 => C2RustUnnamed_4::RMT_COMMAND_OPTION,
+            182 => C2RustUnnamed_4::RESTRICT_OPTION,
+            181 => C2RustUnnamed_4::REMOVE_FILES_OPTION,
+            180 => C2RustUnnamed_4::RECURSIVE_UNLINK_OPTION,
+            179 => C2RustUnnamed_4::RECORD_SIZE_OPTION,
+            176 => C2RustUnnamed_4::POSIX_OPTION,
+            175 => C2RustUnnamed_4::PAX_OPTION,
+            178 => C2RustUnnamed_4::QUOTING_STYLE_OPTION,
+            177 => C2RustUnnamed_4::QUOTE_CHARS_OPTION,
+            174 => C2RustUnnamed_4::OWNER_MAP_OPTION,
+            173 => C2RustUnnamed_4::OWNER_OPTION,
+            172 => C2RustUnnamed_4::OVERWRITE_OPTION,
+            171 => C2RustUnnamed_4::OVERWRITE_DIR_OPTION,
+            168 => C2RustUnnamed_4::OLD_ARCHIVE_OPTION,
+            167 => C2RustUnnamed_4::OCCURRENCE_OPTION,
+            166 => C2RustUnnamed_4::NUMERIC_OWNER_OPTION,
+            160 => C2RustUnnamed_4::NO_QUOTE_CHARS_OPTION,
+            159 => C2RustUnnamed_4::NO_OVERWRITE_DIR_OPTION,
+            158 => C2RustUnnamed_4::NO_IGNORE_COMMAND_ERROR_OPTION,
+            151 => C2RustUnnamed_4::MODE_OPTION,
+            141 => C2RustUnnamed_4::GROUP_MAP_OPTION,
+            140 => C2RustUnnamed_4::GROUP_OPTION,
+            146 => C2RustUnnamed_4::KEEP_NEWER_FILES_OPTION,
+            145 => C2RustUnnamed_4::KEEP_DIRECTORY_SYMLINK_OPTION,
+            143 => C2RustUnnamed_4::IGNORE_FAILED_READ_OPTION,
+            142 => C2RustUnnamed_4::IGNORE_COMMAND_ERROR_OPTION,
+            144 => C2RustUnnamed_4::INDEX_FILE_OPTION,
+            138 => C2RustUnnamed_4::FORCE_LOCAL_OPTION,
+            137 => C2RustUnnamed_4::DELETE_OPTION,
+            157 => C2RustUnnamed_4::NO_DELAY_DIRECTORY_RESTORE_OPTION,
+            135 => C2RustUnnamed_4::DELAY_DIRECTORY_RESTORE_OPTION,
+            130 => C2RustUnnamed_4::BACKUP_OPTION,
+            133 => C2RustUnnamed_4::CHECKPOINT_ACTION_OPTION,
+            132 => C2RustUnnamed_4::CHECKPOINT_OPTION,
+            156 => C2RustUnnamed_4::NO_CHECK_DEVICE_OPTION,
+            131 => C2RustUnnamed_4::CHECK_DEVICE_OPTION,
+            129 => C2RustUnnamed_4::ATIME_PRESERVE_OPTION,
+            203 => C2RustUnnamed_4::WARNING_OPTION,
+            201 => C2RustUnnamed_4::UTC_OPTION,
+            200 => C2RustUnnamed_4::TRANSFORM_OPTION,
+            197 => C2RustUnnamed_4::TEST_LABEL_OPTION,
+            194 => C2RustUnnamed_4::SPARSE_VERSION_OPTION,
+            193 => C2RustUnnamed_4::HOLE_DETECTION_OPTION,
+            191 => C2RustUnnamed_4::SKIP_OLD_FILES_OPTION,
+            153 => C2RustUnnamed_4::NEWER_MTIME_OPTION,
+            163 => C2RustUnnamed_4::NO_SEEK_OPTION,
+            152 => C2RustUnnamed_4::MTIME_OPTION,
+            147 => C2RustUnnamed_4::LEVEL_OPTION,
+            170 => C2RustUnnamed_4::ONE_TOP_LEVEL_OPTION,
+            169 => C2RustUnnamed_4::ONE_FILE_SYSTEM_OPTION,
+            136 => C2RustUnnamed_4::HARD_DEREFERENCE_OPTION,
+            139 => C2RustUnnamed_4::FULL_TIME_OPTION,
+            134 => C2RustUnnamed_4::CLAMP_MTIME_OPTION,
+            155 => C2RustUnnamed_4::NO_AUTO_COMPRESS_OPTION,
+            _ => panic!("Invalid value for C2RustUnnamed_4: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_4 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_4 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_4 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_4 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_4 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn add(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn div(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_5 {
@@ -1174,8 +1964,100 @@ impl C2RustUnnamed_5 {
             C2RustUnnamed_5::GRID_OTHER => 32,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_5 {
+        match value {
+            0 => C2RustUnnamed_5::GRH_COMMAND,
+            1 => C2RustUnnamed_5::GRID_COMMAND,
+            2 => C2RustUnnamed_5::GRH_MODIFIER,
+            3 => C2RustUnnamed_5::GRID_MODIFIER,
+            4 => C2RustUnnamed_5::GRID_FILE_NAME,
+            5 => C2RustUnnamed_5::GRH_OVERWRITE,
+            6 => C2RustUnnamed_5::GRID_OVERWRITE,
+            7 => C2RustUnnamed_5::GRH_OUTPUT,
+            8 => C2RustUnnamed_5::GRID_OUTPUT,
+            9 => C2RustUnnamed_5::GRH_FATTR,
+            10 => C2RustUnnamed_5::GRID_FATTR,
+            11 => C2RustUnnamed_5::GRH_XATTR,
+            12 => C2RustUnnamed_5::GRID_XATTR,
+            13 => C2RustUnnamed_5::GRH_DEVICE,
+            14 => C2RustUnnamed_5::GRID_DEVICE,
+            15 => C2RustUnnamed_5::GRH_BLOCKING,
+            16 => C2RustUnnamed_5::GRID_BLOCKING,
+            17 => C2RustUnnamed_5::GRH_FORMAT,
+            18 => C2RustUnnamed_5::GRID_FORMAT,
+            19 => C2RustUnnamed_5::GRDOC_FORMAT,
+            20 => C2RustUnnamed_5::GRID_FORMAT_OPT,
+            21 => C2RustUnnamed_5::GRH_COMPRESS,
+            22 => C2RustUnnamed_5::GRID_COMPRESS,
+            23 => C2RustUnnamed_5::GRH_FILE,
+            24 => C2RustUnnamed_5::GRID_FILE,
+            25 => C2RustUnnamed_5::GRH_NAME_XFORM,
+            26 => C2RustUnnamed_5::GRID_NAME_XFORM,
+            27 => C2RustUnnamed_5::GRH_INFORMATIVE,
+            28 => C2RustUnnamed_5::GRID_INFORMATIVE,
+            29 => C2RustUnnamed_5::GRH_COMPAT,
+            30 => C2RustUnnamed_5::GRID_COMPAT,
+            31 => C2RustUnnamed_5::GRH_OTHER,
+            32 => C2RustUnnamed_5::GRID_OTHER,
+            _ => panic!("Invalid value for C2RustUnnamed_5: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_5 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_5 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_5 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_5 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_5 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn add(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn div(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_5 {
+    type Output = C2RustUnnamed_5;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_5 {
+        C2RustUnnamed_5::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct option_locus {
@@ -1199,11 +2081,70 @@ impl option_source {
             option_source::OPTS_FILE => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> option_source {
+        match value {
+            0 => option_source::OPTS_ENVIRON,
+            1 => option_source::OPTS_COMMAND_LINE,
+            2 => option_source::OPTS_FILE,
+            _ => panic!("Invalid value for option_source: {}", value),
+        }
+    }
 }
-
-pub const OPTS_FILE: option_source = 2;
-pub const OPTS_COMMAND_LINE: option_source = 1;
-pub const OPTS_ENVIRON: option_source = 0;
+impl AddAssign<u32> for option_source {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = option_source::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for option_source {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = option_source::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for option_source {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = option_source::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for option_source {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = option_source::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for option_source {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = option_source::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for option_source {
+    type Output = option_source;
+    fn add(self, rhs: u32) -> option_source {
+        option_source::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for option_source {
+    type Output = option_source;
+    fn sub(self, rhs: u32) -> option_source {
+        option_source::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for option_source {
+    type Output = option_source;
+    fn mul(self, rhs: u32) -> option_source {
+        option_source::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for option_source {
+    type Output = option_source;
+    fn div(self, rhs: u32) -> option_source {
+        option_source::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for option_source {
+    type Output = option_source;
+    fn rem(self, rhs: u32) -> option_source {
+        option_source::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct tar_args {
@@ -1254,15 +2195,85 @@ impl option_class {
             option_class::OC_MAX => 10,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> option_class {
+        match value {
+            0 => option_class::OC_COMPRESS,
+            1 => option_class::OC_OCCURRENCE,
+            2 => option_class::OC_LISTED_INCREMENTAL,
+            3 => option_class::OC_NEWER,
+            4 => option_class::OC_VERIFY,
+            5 => option_class::OC_STARTING_FILE,
+            6 => option_class::OC_SAME_ORDER,
+            7 => option_class::OC_ONE_TOP_LEVEL,
+            8 => option_class::OC_ABSOLUTE_NAMES,
+            9 => option_class::OC_OLD_FILES,
+            10 => option_class::OC_MAX,
+            _ => panic!("Invalid value for option_class: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for option_class {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = option_class::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for option_class {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = option_class::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for option_class {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = option_class::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for option_class {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = option_class::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for option_class {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = option_class::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for option_class {
+    type Output = option_class;
+    fn add(self, rhs: u32) -> option_class {
+        option_class::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for option_class {
+    type Output = option_class;
+    fn sub(self, rhs: u32) -> option_class {
+        option_class::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for option_class {
+    type Output = option_class;
+    fn mul(self, rhs: u32) -> option_class {
+        option_class::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for option_class {
+    type Output = option_class;
+    fn div(self, rhs: u32) -> option_class {
+        option_class::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for option_class {
+    type Output = option_class;
+    fn rem(self, rhs: u32) -> option_class {
+        option_class::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sigtab {
     pub name: *const libc::c_char,
     pub signo: libc::c_int,
 }
-pub type argmatch_exit_fn = Option::<unsafe extern "C" fn() -> ()>;
+pub type argmatch_exit_fn = Option<unsafe extern "C" fn() -> ()>;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum strtol_error {
@@ -1282,8 +2293,72 @@ impl strtol_error {
             strtol_error::LONGINT_OVERFLOW => 1,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> strtol_error {
+        match value {
+            0 => strtol_error::LONGINT_OK,
+            4 => strtol_error::LONGINT_INVALID,
+            3 => strtol_error::LONGINT_INVALID_SUFFIX_CHAR_WITH_OVERFLOW,
+            2 => strtol_error::LONGINT_INVALID_SUFFIX_CHAR,
+            1 => strtol_error::LONGINT_OVERFLOW,
+            _ => panic!("Invalid value for strtol_error: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for strtol_error {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for strtol_error {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for strtol_error {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for strtol_error {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for strtol_error {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = strtol_error::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for strtol_error {
+    type Output = strtol_error;
+    fn add(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for strtol_error {
+    type Output = strtol_error;
+    fn sub(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for strtol_error {
+    type Output = strtol_error;
+    fn mul(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for strtol_error {
+    type Output = strtol_error;
+    fn div(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for strtol_error {
+    type Output = strtol_error;
+    fn rem(self, rhs: u32) -> strtol_error {
+        strtol_error::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct wordsplit {
@@ -1298,14 +2373,14 @@ pub struct wordsplit {
     pub ws_delim: *const libc::c_char,
     pub ws_comment: *const libc::c_char,
     pub ws_escape: [*const libc::c_char; 2],
-    pub ws_alloc_die: Option::<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
-    pub ws_error: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
-    pub ws_debug: Option::<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
+    pub ws_alloc_die: Option<unsafe extern "C" fn(*mut wordsplit_t) -> ()>,
+    pub ws_error: Option<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
+    pub ws_debug: Option<unsafe extern "C" fn(*const libc::c_char, ...) -> ()>,
     pub ws_env: *mut *const libc::c_char,
     pub ws_envbuf: *mut *mut libc::c_char,
     pub ws_envidx: size_t,
     pub ws_envsiz: size_t,
-    pub ws_getvar: Option::<
+    pub ws_getvar: Option<
         unsafe extern "C" fn(
             *mut *mut libc::c_char,
             *const libc::c_char,
@@ -1314,7 +2389,7 @@ pub struct wordsplit {
         ) -> libc::c_int,
     >,
     pub ws_closure: *mut libc::c_void,
-    pub ws_command: Option::<
+    pub ws_command: Option<
         unsafe extern "C" fn(
             *mut *mut libc::c_char,
             *const libc::c_char,
@@ -1377,7 +2452,8 @@ unsafe extern "C" fn x2nrealloc(
     let mut n: size_t = *pn;
     if p.is_null() {
         if n == 0 {
-            n = (DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
+            n = (C2RustUnnamed_3::DEFAULT_MXFAST as libc::c_int as libc::c_ulong)
+                .wrapping_div(s);
             n = (n as libc::c_ulong)
                 .wrapping_add((n == 0) as libc::c_int as libc::c_ulong) as size_t
                 as size_t;
@@ -1425,11 +2501,11 @@ pub static mut full_time_option: bool = false;
 #[no_mangle]
 pub static mut after_date_option: libc::c_int = 0;
 #[no_mangle]
-pub static mut atime_preserve_option: atime_preserve = no_atime_preserve;
+pub static mut atime_preserve_option: atime_preserve = atime_preserve::no_atime_preserve;
 #[no_mangle]
 pub static mut backup_option: bool = false;
 #[no_mangle]
-pub static mut backup_type: backup_type = no_backups;
+pub static mut backup_type: backup_type = backup_type::no_backups;
 #[no_mangle]
 pub static mut block_number_option: bool = false;
 #[no_mangle]
@@ -1458,7 +2534,7 @@ pub static mut interactive_option: bool = false;
 #[no_mangle]
 pub static mut occurrence_option: uintmax_t = 0;
 #[no_mangle]
-pub static mut old_files_option: old_files = DEFAULT_OLD_FILES;
+pub static mut old_files_option: old_files = old_files::DEFAULT_OLD_FILES;
 #[no_mangle]
 pub static mut keep_directory_symlink_option: bool = false;
 #[no_mangle]
@@ -1477,7 +2553,7 @@ pub static mut multi_volume_option: bool = false;
 #[no_mangle]
 pub static mut newer_mtime_option: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
 #[no_mangle]
-pub static mut set_mtime_option: set_mtime_option_mode = USE_FILE_MTIME;
+pub static mut set_mtime_option: set_mtime_option_mode = set_mtime_option_mode::USE_FILE_MTIME;
 #[no_mangle]
 pub static mut mtime_option: timespec = timespec { tv_sec: 0, tv_nsec: 0 };
 #[no_mangle]
@@ -1526,7 +2602,7 @@ pub static mut tar_sparse_major: libc::c_uint = 0;
 #[no_mangle]
 pub static mut tar_sparse_minor: libc::c_uint = 0;
 #[no_mangle]
-pub static mut hole_detection: hole_detection_method = HOLE_DETECTION_DEFAULT;
+pub static mut hole_detection: hole_detection_method = hole_detection_method::HOLE_DETECTION_DEFAULT;
 #[no_mangle]
 pub static mut starting_file_option: bool = false;
 #[no_mangle]
@@ -1677,12 +2753,13 @@ pub static mut group_name_option: *const libc::c_char = 0 as *const libc::c_char
 #[no_mangle]
 pub static mut open_read_flags: libc::c_int = 0;
 #[no_mangle]
-pub static mut subcommand_option: subcommand = UNKNOWN_SUBCOMMAND;
+pub static mut subcommand_option: subcommand = subcommand::UNKNOWN_SUBCOMMAND;
 #[no_mangle]
-pub static mut archive_format: archive_format = DEFAULT_FORMAT;
+pub static mut archive_format: archive_format = archive_format::DEFAULT_FORMAT;
 #[inline]
 unsafe extern "C" fn name_more_files() -> bool {
-    return filename_args as libc::c_uint != FILES_NONE as libc::c_int as libc::c_uint;
+    return filename_args as libc::c_uint
+        != files_count::FILES_NONE as libc::c_int as libc::c_uint;
 }
 #[inline]
 unsafe extern "C" fn priv_set_remove_linkdir() -> libc::c_int {
@@ -1764,49 +2841,49 @@ static mut fmttab: [fmttab; 7] = [
     {
         let mut init = fmttab {
             name: b"v7\0" as *const u8 as *const libc::c_char,
-            fmt: V7_FORMAT,
+            fmt: archive_format::V7_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: b"oldgnu\0" as *const u8 as *const libc::c_char,
-            fmt: OLDGNU_FORMAT,
+            fmt: archive_format::OLDGNU_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: b"ustar\0" as *const u8 as *const libc::c_char,
-            fmt: USTAR_FORMAT,
+            fmt: archive_format::USTAR_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: b"posix\0" as *const u8 as *const libc::c_char,
-            fmt: POSIX_FORMAT,
+            fmt: archive_format::POSIX_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: b"gnu\0" as *const u8 as *const libc::c_char,
-            fmt: GNU_FORMAT,
+            fmt: archive_format::GNU_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: b"pax\0" as *const u8 as *const libc::c_char,
-            fmt: POSIX_FORMAT,
+            fmt: archive_format::POSIX_FORMAT,
         };
         init
     },
     {
         let mut init = fmttab {
             name: 0 as *const libc::c_char,
-            fmt: DEFAULT_FORMAT,
+            fmt: archive_format::DEFAULT_FORMAT,
         };
         init
     },
@@ -1958,7 +3035,10 @@ unsafe extern "C" fn tar_set_quoting_style(mut arg: *mut libc::c_char) {
         if strcmp(arg, *quoting_style_args.as_ptr().offset(i as isize))
             == 0 as libc::c_int
         {
-            set_quoting_style(0 as *mut quoting_options, i as quoting_style);
+            set_quoting_style(
+                0 as *mut quoting_options,
+                quoting_style::from_libc_c_uint(i as u32),
+            );
             return;
         }
         i += 1;
@@ -1997,7 +3077,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Main operation mode:\0" as *const u8 as *const libc::c_char,
-            group: GRH_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRH_COMMAND as libc::c_int,
         };
         init
     },
@@ -2009,7 +3089,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"list the contents of an archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2020,7 +3100,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"extract files from an archive\0" as *const u8 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2031,7 +3111,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2042,7 +3122,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"create a new archive\0" as *const u8 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2054,7 +3134,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"find differences between archive and file system\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2065,7 +3145,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2077,7 +3157,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"append files to the end of an archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2089,7 +3169,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"only append files newer than copy in archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2100,7 +3180,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"append tar files to an archive\0" as *const u8 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2111,31 +3191,31 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"delete\0" as *const u8 as *const libc::c_char,
-            key: DELETE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::DELETE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"delete from the archive (not on mag tapes!)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"test-label\0" as *const u8 as *const libc::c_char,
-            key: TEST_LABEL_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::TEST_LABEL_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"test the archive volume label and exit\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMMAND as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMMAND as libc::c_int,
         };
         init
     },
@@ -2146,7 +3226,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Operation modifiers:\0" as *const u8 as *const libc::c_char,
-            group: GRH_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRH_MODIFIER as libc::c_int,
         };
         init
     },
@@ -2158,30 +3238,30 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"handle sparse files efficiently\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"hole-detection\0" as *const u8 as *const libc::c_char,
-            key: HOLE_DETECTION_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::HOLE_DETECTION_OPTION as libc::c_int,
             arg: b"TYPE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"technique to detect holes\0" as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"sparse-version\0" as *const u8 as *const libc::c_char,
-            key: SPARSE_VERSION_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SPARSE_VERSION_OPTION as libc::c_int,
             arg: b"MAJOR[.MINOR]\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"set version of the sparse format to use (implies --sparse)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
@@ -2193,7 +3273,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"handle old GNU-format incremental backup\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
@@ -2205,43 +3285,43 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"handle new GNU-format incremental backup\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"level\0" as *const u8 as *const libc::c_char,
-            key: LEVEL_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::LEVEL_OPTION as libc::c_int,
             arg: b"NUMBER\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"dump level for created listed-incremental archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"ignore-failed-read\0" as *const u8 as *const libc::c_char,
-            key: IGNORE_FAILED_READ_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::IGNORE_FAILED_READ_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"do not exit with nonzero on unreadable files\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"occurrence\0" as *const u8 as *const libc::c_char,
-            key: OCCURRENCE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OCCURRENCE_OPTION as libc::c_int,
             arg: b"NUMBER\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"process only the NUMBERth occurrence of each file in the archive; this option is valid only in conjunction with one of the subcommands --delete, --diff, --extract or --list and when a list of files is given either on the command line or via the -T option; NUMBER defaults to 1\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
@@ -2252,42 +3332,42 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"archive is seekable\0" as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-seek\0" as *const u8 as *const libc::c_char,
-            key: NO_SEEK_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_SEEK_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"archive is not seekable\0" as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-check-device\0" as *const u8 as *const libc::c_char,
-            key: NO_CHECK_DEVICE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_CHECK_DEVICE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"do not check device numbers when creating incremental archives\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"check-device\0" as *const u8 as *const libc::c_char,
-            key: CHECK_DEVICE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::CHECK_DEVICE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"check device numbers when creating incremental archives (default)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_MODIFIER as libc::c_int,
+            group: C2RustUnnamed_5::GRID_MODIFIER as libc::c_int,
         };
         init
     },
@@ -2298,7 +3378,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Overwrite control:\0" as *const u8 as *const libc::c_char,
-            group: GRH_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRH_OVERWRITE as libc::c_int,
         };
         init
     },
@@ -2310,19 +3390,19 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"attempt to verify the archive after writing it\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"remove-files\0" as *const u8 as *const libc::c_char,
-            key: REMOVE_FILES_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::REMOVE_FILES_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"remove files after adding them to the archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
@@ -2334,43 +3414,43 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"don't replace existing files when extracting, treat them as errors\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"skip-old-files\0" as *const u8 as *const libc::c_char,
-            key: SKIP_OLD_FILES_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SKIP_OLD_FILES_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"don't replace existing files when extracting, silently skip over them\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"keep-newer-files\0" as *const u8 as *const libc::c_char,
-            key: KEEP_NEWER_FILES_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::KEEP_NEWER_FILES_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"don't replace existing files that are newer than their archive copies\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"overwrite\0" as *const u8 as *const libc::c_char,
-            key: OVERWRITE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OVERWRITE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"overwrite existing files when extracting\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
@@ -2382,67 +3462,67 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"remove each file prior to extracting over it\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"recursive-unlink\0" as *const u8 as *const libc::c_char,
-            key: RECURSIVE_UNLINK_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::RECURSIVE_UNLINK_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"empty hierarchies prior to extracting directory\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-overwrite-dir\0" as *const u8 as *const libc::c_char,
-            key: NO_OVERWRITE_DIR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_OVERWRITE_DIR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"preserve metadata of existing directories\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"overwrite-dir\0" as *const u8 as *const libc::c_char,
-            key: OVERWRITE_DIR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OVERWRITE_DIR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"overwrite metadata of existing directories when extracting (default)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"keep-directory-symlink\0" as *const u8 as *const libc::c_char,
-            key: KEEP_DIRECTORY_SYMLINK_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::KEEP_DIRECTORY_SYMLINK_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"preserve existing symlinks to directories when extracting\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"one-top-level\0" as *const u8 as *const libc::c_char,
-            key: ONE_TOP_LEVEL_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::ONE_TOP_LEVEL_OPTION as libc::c_int,
             arg: b"DIR\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"create a subdirectory to avoid having loose files extracted\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_OVERWRITE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OVERWRITE as libc::c_int,
         };
         init
     },
@@ -2453,7 +3533,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Select output stream:\0" as *const u8 as *const libc::c_char,
-            group: GRH_OUTPUT as libc::c_int,
+            group: C2RustUnnamed_5::GRH_OUTPUT as libc::c_int,
         };
         init
     },
@@ -2465,42 +3545,42 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"extract files to standard output\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OUTPUT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OUTPUT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"to-command\0" as *const u8 as *const libc::c_char,
-            key: TO_COMMAND_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::TO_COMMAND_OPTION as libc::c_int,
             arg: b"COMMAND\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"pipe extracted files to another program\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OUTPUT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OUTPUT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"ignore-command-error\0" as *const u8 as *const libc::c_char,
-            key: IGNORE_COMMAND_ERROR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::IGNORE_COMMAND_ERROR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"ignore exit codes of children\0" as *const u8 as *const libc::c_char,
-            group: GRID_OUTPUT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OUTPUT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-ignore-command-error\0" as *const u8 as *const libc::c_char,
-            key: NO_IGNORE_COMMAND_ERROR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_IGNORE_COMMAND_ERROR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"treat non-zero exit codes of children as error\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_OUTPUT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_OUTPUT as libc::c_int,
         };
         init
     },
@@ -2511,103 +3591,103 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Handling of file attributes:\0" as *const u8 as *const libc::c_char,
-            group: GRH_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRH_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"owner\0" as *const u8 as *const libc::c_char,
-            key: OWNER_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OWNER_OPTION as libc::c_int,
             arg: b"NAME\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"force NAME as owner for added files\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"group\0" as *const u8 as *const libc::c_char,
-            key: GROUP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::GROUP_OPTION as libc::c_int,
             arg: b"NAME\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"force NAME as group for added files\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"owner-map\0" as *const u8 as *const libc::c_char,
-            key: OWNER_MAP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OWNER_MAP_OPTION as libc::c_int,
             arg: b"FILE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use FILE to map file owner UIDs and names\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"group-map\0" as *const u8 as *const libc::c_char,
-            key: GROUP_MAP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::GROUP_MAP_OPTION as libc::c_int,
             arg: b"FILE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use FILE to map file owner GIDs and names\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"mtime\0" as *const u8 as *const libc::c_char,
-            key: MTIME_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::MTIME_OPTION as libc::c_int,
             arg: b"DATE-OR-FILE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"set mtime for added files from DATE-OR-FILE\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"clamp-mtime\0" as *const u8 as *const libc::c_char,
-            key: CLAMP_MTIME_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::CLAMP_MTIME_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"only set time when the file is more recent than what was given with --mtime\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"mode\0" as *const u8 as *const libc::c_char,
-            key: MODE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::MODE_OPTION as libc::c_int,
             arg: b"CHANGES\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"force (symbolic) mode CHANGES for added files\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"atime-preserve\0" as *const u8 as *const libc::c_char,
-            key: ATIME_PRESERVE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::ATIME_PRESERVE_OPTION as libc::c_int,
             arg: b"METHOD\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"preserve access times on dumped files, either by restoring the times after reading (METHOD='replace'; default) or by not setting the times in the first place (METHOD='system')\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2619,43 +3699,43 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"don't extract file modified time\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"same-owner\0" as *const u8 as *const libc::c_char,
-            key: SAME_OWNER_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SAME_OWNER_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"try extracting files with the same ownership as exists in the archive (default for superuser)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-same-owner\0" as *const u8 as *const libc::c_char,
-            key: NO_SAME_OWNER_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_SAME_OWNER_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"extract files as yourself (default for ordinary users)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"numeric-owner\0" as *const u8 as *const libc::c_char,
-            key: NUMERIC_OWNER_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NUMERIC_OWNER_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"always use numbers for user/group names\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2667,7 +3747,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"extract information about file permissions (default for superuser)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2678,19 +3758,19 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-same-permissions\0" as *const u8 as *const libc::c_char,
-            key: NO_SAME_PERMISSIONS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_SAME_PERMISSIONS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"apply the user's umask when extracting permissions from the archive (default for ordinary users)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2702,7 +3782,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"member arguments are listed in the same order as the files in the archive\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2713,43 +3793,43 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"delay-directory-restore\0" as *const u8 as *const libc::c_char,
-            key: DELAY_DIRECTORY_RESTORE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::DELAY_DIRECTORY_RESTORE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"delay setting modification times and permissions of extracted directories until the end of extraction\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-delay-directory-restore\0" as *const u8 as *const libc::c_char,
-            key: NO_DELAY_DIRECTORY_RESTORE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_DELAY_DIRECTORY_RESTORE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"cancel the effect of --delay-directory-restore option\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"sort\0" as *const u8 as *const libc::c_char,
-            key: SORT_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SORT_OPTION as libc::c_int,
             arg: b"ORDER\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"directory sorting order: none (default), name or inode\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FATTR as libc::c_int,
         };
         init
     },
@@ -2761,101 +3841,101 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"Handling of extended file attributes:\0" as *const u8
                 as *const libc::c_char,
-            group: GRH_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRH_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"xattrs\0" as *const u8 as *const libc::c_char,
-            key: XATTR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::XATTR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Enable extended attributes support\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-xattrs\0" as *const u8 as *const libc::c_char,
-            key: NO_XATTR_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_XATTR_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Disable extended attributes support\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"xattrs-include\0" as *const u8 as *const libc::c_char,
-            key: XATTR_INCLUDE as libc::c_int,
+            key: C2RustUnnamed_4::XATTR_INCLUDE as libc::c_int,
             arg: b"MASK\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"specify the include pattern for xattr keys\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"xattrs-exclude\0" as *const u8 as *const libc::c_char,
-            key: XATTR_EXCLUDE as libc::c_int,
+            key: C2RustUnnamed_4::XATTR_EXCLUDE as libc::c_int,
             arg: b"MASK\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"specify the exclude pattern for xattr keys\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"selinux\0" as *const u8 as *const libc::c_char,
-            key: SELINUX_CONTEXT_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SELINUX_CONTEXT_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Enable the SELinux context support\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-selinux\0" as *const u8 as *const libc::c_char,
-            key: NO_SELINUX_CONTEXT_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_SELINUX_CONTEXT_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Disable the SELinux context support\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"acls\0" as *const u8 as *const libc::c_char,
-            key: ACLS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::ACLS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Enable the POSIX ACLs support\0" as *const u8 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-acls\0" as *const u8 as *const libc::c_char,
-            key: NO_ACLS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_ACLS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Disable the POSIX ACLs support\0" as *const u8 as *const libc::c_char,
-            group: GRID_XATTR as libc::c_int,
+            group: C2RustUnnamed_5::GRID_XATTR as libc::c_int,
         };
         init
     },
@@ -2867,7 +3947,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"Device selection and switching:\0" as *const u8
                 as *const libc::c_char,
-            group: GRH_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRH_DEVICE as libc::c_int,
         };
         init
     },
@@ -2879,7 +3959,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"use archive file or device ARCHIVE\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2890,7 +3970,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2901,7 +3981,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2912,7 +3992,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2923,7 +4003,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2934,7 +4014,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2945,7 +4025,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2956,7 +4036,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2967,7 +4047,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2978,7 +4058,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -2989,43 +4069,43 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x2 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"force-local\0" as *const u8 as *const libc::c_char,
-            key: FORCE_LOCAL_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::FORCE_LOCAL_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"archive file is local even if it has a colon\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"rmt-command\0" as *const u8 as *const libc::c_char,
-            key: RMT_COMMAND_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::RMT_COMMAND_OPTION as libc::c_int,
             arg: b"COMMAND\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use given rmt COMMAND instead of rmt\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"rsh-command\0" as *const u8 as *const libc::c_char,
-            key: RSH_COMMAND_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::RSH_COMMAND_OPTION as libc::c_int,
             arg: b"COMMAND\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use remote COMMAND instead of rsh\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -3037,7 +4117,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"create/list/extract multi-volume archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -3049,7 +4129,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"change tape after writing NUMBER x 1024 bytes\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -3061,7 +4141,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"run script at end of each tape (implies -M)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -3072,19 +4152,19 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"volno-file\0" as *const u8 as *const libc::c_char,
-            key: VOLNO_FILE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::VOLNO_FILE_OPTION as libc::c_int,
             arg: b"FILE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use/update the volume number in FILE\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_DEVICE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_DEVICE as libc::c_int,
         };
         init
     },
@@ -3095,7 +4175,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Device blocking:\0" as *const u8 as *const libc::c_char,
-            group: GRH_BLOCKING as libc::c_int,
+            group: C2RustUnnamed_5::GRH_BLOCKING as libc::c_int,
         };
         init
     },
@@ -3106,19 +4186,19 @@ static mut options: [argp_option; 169] = [
             arg: b"BLOCKS\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"BLOCKS x 512 bytes per record\0" as *const u8 as *const libc::c_char,
-            group: GRID_BLOCKING as libc::c_int,
+            group: C2RustUnnamed_5::GRID_BLOCKING as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"record-size\0" as *const u8 as *const libc::c_char,
-            key: RECORD_SIZE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::RECORD_SIZE_OPTION as libc::c_int,
             arg: b"NUMBER\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"NUMBER of bytes per record, multiple of 512\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_BLOCKING as libc::c_int,
+            group: C2RustUnnamed_5::GRID_BLOCKING as libc::c_int,
         };
         init
     },
@@ -3130,7 +4210,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"ignore zeroed blocks in archive (means EOF)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_BLOCKING as libc::c_int,
+            group: C2RustUnnamed_5::GRID_BLOCKING as libc::c_int,
         };
         init
     },
@@ -3142,7 +4222,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"reblock as we read (for 4.2BSD pipes)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_BLOCKING as libc::c_int,
+            group: C2RustUnnamed_5::GRID_BLOCKING as libc::c_int,
         };
         init
     },
@@ -3153,7 +4233,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Archive format selection:\0" as *const u8 as *const libc::c_char,
-            group: GRH_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRH_FORMAT as libc::c_int,
         };
         init
     },
@@ -3165,7 +4245,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"create archive of the given format\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT as libc::c_int,
         };
         init
     },
@@ -3177,7 +4257,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"FORMAT is one of the following:\0" as *const u8
                 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3188,7 +4268,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"old V7 tar format\0" as *const u8 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3199,7 +4279,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"GNU format as per tar <= 1.12\0" as *const u8 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3210,7 +4290,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"GNU tar 1.13.x format\0" as *const u8 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3222,7 +4302,7 @@ static mut options: [argp_option; 169] = [
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"POSIX 1003.1-1988 (ustar) format\0" as *const u8
                 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3233,7 +4313,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"POSIX 1003.1-2001 (pax) format\0" as *const u8 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
@@ -3244,18 +4324,18 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x8 as libc::c_int | 0x20 as libc::c_int,
             doc: b"same as pax\0" as *const u8 as *const libc::c_char,
-            group: GRDOC_FORMAT as libc::c_int,
+            group: C2RustUnnamed_5::GRDOC_FORMAT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"old-archive\0" as *const u8 as *const libc::c_char,
-            key: OLD_ARCHIVE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::OLD_ARCHIVE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"same as --format=v7\0" as *const u8 as *const libc::c_char,
-            group: GRID_FORMAT_OPT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT_OPT as libc::c_int,
         };
         init
     },
@@ -3266,30 +4346,30 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_FORMAT_OPT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT_OPT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"posix\0" as *const u8 as *const libc::c_char,
-            key: POSIX_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::POSIX_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"same as --format=posix\0" as *const u8 as *const libc::c_char,
-            group: GRID_FORMAT_OPT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT_OPT as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"pax-option\0" as *const u8 as *const libc::c_char,
-            key: PAX_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::PAX_OPTION as libc::c_int,
             arg: b"keyword[[:]=value][,keyword[[:]=value]]...\0" as *const u8
                 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"control pax keywords\0" as *const u8 as *const libc::c_char,
-            group: GRID_FORMAT_OPT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT_OPT as libc::c_int,
         };
         init
     },
@@ -3301,7 +4381,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"create archive with volume name TEXT; at list/extract time, use TEXT as a globbing pattern for volume name\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FORMAT_OPT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FORMAT_OPT as libc::c_int,
         };
         init
     },
@@ -3312,7 +4392,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Compression options:\0" as *const u8 as *const libc::c_char,
-            group: GRH_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRH_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3324,19 +4404,19 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"use archive suffix to determine the compression program\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-auto-compress\0" as *const u8 as *const libc::c_char,
-            key: NO_AUTO_COMPRESS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_AUTO_COMPRESS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"do not use archive suffix to determine the compression program\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3348,7 +4428,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"filter through PROG (must accept -d)\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3359,7 +4439,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3370,7 +4450,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3381,7 +4461,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3392,7 +4472,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3403,7 +4483,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3414,40 +4494,40 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"lzip\0" as *const u8 as *const libc::c_char,
-            key: LZIP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::LZIP_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"lzma\0" as *const u8 as *const libc::c_char,
-            key: LZMA_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::LZMA_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"lzop\0" as *const u8 as *const libc::c_char,
-            key: LZOP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::LZOP_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3458,18 +4538,18 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"zstd\0" as *const u8 as *const libc::c_char,
-            key: ZSTD_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::ZSTD_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_COMPRESS as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPRESS as libc::c_int,
         };
         init
     },
@@ -3480,19 +4560,19 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Local file selection:\0" as *const u8 as *const libc::c_char,
-            group: GRH_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRH_FILE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"one-file-system\0" as *const u8 as *const libc::c_char,
-            key: ONE_FILE_SYSTEM_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::ONE_FILE_SYSTEM_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"stay in local file system when creating archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3504,7 +4584,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"don't strip leading '/'s from file names\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3516,19 +4596,19 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"follow symlinks; archive and dump the files they point to\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"hard-dereference\0" as *const u8 as *const libc::c_char,
-            key: HARD_DEREFERENCE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::HARD_DEREFERENCE_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"follow hard links; archive and dump the files they refer to\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3540,7 +4620,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"begin at member MEMBER-NAME when reading the archive\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3552,7 +4632,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"only store files newer than DATE-OR-FILE\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3563,43 +4643,43 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"newer-mtime\0" as *const u8 as *const libc::c_char,
-            key: NEWER_MTIME_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NEWER_MTIME_OPTION as libc::c_int,
             arg: b"DATE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"compare date and time when data changed only\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"backup\0" as *const u8 as *const libc::c_char,
-            key: BACKUP_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::BACKUP_OPTION as libc::c_int,
             arg: b"CONTROL\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"backup before removal, choose version CONTROL\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"suffix\0" as *const u8 as *const libc::c_char,
-            key: SUFFIX_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SUFFIX_OPTION as libc::c_int,
             arg: b"STRING\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"backup before removal, override usual suffix ('~' unless overridden by environment variable SIMPLE_BACKUP_SUFFIX)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_FILE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_FILE as libc::c_int,
         };
         init
     },
@@ -3610,31 +4690,31 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"File name transformations:\0" as *const u8 as *const libc::c_char,
-            group: GRH_NAME_XFORM as libc::c_int,
+            group: C2RustUnnamed_5::GRH_NAME_XFORM as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"strip-components\0" as *const u8 as *const libc::c_char,
-            key: STRIP_COMPONENTS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::STRIP_COMPONENTS_OPTION as libc::c_int,
             arg: b"NUMBER\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"strip NUMBER leading components from file names on extraction\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_NAME_XFORM as libc::c_int,
+            group: C2RustUnnamed_5::GRID_NAME_XFORM as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"transform\0" as *const u8 as *const libc::c_char,
-            key: TRANSFORM_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::TRANSFORM_OPTION as libc::c_int,
             arg: b"EXPRESSION\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"use sed replace EXPRESSION to transform file names\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_NAME_XFORM as libc::c_int,
+            group: C2RustUnnamed_5::GRID_NAME_XFORM as libc::c_int,
         };
         init
     },
@@ -3645,7 +4725,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_NAME_XFORM as libc::c_int,
+            group: C2RustUnnamed_5::GRID_NAME_XFORM as libc::c_int,
         };
         init
     },
@@ -3656,31 +4736,31 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Informative output:\0" as *const u8 as *const libc::c_char,
-            group: GRH_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRH_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"checkpoint\0" as *const u8 as *const libc::c_char,
-            key: CHECKPOINT_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::CHECKPOINT_OPTION as libc::c_int,
             arg: b"NUMBER\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"display progress messages every NUMBERth record (default 10)\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"checkpoint-action\0" as *const u8 as *const libc::c_char,
-            key: CHECKPOINT_ACTION_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::CHECKPOINT_ACTION_OPTION as libc::c_int,
             arg: b"ACTION\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"execute ACTION on each checkpoint\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3692,54 +4772,54 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"print a message if not all links are dumped\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"totals\0" as *const u8 as *const libc::c_char,
-            key: TOTALS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::TOTALS_OPTION as libc::c_int,
             arg: b"SIGNAL\0" as *const u8 as *const libc::c_char,
             flags: 0x1 as libc::c_int,
             doc: b"print total bytes after processing the archive; with an argument - print total bytes when this SIGNAL is delivered; Allowed signals are: SIGHUP, SIGQUIT, SIGINT, SIGUSR1 and SIGUSR2; the names without SIG prefix are also accepted\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"utc\0" as *const u8 as *const libc::c_char,
-            key: UTC_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::UTC_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"print file modification times in UTC\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"full-time\0" as *const u8 as *const libc::c_char,
-            key: FULL_TIME_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::FULL_TIME_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"print file time to its full resolution\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"index-file\0" as *const u8 as *const libc::c_char,
-            key: INDEX_FILE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::INDEX_FILE_OPTION as libc::c_int,
             arg: b"FILE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"send verbose output to FILE\0" as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3751,54 +4831,54 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"show block number within archive with each message\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"show-defaults\0" as *const u8 as *const libc::c_char,
-            key: SHOW_DEFAULTS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SHOW_DEFAULTS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"show tar defaults\0" as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"show-snapshot-field-ranges\0" as *const u8 as *const libc::c_char,
-            key: SHOW_SNAPSHOT_FIELD_RANGES_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SHOW_SNAPSHOT_FIELD_RANGES_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"show valid ranges for snapshot-file fields\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"show-omitted-dirs\0" as *const u8 as *const libc::c_char,
-            key: SHOW_OMITTED_DIRS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SHOW_OMITTED_DIRS_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"when listing or extracting, list each directory that does not match search criteria\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"show-transformed-names\0" as *const u8 as *const libc::c_char,
-            key: SHOW_TRANSFORMED_NAMES_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::SHOW_TRANSFORMED_NAMES_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"show file or archive names after transformation\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3809,43 +4889,43 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"quoting-style\0" as *const u8 as *const libc::c_char,
-            key: QUOTING_STYLE_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::QUOTING_STYLE_OPTION as libc::c_int,
             arg: b"STYLE\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"set name quoting style; see below for valid STYLE values\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"quote-chars\0" as *const u8 as *const libc::c_char,
-            key: QUOTE_CHARS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::QUOTE_CHARS_OPTION as libc::c_int,
             arg: b"STRING\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"additionally quote characters from STRING\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"no-quote-chars\0" as *const u8 as *const libc::c_char,
-            key: NO_QUOTE_CHARS_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::NO_QUOTE_CHARS_OPTION as libc::c_int,
             arg: b"STRING\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"disable quoting for characters from STRING\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3857,7 +4937,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"ask for confirmation for every action\0" as *const u8
                 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3868,7 +4948,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0x4 as libc::c_int,
             doc: 0 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3879,18 +4959,18 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"verbosely list files processed\0" as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"warning\0" as *const u8 as *const libc::c_char,
-            key: WARNING_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::WARNING_OPTION as libc::c_int,
             arg: b"KEYWORD\0" as *const u8 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"warning control\0" as *const u8 as *const libc::c_char,
-            group: GRID_INFORMATIVE as libc::c_int,
+            group: C2RustUnnamed_5::GRID_INFORMATIVE as libc::c_int,
         };
         init
     },
@@ -3901,7 +4981,7 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Compatibility options:\0" as *const u8 as *const libc::c_char,
-            group: GRH_COMPAT as libc::c_int,
+            group: C2RustUnnamed_5::GRH_COMPAT as libc::c_int,
         };
         init
     },
@@ -3913,7 +4993,7 @@ static mut options: [argp_option; 169] = [
             flags: 0 as libc::c_int,
             doc: b"when creating, same as --old-archive; when extracting, same as --no-same-owner\0"
                 as *const u8 as *const libc::c_char,
-            group: GRID_COMPAT as libc::c_int,
+            group: C2RustUnnamed_5::GRID_COMPAT as libc::c_int,
         };
         init
     },
@@ -3924,14 +5004,14 @@ static mut options: [argp_option; 169] = [
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"Other options:\0" as *const u8 as *const libc::c_char,
-            group: GRH_OTHER as libc::c_int,
+            group: C2RustUnnamed_5::GRH_OTHER as libc::c_int,
         };
         init
     },
     {
         let mut init = argp_option {
             name: b"restrict\0" as *const u8 as *const libc::c_char,
-            key: RESTRICT_OPTION as libc::c_int,
+            key: C2RustUnnamed_4::RESTRICT_OPTION as libc::c_int,
             arg: 0 as *const libc::c_char,
             flags: 0 as libc::c_int,
             doc: b"disable use of some potentially harmful options\0" as *const u8
@@ -3958,19 +5038,19 @@ static mut atime_preserve_args: [*const libc::c_char; 3] = [
     0 as *const libc::c_char,
 ];
 static mut atime_preserve_types: [atime_preserve; 2] = [
-    replace_atime_preserve,
-    system_atime_preserve,
+    atime_preserve::replace_atime_preserve,
+    atime_preserve::system_atime_preserve,
 ];
 unsafe extern "C" fn format_default_settings() -> *mut libc::c_char {
     return xasprintf(
         b"--format=%s -f%s -b%d --quoting-style=%s --rmt-command=%s --rsh-command=%s\0"
             as *const u8 as *const libc::c_char,
-        archive_format_string(GNU_FORMAT),
+        archive_format_string(archive_format::GNU_FORMAT),
         b"-\0" as *const u8 as *const libc::c_char,
         20 as libc::c_int,
         *quoting_style_args
             .as_ptr()
-            .offset(escape_quoting_style as libc::c_int as isize),
+            .offset(quoting_style::escape_quoting_style as libc::c_int as isize),
         b"/usr/local/libexec/rmt\0" as *const u8 as *const libc::c_char,
         b"/usr/bin/rsh\0" as *const u8 as *const libc::c_char,
     );
@@ -4041,7 +5121,8 @@ unsafe extern "C" fn option_set_in_cl(mut id: libc::c_int) -> libc::c_int {
         return 0 as libc::c_int;
     }
     return ((*loc).source as libc::c_uint
-        == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint) as libc::c_int;
+        == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint)
+        as libc::c_int;
 }
 unsafe extern "C" fn optloc_eq(
     mut a: *mut option_locus,
@@ -4050,14 +5131,16 @@ unsafe extern "C" fn optloc_eq(
     if (*a).source as libc::c_uint != (*b).source as libc::c_uint {
         return 0 as libc::c_int;
     }
-    if (*a).source as libc::c_uint == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint {
+    if (*a).source as libc::c_uint
+        == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
+    {
         return 1 as libc::c_int;
     }
     return (strcmp((*a).name, (*b).name) == 0 as libc::c_int) as libc::c_int;
 }
 unsafe extern "C" fn set_subcommand_option(mut subcommand: subcommand) {
     if subcommand_option as libc::c_uint
-        != UNKNOWN_SUBCOMMAND as libc::c_int as libc::c_uint
+        != subcommand::UNKNOWN_SUBCOMMAND as libc::c_int as libc::c_uint
         && subcommand_option as libc::c_uint != subcommand as libc::c_uint
     {
         if error_hook.is_some() {
@@ -4082,13 +5165,13 @@ unsafe extern "C" fn set_use_compress_program_option(
     mut loc: *mut option_locus,
 ) {
     let mut p: *mut option_locus = optloc_save(
-        OC_COMPRESS as libc::c_int as libc::c_uint,
+        option_class::OC_COMPRESS as libc::c_int as libc::c_uint,
         loc,
     );
     if !use_compress_program_option.is_null()
         && strcmp(use_compress_program_option, string) != 0 as libc::c_int
         && (*p).source as libc::c_uint
-            == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
+            == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
     {
         if error_hook.is_some() {
             error_hook.expect("non-null function pointer")();
@@ -4534,8 +5617,7 @@ unsafe extern "C" fn tar_help_filter(
                     if (*__o1).next_free == __value as *mut libc::c_char {
                         (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
                     }
-                    (*__o1)
-                        .next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                    (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
                         as libc::c_ulong)
                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
                     {
@@ -4649,7 +5731,8 @@ unsafe extern "C" fn expand_pax_option(
             while *p as libc::c_int != 0
                 && *(*__ctype_b_loc())
                     .offset(*p as libc::c_uchar as libc::c_int as isize) as libc::c_int
-                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
             {
                 len = len.wrapping_sub(1);
                 len;
@@ -4789,8 +5872,8 @@ unsafe extern "C" fn expand_pax_option(
             if (*__o1).next_free == __value as *mut libc::c_char {
                 (*__o1).set_maybe_empty_object(1 as libc::c_int as libc::c_uint);
             }
-            (*__o1)
-                .next_free = (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+            (*__o1).next_free = (if (::core::mem::size_of::<ptrdiff_t>()
+                as libc::c_ulong)
                 < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
             {
                 (*__o1).object_base
@@ -4858,7 +5941,7 @@ unsafe extern "C" fn parse_owner_group(
                 10 as libc::c_int,
                 &mut u,
                 b"\0" as *const u8 as *const libc::c_char,
-            ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint
+            ) as libc::c_uint == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
                 && u <= field_max)
         {
             invalid_num = num;
@@ -4875,7 +5958,7 @@ unsafe extern "C" fn parse_owner_group(
                 b"\0" as *const u8 as *const libc::c_char,
             ) as libc::c_uint
         } else {
-            LONGINT_INVALID as libc::c_int as libc::c_uint
+            strtol_error::LONGINT_INVALID as libc::c_int as libc::c_uint
         } {
             0 => {
                 if u1 <= field_max {
@@ -4939,8 +6022,8 @@ static mut hole_detection_args: [*const libc::c_char; 3] = [
     0 as *const libc::c_char,
 ];
 static mut hole_detection_types: [libc::c_int; 2] = [
-    HOLE_DETECTION_RAW as libc::c_int,
-    HOLE_DETECTION_SEEK as libc::c_int,
+    hole_detection_method::HOLE_DETECTION_RAW as libc::c_int,
+    hole_detection_method::HOLE_DETECTION_SEEK as libc::c_int,
 ];
 unsafe extern "C" fn set_old_files_option(
     mut code: libc::c_int,
@@ -4956,7 +6039,7 @@ unsafe extern "C" fn set_old_files_option(
         b"--skip-old-files\0" as *const u8 as *const libc::c_char,
         b"--keep-newer-files\0" as *const u8 as *const libc::c_char,
     ];
-    prev = optloc_save(OC_OLD_FILES as libc::c_int as libc::c_uint, loc);
+    prev = optloc_save(option_class::OC_OLD_FILES as libc::c_int as libc::c_uint, loc);
     if !prev.is_null() && optloc_eq(loc, prev) != 0
         && code as libc::c_uint != old_files_option as libc::c_uint
     {
@@ -4965,7 +6048,7 @@ unsafe extern "C" fn set_old_files_option(
             code_to_opt[old_files_option as usize],
         );
     }
-    old_files_option = code as old_files;
+    old_files_option = old_files::from_libc_c_uint(code as u32);
 }
 unsafe extern "C" fn parse_opt(
     mut key: libc::c_int,
@@ -4995,7 +6078,7 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         65 => {
-            set_subcommand_option(CAT_SUBCOMMAND);
+            set_subcommand_option(subcommand::CAT_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         97 => {
@@ -5014,7 +6097,7 @@ unsafe extern "C" fn parse_opt(
                 10 as libc::c_int,
                 &mut u,
                 b"\0" as *const u8 as *const libc::c_char,
-            ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint
+            ) as libc::c_uint == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
                 && {
                     blocking_factor = u as libc::c_int;
                     u == blocking_factor as libc::c_ulong
@@ -5047,15 +6130,15 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         99 => {
-            set_subcommand_option(CREATE_SUBCOMMAND);
+            set_subcommand_option(subcommand::CREATE_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         134 => {
-            set_mtime_option = CLAMP_MTIME;
+            set_mtime_option = set_mtime_option_mode::CLAMP_MTIME;
             current_block_308 = 9657238515557273331;
         }
         100 => {
-            set_subcommand_option(DIFF_SUBCOMMAND);
+            set_subcommand_option(subcommand::DIFF_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         70 => {
@@ -5095,7 +6178,7 @@ unsafe extern "C" fn parse_opt(
         }
         103 => {
             optloc_save(
-                OC_LISTED_INCREMENTAL as libc::c_int as libc::c_uint,
+                option_class::OC_LISTED_INCREMENTAL as libc::c_int as libc::c_uint,
                 (*args).loc,
             );
             listed_incremental_option = arg;
@@ -5132,11 +6215,14 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         107 => {
-            set_old_files_option(KEEP_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(old_files::KEEP_OLD_FILES as libc::c_int, (*args).loc);
             current_block_308 = 9657238515557273331;
         }
         75 => {
-            optloc_save(OC_STARTING_FILE as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_STARTING_FILE as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             add_starting_file(arg);
             current_block_308 = 9657238515557273331;
         }
@@ -5145,7 +6231,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         170 => {
-            optloc_save(OC_ONE_TOP_LEVEL as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_ONE_TOP_LEVEL as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             one_top_level_option = 1 as libc::c_int != 0;
             one_top_level_dir = arg;
             current_block_308 = 9657238515557273331;
@@ -5163,7 +6252,7 @@ unsafe extern "C" fn parse_opt(
                 10 as libc::c_int,
                 &mut u_0,
                 b"bBcGgkKMmPTtw\0" as *const u8 as *const libc::c_char,
-            ) as libc::c_uint != LONGINT_OK as libc::c_int as libc::c_uint
+            ) as libc::c_uint != strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
             {
                 if error_hook.is_some() {
                     error_hook.expect("non-null function pointer")();
@@ -5254,9 +6343,9 @@ unsafe extern "C" fn parse_opt(
                 &mut mtime_option,
             );
             if set_mtime_option as libc::c_uint
-                == USE_FILE_MTIME as libc::c_int as libc::c_uint
+                == set_mtime_option_mode::USE_FILE_MTIME as libc::c_int as libc::c_uint
             {
-                set_mtime_option = FORCE_MTIME;
+                set_mtime_option = set_mtime_option_mode::FORCE_MTIME;
             }
             current_block_308 = 9657238515557273331;
         }
@@ -5288,12 +6377,15 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         80 => {
-            optloc_save(OC_ABSOLUTE_NAMES as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_ABSOLUTE_NAMES as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             absolute_names_option = 1 as libc::c_int != 0;
             current_block_308 = 9657238515557273331;
         }
         114 => {
-            set_subcommand_option(APPEND_SUBCOMMAND);
+            set_subcommand_option(subcommand::APPEND_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         82 => {
@@ -5301,7 +6393,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         115 => {
-            optloc_save(OC_SAME_ORDER as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_SAME_ORDER as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             same_order_option = 1 as libc::c_int != 0;
             current_block_308 = 9657238515557273331;
         }
@@ -5310,18 +6405,20 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         191 => {
-            set_old_files_option(SKIP_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(old_files::SKIP_OLD_FILES as libc::c_int, (*args).loc);
             current_block_308 = 9657238515557273331;
         }
         193 => {
-            hole_detection = hole_detection_types[__xargmatch_internal(
-                b"--hole-detection\0" as *const u8 as *const libc::c_char,
-                arg,
-                hole_detection_args.as_ptr(),
-                hole_detection_types.as_ptr() as *const libc::c_void,
-                ::core::mem::size_of::<libc::c_int>() as libc::c_ulong,
-                argmatch_die,
-            ) as usize] as hole_detection_method;
+            hole_detection = hole_detection_method::from_libc_c_uint(
+                hole_detection_types[__xargmatch_internal(
+                    b"--hole-detection\0" as *const u8 as *const libc::c_char,
+                    arg,
+                    hole_detection_args.as_ptr(),
+                    hole_detection_types.as_ptr() as *const libc::c_void,
+                    ::core::mem::size_of::<libc::c_int>() as libc::c_ulong,
+                    argmatch_die,
+                ) as usize] as u32,
+            );
             sparse_option = 1 as libc::c_int != 0;
             current_block_308 = 9657238515557273331;
         }
@@ -5371,13 +6468,13 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         116 => {
-            set_subcommand_option(LIST_SUBCOMMAND);
+            set_subcommand_option(subcommand::LIST_SUBCOMMAND);
             verbose_option += 1;
             verbose_option;
             current_block_308 = 9657238515557273331;
         }
         197 => {
-            set_subcommand_option(TEST_LABEL_SUBCOMMAND);
+            set_subcommand_option(subcommand::TEST_LABEL_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         200 => {
@@ -5385,11 +6482,14 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         117 => {
-            set_subcommand_option(UPDATE_SUBCOMMAND);
+            set_subcommand_option(subcommand::UPDATE_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         85 => {
-            set_old_files_option(UNLINK_FIRST_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(
+                old_files::UNLINK_FIRST_OLD_FILES as libc::c_int,
+                (*args).loc,
+            );
             current_block_308 = 9657238515557273331;
         }
         201 => {
@@ -5413,7 +6513,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         87 => {
-            optloc_save(OC_VERIFY as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_VERIFY as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             verify_option = 1 as libc::c_int != 0;
             current_block_308 = 9657238515557273331;
         }
@@ -5422,7 +6525,7 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         120 => {
-            set_subcommand_option(EXTRACT_SUBCOMMAND);
+            set_subcommand_option(subcommand::EXTRACT_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         122 => {
@@ -5447,21 +6550,24 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         129 => {
-            atime_preserve_option = (if !arg.is_null() {
-                atime_preserve_types[__xargmatch_internal(
-                    b"--atime-preserve\0" as *const u8 as *const libc::c_char,
-                    arg,
-                    atime_preserve_args.as_ptr(),
-                    atime_preserve_types.as_ptr() as *const libc::c_void,
-                    ::core::mem::size_of::<atime_preserve>() as libc::c_ulong,
-                    argmatch_die,
-                ) as usize] as libc::c_uint
-            } else {
-                replace_atime_preserve as libc::c_int as libc::c_uint
-            }) as atime_preserve;
+            atime_preserve_option = atime_preserve::from_libc_c_uint(
+                (if !arg.is_null() {
+                    atime_preserve_types[__xargmatch_internal(
+                        b"--atime-preserve\0" as *const u8 as *const libc::c_char,
+                        arg,
+                        atime_preserve_args.as_ptr(),
+                        atime_preserve_types.as_ptr() as *const libc::c_void,
+                        ::core::mem::size_of::<atime_preserve>() as libc::c_ulong,
+                        argmatch_die,
+                    ) as usize] as libc::c_uint
+                } else {
+                    atime_preserve::replace_atime_preserve as libc::c_int as libc::c_uint
+                }) as u32,
+            );
             if 0o1000000 as libc::c_int == 0
                 && atime_preserve_option as libc::c_uint
-                    == system_atime_preserve as libc::c_int as libc::c_uint
+                    == atime_preserve::system_atime_preserve as libc::c_int
+                        as libc::c_uint
             {
                 if error_hook.is_some() {
                     error_hook.expect("non-null function pointer")();
@@ -5541,7 +6647,7 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         137 => {
-            set_subcommand_option(DELETE_SUBCOMMAND);
+            set_subcommand_option(subcommand::DELETE_SUBCOMMAND);
             current_block_308 = 9657238515557273331;
         }
         138 => {
@@ -5569,7 +6675,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         146 => {
-            set_old_files_option(KEEP_NEWER_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(
+                old_files::KEEP_NEWER_FILES as libc::c_int,
+                (*args).loc,
+            );
             current_block_308 = 9657238515557273331;
         }
         140 => {
@@ -5629,7 +6738,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         159 => {
-            set_old_files_option(NO_OVERWRITE_DIR_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(
+                old_files::NO_OVERWRITE_DIR_OLD_FILES as libc::c_int,
+                (*args).loc,
+            );
             current_block_308 = 9657238515557273331;
         }
         160 => {
@@ -5645,7 +6757,10 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         167 => {
-            optloc_save(OC_OCCURRENCE as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_OCCURRENCE as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
             if arg.is_null() {
                 occurrence_option = 1 as libc::c_int as uintmax_t;
             } else {
@@ -5656,7 +6771,8 @@ unsafe extern "C" fn parse_opt(
                     10 as libc::c_int,
                     &mut u_2,
                     b"\0" as *const u8 as *const libc::c_char,
-                ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint
+                ) as libc::c_uint
+                    == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
                 {
                     occurrence_option = u_2;
                 } else {
@@ -5684,11 +6800,17 @@ unsafe extern "C" fn parse_opt(
             current_block_308 = 9657238515557273331;
         }
         171 => {
-            set_old_files_option(DEFAULT_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(
+                old_files::DEFAULT_OLD_FILES as libc::c_int,
+                (*args).loc,
+            );
             current_block_308 = 9657238515557273331;
         }
         172 => {
-            set_old_files_option(OVERWRITE_OLD_FILES as libc::c_int, (*args).loc);
+            set_old_files_option(
+                old_files::OVERWRITE_OLD_FILES as libc::c_int,
+                (*args).loc,
+            );
             current_block_308 = 9657238515557273331;
         }
         173 => {
@@ -5752,7 +6874,8 @@ unsafe extern "C" fn parse_opt(
                 10 as libc::c_int,
                 &mut u_4,
                 b"bBcGgkKMmPTtw\0" as *const u8 as *const libc::c_char,
-            ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint && u_4 == u_4)
+            ) as libc::c_uint == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
+                && u_4 == u_4)
             {
                 if error_hook.is_some() {
                     error_hook.expect("non-null function pointer")();
@@ -5834,7 +6957,8 @@ unsafe extern "C" fn parse_opt(
                 10 as libc::c_int,
                 &mut u_5,
                 b"\0" as *const u8 as *const libc::c_char,
-            ) as libc::c_uint == LONGINT_OK as libc::c_int as libc::c_uint && u_5 == u_5)
+            ) as libc::c_uint == strtol_error::LONGINT_OK as libc::c_int as libc::c_uint
+                && u_5 == u_5)
             {
                 if error_hook.is_some() {
                     error_hook.expect("non-null function pointer")();
@@ -5952,7 +7076,7 @@ unsafe extern "C" fn parse_opt(
         }
         206 | 205 => {
             set_xattr_option(1 as libc::c_int);
-            xattrs_mask_add(arg, key == XATTR_INCLUDE as libc::c_int);
+            xattrs_mask_add(arg, key == C2RustUnnamed_4::XATTR_INCLUDE as libc::c_int);
             current_block_308 = 9657238515557273331;
         }
         185 => {
@@ -5961,7 +7085,7 @@ unsafe extern "C" fn parse_opt(
         }
         16777221 => {
             if (*(*args).loc).source as libc::c_uint
-                == OPTS_FILE as libc::c_int as libc::c_uint
+                == option_source::OPTS_FILE as libc::c_int as libc::c_uint
             {
                 error(
                     0 as libc::c_int,
@@ -5976,7 +7100,7 @@ unsafe extern "C" fn parse_opt(
                     (*(*args).loc).line,
                 );
             } else if (*(*args).loc).source as libc::c_uint
-                == OPTS_ENVIRON as libc::c_int as libc::c_uint
+                == option_source::OPTS_ENVIRON as libc::c_int as libc::c_uint
             {
                 error(
                     0 as libc::c_int,
@@ -6013,7 +7137,7 @@ unsafe extern "C" fn parse_opt(
             }
             get_date_or_file(
                 args,
-                if key == NEWER_MTIME_OPTION as libc::c_int {
+                if key == C2RustUnnamed_4::NEWER_MTIME_OPTION as libc::c_int {
                     b"--newer-mtime\0" as *const u8 as *const libc::c_char
                 } else {
                     b"--after-date\0" as *const u8 as *const libc::c_char
@@ -6021,7 +7145,10 @@ unsafe extern "C" fn parse_opt(
                 arg,
                 &mut newer_mtime_option,
             );
-            optloc_save(OC_NEWER as libc::c_int as libc::c_uint, (*args).loc);
+            optloc_save(
+                option_class::OC_NEWER as libc::c_int as libc::c_uint,
+                (*args).loc,
+            );
         }
         5935343757214984752 => {
             incremental_option = 1 as libc::c_int != 0;
@@ -6037,7 +7164,7 @@ static mut argp_children: [argp_child; 2] = unsafe {
                 argp: &names_argp as *const argp as *mut argp,
                 flags: 0 as libc::c_int,
                 header: 0 as *const libc::c_char,
-                group: GRID_FILE_NAME as libc::c_int,
+                group: C2RustUnnamed_5::GRID_FILE_NAME as libc::c_int,
             };
             init
         },
@@ -6207,7 +7334,7 @@ unsafe extern "C" fn parse_default_options(mut args: *mut tar_args) {
     };
     let mut loc: option_locus = {
         let mut init = option_locus {
-            source: OPTS_ENVIRON,
+            source: option_source::OPTS_ENVIRON,
             name: b"TAR_OPTIONS\0" as *const u8 as *const libc::c_char,
             line: 0 as libc::c_int as size_t,
             prev: 0 as *mut option_locus,
@@ -6287,7 +7414,7 @@ unsafe extern "C" fn decode_options(
     let mut idx: libc::c_int = 0;
     let mut loc: option_locus = {
         let mut init = option_locus {
-            source: OPTS_COMMAND_LINE,
+            source: option_source::OPTS_COMMAND_LINE,
             name: 0 as *const libc::c_char,
             line: 0 as libc::c_int as size_t,
             prev: 0 as *mut option_locus,
@@ -6310,20 +7437,20 @@ unsafe extern "C" fn decode_options(
         b"tar\0" as *const u8 as *const libc::c_char,
         tar_authors.as_mut_ptr(),
     );
-    args
-        .backup_suffix_string = getenv(
+    args.backup_suffix_string = getenv(
         b"SIMPLE_BACKUP_SUFFIX\0" as *const u8 as *const libc::c_char,
     );
     posixly_correct = !(getenv(b"POSIXLY_CORRECT\0" as *const u8 as *const libc::c_char))
         .is_null();
-    subcommand_option = UNKNOWN_SUBCOMMAND;
-    archive_format = DEFAULT_FORMAT;
+    subcommand_option = subcommand::UNKNOWN_SUBCOMMAND;
+    archive_format = archive_format::DEFAULT_FORMAT;
     blocking_factor = 20 as libc::c_int;
     record_size = (20 as libc::c_int * 512 as libc::c_int) as size_t;
     excluded = new_exclude();
-    hole_detection = HOLE_DETECTION_DEFAULT;
-    newer_mtime_option
-        .tv_sec = !if (0 as libc::c_int as time_t) < -(1 as libc::c_int) as time_t {
+    hole_detection = hole_detection_method::HOLE_DETECTION_DEFAULT;
+    newer_mtime_option.tv_sec = !if (0 as libc::c_int as time_t)
+        < -(1 as libc::c_int) as time_t
+    {
         -(1 as libc::c_int) as time_t
     } else {
         (((1 as libc::c_int as time_t)
@@ -6334,8 +7461,9 @@ unsafe extern "C" fn decode_options(
             + 1 as libc::c_int as libc::c_long
     };
     newer_mtime_option.tv_nsec = -(1 as libc::c_int) as __syscall_slong_t;
-    mtime_option
-        .tv_sec = !if (0 as libc::c_int as time_t) < -(1 as libc::c_int) as time_t {
+    mtime_option.tv_sec = !if (0 as libc::c_int as time_t)
+        < -(1 as libc::c_int) as time_t
+    {
         -(1 as libc::c_int) as time_t
     } else {
         (((1 as libc::c_int as time_t)
@@ -6449,7 +7577,7 @@ unsafe extern "C" fn decode_options(
     }
     if args.o_option {
         if subcommand_option as libc::c_uint
-            == CREATE_SUBCOMMAND as libc::c_int as libc::c_uint
+            == subcommand::CREATE_SUBCOMMAND as libc::c_int as libc::c_uint
         {
             set_archive_format(b"v7\0" as *const u8 as *const libc::c_char);
         } else {
@@ -6461,23 +7589,26 @@ unsafe extern "C" fn decode_options(
         idx += 1;
         idx;
     }
-    if archive_format as libc::c_uint == DEFAULT_FORMAT as libc::c_int as libc::c_uint {
+    if archive_format as libc::c_uint
+        == archive_format::DEFAULT_FORMAT as libc::c_int as libc::c_uint
+    {
         if args.pax_option {
-            archive_format = POSIX_FORMAT;
+            archive_format = archive_format::POSIX_FORMAT;
         } else {
-            archive_format = GNU_FORMAT;
+            archive_format = archive_format::GNU_FORMAT;
         }
     }
     if !volume_label_option.is_null()
         && subcommand_option as libc::c_uint
-            == CREATE_SUBCOMMAND as libc::c_int as libc::c_uint
+            == subcommand::CREATE_SUBCOMMAND as libc::c_int as libc::c_uint
         || incremental_option as libc::c_int != 0
         || multi_volume_option as libc::c_int != 0 || sparse_option as libc::c_int != 0
     {
         assert_format(
-            ((1 as libc::c_int) << OLDGNU_FORMAT as libc::c_int
-                | (1 as libc::c_int) << GNU_FORMAT as libc::c_int
-                | (1 as libc::c_int) << POSIX_FORMAT as libc::c_int) as libc::c_uint,
+            ((1 as libc::c_int) << archive_format::OLDGNU_FORMAT as libc::c_int
+                | (1 as libc::c_int) << archive_format::GNU_FORMAT as libc::c_int
+                | (1 as libc::c_int) << archive_format::POSIX_FORMAT as libc::c_int)
+                as libc::c_uint,
         );
     }
     if occurrence_option != 0 {
@@ -6498,7 +7629,7 @@ unsafe extern "C" fn decode_options(
             usage(2 as libc::c_int);
         }
         if subcommand_class[subcommand_option as usize] & 0x10 as libc::c_int == 0 {
-            if option_set_in_cl(OC_OCCURRENCE as libc::c_int) != 0 {
+            if option_set_in_cl(option_class::OC_OCCURRENCE as libc::c_int) != 0 {
                 option_conflict_error(
                     b"--occurrence\0" as *const u8 as *const libc::c_char,
                     subcommand_string(subcommand_option),
@@ -6537,16 +7668,18 @@ unsafe extern "C" fn decode_options(
         && 0 as libc::c_int as libc::c_long <= newer_mtime_option.tv_nsec
     {
         let mut listed_loc: *mut option_locus = optloc_lookup(
-            OC_LISTED_INCREMENTAL as libc::c_int,
+            option_class::OC_LISTED_INCREMENTAL as libc::c_int,
         );
-        let mut newer_loc: *mut option_locus = optloc_lookup(OC_NEWER as libc::c_int);
+        let mut newer_loc: *mut option_locus = optloc_lookup(
+            option_class::OC_NEWER as libc::c_int,
+        );
         if optloc_eq(listed_loc, newer_loc) != 0 {
             option_conflict_error(
                 b"--listed-incremental\0" as *const u8 as *const libc::c_char,
                 b"--newer\0" as *const u8 as *const libc::c_char,
             );
         } else if (*listed_loc).source as libc::c_uint
-            == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
+            == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
         {
             listed_incremental_option = 0 as *const libc::c_char;
         } else {
@@ -6573,9 +7706,10 @@ unsafe extern "C" fn decode_options(
         );
     }
     if !volume_label_option.is_null() {
-        if archive_format as libc::c_uint == GNU_FORMAT as libc::c_int as libc::c_uint
+        if archive_format as libc::c_uint
+            == archive_format::GNU_FORMAT as libc::c_int as libc::c_uint
             || archive_format as libc::c_uint
-                == OLDGNU_FORMAT as libc::c_int as libc::c_uint
+                == archive_format::OLDGNU_FORMAT as libc::c_int as libc::c_uint
         {
             let mut volume_label_max_len: size_t = (::core::mem::size_of::<
                 [libc::c_char; 100],
@@ -6662,7 +7796,7 @@ unsafe extern "C" fn decode_options(
             usage(2 as libc::c_int);
         }
         if subcommand_class[subcommand_option as usize] & 0x2 as libc::c_int == 0 {
-            if option_set_in_cl(OC_VERIFY as libc::c_int) != 0 {
+            if option_set_in_cl(option_class::OC_VERIFY as libc::c_int) != 0 {
                 option_conflict_error(
                     b"--verify\0" as *const u8 as *const libc::c_char,
                     subcommand_string(subcommand_option),
@@ -6706,7 +7840,7 @@ unsafe extern "C" fn decode_options(
             usage(2 as libc::c_int);
         }
         if subcommand_option as libc::c_uint
-            == CAT_SUBCOMMAND as libc::c_int as libc::c_uint
+            == subcommand::CAT_SUBCOMMAND as libc::c_int as libc::c_uint
         {
             if error_hook.is_some() {
                 error_hook.expect("non-null function pointer")();
@@ -6724,7 +7858,9 @@ unsafe extern "C" fn decode_options(
             usage(2 as libc::c_int);
         }
     }
-    if set_mtime_option as libc::c_uint == CLAMP_MTIME as libc::c_int as libc::c_uint {
+    if set_mtime_option as libc::c_uint
+        == set_mtime_option_mode::CLAMP_MTIME as libc::c_int as libc::c_uint
+    {
         if !(0 as libc::c_int as libc::c_long <= mtime_option.tv_nsec) {
             if error_hook.is_some() {
                 error_hook.expect("non-null function pointer")();
@@ -6743,7 +7879,8 @@ unsafe extern "C" fn decode_options(
         }
     }
     if args.pax_option as libc::c_int != 0
-        && archive_format as libc::c_uint != POSIX_FORMAT as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::POSIX_FORMAT as libc::c_int as libc::c_uint
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
         if error_hook.is_some() {
@@ -6762,7 +7899,8 @@ unsafe extern "C" fn decode_options(
         usage(2 as libc::c_int);
     }
     if acls_option > 0 as libc::c_int
-        && archive_format as libc::c_uint != POSIX_FORMAT as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::POSIX_FORMAT as libc::c_int as libc::c_uint
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
         if error_hook.is_some() {
@@ -6781,7 +7919,8 @@ unsafe extern "C" fn decode_options(
         usage(2 as libc::c_int);
     }
     if selinux_context_option > 0 as libc::c_int
-        && archive_format as libc::c_uint != POSIX_FORMAT as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::POSIX_FORMAT as libc::c_int as libc::c_uint
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
         if error_hook.is_some() {
@@ -6800,7 +7939,8 @@ unsafe extern "C" fn decode_options(
         usage(2 as libc::c_int);
     }
     if xattrs_option > 0 as libc::c_int
-        && archive_format as libc::c_uint != POSIX_FORMAT as libc::c_int as libc::c_uint
+        && archive_format as libc::c_uint
+            != archive_format::POSIX_FORMAT as libc::c_int as libc::c_uint
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
         if error_hook.is_some() {
@@ -6821,7 +7961,7 @@ unsafe extern "C" fn decode_options(
     if starting_file_option as libc::c_int != 0
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
-        if option_set_in_cl(OC_STARTING_FILE as libc::c_int) != 0 {
+        if option_set_in_cl(option_class::OC_STARTING_FILE as libc::c_int) != 0 {
             option_conflict_error(
                 b"--starting-file\0" as *const u8 as *const libc::c_char,
                 subcommand_string(subcommand_option),
@@ -6833,7 +7973,7 @@ unsafe extern "C" fn decode_options(
     if same_order_option as libc::c_int != 0
         && subcommand_class[subcommand_option as usize] & 0x1 as libc::c_int == 0
     {
-        if option_set_in_cl(OC_SAME_ORDER as libc::c_int) != 0 {
+        if option_set_in_cl(option_class::OC_SAME_ORDER as libc::c_int) != 0 {
             option_conflict_error(
                 b"--same-order\0" as *const u8 as *const libc::c_char,
                 subcommand_string(subcommand_option),
@@ -6846,10 +7986,10 @@ unsafe extern "C" fn decode_options(
         let mut base: *mut libc::c_char = 0 as *mut libc::c_char;
         if absolute_names_option {
             let mut one_top_level_loc: *mut option_locus = optloc_lookup(
-                OC_ONE_TOP_LEVEL as libc::c_int,
+                option_class::OC_ONE_TOP_LEVEL as libc::c_int,
             );
             let mut absolute_names_loc: *mut option_locus = optloc_lookup(
-                OC_ABSOLUTE_NAMES as libc::c_int,
+                option_class::OC_ABSOLUTE_NAMES as libc::c_int,
             );
             if optloc_eq(one_top_level_loc, absolute_names_loc) != 0 {
                 option_conflict_error(
@@ -6857,7 +7997,7 @@ unsafe extern "C" fn decode_options(
                     b"--absolute-names\0" as *const u8 as *const libc::c_char,
                 );
             } else if (*one_top_level_loc).source as libc::c_uint
-                == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
+                == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
             {
                 absolute_names_option = 0 as libc::c_int != 0;
             } else {
@@ -6887,7 +8027,7 @@ unsafe extern "C" fn decode_options(
         }
     }
     if recursive_unlink_option {
-        old_files_option = UNLINK_FIRST_OLD_FILES;
+        old_files_option = old_files::UNLINK_FIRST_OLD_FILES;
     }
     let mut base_open_flags: libc::c_int = 0 as libc::c_int | 0o2000000 as libc::c_int
         | 0o400 as libc::c_int | 0o4000 as libc::c_int
@@ -6897,7 +8037,7 @@ unsafe extern "C" fn decode_options(
             0o400000 as libc::c_int
         })
         | (if atime_preserve_option as libc::c_uint
-            == system_atime_preserve as libc::c_int as libc::c_uint
+            == atime_preserve::system_atime_preserve as libc::c_int as libc::c_uint
         {
             0o1000000 as libc::c_int
         } else {
@@ -6911,7 +8051,7 @@ unsafe extern "C" fn decode_options(
         0x100 as libc::c_int
     };
     if subcommand_option as libc::c_uint
-        == TEST_LABEL_SUBCOMMAND as libc::c_int as libc::c_uint
+        == subcommand::TEST_LABEL_SUBCOMMAND as libc::c_int as libc::c_uint
     {
         if !name_more_files() {
             verbose_option += 1;
@@ -6938,10 +8078,10 @@ unsafe extern "C" fn decode_options(
     }
     if same_order_option as libc::c_int != 0 && !listed_incremental_option.is_null() {
         let mut preserve_order_loc: *mut option_locus = optloc_lookup(
-            OC_SAME_ORDER as libc::c_int,
+            option_class::OC_SAME_ORDER as libc::c_int,
         );
         let mut listed_incremental_loc: *mut option_locus = optloc_lookup(
-            OC_LISTED_INCREMENTAL as libc::c_int,
+            option_class::OC_LISTED_INCREMENTAL as libc::c_int,
         );
         if optloc_eq(preserve_order_loc, listed_incremental_loc) != 0 {
             option_conflict_error(
@@ -6949,7 +8089,7 @@ unsafe extern "C" fn decode_options(
                 b"--listed-incremental\0" as *const u8 as *const libc::c_char,
             );
         } else if (*preserve_order_loc).source as libc::c_uint
-            == OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
+            == option_source::OPTS_COMMAND_LINE as libc::c_int as libc::c_uint
         {
             listed_incremental_option = 0 as *const libc::c_char;
         } else {
@@ -7048,7 +8188,8 @@ unsafe extern "C" fn decode_options(
             b"--backup\0" as *const u8 as *const libc::c_char,
             args.version_control_string,
         );
-        if backup_type as libc::c_uint == no_backups as libc::c_int as libc::c_uint
+        if backup_type as libc::c_uint
+            == backup_type::no_backups as libc::c_int as libc::c_uint
             || (to_stdout_option as libc::c_int != 0 || !to_command_option.is_null())
         {
             backup_option = 0 as libc::c_int != 0;
@@ -7072,7 +8213,7 @@ unsafe fn main_0(
     ::core::ptr::write_volatile(&mut exit_failure as *mut libc::c_int, 2 as libc::c_int);
     exit_status = 0 as libc::c_int;
     error_hook = Some(checkpoint_flush_actions as unsafe extern "C" fn() -> ());
-    set_quoting_style(0 as *mut quoting_options, escape_quoting_style);
+    set_quoting_style(0 as *mut quoting_options, quoting_style::escape_quoting_style);
     close_stdout_set_file_name(
         dcgettext(
             0 as *const libc::c_char,
@@ -7239,7 +8380,7 @@ pub unsafe extern "C" fn tar_timespec_cmp(
     mut b: timespec,
 ) -> libc::c_int {
     if (1 as libc::c_int) << current_format as libc::c_uint
-        & (1 as libc::c_int) << POSIX_FORMAT as libc::c_int == 0
+        & (1 as libc::c_int) << archive_format::POSIX_FORMAT as libc::c_int == 0
     {
         b.tv_nsec = 0 as libc::c_int as __syscall_slong_t;
         a.tv_nsec = b.tv_nsec;
@@ -7253,7 +8394,7 @@ pub unsafe extern "C" fn set_exit_status(mut val: libc::c_int) {
     }
 }
 pub fn main() {
-    let mut args: Vec::<*mut libc::c_char> = Vec::new();
+    let mut args: Vec<*mut libc::c_char> = Vec::new();
     for arg in ::std::env::args() {
         args.push(
             (::std::ffi::CString::new(arg))

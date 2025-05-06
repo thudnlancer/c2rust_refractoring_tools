@@ -1,0 +1,2107 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/gzip-1.12)
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_args.rs:58:23
+   |
+58 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/printf_args.rs:122:51
+    |
+122 |                 (*ap).a.a_longdouble = args.arg::<f128::f128>();
+    |                                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:18
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:54
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                                                      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:18
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:49
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                                                 ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:10:12
+   |
+10 |     mut x: f128::f128,
+   |            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:12:6
+   |
+12 | ) -> f128::f128 {
+   |      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_parse.rs:62:23
+   |
+62 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/vasnprintf.rs:57:23
+   |
+57 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+    --> lib/vasnprintf.rs:1219:53
+     |
+1219 | ...                   let mut arg_10: f128::f128 = (*(a.arg)
+     |                                       ^^^^ use of undeclared crate or module `f128`
+
+warning: unnecessary parentheses around function argument
+   --> deflate.rs:594:17
+    |
+594 |                 (if block_start >= 0 as libc::c_long {
+    |                 ^
+...
+601 |                 }),
+    |                  ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+594 ~                 if block_start >= 0 as libc::c_long {
+595 |                     &mut *window
+  ...
+600 |                     0 as *mut libc::c_void as *mut libc::c_char
+601 ~                 },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> deflate.rs:757:21
+    |
+757 |                     (if block_start >= 0 as libc::c_long {
+    |                     ^
+...
+764 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+757 ~                     if block_start >= 0 as libc::c_long {
+758 |                         &mut *window
+  ...
+763 |                         0 as *mut libc::c_void as *mut libc::c_char
+764 ~                     },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> deflate.rs:786:21
+    |
+786 |                     (if block_start >= 0 as libc::c_long {
+    |                     ^
+...
+793 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+786 ~                     if block_start >= 0 as libc::c_long {
+787 |                         &mut *window
+  ...
+792 |                         0 as *mut libc::c_void as *mut libc::c_char
+793 ~                     },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> deflate.rs:812:21
+    |
+812 |                     (if block_start >= 0 as libc::c_long {
+    |                     ^
+...
+819 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+812 ~                     if block_start >= 0 as libc::c_long {
+813 |                         &mut *window
+  ...
+818 |                         0 as *mut libc::c_void as *mut libc::c_char
+819 ~                     },
+    |
+
+warning: unnecessary parentheses around function argument
+    --> gzip.rs:1227:17
+     |
+1227 |                 (if decompress != 0 { 0 as libc::c_int } else { 1 as libc::c_int }),
+     |                 ^                                                                 ^
+     |
+help: remove these parentheses
+     |
+1227 -                 (if decompress != 0 { 0 as libc::c_int } else { 1 as libc::c_int }),
+1227 +                 if decompress != 0 { 0 as libc::c_int } else { 1 as libc::c_int },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> inflate.rs:647:35
+    |
+647 |                     .wrapping_sub((if d > w { d } else { w }));
+    |                                   ^                         ^
+    |
+help: remove these parentheses
+    |
+647 -                     .wrapping_sub((if d > w { d } else { w }));
+647 +                     .wrapping_sub(if d > w { d } else { w });
+    |
+
+warning: unused label
+  --> lib/chdir_long.rs:59:9
+   |
+59 |         'c_1358: {
+   |         ^^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> lib/chdir_long.rs:120:5
+    |
+120 |     'c_1957: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:146:5
+    |
+146 |     'c_1919: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:208:13
+    |
+208 |             'c_1748: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:234:13
+    |
+234 |             'c_1709: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:280:17
+    |
+280 |                 'c_1629: {
+    |                 ^^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/fd_hook.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `::libc`
+ --> lib/freading.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/glthread/threadlib.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/math.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> lib/printf_frexpl.rs:15:13
+   |
+15 |     oldcw = ({
+   |             ^
+...
+19 |     });
+   |      ^
+   |
+help: remove these parentheses
+   |
+15 ~     oldcw = {
+16 |         let mut _cw: fpucw_t = 0;
+17 |         asm!("fnstcw [{0}]", in (reg) & mut _cw, options(preserves_flags));
+18 |         _cw
+19 ~     };
+   |
+
+warning: unused label
+  --> lib/printf_frexpl.rs:23:5
+   |
+23 |     'c_149: {
+   |     ^^^^^^
+
+warning: unused label
+  --> lib/printf_frexpl.rs:37:5
+   |
+37 |     'c_59: {
+   |     ^^^^^
+
+warning: unnecessary parentheses around block return value
+   --> lib/savedir.rs:114:21
+    |
+114 |                     (if *entry.offset(1 as libc::c_int as isize) as libc::c_int
+    |                     ^
+...
+120 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+114 ~                     if *entry.offset(1 as libc::c_int as isize) as libc::c_int
+115 |                         != '.' as i32
+  ...
+119 |                         2 as libc::c_int
+120 ~                     }
+    |
+
+warning: unused import: `::libc`
+ --> lib/unistd.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3537:21
+     |
+3537 |                     (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |                     ^
+...
+4208 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3537 ~                     if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+   ...
+4207 |                         })
+4208 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3538:25
+     |
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3883 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3538 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3539 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3882 |                             0 as libc::c_int
+3883 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3539:29
+     |
+3539 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3744 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3539 ~                             if n < 0 as libc::c_int as libc::c_long {
+3540 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+3743 |                                 })
+3744 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3540:33
+     |
+3540 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3621 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3540 ~                                 if ((if 1 as libc::c_int != 0 {
+3541 |                                     0 as libc::c_int as libc::c_long
+   ...
+3620 |                                         as libc::c_int
+3621 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3623:33
+     |
+3623 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3743 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3623 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3624 |                                     0 as libc::c_int as libc::c_long
+   ...
+3742 |                                         / s < n) as libc::c_int
+3743 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3722:37
+     |
+3722 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3739 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3722 ~                                     if ((if 1 as libc::c_int != 0 {
+3723 |                                         0 as libc::c_int as libc::c_long
+   ...
+3738 |                                             as libc::c_int
+3739 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3746:29
+     |
+3746 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3873 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3746 ~                             if s == 0 as libc::c_int as libc::c_long {
+3747 |                                 0 as libc::c_int
+   ...
+3872 |                                 })
+3873 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3749:33
+     |
+3749 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3872 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3749 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3750 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3871 |                                     (127 as libc::c_int as libc::c_long / s < n) as libc::c_int
+3872 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3750:37
+     |
+3750 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3869 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3750 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3751 |                                         0 as libc::c_int as libc::c_long
+   ...
+3868 |                                             / n < s) as libc::c_int
+3869 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3849:41
+     |
+3849 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3865 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3849 ~                                         if ((if 1 as libc::c_int != 0 {
+3850 |                                             0 as libc::c_int as libc::c_long
+   ...
+3864 |                                                 as libc::c_int
+3865 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3885:25
+     |
+3885 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4207 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3885 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3886 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4206 |                             0 as libc::c_int
+4207 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3886:29
+     |
+3886 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4082 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3886 ~                             if n < 0 as libc::c_int as libc::c_long {
+3887 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4081 |                                 })
+4082 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3887:33
+     |
+3887 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3973 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3887 ~                                 if ((if 1 as libc::c_int != 0 {
+3888 |                                     0 as libc::c_int as libc::c_long
+   ...
+3972 |                                         as libc::c_int
+3973 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3975:33
+     |
+3975 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4081 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3975 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3976 |                                     0 as libc::c_int as libc::c_long
+   ...
+4080 |                                     (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4081 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4064:37
+     |
+4064 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4078 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4064 ~                                     if ((if 1 as libc::c_int != 0 {
+4065 |                                         0 as libc::c_int as libc::c_long
+   ...
+4077 |                                             as libc::c_int
+4078 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4084:29
+     |
+4084 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4197 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4084 ~                             if s == 0 as libc::c_int as libc::c_long {
+4085 |                                 0 as libc::c_int
+   ...
+4196 |                                 })
+4197 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4087:33
+     |
+4087 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4087 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4088 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4195 |                                         as libc::c_long / s < n) as libc::c_int
+4196 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4088:37
+     |
+4088 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4192 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4088 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4089 |                                         0 as libc::c_int as libc::c_long
+   ...
+4191 |                                         (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4192 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4177:41
+     |
+4177 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4189 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4177 ~                                         if ((if 1 as libc::c_int != 0 {
+4178 |                                             0 as libc::c_int as libc::c_long
+   ...
+4188 |                                                 < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4189 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4210:21
+     |
+4210 |                     (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                     ^
+...
+7043 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4210 ~                     if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4211 |                         == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+7042 |                         })
+7043 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4213:25
+     |
+4213 |                         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+     |                         ^
+...
+4899 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4213 ~                         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+4214 |                         {
+   ...
+4898 |                             })
+4899 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4215:29
+     |
+4215 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4574 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4215 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4216 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4573 |                                 0 as libc::c_int
+4574 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4216:33
+     |
+4216 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4428 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4216 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4217 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4427 |                                     })
+4428 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4217:37
+     |
+4217 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4299 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4217 ~                                     if ((if 1 as libc::c_int != 0 {
+4218 |                                         0 as libc::c_int as libc::c_long
+   ...
+4298 |                                             as libc::c_int
+4299 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4301:37
+     |
+4301 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4427 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4301 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4302 |                                         0 as libc::c_int as libc::c_long
+   ...
+4426 |                                             as libc::c_long / s < n) as libc::c_int
+4427 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4406:41
+     |
+4406 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4423 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4406 ~                                         if ((if 1 as libc::c_int != 0 {
+4407 |                                             0 as libc::c_int as libc::c_long
+   ...
+4422 |                                                 as libc::c_int
+4423 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4430:33
+     |
+4430 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4564 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4430 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4431 |                                     0 as libc::c_int
+   ...
+4563 |                                     })
+4564 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4433:37
+     |
+4433 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4563 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4433 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4434 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4562 |                                             as libc::c_int
+4563 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4434:41
+     |
+4434 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4559 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4434 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4435 |                                             0 as libc::c_int as libc::c_long
+   ...
+4558 |                                                 as libc::c_long / n < s) as libc::c_int
+4559 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4539:45
+     |
+4539 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4555 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4539 ~                                             if ((if 1 as libc::c_int != 0 {
+4540 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4554 |                                                     as libc::c_int
+4555 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4576:29
+     |
+4576 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4898 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4576 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4577 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4897 |                                 0 as libc::c_int
+4898 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4577:33
+     |
+4577 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4773 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4577 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4578 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4772 |                                     })
+4773 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4578:37
+     |
+4578 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4664 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4578 ~                                     if ((if 1 as libc::c_int != 0 {
+4579 |                                         0 as libc::c_int as libc::c_long
+   ...
+4663 |                                             as libc::c_int
+4664 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4666:37
+     |
+4666 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4772 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4666 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4667 |                                         0 as libc::c_int as libc::c_long
+   ...
+4771 |                                         (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4772 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4755:41
+     |
+4755 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4769 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4755 ~                                         if ((if 1 as libc::c_int != 0 {
+4756 |                                             0 as libc::c_int as libc::c_long
+   ...
+4768 |                                                 as libc::c_int
+4769 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4775:33
+     |
+4775 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4888 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4775 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4776 |                                     0 as libc::c_int
+   ...
+4887 |                                     })
+4888 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4778:37
+     |
+4778 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4887 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4778 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4779 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4886 |                                             + 1 as libc::c_int) as libc::c_long / s < n) as libc::c_int
+4887 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4779:41
+     |
+4779 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4883 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4779 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4780 |                                             0 as libc::c_int as libc::c_long
+   ...
+4882 |                                             (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4883 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4868:45
+     |
+4868 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4880 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4868 ~                                             if ((if 1 as libc::c_int != 0 {
+4869 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4879 |                                                     < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4880 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4901:25
+     |
+4901 |                         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                         ^
+...
+7042 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4901 ~                         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4902 |                             == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+7041 |                             })
+7042 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4904:29
+     |
+4904 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5603 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4904 ~                             if ((if 1 as libc::c_int != 0 {
+4905 |                                 0 as libc::c_int as libc::c_long
+   ...
+5602 |                                 })
+5603 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4911:33
+     |
+4911 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5270 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4911 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+4912 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5269 |                                     0 as libc::c_int
+5270 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4912:37
+     |
+4912 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5124 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4912 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4913 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5123 |                                         })
+5124 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4913:41
+     |
+4913 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4995 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4913 ~                                         if ((if 1 as libc::c_int != 0 {
+4914 |                                             0 as libc::c_int as libc::c_long
+   ...
+4994 |                                                 as libc::c_int
+4995 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4997:41
+     |
+4997 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5123 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4997 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4998 |                                             0 as libc::c_int as libc::c_long
+   ...
+5122 |                                                 as libc::c_long / s < n) as libc::c_int
+5123 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5102:45
+     |
+5102 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5119 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5102 ~                                             if ((if 1 as libc::c_int != 0 {
+5103 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5118 |                                                     as libc::c_int
+5119 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5126:37
+     |
+5126 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5260 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5126 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5127 |                                         0 as libc::c_int
+   ...
+5259 |                                         })
+5260 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5129:41
+     |
+5129 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5259 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5129 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5130 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5258 |                                                 as libc::c_int
+5259 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5130:45
+     |
+5130 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5255 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5130 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5131 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5254 |                                                     as libc::c_long / n < s) as libc::c_int
+5255 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5235:49
+     |
+5235 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5251 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5235 ~                                                 if ((if 1 as libc::c_int != 0 {
+5236 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5250 |                                                         as libc::c_int
+5251 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5272:33
+     |
+5272 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5602 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5272 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+5273 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5601 |                                     0 as libc::c_int
+5602 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5273:37
+     |
+5273 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5475 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5273 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5274 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5474 |                                         })
+5475 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5274:41
+     |
+5274 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5366 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5274 ~                                         if ((if 1 as libc::c_int != 0 {
+5275 |                                             0 as libc::c_int as libc::c_long
+   ...
+5365 |                                                 as libc::c_int
+5366 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5368:41
+     |
+5368 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5474 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5368 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5369 |                                             0 as libc::c_int as libc::c_long
+   ...
+5473 |                                             (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+5474 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5457:45
+     |
+5457 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5471 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5457 ~                                             if ((if 1 as libc::c_int != 0 {
+5458 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5470 |                                                     as libc::c_int
+5471 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5477:37
+     |
+5477 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5477 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5478 |                                         0 as libc::c_int
+   ...
+5591 |                                         })
+5592 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5480:41
+     |
+5480 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5591 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5480 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5481 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5590 |                                                 as libc::c_int
+5591 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5481:45
+     |
+5481 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5585 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5481 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5482 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5584 |                                                 (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+5585 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5570:49
+     |
+5570 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5582 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5570 ~                                                 if ((if 1 as libc::c_int != 0 {
+5571 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5581 |                                                         < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+5582 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5605:29
+     |
+5605 | ...                   (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                       ^
+...
+7041 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5605 ~                             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+5606 |                                 == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+7040 |                                 })
+7041 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5608:33
+     |
+5608 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5608 ~                                 if ((if 1 as libc::c_int != 0 {
+5609 |                                     0 as libc::c_int as libc::c_long
+   ...
+6311 |                                     })
+6312 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5615:37
+     |
+5615 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5972 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5615 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5616 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5971 |                                         0 as libc::c_int
+5972 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5616:41
+     |
+5616 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5827 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5616 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5617 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+5826 |                                             })
+5827 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5617:45
+     |
+5617 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5698 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5617 ~                                             if ((if 1 as libc::c_int != 0 {
+5618 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5697 |                                                     as libc::c_int
+5698 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5700:45
+     |
+5700 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5700 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5701 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5825 |                                                     - 1 as libc::c_long) / s < n) as libc::c_int
+5826 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5805:49
+     |
+5805 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5822 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5805 ~                                                 if ((if 1 as libc::c_int != 0 {
+5806 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5821 |                                                         as libc::c_int
+5822 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5829:41
+     |
+5829 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5962 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5829 ~                                         if s == 0 as libc::c_int as libc::c_long {
+5830 |                                             0 as libc::c_int
+   ...
+5961 |                                             })
+5962 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5832:45
+     |
+5832 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5961 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5832 ~                                             if n < 0 as libc::c_int as libc::c_long {
+5833 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5960 |                                                 (9223372036854775807 as libc::c_long / s < n) as libc::c_int
+5961 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5833:49
+     |
+5833 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5958 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5833 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+5834 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5957 |                                                         - 1 as libc::c_long) / n < s) as libc::c_int
+5958 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5938:53
+     |
+5938 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5954 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5938 ~                                                     if ((if 1 as libc::c_int != 0 {
+5939 |                                                         0 as libc::c_int as libc::c_long
+   ...
+5953 |                                                             as libc::c_int
+5954 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5974:37
+     |
+5974 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6311 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5974 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5975 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6310 |                                         0 as libc::c_int
+6311 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5975:41
+     |
+5975 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6183 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5975 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5976 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6182 |                                             })
+6183 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5976:45
+     |
+5976 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6074 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5976 ~                                             if (if 1 as libc::c_int != 0 {
+5977 |                                                 0 as libc::c_int as libc::c_ulong
+   ...
+6073 |                                                         as libc::c_ulong) as libc::c_int
+6074 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6076:45
+     |
+6076 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6182 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6076 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6077 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6181 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6182 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6165:49
+     |
+6165 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6179 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6165 ~                                                 if ((if 1 as libc::c_int != 0 {
+6166 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6178 |                                                         as libc::c_int
+6179 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6185:41
+     |
+6185 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6301 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6185 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6186 |                                             0 as libc::c_int
+   ...
+6300 |                                             })
+6301 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6188:45
+     |
+6188 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6300 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6188 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6189 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6299 |                                                     as libc::c_int
+6300 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6189:49
+     |
+6189 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6293 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6189 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6190 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6292 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+6293 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6278:53
+     |
+6278 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6290 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6278 ~                                                     if ((if 1 as libc::c_int != 0 {
+6279 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6289 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+6290 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6314:33
+     |
+6314 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7040 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6314 ~                                 if ((if 1 as libc::c_int != 0 {
+6315 |                                     0 as libc::c_int as libc::c_long
+   ...
+7039 |                                     })
+7040 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6321:37
+     |
+6321 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6695 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6321 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6322 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6694 |                                         0 as libc::c_int
+6695 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6322:41
+     |
+6322 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6542 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6322 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6323 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+6541 |                                             })
+6542 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6323:45
+     |
+6323 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6409 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6323 ~                                             if ((if 1 as libc::c_int != 0 {
+6324 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6408 |                                                         as libc::c_longlong) as libc::c_int
+6409 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6411:45
+     |
+6411 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6541 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6411 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6412 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6540 |                                                     < n as libc::c_longlong) as libc::c_int
+6541 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6518:49
+     |
+6518 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6536 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6518 ~                                                 if ((if 1 as libc::c_int != 0 {
+6519 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6535 |                                                                 as libc::c_longlong) as libc::c_int
+6536 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6544:41
+     |
+6544 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6683 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6544 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6545 |                                             0 as libc::c_int
+   ...
+6682 |                                             })
+6683 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6547:45
+     |
+6547 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6682 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6547 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6548 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6681 |                                                     as libc::c_int
+6682 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6548:49
+     |
+6548 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6677 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6548 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6549 |                                                     0 as libc::c_int as libc::c_longlong
+   ...
+6676 |                                                         < s as libc::c_longlong) as libc::c_int
+6677 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6655:53
+     |
+6655 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6672 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6655 ~                                                     if ((if 1 as libc::c_int != 0 {
+6656 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6671 |                                                                 as libc::c_longlong) as libc::c_int
+6672 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6697:37
+     |
+6697 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7039 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6697 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6698 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7038 |                                         0 as libc::c_int
+7039 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6698:41
+     |
+6698 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6910 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6698 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6699 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6909 |                                             })
+6910 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6699:45
+     |
+6699 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6699 ~                                             if (if 1 as libc::c_int != 0 {
+6700 |                                                 0 as libc::c_int as libc::c_ulonglong
+   ...
+6800 |                                                         as libc::c_ulonglong) as libc::c_int
+6801 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6803:45
+     |
+6803 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6909 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6803 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6804 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6908 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6909 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6892:49
+     |
+6892 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6906 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6892 ~                                                 if ((if 1 as libc::c_int != 0 {
+6893 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6905 |                                                         as libc::c_int
+6906 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6912:41
+     |
+6912 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7029 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6912 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6913 |                                             0 as libc::c_int
+   ...
+7028 |                                             })
+7029 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6915:45
+     |
+6915 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7028 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6915 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6916 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7027 |                                                     < n as libc::c_ulonglong) as libc::c_int
+7028 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6916:49
+     |
+6916 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7020 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6916 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6917 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7019 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+7020 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:7005:53
+     |
+7005 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7017 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7005 ~                                                     if ((if 1 as libc::c_int != 0 {
+7006 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7016 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+7017 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+   --> util.rs:552:13
+    |
+552 |             ({
+    |             ^
+...
+574 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+552 ~             {
+553 |                 let mut __res: libc::c_int = 0;
+  ...
+573 |                 __res
+574 ~             }
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0308]: mismatched types
+   --> lib/malloca.rs:25:46
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus);
+    |                              --------------- ^^^^ expected `u64`, found `i32`
+    |                              |
+    |                              arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/mod.rs:852:5
+    |
+852 | /     uint_impl! { u64, u64, i64, NonZeroU64, 64, 18446744073709551615, 12, "0xaa00000000006e1", "0x6e10aa",
+853 | |     "0x1234567890123456", "0x5634129078563412", "0x6a2c48091e6a2c48",
+854 | |     "[0x56, 0x34, 0x12, 0x90, 0x78, 0x56, 0x34, 0x12]",
+855 | |     "[0x12, 0x34, 0x56, 0x78, 0x90, 0x12, 0x34, 0x56]",
+856 | |     "", "", ""}
+    | |_______________^
+    = note: this error originates in the macro `uint_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u64` and panic if the converted value doesn't fit
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus.try_into().unwrap());
+    |                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> lib/malloca.rs:26:35
+   |
+26 |     *(&mut nplus as *mut idx_t) = fresh0;
+   |     ---------------------------   ^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     expected due to the type of this binding
+
+Some errors have detailed explanations: E0308, E0433.
+For more information about an error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 121 warnings
+error: could not compile `c2rust_out` due to 13 previous errors; 121 warnings emitted

@@ -1,0 +1,209 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libtree)
+warning: path statement with no effect
+   --> libtree.rs:427:9
+    |
+427 |         i;
+    |         ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> libtree.rs:511:9
+    |
+511 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> libtree.rs:572:5
+    |
+572 |     end;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:578:9
+    |
+578 |         end;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:588:13
+    |
+588 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> libtree.rs:610:9
+    |
+610 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> libtree.rs:651:13
+    |
+651 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> libtree.rs:673:13
+    |
+673 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> libtree.rs:769:13
+    |
+769 |             offset;
+    |             ^^^^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:841:17
+    |
+841 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> libtree.rs:866:9
+    |
+866 |         curr_src;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:871:13
+    |
+871 |             curr_src;
+    |             ^^^^^^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:928:13
+    |
+928 |             curr_src;
+    |             ^^^^^^^^^
+
+warning: path statement with no effect
+   --> libtree.rs:977:13
+    |
+977 |             start;
+    |             ^^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:1112:9
+     |
+1112 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> libtree.rs:1151:9
+     |
+1151 |         i_0;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:1208:13
+     |
+1208 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> libtree.rs:1304:9
+     |
+1304 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> libtree.rs:1522:13
+     |
+1522 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> libtree.rs:1546:13
+     |
+1546 |             i_0;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:1710:9
+     |
+1710 |         vaddr_idx;
+     |         ^^^^^^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:1857:9
+     |
+1857 |         i_1;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:1930:13
+     |
+1930 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> libtree.rs:2061:9
+     |
+2061 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> libtree.rs:2097:13
+     |
+2097 |             begin;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2131:17
+     |
+2131 |                 begin;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2373:9
+     |
+2373 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> libtree.rs:2457:13
+     |
+2457 |             arg;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2460:17
+     |
+2460 |                 arg;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2549:21
+     |
+2549 |                     arg;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2554:9
+     |
+2554 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> libtree.rs:2557:5
+     |
+2557 |     argv;
+     |     ^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2559:5
+     |
+2559 |     positional;
+     |     ^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> libtree.rs:2590:13
+     |
+2590 |             j;
+     |             ^^
+
+warning: `c2rust_out` (lib) generated 34 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.98s

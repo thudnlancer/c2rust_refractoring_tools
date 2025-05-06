@@ -1,0 +1,1438 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/gsl-2.7.1)
+error[E0583]: file not found for module `env`
+   --> c2rust-lib.rs:313:1
+    |
+313 | pub mod env;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `env`, create file "ieee_utils/env.rs" or "ieee_utils/env/mod.rs"
+
+error[E0583]: file not found for module `fp`
+   --> c2rust-lib.rs:314:1
+    |
+314 | pub mod fp;
+    | ^^^^^^^^^^^
+    |
+    = help: to create the module `fp`, create file "ieee_utils/fp.rs" or "ieee_utils/fp/mod.rs"
+
+error[E0583]: file not found for module `make_rep`
+   --> c2rust-lib.rs:315:1
+    |
+315 | pub mod make_rep;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `make_rep`, create file "ieee_utils/make_rep.rs" or "ieee_utils/make_rep/mod.rs"
+
+error[E0583]: file not found for module `print`
+   --> c2rust-lib.rs:316:1
+    |
+316 | pub mod print;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `print`, create file "ieee_utils/print.rs" or "ieee_utils/print/mod.rs"
+
+error[E0583]: file not found for module `read`
+   --> c2rust-lib.rs:317:1
+    |
+317 | pub mod read;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `read`, create file "ieee_utils/read.rs" or "ieee_utils/read/mod.rs"
+
+error[E0583]: file not found for module `bsimp`
+   --> c2rust-lib.rs:551:1
+    |
+551 | pub mod bsimp;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `bsimp`, create file "ode_initval/bsimp.rs" or "ode_initval/bsimp/mod.rs"
+
+error[E0583]: file not found for module `control`
+   --> c2rust-lib.rs:552:1
+    |
+552 | pub mod control;
+    | ^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `control`, create file "ode_initval/control.rs" or "ode_initval/control/mod.rs"
+
+error[E0583]: file not found for module `cscal`
+   --> c2rust-lib.rs:553:1
+    |
+553 | pub mod cscal;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `cscal`, create file "ode_initval/cscal.rs" or "ode_initval/cscal/mod.rs"
+
+error[E0583]: file not found for module `cstd`
+   --> c2rust-lib.rs:554:1
+    |
+554 | pub mod cstd;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `cstd`, create file "ode_initval/cstd.rs" or "ode_initval/cstd/mod.rs"
+
+error[E0583]: file not found for module `evolve`
+   --> c2rust-lib.rs:555:1
+    |
+555 | pub mod evolve;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `evolve`, create file "ode_initval/evolve.rs" or "ode_initval/evolve/mod.rs"
+
+error[E0583]: file not found for module `gear1`
+   --> c2rust-lib.rs:556:1
+    |
+556 | pub mod gear1;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `gear1`, create file "ode_initval/gear1.rs" or "ode_initval/gear1/mod.rs"
+
+error[E0583]: file not found for module `gear2`
+   --> c2rust-lib.rs:557:1
+    |
+557 | pub mod gear2;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `gear2`, create file "ode_initval/gear2.rs" or "ode_initval/gear2/mod.rs"
+
+error[E0583]: file not found for module `rk2`
+   --> c2rust-lib.rs:558:1
+    |
+558 | pub mod rk2;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `rk2`, create file "ode_initval/rk2.rs" or "ode_initval/rk2/mod.rs"
+
+error[E0583]: file not found for module `rk2imp`
+   --> c2rust-lib.rs:559:1
+    |
+559 | pub mod rk2imp;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk2imp`, create file "ode_initval/rk2imp.rs" or "ode_initval/rk2imp/mod.rs"
+
+error[E0583]: file not found for module `rk2simp`
+   --> c2rust-lib.rs:560:1
+    |
+560 | pub mod rk2simp;
+    | ^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk2simp`, create file "ode_initval/rk2simp.rs" or "ode_initval/rk2simp/mod.rs"
+
+error[E0583]: file not found for module `rk4`
+   --> c2rust-lib.rs:561:1
+    |
+561 | pub mod rk4;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `rk4`, create file "ode_initval/rk4.rs" or "ode_initval/rk4/mod.rs"
+
+error[E0583]: file not found for module `rk4imp`
+   --> c2rust-lib.rs:562:1
+    |
+562 | pub mod rk4imp;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk4imp`, create file "ode_initval/rk4imp.rs" or "ode_initval/rk4imp/mod.rs"
+
+error[E0583]: file not found for module `rk8pd`
+   --> c2rust-lib.rs:563:1
+    |
+563 | pub mod rk8pd;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk8pd`, create file "ode_initval/rk8pd.rs" or "ode_initval/rk8pd/mod.rs"
+
+error[E0583]: file not found for module `rkck`
+   --> c2rust-lib.rs:564:1
+    |
+564 | pub mod rkck;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `rkck`, create file "ode_initval/rkck.rs" or "ode_initval/rkck/mod.rs"
+
+error[E0583]: file not found for module `rkf45`
+   --> c2rust-lib.rs:565:1
+    |
+565 | pub mod rkf45;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rkf45`, create file "ode_initval/rkf45.rs" or "ode_initval/rkf45/mod.rs"
+
+error[E0583]: file not found for module `step`
+   --> c2rust-lib.rs:566:1
+    |
+566 | pub mod step;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `step`, create file "ode_initval/step.rs" or "ode_initval/step/mod.rs"
+
+error[E0583]: file not found for module `bsimp`
+   --> c2rust-lib.rs:569:1
+    |
+569 | pub mod bsimp;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `bsimp`, create file "ode_initval2/bsimp.rs" or "ode_initval2/bsimp/mod.rs"
+
+error[E0583]: file not found for module `control`
+   --> c2rust-lib.rs:570:1
+    |
+570 | pub mod control;
+    | ^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `control`, create file "ode_initval2/control.rs" or "ode_initval2/control/mod.rs"
+
+error[E0583]: file not found for module `cscal`
+   --> c2rust-lib.rs:571:1
+    |
+571 | pub mod cscal;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `cscal`, create file "ode_initval2/cscal.rs" or "ode_initval2/cscal/mod.rs"
+
+error[E0583]: file not found for module `cstd`
+   --> c2rust-lib.rs:572:1
+    |
+572 | pub mod cstd;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `cstd`, create file "ode_initval2/cstd.rs" or "ode_initval2/cstd/mod.rs"
+
+error[E0583]: file not found for module `driver`
+   --> c2rust-lib.rs:573:1
+    |
+573 | pub mod driver;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `driver`, create file "ode_initval2/driver.rs" or "ode_initval2/driver/mod.rs"
+
+error[E0583]: file not found for module `evolve`
+   --> c2rust-lib.rs:574:1
+    |
+574 | pub mod evolve;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `evolve`, create file "ode_initval2/evolve.rs" or "ode_initval2/evolve/mod.rs"
+
+error[E0583]: file not found for module `msadams`
+   --> c2rust-lib.rs:575:1
+    |
+575 | pub mod msadams;
+    | ^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `msadams`, create file "ode_initval2/msadams.rs" or "ode_initval2/msadams/mod.rs"
+
+error[E0583]: file not found for module `msbdf`
+   --> c2rust-lib.rs:576:1
+    |
+576 | pub mod msbdf;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `msbdf`, create file "ode_initval2/msbdf.rs" or "ode_initval2/msbdf/mod.rs"
+
+error[E0583]: file not found for module `rk1imp`
+   --> c2rust-lib.rs:577:1
+    |
+577 | pub mod rk1imp;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk1imp`, create file "ode_initval2/rk1imp.rs" or "ode_initval2/rk1imp/mod.rs"
+
+error[E0583]: file not found for module `rk2`
+   --> c2rust-lib.rs:578:1
+    |
+578 | pub mod rk2;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `rk2`, create file "ode_initval2/rk2.rs" or "ode_initval2/rk2/mod.rs"
+
+error[E0583]: file not found for module `rk2imp`
+   --> c2rust-lib.rs:579:1
+    |
+579 | pub mod rk2imp;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk2imp`, create file "ode_initval2/rk2imp.rs" or "ode_initval2/rk2imp/mod.rs"
+
+error[E0583]: file not found for module `rk4`
+   --> c2rust-lib.rs:580:1
+    |
+580 | pub mod rk4;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `rk4`, create file "ode_initval2/rk4.rs" or "ode_initval2/rk4/mod.rs"
+
+error[E0583]: file not found for module `rk4imp`
+   --> c2rust-lib.rs:581:1
+    |
+581 | pub mod rk4imp;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk4imp`, create file "ode_initval2/rk4imp.rs" or "ode_initval2/rk4imp/mod.rs"
+
+error[E0583]: file not found for module `rk8pd`
+   --> c2rust-lib.rs:582:1
+    |
+582 | pub mod rk8pd;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rk8pd`, create file "ode_initval2/rk8pd.rs" or "ode_initval2/rk8pd/mod.rs"
+
+error[E0583]: file not found for module `rkck`
+   --> c2rust-lib.rs:583:1
+    |
+583 | pub mod rkck;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `rkck`, create file "ode_initval2/rkck.rs" or "ode_initval2/rkck/mod.rs"
+
+error[E0583]: file not found for module `rkf45`
+   --> c2rust-lib.rs:584:1
+    |
+584 | pub mod rkf45;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `rkf45`, create file "ode_initval2/rkf45.rs" or "ode_initval2/rkf45/mod.rs"
+
+error[E0583]: file not found for module `step`
+   --> c2rust-lib.rs:585:1
+    |
+585 | pub mod step;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `step`, create file "ode_initval2/step.rs" or "ode_initval2/step/mod.rs"
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:19
+   |
+13 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around block return value
+   --> eigen/genv.rs:749:33
+    |
+749 | ...                   (if fabs(gsl_matrix_get(S, je, je)) * ascale
+    |                       ^
+...
+755 | ...                   })
+    |                        ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+749 ~                                 if fabs(gsl_matrix_get(S, je, je)) * ascale
+750 |                                     > fabs(gsl_matrix_get(T, je, je)) * bscale
+  ...
+754 |                                     fabs(gsl_matrix_get(T, je, je)) * bscale
+755 ~                                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/genv.rs:795:45
+    |
+795 | ...                   (if fabs(acoef) > fabs(bcoefr) {
+    |                       ^
+...
+799 | ...                   })
+    |                        ^
+    |
+help: remove these parentheses
+    |
+795 ~                                             if fabs(acoef) > fabs(bcoefr) {
+796 |                                                 fabs(acoef)
+797 |                                             } else {
+798 |                                                 fabs(bcoefr)
+799 ~                                             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/genv.rs:815:45
+    |
+815 | ...                   (if fabs(acoef) > fabs(bcoefr) {
+    |                       ^
+...
+819 | ...                   })
+    |                        ^
+    |
+help: remove these parentheses
+    |
+815 ~                                             if fabs(acoef) > fabs(bcoefr) {
+816 |                                                 fabs(acoef)
+817 |                                             } else {
+818 |                                                 fabs(bcoefr)
+819 ~                                             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/herm.rs:481:21
+    |
+481 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    |                     ^
+...
+499 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+481 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+482 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+  ...
+498 |                         )
+499 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/hermv.rs:576:21
+    |
+576 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    |                     ^
+...
+594 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+576 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+577 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+  ...
+593 |                         )
+594 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:259:17
+    |
+259 |                 (if fabs(B22) > rtmin { fabs(B22) } else { rtmin })
+    |                 ^                                                 ^
+    |
+help: remove these parentheses
+    |
+259 -                 (if fabs(B22) > rtmin { fabs(B22) } else { rtmin })
+259 +                 if fabs(B22) > rtmin { fabs(B22) } else { rtmin }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:264:13
+    |
+264 |             (if fabs(B12) > (if fabs(B22) > rtmin { fabs(B22) } else { rtmin }) {
+    |             ^
+...
+268 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+264 ~             if fabs(B12) > (if fabs(B22) > rtmin { fabs(B22) } else { rtmin }) {
+265 |                 fabs(B12)
+266 |             } else {
+267 |                 (if fabs(B22) > rtmin { fabs(B22) } else { rtmin })
+268 ~             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:267:17
+    |
+267 |                 (if fabs(B22) > rtmin { fabs(B22) } else { rtmin })
+    |                 ^                                                 ^
+    |
+help: remove these parentheses
+    |
+267 -                 (if fabs(B22) > rtmin { fabs(B22) } else { rtmin })
+267 +                 if fabs(B22) > rtmin { fabs(B22) } else { rtmin }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:388:17
+    |
+388 |                 (if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+    |                 ^
+...
+392 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+388 ~                 if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+389 |                     c4
+390 |                 } else {
+391 |                     0.5f64 * (if wabs > c5 { wabs } else { c5 })
+392 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:397:13
+    |
+397 |             (if fuzzy1 * (wabs * c2 + c3)
+    |             ^
+...
+411 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+397 ~             if fuzzy1 * (wabs * c2 + c3)
+398 |                 > (if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+  ...
+410 |                 })
+411 ~             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:406:17
+    |
+406 |                 (if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+    |                 ^
+...
+410 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+406 ~                 if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+407 |                     c4
+408 |                 } else {
+409 |                     0.5f64 * (if wabs > c5 { wabs } else { c5 })
+410 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:425:13
+    |
+425 |             (if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+    |             ^
+...
+429 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+425 ~             if c4 < 0.5f64 * (if wabs > c5 { wabs } else { c5 }) {
+426 |                 c4
+427 |             } else {
+428 |                 0.5f64 * (if wabs > c5 { wabs } else { c5 })
+429 ~             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:477:21
+    |
+477 |                     (if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+    |                     ^
+...
+481 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+477 ~                     if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+478 |                         c4
+479 |                     } else {
+480 |                         0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 })
+481 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:486:17
+    |
+486 |                 (if fuzzy1 * (fabs(*wr2) * c2 + c3)
+    |                 ^
+...
+500 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+486 ~                 if fuzzy1 * (fabs(*wr2) * c2 + c3)
+487 |                     > (if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+  ...
+499 |                     })
+500 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:495:21
+    |
+495 |                     (if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+    |                     ^
+...
+499 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+495 ~                     if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+496 |                         c4
+497 |                     } else {
+498 |                         0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 })
+499 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/schur.rs:514:17
+    |
+514 |                 (if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+    |                 ^
+...
+518 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+514 ~                 if c4 < 0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 }) {
+515 |                     c4
+516 |                 } else {
+517 |                     0.5f64 * (if fabs(*wr2) > c5 { fabs(*wr2) } else { c5 })
+518 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/symm.rs:430:21
+    |
+430 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    |                     ^
+...
+448 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+430 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+431 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+  ...
+447 |                         )
+448 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> eigen/symmv.rs:486:21
+    |
+486 |                     (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+    |                     ^
+...
+504 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+486 ~                     if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+487 |                         == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+  ...
+503 |                         )
+504 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> interpolation/steffen.rs:315:17
+    |
+315 |                 (if fabs(si) < 0.5f64 * fabs(pi) { fabs(si) } else { 0.5f64 * fabs(pi) })
+    |                 ^                                                                       ^
+    |
+help: remove these parentheses
+    |
+315 -                 (if fabs(si) < 0.5f64 * fabs(pi) { fabs(si) } else { 0.5f64 * fabs(pi) })
+315 +                 if fabs(si) < 0.5f64 * fabs(pi) { fabs(si) } else { 0.5f64 * fabs(pi) }
+    |
+
+warning: unused label
+   --> siman/siman.rs:137:5
+    |
+137 |     'c_4421: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unnecessary parentheses around function argument
+   --> specfunc/poch.rs:505:23
+    |
+505 |         || absx * log((if absa > 2.0f64 { absa } else { 2.0f64 })) > 0.1f64
+    |                       ^                                         ^
+    |
+help: remove these parentheses
+    |
+505 -         || absx * log((if absa > 2.0f64 { absa } else { 2.0f64 })) > 0.1f64
+505 +         || absx * log(if absa > 2.0f64 { absa } else { 2.0f64 }) > 0.1f64
+    |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:1138:17
+     |
+1138 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+1144 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1138 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1139 |                     > ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+   ...
+1143 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+1144 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:1334:17
+     |
+1334 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+1340 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1334 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1335 |                     > ::core::mem::size_of::<libc::c_ulong>() as libc::c_ulong
+   ...
+1339 |                     ::core::mem::size_of::<libc::c_ulong>() as libc::c_ulong
+1340 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:1530:17
+     |
+1530 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+1536 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1530 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1531 |                     > ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+1535 |                     ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1536 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:1726:17
+     |
+1726 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+1732 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1726 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1727 |                     > ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+   ...
+1731 |                     ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+1732 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:1922:17
+     |
+1922 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+1928 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1922 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+1923 |                     > ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+   ...
+1927 |                     ::core::mem::size_of::<libc::c_float>() as libc::c_ulong
+1928 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:2119:17
+     |
+2119 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+2125 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2119 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+2120 |                     > ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+   ...
+2124 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+2125 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:2315:17
+     |
+2315 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+2321 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2315 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+2316 |                     > ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+2320 |                     ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+2321 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:2511:17
+     |
+2511 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+2517 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2511 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+2512 |                     > ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+2516 |                     ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+2517 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:2707:17
+     |
+2707 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+2713 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2707 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+2708 |                     > ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2712 |                     ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2713 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:2903:17
+     |
+2903 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+2909 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+2903 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+2904 |                     > ::core::mem::size_of::<libc::c_ushort>() as libc::c_ulong
+   ...
+2908 |                     ::core::mem::size_of::<libc::c_ushort>() as libc::c_ulong
+2909 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:3099:17
+     |
+3099 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+3105 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+3099 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+3100 |                     > ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+3104 |                     ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+3105 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:3295:17
+     |
+3295 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+3301 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+3295 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+3296 |                     > ::core::mem::size_of::<libc::c_uint>() as libc::c_ulong
+   ...
+3300 |                     ::core::mem::size_of::<libc::c_uint>() as libc::c_ulong
+3301 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:3491:17
+     |
+3491 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+3497 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+3491 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+3492 |                     > ::core::mem::size_of::<libc::c_uchar>() as libc::c_ulong
+   ...
+3496 |                     ::core::mem::size_of::<libc::c_uchar>() as libc::c_ulong
+3497 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> spmatrix/init.rs:3687:17
+     |
+3687 |                 (if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+     |                 ^
+...
+3693 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+3687 ~                 if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+3688 |                     > ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+3692 |                     ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+3693 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:434:13
+    |
+434 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+438 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+434 ~             if n > 0 as libc::c_int as libc::c_ulong {
+435 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+436 |             } else {
+437 |                 0 as libc::c_int as libc::c_ulong
+438 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:497:13
+    |
+497 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+501 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+497 ~             if n > 0 as libc::c_int as libc::c_ulong {
+498 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+499 |             } else {
+500 |                 0 as libc::c_int as libc::c_ulong
+501 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:560:13
+    |
+560 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+564 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+560 ~             if n > 0 as libc::c_int as libc::c_ulong {
+561 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+562 |             } else {
+563 |                 0 as libc::c_int as libc::c_ulong
+564 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:623:13
+    |
+623 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+627 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+623 ~             if n > 0 as libc::c_int as libc::c_ulong {
+624 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+625 |             } else {
+626 |                 0 as libc::c_int as libc::c_ulong
+627 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:686:13
+    |
+686 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+690 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+686 ~             if n > 0 as libc::c_int as libc::c_ulong {
+687 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+688 |             } else {
+689 |                 0 as libc::c_int as libc::c_ulong
+690 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:749:13
+    |
+749 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+753 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+749 ~             if n > 0 as libc::c_int as libc::c_ulong {
+750 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+751 |             } else {
+752 |                 0 as libc::c_int as libc::c_ulong
+753 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:812:13
+    |
+812 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+816 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+812 ~             if n > 0 as libc::c_int as libc::c_ulong {
+813 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+814 |             } else {
+815 |                 0 as libc::c_int as libc::c_ulong
+816 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:875:13
+    |
+875 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+879 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+875 ~             if n > 0 as libc::c_int as libc::c_ulong {
+876 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+877 |             } else {
+878 |                 0 as libc::c_int as libc::c_ulong
+879 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> vector/subvector.rs:938:13
+    |
+938 |             (if n > 0 as libc::c_int as libc::c_ulong {
+    |             ^
+...
+942 |             }),
+    |              ^
+    |
+help: remove these parentheses
+    |
+938 ~             if n > 0 as libc::c_int as libc::c_ulong {
+939 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+940 |             } else {
+941 |                 0 as libc::c_int as libc::c_ulong
+942 ~             },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1001:13
+     |
+1001 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1005 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1001 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1002 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1003 |             } else {
+1004 |                 0 as libc::c_int as libc::c_ulong
+1005 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1064:13
+     |
+1064 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1068 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1064 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1065 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1066 |             } else {
+1067 |                 0 as libc::c_int as libc::c_ulong
+1068 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1127:13
+     |
+1127 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1131 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1127 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1128 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1129 |             } else {
+1130 |                 0 as libc::c_int as libc::c_ulong
+1131 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1190:13
+     |
+1190 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1194 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1190 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1191 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1192 |             } else {
+1193 |                 0 as libc::c_int as libc::c_ulong
+1194 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1253:13
+     |
+1253 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1257 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1253 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1254 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1255 |             } else {
+1256 |                 0 as libc::c_int as libc::c_ulong
+1257 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1316:13
+     |
+1316 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1320 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1316 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1317 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1318 |             } else {
+1319 |                 0 as libc::c_int as libc::c_ulong
+1320 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1379:13
+     |
+1379 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1383 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1379 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1380 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1381 |             } else {
+1382 |                 0 as libc::c_int as libc::c_ulong
+1383 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1442:13
+     |
+1442 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1446 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1442 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1443 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1444 |             } else {
+1445 |                 0 as libc::c_int as libc::c_ulong
+1446 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1505:13
+     |
+1505 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1509 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1505 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1506 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1507 |             } else {
+1508 |                 0 as libc::c_int as libc::c_ulong
+1509 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1568:13
+     |
+1568 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1572 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1568 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1569 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1570 |             } else {
+1571 |                 0 as libc::c_int as libc::c_ulong
+1572 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1631:13
+     |
+1631 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1635 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1631 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1632 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1633 |             } else {
+1634 |                 0 as libc::c_int as libc::c_ulong
+1635 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1694:13
+     |
+1694 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1698 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1694 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1695 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1696 |             } else {
+1697 |                 0 as libc::c_int as libc::c_ulong
+1698 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1757:13
+     |
+1757 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1761 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1757 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1758 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1759 |             } else {
+1760 |                 0 as libc::c_int as libc::c_ulong
+1761 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1820:13
+     |
+1820 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1824 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1820 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1821 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1822 |             } else {
+1823 |                 0 as libc::c_int as libc::c_ulong
+1824 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1883:13
+     |
+1883 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1887 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1883 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1884 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1885 |             } else {
+1886 |                 0 as libc::c_int as libc::c_ulong
+1887 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:1946:13
+     |
+1946 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+1950 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+1946 ~             if n > 0 as libc::c_int as libc::c_ulong {
+1947 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1948 |             } else {
+1949 |                 0 as libc::c_int as libc::c_ulong
+1950 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:2009:13
+     |
+2009 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+2013 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+2009 ~             if n > 0 as libc::c_int as libc::c_ulong {
+2010 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2011 |             } else {
+2012 |                 0 as libc::c_int as libc::c_ulong
+2013 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:2072:13
+     |
+2072 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+2076 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+2072 ~             if n > 0 as libc::c_int as libc::c_ulong {
+2073 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2074 |             } else {
+2075 |                 0 as libc::c_int as libc::c_ulong
+2076 ~             },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> vector/subvector.rs:2135:13
+     |
+2135 |             (if n > 0 as libc::c_int as libc::c_ulong {
+     |             ^
+...
+2139 |             }),
+     |              ^
+     |
+help: remove these parentheses
+     |
+2135 ~             if n > 0 as libc::c_int as libc::c_ulong {
+2136 |                 n.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2137 |             } else {
+2138 |                 0 as libc::c_int as libc::c_ulong
+2139 ~             },
+     |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0605]: non-primitive cast: `u8` as `rb_color`
+   --> bst/rb.rs:447:17
+    |
+447 |             t = (*r).rb_color as rb_color;
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+error[E0605]: non-primitive cast: `u8` as `rb_color`
+   --> bst/rb.rs:479:17
+    |
+479 |             t = (*s).rb_color as rb_color;
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^ an `as` expression can only be used to convert between primitive types or to coerce to a specific trait object
+
+Some errors have detailed explanations: E0583, E0605.
+For more information about an error, try `rustc --explain E0583`.
+warning: `c2rust_out` (lib) generated 65 warnings
+error: could not compile `c2rust_out` due to 40 previous errors; 65 warnings emitted

@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types, label_break_value)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type re_dfa_t;
     pub type hash_table;
@@ -126,20 +136,79 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type size_t = libc::c_ulong;
 pub type wchar_t = libc::c_int;
 #[derive(Copy, Clone)]
@@ -254,11 +323,11 @@ pub struct exclude_segment {
 #[repr(C)]
 pub union C2RustUnnamed_1 {
     pub table: *mut Hash_table,
-    pub pat: exclude_pattern,
+    pub pat: exclude_type::exclude_pattern,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
-pub struct exclude_pattern {
+pub struct exclude_type::exclude_pattern {
     pub exclude: *mut patopts,
     pub exclude_alloc: size_t,
     pub exclude_count: size_t,
@@ -289,10 +358,69 @@ impl exclude_type {
             exclude_type::exclude_pattern => 1,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> exclude_type {
+        match value {
+            0 => exclude_type::exclude_hash,
+            1 => exclude_type::exclude_pattern,
+            _ => panic!("Invalid value for exclude_type: {}", value),
+        }
+    }
 }
-
-pub const exclude_pattern: exclude_type = 1;
-pub const exclude_hash: exclude_type = 0;
+impl AddAssign<u32> for exclude_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = exclude_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for exclude_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = exclude_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for exclude_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = exclude_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for exclude_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = exclude_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for exclude_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = exclude_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for exclude_type {
+    type Output = exclude_type;
+    fn add(self, rhs: u32) -> exclude_type {
+        exclude_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for exclude_type {
+    type Output = exclude_type;
+    fn sub(self, rhs: u32) -> exclude_type {
+        exclude_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for exclude_type {
+    type Output = exclude_type;
+    fn mul(self, rhs: u32) -> exclude_type {
+        exclude_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for exclude_type {
+    type Output = exclude_type;
+    fn div(self, rhs: u32) -> exclude_type {
+        exclude_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for exclude_type {
+    type Output = exclude_type;
+    fn rem(self, rhs: u32) -> exclude_type {
+        exclude_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type mbchar_t = mbchar;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -322,11 +450,11 @@ pub struct hash_tuning {
     pub growth_factor: libc::c_float,
     pub is_n_buckets: bool,
 }
-pub type Hash_data_freer = Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
-pub type Hash_comparator = Option::<
+pub type Hash_data_freer = Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>;
+pub type Hash_comparator = Option<
     unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> bool,
 >;
-pub type Hash_hasher = Option::<
+pub type Hash_hasher = Option<
     unsafe extern "C" fn(*const libc::c_void, size_t) -> size_t,
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
@@ -340,8 +468,68 @@ impl C2RustUnnamed_3 {
             C2RustUnnamed_3::DEFAULT_MXFAST => 128,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_3 {
+        match value {
+            128 => C2RustUnnamed_3::DEFAULT_MXFAST,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn getc_unlocked(mut __fp: *mut FILE) -> libc::c_int {
     return if ((*__fp)._IO_read_ptr >= (*__fp)._IO_read_end) as libc::c_int
@@ -411,9 +599,7 @@ unsafe extern "C" fn mbuiter_multi_next(mut iter: *mut mbuiter_multi) {
     }
     match current_block {
         9994153379385961286 => {
-            (*iter)
-                .cur
-                .bytes = rpl_mbrtowc(
+            (*iter).cur.bytes = rpl_mbrtowc(
                 &mut (*iter).cur.wc,
                 (*iter).cur.ptr,
                 strnlen1((*iter).cur.ptr, __ctype_get_mb_cur_max()),
@@ -502,7 +688,7 @@ unsafe extern "C" fn x2nrealloc(
     let mut n: size_t = *pn;
     if p.is_null() {
         if n == 0 {
-            n = (DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
+            n = (C2RustUnnamed_3::DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
             n = (n as libc::c_ulong)
                 .wrapping_add((n == 0) as libc::c_int as libc::c_ulong) as size_t
                 as size_t;
@@ -705,9 +891,7 @@ unsafe extern "C" fn new_exclude_segment(
     (*sp).options = options;
     match type_0 as libc::c_uint {
         0 => {
-            (*sp)
-                .v
-                .table = hash_initialize(
+            (*sp).v.table = hash_initialize(
                 0 as libc::c_int as size_t,
                 0 as *const Hash_tuning,
                 if options & (1 as libc::c_int) << 4 as libc::c_int != 0 {
@@ -843,7 +1027,7 @@ pub unsafe extern "C" fn exclude_fnmatch(
     mut f: *const libc::c_char,
     mut options: libc::c_int,
 ) -> bool {
-    let mut matcher: Option::<
+    let mut matcher: Option<
         unsafe extern "C" fn(
             *const libc::c_char,
             *const libc::c_char,
@@ -972,7 +1156,7 @@ pub unsafe extern "C" fn excluded_file_name(
     }
     seg = (*ex).head;
     loop {
-        if (*seg).type_0 as libc::c_uint == exclude_hash as libc::c_int as libc::c_uint {
+        if (*seg).type_0 as libc::c_uint == exclude_type::exclude_hash as libc::c_int as libc::c_uint {
             if filename.is_null() {
                 filename = xmalloc(
                     (strlen(f)).wrapping_add(1 as libc::c_int as libc::c_ulong),
@@ -1003,7 +1187,7 @@ pub unsafe extern "C" fn add_exclude(
     mut options: libc::c_int,
 ) {
     let mut seg: *mut exclude_segment = 0 as *mut exclude_segment;
-    let mut pat: *mut exclude_pattern = 0 as *mut exclude_pattern;
+    let mut pat: *mut exclude_pattern = 0 as *mut exclude_type::exclude_pattern;
     let mut patopts: *mut patopts = 0 as *mut patopts;
     if options
         & ((1 as libc::c_int) << 27 as libc::c_int
@@ -1012,17 +1196,16 @@ pub unsafe extern "C" fn add_exclude(
     {
         if !(!((*ex).head).is_null()
             && (*(*ex).head).type_0 as libc::c_uint
-                == exclude_pattern as libc::c_int as libc::c_uint
+                == exclude_type::exclude_pattern as libc::c_int as libc::c_uint
             && (*(*ex).head).options & (1 as libc::c_int) << 29 as libc::c_int
                 == options & (1 as libc::c_int) << 29 as libc::c_int)
         {
-            new_exclude_segment(ex, exclude_pattern, options);
+            new_exclude_segment(ex, exclude_type::exclude_pattern, options);
         }
         seg = (*ex).head;
         pat = &mut (*seg).v.pat;
         if (*pat).exclude_count == (*pat).exclude_alloc {
-            (*pat)
-                .exclude = x2nrealloc(
+            (*pat).exclude = x2nrealloc(
                 (*pat).exclude as *mut libc::c_void,
                 &mut (*pat).exclude_alloc,
                 ::core::mem::size_of::<patopts>() as libc::c_ulong,
@@ -1094,11 +1277,11 @@ pub unsafe extern "C" fn add_exclude(
             | (1 as libc::c_int) << 4 as libc::c_int;
         if !(!((*ex).head).is_null()
             && (*(*ex).head).type_0 as libc::c_uint
-                == exclude_hash as libc::c_int as libc::c_uint
+                == exclude_type::exclude_hash as libc::c_int as libc::c_uint
             && (*(*ex).head).options & exclude_hash_flags
                 == options & exclude_hash_flags)
         {
-            new_exclude_segment(ex, exclude_hash, options);
+            new_exclude_segment(ex, exclude_type::exclude_hash, options);
         }
         seg = (*ex).head;
         str = xstrdup(pattern);
@@ -1117,7 +1300,7 @@ pub unsafe extern "C" fn add_exclude(
 }
 #[no_mangle]
 pub unsafe extern "C" fn add_exclude_fp(
-    mut add_func: Option::<
+    mut add_func: Option<
         unsafe extern "C" fn(
             *mut exclude,
             *const libc::c_char,
@@ -1179,7 +1362,8 @@ pub unsafe extern "C" fn add_exclude_fp(
             let mut pattern_end: *mut libc::c_char = p;
             if *(*__ctype_b_loc())
                 .offset(line_end as libc::c_uchar as libc::c_int as isize) as libc::c_int
-                & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+                & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort as libc::c_int
+                != 0
             {
                 current_block_15 = 17407779659766490442;
             } else {
@@ -1196,8 +1380,8 @@ pub unsafe extern "C" fn add_exclude_fp(
                                 *pattern_end.offset(-(1 as libc::c_int) as isize)
                                     as libc::c_uchar as libc::c_int as isize,
                             ) as libc::c_int
-                            & _ISspace as libc::c_int as libc::c_ushort as libc::c_int
-                            == 0
+                            & C2RustUnnamed::_ISspace as libc::c_int as libc::c_ushort
+                                as libc::c_int == 0
                         {
                             current_block_15 = 7175849428784450219;
                             continue;
@@ -1230,17 +1414,17 @@ unsafe extern "C" fn call_addfn(
     mut options: libc::c_int,
     mut data: *mut libc::c_void,
 ) {
-    let mut addfnptr: *mut Option::<
+    let mut addfnptr: *mut Option<
         unsafe extern "C" fn(*mut exclude, *const libc::c_char, libc::c_int) -> (),
     > = data
-        as *mut Option::<
+        as *mut Option<
             unsafe extern "C" fn(*mut exclude, *const libc::c_char, libc::c_int) -> (),
         >;
     (*addfnptr).expect("non-null function pointer")(ex, pattern, options);
 }
 #[no_mangle]
 pub unsafe extern "C" fn add_exclude_file(
-    mut add_func: Option::<
+    mut add_func: Option<
         unsafe extern "C" fn(*mut exclude, *const libc::c_char, libc::c_int) -> (),
     >,
     mut ex: *mut exclude,
@@ -1275,7 +1459,7 @@ pub unsafe extern "C" fn add_exclude_file(
         options,
         line_end,
         &mut add_func
-            as *mut Option::<
+            as *mut Option<
                 unsafe extern "C" fn(
                     *mut exclude,
                     *const libc::c_char,

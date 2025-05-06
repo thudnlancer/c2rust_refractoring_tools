@@ -1,0 +1,1 @@
+/home/c2rust/Desktop/c_prog/libtree/target/debug/libc2rust_out.a: /home/c2rust/Desktop/c_prog/libtree/build.rs /home/c2rust/Desktop/c_prog/libtree/c2rust-lib.rs /home/c2rust/Desktop/c_prog/libtree/libtree.rs

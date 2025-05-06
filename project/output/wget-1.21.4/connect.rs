@@ -1,5 +1,16 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(asm, extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 use c2rust_asm_casts::AsmCastTrait;
 use core::arch::asm;
 extern "C" {
@@ -16,110 +27,68 @@ extern "C" {
     pub type hash_table;
     pub type address_list;
     fn select(
-        __nfds: libc::c_int,
+        __nfds: i32,
         __readfds: *mut fd_set,
         __writefds: *mut fd_set,
         __exceptfds: *mut fd_set,
         __timeout: *mut timeval,
-    ) -> libc::c_int;
+    ) -> i32;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    static mut exec_name: *const libc::c_char;
-    fn idn_decode(host: *const libc::c_char) -> *mut libc::c_char;
-    fn quote(arg: *const libc::c_char) -> *const libc::c_char;
-    fn escnonprint_uri(_: *const libc::c_char) -> *const libc::c_char;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
+    static mut exec_name: *const i8;
+    fn idn_decode(host: *const i8) -> *mut i8;
+    fn quote(arg: *const i8) -> *const i8;
+    fn escnonprint_uri(_: *const i8) -> *const i8;
     fn rpl_free(_: *mut libc::c_void);
     static mut opt: options;
     fn abort() -> !;
-    fn exit(_: libc::c_int) -> !;
+    fn exit(_: i32) -> !;
     fn xmalloc(s: size_t) -> *mut libc::c_void;
-    fn logprintf(_: log_options, _: *const libc::c_char, _: ...);
-    fn debug_logprintf(_: *const libc::c_char, _: ...);
-    fn memset(
-        _: *mut libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strerror(_: libc::c_int) -> *mut libc::c_char;
-    fn close(__fd: libc::c_int) -> libc::c_int;
-    fn read(__fd: libc::c_int, __buf: *mut libc::c_void, __nbytes: size_t) -> ssize_t;
-    fn write(__fd: libc::c_int, __buf: *const libc::c_void, __n: size_t) -> ssize_t;
-    fn socket(
-        __domain: libc::c_int,
-        __type: libc::c_int,
-        __protocol: libc::c_int,
-    ) -> libc::c_int;
-    fn bind(
-        __fd: libc::c_int,
-        __addr: __CONST_SOCKADDR_ARG,
-        __len: socklen_t,
-    ) -> libc::c_int;
-    fn getsockname(
-        __fd: libc::c_int,
-        __addr: __SOCKADDR_ARG,
-        __len: *mut socklen_t,
-    ) -> libc::c_int;
-    fn connect(
-        __fd: libc::c_int,
-        __addr: __CONST_SOCKADDR_ARG,
-        __len: socklen_t,
-    ) -> libc::c_int;
-    fn getpeername(
-        __fd: libc::c_int,
-        __addr: __SOCKADDR_ARG,
-        __len: *mut socklen_t,
-    ) -> libc::c_int;
-    fn recv(
-        __fd: libc::c_int,
-        __buf: *mut libc::c_void,
-        __n: size_t,
-        __flags: libc::c_int,
-    ) -> ssize_t;
+    fn logprintf(_: log_options, _: *const i8, _: ...);
+    fn debug_logprintf(_: *const i8, _: ...);
+    fn memset(_: *mut libc::c_void, _: i32, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strerror(_: i32) -> *mut i8;
+    fn close(__fd: i32) -> i32;
+    fn read(__fd: i32, __buf: *mut libc::c_void, __nbytes: size_t) -> ssize_t;
+    fn write(__fd: i32, __buf: *const libc::c_void, __n: size_t) -> ssize_t;
+    fn socket(__domain: i32, __type: i32, __protocol: i32) -> i32;
+    fn bind(__fd: i32, __addr: __CONST_SOCKADDR_ARG, __len: socklen_t) -> i32;
+    fn getsockname(__fd: i32, __addr: __SOCKADDR_ARG, __len: *mut socklen_t) -> i32;
+    fn connect(__fd: i32, __addr: __CONST_SOCKADDR_ARG, __len: socklen_t) -> i32;
+    fn getpeername(__fd: i32, __addr: __SOCKADDR_ARG, __len: *mut socklen_t) -> i32;
+    fn recv(__fd: i32, __buf: *mut libc::c_void, __n: size_t, __flags: i32) -> ssize_t;
     fn setsockopt(
-        __fd: libc::c_int,
-        __level: libc::c_int,
-        __optname: libc::c_int,
+        __fd: i32,
+        __level: i32,
+        __optname: i32,
         __optval: *const libc::c_void,
         __optlen: socklen_t,
-    ) -> libc::c_int;
-    fn listen(__fd: libc::c_int, __n: libc::c_int) -> libc::c_int;
-    fn accept(
-        __fd: libc::c_int,
-        __addr: __SOCKADDR_ARG,
-        __addr_len: *mut socklen_t,
-    ) -> libc::c_int;
-    fn __errno_location() -> *mut libc::c_int;
-    fn aprintf(_: *const libc::c_char, _: ...) -> *mut libc::c_char;
+    ) -> i32;
+    fn listen(__fd: i32, __n: i32) -> i32;
+    fn accept(__fd: i32, __addr: __SOCKADDR_ARG, __addr_len: *mut socklen_t) -> i32;
+    fn __errno_location() -> *mut i32;
+    fn aprintf(_: *const i8, _: ...) -> *mut i8;
     fn run_with_timeout(
         _: libc::c_double,
-        _: Option::<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
+        _: Option<unsafe extern "C" fn(*mut libc::c_void) -> ()>,
         _: *mut libc::c_void,
     ) -> bool;
-    fn lookup_host(_: *const libc::c_char, _: libc::c_int) -> *mut address_list;
-    fn address_list_get_bounds(
-        _: *const address_list,
-        _: *mut libc::c_int,
-        _: *mut libc::c_int,
-    );
-    fn address_list_address_at(
-        _: *const address_list,
-        _: libc::c_int,
-    ) -> *const ip_address;
-    fn address_list_set_faulty(_: *mut address_list, _: libc::c_int);
+    fn lookup_host(_: *const i8, _: i32) -> *mut address_list;
+    fn address_list_get_bounds(_: *const address_list, _: *mut i32, _: *mut i32);
+    fn address_list_address_at(_: *const address_list, _: i32) -> *const ip_address;
+    fn address_list_set_faulty(_: *mut address_list, _: i32);
     fn address_list_set_connected(_: *mut address_list);
     fn address_list_connected_p(_: *const address_list) -> bool;
     fn address_list_release(_: *mut address_list);
-    fn print_address(_: *const ip_address) -> *const libc::c_char;
+    fn print_address(_: *const ip_address) -> *const i8;
     fn hash_table_new(
-        _: libc::c_int,
-        _: Option::<unsafe extern "C" fn(*const libc::c_void) -> libc::c_ulong>,
-        _: Option::<
-            unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> libc::c_int,
-        >,
+        _: i32,
+        _: Option<unsafe extern "C" fn(*const libc::c_void) -> u64>,
+        _: Option<unsafe extern "C" fn(*const libc::c_void, *const libc::c_void) -> i32>,
     ) -> *mut hash_table;
     fn hash_table_get(_: *const hash_table, _: *const libc::c_void) -> *mut libc::c_void;
     fn hash_table_put(
@@ -127,18 +96,18 @@ extern "C" {
         _: *const libc::c_void,
         _: *const libc::c_void,
     );
-    fn hash_table_remove(_: *mut hash_table, _: *const libc::c_void) -> libc::c_int;
+    fn hash_table_remove(_: *mut hash_table, _: *const libc::c_void) -> i32;
 }
-pub type __uint8_t = libc::c_uchar;
+pub type __uint8_t = u8;
 pub type __uint16_t = libc::c_ushort;
-pub type __uint32_t = libc::c_uint;
-pub type __int64_t = libc::c_long;
-pub type __time_t = libc::c_long;
-pub type __suseconds_t = libc::c_long;
-pub type __ssize_t = libc::c_long;
-pub type __socklen_t = libc::c_uint;
+pub type __uint32_t = u32;
+pub type __int64_t = i64;
+pub type __time_t = i64;
+pub type __suseconds_t = i64;
+pub type __ssize_t = i64;
+pub type __socklen_t = u32;
 pub type ssize_t = __ssize_t;
-pub type size_t = libc::c_ulong;
+pub type size_t = u64;
 pub type int64_t = __int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -146,7 +115,7 @@ pub struct timeval {
     pub tv_sec: __time_t,
     pub tv_usec: __suseconds_t,
 }
-pub type __fd_mask = libc::c_long;
+pub type __fd_mask = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct fd_set {
@@ -155,101 +124,99 @@ pub struct fd_set {
 pub type uint8_t = __uint8_t;
 pub type uint16_t = __uint16_t;
 pub type uint32_t = __uint32_t;
-pub type intptr_t = libc::c_long;
+pub type intptr_t = i64;
 pub type wgint = int64_t;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct options {
-    pub verbose: libc::c_int,
+    pub verbose: i32,
     pub quiet: bool,
-    pub ntry: libc::c_int,
+    pub ntry: i32,
     pub retry_connrefused: bool,
     pub retry_on_host_error: bool,
-    pub retry_on_http_error: *mut libc::c_char,
+    pub retry_on_http_error: *mut i8,
     pub background: bool,
     pub ignore_length: bool,
     pub recursive: bool,
     pub spanhost: bool,
-    pub max_redirect: libc::c_int,
+    pub max_redirect: i32,
     pub relative_only: bool,
     pub no_parent: bool,
-    pub reclevel: libc::c_int,
+    pub reclevel: i32,
     pub dirstruct: bool,
     pub no_dirstruct: bool,
-    pub cut_dirs: libc::c_int,
+    pub cut_dirs: i32,
     pub add_hostdir: bool,
     pub protocol_directories: bool,
     pub noclobber: bool,
     pub unlink_requested: bool,
-    pub dir_prefix: *mut libc::c_char,
-    pub lfilename: *mut libc::c_char,
-    pub input_filename: *mut libc::c_char,
-    pub choose_config: *mut libc::c_char,
+    pub dir_prefix: *mut i8,
+    pub lfilename: *mut i8,
+    pub input_filename: *mut i8,
+    pub choose_config: *mut i8,
     pub noconfig: bool,
     pub force_html: bool,
-    pub default_page: *mut libc::c_char,
+    pub default_page: *mut i8,
     pub spider: bool,
-    pub accepts: *mut *mut libc::c_char,
-    pub rejects: *mut *mut libc::c_char,
-    pub excludes: *mut *const libc::c_char,
-    pub includes: *mut *const libc::c_char,
+    pub accepts: *mut *mut i8,
+    pub rejects: *mut *mut i8,
+    pub excludes: *mut *const i8,
+    pub includes: *mut *const i8,
     pub ignore_case: bool,
-    pub acceptregex_s: *mut libc::c_char,
-    pub rejectregex_s: *mut libc::c_char,
+    pub acceptregex_s: *mut i8,
+    pub rejectregex_s: *mut i8,
     pub acceptregex: *mut libc::c_void,
     pub rejectregex: *mut libc::c_void,
     pub regex_type: C2RustUnnamed_3,
-    pub regex_compile_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_char) -> *mut libc::c_void,
+    pub regex_compile_fun: Option<unsafe extern "C" fn(*const i8) -> *mut libc::c_void>,
+    pub regex_match_fun: Option<
+        unsafe extern "C" fn(*const libc::c_void, *const i8) -> bool,
     >,
-    pub regex_match_fun: Option::<
-        unsafe extern "C" fn(*const libc::c_void, *const libc::c_char) -> bool,
-    >,
-    pub domains: *mut *mut libc::c_char,
-    pub exclude_domains: *mut *mut libc::c_char,
+    pub domains: *mut *mut i8,
+    pub exclude_domains: *mut *mut i8,
     pub dns_cache: bool,
-    pub follow_tags: *mut *mut libc::c_char,
-    pub ignore_tags: *mut *mut libc::c_char,
+    pub follow_tags: *mut *mut i8,
+    pub ignore_tags: *mut *mut i8,
     pub follow_ftp: bool,
     pub retr_symlinks: bool,
-    pub output_document: *mut libc::c_char,
-    pub warc_filename: *mut libc::c_char,
-    pub warc_tempdir: *mut libc::c_char,
-    pub warc_cdx_dedup_filename: *mut libc::c_char,
+    pub output_document: *mut i8,
+    pub warc_filename: *mut i8,
+    pub warc_tempdir: *mut i8,
+    pub warc_cdx_dedup_filename: *mut i8,
     pub warc_maxsize: wgint,
     pub warc_compression_enabled: bool,
     pub warc_digests_enabled: bool,
     pub warc_cdx_enabled: bool,
     pub warc_keep_log: bool,
-    pub warc_user_headers: *mut *mut libc::c_char,
+    pub warc_user_headers: *mut *mut i8,
     pub enable_xattr: bool,
-    pub user: *mut libc::c_char,
-    pub passwd: *mut libc::c_char,
+    pub user: *mut i8,
+    pub passwd: *mut i8,
     pub ask_passwd: bool,
-    pub use_askpass: *mut libc::c_char,
+    pub use_askpass: *mut i8,
     pub always_rest: bool,
     pub start_pos: wgint,
-    pub ftp_user: *mut libc::c_char,
-    pub ftp_passwd: *mut libc::c_char,
+    pub ftp_user: *mut i8,
+    pub ftp_passwd: *mut i8,
     pub netrc: bool,
     pub ftp_glob: bool,
     pub ftp_pasv: bool,
-    pub http_user: *mut libc::c_char,
-    pub http_passwd: *mut libc::c_char,
-    pub user_headers: *mut *mut libc::c_char,
+    pub http_user: *mut i8,
+    pub http_passwd: *mut i8,
+    pub user_headers: *mut *mut i8,
     pub http_keep_alive: bool,
     pub use_proxy: bool,
     pub allow_cache: bool,
-    pub http_proxy: *mut libc::c_char,
-    pub ftp_proxy: *mut libc::c_char,
-    pub https_proxy: *mut libc::c_char,
-    pub no_proxy: *mut *mut libc::c_char,
-    pub base_href: *mut libc::c_char,
-    pub progress_type: *mut libc::c_char,
-    pub show_progress: libc::c_int,
+    pub http_proxy: *mut i8,
+    pub ftp_proxy: *mut i8,
+    pub https_proxy: *mut i8,
+    pub no_proxy: *mut *mut i8,
+    pub base_href: *mut i8,
+    pub progress_type: *mut i8,
+    pub show_progress: i32,
     pub noscroll: bool,
-    pub proxy_user: *mut libc::c_char,
-    pub proxy_passwd: *mut libc::c_char,
+    pub proxy_user: *mut i8,
+    pub proxy_passwd: *mut i8,
     pub read_timeout: libc::c_double,
     pub dns_timeout: libc::c_double,
     pub connect_timeout: libc::c_double,
@@ -266,50 +233,50 @@ pub struct options {
     pub timestamping: bool,
     pub if_modified_since: bool,
     pub backup_converted: bool,
-    pub backups: libc::c_int,
-    pub useragent: *mut libc::c_char,
-    pub referer: *mut libc::c_char,
+    pub backups: i32,
+    pub useragent: *mut i8,
+    pub referer: *mut i8,
     pub convert_links: bool,
     pub convert_file_only: bool,
     pub remove_listing: bool,
     pub htmlify: bool,
-    pub dot_style: *mut libc::c_char,
+    pub dot_style: *mut i8,
     pub dot_bytes: wgint,
-    pub dots_in_line: libc::c_int,
-    pub dot_spacing: libc::c_int,
+    pub dots_in_line: i32,
+    pub dot_spacing: i32,
     pub delete_after: bool,
     pub adjust_extension: bool,
     pub page_requisites: bool,
-    pub bind_address: *mut libc::c_char,
+    pub bind_address: *mut i8,
     pub secure_protocol: C2RustUnnamed_2,
-    pub secure_protocol_name: [libc::c_char; 8],
-    pub check_cert: libc::c_int,
-    pub cert_file: *mut libc::c_char,
-    pub private_key: *mut libc::c_char,
+    pub secure_protocol_name: [i8; 8],
+    pub check_cert: i32,
+    pub cert_file: *mut i8,
+    pub private_key: *mut i8,
     pub cert_type: keyfile_type,
     pub private_key_type: keyfile_type,
-    pub ca_directory: *mut libc::c_char,
-    pub ca_cert: *mut libc::c_char,
-    pub crl_file: *mut libc::c_char,
-    pub pinnedpubkey: *mut libc::c_char,
-    pub random_file: *mut libc::c_char,
-    pub egd_file: *mut libc::c_char,
+    pub ca_directory: *mut i8,
+    pub ca_cert: *mut i8,
+    pub crl_file: *mut i8,
+    pub pinnedpubkey: *mut i8,
+    pub random_file: *mut i8,
+    pub egd_file: *mut i8,
     pub https_only: bool,
     pub ftps_resume_ssl: bool,
     pub ftps_fallback_to_ftp: bool,
     pub ftps_implicit: bool,
     pub ftps_clear_data_connection: bool,
-    pub tls_ciphers_string: *mut libc::c_char,
+    pub tls_ciphers_string: *mut i8,
     pub cookies: bool,
-    pub cookies_input: *mut libc::c_char,
-    pub cookies_output: *mut libc::c_char,
+    pub cookies_input: *mut i8,
+    pub cookies_output: *mut i8,
     pub keep_badhash: bool,
     pub keep_session_cookies: bool,
-    pub post_data: *mut libc::c_char,
-    pub post_file_name: *mut libc::c_char,
-    pub method: *mut libc::c_char,
-    pub body_data: *mut libc::c_char,
-    pub body_file: *mut libc::c_char,
+    pub post_data: *mut i8,
+    pub post_file_name: *mut i8,
+    pub method: *mut i8,
+    pub body_data: *mut i8,
+    pub body_file: *mut i8,
     pub restrict_files_os: C2RustUnnamed_1,
     pub restrict_files_ctrl: bool,
     pub restrict_files_nonascii: bool,
@@ -322,18 +289,18 @@ pub struct options {
     pub content_disposition: bool,
     pub auth_without_challenge: bool,
     pub enable_iri: bool,
-    pub encoding_remote: *mut libc::c_char,
-    pub locale: *const libc::c_char,
+    pub encoding_remote: *mut i8,
+    pub locale: *const i8,
     pub trustservernames: bool,
     pub useservertimestamps: bool,
     pub show_all_dns_entries: bool,
     pub report_bps: bool,
     pub compression: compression_options,
-    pub rejected_log: *mut libc::c_char,
+    pub rejected_log: *mut i8,
     pub hsts: bool,
-    pub hsts_file: *mut libc::c_char,
-    pub homedir: *const libc::c_char,
-    pub wgetrcfile: *const libc::c_char,
+    pub hsts_file: *mut i8,
+    pub homedir: *const i8,
+    pub wgetrcfile: *const i8,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -343,18 +310,77 @@ pub enum compression_options {
     compression_auto = 0,
 }
 impl compression_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             compression_options::compression_none => 2,
             compression_options::compression_gzip => 1,
             compression_options::compression_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> compression_options {
+        match value {
+            2 => compression_options::compression_none,
+            1 => compression_options::compression_gzip,
+            0 => compression_options::compression_auto,
+            _ => panic!("Invalid value for compression_options: {}", value),
+        }
+    }
 }
-
-pub const compression_none: compression_options = 2;
-pub const compression_gzip: compression_options = 1;
-pub const compression_auto: compression_options = 0;
+impl AddAssign<u32> for compression_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for compression_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for compression_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for compression_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for compression_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for compression_options {
+    type Output = compression_options;
+    fn add(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for compression_options {
+    type Output = compression_options;
+    fn sub(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for compression_options {
+    type Output = compression_options;
+    fn mul(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for compression_options {
+    type Output = compression_options;
+    fn div(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for compression_options {
+    type Output = compression_options;
+    fn rem(self, rhs: u32) -> compression_options {
+        compression_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed {
@@ -363,18 +389,77 @@ pub enum C2RustUnnamed {
     prefer_ipv4 = 0,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::prefer_none => 2,
             C2RustUnnamed::prefer_ipv6 => 1,
             C2RustUnnamed::prefer_ipv4 => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            2 => C2RustUnnamed::prefer_none,
+            1 => C2RustUnnamed::prefer_ipv6,
+            0 => C2RustUnnamed::prefer_ipv4,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const prefer_none: C2RustUnnamed = 2;
-pub const prefer_ipv6: C2RustUnnamed = 1;
-pub const prefer_ipv4: C2RustUnnamed = 0;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_0 {
@@ -383,18 +468,77 @@ pub enum C2RustUnnamed_0 {
     restrict_no_case_restriction = 0,
 }
 impl C2RustUnnamed_0 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_0::restrict_uppercase => 2,
             C2RustUnnamed_0::restrict_lowercase => 1,
             C2RustUnnamed_0::restrict_no_case_restriction => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_0 {
+        match value {
+            2 => C2RustUnnamed_0::restrict_uppercase,
+            1 => C2RustUnnamed_0::restrict_lowercase,
+            0 => C2RustUnnamed_0::restrict_no_case_restriction,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
-pub const restrict_uppercase: C2RustUnnamed_0 = 2;
-pub const restrict_lowercase: C2RustUnnamed_0 = 1;
-pub const restrict_no_case_restriction: C2RustUnnamed_0 = 0;
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_1 {
@@ -403,18 +547,77 @@ pub enum C2RustUnnamed_1 {
     restrict_unix = 0,
 }
 impl C2RustUnnamed_1 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_1::restrict_windows => 2,
             C2RustUnnamed_1::restrict_vms => 1,
             C2RustUnnamed_1::restrict_unix => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_1 {
+        match value {
+            2 => C2RustUnnamed_1::restrict_windows,
+            1 => C2RustUnnamed_1::restrict_vms,
+            0 => C2RustUnnamed_1::restrict_unix,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
-pub const restrict_windows: C2RustUnnamed_1 = 2;
-pub const restrict_vms: C2RustUnnamed_1 = 1;
-pub const restrict_unix: C2RustUnnamed_1 = 0;
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum keyfile_type {
@@ -422,16 +625,75 @@ pub enum keyfile_type {
     keyfile_pem = 0,
 }
 impl keyfile_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             keyfile_type::keyfile_asn1 => 1,
             keyfile_type::keyfile_pem => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> keyfile_type {
+        match value {
+            1 => keyfile_type::keyfile_asn1,
+            0 => keyfile_type::keyfile_pem,
+            _ => panic!("Invalid value for keyfile_type: {}", value),
+        }
+    }
 }
-
-pub const keyfile_asn1: keyfile_type = 1;
-pub const keyfile_pem: keyfile_type = 0;
+impl AddAssign<u32> for keyfile_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for keyfile_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for keyfile_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for keyfile_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for keyfile_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn add(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn sub(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn mul(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn div(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for keyfile_type {
+    type Output = keyfile_type;
+    fn rem(self, rhs: u32) -> keyfile_type {
+        keyfile_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_2 {
@@ -445,7 +707,7 @@ pub enum C2RustUnnamed_2 {
     secure_protocol_auto = 0,
 }
 impl C2RustUnnamed_2 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_2::secure_protocol_pfs => 7,
             C2RustUnnamed_2::secure_protocol_tlsv1_3 => 6,
@@ -457,16 +719,75 @@ impl C2RustUnnamed_2 {
             C2RustUnnamed_2::secure_protocol_auto => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_2 {
+        match value {
+            7 => C2RustUnnamed_2::secure_protocol_pfs,
+            6 => C2RustUnnamed_2::secure_protocol_tlsv1_3,
+            5 => C2RustUnnamed_2::secure_protocol_tlsv1_2,
+            4 => C2RustUnnamed_2::secure_protocol_tlsv1_1,
+            3 => C2RustUnnamed_2::secure_protocol_tlsv1,
+            2 => C2RustUnnamed_2::secure_protocol_sslv3,
+            1 => C2RustUnnamed_2::secure_protocol_sslv2,
+            0 => C2RustUnnamed_2::secure_protocol_auto,
+            _ => panic!("Invalid value for C2RustUnnamed_2: {}", value),
+        }
+    }
 }
-
-pub const secure_protocol_pfs: C2RustUnnamed_2 = 7;
-pub const secure_protocol_tlsv1_3: C2RustUnnamed_2 = 6;
-pub const secure_protocol_tlsv1_2: C2RustUnnamed_2 = 5;
-pub const secure_protocol_tlsv1_1: C2RustUnnamed_2 = 4;
-pub const secure_protocol_tlsv1: C2RustUnnamed_2 = 3;
-pub const secure_protocol_sslv3: C2RustUnnamed_2 = 2;
-pub const secure_protocol_sslv2: C2RustUnnamed_2 = 1;
-pub const secure_protocol_auto: C2RustUnnamed_2 = 0;
+impl AddAssign<u32> for C2RustUnnamed_2 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_2 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_2 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_2 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_2 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn add(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn div(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_2 {
+    type Output = C2RustUnnamed_2;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_2 {
+        C2RustUnnamed_2::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_3 {
@@ -474,16 +795,75 @@ pub enum C2RustUnnamed_3 {
     regex_type_pcre = 0,
 }
 impl C2RustUnnamed_3 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_3::regex_type_posix => 1,
             C2RustUnnamed_3::regex_type_pcre => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_3 {
+        match value {
+            1 => C2RustUnnamed_3::regex_type_posix,
+            0 => C2RustUnnamed_3::regex_type_pcre,
+            _ => panic!("Invalid value for C2RustUnnamed_3: {}", value),
+        }
+    }
 }
-
-pub const regex_type_posix: C2RustUnnamed_3 = 1;
-pub const regex_type_pcre: C2RustUnnamed_3 = 0;
+impl AddAssign<u32> for C2RustUnnamed_3 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_3 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_3 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_3 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_3 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn add(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn div(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_3 {
+    type Output = C2RustUnnamed_3;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_3 {
+        C2RustUnnamed_3::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum log_options {
@@ -494,7 +874,7 @@ pub enum log_options {
     LOG_PROGRESS,
 }
 impl log_options {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             log_options::LOG_VERBOSE => 0,
             log_options::LOG_NOTQUIET => 1,
@@ -503,13 +883,72 @@ impl log_options {
             log_options::LOG_PROGRESS => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> log_options {
+        match value {
+            0 => log_options::LOG_VERBOSE,
+            1 => log_options::LOG_NOTQUIET,
+            2 => log_options::LOG_NONVERBOSE,
+            3 => log_options::LOG_ALWAYS,
+            4 => log_options::LOG_PROGRESS,
+            _ => panic!("Invalid value for log_options: {}", value),
+        }
+    }
 }
-
-pub const LOG_PROGRESS: log_options = 4;
-pub const LOG_ALWAYS: log_options = 3;
-pub const LOG_NONVERBOSE: log_options = 2;
-pub const LOG_NOTQUIET: log_options = 1;
-pub const LOG_VERBOSE: log_options = 0;
+impl AddAssign<u32> for log_options {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for log_options {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for log_options {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for log_options {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for log_options {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for log_options {
+    type Output = log_options;
+    fn add(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for log_options {
+    type Output = log_options;
+    fn sub(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for log_options {
+    type Output = log_options;
+    fn mul(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for log_options {
+    type Output = log_options;
+    fn div(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for log_options {
+    type Output = log_options;
+    fn rem(self, rhs: u32) -> log_options {
+        log_options::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_4 {
@@ -525,7 +964,7 @@ pub enum C2RustUnnamed_4 {
     WGET_EXIT_UNKNOWN,
 }
 impl C2RustUnnamed_4 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_4::WGET_EXIT_SUCCESS => 0,
             C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR => 1,
@@ -539,18 +978,77 @@ impl C2RustUnnamed_4 {
             C2RustUnnamed_4::WGET_EXIT_UNKNOWN => 9,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_4 {
+        match value {
+            0 => C2RustUnnamed_4::WGET_EXIT_SUCCESS,
+            1 => C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR,
+            2 => C2RustUnnamed_4::WGET_EXIT_PARSE_ERROR,
+            3 => C2RustUnnamed_4::WGET_EXIT_IO_FAIL,
+            4 => C2RustUnnamed_4::WGET_EXIT_NETWORK_FAIL,
+            5 => C2RustUnnamed_4::WGET_EXIT_SSL_AUTH_FAIL,
+            6 => C2RustUnnamed_4::WGET_EXIT_SERVER_AUTH_FAIL,
+            7 => C2RustUnnamed_4::WGET_EXIT_PROTOCOL_ERROR,
+            8 => C2RustUnnamed_4::WGET_EXIT_SERVER_ERROR,
+            9 => C2RustUnnamed_4::WGET_EXIT_UNKNOWN,
+            _ => panic!("Invalid value for C2RustUnnamed_4: {}", value),
+        }
+    }
 }
-
-pub const WGET_EXIT_UNKNOWN: C2RustUnnamed_4 = 9;
-pub const WGET_EXIT_SERVER_ERROR: C2RustUnnamed_4 = 8;
-pub const WGET_EXIT_PROTOCOL_ERROR: C2RustUnnamed_4 = 7;
-pub const WGET_EXIT_SERVER_AUTH_FAIL: C2RustUnnamed_4 = 6;
-pub const WGET_EXIT_SSL_AUTH_FAIL: C2RustUnnamed_4 = 5;
-pub const WGET_EXIT_NETWORK_FAIL: C2RustUnnamed_4 = 4;
-pub const WGET_EXIT_IO_FAIL: C2RustUnnamed_4 = 3;
-pub const WGET_EXIT_PARSE_ERROR: C2RustUnnamed_4 = 2;
-pub const WGET_EXIT_GENERIC_ERROR: C2RustUnnamed_4 = 1;
-pub const WGET_EXIT_SUCCESS: C2RustUnnamed_4 = 0;
+impl AddAssign<u32> for C2RustUnnamed_4 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_4 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_4 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_4 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_4 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn add(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn div(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type socklen_t = __socklen_t;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -566,7 +1064,7 @@ pub enum __socket_type {
     SOCK_STREAM = 1,
 }
 impl __socket_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             __socket_type::SOCK_NONBLOCK => 2048,
             __socket_type::SOCK_CLOEXEC => 524288,
@@ -579,86 +1077,91 @@ impl __socket_type {
             __socket_type::SOCK_STREAM => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> __socket_type {
+        match value {
+            2048 => __socket_type::SOCK_NONBLOCK,
+            524288 => __socket_type::SOCK_CLOEXEC,
+            10 => __socket_type::SOCK_PACKET,
+            6 => __socket_type::SOCK_DCCP,
+            5 => __socket_type::SOCK_SEQPACKET,
+            4 => __socket_type::SOCK_RDM,
+            3 => __socket_type::SOCK_RAW,
+            2 => __socket_type::SOCK_DGRAM,
+            1 => __socket_type::SOCK_STREAM,
+            _ => panic!("Invalid value for __socket_type: {}", value),
+        }
+    }
 }
-
-pub const SOCK_NONBLOCK: __socket_type = 2048;
-pub const SOCK_CLOEXEC: __socket_type = 524288;
-pub const SOCK_PACKET: __socket_type = 10;
-pub const SOCK_DCCP: __socket_type = 6;
-pub const SOCK_SEQPACKET: __socket_type = 5;
-pub const SOCK_RDM: __socket_type = 4;
-pub const SOCK_RAW: __socket_type = 3;
-pub const SOCK_DGRAM: __socket_type = 2;
-pub const SOCK_STREAM: __socket_type = 1;
+impl AddAssign<u32> for __socket_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for __socket_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for __socket_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for __socket_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for __socket_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = __socket_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for __socket_type {
+    type Output = __socket_type;
+    fn add(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for __socket_type {
+    type Output = __socket_type;
+    fn sub(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for __socket_type {
+    type Output = __socket_type;
+    fn mul(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for __socket_type {
+    type Output = __socket_type;
+    fn div(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for __socket_type {
+    type Output = __socket_type;
+    fn rem(self, rhs: u32) -> __socket_type {
+        __socket_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type sa_family_t = libc::c_ushort;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sockaddr {
     pub sa_family: sa_family_t,
-    pub sa_data: [libc::c_char; 14],
+    pub sa_data: [i8; 14],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct sockaddr_storage {
     pub ss_family: sa_family_t,
-    pub __ss_padding: [libc::c_char; 118],
-    pub __ss_align: libc::c_ulong,
+    pub __ss_padding: [i8; 118],
+    pub __ss_align: u64,
 }
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    MSG_CMSG_CLOEXEC = 1073741824,
-    MSG_FASTOPEN = 536870912,
-    MSG_ZEROCOPY = 67108864,
-    MSG_BATCH = 262144,
-    MSG_WAITFORONE = 65536,
-    MSG_MORE = 32768,
-    MSG_NOSIGNAL = 16384,
-    MSG_ERRQUEUE = 8192,
-    MSG_RST = 4096,
-    MSG_CONFIRM = 2048,
-    MSG_SYN = 1024,
-    MSG_FIN = 512,
-    MSG_WAITALL = 256,
-    MSG_EOR = 128,
-    MSG_DONTWAIT = 64,
-    MSG_TRUNC = 32,
-    MSG_PROXY = 16,
-    MSG_CTRUNC = 8,
-    MSG_TRYHARD = 4,
-    MSG_DONTROUTE = 4,
-    MSG_PEEK = 2,
-    MSG_OOB = 1,
-}
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::MSG_CMSG_CLOEXEC => 1073741824,
-            C2RustUnnamed_5::MSG_FASTOPEN => 536870912,
-            C2RustUnnamed_5::MSG_ZEROCOPY => 67108864,
-            C2RustUnnamed_5::MSG_BATCH => 262144,
-            C2RustUnnamed_5::MSG_WAITFORONE => 65536,
-            C2RustUnnamed_5::MSG_MORE => 32768,
-            C2RustUnnamed_5::MSG_NOSIGNAL => 16384,
-            C2RustUnnamed_5::MSG_ERRQUEUE => 8192,
-            C2RustUnnamed_5::MSG_RST => 4096,
-            C2RustUnnamed_5::MSG_CONFIRM => 2048,
-            C2RustUnnamed_5::MSG_SYN => 1024,
-            C2RustUnnamed_5::MSG_FIN => 512,
-            C2RustUnnamed_5::MSG_WAITALL => 256,
-            C2RustUnnamed_5::MSG_EOR => 128,
-            C2RustUnnamed_5::MSG_DONTWAIT => 64,
-            C2RustUnnamed_5::MSG_TRUNC => 32,
-            C2RustUnnamed_5::MSG_PROXY => 16,
-            C2RustUnnamed_5::MSG_CTRUNC => 8,
-            C2RustUnnamed_5::MSG_TRYHARD => 4,
-            C2RustUnnamed_5::MSG_DONTROUTE => 4,
-            C2RustUnnamed_5::MSG_PEEK => 2,
-            C2RustUnnamed_5::MSG_OOB => 1,
-        }
-    }
-}
-
+pub type C2RustUnnamed_5 = u32;
 pub const MSG_CMSG_CLOEXEC: C2RustUnnamed_5 = 1073741824;
 pub const MSG_FASTOPEN: C2RustUnnamed_5 = 536870912;
 pub const MSG_ZEROCOPY: C2RustUnnamed_5 = 67108864;
@@ -726,7 +1229,7 @@ pub struct sockaddr_in {
     pub sin_family: sa_family_t,
     pub sin_port: in_port_t,
     pub sin_addr: in_addr,
-    pub sin_zero: [libc::c_uchar; 8],
+    pub sin_zero: [u8; 8],
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -782,7 +1285,7 @@ pub enum C2RustUnnamed_7 {
     IPPROTO_IP = 0,
 }
 impl C2RustUnnamed_7 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_7::IPPROTO_MAX => 256,
             C2RustUnnamed_7::IPPROTO_RAW => 255,
@@ -812,40 +1315,99 @@ impl C2RustUnnamed_7 {
             C2RustUnnamed_7::IPPROTO_IP => 0,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_7 {
+        match value {
+            256 => C2RustUnnamed_7::IPPROTO_MAX,
+            255 => C2RustUnnamed_7::IPPROTO_RAW,
+            137 => C2RustUnnamed_7::IPPROTO_MPLS,
+            136 => C2RustUnnamed_7::IPPROTO_UDPLITE,
+            132 => C2RustUnnamed_7::IPPROTO_SCTP,
+            108 => C2RustUnnamed_7::IPPROTO_COMP,
+            103 => C2RustUnnamed_7::IPPROTO_PIM,
+            98 => C2RustUnnamed_7::IPPROTO_ENCAP,
+            94 => C2RustUnnamed_7::IPPROTO_BEETPH,
+            92 => C2RustUnnamed_7::IPPROTO_MTP,
+            51 => C2RustUnnamed_7::IPPROTO_AH,
+            50 => C2RustUnnamed_7::IPPROTO_ESP,
+            47 => C2RustUnnamed_7::IPPROTO_GRE,
+            46 => C2RustUnnamed_7::IPPROTO_RSVP,
+            41 => C2RustUnnamed_7::IPPROTO_IPV6,
+            33 => C2RustUnnamed_7::IPPROTO_DCCP,
+            29 => C2RustUnnamed_7::IPPROTO_TP,
+            22 => C2RustUnnamed_7::IPPROTO_IDP,
+            17 => C2RustUnnamed_7::IPPROTO_UDP,
+            12 => C2RustUnnamed_7::IPPROTO_PUP,
+            8 => C2RustUnnamed_7::IPPROTO_EGP,
+            6 => C2RustUnnamed_7::IPPROTO_TCP,
+            4 => C2RustUnnamed_7::IPPROTO_IPIP,
+            2 => C2RustUnnamed_7::IPPROTO_IGMP,
+            1 => C2RustUnnamed_7::IPPROTO_ICMP,
+            0 => C2RustUnnamed_7::IPPROTO_IP,
+            _ => panic!("Invalid value for C2RustUnnamed_7: {}", value),
+        }
+    }
 }
-
-pub const IPPROTO_MAX: C2RustUnnamed_7 = 256;
-pub const IPPROTO_RAW: C2RustUnnamed_7 = 255;
-pub const IPPROTO_MPLS: C2RustUnnamed_7 = 137;
-pub const IPPROTO_UDPLITE: C2RustUnnamed_7 = 136;
-pub const IPPROTO_SCTP: C2RustUnnamed_7 = 132;
-pub const IPPROTO_COMP: C2RustUnnamed_7 = 108;
-pub const IPPROTO_PIM: C2RustUnnamed_7 = 103;
-pub const IPPROTO_ENCAP: C2RustUnnamed_7 = 98;
-pub const IPPROTO_BEETPH: C2RustUnnamed_7 = 94;
-pub const IPPROTO_MTP: C2RustUnnamed_7 = 92;
-pub const IPPROTO_AH: C2RustUnnamed_7 = 51;
-pub const IPPROTO_ESP: C2RustUnnamed_7 = 50;
-pub const IPPROTO_GRE: C2RustUnnamed_7 = 47;
-pub const IPPROTO_RSVP: C2RustUnnamed_7 = 46;
-pub const IPPROTO_IPV6: C2RustUnnamed_7 = 41;
-pub const IPPROTO_DCCP: C2RustUnnamed_7 = 33;
-pub const IPPROTO_TP: C2RustUnnamed_7 = 29;
-pub const IPPROTO_IDP: C2RustUnnamed_7 = 22;
-pub const IPPROTO_UDP: C2RustUnnamed_7 = 17;
-pub const IPPROTO_PUP: C2RustUnnamed_7 = 12;
-pub const IPPROTO_EGP: C2RustUnnamed_7 = 8;
-pub const IPPROTO_TCP: C2RustUnnamed_7 = 6;
-pub const IPPROTO_IPIP: C2RustUnnamed_7 = 4;
-pub const IPPROTO_IGMP: C2RustUnnamed_7 = 2;
-pub const IPPROTO_ICMP: C2RustUnnamed_7 = 1;
-pub const IPPROTO_IP: C2RustUnnamed_7 = 0;
+impl AddAssign<u32> for C2RustUnnamed_7 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_7 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_7 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_7 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_7 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn add(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn div(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_7 {
+    type Output = C2RustUnnamed_7;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_7 {
+        C2RustUnnamed_7::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct ip_address {
-    pub family: libc::c_int,
+    pub family: i32,
     pub data: C2RustUnnamed_8,
-    pub ipv6_scope: libc::c_int,
+    pub ipv6_scope: i32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -861,19 +1423,78 @@ pub enum C2RustUnnamed_9 {
     LH_REFRESH = 4,
 }
 impl C2RustUnnamed_9 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_9::LH_SILENT => 1,
             C2RustUnnamed_9::LH_BIND => 2,
             C2RustUnnamed_9::LH_REFRESH => 4,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_9 {
+        match value {
+            1 => C2RustUnnamed_9::LH_SILENT,
+            2 => C2RustUnnamed_9::LH_BIND,
+            4 => C2RustUnnamed_9::LH_REFRESH,
+            _ => panic!("Invalid value for C2RustUnnamed_9: {}", value),
+        }
+    }
 }
-
-pub const LH_REFRESH: C2RustUnnamed_9 = 4;
-pub const LH_BIND: C2RustUnnamed_9 = 2;
-pub const LH_SILENT: C2RustUnnamed_9 = 1;
-pub type C2RustUnnamed_10 = libc::c_int;
+impl AddAssign<u32> for C2RustUnnamed_9 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_9 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_9 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_9 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_9 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn add(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn div(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_9 {
+    type Output = C2RustUnnamed_9;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_9 {
+        C2RustUnnamed_9::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type C2RustUnnamed_10 = i32;
 pub const E_HOST: C2RustUnnamed_10 = -100;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -884,52 +1505,28 @@ pub struct transport_info {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct transport_implementation {
-    pub reader: Option::<
-        unsafe extern "C" fn(
-            libc::c_int,
-            *mut libc::c_char,
-            libc::c_int,
-            *mut libc::c_void,
-            libc::c_double,
-        ) -> libc::c_int,
+    pub reader: Option<
+        unsafe extern "C" fn(i32, *mut i8, i32, *mut libc::c_void, libc::c_double) -> i32,
     >,
-    pub writer: Option::<
-        unsafe extern "C" fn(
-            libc::c_int,
-            *mut libc::c_char,
-            libc::c_int,
-            *mut libc::c_void,
-        ) -> libc::c_int,
+    pub writer: Option<
+        unsafe extern "C" fn(i32, *mut i8, i32, *mut libc::c_void) -> i32,
     >,
-    pub poller: Option::<
-        unsafe extern "C" fn(
-            libc::c_int,
-            libc::c_double,
-            libc::c_int,
-            *mut libc::c_void,
-        ) -> libc::c_int,
+    pub poller: Option<
+        unsafe extern "C" fn(i32, libc::c_double, i32, *mut libc::c_void) -> i32,
     >,
-    pub peeker: Option::<
-        unsafe extern "C" fn(
-            libc::c_int,
-            *mut libc::c_char,
-            libc::c_int,
-            *mut libc::c_void,
-            libc::c_double,
-        ) -> libc::c_int,
+    pub peeker: Option<
+        unsafe extern "C" fn(i32, *mut i8, i32, *mut libc::c_void, libc::c_double) -> i32,
     >,
-    pub errstr: Option::<
-        unsafe extern "C" fn(libc::c_int, *mut libc::c_void) -> *const libc::c_char,
-    >,
-    pub closer: Option::<unsafe extern "C" fn(libc::c_int, *mut libc::c_void) -> ()>,
+    pub errstr: Option<unsafe extern "C" fn(i32, *mut libc::c_void) -> *const i8>,
+    pub closer: Option<unsafe extern "C" fn(i32, *mut libc::c_void) -> ()>,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct cwt_context {
-    pub fd: libc::c_int,
+    pub fd: i32,
     pub addr: *const sockaddr,
     pub addrlen: socklen_t,
-    pub result: libc::c_int,
+    pub result: i32,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -938,14 +1535,75 @@ pub enum C2RustUnnamed_12 {
     WAIT_FOR_WRITE = 2,
 }
 impl C2RustUnnamed_12 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_12::WAIT_FOR_READ => 1,
             C2RustUnnamed_12::WAIT_FOR_WRITE => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_12 {
+        match value {
+            1 => C2RustUnnamed_12::WAIT_FOR_READ,
+            2 => C2RustUnnamed_12::WAIT_FOR_WRITE,
+            _ => panic!("Invalid value for C2RustUnnamed_12: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_12 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_12 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_12 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_12 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_12 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_12 {
+    type Output = C2RustUnnamed_12;
+    fn add(self, rhs: u32) -> C2RustUnnamed_12 {
+        C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_12 {
+    type Output = C2RustUnnamed_12;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_12 {
+        C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_12 {
+    type Output = C2RustUnnamed_12;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_12 {
+        C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_12 {
+    type Output = C2RustUnnamed_12;
+    fn div(self, rhs: u32) -> C2RustUnnamed_12 {
+        C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_12 {
+    type Output = C2RustUnnamed_12;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_12 {
+        C2RustUnnamed_12::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum C2RustUnnamed_11 {
@@ -953,20 +1611,79 @@ pub enum C2RustUnnamed_11 {
     ENDPOINT_PEER,
 }
 impl C2RustUnnamed_11 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed_11::ENDPOINT_LOCAL => 0,
             C2RustUnnamed_11::ENDPOINT_PEER => 1,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed_11 {
+        match value {
+            0 => C2RustUnnamed_11::ENDPOINT_LOCAL,
+            1 => C2RustUnnamed_11::ENDPOINT_PEER,
+            _ => panic!("Invalid value for C2RustUnnamed_11: {}", value),
+        }
+    }
 }
-
-pub const ENDPOINT_PEER: C2RustUnnamed_11 = 1;
-pub const ENDPOINT_LOCAL: C2RustUnnamed_11 = 0;
+impl AddAssign<u32> for C2RustUnnamed_11 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_11 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_11 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_11 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_11 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn add(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn div(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_11 {
+    type Output = C2RustUnnamed_11;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_11 {
+        C2RustUnnamed_11::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 unsafe extern "C" fn sockaddr_set_data(
     mut sa: *mut sockaddr,
     mut ip: *const ip_address,
-    mut port: libc::c_int,
+    mut port: i32,
 ) {
     match (*ip).family {
         2 => {
@@ -974,17 +1691,15 @@ unsafe extern "C" fn sockaddr_set_data(
             memset(
                 sin as *mut libc::c_void,
                 '\0' as i32,
-                ::core::mem::size_of::<sockaddr_in>() as libc::c_ulong,
+                ::core::mem::size_of::<sockaddr_in>() as u64,
             );
-            (*sin).sin_family = 2 as libc::c_int as sa_family_t;
-            (*sin)
-                .sin_port = ({
+            (*sin).sin_family = 2 as i32 as sa_family_t;
+            (*sin).sin_port = ({
                 let mut __v: libc::c_ushort = 0;
                 let mut __x: libc::c_ushort = port as libc::c_ushort;
                 if 0 != 0 {
-                    __v = (__x as libc::c_int >> 8 as libc::c_int & 0xff as libc::c_int
-                        | (__x as libc::c_int & 0xff as libc::c_int) << 8 as libc::c_int)
-                        as libc::c_ushort;
+                    __v = (__x as i32 >> 8 as i32 & 0xff as i32
+                        | (__x as i32 & 0xff as i32) << 8 as i32) as libc::c_ushort;
                 } else {
                     let fresh0 = &mut __v;
                     let fresh1;
@@ -1005,17 +1720,15 @@ unsafe extern "C" fn sockaddr_set_data(
             memset(
                 sin6 as *mut libc::c_void,
                 '\0' as i32,
-                ::core::mem::size_of::<sockaddr_in6>() as libc::c_ulong,
+                ::core::mem::size_of::<sockaddr_in6>() as u64,
             );
-            (*sin6).sin6_family = 10 as libc::c_int as sa_family_t;
-            (*sin6)
-                .sin6_port = ({
+            (*sin6).sin6_family = 10 as i32 as sa_family_t;
+            (*sin6).sin6_port = ({
                 let mut __v: libc::c_ushort = 0;
                 let mut __x: libc::c_ushort = port as libc::c_ushort;
                 if 0 != 0 {
-                    __v = (__x as libc::c_int >> 8 as libc::c_int & 0xff as libc::c_int
-                        | (__x as libc::c_int & 0xff as libc::c_int) << 8 as libc::c_int)
-                        as libc::c_ushort;
+                    __v = (__x as i32 >> 8 as i32 & 0xff as i32
+                        | (__x as i32 & 0xff as i32) << 8 as i32) as libc::c_ushort;
                 } else {
                     let fresh3 = &mut __v;
                     let fresh4;
@@ -1040,13 +1753,13 @@ unsafe extern "C" fn sockaddr_set_data(
 unsafe extern "C" fn sockaddr_get_data(
     mut sa: *const sockaddr,
     mut ip: *mut ip_address,
-    mut port: *mut libc::c_int,
+    mut port: *mut i32,
 ) {
-    match (*sa).sa_family as libc::c_int {
+    match (*sa).sa_family as i32 {
         2 => {
             let mut sin: *mut sockaddr_in = sa as *mut sockaddr_in;
             if !ip.is_null() {
-                (*ip).family = 2 as libc::c_int;
+                (*ip).family = 2 as i32;
                 (*ip).data.d4 = (*sin).sin_addr;
             }
             if !port.is_null() {
@@ -1054,10 +1767,8 @@ unsafe extern "C" fn sockaddr_get_data(
                     let mut __v: libc::c_ushort = 0;
                     let mut __x: libc::c_ushort = (*sin).sin_port;
                     if 0 != 0 {
-                        __v = (__x as libc::c_int >> 8 as libc::c_int
-                            & 0xff as libc::c_int
-                            | (__x as libc::c_int & 0xff as libc::c_int)
-                                << 8 as libc::c_int) as libc::c_ushort;
+                        __v = (__x as i32 >> 8 as i32 & 0xff as i32
+                            | (__x as i32 & 0xff as i32) << 8 as i32) as libc::c_ushort;
                     } else {
                         let fresh6 = &mut __v;
                         let fresh7;
@@ -1070,25 +1781,23 @@ unsafe extern "C" fn sockaddr_get_data(
                         c2rust_asm_casts::AsmCast::cast_out(fresh6, fresh8, fresh7);
                     }
                     __v
-                }) as libc::c_int;
+                }) as i32;
             }
         }
         10 => {
             let mut sin6: *mut sockaddr_in6 = sa as *mut sockaddr_in6;
             if !ip.is_null() {
-                (*ip).family = 10 as libc::c_int;
+                (*ip).family = 10 as i32;
                 (*ip).data.d6 = (*sin6).sin6_addr;
-                (*ip).ipv6_scope = (*sin6).sin6_scope_id as libc::c_int;
+                (*ip).ipv6_scope = (*sin6).sin6_scope_id as i32;
             }
             if !port.is_null() {
                 *port = ({
                     let mut __v: libc::c_ushort = 0;
                     let mut __x: libc::c_ushort = (*sin6).sin6_port;
                     if 0 != 0 {
-                        __v = (__x as libc::c_int >> 8 as libc::c_int
-                            & 0xff as libc::c_int
-                            | (__x as libc::c_int & 0xff as libc::c_int)
-                                << 8 as libc::c_int) as libc::c_ushort;
+                        __v = (__x as i32 >> 8 as i32 & 0xff as i32
+                            | (__x as i32 & 0xff as i32) << 8 as i32) as libc::c_ushort;
                     } else {
                         let fresh9 = &mut __v;
                         let fresh10;
@@ -1101,7 +1810,7 @@ unsafe extern "C" fn sockaddr_get_data(
                         c2rust_asm_casts::AsmCast::cast_out(fresh9, fresh11, fresh10);
                     }
                     __v
-                }) as libc::c_int;
+                }) as i32;
             }
         }
         _ => {
@@ -1110,9 +1819,9 @@ unsafe extern "C" fn sockaddr_get_data(
     };
 }
 unsafe extern "C" fn sockaddr_size(mut sa: *const sockaddr) -> socklen_t {
-    match (*sa).sa_family as libc::c_int {
-        2 => return ::core::mem::size_of::<sockaddr_in>() as libc::c_ulong as socklen_t,
-        10 => return ::core::mem::size_of::<sockaddr_in6>() as libc::c_ulong as socklen_t,
+    match (*sa).sa_family as i32 {
+        2 => return ::core::mem::size_of::<sockaddr_in>() as u64 as socklen_t,
+        10 => return ::core::mem::size_of::<sockaddr_in6>() as u64 as socklen_t,
         _ => {
             abort();
         }
@@ -1131,40 +1840,39 @@ unsafe extern "C" fn resolve_bind_address(mut sa: *mut sockaddr) -> bool {
     };
     if called {
         if should_bind {
-            sockaddr_set_data(sa, &mut ip, 0 as libc::c_int);
+            sockaddr_set_data(sa, &mut ip, 0 as i32);
         }
         return should_bind;
     }
-    called = 1 as libc::c_int != 0;
+    called = 1 as i32 != 0;
     al = lookup_host(
         opt.bind_address,
-        LH_BIND as libc::c_int | LH_SILENT as libc::c_int,
+        C2RustUnnamed_9::LH_BIND as i32 | C2RustUnnamed_9::LH_SILENT as i32,
     );
     if al.is_null() {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s: unable to resolve bind address %s; disabling bind.\n\0"
-                    as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const u8 as *const i8,
+                5 as i32,
             ),
             exec_name,
             quote(opt.bind_address),
         );
-        should_bind = 0 as libc::c_int != 0;
-        return 0 as libc::c_int != 0;
+        should_bind = 0 as i32 != 0;
+        return 0 as i32 != 0;
     }
-    ip = *address_list_address_at(al, 0 as libc::c_int);
+    ip = *address_list_address_at(al, 0 as i32);
     address_list_release(al);
-    sockaddr_set_data(sa, &mut ip, 0 as libc::c_int);
-    should_bind = 1 as libc::c_int != 0;
-    return 1 as libc::c_int != 0;
+    sockaddr_set_data(sa, &mut ip, 0 as i32);
+    should_bind = 1 as i32 != 0;
+    return 1 as i32 != 0;
 }
 unsafe extern "C" fn connect_with_timeout_callback(mut arg: *mut libc::c_void) {
     let mut ctx: *mut cwt_context = arg as *mut cwt_context;
-    (*ctx)
-        .result = connect(
+    (*ctx).result = connect(
         (*ctx).fd,
         __CONST_SOCKADDR_ARG {
             __sockaddr__: (*ctx).addr,
@@ -1173,11 +1881,11 @@ unsafe extern "C" fn connect_with_timeout_callback(mut arg: *mut libc::c_void) {
     );
 }
 unsafe extern "C" fn connect_with_timeout(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut addr: *const sockaddr,
     mut addrlen: socklen_t,
     mut timeout: libc::c_double,
-) -> libc::c_int {
+) -> i32 {
     let mut ctx: cwt_context = cwt_context {
         fd: 0,
         addr: 0 as *const sockaddr,
@@ -1195,20 +1903,20 @@ unsafe extern "C" fn connect_with_timeout(
         ),
         &mut ctx as *mut cwt_context as *mut libc::c_void,
     ) {
-        *__errno_location() = 110 as libc::c_int;
-        return -(1 as libc::c_int);
+        *__errno_location() = 110 as i32;
+        return -(1 as i32);
     }
-    if ctx.result == -(1 as libc::c_int) && *__errno_location() == 4 as libc::c_int {
-        *__errno_location() = 110 as libc::c_int;
+    if ctx.result == -(1 as i32) && *__errno_location() == 4 as i32 {
+        *__errno_location() = 110 as i32;
     }
     return ctx.result;
 }
 #[no_mangle]
 pub unsafe extern "C" fn connect_to_ip(
     mut ip: *const ip_address,
-    mut port: libc::c_int,
-    mut print: *const libc::c_char,
-) -> libc::c_int {
+    mut port: i32,
+    mut print: *const i8,
+) -> i32 {
     let mut current_block: u64;
     let mut ss: sockaddr_storage = sockaddr_storage {
         ss_family: 0,
@@ -1216,57 +1924,53 @@ pub unsafe extern "C" fn connect_to_ip(
         __ss_align: 0,
     };
     let mut sa: *mut sockaddr = &mut ss as *mut sockaddr_storage as *mut sockaddr;
-    let mut sock: libc::c_int = 0;
+    let mut sock: i32 = 0;
     if !print.is_null() {
-        let mut txt_addr: *const libc::c_char = print_address(ip);
-        if 0 as libc::c_int != strcmp(print, txt_addr) {
-            let mut str: *mut libc::c_char = 0 as *mut libc::c_char;
-            let mut name: *mut libc::c_char = 0 as *mut libc::c_char;
-            if opt.enable_iri as libc::c_int != 0
+        let mut txt_addr: *const i8 = print_address(ip);
+        if 0 as i32 != strcmp(print, txt_addr) {
+            let mut str: *mut i8 = 0 as *mut i8;
+            let mut name: *mut i8 = 0 as *mut i8;
+            if opt.enable_iri as i32 != 0
                 && {
-                    name = idn_decode(print as *mut libc::c_char);
+                    name = idn_decode(print as *mut i8);
                     !name.is_null()
                 }
             {
-                str = aprintf(
-                    b"%s (%s)\0" as *const u8 as *const libc::c_char,
-                    name,
-                    print,
-                );
+                str = aprintf(b"%s (%s)\0" as *const u8 as *const i8, name, print);
                 rpl_free(name as *mut libc::c_void);
-                name = 0 as *mut libc::c_char;
+                name = 0 as *mut i8;
             }
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Connecting to %s|%s|:%d... \0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Connecting to %s|%s|:%d... \0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 if !str.is_null() { str } else { escnonprint_uri(print) },
                 txt_addr,
                 port,
             );
             rpl_free(str as *mut libc::c_void);
-            str = 0 as *mut libc::c_char;
-        } else if (*ip).family == 2 as libc::c_int {
+            str = 0 as *mut i8;
+        } else if (*ip).family == 2 as i32 {
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Connecting to %s:%d... \0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Connecting to %s:%d... \0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 txt_addr,
                 port,
             );
-        } else if (*ip).family == 10 as libc::c_int {
+        } else if (*ip).family == 10 as i32 {
             logprintf(
-                LOG_VERBOSE,
+                log_options::LOG_VERBOSE,
                 dcgettext(
-                    0 as *const libc::c_char,
-                    b"Connecting to [%s]:%d... \0" as *const u8 as *const libc::c_char,
-                    5 as libc::c_int,
+                    0 as *const i8,
+                    b"Connecting to [%s]:%d... \0" as *const u8 as *const i8,
+                    5 as i32,
                 ),
                 txt_addr,
                 port,
@@ -1274,53 +1978,48 @@ pub unsafe extern "C" fn connect_to_ip(
         }
     }
     sockaddr_set_data(sa, ip, port);
-    sock = socket(
-        (*sa).sa_family as libc::c_int,
-        SOCK_STREAM as libc::c_int,
-        0 as libc::c_int,
-    );
-    if !(sock < 0 as libc::c_int) {
+    sock = socket((*sa).sa_family as i32, __socket_type::SOCK_STREAM as i32, 0 as i32);
+    if !(sock < 0 as i32) {
         if opt.ipv6_only {
-            let mut on: libc::c_int = 1 as libc::c_int;
-            let mut err: libc::c_int = setsockopt(
+            let mut on: i32 = 1 as i32;
+            let mut err: i32 = setsockopt(
                 sock,
-                IPPROTO_IPV6 as libc::c_int,
-                26 as libc::c_int,
-                &mut on as *mut libc::c_int as *const libc::c_void,
-                ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
+                C2RustUnnamed_7::IPPROTO_IPV6 as i32,
+                26 as i32,
+                &mut on as *mut i32 as *const libc::c_void,
+                ::core::mem::size_of::<i32>() as u64 as socklen_t,
             );
-            if opt.debug as libc::c_long != 0 {
-                if err < 0 as libc::c_int {
-                    if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
+                if err < 0 as i32 {
+                    if opt.debug as i64 != 0 {
                         debug_logprintf(
                             b"Failed setting IPV6_V6ONLY: %s\0" as *const u8
-                                as *const libc::c_char,
+                                as *const i8,
                             strerror(*__errno_location()),
                         );
                     }
                 }
             }
         }
-        if opt.limit_rate != 0 && opt.limit_rate < 8192 as libc::c_int as libc::c_long {
-            let mut bufsize: libc::c_int = opt.limit_rate as libc::c_int;
-            if bufsize < 512 as libc::c_int {
-                bufsize = 512 as libc::c_int;
+        if opt.limit_rate != 0 && opt.limit_rate < 8192 as i32 as i64 {
+            let mut bufsize: i32 = opt.limit_rate as i32;
+            if bufsize < 512 as i32 {
+                bufsize = 512 as i32;
             }
             if setsockopt(
                 sock,
-                1 as libc::c_int,
-                8 as libc::c_int,
-                &mut bufsize as *mut libc::c_int as *mut libc::c_void,
-                ::core::mem::size_of::<libc::c_int>() as libc::c_ulong as socklen_t,
+                1 as i32,
+                8 as i32,
+                &mut bufsize as *mut i32 as *mut libc::c_void,
+                ::core::mem::size_of::<i32>() as u64 as socklen_t,
             ) != 0
             {
                 logprintf(
-                    LOG_NOTQUIET,
+                    log_options::LOG_NOTQUIET,
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"setsockopt SO_RCVBUF failed: %s\n\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"setsockopt SO_RCVBUF failed: %s\n\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     strerror(*__errno_location()),
                 );
@@ -1341,7 +2040,7 @@ pub unsafe extern "C" fn connect_to_ip(
                         __sockaddr__: bind_sa,
                     },
                     sockaddr_size(bind_sa),
-                ) < 0 as libc::c_int
+                ) < 0 as i32
                 {
                     current_block = 5725010927128442372;
                 } else {
@@ -1361,22 +2060,21 @@ pub unsafe extern "C" fn connect_to_ip(
                     sa,
                     sockaddr_size(sa),
                     opt.connect_timeout,
-                ) < 0 as libc::c_int)
+                ) < 0 as i32)
                 {
                     if !print.is_null() {
                         logprintf(
-                            LOG_VERBOSE,
+                            log_options::LOG_VERBOSE,
                             dcgettext(
-                                0 as *const libc::c_char,
-                                b"connected.\n\0" as *const u8 as *const libc::c_char,
-                                5 as libc::c_int,
+                                0 as *const i8,
+                                b"connected.\n\0" as *const u8 as *const i8,
+                                5 as i32,
                             ),
                         );
                     }
-                    if opt.debug as libc::c_long != 0 {
+                    if opt.debug as i64 != 0 {
                         debug_logprintf(
-                            b"Created socket %d.\n\0" as *const u8
-                                as *const libc::c_char,
+                            b"Created socket %d.\n\0" as *const u8 as *const i8,
                             sock,
                         );
                     }
@@ -1385,55 +2083,52 @@ pub unsafe extern "C" fn connect_to_ip(
             }
         }
     }
-    let mut save_errno: libc::c_int = *__errno_location();
-    if sock >= 0 as libc::c_int {
+    let mut save_errno: i32 = *__errno_location();
+    if sock >= 0 as i32 {
         fd_close(sock);
     }
     if !print.is_null() {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             dcgettext(
-                0 as *const libc::c_char,
-                b"failed: %s.\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"failed: %s.\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             strerror(*__errno_location()),
         );
     }
     *__errno_location() = save_errno;
-    return -(1 as libc::c_int);
+    return -(1 as i32);
 }
 #[no_mangle]
-pub unsafe extern "C" fn connect_to_host(
-    mut host: *const libc::c_char,
-    mut port: libc::c_int,
-) -> libc::c_int {
-    let mut i: libc::c_int = 0;
-    let mut start: libc::c_int = 0;
-    let mut end: libc::c_int = 0;
-    let mut sock: libc::c_int = 0;
-    let mut al: *mut address_list = lookup_host(host, 0 as libc::c_int);
+pub unsafe extern "C" fn connect_to_host(mut host: *const i8, mut port: i32) -> i32 {
+    let mut i: i32 = 0;
+    let mut start: i32 = 0;
+    let mut end: i32 = 0;
+    let mut sock: i32 = 0;
+    let mut al: *mut address_list = lookup_host(host, 0 as i32);
     loop {
         if al.is_null() {
             logprintf(
-                LOG_NOTQUIET,
+                log_options::LOG_NOTQUIET,
                 dcgettext(
-                    0 as *const libc::c_char,
+                    0 as *const i8,
                     b"%s: unable to resolve host address %s\n\0" as *const u8
-                        as *const libc::c_char,
-                    5 as libc::c_int,
+                        as *const i8,
+                    5 as i32,
                 ),
                 exec_name,
                 quote(host),
             );
-            return E_HOST as libc::c_int;
+            return E_HOST as i32;
         }
         address_list_get_bounds(al, &mut start, &mut end);
         i = start;
         while i < end {
             let mut ip: *const ip_address = address_list_address_at(al, i);
             sock = connect_to_ip(ip, port, host);
-            if sock >= 0 as libc::c_int {
+            if sock >= 0 as i32 {
                 address_list_set_connected(al);
                 address_list_release(al);
                 return sock;
@@ -1446,41 +2141,38 @@ pub unsafe extern "C" fn connect_to_host(
             break;
         }
         address_list_release(al);
-        al = lookup_host(host, LH_REFRESH as libc::c_int);
+        al = lookup_host(host, C2RustUnnamed_9::LH_REFRESH as i32);
     }
     address_list_release(al);
-    return -(1 as libc::c_int);
+    return -(1 as i32);
 }
 #[no_mangle]
 pub unsafe extern "C" fn bind_local(
     mut bind_address: *const ip_address,
-    mut port: *mut libc::c_int,
-) -> libc::c_int {
-    let mut sock: libc::c_int = 0;
+    mut port: *mut i32,
+) -> i32 {
+    let mut sock: i32 = 0;
     let mut ss: sockaddr_storage = sockaddr_storage {
         ss_family: 0,
         __ss_padding: [0; 118],
         __ss_align: 0,
     };
     let mut sa: *mut sockaddr = &mut ss as *mut sockaddr_storage as *mut sockaddr;
-    let mut setopt_val: libc::c_int = 1 as libc::c_int;
-    let mut setopt_ptr: *mut libc::c_void = &mut setopt_val as *mut libc::c_int
+    let mut setopt_val: i32 = 1 as i32;
+    let mut setopt_ptr: *mut libc::c_void = &mut setopt_val as *mut i32
         as *mut libc::c_void;
-    let mut setopt_size: socklen_t = ::core::mem::size_of::<libc::c_int>()
-        as libc::c_ulong as socklen_t;
-    sock = socket((*bind_address).family, SOCK_STREAM as libc::c_int, 0 as libc::c_int);
-    if sock < 0 as libc::c_int {
-        return -(1 as libc::c_int);
+    let mut setopt_size: socklen_t = ::core::mem::size_of::<i32>() as u64 as socklen_t;
+    sock = socket((*bind_address).family, __socket_type::SOCK_STREAM as i32, 0 as i32);
+    if sock < 0 as i32 {
+        return -(1 as i32);
     }
-    if setsockopt(sock, 1 as libc::c_int, 2 as libc::c_int, setopt_ptr, setopt_size) != 0
-    {
+    if setsockopt(sock, 1 as i32, 2 as i32, setopt_ptr, setopt_size) != 0 {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             dcgettext(
-                0 as *const libc::c_char,
-                b"setsockopt SO_REUSEADDR failed: %s\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"setsockopt SO_REUSEADDR failed: %s\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             strerror(*__errno_location()),
         );
@@ -1488,7 +2180,7 @@ pub unsafe extern "C" fn bind_local(
     memset(
         &mut ss as *mut sockaddr_storage as *mut libc::c_void,
         '\0' as i32,
-        ::core::mem::size_of::<sockaddr_storage>() as libc::c_ulong,
+        ::core::mem::size_of::<sockaddr_storage>() as u64,
     );
     sockaddr_set_data(sa, bind_address, *port);
     if bind(
@@ -1497,69 +2189,68 @@ pub unsafe extern "C" fn bind_local(
             __sockaddr__: sa,
         },
         sockaddr_size(sa),
-    ) < 0 as libc::c_int
+    ) < 0 as i32
     {
         fd_close(sock);
-        return -(1 as libc::c_int);
+        return -(1 as i32);
     }
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"Local socket fd %d bound.\n\0" as *const u8 as *const libc::c_char,
+            b"Local socket fd %d bound.\n\0" as *const u8 as *const i8,
             sock,
         );
     }
-    if *port == 0 as libc::c_int {
+    if *port == 0 as i32 {
         let mut addrlen: socklen_t = sockaddr_size(sa);
         if getsockname(sock, __SOCKADDR_ARG { __sockaddr__: sa }, &mut addrlen)
-            < 0 as libc::c_int
+            < 0 as i32
         {
             fd_close(sock);
-            return -(1 as libc::c_int);
+            return -(1 as i32);
         }
         sockaddr_get_data(sa, 0 as *mut ip_address, port);
-        if opt.debug as libc::c_long != 0 {
+        if opt.debug as i64 != 0 {
             debug_logprintf(
-                b"binding to address %s using port %i.\n\0" as *const u8
-                    as *const libc::c_char,
+                b"binding to address %s using port %i.\n\0" as *const u8 as *const i8,
                 print_address(bind_address),
                 *port,
             );
         }
     }
-    if listen(sock, 1 as libc::c_int) < 0 as libc::c_int {
+    if listen(sock, 1 as i32) < 0 as i32 {
         fd_close(sock);
-        return -(1 as libc::c_int);
+        return -(1 as i32);
     }
     return sock;
 }
 #[no_mangle]
-pub unsafe extern "C" fn accept_connection(mut local_sock: libc::c_int) -> libc::c_int {
-    let mut sock: libc::c_int = 0;
+pub unsafe extern "C" fn accept_connection(mut local_sock: i32) -> i32 {
+    let mut sock: i32 = 0;
     let mut ss: sockaddr_storage = sockaddr_storage {
         ss_family: 0,
         __ss_padding: [0; 118],
         __ss_align: 0,
     };
     let mut sa: *mut sockaddr = &mut ss as *mut sockaddr_storage as *mut sockaddr;
-    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>()
-        as libc::c_ulong as socklen_t;
+    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>() as u64
+        as socklen_t;
     if opt.connect_timeout != 0. {
-        let mut test: libc::c_int = select_fd(
+        let mut test: i32 = select_fd(
             local_sock,
             opt.connect_timeout,
-            WAIT_FOR_READ as libc::c_int,
+            C2RustUnnamed_12::WAIT_FOR_READ as i32,
         );
-        if test == 0 as libc::c_int {
-            *__errno_location() = 110 as libc::c_int;
+        if test == 0 as i32 {
+            *__errno_location() = 110 as i32;
         }
-        if test <= 0 as libc::c_int {
-            return -(1 as libc::c_int);
+        if test <= 0 as i32 {
+            return -(1 as i32);
         }
     }
     sock = accept(local_sock, __SOCKADDR_ARG { __sockaddr__: sa }, &mut addrlen);
-    if opt.debug as libc::c_long != 0 {
+    if opt.debug as i64 != 0 {
         debug_logprintf(
-            b"Accepted client at socket %d.\n\0" as *const u8 as *const libc::c_char,
+            b"Accepted client at socket %d.\n\0" as *const u8 as *const i8,
             sock,
         );
     }
@@ -1567,9 +2258,9 @@ pub unsafe extern "C" fn accept_connection(mut local_sock: libc::c_int) -> libc:
 }
 #[no_mangle]
 pub unsafe extern "C" fn socket_ip_address(
-    mut sock: libc::c_int,
+    mut sock: i32,
     mut ip: *mut ip_address,
-    mut endpoint: libc::c_int,
+    mut endpoint: i32,
 ) -> bool {
     let mut storage: sockaddr_storage = sockaddr_storage {
         ss_family: 0,
@@ -1578,11 +2269,11 @@ pub unsafe extern "C" fn socket_ip_address(
     };
     let mut sockaddr: *mut sockaddr = &mut storage as *mut sockaddr_storage
         as *mut sockaddr;
-    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>()
-        as libc::c_ulong as socklen_t;
-    let mut ret: libc::c_int = 0;
-    memset(sockaddr as *mut libc::c_void, 0 as libc::c_int, addrlen as libc::c_ulong);
-    if endpoint == ENDPOINT_LOCAL as libc::c_int {
+    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>() as u64
+        as socklen_t;
+    let mut ret: i32 = 0;
+    memset(sockaddr as *mut libc::c_void, 0 as i32, addrlen as u64);
+    if endpoint == C2RustUnnamed_11::ENDPOINT_LOCAL as i32 {
         ret = getsockname(
             sock,
             __SOCKADDR_ARG {
@@ -1590,7 +2281,7 @@ pub unsafe extern "C" fn socket_ip_address(
             },
             &mut addrlen,
         );
-    } else if endpoint == ENDPOINT_PEER as libc::c_int {
+    } else if endpoint == C2RustUnnamed_11::ENDPOINT_PEER as i32 {
         ret = getpeername(
             sock,
             __SOCKADDR_ARG {
@@ -1601,40 +2292,40 @@ pub unsafe extern "C" fn socket_ip_address(
     } else {
         abort();
     }
-    if ret < 0 as libc::c_int {
-        return 0 as libc::c_int != 0;
+    if ret < 0 as i32 {
+        return 0 as i32 != 0;
     }
     memset(
         ip as *mut libc::c_void,
-        0 as libc::c_int,
-        ::core::mem::size_of::<ip_address>() as libc::c_ulong,
+        0 as i32,
+        ::core::mem::size_of::<ip_address>() as u64,
     );
-    (*ip).family = (*sockaddr).sa_family as libc::c_int;
-    match (*sockaddr).sa_family as libc::c_int {
+    (*ip).family = (*sockaddr).sa_family as i32;
+    match (*sockaddr).sa_family as i32 {
         10 => {
             let mut sa6: *mut sockaddr_in6 = &mut storage as *mut sockaddr_storage
                 as *mut sockaddr_in6;
             (*ip).data.d6 = (*sa6).sin6_addr;
-            (*ip).ipv6_scope = (*sa6).sin6_scope_id as libc::c_int;
-            if opt.debug as libc::c_long != 0 {
+            (*ip).ipv6_scope = (*sa6).sin6_scope_id as i32;
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
-                    b"conaddr is: %s\n\0" as *const u8 as *const libc::c_char,
+                    b"conaddr is: %s\n\0" as *const u8 as *const i8,
                     print_address(ip),
                 );
             }
-            return 1 as libc::c_int != 0;
+            return 1 as i32 != 0;
         }
         2 => {
             let mut sa: *mut sockaddr_in = &mut storage as *mut sockaddr_storage
                 as *mut sockaddr_in;
             (*ip).data.d4 = (*sa).sin_addr;
-            if opt.debug as libc::c_long != 0 {
+            if opt.debug as i64 != 0 {
                 debug_logprintf(
-                    b"conaddr is: %s\n\0" as *const u8 as *const libc::c_char,
+                    b"conaddr is: %s\n\0" as *const u8 as *const i8,
                     print_address(ip),
                 );
             }
-            return 1 as libc::c_int != 0;
+            return 1 as i32 != 0;
         }
         _ => {
             abort();
@@ -1642,10 +2333,7 @@ pub unsafe extern "C" fn socket_ip_address(
     };
 }
 #[no_mangle]
-pub unsafe extern "C" fn socket_family(
-    mut sock: libc::c_int,
-    mut endpoint: libc::c_int,
-) -> libc::c_int {
+pub unsafe extern "C" fn socket_family(mut sock: i32, mut endpoint: i32) -> i32 {
     let mut storage: sockaddr_storage = sockaddr_storage {
         ss_family: 0,
         __ss_padding: [0; 118],
@@ -1653,11 +2341,11 @@ pub unsafe extern "C" fn socket_family(
     };
     let mut sockaddr: *mut sockaddr = &mut storage as *mut sockaddr_storage
         as *mut sockaddr;
-    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>()
-        as libc::c_ulong as socklen_t;
-    let mut ret: libc::c_int = 0;
-    memset(sockaddr as *mut libc::c_void, 0 as libc::c_int, addrlen as libc::c_ulong);
-    if endpoint == ENDPOINT_LOCAL as libc::c_int {
+    let mut addrlen: socklen_t = ::core::mem::size_of::<sockaddr_storage>() as u64
+        as socklen_t;
+    let mut ret: i32 = 0;
+    memset(sockaddr as *mut libc::c_void, 0 as i32, addrlen as u64);
+    if endpoint == C2RustUnnamed_11::ENDPOINT_LOCAL as i32 {
         ret = getsockname(
             sock,
             __SOCKADDR_ARG {
@@ -1665,7 +2353,7 @@ pub unsafe extern "C" fn socket_family(
             },
             &mut addrlen,
         );
-    } else if endpoint == ENDPOINT_PEER as libc::c_int {
+    } else if endpoint == C2RustUnnamed_11::ENDPOINT_PEER as i32 {
         ret = getpeername(
             sock,
             __SOCKADDR_ARG {
@@ -1676,64 +2364,61 @@ pub unsafe extern "C" fn socket_family(
     } else {
         abort();
     }
-    if ret < 0 as libc::c_int {
-        return -(1 as libc::c_int);
+    if ret < 0 as i32 {
+        return -(1 as i32);
     }
-    return (*sockaddr).sa_family as libc::c_int;
+    return (*sockaddr).sa_family as i32;
 }
 #[no_mangle]
-pub unsafe extern "C" fn retryable_socket_connect_error(mut err: libc::c_int) -> bool {
-    if 0 as libc::c_int != 0 || err == 97 as libc::c_int || err == 96 as libc::c_int
-        || err == 94 as libc::c_int || err == 93 as libc::c_int
-        || err == 92 as libc::c_int || err == 22 as libc::c_int
+pub unsafe extern "C" fn retryable_socket_connect_error(mut err: i32) -> bool {
+    if 0 as i32 != 0 || err == 97 as i32 || err == 96 as i32 || err == 94 as i32
+        || err == 93 as i32 || err == 92 as i32 || err == 22 as i32
     {
-        return 0 as libc::c_int != 0;
+        return 0 as i32 != 0;
     }
     if !opt.retry_connrefused {
-        if err == 111 as libc::c_int || err == 101 as libc::c_int
-            || err == 113 as libc::c_int
-        {
-            return 0 as libc::c_int != 0;
+        if err == 111 as i32 || err == 101 as i32 || err == 113 as i32 {
+            return 0 as i32 != 0;
         }
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 unsafe extern "C" fn select_fd_internal(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut maxtime: libc::c_double,
-    mut wait_for: libc::c_int,
+    mut wait_for: i32,
     mut convert_back: bool,
-) -> libc::c_int {
+) -> i32 {
     let mut fdset: fd_set = fd_set { fds_bits: [0; 16] };
     let mut rd: *mut fd_set = 0 as *mut fd_set;
     let mut wr: *mut fd_set = 0 as *mut fd_set;
     let mut tmout: timeval = timeval { tv_sec: 0, tv_usec: 0 };
-    let mut result: libc::c_int = 0;
-    if fd < 0 as libc::c_int {
-        return -(1 as libc::c_int);
+    let mut result: i32 = 0;
+    if fd < 0 as i32 {
+        return -(1 as i32);
     }
-    if fd >= 1024 as libc::c_int {
+    if fd >= 1024 as i32 {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"Too many fds open.  Cannot use select on a fd >= %d\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
-            1024 as libc::c_int,
+            1024 as i32,
         );
-        exit(WGET_EXIT_GENERIC_ERROR as libc::c_int);
+        exit(C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR as i32);
     }
-    let mut __d0: libc::c_int = 0;
-    let mut __d1: libc::c_int = 0;
+    let mut __d0: i32 = 0;
+    let mut __d1: i32 = 0;
     let fresh12 = &mut __d0;
     let fresh13;
-    let fresh14 = (::core::mem::size_of::<fd_set>() as libc::c_ulong)
-        .wrapping_div(::core::mem::size_of::<__fd_mask>() as libc::c_ulong);
+    let fresh14 = (::core::mem::size_of::<fd_set>() as u64)
+        .wrapping_div(::core::mem::size_of::<__fd_mask>() as u64);
     let fresh15 = &mut __d1;
     let fresh16;
-    let fresh17 = &mut *(fdset.fds_bits).as_mut_ptr().offset(0 as libc::c_int as isize)
+    let fresh17 = &mut *(fdset.fds_bits).as_mut_ptr().offset(0 as i32 as isize)
         as *mut __fd_mask;
     asm!(
         "cld; rep; stosq", inlateout("cx") c2rust_asm_casts::AsmCast::cast_in(fresh12,
@@ -1744,28 +2429,23 @@ unsafe extern "C" fn select_fd_internal(
     c2rust_asm_casts::AsmCast::cast_out(fresh12, fresh14, fresh13);
     c2rust_asm_casts::AsmCast::cast_out(fresh15, fresh17, fresh16);
     fdset
-        .fds_bits[(fd
-        / (8 as libc::c_int
-            * ::core::mem::size_of::<__fd_mask>() as libc::c_ulong as libc::c_int))
+        .fds_bits[(fd / (8 as i32 * ::core::mem::size_of::<__fd_mask>() as u64 as i32))
         as usize]
-        |= ((1 as libc::c_ulong)
-            << fd
-                % (8 as libc::c_int
-                    * ::core::mem::size_of::<__fd_mask>() as libc::c_ulong
-                        as libc::c_int)) as __fd_mask;
-    if wait_for & WAIT_FOR_READ as libc::c_int != 0 {
+        |= ((1 as u64)
+            << fd % (8 as i32 * ::core::mem::size_of::<__fd_mask>() as u64 as i32))
+            as __fd_mask;
+    if wait_for & C2RustUnnamed_12::WAIT_FOR_READ as i32 != 0 {
         rd = &mut fdset;
     }
-    if wait_for & WAIT_FOR_WRITE as libc::c_int != 0 {
+    if wait_for & C2RustUnnamed_12::WAIT_FOR_WRITE as i32 != 0 {
         wr = &mut fdset;
     }
-    tmout.tv_sec = maxtime as libc::c_long;
-    tmout
-        .tv_usec = (1000000 as libc::c_int as libc::c_double
-        * (maxtime - maxtime as libc::c_long as libc::c_double)) as __suseconds_t;
+    tmout.tv_sec = maxtime as i64;
+    tmout.tv_usec = (1000000 as i32 as libc::c_double
+        * (maxtime - maxtime as i64 as libc::c_double)) as __suseconds_t;
     loop {
-        result = select(fd + 1 as libc::c_int, rd, wr, 0 as *mut fd_set, &mut tmout);
-        if !(result < 0 as libc::c_int && *__errno_location() == 4 as libc::c_int) {
+        result = select(fd + 1 as i32, rd, wr, 0 as *mut fd_set, &mut tmout);
+        if !(result < 0 as i32 && *__errno_location() == 4 as i32) {
             break;
         }
     }
@@ -1773,41 +2453,40 @@ unsafe extern "C" fn select_fd_internal(
 }
 #[no_mangle]
 pub unsafe extern "C" fn select_fd(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut maxtime: libc::c_double,
-    mut wait_for: libc::c_int,
-) -> libc::c_int {
-    return select_fd_internal(fd, maxtime, wait_for, 1 as libc::c_int != 0);
+    mut wait_for: i32,
+) -> i32 {
+    return select_fd_internal(fd, maxtime, wait_for, 1 as i32 != 0);
 }
 #[no_mangle]
-pub unsafe extern "C" fn test_socket_open(mut sock: libc::c_int) -> bool {
+pub unsafe extern "C" fn test_socket_open(mut sock: i32) -> bool {
     let mut check_set: fd_set = fd_set { fds_bits: [0; 16] };
     let mut to: timeval = timeval { tv_sec: 0, tv_usec: 0 };
-    let mut ret: libc::c_int = 0 as libc::c_int;
-    if sock >= 1024 as libc::c_int {
+    let mut ret: i32 = 0 as i32;
+    if sock >= 1024 as i32 {
         logprintf(
-            LOG_NOTQUIET,
+            log_options::LOG_NOTQUIET,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"Too many fds open.  Cannot use select on a fd >= %d\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
-            1024 as libc::c_int,
+            1024 as i32,
         );
-        exit(WGET_EXIT_GENERIC_ERROR as libc::c_int);
+        exit(C2RustUnnamed_4::WGET_EXIT_GENERIC_ERROR as i32);
     }
-    let mut __d0: libc::c_int = 0;
-    let mut __d1: libc::c_int = 0;
+    let mut __d0: i32 = 0;
+    let mut __d1: i32 = 0;
     let fresh18 = &mut __d0;
     let fresh19;
-    let fresh20 = (::core::mem::size_of::<fd_set>() as libc::c_ulong)
-        .wrapping_div(::core::mem::size_of::<__fd_mask>() as libc::c_ulong);
+    let fresh20 = (::core::mem::size_of::<fd_set>() as u64)
+        .wrapping_div(::core::mem::size_of::<__fd_mask>() as u64);
     let fresh21 = &mut __d1;
     let fresh22;
-    let fresh23 = &mut *(check_set.fds_bits)
-        .as_mut_ptr()
-        .offset(0 as libc::c_int as isize) as *mut __fd_mask;
+    let fresh23 = &mut *(check_set.fds_bits).as_mut_ptr().offset(0 as i32 as isize)
+        as *mut __fd_mask;
     asm!(
         "cld; rep; stosq", inlateout("cx") c2rust_asm_casts::AsmCast::cast_in(fresh18,
         fresh20) => fresh19, inlateout("di") c2rust_asm_casts::AsmCast::cast_in(fresh21,
@@ -1817,101 +2496,81 @@ pub unsafe extern "C" fn test_socket_open(mut sock: libc::c_int) -> bool {
     c2rust_asm_casts::AsmCast::cast_out(fresh18, fresh20, fresh19);
     c2rust_asm_casts::AsmCast::cast_out(fresh21, fresh23, fresh22);
     check_set
-        .fds_bits[(sock
-        / (8 as libc::c_int
-            * ::core::mem::size_of::<__fd_mask>() as libc::c_ulong as libc::c_int))
+        .fds_bits[(sock / (8 as i32 * ::core::mem::size_of::<__fd_mask>() as u64 as i32))
         as usize]
-        |= ((1 as libc::c_ulong)
-            << sock
-                % (8 as libc::c_int
-                    * ::core::mem::size_of::<__fd_mask>() as libc::c_ulong
-                        as libc::c_int)) as __fd_mask;
-    to.tv_sec = 0 as libc::c_int as __time_t;
-    to.tv_usec = 1 as libc::c_int as __suseconds_t;
+        |= ((1 as u64)
+            << sock % (8 as i32 * ::core::mem::size_of::<__fd_mask>() as u64 as i32))
+            as __fd_mask;
+    to.tv_sec = 0 as i32 as __time_t;
+    to.tv_usec = 1 as i32 as __suseconds_t;
     ret = select(
-        sock + 1 as libc::c_int,
+        sock + 1 as i32,
         &mut check_set,
         0 as *mut fd_set,
         0 as *mut fd_set,
         &mut to,
     );
-    if ret == 0 { return 1 as libc::c_int != 0 } else { return 0 as libc::c_int != 0 };
+    if ret == 0 { return 1 as i32 != 0 } else { return 0 as i32 != 0 };
 }
-unsafe extern "C" fn sock_read(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
-) -> libc::c_int {
-    let mut res: libc::c_int = 0;
+unsafe extern "C" fn sock_read(mut fd: i32, mut buf: *mut i8, mut bufsize: i32) -> i32 {
+    let mut res: i32 = 0;
     loop {
-        res = read(fd, buf as *mut libc::c_void, bufsize as size_t) as libc::c_int;
-        if !(res == -(1 as libc::c_int) && *__errno_location() == 4 as libc::c_int) {
+        res = read(fd, buf as *mut libc::c_void, bufsize as size_t) as i32;
+        if !(res == -(1 as i32) && *__errno_location() == 4 as i32) {
             break;
         }
     }
     return res;
 }
-unsafe extern "C" fn sock_write(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
-) -> libc::c_int {
-    let mut res: libc::c_int = 0;
+unsafe extern "C" fn sock_write(mut fd: i32, mut buf: *mut i8, mut bufsize: i32) -> i32 {
+    let mut res: i32 = 0;
     loop {
-        res = write(fd, buf as *const libc::c_void, bufsize as size_t) as libc::c_int;
-        if !(res == -(1 as libc::c_int) && *__errno_location() == 4 as libc::c_int) {
+        res = write(fd, buf as *const libc::c_void, bufsize as size_t) as i32;
+        if !(res == -(1 as i32) && *__errno_location() == 4 as i32) {
             break;
         }
     }
     return res;
 }
 unsafe extern "C" fn sock_poll(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut timeout: libc::c_double,
-    mut wait_for: libc::c_int,
-) -> libc::c_int {
+    mut wait_for: i32,
+) -> i32 {
     return select_fd(fd, timeout, wait_for);
 }
-unsafe extern "C" fn sock_peek(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
-) -> libc::c_int {
-    let mut res: libc::c_int = 0;
+unsafe extern "C" fn sock_peek(mut fd: i32, mut buf: *mut i8, mut bufsize: i32) -> i32 {
+    let mut res: i32 = 0;
     loop {
-        res = recv(
-            fd,
-            buf as *mut libc::c_void,
-            bufsize as size_t,
-            MSG_PEEK as libc::c_int,
-        ) as libc::c_int;
-        if !(res == -(1 as libc::c_int) && *__errno_location() == 4 as libc::c_int) {
+        res = recv(fd, buf as *mut libc::c_void, bufsize as size_t, MSG_PEEK as i32)
+            as i32;
+        if !(res == -(1 as i32) && *__errno_location() == 4 as i32) {
             break;
         }
     }
     return res;
 }
-unsafe extern "C" fn sock_close(mut fd: libc::c_int) {
+unsafe extern "C" fn sock_close(mut fd: i32) {
     close(fd);
-    if opt.debug as libc::c_long != 0 {
-        debug_logprintf(b"Closed fd %d\n\0" as *const u8 as *const libc::c_char, fd);
+    if opt.debug as i64 != 0 {
+        debug_logprintf(b"Closed fd %d\n\0" as *const u8 as *const i8, fd);
     }
 }
 static mut transport_map: *mut hash_table = 0 as *const hash_table as *mut hash_table;
-static mut transport_map_modified_tick: libc::c_uint = 0;
+static mut transport_map_modified_tick: u32 = 0;
 #[no_mangle]
 pub unsafe extern "C" fn fd_register_transport(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut imp: *mut transport_implementation,
     mut ctx: *mut libc::c_void,
 ) {
     let mut info: *mut transport_info = 0 as *mut transport_info;
-    info = xmalloc(::core::mem::size_of::<transport_info>() as libc::c_ulong)
+    info = xmalloc(::core::mem::size_of::<transport_info>() as u64)
         as *mut transport_info;
     (*info).imp = imp;
     (*info).ctx = ctx;
     if transport_map.is_null() {
-        transport_map = hash_table_new(0 as libc::c_int, None, None);
+        transport_map = hash_table_new(0 as i32, None, None);
     }
     hash_table_put(
         transport_map,
@@ -1922,7 +2581,7 @@ pub unsafe extern "C" fn fd_register_transport(
     transport_map_modified_tick;
 }
 #[no_mangle]
-pub unsafe extern "C" fn fd_transport_context(mut fd: libc::c_int) -> *mut libc::c_void {
+pub unsafe extern "C" fn fd_transport_context(mut fd: i32) -> *mut libc::c_void {
     let mut info: *mut transport_info = hash_table_get(
         transport_map,
         fd as intptr_t as *mut libc::c_void,
@@ -1930,43 +2589,43 @@ pub unsafe extern "C" fn fd_transport_context(mut fd: libc::c_int) -> *mut libc:
     return if !info.is_null() { (*info).ctx } else { 0 as *mut libc::c_void };
 }
 unsafe extern "C" fn poll_internal(
-    mut fd: libc::c_int,
+    mut fd: i32,
     mut info: *mut transport_info,
-    mut wf: libc::c_int,
+    mut wf: i32,
     mut timeout: libc::c_double,
 ) -> bool {
-    if timeout == -(1 as libc::c_int) as libc::c_double {
+    if timeout == -(1 as i32) as libc::c_double {
         timeout = opt.read_timeout;
     }
     if timeout != 0. {
-        let mut test: libc::c_int = 0;
+        let mut test: i32 = 0;
         if !info.is_null() && ((*(*info).imp).poller).is_some() {
             test = ((*(*info).imp).poller)
                 .expect("non-null function pointer")(fd, timeout, wf, (*info).ctx);
         } else {
             test = sock_poll(fd, timeout, wf);
         }
-        if test == 0 as libc::c_int {
-            *__errno_location() = 110 as libc::c_int;
+        if test == 0 as i32 {
+            *__errno_location() = 110 as i32;
         }
-        if test <= 0 as libc::c_int {
-            return 0 as libc::c_int != 0;
+        if test <= 0 as i32 {
+            return 0 as i32 != 0;
         }
     }
-    return 1 as libc::c_int != 0;
+    return 1 as i32 != 0;
 }
 #[no_mangle]
 pub unsafe extern "C" fn fd_read(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
+    mut fd: i32,
+    mut buf: *mut i8,
+    mut bufsize: i32,
     mut timeout: libc::c_double,
-) -> libc::c_int {
+) -> i32 {
     let mut info: *mut transport_info = 0 as *mut transport_info;
     static mut last_info: *mut transport_info = 0 as *const transport_info
         as *mut transport_info;
-    static mut last_fd: libc::c_int = -(1 as libc::c_int);
-    static mut last_tick: libc::c_uint = 0;
+    static mut last_fd: i32 = -(1 as i32);
+    static mut last_tick: u32 = 0;
     if transport_map.is_null() {
         info = 0 as *mut transport_info;
     } else if last_fd == fd && last_tick == transport_map_modified_tick {
@@ -1982,23 +2641,23 @@ pub unsafe extern "C" fn fd_read(
         return ((*(*info).imp).reader)
             .expect("non-null function pointer")(fd, buf, bufsize, (*info).ctx, timeout);
     }
-    if !poll_internal(fd, info, WAIT_FOR_READ as libc::c_int, timeout) {
-        return -(1 as libc::c_int);
+    if !poll_internal(fd, info, C2RustUnnamed_12::WAIT_FOR_READ as i32, timeout) {
+        return -(1 as i32);
     }
     return sock_read(fd, buf, bufsize);
 }
 #[no_mangle]
 pub unsafe extern "C" fn fd_peek(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
+    mut fd: i32,
+    mut buf: *mut i8,
+    mut bufsize: i32,
     mut timeout: libc::c_double,
-) -> libc::c_int {
+) -> i32 {
     let mut info: *mut transport_info = 0 as *mut transport_info;
     static mut last_info: *mut transport_info = 0 as *const transport_info
         as *mut transport_info;
-    static mut last_fd: libc::c_int = -(1 as libc::c_int);
-    static mut last_tick: libc::c_uint = 0;
+    static mut last_fd: i32 = -(1 as i32);
+    static mut last_tick: u32 = 0;
     if transport_map.is_null() {
         info = 0 as *mut transport_info;
     } else if last_fd == fd && last_tick == transport_map_modified_tick {
@@ -2014,24 +2673,24 @@ pub unsafe extern "C" fn fd_peek(
         return ((*(*info).imp).peeker)
             .expect("non-null function pointer")(fd, buf, bufsize, (*info).ctx, timeout);
     }
-    if !poll_internal(fd, info, WAIT_FOR_READ as libc::c_int, timeout) {
-        return -(1 as libc::c_int);
+    if !poll_internal(fd, info, C2RustUnnamed_12::WAIT_FOR_READ as i32, timeout) {
+        return -(1 as i32);
     }
     return sock_peek(fd, buf, bufsize);
 }
 #[no_mangle]
 pub unsafe extern "C" fn fd_write(
-    mut fd: libc::c_int,
-    mut buf: *mut libc::c_char,
-    mut bufsize: libc::c_int,
+    mut fd: i32,
+    mut buf: *mut i8,
+    mut bufsize: i32,
     mut timeout: libc::c_double,
-) -> libc::c_int {
-    let mut res: libc::c_int = 0;
+) -> i32 {
+    let mut res: i32 = 0;
     let mut info: *mut transport_info = 0 as *mut transport_info;
     static mut last_info: *mut transport_info = 0 as *const transport_info
         as *mut transport_info;
-    static mut last_fd: libc::c_int = -(1 as libc::c_int);
-    static mut last_tick: libc::c_uint = 0;
+    static mut last_fd: i32 = -(1 as i32);
+    static mut last_tick: u32 = 0;
     if transport_map.is_null() {
         info = 0 as *mut transport_info;
     } else if last_fd == fd && last_tick == transport_map_modified_tick {
@@ -2043,10 +2702,10 @@ pub unsafe extern "C" fn fd_write(
         last_info = info;
         last_tick = transport_map_modified_tick;
     }
-    res = 0 as libc::c_int;
-    while bufsize > 0 as libc::c_int {
-        if !poll_internal(fd, info, WAIT_FOR_WRITE as libc::c_int, timeout) {
-            return -(1 as libc::c_int);
+    res = 0 as i32;
+    while bufsize > 0 as i32 {
+        if !poll_internal(fd, info, C2RustUnnamed_12::WAIT_FOR_WRITE as i32, timeout) {
+            return -(1 as i32);
         }
         if !info.is_null() && ((*(*info).imp).writer).is_some() {
             res = ((*(*info).imp).writer)
@@ -2054,7 +2713,7 @@ pub unsafe extern "C" fn fd_write(
         } else {
             res = sock_write(fd, buf, bufsize);
         }
-        if res <= 0 as libc::c_int {
+        if res <= 0 as i32 {
             break;
         }
         buf = buf.offset(res as isize);
@@ -2063,14 +2722,14 @@ pub unsafe extern "C" fn fd_write(
     return res;
 }
 #[no_mangle]
-pub unsafe extern "C" fn fd_errstr(mut fd: libc::c_int) -> *const libc::c_char {
+pub unsafe extern "C" fn fd_errstr(mut fd: i32) -> *const i8 {
     let mut info: *mut transport_info = 0 as *mut transport_info;
     if !transport_map.is_null() {
         info = hash_table_get(transport_map, fd as intptr_t as *mut libc::c_void)
             as *mut transport_info;
     }
     if !info.is_null() && ((*(*info).imp).errstr).is_some() {
-        let mut err: *const libc::c_char = ((*(*info).imp).errstr)
+        let mut err: *const i8 = ((*(*info).imp).errstr)
             .expect("non-null function pointer")(fd, (*info).ctx);
         if !err.is_null() {
             return err;
@@ -2079,9 +2738,9 @@ pub unsafe extern "C" fn fd_errstr(mut fd: libc::c_int) -> *const libc::c_char {
     return strerror(*__errno_location());
 }
 #[no_mangle]
-pub unsafe extern "C" fn fd_close(mut fd: libc::c_int) {
+pub unsafe extern "C" fn fd_close(mut fd: i32) {
     let mut info: *mut transport_info = 0 as *mut transport_info;
-    if fd < 0 as libc::c_int {
+    if fd < 0 as i32 {
         return;
     }
     info = 0 as *mut transport_info;

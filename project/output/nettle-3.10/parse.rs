@@ -1,14 +1,25 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(label_break_value)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
     fn __assert_fail(
-        __assertion: *const libc::c_char,
-        __file: *const libc::c_char,
-        __line: libc::c_uint,
-        __function: *const libc::c_char,
+        __assertion: *const i8,
+        __file: *const i8,
+        __line: u32,
+        __function: *const i8,
     ) -> !;
     fn abort() -> !;
-    fn die(format: *const libc::c_char, _: ...) -> !;
+    fn die(format: *const i8, _: ...) -> !;
     fn nettle_buffer_init(buffer: *mut nettle_buffer);
     fn nettle_buffer_clear(buffer: *mut nettle_buffer);
     fn sexp_get_token(
@@ -17,10 +28,10 @@ extern "C" {
         string: *mut nettle_buffer,
     );
 }
-pub type size_t = libc::c_ulong;
-pub type __uint8_t = libc::c_uchar;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type __uint8_t = u8;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_mode {
@@ -29,18 +40,77 @@ pub enum sexp_mode {
     SEXP_TRANSPORT = 2,
 }
 impl sexp_mode {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_mode::SEXP_CANONICAL => 0,
             sexp_mode::SEXP_ADVANCED => 1,
             sexp_mode::SEXP_TRANSPORT => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_mode {
+        match value {
+            0 => sexp_mode::SEXP_CANONICAL,
+            1 => sexp_mode::SEXP_ADVANCED,
+            2 => sexp_mode::SEXP_TRANSPORT,
+            _ => panic!("Invalid value for sexp_mode: {}", value),
+        }
+    }
 }
-
-pub const SEXP_TRANSPORT: sexp_mode = 2;
-pub const SEXP_ADVANCED: sexp_mode = 1;
-pub const SEXP_CANONICAL: sexp_mode = 0;
+impl AddAssign<u32> for sexp_mode {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_mode {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_mode {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_mode {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_mode {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn add(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn sub(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn mul(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn div(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_mode {
+    type Output = sexp_mode;
+    fn rem(self, rhs: u32) -> sexp_mode {
+        sexp_mode::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum sexp_token {
@@ -56,7 +126,7 @@ pub enum sexp_token {
     SEXP_CODING_END,
 }
 impl sexp_token {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_token::SEXP_STRING => 0,
             sexp_token::SEXP_DISPLAY => 1,
@@ -70,18 +140,77 @@ impl sexp_token {
             sexp_token::SEXP_CODING_END => 9,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_token {
+        match value {
+            0 => sexp_token::SEXP_STRING,
+            1 => sexp_token::SEXP_DISPLAY,
+            2 => sexp_token::SEXP_COMMENT,
+            3 => sexp_token::SEXP_LIST_START,
+            4 => sexp_token::SEXP_LIST_END,
+            5 => sexp_token::SEXP_EOF,
+            6 => sexp_token::SEXP_DISPLAY_START,
+            7 => sexp_token::SEXP_DISPLAY_END,
+            8 => sexp_token::SEXP_TRANSPORT_START,
+            9 => sexp_token::SEXP_CODING_END,
+            _ => panic!("Invalid value for sexp_token: {}", value),
+        }
+    }
 }
-
-pub const SEXP_CODING_END: sexp_token = 9;
-pub const SEXP_TRANSPORT_START: sexp_token = 8;
-pub const SEXP_DISPLAY_END: sexp_token = 7;
-pub const SEXP_DISPLAY_START: sexp_token = 6;
-pub const SEXP_EOF: sexp_token = 5;
-pub const SEXP_LIST_END: sexp_token = 4;
-pub const SEXP_LIST_START: sexp_token = 3;
-pub const SEXP_COMMENT: sexp_token = 2;
-pub const SEXP_DISPLAY: sexp_token = 1;
-pub const SEXP_STRING: sexp_token = 0;
+impl AddAssign<u32> for sexp_token {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_token {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_token {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_token {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_token {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_token::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_token {
+    type Output = sexp_token;
+    fn add(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_token {
+    type Output = sexp_token;
+    fn sub(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_token {
+    type Output = sexp_token;
+    fn mul(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_token {
+    type Output = sexp_token;
+    fn div(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_token {
+    type Output = sexp_token;
+    fn rem(self, rhs: u32) -> sexp_token {
+        sexp_token::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type uint8_t = __uint8_t;
 pub type nettle_realloc_func = unsafe extern "C" fn(
     *mut libc::c_void,
@@ -92,31 +221,29 @@ pub type nettle_armor_length_func = unsafe extern "C" fn(size_t) -> size_t;
 pub type nettle_armor_init_func = unsafe extern "C" fn(*mut libc::c_void) -> ();
 pub type nettle_armor_encode_update_func = unsafe extern "C" fn(
     *mut libc::c_void,
-    *mut libc::c_char,
+    *mut i8,
     size_t,
     *const uint8_t,
 ) -> size_t;
 pub type nettle_armor_encode_final_func = unsafe extern "C" fn(
     *mut libc::c_void,
-    *mut libc::c_char,
+    *mut i8,
 ) -> size_t;
 pub type nettle_armor_decode_update_func = unsafe extern "C" fn(
     *mut libc::c_void,
     *mut size_t,
     *mut uint8_t,
     size_t,
-    *const libc::c_char,
-) -> libc::c_int;
-pub type nettle_armor_decode_final_func = unsafe extern "C" fn(
-    *mut libc::c_void,
-) -> libc::c_int;
+    *const i8,
+) -> i32;
+pub type nettle_armor_decode_final_func = unsafe extern "C" fn(*mut libc::c_void) -> i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct nettle_buffer {
     pub contents: *mut uint8_t,
     pub alloc: size_t,
     pub realloc_ctx: *mut libc::c_void,
-    pub realloc: Option::<nettle_realloc_func>,
+    pub realloc: Option<nettle_realloc_func>,
     pub size: size_t,
 }
 #[derive(Copy, Clone)]
@@ -131,8 +258,8 @@ pub struct sexp_compound_token {
 pub struct sexp_parser {
     pub input: *mut sexp_input,
     pub mode: sexp_mode,
-    pub level: libc::c_uint,
-    pub transport: libc::c_uint,
+    pub level: u32,
+    pub transport: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -154,32 +281,32 @@ pub union C2RustUnnamed {
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base16_decode_ctx {
-    pub word: libc::c_uchar,
-    pub bits: libc::c_uchar,
+    pub word: u8,
+    pub bits: u8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct base64_decode_ctx {
     pub table: *const libc::c_schar,
     pub word: libc::c_ushort,
-    pub bits: libc::c_uchar,
-    pub padding: libc::c_uchar,
+    pub bits: u8,
+    pub padding: u8,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct nettle_armor {
-    pub name: *const libc::c_char,
-    pub encode_context_size: libc::c_uint,
-    pub decode_context_size: libc::c_uint,
-    pub encode_final_length: libc::c_uint,
-    pub encode_init: Option::<nettle_armor_init_func>,
-    pub encode_length: Option::<nettle_armor_length_func>,
-    pub encode_update: Option::<nettle_armor_encode_update_func>,
-    pub encode_final: Option::<nettle_armor_encode_final_func>,
-    pub decode_init: Option::<nettle_armor_init_func>,
-    pub decode_length: Option::<nettle_armor_length_func>,
-    pub decode_update: Option::<nettle_armor_decode_update_func>,
-    pub decode_final: Option::<nettle_armor_decode_final_func>,
+    pub name: *const i8,
+    pub encode_context_size: u32,
+    pub decode_context_size: u32,
+    pub encode_final_length: u32,
+    pub encode_init: Option<nettle_armor_init_func>,
+    pub encode_length: Option<nettle_armor_length_func>,
+    pub encode_update: Option<nettle_armor_encode_update_func>,
+    pub encode_final: Option<nettle_armor_encode_final_func>,
+    pub decode_init: Option<nettle_armor_init_func>,
+    pub decode_length: Option<nettle_armor_length_func>,
+    pub decode_update: Option<nettle_armor_decode_update_func>,
+    pub decode_final: Option<nettle_armor_decode_final_func>,
 }
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -189,42 +316,101 @@ pub enum sexp_char_type {
     SEXP_END_CHAR,
 }
 impl sexp_char_type {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             sexp_char_type::SEXP_NORMAL_CHAR => 0,
             sexp_char_type::SEXP_EOF_CHAR => 1,
             sexp_char_type::SEXP_END_CHAR => 2,
         }
     }
+    fn from_libc_c_uint(value: u32) -> sexp_char_type {
+        match value {
+            0 => sexp_char_type::SEXP_NORMAL_CHAR,
+            1 => sexp_char_type::SEXP_EOF_CHAR,
+            2 => sexp_char_type::SEXP_END_CHAR,
+            _ => panic!("Invalid value for sexp_char_type: {}", value),
+        }
+    }
 }
-
-pub const SEXP_END_CHAR: sexp_char_type = 2;
-pub const SEXP_EOF_CHAR: sexp_char_type = 1;
-pub const SEXP_NORMAL_CHAR: sexp_char_type = 0;
+impl AddAssign<u32> for sexp_char_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for sexp_char_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for sexp_char_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for sexp_char_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for sexp_char_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn add(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn sub(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn mul(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn div(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for sexp_char_type {
+    type Output = sexp_char_type;
+    fn rem(self, rhs: u32) -> sexp_char_type {
+        sexp_char_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type FILE = _IO_FILE;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
     pub __pad1: *mut libc::c_void,
@@ -232,8 +418,8 @@ pub struct _IO_FILE {
     pub __pad3: *mut libc::c_void,
     pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
 #[derive(Copy, Clone)]
@@ -241,11 +427,11 @@ pub type _IO_lock_t = ();
 pub struct _IO_marker {
     pub _next: *mut _IO_marker,
     pub _sbuf: *mut _IO_FILE,
-    pub _pos: libc::c_int,
+    pub _pos: i32,
 }
 #[no_mangle]
 pub unsafe extern "C" fn sexp_compound_token_init(mut token: *mut sexp_compound_token) {
-    (*token).type_0 = SEXP_STRING;
+    (*token).type_0 = sexp_token::SEXP_STRING;
     nettle_buffer_init(&mut (*token).display);
     nettle_buffer_init(&mut (*token).string);
 }
@@ -262,8 +448,8 @@ pub unsafe extern "C" fn sexp_parse_init(
 ) {
     (*parser).input = input;
     (*parser).mode = mode;
-    (*parser).level = 1 as libc::c_int as libc::c_uint;
-    (*parser).transport = 0 as libc::c_int as libc::c_uint;
+    (*parser).level = 1 as i32 as u32;
+    (*parser).transport = 0 as i32 as u32;
 }
 unsafe extern "C" fn sexp_check_token(
     mut parser: *mut sexp_parser,
@@ -272,15 +458,17 @@ unsafe extern "C" fn sexp_check_token(
 ) {
     sexp_get_token(
         (*parser).input,
-        (if (*parser).transport != 0 {
-            SEXP_CANONICAL as libc::c_int as libc::c_uint
-        } else {
-            (*parser).mode as libc::c_uint
-        }) as sexp_mode,
+        sexp_mode::from_libc_c_uint(
+            (if (*parser).transport != 0 {
+                sexp_mode::SEXP_CANONICAL as i32 as u32
+            } else {
+                (*parser).mode as u32
+            }) as u32,
+        ),
         string,
     );
-    if (*(*parser).input).token as libc::c_uint != token as libc::c_uint {
-        die(b"Syntax error.\n\0" as *const u8 as *const libc::c_char);
+    if (*(*parser).input).token as u32 != token as u32 {
+        die(b"Syntax error.\n\0" as *const u8 as *const i8);
     }
 }
 #[no_mangle]
@@ -291,66 +479,65 @@ pub unsafe extern "C" fn sexp_parse(
     loop {
         sexp_get_token(
             (*parser).input,
-            (if (*parser).transport != 0 {
-                SEXP_CANONICAL as libc::c_int as libc::c_uint
-            } else {
-                (*parser).mode as libc::c_uint
-            }) as sexp_mode,
+            sexp_mode::from_libc_c_uint(
+                (if (*parser).transport != 0 {
+                    sexp_mode::SEXP_CANONICAL as i32 as u32
+                } else {
+                    (*parser).mode as u32
+                }) as u32,
+            ),
             &mut (*token).string,
         );
-        match (*(*parser).input).token as libc::c_uint {
+        match (*(*parser).input).token as u32 {
             4 => {
                 if (*parser).level == (*parser).transport {
                     die(
                         b"Unmatched end of list in transport encoded data.\n\0"
-                            as *const u8 as *const libc::c_char,
+                            as *const u8 as *const i8,
                     );
                 }
                 (*parser).level = ((*parser).level).wrapping_sub(1);
                 (*parser).level;
                 if (*parser).level == 0 {
-                    die(
-                        b"Unmatched end of list.\n\0" as *const u8 as *const libc::c_char,
-                    );
+                    die(b"Unmatched end of list.\n\0" as *const u8 as *const i8);
                 }
-                (*token).type_0 = SEXP_LIST_END;
+                (*token).type_0 = sexp_token::SEXP_LIST_END;
             }
             5 => {
-                if (*parser).level > 1 as libc::c_int as libc::c_uint {
-                    die(
-                        b"Unexpected end of file.\n\0" as *const u8
-                            as *const libc::c_char,
-                    );
+                if (*parser).level > 1 as i32 as u32 {
+                    die(b"Unexpected end of file.\n\0" as *const u8 as *const i8);
                 }
-                (*token).type_0 = SEXP_EOF;
+                (*token).type_0 = sexp_token::SEXP_EOF;
                 return;
             }
             3 => {
                 (*parser).level = ((*parser).level).wrapping_add(1);
                 (*parser).level;
-                (*token).type_0 = SEXP_LIST_START;
+                (*token).type_0 = sexp_token::SEXP_LIST_START;
                 return;
             }
             6 => {
-                sexp_check_token(parser, SEXP_STRING, &mut (*token).display);
-                sexp_check_token(parser, SEXP_DISPLAY_END, &mut (*token).display);
-                sexp_check_token(parser, SEXP_STRING, &mut (*token).string);
-                (*token).type_0 = SEXP_DISPLAY;
+                sexp_check_token(parser, sexp_token::SEXP_STRING, &mut (*token).display);
+                sexp_check_token(
+                    parser,
+                    sexp_token::SEXP_DISPLAY_END,
+                    &mut (*token).display,
+                );
+                sexp_check_token(parser, sexp_token::SEXP_STRING, &mut (*token).string);
+                (*token).type_0 = sexp_token::SEXP_DISPLAY;
             }
             0 => {
-                (*token).type_0 = SEXP_STRING;
+                (*token).type_0 = sexp_token::SEXP_STRING;
             }
             2 => {
-                (*token).type_0 = SEXP_COMMENT;
+                (*token).type_0 = sexp_token::SEXP_COMMENT;
                 return;
             }
             8 => {
-                if (*parser).mode as libc::c_uint
-                    == SEXP_CANONICAL as libc::c_int as libc::c_uint
-                {
+                if (*parser).mode as u32 == sexp_mode::SEXP_CANONICAL as i32 as u32 {
                     die(
                         b"Base64 not allowed in canonical mode.\n\0" as *const u8
-                            as *const libc::c_char,
+                            as *const i8,
                     );
                 }
                 (*parser).level = ((*parser).level).wrapping_add(1);
@@ -361,14 +548,11 @@ pub unsafe extern "C" fn sexp_parse(
             9 => {
                 die(
                     b"Unexpected end of transport encoding.\n\0" as *const u8
-                        as *const libc::c_char,
+                        as *const i8,
                 );
             }
             7 => {
-                die(
-                    b"Unexpected end of display tag.\n\0" as *const u8
-                        as *const libc::c_char,
-                );
+                die(b"Unexpected end of display tag.\n\0" as *const u8 as *const i8);
             }
             1 => {
                 abort();
@@ -378,15 +562,15 @@ pub unsafe extern "C" fn sexp_parse(
             }
         }
         if (*parser).level == (*parser).transport {
-            sexp_check_token(parser, SEXP_CODING_END, &mut (*token).string);
+            sexp_check_token(parser, sexp_token::SEXP_CODING_END, &mut (*token).string);
             if (*parser).transport != 0 {} else {
                 __assert_fail(
-                    b"parser->transport\0" as *const u8 as *const libc::c_char,
-                    b"parse.c\0" as *const u8 as *const libc::c_char,
-                    121 as libc::c_int as libc::c_uint,
+                    b"parser->transport\0" as *const u8 as *const i8,
+                    b"parse.c\0" as *const u8 as *const i8,
+                    121 as i32 as u32,
                     (*::core::mem::transmute::<
                         &[u8; 68],
-                        &[libc::c_char; 68],
+                        &[i8; 68],
                     >(
                         b"void sexp_parse(struct sexp_parser *, struct sexp_compound_token *)\0",
                     ))
@@ -396,12 +580,12 @@ pub unsafe extern "C" fn sexp_parse(
             'c_1683: {
                 if (*parser).transport != 0 {} else {
                     __assert_fail(
-                        b"parser->transport\0" as *const u8 as *const libc::c_char,
-                        b"parse.c\0" as *const u8 as *const libc::c_char,
-                        121 as libc::c_int as libc::c_uint,
+                        b"parser->transport\0" as *const u8 as *const i8,
+                        b"parse.c\0" as *const u8 as *const i8,
+                        121 as i32 as u32,
                         (*::core::mem::transmute::<
                             &[u8; 68],
-                            &[libc::c_char; 68],
+                            &[i8; 68],
                         >(
                             b"void sexp_parse(struct sexp_parser *, struct sexp_compound_token *)\0",
                         ))
@@ -411,13 +595,12 @@ pub unsafe extern "C" fn sexp_parse(
             };
             if (*parser).level == (*parser).transport {} else {
                 __assert_fail(
-                    b"parser->level == parser->transport\0" as *const u8
-                        as *const libc::c_char,
-                    b"parse.c\0" as *const u8 as *const libc::c_char,
-                    122 as libc::c_int as libc::c_uint,
+                    b"parser->level == parser->transport\0" as *const u8 as *const i8,
+                    b"parse.c\0" as *const u8 as *const i8,
+                    122 as i32 as u32,
                     (*::core::mem::transmute::<
                         &[u8; 68],
-                        &[libc::c_char; 68],
+                        &[i8; 68],
                     >(
                         b"void sexp_parse(struct sexp_parser *, struct sexp_compound_token *)\0",
                     ))
@@ -428,12 +611,12 @@ pub unsafe extern "C" fn sexp_parse(
                 if (*parser).level == (*parser).transport {} else {
                     __assert_fail(
                         b"parser->level == parser->transport\0" as *const u8
-                            as *const libc::c_char,
-                        b"parse.c\0" as *const u8 as *const libc::c_char,
-                        122 as libc::c_int as libc::c_uint,
+                            as *const i8,
+                        b"parse.c\0" as *const u8 as *const i8,
+                        122 as i32 as u32,
                         (*::core::mem::transmute::<
                             &[u8; 68],
-                            &[libc::c_char; 68],
+                            &[i8; 68],
                         >(
                             b"void sexp_parse(struct sexp_parser *, struct sexp_compound_token *)\0",
                         ))
@@ -443,7 +626,7 @@ pub unsafe extern "C" fn sexp_parse(
             };
             (*parser).level = ((*parser).level).wrapping_sub(1);
             (*parser).level;
-            (*parser).transport = 0 as libc::c_int as libc::c_uint;
+            (*parser).transport = 0 as i32 as u32;
         }
         return;
     };

@@ -1,0 +1,60 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+extern "C" {
+    fn sqrt(_: libc::c_double) -> libc::c_double;
+}
+#[no_mangle]
+pub unsafe extern "C" fn gsl_poly_solve_quadratic(
+    mut a: libc::c_double,
+    mut b: libc::c_double,
+    mut c: libc::c_double,
+    mut x0: *mut libc::c_double,
+    mut x1: *mut libc::c_double,
+) -> i32 {
+    if a == 0 as i32 as libc::c_double {
+        if b == 0 as i32 as libc::c_double {
+            return 0 as i32
+        } else {
+            *x0 = -c / b;
+            return 1 as i32;
+        }
+    }
+    let mut disc: libc::c_double = b * b - 4 as i32 as libc::c_double * a * c;
+    if disc > 0 as i32 as libc::c_double {
+        if b == 0 as i32 as libc::c_double {
+            let mut r: libc::c_double = sqrt(-c / a);
+            *x0 = -r;
+            *x1 = r;
+        } else {
+            let mut sgnb: libc::c_double = (if b > 0 as i32 as libc::c_double {
+                1 as i32
+            } else {
+                -(1 as i32)
+            }) as libc::c_double;
+            let mut temp: libc::c_double = -0.5f64 * (b + sgnb * sqrt(disc));
+            let mut r1: libc::c_double = temp / a;
+            let mut r2: libc::c_double = c / temp;
+            if r1 < r2 {
+                *x0 = r1;
+                *x1 = r2;
+            } else {
+                *x0 = r2;
+                *x1 = r1;
+            }
+        }
+        return 2 as i32;
+    } else if disc == 0 as i32 as libc::c_double {
+        *x0 = -0.5f64 * b / a;
+        *x1 = -0.5f64 * b / a;
+        return 2 as i32;
+    } else {
+        return 0 as i32
+    };
+}

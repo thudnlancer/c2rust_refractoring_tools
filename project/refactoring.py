@@ -4,7 +4,7 @@ import json
 import pre_process
 import chardet
 import sys
-from collections import defaultdict
+import subprocess
 
 def find_file_in_directory(root_dir, filename):
     for root, dirs, files in os.walk(root_dir):
@@ -155,16 +155,23 @@ def extract_enum_info_rust(filename):
         filtered_members = {}
         first_member_end_pos = -1  # 记录最后一个成员定义的结束位置
         first_member_start_pos = -1  # 记录第一个成员定义的开始位置
+        flag = False # 记录是否包含重复值成员，如果有则跳过处理
 
         for member_name, member_enum, member_value in enum_members:
             if member_enum == enum_name:
+                if int(member_value) in {int(v) for v, _, _ in filtered_members.values()}:
+                    flag = True
+                    break
                 filtered_members[member_name] = (int(member_value), False, True)
                 member_code = f"pub const {member_name}: {enum_name} = {member_value};"
                 if first_member_start_pos == -1:
                     first_member_start_pos = code.find(member_code)
                     first_member_end_pos = code.find(member_code) + len(member_code)
-        
         if not filtered_members:
+            continue
+
+        # 如果包含重复值成员，则跳过处理
+        if flag:
             continue
         
         # 记录每个枚举的位置信息
@@ -233,7 +240,6 @@ def make_enum_code_rust(proj_path):
 
     with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
         json.dump(result, json_file)
-
 
 def check_enum(enum_name, enum_members, c_enums):
     # 如果枚举名以 'C2RustUnnamed' 为前缀，根据成员名列表进行查找
@@ -314,7 +320,6 @@ def transfer_enum_rust(proj_path):
     with open('enum_code_rust/' + prog + '/enum.json', 'w') as json_file:
         json.dump(rust_enums, json_file)
 
-
 def convert_value(value, is_hex):
     """根据给定的进制将值转换为字符串"""
     if is_hex:
@@ -345,7 +350,82 @@ def generate_enum_code(enum_name, members):
         enum_code += f"            {enum_name}::{member} => {value_str},\n"
     enum_code += f"        }}\n"
     enum_code += f"    }}\n"
+    enum_code += f"    fn from_libc_c_uint(value: libc::c_uint) -> {enum_name} {{\n"
+    enum_code += f"        match value {{\n"
+    for member, (value, is_hex, is_explict) in members.items():
+        value_str = convert_value(value, is_hex)
+        enum_code += f"            {value_str} => {enum_name}::{member},\n"
+    enum_code += f"            _ => panic!(\"Invalid value for {enum_name}: {{}}\", value),\n"
+    enum_code += f"        }}\n"
+    enum_code += f"    }}\n"
     enum_code += f"}}\n"
+
+    enum_code += f"impl AddAssign<u32> for {enum_name} {{\n"
+    enum_code += f"    fn add_assign(&mut self, rhs: u32) {{\n"
+    enum_code += f"        *self = {enum_name}::from_libc_c_uint(self.to_libc_c_uint() + rhs);\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl SubAssign<u32> for {enum_name} {{\n"
+    enum_code += f"    fn sub_assign(&mut self, rhs: u32) {{\n"
+    enum_code += f"        *self = {enum_name}::from_libc_c_uint(self.to_libc_c_uint() - rhs);\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl MulAssign<u32> for {enum_name} {{\n"
+    enum_code += f"    fn mul_assign(&mut self, rhs: u32) {{\n"
+    enum_code += f"        *self = {enum_name}::from_libc_c_uint(self.to_libc_c_uint() * rhs);\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl DivAssign<u32> for {enum_name} {{\n"
+    enum_code += f"    fn div_assign(&mut self, rhs: u32) {{\n"
+    enum_code += f"        *self = {enum_name}::from_libc_c_uint(self.to_libc_c_uint() / rhs);\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl RemAssign<u32> for {enum_name} {{\n"
+    enum_code += f"    fn rem_assign(&mut self, rhs: u32) {{\n"
+    enum_code += f"        *self = {enum_name}::from_libc_c_uint(self.to_libc_c_uint() % rhs);\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl Add<u32> for {enum_name} {{\n"
+    enum_code += f"    type Output = {enum_name};\n"
+    enum_code += f"    fn add(self, rhs: u32) -> {enum_name} {{\n"
+    enum_code += f"        {enum_name}::from_libc_c_uint(self.to_libc_c_uint() + rhs)\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl Sub<u32> for {enum_name} {{\n"
+    enum_code += f"    type Output = {enum_name};\n"
+    enum_code += f"    fn sub(self, rhs: u32) -> {enum_name} {{\n"
+    enum_code += f"        {enum_name}::from_libc_c_uint(self.to_libc_c_uint() - rhs)\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl Mul<u32> for {enum_name} {{\n"
+    enum_code += f"    type Output = {enum_name};\n"
+    enum_code += f"    fn mul(self, rhs: u32) -> {enum_name} {{\n"
+    enum_code += f"        {enum_name}::from_libc_c_uint(self.to_libc_c_uint() * rhs)\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl Div<u32> for {enum_name} {{\n"
+    enum_code += f"    type Output = {enum_name};\n"
+    enum_code += f"    fn div(self, rhs: u32) -> {enum_name} {{\n"
+    enum_code += f"        {enum_name}::from_libc_c_uint(self.to_libc_c_uint() / rhs)\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+    enum_code += f"impl Rem<u32> for {enum_name} {{\n"
+    enum_code += f"    type Output = {enum_name};\n"
+    enum_code += f"    fn rem(self, rhs: u32) -> {enum_name} {{\n"
+    enum_code += f"        {enum_name}::from_libc_c_uint(self.to_libc_c_uint() % rhs)\n"
+    enum_code += f"    }}\n"
+    enum_code += f"}}\n"
+
+
 
     # enum_code += "// end of enum replacement\n"
     return enum_code
@@ -398,11 +478,39 @@ def process_enum_in_file(file_path, enums_info):
         new_enum_length = len(indented_enum_code)
         offset += (new_enum_length - old_enum_length)  # 更新偏移量
 
-    content = process_enum_use(content, enums_info)
-
     content = clean_enum_definition(content, enums_info)
+
+    content = process_enum_use(content, enums_info)
     
-    return content
+    return insert_use_statement(content)
+
+def insert_use_statement(code):
+    
+    multi_line_attr = re.compile(
+        r"(?s)(^#!\[\s*.*?\])"
+    )
+
+    # 单行 inner attribute
+    single_line_attr = re.compile(
+        r"(?m)^#!\[[^\n]*\]"
+    )
+
+    # 找到所有匹配
+    multi_matches = list(multi_line_attr.finditer(code))
+    single_matches = list(single_line_attr.finditer(code))
+
+    # 获取所有匹配中末尾最大的
+    all_matches = multi_matches + single_matches
+    if all_matches:
+        insert_pos = max(m.end() for m in all_matches)
+    else:
+        insert_pos = 0
+
+    # 插入内容
+    insertion = 'use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};\n'
+    modified_code = code[:insert_pos] + '\n' + insertion + code[insert_pos:]
+
+    return modified_code
 
 def clean_enum_definition(content, enums_info):
     """清理枚举定义中的多余内容"""
@@ -411,31 +519,31 @@ def clean_enum_definition(content, enums_info):
         # 匹配枚举定义的正则表达式
         pattern = r"pub type\s+" + re.escape(enum_info['enum_name']) + r"\s*=\s*libc::c_uint;"
         match = re.search(pattern, content)
-        if not match:
-            continue
+        if match:
+            # 提取枚举定义的缩进
+            indentation = get_indentation_at_position(content, match.start())
 
-        # 提取枚举定义的缩进
-        indentation = get_indentation_at_position(content, match.start())
-
-        # 删除枚举定义
-        enum_definition = match.group()
-        enum_definition_lines = enum_definition.splitlines()
-        cleaned_enum_definition = "\n".join([apply_indentation(line, indentation) for line in enum_definition_lines]) + "\n"
-        content = content.replace(cleaned_enum_definition, "")
+            # 删除枚举定义
+            enum_definition = match.group()
+            enum_definition_lines = enum_definition.splitlines()
+            cleaned_enum_definition = "\n".join([apply_indentation(line, indentation) for line in enum_definition_lines]) + "\n"
+            content = content.replace(cleaned_enum_definition, "")
 
         # 匹配枚举成员定义的正则表达式
         member_pattern = r"pub const\s+(\w+)\s*:\s*" + re.escape(enum_info['enum_name']) + r"\s*=\s*[^;]+;"
         member_matches = list(re.finditer(member_pattern, content))
 
-        for match in reversed(member_matches):  # 从后往前删除，避免位置偏移
-            # 提取成员定义的缩进
-            indentation = get_indentation_at_position(content, match.start())
+        if member_matches:
 
-            # 删除成员定义
-            member_definition = match.group()
-            member_definition_lines = member_definition.splitlines()
-            cleaned_member_definition = "\n".join([apply_indentation(line, indentation) for line in member_definition_lines]) + "\n"
-            content = content.replace(cleaned_member_definition, "")
+            for match in reversed(member_matches):  # 从后往前删除，避免位置偏移
+                # 提取成员定义的缩进
+                indentation = get_indentation_at_position(content, match.start())
+
+                # 删除成员定义
+                member_definition = match.group()
+                member_definition_lines = member_definition.splitlines()
+                cleaned_member_definition = "\n".join([apply_indentation(line, indentation) for line in member_definition_lines]) + "\n"
+                content = content.replace(cleaned_member_definition, "")
 
     return content
 
@@ -448,10 +556,26 @@ def process_enum_use(content, enums_info):
         # 替换变量形式
         for value_name in value_names:
             content = process_value_switch(content, value_name, enum_name, members)
-            content = process_value_definition(content, value_name, enum_name)
             content = process_value_cast(content, value_name)
 
+        content = process_value_definition(content, members, enum_name)
+        content = process_enum_cast(content, enum_name)
+
     return content
+
+def process_enum_cast(content, enum_name):
+    
+    result = subprocess.run(
+        ["./rust_code_analyzer/target/release/rust_code_analyzer", "--enum-name", enum_name],
+        input=content,
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode == 0:
+        return result.stdout.strip()
+    else:
+        return content
 
 def process_value_switch(content, value_name, enum_name, members):
     # 构建值到成员名的反向映射字典（考虑十进制和十六进制）
@@ -496,13 +620,13 @@ def process_value_switch(content, value_name, enum_name, members):
             continue
 
         indent = m.group(1)
-        pattern = m.group(2)
+        mode = m.group(2)
         execution = m.group(3).rstrip()  # 保留执行语句（包括可能的表达式）
         comma = m.group(4)
         comment = m.group(5) or ""
 
         # 提取原值并替换为成员名
-        value_match = re.search(r"\b(\d+|0x[0-9a-fA-F]+)\b", pattern)
+        value_match = re.search(r"\b(\d+|0x[0-9a-fA-F]+)\b", mode)
         if value_match:
             original_value = value_match.group(1)
             member = value_to_member.get(original_value)
@@ -511,7 +635,7 @@ def process_value_switch(content, value_name, enum_name, members):
                 new_pattern = re.sub(
                     r"\b{}\b".format(re.escape(original_value)),
                     f"{enum_name}::{member}",
-                    pattern,
+                    mode,
                     count=1
                 )
                 branch = f"{indent}{new_pattern} => {execution}{comma}{comment}"
@@ -521,15 +645,51 @@ def process_value_switch(content, value_name, enum_name, members):
     # 重建 match 语句块
     new_body = ",\n".join(new_branches)
     match_tail += "// end of enum replacement\n"
-    new_content = pattern.sub(f"{match_head}{new_body}{match_tail}", content, count=1)
+    new_content = re.sub(pattern, f"{match_head}{new_body}{match_tail}", content, count=1)
     return new_content
 
-def process_value_definition(content, value_name, enum_name):
-    pattern = r"let mut " + re.escape(value_name) + r" : " + re.escape(enum_name) + r" = \w+;"
-    replacement = f"let mut {value_name} : {enum_name} = {enum_name}::{value_name}; // end of enum replacement\n"
-
-    new_content = re.sub(pattern, replacement, content)
-    return new_content
+def process_value_definition(content, members, enum_name):
+    # 1. 构建匹配 enum 定义的正则，避免修改定义内部
+    enum_def_pattern = re.compile(
+        r'enum\s+' + re.escape(enum_name) + r'\s*\{[^}]*' + 
+        r'(?:' + '|'.join(map(re.escape, members)) + r')[^}]*\}',
+        re.DOTALL
+    )
+    
+    # 2. 找到所有 enum 定义的位置
+    skip_ranges = []
+    for match in enum_def_pattern.finditer(content):
+        skip_ranges.append((match.start(), match.end()))
+    
+    # 3. 为每个成员构建替换正则
+    processed_code = content
+    for member in members:
+        pattern = re.compile(
+            r'(?<!::)\b' + re.escape(member) + r'\b' +  # 成员名，前面不能有 ::
+            r'(?!\s*=\s*\d)'  # 排除 enum 定义中的 = 0 情况
+        )
+        
+        # 4. 执行替换，跳过 enum 定义部分
+        last_pos = 0
+        new_code_parts = []
+        for start, end in skip_ranges:
+            # 添加非 enum 定义部分
+            segment = processed_code[last_pos:start]
+            new_segment = pattern.sub(f'{enum_name}::{member}', segment)
+            new_code_parts.append(new_segment)
+            
+            # 保留 enum 定义部分不变
+            new_code_parts.append(processed_code[start:end])
+            last_pos = end
+        
+        # 添加最后一部分
+        segment = processed_code[last_pos:]
+        new_segment = pattern.sub(f'{enum_name}::{member}', segment)
+        new_code_parts.append(new_segment)
+        
+        processed_code = ''.join(new_code_parts)
+    
+    return processed_code
 
 def process_value_cast(content, value_name):
     pattern = r"\{" + re.escape(value_name) + r"\} as libc::c_uint"
@@ -540,7 +700,7 @@ def process_value_cast(content, value_name):
 
 def extract_keywords(content, enum_name):
     # 构建正则表达式，匹配 mut {value_name} : {enum_name}，包含变量定义和函数参数
-    pattern = r"mut (\w+) : " + re.escape(enum_name)
+    pattern = r"mut (\w+)\s*:\s*" + re.escape(enum_name)
     
     # 查找所有匹配的变量名 (value_name)
     matches = re.findall(pattern, content)
@@ -571,7 +731,58 @@ def process_json_file(json_file_path, output_dir):
         # 将修改后的内容写入新文件
         with open(output_file_path, 'w', encoding='utf-8') as f:
             f.write(modified_content)
+
+def transfer_struct_rust(proj_path, path_to_output):
+    proj_files = get_rs_files(proj_path)
+    output_files = get_rs_files(path_to_output)
+
+    files = {}
+
+    for file in proj_files:
+        files[os.path.basename(file)] = file
+
+    for file in output_files:
+        files[os.path.basename(file)] = file
+
+    rust_files = list(files.values())
+
+    for file in rust_files:
+        with open(file, 'r', encoding='utf-8') as f:
+            content = f.read()
+
+        # 处理结构体并替换文本
+        modified_content = process_struct_in_file(content)
+
+        # 确保输出目录存在
+        os.makedirs(path_to_output, exist_ok=True)
         
+        # 生成新的文件路径
+        output_file_path = os.path.join(path_to_output, os.path.basename(file))
+
+        # 将修改后的内容写入新文件
+        with open(output_file_path, 'w', encoding='utf-8') as f:
+            f.write(modified_content)
+
+def process_struct_in_file(content):
+    result = subprocess.run(
+        ["./rust_struct_processer/target/release/rust_struct_processer"],
+        input=content,
+        capture_output=True,
+        text=True
+    )
+
+    if result.returncode == 0:
+        return result.stdout.strip()
+    else:
+        return content
+
+def get_rs_files(proj_path):
+    rust_files = []
+    for root, dirs, files in os.walk(proj_path):
+        for file in files:
+            if file.endswith('.rs'):
+                rust_files.append(os.path.join(root, file))
+    return rust_files   
 
 def refactoring(proj_path):
     if not os.path.exists('output'):
@@ -585,6 +796,9 @@ def refactoring(proj_path):
     path_to_json = 'enum_code_rust/' + prog + '/enum.json'
     path_to_output = 'output/' + prog
     process_json_file(path_to_json, path_to_output)
+
+    transfer_struct_rust(proj_path, path_to_output)
+
 
 # make_enum_code_c()
 # make_enum_code_rust()

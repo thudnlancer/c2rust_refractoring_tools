@@ -1,0 +1,185 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+extern "C" {
+    fn nettle_aes128_encrypt(
+        ctx: *const aes128_ctx,
+        length: size_t,
+        dst: *mut uint8_t,
+        src: *const uint8_t,
+    );
+    fn nettle_aes128_decrypt(
+        ctx: *const aes128_ctx,
+        length: size_t,
+        dst: *mut uint8_t,
+        src: *const uint8_t,
+    );
+    fn nettle_aes128_set_encrypt_key(ctx: *mut aes128_ctx, key: *const uint8_t);
+    fn nettle_aes128_set_decrypt_key(ctx: *mut aes128_ctx, key: *const uint8_t);
+    fn nettle_xts_encrypt_message(
+        enc_ctx: *const libc::c_void,
+        twk_ctx: *const libc::c_void,
+        encf: Option<nettle_cipher_func>,
+        tweak: *const uint8_t,
+        length: size_t,
+        dst: *mut uint8_t,
+        src: *const uint8_t,
+    );
+    fn nettle_xts_decrypt_message(
+        dec_ctx: *const libc::c_void,
+        twk_ctx: *const libc::c_void,
+        decf: Option<nettle_cipher_func>,
+        encf: Option<nettle_cipher_func>,
+        tweak: *const uint8_t,
+        length: size_t,
+        dst: *mut uint8_t,
+        src: *const uint8_t,
+    );
+}
+pub type size_t = u64;
+pub type __uint8_t = u8;
+pub type __uint32_t = u32;
+pub type uint8_t = __uint8_t;
+pub type uint32_t = __uint32_t;
+pub type nettle_cipher_func = unsafe extern "C" fn(
+    *const libc::c_void,
+    size_t,
+    *mut uint8_t,
+    *const uint8_t,
+) -> ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct aes128_ctx {
+    pub keys: [uint32_t; 44],
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct xts_aes128_key {
+    pub cipher: aes128_ctx,
+    pub tweak_cipher: aes128_ctx,
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_xts_aes128_set_encrypt_key(
+    mut xts_key: *mut xts_aes128_key,
+    mut key: *const uint8_t,
+) {
+    nettle_aes128_set_encrypt_key(&mut (*xts_key).cipher, key);
+    nettle_aes128_set_encrypt_key(
+        &mut (*xts_key).tweak_cipher,
+        &*key.offset(16 as i32 as isize),
+    );
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_xts_aes128_set_decrypt_key(
+    mut xts_key: *mut xts_aes128_key,
+    mut key: *const uint8_t,
+) {
+    nettle_aes128_set_decrypt_key(&mut (*xts_key).cipher, key);
+    nettle_aes128_set_encrypt_key(
+        &mut (*xts_key).tweak_cipher,
+        &*key.offset(16 as i32 as isize),
+    );
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_xts_aes128_encrypt_message(
+    mut xts_key: *const xts_aes128_key,
+    mut tweak: *const uint8_t,
+    mut length: size_t,
+    mut dst: *mut uint8_t,
+    mut src: *const uint8_t,
+) {
+    nettle_xts_encrypt_message(
+        &(*xts_key).cipher as *const aes128_ctx as *const libc::c_void,
+        &(*xts_key).tweak_cipher as *const aes128_ctx as *const libc::c_void,
+        ::core::mem::transmute::<
+            Option<
+                unsafe extern "C" fn(
+                    *const aes128_ctx,
+                    size_t,
+                    *mut uint8_t,
+                    *const uint8_t,
+                ) -> (),
+            >,
+            Option<nettle_cipher_func>,
+        >(
+            Some(
+                nettle_aes128_encrypt
+                    as unsafe extern "C" fn(
+                        *const aes128_ctx,
+                        size_t,
+                        *mut uint8_t,
+                        *const uint8_t,
+                    ) -> (),
+            ),
+        ),
+        tweak,
+        length,
+        dst,
+        src,
+    );
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_xts_aes128_decrypt_message(
+    mut xts_key: *const xts_aes128_key,
+    mut tweak: *const uint8_t,
+    mut length: size_t,
+    mut dst: *mut uint8_t,
+    mut src: *const uint8_t,
+) {
+    nettle_xts_decrypt_message(
+        &(*xts_key).cipher as *const aes128_ctx as *const libc::c_void,
+        &(*xts_key).tweak_cipher as *const aes128_ctx as *const libc::c_void,
+        ::core::mem::transmute::<
+            Option<
+                unsafe extern "C" fn(
+                    *const aes128_ctx,
+                    size_t,
+                    *mut uint8_t,
+                    *const uint8_t,
+                ) -> (),
+            >,
+            Option<nettle_cipher_func>,
+        >(
+            Some(
+                nettle_aes128_decrypt
+                    as unsafe extern "C" fn(
+                        *const aes128_ctx,
+                        size_t,
+                        *mut uint8_t,
+                        *const uint8_t,
+                    ) -> (),
+            ),
+        ),
+        ::core::mem::transmute::<
+            Option<
+                unsafe extern "C" fn(
+                    *const aes128_ctx,
+                    size_t,
+                    *mut uint8_t,
+                    *const uint8_t,
+                ) -> (),
+            >,
+            Option<nettle_cipher_func>,
+        >(
+            Some(
+                nettle_aes128_encrypt
+                    as unsafe extern "C" fn(
+                        *const aes128_ctx,
+                        size_t,
+                        *mut uint8_t,
+                        *const uint8_t,
+                    ) -> (),
+            ),
+        ),
+        tweak,
+        length,
+        dst,
+        src,
+    );
+}

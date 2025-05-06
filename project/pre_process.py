@@ -155,8 +155,8 @@ def make_candidate_c_list(proj_path):
     enum_dict = defaultdict(list)
     prog = os.path.basename(proj_path)
 
-    struct_json_file = proj_path + '/struct.json'
-    enum_json_file = proj_path + '/enum.json'
+    struct_json_file = 'location_c/' + prog + '/struct.json'
+    enum_json_file = 'location_c/' + prog +  '/enum.json'
     prefix_filter = '../c_prog/' + prog + '/'
     with open(struct_json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
@@ -186,6 +186,8 @@ def make_candidate_c_list(proj_path):
             if not def_file_path.startswith(prefix_filter):
                 continue
             
+            if enum_dict.get(use_file_name) is None:
+                enum_dict[use_file_name] = []
             if enum_name not in enum_dict[use_file_name]:
                 enum_dict[use_file_name].append(enum_name)
         
@@ -391,10 +393,10 @@ def pre_process(proj_path):
     make_c_include_list(proj_path)
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1:
+    if len(sys.argv) > 2:
         print("usage: refactoring program path or default path: ../c_prog/")
-    if len(sys.argv) == 1:
-        proj_path = sys.argv[0]
+    if len(sys.argv) == 2:
+        proj_path = sys.argv[1]
         pre_process(proj_path)
 
     else:

@@ -1,8 +1,44 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
+    fn realloc(_: *mut libc::c_void, _: libc::c_ulong) -> *mut libc::c_void;
+    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
+    fn memset(
+        _: *mut libc::c_void,
+        _: libc::c_int,
+        _: libc::c_ulong,
+    ) -> *mut libc::c_void;
+    fn memcpy(
+        _: *mut libc::c_void,
+        _: *const libc::c_void,
+        _: libc::c_ulong,
+    ) -> *mut libc::c_void;
+    fn calloc(_: libc::c_ulong, _: libc::c_ulong) -> *mut libc::c_void;
+    fn pthread_mutexattr_gettype(
+        __attr: *const pthread_mutexattr_t,
+        __kind: *mut libc::c_int,
+    ) -> libc::c_int;
+    fn pthread_mutex_destroy(__mutex: *mut pthread_mutex_t) -> libc::c_int;
+    fn rpl_free(ptr: *mut libc::c_void);
     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
     fn iswalnum(__wc: wint_t) -> libc::c_int;
+    fn dcgettext(
+        __domainname: *const libc::c_char,
+        __msgid: *const libc::c_char,
+        __category: libc::c_int,
+    ) -> *mut libc::c_char;
+    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
     fn wctype(__property: *const libc::c_char) -> wctype_t;
+    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
     fn rpl_btowc(c: libc::c_int) -> wint_t;
     fn rpl_mbrtowc(
         pwc: *mut wchar_t,
@@ -23,6 +59,11 @@ extern "C" {
     fn __ctype_tolower_loc() -> *mut *const __int32_t;
     fn towlower(__wc: wint_t) -> wint_t;
     fn pthread_mutex_unlock(__mutex: *mut pthread_mutex_t) -> libc::c_int;
+    fn memcmp(
+        _: *const libc::c_void,
+        _: *const libc::c_void,
+        _: libc::c_ulong,
+    ) -> libc::c_int;
     fn iswctype(__wc: wint_t, __desc: wctype_t) -> libc::c_int;
     fn gl_dynarray_resize(
         _: *mut dynarray_header,
@@ -30,45 +71,13 @@ extern "C" {
         scratch: *mut libc::c_void,
         element_size: size_t,
     ) -> bool;
-    fn abort() -> !;
     fn memmove(
         _: *mut libc::c_void,
         _: *const libc::c_void,
         _: libc::c_ulong,
     ) -> *mut libc::c_void;
     fn pthread_mutex_lock(__mutex: *mut pthread_mutex_t) -> libc::c_int;
-    fn calloc(_: libc::c_ulong, _: libc::c_ulong) -> *mut libc::c_void;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn malloc(_: libc::c_ulong) -> *mut libc::c_void;
-    fn realloc(_: *mut libc::c_void, _: libc::c_ulong) -> *mut libc::c_void;
-    fn pthread_mutexattr_gettype(
-        __attr: *const pthread_mutexattr_t,
-        __kind: *mut libc::c_int,
-    ) -> libc::c_int;
-    fn thrd_exit(__res: libc::c_int) -> !;
-    fn pthread_mutex_destroy(__mutex: *mut pthread_mutex_t) -> libc::c_int;
-    fn rpl_free(ptr: *mut libc::c_void);
-    fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn memset(
-        _: *mut libc::c_void,
-        _: libc::c_int,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn memcmp(
-        _: *const libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> libc::c_int;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn abort() -> !;
 }
 pub type __int32_t = libc::c_int;
 pub type __ssize_t = libc::c_long;
@@ -303,42 +312,101 @@ impl re_token_type_t {
             re_token_type_t::BACK_SLASH => 36,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> re_token_type_t {
+        match value {
+            0 => re_token_type_t::NON_TYPE,
+            1 => re_token_type_t::CHARACTER,
+            2 => re_token_type_t::END_OF_RE,
+            3 => re_token_type_t::SIMPLE_BRACKET,
+            4 => re_token_type_t::OP_BACK_REF,
+            5 => re_token_type_t::OP_PERIOD,
+            6 => re_token_type_t::COMPLEX_BRACKET,
+            7 => re_token_type_t::OP_UTF8_PERIOD,
+            8 => re_token_type_t::OP_OPEN_SUBEXP,
+            9 => re_token_type_t::OP_CLOSE_SUBEXP,
+            10 => re_token_type_t::OP_ALT,
+            11 => re_token_type_t::OP_DUP_ASTERISK,
+            12 => re_token_type_t::ANCHOR,
+            16 => re_token_type_t::CONCAT,
+            17 => re_token_type_t::SUBEXP,
+            18 => re_token_type_t::OP_DUP_PLUS,
+            19 => re_token_type_t::OP_DUP_QUESTION,
+            20 => re_token_type_t::OP_OPEN_BRACKET,
+            21 => re_token_type_t::OP_CLOSE_BRACKET,
+            22 => re_token_type_t::OP_CHARSET_RANGE,
+            23 => re_token_type_t::OP_OPEN_DUP_NUM,
+            24 => re_token_type_t::OP_CLOSE_DUP_NUM,
+            25 => re_token_type_t::OP_NON_MATCH_LIST,
+            26 => re_token_type_t::OP_OPEN_COLL_ELEM,
+            27 => re_token_type_t::OP_CLOSE_COLL_ELEM,
+            28 => re_token_type_t::OP_OPEN_EQUIV_CLASS,
+            29 => re_token_type_t::OP_CLOSE_EQUIV_CLASS,
+            30 => re_token_type_t::OP_OPEN_CHAR_CLASS,
+            31 => re_token_type_t::OP_CLOSE_CHAR_CLASS,
+            32 => re_token_type_t::OP_WORD,
+            33 => re_token_type_t::OP_NOTWORD,
+            34 => re_token_type_t::OP_SPACE,
+            35 => re_token_type_t::OP_NOTSPACE,
+            36 => re_token_type_t::BACK_SLASH,
+            _ => panic!("Invalid value for re_token_type_t: {}", value),
+        }
+    }
 }
-
-pub const BACK_SLASH: re_token_type_t = 36;
-pub const OP_NOTSPACE: re_token_type_t = 35;
-pub const OP_SPACE: re_token_type_t = 34;
-pub const OP_NOTWORD: re_token_type_t = 33;
-pub const OP_WORD: re_token_type_t = 32;
-pub const OP_CLOSE_CHAR_CLASS: re_token_type_t = 31;
-pub const OP_OPEN_CHAR_CLASS: re_token_type_t = 30;
-pub const OP_CLOSE_EQUIV_CLASS: re_token_type_t = 29;
-pub const OP_OPEN_EQUIV_CLASS: re_token_type_t = 28;
-pub const OP_CLOSE_COLL_ELEM: re_token_type_t = 27;
-pub const OP_OPEN_COLL_ELEM: re_token_type_t = 26;
-pub const OP_NON_MATCH_LIST: re_token_type_t = 25;
-pub const OP_CLOSE_DUP_NUM: re_token_type_t = 24;
-pub const OP_OPEN_DUP_NUM: re_token_type_t = 23;
-pub const OP_CHARSET_RANGE: re_token_type_t = 22;
-pub const OP_CLOSE_BRACKET: re_token_type_t = 21;
-pub const OP_OPEN_BRACKET: re_token_type_t = 20;
-pub const OP_DUP_QUESTION: re_token_type_t = 19;
-pub const OP_DUP_PLUS: re_token_type_t = 18;
-pub const SUBEXP: re_token_type_t = 17;
-pub const CONCAT: re_token_type_t = 16;
-pub const ANCHOR: re_token_type_t = 12;
-pub const OP_DUP_ASTERISK: re_token_type_t = 11;
-pub const OP_ALT: re_token_type_t = 10;
-pub const OP_CLOSE_SUBEXP: re_token_type_t = 9;
-pub const OP_OPEN_SUBEXP: re_token_type_t = 8;
-pub const OP_UTF8_PERIOD: re_token_type_t = 7;
-pub const COMPLEX_BRACKET: re_token_type_t = 6;
-pub const OP_PERIOD: re_token_type_t = 5;
-pub const OP_BACK_REF: re_token_type_t = 4;
-pub const SIMPLE_BRACKET: re_token_type_t = 3;
-pub const END_OF_RE: re_token_type_t = 2;
-pub const CHARACTER: re_token_type_t = 1;
-pub const NON_TYPE: re_token_type_t = 0;
+impl AddAssign<u32> for re_token_type_t {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for re_token_type_t {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for re_token_type_t {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for re_token_type_t {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for re_token_type_t {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for re_token_type_t {
+    type Output = re_token_type_t;
+    fn add(self, rhs: u32) -> re_token_type_t {
+        re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for re_token_type_t {
+    type Output = re_token_type_t;
+    fn sub(self, rhs: u32) -> re_token_type_t {
+        re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for re_token_type_t {
+    type Output = re_token_type_t;
+    fn mul(self, rhs: u32) -> re_token_type_t {
+        re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for re_token_type_t {
+    type Output = re_token_type_t;
+    fn div(self, rhs: u32) -> re_token_type_t {
+        re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for re_token_type_t {
+    type Output = re_token_type_t;
+    fn rem(self, rhs: u32) -> re_token_type_t {
+        re_token_type_t::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed {
@@ -377,18 +445,77 @@ impl re_context_type {
             re_context_type::NOT_WORD_DELIM => 512,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> re_context_type {
+        match value {
+            5 => re_context_type::INSIDE_WORD,
+            6 => re_context_type::WORD_FIRST,
+            9 => re_context_type::WORD_LAST,
+            10 => re_context_type::INSIDE_NOTWORD,
+            16 => re_context_type::LINE_FIRST,
+            32 => re_context_type::LINE_LAST,
+            64 => re_context_type::BUF_FIRST,
+            128 => re_context_type::BUF_LAST,
+            256 => re_context_type::WORD_DELIM,
+            512 => re_context_type::NOT_WORD_DELIM,
+            _ => panic!("Invalid value for re_context_type: {}", value),
+        }
+    }
 }
-
-pub const NOT_WORD_DELIM: re_context_type = 512;
-pub const WORD_DELIM: re_context_type = 256;
-pub const BUF_LAST: re_context_type = 128;
-pub const BUF_FIRST: re_context_type = 64;
-pub const LINE_LAST: re_context_type = 32;
-pub const LINE_FIRST: re_context_type = 16;
-pub const INSIDE_NOTWORD: re_context_type = 10;
-pub const WORD_LAST: re_context_type = 9;
-pub const WORD_FIRST: re_context_type = 6;
-pub const INSIDE_WORD: re_context_type = 5;
+impl AddAssign<u32> for re_context_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = re_context_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for re_context_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = re_context_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for re_context_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = re_context_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for re_context_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = re_context_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for re_context_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = re_context_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for re_context_type {
+    type Output = re_context_type;
+    fn add(self, rhs: u32) -> re_context_type {
+        re_context_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for re_context_type {
+    type Output = re_context_type;
+    fn sub(self, rhs: u32) -> re_context_type {
+        re_context_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for re_context_type {
+    type Output = re_context_type;
+    fn mul(self, rhs: u32) -> re_context_type {
+        re_context_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for re_context_type {
+    type Output = re_context_type;
+    fn div(self, rhs: u32) -> re_context_type {
+        re_context_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for re_context_type {
+    type Output = re_context_type;
+    fn rem(self, rhs: u32) -> re_context_type {
+        re_context_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_charset_t {
@@ -533,8 +660,79 @@ impl C2RustUnnamed_4 {
             C2RustUnnamed_4::_IScntrl => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_4 {
+        match value {
+            8 => C2RustUnnamed_4::_ISalnum,
+            4096 => C2RustUnnamed_4::_ISxdigit,
+            4 => C2RustUnnamed_4::_ISpunct,
+            32768 => C2RustUnnamed_4::_ISgraph,
+            1 => C2RustUnnamed_4::_ISblank,
+            256 => C2RustUnnamed_4::_ISupper,
+            16384 => C2RustUnnamed_4::_ISprint,
+            2048 => C2RustUnnamed_4::_ISdigit,
+            1024 => C2RustUnnamed_4::_ISalpha,
+            8192 => C2RustUnnamed_4::_ISspace,
+            512 => C2RustUnnamed_4::_ISlower,
+            2 => C2RustUnnamed_4::_IScntrl,
+            _ => panic!("Invalid value for C2RustUnnamed_4: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_4 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_4 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_4 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_4 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_4 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn add(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn div(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_4 {
+    type Output = C2RustUnnamed_4;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_4 {
+        C2RustUnnamed_4::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub union C2RustUnnamed_1 {
@@ -567,792 +765,75 @@ impl bracket_elem_type {
             bracket_elem_type::CHAR_CLASS => 4,
         }
     }
-}
-
-pub const CHAR_CLASS: bracket_elem_type = 4;
-pub const COLL_SYM: bracket_elem_type = 3;
-pub const EQUIV_CLASS: bracket_elem_type = 2;
-pub const MB_CHAR: bracket_elem_type = 1;
-pub const SB_CHAR: bracket_elem_type = 0;
-pub type int_fast32_t = libc::c_long;
-pub type uint_fast32_t = libc::c_ulong;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum C2RustUnnamed_5 {
-    CODESET = 14,
-    _NL_NUM = 786449,
-    _NL_NUM_LC_IDENTIFICATION = 786448,
-    _NL_IDENTIFICATION_CODESET = 786447,
-    _NL_IDENTIFICATION_CATEGORY = 786446,
-    _NL_IDENTIFICATION_DATE = 786445,
-    _NL_IDENTIFICATION_REVISION = 786444,
-    _NL_IDENTIFICATION_ABBREVIATION = 786443,
-    _NL_IDENTIFICATION_APPLICATION = 786442,
-    _NL_IDENTIFICATION_AUDIENCE = 786441,
-    _NL_IDENTIFICATION_TERRITORY = 786440,
-    _NL_IDENTIFICATION_LANGUAGE = 786439,
-    _NL_IDENTIFICATION_FAX = 786438,
-    _NL_IDENTIFICATION_TEL = 786437,
-    _NL_IDENTIFICATION_EMAIL = 786436,
-    _NL_IDENTIFICATION_CONTACT = 786435,
-    _NL_IDENTIFICATION_ADDRESS = 786434,
-    _NL_IDENTIFICATION_SOURCE = 786433,
-    _NL_IDENTIFICATION_TITLE = 786432,
-    _NL_NUM_LC_MEASUREMENT = 720898,
-    _NL_MEASUREMENT_CODESET = 720897,
-    _NL_MEASUREMENT_MEASUREMENT = 720896,
-    _NL_NUM_LC_TELEPHONE = 655365,
-    _NL_TELEPHONE_CODESET = 655364,
-    _NL_TELEPHONE_INT_PREFIX = 655363,
-    _NL_TELEPHONE_INT_SELECT = 655362,
-    _NL_TELEPHONE_TEL_DOM_FMT = 655361,
-    _NL_TELEPHONE_TEL_INT_FMT = 655360,
-    _NL_NUM_LC_ADDRESS = 589837,
-    _NL_ADDRESS_CODESET = 589836,
-    _NL_ADDRESS_LANG_LIB = 589835,
-    _NL_ADDRESS_LANG_TERM = 589834,
-    _NL_ADDRESS_LANG_AB = 589833,
-    _NL_ADDRESS_LANG_NAME = 589832,
-    _NL_ADDRESS_COUNTRY_ISBN = 589831,
-    _NL_ADDRESS_COUNTRY_NUM = 589830,
-    _NL_ADDRESS_COUNTRY_CAR = 589829,
-    _NL_ADDRESS_COUNTRY_AB3 = 589828,
-    _NL_ADDRESS_COUNTRY_AB2 = 589827,
-    _NL_ADDRESS_COUNTRY_POST = 589826,
-    _NL_ADDRESS_COUNTRY_NAME = 589825,
-    _NL_ADDRESS_POSTAL_FMT = 589824,
-    _NL_NUM_LC_NAME = 524295,
-    _NL_NAME_CODESET = 524294,
-    _NL_NAME_NAME_MS = 524293,
-    _NL_NAME_NAME_MISS = 524292,
-    _NL_NAME_NAME_MRS = 524291,
-    _NL_NAME_NAME_MR = 524290,
-    _NL_NAME_NAME_GEN = 524289,
-    _NL_NAME_NAME_FMT = 524288,
-    _NL_NUM_LC_PAPER = 458755,
-    _NL_PAPER_CODESET = 458754,
-    _NL_PAPER_WIDTH = 458753,
-    _NL_PAPER_HEIGHT = 458752,
-    _NL_NUM_LC_MESSAGES = 327685,
-    _NL_MESSAGES_CODESET = 327684,
-    __NOSTR = 327683,
-    __YESSTR = 327682,
-    __NOEXPR = 327681,
-    __YESEXPR = 327680,
-    _NL_NUM_LC_NUMERIC = 65542,
-    _NL_NUMERIC_CODESET = 65541,
-    _NL_NUMERIC_THOUSANDS_SEP_WC = 65540,
-    _NL_NUMERIC_DECIMAL_POINT_WC = 65539,
-    __GROUPING = 65538,
-    THOUSEP = 65537,
-    __THOUSANDS_SEP = 65537,
-    RADIXCHAR = 65536,
-    __DECIMAL_POINT = 65536,
-    _NL_NUM_LC_MONETARY = 262190,
-    _NL_MONETARY_CODESET = 262189,
-    _NL_MONETARY_THOUSANDS_SEP_WC = 262188,
-    _NL_MONETARY_DECIMAL_POINT_WC = 262187,
-    _NL_MONETARY_CONVERSION_RATE = 262186,
-    _NL_MONETARY_DUO_VALID_TO = 262185,
-    _NL_MONETARY_DUO_VALID_FROM = 262184,
-    _NL_MONETARY_UNO_VALID_TO = 262183,
-    _NL_MONETARY_UNO_VALID_FROM = 262182,
-    _NL_MONETARY_DUO_INT_N_SIGN_POSN = 262181,
-    _NL_MONETARY_DUO_INT_P_SIGN_POSN = 262180,
-    _NL_MONETARY_DUO_N_SIGN_POSN = 262179,
-    _NL_MONETARY_DUO_P_SIGN_POSN = 262178,
-    _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE = 262177,
-    _NL_MONETARY_DUO_INT_N_CS_PRECEDES = 262176,
-    _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE = 262175,
-    _NL_MONETARY_DUO_INT_P_CS_PRECEDES = 262174,
-    _NL_MONETARY_DUO_N_SEP_BY_SPACE = 262173,
-    _NL_MONETARY_DUO_N_CS_PRECEDES = 262172,
-    _NL_MONETARY_DUO_P_SEP_BY_SPACE = 262171,
-    _NL_MONETARY_DUO_P_CS_PRECEDES = 262170,
-    _NL_MONETARY_DUO_FRAC_DIGITS = 262169,
-    _NL_MONETARY_DUO_INT_FRAC_DIGITS = 262168,
-    _NL_MONETARY_DUO_CURRENCY_SYMBOL = 262167,
-    _NL_MONETARY_DUO_INT_CURR_SYMBOL = 262166,
-    __INT_N_SIGN_POSN = 262165,
-    __INT_P_SIGN_POSN = 262164,
-    __INT_N_SEP_BY_SPACE = 262163,
-    __INT_N_CS_PRECEDES = 262162,
-    __INT_P_SEP_BY_SPACE = 262161,
-    __INT_P_CS_PRECEDES = 262160,
-    _NL_MONETARY_CRNCYSTR = 262159,
-    __N_SIGN_POSN = 262158,
-    __P_SIGN_POSN = 262157,
-    __N_SEP_BY_SPACE = 262156,
-    __N_CS_PRECEDES = 262155,
-    __P_SEP_BY_SPACE = 262154,
-    __P_CS_PRECEDES = 262153,
-    __FRAC_DIGITS = 262152,
-    __INT_FRAC_DIGITS = 262151,
-    __NEGATIVE_SIGN = 262150,
-    __POSITIVE_SIGN = 262149,
-    __MON_GROUPING = 262148,
-    __MON_THOUSANDS_SEP = 262147,
-    __MON_DECIMAL_POINT = 262146,
-    __CURRENCY_SYMBOL = 262145,
-    __INT_CURR_SYMBOL = 262144,
-    _NL_NUM_LC_CTYPE = 86,
-    _NL_CTYPE_EXTRA_MAP_14 = 85,
-    _NL_CTYPE_EXTRA_MAP_13 = 84,
-    _NL_CTYPE_EXTRA_MAP_12 = 83,
-    _NL_CTYPE_EXTRA_MAP_11 = 82,
-    _NL_CTYPE_EXTRA_MAP_10 = 81,
-    _NL_CTYPE_EXTRA_MAP_9 = 80,
-    _NL_CTYPE_EXTRA_MAP_8 = 79,
-    _NL_CTYPE_EXTRA_MAP_7 = 78,
-    _NL_CTYPE_EXTRA_MAP_6 = 77,
-    _NL_CTYPE_EXTRA_MAP_5 = 76,
-    _NL_CTYPE_EXTRA_MAP_4 = 75,
-    _NL_CTYPE_EXTRA_MAP_3 = 74,
-    _NL_CTYPE_EXTRA_MAP_2 = 73,
-    _NL_CTYPE_EXTRA_MAP_1 = 72,
-    _NL_CTYPE_NONASCII_CASE = 71,
-    _NL_CTYPE_MAP_TO_NONASCII = 70,
-    _NL_CTYPE_TRANSLIT_IGNORE = 69,
-    _NL_CTYPE_TRANSLIT_IGNORE_LEN = 68,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING = 67,
-    _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN = 66,
-    _NL_CTYPE_TRANSLIT_TO_TBL = 65,
-    _NL_CTYPE_TRANSLIT_TO_IDX = 64,
-    _NL_CTYPE_TRANSLIT_FROM_TBL = 63,
-    _NL_CTYPE_TRANSLIT_FROM_IDX = 62,
-    _NL_CTYPE_TRANSLIT_TAB_SIZE = 61,
-    _NL_CTYPE_OUTDIGIT9_WC = 60,
-    _NL_CTYPE_OUTDIGIT8_WC = 59,
-    _NL_CTYPE_OUTDIGIT7_WC = 58,
-    _NL_CTYPE_OUTDIGIT6_WC = 57,
-    _NL_CTYPE_OUTDIGIT5_WC = 56,
-    _NL_CTYPE_OUTDIGIT4_WC = 55,
-    _NL_CTYPE_OUTDIGIT3_WC = 54,
-    _NL_CTYPE_OUTDIGIT2_WC = 53,
-    _NL_CTYPE_OUTDIGIT1_WC = 52,
-    _NL_CTYPE_OUTDIGIT0_WC = 51,
-    _NL_CTYPE_OUTDIGIT9_MB = 50,
-    _NL_CTYPE_OUTDIGIT8_MB = 49,
-    _NL_CTYPE_OUTDIGIT7_MB = 48,
-    _NL_CTYPE_OUTDIGIT6_MB = 47,
-    _NL_CTYPE_OUTDIGIT5_MB = 46,
-    _NL_CTYPE_OUTDIGIT4_MB = 45,
-    _NL_CTYPE_OUTDIGIT3_MB = 44,
-    _NL_CTYPE_OUTDIGIT2_MB = 43,
-    _NL_CTYPE_OUTDIGIT1_MB = 42,
-    _NL_CTYPE_OUTDIGIT0_MB = 41,
-    _NL_CTYPE_INDIGITS9_WC = 40,
-    _NL_CTYPE_INDIGITS8_WC = 39,
-    _NL_CTYPE_INDIGITS7_WC = 38,
-    _NL_CTYPE_INDIGITS6_WC = 37,
-    _NL_CTYPE_INDIGITS5_WC = 36,
-    _NL_CTYPE_INDIGITS4_WC = 35,
-    _NL_CTYPE_INDIGITS3_WC = 34,
-    _NL_CTYPE_INDIGITS2_WC = 33,
-    _NL_CTYPE_INDIGITS1_WC = 32,
-    _NL_CTYPE_INDIGITS0_WC = 31,
-    _NL_CTYPE_INDIGITS_WC_LEN = 30,
-    _NL_CTYPE_INDIGITS9_MB = 29,
-    _NL_CTYPE_INDIGITS8_MB = 28,
-    _NL_CTYPE_INDIGITS7_MB = 27,
-    _NL_CTYPE_INDIGITS6_MB = 26,
-    _NL_CTYPE_INDIGITS5_MB = 25,
-    _NL_CTYPE_INDIGITS4_MB = 24,
-    _NL_CTYPE_INDIGITS3_MB = 23,
-    _NL_CTYPE_INDIGITS2_MB = 22,
-    _NL_CTYPE_INDIGITS1_MB = 21,
-    _NL_CTYPE_INDIGITS0_MB = 20,
-    _NL_CTYPE_INDIGITS_MB_LEN = 19,
-    _NL_CTYPE_MAP_OFFSET = 18,
-    _NL_CTYPE_CLASS_OFFSET = 17,
-    _NL_CTYPE_TOLOWER32 = 16,
-    _NL_CTYPE_TOUPPER32 = 15,
-    _NL_CTYPE_CODESET_NAME = 14,
-    _NL_CTYPE_MB_CUR_MAX = 13,
-    _NL_CTYPE_WIDTH = 12,
-    _NL_CTYPE_MAP_NAMES = 11,
-    _NL_CTYPE_CLASS_NAMES = 10,
-    _NL_CTYPE_GAP6 = 9,
-    _NL_CTYPE_GAP5 = 8,
-    _NL_CTYPE_GAP4 = 7,
-    _NL_CTYPE_GAP3 = 6,
-    _NL_CTYPE_CLASS32 = 5,
-    _NL_CTYPE_GAP2 = 4,
-    _NL_CTYPE_TOLOWER = 3,
-    _NL_CTYPE_GAP1 = 2,
-    _NL_CTYPE_TOUPPER = 1,
-    _NL_CTYPE_CLASS = 0,
-    _NL_NUM_LC_COLLATE = 196627,
-    _NL_COLLATE_CODESET = 196626,
-    _NL_COLLATE_COLLSEQWC = 196625,
-    _NL_COLLATE_COLLSEQMB = 196624,
-    _NL_COLLATE_SYMB_EXTRAMB = 196623,
-    _NL_COLLATE_SYMB_TABLEMB = 196622,
-    _NL_COLLATE_SYMB_HASH_SIZEMB = 196621,
-    _NL_COLLATE_INDIRECTWC = 196620,
-    _NL_COLLATE_EXTRAWC = 196619,
-    _NL_COLLATE_WEIGHTWC = 196618,
-    _NL_COLLATE_TABLEWC = 196617,
-    _NL_COLLATE_GAP3 = 196616,
-    _NL_COLLATE_GAP2 = 196615,
-    _NL_COLLATE_GAP1 = 196614,
-    _NL_COLLATE_INDIRECTMB = 196613,
-    _NL_COLLATE_EXTRAMB = 196612,
-    _NL_COLLATE_WEIGHTMB = 196611,
-    _NL_COLLATE_TABLEMB = 196610,
-    _NL_COLLATE_RULESETS = 196609,
-    _NL_COLLATE_NRULES = 196608,
-    _NL_NUM_LC_TIME = 131231,
-    _NL_WABALTMON_12 = 131230,
-    _NL_WABALTMON_11 = 131229,
-    _NL_WABALTMON_10 = 131228,
-    _NL_WABALTMON_9 = 131227,
-    _NL_WABALTMON_8 = 131226,
-    _NL_WABALTMON_7 = 131225,
-    _NL_WABALTMON_6 = 131224,
-    _NL_WABALTMON_5 = 131223,
-    _NL_WABALTMON_4 = 131222,
-    _NL_WABALTMON_3 = 131221,
-    _NL_WABALTMON_2 = 131220,
-    _NL_WABALTMON_1 = 131219,
-    _NL_ABALTMON_12 = 131218,
-    _NL_ABALTMON_11 = 131217,
-    _NL_ABALTMON_10 = 131216,
-    _NL_ABALTMON_9 = 131215,
-    _NL_ABALTMON_8 = 131214,
-    _NL_ABALTMON_7 = 131213,
-    _NL_ABALTMON_6 = 131212,
-    _NL_ABALTMON_5 = 131211,
-    _NL_ABALTMON_4 = 131210,
-    _NL_ABALTMON_3 = 131209,
-    _NL_ABALTMON_2 = 131208,
-    _NL_ABALTMON_1 = 131207,
-    _NL_WALTMON_12 = 131206,
-    _NL_WALTMON_11 = 131205,
-    _NL_WALTMON_10 = 131204,
-    _NL_WALTMON_9 = 131203,
-    _NL_WALTMON_8 = 131202,
-    _NL_WALTMON_7 = 131201,
-    _NL_WALTMON_6 = 131200,
-    _NL_WALTMON_5 = 131199,
-    _NL_WALTMON_4 = 131198,
-    _NL_WALTMON_3 = 131197,
-    _NL_WALTMON_2 = 131196,
-    _NL_WALTMON_1 = 131195,
-    __ALTMON_12 = 131194,
-    __ALTMON_11 = 131193,
-    __ALTMON_10 = 131192,
-    __ALTMON_9 = 131191,
-    __ALTMON_8 = 131190,
-    __ALTMON_7 = 131189,
-    __ALTMON_6 = 131188,
-    __ALTMON_5 = 131187,
-    __ALTMON_4 = 131186,
-    __ALTMON_3 = 131185,
-    __ALTMON_2 = 131184,
-    __ALTMON_1 = 131183,
-    _NL_TIME_CODESET = 131182,
-    _NL_W_DATE_FMT = 131181,
-    _DATE_FMT = 131180,
-    _NL_TIME_TIMEZONE = 131179,
-    _NL_TIME_CAL_DIRECTION = 131178,
-    _NL_TIME_FIRST_WORKDAY = 131177,
-    _NL_TIME_FIRST_WEEKDAY = 131176,
-    _NL_TIME_WEEK_1STWEEK = 131175,
-    _NL_TIME_WEEK_1STDAY = 131174,
-    _NL_TIME_WEEK_NDAYS = 131173,
-    _NL_WERA_T_FMT = 131172,
-    _NL_WERA_D_T_FMT = 131171,
-    _NL_WALT_DIGITS = 131170,
-    _NL_WERA_D_FMT = 131169,
-    _NL_WERA_YEAR = 131168,
-    _NL_WT_FMT_AMPM = 131167,
-    _NL_WT_FMT = 131166,
-    _NL_WD_FMT = 131165,
-    _NL_WD_T_FMT = 131164,
-    _NL_WPM_STR = 131163,
-    _NL_WAM_STR = 131162,
-    _NL_WMON_12 = 131161,
-    _NL_WMON_11 = 131160,
-    _NL_WMON_10 = 131159,
-    _NL_WMON_9 = 131158,
-    _NL_WMON_8 = 131157,
-    _NL_WMON_7 = 131156,
-    _NL_WMON_6 = 131155,
-    _NL_WMON_5 = 131154,
-    _NL_WMON_4 = 131153,
-    _NL_WMON_3 = 131152,
-    _NL_WMON_2 = 131151,
-    _NL_WMON_1 = 131150,
-    _NL_WABMON_12 = 131149,
-    _NL_WABMON_11 = 131148,
-    _NL_WABMON_10 = 131147,
-    _NL_WABMON_9 = 131146,
-    _NL_WABMON_8 = 131145,
-    _NL_WABMON_7 = 131144,
-    _NL_WABMON_6 = 131143,
-    _NL_WABMON_5 = 131142,
-    _NL_WABMON_4 = 131141,
-    _NL_WABMON_3 = 131140,
-    _NL_WABMON_2 = 131139,
-    _NL_WABMON_1 = 131138,
-    _NL_WDAY_7 = 131137,
-    _NL_WDAY_6 = 131136,
-    _NL_WDAY_5 = 131135,
-    _NL_WDAY_4 = 131134,
-    _NL_WDAY_3 = 131133,
-    _NL_WDAY_2 = 131132,
-    _NL_WDAY_1 = 131131,
-    _NL_WABDAY_7 = 131130,
-    _NL_WABDAY_6 = 131129,
-    _NL_WABDAY_5 = 131128,
-    _NL_WABDAY_4 = 131127,
-    _NL_WABDAY_3 = 131126,
-    _NL_WABDAY_2 = 131125,
-    _NL_WABDAY_1 = 131124,
-    _NL_TIME_ERA_ENTRIES = 131123,
-    _NL_TIME_ERA_NUM_ENTRIES = 131122,
-    ERA_T_FMT = 131121,
-    ERA_D_T_FMT = 131120,
-    ALT_DIGITS = 131119,
-    ERA_D_FMT = 131118,
-    __ERA_YEAR = 131117,
-    ERA = 131116,
-    T_FMT_AMPM = 131115,
-    T_FMT = 131114,
-    D_FMT = 131113,
-    D_T_FMT = 131112,
-    PM_STR = 131111,
-    AM_STR = 131110,
-    MON_12 = 131109,
-    MON_11 = 131108,
-    MON_10 = 131107,
-    MON_9 = 131106,
-    MON_8 = 131105,
-    MON_7 = 131104,
-    MON_6 = 131103,
-    MON_5 = 131102,
-    MON_4 = 131101,
-    MON_3 = 131100,
-    MON_2 = 131099,
-    MON_1 = 131098,
-    ABMON_12 = 131097,
-    ABMON_11 = 131096,
-    ABMON_10 = 131095,
-    ABMON_9 = 131094,
-    ABMON_8 = 131093,
-    ABMON_7 = 131092,
-    ABMON_6 = 131091,
-    ABMON_5 = 131090,
-    ABMON_4 = 131089,
-    ABMON_3 = 131088,
-    ABMON_2 = 131087,
-    ABMON_1 = 131086,
-    DAY_7 = 131085,
-    DAY_6 = 131084,
-    DAY_5 = 131083,
-    DAY_4 = 131082,
-    DAY_3 = 131081,
-    DAY_2 = 131080,
-    DAY_1 = 131079,
-    ABDAY_7 = 131078,
-    ABDAY_6 = 131077,
-    ABDAY_5 = 131076,
-    ABDAY_4 = 131075,
-    ABDAY_3 = 131074,
-    ABDAY_2 = 131073,
-    ABDAY_1 = 131072,
-}
-impl C2RustUnnamed_5 {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            C2RustUnnamed_5::CODESET => 14,
-            C2RustUnnamed_5::_NL_NUM => 786449,
-            C2RustUnnamed_5::_NL_NUM_LC_IDENTIFICATION => 786448,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CODESET => 786447,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CATEGORY => 786446,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_DATE => 786445,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_REVISION => 786444,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ABBREVIATION => 786443,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_APPLICATION => 786442,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_AUDIENCE => 786441,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TERRITORY => 786440,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_LANGUAGE => 786439,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_FAX => 786438,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TEL => 786437,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_EMAIL => 786436,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_CONTACT => 786435,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_ADDRESS => 786434,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_SOURCE => 786433,
-            C2RustUnnamed_5::_NL_IDENTIFICATION_TITLE => 786432,
-            C2RustUnnamed_5::_NL_NUM_LC_MEASUREMENT => 720898,
-            C2RustUnnamed_5::_NL_MEASUREMENT_CODESET => 720897,
-            C2RustUnnamed_5::_NL_MEASUREMENT_MEASUREMENT => 720896,
-            C2RustUnnamed_5::_NL_NUM_LC_TELEPHONE => 655365,
-            C2RustUnnamed_5::_NL_TELEPHONE_CODESET => 655364,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_PREFIX => 655363,
-            C2RustUnnamed_5::_NL_TELEPHONE_INT_SELECT => 655362,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_DOM_FMT => 655361,
-            C2RustUnnamed_5::_NL_TELEPHONE_TEL_INT_FMT => 655360,
-            C2RustUnnamed_5::_NL_NUM_LC_ADDRESS => 589837,
-            C2RustUnnamed_5::_NL_ADDRESS_CODESET => 589836,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_LIB => 589835,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_TERM => 589834,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_AB => 589833,
-            C2RustUnnamed_5::_NL_ADDRESS_LANG_NAME => 589832,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_ISBN => 589831,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NUM => 589830,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_CAR => 589829,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB3 => 589828,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_AB2 => 589827,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_POST => 589826,
-            C2RustUnnamed_5::_NL_ADDRESS_COUNTRY_NAME => 589825,
-            C2RustUnnamed_5::_NL_ADDRESS_POSTAL_FMT => 589824,
-            C2RustUnnamed_5::_NL_NUM_LC_NAME => 524295,
-            C2RustUnnamed_5::_NL_NAME_CODESET => 524294,
-            C2RustUnnamed_5::_NL_NAME_NAME_MS => 524293,
-            C2RustUnnamed_5::_NL_NAME_NAME_MISS => 524292,
-            C2RustUnnamed_5::_NL_NAME_NAME_MRS => 524291,
-            C2RustUnnamed_5::_NL_NAME_NAME_MR => 524290,
-            C2RustUnnamed_5::_NL_NAME_NAME_GEN => 524289,
-            C2RustUnnamed_5::_NL_NAME_NAME_FMT => 524288,
-            C2RustUnnamed_5::_NL_NUM_LC_PAPER => 458755,
-            C2RustUnnamed_5::_NL_PAPER_CODESET => 458754,
-            C2RustUnnamed_5::_NL_PAPER_WIDTH => 458753,
-            C2RustUnnamed_5::_NL_PAPER_HEIGHT => 458752,
-            C2RustUnnamed_5::_NL_NUM_LC_MESSAGES => 327685,
-            C2RustUnnamed_5::_NL_MESSAGES_CODESET => 327684,
-            C2RustUnnamed_5::__NOSTR => 327683,
-            C2RustUnnamed_5::__YESSTR => 327682,
-            C2RustUnnamed_5::__NOEXPR => 327681,
-            C2RustUnnamed_5::__YESEXPR => 327680,
-            C2RustUnnamed_5::_NL_NUM_LC_NUMERIC => 65542,
-            C2RustUnnamed_5::_NL_NUMERIC_CODESET => 65541,
-            C2RustUnnamed_5::_NL_NUMERIC_THOUSANDS_SEP_WC => 65540,
-            C2RustUnnamed_5::_NL_NUMERIC_DECIMAL_POINT_WC => 65539,
-            C2RustUnnamed_5::__GROUPING => 65538,
-            C2RustUnnamed_5::THOUSEP => 65537,
-            C2RustUnnamed_5::__THOUSANDS_SEP => 65537,
-            C2RustUnnamed_5::RADIXCHAR => 65536,
-            C2RustUnnamed_5::__DECIMAL_POINT => 65536,
-            C2RustUnnamed_5::_NL_NUM_LC_MONETARY => 262190,
-            C2RustUnnamed_5::_NL_MONETARY_CODESET => 262189,
-            C2RustUnnamed_5::_NL_MONETARY_THOUSANDS_SEP_WC => 262188,
-            C2RustUnnamed_5::_NL_MONETARY_DECIMAL_POINT_WC => 262187,
-            C2RustUnnamed_5::_NL_MONETARY_CONVERSION_RATE => 262186,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_TO => 262185,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_VALID_FROM => 262184,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_TO => 262183,
-            C2RustUnnamed_5::_NL_MONETARY_UNO_VALID_FROM => 262182,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SIGN_POSN => 262181,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SIGN_POSN => 262180,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SIGN_POSN => 262179,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SIGN_POSN => 262178,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_SEP_BY_SPACE => 262177,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_N_CS_PRECEDES => 262176,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_SEP_BY_SPACE => 262175,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_P_CS_PRECEDES => 262174,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_SEP_BY_SPACE => 262173,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_N_CS_PRECEDES => 262172,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_SEP_BY_SPACE => 262171,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_P_CS_PRECEDES => 262170,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_FRAC_DIGITS => 262169,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_FRAC_DIGITS => 262168,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_CURRENCY_SYMBOL => 262167,
-            C2RustUnnamed_5::_NL_MONETARY_DUO_INT_CURR_SYMBOL => 262166,
-            C2RustUnnamed_5::__INT_N_SIGN_POSN => 262165,
-            C2RustUnnamed_5::__INT_P_SIGN_POSN => 262164,
-            C2RustUnnamed_5::__INT_N_SEP_BY_SPACE => 262163,
-            C2RustUnnamed_5::__INT_N_CS_PRECEDES => 262162,
-            C2RustUnnamed_5::__INT_P_SEP_BY_SPACE => 262161,
-            C2RustUnnamed_5::__INT_P_CS_PRECEDES => 262160,
-            C2RustUnnamed_5::_NL_MONETARY_CRNCYSTR => 262159,
-            C2RustUnnamed_5::__N_SIGN_POSN => 262158,
-            C2RustUnnamed_5::__P_SIGN_POSN => 262157,
-            C2RustUnnamed_5::__N_SEP_BY_SPACE => 262156,
-            C2RustUnnamed_5::__N_CS_PRECEDES => 262155,
-            C2RustUnnamed_5::__P_SEP_BY_SPACE => 262154,
-            C2RustUnnamed_5::__P_CS_PRECEDES => 262153,
-            C2RustUnnamed_5::__FRAC_DIGITS => 262152,
-            C2RustUnnamed_5::__INT_FRAC_DIGITS => 262151,
-            C2RustUnnamed_5::__NEGATIVE_SIGN => 262150,
-            C2RustUnnamed_5::__POSITIVE_SIGN => 262149,
-            C2RustUnnamed_5::__MON_GROUPING => 262148,
-            C2RustUnnamed_5::__MON_THOUSANDS_SEP => 262147,
-            C2RustUnnamed_5::__MON_DECIMAL_POINT => 262146,
-            C2RustUnnamed_5::__CURRENCY_SYMBOL => 262145,
-            C2RustUnnamed_5::__INT_CURR_SYMBOL => 262144,
-            C2RustUnnamed_5::_NL_NUM_LC_CTYPE => 86,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_14 => 85,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_13 => 84,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_12 => 83,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_11 => 82,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_10 => 81,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_9 => 80,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_8 => 79,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_7 => 78,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_6 => 77,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_5 => 76,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_4 => 75,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_3 => 74,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_2 => 73,
-            C2RustUnnamed_5::_NL_CTYPE_EXTRA_MAP_1 => 72,
-            C2RustUnnamed_5::_NL_CTYPE_NONASCII_CASE => 71,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_TO_NONASCII => 70,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE => 69,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_IGNORE_LEN => 68,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING => 67,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN => 66,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_TBL => 65,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TO_IDX => 64,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_TBL => 63,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_FROM_IDX => 62,
-            C2RustUnnamed_5::_NL_CTYPE_TRANSLIT_TAB_SIZE => 61,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_WC => 60,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_WC => 59,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_WC => 58,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_WC => 57,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_WC => 56,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_WC => 55,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_WC => 54,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_WC => 53,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_WC => 52,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_WC => 51,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT9_MB => 50,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT8_MB => 49,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT7_MB => 48,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT6_MB => 47,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT5_MB => 46,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT4_MB => 45,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT3_MB => 44,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT2_MB => 43,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT1_MB => 42,
-            C2RustUnnamed_5::_NL_CTYPE_OUTDIGIT0_MB => 41,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_WC => 40,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_WC => 39,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_WC => 38,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_WC => 37,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_WC => 36,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_WC => 35,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_WC => 34,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_WC => 33,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_WC => 32,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_WC => 31,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_WC_LEN => 30,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS9_MB => 29,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS8_MB => 28,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS7_MB => 27,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS6_MB => 26,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS5_MB => 25,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS4_MB => 24,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS3_MB => 23,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS2_MB => 22,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS1_MB => 21,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS0_MB => 20,
-            C2RustUnnamed_5::_NL_CTYPE_INDIGITS_MB_LEN => 19,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_OFFSET => 18,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_OFFSET => 17,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER32 => 16,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER32 => 15,
-            C2RustUnnamed_5::_NL_CTYPE_CODESET_NAME => 14,
-            C2RustUnnamed_5::_NL_CTYPE_MB_CUR_MAX => 13,
-            C2RustUnnamed_5::_NL_CTYPE_WIDTH => 12,
-            C2RustUnnamed_5::_NL_CTYPE_MAP_NAMES => 11,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS_NAMES => 10,
-            C2RustUnnamed_5::_NL_CTYPE_GAP6 => 9,
-            C2RustUnnamed_5::_NL_CTYPE_GAP5 => 8,
-            C2RustUnnamed_5::_NL_CTYPE_GAP4 => 7,
-            C2RustUnnamed_5::_NL_CTYPE_GAP3 => 6,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS32 => 5,
-            C2RustUnnamed_5::_NL_CTYPE_GAP2 => 4,
-            C2RustUnnamed_5::_NL_CTYPE_TOLOWER => 3,
-            C2RustUnnamed_5::_NL_CTYPE_GAP1 => 2,
-            C2RustUnnamed_5::_NL_CTYPE_TOUPPER => 1,
-            C2RustUnnamed_5::_NL_CTYPE_CLASS => 0,
-            C2RustUnnamed_5::_NL_NUM_LC_COLLATE => 196627,
-            C2RustUnnamed_5::_NL_COLLATE_CODESET => 196626,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQWC => 196625,
-            C2RustUnnamed_5::_NL_COLLATE_COLLSEQMB => 196624,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_EXTRAMB => 196623,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_TABLEMB => 196622,
-            C2RustUnnamed_5::_NL_COLLATE_SYMB_HASH_SIZEMB => 196621,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTWC => 196620,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAWC => 196619,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTWC => 196618,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEWC => 196617,
-            C2RustUnnamed_5::_NL_COLLATE_GAP3 => 196616,
-            C2RustUnnamed_5::_NL_COLLATE_GAP2 => 196615,
-            C2RustUnnamed_5::_NL_COLLATE_GAP1 => 196614,
-            C2RustUnnamed_5::_NL_COLLATE_INDIRECTMB => 196613,
-            C2RustUnnamed_5::_NL_COLLATE_EXTRAMB => 196612,
-            C2RustUnnamed_5::_NL_COLLATE_WEIGHTMB => 196611,
-            C2RustUnnamed_5::_NL_COLLATE_TABLEMB => 196610,
-            C2RustUnnamed_5::_NL_COLLATE_RULESETS => 196609,
-            C2RustUnnamed_5::_NL_COLLATE_NRULES => 196608,
-            C2RustUnnamed_5::_NL_NUM_LC_TIME => 131231,
-            C2RustUnnamed_5::_NL_WABALTMON_12 => 131230,
-            C2RustUnnamed_5::_NL_WABALTMON_11 => 131229,
-            C2RustUnnamed_5::_NL_WABALTMON_10 => 131228,
-            C2RustUnnamed_5::_NL_WABALTMON_9 => 131227,
-            C2RustUnnamed_5::_NL_WABALTMON_8 => 131226,
-            C2RustUnnamed_5::_NL_WABALTMON_7 => 131225,
-            C2RustUnnamed_5::_NL_WABALTMON_6 => 131224,
-            C2RustUnnamed_5::_NL_WABALTMON_5 => 131223,
-            C2RustUnnamed_5::_NL_WABALTMON_4 => 131222,
-            C2RustUnnamed_5::_NL_WABALTMON_3 => 131221,
-            C2RustUnnamed_5::_NL_WABALTMON_2 => 131220,
-            C2RustUnnamed_5::_NL_WABALTMON_1 => 131219,
-            C2RustUnnamed_5::_NL_ABALTMON_12 => 131218,
-            C2RustUnnamed_5::_NL_ABALTMON_11 => 131217,
-            C2RustUnnamed_5::_NL_ABALTMON_10 => 131216,
-            C2RustUnnamed_5::_NL_ABALTMON_9 => 131215,
-            C2RustUnnamed_5::_NL_ABALTMON_8 => 131214,
-            C2RustUnnamed_5::_NL_ABALTMON_7 => 131213,
-            C2RustUnnamed_5::_NL_ABALTMON_6 => 131212,
-            C2RustUnnamed_5::_NL_ABALTMON_5 => 131211,
-            C2RustUnnamed_5::_NL_ABALTMON_4 => 131210,
-            C2RustUnnamed_5::_NL_ABALTMON_3 => 131209,
-            C2RustUnnamed_5::_NL_ABALTMON_2 => 131208,
-            C2RustUnnamed_5::_NL_ABALTMON_1 => 131207,
-            C2RustUnnamed_5::_NL_WALTMON_12 => 131206,
-            C2RustUnnamed_5::_NL_WALTMON_11 => 131205,
-            C2RustUnnamed_5::_NL_WALTMON_10 => 131204,
-            C2RustUnnamed_5::_NL_WALTMON_9 => 131203,
-            C2RustUnnamed_5::_NL_WALTMON_8 => 131202,
-            C2RustUnnamed_5::_NL_WALTMON_7 => 131201,
-            C2RustUnnamed_5::_NL_WALTMON_6 => 131200,
-            C2RustUnnamed_5::_NL_WALTMON_5 => 131199,
-            C2RustUnnamed_5::_NL_WALTMON_4 => 131198,
-            C2RustUnnamed_5::_NL_WALTMON_3 => 131197,
-            C2RustUnnamed_5::_NL_WALTMON_2 => 131196,
-            C2RustUnnamed_5::_NL_WALTMON_1 => 131195,
-            C2RustUnnamed_5::__ALTMON_12 => 131194,
-            C2RustUnnamed_5::__ALTMON_11 => 131193,
-            C2RustUnnamed_5::__ALTMON_10 => 131192,
-            C2RustUnnamed_5::__ALTMON_9 => 131191,
-            C2RustUnnamed_5::__ALTMON_8 => 131190,
-            C2RustUnnamed_5::__ALTMON_7 => 131189,
-            C2RustUnnamed_5::__ALTMON_6 => 131188,
-            C2RustUnnamed_5::__ALTMON_5 => 131187,
-            C2RustUnnamed_5::__ALTMON_4 => 131186,
-            C2RustUnnamed_5::__ALTMON_3 => 131185,
-            C2RustUnnamed_5::__ALTMON_2 => 131184,
-            C2RustUnnamed_5::__ALTMON_1 => 131183,
-            C2RustUnnamed_5::_NL_TIME_CODESET => 131182,
-            C2RustUnnamed_5::_NL_W_DATE_FMT => 131181,
-            C2RustUnnamed_5::_DATE_FMT => 131180,
-            C2RustUnnamed_5::_NL_TIME_TIMEZONE => 131179,
-            C2RustUnnamed_5::_NL_TIME_CAL_DIRECTION => 131178,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WORKDAY => 131177,
-            C2RustUnnamed_5::_NL_TIME_FIRST_WEEKDAY => 131176,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STWEEK => 131175,
-            C2RustUnnamed_5::_NL_TIME_WEEK_1STDAY => 131174,
-            C2RustUnnamed_5::_NL_TIME_WEEK_NDAYS => 131173,
-            C2RustUnnamed_5::_NL_WERA_T_FMT => 131172,
-            C2RustUnnamed_5::_NL_WERA_D_T_FMT => 131171,
-            C2RustUnnamed_5::_NL_WALT_DIGITS => 131170,
-            C2RustUnnamed_5::_NL_WERA_D_FMT => 131169,
-            C2RustUnnamed_5::_NL_WERA_YEAR => 131168,
-            C2RustUnnamed_5::_NL_WT_FMT_AMPM => 131167,
-            C2RustUnnamed_5::_NL_WT_FMT => 131166,
-            C2RustUnnamed_5::_NL_WD_FMT => 131165,
-            C2RustUnnamed_5::_NL_WD_T_FMT => 131164,
-            C2RustUnnamed_5::_NL_WPM_STR => 131163,
-            C2RustUnnamed_5::_NL_WAM_STR => 131162,
-            C2RustUnnamed_5::_NL_WMON_12 => 131161,
-            C2RustUnnamed_5::_NL_WMON_11 => 131160,
-            C2RustUnnamed_5::_NL_WMON_10 => 131159,
-            C2RustUnnamed_5::_NL_WMON_9 => 131158,
-            C2RustUnnamed_5::_NL_WMON_8 => 131157,
-            C2RustUnnamed_5::_NL_WMON_7 => 131156,
-            C2RustUnnamed_5::_NL_WMON_6 => 131155,
-            C2RustUnnamed_5::_NL_WMON_5 => 131154,
-            C2RustUnnamed_5::_NL_WMON_4 => 131153,
-            C2RustUnnamed_5::_NL_WMON_3 => 131152,
-            C2RustUnnamed_5::_NL_WMON_2 => 131151,
-            C2RustUnnamed_5::_NL_WMON_1 => 131150,
-            C2RustUnnamed_5::_NL_WABMON_12 => 131149,
-            C2RustUnnamed_5::_NL_WABMON_11 => 131148,
-            C2RustUnnamed_5::_NL_WABMON_10 => 131147,
-            C2RustUnnamed_5::_NL_WABMON_9 => 131146,
-            C2RustUnnamed_5::_NL_WABMON_8 => 131145,
-            C2RustUnnamed_5::_NL_WABMON_7 => 131144,
-            C2RustUnnamed_5::_NL_WABMON_6 => 131143,
-            C2RustUnnamed_5::_NL_WABMON_5 => 131142,
-            C2RustUnnamed_5::_NL_WABMON_4 => 131141,
-            C2RustUnnamed_5::_NL_WABMON_3 => 131140,
-            C2RustUnnamed_5::_NL_WABMON_2 => 131139,
-            C2RustUnnamed_5::_NL_WABMON_1 => 131138,
-            C2RustUnnamed_5::_NL_WDAY_7 => 131137,
-            C2RustUnnamed_5::_NL_WDAY_6 => 131136,
-            C2RustUnnamed_5::_NL_WDAY_5 => 131135,
-            C2RustUnnamed_5::_NL_WDAY_4 => 131134,
-            C2RustUnnamed_5::_NL_WDAY_3 => 131133,
-            C2RustUnnamed_5::_NL_WDAY_2 => 131132,
-            C2RustUnnamed_5::_NL_WDAY_1 => 131131,
-            C2RustUnnamed_5::_NL_WABDAY_7 => 131130,
-            C2RustUnnamed_5::_NL_WABDAY_6 => 131129,
-            C2RustUnnamed_5::_NL_WABDAY_5 => 131128,
-            C2RustUnnamed_5::_NL_WABDAY_4 => 131127,
-            C2RustUnnamed_5::_NL_WABDAY_3 => 131126,
-            C2RustUnnamed_5::_NL_WABDAY_2 => 131125,
-            C2RustUnnamed_5::_NL_WABDAY_1 => 131124,
-            C2RustUnnamed_5::_NL_TIME_ERA_ENTRIES => 131123,
-            C2RustUnnamed_5::_NL_TIME_ERA_NUM_ENTRIES => 131122,
-            C2RustUnnamed_5::ERA_T_FMT => 131121,
-            C2RustUnnamed_5::ERA_D_T_FMT => 131120,
-            C2RustUnnamed_5::ALT_DIGITS => 131119,
-            C2RustUnnamed_5::ERA_D_FMT => 131118,
-            C2RustUnnamed_5::__ERA_YEAR => 131117,
-            C2RustUnnamed_5::ERA => 131116,
-            C2RustUnnamed_5::T_FMT_AMPM => 131115,
-            C2RustUnnamed_5::T_FMT => 131114,
-            C2RustUnnamed_5::D_FMT => 131113,
-            C2RustUnnamed_5::D_T_FMT => 131112,
-            C2RustUnnamed_5::PM_STR => 131111,
-            C2RustUnnamed_5::AM_STR => 131110,
-            C2RustUnnamed_5::MON_12 => 131109,
-            C2RustUnnamed_5::MON_11 => 131108,
-            C2RustUnnamed_5::MON_10 => 131107,
-            C2RustUnnamed_5::MON_9 => 131106,
-            C2RustUnnamed_5::MON_8 => 131105,
-            C2RustUnnamed_5::MON_7 => 131104,
-            C2RustUnnamed_5::MON_6 => 131103,
-            C2RustUnnamed_5::MON_5 => 131102,
-            C2RustUnnamed_5::MON_4 => 131101,
-            C2RustUnnamed_5::MON_3 => 131100,
-            C2RustUnnamed_5::MON_2 => 131099,
-            C2RustUnnamed_5::MON_1 => 131098,
-            C2RustUnnamed_5::ABMON_12 => 131097,
-            C2RustUnnamed_5::ABMON_11 => 131096,
-            C2RustUnnamed_5::ABMON_10 => 131095,
-            C2RustUnnamed_5::ABMON_9 => 131094,
-            C2RustUnnamed_5::ABMON_8 => 131093,
-            C2RustUnnamed_5::ABMON_7 => 131092,
-            C2RustUnnamed_5::ABMON_6 => 131091,
-            C2RustUnnamed_5::ABMON_5 => 131090,
-            C2RustUnnamed_5::ABMON_4 => 131089,
-            C2RustUnnamed_5::ABMON_3 => 131088,
-            C2RustUnnamed_5::ABMON_2 => 131087,
-            C2RustUnnamed_5::ABMON_1 => 131086,
-            C2RustUnnamed_5::DAY_7 => 131085,
-            C2RustUnnamed_5::DAY_6 => 131084,
-            C2RustUnnamed_5::DAY_5 => 131083,
-            C2RustUnnamed_5::DAY_4 => 131082,
-            C2RustUnnamed_5::DAY_3 => 131081,
-            C2RustUnnamed_5::DAY_2 => 131080,
-            C2RustUnnamed_5::DAY_1 => 131079,
-            C2RustUnnamed_5::ABDAY_7 => 131078,
-            C2RustUnnamed_5::ABDAY_6 => 131077,
-            C2RustUnnamed_5::ABDAY_5 => 131076,
-            C2RustUnnamed_5::ABDAY_4 => 131075,
-            C2RustUnnamed_5::ABDAY_3 => 131074,
-            C2RustUnnamed_5::ABDAY_2 => 131073,
-            C2RustUnnamed_5::ABDAY_1 => 131072,
+    fn from_libc_c_uint(value: libc::c_uint) -> bracket_elem_type {
+        match value {
+            0 => bracket_elem_type::SB_CHAR,
+            1 => bracket_elem_type::MB_CHAR,
+            2 => bracket_elem_type::EQUIV_CLASS,
+            3 => bracket_elem_type::COLL_SYM,
+            4 => bracket_elem_type::CHAR_CLASS,
+            _ => panic!("Invalid value for bracket_elem_type: {}", value),
         }
     }
 }
-
+impl AddAssign<u32> for bracket_elem_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for bracket_elem_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for bracket_elem_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for bracket_elem_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for bracket_elem_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for bracket_elem_type {
+    type Output = bracket_elem_type;
+    fn add(self, rhs: u32) -> bracket_elem_type {
+        bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for bracket_elem_type {
+    type Output = bracket_elem_type;
+    fn sub(self, rhs: u32) -> bracket_elem_type {
+        bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for bracket_elem_type {
+    type Output = bracket_elem_type;
+    fn mul(self, rhs: u32) -> bracket_elem_type {
+        bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for bracket_elem_type {
+    type Output = bracket_elem_type;
+    fn div(self, rhs: u32) -> bracket_elem_type {
+        bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for bracket_elem_type {
+    type Output = bracket_elem_type;
+    fn rem(self, rhs: u32) -> bracket_elem_type {
+        bracket_elem_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type int_fast32_t = libc::c_long;
+pub type uint_fast32_t = libc::c_ulong;
+pub const CODESET: C2RustUnnamed_5 = 14;
 pub type nl_item = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -1456,6 +937,389 @@ pub struct re_sift_context_t {
     pub last_str_idx: Idx,
     pub limits: re_node_set,
 }
+pub type C2RustUnnamed_5 = libc::c_uint;
+pub const _NL_NUM: C2RustUnnamed_5 = 786449;
+pub const _NL_NUM_LC_IDENTIFICATION: C2RustUnnamed_5 = 786448;
+pub const _NL_IDENTIFICATION_CODESET: C2RustUnnamed_5 = 786447;
+pub const _NL_IDENTIFICATION_CATEGORY: C2RustUnnamed_5 = 786446;
+pub const _NL_IDENTIFICATION_DATE: C2RustUnnamed_5 = 786445;
+pub const _NL_IDENTIFICATION_REVISION: C2RustUnnamed_5 = 786444;
+pub const _NL_IDENTIFICATION_ABBREVIATION: C2RustUnnamed_5 = 786443;
+pub const _NL_IDENTIFICATION_APPLICATION: C2RustUnnamed_5 = 786442;
+pub const _NL_IDENTIFICATION_AUDIENCE: C2RustUnnamed_5 = 786441;
+pub const _NL_IDENTIFICATION_TERRITORY: C2RustUnnamed_5 = 786440;
+pub const _NL_IDENTIFICATION_LANGUAGE: C2RustUnnamed_5 = 786439;
+pub const _NL_IDENTIFICATION_FAX: C2RustUnnamed_5 = 786438;
+pub const _NL_IDENTIFICATION_TEL: C2RustUnnamed_5 = 786437;
+pub const _NL_IDENTIFICATION_EMAIL: C2RustUnnamed_5 = 786436;
+pub const _NL_IDENTIFICATION_CONTACT: C2RustUnnamed_5 = 786435;
+pub const _NL_IDENTIFICATION_ADDRESS: C2RustUnnamed_5 = 786434;
+pub const _NL_IDENTIFICATION_SOURCE: C2RustUnnamed_5 = 786433;
+pub const _NL_IDENTIFICATION_TITLE: C2RustUnnamed_5 = 786432;
+pub const _NL_NUM_LC_MEASUREMENT: C2RustUnnamed_5 = 720898;
+pub const _NL_MEASUREMENT_CODESET: C2RustUnnamed_5 = 720897;
+pub const _NL_MEASUREMENT_MEASUREMENT: C2RustUnnamed_5 = 720896;
+pub const _NL_NUM_LC_TELEPHONE: C2RustUnnamed_5 = 655365;
+pub const _NL_TELEPHONE_CODESET: C2RustUnnamed_5 = 655364;
+pub const _NL_TELEPHONE_INT_PREFIX: C2RustUnnamed_5 = 655363;
+pub const _NL_TELEPHONE_INT_SELECT: C2RustUnnamed_5 = 655362;
+pub const _NL_TELEPHONE_TEL_DOM_FMT: C2RustUnnamed_5 = 655361;
+pub const _NL_TELEPHONE_TEL_INT_FMT: C2RustUnnamed_5 = 655360;
+pub const _NL_NUM_LC_ADDRESS: C2RustUnnamed_5 = 589837;
+pub const _NL_ADDRESS_CODESET: C2RustUnnamed_5 = 589836;
+pub const _NL_ADDRESS_LANG_LIB: C2RustUnnamed_5 = 589835;
+pub const _NL_ADDRESS_LANG_TERM: C2RustUnnamed_5 = 589834;
+pub const _NL_ADDRESS_LANG_AB: C2RustUnnamed_5 = 589833;
+pub const _NL_ADDRESS_LANG_NAME: C2RustUnnamed_5 = 589832;
+pub const _NL_ADDRESS_COUNTRY_ISBN: C2RustUnnamed_5 = 589831;
+pub const _NL_ADDRESS_COUNTRY_NUM: C2RustUnnamed_5 = 589830;
+pub const _NL_ADDRESS_COUNTRY_CAR: C2RustUnnamed_5 = 589829;
+pub const _NL_ADDRESS_COUNTRY_AB3: C2RustUnnamed_5 = 589828;
+pub const _NL_ADDRESS_COUNTRY_AB2: C2RustUnnamed_5 = 589827;
+pub const _NL_ADDRESS_COUNTRY_POST: C2RustUnnamed_5 = 589826;
+pub const _NL_ADDRESS_COUNTRY_NAME: C2RustUnnamed_5 = 589825;
+pub const _NL_ADDRESS_POSTAL_FMT: C2RustUnnamed_5 = 589824;
+pub const _NL_NUM_LC_NAME: C2RustUnnamed_5 = 524295;
+pub const _NL_NAME_CODESET: C2RustUnnamed_5 = 524294;
+pub const _NL_NAME_NAME_MS: C2RustUnnamed_5 = 524293;
+pub const _NL_NAME_NAME_MISS: C2RustUnnamed_5 = 524292;
+pub const _NL_NAME_NAME_MRS: C2RustUnnamed_5 = 524291;
+pub const _NL_NAME_NAME_MR: C2RustUnnamed_5 = 524290;
+pub const _NL_NAME_NAME_GEN: C2RustUnnamed_5 = 524289;
+pub const _NL_NAME_NAME_FMT: C2RustUnnamed_5 = 524288;
+pub const _NL_NUM_LC_PAPER: C2RustUnnamed_5 = 458755;
+pub const _NL_PAPER_CODESET: C2RustUnnamed_5 = 458754;
+pub const _NL_PAPER_WIDTH: C2RustUnnamed_5 = 458753;
+pub const _NL_PAPER_HEIGHT: C2RustUnnamed_5 = 458752;
+pub const _NL_NUM_LC_MESSAGES: C2RustUnnamed_5 = 327685;
+pub const _NL_MESSAGES_CODESET: C2RustUnnamed_5 = 327684;
+pub const __NOSTR: C2RustUnnamed_5 = 327683;
+pub const __YESSTR: C2RustUnnamed_5 = 327682;
+pub const __NOEXPR: C2RustUnnamed_5 = 327681;
+pub const __YESEXPR: C2RustUnnamed_5 = 327680;
+pub const _NL_NUM_LC_NUMERIC: C2RustUnnamed_5 = 65542;
+pub const _NL_NUMERIC_CODESET: C2RustUnnamed_5 = 65541;
+pub const _NL_NUMERIC_THOUSANDS_SEP_WC: C2RustUnnamed_5 = 65540;
+pub const _NL_NUMERIC_DECIMAL_POINT_WC: C2RustUnnamed_5 = 65539;
+pub const __GROUPING: C2RustUnnamed_5 = 65538;
+pub const THOUSEP: C2RustUnnamed_5 = 65537;
+pub const __THOUSANDS_SEP: C2RustUnnamed_5 = 65537;
+pub const RADIXCHAR: C2RustUnnamed_5 = 65536;
+pub const __DECIMAL_POINT: C2RustUnnamed_5 = 65536;
+pub const _NL_NUM_LC_MONETARY: C2RustUnnamed_5 = 262190;
+pub const _NL_MONETARY_CODESET: C2RustUnnamed_5 = 262189;
+pub const _NL_MONETARY_THOUSANDS_SEP_WC: C2RustUnnamed_5 = 262188;
+pub const _NL_MONETARY_DECIMAL_POINT_WC: C2RustUnnamed_5 = 262187;
+pub const _NL_MONETARY_CONVERSION_RATE: C2RustUnnamed_5 = 262186;
+pub const _NL_MONETARY_DUO_VALID_TO: C2RustUnnamed_5 = 262185;
+pub const _NL_MONETARY_DUO_VALID_FROM: C2RustUnnamed_5 = 262184;
+pub const _NL_MONETARY_UNO_VALID_TO: C2RustUnnamed_5 = 262183;
+pub const _NL_MONETARY_UNO_VALID_FROM: C2RustUnnamed_5 = 262182;
+pub const _NL_MONETARY_DUO_INT_N_SIGN_POSN: C2RustUnnamed_5 = 262181;
+pub const _NL_MONETARY_DUO_INT_P_SIGN_POSN: C2RustUnnamed_5 = 262180;
+pub const _NL_MONETARY_DUO_N_SIGN_POSN: C2RustUnnamed_5 = 262179;
+pub const _NL_MONETARY_DUO_P_SIGN_POSN: C2RustUnnamed_5 = 262178;
+pub const _NL_MONETARY_DUO_INT_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262177;
+pub const _NL_MONETARY_DUO_INT_N_CS_PRECEDES: C2RustUnnamed_5 = 262176;
+pub const _NL_MONETARY_DUO_INT_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262175;
+pub const _NL_MONETARY_DUO_INT_P_CS_PRECEDES: C2RustUnnamed_5 = 262174;
+pub const _NL_MONETARY_DUO_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262173;
+pub const _NL_MONETARY_DUO_N_CS_PRECEDES: C2RustUnnamed_5 = 262172;
+pub const _NL_MONETARY_DUO_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262171;
+pub const _NL_MONETARY_DUO_P_CS_PRECEDES: C2RustUnnamed_5 = 262170;
+pub const _NL_MONETARY_DUO_FRAC_DIGITS: C2RustUnnamed_5 = 262169;
+pub const _NL_MONETARY_DUO_INT_FRAC_DIGITS: C2RustUnnamed_5 = 262168;
+pub const _NL_MONETARY_DUO_CURRENCY_SYMBOL: C2RustUnnamed_5 = 262167;
+pub const _NL_MONETARY_DUO_INT_CURR_SYMBOL: C2RustUnnamed_5 = 262166;
+pub const __INT_N_SIGN_POSN: C2RustUnnamed_5 = 262165;
+pub const __INT_P_SIGN_POSN: C2RustUnnamed_5 = 262164;
+pub const __INT_N_SEP_BY_SPACE: C2RustUnnamed_5 = 262163;
+pub const __INT_N_CS_PRECEDES: C2RustUnnamed_5 = 262162;
+pub const __INT_P_SEP_BY_SPACE: C2RustUnnamed_5 = 262161;
+pub const __INT_P_CS_PRECEDES: C2RustUnnamed_5 = 262160;
+pub const _NL_MONETARY_CRNCYSTR: C2RustUnnamed_5 = 262159;
+pub const __N_SIGN_POSN: C2RustUnnamed_5 = 262158;
+pub const __P_SIGN_POSN: C2RustUnnamed_5 = 262157;
+pub const __N_SEP_BY_SPACE: C2RustUnnamed_5 = 262156;
+pub const __N_CS_PRECEDES: C2RustUnnamed_5 = 262155;
+pub const __P_SEP_BY_SPACE: C2RustUnnamed_5 = 262154;
+pub const __P_CS_PRECEDES: C2RustUnnamed_5 = 262153;
+pub const __FRAC_DIGITS: C2RustUnnamed_5 = 262152;
+pub const __INT_FRAC_DIGITS: C2RustUnnamed_5 = 262151;
+pub const __NEGATIVE_SIGN: C2RustUnnamed_5 = 262150;
+pub const __POSITIVE_SIGN: C2RustUnnamed_5 = 262149;
+pub const __MON_GROUPING: C2RustUnnamed_5 = 262148;
+pub const __MON_THOUSANDS_SEP: C2RustUnnamed_5 = 262147;
+pub const __MON_DECIMAL_POINT: C2RustUnnamed_5 = 262146;
+pub const __CURRENCY_SYMBOL: C2RustUnnamed_5 = 262145;
+pub const __INT_CURR_SYMBOL: C2RustUnnamed_5 = 262144;
+pub const _NL_NUM_LC_CTYPE: C2RustUnnamed_5 = 86;
+pub const _NL_CTYPE_EXTRA_MAP_14: C2RustUnnamed_5 = 85;
+pub const _NL_CTYPE_EXTRA_MAP_13: C2RustUnnamed_5 = 84;
+pub const _NL_CTYPE_EXTRA_MAP_12: C2RustUnnamed_5 = 83;
+pub const _NL_CTYPE_EXTRA_MAP_11: C2RustUnnamed_5 = 82;
+pub const _NL_CTYPE_EXTRA_MAP_10: C2RustUnnamed_5 = 81;
+pub const _NL_CTYPE_EXTRA_MAP_9: C2RustUnnamed_5 = 80;
+pub const _NL_CTYPE_EXTRA_MAP_8: C2RustUnnamed_5 = 79;
+pub const _NL_CTYPE_EXTRA_MAP_7: C2RustUnnamed_5 = 78;
+pub const _NL_CTYPE_EXTRA_MAP_6: C2RustUnnamed_5 = 77;
+pub const _NL_CTYPE_EXTRA_MAP_5: C2RustUnnamed_5 = 76;
+pub const _NL_CTYPE_EXTRA_MAP_4: C2RustUnnamed_5 = 75;
+pub const _NL_CTYPE_EXTRA_MAP_3: C2RustUnnamed_5 = 74;
+pub const _NL_CTYPE_EXTRA_MAP_2: C2RustUnnamed_5 = 73;
+pub const _NL_CTYPE_EXTRA_MAP_1: C2RustUnnamed_5 = 72;
+pub const _NL_CTYPE_NONASCII_CASE: C2RustUnnamed_5 = 71;
+pub const _NL_CTYPE_MAP_TO_NONASCII: C2RustUnnamed_5 = 70;
+pub const _NL_CTYPE_TRANSLIT_IGNORE: C2RustUnnamed_5 = 69;
+pub const _NL_CTYPE_TRANSLIT_IGNORE_LEN: C2RustUnnamed_5 = 68;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING: C2RustUnnamed_5 = 67;
+pub const _NL_CTYPE_TRANSLIT_DEFAULT_MISSING_LEN: C2RustUnnamed_5 = 66;
+pub const _NL_CTYPE_TRANSLIT_TO_TBL: C2RustUnnamed_5 = 65;
+pub const _NL_CTYPE_TRANSLIT_TO_IDX: C2RustUnnamed_5 = 64;
+pub const _NL_CTYPE_TRANSLIT_FROM_TBL: C2RustUnnamed_5 = 63;
+pub const _NL_CTYPE_TRANSLIT_FROM_IDX: C2RustUnnamed_5 = 62;
+pub const _NL_CTYPE_TRANSLIT_TAB_SIZE: C2RustUnnamed_5 = 61;
+pub const _NL_CTYPE_OUTDIGIT9_WC: C2RustUnnamed_5 = 60;
+pub const _NL_CTYPE_OUTDIGIT8_WC: C2RustUnnamed_5 = 59;
+pub const _NL_CTYPE_OUTDIGIT7_WC: C2RustUnnamed_5 = 58;
+pub const _NL_CTYPE_OUTDIGIT6_WC: C2RustUnnamed_5 = 57;
+pub const _NL_CTYPE_OUTDIGIT5_WC: C2RustUnnamed_5 = 56;
+pub const _NL_CTYPE_OUTDIGIT4_WC: C2RustUnnamed_5 = 55;
+pub const _NL_CTYPE_OUTDIGIT3_WC: C2RustUnnamed_5 = 54;
+pub const _NL_CTYPE_OUTDIGIT2_WC: C2RustUnnamed_5 = 53;
+pub const _NL_CTYPE_OUTDIGIT1_WC: C2RustUnnamed_5 = 52;
+pub const _NL_CTYPE_OUTDIGIT0_WC: C2RustUnnamed_5 = 51;
+pub const _NL_CTYPE_OUTDIGIT9_MB: C2RustUnnamed_5 = 50;
+pub const _NL_CTYPE_OUTDIGIT8_MB: C2RustUnnamed_5 = 49;
+pub const _NL_CTYPE_OUTDIGIT7_MB: C2RustUnnamed_5 = 48;
+pub const _NL_CTYPE_OUTDIGIT6_MB: C2RustUnnamed_5 = 47;
+pub const _NL_CTYPE_OUTDIGIT5_MB: C2RustUnnamed_5 = 46;
+pub const _NL_CTYPE_OUTDIGIT4_MB: C2RustUnnamed_5 = 45;
+pub const _NL_CTYPE_OUTDIGIT3_MB: C2RustUnnamed_5 = 44;
+pub const _NL_CTYPE_OUTDIGIT2_MB: C2RustUnnamed_5 = 43;
+pub const _NL_CTYPE_OUTDIGIT1_MB: C2RustUnnamed_5 = 42;
+pub const _NL_CTYPE_OUTDIGIT0_MB: C2RustUnnamed_5 = 41;
+pub const _NL_CTYPE_INDIGITS9_WC: C2RustUnnamed_5 = 40;
+pub const _NL_CTYPE_INDIGITS8_WC: C2RustUnnamed_5 = 39;
+pub const _NL_CTYPE_INDIGITS7_WC: C2RustUnnamed_5 = 38;
+pub const _NL_CTYPE_INDIGITS6_WC: C2RustUnnamed_5 = 37;
+pub const _NL_CTYPE_INDIGITS5_WC: C2RustUnnamed_5 = 36;
+pub const _NL_CTYPE_INDIGITS4_WC: C2RustUnnamed_5 = 35;
+pub const _NL_CTYPE_INDIGITS3_WC: C2RustUnnamed_5 = 34;
+pub const _NL_CTYPE_INDIGITS2_WC: C2RustUnnamed_5 = 33;
+pub const _NL_CTYPE_INDIGITS1_WC: C2RustUnnamed_5 = 32;
+pub const _NL_CTYPE_INDIGITS0_WC: C2RustUnnamed_5 = 31;
+pub const _NL_CTYPE_INDIGITS_WC_LEN: C2RustUnnamed_5 = 30;
+pub const _NL_CTYPE_INDIGITS9_MB: C2RustUnnamed_5 = 29;
+pub const _NL_CTYPE_INDIGITS8_MB: C2RustUnnamed_5 = 28;
+pub const _NL_CTYPE_INDIGITS7_MB: C2RustUnnamed_5 = 27;
+pub const _NL_CTYPE_INDIGITS6_MB: C2RustUnnamed_5 = 26;
+pub const _NL_CTYPE_INDIGITS5_MB: C2RustUnnamed_5 = 25;
+pub const _NL_CTYPE_INDIGITS4_MB: C2RustUnnamed_5 = 24;
+pub const _NL_CTYPE_INDIGITS3_MB: C2RustUnnamed_5 = 23;
+pub const _NL_CTYPE_INDIGITS2_MB: C2RustUnnamed_5 = 22;
+pub const _NL_CTYPE_INDIGITS1_MB: C2RustUnnamed_5 = 21;
+pub const _NL_CTYPE_INDIGITS0_MB: C2RustUnnamed_5 = 20;
+pub const _NL_CTYPE_INDIGITS_MB_LEN: C2RustUnnamed_5 = 19;
+pub const _NL_CTYPE_MAP_OFFSET: C2RustUnnamed_5 = 18;
+pub const _NL_CTYPE_CLASS_OFFSET: C2RustUnnamed_5 = 17;
+pub const _NL_CTYPE_TOLOWER32: C2RustUnnamed_5 = 16;
+pub const _NL_CTYPE_TOUPPER32: C2RustUnnamed_5 = 15;
+pub const _NL_CTYPE_CODESET_NAME: C2RustUnnamed_5 = 14;
+pub const _NL_CTYPE_MB_CUR_MAX: C2RustUnnamed_5 = 13;
+pub const _NL_CTYPE_WIDTH: C2RustUnnamed_5 = 12;
+pub const _NL_CTYPE_MAP_NAMES: C2RustUnnamed_5 = 11;
+pub const _NL_CTYPE_CLASS_NAMES: C2RustUnnamed_5 = 10;
+pub const _NL_CTYPE_GAP6: C2RustUnnamed_5 = 9;
+pub const _NL_CTYPE_GAP5: C2RustUnnamed_5 = 8;
+pub const _NL_CTYPE_GAP4: C2RustUnnamed_5 = 7;
+pub const _NL_CTYPE_GAP3: C2RustUnnamed_5 = 6;
+pub const _NL_CTYPE_CLASS32: C2RustUnnamed_5 = 5;
+pub const _NL_CTYPE_GAP2: C2RustUnnamed_5 = 4;
+pub const _NL_CTYPE_TOLOWER: C2RustUnnamed_5 = 3;
+pub const _NL_CTYPE_GAP1: C2RustUnnamed_5 = 2;
+pub const _NL_CTYPE_TOUPPER: C2RustUnnamed_5 = 1;
+pub const _NL_CTYPE_CLASS: C2RustUnnamed_5 = 0;
+pub const _NL_NUM_LC_COLLATE: C2RustUnnamed_5 = 196627;
+pub const _NL_COLLATE_CODESET: C2RustUnnamed_5 = 196626;
+pub const _NL_COLLATE_COLLSEQWC: C2RustUnnamed_5 = 196625;
+pub const _NL_COLLATE_COLLSEQMB: C2RustUnnamed_5 = 196624;
+pub const _NL_COLLATE_SYMB_EXTRAMB: C2RustUnnamed_5 = 196623;
+pub const _NL_COLLATE_SYMB_TABLEMB: C2RustUnnamed_5 = 196622;
+pub const _NL_COLLATE_SYMB_HASH_SIZEMB: C2RustUnnamed_5 = 196621;
+pub const _NL_COLLATE_INDIRECTWC: C2RustUnnamed_5 = 196620;
+pub const _NL_COLLATE_EXTRAWC: C2RustUnnamed_5 = 196619;
+pub const _NL_COLLATE_WEIGHTWC: C2RustUnnamed_5 = 196618;
+pub const _NL_COLLATE_TABLEWC: C2RustUnnamed_5 = 196617;
+pub const _NL_COLLATE_GAP3: C2RustUnnamed_5 = 196616;
+pub const _NL_COLLATE_GAP2: C2RustUnnamed_5 = 196615;
+pub const _NL_COLLATE_GAP1: C2RustUnnamed_5 = 196614;
+pub const _NL_COLLATE_INDIRECTMB: C2RustUnnamed_5 = 196613;
+pub const _NL_COLLATE_EXTRAMB: C2RustUnnamed_5 = 196612;
+pub const _NL_COLLATE_WEIGHTMB: C2RustUnnamed_5 = 196611;
+pub const _NL_COLLATE_TABLEMB: C2RustUnnamed_5 = 196610;
+pub const _NL_COLLATE_RULESETS: C2RustUnnamed_5 = 196609;
+pub const _NL_COLLATE_NRULES: C2RustUnnamed_5 = 196608;
+pub const _NL_NUM_LC_TIME: C2RustUnnamed_5 = 131231;
+pub const _NL_WABALTMON_12: C2RustUnnamed_5 = 131230;
+pub const _NL_WABALTMON_11: C2RustUnnamed_5 = 131229;
+pub const _NL_WABALTMON_10: C2RustUnnamed_5 = 131228;
+pub const _NL_WABALTMON_9: C2RustUnnamed_5 = 131227;
+pub const _NL_WABALTMON_8: C2RustUnnamed_5 = 131226;
+pub const _NL_WABALTMON_7: C2RustUnnamed_5 = 131225;
+pub const _NL_WABALTMON_6: C2RustUnnamed_5 = 131224;
+pub const _NL_WABALTMON_5: C2RustUnnamed_5 = 131223;
+pub const _NL_WABALTMON_4: C2RustUnnamed_5 = 131222;
+pub const _NL_WABALTMON_3: C2RustUnnamed_5 = 131221;
+pub const _NL_WABALTMON_2: C2RustUnnamed_5 = 131220;
+pub const _NL_WABALTMON_1: C2RustUnnamed_5 = 131219;
+pub const _NL_ABALTMON_12: C2RustUnnamed_5 = 131218;
+pub const _NL_ABALTMON_11: C2RustUnnamed_5 = 131217;
+pub const _NL_ABALTMON_10: C2RustUnnamed_5 = 131216;
+pub const _NL_ABALTMON_9: C2RustUnnamed_5 = 131215;
+pub const _NL_ABALTMON_8: C2RustUnnamed_5 = 131214;
+pub const _NL_ABALTMON_7: C2RustUnnamed_5 = 131213;
+pub const _NL_ABALTMON_6: C2RustUnnamed_5 = 131212;
+pub const _NL_ABALTMON_5: C2RustUnnamed_5 = 131211;
+pub const _NL_ABALTMON_4: C2RustUnnamed_5 = 131210;
+pub const _NL_ABALTMON_3: C2RustUnnamed_5 = 131209;
+pub const _NL_ABALTMON_2: C2RustUnnamed_5 = 131208;
+pub const _NL_ABALTMON_1: C2RustUnnamed_5 = 131207;
+pub const _NL_WALTMON_12: C2RustUnnamed_5 = 131206;
+pub const _NL_WALTMON_11: C2RustUnnamed_5 = 131205;
+pub const _NL_WALTMON_10: C2RustUnnamed_5 = 131204;
+pub const _NL_WALTMON_9: C2RustUnnamed_5 = 131203;
+pub const _NL_WALTMON_8: C2RustUnnamed_5 = 131202;
+pub const _NL_WALTMON_7: C2RustUnnamed_5 = 131201;
+pub const _NL_WALTMON_6: C2RustUnnamed_5 = 131200;
+pub const _NL_WALTMON_5: C2RustUnnamed_5 = 131199;
+pub const _NL_WALTMON_4: C2RustUnnamed_5 = 131198;
+pub const _NL_WALTMON_3: C2RustUnnamed_5 = 131197;
+pub const _NL_WALTMON_2: C2RustUnnamed_5 = 131196;
+pub const _NL_WALTMON_1: C2RustUnnamed_5 = 131195;
+pub const __ALTMON_12: C2RustUnnamed_5 = 131194;
+pub const __ALTMON_11: C2RustUnnamed_5 = 131193;
+pub const __ALTMON_10: C2RustUnnamed_5 = 131192;
+pub const __ALTMON_9: C2RustUnnamed_5 = 131191;
+pub const __ALTMON_8: C2RustUnnamed_5 = 131190;
+pub const __ALTMON_7: C2RustUnnamed_5 = 131189;
+pub const __ALTMON_6: C2RustUnnamed_5 = 131188;
+pub const __ALTMON_5: C2RustUnnamed_5 = 131187;
+pub const __ALTMON_4: C2RustUnnamed_5 = 131186;
+pub const __ALTMON_3: C2RustUnnamed_5 = 131185;
+pub const __ALTMON_2: C2RustUnnamed_5 = 131184;
+pub const __ALTMON_1: C2RustUnnamed_5 = 131183;
+pub const _NL_TIME_CODESET: C2RustUnnamed_5 = 131182;
+pub const _NL_W_DATE_FMT: C2RustUnnamed_5 = 131181;
+pub const _DATE_FMT: C2RustUnnamed_5 = 131180;
+pub const _NL_TIME_TIMEZONE: C2RustUnnamed_5 = 131179;
+pub const _NL_TIME_CAL_DIRECTION: C2RustUnnamed_5 = 131178;
+pub const _NL_TIME_FIRST_WORKDAY: C2RustUnnamed_5 = 131177;
+pub const _NL_TIME_FIRST_WEEKDAY: C2RustUnnamed_5 = 131176;
+pub const _NL_TIME_WEEK_1STWEEK: C2RustUnnamed_5 = 131175;
+pub const _NL_TIME_WEEK_1STDAY: C2RustUnnamed_5 = 131174;
+pub const _NL_TIME_WEEK_NDAYS: C2RustUnnamed_5 = 131173;
+pub const _NL_WERA_T_FMT: C2RustUnnamed_5 = 131172;
+pub const _NL_WERA_D_T_FMT: C2RustUnnamed_5 = 131171;
+pub const _NL_WALT_DIGITS: C2RustUnnamed_5 = 131170;
+pub const _NL_WERA_D_FMT: C2RustUnnamed_5 = 131169;
+pub const _NL_WERA_YEAR: C2RustUnnamed_5 = 131168;
+pub const _NL_WT_FMT_AMPM: C2RustUnnamed_5 = 131167;
+pub const _NL_WT_FMT: C2RustUnnamed_5 = 131166;
+pub const _NL_WD_FMT: C2RustUnnamed_5 = 131165;
+pub const _NL_WD_T_FMT: C2RustUnnamed_5 = 131164;
+pub const _NL_WPM_STR: C2RustUnnamed_5 = 131163;
+pub const _NL_WAM_STR: C2RustUnnamed_5 = 131162;
+pub const _NL_WMON_12: C2RustUnnamed_5 = 131161;
+pub const _NL_WMON_11: C2RustUnnamed_5 = 131160;
+pub const _NL_WMON_10: C2RustUnnamed_5 = 131159;
+pub const _NL_WMON_9: C2RustUnnamed_5 = 131158;
+pub const _NL_WMON_8: C2RustUnnamed_5 = 131157;
+pub const _NL_WMON_7: C2RustUnnamed_5 = 131156;
+pub const _NL_WMON_6: C2RustUnnamed_5 = 131155;
+pub const _NL_WMON_5: C2RustUnnamed_5 = 131154;
+pub const _NL_WMON_4: C2RustUnnamed_5 = 131153;
+pub const _NL_WMON_3: C2RustUnnamed_5 = 131152;
+pub const _NL_WMON_2: C2RustUnnamed_5 = 131151;
+pub const _NL_WMON_1: C2RustUnnamed_5 = 131150;
+pub const _NL_WABMON_12: C2RustUnnamed_5 = 131149;
+pub const _NL_WABMON_11: C2RustUnnamed_5 = 131148;
+pub const _NL_WABMON_10: C2RustUnnamed_5 = 131147;
+pub const _NL_WABMON_9: C2RustUnnamed_5 = 131146;
+pub const _NL_WABMON_8: C2RustUnnamed_5 = 131145;
+pub const _NL_WABMON_7: C2RustUnnamed_5 = 131144;
+pub const _NL_WABMON_6: C2RustUnnamed_5 = 131143;
+pub const _NL_WABMON_5: C2RustUnnamed_5 = 131142;
+pub const _NL_WABMON_4: C2RustUnnamed_5 = 131141;
+pub const _NL_WABMON_3: C2RustUnnamed_5 = 131140;
+pub const _NL_WABMON_2: C2RustUnnamed_5 = 131139;
+pub const _NL_WABMON_1: C2RustUnnamed_5 = 131138;
+pub const _NL_WDAY_7: C2RustUnnamed_5 = 131137;
+pub const _NL_WDAY_6: C2RustUnnamed_5 = 131136;
+pub const _NL_WDAY_5: C2RustUnnamed_5 = 131135;
+pub const _NL_WDAY_4: C2RustUnnamed_5 = 131134;
+pub const _NL_WDAY_3: C2RustUnnamed_5 = 131133;
+pub const _NL_WDAY_2: C2RustUnnamed_5 = 131132;
+pub const _NL_WDAY_1: C2RustUnnamed_5 = 131131;
+pub const _NL_WABDAY_7: C2RustUnnamed_5 = 131130;
+pub const _NL_WABDAY_6: C2RustUnnamed_5 = 131129;
+pub const _NL_WABDAY_5: C2RustUnnamed_5 = 131128;
+pub const _NL_WABDAY_4: C2RustUnnamed_5 = 131127;
+pub const _NL_WABDAY_3: C2RustUnnamed_5 = 131126;
+pub const _NL_WABDAY_2: C2RustUnnamed_5 = 131125;
+pub const _NL_WABDAY_1: C2RustUnnamed_5 = 131124;
+pub const _NL_TIME_ERA_ENTRIES: C2RustUnnamed_5 = 131123;
+pub const _NL_TIME_ERA_NUM_ENTRIES: C2RustUnnamed_5 = 131122;
+pub const ERA_T_FMT: C2RustUnnamed_5 = 131121;
+pub const ERA_D_T_FMT: C2RustUnnamed_5 = 131120;
+pub const ALT_DIGITS: C2RustUnnamed_5 = 131119;
+pub const ERA_D_FMT: C2RustUnnamed_5 = 131118;
+pub const __ERA_YEAR: C2RustUnnamed_5 = 131117;
+pub const ERA: C2RustUnnamed_5 = 131116;
+pub const T_FMT_AMPM: C2RustUnnamed_5 = 131115;
+pub const T_FMT: C2RustUnnamed_5 = 131114;
+pub const D_FMT: C2RustUnnamed_5 = 131113;
+pub const D_T_FMT: C2RustUnnamed_5 = 131112;
+pub const PM_STR: C2RustUnnamed_5 = 131111;
+pub const AM_STR: C2RustUnnamed_5 = 131110;
+pub const MON_12: C2RustUnnamed_5 = 131109;
+pub const MON_11: C2RustUnnamed_5 = 131108;
+pub const MON_10: C2RustUnnamed_5 = 131107;
+pub const MON_9: C2RustUnnamed_5 = 131106;
+pub const MON_8: C2RustUnnamed_5 = 131105;
+pub const MON_7: C2RustUnnamed_5 = 131104;
+pub const MON_6: C2RustUnnamed_5 = 131103;
+pub const MON_5: C2RustUnnamed_5 = 131102;
+pub const MON_4: C2RustUnnamed_5 = 131101;
+pub const MON_3: C2RustUnnamed_5 = 131100;
+pub const MON_2: C2RustUnnamed_5 = 131099;
+pub const MON_1: C2RustUnnamed_5 = 131098;
+pub const ABMON_12: C2RustUnnamed_5 = 131097;
+pub const ABMON_11: C2RustUnnamed_5 = 131096;
+pub const ABMON_10: C2RustUnnamed_5 = 131095;
+pub const ABMON_9: C2RustUnnamed_5 = 131094;
+pub const ABMON_8: C2RustUnnamed_5 = 131093;
+pub const ABMON_7: C2RustUnnamed_5 = 131092;
+pub const ABMON_6: C2RustUnnamed_5 = 131091;
+pub const ABMON_5: C2RustUnnamed_5 = 131090;
+pub const ABMON_4: C2RustUnnamed_5 = 131089;
+pub const ABMON_3: C2RustUnnamed_5 = 131088;
+pub const ABMON_2: C2RustUnnamed_5 = 131087;
+pub const ABMON_1: C2RustUnnamed_5 = 131086;
+pub const DAY_7: C2RustUnnamed_5 = 131085;
+pub const DAY_6: C2RustUnnamed_5 = 131084;
+pub const DAY_5: C2RustUnnamed_5 = 131083;
+pub const DAY_4: C2RustUnnamed_5 = 131082;
+pub const DAY_3: C2RustUnnamed_5 = 131081;
+pub const DAY_2: C2RustUnnamed_5 = 131080;
+pub const DAY_1: C2RustUnnamed_5 = 131079;
+pub const ABDAY_7: C2RustUnnamed_5 = 131078;
+pub const ABDAY_6: C2RustUnnamed_5 = 131077;
+pub const ABDAY_5: C2RustUnnamed_5 = 131076;
+pub const ABDAY_4: C2RustUnnamed_5 = 131075;
+pub const ABDAY_3: C2RustUnnamed_5 = 131074;
+pub const ABDAY_2: C2RustUnnamed_5 = 131073;
+pub const ABDAY_1: C2RustUnnamed_5 = 131072;
 unsafe extern "C" fn re_string_wchar_at(
     mut pstr: *const re_string_t,
     mut idx: Idx,
@@ -1668,14 +1532,12 @@ unsafe extern "C" fn re_string_allocate(
     }
     (*pstr).word_char = ((*dfa).word_char).as_ptr();
     (*pstr).word_ops_used = (*dfa).word_ops_used() as libc::c_uchar;
-    (*pstr)
-        .mbs = if (*pstr).mbs_allocated as libc::c_int != 0 {
+    (*pstr).mbs = if (*pstr).mbs_allocated as libc::c_int != 0 {
         (*pstr).mbs
     } else {
         str as *mut libc::c_uchar
     };
-    (*pstr)
-        .valid_len = if (*pstr).mbs_allocated as libc::c_int != 0
+    (*pstr).valid_len = if (*pstr).mbs_allocated as libc::c_int != 0
         || (*dfa).mb_cur_max > 1 as libc::c_int
     {
         0 as libc::c_int as libc::c_long
@@ -1708,8 +1570,7 @@ unsafe extern "C" fn re_string_construct(
             return ret;
         }
     }
-    (*pstr)
-        .mbs = if (*pstr).mbs_allocated as libc::c_int != 0 {
+    (*pstr).mbs = if (*pstr).mbs_allocated as libc::c_int != 0 {
         (*pstr).mbs
     } else {
         str as *mut libc::c_uchar
@@ -1831,9 +1692,8 @@ unsafe extern "C" fn re_string_construct_common(
     (*pstr).raw_len = len;
     (*pstr).trans = trans;
     (*pstr).icase = icase as libc::c_uchar;
-    (*pstr)
-        .mbs_allocated = (!trans.is_null() || icase as libc::c_int != 0) as libc::c_int
-        as libc::c_uchar;
+    (*pstr).mbs_allocated = (!trans.is_null() || icase as libc::c_int != 0)
+        as libc::c_int as libc::c_uchar;
     (*pstr).mb_cur_max = (*dfa).mb_cur_max;
     (*pstr).is_utf8 = (*dfa).is_utf8() as libc::c_uchar;
     (*pstr).map_notascii = (*dfa).map_notascii() as libc::c_uchar;
@@ -1992,7 +1852,7 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                         );
                     } else {
                         src_idx = byte_idx;
-                        current_block_88 = 1630575669928144206;
+                        current_block_88 = 1872211693590577471;
                         break;
                     }
                 } else {
@@ -2036,7 +1896,7 @@ unsafe extern "C" fn build_wcs_upper_buffer(
             }
         }
         match current_block_88 {
-            1630575669928144206 => {}
+            1872211693590577471 => {}
             _ => {
                 (*pstr).valid_len = byte_idx;
                 (*pstr).valid_raw_len = byte_idx;
@@ -2055,7 +1915,7 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                 }
                 wc_0 = 0;
                 p = 0 as *const libc::c_char;
-                current_block_88 = 1630575669928144206;
+                current_block_88 = 1872211693590577471;
             }
             _ => {
                 remain_len = end_idx - byte_idx;
@@ -2071,8 +1931,7 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                             .offset(
                                 ((*pstr).raw_mbs_idx + src_idx + i as libc::c_long) as isize,
                             ) as libc::c_int;
-                        buf[i
-                            as usize] = *((*pstr).trans).offset(ch_0 as isize)
+                        buf[i as usize] = *((*pstr).trans).offset(ch_0 as isize)
                             as libc::c_char;
                         i += 1;
                         i;
@@ -2113,8 +1972,7 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                                 break;
                             } else {
                                 if ((*pstr).offsets).is_null() {
-                                    (*pstr)
-                                        .offsets = malloc(
+                                    (*pstr).offsets = malloc(
                                         ((*pstr).bufs_len as libc::c_ulong)
                                             .wrapping_mul(
                                                 ::core::mem::size_of::<Idx>() as libc::c_ulong,
@@ -2161,12 +2019,10 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                                     i_0 = i_0.wrapping_add(1);
                                     i_0;
                                 }
-                                (*pstr)
-                                    .len = ((*pstr).len as libc::c_ulong)
+                                (*pstr).len = ((*pstr).len as libc::c_ulong)
                                     .wrapping_add(mbcdlen_0.wrapping_sub(mbclen)) as Idx as Idx;
                                 if (*pstr).raw_stop > src_idx {
-                                    (*pstr)
-                                        .stop = ((*pstr).stop as libc::c_ulong)
+                                    (*pstr).stop = ((*pstr).stop as libc::c_ulong)
                                         .wrapping_add(mbcdlen_0.wrapping_sub(mbclen)) as Idx as Idx;
                                 }
                                 end_idx = if (*pstr).bufs_len > (*pstr).len {
@@ -2221,8 +2077,8 @@ unsafe extern "C" fn build_wcs_upper_buffer(
                     while byte_idx < remain_len {
                         let fresh11 = byte_idx;
                         byte_idx = byte_idx + 1;
-                        *((*pstr).wcs)
-                            .offset(fresh11 as isize) = 0xffffffff as libc::c_uint;
+                        *((*pstr).wcs).offset(fresh11 as isize) = 0xffffffff
+                            as libc::c_uint;
                     }
                     current_block_88 = 2891135413264362348;
                 } else if mbclen == -(1 as libc::c_int) as size_t
@@ -2328,10 +2184,7 @@ unsafe extern "C" fn build_upper_buffer(mut pstr: *mut re_string_t) {
         {
             ch = *((*pstr).trans).offset(ch as isize) as libc::c_int;
         }
-        *((*pstr).mbs)
-            .offset(
-                char_idx as isize,
-            ) = ({
+        *((*pstr).mbs).offset(char_idx as isize) = ({
             let mut __res: libc::c_int = 0;
             if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
                 > 1 as libc::c_int as libc::c_ulong
@@ -2398,8 +2251,7 @@ unsafe extern "C" fn re_string_reconstruct(
         (*pstr).raw_mbs_idx = 0 as libc::c_int as Idx;
         (*pstr).valid_raw_len = 0 as libc::c_int as Idx;
         (*pstr).offsets_needed = 0 as libc::c_int as libc::c_uchar;
-        (*pstr)
-            .tip_context = (if eflags & 1 as libc::c_int != 0 {
+        (*pstr).tip_context = (if eflags & 1 as libc::c_int != 0 {
             ((1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
         } else {
             (1 as libc::c_int) << 1 as libc::c_int
@@ -2434,8 +2286,7 @@ unsafe extern "C" fn re_string_reconstruct(
                     mid += 1;
                     mid;
                 }
-                (*pstr)
-                    .tip_context = re_string_context_at(
+                (*pstr).tip_context = re_string_context_at(
                     pstr,
                     mid - 1 as libc::c_int as libc::c_long,
                     eflags,
@@ -2460,11 +2311,8 @@ unsafe extern "C" fn re_string_reconstruct(
                     (*pstr).valid_raw_len -= offset;
                     low = 0 as libc::c_int as Idx;
                     while low < (*pstr).valid_len {
-                        *((*pstr).offsets)
-                            .offset(
-                                low as isize,
-                            ) = *((*pstr).offsets).offset((low + offset) as isize)
-                            - offset;
+                        *((*pstr).offsets).offset(low as isize) = *((*pstr).offsets)
+                            .offset((low + offset) as isize) - offset;
                         low += 1;
                         low;
                     }
@@ -2492,14 +2340,13 @@ unsafe extern "C" fn re_string_reconstruct(
                     if mid == (*pstr).valid_len {
                         (*pstr).valid_len = 0 as libc::c_int as Idx;
                     } else {
-                        (*pstr)
-                            .valid_len = *((*pstr).offsets).offset(mid as isize)
+                        (*pstr).valid_len = *((*pstr).offsets).offset(mid as isize)
                             - offset;
                         if (*pstr).valid_len != 0 {
                             low = 0 as libc::c_int as Idx;
                             while low < (*pstr).valid_len {
-                                *((*pstr).wcs)
-                                    .offset(low as isize) = 0xffffffff as libc::c_uint;
+                                *((*pstr).wcs).offset(low as isize) = 0xffffffff
+                                    as libc::c_uint;
                                 low += 1;
                                 low;
                             }
@@ -2513,8 +2360,7 @@ unsafe extern "C" fn re_string_reconstruct(
                     (*pstr).valid_raw_len = (*pstr).valid_len;
                 }
             } else {
-                (*pstr)
-                    .tip_context = re_string_context_at(
+                (*pstr).tip_context = re_string_context_at(
                     pstr,
                     offset - 1 as libc::c_int as libc::c_long,
                     eflags,
@@ -2594,8 +2440,7 @@ unsafe extern "C" fn re_string_reconstruct(
                                     if !(i >= 0 as libc::c_int) {
                                         break;
                                     }
-                                    buf[i
-                                        as usize] = *((*pstr).trans)
+                                    buf[i as usize] = *((*pstr).trans)
                                         .offset(*p.offset(i as isize) as isize);
                                 }
                                 pp = buf.as_mut_ptr();
@@ -2621,8 +2466,7 @@ unsafe extern "C" fn re_string_reconstruct(
                                     '\0' as i32,
                                     ::core::mem::size_of::<mbstate_t>() as libc::c_ulong,
                                 );
-                                (*pstr)
-                                    .valid_len = mbclen
+                                (*pstr).valid_len = mbclen
                                     .wrapping_sub(
                                         raw.offset(offset as isize).offset_from(p) as libc::c_long
                                             as libc::c_ulong,
@@ -2640,15 +2484,13 @@ unsafe extern "C" fn re_string_reconstruct(
                     (*pstr).valid_len = re_string_skip_chars(pstr, idx, &mut wc) - idx;
                 }
                 if wc == 0xffffffff as libc::c_uint {
-                    (*pstr)
-                        .tip_context = re_string_context_at(
+                    (*pstr).tip_context = re_string_context_at(
                         pstr,
                         prev_valid_len - 1 as libc::c_int as libc::c_long,
                         eflags,
                     );
                 } else {
-                    (*pstr)
-                        .tip_context = (if ((*pstr).word_ops_used as libc::c_int
+                    (*pstr).tip_context = (if ((*pstr).word_ops_used as libc::c_int
                         != 0 as libc::c_int) as libc::c_int as libc::c_long != 0
                         && (iswalnum(wc) != 0 || wc == '_' as i32 as libc::c_uint)
                     {
@@ -2664,8 +2506,8 @@ unsafe extern "C" fn re_string_reconstruct(
                 if (*pstr).valid_len != 0 {
                     wcs_idx = 0 as libc::c_int as Idx;
                     while wcs_idx < (*pstr).valid_len {
-                        *((*pstr).wcs)
-                            .offset(wcs_idx as isize) = 0xffffffff as libc::c_uint;
+                        *((*pstr).wcs).offset(wcs_idx as isize) = 0xffffffff
+                            as libc::c_uint;
                         wcs_idx += 1;
                         wcs_idx;
                     }
@@ -2688,8 +2530,7 @@ unsafe extern "C" fn re_string_reconstruct(
                 if !((*pstr).trans).is_null() {
                     c = *((*pstr).trans).offset(c as isize) as libc::c_int;
                 }
-                (*pstr)
-                    .tip_context = (if bitset_contain((*pstr).word_char, c as Idx)
+                (*pstr).tip_context = (if bitset_contain((*pstr).word_char, c as Idx)
                     as libc::c_int != 0
                 {
                     1 as libc::c_int
@@ -2870,8 +2711,7 @@ unsafe extern "C" fn re_node_set_alloc(
 ) -> reg_errcode_t {
     (*set).alloc = size;
     (*set).nelem = 0 as libc::c_int as Idx;
-    (*set)
-        .elems = malloc(
+    (*set).elems = malloc(
         (size as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
@@ -2889,8 +2729,7 @@ unsafe extern "C" fn re_node_set_init_1(
 ) -> reg_errcode_t {
     (*set).alloc = 1 as libc::c_int as Idx;
     (*set).nelem = 1 as libc::c_int as Idx;
-    (*set)
-        .elems = malloc(
+    (*set).elems = malloc(
         (1 as libc::c_int as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
@@ -2910,8 +2749,7 @@ unsafe extern "C" fn re_node_set_init_2(
     mut elem2: Idx,
 ) -> reg_errcode_t {
     (*set).alloc = 2 as libc::c_int as Idx;
-    (*set)
-        .elems = malloc(
+    (*set).elems = malloc(
         (2 as libc::c_int as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
@@ -2942,8 +2780,7 @@ unsafe extern "C" fn re_node_set_init_copy(
     (*dest).nelem = (*src).nelem;
     if (*src).nelem > 0 as libc::c_int as libc::c_long {
         (*dest).alloc = (*dest).nelem;
-        (*dest)
-            .elems = malloc(
+        (*dest).elems = malloc(
             ((*dest).alloc as libc::c_ulong)
                 .wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
         ) as *mut Idx;
@@ -3018,8 +2855,8 @@ unsafe extern "C" fn re_node_set_add_intersect(
                     != *((*src1).elems).offset(i1 as isize)
             {
                 sbase -= 1;
-                *((*dest).elems)
-                    .offset(sbase as isize) = *((*src1).elems).offset(i1 as isize);
+                *((*dest).elems).offset(sbase as isize) = *((*src1).elems)
+                    .offset(i1 as isize);
             }
             i1 -= 1;
             if i1 < 0 as libc::c_int as libc::c_long
@@ -3059,18 +2896,14 @@ unsafe extern "C" fn re_node_set_add_intersect(
                 is = is - 1;
                 let fresh18 = delta;
                 delta = delta - 1;
-                *((*dest).elems)
-                    .offset(
-                        (id + fresh18) as isize,
-                    ) = *((*dest).elems).offset(fresh17 as isize);
+                *((*dest).elems).offset((id + fresh18) as isize) = *((*dest).elems)
+                    .offset(fresh17 as isize);
                 if delta == 0 as libc::c_int as libc::c_long {
                     break;
                 }
             } else {
-                *((*dest).elems)
-                    .offset(
-                        (id + delta) as isize,
-                    ) = *((*dest).elems).offset(id as isize);
+                *((*dest).elems).offset((id + delta) as isize) = *((*dest).elems)
+                    .offset(id as isize);
                 id -= 1;
                 if id < 0 as libc::c_int as libc::c_long {
                     break;
@@ -3098,8 +2931,7 @@ unsafe extern "C" fn re_node_set_init_union(
         && !src2.is_null() && (*src2).nelem > 0 as libc::c_int as libc::c_long
     {
         (*dest).alloc = (*src1).nelem + (*src2).nelem;
-        (*dest)
-            .elems = malloc(
+        (*dest).elems = malloc(
             ((*dest).alloc as libc::c_ulong)
                 .wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
         ) as *mut Idx;
@@ -3131,8 +2963,8 @@ unsafe extern "C" fn re_node_set_init_union(
             i2 = i2 + 1;
             let fresh20 = id;
             id = id + 1;
-            *((*dest).elems)
-                .offset(fresh20 as isize) = *((*src2).elems).offset(fresh19 as isize);
+            *((*dest).elems).offset(fresh20 as isize) = *((*src2).elems)
+                .offset(fresh19 as isize);
         } else {
             if *((*src1).elems).offset(i1 as isize)
                 == *((*src2).elems).offset(i2 as isize)
@@ -3144,8 +2976,8 @@ unsafe extern "C" fn re_node_set_init_union(
             i1 = i1 + 1;
             let fresh22 = id;
             id = id + 1;
-            *((*dest).elems)
-                .offset(fresh22 as isize) = *((*src1).elems).offset(fresh21 as isize);
+            *((*dest).elems).offset(fresh22 as isize) = *((*src1).elems)
+                .offset(fresh21 as isize);
         }
     }
     if i1 < (*src1).nelem {
@@ -3227,8 +3059,8 @@ unsafe extern "C" fn re_node_set_merge(
             let fresh23 = is;
             is = is - 1;
             sbase -= 1;
-            *((*dest).elems)
-                .offset(sbase as isize) = *((*src).elems).offset(fresh23 as isize);
+            *((*dest).elems).offset(sbase as isize) = *((*src).elems)
+                .offset(fresh23 as isize);
         } else {
             id -= 1;
             id;
@@ -3257,16 +3089,14 @@ unsafe extern "C" fn re_node_set_merge(
             is = is - 1;
             let fresh25 = delta;
             delta = delta - 1;
-            *((*dest).elems)
-                .offset(
-                    (id + fresh25) as isize,
-                ) = *((*dest).elems).offset(fresh24 as isize);
+            *((*dest).elems).offset((id + fresh25) as isize) = *((*dest).elems)
+                .offset(fresh24 as isize);
             if delta == 0 as libc::c_int as libc::c_long {
                 break;
             }
         } else {
-            *((*dest).elems)
-                .offset((id + delta) as isize) = *((*dest).elems).offset(id as isize);
+            *((*dest).elems).offset((id + delta) as isize) = *((*dest).elems)
+                .offset(id as isize);
             id -= 1;
             if !(id < 0 as libc::c_int as libc::c_long) {
                 continue;
@@ -3318,10 +3148,7 @@ unsafe extern "C" fn re_node_set_insert(
     if elem < *((*set).elems).offset(0 as libc::c_int as isize) {
         idx = (*set).nelem;
         while idx > 0 as libc::c_int as libc::c_long {
-            *((*set).elems)
-                .offset(
-                    idx as isize,
-                ) = *((*set).elems)
+            *((*set).elems).offset(idx as isize) = *((*set).elems)
                 .offset((idx - 1 as libc::c_int as libc::c_long) as isize);
             idx -= 1;
             idx;
@@ -3331,10 +3158,7 @@ unsafe extern "C" fn re_node_set_insert(
         while *((*set).elems).offset((idx - 1 as libc::c_int as libc::c_long) as isize)
             > elem
         {
-            *((*set).elems)
-                .offset(
-                    idx as isize,
-                ) = *((*set).elems)
+            *((*set).elems).offset(idx as isize) = *((*set).elems)
                 .offset((idx - 1 as libc::c_int as libc::c_long) as isize);
             idx -= 1;
             idx;
@@ -3356,8 +3180,7 @@ unsafe extern "C" fn re_node_set_insert_last(
 ) -> bool {
     if (*set).alloc == (*set).nelem {
         let mut new_elems: *mut Idx = 0 as *mut Idx;
-        (*set)
-            .alloc = ((*set).alloc + 1 as libc::c_int as libc::c_long)
+        (*set).alloc = ((*set).alloc + 1 as libc::c_int as libc::c_long)
             * 2 as libc::c_int as libc::c_long;
         new_elems = realloc(
             (*set).elems as *mut libc::c_void,
@@ -3429,10 +3252,7 @@ unsafe extern "C" fn re_node_set_remove_at(mut set: *mut re_node_set, mut idx: I
     (*set).nelem -= 1;
     (*set).nelem;
     while idx < (*set).nelem {
-        *((*set).elems)
-            .offset(
-                idx as isize,
-            ) = *((*set).elems)
+        *((*set).elems).offset(idx as isize) = *((*set).elems)
             .offset((idx + 1 as libc::c_int as libc::c_long) as isize);
         idx += 1;
         idx;
@@ -3534,10 +3354,11 @@ unsafe extern "C" fn re_dfa_add_node(
     let ref mut fresh28 = *((*dfa).nodes).offset((*dfa).nodes_len as isize);
     (*fresh28)
         .set_accept_mb(
-            (token.type_0() as libc::c_int == OP_PERIOD as libc::c_int
+            (token.type_0() as libc::c_int == re_token_type_t::OP_PERIOD as libc::c_int
                 && (*dfa).mb_cur_max > 1 as libc::c_int
-                || token.type_0() as libc::c_int == COMPLEX_BRACKET as libc::c_int)
-                as libc::c_int as libc::c_uint,
+                || token.type_0() as libc::c_int
+                    == re_token_type_t::COMPLEX_BRACKET as libc::c_int) as libc::c_int
+                as libc::c_uint,
         );
     *((*dfa).nexts).offset((*dfa).nodes_len as isize) = -(1 as libc::c_int) as Idx;
     memset(
@@ -3737,7 +3558,8 @@ unsafe extern "C" fn create_ci_newstate(
         let mut node: *mut re_token_t = ((*dfa).nodes)
             .offset(*((*nodes).elems).offset(i as isize) as isize);
         let mut type_0: re_token_type_t = (*node).type_0();
-        if !(type_0 as libc::c_uint == CHARACTER as libc::c_int as libc::c_uint
+        if !(type_0 as libc::c_uint
+            == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
             && (*node).constraint() == 0)
         {
             (*newstate)
@@ -3745,13 +3567,16 @@ unsafe extern "C" fn create_ci_newstate(
                     (*newstate).accept_mb()
                         | (*node).accept_mb() as libc::c_int as libc::c_uint,
                 );
-            if type_0 as libc::c_uint == END_OF_RE as libc::c_int as libc::c_uint {
+            if type_0 as libc::c_uint
+                == re_token_type_t::END_OF_RE as libc::c_int as libc::c_uint
+            {
                 (*newstate).set_halt(1 as libc::c_int as libc::c_uint);
             } else if type_0 as libc::c_uint
-                == OP_BACK_REF as libc::c_int as libc::c_uint
+                == re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint
             {
                 (*newstate).set_has_backref(1 as libc::c_int as libc::c_uint);
-            } else if type_0 as libc::c_uint == ANCHOR as libc::c_int as libc::c_uint
+            } else if type_0 as libc::c_uint
+                == re_token_type_t::ANCHOR as libc::c_int as libc::c_uint
                 || (*node).constraint() as libc::c_int != 0
             {
                 (*newstate).set_has_constraint(1 as libc::c_int as libc::c_uint);
@@ -3803,7 +3628,8 @@ unsafe extern "C" fn create_cd_newstate(
             .offset(*((*nodes).elems).offset(i as isize) as isize);
         let mut type_0: re_token_type_t = (*node).type_0();
         let mut constraint: libc::c_uint = (*node).constraint();
-        if !(type_0 as libc::c_uint == CHARACTER as libc::c_int as libc::c_uint
+        if !(type_0 as libc::c_uint
+            == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
             && constraint == 0)
         {
             (*newstate)
@@ -3811,10 +3637,12 @@ unsafe extern "C" fn create_cd_newstate(
                     (*newstate).accept_mb()
                         | (*node).accept_mb() as libc::c_int as libc::c_uint,
                 );
-            if type_0 as libc::c_uint == END_OF_RE as libc::c_int as libc::c_uint {
+            if type_0 as libc::c_uint
+                == re_token_type_t::END_OF_RE as libc::c_int as libc::c_uint
+            {
                 (*newstate).set_halt(1 as libc::c_int as libc::c_uint);
             } else if type_0 as libc::c_uint
-                == OP_BACK_REF as libc::c_int as libc::c_uint
+                == re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint
             {
                 (*newstate).set_has_backref(1 as libc::c_int as libc::c_uint);
             }
@@ -4012,7 +3840,9 @@ unsafe extern "C" fn re_compile_fastmap_iter(
         let mut node: Idx = *((*init_state).nodes.elems).offset(node_cnt as isize);
         let mut type_0: re_token_type_t = (*((*dfa).nodes).offset(node as isize))
             .type_0();
-        if type_0 as libc::c_uint == CHARACTER as libc::c_int as libc::c_uint {
+        if type_0 as libc::c_uint
+            == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
+        {
             re_set_fastmap(
                 fastmap,
                 icase,
@@ -4044,7 +3874,7 @@ unsafe extern "C" fn re_compile_fastmap_iter(
                     node += 1;
                     if !((node as libc::c_ulong) < (*dfa).nodes_len
                         && (*((*dfa).nodes).offset(node as isize)).type_0()
-                            as libc::c_int == CHARACTER as libc::c_int
+                            as libc::c_int == re_token_type_t::CHARACTER as libc::c_int
                         && (*((*dfa).nodes).offset(node as isize)).mb_partial()
                             as libc::c_int != 0)
                     {
@@ -4078,7 +3908,8 @@ unsafe extern "C" fn re_compile_fastmap_iter(
                     );
                 }
             }
-        } else if type_0 as libc::c_uint == SIMPLE_BRACKET as libc::c_int as libc::c_uint
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::SIMPLE_BRACKET as libc::c_int as libc::c_uint
         {
             let mut i: libc::c_int = 0;
             let mut ch: libc::c_int = 0;
@@ -4108,7 +3939,7 @@ unsafe extern "C" fn re_compile_fastmap_iter(
                 i;
             }
         } else if type_0 as libc::c_uint
-            == COMPLEX_BRACKET as libc::c_int as libc::c_uint
+            == re_token_type_t::COMPLEX_BRACKET as libc::c_int as libc::c_uint
         {
             let mut cset: *mut re_charset_t = (*((*dfa).nodes).offset(node as isize))
                 .opr
@@ -4201,9 +4032,12 @@ unsafe extern "C" fn re_compile_fastmap_iter(
                     i_0;
                 }
             }
-        } else if type_0 as libc::c_uint == OP_PERIOD as libc::c_int as libc::c_uint
-            || type_0 as libc::c_uint == OP_UTF8_PERIOD as libc::c_int as libc::c_uint
-            || type_0 as libc::c_uint == END_OF_RE as libc::c_int as libc::c_uint
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::OP_PERIOD as libc::c_int as libc::c_uint
+            || type_0 as libc::c_uint
+                == re_token_type_t::OP_UTF8_PERIOD as libc::c_int as libc::c_uint
+            || type_0 as libc::c_uint
+                == re_token_type_t::END_OF_RE as libc::c_int as libc::c_uint
         {
             memset(
                 fastmap as *mut libc::c_void,
@@ -4214,7 +4048,9 @@ unsafe extern "C" fn re_compile_fastmap_iter(
                             + 1 as libc::c_int) as libc::c_ulong,
                     ),
             );
-            if type_0 as libc::c_uint == END_OF_RE as libc::c_int as libc::c_uint {
+            if type_0 as libc::c_uint
+                == re_token_type_t::END_OF_RE as libc::c_int as libc::c_uint
+            {
                 (*bufp).set_can_be_null(1 as libc::c_int as libc::c_uint);
             }
             return;
@@ -4310,8 +4146,7 @@ pub unsafe extern "C" fn rpl_regcomp(
     (*preg).buffer = 0 as *mut re_dfa_t;
     (*preg).allocated = 0 as libc::c_int as __re_long_size_t;
     (*preg).used = 0 as libc::c_int as __re_long_size_t;
-    (*preg)
-        .fastmap = malloc(
+    (*preg).fastmap = malloc(
         ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int + 1 as libc::c_int)
             as libc::c_ulong)
             .wrapping_mul(::core::mem::size_of::<libc::c_char>() as libc::c_ulong),
@@ -4477,8 +4312,7 @@ pub unsafe extern "C" fn rpl_regfree(mut preg: *mut regex_t) {
                     *mut libc::c_int,
                 ) -> libc::c_int,
         ))
-            .is_some()
-            || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+            .is_some() || 0 as libc::c_int != 0
         {
             pthread_mutex_destroy(&mut (*dfa).lock);
         } else {};
@@ -4562,8 +4396,7 @@ unsafe extern "C" fn re_compile_internal(
                     *mut libc::c_int,
                 ) -> libc::c_int,
         ))
-            .is_some()
-            || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+            .is_some() || 0 as libc::c_int != 0
         {
             pthread_mutex_init(&mut (*dfa).lock, 0 as *const pthread_mutexattr_t)
         } else {
@@ -4640,9 +4473,7 @@ unsafe extern "C" fn re_compile_internal(
                                 *mut libc::c_int,
                             ) -> libc::c_int,
                     ))
-                        .is_some()
-                        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !))
-                            .is_some()
+                        .is_some() || 0 as libc::c_int != 0
                     {
                         pthread_mutex_destroy(&mut (*dfa).lock);
                     } else {};
@@ -4663,8 +4494,7 @@ unsafe extern "C" fn re_compile_internal(
                 *mut libc::c_int,
             ) -> libc::c_int,
     ))
-        .is_some()
-        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+        .is_some() || 0 as libc::c_int != 0
     {
         pthread_mutex_destroy(&mut (*dfa).lock);
     } else {};
@@ -4783,8 +4613,7 @@ unsafe extern "C" fn init_dfa(
         '\0' as i32,
         ::core::mem::size_of::<re_dfa_t>() as libc::c_ulong,
     );
-    (*dfa)
-        .str_tree_storage_idx = (1024 as libc::c_int as libc::c_ulong)
+    (*dfa).str_tree_storage_idx = (1024 as libc::c_int as libc::c_ulong)
         .wrapping_sub(::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong)
         .wrapping_div(::core::mem::size_of::<bin_tree_t>() as libc::c_ulong)
         as libc::c_int;
@@ -4801,8 +4630,7 @@ unsafe extern "C" fn init_dfa(
         return _REG_ESPACE;
     }
     (*dfa).nodes_alloc = pat_len.wrapping_add(1 as libc::c_int as libc::c_ulong);
-    (*dfa)
-        .nodes = malloc(
+    (*dfa).nodes = malloc(
         ((*dfa).nodes_alloc)
             .wrapping_mul(::core::mem::size_of::<re_token_t>() as libc::c_ulong),
     ) as *mut re_token_t;
@@ -4810,8 +4638,7 @@ unsafe extern "C" fn init_dfa(
     while !(table_size > pat_len) {
         table_size <<= 1 as libc::c_int;
     }
-    (*dfa)
-        .state_table = calloc(
+    (*dfa).state_table = calloc(
         ::core::mem::size_of::<re_state_table_entry>() as libc::c_ulong,
         table_size,
     ) as *mut re_state_table_entry;
@@ -4846,8 +4673,7 @@ unsafe extern "C" fn init_dfa(
             let mut i: libc::c_int = 0;
             let mut j: libc::c_int = 0;
             let mut ch: libc::c_int = 0;
-            (*dfa)
-                .sb_char = calloc(
+            (*dfa).sb_char = calloc(
                 ::core::mem::size_of::<bitset_t>() as libc::c_ulong,
                 1 as libc::c_int as libc::c_ulong,
             ) as re_bitset_ptr_t;
@@ -4906,12 +4732,10 @@ unsafe extern "C" fn init_word_char(mut dfa: *mut re_dfa_t) {
         let mut bits2: bitset_word_t = 0x87fffffe as libc::c_uint as bitset_word_t;
         let mut bits3: bitset_word_t = 0x7fffffe as libc::c_int as bitset_word_t;
         if 64 as libc::c_int == 64 as libc::c_int {
-            (*dfa)
-                .word_char[0 as libc::c_int
-                as usize] = (bits1 << 31 as libc::c_int) << 1 as libc::c_int | bits0;
-            (*dfa)
-                .word_char[1 as libc::c_int
-                as usize] = (bits3 << 31 as libc::c_int) << 1 as libc::c_int | bits2;
+            (*dfa).word_char[0 as libc::c_int as usize] = (bits1 << 31 as libc::c_int)
+                << 1 as libc::c_int | bits0;
+            (*dfa).word_char[1 as libc::c_int as usize] = (bits3 << 31 as libc::c_int)
+                << 1 as libc::c_int | bits2;
             i = 2 as libc::c_int;
             current_block = 1841672684692190573;
         } else if 64 as libc::c_int == 32 as libc::c_int {
@@ -4922,10 +4746,10 @@ unsafe extern "C" fn init_word_char(mut dfa: *mut re_dfa_t) {
             i = 4 as libc::c_int;
             current_block = 1841672684692190573;
         } else {
-            current_block = 13563166656973510336;
+            current_block = 2572139581207041038;
         }
         match current_block {
-            13563166656973510336 => {}
+            2572139581207041038 => {}
             _ => {
                 ch = 128 as libc::c_int;
                 if (*dfa).is_utf8() as libc::c_long != 0 {
@@ -4948,8 +4772,8 @@ unsafe extern "C" fn init_word_char(mut dfa: *mut re_dfa_t) {
         j = 0 as libc::c_int;
         while j < 64 as libc::c_int {
             if *(*__ctype_b_loc()).offset(ch as isize) as libc::c_int
-                & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
-                || ch == '_' as i32
+                & C2RustUnnamed_4::_ISalnum as libc::c_int as libc::c_ushort
+                    as libc::c_int != 0 || ch == '_' as i32
             {
                 (*dfa).word_char[i as usize] |= (1 as libc::c_int as bitset_word_t) << j;
             }
@@ -4973,8 +4797,7 @@ unsafe extern "C" fn free_workarea_compile(mut preg: *mut regex_t) {
         storage = next;
     }
     (*dfa).str_tree_storage = 0 as *mut bin_tree_storage_t;
-    (*dfa)
-        .str_tree_storage_idx = (1024 as libc::c_int as libc::c_ulong)
+    (*dfa).str_tree_storage_idx = (1024 as libc::c_int as libc::c_ulong)
         .wrapping_sub(::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong)
         .wrapping_div(::core::mem::size_of::<bin_tree_t>() as libc::c_ulong)
         as libc::c_int;
@@ -5009,14 +4832,16 @@ unsafe extern "C" fn create_initial_state(mut dfa: *mut re_dfa_t) -> reg_errcode
             let mut type_0: re_token_type_t = (*((*dfa).nodes).offset(node_idx as isize))
                 .type_0();
             let mut clexp_idx: Idx = 0;
-            if !(type_0 as libc::c_uint != OP_BACK_REF as libc::c_int as libc::c_uint) {
+            if !(type_0 as libc::c_uint
+                != re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint)
+            {
                 clexp_idx = 0 as libc::c_int as Idx;
                 while clexp_idx < init_nodes.nelem {
                     let mut clexp_node: *mut re_token_t = 0 as *mut re_token_t;
                     clexp_node = ((*dfa).nodes)
                         .offset(*(init_nodes.elems).offset(clexp_idx as isize) as isize);
                     if (*clexp_node).type_0() as libc::c_int
-                        == OP_CLOSE_SUBEXP as libc::c_int
+                        == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
                         && (*clexp_node).opr.idx
                             == (*((*dfa).nodes).offset(node_idx as isize)).opr.idx
                     {
@@ -5027,7 +4852,7 @@ unsafe extern "C" fn create_initial_state(mut dfa: *mut re_dfa_t) -> reg_errcode
                 }
                 if !(clexp_idx == init_nodes.nelem) {
                     if type_0 as libc::c_uint
-                        == OP_BACK_REF as libc::c_int as libc::c_uint
+                        == re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint
                     {
                         let mut dest_idx: Idx = *((*((*dfa).edests)
                             .offset(node_idx as isize))
@@ -5050,8 +4875,7 @@ unsafe extern "C" fn create_initial_state(mut dfa: *mut re_dfa_t) -> reg_errcode
             i;
         }
     }
-    (*dfa)
-        .init_state = re_acquire_state_context(
+    (*dfa).init_state = re_acquire_state_context(
         &mut err,
         dfa,
         &mut init_nodes,
@@ -5063,22 +4887,19 @@ unsafe extern "C" fn create_initial_state(mut dfa: *mut re_dfa_t) -> reg_errcode
         return err;
     }
     if (*(*dfa).init_state).has_constraint() != 0 {
-        (*dfa)
-            .init_state_word = re_acquire_state_context(
+        (*dfa).init_state_word = re_acquire_state_context(
             &mut err,
             dfa,
             &mut init_nodes,
             1 as libc::c_int as libc::c_uint,
         );
-        (*dfa)
-            .init_state_nl = re_acquire_state_context(
+        (*dfa).init_state_nl = re_acquire_state_context(
             &mut err,
             dfa,
             &mut init_nodes,
             ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint,
         );
-        (*dfa)
-            .init_state_begbuf = re_acquire_state_context(
+        (*dfa).init_state_begbuf = re_acquire_state_context(
             &mut err,
             dfa,
             &mut init_nodes,
@@ -5163,17 +4984,17 @@ unsafe extern "C" fn optimize_utf8(mut dfa: *mut re_dfa_t) {
         node = 0 as libc::c_int as Idx;
         while (node as libc::c_ulong) < (*dfa).nodes_len {
             if (*((*dfa).nodes).offset(node as isize)).type_0() as libc::c_int
-                == CHARACTER as libc::c_int
+                == re_token_type_t::CHARACTER as libc::c_int
                 && (*((*dfa).nodes).offset(node as isize)).opr.c as libc::c_int
                     >= 0x80 as libc::c_int
             {
                 let ref mut fresh35 = *((*dfa).nodes).offset(node as isize);
                 (*fresh35).set_mb_partial(0 as libc::c_int as libc::c_uint);
             } else if (*((*dfa).nodes).offset(node as isize)).type_0() as libc::c_int
-                == OP_PERIOD as libc::c_int
+                == re_token_type_t::OP_PERIOD as libc::c_int
             {
                 let ref mut fresh36 = *((*dfa).nodes).offset(node as isize);
-                (*fresh36).set_type_0(OP_UTF8_PERIOD);
+                (*fresh36).set_type_0(re_token_type_t::OP_UTF8_PERIOD);
             }
             node += 1;
             node;
@@ -5190,21 +5011,17 @@ unsafe extern "C" fn optimize_utf8(mut dfa: *mut re_dfa_t) {
 unsafe extern "C" fn analyze(mut preg: *mut regex_t) -> reg_errcode_t {
     let mut dfa: *mut re_dfa_t = (*preg).buffer;
     let mut ret: reg_errcode_t = _REG_NOERROR;
-    (*dfa)
-        .nexts = malloc(
+    (*dfa).nexts = malloc(
         ((*dfa).nodes_alloc).wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
-    (*dfa)
-        .org_indices = malloc(
+    (*dfa).org_indices = malloc(
         ((*dfa).nodes_alloc).wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
-    (*dfa)
-        .edests = malloc(
+    (*dfa).edests = malloc(
         ((*dfa).nodes_alloc)
             .wrapping_mul(::core::mem::size_of::<re_node_set>() as libc::c_ulong),
     ) as *mut re_node_set;
-    (*dfa)
-        .eclosures = malloc(
+    (*dfa).eclosures = malloc(
         ((*dfa).nodes_alloc)
             .wrapping_mul(::core::mem::size_of::<re_node_set>() as libc::c_ulong),
     ) as *mut re_node_set;
@@ -5214,8 +5031,7 @@ unsafe extern "C" fn analyze(mut preg: *mut regex_t) -> reg_errcode_t {
     {
         return _REG_ESPACE;
     }
-    (*dfa)
-        .subexp_map = malloc(
+    (*dfa).subexp_map = malloc(
         ((*preg).re_nsub).wrapping_mul(::core::mem::size_of::<Idx>() as libc::c_ulong),
     ) as *mut Idx;
     if !((*dfa).subexp_map).is_null() {
@@ -5318,8 +5134,7 @@ unsafe extern "C" fn analyze(mut preg: *mut regex_t) -> reg_errcode_t {
     if (*preg).no_sub() == 0 && (*preg).re_nsub > 0 as libc::c_int as libc::c_ulong
         && (*dfa).has_plural_match() as libc::c_int != 0 || (*dfa).nbackref != 0
     {
-        (*dfa)
-            .inveclosures = malloc(
+        (*dfa).inveclosures = malloc(
             ((*dfa).nodes_len)
                 .wrapping_mul(::core::mem::size_of::<re_node_set>() as libc::c_ulong),
         ) as *mut re_node_set;
@@ -5334,7 +5149,7 @@ unsafe extern "C" fn analyze(mut preg: *mut regex_t) -> reg_errcode_t {
 }
 unsafe extern "C" fn postorder(
     mut root: *mut bin_tree_t,
-    mut fn_0: Option::<
+    mut fn_0: Option<
         unsafe extern "C" fn(*mut libc::c_void, *mut bin_tree_t) -> reg_errcode_t,
     >,
     mut extra: *mut libc::c_void,
@@ -5372,7 +5187,7 @@ unsafe extern "C" fn postorder(
 }
 unsafe extern "C" fn preorder(
     mut root: *mut bin_tree_t,
-    mut fn_0: Option::<
+    mut fn_0: Option<
         unsafe extern "C" fn(*mut libc::c_void, *mut bin_tree_t) -> reg_errcode_t,
     >,
     mut extra: *mut libc::c_void,
@@ -5407,26 +5222,25 @@ unsafe extern "C" fn optimize_subexps(
     mut node: *mut bin_tree_t,
 ) -> reg_errcode_t {
     let mut dfa: *mut re_dfa_t = extra as *mut re_dfa_t;
-    if ((*node).token).type_0() as libc::c_int == OP_BACK_REF as libc::c_int
-        && !((*dfa).subexp_map).is_null()
+    if ((*node).token).type_0() as libc::c_int
+        == re_token_type_t::OP_BACK_REF as libc::c_int && !((*dfa).subexp_map).is_null()
     {
         let mut idx: libc::c_int = (*node).token.opr.idx as libc::c_int;
         (*node).token.opr.idx = *((*dfa).subexp_map).offset(idx as isize);
         (*dfa).used_bkref_map
             |= ((1 as libc::c_int) << (*node).token.opr.idx) as libc::c_ulong;
-    } else if ((*node).token).type_0() as libc::c_int == SUBEXP as libc::c_int
-        && !((*node).left).is_null()
-        && ((*(*node).left).token).type_0() as libc::c_int == SUBEXP as libc::c_int
+    } else if ((*node).token).type_0() as libc::c_int
+        == re_token_type_t::SUBEXP as libc::c_int && !((*node).left).is_null()
+        && ((*(*node).left).token).type_0() as libc::c_int
+            == re_token_type_t::SUBEXP as libc::c_int
     {
         let mut other_idx: Idx = (*(*node).left).token.opr.idx;
         (*node).left = (*(*node).left).left;
         if !((*node).left).is_null() {
             (*(*node).left).parent = node;
         }
-        *((*dfa).subexp_map)
-            .offset(
-                other_idx as isize,
-            ) = *((*dfa).subexp_map).offset((*node).token.opr.idx as isize);
+        *((*dfa).subexp_map).offset(other_idx as isize) = *((*dfa).subexp_map)
+            .offset((*node).token.opr.idx as isize);
         if other_idx < 64 as libc::c_int as libc::c_long {
             (*dfa).used_bkref_map &= !((1 as libc::c_int as bitset_word_t) << other_idx);
         }
@@ -5440,7 +5254,8 @@ unsafe extern "C" fn lower_subexps(
     let mut preg: *mut regex_t = extra as *mut regex_t;
     let mut err: reg_errcode_t = _REG_NOERROR;
     if !((*node).left).is_null()
-        && ((*(*node).left).token).type_0() as libc::c_int == SUBEXP as libc::c_int
+        && ((*(*node).left).token).type_0() as libc::c_int
+            == re_token_type_t::SUBEXP as libc::c_int
     {
         (*node).left = lower_subexp(&mut err, preg, (*node).left);
         if !((*node).left).is_null() {
@@ -5448,7 +5263,8 @@ unsafe extern "C" fn lower_subexps(
         }
     }
     if !((*node).right).is_null()
-        && ((*(*node).right).token).type_0() as libc::c_int == SUBEXP as libc::c_int
+        && ((*(*node).right).token).type_0() as libc::c_int
+            == re_token_type_t::SUBEXP as libc::c_int
     {
         (*node).right = lower_subexp(&mut err, preg, (*node).right);
         if !((*node).right).is_null() {
@@ -5475,10 +5291,24 @@ unsafe extern "C" fn lower_subexp(
     {
         return (*node).left;
     }
-    op = create_tree(dfa, 0 as *mut bin_tree_t, 0 as *mut bin_tree_t, OP_OPEN_SUBEXP);
-    cls = create_tree(dfa, 0 as *mut bin_tree_t, 0 as *mut bin_tree_t, OP_CLOSE_SUBEXP);
-    tree1 = if !body.is_null() { create_tree(dfa, body, cls, CONCAT) } else { cls };
-    tree = create_tree(dfa, op, tree1, CONCAT);
+    op = create_tree(
+        dfa,
+        0 as *mut bin_tree_t,
+        0 as *mut bin_tree_t,
+        re_token_type_t::OP_OPEN_SUBEXP,
+    );
+    cls = create_tree(
+        dfa,
+        0 as *mut bin_tree_t,
+        0 as *mut bin_tree_t,
+        re_token_type_t::OP_CLOSE_SUBEXP,
+    );
+    tree1 = if !body.is_null() {
+        create_tree(dfa, body, cls, re_token_type_t::CONCAT)
+    } else {
+        cls
+    };
+    tree = create_tree(dfa, op, tree1, re_token_type_t::CONCAT);
     if (tree.is_null() || tree1.is_null() || op.is_null() || cls.is_null())
         as libc::c_int as libc::c_long != 0
     {
@@ -5496,7 +5326,8 @@ unsafe extern "C" fn calc_first(
     mut node: *mut bin_tree_t,
 ) -> reg_errcode_t {
     let mut dfa: *mut re_dfa_t = extra as *mut re_dfa_t;
-    if ((*node).token).type_0() as libc::c_int == CONCAT as libc::c_int {
+    if ((*node).token).type_0() as libc::c_int == re_token_type_t::CONCAT as libc::c_int
+    {
         (*node).first = (*(*node).left).first;
         (*node).node_idx = (*(*node).left).node_idx;
     } else {
@@ -5507,7 +5338,9 @@ unsafe extern "C" fn calc_first(
         {
             return _REG_ESPACE;
         }
-        if ((*node).token).type_0() as libc::c_int == ANCHOR as libc::c_int {
+        if ((*node).token).type_0() as libc::c_int
+            == re_token_type_t::ANCHOR as libc::c_int
+        {
             let ref mut fresh37 = *((*dfa).nodes).offset((*node).node_idx as isize);
             (*fresh37).set_constraint((*node).token.opr.ctx_type as libc::c_uint);
         }
@@ -5581,7 +5414,9 @@ unsafe extern "C" fn link_nfa_nodes(
         }
         4 => {
             *((*dfa).nexts).offset(idx as isize) = (*(*node).next).node_idx;
-            if ((*node).token).type_0() as libc::c_int == OP_BACK_REF as libc::c_int {
+            if ((*node).token).type_0() as libc::c_int
+                == re_token_type_t::OP_BACK_REF as libc::c_int
+            {
                 err = re_node_set_init_1(
                     ((*dfa).edests).offset(idx as isize),
                     *((*dfa).nexts).offset(idx as isize),
@@ -5614,19 +5449,19 @@ unsafe extern "C" fn duplicate_node_closure(
         let mut org_dest: Idx = 0;
         let mut clone_dest: Idx = 0;
         if (*((*dfa).nodes).offset(org_node as isize)).type_0() as libc::c_int
-            == OP_BACK_REF as libc::c_int
+            == re_token_type_t::OP_BACK_REF as libc::c_int
         {
             org_dest = *((*dfa).nexts).offset(org_node as isize);
-            (*((*dfa).edests).offset(clone_node as isize))
-                .nelem = 0 as libc::c_int as Idx;
+            (*((*dfa).edests).offset(clone_node as isize)).nelem = 0 as libc::c_int
+                as Idx;
             clone_dest = duplicate_node(dfa, org_dest, constraint);
             if (clone_dest == -(1 as libc::c_int) as libc::c_long) as libc::c_int
                 as libc::c_long != 0
             {
                 return _REG_ESPACE;
             }
-            *((*dfa).nexts)
-                .offset(clone_node as isize) = *((*dfa).nexts).offset(org_node as isize);
+            *((*dfa).nexts).offset(clone_node as isize) = *((*dfa).nexts)
+                .offset(org_node as isize);
             ok = re_node_set_insert(
                 ((*dfa).edests).offset(clone_node as isize),
                 clone_dest,
@@ -5637,16 +5472,16 @@ unsafe extern "C" fn duplicate_node_closure(
         } else if (*((*dfa).edests).offset(org_node as isize)).nelem
             == 0 as libc::c_int as libc::c_long
         {
-            *((*dfa).nexts)
-                .offset(clone_node as isize) = *((*dfa).nexts).offset(org_node as isize);
+            *((*dfa).nexts).offset(clone_node as isize) = *((*dfa).nexts)
+                .offset(org_node as isize);
             break;
         } else if (*((*dfa).edests).offset(org_node as isize)).nelem
             == 1 as libc::c_int as libc::c_long
         {
             org_dest = *((*((*dfa).edests).offset(org_node as isize)).elems)
                 .offset(0 as libc::c_int as isize);
-            (*((*dfa).edests).offset(clone_node as isize))
-                .nelem = 0 as libc::c_int as Idx;
+            (*((*dfa).edests).offset(clone_node as isize)).nelem = 0 as libc::c_int
+                as Idx;
             if org_node == root_node && clone_node != org_node {
                 ok = re_node_set_insert(
                     ((*dfa).edests).offset(clone_node as isize),
@@ -5675,8 +5510,8 @@ unsafe extern "C" fn duplicate_node_closure(
         } else {
             org_dest = *((*((*dfa).edests).offset(org_node as isize)).elems)
                 .offset(0 as libc::c_int as isize);
-            (*((*dfa).edests).offset(clone_node as isize))
-                .nelem = 0 as libc::c_int as Idx;
+            (*((*dfa).edests).offset(clone_node as isize)).nelem = 0 as libc::c_int
+                as Idx;
             clone_dest = search_duplicated_node(dfa, org_dest, constraint);
             if clone_dest == -(1 as libc::c_int) as libc::c_long {
                 let mut err: reg_errcode_t = _REG_NOERROR;
@@ -5991,7 +5826,7 @@ unsafe extern "C" fn peek_token(
 ) -> libc::c_int {
     let mut c: libc::c_uchar = 0;
     if (*input).stop <= (*input).cur_idx {
-        (*token).set_type_0(END_OF_RE);
+        (*token).set_type_0(re_token_type_t::END_OF_RE);
         return 0 as libc::c_int;
     }
     c = *((*input).mbs)
@@ -6004,19 +5839,19 @@ unsafe extern "C" fn peek_token(
             || *((*input).wcs).offset((*input).cur_idx as isize)
                 != 0xffffffff as libc::c_uint)
     {
-        (*token).set_type_0(CHARACTER);
+        (*token).set_type_0(re_token_type_t::CHARACTER);
         (*token).set_mb_partial(1 as libc::c_int as libc::c_uint);
         return 1 as libc::c_int;
     }
     if c as libc::c_int == '\\' as i32 {
         let mut c2: libc::c_uchar = 0;
         if (*input).cur_idx + 1 as libc::c_int as libc::c_long >= (*input).len {
-            (*token).set_type_0(BACK_SLASH);
+            (*token).set_type_0(re_token_type_t::BACK_SLASH);
             return 1 as libc::c_int;
         }
         c2 = re_string_peek_byte_case(input, 1 as libc::c_int as Idx);
         (*token).opr.c = c2;
-        (*token).set_type_0(CHARACTER);
+        (*token).set_type_0(re_token_type_t::CHARACTER);
         if (*input).mb_cur_max > 1 as libc::c_int {
             let mut wc: wint_t = re_string_wchar_at(
                 input,
@@ -6033,9 +5868,10 @@ unsafe extern "C" fn peek_token(
                 .set_word_char(
                     ((*(*__ctype_b_loc()).offset(c2 as libc::c_int as isize)
                         as libc::c_int
-                        & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
-                        || c2 as libc::c_int == '_' as i32) as libc::c_int
-                        != 0 as libc::c_int) as libc::c_int as libc::c_uint,
+                        & C2RustUnnamed_4::_ISalnum as libc::c_int as libc::c_ushort
+                            as libc::c_int != 0 || c2 as libc::c_int == '_' as i32)
+                        as libc::c_int != 0 as libc::c_int) as libc::c_int
+                        as libc::c_uint,
                 );
         }
         match c2 as libc::c_int {
@@ -6057,7 +5893,7 @@ unsafe extern "C" fn peek_token(
                             << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                         == 0
                 {
-                    (*token).set_type_0(OP_ALT);
+                    (*token).set_type_0(re_token_type_t::OP_ALT);
                 }
             }
             49 | 50 | 51 | 52 | 53 | 54 | 55 | 56 | 57 => {
@@ -6069,7 +5905,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int) << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_BACK_REF);
+                    (*token).set_type_0(re_token_type_t::OP_BACK_REF);
                     (*token).opr.idx = (c2 as libc::c_int - '1' as i32) as Idx;
                 }
             }
@@ -6084,8 +5920,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = WORD_FIRST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::WORD_FIRST;
                 }
             }
             62 => {
@@ -6099,8 +5935,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = WORD_LAST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::WORD_LAST;
                 }
             }
             98 => {
@@ -6114,8 +5950,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = WORD_DELIM;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::WORD_DELIM;
                 }
             }
             66 => {
@@ -6129,8 +5965,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = NOT_WORD_DELIM;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::NOT_WORD_DELIM;
                 }
             }
             119 => {
@@ -6144,7 +5980,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_WORD);
+                    (*token).set_type_0(re_token_type_t::OP_WORD);
                 }
             }
             87 => {
@@ -6158,7 +5994,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_NOTWORD);
+                    (*token).set_type_0(re_token_type_t::OP_NOTWORD);
                 }
             }
             115 => {
@@ -6172,7 +6008,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_SPACE);
+                    (*token).set_type_0(re_token_type_t::OP_SPACE);
                 }
             }
             83 => {
@@ -6186,7 +6022,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_NOTSPACE);
+                    (*token).set_type_0(re_token_type_t::OP_NOTSPACE);
                 }
             }
             96 => {
@@ -6200,8 +6036,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = BUF_FIRST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::BUF_FIRST;
                 }
             }
             39 => {
@@ -6215,8 +6051,8 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = BUF_LAST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::BUF_LAST;
                 }
             }
             40 => {
@@ -6228,7 +6064,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_OPEN_SUBEXP);
+                    (*token).set_type_0(re_token_type_t::OP_OPEN_SUBEXP);
                 }
             }
             41 => {
@@ -6240,7 +6076,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_CLOSE_SUBEXP);
+                    (*token).set_type_0(re_token_type_t::OP_CLOSE_SUBEXP);
                 }
             }
             43 => {
@@ -6253,7 +6089,7 @@ unsafe extern "C" fn peek_token(
                     && syntax & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                         != 0
                 {
-                    (*token).set_type_0(OP_DUP_PLUS);
+                    (*token).set_type_0(re_token_type_t::OP_DUP_PLUS);
                 }
             }
             63 => {
@@ -6266,7 +6102,7 @@ unsafe extern "C" fn peek_token(
                     && syntax & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int
                         != 0
                 {
-                    (*token).set_type_0(OP_DUP_QUESTION);
+                    (*token).set_type_0(re_token_type_t::OP_DUP_QUESTION);
                 }
             }
             123 => {
@@ -6284,7 +6120,7 @@ unsafe extern "C" fn peek_token(
                             << 1 as libc::c_int) << 1 as libc::c_int)
                             << 1 as libc::c_int) << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_OPEN_DUP_NUM);
+                    (*token).set_type_0(re_token_type_t::OP_OPEN_DUP_NUM);
                 }
             }
             125 => {
@@ -6302,14 +6138,14 @@ unsafe extern "C" fn peek_token(
                             << 1 as libc::c_int) << 1 as libc::c_int)
                             << 1 as libc::c_int) << 1 as libc::c_int == 0
                 {
-                    (*token).set_type_0(OP_CLOSE_DUP_NUM);
+                    (*token).set_type_0(re_token_type_t::OP_CLOSE_DUP_NUM);
                 }
             }
             _ => {}
         }
         return 2 as libc::c_int;
     }
-    (*token).set_type_0(CHARACTER);
+    (*token).set_type_0(re_token_type_t::CHARACTER);
     if (*input).mb_cur_max > 1 as libc::c_int {
         let mut wc_0: wint_t = re_string_wchar_at(input, (*input).cur_idx);
         (*token)
@@ -6322,7 +6158,8 @@ unsafe extern "C" fn peek_token(
             .set_word_char(
                 (*(*__ctype_b_loc()).offset((*token).opr.c as libc::c_int as isize)
                     as libc::c_int
-                    & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISalnum as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                     || (*token).opr.c as libc::c_int == '_' as i32) as libc::c_int
                     as libc::c_uint,
             );
@@ -6337,7 +6174,7 @@ unsafe extern "C" fn peek_token(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                     << 1 as libc::c_int != 0
             {
-                (*token).set_type_0(OP_ALT);
+                (*token).set_type_0(re_token_type_t::OP_ALT);
             }
         }
         124 => {
@@ -6355,11 +6192,11 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                     != 0
             {
-                (*token).set_type_0(OP_ALT);
+                (*token).set_type_0(re_token_type_t::OP_ALT);
             }
         }
         42 => {
-            (*token).set_type_0(OP_DUP_ASTERISK);
+            (*token).set_type_0(re_token_type_t::OP_DUP_ASTERISK);
         }
         43 => {
             if syntax
@@ -6369,7 +6206,7 @@ unsafe extern "C" fn peek_token(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int == 0
                 && syntax & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int == 0
             {
-                (*token).set_type_0(OP_DUP_PLUS);
+                (*token).set_type_0(re_token_type_t::OP_DUP_PLUS);
             }
         }
         63 => {
@@ -6380,7 +6217,7 @@ unsafe extern "C" fn peek_token(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int == 0
                 && syntax & (1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int == 0
             {
-                (*token).set_type_0(OP_DUP_QUESTION);
+                (*token).set_type_0(re_token_type_t::OP_DUP_QUESTION);
             }
         }
         123 => {
@@ -6396,7 +6233,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int) << 1 as libc::c_int != 0
             {
-                (*token).set_type_0(OP_OPEN_DUP_NUM);
+                (*token).set_type_0(re_token_type_t::OP_OPEN_DUP_NUM);
             }
         }
         125 => {
@@ -6412,7 +6249,7 @@ unsafe extern "C" fn peek_token(
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                         << 1 as libc::c_int) << 1 as libc::c_int != 0
             {
-                (*token).set_type_0(OP_CLOSE_DUP_NUM);
+                (*token).set_type_0(re_token_type_t::OP_CLOSE_DUP_NUM);
             }
         }
         40 => {
@@ -6423,7 +6260,7 @@ unsafe extern "C" fn peek_token(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
             {
-                (*token).set_type_0(OP_OPEN_SUBEXP);
+                (*token).set_type_0(re_token_type_t::OP_OPEN_SUBEXP);
             }
         }
         41 => {
@@ -6434,14 +6271,14 @@ unsafe extern "C" fn peek_token(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
             {
-                (*token).set_type_0(OP_CLOSE_SUBEXP);
+                (*token).set_type_0(re_token_type_t::OP_CLOSE_SUBEXP);
             }
         }
         91 => {
-            (*token).set_type_0(OP_OPEN_BRACKET);
+            (*token).set_type_0(re_token_type_t::OP_OPEN_BRACKET);
         }
         46 => {
-            (*token).set_type_0(OP_PERIOD);
+            (*token).set_type_0(re_token_type_t::OP_PERIOD);
         }
         94 => {
             if syntax
@@ -6479,8 +6316,8 @@ unsafe extern "C" fn peek_token(
             match current_block_108 {
                 18218798608644444571 => {}
                 _ => {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = LINE_FIRST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::LINE_FIRST;
                 }
             }
         }
@@ -6498,8 +6335,9 @@ unsafe extern "C" fn peek_token(
                 (*input).cur_idx += 1 as libc::c_int as libc::c_long;
                 peek_token(&mut next, input, syntax);
                 (*input).cur_idx += -(1 as libc::c_int) as libc::c_long;
-                if next.type_0() as libc::c_int != OP_ALT as libc::c_int
-                    && next.type_0() as libc::c_int != OP_CLOSE_SUBEXP as libc::c_int
+                if next.type_0() as libc::c_int != re_token_type_t::OP_ALT as libc::c_int
+                    && next.type_0() as libc::c_int
+                        != re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
                 {
                     current_block_108 = 18218798608644444571;
                 } else {
@@ -6511,8 +6349,8 @@ unsafe extern "C" fn peek_token(
             match current_block_108 {
                 18218798608644444571 => {}
                 _ => {
-                    (*token).set_type_0(ANCHOR);
-                    (*token).opr.ctx_type = LINE_LAST;
+                    (*token).set_type_0(re_token_type_t::ANCHOR);
+                    (*token).opr.ctx_type = re_context_type::LINE_LAST;
                 }
             }
         }
@@ -6527,7 +6365,7 @@ unsafe extern "C" fn peek_token_bracket(
 ) -> libc::c_int {
     let mut c: libc::c_uchar = 0;
     if (*input).stop <= (*input).cur_idx {
-        (*token).set_type_0(END_OF_RE);
+        (*token).set_type_0(re_token_type_t::END_OF_RE);
         return 0 as libc::c_int;
     }
     c = *((*input).mbs)
@@ -6538,7 +6376,7 @@ unsafe extern "C" fn peek_token_bracket(
             || *((*input).wcs).offset((*input).cur_idx as isize)
                 != 0xffffffff as libc::c_uint)
     {
-        (*token).set_type_0(CHARACTER);
+        (*token).set_type_0(re_token_type_t::CHARACTER);
         return 1 as libc::c_int;
     }
     if c as libc::c_int == '\\' as i32 && syntax & 1 as libc::c_int as libc::c_ulong != 0
@@ -6549,7 +6387,7 @@ unsafe extern "C" fn peek_token_bracket(
         c2 = *((*input).mbs)
             .offset(((*input).cur_idx + 0 as libc::c_int as libc::c_long) as isize);
         (*token).opr.c = c2;
-        (*token).set_type_0(CHARACTER);
+        (*token).set_type_0(re_token_type_t::CHARACTER);
         return 1 as libc::c_int;
     }
     if c as libc::c_int == '[' as i32 {
@@ -6566,11 +6404,11 @@ unsafe extern "C" fn peek_token_bracket(
         let mut current_block_28: u64;
         match c2_0 as libc::c_int {
             46 => {
-                (*token).set_type_0(OP_OPEN_COLL_ELEM);
+                (*token).set_type_0(re_token_type_t::OP_OPEN_COLL_ELEM);
                 current_block_28 = 7172762164747879670;
             }
             61 => {
-                (*token).set_type_0(OP_OPEN_EQUIV_CLASS);
+                (*token).set_type_0(re_token_type_t::OP_OPEN_EQUIV_CLASS);
                 current_block_28 = 7172762164747879670;
             }
             58 => {
@@ -6578,19 +6416,19 @@ unsafe extern "C" fn peek_token_bracket(
                     & ((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
                         << 1 as libc::c_int != 0
                 {
-                    (*token).set_type_0(OP_OPEN_CHAR_CLASS);
+                    (*token).set_type_0(re_token_type_t::OP_OPEN_CHAR_CLASS);
                     current_block_28 = 7172762164747879670;
                 } else {
-                    current_block_28 = 939048008090937552;
+                    current_block_28 = 394482555998358067;
                 }
             }
             _ => {
-                current_block_28 = 939048008090937552;
+                current_block_28 = 394482555998358067;
             }
         }
         match current_block_28 {
-            939048008090937552 => {
-                (*token).set_type_0(CHARACTER);
+            394482555998358067 => {
+                (*token).set_type_0(re_token_type_t::CHARACTER);
                 (*token).opr.c = c;
                 token_len = 1 as libc::c_int;
             }
@@ -6601,11 +6439,11 @@ unsafe extern "C" fn peek_token_bracket(
     let mut current_block_38: u64;
     match c as libc::c_int {
         93 => {
-            (*token).set_type_0(OP_CLOSE_BRACKET);
+            (*token).set_type_0(re_token_type_t::OP_CLOSE_BRACKET);
             current_block_38 = 2604890879466389055;
         }
         94 => {
-            (*token).set_type_0(OP_NON_MATCH_LIST);
+            (*token).set_type_0(re_token_type_t::OP_NON_MATCH_LIST);
             current_block_38 = 2604890879466389055;
         }
         45 => {
@@ -6619,20 +6457,20 @@ unsafe extern "C" fn peek_token_bracket(
                         ((*input).cur_idx + 2 as libc::c_int as libc::c_long) as isize,
                     ) as libc::c_int == '-' as i32)
             {
-                (*token).set_type_0(OP_CHARSET_RANGE);
+                (*token).set_type_0(re_token_type_t::OP_CHARSET_RANGE);
                 current_block_38 = 2604890879466389055;
             } else {
                 (*input).cur_idx += 2 as libc::c_int as libc::c_long;
-                current_block_38 = 14640184543273665400;
+                current_block_38 = 9447410200766631063;
             }
         }
         _ => {
-            current_block_38 = 14640184543273665400;
+            current_block_38 = 9447410200766631063;
         }
     }
     match current_block_38 {
-        14640184543273665400 => {
-            (*token).set_type_0(CHARACTER);
+        9447410200766631063 => {
+            (*token).set_type_0(re_token_type_t::CHARACTER);
         }
         _ => {}
     }
@@ -6681,9 +6519,14 @@ unsafe extern "C" fn parse(
     {
         return 0 as *mut bin_tree_t;
     }
-    eor = create_tree(dfa, 0 as *mut bin_tree_t, 0 as *mut bin_tree_t, END_OF_RE);
+    eor = create_tree(
+        dfa,
+        0 as *mut bin_tree_t,
+        0 as *mut bin_tree_t,
+        re_token_type_t::END_OF_RE,
+    );
     if !tree.is_null() {
-        root = create_tree(dfa, tree, eor, CONCAT);
+        root = create_tree(dfa, tree, eor, re_token_type_t::CONCAT);
     } else {
         root = eor;
     }
@@ -6711,7 +6554,7 @@ unsafe extern "C" fn parse_reg_exp(
     {
         return 0 as *mut bin_tree_t;
     }
-    while (*token).type_0() as libc::c_int == OP_ALT as libc::c_int {
+    while (*token).type_0() as libc::c_int == re_token_type_t::OP_ALT as libc::c_int {
         fetch_token(
             token,
             regexp,
@@ -6726,10 +6569,12 @@ unsafe extern "C" fn parse_reg_exp(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                     << 1 as libc::c_int) << 1 as libc::c_int,
         );
-        if (*token).type_0() as libc::c_int != OP_ALT as libc::c_int
-            && (*token).type_0() as libc::c_int != END_OF_RE as libc::c_int
+        if (*token).type_0() as libc::c_int != re_token_type_t::OP_ALT as libc::c_int
+            && (*token).type_0() as libc::c_int
+                != re_token_type_t::END_OF_RE as libc::c_int
             && (nest == 0 as libc::c_int as libc::c_long
-                || (*token).type_0() as libc::c_int != OP_CLOSE_SUBEXP as libc::c_int)
+                || (*token).type_0() as libc::c_int
+                    != re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int)
         {
             let mut accumulated_bkref_map: bitset_word_t = (*dfa).completed_bkref_map;
             (*dfa).completed_bkref_map = initial_bkref_map;
@@ -6756,7 +6601,7 @@ unsafe extern "C" fn parse_reg_exp(
         } else {
             branch = 0 as *mut bin_tree_t;
         }
-        tree = create_tree(dfa, tree, branch, OP_ALT);
+        tree = create_tree(dfa, tree, branch, re_token_type_t::OP_ALT);
         if (tree == 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int
             as libc::c_long != 0
         {
@@ -6783,10 +6628,11 @@ unsafe extern "C" fn parse_branch(
     {
         return 0 as *mut bin_tree_t;
     }
-    while (*token).type_0() as libc::c_int != OP_ALT as libc::c_int
-        && (*token).type_0() as libc::c_int != END_OF_RE as libc::c_int
+    while (*token).type_0() as libc::c_int != re_token_type_t::OP_ALT as libc::c_int
+        && (*token).type_0() as libc::c_int != re_token_type_t::END_OF_RE as libc::c_int
         && (nest == 0 as libc::c_int as libc::c_long
-            || (*token).type_0() as libc::c_int != OP_CLOSE_SUBEXP as libc::c_int)
+            || (*token).type_0() as libc::c_int
+                != re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int)
     {
         expr = parse_expression(regexp, preg, token, syntax, nest, err);
         if (*err as libc::c_int != _REG_NOERROR as libc::c_int && expr.is_null())
@@ -6808,7 +6654,12 @@ unsafe extern "C" fn parse_branch(
             return 0 as *mut bin_tree_t;
         }
         if !tree.is_null() && !expr.is_null() {
-            let mut newtree: *mut bin_tree_t = create_tree(dfa, tree, expr, CONCAT);
+            let mut newtree: *mut bin_tree_t = create_tree(
+                dfa,
+                tree,
+                expr,
+                re_token_type_t::CONCAT,
+            );
             if newtree.is_null() {
                 postorder(
                     expr,
@@ -6881,7 +6732,7 @@ unsafe extern "C" fn parse_expression(
                         0 as *mut bin_tree_t,
                         token,
                     );
-                    tree = create_tree(dfa, tree, mbc_remain, CONCAT);
+                    tree = create_tree(dfa, tree, mbc_remain, re_token_type_t::CONCAT);
                     if (mbc_remain.is_null() || tree.is_null()) as libc::c_int
                         as libc::c_long != 0
                     {
@@ -6959,53 +6810,54 @@ unsafe extern "C" fn parse_expression(
                 *err = _REG_BADRPT;
                 return 0 as *mut bin_tree_t;
             }
-            current_block_103 = 5225641404995477800;
+            current_block_103 = 9028963441118033219;
         }
         11 | 18 | 19 => {
-            current_block_103 = 5225641404995477800;
+            current_block_103 = 9028963441118033219;
         }
         9 => {
-            current_block_103 = 5847193895129026917;
+            current_block_103 = 1393709663080569257;
         }
         24 => {
-            current_block_103 = 2931690319481136702;
+            current_block_103 = 18259854807614504404;
         }
         12 => {
             if (*token).opr.ctx_type as libc::c_uint
-                & (WORD_DELIM as libc::c_int | NOT_WORD_DELIM as libc::c_int
-                    | WORD_FIRST as libc::c_int | WORD_LAST as libc::c_int)
-                    as libc::c_uint != 0
+                & (re_context_type::WORD_DELIM as libc::c_int
+                    | re_context_type::NOT_WORD_DELIM as libc::c_int
+                    | re_context_type::WORD_FIRST as libc::c_int
+                    | re_context_type::WORD_LAST as libc::c_int) as libc::c_uint != 0
                 && (*dfa).word_ops_used() as libc::c_int == 0 as libc::c_int
             {
                 init_word_char(dfa);
             }
             if (*token).opr.ctx_type as libc::c_uint
-                == WORD_DELIM as libc::c_int as libc::c_uint
+                == re_context_type::WORD_DELIM as libc::c_int as libc::c_uint
                 || (*token).opr.ctx_type as libc::c_uint
-                    == NOT_WORD_DELIM as libc::c_int as libc::c_uint
+                    == re_context_type::NOT_WORD_DELIM as libc::c_int as libc::c_uint
             {
                 let mut tree_first: *mut bin_tree_t = 0 as *mut bin_tree_t;
                 let mut tree_last: *mut bin_tree_t = 0 as *mut bin_tree_t;
                 if (*token).opr.ctx_type as libc::c_uint
-                    == WORD_DELIM as libc::c_int as libc::c_uint
+                    == re_context_type::WORD_DELIM as libc::c_int as libc::c_uint
                 {
-                    (*token).opr.ctx_type = WORD_FIRST;
+                    (*token).opr.ctx_type = re_context_type::WORD_FIRST;
                     tree_first = create_token_tree(
                         dfa,
                         0 as *mut bin_tree_t,
                         0 as *mut bin_tree_t,
                         token,
                     );
-                    (*token).opr.ctx_type = WORD_LAST;
+                    (*token).opr.ctx_type = re_context_type::WORD_LAST;
                 } else {
-                    (*token).opr.ctx_type = INSIDE_WORD;
+                    (*token).opr.ctx_type = re_context_type::INSIDE_WORD;
                     tree_first = create_token_tree(
                         dfa,
                         0 as *mut bin_tree_t,
                         0 as *mut bin_tree_t,
                         token,
                     );
-                    (*token).opr.ctx_type = INSIDE_NOTWORD;
+                    (*token).opr.ctx_type = re_context_type::INSIDE_NOTWORD;
                 }
                 tree_last = create_token_tree(
                     dfa,
@@ -7013,7 +6865,7 @@ unsafe extern "C" fn parse_expression(
                     0 as *mut bin_tree_t,
                     token,
                 );
-                tree = create_tree(dfa, tree_first, tree_last, OP_ALT);
+                tree = create_tree(dfa, tree_first, tree_last, re_token_type_t::OP_ALT);
                 if (tree_first.is_null() || tree_last.is_null() || tree.is_null())
                     as libc::c_int as libc::c_long != 0
                 {
@@ -7061,7 +6913,8 @@ unsafe extern "C" fn parse_expression(
                 (*regexp).trans,
                 b"alnum\0" as *const u8 as *const libc::c_char,
                 b"_\0" as *const u8 as *const libc::c_char,
-                (*token).type_0() as libc::c_int == OP_NOTWORD as libc::c_int,
+                (*token).type_0() as libc::c_int
+                    == re_token_type_t::OP_NOTWORD as libc::c_int,
                 err,
             );
             if (*err as libc::c_int != _REG_NOERROR as libc::c_int && tree.is_null())
@@ -7077,7 +6930,8 @@ unsafe extern "C" fn parse_expression(
                 (*regexp).trans,
                 b"space\0" as *const u8 as *const libc::c_char,
                 b"\0" as *const u8 as *const libc::c_char,
-                (*token).type_0() as libc::c_int == OP_NOTSPACE as libc::c_int,
+                (*token).type_0() as libc::c_int
+                    == re_token_type_t::OP_NOTSPACE as libc::c_int,
                 err,
             );
             if (*err as libc::c_int != _REG_NOERROR as libc::c_int && tree.is_null())
@@ -7100,7 +6954,7 @@ unsafe extern "C" fn parse_expression(
         }
     }
     match current_block_103 {
-        5225641404995477800 => {
+        9028963441118033219 => {
             if syntax
                 & (((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7115,13 +6969,14 @@ unsafe extern "C" fn parse_expression(
                 fetch_token(token, regexp, syntax);
                 return parse_expression(regexp, preg, token, syntax, nest, err);
             }
-            current_block_103 = 5847193895129026917;
+            current_block_103 = 1393709663080569257;
         }
         _ => {}
     }
     match current_block_103 {
-        5847193895129026917 => {
-            if (*token).type_0() as libc::c_int == OP_CLOSE_SUBEXP as libc::c_int
+        1393709663080569257 => {
+            if (*token).type_0() as libc::c_int
+                == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
                 && syntax
                     & (((((((((((((((((1 as libc::c_int as libc::c_ulong)
                         << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
@@ -7134,13 +6989,13 @@ unsafe extern "C" fn parse_expression(
                 *err = _REG_ERPAREN;
                 return 0 as *mut bin_tree_t;
             }
-            current_block_103 = 2931690319481136702;
+            current_block_103 = 18259854807614504404;
         }
         _ => {}
     }
     match current_block_103 {
-        2931690319481136702 => {
-            (*token).set_type_0(CHARACTER);
+        18259854807614504404 => {
+            (*token).set_type_0(re_token_type_t::CHARACTER);
             tree = create_token_tree(
                 dfa,
                 0 as *mut bin_tree_t,
@@ -7157,10 +7012,14 @@ unsafe extern "C" fn parse_expression(
         _ => {}
     }
     fetch_token(token, regexp, syntax);
-    while (*token).type_0() as libc::c_int == OP_DUP_ASTERISK as libc::c_int
-        || (*token).type_0() as libc::c_int == OP_DUP_PLUS as libc::c_int
-        || (*token).type_0() as libc::c_int == OP_DUP_QUESTION as libc::c_int
-        || (*token).type_0() as libc::c_int == OP_OPEN_DUP_NUM as libc::c_int
+    while (*token).type_0() as libc::c_int
+        == re_token_type_t::OP_DUP_ASTERISK as libc::c_int
+        || (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_DUP_PLUS as libc::c_int
+        || (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_DUP_QUESTION as libc::c_int
+        || (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_OPEN_DUP_NUM as libc::c_int
     {
         let mut dup_tree: *mut bin_tree_t = parse_dup_op(
             tree,
@@ -7199,8 +7058,10 @@ unsafe extern "C" fn parse_expression(
                 << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                 << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                 << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
-            && ((*token).type_0() as libc::c_int == OP_DUP_ASTERISK as libc::c_int
-                || (*token).type_0() as libc::c_int == OP_OPEN_DUP_NUM as libc::c_int)
+            && ((*token).type_0() as libc::c_int
+                == re_token_type_t::OP_DUP_ASTERISK as libc::c_int
+                || (*token).type_0() as libc::c_int
+                    == re_token_type_t::OP_OPEN_DUP_NUM as libc::c_int)
         {
             if !tree.is_null() {
                 postorder(
@@ -7249,13 +7110,16 @@ unsafe extern "C" fn parse_sub_exp(
                 << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
                 << 1 as libc::c_int) << 1 as libc::c_int,
     );
-    if (*token).type_0() as libc::c_int == OP_CLOSE_SUBEXP as libc::c_int {
+    if (*token).type_0() as libc::c_int
+        == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
+    {
         tree = 0 as *mut bin_tree_t;
     } else {
         tree = parse_reg_exp(regexp, preg, token, syntax, nest, err);
         if (*err as libc::c_int == _REG_NOERROR as libc::c_int
-            && (*token).type_0() as libc::c_int != OP_CLOSE_SUBEXP as libc::c_int)
-            as libc::c_int as libc::c_long != 0
+            && (*token).type_0() as libc::c_int
+                != re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int) as libc::c_int
+            as libc::c_long != 0
         {
             if !tree.is_null() {
                 postorder(
@@ -7281,7 +7145,7 @@ unsafe extern "C" fn parse_sub_exp(
     if cur_nsub <= ('9' as i32 - '1' as i32) as libc::c_ulong {
         (*dfa).completed_bkref_map |= ((1 as libc::c_int) << cur_nsub) as libc::c_ulong;
     }
-    tree = create_tree(dfa, tree, 0 as *mut bin_tree_t, SUBEXP);
+    tree = create_tree(dfa, tree, 0 as *mut bin_tree_t, re_token_type_t::SUBEXP);
     if (tree == 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int as libc::c_long
         != 0
     {
@@ -7307,11 +7171,14 @@ unsafe extern "C" fn parse_dup_op(
     let mut end: Idx = 0;
     let mut start_idx: Idx = (*regexp).cur_idx;
     let mut start_token: re_token_t = *token;
-    if (*token).type_0() as libc::c_int == OP_OPEN_DUP_NUM as libc::c_int {
+    if (*token).type_0() as libc::c_int
+        == re_token_type_t::OP_OPEN_DUP_NUM as libc::c_int
+    {
         end = 0 as libc::c_int as Idx;
         start = fetch_number(regexp, token, syntax);
         if start == -(1 as libc::c_int) as libc::c_long {
-            if (*token).type_0() as libc::c_int == CHARACTER as libc::c_int
+            if (*token).type_0() as libc::c_int
+                == re_token_type_t::CHARACTER as libc::c_int
                 && (*token).opr.c as libc::c_int == ',' as i32
             {
                 start = 0 as libc::c_int as Idx;
@@ -7323,10 +7190,12 @@ unsafe extern "C" fn parse_dup_op(
         if (start != -(2 as libc::c_int) as libc::c_long) as libc::c_int as libc::c_long
             != 0
         {
-            end = if (*token).type_0() as libc::c_int == OP_CLOSE_DUP_NUM as libc::c_int
+            end = if (*token).type_0() as libc::c_int
+                == re_token_type_t::OP_CLOSE_DUP_NUM as libc::c_int
             {
                 start
-            } else if (*token).type_0() as libc::c_int == CHARACTER as libc::c_int
+            } else if (*token).type_0() as libc::c_int
+                == re_token_type_t::CHARACTER as libc::c_int
                 && (*token).opr.c as libc::c_int == ',' as i32
             {
                 fetch_number(regexp, token, syntax)
@@ -7349,7 +7218,9 @@ unsafe extern "C" fn parse_dup_op(
                     << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int == 0)
                 as libc::c_int as libc::c_long != 0
             {
-                if (*token).type_0() as libc::c_int == END_OF_RE as libc::c_int {
+                if (*token).type_0() as libc::c_int
+                    == re_token_type_t::END_OF_RE as libc::c_int
+                {
                     *err = _REG_EBRACE;
                 } else {
                     *err = _REG_BADBR;
@@ -7358,12 +7229,13 @@ unsafe extern "C" fn parse_dup_op(
             }
             (*regexp).cur_idx = start_idx;
             *token = start_token;
-            (*token).set_type_0(CHARACTER);
+            (*token).set_type_0(re_token_type_t::CHARACTER);
             return elem;
         }
         if (end != -(1 as libc::c_int) as libc::c_long && start > end
-            || (*token).type_0() as libc::c_int != OP_CLOSE_DUP_NUM as libc::c_int)
-            as libc::c_int as libc::c_long != 0
+            || (*token).type_0() as libc::c_int
+                != re_token_type_t::OP_CLOSE_DUP_NUM as libc::c_int) as libc::c_int
+            as libc::c_long != 0
         {
             *err = _REG_BADBR;
             return 0 as *mut bin_tree_t;
@@ -7376,12 +7248,16 @@ unsafe extern "C" fn parse_dup_op(
             return 0 as *mut bin_tree_t;
         }
     } else {
-        start = (if (*token).type_0() as libc::c_int == OP_DUP_PLUS as libc::c_int {
+        start = (if (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_DUP_PLUS as libc::c_int
+        {
             1 as libc::c_int
         } else {
             0 as libc::c_int
         }) as Idx;
-        end = (if (*token).type_0() as libc::c_int == OP_DUP_QUESTION as libc::c_int {
+        end = (if (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_DUP_QUESTION as libc::c_int
+        {
             1 as libc::c_int
         } else {
             -(1 as libc::c_int)
@@ -7418,16 +7294,16 @@ unsafe extern "C" fn parse_dup_op(
                 break;
             }
             elem = duplicate_tree(elem, dfa);
-            tree = create_tree(dfa, tree, elem, CONCAT);
+            tree = create_tree(dfa, tree, elem, re_token_type_t::CONCAT);
             if (elem.is_null() || tree.is_null()) as libc::c_int as libc::c_long != 0 {
-                current_block = 13822303520967565518;
+                current_block = 14084566570413759640;
                 break;
             }
             i += 1;
             i;
         }
         match current_block {
-            13822303520967565518 => {}
+            14084566570413759640 => {}
             _ => {
                 if start == end {
                     return tree;
@@ -7436,7 +7312,7 @@ unsafe extern "C" fn parse_dup_op(
                 if (elem == 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int
                     as libc::c_long != 0
                 {
-                    current_block = 13822303520967565518;
+                    current_block = 14084566570413759640;
                 } else {
                     old_tree = tree;
                     current_block = 2480299350034459858;
@@ -7449,7 +7325,9 @@ unsafe extern "C" fn parse_dup_op(
     }
     match current_block {
         2480299350034459858 => {
-            if ((*elem).token).type_0() as libc::c_int == SUBEXP as libc::c_int {
+            if ((*elem).token).type_0() as libc::c_int
+                == re_token_type_t::SUBEXP as libc::c_int
+            {
                 let mut subidx: uintptr_t = (*elem).token.opr.idx as uintptr_t;
                 postorder(
                     elem,
@@ -7467,11 +7345,13 @@ unsafe extern "C" fn parse_dup_op(
                 dfa,
                 elem,
                 0 as *mut bin_tree_t,
-                (if end == -(1 as libc::c_int) as libc::c_long {
-                    OP_DUP_ASTERISK as libc::c_int
-                } else {
-                    OP_ALT as libc::c_int
-                }) as re_token_type_t,
+                re_token_type_t::from_libc_c_uint(
+                    (if end == -(1 as libc::c_int) as libc::c_long {
+                        re_token_type_t::OP_DUP_ASTERISK as libc::c_int
+                    } else {
+                        re_token_type_t::OP_ALT as libc::c_int
+                    }) as u32,
+                ),
             );
             if !((tree == 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int
                 as libc::c_long != 0)
@@ -7486,18 +7366,23 @@ unsafe extern "C" fn parse_dup_op(
                             break;
                         }
                         elem = duplicate_tree(elem, dfa);
-                        tree = create_tree(dfa, tree, elem, CONCAT);
+                        tree = create_tree(dfa, tree, elem, re_token_type_t::CONCAT);
                         if (elem.is_null() || tree.is_null()) as libc::c_int
                             as libc::c_long != 0
                         {
-                            current_block = 13822303520967565518;
+                            current_block = 14084566570413759640;
                             break;
                         }
-                        tree = create_tree(dfa, tree, 0 as *mut bin_tree_t, OP_ALT);
+                        tree = create_tree(
+                            dfa,
+                            tree,
+                            0 as *mut bin_tree_t,
+                            re_token_type_t::OP_ALT,
+                        );
                         if (tree == 0 as *mut libc::c_void as *mut bin_tree_t)
                             as libc::c_int as libc::c_long != 0
                         {
-                            current_block = 13822303520967565518;
+                            current_block = 14084566570413759640;
                             break;
                         }
                         i += 1;
@@ -7507,10 +7392,15 @@ unsafe extern "C" fn parse_dup_op(
                     current_block = 1854459640724737493;
                 }
                 match current_block {
-                    13822303520967565518 => {}
+                    14084566570413759640 => {}
                     _ => {
                         if !old_tree.is_null() {
-                            tree = create_tree(dfa, old_tree, tree, CONCAT);
+                            tree = create_tree(
+                                dfa,
+                                old_tree,
+                                tree,
+                                re_token_type_t::CONCAT,
+                            );
                         }
                         return tree;
                     }
@@ -7548,60 +7438,63 @@ unsafe extern "C" fn build_range_exp(
     mut extra: *const libc::c_uchar,
 ) -> reg_errcode_t {
     if ((*start_elem).type_0 as libc::c_uint
-        == EQUIV_CLASS as libc::c_int as libc::c_uint
+        == bracket_elem_type::EQUIV_CLASS as libc::c_int as libc::c_uint
         || (*start_elem).type_0 as libc::c_uint
-            == CHAR_CLASS as libc::c_int as libc::c_uint
+            == bracket_elem_type::CHAR_CLASS as libc::c_int as libc::c_uint
         || (*end_elem).type_0 as libc::c_uint
-            == EQUIV_CLASS as libc::c_int as libc::c_uint
+            == bracket_elem_type::EQUIV_CLASS as libc::c_int as libc::c_uint
         || (*end_elem).type_0 as libc::c_uint
-            == CHAR_CLASS as libc::c_int as libc::c_uint) as libc::c_int as libc::c_long
-        != 0
+            == bracket_elem_type::CHAR_CLASS as libc::c_int as libc::c_uint)
+        as libc::c_int as libc::c_long != 0
     {
         return _REG_ERANGE;
     }
-    if ((*start_elem).type_0 as libc::c_uint == COLL_SYM as libc::c_int as libc::c_uint
+    if ((*start_elem).type_0 as libc::c_uint
+        == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
         && strlen((*start_elem).opr.name as *mut libc::c_char)
             > 1 as libc::c_int as libc::c_ulong
-        || (*end_elem).type_0 as libc::c_uint == COLL_SYM as libc::c_int as libc::c_uint
+        || (*end_elem).type_0 as libc::c_uint
+            == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
             && strlen((*end_elem).opr.name as *mut libc::c_char)
                 > 1 as libc::c_int as libc::c_ulong) as libc::c_int as libc::c_long != 0
     {
         return _REG_ECOLLATE;
     }
     let mut start_ch: libc::c_uint = (if (*start_elem).type_0 as libc::c_uint
-        == SB_CHAR as libc::c_int as libc::c_uint
+        == bracket_elem_type::SB_CHAR as libc::c_int as libc::c_uint
     {
         (*start_elem).opr.ch as libc::c_int
     } else if (*start_elem).type_0 as libc::c_uint
-        == COLL_SYM as libc::c_int as libc::c_uint
+        == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
     {
         *((*start_elem).opr.name).offset(0 as libc::c_int as isize) as libc::c_int
     } else {
         0 as libc::c_int
     }) as libc::c_uint;
     let mut end_ch: libc::c_uint = (if (*end_elem).type_0 as libc::c_uint
-        == SB_CHAR as libc::c_int as libc::c_uint
+        == bracket_elem_type::SB_CHAR as libc::c_int as libc::c_uint
     {
         (*end_elem).opr.ch as libc::c_int
     } else if (*end_elem).type_0 as libc::c_uint
-        == COLL_SYM as libc::c_int as libc::c_uint
+        == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
     {
         *((*end_elem).opr.name).offset(0 as libc::c_int as isize) as libc::c_int
     } else {
         0 as libc::c_int
     }) as libc::c_uint;
     let mut start_wc: wint_t = if (*start_elem).type_0 as libc::c_uint
-        == SB_CHAR as libc::c_int as libc::c_uint
+        == bracket_elem_type::SB_CHAR as libc::c_int as libc::c_uint
         || (*start_elem).type_0 as libc::c_uint
-            == COLL_SYM as libc::c_int as libc::c_uint
+            == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
     {
         parse_byte(start_ch as libc::c_uchar, dfa)
     } else {
         (*start_elem).opr.wch as libc::c_uint
     };
     let mut end_wc: wint_t = if (*end_elem).type_0 as libc::c_uint
-        == SB_CHAR as libc::c_int as libc::c_uint
-        || (*end_elem).type_0 as libc::c_uint == COLL_SYM as libc::c_int as libc::c_uint
+        == bracket_elem_type::SB_CHAR as libc::c_int as libc::c_uint
+        || (*end_elem).type_0 as libc::c_uint
+            == bracket_elem_type::COLL_SYM as libc::c_int as libc::c_uint
     {
         parse_byte(end_ch as libc::c_uchar, dfa)
     } else {
@@ -7648,8 +7541,8 @@ unsafe extern "C" fn build_range_exp(
             (*mbcset).range_ends = new_array_end;
             *range_alloc = new_nranges;
         }
-        *((*mbcset).range_starts)
-            .offset((*mbcset).nranges as isize) = start_wc as wchar_t;
+        *((*mbcset).range_starts).offset((*mbcset).nranges as isize) = start_wc
+            as wchar_t;
         let fresh43 = (*mbcset).nranges;
         (*mbcset).nranges = (*mbcset).nranges + 1;
         *((*mbcset).range_ends).offset(fresh43 as isize) = end_wc as wchar_t;
@@ -7731,12 +7624,14 @@ unsafe extern "C" fn parse_bracket_exp(
         return 0 as *mut bin_tree_t;
     }
     token_len = peek_token_bracket(token, regexp, syntax);
-    if ((*token).type_0() as libc::c_int == END_OF_RE as libc::c_int) as libc::c_int
-        as libc::c_long != 0
+    if ((*token).type_0() as libc::c_int == re_token_type_t::END_OF_RE as libc::c_int)
+        as libc::c_int as libc::c_long != 0
     {
         *err = _REG_BADPAT;
     } else {
-        if (*token).type_0() as libc::c_int == OP_NON_MATCH_LIST as libc::c_int {
+        if (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_NON_MATCH_LIST as libc::c_int
+        {
             (*mbcset).set_non_match(1 as libc::c_int as libc::c_uint);
             non_match = 1 as libc::c_int != 0;
             if syntax
@@ -7749,11 +7644,12 @@ unsafe extern "C" fn parse_bracket_exp(
             }
             (*regexp).cur_idx += token_len as libc::c_long;
             token_len = peek_token_bracket(token, regexp, syntax);
-            if ((*token).type_0() as libc::c_int == END_OF_RE as libc::c_int)
-                as libc::c_int as libc::c_long != 0
+            if ((*token).type_0() as libc::c_int
+                == re_token_type_t::END_OF_RE as libc::c_int) as libc::c_int
+                as libc::c_long != 0
             {
                 *err = _REG_BADPAT;
-                current_block = 7392655921474988883;
+                current_block = 14529269400812330516;
             } else {
                 current_block = 12147880666119273379;
             }
@@ -7761,18 +7657,20 @@ unsafe extern "C" fn parse_bracket_exp(
             current_block = 12147880666119273379;
         }
         match current_block {
-            7392655921474988883 => {}
+            14529269400812330516 => {}
             _ => {
-                if (*token).type_0() as libc::c_int == OP_CLOSE_BRACKET as libc::c_int {
-                    (*token).set_type_0(CHARACTER);
+                if (*token).type_0() as libc::c_int
+                    == re_token_type_t::OP_CLOSE_BRACKET as libc::c_int
+                {
+                    (*token).set_type_0(re_token_type_t::CHARACTER);
                 }
                 loop {
                     let mut start_elem: bracket_elem_t = bracket_elem_t {
-                        type_0: SB_CHAR,
+                        type_0: bracket_elem_type::SB_CHAR,
                         opr: C2RustUnnamed_1 { ch: 0 },
                     };
                     let mut end_elem: bracket_elem_t = bracket_elem_t {
-                        type_0: SB_CHAR,
+                        type_0: bracket_elem_type::SB_CHAR,
                         opr: C2RustUnnamed_1 { ch: 0 },
                     };
                     let mut start_name_buf: [libc::c_uchar; 32] = [0; 32];
@@ -7786,7 +7684,7 @@ unsafe extern "C" fn parse_bracket_exp(
                         c2rust_padding: [0; 5],
                     };
                     start_elem.opr.name = start_name_buf.as_mut_ptr();
-                    start_elem.type_0 = COLL_SYM;
+                    start_elem.type_0 = bracket_elem_type::COLL_SYM;
                     ret = parse_bracket_element(
                         &mut start_elem,
                         regexp,
@@ -7800,25 +7698,27 @@ unsafe extern "C" fn parse_bracket_exp(
                         as libc::c_long != 0
                     {
                         *err = ret;
-                        current_block = 7392655921474988883;
+                        current_block = 14529269400812330516;
                         break;
                     } else {
                         first_round = 0 as libc::c_int != 0;
                         token_len = peek_token_bracket(token, regexp, syntax);
                         if start_elem.type_0 as libc::c_uint
-                            != CHAR_CLASS as libc::c_int as libc::c_uint
+                            != bracket_elem_type::CHAR_CLASS as libc::c_int
+                                as libc::c_uint
                             && start_elem.type_0 as libc::c_uint
-                                != EQUIV_CLASS as libc::c_int as libc::c_uint
+                                != bracket_elem_type::EQUIV_CLASS as libc::c_int
+                                    as libc::c_uint
                         {
                             if ((*token).type_0() as libc::c_int
-                                == END_OF_RE as libc::c_int) as libc::c_int as libc::c_long
-                                != 0
+                                == re_token_type_t::END_OF_RE as libc::c_int) as libc::c_int
+                                as libc::c_long != 0
                             {
                                 *err = _REG_EBRACK;
-                                current_block = 7392655921474988883;
+                                current_block = 14529269400812330516;
                                 break;
                             } else if (*token).type_0() as libc::c_int
-                                == OP_CHARSET_RANGE as libc::c_int
+                                == re_token_type_t::OP_CHARSET_RANGE as libc::c_int
                             {
                                 (*regexp).cur_idx += token_len as libc::c_long;
                                 token_len2 = peek_token_bracket(
@@ -7827,17 +7727,17 @@ unsafe extern "C" fn parse_bracket_exp(
                                     syntax,
                                 );
                                 if (token2.type_0() as libc::c_int
-                                    == END_OF_RE as libc::c_int) as libc::c_int as libc::c_long
-                                    != 0
+                                    == re_token_type_t::END_OF_RE as libc::c_int) as libc::c_int
+                                    as libc::c_long != 0
                                 {
                                     *err = _REG_EBRACK;
-                                    current_block = 7392655921474988883;
+                                    current_block = 14529269400812330516;
                                     break;
                                 } else if token2.type_0() as libc::c_int
-                                    == OP_CLOSE_BRACKET as libc::c_int
+                                    == re_token_type_t::OP_CLOSE_BRACKET as libc::c_int
                                 {
                                     (*regexp).cur_idx += -token_len as libc::c_long;
-                                    (*token).set_type_0(CHARACTER);
+                                    (*token).set_type_0(re_token_type_t::CHARACTER);
                                 } else {
                                     is_range_exp = 1 as libc::c_int != 0;
                                 }
@@ -7845,7 +7745,7 @@ unsafe extern "C" fn parse_bracket_exp(
                         }
                         if is_range_exp as libc::c_int == 1 as libc::c_int {
                             end_elem.opr.name = end_name_buf.as_mut_ptr();
-                            end_elem.type_0 = COLL_SYM;
+                            end_elem.type_0 = bracket_elem_type::COLL_SYM;
                             ret = parse_bracket_element(
                                 &mut end_elem,
                                 regexp,
@@ -7859,7 +7759,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                 as libc::c_int as libc::c_long != 0
                             {
                                 *err = ret;
-                                current_block = 7392655921474988883;
+                                current_block = 14529269400812330516;
                                 break;
                             } else {
                                 token_len = peek_token_bracket(token, regexp, syntax);
@@ -7881,7 +7781,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                 if (*err as libc::c_int != _REG_NOERROR as libc::c_int)
                                     as libc::c_int as libc::c_long != 0
                                 {
-                                    current_block = 7392655921474988883;
+                                    current_block = 14529269400812330516;
                                     break;
                                 }
                             }
@@ -7907,15 +7807,16 @@ unsafe extern "C" fn parse_bracket_exp(
                                         if (new_mbchars == 0 as *mut libc::c_void as *mut wchar_t)
                                             as libc::c_int as libc::c_long != 0
                                         {
-                                            current_block = 15085156587336121203;
+                                            current_block = 12323169532331535154;
                                             break;
                                         }
                                         (*mbcset).mbchars = new_mbchars;
                                     }
                                     let fresh44 = (*mbcset).nmbchars;
                                     (*mbcset).nmbchars = (*mbcset).nmbchars + 1;
-                                    *((*mbcset).mbchars)
-                                        .offset(fresh44 as isize) = start_elem.opr.wch;
+                                    *((*mbcset).mbchars).offset(fresh44 as isize) = start_elem
+                                        .opr
+                                        .wch;
                                 }
                                 2 => {
                                     *err = build_equiv_class(
@@ -7927,7 +7828,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     if (*err as libc::c_int != _REG_NOERROR as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 7392655921474988883;
+                                        current_block = 14529269400812330516;
                                         break;
                                     }
                                 }
@@ -7945,7 +7846,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     if (*err as libc::c_int != _REG_NOERROR as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 7392655921474988883;
+                                        current_block = 14529269400812330516;
                                         break;
                                     }
                                 }
@@ -7961,7 +7862,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     if (*err as libc::c_int != _REG_NOERROR as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 7392655921474988883;
+                                        current_block = 14529269400812330516;
                                         break;
                                     }
                                 }
@@ -7972,14 +7873,15 @@ unsafe extern "C" fn parse_bracket_exp(
                                 }
                             }
                         }
-                        if ((*token).type_0() as libc::c_int == END_OF_RE as libc::c_int)
-                            as libc::c_int as libc::c_long != 0
+                        if ((*token).type_0() as libc::c_int
+                            == re_token_type_t::END_OF_RE as libc::c_int) as libc::c_int
+                            as libc::c_long != 0
                         {
                             *err = _REG_EBRACK;
-                            current_block = 7392655921474988883;
+                            current_block = 14529269400812330516;
                             break;
                         } else if (*token).type_0() as libc::c_int
-                            == OP_CLOSE_BRACKET as libc::c_int
+                            == re_token_type_t::OP_CLOSE_BRACKET as libc::c_int
                         {
                             current_block = 7419121793134201633;
                             break;
@@ -7987,7 +7889,7 @@ unsafe extern "C" fn parse_bracket_exp(
                     }
                 }
                 match current_block {
-                    7392655921474988883 => {}
+                    14529269400812330516 => {}
                     _ => {
                         match current_block {
                             7419121793134201633 => {
@@ -8007,7 +7909,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     let mut mbc_tree: *mut bin_tree_t = 0 as *mut bin_tree_t;
                                     let mut sbc_idx: libc::c_int = 0;
                                     (*dfa).set_has_mb_node(1 as libc::c_int as libc::c_uint);
-                                    br_token.set_type_0(COMPLEX_BRACKET);
+                                    br_token.set_type_0(re_token_type_t::COMPLEX_BRACKET);
                                     br_token.opr.mbcset = mbcset;
                                     mbc_tree = create_token_tree(
                                         dfa,
@@ -8018,7 +7920,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     if (mbc_tree == 0 as *mut libc::c_void as *mut bin_tree_t)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 15085156587336121203;
+                                        current_block = 12323169532331535154;
                                     } else {
                                         sbc_idx = 0 as libc::c_int;
                                         while sbc_idx
@@ -8037,7 +7939,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                                 + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
                                                 / 64 as libc::c_int
                                         {
-                                            br_token.set_type_0(SIMPLE_BRACKET);
+                                            br_token.set_type_0(re_token_type_t::SIMPLE_BRACKET);
                                             br_token.opr.sbcset = sbcset;
                                             work_tree = create_token_tree(
                                                 dfa,
@@ -8048,13 +7950,18 @@ unsafe extern "C" fn parse_bracket_exp(
                                             if (work_tree == 0 as *mut libc::c_void as *mut bin_tree_t)
                                                 as libc::c_int as libc::c_long != 0
                                             {
-                                                current_block = 15085156587336121203;
+                                                current_block = 12323169532331535154;
                                             } else {
-                                                work_tree = create_tree(dfa, work_tree, mbc_tree, OP_ALT);
+                                                work_tree = create_tree(
+                                                    dfa,
+                                                    work_tree,
+                                                    mbc_tree,
+                                                    re_token_type_t::OP_ALT,
+                                                );
                                                 if (work_tree == 0 as *mut libc::c_void as *mut bin_tree_t)
                                                     as libc::c_int as libc::c_long != 0
                                                 {
-                                                    current_block = 15085156587336121203;
+                                                    current_block = 12323169532331535154;
                                                 } else {
                                                     current_block = 17958840340921835115;
                                                 }
@@ -8067,7 +7974,7 @@ unsafe extern "C" fn parse_bracket_exp(
                                     }
                                 } else {
                                     free_charset(mbcset);
-                                    br_token.set_type_0(SIMPLE_BRACKET);
+                                    br_token.set_type_0(re_token_type_t::SIMPLE_BRACKET);
                                     br_token.opr.sbcset = sbcset;
                                     work_tree = create_token_tree(
                                         dfa,
@@ -8078,13 +7985,13 @@ unsafe extern "C" fn parse_bracket_exp(
                                     if (work_tree == 0 as *mut libc::c_void as *mut bin_tree_t)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 15085156587336121203;
+                                        current_block = 12323169532331535154;
                                     } else {
                                         current_block = 17958840340921835115;
                                     }
                                 }
                                 match current_block {
-                                    15085156587336121203 => {}
+                                    12323169532331535154 => {}
                                     _ => return work_tree,
                                 }
                             }
@@ -8112,20 +8019,24 @@ unsafe extern "C" fn parse_bracket_element(
     let mut cur_char_size: libc::c_int = 0;
     cur_char_size = re_string_char_size_at(regexp, (*regexp).cur_idx);
     if cur_char_size > 1 as libc::c_int {
-        (*elem).type_0 = MB_CHAR;
+        (*elem).type_0 = bracket_elem_type::MB_CHAR;
         (*elem).opr.wch = re_string_wchar_at(regexp, (*regexp).cur_idx) as wchar_t;
         (*regexp).cur_idx += cur_char_size as libc::c_long;
         return _REG_NOERROR;
     }
     (*regexp).cur_idx += token_len as libc::c_long;
-    if (*token).type_0() as libc::c_int == OP_OPEN_COLL_ELEM as libc::c_int
-        || (*token).type_0() as libc::c_int == OP_OPEN_CHAR_CLASS as libc::c_int
-        || (*token).type_0() as libc::c_int == OP_OPEN_EQUIV_CLASS as libc::c_int
+    if (*token).type_0() as libc::c_int
+        == re_token_type_t::OP_OPEN_COLL_ELEM as libc::c_int
+        || (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_OPEN_CHAR_CLASS as libc::c_int
+        || (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_OPEN_EQUIV_CLASS as libc::c_int
     {
         return parse_bracket_symbol(elem, regexp, token);
     }
-    if ((*token).type_0() as libc::c_int == OP_CHARSET_RANGE as libc::c_int)
-        as libc::c_int as libc::c_long != 0 && !accept_hyphen
+    if ((*token).type_0() as libc::c_int
+        == re_token_type_t::OP_CHARSET_RANGE as libc::c_int) as libc::c_int
+        as libc::c_long != 0 && !accept_hyphen
     {
         let mut token2: re_token_t = re_token_t {
             opr: C2RustUnnamed { c: 0 },
@@ -8133,11 +8044,13 @@ unsafe extern "C" fn parse_bracket_element(
             c2rust_padding: [0; 5],
         };
         peek_token_bracket(&mut token2, regexp, syntax);
-        if token2.type_0() as libc::c_int != OP_CLOSE_BRACKET as libc::c_int {
+        if token2.type_0() as libc::c_int
+            != re_token_type_t::OP_CLOSE_BRACKET as libc::c_int
+        {
             return _REG_ERANGE;
         }
     }
-    (*elem).type_0 = SB_CHAR;
+    (*elem).type_0 = bracket_elem_type::SB_CHAR;
     (*elem).opr.ch = (*token).opr.c;
     return _REG_NOERROR;
 }
@@ -8156,7 +8069,9 @@ unsafe extern "C" fn parse_bracket_symbol(
         if i >= 32 as libc::c_int {
             return _REG_EBRACK;
         }
-        if (*token).type_0() as libc::c_int == OP_OPEN_CHAR_CLASS as libc::c_int {
+        if (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_OPEN_CHAR_CLASS as libc::c_int
+        {
             ch = re_string_fetch_byte_case(regexp);
         } else {
             let fresh45 = (*regexp).cur_idx;
@@ -8181,13 +8096,13 @@ unsafe extern "C" fn parse_bracket_symbol(
     *((*elem).opr.name).offset(i as isize) = '\0' as i32 as libc::c_uchar;
     match (*token).type_0() as libc::c_int {
         26 => {
-            (*elem).type_0 = COLL_SYM;
+            (*elem).type_0 = bracket_elem_type::COLL_SYM;
         }
         28 => {
-            (*elem).type_0 = EQUIV_CLASS;
+            (*elem).type_0 = bracket_elem_type::EQUIV_CLASS;
         }
         30 => {
-            (*elem).type_0 = CHAR_CLASS;
+            (*elem).type_0 = bracket_elem_type::CHAR_CLASS;
         }
         _ => {}
     }
@@ -8263,7 +8178,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISalnum as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8277,7 +8193,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISalnum as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISalnum as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8297,7 +8214,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _IScntrl as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_IScntrl as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8311,7 +8229,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _IScntrl as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_IScntrl as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8331,7 +8250,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISlower as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISlower as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8345,7 +8265,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISlower as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISlower as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8365,7 +8286,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISspace as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8379,7 +8301,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISspace as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISspace as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8399,7 +8322,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISalpha as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISalpha as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8413,7 +8337,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISalpha as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISalpha as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8433,7 +8358,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISdigit as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8447,7 +8373,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISdigit as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8467,7 +8394,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISprint as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8481,7 +8409,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISprint as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8501,7 +8430,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISupper as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISupper as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8515,7 +8445,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISupper as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISupper as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8535,7 +8466,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISblank as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISblank as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8549,7 +8481,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISblank as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISblank as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8569,7 +8502,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISgraph as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISgraph as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8583,7 +8517,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISgraph as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISgraph as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8603,7 +8538,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISpunct as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISpunct as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8617,7 +8553,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISpunct as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISpunct as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8637,7 +8574,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISxdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISxdigit as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, *trans.offset(i as isize) as Idx);
                 }
@@ -8651,7 +8589,8 @@ unsafe extern "C" fn build_charclass(
                     + 1 as libc::c_int
             {
                 if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                    & _ISxdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+                    & C2RustUnnamed_4::_ISxdigit as libc::c_int as libc::c_ushort
+                        as libc::c_int != 0
                 {
                     bitset_set(sbcset, i as Idx);
                 }
@@ -8732,7 +8671,7 @@ unsafe extern "C" fn build_charclass_op(
             c2rust_padding: [0; 5],
             opr: C2RustUnnamed { sbcset: sbcset },
         };
-        init.set_type_0(SIMPLE_BRACKET);
+        init.set_type_0(re_token_type_t::SIMPLE_BRACKET);
         init.set_constraint(0);
         init.set_duplicated(0);
         init.set_opt_subexp(0);
@@ -8752,7 +8691,7 @@ unsafe extern "C" fn build_charclass_op(
     {
         if (*dfa).mb_cur_max > 1 as libc::c_int {
             let mut mbc_tree: *mut bin_tree_t = 0 as *mut bin_tree_t;
-            br_token.set_type_0(COMPLEX_BRACKET);
+            br_token.set_type_0(re_token_type_t::COMPLEX_BRACKET);
             br_token.opr.mbcset = mbcset;
             (*dfa).set_has_mb_node(1 as libc::c_int as libc::c_uint);
             mbc_tree = create_token_tree(
@@ -8764,7 +8703,7 @@ unsafe extern "C" fn build_charclass_op(
             if !((mbc_tree == 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int
                 as libc::c_long != 0)
             {
-                tree = create_tree(dfa, tree, mbc_tree, OP_ALT);
+                tree = create_tree(dfa, tree, mbc_tree, re_token_type_t::OP_ALT);
                 if (mbc_tree != 0 as *mut libc::c_void as *mut bin_tree_t) as libc::c_int
                     as libc::c_long != 0
                 {
@@ -8791,17 +8730,20 @@ unsafe extern "C" fn fetch_number(
     loop {
         fetch_token(token, input, syntax);
         c = (*token).opr.c;
-        if ((*token).type_0() as libc::c_int == END_OF_RE as libc::c_int) as libc::c_int
-            as libc::c_long != 0
+        if ((*token).type_0() as libc::c_int
+            == re_token_type_t::END_OF_RE as libc::c_int) as libc::c_int as libc::c_long
+            != 0
         {
             return -(2 as libc::c_int) as Idx;
         }
-        if (*token).type_0() as libc::c_int == OP_CLOSE_DUP_NUM as libc::c_int
+        if (*token).type_0() as libc::c_int
+            == re_token_type_t::OP_CLOSE_DUP_NUM as libc::c_int
             || c as libc::c_int == ',' as i32
         {
             break;
         }
-        num = if (*token).type_0() as libc::c_int != CHARACTER as libc::c_int
+        num = if (*token).type_0() as libc::c_int
+            != re_token_type_t::CHARACTER as libc::c_int
             || (c as libc::c_int) < '0' as i32 || ('9' as i32) < c as libc::c_int
             || num == -(2 as libc::c_int) as libc::c_long
         {
@@ -8902,7 +8844,7 @@ unsafe extern "C" fn mark_opt_subexp(
     mut node: *mut bin_tree_t,
 ) -> reg_errcode_t {
     let mut idx: Idx = extra as uintptr_t as Idx;
-    if ((*node).token).type_0() as libc::c_int == SUBEXP as libc::c_int
+    if ((*node).token).type_0() as libc::c_int == re_token_type_t::SUBEXP as libc::c_int
         && (*node).token.opr.idx == idx
     {
         ((*node).token).set_opt_subexp(1 as libc::c_int as libc::c_uint);
@@ -8910,11 +8852,12 @@ unsafe extern "C" fn mark_opt_subexp(
     return _REG_NOERROR;
 }
 unsafe extern "C" fn free_token(mut node: *mut re_token_t) {
-    if (*node).type_0() as libc::c_int == COMPLEX_BRACKET as libc::c_int
+    if (*node).type_0() as libc::c_int == re_token_type_t::COMPLEX_BRACKET as libc::c_int
         && (*node).duplicated() as libc::c_int == 0 as libc::c_int
     {
         free_charset((*node).opr.mbcset);
-    } else if (*node).type_0() as libc::c_int == SIMPLE_BRACKET as libc::c_int
+    } else if (*node).type_0() as libc::c_int
+        == re_token_type_t::SIMPLE_BRACKET as libc::c_int
         && (*node).duplicated() as libc::c_int == 0 as libc::c_int
     {
         rpl_free((*node).opr.sbcset as *mut libc::c_void);
@@ -8999,8 +8942,7 @@ pub unsafe extern "C" fn rpl_regexec(
                 *mut libc::c_int,
             ) -> libc::c_int,
     ))
-        .is_some()
-        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+        .is_some() || 0 as libc::c_int != 0
     {
         pthread_mutex_lock(&mut (*dfa).lock);
     } else {};
@@ -9036,8 +8978,7 @@ pub unsafe extern "C" fn rpl_regexec(
                 *mut libc::c_int,
             ) -> libc::c_int,
     ))
-        .is_some()
-        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+        .is_some() || 0 as libc::c_int != 0
     {
         pthread_mutex_unlock(&mut (*dfa).lock);
     } else {};
@@ -9232,8 +9173,7 @@ unsafe extern "C" fn re_search_stub(
                 *mut libc::c_int,
             ) -> libc::c_int,
     ))
-        .is_some()
-        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+        .is_some() || 0 as libc::c_int != 0
     {
         pthread_mutex_lock(&mut (*dfa).lock);
     } else {};
@@ -9334,8 +9274,7 @@ unsafe extern "C" fn re_search_stub(
                 *mut libc::c_int,
             ) -> libc::c_int,
     ))
-        .is_some()
-        || (Some(thrd_exit as unsafe extern "C" fn(libc::c_int) -> !)).is_some()
+        .is_some() || 0 as libc::c_int != 0
     {
         pthread_mutex_unlock(&mut (*dfa).lock);
     } else {};
@@ -9351,8 +9290,7 @@ unsafe extern "C" fn re_copy_regs(
     let mut i: Idx = 0;
     let mut need_regs: Idx = nregs + 1 as libc::c_int as libc::c_long;
     if regs_allocated == 0 as libc::c_int {
-        (*regs)
-            .start = malloc(
+        (*regs).start = malloc(
             (need_regs as libc::c_ulong)
                 .wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
         ) as *mut regoff_t;
@@ -9361,8 +9299,7 @@ unsafe extern "C" fn re_copy_regs(
         {
             return 0 as libc::c_int as libc::c_uint;
         }
-        (*regs)
-            .end = malloc(
+        (*regs).end = malloc(
             (need_regs as libc::c_ulong)
                 .wrapping_mul(::core::mem::size_of::<regoff_t>() as libc::c_ulong),
         ) as *mut regoff_t;
@@ -9615,10 +9552,9 @@ unsafe extern "C" fn re_search_internal(
                     as libc::c_long != 0
                 {
                     err = _REG_ESPACE;
-                    current_block = 17636011296774399455;
+                    current_block = 16979376463898107242;
                 } else {
-                    mctx
-                        .state_log = malloc(
+                    mctx.state_log = malloc(
                         ((mctx.input.bufs_len + 1 as libc::c_int as libc::c_long)
                             as libc::c_ulong)
                             .wrapping_mul(
@@ -9631,7 +9567,7 @@ unsafe extern "C" fn re_search_internal(
                         as libc::c_int as libc::c_long != 0
                     {
                         err = _REG_ESPACE;
-                        current_block = 17636011296774399455;
+                        current_block = 16979376463898107242;
                     } else {
                         current_block = 11194104282611034094;
                     }
@@ -9640,12 +9576,10 @@ unsafe extern "C" fn re_search_internal(
                 current_block = 11194104282611034094;
             }
             match current_block {
-                17636011296774399455 => {}
+                16979376463898107242 => {}
                 _ => {
                     match_first = start;
-                    mctx
-                        .input
-                        .tip_context = (if eflags & 1 as libc::c_int != 0 {
+                    mctx.input.tip_context = (if eflags & 1 as libc::c_int != 0 {
                         ((1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int
                     } else {
                         (1 as libc::c_int) << 1 as libc::c_int
@@ -9697,7 +9631,7 @@ unsafe extern "C" fn re_search_internal(
                     's_148: loop {
                         err = _REG_NOMATCH;
                         if match_first < left_lim || right_lim < match_first {
-                            current_block = 17636011296774399455;
+                            current_block = 16979376463898107242;
                             break;
                         }
                         match match_kind {
@@ -9719,7 +9653,7 @@ unsafe extern "C" fn re_search_internal(
                                     match_first += 1;
                                     match_first;
                                 }
-                                current_block = 10658539203435574724;
+                                current_block = 12075664595771934080;
                             }
                             6 => {
                                 while (match_first < right_lim) as libc::c_int
@@ -9733,7 +9667,7 @@ unsafe extern "C" fn re_search_internal(
                                     match_first += 1;
                                     match_first;
                                 }
-                                current_block = 10658539203435574724;
+                                current_block = 12075664595771934080;
                             }
                             4 | 5 => {
                                 while match_first >= left_lim {
@@ -9758,7 +9692,7 @@ unsafe extern "C" fn re_search_internal(
                                     match_first;
                                 }
                                 if match_first < left_lim {
-                                    current_block = 17636011296774399455;
+                                    current_block = 16979376463898107242;
                                     break;
                                 }
                                 current_block = 6560072651652764009;
@@ -9778,7 +9712,7 @@ unsafe extern "C" fn re_search_internal(
                                         if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                                             as libc::c_int as libc::c_long != 0
                                         {
-                                            current_block = 17636011296774399455;
+                                            current_block = 16979376463898107242;
                                             break 's_148;
                                         }
                                         offset = (match_first - mctx.input.raw_mbs_idx)
@@ -9797,14 +9731,14 @@ unsafe extern "C" fn re_search_internal(
                                         continue;
                                     }
                                     err = _REG_NOMATCH;
-                                    current_block = 17636011296774399455;
+                                    current_block = 16979376463898107242;
                                     break 's_148;
                                 }
                                 current_block = 6560072651652764009;
                             }
                         }
                         match current_block {
-                            10658539203435574724 => {
+                            12075664595771934080 => {
                                 if (match_first == right_lim) as libc::c_int as libc::c_long
                                     != 0
                                 {
@@ -9823,7 +9757,7 @@ unsafe extern "C" fn re_search_internal(
                                             }) as isize,
                                         ) == 0
                                     {
-                                        current_block = 17636011296774399455;
+                                        current_block = 16979376463898107242;
                                         break;
                                     }
                                 }
@@ -9838,7 +9772,7 @@ unsafe extern "C" fn re_search_internal(
                         if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                             as libc::c_int as libc::c_long != 0
                         {
-                            current_block = 17636011296774399455;
+                            current_block = 16979376463898107242;
                             break;
                         }
                         if !(!sb
@@ -9863,7 +9797,7 @@ unsafe extern "C" fn re_search_internal(
                                     as libc::c_int as libc::c_long != 0
                                 {
                                     err = _REG_ESPACE;
-                                    current_block = 17636011296774399455;
+                                    current_block = 16979376463898107242;
                                     break;
                                 } else {
                                     mctx.match_last = match_last;
@@ -9873,8 +9807,7 @@ unsafe extern "C" fn re_search_internal(
                                     {
                                         let mut pstate: *mut re_dfastate_t = *(mctx.state_log)
                                             .offset(match_last as isize);
-                                        mctx
-                                            .last_node = check_halt_state_context(
+                                        mctx.last_node = check_halt_state_context(
                                             &mut mctx,
                                             pstate,
                                             match_last,
@@ -9896,7 +9829,7 @@ unsafe extern "C" fn re_search_internal(
                                     if (err as libc::c_int != _REG_NOMATCH as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 17636011296774399455;
+                                        current_block = 16979376463898107242;
                                         break;
                                     }
                                     match_last = -(1 as libc::c_int) as Idx;
@@ -9907,7 +9840,7 @@ unsafe extern "C" fn re_search_internal(
                         match_first += incr as libc::c_long;
                     }
                     match current_block {
-                        17636011296774399455 => {}
+                        16979376463898107242 => {}
                         _ => {
                             if match_last != -(1 as libc::c_int) as libc::c_long
                             {} else {
@@ -9928,10 +9861,10 @@ unsafe extern "C" fn re_search_internal(
                                     reg_idx += 1;
                                     reg_idx;
                                 }
-                                (*pmatch.offset(0 as libc::c_int as isize))
-                                    .rm_so = 0 as libc::c_int as regoff_t;
-                                (*pmatch.offset(0 as libc::c_int as isize))
-                                    .rm_eo = mctx.match_last;
+                                (*pmatch.offset(0 as libc::c_int as isize)).rm_so = 0
+                                    as libc::c_int as regoff_t;
+                                (*pmatch.offset(0 as libc::c_int as isize)).rm_eo = mctx
+                                    .match_last;
                                 if (*preg).no_sub() == 0
                                     && nmatch > 1 as libc::c_int as libc::c_ulong
                                 {
@@ -9946,7 +9879,7 @@ unsafe extern "C" fn re_search_internal(
                                     if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 17636011296774399455;
+                                        current_block = 16979376463898107242;
                                     } else {
                                         current_block = 5722677567366458307;
                                     }
@@ -9954,7 +9887,7 @@ unsafe extern "C" fn re_search_internal(
                                     current_block = 5722677567366458307;
                                 }
                                 match current_block {
-                                    17636011296774399455 => {}
+                                    16979376463898107242 => {}
                                     _ => {
                                         reg_idx = 0 as libc::c_int as Idx;
                                         while (reg_idx as libc::c_ulong) < nmatch {
@@ -9964,18 +9897,18 @@ unsafe extern "C" fn re_search_internal(
                                                 if (mctx.input.offsets_needed as libc::c_int
                                                     != 0 as libc::c_int) as libc::c_int as libc::c_long != 0
                                                 {
-                                                    (*pmatch.offset(reg_idx as isize))
-                                                        .rm_so = if (*pmatch.offset(reg_idx as isize)).rm_so
-                                                        == mctx.input.valid_len
+                                                    (*pmatch.offset(reg_idx as isize)).rm_so = if (*pmatch
+                                                        .offset(reg_idx as isize))
+                                                        .rm_so == mctx.input.valid_len
                                                     {
                                                         mctx.input.valid_raw_len
                                                     } else {
                                                         *(mctx.input.offsets)
                                                             .offset((*pmatch.offset(reg_idx as isize)).rm_so as isize)
                                                     };
-                                                    (*pmatch.offset(reg_idx as isize))
-                                                        .rm_eo = if (*pmatch.offset(reg_idx as isize)).rm_eo
-                                                        == mctx.input.valid_len
+                                                    (*pmatch.offset(reg_idx as isize)).rm_eo = if (*pmatch
+                                                        .offset(reg_idx as isize))
+                                                        .rm_eo == mctx.input.valid_len
                                                     {
                                                         mctx.input.valid_raw_len
                                                     } else {
@@ -10114,7 +10047,7 @@ unsafe extern "C" fn prune_impossible_nodes(
                 as libc::c_int as libc::c_long != 0
             {
                 ret = _REG_ESPACE;
-                current_block = 7812847296329204675;
+                current_block = 16919853974379317106;
             } else {
                 's_62: loop {
                     memset(
@@ -10138,7 +10071,7 @@ unsafe extern "C" fn prune_impossible_nodes(
                     if (ret as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
                         as libc::c_long != 0
                     {
-                        current_block = 7812847296329204675;
+                        current_block = 16919853974379317106;
                         break;
                     }
                     if !(*sifted_states.offset(0 as libc::c_int as isize)).is_null()
@@ -10152,7 +10085,7 @@ unsafe extern "C" fn prune_impossible_nodes(
                         match_last;
                         if match_last < 0 as libc::c_int as libc::c_long {
                             ret = _REG_NOMATCH;
-                            current_block = 7812847296329204675;
+                            current_block = 16919853974379317106;
                             break 's_62;
                         } else if !((*((*mctx).state_log).offset(match_last as isize))
                             .is_null()
@@ -10169,7 +10102,7 @@ unsafe extern "C" fn prune_impossible_nodes(
                     );
                 }
                 match current_block {
-                    7812847296329204675 => {}
+                    16919853974379317106 => {}
                     _ => {
                         ret = merge_state_array(
                             dfa,
@@ -10182,7 +10115,7 @@ unsafe extern "C" fn prune_impossible_nodes(
                         if (ret as libc::c_int != _REG_NOERROR as libc::c_int)
                             as libc::c_int as libc::c_long != 0
                         {
-                            current_block = 7812847296329204675;
+                            current_block = 16919853974379317106;
                         } else {
                             current_block = 2569451025026770673;
                         }
@@ -10196,16 +10129,16 @@ unsafe extern "C" fn prune_impossible_nodes(
             if (ret as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
                 as libc::c_long != 0
             {
-                current_block = 7812847296329204675;
+                current_block = 16919853974379317106;
             } else if (*sifted_states.offset(0 as libc::c_int as isize)).is_null() {
                 ret = _REG_NOMATCH;
-                current_block = 7812847296329204675;
+                current_block = 16919853974379317106;
             } else {
                 current_block = 2569451025026770673;
             }
         }
         match current_block {
-            7812847296329204675 => {}
+            16919853974379317106 => {}
             _ => {
                 rpl_free((*mctx).state_log as *mut libc::c_void);
                 (*mctx).state_log = sifted_states;
@@ -10400,7 +10333,9 @@ unsafe extern "C" fn check_halt_node_context(
     let mut type_0: re_token_type_t = (*((*dfa).nodes).offset(node as isize)).type_0();
     let mut constraint: libc::c_uint = (*((*dfa).nodes).offset(node as isize))
         .constraint();
-    if type_0 as libc::c_uint != END_OF_RE as libc::c_int as libc::c_uint {
+    if type_0 as libc::c_uint
+        != re_token_type_t::END_OF_RE as libc::c_int as libc::c_uint
+    {
         return 0 as libc::c_int != 0;
     }
     if constraint == 0 {
@@ -10507,7 +10442,9 @@ unsafe extern "C" fn proceed_next_node(
             .type_0();
         if (*((*dfa).nodes).offset(node as isize)).accept_mb() != 0 {
             naccepted = check_node_accept_bytes(dfa, node, &(*mctx).input, *pidx) as Idx;
-        } else if type_0 as libc::c_uint == OP_BACK_REF as libc::c_int as libc::c_uint {
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint
+        {
             let mut subexp_idx: Idx = (*((*dfa).nodes).offset(node as isize)).opr.idx
                 + 1 as libc::c_int as libc::c_long;
             if subexp_idx < nregs {
@@ -10716,8 +10653,7 @@ unsafe extern "C" fn set_regs(
     };
     if fl_backtrack {
         fs = &mut fs_body;
-        (*fs)
-            .stack = malloc(
+        (*fs).stack = malloc(
             ((*fs).alloc as libc::c_ulong)
                 .wrapping_mul(
                     ::core::mem::size_of::<re_fail_stack_ent_t>() as libc::c_ulong,
@@ -10854,14 +10790,14 @@ unsafe extern "C" fn update_regs(
 ) {
     let mut type_0: libc::c_int = (*((*dfa).nodes).offset(cur_node as isize)).type_0()
         as libc::c_int;
-    if type_0 == OP_OPEN_SUBEXP as libc::c_int {
+    if type_0 == re_token_type_t::OP_OPEN_SUBEXP as libc::c_int {
         let mut reg_num: Idx = (*((*dfa).nodes).offset(cur_node as isize)).opr.idx
             + 1 as libc::c_int as libc::c_long;
         if reg_num < nmatch {
             (*pmatch.offset(reg_num as isize)).rm_so = cur_idx;
             (*pmatch.offset(reg_num as isize)).rm_eo = -(1 as libc::c_int) as regoff_t;
         }
-    } else if type_0 == OP_CLOSE_SUBEXP as libc::c_int {
+    } else if type_0 == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int {
         let mut reg_num_0: Idx = (*((*dfa).nodes).offset(cur_node as isize)).opr.idx
             + 1 as libc::c_int as libc::c_long;
         if reg_num_0 < nmatch {
@@ -10918,13 +10854,13 @@ unsafe extern "C" fn sift_states_backward(
     if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int as libc::c_long
         != 0
     {
-        current_block = 6293916220349241430;
+        current_block = 3138416149322218621;
     } else {
         current_block = 6873731126896040597;
     }
     loop {
         match current_block {
-            6293916220349241430 => {
+            3138416149322218621 => {
                 rpl_free(cur_dest.elems as *mut libc::c_void);
                 break;
             }
@@ -10956,7 +10892,7 @@ unsafe extern "C" fn sift_states_backward(
                         if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                             as libc::c_int as libc::c_long != 0
                         {
-                            current_block = 6293916220349241430;
+                            current_block = 3138416149322218621;
                             continue;
                         }
                     }
@@ -10964,13 +10900,13 @@ unsafe extern "C" fn sift_states_backward(
                     if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
                         as libc::c_long != 0
                     {
-                        current_block = 6293916220349241430;
+                        current_block = 3138416149322218621;
                     } else {
                         current_block = 6873731126896040597;
                     }
                 } else {
                     err = _REG_NOERROR;
-                    current_block = 6293916220349241430;
+                    current_block = 3138416149322218621;
                 }
             }
         }
@@ -11506,12 +11442,13 @@ unsafe extern "C" fn check_subexp_limits(
                         .offset(node as isize))
                         .type_0();
                     if type_0 as libc::c_uint
-                        == OP_OPEN_SUBEXP as libc::c_int as libc::c_uint
+                        == re_token_type_t::OP_OPEN_SUBEXP as libc::c_int as libc::c_uint
                         && subexp_idx == (*((*dfa).nodes).offset(node as isize)).opr.idx
                     {
                         ops_node = node;
                     } else if type_0 as libc::c_uint
-                        == OP_CLOSE_SUBEXP as libc::c_int as libc::c_uint
+                        == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
+                            as libc::c_uint
                         && subexp_idx == (*((*dfa).nodes).offset(node as isize)).opr.idx
                     {
                         cls_node = node;
@@ -11568,9 +11505,11 @@ unsafe extern "C" fn check_subexp_limits(
                         .offset(node_1 as isize))
                         .type_0();
                     if type_1 as libc::c_uint
-                        == OP_CLOSE_SUBEXP as libc::c_int as libc::c_uint
+                        == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int
+                            as libc::c_uint
                         || type_1 as libc::c_uint
-                            == OP_OPEN_SUBEXP as libc::c_int as libc::c_uint
+                            == re_token_type_t::OP_OPEN_SUBEXP as libc::c_int
+                                as libc::c_uint
                     {
                         if !(subexp_idx
                             != (*((*dfa).nodes).offset(node_1 as isize)).opr.idx)
@@ -11632,12 +11571,14 @@ unsafe extern "C" fn sift_states_bkref(
             break;
         }
         let mut enabled_idx: Idx = 0;
-        let mut type_0: re_token_type_t = NON_TYPE;
+        let mut type_0: re_token_type_t = re_token_type_t::NON_TYPE;
         let mut entry: *mut re_backref_cache_entry = 0 as *mut re_backref_cache_entry;
         node = *((*candidates).elems).offset(node_idx as isize);
         type_0 = (*((*dfa).nodes).offset(node as isize)).type_0();
         if !(node == (*sctx).last_node && str_idx == (*sctx).last_str_idx) {
-            if !(type_0 as libc::c_uint != OP_BACK_REF as libc::c_int as libc::c_uint) {
+            if !(type_0 as libc::c_uint
+                != re_token_type_t::OP_BACK_REF as libc::c_int as libc::c_uint)
+            {
                 entry = ((*mctx).bkref_ents).offset(first_idx as isize);
                 enabled_idx = first_idx;
                 loop {
@@ -11683,7 +11624,7 @@ unsafe extern "C" fn sift_states_bkref(
                                 if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                                     as libc::c_int as libc::c_long != 0
                                 {
-                                    current_block = 9478964583502124652;
+                                    current_block = 11728130669747824319;
                                     break 's_22;
                                 }
                             }
@@ -11692,7 +11633,7 @@ unsafe extern "C" fn sift_states_bkref(
                             ok = re_node_set_insert(&mut local_sctx.limits, enabled_idx);
                             if !ok as libc::c_int as libc::c_long != 0 {
                                 err = _REG_ESPACE;
-                                current_block = 9478964583502124652;
+                                current_block = 11728130669747824319;
                                 break 's_22;
                             } else {
                                 cur_state = *(local_sctx.sifted_states)
@@ -11701,7 +11642,7 @@ unsafe extern "C" fn sift_states_bkref(
                                 if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                                     as libc::c_int as libc::c_long != 0
                                 {
-                                    current_block = 9478964583502124652;
+                                    current_block = 11728130669747824319;
                                     break 's_22;
                                 }
                                 if !((*sctx).limited_states).is_null() {
@@ -11714,7 +11655,7 @@ unsafe extern "C" fn sift_states_bkref(
                                     if (err as libc::c_int != _REG_NOERROR as libc::c_int)
                                         as libc::c_int as libc::c_long != 0
                                     {
-                                        current_block = 9478964583502124652;
+                                        current_block = 11728130669747824319;
                                         break 's_22;
                                     }
                                 }
@@ -11936,7 +11877,7 @@ unsafe extern "C" fn check_subexp_matching_top(
     while node_idx < (*cur_nodes).nelem {
         let mut node: Idx = *((*cur_nodes).elems).offset(node_idx as isize);
         if (*((*dfa).nodes).offset(node as isize)).type_0() as libc::c_int
-            == OP_OPEN_SUBEXP as libc::c_int
+            == re_token_type_t::OP_OPEN_SUBEXP as libc::c_int
             && (*((*dfa).nodes).offset(node as isize)).opr.idx
                 < 64 as libc::c_int as libc::c_long
             && (*dfa).used_bkref_map
@@ -12019,8 +11960,8 @@ unsafe extern "C" fn transit_state_mb(
                     );
                     if !(naccepted == 0 as libc::c_int) {
                         dest_idx = (*mctx).input.cur_idx + naccepted as libc::c_long;
-                        (*mctx)
-                            .max_mb_elem_len = if (*mctx).max_mb_elem_len < naccepted {
+                        (*mctx).max_mb_elem_len = if (*mctx).max_mb_elem_len < naccepted
+                        {
                             naccepted
                         } else {
                             (*mctx).max_mb_elem_len
@@ -12086,440 +12027,6 @@ unsafe extern "C" fn transit_state_mb(
     }
     return _REG_NOERROR;
 }
-unsafe extern "C" fn transit_state_bkref(
-    mut mctx: *mut re_match_context_t,
-    mut nodes: *const re_node_set,
-) -> reg_errcode_t {
-    let mut current_block: u64;
-    let dfa: *const re_dfa_t = (*mctx).dfa;
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut i: Idx = 0;
-    let mut cur_str_idx: Idx = (*mctx).input.cur_idx;
-    i = 0 as libc::c_int as Idx;
-    's_10: loop {
-        if !(i < (*nodes).nelem) {
-            current_block = 9520865839495247062;
-            break;
-        }
-        let mut dest_str_idx: Idx = 0;
-        let mut prev_nelem: Idx = 0;
-        let mut bkc_idx: Idx = 0;
-        let mut node_idx: Idx = *((*nodes).elems).offset(i as isize);
-        let mut context: libc::c_uint = 0;
-        let mut node: *const re_token_t = ((*dfa).nodes).offset(node_idx as isize);
-        let mut new_dest_nodes: *mut re_node_set = 0 as *mut re_node_set;
-        if !((*node).type_0() as libc::c_int != OP_BACK_REF as libc::c_int) {
-            if (*node).constraint() != 0 {
-                context = re_string_context_at(
-                    &mut (*mctx).input,
-                    cur_str_idx,
-                    (*mctx).eflags,
-                );
-                if (*node).constraint() as libc::c_int & 0x4 as libc::c_int != 0
-                    && context & 1 as libc::c_int as libc::c_uint == 0
-                    || (*node).constraint() as libc::c_int & 0x8 as libc::c_int != 0
-                        && context & 1 as libc::c_int as libc::c_uint != 0
-                    || (*node).constraint() as libc::c_int & 0x20 as libc::c_int != 0
-                        && context
-                            & ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
-                            == 0
-                    || (*node).constraint() as libc::c_int & 0x80 as libc::c_int != 0
-                        && context
-                            & ((((1 as libc::c_int) << 1 as libc::c_int)
-                                << 1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
-                            == 0
-                {
-                    current_block = 8258075665625361029;
-                } else {
-                    current_block = 3276175668257526147;
-                }
-            } else {
-                current_block = 3276175668257526147;
-            }
-            match current_block {
-                8258075665625361029 => {}
-                _ => {
-                    bkc_idx = (*mctx).nbkref_ents;
-                    err = get_subexp(mctx, node_idx, cur_str_idx);
-                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                        as libc::c_long != 0
-                    {
-                        current_block = 2542979153675586151;
-                        break;
-                    }
-                    if *((*dfa).nexts).offset(node_idx as isize)
-                        != -(1 as libc::c_int) as libc::c_long
-                    {} else {
-                        unreachable!();
-                    };
-                    while bkc_idx < (*mctx).nbkref_ents {
-                        let mut subexp_len: Idx = 0;
-                        let mut dest_state: *mut re_dfastate_t = 0 as *mut re_dfastate_t;
-                        let mut bkref_ent: *mut re_backref_cache_entry = 0
-                            as *mut re_backref_cache_entry;
-                        bkref_ent = ((*mctx).bkref_ents).offset(bkc_idx as isize);
-                        if !((*bkref_ent).node != node_idx
-                            || (*bkref_ent).str_idx != cur_str_idx)
-                        {
-                            subexp_len = (*bkref_ent).subexp_to
-                                - (*bkref_ent).subexp_from;
-                            new_dest_nodes = if subexp_len
-                                == 0 as libc::c_int as libc::c_long
-                            {
-                                ((*dfa).eclosures)
-                                    .offset(
-                                        *((*((*dfa).edests).offset(node_idx as isize)).elems)
-                                            .offset(0 as libc::c_int as isize) as isize,
-                                    )
-                            } else {
-                                ((*dfa).eclosures)
-                                    .offset(*((*dfa).nexts).offset(node_idx as isize) as isize)
-                            };
-                            dest_str_idx = cur_str_idx + (*bkref_ent).subexp_to
-                                - (*bkref_ent).subexp_from;
-                            context = re_string_context_at(
-                                &mut (*mctx).input,
-                                dest_str_idx - 1 as libc::c_int as libc::c_long,
-                                (*mctx).eflags,
-                            );
-                            dest_state = *((*mctx).state_log)
-                                .offset(dest_str_idx as isize);
-                            prev_nelem = if (*((*mctx).state_log)
-                                .offset(cur_str_idx as isize))
-                                .is_null()
-                            {
-                                0 as libc::c_int as libc::c_long
-                            } else {
-                                (**((*mctx).state_log).offset(cur_str_idx as isize))
-                                    .nodes
-                                    .nelem
-                            };
-                            if dest_state.is_null() {
-                                let ref mut fresh68 = *((*mctx).state_log)
-                                    .offset(dest_str_idx as isize);
-                                *fresh68 = re_acquire_state_context(
-                                    &mut err,
-                                    dfa,
-                                    new_dest_nodes,
-                                    context,
-                                );
-                                if ((*((*mctx).state_log).offset(dest_str_idx as isize))
-                                    .is_null()
-                                    && err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    current_block = 2542979153675586151;
-                                    break 's_10;
-                                }
-                            } else {
-                                let mut dest_nodes: re_node_set = re_node_set {
-                                    alloc: 0,
-                                    nelem: 0,
-                                    elems: 0 as *mut Idx,
-                                };
-                                err = re_node_set_init_union(
-                                    &mut dest_nodes,
-                                    (*dest_state).entrance_nodes,
-                                    new_dest_nodes,
-                                );
-                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    rpl_free(dest_nodes.elems as *mut libc::c_void);
-                                    current_block = 2542979153675586151;
-                                    break 's_10;
-                                } else {
-                                    let ref mut fresh69 = *((*mctx).state_log)
-                                        .offset(dest_str_idx as isize);
-                                    *fresh69 = re_acquire_state_context(
-                                        &mut err,
-                                        dfa,
-                                        &mut dest_nodes,
-                                        context,
-                                    );
-                                    rpl_free(dest_nodes.elems as *mut libc::c_void);
-                                    if ((*((*mctx).state_log).offset(dest_str_idx as isize))
-                                        .is_null()
-                                        && err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                        as libc::c_int as libc::c_long != 0
-                                    {
-                                        current_block = 2542979153675586151;
-                                        break 's_10;
-                                    }
-                                }
-                            }
-                            if subexp_len == 0 as libc::c_int as libc::c_long
-                                && (**((*mctx).state_log).offset(cur_str_idx as isize))
-                                    .nodes
-                                    .nelem > prev_nelem
-                            {
-                                err = check_subexp_matching_top(
-                                    mctx,
-                                    new_dest_nodes,
-                                    cur_str_idx,
-                                );
-                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    current_block = 2542979153675586151;
-                                    break 's_10;
-                                }
-                                err = transit_state_bkref(mctx, new_dest_nodes);
-                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    current_block = 2542979153675586151;
-                                    break 's_10;
-                                }
-                            }
-                        }
-                        bkc_idx += 1;
-                        bkc_idx;
-                    }
-                }
-            }
-        }
-        i += 1;
-        i;
-    }
-    match current_block {
-        9520865839495247062 => {
-            err = _REG_NOERROR;
-        }
-        _ => {}
-    }
-    return err;
-}
-unsafe extern "C" fn get_subexp(
-    mut mctx: *mut re_match_context_t,
-    mut bkref_node: Idx,
-    mut bkref_str_idx: Idx,
-) -> reg_errcode_t {
-    let dfa: *const re_dfa_t = (*mctx).dfa;
-    let mut subexp_num: Idx = 0;
-    let mut sub_top_idx: Idx = 0;
-    let mut buf: *const libc::c_char = (*mctx).input.mbs as *const libc::c_char;
-    let mut cache_idx: Idx = search_cur_bkref_entry(mctx, bkref_str_idx);
-    if cache_idx != -(1 as libc::c_int) as libc::c_long {
-        let mut entry: *const re_backref_cache_entry = ((*mctx).bkref_ents)
-            .offset(cache_idx as isize);
-        loop {
-            if (*entry).node == bkref_node {
-                return _REG_NOERROR;
-            }
-            let fresh70 = entry;
-            entry = entry.offset(1);
-            if !((*fresh70).more != 0) {
-                break;
-            }
-        }
-    }
-    subexp_num = (*((*dfa).nodes).offset(bkref_node as isize)).opr.idx;
-    sub_top_idx = 0 as libc::c_int as Idx;
-    while sub_top_idx < (*mctx).nsub_tops {
-        let mut err: reg_errcode_t = _REG_NOERROR;
-        let mut sub_top: *mut re_sub_match_top_t = *((*mctx).sub_tops)
-            .offset(sub_top_idx as isize);
-        let mut sub_last: *mut re_sub_match_last_t = 0 as *mut re_sub_match_last_t;
-        let mut sub_last_idx: Idx = 0;
-        let mut sl_str: Idx = 0;
-        let mut bkref_str_off: Idx = 0;
-        if !((*((*dfa).nodes).offset((*sub_top).node as isize)).opr.idx != subexp_num) {
-            sl_str = (*sub_top).str_idx;
-            bkref_str_off = bkref_str_idx;
-            sub_last_idx = 0 as libc::c_int as Idx;
-            while sub_last_idx < (*sub_top).nlasts {
-                let mut sl_str_diff: regoff_t = 0;
-                sub_last = *((*sub_top).lasts).offset(sub_last_idx as isize);
-                sl_str_diff = (*sub_last).str_idx - sl_str;
-                if sl_str_diff > 0 as libc::c_int as libc::c_long {
-                    if (bkref_str_off + sl_str_diff > (*mctx).input.valid_len)
-                        as libc::c_int as libc::c_long != 0
-                    {
-                        if bkref_str_off + sl_str_diff > (*mctx).input.len {
-                            break;
-                        }
-                        err = clean_state_log_if_needed(
-                            mctx,
-                            bkref_str_off + sl_str_diff,
-                        );
-                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                            as libc::c_int as libc::c_long != 0
-                        {
-                            return err;
-                        }
-                        buf = (*mctx).input.mbs as *const libc::c_char;
-                    }
-                    if memcmp(
-                        buf.offset(bkref_str_off as isize) as *const libc::c_void,
-                        buf.offset(sl_str as isize) as *const libc::c_void,
-                        sl_str_diff as libc::c_ulong,
-                    ) != 0 as libc::c_int
-                    {
-                        break;
-                    }
-                }
-                bkref_str_off += sl_str_diff;
-                sl_str += sl_str_diff;
-                err = get_subexp_sub(mctx, sub_top, sub_last, bkref_node, bkref_str_idx);
-                buf = (*mctx).input.mbs as *const libc::c_char;
-                if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
-                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                        as libc::c_long != 0
-                    {
-                        return err;
-                    }
-                }
-                sub_last_idx += 1;
-                sub_last_idx;
-            }
-            if !(sub_last_idx < (*sub_top).nlasts) {
-                if sub_last_idx > 0 as libc::c_int as libc::c_long {
-                    sl_str += 1;
-                    sl_str;
-                }
-                while sl_str <= bkref_str_idx {
-                    let mut cls_node: Idx = 0;
-                    let mut sl_str_off: regoff_t = 0;
-                    let mut nodes: *const re_node_set = 0 as *const re_node_set;
-                    sl_str_off = sl_str - (*sub_top).str_idx;
-                    if sl_str_off > 0 as libc::c_int as libc::c_long {
-                        if (bkref_str_off >= (*mctx).input.valid_len) as libc::c_int
-                            as libc::c_long != 0
-                        {
-                            if bkref_str_off >= (*mctx).input.len {
-                                break;
-                            }
-                            err = extend_buffers(
-                                mctx,
-                                (bkref_str_off + 1 as libc::c_int as libc::c_long)
-                                    as libc::c_int,
-                            );
-                            if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                as libc::c_int as libc::c_long != 0
-                            {
-                                return err;
-                            }
-                            buf = (*mctx).input.mbs as *const libc::c_char;
-                        }
-                        let fresh71 = bkref_str_off;
-                        bkref_str_off = bkref_str_off + 1;
-                        if *buf.offset(fresh71 as isize) as libc::c_int
-                            != *buf
-                                .offset(
-                                    (sl_str - 1 as libc::c_int as libc::c_long) as isize,
-                                ) as libc::c_int
-                        {
-                            break;
-                        }
-                    }
-                    if !(*((*mctx).state_log).offset(sl_str as isize)).is_null() {
-                        nodes = &mut (**((*mctx).state_log).offset(sl_str as isize))
-                            .nodes;
-                        cls_node = find_subexp_node(
-                            dfa,
-                            nodes,
-                            subexp_num,
-                            OP_CLOSE_SUBEXP as libc::c_int,
-                        );
-                        if !(cls_node == -(1 as libc::c_int) as libc::c_long) {
-                            if ((*sub_top).path).is_null() {
-                                (*sub_top)
-                                    .path = calloc(
-                                    ::core::mem::size_of::<state_array_t>() as libc::c_ulong,
-                                    (sl_str - (*sub_top).str_idx
-                                        + 1 as libc::c_int as libc::c_long) as libc::c_ulong,
-                                ) as *mut state_array_t;
-                                if ((*sub_top).path).is_null() {
-                                    return _REG_ESPACE;
-                                }
-                            }
-                            err = check_arrival(
-                                mctx,
-                                (*sub_top).path,
-                                (*sub_top).node,
-                                (*sub_top).str_idx,
-                                cls_node,
-                                sl_str,
-                                OP_CLOSE_SUBEXP as libc::c_int,
-                            );
-                            if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
-                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    return err;
-                                }
-                                sub_last = match_ctx_add_sublast(sub_top, cls_node, sl_str);
-                                if (sub_last
-                                    == 0 as *mut libc::c_void as *mut re_sub_match_last_t)
-                                    as libc::c_int as libc::c_long != 0
-                                {
-                                    return _REG_ESPACE;
-                                }
-                                err = get_subexp_sub(
-                                    mctx,
-                                    sub_top,
-                                    sub_last,
-                                    bkref_node,
-                                    bkref_str_idx,
-                                );
-                                buf = (*mctx).input.mbs as *const libc::c_char;
-                                if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
-                                    if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                        as libc::c_int as libc::c_long != 0
-                                    {
-                                        return err;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    sl_str += 1;
-                    sl_str;
-                }
-            }
-        }
-        sub_top_idx += 1;
-        sub_top_idx;
-    }
-    return _REG_NOERROR;
-}
-unsafe extern "C" fn get_subexp_sub(
-    mut mctx: *mut re_match_context_t,
-    mut sub_top: *const re_sub_match_top_t,
-    mut sub_last: *mut re_sub_match_last_t,
-    mut bkref_node: Idx,
-    mut bkref_str: Idx,
-) -> reg_errcode_t {
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut to_idx: Idx = 0;
-    err = check_arrival(
-        mctx,
-        &mut (*sub_last).path,
-        (*sub_last).node,
-        (*sub_last).str_idx,
-        bkref_node,
-        bkref_str,
-        OP_OPEN_SUBEXP as libc::c_int,
-    );
-    if err as libc::c_int != _REG_NOERROR as libc::c_int {
-        return err;
-    }
-    err = match_ctx_add_entry(
-        mctx,
-        bkref_node,
-        bkref_str,
-        (*sub_top).str_idx,
-        (*sub_last).str_idx,
-    );
-    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int as libc::c_long
-        != 0
-    {
-        return err;
-    }
-    to_idx = bkref_str + (*sub_last).str_idx - (*sub_top).str_idx;
-    return clean_state_log_if_needed(mctx, to_idx);
-}
 unsafe extern "C" fn find_subexp_node(
     mut dfa: *const re_dfa_t,
     mut nodes: *const re_node_set,
@@ -12538,6 +12045,249 @@ unsafe extern "C" fn find_subexp_node(
         cls_idx;
     }
     return -(1 as libc::c_int) as Idx;
+}
+unsafe extern "C" fn check_arrival_expand_ecl_sub(
+    mut dfa: *const re_dfa_t,
+    mut dst_nodes: *mut re_node_set,
+    mut target: Idx,
+    mut ex_subexp: Idx,
+    mut type_0: libc::c_int,
+) -> reg_errcode_t {
+    let mut cur_node: Idx = 0;
+    cur_node = target;
+    while re_node_set_contains(dst_nodes, cur_node) == 0 {
+        let mut ok: bool = false;
+        if (*((*dfa).nodes).offset(cur_node as isize)).type_0() as libc::c_int == type_0
+            && (*((*dfa).nodes).offset(cur_node as isize)).opr.idx == ex_subexp
+        {
+            if type_0 == re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int {
+                ok = re_node_set_insert(dst_nodes, cur_node);
+                if !ok as libc::c_int as libc::c_long != 0 {
+                    return _REG_ESPACE;
+                }
+            }
+            break;
+        } else {
+            ok = re_node_set_insert(dst_nodes, cur_node);
+            if !ok as libc::c_int as libc::c_long != 0 {
+                return _REG_ESPACE;
+            }
+            if (*((*dfa).edests).offset(cur_node as isize)).nelem
+                == 0 as libc::c_int as libc::c_long
+            {
+                break;
+            }
+            if (*((*dfa).edests).offset(cur_node as isize)).nelem
+                == 2 as libc::c_int as libc::c_long
+            {
+                let mut err: reg_errcode_t = _REG_NOERROR;
+                err = check_arrival_expand_ecl_sub(
+                    dfa,
+                    dst_nodes,
+                    *((*((*dfa).edests).offset(cur_node as isize)).elems)
+                        .offset(1 as libc::c_int as isize),
+                    ex_subexp,
+                    type_0,
+                );
+                if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                    as libc::c_long != 0
+                {
+                    return err;
+                }
+            }
+            cur_node = *((*((*dfa).edests).offset(cur_node as isize)).elems)
+                .offset(0 as libc::c_int as isize);
+        }
+    }
+    return _REG_NOERROR;
+}
+unsafe extern "C" fn check_arrival_expand_ecl(
+    mut dfa: *const re_dfa_t,
+    mut cur_nodes: *mut re_node_set,
+    mut ex_subexp: Idx,
+    mut type_0: libc::c_int,
+) -> reg_errcode_t {
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut idx: Idx = 0;
+    let mut outside_node: Idx = 0;
+    let mut new_nodes: re_node_set = re_node_set {
+        alloc: 0,
+        nelem: 0,
+        elems: 0 as *mut Idx,
+    };
+    if (*cur_nodes).nelem != 0 {} else {
+        unreachable!();
+    };
+    err = re_node_set_alloc(&mut new_nodes, (*cur_nodes).nelem);
+    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int as libc::c_long
+        != 0
+    {
+        return err;
+    }
+    idx = 0 as libc::c_int as Idx;
+    while idx < (*cur_nodes).nelem {
+        let mut cur_node: Idx = *((*cur_nodes).elems).offset(idx as isize);
+        let mut eclosure: *const re_node_set = ((*dfa).eclosures)
+            .offset(cur_node as isize);
+        outside_node = find_subexp_node(dfa, eclosure, ex_subexp, type_0);
+        if outside_node == -(1 as libc::c_int) as libc::c_long {
+            err = re_node_set_merge(&mut new_nodes, eclosure);
+            if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                as libc::c_long != 0
+            {
+                rpl_free(new_nodes.elems as *mut libc::c_void);
+                return err;
+            }
+        } else {
+            err = check_arrival_expand_ecl_sub(
+                dfa,
+                &mut new_nodes,
+                cur_node,
+                ex_subexp,
+                type_0,
+            );
+            if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                as libc::c_long != 0
+            {
+                rpl_free(new_nodes.elems as *mut libc::c_void);
+                return err;
+            }
+        }
+        idx += 1;
+        idx;
+    }
+    rpl_free((*cur_nodes).elems as *mut libc::c_void);
+    *cur_nodes = new_nodes;
+    return _REG_NOERROR;
+}
+unsafe extern "C" fn expand_bkref_cache(
+    mut mctx: *mut re_match_context_t,
+    mut cur_nodes: *mut re_node_set,
+    mut cur_str: Idx,
+    mut subexp_num: Idx,
+    mut type_0: libc::c_int,
+) -> reg_errcode_t {
+    let mut current_block: u64;
+    let dfa: *const re_dfa_t = (*mctx).dfa;
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut cache_idx_start: Idx = search_cur_bkref_entry(mctx, cur_str);
+    let mut ent: *mut re_backref_cache_entry = 0 as *mut re_backref_cache_entry;
+    if cache_idx_start == -(1 as libc::c_int) as libc::c_long {
+        return _REG_NOERROR;
+    }
+    '_restart: loop {
+        ent = ((*mctx).bkref_ents).offset(cache_idx_start as isize);
+        loop {
+            let mut to_idx: Idx = 0;
+            let mut next_node: Idx = 0;
+            if !(re_node_set_contains(cur_nodes, (*ent).node) == 0) {
+                to_idx = cur_str + (*ent).subexp_to - (*ent).subexp_from;
+                if to_idx == cur_str {
+                    let mut new_dests: re_node_set = re_node_set {
+                        alloc: 0,
+                        nelem: 0,
+                        elems: 0 as *mut Idx,
+                    };
+                    let mut err2: reg_errcode_t = _REG_NOERROR;
+                    let mut err3: reg_errcode_t = _REG_NOERROR;
+                    next_node = *((*((*dfa).edests).offset((*ent).node as isize)).elems)
+                        .offset(0 as libc::c_int as isize);
+                    if !(re_node_set_contains(cur_nodes, next_node) != 0) {
+                        err = re_node_set_init_1(&mut new_dests, next_node);
+                        err2 = check_arrival_expand_ecl(
+                            dfa,
+                            &mut new_dests,
+                            subexp_num,
+                            type_0,
+                        );
+                        err3 = re_node_set_merge(cur_nodes, &mut new_dests);
+                        rpl_free(new_dests.elems as *mut libc::c_void);
+                        if (err as libc::c_int != _REG_NOERROR as libc::c_int
+                            || err2 as libc::c_int != _REG_NOERROR as libc::c_int
+                            || err3 as libc::c_int != _REG_NOERROR as libc::c_int)
+                            as libc::c_int as libc::c_long != 0
+                        {
+                            err = (if err as libc::c_int != _REG_NOERROR as libc::c_int {
+                                err as libc::c_int
+                            } else if err2 as libc::c_int != _REG_NOERROR as libc::c_int
+                            {
+                                err2 as libc::c_int
+                            } else {
+                                err3 as libc::c_int
+                            }) as reg_errcode_t;
+                            return err;
+                        }
+                        break;
+                    }
+                } else {
+                    let mut union_set: re_node_set = re_node_set {
+                        alloc: 0,
+                        nelem: 0,
+                        elems: 0 as *mut Idx,
+                    };
+                    next_node = *((*dfa).nexts).offset((*ent).node as isize);
+                    if !(*((*mctx).state_log).offset(to_idx as isize)).is_null() {
+                        let mut ok: bool = false;
+                        if re_node_set_contains(
+                            &mut (**((*mctx).state_log).offset(to_idx as isize)).nodes,
+                            next_node,
+                        ) != 0
+                        {
+                            current_block = 17179679302217393232;
+                        } else {
+                            err = re_node_set_init_copy(
+                                &mut union_set,
+                                &mut (**((*mctx).state_log).offset(to_idx as isize)).nodes,
+                            );
+                            ok = re_node_set_insert(&mut union_set, next_node);
+                            if (err as libc::c_int != _REG_NOERROR as libc::c_int || !ok)
+                                as libc::c_int as libc::c_long != 0
+                            {
+                                rpl_free(union_set.elems as *mut libc::c_void);
+                                err = (if err as libc::c_int != _REG_NOERROR as libc::c_int
+                                {
+                                    err as libc::c_int
+                                } else {
+                                    _REG_ESPACE as libc::c_int
+                                }) as reg_errcode_t;
+                                return err;
+                            }
+                            current_block = 7056779235015430508;
+                        }
+                    } else {
+                        err = re_node_set_init_1(&mut union_set, next_node);
+                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                            as libc::c_int as libc::c_long != 0
+                        {
+                            return err;
+                        }
+                        current_block = 7056779235015430508;
+                    }
+                    match current_block {
+                        17179679302217393232 => {}
+                        _ => {
+                            let ref mut fresh68 = *((*mctx).state_log)
+                                .offset(to_idx as isize);
+                            *fresh68 = re_acquire_state(&mut err, dfa, &mut union_set);
+                            rpl_free(union_set.elems as *mut libc::c_void);
+                            if ((*((*mctx).state_log).offset(to_idx as isize)).is_null()
+                                && err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                as libc::c_int as libc::c_long != 0
+                            {
+                                return err;
+                            }
+                        }
+                    }
+                }
+            }
+            let fresh69 = ent;
+            ent = ent.offset(1);
+            if !((*fresh69).more != 0) {
+                break '_restart;
+            }
+        }
+    }
+    return _REG_NOERROR;
 }
 unsafe extern "C" fn check_arrival(
     mut mctx: *mut re_match_context_t,
@@ -12666,8 +12416,8 @@ unsafe extern "C" fn check_arrival(
             rpl_free(next_nodes.elems as *mut libc::c_void);
             return err;
         }
-        let ref mut fresh72 = *((*mctx).state_log).offset(str_idx as isize);
-        *fresh72 = cur_state;
+        let ref mut fresh70 = *((*mctx).state_log).offset(str_idx as isize);
+        *fresh70 = cur_state;
     }
     null_cnt = 0 as libc::c_int as Idx;
     while str_idx < last_str && null_cnt <= (*mctx).max_mb_elem_len as libc::c_long {
@@ -12733,8 +12483,8 @@ unsafe extern "C" fn check_arrival(
             rpl_free(next_nodes.elems as *mut libc::c_void);
             return err;
         }
-        let ref mut fresh73 = *((*mctx).state_log).offset(str_idx as isize);
-        *fresh73 = cur_state;
+        let ref mut fresh71 = *((*mctx).state_log).offset(str_idx as isize);
+        *fresh71 = cur_state;
         null_cnt = if cur_state.is_null() {
             null_cnt + 1 as libc::c_int as libc::c_long
         } else {
@@ -12755,1258 +12505,66 @@ unsafe extern "C" fn check_arrival(
     }
     return _REG_NOMATCH;
 }
-unsafe extern "C" fn check_arrival_add_next_nodes(
+unsafe extern "C" fn match_ctx_add_entry(
     mut mctx: *mut re_match_context_t,
+    mut node: Idx,
     mut str_idx: Idx,
-    mut cur_nodes: *mut re_node_set,
-    mut next_nodes: *mut re_node_set,
+    mut from: Idx,
+    mut to: Idx,
 ) -> reg_errcode_t {
-    let dfa: *const re_dfa_t = (*mctx).dfa;
-    let mut ok: bool = false;
-    let mut cur_idx: Idx = 0;
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut union_set: re_node_set = re_node_set {
-        alloc: 0,
-        nelem: 0,
-        elems: 0 as *mut Idx,
-    };
-    memset(
-        &mut union_set as *mut re_node_set as *mut libc::c_void,
-        '\0' as i32,
-        ::core::mem::size_of::<re_node_set>() as libc::c_ulong,
-    );
-    cur_idx = 0 as libc::c_int as Idx;
-    while cur_idx < (*cur_nodes).nelem {
-        let mut naccepted: libc::c_int = 0 as libc::c_int;
-        let mut cur_node: Idx = *((*cur_nodes).elems).offset(cur_idx as isize);
-        if (*((*dfa).nodes).offset(cur_node as isize)).type_0() as libc::c_int
-            & 8 as libc::c_int == 0
-        {} else {
-            unreachable!();
-        };
-        if (*((*dfa).nodes).offset(cur_node as isize)).accept_mb() != 0 {
-            naccepted = check_node_accept_bytes(
-                dfa,
-                cur_node,
-                &mut (*mctx).input,
-                str_idx,
-            );
-            if naccepted > 1 as libc::c_int {
-                let mut dest_state: *mut re_dfastate_t = 0 as *mut re_dfastate_t;
-                let mut next_node: Idx = *((*dfa).nexts).offset(cur_node as isize);
-                let mut next_idx: Idx = str_idx + naccepted as libc::c_long;
-                dest_state = *((*mctx).state_log).offset(next_idx as isize);
-                union_set.nelem = 0 as libc::c_int as Idx;
-                if !dest_state.is_null() {
-                    err = re_node_set_merge(&mut union_set, &mut (*dest_state).nodes);
-                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                        as libc::c_long != 0
-                    {
-                        rpl_free(union_set.elems as *mut libc::c_void);
-                        return err;
-                    }
-                }
-                ok = re_node_set_insert(&mut union_set, next_node);
-                if !ok as libc::c_int as libc::c_long != 0 {
-                    rpl_free(union_set.elems as *mut libc::c_void);
-                    return _REG_ESPACE;
-                }
-                let ref mut fresh74 = *((*mctx).state_log).offset(next_idx as isize);
-                *fresh74 = re_acquire_state(&mut err, dfa, &mut union_set);
-                if ((*((*mctx).state_log).offset(next_idx as isize)).is_null()
-                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                    as libc::c_long != 0
-                {
-                    rpl_free(union_set.elems as *mut libc::c_void);
-                    return err;
-                }
-            }
-        }
-        if naccepted != 0
-            || check_node_accept(mctx, ((*dfa).nodes).offset(cur_node as isize), str_idx)
-                as libc::c_int != 0
+    if (*mctx).nbkref_ents >= (*mctx).abkref_ents {
+        let mut new_entry: *mut re_backref_cache_entry = 0
+            as *mut re_backref_cache_entry;
+        new_entry = realloc(
+            (*mctx).bkref_ents as *mut libc::c_void,
+            (((*mctx).abkref_ents * 2 as libc::c_int as libc::c_long) as libc::c_ulong)
+                .wrapping_mul(
+                    ::core::mem::size_of::<re_backref_cache_entry>() as libc::c_ulong,
+                ),
+        ) as *mut re_backref_cache_entry;
+        if (new_entry == 0 as *mut libc::c_void as *mut re_backref_cache_entry)
+            as libc::c_int as libc::c_long != 0
         {
-            ok = re_node_set_insert(
-                next_nodes,
-                *((*dfa).nexts).offset(cur_node as isize),
-            );
-            if !ok as libc::c_int as libc::c_long != 0 {
-                rpl_free(union_set.elems as *mut libc::c_void);
-                return _REG_ESPACE;
-            }
+            rpl_free((*mctx).bkref_ents as *mut libc::c_void);
+            return _REG_ESPACE;
         }
-        cur_idx += 1;
-        cur_idx;
-    }
-    rpl_free(union_set.elems as *mut libc::c_void);
-    return _REG_NOERROR;
-}
-unsafe extern "C" fn check_arrival_expand_ecl(
-    mut dfa: *const re_dfa_t,
-    mut cur_nodes: *mut re_node_set,
-    mut ex_subexp: Idx,
-    mut type_0: libc::c_int,
-) -> reg_errcode_t {
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut idx: Idx = 0;
-    let mut outside_node: Idx = 0;
-    let mut new_nodes: re_node_set = re_node_set {
-        alloc: 0,
-        nelem: 0,
-        elems: 0 as *mut Idx,
-    };
-    if (*cur_nodes).nelem != 0 {} else {
-        unreachable!();
-    };
-    err = re_node_set_alloc(&mut new_nodes, (*cur_nodes).nelem);
-    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int as libc::c_long
-        != 0
-    {
-        return err;
-    }
-    idx = 0 as libc::c_int as Idx;
-    while idx < (*cur_nodes).nelem {
-        let mut cur_node: Idx = *((*cur_nodes).elems).offset(idx as isize);
-        let mut eclosure: *const re_node_set = ((*dfa).eclosures)
-            .offset(cur_node as isize);
-        outside_node = find_subexp_node(dfa, eclosure, ex_subexp, type_0);
-        if outside_node == -(1 as libc::c_int) as libc::c_long {
-            err = re_node_set_merge(&mut new_nodes, eclosure);
-            if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                as libc::c_long != 0
-            {
-                rpl_free(new_nodes.elems as *mut libc::c_void);
-                return err;
-            }
-        } else {
-            err = check_arrival_expand_ecl_sub(
-                dfa,
-                &mut new_nodes,
-                cur_node,
-                ex_subexp,
-                type_0,
-            );
-            if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                as libc::c_long != 0
-            {
-                rpl_free(new_nodes.elems as *mut libc::c_void);
-                return err;
-            }
-        }
-        idx += 1;
-        idx;
-    }
-    rpl_free((*cur_nodes).elems as *mut libc::c_void);
-    *cur_nodes = new_nodes;
-    return _REG_NOERROR;
-}
-unsafe extern "C" fn check_arrival_expand_ecl_sub(
-    mut dfa: *const re_dfa_t,
-    mut dst_nodes: *mut re_node_set,
-    mut target: Idx,
-    mut ex_subexp: Idx,
-    mut type_0: libc::c_int,
-) -> reg_errcode_t {
-    let mut cur_node: Idx = 0;
-    cur_node = target;
-    while re_node_set_contains(dst_nodes, cur_node) == 0 {
-        let mut ok: bool = false;
-        if (*((*dfa).nodes).offset(cur_node as isize)).type_0() as libc::c_int == type_0
-            && (*((*dfa).nodes).offset(cur_node as isize)).opr.idx == ex_subexp
-        {
-            if type_0 == OP_CLOSE_SUBEXP as libc::c_int {
-                ok = re_node_set_insert(dst_nodes, cur_node);
-                if !ok as libc::c_int as libc::c_long != 0 {
-                    return _REG_ESPACE;
-                }
-            }
-            break;
-        } else {
-            ok = re_node_set_insert(dst_nodes, cur_node);
-            if !ok as libc::c_int as libc::c_long != 0 {
-                return _REG_ESPACE;
-            }
-            if (*((*dfa).edests).offset(cur_node as isize)).nelem
-                == 0 as libc::c_int as libc::c_long
-            {
-                break;
-            }
-            if (*((*dfa).edests).offset(cur_node as isize)).nelem
-                == 2 as libc::c_int as libc::c_long
-            {
-                let mut err: reg_errcode_t = _REG_NOERROR;
-                err = check_arrival_expand_ecl_sub(
-                    dfa,
-                    dst_nodes,
-                    *((*((*dfa).edests).offset(cur_node as isize)).elems)
-                        .offset(1 as libc::c_int as isize),
-                    ex_subexp,
-                    type_0,
-                );
-                if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                    as libc::c_long != 0
-                {
-                    return err;
-                }
-            }
-            cur_node = *((*((*dfa).edests).offset(cur_node as isize)).elems)
-                .offset(0 as libc::c_int as isize);
-        }
-    }
-    return _REG_NOERROR;
-}
-unsafe extern "C" fn expand_bkref_cache(
-    mut mctx: *mut re_match_context_t,
-    mut cur_nodes: *mut re_node_set,
-    mut cur_str: Idx,
-    mut subexp_num: Idx,
-    mut type_0: libc::c_int,
-) -> reg_errcode_t {
-    let mut current_block: u64;
-    let dfa: *const re_dfa_t = (*mctx).dfa;
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut cache_idx_start: Idx = search_cur_bkref_entry(mctx, cur_str);
-    let mut ent: *mut re_backref_cache_entry = 0 as *mut re_backref_cache_entry;
-    if cache_idx_start == -(1 as libc::c_int) as libc::c_long {
-        return _REG_NOERROR;
-    }
-    '_restart: loop {
-        ent = ((*mctx).bkref_ents).offset(cache_idx_start as isize);
-        loop {
-            let mut to_idx: Idx = 0;
-            let mut next_node: Idx = 0;
-            if !(re_node_set_contains(cur_nodes, (*ent).node) == 0) {
-                to_idx = cur_str + (*ent).subexp_to - (*ent).subexp_from;
-                if to_idx == cur_str {
-                    let mut new_dests: re_node_set = re_node_set {
-                        alloc: 0,
-                        nelem: 0,
-                        elems: 0 as *mut Idx,
-                    };
-                    let mut err2: reg_errcode_t = _REG_NOERROR;
-                    let mut err3: reg_errcode_t = _REG_NOERROR;
-                    next_node = *((*((*dfa).edests).offset((*ent).node as isize)).elems)
-                        .offset(0 as libc::c_int as isize);
-                    if !(re_node_set_contains(cur_nodes, next_node) != 0) {
-                        err = re_node_set_init_1(&mut new_dests, next_node);
-                        err2 = check_arrival_expand_ecl(
-                            dfa,
-                            &mut new_dests,
-                            subexp_num,
-                            type_0,
-                        );
-                        err3 = re_node_set_merge(cur_nodes, &mut new_dests);
-                        rpl_free(new_dests.elems as *mut libc::c_void);
-                        if (err as libc::c_int != _REG_NOERROR as libc::c_int
-                            || err2 as libc::c_int != _REG_NOERROR as libc::c_int
-                            || err3 as libc::c_int != _REG_NOERROR as libc::c_int)
-                            as libc::c_int as libc::c_long != 0
-                        {
-                            err = (if err as libc::c_int != _REG_NOERROR as libc::c_int {
-                                err as libc::c_int
-                            } else if err2 as libc::c_int != _REG_NOERROR as libc::c_int
-                            {
-                                err2 as libc::c_int
-                            } else {
-                                err3 as libc::c_int
-                            }) as reg_errcode_t;
-                            return err;
-                        }
-                        break;
-                    }
-                } else {
-                    let mut union_set: re_node_set = re_node_set {
-                        alloc: 0,
-                        nelem: 0,
-                        elems: 0 as *mut Idx,
-                    };
-                    next_node = *((*dfa).nexts).offset((*ent).node as isize);
-                    if !(*((*mctx).state_log).offset(to_idx as isize)).is_null() {
-                        let mut ok: bool = false;
-                        if re_node_set_contains(
-                            &mut (**((*mctx).state_log).offset(to_idx as isize)).nodes,
-                            next_node,
-                        ) != 0
-                        {
-                            current_block = 17179679302217393232;
-                        } else {
-                            err = re_node_set_init_copy(
-                                &mut union_set,
-                                &mut (**((*mctx).state_log).offset(to_idx as isize)).nodes,
-                            );
-                            ok = re_node_set_insert(&mut union_set, next_node);
-                            if (err as libc::c_int != _REG_NOERROR as libc::c_int || !ok)
-                                as libc::c_int as libc::c_long != 0
-                            {
-                                rpl_free(union_set.elems as *mut libc::c_void);
-                                err = (if err as libc::c_int != _REG_NOERROR as libc::c_int
-                                {
-                                    err as libc::c_int
-                                } else {
-                                    _REG_ESPACE as libc::c_int
-                                }) as reg_errcode_t;
-                                return err;
-                            }
-                            current_block = 7056779235015430508;
-                        }
-                    } else {
-                        err = re_node_set_init_1(&mut union_set, next_node);
-                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                            as libc::c_int as libc::c_long != 0
-                        {
-                            return err;
-                        }
-                        current_block = 7056779235015430508;
-                    }
-                    match current_block {
-                        17179679302217393232 => {}
-                        _ => {
-                            let ref mut fresh75 = *((*mctx).state_log)
-                                .offset(to_idx as isize);
-                            *fresh75 = re_acquire_state(&mut err, dfa, &mut union_set);
-                            rpl_free(union_set.elems as *mut libc::c_void);
-                            if ((*((*mctx).state_log).offset(to_idx as isize)).is_null()
-                                && err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                as libc::c_int as libc::c_long != 0
-                            {
-                                return err;
-                            }
-                        }
-                    }
-                }
-            }
-            let fresh76 = ent;
-            ent = ent.offset(1);
-            if !((*fresh76).more != 0) {
-                break '_restart;
-            }
-        }
-    }
-    return _REG_NOERROR;
-}
-#[inline(never)]
-unsafe extern "C" fn build_trtable(
-    mut dfa: *const re_dfa_t,
-    mut state: *mut re_dfastate_t,
-) -> bool {
-    let mut current_block: u64;
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut i: Idx = 0;
-    let mut j: Idx = 0;
-    let mut ch: libc::c_int = 0;
-    let mut need_word_trtable: bool = 0 as libc::c_int != 0;
-    let mut elem: bitset_word_t = 0;
-    let mut mask: bitset_word_t = 0;
-    let mut ndests: Idx = 0;
-    let mut trtable: *mut *mut re_dfastate_t = 0 as *mut *mut re_dfastate_t;
-    let mut dest_states: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
-    let mut dest_states_word: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
-    let mut dest_states_nl: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
-    let mut follows: re_node_set = re_node_set {
-        alloc: 0,
-        nelem: 0,
-        elems: 0 as *mut Idx,
-    };
-    let mut acceptable: bitset_t = [0; 4];
-    let mut dests_node: [re_node_set; 256] = [re_node_set {
-        alloc: 0,
-        nelem: 0,
-        elems: 0 as *mut Idx,
-    }; 256];
-    let mut dests_ch: [bitset_t; 256] = [[0; 4]; 256];
-    (*state).trtable = 0 as *mut *mut re_dfastate_t;
-    (*state).word_trtable = (*state).trtable;
-    ndests = group_nodes_into_DFAstates(
-        dfa,
-        state,
-        dests_node.as_mut_ptr(),
-        dests_ch.as_mut_ptr(),
-    );
-    if (ndests <= 0 as libc::c_int as libc::c_long) as libc::c_int as libc::c_long != 0 {
-        if ndests == 0 as libc::c_int as libc::c_long {
-            (*state)
-                .trtable = calloc(
-                ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
-                (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                    + 1 as libc::c_int) as libc::c_ulong,
-            ) as *mut *mut re_dfastate_t;
-            if ((*state).trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
-                as libc::c_int as libc::c_long != 0
-            {
-                return 0 as libc::c_int != 0;
-            }
-            return 1 as libc::c_int != 0;
-        }
-        return 0 as libc::c_int != 0;
-    }
-    err = re_node_set_alloc(&mut follows, ndests + 1 as libc::c_int as libc::c_long);
-    if !((err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-        as libc::c_long != 0)
-    {
-        bitset_empty(acceptable.as_mut_ptr());
-        i = 0 as libc::c_int as Idx;
-        's_99: loop {
-            if !(i < ndests) {
-                current_block = 9007357115414505193;
-                break;
-            }
-            let mut next_node: Idx = 0;
-            follows.nelem = 0 as libc::c_int as Idx;
-            j = 0 as libc::c_int as Idx;
-            while j < dests_node[i as usize].nelem {
-                next_node = *((*dfa).nexts)
-                    .offset(*(dests_node[i as usize].elems).offset(j as isize) as isize);
-                if next_node != -(1 as libc::c_int) as libc::c_long {
-                    err = re_node_set_merge(
-                        &mut follows,
-                        ((*dfa).eclosures).offset(next_node as isize),
-                    );
-                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                        as libc::c_long != 0
-                    {
-                        current_block = 9543797601131196903;
-                        break 's_99;
-                    }
-                }
-                j += 1;
-                j;
-            }
-            dest_states[i
-                as usize] = re_acquire_state_context(
-                &mut err,
-                dfa,
-                &mut follows,
-                0 as libc::c_int as libc::c_uint,
-            );
-            if ((dest_states[i as usize]).is_null()
-                && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                as libc::c_long != 0
-            {
-                current_block = 9543797601131196903;
-                break;
-            }
-            if (*dest_states[i as usize]).has_constraint() != 0 {
-                dest_states_word[i
-                    as usize] = re_acquire_state_context(
-                    &mut err,
-                    dfa,
-                    &mut follows,
-                    1 as libc::c_int as libc::c_uint,
-                );
-                if ((dest_states_word[i as usize]).is_null()
-                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                    as libc::c_long != 0
-                {
-                    current_block = 9543797601131196903;
-                    break;
-                }
-                if dest_states[i as usize] != dest_states_word[i as usize]
-                    && (*dfa).mb_cur_max > 1 as libc::c_int
-                {
-                    need_word_trtable = 1 as libc::c_int != 0;
-                }
-                dest_states_nl[i
-                    as usize] = re_acquire_state_context(
-                    &mut err,
-                    dfa,
-                    &mut follows,
-                    ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint,
-                );
-                if ((dest_states_nl[i as usize]).is_null()
-                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
-                    as libc::c_long != 0
-                {
-                    current_block = 9543797601131196903;
-                    break;
-                }
-            } else {
-                dest_states_word[i as usize] = dest_states[i as usize];
-                dest_states_nl[i as usize] = dest_states[i as usize];
-            }
-            bitset_merge(
-                acceptable.as_mut_ptr(),
-                (dests_ch[i as usize]).as_mut_ptr() as *const bitset_word_t,
-            );
-            i += 1;
-            i;
-        }
-        match current_block {
-            9543797601131196903 => {}
-            _ => {
-                if need_word_trtable as libc::c_long == 0 {
-                    (*state)
-                        .trtable = calloc(
-                        ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
-                        (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                            + 1 as libc::c_int) as libc::c_ulong,
-                    ) as *mut *mut re_dfastate_t;
-                    trtable = (*state).trtable;
-                    if (trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
-                        as libc::c_int as libc::c_long != 0
-                    {
-                        current_block = 9543797601131196903;
-                    } else {
-                        i = 0 as libc::c_int as Idx;
-                        while i
-                            < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                / 64 as libc::c_int) as libc::c_long
-                        {
-                            ch = (i * 64 as libc::c_int as libc::c_long) as libc::c_int;
-                            elem = acceptable[i as usize];
-                            mask = 1 as libc::c_int as bitset_word_t;
-                            while elem != 0 {
-                                if (elem & 1 as libc::c_int as libc::c_ulong)
-                                    as libc::c_long != 0
-                                {
-                                    j = 0 as libc::c_int as Idx;
-                                    while dests_ch[j as usize][i as usize] & mask
-                                        == 0 as libc::c_int as libc::c_ulong
-                                    {
-                                        j += 1;
-                                        j;
-                                    }
-                                    if (*dfa).word_char[i as usize] & mask != 0 {
-                                        let ref mut fresh77 = *trtable.offset(ch as isize);
-                                        *fresh77 = dest_states_word[j as usize];
-                                    } else {
-                                        let ref mut fresh78 = *trtable.offset(ch as isize);
-                                        *fresh78 = dest_states[j as usize];
-                                    }
-                                }
-                                mask <<= 1 as libc::c_int;
-                                elem >>= 1 as libc::c_int;
-                                ch += 1;
-                                ch;
-                            }
-                            i += 1;
-                            i;
-                        }
-                        current_block = 1874315696050160458;
-                    }
-                } else {
-                    (*state)
-                        .word_trtable = calloc(
-                        ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
-                        (2 as libc::c_int
-                            * (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                + 1 as libc::c_int)) as libc::c_ulong,
-                    ) as *mut *mut re_dfastate_t;
-                    trtable = (*state).word_trtable;
-                    if (trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
-                        as libc::c_int as libc::c_long != 0
-                    {
-                        current_block = 9543797601131196903;
-                    } else {
-                        i = 0 as libc::c_int as Idx;
-                        while i
-                            < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                / 64 as libc::c_int) as libc::c_long
-                        {
-                            ch = (i * 64 as libc::c_int as libc::c_long) as libc::c_int;
-                            elem = acceptable[i as usize];
-                            mask = 1 as libc::c_int as bitset_word_t;
-                            while elem != 0 {
-                                if (elem & 1 as libc::c_int as libc::c_ulong)
-                                    as libc::c_long != 0
-                                {
-                                    j = 0 as libc::c_int as Idx;
-                                    while dests_ch[j as usize][i as usize] & mask
-                                        == 0 as libc::c_int as libc::c_ulong
-                                    {
-                                        j += 1;
-                                        j;
-                                    }
-                                    let ref mut fresh79 = *trtable.offset(ch as isize);
-                                    *fresh79 = dest_states[j as usize];
-                                    let ref mut fresh80 = *trtable
-                                        .offset(
-                                            (ch
-                                                + (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                    + 1 as libc::c_int)) as isize,
-                                        );
-                                    *fresh80 = dest_states_word[j as usize];
-                                }
-                                mask <<= 1 as libc::c_int;
-                                elem >>= 1 as libc::c_int;
-                                ch += 1;
-                                ch;
-                            }
-                            i += 1;
-                            i;
-                        }
-                        current_block = 1874315696050160458;
-                    }
-                }
-                match current_block {
-                    9543797601131196903 => {}
-                    _ => {
-                        if bitset_contain(
-                            acceptable.as_mut_ptr() as *const bitset_word_t,
-                            '\n' as i32 as Idx,
-                        ) {
-                            j = 0 as libc::c_int as Idx;
-                            while j < ndests {
-                                if bitset_contain(
-                                    (dests_ch[j as usize]).as_mut_ptr() as *const bitset_word_t,
-                                    '\n' as i32 as Idx,
-                                ) {
-                                    let ref mut fresh81 = *trtable.offset('\n' as i32 as isize);
-                                    *fresh81 = dest_states_nl[j as usize];
-                                    if need_word_trtable {
-                                        let ref mut fresh82 = *trtable
-                                            .offset(
-                                                ('\n' as i32
-                                                    + (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                        + 1 as libc::c_int)) as isize,
-                                            );
-                                        *fresh82 = dest_states_nl[j as usize];
-                                    }
-                                    break;
-                                } else {
-                                    j += 1;
-                                    j;
-                                }
-                            }
-                        }
-                        rpl_free(follows.elems as *mut libc::c_void);
-                        i = 0 as libc::c_int as Idx;
-                        while i < ndests {
-                            rpl_free(
-                                (*dests_node.as_mut_ptr().offset(i as isize)).elems
-                                    as *mut libc::c_void,
-                            );
-                            i += 1;
-                            i;
-                        }
-                        return 1 as libc::c_int != 0;
-                    }
-                }
-            }
-        }
-    }
-    rpl_free(follows.elems as *mut libc::c_void);
-    i = 0 as libc::c_int as Idx;
-    while i < ndests {
-        rpl_free(
-            (*dests_node.as_mut_ptr().offset(i as isize)).elems as *mut libc::c_void,
+        (*mctx).bkref_ents = new_entry;
+        memset(
+            ((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)
+                as *mut libc::c_void,
+            '\0' as i32,
+            (::core::mem::size_of::<re_backref_cache_entry>() as libc::c_ulong)
+                .wrapping_mul((*mctx).abkref_ents as libc::c_ulong),
         );
-        i += 1;
-        i;
+        (*mctx).abkref_ents *= 2 as libc::c_int as libc::c_long;
     }
-    return 0 as libc::c_int != 0;
-}
-unsafe extern "C" fn group_nodes_into_DFAstates(
-    mut dfa: *const re_dfa_t,
-    mut state: *const re_dfastate_t,
-    mut dests_node: *mut re_node_set,
-    mut dests_ch: *mut bitset_t,
-) -> Idx {
-    let mut current_block: u64;
-    let mut err: reg_errcode_t = _REG_NOERROR;
-    let mut ok: bool = false;
-    let mut i: Idx = 0;
-    let mut j: Idx = 0;
-    let mut k: Idx = 0;
-    let mut ndests: Idx = 0;
-    let mut accepts: bitset_t = [0; 4];
-    let mut cur_nodes: *const re_node_set = &(*state).nodes;
-    bitset_empty(accepts.as_mut_ptr());
-    ndests = 0 as libc::c_int as Idx;
-    i = 0 as libc::c_int as Idx;
-    's_20: loop {
-        if !(i < (*cur_nodes).nelem) {
-            current_block = 14648606000749551097;
-            break;
-        }
-        let mut node: *mut re_token_t = &mut *((*dfa).nodes)
-            .offset(*((*cur_nodes).elems).offset(i as isize) as isize)
-            as *mut re_token_t;
-        let mut type_0: re_token_type_t = (*node).type_0();
-        let mut constraint: libc::c_uint = (*node).constraint();
-        if type_0 as libc::c_uint == CHARACTER as libc::c_int as libc::c_uint {
-            bitset_set(accepts.as_mut_ptr(), (*node).opr.c as Idx);
-            current_block = 16203760046146113240;
-        } else if type_0 as libc::c_uint == SIMPLE_BRACKET as libc::c_int as libc::c_uint
-        {
-            bitset_merge(
-                accepts.as_mut_ptr(),
-                (*node).opr.sbcset as *const bitset_word_t,
-            );
-            current_block = 16203760046146113240;
-        } else if type_0 as libc::c_uint == OP_PERIOD as libc::c_int as libc::c_uint {
-            if (*dfa).mb_cur_max > 1 as libc::c_int {
-                bitset_merge(
-                    accepts.as_mut_ptr(),
-                    (*dfa).sb_char as *const bitset_word_t,
-                );
-            } else {
-                bitset_set_all(accepts.as_mut_ptr());
-            }
-            if (*dfa).syntax
-                & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int == 0
-            {
-                bitset_clear(accepts.as_mut_ptr(), '\n' as i32 as Idx);
-            }
-            if (*dfa).syntax
-                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
-            {
-                bitset_clear(accepts.as_mut_ptr(), '\0' as i32 as Idx);
-            }
-            current_block = 16203760046146113240;
-        } else if type_0 as libc::c_uint == OP_UTF8_PERIOD as libc::c_int as libc::c_uint
-        {
-            if 0x80 as libc::c_int % 64 as libc::c_int == 0 as libc::c_int {
-                memset(
-                    accepts.as_mut_ptr() as *mut libc::c_void,
-                    -(1 as libc::c_int),
-                    (0x80 as libc::c_int / 8 as libc::c_int) as libc::c_ulong,
-                );
-            } else {
-                bitset_merge(accepts.as_mut_ptr(), utf8_sb_map.as_ptr());
-            }
-            if (*dfa).syntax
-                & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int == 0
-            {
-                bitset_clear(accepts.as_mut_ptr(), '\n' as i32 as Idx);
-            }
-            if (*dfa).syntax
-                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
-            {
-                bitset_clear(accepts.as_mut_ptr(), '\0' as i32 as Idx);
-            }
-            current_block = 16203760046146113240;
-        } else {
-            current_block = 17179679302217393232;
-        }
-        match current_block {
-            16203760046146113240 => {
-                if constraint != 0 {
-                    if constraint & 0x20 as libc::c_int as libc::c_uint != 0 {
-                        let mut accepts_newline: bool = bitset_contain(
-                            accepts.as_mut_ptr() as *const bitset_word_t,
-                            '\n' as i32 as Idx,
-                        );
-                        bitset_empty(accepts.as_mut_ptr());
-                        if accepts_newline {
-                            bitset_set(accepts.as_mut_ptr(), '\n' as i32 as Idx);
-                            current_block = 11932355480408055363;
-                        } else {
-                            current_block = 17179679302217393232;
-                        }
-                    } else {
-                        current_block = 11932355480408055363;
-                    }
-                    match current_block {
-                        17179679302217393232 => {}
-                        _ => {
-                            if constraint & 0x80 as libc::c_int as libc::c_uint != 0 {
-                                bitset_empty(accepts.as_mut_ptr());
-                                current_block = 17179679302217393232;
-                            } else {
-                                if constraint & 0x4 as libc::c_int as libc::c_uint != 0 {
-                                    let mut any_set: bitset_word_t = 0 as libc::c_int
-                                        as bitset_word_t;
-                                    if type_0 as libc::c_uint
-                                        == CHARACTER as libc::c_int as libc::c_uint
-                                        && (*node).word_char() == 0
-                                    {
-                                        bitset_empty(accepts.as_mut_ptr());
-                                        current_block = 17179679302217393232;
-                                    } else {
-                                        if (*dfa).mb_cur_max > 1 as libc::c_int {
-                                            j = 0 as libc::c_int as Idx;
-                                            while j
-                                                < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                    + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                                    / 64 as libc::c_int) as libc::c_long
-                                            {
-                                                accepts[j as usize]
-                                                    &= (*dfa).word_char[j as usize]
-                                                        | !*((*dfa).sb_char).offset(j as isize);
-                                                any_set |= accepts[j as usize];
-                                                j += 1;
-                                                j;
-                                            }
-                                        } else {
-                                            j = 0 as libc::c_int as Idx;
-                                            while j
-                                                < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                    + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                                    / 64 as libc::c_int) as libc::c_long
-                                            {
-                                                accepts[j as usize] &= (*dfa).word_char[j as usize];
-                                                any_set |= accepts[j as usize];
-                                                j += 1;
-                                                j;
-                                            }
-                                        }
-                                        if any_set == 0 {
-                                            current_block = 17179679302217393232;
-                                        } else {
-                                            current_block = 721385680381463314;
-                                        }
-                                    }
-                                } else {
-                                    current_block = 721385680381463314;
-                                }
-                                match current_block {
-                                    17179679302217393232 => {}
-                                    _ => {
-                                        if constraint & 0x8 as libc::c_int as libc::c_uint != 0 {
-                                            let mut any_set_0: bitset_word_t = 0 as libc::c_int
-                                                as bitset_word_t;
-                                            if type_0 as libc::c_uint
-                                                == CHARACTER as libc::c_int as libc::c_uint
-                                                && (*node).word_char() as libc::c_int != 0
-                                            {
-                                                bitset_empty(accepts.as_mut_ptr());
-                                                current_block = 17179679302217393232;
-                                            } else {
-                                                if (*dfa).mb_cur_max > 1 as libc::c_int {
-                                                    j = 0 as libc::c_int as Idx;
-                                                    while j
-                                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                                            / 64 as libc::c_int) as libc::c_long
-                                                    {
-                                                        accepts[j as usize]
-                                                            &= !((*dfa).word_char[j as usize]
-                                                                & *((*dfa).sb_char).offset(j as isize));
-                                                        any_set_0 |= accepts[j as usize];
-                                                        j += 1;
-                                                        j;
-                                                    }
-                                                } else {
-                                                    j = 0 as libc::c_int as Idx;
-                                                    while j
-                                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                                            / 64 as libc::c_int) as libc::c_long
-                                                    {
-                                                        accepts[j as usize] &= !(*dfa).word_char[j as usize];
-                                                        any_set_0 |= accepts[j as usize];
-                                                        j += 1;
-                                                        j;
-                                                    }
-                                                }
-                                                if any_set_0 == 0 {
-                                                    current_block = 17179679302217393232;
-                                                } else {
-                                                    current_block = 10380409671385728102;
-                                                }
-                                            }
-                                        } else {
-                                            current_block = 10380409671385728102;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                } else {
-                    current_block = 10380409671385728102;
-                }
-                match current_block {
-                    17179679302217393232 => {}
-                    _ => {
-                        j = 0 as libc::c_int as Idx;
-                        while j < ndests {
-                            let mut intersec: bitset_t = [0; 4];
-                            let mut remains: bitset_t = [0; 4];
-                            let mut has_intersec: bitset_word_t = 0;
-                            let mut not_subset: bitset_word_t = 0;
-                            let mut not_consumed: bitset_word_t = 0;
-                            if !(type_0 as libc::c_uint
-                                == CHARACTER as libc::c_int as libc::c_uint
-                                && !bitset_contain(
-                                    (*dests_ch.offset(j as isize)).as_mut_ptr()
-                                        as *const bitset_word_t,
-                                    (*node).opr.c as Idx,
-                                ))
-                            {
-                                has_intersec = 0 as libc::c_int as bitset_word_t;
-                                k = 0 as libc::c_int as Idx;
-                                while k
-                                    < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                        + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                        / 64 as libc::c_int) as libc::c_long
-                                {
-                                    intersec[k
-                                        as usize] = accepts[k as usize]
-                                        & (*dests_ch.offset(j as isize))[k as usize];
-                                    has_intersec |= intersec[k as usize];
-                                    k += 1;
-                                    k;
-                                }
-                                if !(has_intersec == 0) {
-                                    not_consumed = 0 as libc::c_int as bitset_word_t;
-                                    not_subset = not_consumed;
-                                    k = 0 as libc::c_int as Idx;
-                                    while k
-                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
-                                            / 64 as libc::c_int) as libc::c_long
-                                    {
-                                        remains[k
-                                            as usize] = !accepts[k as usize]
-                                            & (*dests_ch.offset(j as isize))[k as usize];
-                                        not_subset |= remains[k as usize];
-                                        accepts[k
-                                            as usize] = accepts[k as usize]
-                                            & !(*dests_ch.offset(j as isize))[k as usize];
-                                        not_consumed |= accepts[k as usize];
-                                        k += 1;
-                                        k;
-                                    }
-                                    if not_subset != 0 {
-                                        bitset_copy(
-                                            (*dests_ch.offset(ndests as isize)).as_mut_ptr(),
-                                            remains.as_mut_ptr() as *const bitset_word_t,
-                                        );
-                                        bitset_copy(
-                                            (*dests_ch.offset(j as isize)).as_mut_ptr(),
-                                            intersec.as_mut_ptr() as *const bitset_word_t,
-                                        );
-                                        err = re_node_set_init_copy(
-                                            dests_node.offset(ndests as isize),
-                                            &mut *dests_node.offset(j as isize),
-                                        );
-                                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                            as libc::c_int as libc::c_long != 0
-                                        {
-                                            current_block = 15100832324144862909;
-                                            break 's_20;
-                                        }
-                                        ndests += 1;
-                                        ndests;
-                                    }
-                                    ok = re_node_set_insert(
-                                        &mut *dests_node.offset(j as isize),
-                                        *((*cur_nodes).elems).offset(i as isize),
-                                    );
-                                    if !ok as libc::c_int as libc::c_long != 0 {
-                                        current_block = 15100832324144862909;
-                                        break 's_20;
-                                    }
-                                    if not_consumed == 0 {
-                                        break;
-                                    }
-                                }
-                            }
-                            j += 1;
-                            j;
-                        }
-                        if j == ndests {
-                            bitset_copy(
-                                (*dests_ch.offset(ndests as isize)).as_mut_ptr(),
-                                accepts.as_mut_ptr() as *const bitset_word_t,
-                            );
-                            err = re_node_set_init_1(
-                                dests_node.offset(ndests as isize),
-                                *((*cur_nodes).elems).offset(i as isize),
-                            );
-                            if (err as libc::c_int != _REG_NOERROR as libc::c_int)
-                                as libc::c_int as libc::c_long != 0
-                            {
-                                current_block = 15100832324144862909;
-                                break;
-                            }
-                            ndests += 1;
-                            ndests;
-                            bitset_empty(accepts.as_mut_ptr());
-                        }
-                    }
-                }
-            }
-            _ => {}
-        }
-        i += 1;
-        i;
-    }
-    match current_block {
-        15100832324144862909 => {
-            j = 0 as libc::c_int as Idx;
-            while j < ndests {
-                rpl_free((*dests_node.offset(j as isize)).elems as *mut libc::c_void);
-                j += 1;
-                j;
-            }
-            return -(1 as libc::c_int) as Idx;
-        }
-        _ => {
-            if ndests
-                <= (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
-                    + 1 as libc::c_int) as libc::c_long
-            {} else {
-                unreachable!();
-            };
-            return ndests;
-        }
-    };
-}
-unsafe extern "C" fn check_node_accept_bytes(
-    mut dfa: *const re_dfa_t,
-    mut node_idx: Idx,
-    mut input: *const re_string_t,
-    mut str_idx: Idx,
-) -> libc::c_int {
-    let mut current_block: u64;
-    let mut node: *const re_token_t = ((*dfa).nodes).offset(node_idx as isize);
-    let mut char_len: libc::c_int = 0;
-    let mut elem_len: libc::c_int = 0;
-    let mut i: Idx = 0;
-    if ((*node).type_0() as libc::c_int == OP_UTF8_PERIOD as libc::c_int) as libc::c_int
-        as libc::c_long != 0
+    if (*mctx).nbkref_ents > 0 as libc::c_int as libc::c_long
+        && (*((*mctx).bkref_ents)
+            .offset(((*mctx).nbkref_ents - 1 as libc::c_int as libc::c_long) as isize))
+            .str_idx == str_idx
     {
-        let mut c: libc::c_uchar = *((*input).mbs).offset(str_idx as isize);
-        let mut d: libc::c_uchar = 0;
-        if ((c as libc::c_int) < 0xc2 as libc::c_int) as libc::c_int as libc::c_long != 0
-        {
-            return 0 as libc::c_int;
-        }
-        if str_idx + 2 as libc::c_int as libc::c_long > (*input).len {
-            return 0 as libc::c_int;
-        }
-        d = *((*input).mbs)
-            .offset((str_idx + 1 as libc::c_int as libc::c_long) as isize);
-        if (c as libc::c_int) < 0xe0 as libc::c_int {
-            return if (d as libc::c_int) < 0x80 as libc::c_int
-                || d as libc::c_int > 0xbf as libc::c_int
-            {
-                0 as libc::c_int
-            } else {
-                2 as libc::c_int
-            }
-        } else if (c as libc::c_int) < 0xf0 as libc::c_int {
-            char_len = 3 as libc::c_int;
-            if c as libc::c_int == 0xe0 as libc::c_int
-                && (d as libc::c_int) < 0xa0 as libc::c_int
-            {
-                return 0 as libc::c_int;
-            }
-        } else if (c as libc::c_int) < 0xf8 as libc::c_int {
-            char_len = 4 as libc::c_int;
-            if c as libc::c_int == 0xf0 as libc::c_int
-                && (d as libc::c_int) < 0x90 as libc::c_int
-            {
-                return 0 as libc::c_int;
-            }
-        } else if (c as libc::c_int) < 0xfc as libc::c_int {
-            char_len = 5 as libc::c_int;
-            if c as libc::c_int == 0xf8 as libc::c_int
-                && (d as libc::c_int) < 0x88 as libc::c_int
-            {
-                return 0 as libc::c_int;
-            }
-        } else if (c as libc::c_int) < 0xfe as libc::c_int {
-            char_len = 6 as libc::c_int;
-            if c as libc::c_int == 0xfc as libc::c_int
-                && (d as libc::c_int) < 0x84 as libc::c_int
-            {
-                return 0 as libc::c_int;
-            }
-        } else {
-            return 0 as libc::c_int
-        }
-        if str_idx + char_len as libc::c_long > (*input).len {
-            return 0 as libc::c_int;
-        }
-        i = 1 as libc::c_int as Idx;
-        while i < char_len as libc::c_long {
-            d = *((*input).mbs).offset((str_idx + i) as isize);
-            if (d as libc::c_int) < 0x80 as libc::c_int
-                || d as libc::c_int > 0xbf as libc::c_int
-            {
-                return 0 as libc::c_int;
-            }
-            i += 1;
-            i;
-        }
-        return char_len;
+        (*((*mctx).bkref_ents)
+            .offset(((*mctx).nbkref_ents - 1 as libc::c_int as libc::c_long) as isize))
+            .more = 1 as libc::c_int as libc::c_char;
     }
-    char_len = re_string_char_size_at(input, str_idx);
-    if (*node).type_0() as libc::c_int == OP_PERIOD as libc::c_int {
-        if char_len <= 1 as libc::c_int {
-            return 0 as libc::c_int;
-        }
-        if (*dfa).syntax
-            & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                << 1 as libc::c_int) << 1 as libc::c_int == 0
-            && *((*input).mbs).offset(str_idx as isize) as libc::c_int == '\n' as i32
-            || (*dfa).syntax
-                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
-                && *((*input).mbs).offset(str_idx as isize) as libc::c_int == '\0' as i32
-        {
-            return 0 as libc::c_int;
-        }
-        return char_len;
-    }
-    elem_len = re_string_elem_size_at(input, str_idx);
-    if elem_len <= 1 as libc::c_int && char_len <= 1 as libc::c_int
-        || char_len == 0 as libc::c_int
-    {
-        return 0 as libc::c_int;
-    }
-    if (*node).type_0() as libc::c_int == COMPLEX_BRACKET as libc::c_int {
-        let mut cset: *const re_charset_t = (*node).opr.mbcset;
-        let mut match_len: libc::c_int = 0 as libc::c_int;
-        let mut wc: wchar_t = (if (*cset).nranges != 0 || (*cset).nchar_classes != 0
-            || (*cset).nmbchars != 0
-        {
-            re_string_wchar_at(input, str_idx)
-        } else {
-            0 as libc::c_int as libc::c_uint
-        }) as wchar_t;
-        i = 0 as libc::c_int as Idx;
-        loop {
-            if !(i < (*cset).nmbchars) {
-                current_block = 1622411330066726685;
-                break;
-            }
-            if wc == *((*cset).mbchars).offset(i as isize) {
-                match_len = char_len;
-                current_block = 6342749947447970214;
-                break;
-            } else {
-                i += 1;
-                i;
-            }
-        }
-        match current_block {
-            1622411330066726685 => {
-                i = 0 as libc::c_int as Idx;
-                loop {
-                    if !(i < (*cset).nchar_classes) {
-                        current_block = 14220266465818359136;
-                        break;
-                    }
-                    let mut wt: wctype_t = *((*cset).char_classes).offset(i as isize);
-                    if iswctype(wc as wint_t, wt) != 0 {
-                        match_len = char_len;
-                        current_block = 6342749947447970214;
-                        break;
-                    } else {
-                        i += 1;
-                        i;
-                    }
-                }
-                match current_block {
-                    6342749947447970214 => {}
-                    _ => {
-                        i = 0 as libc::c_int as Idx;
-                        while i < (*cset).nranges {
-                            if *((*cset).range_starts).offset(i as isize) <= wc
-                                && wc <= *((*cset).range_ends).offset(i as isize)
-                            {
-                                match_len = char_len;
-                                break;
-                            } else {
-                                i += 1;
-                                i;
-                            }
-                        }
-                    }
-                }
-            }
-            _ => {}
-        }
-        if (*cset).non_match() == 0 {
-            return match_len
-        } else if match_len > 0 as libc::c_int {
-            return 0 as libc::c_int
-        } else {
-            return if elem_len > char_len { elem_len } else { char_len }
-        }
+    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).node = node;
+    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).str_idx = str_idx;
+    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).subexp_from = from;
+    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).subexp_to = to;
+    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize))
+        .eps_reachable_subexps_map = (if from == to {
+        -(1 as libc::c_int)
     } else {
-        return 0 as libc::c_int
-    };
-}
-unsafe extern "C" fn check_node_accept(
-    mut mctx: *const re_match_context_t,
-    mut node: *const re_token_t,
-    mut idx: Idx,
-) -> bool {
-    let mut ch: libc::c_uchar = 0;
-    ch = *((*mctx).input.mbs).offset(idx as isize);
-    let mut current_block_10: u64;
-    match (*node).type_0() as libc::c_int {
-        1 => {
-            if (*node).opr.c as libc::c_int != ch as libc::c_int {
-                return 0 as libc::c_int != 0;
-            }
-            current_block_10 = 7746791466490516765;
-        }
-        3 => {
-            if !bitset_contain((*node).opr.sbcset as *const bitset_word_t, ch as Idx) {
-                return 0 as libc::c_int != 0;
-            }
-            current_block_10 = 7746791466490516765;
-        }
-        7 => {
-            if ch as libc::c_int >= 0x80 as libc::c_int {
-                return 0 as libc::c_int != 0;
-            }
-            current_block_10 = 17706666489550845114;
-        }
-        5 => {
-            current_block_10 = 17706666489550845114;
-        }
-        _ => return 0 as libc::c_int != 0,
+        0 as libc::c_int
+    }) as bitset_word_t;
+    let fresh72 = (*mctx).nbkref_ents;
+    (*mctx).nbkref_ents = (*mctx).nbkref_ents + 1;
+    (*((*mctx).bkref_ents).offset(fresh72 as isize)).more = 0 as libc::c_int
+        as libc::c_char;
+    if ((*mctx).max_mb_elem_len as libc::c_long) < to - from {
+        (*mctx).max_mb_elem_len = (to - from) as libc::c_int;
     }
-    match current_block_10 {
-        17706666489550845114 => {
-            if ch as libc::c_int == '\n' as i32
-                && (*(*mctx).dfa).syntax
-                    & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                        << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                        << 1 as libc::c_int) << 1 as libc::c_int == 0
-                || ch as libc::c_int == '\0' as i32
-                    && (*(*mctx).dfa).syntax
-                        & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
-                            << 1 as libc::c_int) << 1 as libc::c_int)
-                            << 1 as libc::c_int) << 1 as libc::c_int)
-                            << 1 as libc::c_int) << 1 as libc::c_int != 0
-            {
-                return 0 as libc::c_int != 0;
-            }
-        }
-        _ => {}
-    }
-    if (*node).constraint() != 0 {
-        let mut context: libc::c_uint = re_string_context_at(
-            &(*mctx).input,
-            idx,
-            (*mctx).eflags,
-        );
-        if (*node).constraint() as libc::c_int & 0x4 as libc::c_int != 0
-            && context & 1 as libc::c_int as libc::c_uint == 0
-            || (*node).constraint() as libc::c_int & 0x8 as libc::c_int != 0
-                && context & 1 as libc::c_int as libc::c_uint != 0
-            || (*node).constraint() as libc::c_int & 0x20 as libc::c_int != 0
-                && context & ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
-                    == 0
-            || (*node).constraint() as libc::c_int & 0x80 as libc::c_int != 0
-                && context
-                    & ((((1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
-                        << 1 as libc::c_int) as libc::c_uint == 0
-        {
-            return 0 as libc::c_int != 0;
-        }
-    }
-    return 1 as libc::c_int != 0;
+    return _REG_NOERROR;
 }
 unsafe extern "C" fn extend_buffers(
     mut mctx: *mut re_match_context_t,
@@ -14084,113 +12642,6 @@ unsafe extern "C" fn extend_buffers(
     }
     return _REG_NOERROR;
 }
-#[inline]
-unsafe extern "C" fn regmatch_list_begin(
-    mut list: *mut regmatch_list,
-) -> *mut regmatch_t {
-    return (*list).u.dynarray_header.array;
-}
-unsafe extern "C" fn match_ctx_add_entry(
-    mut mctx: *mut re_match_context_t,
-    mut node: Idx,
-    mut str_idx: Idx,
-    mut from: Idx,
-    mut to: Idx,
-) -> reg_errcode_t {
-    if (*mctx).nbkref_ents >= (*mctx).abkref_ents {
-        let mut new_entry: *mut re_backref_cache_entry = 0
-            as *mut re_backref_cache_entry;
-        new_entry = realloc(
-            (*mctx).bkref_ents as *mut libc::c_void,
-            (((*mctx).abkref_ents * 2 as libc::c_int as libc::c_long) as libc::c_ulong)
-                .wrapping_mul(
-                    ::core::mem::size_of::<re_backref_cache_entry>() as libc::c_ulong,
-                ),
-        ) as *mut re_backref_cache_entry;
-        if (new_entry == 0 as *mut libc::c_void as *mut re_backref_cache_entry)
-            as libc::c_int as libc::c_long != 0
-        {
-            rpl_free((*mctx).bkref_ents as *mut libc::c_void);
-            return _REG_ESPACE;
-        }
-        (*mctx).bkref_ents = new_entry;
-        memset(
-            ((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)
-                as *mut libc::c_void,
-            '\0' as i32,
-            (::core::mem::size_of::<re_backref_cache_entry>() as libc::c_ulong)
-                .wrapping_mul((*mctx).abkref_ents as libc::c_ulong),
-        );
-        (*mctx).abkref_ents *= 2 as libc::c_int as libc::c_long;
-    }
-    if (*mctx).nbkref_ents > 0 as libc::c_int as libc::c_long
-        && (*((*mctx).bkref_ents)
-            .offset(((*mctx).nbkref_ents - 1 as libc::c_int as libc::c_long) as isize))
-            .str_idx == str_idx
-    {
-        (*((*mctx).bkref_ents)
-            .offset(((*mctx).nbkref_ents - 1 as libc::c_int as libc::c_long) as isize))
-            .more = 1 as libc::c_int as libc::c_char;
-    }
-    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).node = node;
-    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).str_idx = str_idx;
-    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).subexp_from = from;
-    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize)).subexp_to = to;
-    (*((*mctx).bkref_ents).offset((*mctx).nbkref_ents as isize))
-        .eps_reachable_subexps_map = (if from == to {
-        -(1 as libc::c_int)
-    } else {
-        0 as libc::c_int
-    }) as bitset_word_t;
-    let fresh83 = (*mctx).nbkref_ents;
-    (*mctx).nbkref_ents = (*mctx).nbkref_ents + 1;
-    (*((*mctx).bkref_ents).offset(fresh83 as isize))
-        .more = 0 as libc::c_int as libc::c_char;
-    if ((*mctx).max_mb_elem_len as libc::c_long) < to - from {
-        (*mctx).max_mb_elem_len = (to - from) as libc::c_int;
-    }
-    return _REG_NOERROR;
-}
-unsafe extern "C" fn match_ctx_add_sublast(
-    mut subtop: *mut re_sub_match_top_t,
-    mut node: Idx,
-    mut str_idx: Idx,
-) -> *mut re_sub_match_last_t {
-    let mut new_entry: *mut re_sub_match_last_t = 0 as *mut re_sub_match_last_t;
-    if ((*subtop).nlasts == (*subtop).alasts) as libc::c_int as libc::c_long != 0 {
-        let mut new_alasts: Idx = 2 as libc::c_int as libc::c_long * (*subtop).alasts
-            + 1 as libc::c_int as libc::c_long;
-        let mut new_array: *mut *mut re_sub_match_last_t = realloc(
-            (*subtop).lasts as *mut libc::c_void,
-            (new_alasts as libc::c_ulong)
-                .wrapping_mul(
-                    ::core::mem::size_of::<*mut re_sub_match_last_t>() as libc::c_ulong,
-                ),
-        ) as *mut *mut re_sub_match_last_t;
-        if (new_array == 0 as *mut libc::c_void as *mut *mut re_sub_match_last_t)
-            as libc::c_int as libc::c_long != 0
-        {
-            return 0 as *mut re_sub_match_last_t;
-        }
-        (*subtop).lasts = new_array;
-        (*subtop).alasts = new_alasts;
-    }
-    new_entry = calloc(
-        1 as libc::c_int as libc::c_ulong,
-        ::core::mem::size_of::<re_sub_match_last_t>() as libc::c_ulong,
-    ) as *mut re_sub_match_last_t;
-    if (new_entry != 0 as *mut libc::c_void as *mut re_sub_match_last_t) as libc::c_int
-        as libc::c_long != 0
-    {
-        let ref mut fresh84 = *((*subtop).lasts).offset((*subtop).nlasts as isize);
-        *fresh84 = new_entry;
-        (*new_entry).node = node;
-        (*new_entry).str_idx = str_idx;
-        (*subtop).nlasts += 1;
-        (*subtop).nlasts;
-    }
-    return new_entry;
-}
 unsafe extern "C" fn match_ctx_init(
     mut mctx: *mut re_match_context_t,
     mut eflags: libc::c_int,
@@ -14218,15 +12669,13 @@ unsafe extern "C" fn match_ctx_init(
         {
             return _REG_ESPACE;
         }
-        (*mctx)
-            .bkref_ents = malloc(
+        (*mctx).bkref_ents = malloc(
             (n as libc::c_ulong)
                 .wrapping_mul(
                     ::core::mem::size_of::<re_backref_cache_entry>() as libc::c_ulong,
                 ),
         ) as *mut re_backref_cache_entry;
-        (*mctx)
-            .sub_tops = malloc(
+        (*mctx).sub_tops = malloc(
             (n as libc::c_ulong)
                 .wrapping_mul(
                     ::core::mem::size_of::<*mut re_sub_match_top_t>() as libc::c_ulong,
@@ -14241,6 +12690,235 @@ unsafe extern "C" fn match_ctx_init(
     (*mctx).abkref_ents = n;
     (*mctx).max_mb_elem_len = 1 as libc::c_int;
     (*mctx).asub_tops = n;
+    return _REG_NOERROR;
+}
+unsafe extern "C" fn get_subexp_sub(
+    mut mctx: *mut re_match_context_t,
+    mut sub_top: *const re_sub_match_top_t,
+    mut sub_last: *mut re_sub_match_last_t,
+    mut bkref_node: Idx,
+    mut bkref_str: Idx,
+) -> reg_errcode_t {
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut to_idx: Idx = 0;
+    err = check_arrival(
+        mctx,
+        &mut (*sub_last).path,
+        (*sub_last).node,
+        (*sub_last).str_idx,
+        bkref_node,
+        bkref_str,
+        re_token_type_t::OP_OPEN_SUBEXP as libc::c_int,
+    );
+    if err as libc::c_int != _REG_NOERROR as libc::c_int {
+        return err;
+    }
+    err = match_ctx_add_entry(
+        mctx,
+        bkref_node,
+        bkref_str,
+        (*sub_top).str_idx,
+        (*sub_last).str_idx,
+    );
+    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int as libc::c_long
+        != 0
+    {
+        return err;
+    }
+    to_idx = bkref_str + (*sub_last).str_idx - (*sub_top).str_idx;
+    return clean_state_log_if_needed(mctx, to_idx);
+}
+unsafe extern "C" fn get_subexp(
+    mut mctx: *mut re_match_context_t,
+    mut bkref_node: Idx,
+    mut bkref_str_idx: Idx,
+) -> reg_errcode_t {
+    let dfa: *const re_dfa_t = (*mctx).dfa;
+    let mut subexp_num: Idx = 0;
+    let mut sub_top_idx: Idx = 0;
+    let mut buf: *const libc::c_char = (*mctx).input.mbs as *const libc::c_char;
+    let mut cache_idx: Idx = search_cur_bkref_entry(mctx, bkref_str_idx);
+    if cache_idx != -(1 as libc::c_int) as libc::c_long {
+        let mut entry: *const re_backref_cache_entry = ((*mctx).bkref_ents)
+            .offset(cache_idx as isize);
+        loop {
+            if (*entry).node == bkref_node {
+                return _REG_NOERROR;
+            }
+            let fresh73 = entry;
+            entry = entry.offset(1);
+            if !((*fresh73).more != 0) {
+                break;
+            }
+        }
+    }
+    subexp_num = (*((*dfa).nodes).offset(bkref_node as isize)).opr.idx;
+    sub_top_idx = 0 as libc::c_int as Idx;
+    while sub_top_idx < (*mctx).nsub_tops {
+        let mut err: reg_errcode_t = _REG_NOERROR;
+        let mut sub_top: *mut re_sub_match_top_t = *((*mctx).sub_tops)
+            .offset(sub_top_idx as isize);
+        let mut sub_last: *mut re_sub_match_last_t = 0 as *mut re_sub_match_last_t;
+        let mut sub_last_idx: Idx = 0;
+        let mut sl_str: Idx = 0;
+        let mut bkref_str_off: Idx = 0;
+        if !((*((*dfa).nodes).offset((*sub_top).node as isize)).opr.idx != subexp_num) {
+            sl_str = (*sub_top).str_idx;
+            bkref_str_off = bkref_str_idx;
+            sub_last_idx = 0 as libc::c_int as Idx;
+            while sub_last_idx < (*sub_top).nlasts {
+                let mut sl_str_diff: regoff_t = 0;
+                sub_last = *((*sub_top).lasts).offset(sub_last_idx as isize);
+                sl_str_diff = (*sub_last).str_idx - sl_str;
+                if sl_str_diff > 0 as libc::c_int as libc::c_long {
+                    if (bkref_str_off + sl_str_diff > (*mctx).input.valid_len)
+                        as libc::c_int as libc::c_long != 0
+                    {
+                        if bkref_str_off + sl_str_diff > (*mctx).input.len {
+                            break;
+                        }
+                        err = clean_state_log_if_needed(
+                            mctx,
+                            bkref_str_off + sl_str_diff,
+                        );
+                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                            as libc::c_int as libc::c_long != 0
+                        {
+                            return err;
+                        }
+                        buf = (*mctx).input.mbs as *const libc::c_char;
+                    }
+                    if memcmp(
+                        buf.offset(bkref_str_off as isize) as *const libc::c_void,
+                        buf.offset(sl_str as isize) as *const libc::c_void,
+                        sl_str_diff as libc::c_ulong,
+                    ) != 0 as libc::c_int
+                    {
+                        break;
+                    }
+                }
+                bkref_str_off += sl_str_diff;
+                sl_str += sl_str_diff;
+                err = get_subexp_sub(mctx, sub_top, sub_last, bkref_node, bkref_str_idx);
+                buf = (*mctx).input.mbs as *const libc::c_char;
+                if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
+                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                        as libc::c_long != 0
+                    {
+                        return err;
+                    }
+                }
+                sub_last_idx += 1;
+                sub_last_idx;
+            }
+            if !(sub_last_idx < (*sub_top).nlasts) {
+                if sub_last_idx > 0 as libc::c_int as libc::c_long {
+                    sl_str += 1;
+                    sl_str;
+                }
+                while sl_str <= bkref_str_idx {
+                    let mut cls_node: Idx = 0;
+                    let mut sl_str_off: regoff_t = 0;
+                    let mut nodes: *const re_node_set = 0 as *const re_node_set;
+                    sl_str_off = sl_str - (*sub_top).str_idx;
+                    if sl_str_off > 0 as libc::c_int as libc::c_long {
+                        if (bkref_str_off >= (*mctx).input.valid_len) as libc::c_int
+                            as libc::c_long != 0
+                        {
+                            if bkref_str_off >= (*mctx).input.len {
+                                break;
+                            }
+                            err = extend_buffers(
+                                mctx,
+                                (bkref_str_off + 1 as libc::c_int as libc::c_long)
+                                    as libc::c_int,
+                            );
+                            if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                as libc::c_int as libc::c_long != 0
+                            {
+                                return err;
+                            }
+                            buf = (*mctx).input.mbs as *const libc::c_char;
+                        }
+                        let fresh74 = bkref_str_off;
+                        bkref_str_off = bkref_str_off + 1;
+                        if *buf.offset(fresh74 as isize) as libc::c_int
+                            != *buf
+                                .offset(
+                                    (sl_str - 1 as libc::c_int as libc::c_long) as isize,
+                                ) as libc::c_int
+                        {
+                            break;
+                        }
+                    }
+                    if !(*((*mctx).state_log).offset(sl_str as isize)).is_null() {
+                        nodes = &mut (**((*mctx).state_log).offset(sl_str as isize))
+                            .nodes;
+                        cls_node = find_subexp_node(
+                            dfa,
+                            nodes,
+                            subexp_num,
+                            re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int,
+                        );
+                        if !(cls_node == -(1 as libc::c_int) as libc::c_long) {
+                            if ((*sub_top).path).is_null() {
+                                (*sub_top).path = calloc(
+                                    ::core::mem::size_of::<state_array_t>() as libc::c_ulong,
+                                    (sl_str - (*sub_top).str_idx
+                                        + 1 as libc::c_int as libc::c_long) as libc::c_ulong,
+                                ) as *mut state_array_t;
+                                if ((*sub_top).path).is_null() {
+                                    return _REG_ESPACE;
+                                }
+                            }
+                            err = check_arrival(
+                                mctx,
+                                (*sub_top).path,
+                                (*sub_top).node,
+                                (*sub_top).str_idx,
+                                cls_node,
+                                sl_str,
+                                re_token_type_t::OP_CLOSE_SUBEXP as libc::c_int,
+                            );
+                            if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
+                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    return err;
+                                }
+                                sub_last = match_ctx_add_sublast(sub_top, cls_node, sl_str);
+                                if (sub_last
+                                    == 0 as *mut libc::c_void as *mut re_sub_match_last_t)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    return _REG_ESPACE;
+                                }
+                                err = get_subexp_sub(
+                                    mctx,
+                                    sub_top,
+                                    sub_last,
+                                    bkref_node,
+                                    bkref_str_idx,
+                                );
+                                buf = (*mctx).input.mbs as *const libc::c_char;
+                                if !(err as libc::c_int == _REG_NOMATCH as libc::c_int) {
+                                    if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                        as libc::c_int as libc::c_long != 0
+                                    {
+                                        return err;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    sl_str += 1;
+                    sl_str;
+                }
+            }
+        }
+        sub_top_idx += 1;
+        sub_top_idx;
+    }
     return _REG_NOERROR;
 }
 unsafe extern "C" fn match_ctx_add_subtop(
@@ -14272,8 +12950,8 @@ unsafe extern "C" fn match_ctx_add_subtop(
         (*mctx).sub_tops = new_array;
         (*mctx).asub_tops = new_asub_tops;
     }
-    let ref mut fresh85 = *((*mctx).sub_tops).offset((*mctx).nsub_tops as isize);
-    *fresh85 = calloc(
+    let ref mut fresh75 = *((*mctx).sub_tops).offset((*mctx).nsub_tops as isize);
+    *fresh75 = calloc(
         1 as libc::c_int as libc::c_ulong,
         ::core::mem::size_of::<re_sub_match_top_t>() as libc::c_ulong,
     ) as *mut re_sub_match_top_t;
@@ -14284,15 +12962,216 @@ unsafe extern "C" fn match_ctx_add_subtop(
         return _REG_ESPACE;
     }
     (**((*mctx).sub_tops).offset((*mctx).nsub_tops as isize)).node = node;
-    let fresh86 = (*mctx).nsub_tops;
+    let fresh76 = (*mctx).nsub_tops;
     (*mctx).nsub_tops = (*mctx).nsub_tops + 1;
-    (**((*mctx).sub_tops).offset(fresh86 as isize)).str_idx = str_idx;
+    (**((*mctx).sub_tops).offset(fresh76 as isize)).str_idx = str_idx;
     return _REG_NOERROR;
 }
-unsafe extern "C" fn match_ctx_free(mut mctx: *mut re_match_context_t) {
-    match_ctx_clean(mctx);
-    rpl_free((*mctx).sub_tops as *mut libc::c_void);
-    rpl_free((*mctx).bkref_ents as *mut libc::c_void);
+unsafe extern "C" fn transit_state_bkref(
+    mut mctx: *mut re_match_context_t,
+    mut nodes: *const re_node_set,
+) -> reg_errcode_t {
+    let mut current_block: u64;
+    let dfa: *const re_dfa_t = (*mctx).dfa;
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut i: Idx = 0;
+    let mut cur_str_idx: Idx = (*mctx).input.cur_idx;
+    i = 0 as libc::c_int as Idx;
+    's_10: loop {
+        if !(i < (*nodes).nelem) {
+            current_block = 9520865839495247062;
+            break;
+        }
+        let mut dest_str_idx: Idx = 0;
+        let mut prev_nelem: Idx = 0;
+        let mut bkc_idx: Idx = 0;
+        let mut node_idx: Idx = *((*nodes).elems).offset(i as isize);
+        let mut context: libc::c_uint = 0;
+        let mut node: *const re_token_t = ((*dfa).nodes).offset(node_idx as isize);
+        let mut new_dest_nodes: *mut re_node_set = 0 as *mut re_node_set;
+        if !((*node).type_0() as libc::c_int
+            != re_token_type_t::OP_BACK_REF as libc::c_int)
+        {
+            if (*node).constraint() != 0 {
+                context = re_string_context_at(
+                    &mut (*mctx).input,
+                    cur_str_idx,
+                    (*mctx).eflags,
+                );
+                if (*node).constraint() as libc::c_int & 0x4 as libc::c_int != 0
+                    && context & 1 as libc::c_int as libc::c_uint == 0
+                    || (*node).constraint() as libc::c_int & 0x8 as libc::c_int != 0
+                        && context & 1 as libc::c_int as libc::c_uint != 0
+                    || (*node).constraint() as libc::c_int & 0x20 as libc::c_int != 0
+                        && context
+                            & ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
+                            == 0
+                    || (*node).constraint() as libc::c_int & 0x80 as libc::c_int != 0
+                        && context
+                            & ((((1 as libc::c_int) << 1 as libc::c_int)
+                                << 1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
+                            == 0
+                {
+                    current_block = 8258075665625361029;
+                } else {
+                    current_block = 3276175668257526147;
+                }
+            } else {
+                current_block = 3276175668257526147;
+            }
+            match current_block {
+                8258075665625361029 => {}
+                _ => {
+                    bkc_idx = (*mctx).nbkref_ents;
+                    err = get_subexp(mctx, node_idx, cur_str_idx);
+                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                        as libc::c_long != 0
+                    {
+                        current_block = 8297333999949529677;
+                        break;
+                    }
+                    if *((*dfa).nexts).offset(node_idx as isize)
+                        != -(1 as libc::c_int) as libc::c_long
+                    {} else {
+                        unreachable!();
+                    };
+                    while bkc_idx < (*mctx).nbkref_ents {
+                        let mut subexp_len: Idx = 0;
+                        let mut dest_state: *mut re_dfastate_t = 0 as *mut re_dfastate_t;
+                        let mut bkref_ent: *mut re_backref_cache_entry = 0
+                            as *mut re_backref_cache_entry;
+                        bkref_ent = ((*mctx).bkref_ents).offset(bkc_idx as isize);
+                        if !((*bkref_ent).node != node_idx
+                            || (*bkref_ent).str_idx != cur_str_idx)
+                        {
+                            subexp_len = (*bkref_ent).subexp_to
+                                - (*bkref_ent).subexp_from;
+                            new_dest_nodes = if subexp_len
+                                == 0 as libc::c_int as libc::c_long
+                            {
+                                ((*dfa).eclosures)
+                                    .offset(
+                                        *((*((*dfa).edests).offset(node_idx as isize)).elems)
+                                            .offset(0 as libc::c_int as isize) as isize,
+                                    )
+                            } else {
+                                ((*dfa).eclosures)
+                                    .offset(*((*dfa).nexts).offset(node_idx as isize) as isize)
+                            };
+                            dest_str_idx = cur_str_idx + (*bkref_ent).subexp_to
+                                - (*bkref_ent).subexp_from;
+                            context = re_string_context_at(
+                                &mut (*mctx).input,
+                                dest_str_idx - 1 as libc::c_int as libc::c_long,
+                                (*mctx).eflags,
+                            );
+                            dest_state = *((*mctx).state_log)
+                                .offset(dest_str_idx as isize);
+                            prev_nelem = if (*((*mctx).state_log)
+                                .offset(cur_str_idx as isize))
+                                .is_null()
+                            {
+                                0 as libc::c_int as libc::c_long
+                            } else {
+                                (**((*mctx).state_log).offset(cur_str_idx as isize))
+                                    .nodes
+                                    .nelem
+                            };
+                            if dest_state.is_null() {
+                                let ref mut fresh77 = *((*mctx).state_log)
+                                    .offset(dest_str_idx as isize);
+                                *fresh77 = re_acquire_state_context(
+                                    &mut err,
+                                    dfa,
+                                    new_dest_nodes,
+                                    context,
+                                );
+                                if ((*((*mctx).state_log).offset(dest_str_idx as isize))
+                                    .is_null()
+                                    && err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    current_block = 8297333999949529677;
+                                    break 's_10;
+                                }
+                            } else {
+                                let mut dest_nodes: re_node_set = re_node_set {
+                                    alloc: 0,
+                                    nelem: 0,
+                                    elems: 0 as *mut Idx,
+                                };
+                                err = re_node_set_init_union(
+                                    &mut dest_nodes,
+                                    (*dest_state).entrance_nodes,
+                                    new_dest_nodes,
+                                );
+                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    rpl_free(dest_nodes.elems as *mut libc::c_void);
+                                    current_block = 8297333999949529677;
+                                    break 's_10;
+                                } else {
+                                    let ref mut fresh78 = *((*mctx).state_log)
+                                        .offset(dest_str_idx as isize);
+                                    *fresh78 = re_acquire_state_context(
+                                        &mut err,
+                                        dfa,
+                                        &mut dest_nodes,
+                                        context,
+                                    );
+                                    rpl_free(dest_nodes.elems as *mut libc::c_void);
+                                    if ((*((*mctx).state_log).offset(dest_str_idx as isize))
+                                        .is_null()
+                                        && err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                        as libc::c_int as libc::c_long != 0
+                                    {
+                                        current_block = 8297333999949529677;
+                                        break 's_10;
+                                    }
+                                }
+                            }
+                            if subexp_len == 0 as libc::c_int as libc::c_long
+                                && (**((*mctx).state_log).offset(cur_str_idx as isize))
+                                    .nodes
+                                    .nelem > prev_nelem
+                            {
+                                err = check_subexp_matching_top(
+                                    mctx,
+                                    new_dest_nodes,
+                                    cur_str_idx,
+                                );
+                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    current_block = 8297333999949529677;
+                                    break 's_10;
+                                }
+                                err = transit_state_bkref(mctx, new_dest_nodes);
+                                if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                    as libc::c_int as libc::c_long != 0
+                                {
+                                    current_block = 8297333999949529677;
+                                    break 's_10;
+                                }
+                            }
+                        }
+                        bkc_idx += 1;
+                        bkc_idx;
+                    }
+                }
+            }
+        }
+        i += 1;
+        i;
+    }
+    match current_block {
+        9520865839495247062 => {
+            err = _REG_NOERROR;
+        }
+        _ => {}
+    }
+    return err;
 }
 unsafe extern "C" fn match_ctx_clean(mut mctx: *mut re_match_context_t) {
     let mut st_idx: Idx = 0;
@@ -14349,11 +13228,8 @@ unsafe extern "C" fn regmatch_list_free(mut list: *mut regmatch_list) {
 }
 unsafe extern "C" fn regmatch_list_init(mut list: *mut regmatch_list) {
     (*list).u.dynarray_header.used = 0 as libc::c_int as size_t;
-    (*list)
-        .u
-        .dynarray_header
-        .allocated = if ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
-        > 64 as libc::c_int as libc::c_ulong
+    (*list).u.dynarray_header.allocated = if ::core::mem::size_of::<regmatch_t>()
+        as libc::c_ulong > 64 as libc::c_int as libc::c_ulong
     {
         2 as libc::c_int as libc::c_ulong
     } else {
@@ -14361,6 +13237,92 @@ unsafe extern "C" fn regmatch_list_init(mut list: *mut regmatch_list) {
             .wrapping_div(::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
     };
     (*list).u.dynarray_header.array = ((*list).scratch).as_mut_ptr();
+}
+unsafe extern "C" fn check_arrival_add_next_nodes(
+    mut mctx: *mut re_match_context_t,
+    mut str_idx: Idx,
+    mut cur_nodes: *mut re_node_set,
+    mut next_nodes: *mut re_node_set,
+) -> reg_errcode_t {
+    let dfa: *const re_dfa_t = (*mctx).dfa;
+    let mut ok: bool = false;
+    let mut cur_idx: Idx = 0;
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut union_set: re_node_set = re_node_set {
+        alloc: 0,
+        nelem: 0,
+        elems: 0 as *mut Idx,
+    };
+    memset(
+        &mut union_set as *mut re_node_set as *mut libc::c_void,
+        '\0' as i32,
+        ::core::mem::size_of::<re_node_set>() as libc::c_ulong,
+    );
+    cur_idx = 0 as libc::c_int as Idx;
+    while cur_idx < (*cur_nodes).nelem {
+        let mut naccepted: libc::c_int = 0 as libc::c_int;
+        let mut cur_node: Idx = *((*cur_nodes).elems).offset(cur_idx as isize);
+        if (*((*dfa).nodes).offset(cur_node as isize)).type_0() as libc::c_int
+            & 8 as libc::c_int == 0
+        {} else {
+            unreachable!();
+        };
+        if (*((*dfa).nodes).offset(cur_node as isize)).accept_mb() != 0 {
+            naccepted = check_node_accept_bytes(
+                dfa,
+                cur_node,
+                &mut (*mctx).input,
+                str_idx,
+            );
+            if naccepted > 1 as libc::c_int {
+                let mut dest_state: *mut re_dfastate_t = 0 as *mut re_dfastate_t;
+                let mut next_node: Idx = *((*dfa).nexts).offset(cur_node as isize);
+                let mut next_idx: Idx = str_idx + naccepted as libc::c_long;
+                dest_state = *((*mctx).state_log).offset(next_idx as isize);
+                union_set.nelem = 0 as libc::c_int as Idx;
+                if !dest_state.is_null() {
+                    err = re_node_set_merge(&mut union_set, &mut (*dest_state).nodes);
+                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                        as libc::c_long != 0
+                    {
+                        rpl_free(union_set.elems as *mut libc::c_void);
+                        return err;
+                    }
+                }
+                ok = re_node_set_insert(&mut union_set, next_node);
+                if !ok as libc::c_int as libc::c_long != 0 {
+                    rpl_free(union_set.elems as *mut libc::c_void);
+                    return _REG_ESPACE;
+                }
+                let ref mut fresh79 = *((*mctx).state_log).offset(next_idx as isize);
+                *fresh79 = re_acquire_state(&mut err, dfa, &mut union_set);
+                if ((*((*mctx).state_log).offset(next_idx as isize)).is_null()
+                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                    as libc::c_long != 0
+                {
+                    rpl_free(union_set.elems as *mut libc::c_void);
+                    return err;
+                }
+            }
+        }
+        if naccepted != 0
+            || check_node_accept(mctx, ((*dfa).nodes).offset(cur_node as isize), str_idx)
+                as libc::c_int != 0
+        {
+            ok = re_node_set_insert(
+                next_nodes,
+                *((*dfa).nexts).offset(cur_node as isize),
+            );
+            if !ok as libc::c_int as libc::c_long != 0 {
+                rpl_free(union_set.elems as *mut libc::c_void);
+                return _REG_ESPACE;
+            }
+        }
+        cur_idx += 1;
+        cur_idx;
+    }
+    rpl_free(union_set.elems as *mut libc::c_void);
+    return _REG_NOERROR;
 }
 unsafe extern "C" fn search_cur_bkref_entry(
     mut mctx: *const re_match_context_t,
@@ -14387,6 +13349,718 @@ unsafe extern "C" fn search_cur_bkref_entry(
         return -(1 as libc::c_int) as Idx
     };
 }
+unsafe extern "C" fn match_ctx_free(mut mctx: *mut re_match_context_t) {
+    match_ctx_clean(mctx);
+    rpl_free((*mctx).sub_tops as *mut libc::c_void);
+    rpl_free((*mctx).bkref_ents as *mut libc::c_void);
+}
+#[inline(never)]
+unsafe extern "C" fn build_trtable(
+    mut dfa: *const re_dfa_t,
+    mut state: *mut re_dfastate_t,
+) -> bool {
+    let mut current_block: u64;
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut i: Idx = 0;
+    let mut j: Idx = 0;
+    let mut ch: libc::c_int = 0;
+    let mut need_word_trtable: bool = 0 as libc::c_int != 0;
+    let mut elem: bitset_word_t = 0;
+    let mut mask: bitset_word_t = 0;
+    let mut ndests: Idx = 0;
+    let mut trtable: *mut *mut re_dfastate_t = 0 as *mut *mut re_dfastate_t;
+    let mut dest_states: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
+    let mut dest_states_word: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
+    let mut dest_states_nl: [*mut re_dfastate_t; 256] = [0 as *mut re_dfastate_t; 256];
+    let mut follows: re_node_set = re_node_set {
+        alloc: 0,
+        nelem: 0,
+        elems: 0 as *mut Idx,
+    };
+    let mut acceptable: bitset_t = [0; 4];
+    let mut dests_node: [re_node_set; 256] = [re_node_set {
+        alloc: 0,
+        nelem: 0,
+        elems: 0 as *mut Idx,
+    }; 256];
+    let mut dests_ch: [bitset_t; 256] = [[0; 4]; 256];
+    (*state).trtable = 0 as *mut *mut re_dfastate_t;
+    (*state).word_trtable = (*state).trtable;
+    ndests = group_nodes_into_DFAstates(
+        dfa,
+        state,
+        dests_node.as_mut_ptr(),
+        dests_ch.as_mut_ptr(),
+    );
+    if (ndests <= 0 as libc::c_int as libc::c_long) as libc::c_int as libc::c_long != 0 {
+        if ndests == 0 as libc::c_int as libc::c_long {
+            (*state).trtable = calloc(
+                ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
+                (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                    + 1 as libc::c_int) as libc::c_ulong,
+            ) as *mut *mut re_dfastate_t;
+            if ((*state).trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
+                as libc::c_int as libc::c_long != 0
+            {
+                return 0 as libc::c_int != 0;
+            }
+            return 1 as libc::c_int != 0;
+        }
+        return 0 as libc::c_int != 0;
+    }
+    err = re_node_set_alloc(&mut follows, ndests + 1 as libc::c_int as libc::c_long);
+    if !((err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+        as libc::c_long != 0)
+    {
+        bitset_empty(acceptable.as_mut_ptr());
+        i = 0 as libc::c_int as Idx;
+        's_99: loop {
+            if !(i < ndests) {
+                current_block = 9007357115414505193;
+                break;
+            }
+            let mut next_node: Idx = 0;
+            follows.nelem = 0 as libc::c_int as Idx;
+            j = 0 as libc::c_int as Idx;
+            while j < dests_node[i as usize].nelem {
+                next_node = *((*dfa).nexts)
+                    .offset(*(dests_node[i as usize].elems).offset(j as isize) as isize);
+                if next_node != -(1 as libc::c_int) as libc::c_long {
+                    err = re_node_set_merge(
+                        &mut follows,
+                        ((*dfa).eclosures).offset(next_node as isize),
+                    );
+                    if (err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                        as libc::c_long != 0
+                    {
+                        current_block = 7742675054576879710;
+                        break 's_99;
+                    }
+                }
+                j += 1;
+                j;
+            }
+            dest_states[i as usize] = re_acquire_state_context(
+                &mut err,
+                dfa,
+                &mut follows,
+                0 as libc::c_int as libc::c_uint,
+            );
+            if ((dest_states[i as usize]).is_null()
+                && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                as libc::c_long != 0
+            {
+                current_block = 7742675054576879710;
+                break;
+            }
+            if (*dest_states[i as usize]).has_constraint() != 0 {
+                dest_states_word[i as usize] = re_acquire_state_context(
+                    &mut err,
+                    dfa,
+                    &mut follows,
+                    1 as libc::c_int as libc::c_uint,
+                );
+                if ((dest_states_word[i as usize]).is_null()
+                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                    as libc::c_long != 0
+                {
+                    current_block = 7742675054576879710;
+                    break;
+                }
+                if dest_states[i as usize] != dest_states_word[i as usize]
+                    && (*dfa).mb_cur_max > 1 as libc::c_int
+                {
+                    need_word_trtable = 1 as libc::c_int != 0;
+                }
+                dest_states_nl[i as usize] = re_acquire_state_context(
+                    &mut err,
+                    dfa,
+                    &mut follows,
+                    ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint,
+                );
+                if ((dest_states_nl[i as usize]).is_null()
+                    && err as libc::c_int != _REG_NOERROR as libc::c_int) as libc::c_int
+                    as libc::c_long != 0
+                {
+                    current_block = 7742675054576879710;
+                    break;
+                }
+            } else {
+                dest_states_word[i as usize] = dest_states[i as usize];
+                dest_states_nl[i as usize] = dest_states[i as usize];
+            }
+            bitset_merge(
+                acceptable.as_mut_ptr(),
+                (dests_ch[i as usize]).as_mut_ptr() as *const bitset_word_t,
+            );
+            i += 1;
+            i;
+        }
+        match current_block {
+            7742675054576879710 => {}
+            _ => {
+                if need_word_trtable as libc::c_long == 0 {
+                    (*state).trtable = calloc(
+                        ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
+                        (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                            + 1 as libc::c_int) as libc::c_ulong,
+                    ) as *mut *mut re_dfastate_t;
+                    trtable = (*state).trtable;
+                    if (trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
+                        as libc::c_int as libc::c_long != 0
+                    {
+                        current_block = 7742675054576879710;
+                    } else {
+                        i = 0 as libc::c_int as Idx;
+                        while i
+                            < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                / 64 as libc::c_int) as libc::c_long
+                        {
+                            ch = (i * 64 as libc::c_int as libc::c_long) as libc::c_int;
+                            elem = acceptable[i as usize];
+                            mask = 1 as libc::c_int as bitset_word_t;
+                            while elem != 0 {
+                                if (elem & 1 as libc::c_int as libc::c_ulong)
+                                    as libc::c_long != 0
+                                {
+                                    j = 0 as libc::c_int as Idx;
+                                    while dests_ch[j as usize][i as usize] & mask
+                                        == 0 as libc::c_int as libc::c_ulong
+                                    {
+                                        j += 1;
+                                        j;
+                                    }
+                                    if (*dfa).word_char[i as usize] & mask != 0 {
+                                        let ref mut fresh80 = *trtable.offset(ch as isize);
+                                        *fresh80 = dest_states_word[j as usize];
+                                    } else {
+                                        let ref mut fresh81 = *trtable.offset(ch as isize);
+                                        *fresh81 = dest_states[j as usize];
+                                    }
+                                }
+                                mask <<= 1 as libc::c_int;
+                                elem >>= 1 as libc::c_int;
+                                ch += 1;
+                                ch;
+                            }
+                            i += 1;
+                            i;
+                        }
+                        current_block = 1874315696050160458;
+                    }
+                } else {
+                    (*state).word_trtable = calloc(
+                        ::core::mem::size_of::<*mut re_dfastate_t>() as libc::c_ulong,
+                        (2 as libc::c_int
+                            * (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                + 1 as libc::c_int)) as libc::c_ulong,
+                    ) as *mut *mut re_dfastate_t;
+                    trtable = (*state).word_trtable;
+                    if (trtable == 0 as *mut libc::c_void as *mut *mut re_dfastate_t)
+                        as libc::c_int as libc::c_long != 0
+                    {
+                        current_block = 7742675054576879710;
+                    } else {
+                        i = 0 as libc::c_int as Idx;
+                        while i
+                            < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                / 64 as libc::c_int) as libc::c_long
+                        {
+                            ch = (i * 64 as libc::c_int as libc::c_long) as libc::c_int;
+                            elem = acceptable[i as usize];
+                            mask = 1 as libc::c_int as bitset_word_t;
+                            while elem != 0 {
+                                if (elem & 1 as libc::c_int as libc::c_ulong)
+                                    as libc::c_long != 0
+                                {
+                                    j = 0 as libc::c_int as Idx;
+                                    while dests_ch[j as usize][i as usize] & mask
+                                        == 0 as libc::c_int as libc::c_ulong
+                                    {
+                                        j += 1;
+                                        j;
+                                    }
+                                    let ref mut fresh82 = *trtable.offset(ch as isize);
+                                    *fresh82 = dest_states[j as usize];
+                                    let ref mut fresh83 = *trtable
+                                        .offset(
+                                            (ch
+                                                + (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                    + 1 as libc::c_int)) as isize,
+                                        );
+                                    *fresh83 = dest_states_word[j as usize];
+                                }
+                                mask <<= 1 as libc::c_int;
+                                elem >>= 1 as libc::c_int;
+                                ch += 1;
+                                ch;
+                            }
+                            i += 1;
+                            i;
+                        }
+                        current_block = 1874315696050160458;
+                    }
+                }
+                match current_block {
+                    7742675054576879710 => {}
+                    _ => {
+                        if bitset_contain(
+                            acceptable.as_mut_ptr() as *const bitset_word_t,
+                            '\n' as i32 as Idx,
+                        ) {
+                            j = 0 as libc::c_int as Idx;
+                            while j < ndests {
+                                if bitset_contain(
+                                    (dests_ch[j as usize]).as_mut_ptr() as *const bitset_word_t,
+                                    '\n' as i32 as Idx,
+                                ) {
+                                    let ref mut fresh84 = *trtable.offset('\n' as i32 as isize);
+                                    *fresh84 = dest_states_nl[j as usize];
+                                    if need_word_trtable {
+                                        let ref mut fresh85 = *trtable
+                                            .offset(
+                                                ('\n' as i32
+                                                    + (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                        + 1 as libc::c_int)) as isize,
+                                            );
+                                        *fresh85 = dest_states_nl[j as usize];
+                                    }
+                                    break;
+                                } else {
+                                    j += 1;
+                                    j;
+                                }
+                            }
+                        }
+                        rpl_free(follows.elems as *mut libc::c_void);
+                        i = 0 as libc::c_int as Idx;
+                        while i < ndests {
+                            rpl_free(
+                                (*dests_node.as_mut_ptr().offset(i as isize)).elems
+                                    as *mut libc::c_void,
+                            );
+                            i += 1;
+                            i;
+                        }
+                        return 1 as libc::c_int != 0;
+                    }
+                }
+            }
+        }
+    }
+    rpl_free(follows.elems as *mut libc::c_void);
+    i = 0 as libc::c_int as Idx;
+    while i < ndests {
+        rpl_free(
+            (*dests_node.as_mut_ptr().offset(i as isize)).elems as *mut libc::c_void,
+        );
+        i += 1;
+        i;
+    }
+    return 0 as libc::c_int != 0;
+}
+unsafe extern "C" fn group_nodes_into_DFAstates(
+    mut dfa: *const re_dfa_t,
+    mut state: *const re_dfastate_t,
+    mut dests_node: *mut re_node_set,
+    mut dests_ch: *mut bitset_t,
+) -> Idx {
+    let mut current_block: u64;
+    let mut err: reg_errcode_t = _REG_NOERROR;
+    let mut ok: bool = false;
+    let mut i: Idx = 0;
+    let mut j: Idx = 0;
+    let mut k: Idx = 0;
+    let mut ndests: Idx = 0;
+    let mut accepts: bitset_t = [0; 4];
+    let mut cur_nodes: *const re_node_set = &(*state).nodes;
+    bitset_empty(accepts.as_mut_ptr());
+    ndests = 0 as libc::c_int as Idx;
+    i = 0 as libc::c_int as Idx;
+    's_20: loop {
+        if !(i < (*cur_nodes).nelem) {
+            current_block = 14648606000749551097;
+            break;
+        }
+        let mut node: *mut re_token_t = &mut *((*dfa).nodes)
+            .offset(*((*cur_nodes).elems).offset(i as isize) as isize)
+            as *mut re_token_t;
+        let mut type_0: re_token_type_t = (*node).type_0();
+        let mut constraint: libc::c_uint = (*node).constraint();
+        if type_0 as libc::c_uint
+            == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
+        {
+            bitset_set(accepts.as_mut_ptr(), (*node).opr.c as Idx);
+            current_block = 16203760046146113240;
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::SIMPLE_BRACKET as libc::c_int as libc::c_uint
+        {
+            bitset_merge(
+                accepts.as_mut_ptr(),
+                (*node).opr.sbcset as *const bitset_word_t,
+            );
+            current_block = 16203760046146113240;
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::OP_PERIOD as libc::c_int as libc::c_uint
+        {
+            if (*dfa).mb_cur_max > 1 as libc::c_int {
+                bitset_merge(
+                    accepts.as_mut_ptr(),
+                    (*dfa).sb_char as *const bitset_word_t,
+                );
+            } else {
+                bitset_set_all(accepts.as_mut_ptr());
+            }
+            if (*dfa).syntax
+                & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int == 0
+            {
+                bitset_clear(accepts.as_mut_ptr(), '\n' as i32 as Idx);
+            }
+            if (*dfa).syntax
+                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
+            {
+                bitset_clear(accepts.as_mut_ptr(), '\0' as i32 as Idx);
+            }
+            current_block = 16203760046146113240;
+        } else if type_0 as libc::c_uint
+            == re_token_type_t::OP_UTF8_PERIOD as libc::c_int as libc::c_uint
+        {
+            if 0x80 as libc::c_int % 64 as libc::c_int == 0 as libc::c_int {
+                memset(
+                    accepts.as_mut_ptr() as *mut libc::c_void,
+                    -(1 as libc::c_int),
+                    (0x80 as libc::c_int / 8 as libc::c_int) as libc::c_ulong,
+                );
+            } else {
+                bitset_merge(accepts.as_mut_ptr(), utf8_sb_map.as_ptr());
+            }
+            if (*dfa).syntax
+                & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int == 0
+            {
+                bitset_clear(accepts.as_mut_ptr(), '\n' as i32 as Idx);
+            }
+            if (*dfa).syntax
+                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
+            {
+                bitset_clear(accepts.as_mut_ptr(), '\0' as i32 as Idx);
+            }
+            current_block = 16203760046146113240;
+        } else {
+            current_block = 17179679302217393232;
+        }
+        match current_block {
+            16203760046146113240 => {
+                if constraint != 0 {
+                    if constraint & 0x20 as libc::c_int as libc::c_uint != 0 {
+                        let mut accepts_newline: bool = bitset_contain(
+                            accepts.as_mut_ptr() as *const bitset_word_t,
+                            '\n' as i32 as Idx,
+                        );
+                        bitset_empty(accepts.as_mut_ptr());
+                        if accepts_newline {
+                            bitset_set(accepts.as_mut_ptr(), '\n' as i32 as Idx);
+                            current_block = 11932355480408055363;
+                        } else {
+                            current_block = 17179679302217393232;
+                        }
+                    } else {
+                        current_block = 11932355480408055363;
+                    }
+                    match current_block {
+                        17179679302217393232 => {}
+                        _ => {
+                            if constraint & 0x80 as libc::c_int as libc::c_uint != 0 {
+                                bitset_empty(accepts.as_mut_ptr());
+                                current_block = 17179679302217393232;
+                            } else {
+                                if constraint & 0x4 as libc::c_int as libc::c_uint != 0 {
+                                    let mut any_set: bitset_word_t = 0 as libc::c_int
+                                        as bitset_word_t;
+                                    if type_0 as libc::c_uint
+                                        == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
+                                        && (*node).word_char() == 0
+                                    {
+                                        bitset_empty(accepts.as_mut_ptr());
+                                        current_block = 17179679302217393232;
+                                    } else {
+                                        if (*dfa).mb_cur_max > 1 as libc::c_int {
+                                            j = 0 as libc::c_int as Idx;
+                                            while j
+                                                < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                    + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                                    / 64 as libc::c_int) as libc::c_long
+                                            {
+                                                accepts[j as usize]
+                                                    &= (*dfa).word_char[j as usize]
+                                                        | !*((*dfa).sb_char).offset(j as isize);
+                                                any_set |= accepts[j as usize];
+                                                j += 1;
+                                                j;
+                                            }
+                                        } else {
+                                            j = 0 as libc::c_int as Idx;
+                                            while j
+                                                < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                    + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                                    / 64 as libc::c_int) as libc::c_long
+                                            {
+                                                accepts[j as usize] &= (*dfa).word_char[j as usize];
+                                                any_set |= accepts[j as usize];
+                                                j += 1;
+                                                j;
+                                            }
+                                        }
+                                        if any_set == 0 {
+                                            current_block = 17179679302217393232;
+                                        } else {
+                                            current_block = 721385680381463314;
+                                        }
+                                    }
+                                } else {
+                                    current_block = 721385680381463314;
+                                }
+                                match current_block {
+                                    17179679302217393232 => {}
+                                    _ => {
+                                        if constraint & 0x8 as libc::c_int as libc::c_uint != 0 {
+                                            let mut any_set_0: bitset_word_t = 0 as libc::c_int
+                                                as bitset_word_t;
+                                            if type_0 as libc::c_uint
+                                                == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
+                                                && (*node).word_char() as libc::c_int != 0
+                                            {
+                                                bitset_empty(accepts.as_mut_ptr());
+                                                current_block = 17179679302217393232;
+                                            } else {
+                                                if (*dfa).mb_cur_max > 1 as libc::c_int {
+                                                    j = 0 as libc::c_int as Idx;
+                                                    while j
+                                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                                            / 64 as libc::c_int) as libc::c_long
+                                                    {
+                                                        accepts[j as usize]
+                                                            &= !((*dfa).word_char[j as usize]
+                                                                & *((*dfa).sb_char).offset(j as isize));
+                                                        any_set_0 |= accepts[j as usize];
+                                                        j += 1;
+                                                        j;
+                                                    }
+                                                } else {
+                                                    j = 0 as libc::c_int as Idx;
+                                                    while j
+                                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                                            / 64 as libc::c_int) as libc::c_long
+                                                    {
+                                                        accepts[j as usize] &= !(*dfa).word_char[j as usize];
+                                                        any_set_0 |= accepts[j as usize];
+                                                        j += 1;
+                                                        j;
+                                                    }
+                                                }
+                                                if any_set_0 == 0 {
+                                                    current_block = 17179679302217393232;
+                                                } else {
+                                                    current_block = 10380409671385728102;
+                                                }
+                                            }
+                                        } else {
+                                            current_block = 10380409671385728102;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    current_block = 10380409671385728102;
+                }
+                match current_block {
+                    17179679302217393232 => {}
+                    _ => {
+                        j = 0 as libc::c_int as Idx;
+                        while j < ndests {
+                            let mut intersec: bitset_t = [0; 4];
+                            let mut remains: bitset_t = [0; 4];
+                            let mut has_intersec: bitset_word_t = 0;
+                            let mut not_subset: bitset_word_t = 0;
+                            let mut not_consumed: bitset_word_t = 0;
+                            if !(type_0 as libc::c_uint
+                                == re_token_type_t::CHARACTER as libc::c_int as libc::c_uint
+                                && !bitset_contain(
+                                    (*dests_ch.offset(j as isize)).as_mut_ptr()
+                                        as *const bitset_word_t,
+                                    (*node).opr.c as Idx,
+                                ))
+                            {
+                                has_intersec = 0 as libc::c_int as bitset_word_t;
+                                k = 0 as libc::c_int as Idx;
+                                while k
+                                    < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                        + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                        / 64 as libc::c_int) as libc::c_long
+                                {
+                                    intersec[k as usize] = accepts[k as usize]
+                                        & (*dests_ch.offset(j as isize))[k as usize];
+                                    has_intersec |= intersec[k as usize];
+                                    k += 1;
+                                    k;
+                                }
+                                if !(has_intersec == 0) {
+                                    not_consumed = 0 as libc::c_int as bitset_word_t;
+                                    not_subset = not_consumed;
+                                    k = 0 as libc::c_int as Idx;
+                                    while k
+                                        < ((127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                                            + 1 as libc::c_int + 64 as libc::c_int - 1 as libc::c_int)
+                                            / 64 as libc::c_int) as libc::c_long
+                                    {
+                                        remains[k as usize] = !accepts[k as usize]
+                                            & (*dests_ch.offset(j as isize))[k as usize];
+                                        not_subset |= remains[k as usize];
+                                        accepts[k as usize] = accepts[k as usize]
+                                            & !(*dests_ch.offset(j as isize))[k as usize];
+                                        not_consumed |= accepts[k as usize];
+                                        k += 1;
+                                        k;
+                                    }
+                                    if not_subset != 0 {
+                                        bitset_copy(
+                                            (*dests_ch.offset(ndests as isize)).as_mut_ptr(),
+                                            remains.as_mut_ptr() as *const bitset_word_t,
+                                        );
+                                        bitset_copy(
+                                            (*dests_ch.offset(j as isize)).as_mut_ptr(),
+                                            intersec.as_mut_ptr() as *const bitset_word_t,
+                                        );
+                                        err = re_node_set_init_copy(
+                                            dests_node.offset(ndests as isize),
+                                            &mut *dests_node.offset(j as isize),
+                                        );
+                                        if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                            as libc::c_int as libc::c_long != 0
+                                        {
+                                            current_block = 17803475838173405261;
+                                            break 's_20;
+                                        }
+                                        ndests += 1;
+                                        ndests;
+                                    }
+                                    ok = re_node_set_insert(
+                                        &mut *dests_node.offset(j as isize),
+                                        *((*cur_nodes).elems).offset(i as isize),
+                                    );
+                                    if !ok as libc::c_int as libc::c_long != 0 {
+                                        current_block = 17803475838173405261;
+                                        break 's_20;
+                                    }
+                                    if not_consumed == 0 {
+                                        break;
+                                    }
+                                }
+                            }
+                            j += 1;
+                            j;
+                        }
+                        if j == ndests {
+                            bitset_copy(
+                                (*dests_ch.offset(ndests as isize)).as_mut_ptr(),
+                                accepts.as_mut_ptr() as *const bitset_word_t,
+                            );
+                            err = re_node_set_init_1(
+                                dests_node.offset(ndests as isize),
+                                *((*cur_nodes).elems).offset(i as isize),
+                            );
+                            if (err as libc::c_int != _REG_NOERROR as libc::c_int)
+                                as libc::c_int as libc::c_long != 0
+                            {
+                                current_block = 17803475838173405261;
+                                break;
+                            }
+                            ndests += 1;
+                            ndests;
+                            bitset_empty(accepts.as_mut_ptr());
+                        }
+                    }
+                }
+            }
+            _ => {}
+        }
+        i += 1;
+        i;
+    }
+    match current_block {
+        17803475838173405261 => {
+            j = 0 as libc::c_int as Idx;
+            while j < ndests {
+                rpl_free((*dests_node.offset(j as isize)).elems as *mut libc::c_void);
+                j += 1;
+                j;
+            }
+            return -(1 as libc::c_int) as Idx;
+        }
+        _ => {
+            if ndests
+                <= (127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
+                    + 1 as libc::c_int) as libc::c_long
+            {} else {
+                unreachable!();
+            };
+            return ndests;
+        }
+    };
+}
+unsafe extern "C" fn match_ctx_add_sublast(
+    mut subtop: *mut re_sub_match_top_t,
+    mut node: Idx,
+    mut str_idx: Idx,
+) -> *mut re_sub_match_last_t {
+    let mut new_entry: *mut re_sub_match_last_t = 0 as *mut re_sub_match_last_t;
+    if ((*subtop).nlasts == (*subtop).alasts) as libc::c_int as libc::c_long != 0 {
+        let mut new_alasts: Idx = 2 as libc::c_int as libc::c_long * (*subtop).alasts
+            + 1 as libc::c_int as libc::c_long;
+        let mut new_array: *mut *mut re_sub_match_last_t = realloc(
+            (*subtop).lasts as *mut libc::c_void,
+            (new_alasts as libc::c_ulong)
+                .wrapping_mul(
+                    ::core::mem::size_of::<*mut re_sub_match_last_t>() as libc::c_ulong,
+                ),
+        ) as *mut *mut re_sub_match_last_t;
+        if (new_array == 0 as *mut libc::c_void as *mut *mut re_sub_match_last_t)
+            as libc::c_int as libc::c_long != 0
+        {
+            return 0 as *mut re_sub_match_last_t;
+        }
+        (*subtop).lasts = new_array;
+        (*subtop).alasts = new_alasts;
+    }
+    new_entry = calloc(
+        1 as libc::c_int as libc::c_ulong,
+        ::core::mem::size_of::<re_sub_match_last_t>() as libc::c_ulong,
+    ) as *mut re_sub_match_last_t;
+    if (new_entry != 0 as *mut libc::c_void as *mut re_sub_match_last_t) as libc::c_int
+        as libc::c_long != 0
+    {
+        let ref mut fresh86 = *((*subtop).lasts).offset((*subtop).nlasts as isize);
+        *fresh86 = new_entry;
+        (*new_entry).node = node;
+        (*new_entry).str_idx = str_idx;
+        (*subtop).nlasts += 1;
+        (*subtop).nlasts;
+    }
+    return new_entry;
+}
 unsafe extern "C" fn regmatch_list_mark_failed(mut list: *mut regmatch_list) {
     regmatch_list_free__elements__(
         (*list).u.dynarray_header.array,
@@ -14397,17 +14071,279 @@ unsafe extern "C" fn regmatch_list_mark_failed(mut list: *mut regmatch_list) {
     (*list).u.dynarray_header.used = 0 as libc::c_int as size_t;
     (*list).u.dynarray_header.allocated = __dynarray_error_marker();
 }
-#[inline]
-unsafe extern "C" fn regmatch_list_free__array__(mut list: *mut regmatch_list) {
-    if (*list).u.dynarray_header.array != ((*list).scratch).as_mut_ptr() {
-        rpl_free((*list).u.dynarray_header.array as *mut libc::c_void);
+unsafe extern "C" fn check_node_accept_bytes(
+    mut dfa: *const re_dfa_t,
+    mut node_idx: Idx,
+    mut input: *const re_string_t,
+    mut str_idx: Idx,
+) -> libc::c_int {
+    let mut current_block: u64;
+    let mut node: *const re_token_t = ((*dfa).nodes).offset(node_idx as isize);
+    let mut char_len: libc::c_int = 0;
+    let mut elem_len: libc::c_int = 0;
+    let mut i: Idx = 0;
+    if ((*node).type_0() as libc::c_int
+        == re_token_type_t::OP_UTF8_PERIOD as libc::c_int) as libc::c_int as libc::c_long
+        != 0
+    {
+        let mut c: libc::c_uchar = *((*input).mbs).offset(str_idx as isize);
+        let mut d: libc::c_uchar = 0;
+        if ((c as libc::c_int) < 0xc2 as libc::c_int) as libc::c_int as libc::c_long != 0
+        {
+            return 0 as libc::c_int;
+        }
+        if str_idx + 2 as libc::c_int as libc::c_long > (*input).len {
+            return 0 as libc::c_int;
+        }
+        d = *((*input).mbs)
+            .offset((str_idx + 1 as libc::c_int as libc::c_long) as isize);
+        if (c as libc::c_int) < 0xe0 as libc::c_int {
+            return if (d as libc::c_int) < 0x80 as libc::c_int
+                || d as libc::c_int > 0xbf as libc::c_int
+            {
+                0 as libc::c_int
+            } else {
+                2 as libc::c_int
+            }
+        } else if (c as libc::c_int) < 0xf0 as libc::c_int {
+            char_len = 3 as libc::c_int;
+            if c as libc::c_int == 0xe0 as libc::c_int
+                && (d as libc::c_int) < 0xa0 as libc::c_int
+            {
+                return 0 as libc::c_int;
+            }
+        } else if (c as libc::c_int) < 0xf8 as libc::c_int {
+            char_len = 4 as libc::c_int;
+            if c as libc::c_int == 0xf0 as libc::c_int
+                && (d as libc::c_int) < 0x90 as libc::c_int
+            {
+                return 0 as libc::c_int;
+            }
+        } else if (c as libc::c_int) < 0xfc as libc::c_int {
+            char_len = 5 as libc::c_int;
+            if c as libc::c_int == 0xf8 as libc::c_int
+                && (d as libc::c_int) < 0x88 as libc::c_int
+            {
+                return 0 as libc::c_int;
+            }
+        } else if (c as libc::c_int) < 0xfe as libc::c_int {
+            char_len = 6 as libc::c_int;
+            if c as libc::c_int == 0xfc as libc::c_int
+                && (d as libc::c_int) < 0x84 as libc::c_int
+            {
+                return 0 as libc::c_int;
+            }
+        } else {
+            return 0 as libc::c_int
+        }
+        if str_idx + char_len as libc::c_long > (*input).len {
+            return 0 as libc::c_int;
+        }
+        i = 1 as libc::c_int as Idx;
+        while i < char_len as libc::c_long {
+            d = *((*input).mbs).offset((str_idx + i) as isize);
+            if (d as libc::c_int) < 0x80 as libc::c_int
+                || d as libc::c_int > 0xbf as libc::c_int
+            {
+                return 0 as libc::c_int;
+            }
+            i += 1;
+            i;
+        }
+        return char_len;
     }
+    char_len = re_string_char_size_at(input, str_idx);
+    if (*node).type_0() as libc::c_int == re_token_type_t::OP_PERIOD as libc::c_int {
+        if char_len <= 1 as libc::c_int {
+            return 0 as libc::c_int;
+        }
+        if (*dfa).syntax
+            & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                << 1 as libc::c_int) << 1 as libc::c_int == 0
+            && *((*input).mbs).offset(str_idx as isize) as libc::c_int == '\n' as i32
+            || (*dfa).syntax
+                & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                    << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int != 0
+                && *((*input).mbs).offset(str_idx as isize) as libc::c_int == '\0' as i32
+        {
+            return 0 as libc::c_int;
+        }
+        return char_len;
+    }
+    elem_len = re_string_elem_size_at(input, str_idx);
+    if elem_len <= 1 as libc::c_int && char_len <= 1 as libc::c_int
+        || char_len == 0 as libc::c_int
+    {
+        return 0 as libc::c_int;
+    }
+    if (*node).type_0() as libc::c_int == re_token_type_t::COMPLEX_BRACKET as libc::c_int
+    {
+        let mut cset: *const re_charset_t = (*node).opr.mbcset;
+        let mut match_len: libc::c_int = 0 as libc::c_int;
+        let mut wc: wchar_t = (if (*cset).nranges != 0 || (*cset).nchar_classes != 0
+            || (*cset).nmbchars != 0
+        {
+            re_string_wchar_at(input, str_idx)
+        } else {
+            0 as libc::c_int as libc::c_uint
+        }) as wchar_t;
+        i = 0 as libc::c_int as Idx;
+        loop {
+            if !(i < (*cset).nmbchars) {
+                current_block = 1622411330066726685;
+                break;
+            }
+            if wc == *((*cset).mbchars).offset(i as isize) {
+                match_len = char_len;
+                current_block = 7396209349504770810;
+                break;
+            } else {
+                i += 1;
+                i;
+            }
+        }
+        match current_block {
+            1622411330066726685 => {
+                i = 0 as libc::c_int as Idx;
+                loop {
+                    if !(i < (*cset).nchar_classes) {
+                        current_block = 3689906465960840878;
+                        break;
+                    }
+                    let mut wt: wctype_t = *((*cset).char_classes).offset(i as isize);
+                    if iswctype(wc as wint_t, wt) != 0 {
+                        match_len = char_len;
+                        current_block = 7396209349504770810;
+                        break;
+                    } else {
+                        i += 1;
+                        i;
+                    }
+                }
+                match current_block {
+                    7396209349504770810 => {}
+                    _ => {
+                        i = 0 as libc::c_int as Idx;
+                        while i < (*cset).nranges {
+                            if *((*cset).range_starts).offset(i as isize) <= wc
+                                && wc <= *((*cset).range_ends).offset(i as isize)
+                            {
+                                match_len = char_len;
+                                break;
+                            } else {
+                                i += 1;
+                                i;
+                            }
+                        }
+                    }
+                }
+            }
+            _ => {}
+        }
+        if (*cset).non_match() == 0 {
+            return match_len
+        } else if match_len > 0 as libc::c_int {
+            return 0 as libc::c_int
+        } else {
+            return if elem_len > char_len { elem_len } else { char_len }
+        }
+    } else {
+        return 0 as libc::c_int
+    };
+}
+unsafe extern "C" fn check_node_accept(
+    mut mctx: *const re_match_context_t,
+    mut node: *const re_token_t,
+    mut idx: Idx,
+) -> bool {
+    let mut ch: libc::c_uchar = 0;
+    ch = *((*mctx).input.mbs).offset(idx as isize);
+    let mut current_block_10: u64;
+    match (*node).type_0() as libc::c_int {
+        1 => {
+            if (*node).opr.c as libc::c_int != ch as libc::c_int {
+                return 0 as libc::c_int != 0;
+            }
+            current_block_10 = 7746791466490516765;
+        }
+        3 => {
+            if !bitset_contain((*node).opr.sbcset as *const bitset_word_t, ch as Idx) {
+                return 0 as libc::c_int != 0;
+            }
+            current_block_10 = 7746791466490516765;
+        }
+        7 => {
+            if ch as libc::c_int >= 0x80 as libc::c_int {
+                return 0 as libc::c_int != 0;
+            }
+            current_block_10 = 15175365759947910991;
+        }
+        5 => {
+            current_block_10 = 15175365759947910991;
+        }
+        _ => return 0 as libc::c_int != 0,
+    }
+    match current_block_10 {
+        15175365759947910991 => {
+            if ch as libc::c_int == '\n' as i32
+                && (*(*mctx).dfa).syntax
+                    & ((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                        << 1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                        << 1 as libc::c_int) << 1 as libc::c_int == 0
+                || ch as libc::c_int == '\0' as i32
+                    && (*(*mctx).dfa).syntax
+                        & (((((((1 as libc::c_int as libc::c_ulong) << 1 as libc::c_int)
+                            << 1 as libc::c_int) << 1 as libc::c_int)
+                            << 1 as libc::c_int) << 1 as libc::c_int)
+                            << 1 as libc::c_int) << 1 as libc::c_int != 0
+            {
+                return 0 as libc::c_int != 0;
+            }
+        }
+        _ => {}
+    }
+    if (*node).constraint() != 0 {
+        let mut context: libc::c_uint = re_string_context_at(
+            &(*mctx).input,
+            idx,
+            (*mctx).eflags,
+        );
+        if (*node).constraint() as libc::c_int & 0x4 as libc::c_int != 0
+            && context & 1 as libc::c_int as libc::c_uint == 0
+            || (*node).constraint() as libc::c_int & 0x8 as libc::c_int != 0
+                && context & 1 as libc::c_int as libc::c_uint != 0
+            || (*node).constraint() as libc::c_int & 0x20 as libc::c_int != 0
+                && context & ((1 as libc::c_int) << 1 as libc::c_int) as libc::c_uint
+                    == 0
+            || (*node).constraint() as libc::c_int & 0x80 as libc::c_int != 0
+                && context
+                    & ((((1 as libc::c_int) << 1 as libc::c_int) << 1 as libc::c_int)
+                        << 1 as libc::c_int) as libc::c_uint == 0
+        {
+            return 0 as libc::c_int != 0;
+        }
+    }
+    return 1 as libc::c_int != 0;
+}
+#[inline]
+unsafe extern "C" fn regmatch_list_begin(
+    mut list: *mut regmatch_list,
+) -> *mut regmatch_t {
+    return (*list).u.dynarray_header.array;
 }
 #[inline]
 unsafe extern "C" fn regmatch_list_free__elements__(
     mut __dynarray_array: *mut regmatch_t,
     mut __dynarray_used: size_t,
 ) {}
+#[inline]
+unsafe extern "C" fn regmatch_list_free__array__(mut list: *mut regmatch_list) {
+    if (*list).u.dynarray_header.array != ((*list).scratch).as_mut_ptr() {
+        rpl_free((*list).u.dynarray_header.array as *mut libc::c_void);
+    }
+}
 unsafe extern "C" fn regmatch_list_resize(
     mut list: *mut regmatch_list,
     mut size: size_t,

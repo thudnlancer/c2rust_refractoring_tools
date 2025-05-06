@@ -1,5 +1,15 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types, linkage)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     pub type __dirstream;
     pub type quoting_options;
@@ -92,7 +102,7 @@ extern "C" {
     ) -> *mut libc::c_char;
     fn imaxtostr(_: intmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
     fn umaxtostr(_: uintmax_t, _: *mut libc::c_char) -> *mut libc::c_char;
-    static mut error_hook: Option::<unsafe extern "C" fn() -> ()>;
+    static mut error_hook: Option<unsafe extern "C" fn() -> ()>;
     static mut exit_status: libc::c_int;
     fn call_arg_fatal(call: *const libc::c_char, name: *const libc::c_char) -> !;
     fn close_error(_: *const libc::c_char);
@@ -240,25 +250,7 @@ pub type FILE = _IO_FILE;
 pub type intmax_t = __intmax_t;
 pub type uintmax_t = __uintmax_t;
 pub type DIR = __dirstream;
-#[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
-#[repr(C)]
-pub enum savedir_option {
-    SAVEDIR_SORT_NONE,
-    SAVEDIR_SORT_NAME,
-    SAVEDIR_SORT_INODE,
-    SAVEDIR_SORT_FASTREAD,
-}
-impl savedir_option {
-    fn to_libc_c_uint(self) -> libc::c_uint {
-        match self {
-            savedir_option::SAVEDIR_SORT_NONE => 0,
-            savedir_option::SAVEDIR_SORT_NAME => 1,
-            savedir_option::SAVEDIR_SORT_INODE => 2,
-            savedir_option::SAVEDIR_SORT_FASTREAD => 2,
-        }
-    }
-}
-
+pub type savedir_option = libc::c_uint;
 pub const SAVEDIR_SORT_FASTREAD: savedir_option = 2;
 pub const SAVEDIR_SORT_INODE: savedir_option = 2;
 pub const SAVEDIR_SORT_NAME: savedir_option = 1;
@@ -274,8 +266,68 @@ impl C2RustUnnamed {
             C2RustUnnamed::DEFAULT_MXFAST => 128,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            128 => C2RustUnnamed::DEFAULT_MXFAST,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum backup_type {
@@ -293,12 +345,71 @@ impl backup_type {
             backup_type::numbered_backups => 3,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> backup_type {
+        match value {
+            0 => backup_type::no_backups,
+            1 => backup_type::simple_backups,
+            2 => backup_type::numbered_existing_backups,
+            3 => backup_type::numbered_backups,
+            _ => panic!("Invalid value for backup_type: {}", value),
+        }
+    }
 }
-
-pub const numbered_backups: backup_type = 3;
-pub const numbered_existing_backups: backup_type = 2;
-pub const simple_backups: backup_type = 1;
-pub const no_backups: backup_type = 0;
+impl AddAssign<u32> for backup_type {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for backup_type {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for backup_type {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for backup_type {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for backup_type {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = backup_type::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for backup_type {
+    type Output = backup_type;
+    fn add(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for backup_type {
+    type Output = backup_type;
+    fn sub(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for backup_type {
+    type Output = backup_type;
+    fn mul(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for backup_type {
+    type Output = backup_type;
+    fn div(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for backup_type {
+    type Output = backup_type;
+    fn rem(self, rhs: u32) -> backup_type {
+        backup_type::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum quoting_style {
@@ -330,19 +441,78 @@ impl quoting_style {
             quoting_style::custom_quoting_style => 10,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> quoting_style {
+        match value {
+            0 => quoting_style::literal_quoting_style,
+            1 => quoting_style::shell_quoting_style,
+            2 => quoting_style::shell_always_quoting_style,
+            3 => quoting_style::shell_escape_quoting_style,
+            4 => quoting_style::shell_escape_always_quoting_style,
+            5 => quoting_style::c_quoting_style,
+            6 => quoting_style::c_maybe_quoting_style,
+            7 => quoting_style::escape_quoting_style,
+            8 => quoting_style::locale_quoting_style,
+            9 => quoting_style::clocale_quoting_style,
+            10 => quoting_style::custom_quoting_style,
+            _ => panic!("Invalid value for quoting_style: {}", value),
+        }
+    }
 }
-
-pub const custom_quoting_style: quoting_style = 10;
-pub const clocale_quoting_style: quoting_style = 9;
-pub const locale_quoting_style: quoting_style = 8;
-pub const escape_quoting_style: quoting_style = 7;
-pub const c_maybe_quoting_style: quoting_style = 6;
-pub const c_quoting_style: quoting_style = 5;
-pub const shell_escape_always_quoting_style: quoting_style = 4;
-pub const shell_escape_quoting_style: quoting_style = 3;
-pub const shell_always_quoting_style: quoting_style = 2;
-pub const shell_quoting_style: quoting_style = 1;
-pub const literal_quoting_style: quoting_style = 0;
+impl AddAssign<u32> for quoting_style {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for quoting_style {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for quoting_style {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for quoting_style {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for quoting_style {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for quoting_style {
+    type Output = quoting_style;
+    fn add(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for quoting_style {
+    type Output = quoting_style;
+    fn sub(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for quoting_style {
+    type Output = quoting_style;
+    fn mul(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for quoting_style {
+    type Output = quoting_style;
+    fn div(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for quoting_style {
+    type Output = quoting_style;
+    fn rem(self, rhs: u32) -> quoting_style {
+        quoting_style::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct wd {
@@ -361,8 +531,68 @@ impl C2RustUnnamed_1 {
             C2RustUnnamed_1::CHDIR_CACHE_SIZE => 16,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_1 {
+        match value {
+            16 => C2RustUnnamed_1::CHDIR_CACHE_SIZE,
+            _ => panic!("Invalid value for C2RustUnnamed_1: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_1 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_1 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_1 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_1 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_1 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn add(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn div(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_1 {
+    type Output = C2RustUnnamed_1;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_1 {
+        C2RustUnnamed_1::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 pub type namebuf_t = *mut namebuf;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -384,8 +614,69 @@ impl C2RustUnnamed_0 {
             C2RustUnnamed_0::LOG10_BILLION => 9,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed_0 {
+        match value {
+            1000000000 => C2RustUnnamed_0::BILLION,
+            9 => C2RustUnnamed_0::LOG10_BILLION,
+            _ => panic!("Invalid value for C2RustUnnamed_0: {}", value),
+        }
+    }
 }
-
+impl AddAssign<u32> for C2RustUnnamed_0 {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed_0 {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed_0 {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed_0 {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed_0 {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn add(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn sub(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn mul(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn div(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed_0 {
+    type Output = C2RustUnnamed_0;
+    fn rem(self, rhs: u32) -> C2RustUnnamed_0 {
+        C2RustUnnamed_0::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
 pub enum remove_option {
@@ -401,11 +692,70 @@ impl remove_option {
             remove_option::WANT_DIRECTORY_REMOVE_OPTION => 2,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> remove_option {
+        match value {
+            0 => remove_option::ORDINARY_REMOVE_OPTION,
+            1 => remove_option::RECURSIVE_REMOVE_OPTION,
+            2 => remove_option::WANT_DIRECTORY_REMOVE_OPTION,
+            _ => panic!("Invalid value for remove_option: {}", value),
+        }
+    }
 }
-
-pub const WANT_DIRECTORY_REMOVE_OPTION: remove_option = 2;
-pub const RECURSIVE_REMOVE_OPTION: remove_option = 1;
-pub const ORDINARY_REMOVE_OPTION: remove_option = 0;
+impl AddAssign<u32> for remove_option {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for remove_option {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for remove_option {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for remove_option {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for remove_option {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = remove_option::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for remove_option {
+    type Output = remove_option;
+    fn add(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for remove_option {
+    type Output = remove_option;
+    fn sub(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for remove_option {
+    type Output = remove_option;
+    fn mul(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for remove_option {
+    type Output = remove_option;
+    fn div(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for remove_option {
+    type Output = remove_option;
+    fn rem(self, rhs: u32) -> remove_option {
+        remove_option::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
 unsafe extern "C" fn fstatat(
     mut __fd: libc::c_int,
@@ -440,7 +790,8 @@ unsafe extern "C" fn x2nrealloc(
     let mut n: size_t = *pn;
     if p.is_null() {
         if n == 0 {
-            n = (DEFAULT_MXFAST as libc::c_int as libc::c_ulong).wrapping_div(s);
+            n = (C2RustUnnamed::DEFAULT_MXFAST as libc::c_int as libc::c_ulong)
+                .wrapping_div(s);
             n = (n as libc::c_ulong)
                 .wrapping_add((n == 0) as libc::c_int as libc::c_ulong) as size_t
                 as size_t;
@@ -893,10 +1244,8 @@ pub unsafe extern "C" fn code_ns_fraction(
         *p.offset(i as isize) = '\0' as i32 as libc::c_char;
         loop {
             i -= 1;
-            *p
-                .offset(
-                    i as isize,
-                ) = ('0' as i32 + ns % 10 as libc::c_int) as libc::c_char;
+            *p.offset(i as isize) = ('0' as i32 + ns % 10 as libc::c_int)
+                as libc::c_char;
             if i == 0 as libc::c_int {
                 break;
             }
@@ -913,13 +1262,13 @@ pub unsafe extern "C" fn code_timespec(
     let mut ns: libc::c_int = t.tv_nsec as libc::c_int;
     let mut np: *mut libc::c_char = 0 as *mut libc::c_char;
     let mut negative: bool = s < 0 as libc::c_int as libc::c_long;
-    if BILLION as libc::c_int <= ns || ns < 0 as libc::c_int {
+    if C2RustUnnamed_0::BILLION as libc::c_int <= ns || ns < 0 as libc::c_int {
         ns = 0 as libc::c_int;
     }
     if negative as libc::c_int != 0 && ns != 0 as libc::c_int {
         s += 1;
         s;
-        ns = BILLION as libc::c_int - ns;
+        ns = C2RustUnnamed_0::BILLION as libc::c_int - ns;
     }
     np = umaxtostr(
         if negative as libc::c_int != 0 {
@@ -1038,7 +1387,7 @@ pub unsafe extern "C" fn decode_timespec(
                 {
                     break;
                 }
-                if digits < LOG10_BILLION as libc::c_int {
+                if digits < C2RustUnnamed_0::LOG10_BILLION as libc::c_int {
                     digits += 1;
                     digits;
                     ns = 10 as libc::c_int * ns + (*p as libc::c_int - '0' as i32);
@@ -1047,7 +1396,7 @@ pub unsafe extern "C" fn decode_timespec(
                         | (*p as libc::c_int != '0' as i32) as libc::c_int) as bool;
                 }
             }
-            while digits < LOG10_BILLION as libc::c_int {
+            while digits < C2RustUnnamed_0::LOG10_BILLION as libc::c_int {
                 digits += 1;
                 digits;
                 ns *= 10 as libc::c_int;
@@ -1074,7 +1423,7 @@ pub unsafe extern "C" fn decode_timespec(
                     } else {
                         s -= 1;
                         s;
-                        ns = BILLION as libc::c_int - ns;
+                        ns = C2RustUnnamed_0::BILLION as libc::c_int - ns;
                     }
                 }
             }
@@ -1198,7 +1547,7 @@ pub unsafe extern "C" fn remove_any_file(
                         );
                         let mut r: libc::c_int = remove_any_file(
                             file_name_buffer,
-                            RECURSIVE_REMOVE_OPTION,
+                            remove_option::RECURSIVE_REMOVE_OPTION,
                         );
                         let mut e: libc::c_int = *__errno_location();
                         rpl_free(file_name_buffer as *mut libc::c_void);
@@ -1422,8 +1771,8 @@ pub unsafe extern "C" fn set_file_atime(
 ) -> libc::c_int {
     let mut ts: [timespec; 2] = [timespec { tv_sec: 0, tv_nsec: 0 }; 2];
     ts[0 as libc::c_int as usize] = atime;
-    ts[1 as libc::c_int as usize]
-        .tv_nsec = ((1 as libc::c_long) << 30 as libc::c_int) - 2 as libc::c_long;
+    ts[1 as libc::c_int as usize].tv_nsec = ((1 as libc::c_long) << 30 as libc::c_int)
+        - 2 as libc::c_long;
     return fdutimensat(
         fd,
         parentfd,
@@ -1518,7 +1867,9 @@ pub unsafe extern "C" fn chdir_do(mut i: libc::c_int) {
                 open_fatal((*curr).name);
             }
             (*curr).fd = fd;
-            if wdcache_count < CHDIR_CACHE_SIZE as libc::c_int as libc::c_ulong {
+            if wdcache_count
+                < C2RustUnnamed_1::CHDIR_CACHE_SIZE as libc::c_int as libc::c_ulong
+            {
                 let fresh29 = wdcache_count;
                 wdcache_count = wdcache_count.wrapping_add(1);
                 wdcache[fresh29 as usize] = i;
@@ -1528,16 +1879,16 @@ pub unsafe extern "C" fn chdir_do(mut i: libc::c_int) {
                         *wdcache
                             .as_mut_ptr()
                             .offset(
-                                (CHDIR_CACHE_SIZE as libc::c_int - 1 as libc::c_int)
-                                    as isize,
+                                (C2RustUnnamed_1::CHDIR_CACHE_SIZE as libc::c_int
+                                    - 1 as libc::c_int) as isize,
                             ) as isize,
                     ) as *mut wd;
                 if close((*stale).fd) != 0 as libc::c_int {
                     close_diag((*stale).name);
                 }
                 (*stale).fd = 0 as libc::c_int;
-                wdcache[(CHDIR_CACHE_SIZE as libc::c_int - 1 as libc::c_int)
-                    as usize] = i;
+                wdcache[(C2RustUnnamed_1::CHDIR_CACHE_SIZE as libc::c_int
+                    - 1 as libc::c_int) as usize] = i;
             }
         }
         if (0 as libc::c_int) < fd {
@@ -1704,7 +2055,7 @@ pub unsafe extern "C" fn stat_diag(mut name: *const libc::c_char) {
 pub unsafe extern "C" fn file_removed_diag(
     mut name: *const libc::c_char,
     mut top_level: bool,
-    mut diagfn: Option::<unsafe extern "C" fn(*const libc::c_char) -> ()>,
+    mut diagfn: Option<unsafe extern "C" fn(*const libc::c_char) -> ()>,
 ) {
     if !top_level && *__errno_location() == 2 as libc::c_int {
         if warning_option & 0x40 as libc::c_int != 0 {
@@ -1815,8 +2166,7 @@ pub unsafe extern "C" fn namebuf_name(
         .wrapping_add(len)
         .wrapping_add(1 as libc::c_int as libc::c_ulong) >= (*buf).buffer_size
     {
-        (*buf)
-            .buffer = x2realloc(
+        (*buf).buffer = x2realloc(
             (*buf).buffer as *mut libc::c_void,
             &mut (*buf).buffer_size,
         ) as *mut libc::c_char;
@@ -1839,8 +2189,7 @@ unsafe extern "C" fn namebuf_add_dir(mut buf: namebuf_t, mut name: *const libc::
         (*buf).dir_length;
     }
     namebuf_name(buf, name);
-    (*buf)
-        .dir_length = ((*buf).dir_length as libc::c_ulong).wrapping_add(strlen(name))
+    (*buf).dir_length = ((*buf).dir_length as libc::c_ulong).wrapping_add(strlen(name))
         as size_t as size_t;
 }
 unsafe extern "C" fn namebuf_finish(mut buf: namebuf_t) -> *mut libc::c_char {
@@ -1850,8 +2199,8 @@ unsafe extern "C" fn namebuf_finish(mut buf: namebuf_t) -> *mut libc::c_char {
             ((*buf).dir_length).wrapping_sub(1 as libc::c_int as libc::c_ulong) as isize,
         ) as libc::c_int == '/' as i32
     {
-        *((*buf).buffer)
-            .offset((*buf).dir_length as isize) = 0 as libc::c_int as libc::c_char;
+        *((*buf).buffer).offset((*buf).dir_length as isize) = 0 as libc::c_int
+            as libc::c_char;
     }
     rpl_free(buf as *mut libc::c_void);
     return res;

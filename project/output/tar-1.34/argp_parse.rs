@@ -1,4 +1,6 @@
 #![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+use std::ops::{Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign};
+
 extern "C" {
     fn strtol(
         __nptr: *const libc::c_char,
@@ -81,11 +83,71 @@ impl __ord {
             __ord::REQUIRE_ORDER => 0,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> __ord {
+        match value {
+            2 => __ord::RETURN_IN_ORDER,
+            1 => __ord::PERMUTE,
+            0 => __ord::REQUIRE_ORDER,
+            _ => panic!("Invalid value for __ord: {}", value),
+        }
+    }
+}
+impl AddAssign<u32> for __ord {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for __ord {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for __ord {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for __ord {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for __ord {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for __ord {
+    type Output = __ord;
+    fn add(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for __ord {
+    type Output = __ord;
+    fn sub(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for __ord {
+    type Output = __ord;
+    fn mul(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for __ord {
+    type Output = __ord;
+    fn div(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for __ord {
+    type Output = __ord;
+    fn rem(self, rhs: u32) -> __ord {
+        __ord::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
 }
 
-pub const RETURN_IN_ORDER: __ord = 2;
-pub const PERMUTE: __ord = 1;
-pub const REQUIRE_ORDER: __ord = 0;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _getopt_data {
@@ -174,20 +236,80 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: libc::c_uint) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
+}
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
 }
 
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
 pub type error_t = libc::c_int;
 #[derive(Copy, Clone)]
 #[repr(C)]
@@ -310,7 +432,7 @@ unsafe extern "C" fn _option_is_short(mut __opt: *const argp_option) -> libc::c_
         return (__key > 0 as libc::c_int
             && __key <= 127 as libc::c_int * 2 as libc::c_int + 1 as libc::c_int
             && *(*__ctype_b_loc()).offset(__key as isize) as libc::c_int
-                & _ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0)
+                & C2RustUnnamed::_ISprint as libc::c_int as libc::c_ushort as libc::c_int != 0)
             as libc::c_int;
     };
 }
@@ -791,7 +913,7 @@ unsafe extern "C" fn parser_init(
             rpl_optarg: 0 as *mut libc::c_char,
             __initialized: 0,
             __nextchar: 0 as *mut libc::c_char,
-            __ordering: REQUIRE_ORDER,
+            __ordering: __ord::REQUIRE_ORDER,
             __first_nonopt: 0,
             __last_nonopt: 0,
         };
@@ -1266,7 +1388,7 @@ pub unsafe extern "C" fn argp_parse(
             rpl_optarg: 0 as *mut libc::c_char,
             __initialized: 0,
             __nextchar: 0 as *mut libc::c_char,
-            __ordering: REQUIRE_ORDER,
+            __ordering: __ord::REQUIRE_ORDER,
             __first_nonopt: 0,
             __last_nonopt: 0,
         },

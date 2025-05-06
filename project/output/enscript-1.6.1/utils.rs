@@ -1,106 +1,117 @@
-#![allow(dead_code, mutable_transmutes, non_camel_case_types, non_snake_case, non_upper_case_globals, unused_assignments, unused_mut)]
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
 #![feature(extern_types)]
+use std::ops::{
+    Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
+};
 extern "C" {
-    pub type _IO_wide_data;
-    pub type _IO_codecvt;
-    pub type _IO_marker;
     pub type stringhash_st;
-    static mut stderr: *mut FILE;
-    fn fprintf(_: *mut FILE, _: *const libc::c_char, _: ...) -> libc::c_int;
-    fn sprintf(_: *mut libc::c_char, _: *const libc::c_char, _: ...) -> libc::c_int;
+    static mut stderr: *mut _IO_FILE;
+    fn fprintf(_: *mut FILE, _: *const i8, _: ...) -> i32;
+    fn sprintf(_: *mut i8, _: *const i8, _: ...) -> i32;
     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
     fn __ctype_tolower_loc() -> *mut *const __int32_t;
     fn free(__ptr: *mut libc::c_void);
     fn abort() -> !;
-    fn exit(_: libc::c_int) -> !;
-    fn memcpy(
-        _: *mut libc::c_void,
-        _: *const libc::c_void,
-        _: libc::c_ulong,
-    ) -> *mut libc::c_void;
-    fn strcmp(_: *const libc::c_char, _: *const libc::c_char) -> libc::c_int;
-    fn strlen(_: *const libc::c_char) -> libc::c_ulong;
+    fn exit(_: i32) -> !;
+    fn memcpy(_: *mut libc::c_void, _: *const libc::c_void, _: u64) -> *mut libc::c_void;
+    fn strcmp(_: *const i8, _: *const i8) -> i32;
+    fn strlen(_: *const i8) -> u64;
     fn dcgettext(
-        __domainname: *const libc::c_char,
-        __msgid: *const libc::c_char,
-        __category: libc::c_int,
-    ) -> *mut libc::c_char;
-    fn re_compile_pattern(
-        pattern: *const libc::c_char,
-        length: size_t,
-        buffer: *mut re_pattern_buffer,
-    ) -> *const libc::c_char;
-    fn re_compile_fastmap(buffer: *mut re_pattern_buffer) -> libc::c_int;
+        __domainname: *const i8,
+        __msgid: *const i8,
+        __category: i32,
+    ) -> *mut i8;
     fn xmalloc(size: size_t) -> *mut libc::c_void;
     fn xcalloc(num: size_t, size: size_t) -> *mut libc::c_void;
     fn xrealloc(ptr: *mut libc::c_void, size: size_t) -> *mut libc::c_void;
     fn xfree(ptr: *mut libc::c_void);
-    fn xstrdup(_: *mut libc::c_char) -> *mut libc::c_char;
+    fn xstrdup(_: *mut i8) -> *mut i8;
     fn strhash_put(
         hash: StringHashPtr,
-        key: *mut libc::c_char,
-        keylen: libc::c_int,
+        key: *mut i8,
+        keylen: i32,
         data: *mut libc::c_void,
         old_data_return: *mut *mut libc::c_void,
-    ) -> libc::c_int;
+    ) -> i32;
     fn strhash_get(
         hash: StringHashPtr,
-        key: *const libc::c_char,
-        keylen: libc::c_int,
+        key: *const i8,
+        keylen: i32,
         data_return: *mut *mut libc::c_void,
-    ) -> libc::c_int;
-    static mut program: *mut libc::c_char;
-    static mut defs_file: *mut libc::c_char;
-    static mut linenum: libc::c_uint;
+    ) -> i32;
+    static mut program: *mut i8;
+    static mut defs_file: *mut i8;
+    static mut linenum: u32;
     static mut warning_level: WarningLevel;
     static mut ns_prims: StringHashPtr;
     static mut ns_vars: StringHashPtr;
     static mut ns_subs: StringHashPtr;
     static mut ns_states: StringHashPtr;
     static mut nvoid: *mut Node;
-    static mut current_linenum: libc::c_uint;
+    static mut current_linenum: u32;
     static mut current_match: *mut re_registers;
-    static mut current_match_buf: *mut libc::c_char;
-    fn yyerror(msg: *mut libc::c_char);
+    static mut current_match_buf: *mut i8;
+    fn yyerror(msg: *mut i8);
+    fn re_compile_pattern(
+        pattern: *const i8,
+        length: size_t,
+        buffer: *mut re_pattern_buffer,
+    ) -> *const i8;
+    fn re_compile_fastmap(buffer: *mut re_pattern_buffer) -> i32;
 }
-pub type size_t = libc::c_ulong;
-pub type __int32_t = libc::c_int;
-pub type __off_t = libc::c_long;
-pub type __off64_t = libc::c_long;
+pub type size_t = u64;
+pub type __int32_t = i32;
+pub type __off_t = i64;
+pub type __off64_t = i64;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct _IO_FILE {
-    pub _flags: libc::c_int,
-    pub _IO_read_ptr: *mut libc::c_char,
-    pub _IO_read_end: *mut libc::c_char,
-    pub _IO_read_base: *mut libc::c_char,
-    pub _IO_write_base: *mut libc::c_char,
-    pub _IO_write_ptr: *mut libc::c_char,
-    pub _IO_write_end: *mut libc::c_char,
-    pub _IO_buf_base: *mut libc::c_char,
-    pub _IO_buf_end: *mut libc::c_char,
-    pub _IO_save_base: *mut libc::c_char,
-    pub _IO_backup_base: *mut libc::c_char,
-    pub _IO_save_end: *mut libc::c_char,
+    pub _flags: i32,
+    pub _IO_read_ptr: *mut i8,
+    pub _IO_read_end: *mut i8,
+    pub _IO_read_base: *mut i8,
+    pub _IO_write_base: *mut i8,
+    pub _IO_write_ptr: *mut i8,
+    pub _IO_write_end: *mut i8,
+    pub _IO_buf_base: *mut i8,
+    pub _IO_buf_end: *mut i8,
+    pub _IO_save_base: *mut i8,
+    pub _IO_backup_base: *mut i8,
+    pub _IO_save_end: *mut i8,
     pub _markers: *mut _IO_marker,
     pub _chain: *mut _IO_FILE,
-    pub _fileno: libc::c_int,
-    pub _flags2: libc::c_int,
+    pub _fileno: i32,
+    pub _flags2: i32,
     pub _old_offset: __off_t,
     pub _cur_column: libc::c_ushort,
     pub _vtable_offset: libc::c_schar,
-    pub _shortbuf: [libc::c_char; 1],
+    pub _shortbuf: [i8; 1],
     pub _lock: *mut libc::c_void,
     pub _offset: __off64_t,
-    pub _codecvt: *mut _IO_codecvt,
-    pub _wide_data: *mut _IO_wide_data,
-    pub _freeres_list: *mut _IO_FILE,
-    pub _freeres_buf: *mut libc::c_void,
+    pub __pad1: *mut libc::c_void,
+    pub __pad2: *mut libc::c_void,
+    pub __pad3: *mut libc::c_void,
+    pub __pad4: *mut libc::c_void,
     pub __pad5: size_t,
-    pub _mode: libc::c_int,
-    pub _unused2: [libc::c_char; 20],
+    pub _mode: i32,
+    pub _unused2: [i8; 20],
 }
 pub type _IO_lock_t = ();
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct _IO_marker {
+    pub _next: *mut _IO_marker,
+    pub _sbuf: *mut _IO_FILE,
+    pub _pos: i32,
+}
 pub type FILE = _IO_FILE;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -119,7 +130,7 @@ pub enum C2RustUnnamed {
     _ISupper = 256,
 }
 impl C2RustUnnamed {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             C2RustUnnamed::_ISalnum => 8,
             C2RustUnnamed::_ISpunct => 4,
@@ -135,30 +146,89 @@ impl C2RustUnnamed {
             C2RustUnnamed::_ISupper => 256,
         }
     }
+    fn from_libc_c_uint(value: u32) -> C2RustUnnamed {
+        match value {
+            8 => C2RustUnnamed::_ISalnum,
+            4 => C2RustUnnamed::_ISpunct,
+            2 => C2RustUnnamed::_IScntrl,
+            1 => C2RustUnnamed::_ISblank,
+            32768 => C2RustUnnamed::_ISgraph,
+            16384 => C2RustUnnamed::_ISprint,
+            8192 => C2RustUnnamed::_ISspace,
+            4096 => C2RustUnnamed::_ISxdigit,
+            2048 => C2RustUnnamed::_ISdigit,
+            1024 => C2RustUnnamed::_ISalpha,
+            512 => C2RustUnnamed::_ISlower,
+            256 => C2RustUnnamed::_ISupper,
+            _ => panic!("Invalid value for C2RustUnnamed: {}", value),
+        }
+    }
 }
-
-pub const _ISalnum: C2RustUnnamed = 8;
-pub const _ISpunct: C2RustUnnamed = 4;
-pub const _IScntrl: C2RustUnnamed = 2;
-pub const _ISblank: C2RustUnnamed = 1;
-pub const _ISgraph: C2RustUnnamed = 32768;
-pub const _ISprint: C2RustUnnamed = 16384;
-pub const _ISspace: C2RustUnnamed = 8192;
-pub const _ISxdigit: C2RustUnnamed = 4096;
-pub const _ISdigit: C2RustUnnamed = 2048;
-pub const _ISalpha: C2RustUnnamed = 1024;
-pub const _ISlower: C2RustUnnamed = 512;
-pub const _ISupper: C2RustUnnamed = 256;
-pub type reg_syntax_t = libc::c_ulong;
+impl AddAssign<u32> for C2RustUnnamed {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for C2RustUnnamed {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for C2RustUnnamed {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for C2RustUnnamed {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for C2RustUnnamed {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn add(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn sub(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn mul(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn div(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for C2RustUnnamed {
+    type Output = C2RustUnnamed;
+    fn rem(self, rhs: u32) -> C2RustUnnamed {
+        C2RustUnnamed::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
+pub type reg_syntax_t = u64;
 #[derive(Copy, Clone, BitfieldStruct)]
 #[repr(C)]
 pub struct re_pattern_buffer {
-    pub buffer: *mut libc::c_uchar,
-    pub allocated: libc::c_ulong,
-    pub used: libc::c_ulong,
+    pub buffer: *mut u8,
+    pub allocated: u64,
+    pub used: u64,
     pub syntax: reg_syntax_t,
-    pub fastmap: *mut libc::c_char,
-    pub translate: *mut libc::c_char,
+    pub fastmap: *mut i8,
+    pub translate: *mut i8,
     pub re_nsub: size_t,
     #[bitfield(name = "can_be_null", ty = "libc::c_uint", bits = "0..=0")]
     #[bitfield(name = "regs_allocated", ty = "libc::c_uint", bits = "1..=2")]
@@ -172,11 +242,11 @@ pub struct re_pattern_buffer {
     pub c2rust_padding: [u8; 7],
 }
 pub type regex_t = re_pattern_buffer;
-pub type regoff_t = libc::c_int;
+pub type regoff_t = i32;
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct re_registers {
-    pub num_regs: libc::c_uint,
+    pub num_regs: u32,
     pub start: *mut regoff_t,
     pub end: *mut regoff_t,
 }
@@ -207,7 +277,7 @@ pub enum NodeType {
     nARRAY,
 }
 impl NodeType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             NodeType::nVOID => 0,
             NodeType::nSTRING => 1,
@@ -218,21 +288,80 @@ impl NodeType {
             NodeType::nARRAY => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> NodeType {
+        match value {
+            0 => NodeType::nVOID,
+            1 => NodeType::nSTRING,
+            2 => NodeType::nREGEXP,
+            3 => NodeType::nINTEGER,
+            4 => NodeType::nREAL,
+            5 => NodeType::nSYMBOL,
+            6 => NodeType::nARRAY,
+            _ => panic!("Invalid value for NodeType: {}", value),
+        }
+    }
 }
-
-pub const nARRAY: NodeType = 6;
-pub const nSYMBOL: NodeType = 5;
-pub const nREAL: NodeType = 4;
-pub const nINTEGER: NodeType = 3;
-pub const nREGEXP: NodeType = 2;
-pub const nSTRING: NodeType = 1;
-pub const nVOID: NodeType = 0;
+impl AddAssign<u32> for NodeType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for NodeType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for NodeType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for NodeType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for NodeType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for NodeType {
+    type Output = NodeType;
+    fn add(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for NodeType {
+    type Output = NodeType;
+    fn sub(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for NodeType {
+    type Output = NodeType;
+    fn mul(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for NodeType {
+    type Output = NodeType;
+    fn div(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for NodeType {
+    type Output = NodeType;
+    fn rem(self, rhs: u32) -> NodeType {
+        NodeType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct node_st {
     pub type_0: NodeType,
-    pub refcount: libc::c_uint,
-    pub linenum: libc::c_uint,
+    pub refcount: u32,
+    pub linenum: u32,
     pub u: C2RustUnnamed_0,
 }
 #[derive(Copy, Clone)]
@@ -240,32 +369,32 @@ pub struct node_st {
 pub union C2RustUnnamed_0 {
     pub str_0: C2RustUnnamed_3,
     pub re: C2RustUnnamed_2,
-    pub integer: libc::c_int,
+    pub integer: i32,
     pub real: libc::c_double,
-    pub sym: *mut libc::c_char,
+    pub sym: *mut i8,
     pub array: C2RustUnnamed_1,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_1 {
     pub array: *mut *mut node_st,
-    pub len: libc::c_uint,
-    pub allocated: libc::c_uint,
+    pub len: u32,
+    pub allocated: u32,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_2 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
-    pub flags: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
+    pub flags: u32,
     pub compiled: regex_t,
     pub matches: re_registers,
 }
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct C2RustUnnamed_3 {
-    pub data: *mut libc::c_char,
-    pub len: libc::c_uint,
+    pub data: *mut i8,
+    pub len: u32,
 }
 pub type Node = node_st;
 #[derive(Copy, Clone)]
@@ -311,7 +440,7 @@ pub enum ExprType {
     eLE,
 }
 impl ExprType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             ExprType::eSTRING => 0,
             ExprType::eREGEXP => 1,
@@ -346,44 +475,103 @@ impl ExprType {
             ExprType::eLE => 30,
         }
     }
+    fn from_libc_c_uint(value: u32) -> ExprType {
+        match value {
+            0 => ExprType::eSTRING,
+            1 => ExprType::eREGEXP,
+            2 => ExprType::eINTEGER,
+            3 => ExprType::eREAL,
+            4 => ExprType::eSYMBOL,
+            5 => ExprType::eNOT,
+            6 => ExprType::eAND,
+            7 => ExprType::eOR,
+            8 => ExprType::eFCALL,
+            9 => ExprType::eASSIGN,
+            10 => ExprType::eADDASSIGN,
+            11 => ExprType::eSUBASSIGN,
+            12 => ExprType::eMULASSIGN,
+            13 => ExprType::eDIVASSIGN,
+            14 => ExprType::ePOSTFIXADD,
+            15 => ExprType::ePOSTFIXSUB,
+            16 => ExprType::ePREFIXADD,
+            17 => ExprType::ePREFIXSUB,
+            18 => ExprType::eARRAYASSIGN,
+            19 => ExprType::eARRAYREF,
+            20 => ExprType::eQUESTCOLON,
+            21 => ExprType::eMULT,
+            22 => ExprType::eDIV,
+            23 => ExprType::ePLUS,
+            24 => ExprType::eMINUS,
+            25 => ExprType::eLT,
+            26 => ExprType::eGT,
+            27 => ExprType::eEQ,
+            28 => ExprType::eNE,
+            29 => ExprType::eGE,
+            30 => ExprType::eLE,
+            _ => panic!("Invalid value for ExprType: {}", value),
+        }
+    }
 }
-
-pub const eLE: ExprType = 30;
-pub const eGE: ExprType = 29;
-pub const eNE: ExprType = 28;
-pub const eEQ: ExprType = 27;
-pub const eGT: ExprType = 26;
-pub const eLT: ExprType = 25;
-pub const eMINUS: ExprType = 24;
-pub const ePLUS: ExprType = 23;
-pub const eDIV: ExprType = 22;
-pub const eMULT: ExprType = 21;
-pub const eQUESTCOLON: ExprType = 20;
-pub const eARRAYREF: ExprType = 19;
-pub const eARRAYASSIGN: ExprType = 18;
-pub const ePREFIXSUB: ExprType = 17;
-pub const ePREFIXADD: ExprType = 16;
-pub const ePOSTFIXSUB: ExprType = 15;
-pub const ePOSTFIXADD: ExprType = 14;
-pub const eDIVASSIGN: ExprType = 13;
-pub const eMULASSIGN: ExprType = 12;
-pub const eSUBASSIGN: ExprType = 11;
-pub const eADDASSIGN: ExprType = 10;
-pub const eASSIGN: ExprType = 9;
-pub const eFCALL: ExprType = 8;
-pub const eOR: ExprType = 7;
-pub const eAND: ExprType = 6;
-pub const eNOT: ExprType = 5;
-pub const eSYMBOL: ExprType = 4;
-pub const eREAL: ExprType = 3;
-pub const eINTEGER: ExprType = 2;
-pub const eREGEXP: ExprType = 1;
-pub const eSTRING: ExprType = 0;
+impl AddAssign<u32> for ExprType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for ExprType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for ExprType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for ExprType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for ExprType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = ExprType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for ExprType {
+    type Output = ExprType;
+    fn add(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for ExprType {
+    type Output = ExprType;
+    fn sub(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for ExprType {
+    type Output = ExprType;
+    fn mul(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for ExprType {
+    type Output = ExprType;
+    fn div(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for ExprType {
+    type Output = ExprType;
+    fn rem(self, rhs: u32) -> ExprType {
+        ExprType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct expr_st {
     pub type_0: ExprType,
-    pub linenum: libc::c_uint,
+    pub linenum: u32,
     pub u: C2RustUnnamed_4,
 }
 #[derive(Copy, Clone)]
@@ -449,7 +637,7 @@ pub enum StmtType {
     sFOR,
 }
 impl StmtType {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             StmtType::sRETURN => 0,
             StmtType::sDEFSUB => 1,
@@ -460,20 +648,79 @@ impl StmtType {
             StmtType::sFOR => 6,
         }
     }
+    fn from_libc_c_uint(value: u32) -> StmtType {
+        match value {
+            0 => StmtType::sRETURN,
+            1 => StmtType::sDEFSUB,
+            2 => StmtType::sBLOCK,
+            3 => StmtType::sIF,
+            4 => StmtType::sEXPR,
+            5 => StmtType::sWHILE,
+            6 => StmtType::sFOR,
+            _ => panic!("Invalid value for StmtType: {}", value),
+        }
+    }
 }
-
-pub const sFOR: StmtType = 6;
-pub const sWHILE: StmtType = 5;
-pub const sEXPR: StmtType = 4;
-pub const sIF: StmtType = 3;
-pub const sBLOCK: StmtType = 2;
-pub const sDEFSUB: StmtType = 1;
-pub const sRETURN: StmtType = 0;
+impl AddAssign<u32> for StmtType {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for StmtType {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for StmtType {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for StmtType {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for StmtType {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = StmtType::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for StmtType {
+    type Output = StmtType;
+    fn add(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for StmtType {
+    type Output = StmtType;
+    fn sub(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for StmtType {
+    type Output = StmtType;
+    fn mul(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for StmtType {
+    type Output = StmtType;
+    fn div(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for StmtType {
+    type Output = StmtType;
+    fn rem(self, rhs: u32) -> StmtType {
+        StmtType::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[derive(Copy, Clone)]
 #[repr(C)]
 pub struct stmt_st {
     pub type_0: StmtType,
-    pub linenum: libc::c_uint,
+    pub linenum: u32,
     pub u: C2RustUnnamed_11,
 }
 #[derive(Copy, Clone)]
@@ -518,17 +765,12 @@ pub type Stmt = stmt_st;
 #[repr(C)]
 pub struct environment_st {
     pub next: *mut environment_st,
-    pub name: *mut libc::c_char,
+    pub name: *mut i8,
     pub val: *mut Node,
 }
 pub type Environment = environment_st;
-pub type Primitive = Option::<
-    unsafe extern "C" fn(
-        *mut libc::c_char,
-        *mut List,
-        *mut Environment,
-        libc::c_uint,
-    ) -> *mut Node,
+pub type Primitive = Option<
+    unsafe extern "C" fn(*mut i8, *mut List, *mut Environment, u32) -> *mut Node,
 >;
 #[derive(PartialEq, Eq, PartialOrd, Ord, Debug, Clone, Copy)]
 #[repr(C)]
@@ -537,32 +779,88 @@ pub enum WarningLevel {
     WARN_ALL = 100,
 }
 impl WarningLevel {
-    fn to_libc_c_uint(self) -> libc::c_uint {
+    fn to_libc_c_uint(self) -> u32 {
         match self {
             WarningLevel::WARN_LIGHT => 10,
             WarningLevel::WARN_ALL => 100,
         }
     }
+    fn from_libc_c_uint(value: u32) -> WarningLevel {
+        match value {
+            10 => WarningLevel::WARN_LIGHT,
+            100 => WarningLevel::WARN_ALL,
+            _ => panic!("Invalid value for WarningLevel: {}", value),
+        }
+    }
 }
-
-pub const WARN_ALL: WarningLevel = 100;
-pub const WARN_LIGHT: WarningLevel = 10;
+impl AddAssign<u32> for WarningLevel {
+    fn add_assign(&mut self, rhs: u32) {
+        *self = WarningLevel::from_libc_c_uint(self.to_libc_c_uint() + rhs);
+    }
+}
+impl SubAssign<u32> for WarningLevel {
+    fn sub_assign(&mut self, rhs: u32) {
+        *self = WarningLevel::from_libc_c_uint(self.to_libc_c_uint() - rhs);
+    }
+}
+impl MulAssign<u32> for WarningLevel {
+    fn mul_assign(&mut self, rhs: u32) {
+        *self = WarningLevel::from_libc_c_uint(self.to_libc_c_uint() * rhs);
+    }
+}
+impl DivAssign<u32> for WarningLevel {
+    fn div_assign(&mut self, rhs: u32) {
+        *self = WarningLevel::from_libc_c_uint(self.to_libc_c_uint() / rhs);
+    }
+}
+impl RemAssign<u32> for WarningLevel {
+    fn rem_assign(&mut self, rhs: u32) {
+        *self = WarningLevel::from_libc_c_uint(self.to_libc_c_uint() % rhs);
+    }
+}
+impl Add<u32> for WarningLevel {
+    type Output = WarningLevel;
+    fn add(self, rhs: u32) -> WarningLevel {
+        WarningLevel::from_libc_c_uint(self.to_libc_c_uint() + rhs)
+    }
+}
+impl Sub<u32> for WarningLevel {
+    type Output = WarningLevel;
+    fn sub(self, rhs: u32) -> WarningLevel {
+        WarningLevel::from_libc_c_uint(self.to_libc_c_uint() - rhs)
+    }
+}
+impl Mul<u32> for WarningLevel {
+    type Output = WarningLevel;
+    fn mul(self, rhs: u32) -> WarningLevel {
+        WarningLevel::from_libc_c_uint(self.to_libc_c_uint() * rhs)
+    }
+}
+impl Div<u32> for WarningLevel {
+    type Output = WarningLevel;
+    fn div(self, rhs: u32) -> WarningLevel {
+        WarningLevel::from_libc_c_uint(self.to_libc_c_uint() / rhs)
+    }
+}
+impl Rem<u32> for WarningLevel {
+    type Output = WarningLevel;
+    fn rem(self, rhs: u32) -> WarningLevel {
+        WarningLevel::from_libc_c_uint(self.to_libc_c_uint() % rhs)
+    }
+}
 #[inline]
-unsafe extern "C" fn tolower(mut __c: libc::c_int) -> libc::c_int {
-    return if __c >= -(128 as libc::c_int) && __c < 256 as libc::c_int {
+unsafe extern "C" fn tolower(mut __c: i32) -> i32 {
+    return if __c >= -(128 as i32) && __c < 256 as i32 {
         *(*__ctype_tolower_loc()).offset(__c as isize)
     } else {
         __c
     };
 }
-static mut case_insensitive_translate: *mut libc::c_char = 0 as *const libc::c_char
-    as *mut libc::c_char;
+static mut case_insensitive_translate: *mut i8 = 0 as *const i8 as *mut i8;
 #[no_mangle]
 pub unsafe extern "C" fn list() -> *mut List {
-    return xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<List>() as libc::c_ulong,
-    ) as *mut List;
+    return xcalloc(1 as i32 as size_t, ::core::mem::size_of::<List>() as u64)
+        as *mut List;
 }
 #[no_mangle]
 pub unsafe extern "C" fn list_prepend(
@@ -570,7 +868,7 @@ pub unsafe extern "C" fn list_prepend(
     mut data: *mut libc::c_void,
 ) {
     let mut item: *mut ListItem = 0 as *mut ListItem;
-    item = xmalloc(::core::mem::size_of::<ListItem>() as libc::c_ulong) as *mut ListItem;
+    item = xmalloc(::core::mem::size_of::<ListItem>() as u64) as *mut ListItem;
     (*item).data = data;
     (*item).next = (*list_0).head;
     (*list_0).head = item;
@@ -584,10 +882,8 @@ pub unsafe extern "C" fn list_append(
     mut data: *mut libc::c_void,
 ) {
     let mut item: *mut ListItem = 0 as *mut ListItem;
-    item = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<ListItem>() as libc::c_ulong,
-    ) as *mut ListItem;
+    item = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<ListItem>() as u64)
+        as *mut ListItem;
     (*item).data = data;
     if !((*list_0).tail).is_null() {
         (*(*list_0).tail).next = item;
@@ -599,42 +895,31 @@ pub unsafe extern "C" fn list_append(
 #[no_mangle]
 pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
     let mut n: *mut Node = 0 as *mut Node;
-    n = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<Node>() as libc::c_ulong,
-    ) as *mut Node;
+    n = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<Node>() as u64) as *mut Node;
     (*n).type_0 = type_0;
-    (*n).refcount = 1 as libc::c_int as libc::c_uint;
+    (*n).refcount = 1 as i32 as u32;
     (*n).linenum = linenum;
-    if type_0 as libc::c_uint == nREGEXP as libc::c_int as libc::c_uint {
-        (*n)
-            .u
-            .re
-            .compiled
-            .fastmap = xmalloc(256 as libc::c_int as size_t) as *mut libc::c_char;
+    if type_0 as u32 == NodeType::nREGEXP as i32 as u32 {
+        (*n).u.re.compiled.fastmap = xmalloc(256 as i32 as size_t) as *mut i8;
     }
     return n;
 }
 #[no_mangle]
 pub unsafe extern "C" fn node_copy(mut n: *mut Node) -> *mut Node {
     let mut n2: *mut Node = 0 as *mut Node;
-    let mut i: libc::c_int = 0;
-    n2 = node_alloc((*n).type_0 as libc::c_uint);
+    let mut i: i32 = 0;
+    n2 = node_alloc((*n).type_0 as u32);
     (*n2).linenum = (*n).linenum;
-    match (*n).type_0 as libc::c_uint {
+    match (*n).type_0 as u32 {
         1 => {
             (*n2).u.str_0.len = (*n).u.str_0.len;
-            (*n2)
-                .u
-                .str_0
-                .data = xmalloc(
-                ((*n2).u.str_0.len).wrapping_add(1 as libc::c_int as libc::c_uint)
-                    as size_t,
-            ) as *mut libc::c_char;
+            (*n2).u.str_0.data = xmalloc(
+                ((*n2).u.str_0.len).wrapping_add(1 as i32 as u32) as size_t,
+            ) as *mut i8;
             memcpy(
                 (*n2).u.str_0.data as *mut libc::c_void,
                 (*n).u.str_0.data as *const libc::c_void,
-                (*n).u.str_0.len as libc::c_ulong,
+                (*n).u.str_0.len as u64,
             );
         }
         2 => {
@@ -652,20 +937,13 @@ pub unsafe extern "C" fn node_copy(mut n: *mut Node) -> *mut Node {
         }
         6 => {
             (*n2).u.array.len = (*n).u.array.len;
-            (*n2)
-                .u
-                .array
-                .allocated = ((*n2).u.array.len)
-                .wrapping_add(1 as libc::c_int as libc::c_uint);
-            (*n2)
-                .u
-                .array
-                .array = xcalloc(
+            (*n2).u.array.allocated = ((*n2).u.array.len).wrapping_add(1 as i32 as u32);
+            (*n2).u.array.array = xcalloc(
                 (*n2).u.array.allocated as size_t,
-                ::core::mem::size_of::<*mut Node>() as libc::c_ulong,
+                ::core::mem::size_of::<*mut Node>() as u64,
             ) as *mut *mut Node;
-            i = 0 as libc::c_int;
-            while (i as libc::c_uint) < (*n).u.array.len {
+            i = 0 as i32;
+            while (i as u32) < (*n).u.array.len {
                 let ref mut fresh0 = *((*n2).u.array.array).offset(i as isize);
                 *fresh0 = node_copy(*((*n).u.array.array).offset(i as isize));
                 i += 1;
@@ -683,15 +961,15 @@ pub unsafe extern "C" fn node_reference(mut node: *mut Node) {
 }
 #[no_mangle]
 pub unsafe extern "C" fn node_free(mut node: *mut Node) {
-    let mut i: libc::c_uint = 0;
+    let mut i: u32 = 0;
     if node.is_null() {
         return;
     }
     (*node).refcount = ((*node).refcount).wrapping_sub(1);
-    if (*node).refcount > 0 as libc::c_int as libc::c_uint {
+    if (*node).refcount > 0 as i32 as u32 {
         return;
     }
-    match (*node).type_0 as libc::c_uint {
+    match (*node).type_0 as u32 {
         0 => return,
         1 => {
             xfree((*node).u.str_0.data as *mut libc::c_void);
@@ -701,7 +979,7 @@ pub unsafe extern "C" fn node_free(mut node: *mut Node) {
             xfree((*node).u.re.compiled.fastmap as *mut libc::c_void);
         }
         6 => {
-            i = 0 as libc::c_int as libc::c_uint;
+            i = 0 as i32 as u32;
             while i < (*node).u.array.len {
                 node_free(*((*node).u.array.array).offset(i as isize));
                 i = i.wrapping_add(1);
@@ -714,19 +992,16 @@ pub unsafe extern "C" fn node_free(mut node: *mut Node) {
     xfree(node as *mut libc::c_void);
 }
 #[no_mangle]
-pub unsafe extern "C" fn enter_system_variable(
-    mut name: *mut libc::c_char,
-    mut value: *mut libc::c_char,
-) {
+pub unsafe extern "C" fn enter_system_variable(mut name: *mut i8, mut value: *mut i8) {
     let mut n: *mut Node = 0 as *mut Node;
     let mut old_val: *mut Node = 0 as *mut Node;
-    n = node_alloc(nSTRING as libc::c_int as libc::c_uint);
-    (*n).u.str_0.len = strlen(value) as libc::c_uint;
+    n = node_alloc(NodeType::nSTRING as i32 as u32);
+    (*n).u.str_0.len = strlen(value) as u32;
     (*n).u.str_0.data = xstrdup(value);
     if strhash_put(
         ns_vars,
         name,
-        strlen(name) as libc::c_int,
+        strlen(name) as i32,
         n as *mut libc::c_void,
         &mut old_val as *mut *mut Node as *mut *mut libc::c_void,
     ) == 0
@@ -734,41 +1009,33 @@ pub unsafe extern "C" fn enter_system_variable(
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s: out of memory\n\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s: out of memory\n\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             program,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     node_free(old_val);
 }
 #[no_mangle]
 pub unsafe extern "C" fn compile_regexp(mut re: *mut Node) {
-    let mut msg: *const libc::c_char = 0 as *const libc::c_char;
+    let mut msg: *const i8 = 0 as *const i8;
     if case_insensitive_translate.is_null() {
-        let mut i: libc::c_int = 0;
-        case_insensitive_translate = xmalloc(256 as libc::c_int as size_t)
-            as *mut libc::c_char;
-        i = 0 as libc::c_int;
-        while i < 256 as libc::c_int {
-            if *(*__ctype_b_loc()).offset(i as isize) as libc::c_int
-                & _ISupper as libc::c_int as libc::c_ushort as libc::c_int != 0
+        let mut i: i32 = 0;
+        case_insensitive_translate = xmalloc(256 as i32 as size_t) as *mut i8;
+        i = 0 as i32;
+        while i < 256 as i32 {
+            if *(*__ctype_b_loc()).offset(i as isize) as i32
+                & C2RustUnnamed::_ISupper as i32 as libc::c_ushort as i32 != 0
             {
-                *case_insensitive_translate
-                    .offset(
-                        i as isize,
-                    ) = ({
-                    let mut __res: libc::c_int = 0;
-                    if ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
-                        > 1 as libc::c_int as libc::c_ulong
-                    {
+                *case_insensitive_translate.offset(i as isize) = ({
+                    let mut __res: i32 = 0;
+                    if ::core::mem::size_of::<i32>() as u64 > 1 as i32 as u64 {
                         if 0 != 0 {
-                            let mut __c: libc::c_int = i;
-                            __res = if __c < -(128 as libc::c_int)
-                                || __c > 255 as libc::c_int
-                            {
+                            let mut __c: i32 = i;
+                            __res = if __c < -(128 as i32) || __c > 255 as i32 {
                                 __c
                             } else {
                                 *(*__ctype_tolower_loc()).offset(__c as isize)
@@ -780,15 +1047,15 @@ pub unsafe extern "C" fn compile_regexp(mut re: *mut Node) {
                         __res = *(*__ctype_tolower_loc()).offset(i as isize);
                     }
                     __res
-                }) as libc::c_char;
+                }) as i8;
             } else {
-                *case_insensitive_translate.offset(i as isize) = i as libc::c_char;
+                *case_insensitive_translate.offset(i as isize) = i as i8;
             }
             i += 1;
             i;
         }
     }
-    if (*re).u.re.flags & 1 as libc::c_int as libc::c_uint != 0 {
+    if (*re).u.re.flags & 1 as i32 as u32 != 0 {
         (*re).u.re.compiled.translate = case_insensitive_translate;
     }
     msg = re_compile_pattern(
@@ -800,17 +1067,17 @@ pub unsafe extern "C" fn compile_regexp(mut re: *mut Node) {
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s:%d: couldn't compile regular expression \"%s\": %s\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             defs_file,
             (*re).linenum,
             (*re).u.re.data,
             msg,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     re_compile_fastmap(&mut (*re).u.re.compiled);
 }
@@ -823,13 +1090,11 @@ pub unsafe extern "C" fn mk_stmt(
     mut arg4: *mut libc::c_void,
 ) -> *mut Stmt {
     let mut stmt: *mut Stmt = 0 as *mut Stmt;
-    stmt = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<Stmt>() as libc::c_ulong,
-    ) as *mut Stmt;
+    stmt = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<Stmt>() as u64)
+        as *mut Stmt;
     (*stmt).type_0 = type_0;
     (*stmt).linenum = linenum;
-    match type_0 as libc::c_uint {
+    match type_0 as u32 {
         4 | 0 => {
             (*stmt).u.expr = arg1 as *mut Expr;
         }
@@ -867,13 +1132,11 @@ pub unsafe extern "C" fn mk_expr(
     mut arg3: *mut libc::c_void,
 ) -> *mut Expr {
     let mut expr: *mut Expr = 0 as *mut Expr;
-    expr = xcalloc(
-        1 as libc::c_int as size_t,
-        ::core::mem::size_of::<Expr>() as libc::c_ulong,
-    ) as *mut Expr;
+    expr = xcalloc(1 as i32 as size_t, ::core::mem::size_of::<Expr>() as u64)
+        as *mut Expr;
     (*expr).type_0 = type_0;
     (*expr).linenum = linenum;
-    match type_0 as libc::c_uint {
+    match type_0 as u32 {
         0 | 1 | 2 | 3 | 4 => {
             (*expr).u.node = arg1 as *mut Node;
         }
@@ -919,7 +1182,7 @@ pub unsafe extern "C" fn cons(
     mut cdr: *mut libc::c_void,
 ) -> *mut Cons {
     let mut c: *mut Cons = 0 as *mut Cons;
-    c = xmalloc(::core::mem::size_of::<Cons>() as libc::c_ulong) as *mut Cons;
+    c = xmalloc(::core::mem::size_of::<Cons>() as u64) as *mut Cons;
     (*c).car = car;
     (*c).cdr = cdr;
     return c;
@@ -927,11 +1190,11 @@ pub unsafe extern "C" fn cons(
 #[no_mangle]
 pub unsafe extern "C" fn define_state(mut sym: *mut Node, mut rules: *mut List) {
     let mut old_rules: *mut libc::c_void = 0 as *mut libc::c_void;
-    let mut msg: [libc::c_char; 512] = [0; 512];
+    let mut msg: [i8; 512] = [0; 512];
     if strhash_put(
         ns_states,
         (*sym).u.sym,
-        strlen((*sym).u.sym) as libc::c_int,
+        strlen((*sym).u.sym) as i32,
         rules as *mut libc::c_void,
         &mut old_rules,
     ) == 0
@@ -939,21 +1202,21 @@ pub unsafe extern "C" fn define_state(mut sym: *mut Node, mut rules: *mut List) 
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s: ouf of memory\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s: ouf of memory\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             program,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     if !old_rules.is_null() {
         sprintf(
             msg.as_mut_ptr(),
             dcgettext(
-                0 as *const libc::c_char,
-                b"warning: redefining state `%s'\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"warning: redefining state `%s'\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             (*sym).u.sym,
         );
@@ -963,13 +1226,13 @@ pub unsafe extern "C" fn define_state(mut sym: *mut Node, mut rules: *mut List) 
 unsafe extern "C" fn define_sub(
     mut sym: *mut Node,
     mut args_body: *mut Cons,
-    mut linenum_0: libc::c_uint,
+    mut linenum_0: u32,
 ) {
     let mut old_data: *mut libc::c_void = 0 as *mut libc::c_void;
     if strhash_put(
         ns_subs,
         (*sym).u.sym,
-        strlen((*sym).u.sym) as libc::c_int,
+        strlen((*sym).u.sym) as i32,
         args_body as *mut libc::c_void,
         &mut old_data,
     ) == 0
@@ -977,24 +1240,24 @@ unsafe extern "C" fn define_sub(
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
-                b"%s: ouf of memory\0" as *const u8 as *const libc::c_char,
-                5 as libc::c_int,
+                0 as *const i8,
+                b"%s: ouf of memory\0" as *const u8 as *const i8,
+                5 as i32,
             ),
             program,
         );
-        exit(1 as libc::c_int);
+        exit(1 as i32);
     }
     if !old_data.is_null()
-        && warning_level as libc::c_uint >= WARN_ALL as libc::c_int as libc::c_uint
+        && warning_level as u32 >= WarningLevel::WARN_ALL as i32 as u32
     {
         fprintf(
             stderr,
             dcgettext(
-                0 as *const libc::c_char,
+                0 as *const i8,
                 b"%s:%d: warning: redefining subroutine `%s'\n\0" as *const u8
-                    as *const libc::c_char,
-                5 as libc::c_int,
+                    as *const i8,
+                5 as i32,
             ),
             defs_file,
             linenum_0,
@@ -1006,97 +1269,75 @@ unsafe extern "C" fn lookup_var(
     mut env: *mut Environment,
     mut ns: StringHashPtr,
     mut sym: *mut Node,
-    mut linenum_0: libc::c_uint,
+    mut linenum_0: u32,
 ) -> *mut Node {
     let mut n: *mut Node = 0 as *mut Node;
     let mut e: *mut Environment = 0 as *mut Environment;
-    if *((*sym).u.sym).offset(0 as libc::c_int as isize) as libc::c_int == '$' as i32
-        && *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int != 0
-        && *((*sym).u.sym).offset(2 as libc::c_int as isize) as libc::c_int
-            == '\0' as i32
+    if *((*sym).u.sym).offset(0 as i32 as isize) as i32 == '$' as i32
+        && *((*sym).u.sym).offset(1 as i32 as isize) as i32 != 0
+        && *((*sym).u.sym).offset(2 as i32 as isize) as i32 == '\0' as i32
     {
-        if *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int >= '0' as i32
-            && *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int
-                <= '9' as i32
+        if *((*sym).u.sym).offset(1 as i32 as isize) as i32 >= '0' as i32
+            && *((*sym).u.sym).offset(1 as i32 as isize) as i32 <= '9' as i32
         {
-            let mut i: libc::c_int = 0;
-            let mut len: libc::c_int = 0;
-            i = *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int
-                - '0' as i32;
-            n = node_alloc(nSTRING as libc::c_int as libc::c_uint);
+            let mut i: i32 = 0;
+            let mut len: i32 = 0;
+            i = *((*sym).u.sym).offset(1 as i32 as isize) as i32 - '0' as i32;
+            n = node_alloc(NodeType::nSTRING as i32 as u32);
             if current_match.is_null()
-                || *((*current_match).start).offset(i as isize) < 0 as libc::c_int
+                || *((*current_match).start).offset(i as isize) < 0 as i32
                 || current_match_buf.is_null()
             {
-                (*n)
-                    .u
-                    .str_0
-                    .data = xmalloc(1 as libc::c_int as size_t) as *mut libc::c_char;
-                (*n).u.str_0.len = 0 as libc::c_int as libc::c_uint;
+                (*n).u.str_0.data = xmalloc(1 as i32 as size_t) as *mut i8;
+                (*n).u.str_0.len = 0 as i32 as u32;
             } else {
                 len = *((*current_match).end).offset(i as isize)
                     - *((*current_match).start).offset(i as isize);
-                (*n)
-                    .u
-                    .str_0
-                    .data = xmalloc((len + 1 as libc::c_int) as size_t)
-                    as *mut libc::c_char;
+                (*n).u.str_0.data = xmalloc((len + 1 as i32) as size_t) as *mut i8;
                 memcpy(
                     (*n).u.str_0.data as *mut libc::c_void,
                     current_match_buf
                         .offset(*((*current_match).start).offset(i as isize) as isize)
                         as *const libc::c_void,
-                    len as libc::c_ulong,
+                    len as u64,
                 );
-                (*n).u.str_0.len = len as libc::c_uint;
+                (*n).u.str_0.len = len as u32;
             }
             return n;
         }
-        if *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int == '`' as i32
-            || *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int
-                == 'B' as i32
+        if *((*sym).u.sym).offset(1 as i32 as isize) as i32 == '`' as i32
+            || *((*sym).u.sym).offset(1 as i32 as isize) as i32 == 'B' as i32
         {
-            n = node_alloc(nSTRING as libc::c_int as libc::c_uint);
+            n = node_alloc(NodeType::nSTRING as i32 as u32);
             if current_match.is_null()
-                || *((*current_match).start).offset(0 as libc::c_int as isize)
-                    < 0 as libc::c_int || current_match_buf.is_null()
+                || *((*current_match).start).offset(0 as i32 as isize) < 0 as i32
+                || current_match_buf.is_null()
             {
-                (*n)
-                    .u
-                    .str_0
-                    .data = xmalloc(1 as libc::c_int as size_t) as *mut libc::c_char;
-                (*n).u.str_0.len = 0 as libc::c_int as libc::c_uint;
+                (*n).u.str_0.data = xmalloc(1 as i32 as size_t) as *mut i8;
+                (*n).u.str_0.len = 0 as i32 as u32;
             } else {
-                (*n)
-                    .u
-                    .str_0
-                    .len = *((*current_match).start).offset(0 as libc::c_int as isize)
-                    as libc::c_uint;
-                (*n)
-                    .u
-                    .str_0
-                    .data = xmalloc(
-                    ((*n).u.str_0.len).wrapping_add(1 as libc::c_int as libc::c_uint)
-                        as size_t,
-                ) as *mut libc::c_char;
+                (*n).u.str_0.len = *((*current_match).start).offset(0 as i32 as isize)
+                    as u32;
+                (*n).u.str_0.data = xmalloc(
+                    ((*n).u.str_0.len).wrapping_add(1 as i32 as u32) as size_t,
+                ) as *mut i8;
                 memcpy(
                     (*n).u.str_0.data as *mut libc::c_void,
                     current_match_buf as *const libc::c_void,
-                    (*n).u.str_0.len as libc::c_ulong,
+                    (*n).u.str_0.len as u64,
                 );
             }
             return n;
         }
-        if *((*sym).u.sym).offset(1 as libc::c_int as isize) as libc::c_int == '.' as i32
-        {
-            n = node_alloc(nINTEGER as libc::c_int as libc::c_uint);
-            (*n).u.integer = current_linenum as libc::c_int;
+        if *((*sym).u.sym).offset(1 as i32 as isize) as i32 == '.' as i32 {
+            n = node_alloc(NodeType::nINTEGER as i32 as u32);
+            (*n).u.integer = current_linenum as i32;
             return n;
         }
     }
     e = env;
     while !e.is_null() {
-        if strcmp((*e).name, (*sym).u.sym) == 0 as libc::c_int {
+        if strcmp((*e).name, (*sym).u.sym) == 0 as i32 {
             return (*e).val;
         }
         e = (*e).next;
@@ -1104,7 +1345,7 @@ unsafe extern "C" fn lookup_var(
     if strhash_get(
         ns,
         (*sym).u.sym,
-        strlen((*sym).u.sym) as libc::c_int,
+        strlen((*sym).u.sym) as i32,
         &mut n as *mut *mut Node as *mut *mut libc::c_void,
     ) != 0
     {
@@ -1113,29 +1354,28 @@ unsafe extern "C" fn lookup_var(
     fprintf(
         stderr,
         dcgettext(
-            0 as *const libc::c_char,
-            b"%s:%d: error: undefined variable `%s'\n\0" as *const u8
-                as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"%s:%d: error: undefined variable `%s'\n\0" as *const u8 as *const i8,
+            5 as i32,
         ),
         defs_file,
         linenum_0,
         (*sym).u.sym,
     );
-    exit(1 as libc::c_int);
+    exit(1 as i32);
 }
 unsafe extern "C" fn set_var(
     mut env: *mut Environment,
     mut ns: StringHashPtr,
     mut sym: *mut Node,
     mut val: *mut Node,
-    mut linenum_0: libc::c_uint,
+    mut linenum_0: u32,
 ) {
     let mut n: *mut Node = 0 as *mut Node;
     let mut e: *mut Environment = 0 as *mut Environment;
     e = env;
     while !e.is_null() {
-        if strcmp((*e).name, (*sym).u.sym) == 0 as libc::c_int {
+        if strcmp((*e).name, (*sym).u.sym) == 0 as i32 {
             node_free((*e).val);
             (*e).val = val;
             return;
@@ -1145,7 +1385,7 @@ unsafe extern "C" fn set_var(
     if strhash_put(
         ns,
         (*sym).u.sym,
-        strlen((*sym).u.sym) as libc::c_int,
+        strlen((*sym).u.sym) as i32,
         val as *mut libc::c_void,
         &mut n as *mut *mut Node as *mut *mut libc::c_void,
     ) != 0
@@ -1156,31 +1396,30 @@ unsafe extern "C" fn set_var(
     fprintf(
         stderr,
         dcgettext(
-            0 as *const libc::c_char,
-            b"%s:%d: error: couldn't set variable `%s'\n\0" as *const u8
-                as *const libc::c_char,
-            5 as libc::c_int,
+            0 as *const i8,
+            b"%s:%d: error: couldn't set variable `%s'\n\0" as *const u8 as *const i8,
+            5 as i32,
         ),
         defs_file,
         linenum_0,
         (*sym).u.sym,
     );
-    exit(1 as libc::c_int);
+    exit(1 as i32);
 }
 unsafe extern "C" fn calculate_binary(
     mut l: *mut Node,
     mut r: *mut Node,
     mut type_0: ExprType,
-    mut linenum_0: libc::c_uint,
+    mut linenum_0: u32,
 ) -> *mut Node {
     let mut n: *mut Node = 0 as *mut Node;
-    match type_0 as libc::c_uint {
+    match type_0 as u32 {
         21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 => {
-            if (*l).type_0 as libc::c_uint == (*r).type_0 as libc::c_uint
-                && (*l).type_0 as libc::c_uint == nINTEGER as libc::c_int as libc::c_uint
+            if (*l).type_0 as u32 == (*r).type_0 as u32
+                && (*l).type_0 as u32 == NodeType::nINTEGER as i32 as u32
             {
-                n = node_alloc(nINTEGER as libc::c_int as libc::c_uint);
-                match type_0 as libc::c_uint {
+                n = node_alloc(NodeType::nINTEGER as i32 as u32);
+                match type_0 as u32 {
                     21 => {
                         (*n).u.integer = (*l).u.integer * (*r).u.integer;
                     }
@@ -1194,61 +1433,44 @@ unsafe extern "C" fn calculate_binary(
                         (*n).u.integer = (*l).u.integer - (*r).u.integer;
                     }
                     25 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer < (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer < (*r).u.integer) as i32;
                     }
                     26 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer > (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer > (*r).u.integer) as i32;
                     }
                     27 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer == (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer == (*r).u.integer) as i32;
                     }
                     28 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer != (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer != (*r).u.integer) as i32;
                     }
                     29 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer >= (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer >= (*r).u.integer) as i32;
                     }
                     30 => {
-                        (*n)
-                            .u
-                            .integer = ((*l).u.integer <= (*r).u.integer) as libc::c_int;
+                        (*n).u.integer = ((*l).u.integer <= (*r).u.integer) as i32;
                     }
                     _ => {}
                 }
-            } else if ((*l).type_0 as libc::c_uint
-                == nINTEGER as libc::c_int as libc::c_uint
-                || (*l).type_0 as libc::c_uint == nREAL as libc::c_int as libc::c_uint)
-                && ((*r).type_0 as libc::c_uint
-                    == nINTEGER as libc::c_int as libc::c_uint
-                    || (*r).type_0 as libc::c_uint
-                        == nREAL as libc::c_int as libc::c_uint)
+            } else if ((*l).type_0 as u32 == NodeType::nINTEGER as i32 as u32
+                || (*l).type_0 as u32 == NodeType::nREAL as i32 as u32)
+                && ((*r).type_0 as u32 == NodeType::nINTEGER as i32 as u32
+                    || (*r).type_0 as u32 == NodeType::nREAL as i32 as u32)
             {
                 let mut dl: libc::c_double = 0.;
                 let mut dr: libc::c_double = 0.;
-                if (*l).type_0 as libc::c_uint == nINTEGER as libc::c_int as libc::c_uint
-                {
+                if (*l).type_0 as u32 == NodeType::nINTEGER as i32 as u32 {
                     dl = (*l).u.integer as libc::c_double;
                 } else {
                     dl = (*l).u.real;
                 }
-                if (*r).type_0 as libc::c_uint == nINTEGER as libc::c_int as libc::c_uint
-                {
+                if (*r).type_0 as u32 == NodeType::nINTEGER as i32 as u32 {
                     dr = (*r).u.integer as libc::c_double;
                 } else {
                     dr = (*r).u.real;
                 }
-                n = node_alloc(nREAL as libc::c_int as libc::c_uint);
-                match type_0 as libc::c_uint {
+                n = node_alloc(NodeType::nREAL as i32 as u32);
+                match type_0 as u32 {
                     21 => {
                         (*n).u.real = dl * dr;
                     }
@@ -1262,28 +1484,28 @@ unsafe extern "C" fn calculate_binary(
                         (*n).u.real = dl - dr;
                     }
                     25 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl < dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl < dr) as i32;
                     }
                     26 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl > dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl > dr) as i32;
                     }
                     27 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl == dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl == dr) as i32;
                     }
                     28 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl != dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl != dr) as i32;
                     }
                     29 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl >= dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl >= dr) as i32;
                     }
                     30 => {
-                        (*n).type_0 = nINTEGER;
-                        (*n).u.integer = (dl <= dr) as libc::c_int;
+                        (*n).type_0 = NodeType::nINTEGER;
+                        (*n).u.integer = (dl <= dr) as i32;
                     }
                     _ => {}
                 }
@@ -1291,15 +1513,15 @@ unsafe extern "C" fn calculate_binary(
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: expression between illegal types\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     linenum_0,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
         }
         _ => {
@@ -1319,17 +1541,17 @@ pub unsafe extern "C" fn eval_expr(
     let mut r: *mut Node = 0 as *mut Node;
     let mut c: *mut Cons = 0 as *mut Cons;
     let mut prim: Primitive = None;
-    let mut return_seen: libc::c_int = 0;
+    let mut return_seen: i32 = 0;
     let mut ei: *mut Environment = 0 as *mut Environment;
     let mut ei2: *mut Environment = 0 as *mut Environment;
-    let mut i: libc::c_int = 0;
+    let mut i: i32 = 0;
     let mut sn: Node = Node {
-        type_0: nVOID,
+        type_0: NodeType::nVOID,
         refcount: 0,
         linenum: 0,
         u: C2RustUnnamed_0 {
             str_0: C2RustUnnamed_3 {
-                data: 0 as *mut libc::c_char,
+                data: 0 as *mut i8,
                 len: 0,
             },
         },
@@ -1337,7 +1559,7 @@ pub unsafe extern "C" fn eval_expr(
     if expr.is_null() {
         return nvoid;
     }
-    match (*expr).type_0 as libc::c_uint {
+    match (*expr).type_0 as u32 {
         0 | 1 | 2 | 3 => {
             node_reference((*expr).u.node);
             return (*expr).u.node;
@@ -1349,10 +1571,10 @@ pub unsafe extern "C" fn eval_expr(
         }
         5 => {
             n = eval_expr((*expr).u.not, env);
-            i = !((*n).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                || (*n).u.integer != 0 as libc::c_int) as libc::c_int;
+            i = !((*n).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                || (*n).u.integer != 0 as i32) as i32;
             node_free(n);
-            n = node_alloc(nINTEGER as libc::c_int as libc::c_uint);
+            n = node_alloc(NodeType::nINTEGER as i32 as u32);
             (*n).u.integer = i;
             return n;
         }
@@ -1361,7 +1583,7 @@ pub unsafe extern "C" fn eval_expr(
             if strhash_get(
                 ns_subs,
                 (*n).u.sym,
-                strlen((*n).u.sym) as libc::c_int,
+                strlen((*n).u.sym) as i32,
                 &mut c as *mut *mut Cons as *mut *mut libc::c_void,
             ) != 0
             {
@@ -1381,8 +1603,8 @@ pub unsafe extern "C" fn eval_expr(
                     sym = (*i_0).data as *mut Node;
                     n = eval_expr((*e).data as *mut Expr, env);
                     ei = xcalloc(
-                        1 as libc::c_int as size_t,
-                        ::core::mem::size_of::<Environment>() as libc::c_ulong,
+                        1 as i32 as size_t,
+                        ::core::mem::size_of::<Environment>() as u64,
                     ) as *mut Environment;
                     (*ei).name = (*sym).u.sym;
                     (*ei).val = n;
@@ -1395,27 +1617,27 @@ pub unsafe extern "C" fn eval_expr(
                     fprintf(
                         stderr,
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: too few arguments for subroutine\n\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         program,
                     );
-                    exit(1 as libc::c_int);
+                    exit(1 as i32);
                 }
                 if !e.is_null() {
                     fprintf(
                         stderr,
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s: too many arguments for subroutine\n\0" as *const u8
-                                as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const i8,
+                            5 as i32,
                         ),
                         program,
                     );
-                    exit(1 as libc::c_int);
+                    exit(1 as i32);
                 }
                 lst = (*args_locals).cdr as *mut List;
                 i_0 = (*lst).head;
@@ -1427,8 +1649,8 @@ pub unsafe extern "C" fn eval_expr(
                     sym_0 = (*c_0).car as *mut Node;
                     init = (*c_0).cdr as *mut Expr;
                     ei = xcalloc(
-                        1 as libc::c_int as size_t,
-                        ::core::mem::size_of::<Environment>() as libc::c_ulong,
+                        1 as i32 as size_t,
+                        ::core::mem::size_of::<Environment>() as u64,
                     ) as *mut Environment;
                     (*ei).name = (*sym_0).u.sym;
                     if !init.is_null() {
@@ -1440,7 +1662,7 @@ pub unsafe extern "C" fn eval_expr(
                     nenv = ei;
                     i_0 = (*i_0).next;
                 }
-                return_seen = 0 as libc::c_int;
+                return_seen = 0 as i32;
                 n = eval_statement_list((*c).cdr as *mut List, nenv, &mut return_seen);
                 ei = nenv;
                 while !ei.is_null() {
@@ -1453,7 +1675,7 @@ pub unsafe extern "C" fn eval_expr(
             } else if strhash_get(
                 ns_prims,
                 (*n).u.sym,
-                strlen((*n).u.sym) as libc::c_int,
+                strlen((*n).u.sym) as i32,
                 &mut prim as *mut Primitive as *mut *mut libc::c_void,
             ) != 0
             {
@@ -1466,15 +1688,14 @@ pub unsafe extern "C" fn eval_expr(
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
-                        b"%s: undefined procedure `%s'\n\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                        0 as *const i8,
+                        b"%s: undefined procedure `%s'\n\0" as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     program,
                     (*n).u.sym,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
         }
         9 => {
@@ -1486,12 +1707,12 @@ pub unsafe extern "C" fn eval_expr(
         10 | 11 | 12 | 13 => {
             n = eval_expr((*expr).u.assign.expr, env);
             n2 = lookup_var(env, ns_vars, (*expr).u.assign.sym, (*expr).linenum);
-            match (*expr).type_0 as libc::c_uint {
+            match (*expr).type_0 as u32 {
                 10 => {
                     n2 = calculate_binary(
                         n2,
                         n,
-                        ePLUS as libc::c_int as libc::c_uint,
+                        ExprType::ePLUS as i32 as u32,
                         (*expr).linenum,
                     );
                 }
@@ -1499,7 +1720,7 @@ pub unsafe extern "C" fn eval_expr(
                     n2 = calculate_binary(
                         n2,
                         n,
-                        eMINUS as libc::c_int as libc::c_uint,
+                        ExprType::eMINUS as i32 as u32,
                         (*expr).linenum,
                     );
                 }
@@ -1507,7 +1728,7 @@ pub unsafe extern "C" fn eval_expr(
                     n2 = calculate_binary(
                         n2,
                         n,
-                        eMULT as libc::c_int as libc::c_uint,
+                        ExprType::eMULT as i32 as u32,
                         (*expr).linenum,
                     );
                 }
@@ -1515,7 +1736,7 @@ pub unsafe extern "C" fn eval_expr(
                     n2 = calculate_binary(
                         n2,
                         n,
-                        eDIV as libc::c_int as libc::c_uint,
+                        ExprType::eDIV as i32 as u32,
                         (*expr).linenum,
                     );
                 }
@@ -1529,39 +1750,35 @@ pub unsafe extern "C" fn eval_expr(
             return n2;
         }
         14 | 15 => {
-            sn.type_0 = nINTEGER;
-            sn.u.integer = 1 as libc::c_int;
+            sn.type_0 = NodeType::nINTEGER;
+            sn.u.integer = 1 as i32;
             n2 = lookup_var(env, ns_vars, (*expr).u.node, (*expr).linenum);
             node_reference(n2);
             n = calculate_binary(
                 n2,
                 &mut sn,
-                (if (*expr).type_0 as libc::c_uint
-                    == ePOSTFIXADD as libc::c_int as libc::c_uint
-                {
-                    ePLUS as libc::c_int
+                (if (*expr).type_0 as u32 == ExprType::ePOSTFIXADD as i32 as u32 {
+                    ExprType::ePLUS as i32
                 } else {
-                    eMINUS as libc::c_int
-                }) as libc::c_uint,
+                    ExprType::eMINUS as i32
+                }) as u32,
                 (*expr).linenum,
             );
             set_var(env, ns_vars, (*expr).u.node, n, (*expr).linenum);
             return n2;
         }
         16 | 17 => {
-            sn.type_0 = nINTEGER;
-            sn.u.integer = 1 as libc::c_int;
+            sn.type_0 = NodeType::nINTEGER;
+            sn.u.integer = 1 as i32;
             n = lookup_var(env, ns_vars, (*expr).u.node, (*expr).linenum);
             n = calculate_binary(
                 n,
                 &mut sn,
-                (if (*expr).type_0 as libc::c_uint
-                    == ePREFIXADD as libc::c_int as libc::c_uint
-                {
-                    ePLUS as libc::c_int
+                (if (*expr).type_0 as u32 == ExprType::ePREFIXADD as i32 as u32 {
+                    ExprType::ePLUS as i32
                 } else {
-                    eMINUS as libc::c_int
-                }) as libc::c_uint,
+                    ExprType::eMINUS as i32
+                }) as u32,
                 (*expr).linenum,
             );
             set_var(env, ns_vars, (*expr).u.node, n, (*expr).linenum);
@@ -1570,81 +1787,69 @@ pub unsafe extern "C" fn eval_expr(
         }
         18 => {
             n = eval_expr((*expr).u.arrayassign.expr1, env);
-            if (*n).type_0 as libc::c_uint != nARRAY as libc::c_int as libc::c_uint
-                && (*n).type_0 as libc::c_uint != nSTRING as libc::c_int as libc::c_uint
+            if (*n).type_0 as u32 != NodeType::nARRAY as i32 as u32
+                && (*n).type_0 as u32 != NodeType::nSTRING as i32 as u32
             {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: illegal lvalue for assignment\n\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
             n2 = eval_expr((*expr).u.arrayassign.expr2, env);
-            if (*n2).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint {
+            if (*n2).type_0 as u32 != NodeType::nINTEGER as i32 as u32 {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: array reference index is not integer\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
-            if (*n2).u.integer < 0 as libc::c_int {
+            if (*n2).u.integer < 0 as i32 {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: negative array reference index\n\0" as *const u8
-                            as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
-            if (*n).type_0 as libc::c_uint == nARRAY as libc::c_int as libc::c_uint {
-                if (*n2).u.integer as libc::c_uint >= (*n).u.array.len {
-                    if (*n2).u.integer as libc::c_uint >= (*n).u.array.allocated {
-                        (*n)
-                            .u
-                            .array
-                            .allocated = ((*n2).u.integer + 100 as libc::c_int)
-                            as libc::c_uint;
-                        (*n)
-                            .u
-                            .array
-                            .array = xrealloc(
+            if (*n).type_0 as u32 == NodeType::nARRAY as i32 as u32 {
+                if (*n2).u.integer as u32 >= (*n).u.array.len {
+                    if (*n2).u.integer as u32 >= (*n).u.array.allocated {
+                        (*n).u.array.allocated = ((*n2).u.integer + 100 as i32) as u32;
+                        (*n).u.array.array = xrealloc(
                             (*n).u.array.array as *mut libc::c_void,
-                            ((*n).u.array.allocated as libc::c_ulong)
-                                .wrapping_mul(
-                                    ::core::mem::size_of::<*mut Node>() as libc::c_ulong,
-                                ),
+                            ((*n).u.array.allocated as u64)
+                                .wrapping_mul(::core::mem::size_of::<*mut Node>() as u64),
                         ) as *mut *mut Node;
                     }
-                    i = (*n).u.array.len as libc::c_int;
+                    i = (*n).u.array.len as i32;
                     while i <= (*n2).u.integer {
                         let ref mut fresh1 = *((*n).u.array.array).offset(i as isize);
                         *fresh1 = nvoid;
                         i += 1;
                         i;
                     }
-                    (*n)
-                        .u
-                        .array
-                        .len = ((*n2).u.integer + 1 as libc::c_int) as libc::c_uint;
+                    (*n).u.array.len = ((*n2).u.integer + 1 as i32) as u32;
                 }
                 node_free(*((*n).u.array.array).offset((*n2).u.integer as isize));
                 l = eval_expr((*expr).u.arrayassign.expr3, env);
@@ -1653,44 +1858,36 @@ pub unsafe extern "C" fn eval_expr(
                     .offset((*n2).u.integer as isize);
                 *fresh2 = l;
             } else {
-                if (*n2).u.integer as libc::c_uint >= (*n).u.str_0.len {
-                    i = (*n).u.str_0.len as libc::c_int;
-                    (*n)
-                        .u
-                        .str_0
-                        .len = ((*n2).u.integer + 1 as libc::c_int) as libc::c_uint;
-                    (*n)
-                        .u
-                        .str_0
-                        .data = xrealloc(
+                if (*n2).u.integer as u32 >= (*n).u.str_0.len {
+                    i = (*n).u.str_0.len as i32;
+                    (*n).u.str_0.len = ((*n2).u.integer + 1 as i32) as u32;
+                    (*n).u.str_0.data = xrealloc(
                         (*n).u.str_0.data as *mut libc::c_void,
                         (*n).u.str_0.len as size_t,
-                    ) as *mut libc::c_char;
-                    while (i as libc::c_uint) < (*n).u.str_0.len {
-                        *((*n).u.str_0.data)
-                            .offset(i as isize) = ' ' as i32 as libc::c_char;
+                    ) as *mut i8;
+                    while (i as u32) < (*n).u.str_0.len {
+                        *((*n).u.str_0.data).offset(i as isize) = ' ' as i32 as i8;
                         i += 1;
                         i;
                     }
                 }
                 l = eval_expr((*expr).u.arrayassign.expr3, env);
-                if (*l).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                {
+                if (*l).type_0 as u32 != NodeType::nINTEGER as i32 as u32 {
                     fprintf(
                         stderr,
                         dcgettext(
-                            0 as *const libc::c_char,
+                            0 as *const i8,
                             b"%s:%d: error: illegal rvalue for string assignment\n\0"
-                                as *const u8 as *const libc::c_char,
-                            5 as libc::c_int,
+                                as *const u8 as *const i8,
+                            5 as i32,
                         ),
                         defs_file,
                         (*expr).linenum,
                     );
-                    exit(1 as libc::c_int);
+                    exit(1 as i32);
                 }
-                *((*n).u.str_0.data)
-                    .offset((*n2).u.integer as isize) = (*l).u.integer as libc::c_char;
+                *((*n).u.str_0.data).offset((*n2).u.integer as isize) = (*l).u.integer
+                    as i8;
             }
             node_free(n);
             node_free(n2);
@@ -1698,65 +1895,63 @@ pub unsafe extern "C" fn eval_expr(
         }
         19 => {
             n = eval_expr((*expr).u.arrayref.expr1, env);
-            if (*n).type_0 as libc::c_uint != nARRAY as libc::c_int as libc::c_uint
-                && (*n).type_0 as libc::c_uint != nSTRING as libc::c_int as libc::c_uint
+            if (*n).type_0 as u32 != NodeType::nARRAY as i32 as u32
+                && (*n).type_0 as u32 != NodeType::nSTRING as i32 as u32
             {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: illegal type for array reference\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
             n2 = eval_expr((*expr).u.arrayref.expr2, env);
-            if (*n2).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint {
+            if (*n2).type_0 as u32 != NodeType::nINTEGER as i32 as u32 {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: array reference index is not integer\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
-            if (*n2).u.integer < 0 as libc::c_int
-                || (*n).type_0 as libc::c_uint == nARRAY as libc::c_int as libc::c_uint
-                    && (*n2).u.integer as libc::c_uint >= (*n).u.array.len
-                || (*n).type_0 as libc::c_uint == nSTRING as libc::c_int as libc::c_uint
-                    && (*n2).u.integer as libc::c_uint >= (*n).u.str_0.len
+            if (*n2).u.integer < 0 as i32
+                || (*n).type_0 as u32 == NodeType::nARRAY as i32 as u32
+                    && (*n2).u.integer as u32 >= (*n).u.array.len
+                || (*n).type_0 as u32 == NodeType::nSTRING as i32 as u32
+                    && (*n2).u.integer as u32 >= (*n).u.str_0.len
             {
                 fprintf(
                     stderr,
                     dcgettext(
-                        0 as *const libc::c_char,
+                        0 as *const i8,
                         b"%s:%d: error: array reference index out of rance\n\0"
-                            as *const u8 as *const libc::c_char,
-                        5 as libc::c_int,
+                            as *const u8 as *const i8,
+                        5 as i32,
                     ),
                     defs_file,
                     (*expr).linenum,
                 );
-                exit(1 as libc::c_int);
+                exit(1 as i32);
             }
-            if (*n).type_0 as libc::c_uint == nARRAY as libc::c_int as libc::c_uint {
+            if (*n).type_0 as u32 == NodeType::nARRAY as i32 as u32 {
                 l = *((*n).u.array.array).offset((*n2).u.integer as isize);
                 node_reference(l);
             } else {
-                l = node_alloc(nINTEGER as libc::c_int as libc::c_uint);
-                (*l)
-                    .u
-                    .integer = *((*n).u.str_0.data as *mut libc::c_uchar)
-                    .offset((*n2).u.integer as isize) as libc::c_int;
+                l = node_alloc(NodeType::nINTEGER as i32 as u32);
+                (*l).u.integer = *((*n).u.str_0.data as *mut u8)
+                    .offset((*n2).u.integer as isize) as i32;
             }
             node_free(n);
             node_free(n2);
@@ -1764,8 +1959,8 @@ pub unsafe extern "C" fn eval_expr(
         }
         20 => {
             n = eval_expr((*expr).u.questcolon.cond, env);
-            i = ((*n).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                || (*n).u.integer != 0 as libc::c_int) as libc::c_int;
+            i = ((*n).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                || (*n).u.integer != 0 as i32) as i32;
             node_free(n);
             if i != 0 {
                 n = eval_expr((*expr).u.questcolon.expr1, env);
@@ -1776,8 +1971,8 @@ pub unsafe extern "C" fn eval_expr(
         }
         6 => {
             n = eval_expr((*expr).u.op.left, env);
-            if !((*n).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                || (*n).u.integer != 0 as libc::c_int)
+            if !((*n).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                || (*n).u.integer != 0 as i32)
             {
                 return n;
             }
@@ -1786,8 +1981,8 @@ pub unsafe extern "C" fn eval_expr(
         }
         7 => {
             n = eval_expr((*expr).u.op.left, env);
-            if (*n).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                || (*n).u.integer != 0 as libc::c_int
+            if (*n).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                || (*n).u.integer != 0 as i32
             {
                 return n;
             }
@@ -1797,7 +1992,7 @@ pub unsafe extern "C" fn eval_expr(
         21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 => {
             l = eval_expr((*expr).u.op.left, env);
             r = eval_expr((*expr).u.op.right, env);
-            n = calculate_binary(l, r, (*expr).type_0 as libc::c_uint, (*expr).linenum);
+            n = calculate_binary(l, r, (*expr).type_0 as u32, (*expr).linenum);
             node_free(l);
             node_free(r);
             return n;
@@ -1810,15 +2005,15 @@ pub unsafe extern "C" fn eval_expr(
 pub unsafe extern "C" fn eval_statement(
     mut stmt: *mut Stmt,
     mut env: *mut Environment,
-    mut return_seen: *mut libc::c_int,
+    mut return_seen: *mut i32,
 ) -> *mut Node {
     let mut n: *mut Node = nvoid;
     let mut n2: *mut Node = 0 as *mut Node;
-    let mut i: libc::c_int = 0;
-    match (*stmt).type_0 as libc::c_uint {
+    let mut i: i32 = 0;
+    match (*stmt).type_0 as u32 {
         0 => {
             n = eval_expr((*stmt).u.expr, env);
-            *return_seen = 1 as libc::c_int;
+            *return_seen = 1 as i32;
         }
         1 => {
             define_sub((*stmt).u.defsub.name, (*stmt).u.defsub.closure, (*stmt).linenum);
@@ -1828,8 +2023,8 @@ pub unsafe extern "C" fn eval_statement(
         }
         3 => {
             n = eval_expr((*stmt).u.stmt_if.expr, env);
-            i = ((*n).type_0 as libc::c_uint != nINTEGER as libc::c_int as libc::c_uint
-                || (*n).u.integer != 0 as libc::c_int) as libc::c_int;
+            i = ((*n).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                || (*n).u.integer != 0 as i32) as i32;
             node_free(n);
             if i != 0 {
                 n = eval_statement((*stmt).u.stmt_if.then_stmt, env, return_seen);
@@ -1842,9 +2037,8 @@ pub unsafe extern "C" fn eval_statement(
         5 => {
             loop {
                 n2 = eval_expr((*stmt).u.stmt_while.expr, env);
-                i = ((*n2).type_0 as libc::c_uint
-                    != nINTEGER as libc::c_int as libc::c_uint
-                    || (*n2).u.integer != 0 as libc::c_int) as libc::c_int;
+                i = ((*n2).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                    || (*n2).u.integer != 0 as i32) as i32;
                 node_free(n2);
                 if i == 0 {
                     break;
@@ -1863,9 +2057,8 @@ pub unsafe extern "C" fn eval_statement(
             }
             loop {
                 n2 = eval_expr((*stmt).u.stmt_for.cond, env);
-                i = ((*n2).type_0 as libc::c_uint
-                    != nINTEGER as libc::c_int as libc::c_uint
-                    || (*n2).u.integer != 0 as libc::c_int) as libc::c_int;
+                i = ((*n2).type_0 as u32 != NodeType::nINTEGER as i32 as u32
+                    || (*n2).u.integer != 0 as i32) as i32;
                 node_free(n2);
                 if i == 0 {
                     break;
@@ -1892,7 +2085,7 @@ pub unsafe extern "C" fn eval_statement(
 pub unsafe extern "C" fn eval_statement_list(
     mut lst: *mut List,
     mut env: *mut Environment,
-    mut return_seen: *mut libc::c_int,
+    mut return_seen: *mut i32,
 ) -> *mut Node {
     let mut i: *mut ListItem = 0 as *mut ListItem;
     let mut stmt: *mut Stmt = 0 as *mut Stmt;

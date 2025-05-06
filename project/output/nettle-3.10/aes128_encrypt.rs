@@ -1,0 +1,89 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+#![feature(label_break_value)]
+extern "C" {
+    fn __assert_fail(
+        __assertion: *const i8,
+        __file: *const i8,
+        __line: u32,
+        __function: *const i8,
+    ) -> !;
+    fn _nettle_aes_encrypt(
+        rounds: u32,
+        keys: *const uint32_t,
+        T: *const aes_table,
+        length: size_t,
+        dst: *mut uint8_t,
+        src: *const uint8_t,
+    );
+    static _nettle_aes_encrypt_table: aes_table;
+}
+pub type size_t = u64;
+pub type __uint8_t = u8;
+pub type __uint32_t = u32;
+pub type uint8_t = __uint8_t;
+pub type uint32_t = __uint32_t;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct aes128_ctx {
+    pub keys: [uint32_t; 44],
+}
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct aes_table {
+    pub sbox: [uint8_t; 256],
+    pub table: [[uint32_t; 256]; 4],
+}
+#[no_mangle]
+pub unsafe extern "C" fn _nettle_aes128_encrypt_c(
+    mut ctx: *const aes128_ctx,
+    mut length: size_t,
+    mut dst: *mut uint8_t,
+    mut src: *const uint8_t,
+) {
+    if length.wrapping_rem(16 as i32 as u64) == 0 {} else {
+        __assert_fail(
+            b"!(length % AES_BLOCK_SIZE)\0" as *const u8 as *const i8,
+            b"aes128-encrypt.c\0" as *const u8 as *const i8,
+            56 as i32 as u32,
+            (*::core::mem::transmute::<
+                &[u8; 93],
+                &[i8; 93],
+            >(
+                b"void _nettle_aes128_encrypt_c(const struct aes128_ctx *, size_t, uint8_t *, const uint8_t *)\0",
+            ))
+                .as_ptr(),
+        );
+    }
+    'c_407: {
+        if length.wrapping_rem(16 as i32 as u64) == 0 {} else {
+            __assert_fail(
+                b"!(length % AES_BLOCK_SIZE)\0" as *const u8 as *const i8,
+                b"aes128-encrypt.c\0" as *const u8 as *const i8,
+                56 as i32 as u32,
+                (*::core::mem::transmute::<
+                    &[u8; 93],
+                    &[i8; 93],
+                >(
+                    b"void _nettle_aes128_encrypt_c(const struct aes128_ctx *, size_t, uint8_t *, const uint8_t *)\0",
+                ))
+                    .as_ptr(),
+            );
+        }
+    };
+    _nettle_aes_encrypt(
+        10 as i32 as u32,
+        ((*ctx).keys).as_ptr(),
+        &_nettle_aes_encrypt_table,
+        length,
+        dst,
+        src,
+    );
+}

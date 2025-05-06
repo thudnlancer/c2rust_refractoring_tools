@@ -1,0 +1,38 @@
+#![allow(
+    dead_code,
+    mutable_transmutes,
+    non_camel_case_types,
+    non_snake_case,
+    non_upper_case_globals,
+    unused_assignments,
+    unused_mut
+)]
+extern "C" {
+    fn _nettle_aes_set_key(
+        nr: u32,
+        nk: u32,
+        subkeys: *mut uint32_t,
+        key: *const uint8_t,
+    );
+}
+pub type __uint8_t = u8;
+pub type __uint32_t = u32;
+pub type uint8_t = __uint8_t;
+pub type uint32_t = __uint32_t;
+#[derive(Copy, Clone)]
+#[repr(C)]
+pub struct aes256_ctx {
+    pub keys: [uint32_t; 60],
+}
+#[no_mangle]
+pub unsafe extern "C" fn nettle_aes256_set_encrypt_key(
+    mut ctx: *mut aes256_ctx,
+    mut key: *const uint8_t,
+) {
+    _nettle_aes_set_key(
+        14 as i32 as u32,
+        (32 as i32 / 4 as i32) as u32,
+        ((*ctx).keys).as_mut_ptr(),
+        key,
+    );
+}

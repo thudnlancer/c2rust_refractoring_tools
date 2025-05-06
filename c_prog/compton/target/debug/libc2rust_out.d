@@ -1,0 +1,1 @@
+/home/c2rust/Desktop/c_prog/compton/target/debug/libc2rust_out.a: /home/c2rust/Desktop/c_prog/compton/build.rs /home/c2rust/Desktop/c_prog/compton/c2rust-lib.rs /home/c2rust/Desktop/c_prog/compton/src/c2.rs /home/c2rust/Desktop/c_prog/compton/src/compton.rs /home/c2rust/Desktop/c_prog/compton/src/dbus.rs /home/c2rust/Desktop/c_prog/compton/src/opengl.rs
