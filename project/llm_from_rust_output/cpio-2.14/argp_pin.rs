@@ -1,0 +1,1 @@
+// No equivalent safe Rust code needed as the original C code is just an include directive

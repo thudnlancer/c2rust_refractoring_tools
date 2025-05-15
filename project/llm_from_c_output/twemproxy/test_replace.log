@@ -1,0 +1,4610 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/twemproxy)
+error[E0583]: file not found for module `api`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod api;
+   | ^^^^^^^^^^^^
+   |
+   = help: to create the module `api`, create file "contrib/yaml_0_2_5/src/api.rs" or "contrib/yaml_0_2_5/src/api/mod.rs"
+
+error[E0583]: file not found for module `dumper`
+  --> c2rust-lib.rs:19:1
+   |
+19 | pub mod dumper;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `dumper`, create file "contrib/yaml_0_2_5/src/dumper.rs" or "contrib/yaml_0_2_5/src/dumper/mod.rs"
+
+error[E0583]: file not found for module `emitter`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod emitter;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `emitter`, create file "contrib/yaml_0_2_5/src/emitter.rs" or "contrib/yaml_0_2_5/src/emitter/mod.rs"
+
+error[E0583]: file not found for module `loader`
+  --> c2rust-lib.rs:21:1
+   |
+21 | pub mod loader;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `loader`, create file "contrib/yaml_0_2_5/src/loader.rs" or "contrib/yaml_0_2_5/src/loader/mod.rs"
+
+error[E0583]: file not found for module `parser`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod parser;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `parser`, create file "contrib/yaml_0_2_5/src/parser.rs" or "contrib/yaml_0_2_5/src/parser/mod.rs"
+
+error[E0583]: file not found for module `reader`
+  --> c2rust-lib.rs:23:1
+   |
+23 | pub mod reader;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `reader`, create file "contrib/yaml_0_2_5/src/reader.rs" or "contrib/yaml_0_2_5/src/reader/mod.rs"
+
+error[E0583]: file not found for module `scanner`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod scanner;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `scanner`, create file "contrib/yaml_0_2_5/src/scanner.rs" or "contrib/yaml_0_2_5/src/scanner/mod.rs"
+
+error[E0583]: file not found for module `writer`
+  --> c2rust-lib.rs:25:1
+   |
+25 | pub mod writer;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `writer`, create file "contrib/yaml_0_2_5/src/writer.rs" or "contrib/yaml_0_2_5/src/writer/mod.rs"
+
+error[E0583]: file not found for module `example_deconstructor`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod example_deconstructor;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_deconstructor`, create file "contrib/yaml_0_2_5/tests/example_deconstructor.rs" or "contrib/yaml_0_2_5/tests/example_deconstructor/mod.rs"
+
+error[E0583]: file not found for module `example_deconstructor_alt`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod example_deconstructor_alt;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_deconstructor_alt`, create file "contrib/yaml_0_2_5/tests/example_deconstructor_alt.rs" or "contrib/yaml_0_2_5/tests/example_deconstructor_alt/mod.rs"
+
+error[E0583]: file not found for module `example_reformatter`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod example_reformatter;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_reformatter`, create file "contrib/yaml_0_2_5/tests/example_reformatter.rs" or "contrib/yaml_0_2_5/tests/example_reformatter/mod.rs"
+
+error[E0583]: file not found for module `example_reformatter_alt`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod example_reformatter_alt;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_reformatter_alt`, create file "contrib/yaml_0_2_5/tests/example_reformatter_alt.rs" or "contrib/yaml_0_2_5/tests/example_reformatter_alt/mod.rs"
+
+error[E0583]: file not found for module `run_dumper`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod run_dumper;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_dumper`, create file "contrib/yaml_0_2_5/tests/run_dumper.rs" or "contrib/yaml_0_2_5/tests/run_dumper/mod.rs"
+
+error[E0583]: file not found for module `run_emitter`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod run_emitter;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_emitter`, create file "contrib/yaml_0_2_5/tests/run_emitter.rs" or "contrib/yaml_0_2_5/tests/run_emitter/mod.rs"
+
+error[E0583]: file not found for module `run_emitter_test_suite`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod run_emitter_test_suite;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_emitter_test_suite`, create file "contrib/yaml_0_2_5/tests/run_emitter_test_suite.rs" or "contrib/yaml_0_2_5/tests/run_emitter_test_suite/mod.rs"
+
+error[E0583]: file not found for module `run_loader`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod run_loader;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_loader`, create file "contrib/yaml_0_2_5/tests/run_loader.rs" or "contrib/yaml_0_2_5/tests/run_loader/mod.rs"
+
+error[E0583]: file not found for module `run_parser`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod run_parser;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_parser`, create file "contrib/yaml_0_2_5/tests/run_parser.rs" or "contrib/yaml_0_2_5/tests/run_parser/mod.rs"
+
+error[E0583]: file not found for module `run_parser_test_suite`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod run_parser_test_suite;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_parser_test_suite`, create file "contrib/yaml_0_2_5/tests/run_parser_test_suite.rs" or "contrib/yaml_0_2_5/tests/run_parser_test_suite/mod.rs"
+
+error[E0583]: file not found for module `run_scanner`
+  --> c2rust-lib.rs:38:1
+   |
+38 | pub mod run_scanner;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_scanner`, create file "contrib/yaml_0_2_5/tests/run_scanner.rs" or "contrib/yaml_0_2_5/tests/run_scanner/mod.rs"
+
+error: this file contains an unclosed delimiter
+   --> src/proto/nc_memcache.rs:641:26
+    |
+631 | pub fn memcache_parse_rsp(r: &mut Msg) {
+    |                                        - unclosed delimiter
+...
+641 |     for ch in b[p..].iter
+    |                          ^
+
+error: expected `{`, found `}`
+   --> src/proto/nc_memcache.rs:641:26
+    |
+641 |     for ch in b[p..].iter
+    |                          ^ expected `{`
+
+error[E0428]: the name `Context` is defined multiple times
+  --> src/nc_core.rs:55:1
+   |
+41 | struct Context;
+   | --------------- previous definition of the type `Context` here
+...
+55 | struct Context {
+   | ^^^^^^^^^^^^^^ `Context` redefined here
+   |
+   = note: `Context` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `Instance` is defined multiple times
+  --> src/nc_core.rs:68:1
+   |
+52 | struct Instance;
+   | ---------------- previous definition of the type `Instance` here
+...
+68 | struct Instance {
+   | ^^^^^^^^^^^^^^^ `Instance` redefined here
+   |
+   = note: `Instance` must be defined only once in the type namespace of this module
+
+error: format argument must be a string literal
+   --> src/proto/nc_redis.rs:162:13
+    |
+162 |             format,
+    |             ^^^^^^
+    |
+help: you might be missing a string literal to format with
+    |
+162 |             "{} {}", format,
+    |             ++++++++
+
+error[E0432]: unresolved import `log`
+  --> src/event/nc_epoll.rs:23:5
+   |
+23 | use log::{error, debug};
+   |     ^^^ use of undeclared crate or module `log`
+
+error[E0432]: unresolved imports `libc::kevent`, `libc::kqueue`, `libc::EV_ADD`, `libc::EV_CLEAR`, `libc::EV_DELETE`, `libc::EV_ERROR`, `libc::EVFILT_READ`, `libc::EVFILT_WRITE`
+  --> src/event/nc_kqueue.rs:18:34
+   |
+18 | ...close, kevent, kqueue, timespec, EV_ADD, EV_CLEAR, EV_DELETE, EV_ERROR, EVFILT_READ, EVFILT_WRITE, EBADF, EINTR, EINVAL, ENOENT};
+   |           ^^^^^^  ^^^^^^            ^^^^^^  ^^^^^^^^  ^^^^^^^^^  ^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^^ no `EVFILT_WRITE` in the root
+   |           |       |                 |       |         |          |         |
+   |           |       |                 |       |         |          |         no `EVFILT_READ` in the root
+   |           |       |                 |       |         |          no `EV_ERROR` in the root
+   |           |       |                 |       |         no `EV_DELETE` in the root
+   |           |       |                 |       no `EV_CLEAR` in the root
+   |           |       |                 no `EV_ADD` in the root
+   |           |       no `kqueue` in the root
+   |           no `kevent` in the root
+   |
+help: a similar name exists in the module
+   |
+18 | use libc::{c_int, c_void, close, servent, kqueue, timespec, EV_ADD, EV_CLEAR, EV_DELETE, EV_ERROR, EVFILT_READ, EVFILT_WRITE, EBADF, EINTR, EINVAL, ENOENT};
+   |                                  ~~~~~~~
+help: a similar name exists in the module
+   |
+18 | use libc::{c_int, c_void, close, kevent, kqueue, timespec, EV_ADD, EV_CLEAR, IN_DELETE, EV_ERROR, EVFILT_READ, EVFILT_WRITE, EBADF, EINTR, EINVAL, ENOENT};
+   |                                                                              ~~~~~~~~~
+help: a similar name exists in the module
+   |
+18 | use libc::{c_int, c_void, close, kevent, kqueue, timespec, EV_ADD, EV_CLEAR, EV_DELETE, SO_ERROR, EVFILT_READ, EVFILT_WRITE, EBADF, EINTR, EINVAL, ENOENT};
+   |                                                                                         ~~~~~~~~
+
+error[E0432]: unresolved import `crate::core`
+  --> src/nc_message.rs:26:12
+   |
+26 | use crate::core::{Conn, Context, Error, Result};
+   |            ^^^^ could not find `core` in the crate root
+
+error[E0432]: unresolved import `crate::mbuf`
+  --> src/nc_message.rs:27:12
+   |
+27 | use crate::mbuf::Mbuf;
+   |            ^^^^ could not find `mbuf` in the crate root
+
+error[E0432]: unresolved import `crate::protocol`
+  --> src/nc_message.rs:28:12
+   |
+28 | use crate::protocol::{MemcacheParser, RedisParser};
+   |            ^^^^^^^^ could not find `protocol` in the crate root
+
+error[E0432]: unresolved import `crate::server`
+  --> src/nc_message.rs:29:12
+   |
+29 | use crate::server::ServerPool;
+   |            ^^^^^^ could not find `server` in the crate root
+
+error[E0432]: unresolved import `std::net::UnixListener`
+  --> src/nc_proxy.rs:19:41
+   |
+19 | use std::net::{SocketAddr, TcpListener, UnixListener};
+   |                                         ^^^^^^^^^^^^
+   |                                         |
+   |                                         no `UnixListener` in `net`
+   |                                         help: a similar name exists in the module: `TcpListener`
+
+error[E0432]: unresolved import `crate::nc_core`
+  --> src/nc_proxy.rs:28:12
+   |
+28 | use crate::nc_core::*;
+   |            ^^^^^^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `crate::src::nc_core`
+
+error[E0432]: unresolved import `crate::nc_server`
+  --> src/nc_proxy.rs:29:12
+   |
+29 | use crate::nc_server::*;
+   |            ^^^^^^^^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `crate::src::nc_server`
+
+error[E0432]: unresolved import `crate::core`
+  --> src/nc_request.rs:24:12
+   |
+24 | use crate::core::{Conn, Context, Msg, ServerPool};
+   |            ^^^^ could not find `core` in the crate root
+
+error[E0432]: unresolved import `crate::log`
+  --> src/nc_request.rs:25:12
+   |
+25 | use crate::log::{log_debug, log_error, log_verbose, LogLevel};
+   |            ^^^ could not find `log` in the crate root
+
+error[E0432]: unresolved import `crate::stats`
+  --> src/nc_request.rs:26:12
+   |
+26 | use crate::stats::{Stats, StatsType};
+   |            ^^^^^ could not find `stats` in the crate root
+
+error[E0432]: unresolved import `crate::util`
+  --> src/nc_request.rs:27:12
+   |
+27 | use crate::util::{KeyPos, StringWrapper};
+   |            ^^^^ could not find `util` in the crate root
+
+error[E0432]: unresolved import `crate::nc_core`
+  --> src/nc_response.rs:23:12
+   |
+23 | use crate::nc_core::*;
+   |            ^^^^^^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `crate::src::nc_core`
+
+error[E0432]: unresolved import `crate::nc_server`
+  --> src/nc_response.rs:24:12
+   |
+24 | use crate::nc_server::*;
+   |            ^^^^^^^^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `crate::src::nc_server`
+
+error[E0432]: unresolved import `libc::NI_MAXSERV`
+  --> src/nc_util.rs:14:67
+   |
+14 |     AF_INET6, AF_UNIX, F_GETFL, F_SETFL, IPPROTO_TCP, NI_MAXHOST, NI_MAXSERV, O_NONBLOCK,
+   |                                                                   ^^^^^^^^^^ no `NI_MAXSERV` in the root
+
+error[E0432]: unresolved import `md5`
+  --> src/hashkit/nc_ketama.rs:10:5
+   |
+10 | use md5::{Digest, Md5};
+   |     ^^^ use of undeclared crate or module `md5`
+
+error[E0432]: unresolved import `clap`
+  --> src/nc.rs:30:5
+   |
+30 | use clap::{App, Arg};
+   |     ^^^^ use of undeclared crate or module `clap`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/nc.rs:33:5
+   |
+33 | use nix::sys::stat;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `log`
+  --> src/nc.rs:32:5
+   |
+32 | use log::{error, info, warn, LevelFilter};
+   |     ^^^ use of undeclared crate or module `log`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/nc.rs:34:5
+   |
+34 | use nix::unistd::{self, ForkResult, Pid};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `signal_hook`
+  --> src/nc.rs:35:5
+   |
+35 | use signal_hook::iterator::Signals;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `signal_hook`
+
+error[E0432]: unresolved import `nix`
+  --> src/nc.rs:34:5
+   |
+34 | use nix::unistd::{self, ForkResult, Pid};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `sysinfo`
+  --> src/nc.rs:36:5
+   |
+36 | use sysinfo::{System, SystemExt};
+   |     ^^^^^^^ use of undeclared crate or module `sysinfo`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/nc_signal.rs:19:5
+   |
+19 | use nix::sys::signal::{sigaction, SaFlags, SigAction, SigHandler, SigSet, Signal};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `yaml_rust`
+ --> src/nc_conf.rs:9:5
+  |
+9 | use yaml_rust::{YamlLoader, YamlEmitter};
+  |     ^^^^^^^^^ use of undeclared crate or module `yaml_rust`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nom`
+ --> src/proto/nc_memcache.rs:9:5
+  |
+9 | use nom::{
+  |     ^^^ use of undeclared crate or module `nom`
+
+error[E0432]: unresolved import `bytes`
+ --> src/proto/nc_memcache.rs:8:5
+  |
+8 | use bytes::{Buf, BufMut, Bytes, BytesMut};
+  |     ^^^^^ use of undeclared crate or module `bytes`
+
+error[E0432]: unresolved import `nom`
+ --> src/proto/nc_memcache.rs:9:5
+  |
+9 | use nom::{
+  |     ^^^ use of undeclared crate or module `nom`
+
+error[E0432]: unresolved import `log`
+  --> src/nc_client.rs:23:5
+   |
+23 | use log::{debug, error};
+   |     ^^^ use of undeclared crate or module `log`
+
+error[E0432]: unresolved import `thiserror`
+  --> src/nc_client.rs:24:5
+   |
+24 | use thiserror::Error;
+   |     ^^^^^^^^^ use of undeclared crate or module `thiserror`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `tokio`
+  --> src/proto/nc_redis.rs:36:5
+   |
+36 | use tokio::io::{AsyncReadExt, AsyncWriteExt};
+   |     ^^^^^ use of undeclared crate or module `tokio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `tokio`
+  --> src/proto/nc_redis.rs:37:5
+   |
+37 | use tokio::net::{TcpStream, TcpListener};
+   |     ^^^^^ use of undeclared crate or module `tokio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `tokio`
+  --> src/proto/nc_redis.rs:38:5
+   |
+38 | use tokio::sync::mpsc;
+   |     ^^^^^ use of undeclared crate or module `tokio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `tokio`
+  --> src/proto/nc_redis.rs:39:5
+   |
+39 | use tokio::time::{sleep, Duration};
+   |     ^^^^^ use of undeclared crate or module `tokio`
+
+error[E0432]: unresolved import `bytes`
+  --> src/proto/nc_redis.rs:35:5
+   |
+35 | use bytes::{Bytes, BytesMut, Buf, BufMut};
+   |     ^^^^^ use of undeclared crate or module `bytes`
+
+error[E0432]: unresolved import `log`
+  --> src/proto/nc_redis.rs:40:5
+   |
+40 | use log::{debug, error, info, log, warn, Level};
+   |     ^^^ use of undeclared crate or module `log`
+
+error[E0432]: unresolved import `lazy_static`
+  --> src/proto/nc_redis.rs:41:5
+   |
+41 | use lazy_static::lazy_static;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0432]: unresolved import `regex`
+  --> src/proto/nc_redis.rs:42:5
+   |
+42 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/nc_proxy.rs:24:5
+   |
+24 | use nix::sys::socket::{self, SockAddr};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved imports `thiserror`, `nix::sys::socket`, `nix::sys::socket::SockAddr`
+  --> src/nc_proxy.rs:24:24
+   |
+24 | use nix::sys::socket::{self, SockAddr};
+   |                        ^^^^  ^^^^^^^^
+   |
+  ::: src/proto/nc_redis.rs:43:5
+   |
+43 | use thiserror::Error;
+   |     ^^^^^^^^^ use of undeclared crate or module `thiserror`
+
+error[E0432]: unresolved import `nix`
+  --> src/nc_proxy.rs:25:5
+   |
+25 | use nix::unistd;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved imports `log`, `log::debug`, `log::error`, `log::info`, `log::warn`, `log::Level`
+  --> src/nc_proxy.rs:26:5
+   |
+26 | use log::{debug, error, warn};
+   |     ^^^ use of undeclared crate or module `log`
+   |
+  ::: src/proto/nc_redis.rs:40:11
+   |
+40 | use log::{debug, error, info, log, warn, Level};
+   |           ^^^^^  ^^^^^  ^^^^       ^^^^  ^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `log`
+  --> src/hashkit/nc_modula.rs:84:9
+   |
+84 |         log::debug!("no live servers for pool {} '{}'",
+   |         ^^^ use of undeclared crate or module `log`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `log`
+  --> src/hashkit/nc_modula.rs:90:5
+   |
+90 |     log::debug!("{} of {} servers are live for pool {} '{}'", 
+   |     ^^^ use of undeclared crate or module `log`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `log`
+   --> src/hashkit/nc_modula.rs:125:5
+    |
+125 |     log::debug!("updated pool {} '{}' with {} of {} servers live in {} slots and {} active points in {} slots", 
+    |     ^^^ use of undeclared crate or module `log`
+
+error: cannot determine resolution for the macro `error`
+  --> src/event/nc_epoll.rs:55:13
+   |
+55 |             error!("epoll create of size {} failed: {}", nevent, Error::last_os_error());
+   |             ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/event/nc_epoll.rs:61:9
+   |
+61 |         debug!("e {} with nevent {}", ep, nevent);
+   |         ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+  --> src/event/nc_epoll.rs:81:13
+   |
+81 |             error!("epoll ctl on e {} sd {} failed: {}", self.ep, c.sd, Error::last_os_error());
+   |             ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:109:13
+    |
+109 |             error!("epoll ctl on e {} sd {} failed: {}", self.ep, c.sd, Error::last_os_error());
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:133:13
+    |
+133 |             error!("epoll ctl on e {} sd {} failed: {}", self.ep, c.sd, Error::last_os_error());
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:152:13
+    |
+152 |             error!("epoll ctl on e {} sd {} failed: {}", self.ep, c.sd, Error::last_os_error());
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:167:13
+    |
+167 |             error!("epoll ctl on e {} sd {} failed: {}", self.ep, c.sd, Error::last_os_error());
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/event/nc_epoll.rs:187:21
+    |
+187 |                     debug!("epoll {:04X} triggered on conn {:p}", ev.events, ev.u64 as *mut Conn);
+    |                     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:210:21
+    |
+210 |                     error!("epoll wait on e {} with {} events and {} timeout returned no events", 
+    |                     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:222:13
+    |
+222 |             error!("epoll wait on e {} with {} events failed: {}", self.ep, self.events.len(), err);
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:232:17
+    |
+232 |                 error!("close e {} failed, ignored: {}", self.ep, Error::last_os_error());
+    |                 ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:242:9
+    |
+242 |         error!("epoll create failed: {}", Error::last_os_error());
+    |         ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:253:9
+    |
+253 |         error!("epoll ctl on e {} sd {} failed: {}", ep, arg.sd, Error::last_os_error());
+    |         ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:255:13
+    |
+255 |             error!("close e {} failed, ignored: {}", ep, Error::last_os_error());
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:268:13
+    |
+268 |             error!("epoll wait on e {} with m {} failed: {}", ep, arg.sd, err);
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/event/nc_epoll.rs:276:9
+    |
+276 |         error!("close e {} failed, ignored: {}", ep, Error::last_os_error());
+    |         ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `info`
+   --> src/nc.rs:149:5
+    |
+149 |     info!(
+    |     ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `info`
+   --> src/nc.rs:158:5
+    |
+158 |     info!("run, rabbit run / dig that hole, forget the sun / and when at last the work is done / don't sit down / it's time to dig anothe...
+    |     ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `info`
+   --> src/nc.rs:162:5
+    |
+162 |     info!("done, rabbit done");
+    |     ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/nc.rs:202:13
+    |
+202 |             error!("unlink of pid file '{}' failed, ignored: {}", pid_filename, e);
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `info`
+   --> src/nc.rs:209:5
+    |
+209 |     info!("Configuration file '{}' syntax is ok", nci.conf_filename);
+    |     ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the derive macro `Error`
+  --> src/nc_client.rs:26:17
+   |
+26 | #[derive(Debug, Error)]
+   |                 ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the attribute macro `error`
+  --> src/nc_client.rs:28:7
+   |
+28 |     #[error("I/O error")]
+   |       ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot find attribute `from` in this scope
+  --> src/nc_client.rs:29:10
+   |
+29 |     Io(#[from] std::io::Error),
+   |          ^^^^
+
+error: cannot determine resolution for the attribute macro `error`
+  --> src/nc_client.rs:30:7
+   |
+30 |     #[error("Connection error")]
+   |       ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_client.rs:76:9
+   |
+76 |         debug!("c {} is active", conn.sd);
+   |         ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_client.rs:81:9
+   |
+81 |         debug!("c {} is active", conn.sd);
+   |         ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_client.rs:86:9
+   |
+86 |         debug!("c {} is active", conn.sd);
+   |         ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_client.rs:90:5
+   |
+90 |     debug!("c {} is inactive", conn.sd);
+   |     ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_client.rs:111:5
+    |
+111 |     debug!(
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_client.rs:128:5
+    |
+128 |     debug!(
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_client.rs:174:9
+    |
+174 |         debug!(
+    |         ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_client.rs:186:13
+    |
+186 |             debug!(
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_client.rs:202:13
+    |
+202 |             debug!(
+    |             ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/nc_client.rs:213:9
+    |
+213 |         error!("close c {} failed, ignored: {}", conn.sd, std::io::Error::from_raw_os_error(e));
+    |         ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot find macro `lazy_static` in this scope
+   --> src/nc_log.rs:127:1
+    |
+127 | lazy_static! {
+    | ^^^^^^^^^^^
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_proxy.rs:43:5
+   |
+43 |     debug!(target: LOG_VVERB, "ref conn {:?} owner {:?} into pool {}", conn, owner, owner.idx);
+   |     ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+  --> src/nc_proxy.rs:53:5
+   |
+53 |     debug!(target: LOG_VVERB, "unref conn {:?} owner {:?} from pool {}", conn, pool, pool.idx);
+   |     ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+  --> src/nc_proxy.rs:74:9
+   |
+74 |         error!("close p {} failed, ignored: {}", conn.sd, e);
+   |         ^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:141:5
+    |
+141 |     debug!(target: LOG_NOTICE, "p {} listening on '{}' in {} pool {} '{}' with {} servers", 
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:155:5
+    |
+155 |     debug!(target: LOG_VVERB, "init proxy with {} pools", ctx.pool.len());
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:173:5
+    |
+173 |     debug!(target: LOG_VVERB, "deinit proxy with {} pools", ctx.pool.len());
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:188:21
+    |
+188 |                     debug!(target: LOG_CRIT, "client connections {} exceed limit {}", 
+    |                     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `warn`
+   --> src/nc_proxy.rs:203:25
+    |
+203 |                         warn!("set tcpkeepalive on c {} from p {} failed, ignored: {}", 
+    |                         ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `warn`
+   --> src/nc_proxy.rs:210:25
+    |
+210 |                         warn!("set tcpnodelay on c {} from p {} failed, ignored: {}", 
+    |                         ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:217:17
+    |
+217 |                 debug!(target: LOG_NOTICE, "accepted c {} on p {} from '{}'", 
+    |                 ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/nc_proxy.rs:229:21
+    |
+229 |                     debug!(target: LOG_CRIT, 
+    |                     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `error`
+   --> src/nc_proxy.rs:236:21
+    |
+236 |                     error!("accept on p {} failed: {}", p.sd, e);
+    |                     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `lazy_static`
+   --> src/proto/nc_redis.rs:264:1
+    |
+264 | lazy_static! {
+    | ^^^^^^^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `debug`
+   --> src/proto/nc_redis.rs:477:5
+    |
+477 |     debug!(
+    |     ^^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error: cannot determine resolution for the macro `warn`
+   --> src/proto/nc_redis.rs:496:13
+    |
+496 |             warn!(
+    |             ^^^^
+    |
+    = note: import resolution is stuck, try simplifying macro imports
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+   --> src/hashkit/nc_random.rs:145:19
+    |
+145 |     let mut rng = rand::thread_rng();
+    |                   ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `hostname`
+  --> src/nc.rs:72:27
+   |
+72 |         if let Ok(name) = hostname::get() {
+   |                           ^^^^^^^^ use of undeclared crate or module `hostname`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `ctrlc`
+   --> src/nc.rs:234:5
+    |
+234 |     ctrlc::set_handler(move || {
+    |     ^^^^^ use of undeclared crate or module `ctrlc`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `time`
+   --> src/nc_log.rs:182:14
+    |
+182 |     let tm = time::now();
+    |              ^^^^ use of undeclared crate or module `time`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:223:17
+    |
+223 |                 nix::Error::EINTR => continue,
+    |                 ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:224:17
+    |
+224 |                 nix::Error::EAGAIN | nix::Error::EWOULDBLOCK | nix::Error::ECONNABORTED => {
+    |                 ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:224:38
+    |
+224 |                 nix::Error::EAGAIN | nix::Error::EWOULDBLOCK | nix::Error::ECONNABORTED => {
+    |                                      ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:224:64
+    |
+224 |                 nix::Error::EAGAIN | nix::Error::EWOULDBLOCK | nix::Error::ECONNABORTED => {
+    |                                                                ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:228:17
+    |
+228 |                 nix::Error::EMFILE | nix::Error::ENFILE => {
+    |                 ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/nc_proxy.rs:228:38
+    |
+228 |                 nix::Error::EMFILE | nix::Error::ENFILE => {
+    |                                      ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared type `StatsType`
+   --> src/nc_response.rs:195:36
+    |
+195 |     stats_server_incr(ctx, server, StatsType::Responses);
+    |                                    ^^^^^^^^^ use of undeclared type `StatsType`
+
+error[E0433]: failed to resolve: use of undeclared type `StatsType`
+   --> src/nc_response.rs:196:39
+    |
+196 |     stats_server_incr_by(ctx, server, StatsType::ResponseBytes, msgsize);
+    |                                       ^^^^^^^^^ use of undeclared type `StatsType`
+
+error[E0433]: failed to resolve: use of undeclared type `StatsType`
+   --> src/nc_response.rs:281:60
+    |
+281 |         stats_pool_incr(ctx, conn.owner.as_mut().unwrap(), StatsType::ForwardError);
+    |                                                            ^^^^^^^^^ use of undeclared type `StatsType`
+
+error[E0412]: cannot find type `port_event_t` in this scope
+  --> src/event/nc_evport.rs:34:17
+   |
+32 | struct EventBase {
+   |                 - help: you might be missing a type parameter: `<port_event_t>`
+33 |     evp: RawFd,
+34 |     events: Vec<port_event_t>,
+   |                 ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_create` in this scope
+  --> src/event/nc_evport.rs:53:28
+   |
+53 |         let evp = unsafe { port_create() };
+   |                            ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+  --> src/event/nc_evport.rs:91:13
+   |
+91 |             port_associate(
+   |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+  --> src/event/nc_evport.rs:93:17
+   |
+93 |                 PORT_SOURCE_FD,
+   |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+   --> src/event/nc_evport.rs:118:13
+    |
+118 |             port_associate(
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:120:17
+    |
+120 |                 PORT_SOURCE_FD,
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+   --> src/event/nc_evport.rs:142:13
+    |
+142 |             port_associate(
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:144:17
+    |
+144 |                 PORT_SOURCE_FD,
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_dissociate` in this scope
+   --> src/event/nc_evport.rs:168:31
+    |
+168 |         let status = unsafe { port_dissociate(self.evp, PORT_SOURCE_FD, c.sd) };
+    |                               ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:168:57
+    |
+168 |         let status = unsafe { port_dissociate(self.evp, PORT_SOURCE_FD, c.sd) };
+    |                                                         ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+   --> src/event/nc_evport.rs:193:13
+    |
+193 |             port_associate(
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:195:17
+    |
+195 |                 PORT_SOURCE_FD,
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_getn` in this scope
+   --> src/event/nc_evport.rs:225:17
+    |
+225 |                 port_getn(
+    |                 ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_create` in this scope
+   --> src/event/nc_evport.rs:281:24
+    |
+281 |     let evp = unsafe { port_create() };
+    |                        ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+   --> src/event/nc_evport.rs:286:27
+    |
+286 |     let status = unsafe { port_associate(evp, PORT_SOURCE_FD, arg.sd, POLLIN, ptr::null_mut()) };
+    |                           ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:286:47
+    |
+286 |     let status = unsafe { port_associate(evp, PORT_SOURCE_FD, arg.sd, POLLIN, ptr::null_mut()) };
+    |                                               ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_getn` in this scope
+   --> src/event/nc_evport.rs:306:13
+    |
+306 |             port_getn(
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `port_associate` in this scope
+   --> src/event/nc_evport.rs:329:17
+    |
+329 |                 port_associate(evp, PORT_SOURCE_FD, arg.sd, POLLIN, ptr::null_mut());
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PORT_SOURCE_FD` in this scope
+   --> src/event/nc_evport.rs:329:37
+    |
+329 |                 port_associate(evp, PORT_SOURCE_FD, arg.sd, POLLIN, ptr::null_mut());
+    |                                     ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `kevent` in crate `libc`
+   --> src/event/nc_kqueue.rs:54:24
+    |
+54  |       changes: Vec<libc::kevent>,
+    |                          ^^^^^^ help: a struct with a similar name exists: `servent`
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/mod.rs:46:1
+    |
+46  | / s! {
+47  | |     pub struct group {
+48  | |         pub gr_name: *mut c_char,
+49  | |         pub gr_passwd: *mut c_char,
+...   |
+212 | |     }
+213 | | }
+    | |_- similarly named struct `servent` defined here
+
+error[E0412]: cannot find type `kevent` in crate `libc`
+   --> src/event/nc_kqueue.rs:55:23
+    |
+55  |       events: Vec<libc::kevent>,
+    |                         ^^^^^^ help: a struct with a similar name exists: `servent`
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/mod.rs:46:1
+    |
+46  | / s! {
+47  | |     pub struct group {
+48  | |         pub gr_name: *mut c_char,
+49  | |         pub gr_passwd: *mut c_char,
+...   |
+212 | |     }
+213 | | }
+    | |_- similarly named struct `servent` defined here
+
+error[E0425]: cannot find function, tuple struct or tuple variant `EV_SET` in crate `libc`
+    --> src/event/nc_kqueue.rs:113:19
+     |
+113  |             libc::EV_SET(
+     |                   ^^^^^^ help: a constant with a similar name exists: `EV_CNT`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/linux_like/linux/mod.rs:5215:1
+     |
+5215 | pub const EV_CNT: usize = EV_MAX as usize + 1;
+     | ----------------------- similarly named constant `EV_CNT` defined here
+
+error[E0425]: cannot find function, tuple struct or tuple variant `EV_SET` in crate `libc`
+    --> src/event/nc_kqueue.rs:139:19
+     |
+139  |             libc::EV_SET(
+     |                   ^^^^^^ help: a constant with a similar name exists: `EV_CNT`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/linux_like/linux/mod.rs:5215:1
+     |
+5215 | pub const EV_CNT: usize = EV_MAX as usize + 1;
+     | ----------------------- similarly named constant `EV_CNT` defined here
+
+error[E0425]: cannot find function, tuple struct or tuple variant `EV_SET` in crate `libc`
+    --> src/event/nc_kqueue.rs:166:19
+     |
+166  |             libc::EV_SET(
+     |                   ^^^^^^ help: a constant with a similar name exists: `EV_CNT`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/linux_like/linux/mod.rs:5215:1
+     |
+5215 | pub const EV_CNT: usize = EV_MAX as usize + 1;
+     | ----------------------- similarly named constant `EV_CNT` defined here
+
+error[E0425]: cannot find function, tuple struct or tuple variant `EV_SET` in crate `libc`
+    --> src/event/nc_kqueue.rs:193:19
+     |
+193  |             libc::EV_SET(
+     |                   ^^^^^^ help: a constant with a similar name exists: `EV_CNT`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/linux_like/linux/mod.rs:5215:1
+     |
+5215 | pub const EV_CNT: usize = EV_MAX as usize + 1;
+     | ----------------------- similarly named constant `EV_CNT` defined here
+
+error[E0412]: cannot find type `kevent` in crate `libc`
+   --> src/event/nc_kqueue.rs:259:59
+    |
+259 |                       self.changes.as_ptr() as *const libc::kevent,
+    |                                                             ^^^^^^ help: a struct with a similar name exists: `servent`
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/mod.rs:46:1
+    |
+46  | / s! {
+47  | |     pub struct group {
+48  | |         pub gr_name: *mut c_char,
+49  | |         pub gr_passwd: *mut c_char,
+...   |
+212 | |     }
+213 | | }
+    | |_- similarly named struct `servent` defined here
+
+error[E0425]: cannot find function, tuple struct or tuple variant `EV_SET` in crate `libc`
+    --> src/event/nc_kqueue.rs:327:15
+     |
+327  |         libc::EV_SET(
+     |               ^^^^^^ help: a constant with a similar name exists: `EV_CNT`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/linux_like/linux/mod.rs:5215:1
+     |
+5215 | pub const EV_CNT: usize = EV_MAX as usize + 1;
+     | ----------------------- similarly named constant `EV_CNT` defined here
+
+error[E0425]: cannot find value `free` in this scope
+   --> src/hashkit/nc_md5.rs:221:41
+    |
+221 |         let processed = body(ctx, &data[free..]);
+    |                                         ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use libc::free;
+    |
+
+error[E0425]: cannot find value `free` in this scope
+   --> src/hashkit/nc_md5.rs:224:59
+    |
+224 |             ctx.buffer[..remaining].copy_from_slice(&data[free + processed..]);
+    |                                                           ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use libc::free;
+    |
+
+error[E0425]: cannot find value `free` in this scope
+   --> src/hashkit/nc_md5.rs:227:55
+    |
+227 |         ctx.buffer[..remaining].copy_from_slice(&data[free..]);
+    |                                                       ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use libc::free;
+    |
+
+error[E0412]: cannot find type `yaml_parser_t` in this scope
+   --> src/nc_conf.rs:256:13
+    |
+256 |     parser: yaml_parser_t,
+    |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `yaml_event_t` in this scope
+   --> src/nc_conf.rs:257:12
+    |
+257 |     event: yaml_event_t,
+    |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `yaml_token_t` in this scope
+   --> src/nc_conf.rs:258:12
+    |
+258 |     token: yaml_token_t,
+    |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_create` in this scope
+   --> src/nc_core.rs:115:21
+    |
+115 |         (*ctx).cf = conf_create(nci.conf_filename);
+    |                     ^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:359:1
+    |
+359 | fn conf_create(filename: *const c_char) -> *mut Conf {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_create`: not accessible
+    |
+   ::: src/test_all.rs:23:5
+    |
+23  |     fn conf_create(file: *const c_char) -> *mut c_void;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_create`: not accessible
+
+error[E0425]: cannot find function `server_pool_init` in this scope
+   --> src/nc_core.rs:121:12
+    |
+121 |         if server_pool_init(&mut (*ctx).pool, &(*(*ctx).cf).pool, ctx) != NC_OK {
+    |            ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:122:13
+    |
+122 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:128:13
+    |
+128 |             server_pool_deinit(&mut (*ctx).pool);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:129:13
+    |
+129 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `stats_create` in this scope
+   --> src/nc_core.rs:134:24
+    |
+134 |         (*ctx).stats = stats_create(
+    |                        ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:142:13
+    |
+142 |             server_pool_deinit(&mut (*ctx).pool);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:143:13
+    |
+143 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `event_base_create` in this scope
+   --> src/nc_core.rs:148:22
+    |
+148 |         (*ctx).evb = event_base_create(EVENT_SIZE, Some(core_core));
+    |                      ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `EVENT_SIZE` in this scope
+   --> src/nc_core.rs:148:40
+    |
+148 |         (*ctx).evb = event_base_create(EVENT_SIZE, Some(core_core));
+    |                                        ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_destroy` in this scope
+   --> src/nc_core.rs:150:13
+    |
+150 |             stats_destroy((*ctx).stats);
+    |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:151:13
+    |
+151 |             server_pool_deinit(&mut (*ctx).pool);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:152:13
+    |
+152 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `server_pool_preconnect` in this scope
+   --> src/nc_core.rs:157:12
+    |
+157 |         if server_pool_preconnect(ctx) != NC_OK {
+    |            ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_disconnect` in this scope
+   --> src/nc_core.rs:158:13
+    |
+158 |             server_pool_disconnect(ctx);
+    |             ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_base_destroy` in this scope
+   --> src/nc_core.rs:159:13
+    |
+159 |             event_base_destroy((*ctx).evb);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_destroy` in this scope
+   --> src/nc_core.rs:160:13
+    |
+160 |             stats_destroy((*ctx).stats);
+    |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:161:13
+    |
+161 |             server_pool_deinit(&mut (*ctx).pool);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:162:13
+    |
+162 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `proxy_init` in this scope
+   --> src/nc_core.rs:167:12
+    |
+167 |         if proxy_init(ctx) != NC_OK {
+    |            ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_proxy::proxy_init;
+    |
+
+error[E0425]: cannot find function `server_pool_disconnect` in this scope
+   --> src/nc_core.rs:168:13
+    |
+168 |             server_pool_disconnect(ctx);
+    |             ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_base_destroy` in this scope
+   --> src/nc_core.rs:169:13
+    |
+169 |             event_base_destroy((*ctx).evb);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_destroy` in this scope
+   --> src/nc_core.rs:170:13
+    |
+170 |             stats_destroy((*ctx).stats);
+    |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:171:13
+    |
+171 |             server_pool_deinit(&mut (*ctx).pool);
+    |             ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:172:13
+    |
+172 |             conf_destroy((*ctx).cf);
+    |             ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `proxy_deinit` in this scope
+   --> src/nc_core.rs:183:9
+    |
+183 |         proxy_deinit(ctx);
+    |         ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_proxy::proxy_deinit;
+    |
+
+error[E0425]: cannot find function `server_pool_disconnect` in this scope
+   --> src/nc_core.rs:184:9
+    |
+184 |         server_pool_disconnect(ctx);
+    |         ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_base_destroy` in this scope
+   --> src/nc_core.rs:185:9
+    |
+185 |         event_base_destroy((*ctx).evb);
+    |         ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_destroy` in this scope
+   --> src/nc_core.rs:186:9
+    |
+186 |         stats_destroy((*ctx).stats);
+    |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `server_pool_deinit` in this scope
+   --> src/nc_core.rs:187:9
+    |
+187 |         server_pool_deinit(&mut (*ctx).pool);
+    |         ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conf_destroy` in this scope
+   --> src/nc_core.rs:188:9
+    |
+188 |         conf_destroy((*ctx).cf);
+    |         ^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/nc_conf.rs:383:1
+    |
+383 | fn conf_destroy(cf: *mut Conf) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::nc_conf::conf_destroy`: not accessible
+    |
+   ::: src/test_all.rs:24:5
+    |
+24  |     fn conf_destroy(conf: *mut c_void);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::test_all::conf_destroy`: not accessible
+
+error[E0425]: cannot find function `mbuf_init` in this scope
+   --> src/nc_core.rs:196:9
+    |
+196 |         mbuf_init(&*nci);
+    |         ^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_mbuf::mbuf_init` exists but is inaccessible
+   --> src/nc_mbuf.rs:185:1
+    |
+185 | fn mbuf_init(chunk_size: usize) -> MbufPool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `msg_init` in this scope
+   --> src/nc_core.rs:197:9
+    |
+197 |         msg_init();
+    |         ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conn_init` in this scope
+   --> src/nc_core.rs:198:9
+    |
+198 |         conn_init();
+    |         ^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_connection::conn_init` exists but is inaccessible
+   --> src/nc_connection.rs:218:1
+    |
+218 | fn conn_init() {
+    | ^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `conn_deinit` in this scope
+   --> src/nc_core.rs:206:9
+    |
+206 |         conn_deinit();
+    |         ^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_connection::conn_deinit` exists but is inaccessible
+   --> src/nc_connection.rs:222:1
+    |
+222 | fn conn_deinit() {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `msg_deinit` in this scope
+   --> src/nc_core.rs:207:9
+    |
+207 |         msg_deinit();
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `mbuf_deinit` in this scope
+   --> src/nc_core.rs:208:9
+    |
+208 |         mbuf_deinit();
+    |         ^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_mbuf::mbuf_deinit` exists but is inaccessible
+   --> src/nc_mbuf.rs:189:1
+    |
+189 | fn mbuf_deinit(pool: MbufPool) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `conn_deinit` in this scope
+   --> src/nc_core.rs:217:9
+    |
+217 |         conn_deinit();
+    |         ^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_connection::conn_deinit` exists but is inaccessible
+   --> src/nc_connection.rs:222:1
+    |
+222 | fn conn_deinit() {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `msg_deinit` in this scope
+   --> src/nc_core.rs:218:9
+    |
+218 |         msg_deinit();
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `mbuf_deinit` in this scope
+   --> src/nc_core.rs:219:9
+    |
+219 |         mbuf_deinit();
+    |         ^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_mbuf::mbuf_deinit` exists but is inaccessible
+   --> src/nc_mbuf.rs:189:1
+    |
+189 | fn mbuf_deinit(pool: MbufPool) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `event_del_conn` in this scope
+   --> src/nc_core.rs:252:22
+    |
+252 |         let status = event_del_conn((*ctx).evb, conn);
+    |                      ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `nc_get_soerror` in this scope
+   --> src/nc_core.rs:263:22
+    |
+263 |         let status = nc_get_soerror((*conn).sd);
+    |                      ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `msg_tmo_min` in this scope
+   --> src/nc_core.rs:276:23
+    |
+276 |             let msg = msg_tmo_min();
+    |                       ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `msg_tmo_delete` in this scope
+   --> src/nc_core.rs:283:17
+    |
+283 |                 msg_tmo_delete(msg);
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `nc_msec_now` in this scope
+   --> src/nc_core.rs:290:23
+    |
+290 |             let now = nc_msec_now();
+    |                       ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `msg_tmo_delete` in this scope
+   --> src/nc_core.rs:299:13
+    |
+299 |             msg_tmo_delete(msg);
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conn_to_ctx` in this scope
+   --> src/nc_core.rs:315:19
+    |
+315 |         let ctx = conn_to_ctx(conn);
+    |                   ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `EVENT_ERR` in this scope
+   --> src/nc_core.rs:318:21
+    |
+318 |         if events & EVENT_ERR != 0 {
+    |                     ^^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> src/event/nc_epoll.rs:25:1
+    |
+25  | const EVENT_ERR: u32 = 0b001;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_epoll::EVENT_ERR`: not accessible
+    |
+   ::: src/event/nc_kqueue.rs:385:1
+    |
+385 | const EVENT_ERR: u32 = 0x20;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_kqueue::EVENT_ERR`: not accessible
+
+error[E0425]: cannot find value `EVENT_READ` in this scope
+   --> src/nc_core.rs:323:21
+    |
+323 |         if events & EVENT_READ != 0 {
+    |                     ^^^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> src/event/nc_epoll.rs:26:1
+    |
+26  | const EVENT_READ: u32 = 0b010;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_epoll::EVENT_READ`: not accessible
+    |
+   ::: src/event/nc_kqueue.rs:386:1
+    |
+386 | const EVENT_READ: u32 = 0x02;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_kqueue::EVENT_READ`: not accessible
+
+error[E0425]: cannot find value `EVENT_WRITE` in this scope
+   --> src/nc_core.rs:331:21
+    |
+331 |         if events & EVENT_WRITE != 0 {
+    |                     ^^^^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> src/event/nc_epoll.rs:27:1
+    |
+27  | const EVENT_WRITE: u32 = 0b100;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_epoll::EVENT_WRITE`: not accessible
+    |
+   ::: src/event/nc_kqueue.rs:387:1
+    |
+387 | const EVENT_WRITE: u32 = 0x04;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::event::nc_kqueue::EVENT_WRITE`: not accessible
+
+error[E0425]: cannot find function `event_wait` in this scope
+   --> src/nc_core.rs:346:19
+    |
+346 |         let nsd = event_wait((*ctx).evb, (*ctx).timeout);
+    |                   ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_swap` in this scope
+   --> src/nc_core.rs:352:9
+    |
+352 |         stats_swap((*ctx).stats);
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:132:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+132 |     LOGGER.lock().unwrap().init(level, filename)
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:136:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+136 |     LOGGER.lock().unwrap().deinit();
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:140:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+140 |     LOGGER.lock().unwrap().reopen()
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:144:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+144 |     LOGGER.lock().unwrap().level_up();
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:148:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+148 |     LOGGER.lock().unwrap().level_down();
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:152:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+152 |     LOGGER.lock().unwrap().set_level(level);
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:156:5
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+156 |     LOGGER.lock().unwrap().loggable(level)
+    |     ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:162:13
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+162 |     let _ = LOGGER.lock().unwrap().write_stderr(&buf);
+    |             ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:168:13
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+168 |     let _ = LOGGER.lock().unwrap().write_log(&buf);
+    |             ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:174:13
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+174 |     let _ = LOGGER.lock().unwrap().write_stderr(&buf);
+    |             ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0425]: cannot find value `LOGGER` in this scope
+   --> src/nc_log.rs:195:13
+    |
+15  | const LOG_ERR: i32 = 3;
+    | ----------------------- similarly named constant `LOG_ERR` defined here
+...
+195 |     let _ = LOGGER.lock().unwrap().write_log(&buf);
+    |             ^^^^^^ help: a constant with a similar name exists: `LOG_ERR`
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_proxy.rs:31:29
+   |
+31 | pub fn proxy_ref(conn: &mut Conn, owner: &mut ServerPool) {
+   |                             ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0412]: cannot find type `ServerPool` in this scope
+  --> src/nc_proxy.rs:31:47
+   |
+31 | pub fn proxy_ref(conn: &mut Conn, owner: &mut ServerPool) {
+   |                                               ^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+18 | use crate::src::nc_client::ServerPool;
+   |
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_proxy.rs:46:31
+   |
+46 | pub fn proxy_unref(conn: &mut Conn) {
+   |                               ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0412]: cannot find type `Context` in this scope
+  --> src/nc_proxy.rs:56:26
+   |
+56 | pub fn proxy_close(ctx: &Context, conn: &mut Conn) -> Result<(), io::Error> {
+   |                          ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use core::task::Context;
+   |
+18 | use crate::src::nc_client::Context;
+   |
+18 | use std::task::Context;
+   |
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_proxy.rs:56:46
+   |
+56 | pub fn proxy_close(ctx: &Context, conn: &mut Conn) -> Result<(), io::Error> {
+   |                                              ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0425]: cannot find function `conn_put` in this scope
+  --> src/nc_proxy.rs:61:9
+   |
+61 |         conn_put(conn);
+   |         ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `conn_put` in this scope
+  --> src/nc_proxy.rs:78:5
+   |
+78 |     conn_put(conn);
+   |     ^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_proxy.rs:82:20
+   |
+82 | fn proxy_reuse(p: &Conn) -> Result<(), io::Error> {
+   |                    ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0425]: cannot find function `nc_set_reuseaddr` in this scope
+  --> src/nc_proxy.rs:85:13
+   |
+85 |             nc_set_reuseaddr(p.sd)?;
+   |             ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_proxy.rs:100:23
+    |
+100 | fn proxy_listen(ctx: &Context, p: &mut Conn) -> Result<(), io::Error> {
+    |                       ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_proxy.rs:100:40
+    |
+100 | fn proxy_listen(ctx: &Context, p: &mut Conn) -> Result<(), io::Error> {
+    |                                        ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0425]: cannot find function `nc_set_reuseport` in this scope
+   --> src/nc_proxy.rs:114:9
+    |
+114 |         nc_set_reuseport(p.sd)?;
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `nc_set_nonblocking` in this scope
+   --> src/nc_proxy.rs:128:5
+    |
+128 |     nc_set_nonblocking(p.sd)?;
+    |     ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_add_conn` in this scope
+   --> src/nc_proxy.rs:130:5
+    |
+130 |     event_add_conn(ctx.evb, p)?;
+    |     ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_del_out` in this scope
+   --> src/nc_proxy.rs:131:5
+    |
+131 |     event_del_out(ctx.evb, p)?;
+    |     ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `ServerPool` in this scope
+   --> src/nc_proxy.rs:136:35
+    |
+136 | pub fn proxy_each_init(elem: &mut ServerPool, _data: Option<&mut ()>) -> Result<(), io::Error> {
+    |                                   ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+18  | use crate::src::nc_client::ServerPool;
+    |
+
+error[E0425]: cannot find function `conn_get_proxy` in this scope
+   --> src/nc_proxy.rs:137:17
+    |
+137 |     let mut p = conn_get_proxy(elem)?;
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_proxy.rs:148:29
+    |
+148 | pub fn proxy_init(ctx: &mut Context) -> Result<(), io::Error> {
+    |                             ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `ServerPool` in this scope
+   --> src/nc_proxy.rs:159:37
+    |
+159 | pub fn proxy_each_deinit(elem: &mut ServerPool, _data: Option<&mut ()>) -> Result<(), io::Error> {
+    |                                     ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+18  | use crate::src::nc_client::ServerPool;
+    |
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_proxy.rs:166:31
+    |
+166 | pub fn proxy_deinit(ctx: &mut Context) -> Result<(), io::Error> {
+    |                               ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_proxy.rs:177:23
+    |
+177 | fn proxy_accept(ctx: &Context, p: &mut Conn) -> Result<(), io::Error> {
+    |                       ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_proxy.rs:177:40
+    |
+177 | fn proxy_accept(ctx: &Context, p: &mut Conn) -> Result<(), io::Error> {
+    |                                        ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0425]: cannot find function `conn_ncurr_cconn` in this scope
+   --> src/nc_proxy.rs:187:20
+    |
+187 |                 if conn_ncurr_cconn() >= ctx.max_ncconn {
+    |                    ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::nc_connection::conn_ncurr_cconn` exists but is inaccessible
+   --> src/nc_connection.rs:194:1
+    |
+194 | fn conn_ncurr_cconn() -> u32 {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `conn_get` in this scope
+   --> src/nc_proxy.rs:194:29
+    |
+194 |                 let mut c = conn_get(&pool, true, p.redis)?;
+    |                             ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `stats_pool_incr` in this scope
+   --> src/nc_proxy.rs:197:17
+    |
+197 |                 stats_pool_incr(ctx, &c.owner, "client_connections");
+    |                 ^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_stats::stats_pool_incr;
+    |
+
+error[E0425]: cannot find function `nc_set_nonblocking` in this scope
+   --> src/nc_proxy.rs:199:17
+    |
+199 |                 nc_set_nonblocking(c.sd)?;
+    |                 ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `nc_set_tcpkeepalive` in this scope
+   --> src/nc_proxy.rs:202:37
+    |
+202 |                     if let Err(e) = nc_set_tcpkeepalive(c.sd) {
+    |                                     ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `nc_set_tcpnodelay` in this scope
+   --> src/nc_proxy.rs:209:37
+    |
+209 |                     if let Err(e) = nc_set_tcpnodelay(c.sd) {
+    |                                     ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `event_add_conn` in this scope
+   --> src/nc_proxy.rs:215:17
+    |
+215 |                 event_add_conn(ctx.evb, &mut c)?;
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_proxy.rs:244:25
+    |
+244 | pub fn proxy_recv(ctx: &Context, conn: &mut Conn) -> Result<(), io::Error> {
+    |                         ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_proxy.rs:244:45
+    |
+244 | pub fn proxy_recv(ctx: &Context, conn: &mut Conn) -> Result<(), io::Error> {
+    |                                             ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0425]: cannot find function `array_n` in this scope
+   --> src/nc_request.rs:519:18
+    |
+519 |     msg.fragment(array_n(&pool.server), &mut frag_msgq)?;
+    |                  ^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_response.rs:58:27
+   |
+58 | pub fn rsp_get(conn: &mut Conn) -> Result<Option<Msg>, RspError> {
+   |                           ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0412]: cannot find type `Msg` in this scope
+  --> src/nc_response.rs:58:50
+   |
+58 | pub fn rsp_get(conn: &mut Conn) -> Result<Option<Msg>, RspError> {
+   |                                                  ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::nc_client::Msg;
+   |
+18 | use crate::src::nc_message::Msg;
+   |
+18 | use crate::src::proto::nc_memcache::Msg;
+   |
+
+error[E0425]: cannot find function `msg_get` in this scope
+  --> src/nc_response.rs:61:15
+   |
+61 |     let msg = msg_get(conn, false, conn.redis)?;
+   |               ^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Msg` in this scope
+  --> src/nc_response.rs:69:21
+   |
+69 | pub fn rsp_put(msg: Msg) {
+   |                     ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::nc_client::Msg;
+   |
+18 | use crate::src::nc_message::Msg;
+   |
+18 | use crate::src::proto::nc_memcache::Msg;
+   |
+
+error[E0425]: cannot find function `msg_put` in this scope
+  --> src/nc_response.rs:72:5
+   |
+72 |     msg_put(msg);
+   |     ^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+  --> src/nc_response.rs:75:29
+   |
+75 | fn rsp_make_error(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<Msg, RspError> {
+   |                             ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use core::task::Context;
+   |
+18 | use crate::src::nc_client::Context;
+   |
+18 | use std::task::Context;
+   |
+
+error[E0412]: cannot find type `Conn` in this scope
+  --> src/nc_response.rs:75:49
+   |
+75 | fn rsp_make_error(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<Msg, RspError> {
+   |                                                 ^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::event::nc_kqueue::Conn;
+   |
+18 | use crate::src::nc_client::Conn;
+   |
+
+error[E0412]: cannot find type `Msg` in this scope
+  --> src/nc_response.rs:75:60
+   |
+75 | fn rsp_make_error(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<Msg, RspError> {
+   |                                                            ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::nc_client::Msg;
+   |
+18 | use crate::src::nc_message::Msg;
+   |
+18 | use crate::src::proto::nc_memcache::Msg;
+   |
+
+error[E0412]: cannot find type `Msg` in this scope
+  --> src/nc_response.rs:75:75
+   |
+75 | fn rsp_make_error(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<Msg, RspError> {
+   |                                                                           ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+18 | use crate::src::nc_client::Msg;
+   |
+18 | use crate::src::nc_message::Msg;
+   |
+18 | use crate::src::proto::nc_memcache::Msg;
+   |
+
+error[E0425]: cannot find function `req_error` in this scope
+  --> src/nc_response.rs:77:28
+   |
+77 |     assert!(msg.request && req_error(conn, &msg));
+   |                            ^^^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+18 | use crate::src::nc_request::req_error;
+   |
+
+error[E0425]: cannot find function `req_put` in this scope
+  --> src/nc_response.rs:93:13
+   |
+69 | pub fn rsp_put(msg: Msg) {
+   | ------------------------ similarly named function `rsp_put` defined here
+...
+93 |             req_put(current);
+   |             ^^^^^^^
+   |
+help: a function with a similar name exists
+   |
+93 |             rsp_put(current);
+   |             ~~~~~~~
+help: consider importing this function
+   |
+18 | use crate::src::nc_request::req_put;
+   |
+
+error[E0425]: cannot find function `msg_get_error` in this scope
+   --> src/nc_response.rs:103:9
+    |
+103 |         msg_get_error(conn.redis, err)
+    |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:109:32
+    |
+109 | pub fn rsp_recv_next(ctx: &mut Context, conn: &mut Conn, alloc: bool) -> Result<Option<Msg>, RspError> {
+    |                                ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:109:52
+    |
+109 | pub fn rsp_recv_next(ctx: &mut Context, conn: &mut Conn, alloc: bool) -> Result<Option<Msg>, RspError> {
+    |                                                    ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:109:88
+    |
+109 | pub fn rsp_recv_next(ctx: &mut Context, conn: &mut Conn, alloc: bool) -> Result<Option<Msg>, RspError> {
+    |                                                                                        ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `log_error` in this scope
+   --> src/nc_response.rs:117:13
+    |
+117 |             log_error(format!("eof s {} discarding incomplete rsp {} len {}", 
+    |             ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_error;
+    |
+
+error[E0425]: cannot find function `log_error` in this scope
+   --> src/nc_response.rs:123:9
+    |
+123 |         log_error(format!("s {} active {} is done", conn.sd, conn.active(conn)));
+    |         ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_error;
+    |
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:145:25
+    |
+145 | fn rsp_filter(ctx: &mut Context, conn: &mut Conn, msg: &Msg) -> Result<bool, RspError> {
+    |                         ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:145:45
+    |
+145 | fn rsp_filter(ctx: &mut Context, conn: &mut Conn, msg: &Msg) -> Result<bool, RspError> {
+    |                                             ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:145:57
+    |
+145 | fn rsp_filter(ctx: &mut Context, conn: &mut Conn, msg: &Msg) -> Result<bool, RspError> {
+    |                                                         ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `msg_empty` in this scope
+   --> src/nc_response.rs:148:8
+    |
+148 |     if msg_empty(msg) {
+    |        ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:150:9
+    |
+150 |         log_debug(LOG_VERB, format!("filter empty rsp {} on s {}", msg.id, conn.sd));
+    |         ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_VERB` in this scope
+   --> src/nc_response.rs:150:19
+    |
+150 |         log_debug(LOG_VERB, format!("filter empty rsp {} on s {}", msg.id, conn.sd));
+    |                   ^^^^^^^^ not found in this scope
+    |
+note: constant `crate::src::nc_log::LOG_VERB` exists but is inaccessible
+   --> src/nc_log.rs:20:1
+    |
+20  | const LOG_VERB: i32 = 8;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:157:13
+    |
+157 |             log_debug(LOG_INFO, format!("server failure rsp {} len {} type {} on s {}", 
+    |             ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_INFO` in this scope
+   --> src/nc_response.rs:157:23
+    |
+157 |             log_debug(LOG_INFO, format!("server failure rsp {} len {} type {} on s {}", 
+    |                       ^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+18  | use libc::LOG_INFO;
+    |
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:172:13
+    |
+172 |             log_debug(LOG_INFO, format!("swallow rsp {} len {} of req {} on s {}", 
+    |             ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_INFO` in this scope
+   --> src/nc_response.rs:172:23
+    |
+172 |             log_debug(LOG_INFO, format!("swallow rsp {} len {} of req {} on s {}", 
+    |                       ^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+18  | use libc::LOG_INFO;
+    |
+
+error[E0425]: cannot find function `req_put` in this scope
+   --> src/nc_response.rs:176:13
+    |
+69  | pub fn rsp_put(msg: Msg) {
+    | ------------------------ similarly named function `rsp_put` defined here
+...
+176 |             req_put(pmsg.clone());
+    |             ^^^^^^^
+    |
+help: a function with a similar name exists
+    |
+176 |             rsp_put(pmsg.clone());
+    |             ~~~~~~~
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_put;
+    |
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:182:9
+    |
+182 |         log_debug(LOG_ERR, format!("filter stray rsp {} len {} on s {}", 
+    |         ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_ERR` in this scope
+   --> src/nc_response.rs:182:19
+    |
+182 |         log_debug(LOG_ERR, format!("filter stray rsp {} len {} on s {}", 
+    |                   ^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+18  | use libc::LOG_ERR;
+    |
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:192:32
+    |
+192 | fn rsp_forward_stats(ctx: &mut Context, server: &mut Server, msg: &Msg, msgsize: u32) {
+    |                                ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Server` in this scope
+   --> src/nc_response.rs:192:54
+    |
+192 | fn rsp_forward_stats(ctx: &mut Context, server: &mut Server, msg: &Msg, msgsize: u32) {
+    |                                                      ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/hashkit/nc_ketama.rs:65:1
+    |
+65  | struct Server {
+    | ^^^^^^^^^^^^^ `crate::src::hashkit::nc_ketama::Server`: not accessible
+    |
+   ::: src/hashkit/nc_modula.rs:15:1
+    |
+15  | struct Server {
+    | ^^^^^^^^^^^^^ `crate::src::hashkit::nc_modula::Server`: not accessible
+    |
+   ::: src/hashkit/nc_random.rs:36:1
+    |
+36  | struct Server {
+    | ^^^^^^^^^^^^^ `crate::src::hashkit::nc_random::Server`: not accessible
+    |
+   ::: src/nc_connection.rs:12:1
+    |
+12  | struct Server;
+    | ^^^^^^^^^^^^^^ `crate::src::nc_connection::Server`: not accessible
+    |
+   ::: src/nc_core.rs:46:1
+    |
+46  | struct Server;
+    | ^^^^^^^^^^^^^^ `crate::src::nc_core::Server`: not accessible
+    |
+   ::: src/nc_server.rs:22:1
+    |
+22  | struct Server {
+    | ^^^^^^^^^^^^^ `crate::src::nc_server::Server`: not accessible
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:192:68
+    |
+192 | fn rsp_forward_stats(ctx: &mut Context, server: &mut Server, msg: &Msg, msgsize: u32) {
+    |                                                                    ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `stats_server_incr` in this scope
+   --> src/nc_response.rs:195:5
+    |
+195 |     stats_server_incr(ctx, server, StatsType::Responses);
+    |     ^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_stats::stats_server_incr;
+    |
+
+error[E0425]: cannot find function `stats_server_incr_by` in this scope
+   --> src/nc_response.rs:196:5
+    |
+196 |     stats_server_incr_by(ctx, server, StatsType::ResponseBytes, msgsize);
+    |     ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:199:26
+    |
+199 | fn rsp_forward(ctx: &mut Context, s_conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                          ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:199:48
+    |
+199 | fn rsp_forward(ctx: &mut Context, s_conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                                                ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:199:59
+    |
+199 | fn rsp_forward(ctx: &mut Context, s_conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                                                           ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `server_ok` in this scope
+   --> src/nc_response.rs:203:5
+    |
+203 |     server_ok(ctx, s_conn);
+    |     ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `req_done` in this scope
+   --> src/nc_response.rs:220:8
+    |
+220 |     if req_done(c_conn, c_conn.omsg_q.first()) {
+    |        ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_done;
+    |
+
+error[E0425]: cannot find function `event_add_out` in this scope
+   --> src/nc_response.rs:221:12
+    |
+221 |         if event_add_out(ctx.evb, c_conn).is_err() {
+    |            ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:230:32
+    |
+230 | pub fn rsp_recv_done(ctx: &mut Context, conn: &mut Conn, msg: Msg, nmsg: Option<Msg>) -> Result<(), RspError> {
+    |                                ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:230:52
+    |
+230 | pub fn rsp_recv_done(ctx: &mut Context, conn: &mut Conn, msg: Msg, nmsg: Option<Msg>) -> Result<(), RspError> {
+    |                                                    ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:230:63
+    |
+230 | pub fn rsp_recv_done(ctx: &mut Context, conn: &mut Conn, msg: Msg, nmsg: Option<Msg>) -> Result<(), RspError> {
+    |                                                               ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:230:81
+    |
+230 | pub fn rsp_recv_done(ctx: &mut Context, conn: &mut Conn, msg: Msg, nmsg: Option<Msg>) -> Result<(), RspError> {
+    |                                                                                 ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:246:32
+    |
+246 | pub fn rsp_send_next(ctx: &mut Context, conn: &mut Conn) -> Result<Option<Msg>, RspError> {
+    |                                ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:246:52
+    |
+246 | pub fn rsp_send_next(ctx: &mut Context, conn: &mut Conn) -> Result<Option<Msg>, RspError> {
+    |                                                    ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:246:75
+    |
+246 | pub fn rsp_send_next(ctx: &mut Context, conn: &mut Conn) -> Result<Option<Msg>, RspError> {
+    |                                                                           ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `req_done` in this scope
+   --> src/nc_response.rs:250:27
+    |
+250 |     if pmsg.is_none() || !req_done(conn, pmsg) {
+    |                           ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_done;
+    |
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:253:13
+    |
+253 |             log_debug(LOG_INFO, format!("c {} is done", conn.sd));
+    |             ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_INFO` in this scope
+   --> src/nc_response.rs:253:23
+    |
+253 |             log_debug(LOG_INFO, format!("c {} is done", conn.sd));
+    |                       ^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+18  | use libc::LOG_INFO;
+    |
+
+error[E0425]: cannot find function `event_del_out` in this scope
+   --> src/nc_response.rs:256:12
+    |
+256 |         if event_del_out(ctx.evb, conn).is_err() {
+    |            ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `req_done` in this scope
+   --> src/nc_response.rs:265:17
+    |
+265 |         assert!(req_done(conn, msg.peer.as_ref().unwrap()));
+    |                 ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_done;
+    |
+
+error[E0425]: cannot find function `req_done` in this scope
+   --> src/nc_response.rs:271:27
+    |
+271 |     if pmsg.is_none() || !req_done(conn, pmsg) {
+    |                           ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_done;
+    |
+
+error[E0425]: cannot find function `req_error` in this scope
+   --> src/nc_response.rs:277:18
+    |
+277 |     let msg = if req_error(conn, pmsg.unwrap()) {
+    |                  ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_error;
+    |
+
+error[E0425]: cannot find function `stats_pool_incr` in this scope
+   --> src/nc_response.rs:281:9
+    |
+281 |         stats_pool_incr(ctx, conn.owner.as_mut().unwrap(), StatsType::ForwardError);
+    |         ^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_stats::stats_pool_incr;
+    |
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:290:5
+    |
+290 |     log_debug(LOG_VVERB, format!("send next rsp {} on c {}", msg.id, conn.sd));
+    |     ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_VVERB` in this scope
+   --> src/nc_response.rs:290:15
+    |
+290 |     log_debug(LOG_VVERB, format!("send next rsp {} on c {}", msg.id, conn.sd));
+    |               ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::src::nc_log::LOG_VVERB` exists but is inaccessible
+   --> src/nc_log.rs:21:1
+    |
+21  | const LOG_VVERB: i32 = 9;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `Context` in this scope
+   --> src/nc_response.rs:294:32
+    |
+294 | pub fn rsp_send_done(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                                ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use core::task::Context;
+    |
+18  | use crate::src::nc_client::Context;
+    |
+18  | use std::task::Context;
+    |
+
+error[E0412]: cannot find type `Conn` in this scope
+   --> src/nc_response.rs:294:52
+    |
+294 | pub fn rsp_send_done(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                                                    ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::event::nc_kqueue::Conn;
+    |
+18  | use crate::src::nc_client::Conn;
+    |
+
+error[E0412]: cannot find type `Msg` in this scope
+   --> src/nc_response.rs:294:63
+    |
+294 | pub fn rsp_send_done(ctx: &mut Context, conn: &mut Conn, msg: Msg) -> Result<(), RspError> {
+    |                                                               ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+18  | use crate::src::nc_client::Msg;
+    |
+18  | use crate::src::nc_message::Msg;
+    |
+18  | use crate::src::proto::nc_memcache::Msg;
+    |
+
+error[E0425]: cannot find function `log_debug` in this scope
+   --> src/nc_response.rs:298:5
+    |
+298 |     log_debug(LOG_VVERB, format!("send done rsp {} on c {}", msg.id, conn.sd));
+    |     ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+18  | use crate::src::nc_log::log_debug;
+    |
+
+error[E0425]: cannot find value `LOG_VVERB` in this scope
+   --> src/nc_response.rs:298:15
+    |
+298 |     log_debug(LOG_VVERB, format!("send done rsp {} on c {}", msg.id, conn.sd));
+    |               ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::src::nc_log::LOG_VVERB` exists but is inaccessible
+   --> src/nc_log.rs:21:1
+    |
+21  | const LOG_VVERB: i32 = 9;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `req_put` in this scope
+   --> src/nc_response.rs:306:5
+    |
+69  | pub fn rsp_put(msg: Msg) {
+    | ------------------------ similarly named function `rsp_put` defined here
+...
+306 |     req_put(pmsg.clone());
+    |     ^^^^^^^
+    |
+help: a function with a similar name exists
+    |
+306 |     rsp_put(pmsg.clone());
+    |     ~~~~~~~
+help: consider importing this function
+    |
+18  | use crate::src::nc_request::req_put;
+    |
+
+error[E0412]: cannot find type `EventBase` in this scope
+   --> src/nc_server.rs:130:10
+    |
+130 |     evb: EventBase,
+    |          ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use crate::src::event::nc_kqueue::EventBase;
+    |
+
+error[E0412]: cannot find type `sockaddr_storage` in this scope
+   --> src/nc_util.rs:381:15
+    |
+381 |     pub addr: sockaddr_storage,
+    |               ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::src::nc_util::libc::sockaddr_storage;
+    |
+3   | use libc::sockaddr_storage;
+    |
+
+error[E0412]: cannot find type `sockaddr_storage` in this scope
+   --> src/nc_util.rs:464:30
+    |
+464 | pub fn unresolve_addr(addr: &sockaddr_storage, addrlen: socklen_t) -> String {
+    |                              ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::src::nc_util::libc::sockaddr_storage;
+    |
+3   | use libc::sockaddr_storage;
+    |
+
+error[E0425]: cannot find value `RSP_AUTH_REQUIRED` in this scope
+   --> src/proto/nc_redis.rs:338:33
+    |
+338 |         return response.append(&RSP_AUTH_REQUIRED.data);
+    |                                 ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RSP_PONG` in this scope
+   --> src/proto/nc_redis.rs:342:51
+    |
+342 |         MsgType::ReqRedisPing => response.append(&RSP_PONG.data),
+    |                                                   ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RSP_OK` in this scope
+   --> src/proto/nc_redis.rs:351:38
+    |
+351 |     if let Err(e) = response.append(&RSP_OK.data) {
+    |                                      ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RSP_NO_PASSWORD` in this scope
+   --> src/proto/nc_redis.rs:408:28
+    |
+408 |         return rsp.append(&RSP_NO_PASSWORD.data);
+    |                            ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RSP_OK` in this scope
+   --> src/proto/nc_redis.rs:418:28
+    |
+418 |         return rsp.append(&RSP_OK.data);
+    |                            ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RSP_INVALID_PASSWORD` in this scope
+   --> src/proto/nc_redis.rs:422:17
+    |
+422 |     rsp.append(&RSP_INVALID_PASSWORD.data)
+    |                 ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `AsRawFd`
+  --> src/event/nc_epoll.rs:18:32
+   |
+18 | use std::os::unix::io::{RawFd, AsRawFd};
+   |                                ^^^^^^^
+
+warning: unused import: `pollfd`
+  --> src/event/nc_evport.rs:18:34
+   |
+18 | use libc::{c_int, c_void, close, pollfd, POLLIN, POLLOUT, POLLERR, EINTR, EAGAIN, ETIME, ENOENT};
+   |                                  ^^^^^^
+
+warning: unused imports: `Duration`, `Instant`
+  --> src/event/nc_evport.rs:20:17
+   |
+20 | use std::time::{Duration, Instant};
+   |                 ^^^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+  --> src/event/nc_evport.rs:23:5
+   |
+23 | use std::ffi::CStr;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+  --> src/event/nc_kqueue.rs:20:5
+   |
+20 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> src/hashkit/nc_ketama.rs:2:5
+  |
+2 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/hashkit/nc_ketama.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> src/hashkit/nc_ketama.rs:4:5
+  |
+4 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/hashkit/nc_ketama.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> src/hashkit/nc_ketama.rs:6:5
+  |
+6 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused imports: `size_t`, `uint32_t`
+ --> src/hashkit/nc_ketama.rs:9:12
+  |
+9 | use libc::{size_t, uint32_t};
+  |            ^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/hashkit/nc_modula.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/hashkit/nc_modula.rs:3:5
+  |
+3 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::fmt`
+ --> src/hashkit/nc_modula.rs:4:5
+  |
+4 | use std::fmt;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/hashkit/nc_random.rs:19:5
+   |
+19 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> src/hashkit/nc_random.rs:20:5
+   |
+20 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+  --> src/hashkit/nc_random.rs:21:5
+   |
+21 | use std::slice;
+   |     ^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+  --> src/hashkit/nc_random.rs:22:5
+   |
+22 | use std::cmp;
+   |     ^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+  --> src/hashkit/nc_random.rs:23:5
+   |
+23 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::hash_map::DefaultHasher`
+  --> src/hashkit/nc_random.rs:24:5
+   |
+24 | use std::collections::hash_map::DefaultHasher;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Hash`, `Hasher`
+  --> src/hashkit/nc_random.rs:25:17
+   |
+25 | use std::hash::{Hash, Hasher};
+   |                 ^^^^  ^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> src/nc.rs:19:5
+   |
+19 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `FromRawFd`
+  --> src/nc.rs:22:34
+   |
+22 | use std::os::unix::io::{AsRawFd, FromRawFd};
+   |                                  ^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/nc.rs:23:5
+   |
+23 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `c_int`
+  --> src/nc.rs:31:18
+   |
+31 | use libc::{self, c_int, pid_t};
+   |                  ^^^^^
+
+warning: unused import: `std::slice`
+  --> src/nc_array.rs:21:5
+   |
+21 | use std::slice;
+   |     ^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+  --> src/nc_client.rs:20:5
+   |
+20 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> src/nc_conf.rs:1:5
+  |
+1 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::io::Read`
+ --> src/nc_conf.rs:6:5
+  |
+6 | use std::io::Read;
+  |     ^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/nc_conf.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `SEEK_SET`
+ --> src/nc_conf.rs:8:20
+  |
+8 | use libc::{mode_t, SEEK_SET};
+  |                    ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/nc_conf.rs:10:5
+   |
+10 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `AsRawFd`
+ --> src/nc_connection.rs:2:25
+  |
+2 | use std::os::unix::io::{AsRawFd, RawFd};
+  |                         ^^^^^^^
+
+warning: unused import: `c_int`
+  --> src/nc_core.rs:18:20
+   |
+18 | use std::os::raw::{c_int, c_void};
+   |                    ^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> src/nc_core.rs:19:16
+   |
+19 | use std::ffi::{CStr, CString};
+   |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+  --> src/nc_core.rs:21:5
+   |
+21 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+  --> src/nc_core.rs:22:17
+   |
+22 | use std::time::{SystemTime, UNIX_EPOCH};
+   |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `SocketAddr`, `TcpStream`
+  --> src/nc_core.rs:23:16
+   |
+23 | use std::net::{SocketAddr, TcpStream};
+   |                ^^^^^^^^^^  ^^^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Result`
+  --> src/nc_core.rs:24:22
+   |
+24 | use std::io::{Error, ErrorKind, Result};
+   |                      ^^^^^^^^^  ^^^^^^
+
+warning: unused imports: `RawFd`, `ffi::CStr`, `path::Path`, `self`
+ --> src/nc_log.rs:2:5
+  |
+2 |     ffi::CStr,
+  |     ^^^^^^^^^
+...
+5 |     os::unix::io::{AsRawFd, FromRawFd, RawFd},
+  |                                        ^^^^^
+6 |     path::Path,
+  |     ^^^^^^^^^^
+...
+9 |     fmt::{self, Write as FmtWrite},
+  |           ^^^^
+
+warning: unused import: `self`
+  --> src/nc_message.rs:20:15
+   |
+20 | use std::io::{self, Write};
+   |               ^^^^
+
+warning: unused import: `std::mem`
+  --> src/nc_message.rs:21:5
+   |
+21 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused imports: `AsRawFd`, `RawFd`
+  --> src/nc_proxy.rs:18:25
+   |
+18 | use std::os::unix::io::{AsRawFd, RawFd};
+   |                         ^^^^^^^  ^^^^^
+
+warning: unused imports: `SocketAddr`, `TcpListener`
+  --> src/nc_proxy.rs:19:16
+   |
+19 | use std::net::{SocketAddr, TcpListener, UnixListener};
+   |                ^^^^^^^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/nc_proxy.rs:20:5
+   |
+20 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `ErrorKind`
+  --> src/nc_proxy.rs:22:21
+   |
+22 | use std::io::{self, ErrorKind};
+   |                     ^^^^^^^^^
+
+warning: unused import: `c_int`
+  --> src/nc_proxy.rs:23:18
+   |
+23 | use libc::{self, c_int};
+   |                  ^^^^^
+
+warning: unused import: `ErrorKind`
+  --> src/nc_request.rs:20:22
+   |
+20 | use std::io::{Error, ErrorKind};
+   |                      ^^^^^^^^^
+
+warning: unused import: `std::net::SocketAddr`
+  --> src/nc_request.rs:21:5
+   |
+21 | use std::net::SocketAddr;
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+  --> src/nc_request.rs:22:5
+   |
+22 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr::NonNull`
+  --> src/nc_response.rs:21:5
+   |
+21 | use std::ptr::NonNull;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `TcpStream`, `fmt`
+ --> src/nc_server.rs:3:23
+  |
+3 |     net::{SocketAddr, TcpStream},
+  |                       ^^^^^^^^^
+...
+9 |     fmt,
+  |     ^^^
+
+warning: unused import: `std::ffi::CStr`
+  --> src/nc_signal.rs:20:5
+   |
+20 | use std::ffi::CStr;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::raw::c_void`
+  --> src/nc_signal.rs:21:5
+   |
+21 | use std::os::raw::c_void;
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/nc_signal.rs:22:5
+   |
+22 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/nc_stats.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/nc_string.rs:21:5
+   |
+21 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+  --> src/nc_string.rs:22:5
+   |
+22 | use std::slice;
+   |     ^^^^^^^^^^
+
+warning: unused imports: `SocketAddr`, `ToSocketAddrs`
+ --> src/nc_util.rs:6:16
+  |
+6 | use std::net::{SocketAddr, ToSocketAddrs};
+  |                ^^^^^^^^^^  ^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> src/nc_util.rs:7:5
+  |
+7 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::net::UnixStream`
+ --> src/nc_util.rs:8:5
+  |
+8 | use std::os::unix::net::UnixStream;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AF_INET6`, `AF_INET`, `sockaddr_in6`, `sockaddr_in`
+  --> src/nc_util.rs:13:36
+   |
+13 |     self, c_int, c_void, sockaddr, sockaddr_in, sockaddr_in6, sockaddr_un, socklen_t, AF_INET,
+   |                                    ^^^^^^^^^^^  ^^^^^^^^^^^^                          ^^^^^^^
+14 |     AF_INET6, AF_UNIX, F_GETFL, F_SETFL, IPPROTO_TCP, NI_MAXHOST, NI_MAXSERV, O_NONBLOCK,
+   |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/proto/nc_memcache.rs:1:5
+  |
+1 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryFrom`
+ --> src/proto/nc_memcache.rs:2:5
+  |
+2 | use std::convert::TryFrom;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/proto/nc_memcache.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/proto/nc_memcache.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> src/proto/nc_memcache.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::str`
+ --> src/proto/nc_memcache.rs:6:5
+  |
+6 | use std::str;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> src/proto/nc_redis.rs:18:5
+   |
+18 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/proto/nc_redis.rs:19:5
+   |
+19 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::net`
+  --> src/proto/nc_redis.rs:23:5
+   |
+23 | use std::net;
+   |     ^^^^^^^^
+
+warning: unused import: `std::time`
+  --> src/proto/nc_redis.rs:24:5
+   |
+24 | use std::time;
+   |     ^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/proto/nc_redis.rs:26:5
+   |
+26 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`
+  --> src/proto/nc_redis.rs:27:20
+   |
+27 | use std::os::raw::{c_char, c_int, c_void};
+   |                    ^^^^^^  ^^^^^  ^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> src/proto/nc_redis.rs:28:16
+   |
+28 | use std::ffi::{CStr, CString};
+   |                ^^^^  ^^^^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+  --> src/proto/nc_redis.rs:29:25
+   |
+29 | use std::sync::atomic::{AtomicBool, Ordering};
+   |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `Receiver`, `Sender`, `channel`
+  --> src/proto/nc_redis.rs:30:23
+   |
+30 | use std::sync::mpsc::{channel, Sender, Receiver};
+   |                       ^^^^^^^  ^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::thread`
+  --> src/proto/nc_redis.rs:31:5
+   |
+31 | use std::thread;
+   |     ^^^^^^^^^^^
+
+warning: unused import: `std::error::Error`
+  --> src/proto/nc_redis.rs:32:5
+   |
+32 | use std::error::Error;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryFrom`
+  --> src/proto/nc_redis.rs:33:5
+   |
+33 | use std::convert::TryFrom;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::num::TryFromIntError`
+  --> src/proto/nc_redis.rs:34:5
+   |
+34 | use std::num::TryFromIntError;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_int`, `c_uint`
+ --> src/test_all.rs:2:28
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_void};
+  |                            ^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/test_all.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: use of deprecated type alias `libc::uint32_t`: Use u32 instead.
+ --> src/hashkit/nc_ketama.rs:9:20
+  |
+9 | use libc::{size_t, uint32_t};
+  |                    ^^^^^^^^
+  |
+  = note: `#[warn(deprecated)]` on by default
+
+error[E0658]: use of unstable library feature 'io_error_more'
+   --> src/nc_client.rs:149:47
+    |
+149 |             ClientError::Io(e) if e.kind() == std::io::ErrorKind::NetworkDown => {}
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: see issue #86442 <https://github.com/rust-lang/rust/issues/86442> for more information
+    = help: add `#![feature(io_error_more)]` to the crate attributes to enable
+
+error[E0658]: use of unstable library feature 'io_error_more'
+   --> src/nc_client.rs:150:47
+    |
+150 |             ClientError::Io(e) if e.kind() == std::io::ErrorKind::NetworkUnreachable => {}
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: see issue #86442 <https://github.com/rust-lang/rust/issues/86442> for more information
+    = help: add `#![feature(io_error_more)]` to the crate attributes to enable
+
+error[E0658]: use of unstable library feature 'io_error_more'
+   --> src/nc_client.rs:152:47
+    |
+152 |             ClientError::Io(e) if e.kind() == std::io::ErrorKind::HostUnreachable => {}
+    |                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: see issue #86442 <https://github.com/rust-lang/rust/issues/86442> for more information
+    = help: add `#![feature(io_error_more)]` to the crate attributes to enable
+
+error[E0308]: mismatched types
+  --> src/event/nc_epoll.rs:75:21
+   |
+75 |             events: EPOLLIN | EPOLLET,
+   |                     ^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:103:21
+    |
+103 |             events: EPOLLIN | EPOLLOUT | EPOLLET,
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:127:21
+    |
+127 |             events: EPOLLIN | EPOLLET,
+    |                     ^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:146:21
+    |
+146 |             events: EPOLLIN | EPOLLOUT | EPOLLET,
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:189:36
+    |
+189 |                     if ev.events & EPOLLERR != 0 {
+    |                                    ^^^^^^^^ expected `u32`, found `i32`
+
+error[E0277]: no implementation for `u32 & i32`
+   --> src/event/nc_epoll.rs:189:34
+    |
+189 |                     if ev.events & EPOLLERR != 0 {
+    |                                  ^ no implementation for `u32 & i32`
+    |
+    = help: the trait `BitAnd<i32>` is not implemented for `u32`
+    = help: the following other types implement trait `BitAnd<Rhs>`:
+              <&'a i128 as BitAnd<i128>>
+              <&'a i16 as BitAnd<i16>>
+              <&'a i32 as BitAnd<i32>>
+              <&'a i64 as BitAnd<i64>>
+              <&'a i8 as BitAnd<i8>>
+              <&'a isize as BitAnd<isize>>
+              <&'a u128 as BitAnd<u128>>
+              <&'a u16 as BitAnd<u16>>
+            and 40 others
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:193:36
+    |
+193 |                     if ev.events & (EPOLLIN | EPOLLHUP) != 0 {
+    |                                    ^^^^^^^^^^^^^^^^^^^^ expected `u32`, found `i32`
+
+error[E0277]: no implementation for `u32 & i32`
+   --> src/event/nc_epoll.rs:193:34
+    |
+193 |                     if ev.events & (EPOLLIN | EPOLLHUP) != 0 {
+    |                                  ^ no implementation for `u32 & i32`
+    |
+    = help: the trait `BitAnd<i32>` is not implemented for `u32`
+    = help: the following other types implement trait `BitAnd<Rhs>`:
+              <&'a i128 as BitAnd<i128>>
+              <&'a i16 as BitAnd<i16>>
+              <&'a i32 as BitAnd<i32>>
+              <&'a i64 as BitAnd<i64>>
+              <&'a i8 as BitAnd<i8>>
+              <&'a isize as BitAnd<isize>>
+              <&'a u128 as BitAnd<u128>>
+              <&'a u16 as BitAnd<u16>>
+            and 40 others
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:197:36
+    |
+197 |                     if ev.events & EPOLLOUT != 0 {
+    |                                    ^^^^^^^^ expected `u32`, found `i32`
+
+error[E0277]: no implementation for `u32 & i32`
+   --> src/event/nc_epoll.rs:197:34
+    |
+197 |                     if ev.events & EPOLLOUT != 0 {
+    |                                  ^ no implementation for `u32 & i32`
+    |
+    = help: the trait `BitAnd<i32>` is not implemented for `u32`
+    = help: the following other types implement trait `BitAnd<Rhs>`:
+              <&'a i128 as BitAnd<i128>>
+              <&'a i16 as BitAnd<i16>>
+              <&'a i32 as BitAnd<i32>>
+              <&'a i64 as BitAnd<i64>>
+              <&'a i8 as BitAnd<i8>>
+              <&'a isize as BitAnd<isize>>
+              <&'a u128 as BitAnd<u128>>
+              <&'a u16 as BitAnd<u16>>
+            and 40 others
+
+error[E0308]: mismatched types
+   --> src/event/nc_epoll.rs:247:17
+    |
+247 |         events: EPOLLIN,
+    |                 ^^^^^^^ expected `u32`, found `i32`
+
+error[E0277]: the trait bound `[u8; 64]: Default` is not satisfied
+  --> src/hashkit/nc_md5.rs:30:5
+   |
+22 | #[derive(Default)]
+   |          ------- in this derive macro expansion
+...
+30 |     buffer: [u8; 64],
+   |     ^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `[u8; 64]`
+   |
+   = help: the following other types implement trait `Default`:
+             &[T]
+             &mut [T]
+             [T; 0]
+             [T; 10]
+             [T; 11]
+             [T; 12]
+             [T; 13]
+             [T; 14]
+           and 27 others
+   = note: this error originates in the derive macro `Default` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `nc_random::Continuum: Clone` is not satisfied
+    --> src/hashkit/nc_random.rs:103:35
+     |
+103  |             self.continuum = vec![Continuum { index: 0, value: 0 }; ncontinuum as usize];
+     |                              -----^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^----------------------
+     |                              |    |
+     |                              |    the trait `Clone` is not implemented for `nc_random::Continuum`
+     |                              required by a bound introduced by this call
+     |
+note: required by a bound in `from_elem`
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2456:21
+     |
+2456 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |                     ^^^^^ required by this bound in `from_elem`
+help: consider annotating `nc_random::Continuum` with `#[derive(Clone)]`
+     |
+31   | #[derive(Clone)]
+     |
+
+error[E0277]: `nc_client::Conn` doesn't implement `Debug`
+    --> src/nc_client.rs:99:42
+     |
+99   |     let mut conn = Arc::try_unwrap(conn).unwrap();
+     |                                          ^^^^^^ `nc_client::Conn` cannot be formatted using `{:?}`
+     |
+     = help: the trait `Debug` is not implemented for `nc_client::Conn`
+     = note: add `#[derive(Debug)]` to `nc_client::Conn` or manually `impl Debug for nc_client::Conn`
+     = help: the trait `Debug` is implemented for `Arc<T>`
+     = note: required because of the requirements on the impl of `Debug` for `Arc<nc_client::Conn>`
+note: required by a bound in `std::result::Result::<T, E>::unwrap`
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/result.rs:1103:12
+     |
+1103 |         E: fmt::Debug,
+     |            ^^^^^^^^^^ required by this bound in `std::result::Result::<T, E>::unwrap`
+
+error[E0599]: no variant or associated item named `HostDown` found for enum `ErrorKind` in the current scope
+   --> src/nc_client.rs:151:67
+    |
+151 |             ClientError::Io(e) if e.kind() == std::io::ErrorKind::HostDown => {}
+    |                                                                   ^^^^^^^^ variant or associated item not found in `ErrorKind`
+
+error[E0599]: the method `clone` exists for enum `Option<ClientError>`, but its trait bounds were not satisfied
+   --> src/nc_client.rs:162:68
+    |
+27  | pub enum ClientError {
+    | -------------------- doesn't satisfy `ClientError: Clone`
+...
+162 |     client_close_stats(ctx, conn.owner.as_ref().unwrap(), conn.err.clone(), conn.eof);
+    |                                                                    ^^^^^ method cannot be called on `Option<ClientError>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:518:1
+    |
+518 | pub enum Option<T> {
+    | ------------------ doesn't satisfy `Option<ClientError>: Clone`
+    |
+    = note: the following trait bounds were not satisfied:
+            `ClientError: Clone`
+            which is required by `Option<ClientError>: Clone`
+help: consider annotating `ClientError` with `#[derive(Clone)]`
+    |
+27  | #[derive(Clone)]
+    |
+
+error[E0277]: `nc_client::Msg` doesn't implement `Debug`
+    --> src/nc_client.rs:196:48
+     |
+196  |             let mut msg = Arc::try_unwrap(msg).unwrap();
+     |                                                ^^^^^^ `nc_client::Msg` cannot be formatted using `{:?}`
+     |
+     = help: the trait `Debug` is not implemented for `nc_client::Msg`
+     = note: add `#[derive(Debug)]` to `nc_client::Msg` or manually `impl Debug for nc_client::Msg`
+     = help: the trait `Debug` is implemented for `Arc<T>`
+     = note: required because of the requirements on the impl of `Debug` for `Arc<nc_client::Msg>`
+note: required by a bound in `std::result::Result::<T, E>::unwrap`
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/result.rs:1103:12
+     |
+1103 |         E: fmt::Debug,
+     |            ^^^^^^^^^^ required by this bound in `std::result::Result::<T, E>::unwrap`
+
+error[E0308]: mismatched types
+   --> src/nc_client.rs:212:12
+    |
+212 |     if let Err(e) = unsafe { libc::close(conn.sd) } {
+    |            ^^^^^^   ------------------------------- this expression has type `i32`
+    |            |
+    |            expected `i32`, found enum `std::result::Result`
+    |
+    = note: expected type `i32`
+               found enum `std::result::Result<_, _>`
+
+error[E0308]: mismatched types
+   --> src/nc_connection.rs:98:29
+    |
+98  |         Arc::new(Mutex::new(conn))
+    |                  ---------- ^^^^ expected struct `nc_connection::Conn`, found struct `MutexGuard`
+    |                  |
+    |                  arguments to this function are incorrect
+    |
+    = note: expected struct `nc_connection::Conn`
+               found struct `MutexGuard<'_, nc_connection::Conn, >`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/sync/mutex.rs:218:18
+    |
+218 |     pub const fn new(t: T) -> Mutex<T> {
+    |                  ^^^
+
+error[E0308]: mismatched types
+    --> src/nc_connection.rs:111:46
+     |
+111  |         FREE_CONNQ.lock().unwrap().push_back(conn);
+     |                                    --------- ^^^^ expected struct `Arc`, found struct `MutexGuard`
+     |                                    |
+     |                                    arguments to this function are incorrect
+     |
+     = note: expected struct `Arc<Mutex<nc_connection::Conn>>`
+                found struct `MutexGuard<'_, nc_connection::Conn>`
+note: associated function defined here
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/collections/vec_deque/mod.rs:1569:12
+     |
+1569 |     pub fn push_back(&mut self, value: T) {
+     |            ^^^^^^^^^
+
+error[E0599]: no function or associated item named `from_raw_fd` found for struct `TcpStream` in the current scope
+   --> src/nc_connection.rs:119:46
+    |
+119 |             let stream = unsafe { TcpStream::from_raw_fd(self.sd) };
+    |                                              ^^^^^^^^^^^ function or associated item not found in `TcpStream`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::io::FromRawFd;
+    |
+
+error[E0599]: no function or associated item named `from_raw_fd` found for struct `TcpStream` in the current scope
+   --> src/nc_connection.rs:155:46
+    |
+155 |             let stream = unsafe { TcpStream::from_raw_fd(self.sd) };
+    |                                              ^^^^^^^^^^^ function or associated item not found in `TcpStream`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::io::FromRawFd;
+    |
+
+error[E0599]: no method named `downcast_ref` found for reference `&Arc<Mutex<(dyn Any + Send + Sync + 'static)>>` in the current scope
+   --> src/nc_connection.rs:202:38
+    |
+202 |         conn.owner.as_ref().unwrap().downcast_ref::<ServerPool>().unwrap()
+    |                                      ^^^^^^^^^^^^ method not found in `&Arc<Mutex<(dyn Any + Send + Sync + 'static)>>`
+
+error[E0599]: no method named `downcast_ref` found for reference `&Arc<Mutex<(dyn Any + Send + Sync + 'static)>>` in the current scope
+   --> src/nc_connection.rs:204:38
+    |
+204 |         conn.owner.as_ref().unwrap().downcast_ref::<Server>().unwrap().owner
+    |                                      ^^^^^^^^^^^^ method not found in `&Arc<Mutex<(dyn Any + Send + Sync + 'static)>>`
+
+error[E0609]: no field `max_nfd` on type `&mut nc_core::Context`
+  --> src/nc_core.rs:95:9
+   |
+95 |     ctx.max_nfd = limit.rlim_cur as u32;
+   |         ^^^^^^^ unknown field
+
+error[E0609]: no field `max_ncconn` on type `&mut nc_core::Context`
+  --> src/nc_core.rs:96:9
+   |
+96 |     ctx.max_ncconn = ctx.max_nfd - ctx.max_nsconn - RESERVED_FDS;
+   |         ^^^^^^^^^^ unknown field
+
+error[E0609]: no field `max_nfd` on type `&mut nc_core::Context`
+  --> src/nc_core.rs:96:26
+   |
+96 |     ctx.max_ncconn = ctx.max_nfd - ctx.max_nsconn - RESERVED_FDS;
+   |                          ^^^^^^^ unknown field
+
+error[E0609]: no field `max_nsconn` on type `&mut nc_core::Context`
+  --> src/nc_core.rs:96:40
+   |
+96 |     ctx.max_ncconn = ctx.max_nfd - ctx.max_nsconn - RESERVED_FDS;
+   |                                        ^^^^^^^^^^ unknown field
+
+error[E0560]: struct `nc_core::Context` has no field named `id`
+   --> src/nc_core.rs:102:9
+    |
+102 |         id: CTX_ID.fetch_add(1, Ordering::SeqCst),
+    |         ^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `cf`
+   --> src/nc_core.rs:103:9
+    |
+103 |         cf: ptr::null_mut(),
+    |         ^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `stats`
+   --> src/nc_core.rs:104:9
+    |
+104 |         stats: ptr::null_mut(),
+    |         ^^^^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `pool`
+   --> src/nc_core.rs:105:9
+    |
+105 |         pool: Array,
+    |         ^^^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `evb`
+   --> src/nc_core.rs:106:9
+    |
+106 |         evb: ptr::null_mut(),
+    |         ^^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `max_timeout`
+   --> src/nc_core.rs:107:9
+    |
+107 |         max_timeout: nci.stats_interval,
+    |         ^^^^^^^^^^^ `nc_core::Context` does not have this field
+
+error[E0609]: no field `stats_interval` on type `&nc_core::Instance`
+   --> src/nc_core.rs:107:26
+    |
+107 |         max_timeout: nci.stats_interval,
+    |                          ^^^^^^^^^^^^^^ unknown field
+
+error[E0560]: struct `nc_core::Context` has no field named `timeout`
+   --> src/nc_core.rs:108:9
+    |
+108 |         timeout: nci.stats_interval,
+    |         ^^^^^^^ `nc_core::Context` does not have this field
+
+error[E0609]: no field `stats_interval` on type `&nc_core::Instance`
+   --> src/nc_core.rs:108:22
+    |
+108 |         timeout: nci.stats_interval,
+    |                      ^^^^^^^^^^^^^^ unknown field
+
+error[E0560]: struct `nc_core::Context` has no field named `max_nfd`
+   --> src/nc_core.rs:109:9
+    |
+109 |         max_nfd: 0,
+    |         ^^^^^^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `max_ncconn`
+   --> src/nc_core.rs:110:9
+    |
+110 |         max_ncconn: 0,
+    |         ^^^^^^^^^^ `nc_core::Context` does not have this field
+
+error[E0560]: struct `nc_core::Context` has no field named `max_nsconn`
+   --> src/nc_core.rs:111:9
+    |
+111 |         max_nsconn: 0,
+    |         ^^^^^^^^^^ `nc_core::Context` does not have this field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:115:16
+    |
+115 |         (*ctx).cf = conf_create(nci.conf_filename);
+    |                ^^ unknown field
+
+error[E0609]: no field `conf_filename` on type `&nc_core::Instance`
+   --> src/nc_core.rs:115:37
+    |
+115 |         (*ctx).cf = conf_create(nci.conf_filename);
+    |                                     ^^^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:116:19
+    |
+116 |         if (*ctx).cf.is_null() {
+    |                   ^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:121:41
+    |
+121 |         if server_pool_init(&mut (*ctx).pool, &(*(*ctx).cf).pool, ctx) != NC_OK {
+    |                                         ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:121:57
+    |
+121 |         if server_pool_init(&mut (*ctx).pool, &(*(*ctx).cf).pool, ctx) != NC_OK {
+    |                                                         ^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:122:33
+    |
+122 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:128:44
+    |
+128 |             server_pool_deinit(&mut (*ctx).pool);
+    |                                            ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:129:33
+    |
+129 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:134:16
+    |
+134 |         (*ctx).stats = stats_create(
+    |                ^^^^^ unknown field
+
+error[E0609]: no field `stats_port` on type `&nc_core::Instance`
+   --> src/nc_core.rs:135:17
+    |
+135 |             nci.stats_port,
+    |                 ^^^^^^^^^^ unknown field
+
+error[E0609]: no field `stats_addr` on type `&nc_core::Instance`
+   --> src/nc_core.rs:136:17
+    |
+136 |             nci.stats_addr,
+    |                 ^^^^^^^^^^ unknown field
+
+error[E0609]: no field `stats_interval` on type `&nc_core::Instance`
+   --> src/nc_core.rs:137:17
+    |
+137 |             nci.stats_interval,
+    |                 ^^^^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `hostname` on type `&nc_core::Instance`
+   --> src/nc_core.rs:138:17
+    |
+138 |             nci.hostname.as_ptr(),
+    |                 ^^^^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:139:21
+    |
+139 |             &(*ctx).pool,
+    |                     ^^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:141:19
+    |
+141 |         if (*ctx).stats.is_null() {
+    |                   ^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:142:44
+    |
+142 |             server_pool_deinit(&mut (*ctx).pool);
+    |                                            ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:143:33
+    |
+143 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:148:16
+    |
+148 |         (*ctx).evb = event_base_create(EVENT_SIZE, Some(core_core));
+    |                ^^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:149:19
+    |
+149 |         if (*ctx).evb.is_null() {
+    |                   ^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:150:34
+    |
+150 |             stats_destroy((*ctx).stats);
+    |                                  ^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:151:44
+    |
+151 |             server_pool_deinit(&mut (*ctx).pool);
+    |                                            ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:152:33
+    |
+152 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:159:39
+    |
+159 |             event_base_destroy((*ctx).evb);
+    |                                       ^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:160:34
+    |
+160 |             stats_destroy((*ctx).stats);
+    |                                  ^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:161:44
+    |
+161 |             server_pool_deinit(&mut (*ctx).pool);
+    |                                            ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:162:33
+    |
+162 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:169:39
+    |
+169 |             event_base_destroy((*ctx).evb);
+    |                                       ^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:170:34
+    |
+170 |             stats_destroy((*ctx).stats);
+    |                                  ^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:171:44
+    |
+171 |             server_pool_deinit(&mut (*ctx).pool);
+    |                                            ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:172:33
+    |
+172 |             conf_destroy((*ctx).cf);
+    |                                 ^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:185:35
+    |
+185 |         event_base_destroy((*ctx).evb);
+    |                                   ^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:186:30
+    |
+186 |         stats_destroy((*ctx).stats);
+    |                              ^^^^^ unknown field
+
+error[E0609]: no field `pool` on type `nc_core::Context`
+   --> src/nc_core.rs:187:40
+    |
+187 |         server_pool_deinit(&mut (*ctx).pool);
+    |                                        ^^^^ unknown field
+
+error[E0609]: no field `cf` on type `nc_core::Context`
+   --> src/nc_core.rs:188:29
+    |
+188 |         conf_destroy((*ctx).cf);
+    |                             ^^ unknown field
+
+error[E0609]: no field `ctx` on type `nc_core::Instance`
+   --> src/nc_core.rs:202:20
+    |
+202 |             (*nci).ctx = ctx;
+    |                    ^^^ unknown field
+
+error[E0609]: no field `recv` on type `nc_core::Conn`
+   --> src/nc_core.rs:226:31
+    |
+226 |         let status = ((*conn).recv)(ctx, conn);
+    |                               ^^^^ unknown field
+
+error[E0609]: no field `send` on type `nc_core::Conn`
+   --> src/nc_core.rs:236:31
+    |
+236 |         let status = ((*conn).send)(ctx, conn);
+    |                               ^^^^ unknown field
+
+error[E0609]: no field `sd` on type `nc_core::Conn`
+   --> src/nc_core.rs:246:20
+    |
+246 |         if (*conn).sd <= 0 {
+    |                    ^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:252:44
+    |
+252 |         let status = event_del_conn((*ctx).evb, conn);
+    |                                            ^^^ unknown field
+
+error[E0609]: no field `close` on type `nc_core::Conn`
+   --> src/nc_core.rs:257:18
+    |
+257 |         ((*conn).close)(ctx, conn);
+    |                  ^^^^^ unknown field
+
+error[E0609]: no field `sd` on type `nc_core::Conn`
+   --> src/nc_core.rs:263:45
+    |
+263 |         let status = nc_get_soerror((*conn).sd);
+    |                                             ^^ unknown field
+
+error[E0609]: no field `err` on type `nc_core::Conn`
+   --> src/nc_core.rs:267:17
+    |
+267 |         (*conn).err = Error::last_os_error().raw_os_error().unwrap_or(0);
+    |                 ^^^ unknown field
+
+error[E0609]: no field `timeout` on type `nc_core::Context`
+   --> src/nc_core.rs:278:24
+    |
+278 |                 (*ctx).timeout = (*ctx).max_timeout;
+    |                        ^^^^^^^ unknown field
+
+error[E0609]: no field `max_timeout` on type `nc_core::Context`
+   --> src/nc_core.rs:278:41
+    |
+278 |                 (*ctx).timeout = (*ctx).max_timeout;
+    |                                         ^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `timeout` on type `nc_core::Context`
+   --> src/nc_core.rs:293:24
+    |
+293 |                 (*ctx).timeout = std::cmp::min(delta, (*ctx).max_timeout);
+    |                        ^^^^^^^ unknown field
+
+error[E0609]: no field `max_timeout` on type `nc_core::Context`
+   --> src/nc_core.rs:293:62
+    |
+293 |                 (*ctx).timeout = std::cmp::min(delta, (*ctx).max_timeout);
+    |                                                              ^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `owner` on type `nc_core::Conn`
+   --> src/nc_core.rs:311:20
+    |
+311 |         if (*conn).owner.is_null() {
+    |                    ^^^^^ unknown field
+
+error[E0609]: no field `events` on type `nc_core::Conn`
+   --> src/nc_core.rs:316:17
+    |
+316 |         (*conn).events = events;
+    |                 ^^^^^^ unknown field
+
+error[E0609]: no field `done` on type `nc_core::Conn`
+   --> src/nc_core.rs:325:43
+    |
+325 |             if status != NC_OK || (*conn).done || (*conn).err != 0 {
+    |                                           ^^^^ unknown field
+
+error[E0609]: no field `err` on type `nc_core::Conn`
+   --> src/nc_core.rs:325:59
+    |
+325 |             if status != NC_OK || (*conn).done || (*conn).err != 0 {
+    |                                                           ^^^ unknown field
+
+error[E0609]: no field `done` on type `nc_core::Conn`
+   --> src/nc_core.rs:333:43
+    |
+333 |             if status != NC_OK || (*conn).done || (*conn).err != 0 {
+    |                                           ^^^^ unknown field
+
+error[E0609]: no field `err` on type `nc_core::Conn`
+   --> src/nc_core.rs:333:59
+    |
+333 |             if status != NC_OK || (*conn).done || (*conn).err != 0 {
+    |                                                           ^^^ unknown field
+
+error[E0609]: no field `evb` on type `nc_core::Context`
+   --> src/nc_core.rs:346:37
+    |
+346 |         let nsd = event_wait((*ctx).evb, (*ctx).timeout);
+    |                                     ^^^ unknown field
+
+error[E0609]: no field `timeout` on type `nc_core::Context`
+   --> src/nc_core.rs:346:49
+    |
+346 |         let nsd = event_wait((*ctx).evb, (*ctx).timeout);
+    |                                                 ^^^^^^^ unknown field
+
+error[E0609]: no field `stats` on type `nc_core::Context`
+   --> src/nc_core.rs:352:27
+    |
+352 |         stats_swap((*ctx).stats);
+    |                           ^^^^^ unknown field
+
+error[E0599]: no function or associated item named `from_mode` found for struct `Permissions` in the current scope
+   --> src/nc_proxy.rs:123:56
+    |
+123 |             fs::set_permissions(path, fs::Permissions::from_mode(pool.perm))?;
+    |                                                        ^^^^^^^^^ function or associated item not found in `Permissions`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+18  | use std::os::unix::fs::PermissionsExt;
+    |
+
+error[E0369]: binary operation `!=` cannot be applied to type `RBNode<T>`
+  --> src/nc_rbtree.rs:76:37
+   |
+76 |         while unsafe { (*node.left) != *self.sentinel } {
+   |                        ------------ ^^ -------------- RBNode<T>
+   |                        |
+   |                        RBNode<T>
+   |
+note: an implementation of `PartialEq<_>` might be missing for `RBNode<T>`
+  --> src/nc_rbtree.rs:10:1
+   |
+10 | struct RBNode<T> {
+   | ^^^^^^^^^^^^^^^^ must implement `PartialEq<_>`
+help: consider annotating `RBNode<T>` with `#[derive(PartialEq)]`
+   |
+10 | #[derive(PartialEq)]
+   |
+help: consider introducing a `where` clause, but there might be an alternative better way to express this requirement
+   |
+61 | impl<T> RBTree<T> where RBNode<T>: PartialEq {
+   |                   ++++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> src/nc_signal.rs:79:53
+    |
+79  |             log_safe("Unknown signal received: {}", signo);
+    |             --------                                ^^^^^ expected struct `Arguments`, found `i32`
+    |             |
+    |             arguments to this function are incorrect
+    |
+note: function defined here
+   --> src/nc_signal.rs:126:4
+    |
+126 | fn log_safe(_msg: &str, _args: std::fmt::Arguments) {}
+    |    ^^^^^^^^ ----------  --------------------------
+
+error[E0061]: this function takes 2 arguments but 4 arguments were supplied
+   --> src/nc_signal.rs:114:5
+    |
+114 |     log_safe("signal {} ({}) received{}", signo, sig.signame, actionstr);
+    |     ^^^^^^^^                              -----  -----------  --------- argument of type `&str` unexpected
+    |                                           |      |
+    |                                           |      argument of type `&'static str` unexpected
+    |                                           expected struct `Arguments`, found `i32`
+    |
+note: function defined here
+   --> src/nc_signal.rs:126:4
+    |
+126 | fn log_safe(_msg: &str, _args: std::fmt::Arguments) {}
+    |    ^^^^^^^^ ----------  --------------------------
+help: remove the extra arguments
+    |
+114 |     log_safe("signal {} ({}) received{}", /* Arguments<'_> */);
+    |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0599]: no method named `clone` found for mutable reference `&mut nc_stats::Stats` in the current scope
+   --> src/nc_stats.rs:191:46
+    |
+191 |         let stats = Arc::new(Mutex::new(self.clone()));
+    |                                              ^^^^^ method not found in `&mut nc_stats::Stats`
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the trait `Clone` defines an item `clone`, but is explicitly unimplemented
+
+error[E0308]: mismatched types
+   --> src/nc_util.rs:465:24
+    |
+465 |     let mut host = [0; NI_MAXHOST];
+    |                        ^^^^^^^^^^ expected `usize`, found `u32`
+
+error[E0599]: no variant or associated item named `RspRedisErrorOom` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:284:24
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `RspRedisErrorOom` not found for this enum
+...
+284 |             | MsgType::RspRedisErrorOom
+    |                        ^^^^^^^^^^^^^^^^
+    |                        |
+    |                        variant or associated item not found in `nc_redis::MsgType`
+    |                        help: there is a variant with a similar name: `RspRedisError`
+
+error[E0599]: no variant or associated item named `RspRedisErrorBusy` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:285:24
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `RspRedisErrorBusy` not found for this enum
+...
+285 |             | MsgType::RspRedisErrorBusy
+    |                        ^^^^^^^^^^^^^^^^^
+    |                        |
+    |                        variant or associated item not found in `nc_redis::MsgType`
+    |                        help: there is a variant with a similar name: `RspRedisError`
+
+error[E0599]: no variant or associated item named `RspRedisErrorLoading` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:286:24
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `RspRedisErrorLoading` not found for this enum
+...
+286 |             | MsgType::RspRedisErrorLoading
+    |                        ^^^^^^^^^^^^^^^^^^^^ variant or associated item not found in `nc_redis::MsgType`
+
+error[E0599]: no variant or associated item named `ReqRedisTouch` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:322:20
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisTouch` not found for this enum
+...
+322 |         | MsgType::ReqRedisTouch
+    |                    ^^^^^^^^^^^^^
+    |                    |
+    |                    variant or associated item not found in `nc_redis::MsgType`
+    |                    help: there is a variant with a similar name: `ReqRedisAuth`
+
+error[E0599]: no variant or associated item named `ReqRedisUnlink` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:323:20
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisUnlink` not found for this enum
+...
+323 |         | MsgType::ReqRedisUnlink => redis_fragment_argx(r, nserver, frag_msgq, 1),
+    |                    ^^^^^^^^^^^^^^
+    |                    |
+    |                    variant or associated item not found in `nc_redis::MsgType`
+    |                    help: there is a variant with a similar name: `ReqRedisPing`
+
+error[E0599]: no method named `is_none` found for reference `&Arc<nc_redis::Msg>` in the current scope
+   --> src/proto/nc_redis.rs:374:20
+    |
+374 |         if sub_msg.is_none() {
+    |                    ^^^^^^^ method not found in `&Arc<nc_redis::Msg>`
+
+error[E0308]: mismatched types
+   --> src/proto/nc_redis.rs:378:46
+    |
+378 |         if let Err(e) = redis_copy_bulk(Some(response), sub_msg) {
+    |                                         ---- ^^^^^^^^ types differ in mutability
+    |                                         |
+    |                                         arguments to this enum variant are incorrect
+    |
+    = note: expected mutable reference `&mut nc_redis::Msg`
+                       found reference `&Arc<nc_redis::Msg>`
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> src/proto/nc_redis.rs:378:57
+    |
+378 |         if let Err(e) = redis_copy_bulk(Some(response), sub_msg) {
+    |                         ---------------                 ^^^^^^^ types differ in mutability
+    |                         |
+    |                         arguments to this function are incorrect
+    |
+    = note: expected mutable reference `&mut nc_redis::Msg`
+                       found reference `&Arc<nc_redis::Msg>`
+note: function defined here
+   --> src/proto/nc_redis.rs:290:4
+    |
+290 | fn redis_copy_bulk(dst: Option<&mut Msg>, src: &mut Msg) -> io::Result<()> {
+    |    ^^^^^^^^^^^^^^^ ---------------------  -------------
+
+error[E0369]: binary operation `==` cannot be applied to type `&Arc<nc_redis::Msg>`
+   --> src/proto/nc_redis.rs:388:59
+    |
+388 |     assert!(pr.request && (r.frag_owner.as_ref().unwrap() == r));
+    |                            ------------------------------ ^^ - &Arc<nc_redis::Msg>
+    |                            |
+    |                            &Arc<nc_redis::Msg>
+
+error[E0609]: no field `ferror` on type `&Arc<nc_redis::Msg>`
+   --> src/proto/nc_redis.rs:389:21
+    |
+389 |     if r.error || r.ferror {
+    |                     ^^^^^^ unknown field
+
+error[E0599]: no variant or associated item named `ReqRedisTouch` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:396:20
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisTouch` not found for this enum
+...
+396 |         | MsgType::ReqRedisTouch
+    |                    ^^^^^^^^^^^^^
+    |                    |
+    |                    variant or associated item not found in `nc_redis::MsgType`
+    |                    help: there is a variant with a similar name: `ReqRedisAuth`
+
+error[E0599]: no variant or associated item named `ReqRedisUnlink` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:397:20
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisUnlink` not found for this enum
+...
+397 |         | MsgType::ReqRedisUnlink => redis_post_coalesce_del_or_touch(r),
+    |                    ^^^^^^^^^^^^^^
+    |                    |
+    |                    variant or associated item not found in `nc_redis::MsgType`
+    |                    help: there is a variant with a similar name: `ReqRedisPing`
+
+error[E0609]: no field `owner` on type `&Arc<dyn nc_redis::Connection>`
+   --> src/proto/nc_redis.rs:405:21
+    |
+405 |     let pool = conn.owner.as_ref().unwrap();
+    |                     ^^^^^ unknown field
+
+error[E0609]: no field `owner` on type `&Arc<(dyn nc_redis::Connection + 'static)>`
+   --> src/proto/nc_redis.rs:430:23
+    |
+430 |     let pool = c_conn.owner.as_ref().unwrap();
+    |                       ^^^^^ unknown field
+
+error[E0609]: no field `owner` on type `&Arc<(dyn nc_redis::Connection + 'static)>`
+   --> src/proto/nc_redis.rs:450:23
+    |
+450 |     let pool = server.owner.as_ref().unwrap();
+    |                       ^^^^^ unknown field
+
+error[E0599]: no variant or associated item named `ReqRedisSelect` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:469:26
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisSelect` not found for this enum
+...
+469 |     msg.type_ = MsgType::ReqRedisSelect;
+    |                          ^^^^^^^^^^^^^^
+    |                          |
+    |                          variant or associated item not found in `nc_redis::MsgType`
+    |                          help: there is a variant with a similar name: `ReqRedisSet`
+
+error[E0599]: no variant or associated item named `ReqRedisSelect` found for enum `nc_redis::MsgType` in the current scope
+   --> src/proto/nc_redis.rs:489:35
+    |
+177 | enum MsgType {
+    | ------------ variant or associated item `ReqRedisSelect` not found for this enum
+...
+489 |         if pmsg.type_ == MsgType::ReqRedisSelect && redis_error(msg) {
+    |                                   ^^^^^^^^^^^^^^
+    |                                   |
+    |                                   variant or associated item not found in `nc_redis::MsgType`
+    |                                   help: there is a variant with a similar name: `ReqRedisSet`
+
+error[E0609]: no field `owner` on type `&Arc<(dyn nc_redis::Connection + 'static)>`
+   --> src/proto/nc_redis.rs:490:36
+    |
+490 |             let conn_server = conn.owner.as_ref().unwrap();
+    |                                    ^^^^^ unknown field
+
+error[E0599]: no function or associated item named `from_utf8_lossy` found for struct `nc_redis::String` in the current scope
+   --> src/proto/nc_redis.rs:495:35
+    |
+50  | struct String {
+    | ------------- function or associated item `from_utf8_lossy` not found for this struct
+...
+495 |             let message = String::from_utf8_lossy(&rsp_buffer[1..copy_len+1]);
+    |                                   ^^^^^^^^^^^^^^^ function or associated item not found in `nc_redis::String`
+
+warning: unused import: `Write`
+ --> src/nc_log.rs:9:17
+  |
+9 |     fmt::{self, Write as FmtWrite},
+  |                 ^^^^^
+
+warning: unused import: `Write`
+  --> src/nc_message.rs:20:21
+   |
+20 | use std::io::{self, Write};
+   |                     ^^^^^
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0369, E0412, E0425, E0428, E0432, E0433...
+For more information about an error, try `rustc --explain E0061`.
+warning: `c2rust_out` (lib) generated 87 warnings
+error: could not compile `c2rust_out` due to 458 previous errors; 87 warnings emitted

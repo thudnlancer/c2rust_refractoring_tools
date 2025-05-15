@@ -1,15 +1,8 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
+use ::c2rust_bitfields;
 extern "C" {
     fn _IO_putc(__c: i32, __fp: *mut _IO_FILE) -> i32;
     static mut stdout: *mut _IO_FILE;

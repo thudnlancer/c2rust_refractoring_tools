@@ -1,0 +1,151 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/wget-1.21.4)
+error: ambiguous `+` in a type
+  --> lib/fpurge.rs:19:28
+   |
+19 | pub fn fpurge(stream: &mut impl Write + Read + Seek) -> io::Result<()> {
+   |                            ^^^^^^^^^^^^^^^^^^^^^^^^ help: use parentheses to disambiguate: `(impl Write + Read + Seek)`
+
+error: mismatched closing delimiter: `]`
+   --> lib/localcharset.rs:175:14
+    |
+175 |         #[cfg(not(any(target_os = "macos", target_os = "haiku"))]
+    |          -   ^ unclosed delimiter                               ^ mismatched closing delimiter
+    |          |
+    |          closing delimiter possibly meant for this
+
+error: unknown character escape: `v`
+   --> lib/mbchar.rs:248:18
+    |
+248 |         '\t' | '\v' | '\f' |
+    |                  ^ unknown character escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+    |
+248 |         '\t' | r"\v" | '\f' |
+    |                ~~~~~
+
+error: unknown character escape: `f`
+   --> lib/mbchar.rs:248:25
+    |
+248 |         '\t' | '\v' | '\f' |
+    |                         ^ unknown character escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+    |
+248 |         '\t' | '\v' | r"\f" |
+    |                       ~~~~~
+
+error: mismatched closing delimiter: `}`
+  --> lib/md5.rs:51:37
+   |
+50 |             ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $t:expr) => {
+   |                                                                                - closing delimiter possibly meant for this
+51 |                 $a = $b.wrapping_add(
+   |                                     ^ unclosed delimiter
+...
+57 |             };
+   |             ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+  --> lib/md5.rs:73:37
+   |
+72 |             ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $t:expr) => {
+   |                                                                                - closing delimiter possibly meant for this
+73 |                 $a = $b.wrapping_add(
+   |                                     ^ unclosed delimiter
+...
+79 |             };
+   |             ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+  --> lib/md5.rs:84:37
+   |
+83 |             ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $t:expr) => {
+   |                                                                                - closing delimiter possibly meant for this
+84 |                 $a = $b.wrapping_add(
+   |                                     ^ unclosed delimiter
+...
+90 |             };
+   |             ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> lib/mktime.rs:111:20
+    |
+91  | ) -> Option<i64> {
+    |                  - closing delimiter possibly meant for this
+...
+111 |     let mon_yday = (MON_YDAY[leapyear(year) as usize][(mon_remainder + 12 * negative_mon_remainder as i32) as usize] as i64 - 1;
+    |                    ^ unclosed delimiter
+...
+207 | }
+    | ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> lib/mktime.rs:111:20
+    |
+111 |     let mon_yday = (MON_YDAY[leapyear(year) as usize][(mon_remainder + 12 * negative_mon_remainder as i32) as usize] as i64 - 1;
+    |                    ^ unclosed delimiter                                                                                        ^ help: `)` may belong here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `)`
+   --> lib/mktime.rs:207:1
+    |
+206 |     Some(t)
+    |            - expected one of `.`, `;`, `?`, `}`, or an operator
+207 | }
+    | ^ unexpected token
+
+error: this file contains an unclosed delimiter
+   --> lib/sha512.rs:331:29
+    |
+329 | fn sha384_stream(stream: &mut dyn Read, resblock: &mut [u8]) -> io::Result<()> {
+    |                                                                                - unclosed delimiter
+330 |     let mut ctx = Sha512Context::new();
+331 |     sha384_init_ctx(&mut ctx
+    |                    -        ^
+    |                    |
+    |                    unclosed delimiter
+
+error: mismatched closing delimiter: `}`
+   --> lib/sha512.rs:252:51
+    |
+251 |         ($i:expr, $x:expr) => {
+    |                               - closing delimiter possibly meant for this
+252 |             $x[$i & 15] = $x[$i & 15].wrapping_add(
+    |                                                   ^ unclosed delimiter
+...
+256 |         };
+    |         ^ mismatched closing delimiter
+
+error: unexpected closing delimiter: `}`
+  --> lib/tempname.rs:79:5
+   |
+59 | fn try_nocreate(tmpl: &str, _flags: &i32) -> io::Result<()> {
+   |                                                             - this opening brace...
+...
+65 | }
+   | - ...matches this closing brace
+...
+79 |     };
+   |     ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> lib/tempname.rs:74:30
+   |
+74 |     let tryfunc = match kind {
+   |                              ^ unclosed delimiter
+75 |         GT_FILE => |tmpl: &str, flags: &i32| try_file(tmpl, flags).map(|f| (Some(f), ())),
+76 |         GT_DIR => |tmpl: &str, flags: &i32| try_dir(tmpl, flags).map(|()| (None, ()))),
+   |                                                                                      ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> lib/tempname.rs:73:23
+   |
+73 | ) -> io::Result<File> {
+   |                       ^ unclosed delimiter
+...
+77 |         GT_NOCREATE => |tmpl: &str, flags: &i32| try_nocreate(tmpl, flags).map(|()| (None, ()))),
+   |                                                                                                ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 15 previous errors

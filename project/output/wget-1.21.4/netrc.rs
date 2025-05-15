@@ -1,15 +1,7 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
 extern "C" {
     fn __xstat(__ver: i32, __filename: *const i8, __stat_buf: *mut stat) -> i32;
     fn dcgettext(

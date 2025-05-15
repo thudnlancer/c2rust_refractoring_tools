@@ -1,0 +1,1 @@
+pub static VERSION_ETC_COPYRIGHT: &[u8; 47] = b"Copyright %s %d Free Software Foundation, Inc.\0";

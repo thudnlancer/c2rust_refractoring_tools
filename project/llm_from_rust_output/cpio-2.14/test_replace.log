@@ -1,0 +1,22 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/cpio-2.14)
+error: unexpected closing delimiter: `}`
+  --> gnu/argp_xinl.rs:75:1
+   |
+66 | pub fn option_is_short(opt: &ArgpOption) -> bool {
+   |                                                  - this opening brace...
+...
+74 |     }
+   |     - ...matches this closing brace
+75 | }
+   | ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> gnu/argp_xinl.rs:69:12
+   |
+69 |     } else {
+   |            ^ unclosed delimiter
+...
+73 |             && key as u8 as char).is_ascii_graphic()
+   |                                 ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 2 previous errors

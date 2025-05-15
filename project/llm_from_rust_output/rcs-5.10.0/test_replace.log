@@ -1,0 +1,35 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/rcs-5.10.0)
+error: `super` cannot be a raw identifier
+  --> c2rust-lib.rs:70:9
+   |
+70 | pub mod r#super;
+   |         ^^^^^^^
+
+error: expected expression, found `as`
+   --> lib/printf_args.rs:122:56
+    |
+122 |                         unsafe { args.arg::<c_int>() } as u32
+    |                                                        ^^ expected expression
+    |
+help: parentheses are required to parse this as an expression
+    |
+122 |                         (unsafe { args.arg::<c_int>() }) as u32
+    |                         +                              +
+
+error: mismatched closing delimiter: `}`
+   --> src/b_excwho.rs:123:61
+    |
+123 |                 self.username = Some(unsafe { CStr::from_ptr((*pw).pw_name }.to_owned());
+    |                                             -               ^              ^ mismatched closing delimiter
+    |                                             |               |
+    |                                             |               unclosed delimiter
+    |                                             closing delimiter possibly meant for this
+
+error[E0763]: unterminated byte constant
+   --> src/partime.rs:319:14
+    |
+319 |             b'-
+    |              ^^
+
+For more information about this error, try `rustc --explain E0763`.
+error: could not compile `c2rust_out` due to 4 previous errors

@@ -1,0 +1,279 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/libzahl)
+error[E0530]: let bindings cannot shadow statics
+  --> src/zperror.rs:26:9
+   |
+15 |     static libzahl_error: c_int;
+   |     ---------------------------- the static `libzahl_error` is defined here
+...
+26 |     let libzahl_error = unsafe { libzahl_error };
+   |         ^^^^^^^^^^^^^ cannot be named the same as a static
+
+error[E0425]: cannot find function `srandom` in crate `libc`
+    --> src/zrand.rs:197:19
+     |
+197  |             libc::srandom(seed);
+     |                   ^^^^^^^ help: a function with a similar name exists: `srand`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/unix/linux_like/linux/mod.rs:6313:5
+     |
+6313 |     pub fn srand(seed: c_uint);
+     |     -------------------------- similarly named function `srand` defined here
+
+error[E0425]: cannot find function `random` in crate `libc`
+    --> src/zrand.rs:203:33
+     |
+203  |         let ri = unsafe { libc::random() };
+     |                                 ^^^^^^ help: a function with a similar name exists: `rand`
+     |
+    ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/unix/linux_like/linux/mod.rs:6312:5
+     |
+6312 |     pub fn rand() -> c_int;
+     |     ---------------------- similarly named function `rand` defined here
+
+error[E0425]: cannot find function `longjmp` in crate `libc`
+  --> src/zsqr.rs:98:19
+   |
+98 |             libc::longjmp(self.jmp_buf.as_mut_ptr() as *mut libc::c_void, 1);
+   |                   ^^^^^^^ not found in `libc`
+
+error[E0425]: cannot find function `longjmp` in crate `libc`
+  --> src/zstr.rs:80:15
+   |
+80 |         libc::longjmp(libzahl_jmp_buf.as_mut_ptr(), 1);
+   |               ^^^^^^^ not found in `libc`
+
+error[E0412]: cannot find type `jmp_buf` in crate `libc`
+   --> src/zstr.rs:210:36
+    |
+210 | static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t {...
+    |                                    ^^^^^^^ not found in `libc`
+    |
+help: consider importing this type alias
+    |
+1   | use crate::src::zpowu::jmp_buf;
+    |
+help: if you import `jmp_buf`, refer to it directly
+    |
+210 - static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+210 + static mut libzahl_jmp_buf: [jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+    |
+
+error[E0422]: cannot find struct, variant or union type `jmp_buf` in crate `libc`
+   --> src/zstr.rs:210:57
+    |
+210 | static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t {...
+    |                                                         ^^^^^^^ not found in `libc`
+    |
+help: consider importing this type alias
+    |
+1   | use crate::src::zpowu::jmp_buf;
+    |
+help: if you import `jmp_buf`, refer to it directly
+    |
+210 - static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+210 + static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+    |
+
+error[E0422]: cannot find struct, variant or union type `__sigset_t` in crate `libc`
+   --> src/zstr.rs:210:126
+    |
+210 |   ... { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+    |                                                                    ^^^^^^^^^^
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/unix/linux_like/linux/gnu/b64/mod.rs:31:1
+    |
+31  | / s! {
+32  | |     pub struct sigset_t {
+33  | |         #[cfg(target_pointer_width = "32")]
+34  | |         __val: [u32; 32],
+...   |
+99  | |     }
+100 | | }
+    | |_- similarly named struct `sigset_t` defined here
+    |
+help: a struct with a similar name exists
+    |
+210 | static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::sigset_t { __val: [0; 16] } }];
+    |                                                                                                                              ~~~~~~~~
+help: consider importing this struct
+    |
+1   | use crate::src::zpowu::__sigset_t;
+    |
+help: if you import `__sigset_t`, refer to it directly
+    |
+210 - static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: libc::__sigset_t { __val: [0; 16] } }];
+210 + static mut libzahl_jmp_buf: [libc::jmp_buf; 1] = [libc::jmp_buf { __jmpbuf: [0; 8], __mask_was_saved: 0, __saved_mask: __sigset_t { __val: [0; 16] } }];
+    |
+
+warning: unused import: `alloc`
+ --> src/allocator.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, realloc, Layout};
+  |                  ^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zadd.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `BitAnd`, `Neg`
+ --> src/zadd.rs:2:16
+  |
+2 | use std::ops::{BitAnd, Neg};
+  |                ^^^^^^  ^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zand.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zdivmod.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zerror.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `c_char`
+ --> src/zerror.rs:3:20
+  |
+3 | use std::os::raw::{c_char, c_int};
+  |                    ^^^^^^
+
+warning: unused import: `std::mem::size_of`
+ --> src/zgcd.rs:2:5
+  |
+2 | use std::mem::size_of;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zgcd.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::arch::asm`
+ --> src/zmodpow.rs:3:5
+  |
+3 | use std::arch::asm;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zmodpowu.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zmodsqr.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zptest.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zptest.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr::null_mut`
+ --> src/zrand.rs:4:5
+  |
+4 | use std::ptr::null_mut;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `BitOrAssign`, `Shl`, `Shr`
+ --> src/zrsh.rs:2:16
+  |
+2 | use std::ops::{Shr, Shl, BitOrAssign};
+  |                ^^^  ^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::num::NonZeroUsize`
+ --> src/zsets.rs:4:5
+  |
+4 | use std::num::NonZeroUsize;
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `c_ulonglong`
+ --> src/zsetup.rs:3:44
+  |
+3 | use std::os::raw::{c_int, c_long, c_ulong, c_ulonglong, c_void};
+  |                                            ^^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/zsqr.rs:3:5
+  |
+3 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zstr.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zstr_length.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr::NonNull`
+ --> src/zsub.rs:2:5
+  |
+2 | use std::ptr::NonNull;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/ztrunc.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zunsetup.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zunsetup.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0184]: the trait `Copy` may not be implemented for this type; the type has a destructor
+ --> src/zstr_length.rs:4:24
+  |
+4 | #[derive(Debug, Clone, Copy, PartialEq, Eq)]
+  |                        ^^^^ `Copy` not allowed on types with destructors
+  |
+  = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0184, E0412, E0422, E0425, E0530.
+For more information about an error, try `rustc --explain E0184`.
+warning: `c2rust_out` (lib) generated 26 warnings
+error: could not compile `c2rust_out` due to 9 previous errors; 26 warnings emitted

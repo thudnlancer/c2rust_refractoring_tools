@@ -1,0 +1,324 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/gsl-2.7.1)
+error: mismatched closing delimiter: `}`
+  --> bspline/bspline.rs:41:28
+   |
+36 |     for i in 0..n {
+   |                   - closing delimiter possibly meant for this
+...
+41 |         let dy = rng.sample(&Normal::new(0.0, sigma)?;
+   |                            ^ unclosed delimiter
+...
+49 |     }
+   |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> bspline/bspline.rs:41:28
+   |
+41 |         let dy = rng.sample(&Normal::new(0.0, sigma)?;
+   |                            ^ unclosed delimiter      ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> bspline/bspline.rs:49:5
+   |
+49 |     }
+   |     ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `m`
+  --> cblas/zhemm.rs:26:53
+   |
+26 |     if a.len() < (lda * (side == CBLAS_SIDE::Left ? m : n)) as usize {
+   |                                                    -^ expected one of `)`, `,`, `.`, `?`, or an operator
+   |                                                    |
+   |                                                    help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> cdf/betainv.rs:105:27
+    |
+105 |         let lambda = dp / (2.0 * (dp / x).abs().max(phi);
+    |                           ^ unclosed delimiter          ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> cdf/betainv.rs:127:5
+    |
+127 |     }
+    |     ^ expected expression
+
+error: mismatched closing delimiter: `}`
+  --> cdf/lognormalinv.rs:65:47
+   |
+63 |     if x.abs() < 0.42 {
+   |                       - closing delimiter possibly meant for this
+64 |         let y = x * x;
+65 |         x * (((D * y + C) * y + B) * y + A) / ((((D * y + C) * y + B) * y + 1.0)
+   |                                               ^ unclosed delimiter
+66 |     } else {
+   |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> cdf/tdistinv.rs:13:26
+   |
+13 |     let t = z.signum() * (nu * a.mul_add(y * y, 1.0).ln().sqrt();
+   |                          ^ unclosed delimiter                   ^ help: `)` may belong here
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `)`
+  --> cdf/tdistinv.rs:16:1
+   |
+15 |     t
+   |      - expected one of 8 possible tokens
+16 | }
+   | ^ unexpected token
+
+error: this file contains an unclosed delimiter
+   --> complex/math.rs:446:40
+    |
+11  | impl Complex {
+    |              - unclosed delimiter
+...
+437 |     pub fn tanh(&self) -> Self {
+    |                                - unclosed delimiter
+...
+443 |         } else {
+    |                - unclosed delimiter
+...
+446 |             Self::new(1.0 / (r.tanh() *
+    |                      -      -          ^
+    |                      |      |
+    |                      |      unclosed delimiter
+    |                      unclosed delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> complex/math.rs:318:45
+    |
+318 |                     let d = 0.5 * (a + x) * (y2 / (r + x + 1.0) + (s + (1.0 - x));
+    |                                             ^ unclosed delimiter                 ^ help: `)` may belong here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `)`
+   --> complex/math.rs:11:14
+    |
+11  | impl Complex {
+    |              ^ unclosed delimiter
+...
+319 |                     (d.sqrt() / x).atan()
+    |                                          -
+    |                                          |
+    |                                          expected one of `.`, `;`, `?`, `}`, or an operator
+    |                                          help: `}` may belong here
+320 |                 } else {
+    |                 ^ unexpected token
+
+error: expected expression, found `)`
+   --> complex/math.rs:446:40
+    |
+446 |             Self::new(1.0 / (r.tanh() *
+    |                                        ^ expected expression
+
+error: mismatched closing delimiter: `}`
+   --> complex/math.rs:327:31
+    |
+326 |                     let am1 = if x < 1.0 {
+    |                                          - closing delimiter possibly meant for this
+327 |                         0.5 * (y2 / (r + (x + 1.0)) + y2 / (s + (1.0 - x))
+    |                               ^ unclosed delimiter
+328 |                     } else {
+    |                     ^ mismatched closing delimiter
+
+error: this file contains an unclosed delimiter
+   --> eigen/francis.rs:458:24
+    |
+449 | ) {
+    |   - unclosed delimiter
+...
+458 |     if a.get(1, 0) != 0
+    |                        ^
+
+error: expected `{`, found `}`
+   --> eigen/francis.rs:458:24
+    |
+458 |     if a.get(1, 0) != 0
+    |                        ^ expected `{`
+    |
+note: the `if` expression is missing a block after this condition
+   --> eigen/francis.rs:458:8
+    |
+458 |     if a.get(1, 0) != 0
+    |        ^^^^^^^^^^^^^^^^
+
+error: this file contains an unclosed delimiter
+   --> eigen/nonsymmv.rs:475:26
+    |
+131 | ) -> Result<()> {
+    |                 - unclosed delimiter
+...
+147 |     while i >= 0 {
+    |                  - unclosed delimiter
+...
+296 |         } else {
+    |                - unclosed delimiter
+...
+467 |             for ii in 0..n {
+    |                            - unclosed delimiter
+...
+475 |                 ecol2.set
+    |                          ^
+
+error: this file contains an unclosed delimiter
+   --> eigen/schur.rs:400:31
+    |
+339 | ) -> ([Complex64; 2], f64, f64, f64) {
+    |                                      - unclosed delimiter
+...
+368 |     } else {
+    |            - unclosed delimiter
+...
+393 |         if cmax < smin {
+    |                        - unclosed delimiter
+...
+400 |             let temp = scale /
+    |                               ^
+
+error: expected expression, found `}`
+   --> eigen/schur.rs:400:31
+    |
+400 |             let temp = scale /
+    |                               ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> fit/linear.rs:135:43
+    |
+135 |                     result += (x2 - x1) * (y_lo + 0.5 * d * ((x2 - x_lo) + (x1 - x_lo));
+    |                                           ^ unclosed delimiter                         ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> fit/linear.rs:136:17
+    |
+136 |                 } else {
+    |                 ^ expected expression
+
+error[E0583]: file not found for module `env`
+   --> c2rust-lib.rs:313:1
+    |
+313 | pub mod env;
+    | ^^^^^^^^^^^^
+    |
+    = help: to create the module `env`, create file "ieee_utils/env.rs" or "ieee_utils/env/mod.rs"
+
+error[E0583]: file not found for module `fp`
+   --> c2rust-lib.rs:314:1
+    |
+314 | pub mod fp;
+    | ^^^^^^^^^^^
+    |
+    = help: to create the module `fp`, create file "ieee_utils/fp.rs" or "ieee_utils/fp/mod.rs"
+
+error[E0583]: file not found for module `make_rep`
+   --> c2rust-lib.rs:315:1
+    |
+315 | pub mod make_rep;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `make_rep`, create file "ieee_utils/make_rep.rs" or "ieee_utils/make_rep/mod.rs"
+
+error[E0583]: file not found for module `print`
+   --> c2rust-lib.rs:316:1
+    |
+316 | pub mod print;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `print`, create file "ieee_utils/print.rs" or "ieee_utils/print/mod.rs"
+
+error[E0583]: file not found for module `read`
+   --> c2rust-lib.rs:317:1
+    |
+317 | pub mod read;
+    | ^^^^^^^^^^^^^
+    |
+    = help: to create the module `read`, create file "ieee_utils/read.rs" or "ieee_utils/read/mod.rs"
+
+error: mismatched closing delimiter: `)`
+   --> integration/cquad.rs:139:52
+    |
+139 |         b_new[n as usize] = (b_new[n as usize] + xi[nans[i] as f64 * b_new[(n + 1) as usize]) / Lalpha[(n - 1) as usize];
+    |                             -                      ^ unclosed delimiter                     ^ mismatched closing delimiter
+    |                             |
+    |                             closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `}`
+   --> integration/fixed.rs:171:20
+    |
+170 |             for mm in l..n {
+    |                            - closing delimiter possibly meant for this
+171 |                 if (e[mm - 1].abs() <= GSL_DBL_EPSILON * (d[mm - 1].abs() + d[mm].abs()) {
+    |                    ^ unclosed delimiter
+...
+175 |             }
+    |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `{`
+   --> integration/fixed.rs:171:20
+    |
+171 |                 if (e[mm - 1].abs() <= GSL_DBL_EPSILON * (d[mm - 1].abs() + d[mm].abs()) {
+    |                    ^                                                                    -^
+    |                    |                                                                    |
+    |                    unclosed delimiter                                                   help: `)` may belong here
+
+error: expected expression, found `)`
+   --> integration/fixed.rs:175:13
+    |
+175 |             }
+    |             ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> integration/glfixed.rs:380:30
+    |
+15  | static GLAW: [GlfixedTable; GLAWSIZE] = [
+    |                                         - unclosed delimiter
+...
+314 |     GlfixedTable {
+    |                  - unclosed delimiter
+...
+366 |         w: vec![
+    |                - unclosed delimiter
+...
+380 |             0.029461089958167
+    |                              ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> integration/glfixed.rs:380:30
+    |
+380 |             0.029461089958167
+    |                              ^ expected one of `.`, `;`, `?`, or an operator
+
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `;`
+   --> integration/qmomof.rs:110:12
+    |
+110 |     v[2] = (32.0 * (par2 - 12.0) * cospar
+    |            ^ unclosed delimiter
+111 |           + (2.0 * ((par2 - 80.0) * par2 + 192.0) * sinpar / par) / par4;
+    |                                                                         ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> integration/qmomof.rs:200:1
+    |
+200 | }
+    | ^ expected expression
+
+error: unexpected closing delimiter: `)`
+   --> integration/rational.rs:108:80
+    |
+104 |         ).sqrt();
+    |               -- block is empty, you might have not meant to close it
+...
+108 |                 ((absum + 2.0 * (n as f64)) * (absum + 2.0 * (n as f64) - 2.0)));
+    |                                                                                ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> integration/rational.rs:87:35
+   |
+87 | ) -> Result<(), IntegrationError> {
+   |                                   ^ unclosed delimiter
+...
+95 |     subdiag[0] = (-diag[0] * (params.beta + 1.0) / ((absum + 2.0) * (absum + 3.0)))).sqrt();
+   |                                                                                    ^ mismatched closing delimiter
+
+For more information about this error, try `rustc --explain E0583`.
+error: could not compile `c2rust_out` due to 36 previous errors

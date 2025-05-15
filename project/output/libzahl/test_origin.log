@@ -1,0 +1,513 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/libzahl)
+warning: unnecessary parentheses around method argument
+   --> src/zload.rs:317:13
+    |
+317 |             (if zzero(a) != 0 {
+    |             ^
+...
+323 |             }),
+    |              ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+317 ~             if zzero(a) != 0 {
+318 |                 0 as libc::c_int as libc::c_ulong
+  ...
+322 |                     .wrapping_mul(::core::mem::size_of::<zahl_char_t>() as libc::c_ulong)
+323 ~             },
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/zor.rs:342:9
+    |
+342 |     n = (if (*b).used < (*c).used { (*b).used } else { (*c).used });
+    |         ^                                                         ^
+    |
+help: remove these parentheses
+    |
+342 -     n = (if (*b).used < (*c).used { (*b).used } else { (*c).used });
+342 +     n = if (*b).used < (*c).used { (*b).used } else { (*c).used };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/zor.rs:343:9
+    |
+343 |     m = (if (*b).used > (*c).used { (*b).used } else { (*c).used });
+    |         ^                                                         ^
+    |
+help: remove these parentheses
+    |
+343 -     m = (if (*b).used > (*c).used { (*b).used } else { (*c).used });
+343 +     m = if (*b).used > (*c).used { (*b).used } else { (*c).used };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/zxor.rs:350:9
+    |
+350 |     n = (if bn < cn { bn } else { cn });
+    |         ^                             ^
+    |
+help: remove these parentheses
+    |
+350 -     n = (if bn < cn { bn } else { cn });
+350 +     n = if bn < cn { bn } else { cn };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/zxor.rs:351:9
+    |
+351 |     m = (if bn > cn { bn } else { cn });
+    |         ^                             ^
+    |
+help: remove these parentheses
+    |
+351 -     m = (if bn > cn { bn } else { cn });
+351 +     m = if bn > cn { bn } else { cn };
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+warning: variable `t` is assigned to, but never used
+   --> src/allocator.rs:139:21
+    |
+139 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: `#[warn(unused_variables)]` on by default
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zadd.rs:96:21
+   |
+96 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zdivmod.rs:137:21
+    |
+137 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zgcd.rs:101:21
+    |
+101 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zload.rs:95:21
+   |
+95 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zlsh.rs:97:21
+   |
+97 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zmodmul.rs:100:21
+    |
+100 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zmodpow.rs:132:21
+    |
+132 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zmodpowu.rs:131:21
+    |
+131 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zmodsqr.rs:100:21
+    |
+100 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zor.rs:95:21
+   |
+95 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zpow.rs:129:21
+    |
+129 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zpowu.rs:128:21
+    |
+128 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zptest.rs:126:21
+    |
+126 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: unused variable: `statep`
+   --> src/zrand.rs:185:9
+    |
+185 |     mut statep: *mut libc::c_void,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_statep`
+
+warning: unused variable: `statep`
+   --> src/zrand.rs:227:9
+    |
+227 |     mut statep: *mut libc::c_void,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_statep`
+
+warning: unused variable: `statep`
+   --> src/zrand.rs:251:9
+    |
+251 |     mut statep: *mut libc::c_void,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_statep`
+
+warning: variable `t` is assigned to, but never used
+  --> src/zrsh.rs:97:21
+   |
+97 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zsets.rs:115:21
+    |
+115 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zstr.rs:136:21
+    |
+136 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+   --> src/zstr_length.rs:131:21
+    |
+131 |             let mut t: zahl_char_t = 0;
+    |                     ^
+    |
+    = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zsub.rs:98:21
+   |
+98 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/ztrunc.rs:95:21
+   |
+95 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: variable `t` is assigned to, but never used
+  --> src/zxor.rs:95:21
+   |
+95 |             let mut t: zahl_char_t = 0;
+   |                     ^
+   |
+   = note: consider using `_t` instead
+
+warning: path statement with no effect
+   --> src/zadd.rs:399:9
+    |
+399 |         i;
+    |         ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> src/zadd.rs:457:9
+    |
+457 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:416:9
+    |
+416 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:425:9
+    |
+425 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:430:9
+    |
+430 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:481:13
+    |
+481 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:665:13
+    |
+665 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zdivmod.rs:693:17
+    |
+693 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/zgcd.rs:336:9
+    |
+336 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zgcd.rs:345:9
+    |
+345 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zgcd.rs:350:9
+    |
+350 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zgcd.rs:371:9
+    |
+371 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zgcd.rs:442:13
+    |
+442 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zlsh.rs:335:17
+    |
+335 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/zlsh.rs:682:13
+    |
+682 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zmodpow.rs:475:9
+    |
+475 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> src/zmul.rs:62:5
+   |
+62 |     libzahl_temp_stack_head;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/zor.rs:436:21
+    |
+436 |                     i__;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> src/zor.rs:545:21
+    |
+545 |                     i___0;
+    |                     ^^^^^^
+
+warning: path statement with no effect
+   --> src/zpow.rs:467:9
+    |
+467 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zptest.rs:403:9
+    |
+403 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zptest.rs:412:9
+    |
+412 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zptest.rs:418:9
+    |
+418 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zptest.rs:463:9
+    |
+463 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zptest.rs:564:13
+    |
+564 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zrand.rs:104:9
+    |
+104 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zrand.rs:113:9
+    |
+113 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zrand.rs:118:9
+    |
+118 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zrsh.rs:729:13
+    |
+729 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/zsets.rs:368:9
+    |
+368 |         str_end;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+  --> src/zsqr.rs:60:5
+   |
+60 |     libzahl_temp_stack_head;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/zstr.rs:519:9
+    |
+519 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zstr_length.rs:379:9
+    |
+379 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zstr_length.rs:388:9
+    |
+388 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zstr_length.rs:393:9
+    |
+393 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zsub.rs:333:9
+    |
+333 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zsub.rs:342:9
+    |
+342 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zsub.rs:347:9
+    |
+347 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zsub.rs:397:9
+    |
+397 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/zxor.rs:444:21
+    |
+444 |                     i__;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> src/zxor.rs:553:21
+    |
+553 |                     i___0;
+    |                     ^^^^^^
+
+warning: `c2rust_out` (lib) generated 71 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 1.20s

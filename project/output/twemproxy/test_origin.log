@@ -1,0 +1,189 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/twemproxy)
+error[E0583]: file not found for module `api`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod api;
+   | ^^^^^^^^^^^^
+   |
+   = help: to create the module `api`, create file "contrib/yaml_0_2_5/src/api.rs" or "contrib/yaml_0_2_5/src/api/mod.rs"
+
+error[E0583]: file not found for module `dumper`
+  --> c2rust-lib.rs:19:1
+   |
+19 | pub mod dumper;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `dumper`, create file "contrib/yaml_0_2_5/src/dumper.rs" or "contrib/yaml_0_2_5/src/dumper/mod.rs"
+
+error[E0583]: file not found for module `emitter`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod emitter;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `emitter`, create file "contrib/yaml_0_2_5/src/emitter.rs" or "contrib/yaml_0_2_5/src/emitter/mod.rs"
+
+error[E0583]: file not found for module `loader`
+  --> c2rust-lib.rs:21:1
+   |
+21 | pub mod loader;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `loader`, create file "contrib/yaml_0_2_5/src/loader.rs" or "contrib/yaml_0_2_5/src/loader/mod.rs"
+
+error[E0583]: file not found for module `parser`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod parser;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `parser`, create file "contrib/yaml_0_2_5/src/parser.rs" or "contrib/yaml_0_2_5/src/parser/mod.rs"
+
+error[E0583]: file not found for module `reader`
+  --> c2rust-lib.rs:23:1
+   |
+23 | pub mod reader;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `reader`, create file "contrib/yaml_0_2_5/src/reader.rs" or "contrib/yaml_0_2_5/src/reader/mod.rs"
+
+error[E0583]: file not found for module `scanner`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod scanner;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `scanner`, create file "contrib/yaml_0_2_5/src/scanner.rs" or "contrib/yaml_0_2_5/src/scanner/mod.rs"
+
+error[E0583]: file not found for module `writer`
+  --> c2rust-lib.rs:25:1
+   |
+25 | pub mod writer;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `writer`, create file "contrib/yaml_0_2_5/src/writer.rs" or "contrib/yaml_0_2_5/src/writer/mod.rs"
+
+error[E0583]: file not found for module `example_deconstructor`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod example_deconstructor;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_deconstructor`, create file "contrib/yaml_0_2_5/tests/example_deconstructor.rs" or "contrib/yaml_0_2_5/tests/example_deconstructor/mod.rs"
+
+error[E0583]: file not found for module `example_deconstructor_alt`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod example_deconstructor_alt;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_deconstructor_alt`, create file "contrib/yaml_0_2_5/tests/example_deconstructor_alt.rs" or "contrib/yaml_0_2_5/tests/example_deconstructor_alt/mod.rs"
+
+error[E0583]: file not found for module `example_reformatter`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod example_reformatter;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_reformatter`, create file "contrib/yaml_0_2_5/tests/example_reformatter.rs" or "contrib/yaml_0_2_5/tests/example_reformatter/mod.rs"
+
+error[E0583]: file not found for module `example_reformatter_alt`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod example_reformatter_alt;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `example_reformatter_alt`, create file "contrib/yaml_0_2_5/tests/example_reformatter_alt.rs" or "contrib/yaml_0_2_5/tests/example_reformatter_alt/mod.rs"
+
+error[E0583]: file not found for module `run_dumper`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod run_dumper;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_dumper`, create file "contrib/yaml_0_2_5/tests/run_dumper.rs" or "contrib/yaml_0_2_5/tests/run_dumper/mod.rs"
+
+error[E0583]: file not found for module `run_emitter`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod run_emitter;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_emitter`, create file "contrib/yaml_0_2_5/tests/run_emitter.rs" or "contrib/yaml_0_2_5/tests/run_emitter/mod.rs"
+
+error[E0583]: file not found for module `run_emitter_test_suite`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod run_emitter_test_suite;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_emitter_test_suite`, create file "contrib/yaml_0_2_5/tests/run_emitter_test_suite.rs" or "contrib/yaml_0_2_5/tests/run_emitter_test_suite/mod.rs"
+
+error[E0583]: file not found for module `run_loader`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod run_loader;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_loader`, create file "contrib/yaml_0_2_5/tests/run_loader.rs" or "contrib/yaml_0_2_5/tests/run_loader/mod.rs"
+
+error[E0583]: file not found for module `run_parser`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod run_parser;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_parser`, create file "contrib/yaml_0_2_5/tests/run_parser.rs" or "contrib/yaml_0_2_5/tests/run_parser/mod.rs"
+
+error[E0583]: file not found for module `run_parser_test_suite`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod run_parser_test_suite;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_parser_test_suite`, create file "contrib/yaml_0_2_5/tests/run_parser_test_suite.rs" or "contrib/yaml_0_2_5/tests/run_parser_test_suite/mod.rs"
+
+error[E0583]: file not found for module `run_scanner`
+  --> c2rust-lib.rs:38:1
+   |
+38 | pub mod run_scanner;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `run_scanner`, create file "contrib/yaml_0_2_5/tests/run_scanner.rs" or "contrib/yaml_0_2_5/tests/run_scanner/mod.rs"
+
+warning: unused import: `::libc`
+ --> src/event/nc_evport.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `::libc`
+ --> src/event/nc_kqueue.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around function argument
+    --> src/nc_message.rs:1202:13
+     |
+1202 |             (if ((*msg).mhdr.stqh_first).is_null() {
+     |             ^
+...
+1210 |             }),
+     |              ^
+     |
+     = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+     |
+1202 ~             if ((*msg).mhdr.stqh_first).is_null() {
+1203 |                 0 as *mut mbuf
+   ...
+1209 |                     ) as *mut libc::c_void as *mut mbuf
+1210 ~             },
+     |
+
+For more information about this error, try `rustc --explain E0583`.
+warning: `c2rust_out` (lib) generated 3 warnings
+error: could not compile `c2rust_out` due to 19 previous errors; 3 warnings emitted

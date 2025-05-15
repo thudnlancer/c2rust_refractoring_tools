@@ -1,0 +1,1 @@
+// No equivalent safe Rust code is needed as the original line is just an unused import of libc.

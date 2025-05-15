@@ -1,1 +1,1 @@
-["../c_prog/webdis/src/slog.rs", "../c_prog/webdis/webdis", "../c_prog/webdis/src/hiredis/async.rs", "../c_prog/webdis/src/hiredis/sds.rs"]
+["c_prog/webdis/webdis"]

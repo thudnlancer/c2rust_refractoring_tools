@@ -1,375 +1,375 @@
 {
-    "/home/c2rust/Desktop/c_prog/webdis/src/cmd.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/acl.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/pool.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/json.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/raw.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/custom-type.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/acl.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/pool.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/json.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/raw.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/custom-type.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/server.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/version.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/server.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/version.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/http.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/http.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/worker.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/pool.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/pool.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/slog.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/webdis.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/webdis.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/pool.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/pool.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/adapters/libevent.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/pool.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/pool.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/adapters/libevent.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/conf.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/b64/cencode.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/acl.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/b64/cencode.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/acl.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/websocket.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/sha1/sha1.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/b64/cencode.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/acl.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/pool.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/json.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/raw.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/sha1/sha1.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/b64/cencode.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/acl.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/pool.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/json.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/raw.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/client.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/server.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/worker.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/client.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/server.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/worker.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/acl.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/acl.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/conf.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/slog.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/acl.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/acl.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/conf.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/slog.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/md5/md5.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/md5/md5.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/md5/md5.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/md5/md5.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/b64/cencode.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/b64/cencode.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/b64/cencode.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/b64/cencode.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sockcompat.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sockcompat.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sockcompat.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sockcompat.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sdsalloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sdsalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/net.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/dict.c",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/dict.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/win32.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async_private.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/net.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/dict.c",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/dict.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/win32.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async_private.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/net.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/win32.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/net.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/win32.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/dict.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/dict.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/dict.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/dict.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/win32.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/win32.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/net.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/fmacros.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/net.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sockcompat.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/win32.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/net.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/fmacros.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/net.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sockcompat.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/win32.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/formats/raw.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/raw.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/raw.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/raw.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/formats/json.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/json.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/json.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/json.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/client.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http-parser/http_parser.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/websocket.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/md5/md5.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/client.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http-parser/http_parser.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/websocket.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/md5/md5.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/formats/custom-type.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/custom-type.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/hiredis.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/read.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/sds.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/alloc.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/hiredis/async.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/cmd.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/formats/common.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/http.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/custom-type.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/custom-type.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/hiredis.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/read.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/sds.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/alloc.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/hiredis/async.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/cmd.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/formats/common.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/http.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable_seed.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable_seed.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/memory.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/memory.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strconv.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strconv.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/value.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/value.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/dump.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/dump.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/error.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/error.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/load.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/load.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/pack_unpack.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/utf.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/pack_unpack.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/utf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/hashtable.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/jansson_private_config.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/strbuffer.h",
-        "/home/c2rust/Desktop/c_prog/webdis/src/jansson/src/lookup3.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/hashtable.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/jansson_private_config.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/strbuffer.h",
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/jansson/src/lookup3.h"
     ],
-    "/home/c2rust/Desktop/c_prog/webdis/src/sha1/sha1.c": [
-        "/home/c2rust/Desktop/c_prog/webdis/src/sha1/sha1.h"
+    "/home/c2rust/Desktop/project/c_prog/webdis/src/sha1/sha1.c": [
+        "/home/c2rust/Desktop/project/c_prog/webdis/src/sha1/sha1.h"
     ]
 }

@@ -1,378 +1,378 @@
 {
-    "/home/c2rust/Desktop/c_prog/cflow/src/argcv.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/argcv.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/argcv.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/argcv.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/output.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/output.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/rc.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/sys/stat.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/time.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/argcv.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/rc.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/sys/stat.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/time.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/argcv.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/linked-list.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/linked-list.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/depmap.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/depmap.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/c.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/c.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/main.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-version-etc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/progname.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/version-etc.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/main.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-version-etc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/progname.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/version-etc.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/symbol.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/hash.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/symbol.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/hash.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/gnu.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/gnu.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/parser.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/src/parser.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/parser.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/src/posix.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/src/cflow.h",
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/obstack.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/src/posix.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/src/cflow.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/obstack.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/progname.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/progname.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/progname.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/progname.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/hash.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/hash.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/bitrotate.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/hash.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/hash.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/bitrotate.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/asnprintf.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/vasnprintf.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/asnprintf.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/vasnprintf.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-parse.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-parse.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-args.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xsize.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-parse.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-parse.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-args.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xsize.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-version-etc.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/version-etc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-version-etc.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-version-etc.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/version-etc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-version-etc.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/exitfail.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/exitfail.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/exitfail.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/exitfail.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-eexst.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-eexst.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-ba.c": [],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-xinl.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-ba.c": [],
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-xinl.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname-lgpl.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname-lgpl.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-pvh.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-pvh.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-help.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-fmtstream.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-namefrob.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-help.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-fmtstream.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-namefrob.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-pin.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-pin.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-fs-xinl.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-fmtstream.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-fs-xinl.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-fmtstream.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-fmtstream.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-fmtstream.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-namefrob.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-fmtstream.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-fmtstream.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-namefrob.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/xmalloc.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xmalloc.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/stripslash.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stripslash.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-pv.c": [],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc-die.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xalloc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/error.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/exitfail.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-pv.c": [],
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc-die.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xalloc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/error.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/exitfail.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt1.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt_int.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt1.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt_int.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-parse.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt_int.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/argp-namefrob.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-parse.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt_int.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/argp-namefrob.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/basename-lgpl.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/dirname.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/basename-lgpl.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/dirname.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/vasnprintf.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/vasnprintf.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-parse.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-args.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/xsize.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/vasnprintf.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/vasnprintf.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-parse.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-args.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/xsize.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-args.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/printf-args.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-args.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/printf-args.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/unistd.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/getopt_int.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/unistd.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/getopt_int.h"
     ],
-    "/home/c2rust/Desktop/c_prog/cflow/gnu/version-etc.c": [
-        "/home/c2rust/Desktop/c_prog/cflow/config.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/version-etc.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdio.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/stdlib.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/alloca.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/gettext.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/string.h",
-        "/home/c2rust/Desktop/c_prog/cflow/gnu/strings.h"
+    "/home/c2rust/Desktop/project/c_prog/cflow/gnu/version-etc.c": [
+        "/home/c2rust/Desktop/project/c_prog/cflow/config.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/version-etc.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdio.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/stdlib.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/alloca.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/gettext.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/string.h",
+        "/home/c2rust/Desktop/project/c_prog/cflow/gnu/strings.h"
     ]
 }

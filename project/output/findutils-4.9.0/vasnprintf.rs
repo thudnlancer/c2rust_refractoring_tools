@@ -1,15 +1,7 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
 extern "C" {
     fn snprintf(_: *mut i8, _: u64, _: *const i8, _: ...) -> i32;
     fn malloc(_: u64) -> *mut libc::c_void;

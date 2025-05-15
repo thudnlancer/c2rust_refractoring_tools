@@ -1,0 +1,1 @@
+/home/c2rust/Desktop/project/c_prog/binn/target/debug/libc2rust_out.a: /home/c2rust/Desktop/project/c_prog/binn/build.rs /home/c2rust/Desktop/project/c_prog/binn/c2rust-lib.rs /home/c2rust/Desktop/project/c_prog/binn/src/binn.rs

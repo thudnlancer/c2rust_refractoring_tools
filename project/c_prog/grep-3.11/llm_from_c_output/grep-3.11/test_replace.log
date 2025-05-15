@@ -1,0 +1,4857 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/grep-3.11)
+error[E0583]: file not found for module `asnprintf`
+  --> c2rust-lib.rs:17:1
+   |
+17 | pub mod asnprintf;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `asnprintf`, create file "gnulib_tests/asnprintf.rs" or "gnulib_tests/asnprintf/mod.rs"
+
+error[E0583]: file not found for module `c_strcasestr`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod c_strcasestr;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `c_strcasestr`, create file "gnulib_tests/c_strcasestr.rs" or "gnulib_tests/c_strcasestr/mod.rs"
+
+error[E0583]: file not found for module `thread`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod thread;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `hash_pjw`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod hash_pjw;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `hash_pjw`, create file "gnulib_tests/hash_pjw.rs" or "gnulib_tests/hash_pjw/mod.rs"
+
+error[E0583]: file not found for module `imaxtostr`
+  --> c2rust-lib.rs:23:1
+   |
+23 | pub mod imaxtostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `imaxtostr`, create file "gnulib_tests/imaxtostr.rs" or "gnulib_tests/imaxtostr/mod.rs"
+
+error[E0583]: file not found for module `inttostr`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod inttostr;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `inttostr`, create file "gnulib_tests/inttostr.rs" or "gnulib_tests/inttostr/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+  --> c2rust-lib.rs:25:1
+   |
+25 | pub mod ioctl;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+  --> c2rust-lib.rs:26:1
+   |
+26 | pub mod locale;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+  --> c2rust-lib.rs:27:1
+   |
+27 | pub mod localename;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod localename_table;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod nanosleep;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `offtostr`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod offtostr;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `offtostr`, create file "gnulib_tests/offtostr.rs" or "gnulib_tests/offtostr/mod.rs"
+
+error[E0583]: file not found for module `printf_args`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod printf_args;
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `printf_args`, create file "gnulib_tests/printf_args.rs" or "gnulib_tests/printf_args/mod.rs"
+
+error[E0583]: file not found for module `printf_parse`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod printf_parse;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `printf_parse`, create file "gnulib_tests/printf_parse.rs" or "gnulib_tests/printf_parse/mod.rs"
+
+error[E0583]: file not found for module `sockets`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod sockets;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sockets`, create file "gnulib_tests/sockets.rs" or "gnulib_tests/sockets/mod.rs"
+
+error[E0583]: file not found for module `strerror_r`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod strerror_r;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `strerror_r`, create file "gnulib_tests/strerror_r.rs" or "gnulib_tests/strerror_r/mod.rs"
+
+error[E0583]: file not found for module `sys_socket`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod sys_socket;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sys_socket`, create file "gnulib_tests/sys_socket.rs" or "gnulib_tests/sys_socket/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod test_localcharset;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `time`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod time;
+   | ^^^^^^^^^^^^^
+   |
+   = help: to create the module `time`, create file "gnulib_tests/time.rs" or "gnulib_tests/time/mod.rs"
+
+error[E0583]: file not found for module `uinttostr`
+  --> c2rust-lib.rs:38:1
+   |
+38 | pub mod uinttostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `uinttostr`, create file "gnulib_tests/uinttostr.rs" or "gnulib_tests/uinttostr/mod.rs"
+
+error[E0583]: file not found for module `umaxtostr`
+  --> c2rust-lib.rs:39:1
+   |
+39 | pub mod umaxtostr;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `umaxtostr`, create file "gnulib_tests/umaxtostr.rs" or "gnulib_tests/umaxtostr/mod.rs"
+
+error[E0583]: file not found for module `vasnprintf`
+  --> c2rust-lib.rs:40:1
+   |
+40 | pub mod vasnprintf;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `vasnprintf`, create file "gnulib_tests/vasnprintf.rs" or "gnulib_tests/vasnprintf/mod.rs"
+
+error[E0583]: file not found for module `xsize`
+  --> c2rust-lib.rs:41:1
+   |
+41 | pub mod xsize;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `xsize`, create file "gnulib_tests/xsize.rs" or "gnulib_tests/xsize/mod.rs"
+
+error[E0583]: file not found for module `xstrtol_error`
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod xstrtol_error;
+   | ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `xstrtol_error`, create file "gnulib_tests/xstrtol_error.rs" or "gnulib_tests/xstrtol_error/mod.rs"
+
+error[E0658]: `cfg(sanitize)` is experimental and subject to change
+  --> lib/closeout.rs:22:17
+   |
+22 |                 sanitize = "address"
+   |                 ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #39699 <https://github.com/rust-lang/rust/issues/39699> for more information
+   = help: add `#![feature(cfg_sanitize)]` to the crate attributes to enable
+
+error[E0658]: `cfg(sanitize)` is experimental and subject to change
+  --> lib/closeout.rs:37:17
+   |
+37 |                 sanitize = "address"
+   |                 ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #39699 <https://github.com/rust-lang/rust/issues/39699> for more information
+   = help: add `#![feature(cfg_sanitize)]` to the crate attributes to enable
+
+error: this file contains an unclosed delimiter
+   --> src/kwset.rs:532:45
+    |
+495 | ) -> bool {
+    |           - unclosed delimiter
+...
+500 |     loop {
+    |          - unclosed delimiter
+...
+530 |         if tr(trans, *tp.offset(-1)) != gc1 {
+    |                                             - unclosed delimiter
+531 |             if !d1.is_null() {
+    |                              - unclosed delimiter
+532 |                 tp = tp.offset(*d1.offset((*
+    |                               -          -- ^
+    |                               |          ||
+    |                               |          |unclosed delimiter
+    |                               |          unclosed delimiter
+    |                               unclosed delimiter
+
+error: mismatched closing delimiter: `}`
+   --> src/kwset.rs:168:28
+    |
+133 |                 if cur.is_null() {
+    |                                  - closing delimiter possibly meant for this
+...
+168 |                         && ((dirs[depth] == b'L' && (*links[depth]).balance == -2)
+    |                            ^ unclosed delimiter
+...
+239 |                 }
+    |                 ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `{`
+   --> src/kwset.rs:168:28
+    |
+168 |                         && ((dirs[depth] == b'L' && (*links[depth]).balance == -2)
+    |                            ^ unclosed delimiter
+169 |                         || (dirs[depth] == b'R' && (*links[depth]).balance == 2)
+    |                                                                                 - help: `)` may belong here
+170 |                     {
+    |                     ^
+
+error: expected expression, found `)`
+   --> src/kwset.rs:239:17
+    |
+239 |                 }
+    |                 ^ expected expression
+
+error: expected expression, found `)`
+   --> src/kwset.rs:532:45
+    |
+532 |                 tp = tp.offset(*d1.offset((*
+    |                                             ^ expected expression
+
+error: mismatched closing delimiter: `}`
+  --> src/searchutils.rs:79:43
+   |
+78 |                     if (*cur.offset(-i) & 0xc0) != 0x80 {
+   |                                                         - closing delimiter possibly meant for this
+79 |                         let long_enough = (!*cur.offset(-i) >> (7 - i) == 0;
+   |                                           ^ unclosed delimiter
+...
+94 |                     }
+   |                     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> src/searchutils.rs:79:43
+   |
+79 |                         let long_enough = (!*cur.offset(-i) >> (7 - i) == 0;
+   |                                           ^ unclosed delimiter             ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> src/searchutils.rs:94:21
+   |
+94 |                     }
+   |                     ^ expected expression
+
+error: format argument must be a string literal
+  --> lib/argmatch.rs:87:15
+   |
+87 |     eprintln!(format, value, context);
+   |               ^^^^^^
+   |
+help: you might be missing a string literal to format with
+   |
+87 |     eprintln!("{} {} {}", format, value, context);
+   |               +++++++++++
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+ --> src/dfasearch.rs:5:5
+  |
+5 | use regex_syntax::hir::Hir;
+  |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `regex_syntax`
+ --> src/dfasearch.rs:6:5
+  |
+6 | use regex_syntax::Parser;
+  |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `regex`
+ --> src/dfasearch.rs:7:5
+  |
+7 | use regex::Regex;
+  |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0432]: unresolved import `memchr`
+ --> src/dfasearch.rs:8:5
+  |
+8 | use memchr::{memchr, memrchr};
+  |     ^^^^^^ use of undeclared crate or module `memchr`
+
+error[E0432]: unresolved import `regex`
+ --> lib/exclude.rs:8:5
+  |
+8 | use regex::Regex;
+  |     ^^^^^ help: a similar path exists: `super::regex`
+
+error[E0432]: unresolved import `fnmatch`
+ --> lib/exclude.rs:9:5
+  |
+9 | use fnmatch::fnmatch;
+  |     ^^^^^^^ use of undeclared crate or module `fnmatch`
+
+error[E0432]: unresolved imports `lazy_static`, `memchr::memrchr`
+  --> lib/exclude.rs:10:5
+   |
+10 | use lazy_static::lazy_static;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+   |
+  ::: src/dfasearch.rs:8:22
+   |
+8  | use memchr::{memchr, memrchr};
+   |                      ^^^^^^^
+
+error: cannot determine resolution for the macro `lazy_static`
+  --> lib/exclude.rs:13:1
+   |
+13 | lazy_static! {
+   | ^^^^^^^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error[E0106]: missing lifetime specifier
+   --> lib/argmatch.rs:146:13
+    |
+142 |     value: &[u8],
+    |            -----
+143 |     arglist: &[&str],
+    |              -------
+144 |     vallist: &[u8],
+    |              -----
+145 |     valsize: usize,
+146 | ) -> Option<&str> {
+    |             ^ expected named lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `value`, one of `arglist`'s 2 lifetimes, or `vallist`
+help: consider introducing a named lifetime parameter
+    |
+141 ~ pub fn argmatch_to_argument<'a>(
+142 ~     value: &'a [u8],
+143 ~     arglist: &'a [&'a str],
+144 ~     vallist: &'a [u8],
+145 |     valsize: usize,
+146 ~ ) -> Option<&'a str> {
+    |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/c_stack.rs:40:35
+   |
+40 |     pub __clang_max_align_nonce2: f128::f128,
+   |                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/c_stack.rs:111:31
+    |
+111 |     __clang_max_align_nonce2: f128::f128::ZERO,
+    |                               ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex`
+   --> lib/exclude.rs:127:25
+    |
+127 |                         regex::RegexBuilder::new(pattern)
+    |                         ^^^^^ use of undeclared crate or module `regex`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:146:48
+    |
+146 |         alignment = if ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                                ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:155:37
+    |
+155 |             ::core::mem::align_of::<f128::f128>() as libc::c_ulong
+    |                                     ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:167:44
+    |
+167 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:176:44
+    |
+176 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:188:43
+    |
+188 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:197:40
+    |
+197 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:210:44
+    |
+210 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:219:44
+    |
+219 |                     ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:231:43
+    |
+231 |             & !(if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:240:40
+    |
+240 |                 ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `kwset`
+  --> src/dfasearch.rs:11:19
+   |
+11 |     kwset: Option<kwset::KWSet>,
+   |                   ^^^^^ use of undeclared crate or module `kwset`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `dfa`
+  --> src/dfasearch.rs:12:10
+   |
+12 |     dfa: dfa::DFA,
+   |          ^^^ use of undeclared crate or module `dfa`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex`
+  --> src/dfasearch.rs:13:19
+   |
+13 |     patterns: Vec<regex::Regex>,
+   |                   ^^^^^ use of undeclared crate or module `regex`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `dfa`
+  --> src/dfasearch.rs:22:18
+   |
+22 |             dfa: dfa::DFA::new(),
+   |                  ^^^ use of undeclared crate or module `dfa`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `kwset`
+  --> src/dfasearch.rs:36:25
+   |
+36 |         dc.kwset = Some(kwset::KWSet::new(false));
+   |                         ^^^^^ use of undeclared crate or module `kwset`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex`
+  --> src/dfasearch.rs:88:23
+   |
+88 |     let mut builder = regex::RegexBuilder::new(pattern);
+   |                       ^^^^^ use of undeclared crate or module `regex`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+  --> src/dfasearch.rs:91:24
+   |
+91 |         builder.syntax(regex_syntax::ExprBuilder::new()
+   |                        ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+  --> src/dfasearch.rs:96:24
+   |
+96 |         builder.syntax(regex_syntax::ExprBuilder::new()
+   |                        ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0425]: cannot find value `EXCLUDE_MUTEX` in this scope
+  --> lib/exclude.rs:79:21
+   |
+20 | const EXCLUDE_REGEX: i32 = 1 << 27;
+   | ----------------------------------- similarly named constant `EXCLUDE_REGEX` defined here
+...
+79 |         let _lock = EXCLUDE_MUTEX.lock().unwrap();
+   |                     ^^^^^^^^^^^^^ help: a constant with a similar name exists: `EXCLUDE_REGEX`
+
+error[E0425]: cannot find value `FNM_CASEFOLD` in this scope
+   --> lib/exclude.rs:126:48
+    |
+126 |                     let cflags = if (options & FNM_CASEFOLD) != 0 {
+    |                                                ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_CASEFOLD;
+    |
+
+error[E0425]: cannot find value `FNM_LEADING_DIR` in this scope
+   --> lib/exclude.rs:150:75
+    |
+150 |             let exclude_hash_flags = EXCLUDE_INCLUDE | EXCLUDE_ANCHORED | FNM_LEADING_DIR | FNM_CASEFOLD;
+    |                                                                           ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FNM_CASEFOLD` in this scope
+   --> lib/exclude.rs:150:93
+    |
+150 |             let exclude_hash_flags = EXCLUDE_INCLUDE | EXCLUDE_ANCHORED | FNM_LEADING_DIR | FNM_CASEFOLD;
+    |                                                                                             ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_CASEFOLD;
+    |
+
+error[E0425]: cannot find value `FNM_NOESCAPE` in this scope
+   --> lib/exclude.rs:162:52
+    |
+162 |                 if (options & (EXCLUDE_WILDCARDS | FNM_NOESCAPE)) == EXCLUDE_WILDCARDS {
+    |                                                    ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_NOESCAPE;
+    |
+
+error[E0425]: cannot find value `FNM_NOESCAPE` in this scope
+   --> lib/exclude.rs:197:44
+    |
+197 |                         i += if (options & FNM_NOESCAPE) == 0 && i + 1 < bytes.len() {
+    |                                            ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_NOESCAPE;
+    |
+
+error[E0425]: cannot find value `FNM_EXTMATCH` in this scope
+   --> lib/exclude.rs:204:50
+    |
+204 |                 b'+' | b'@' | b'!' if (options & FNM_EXTMATCH) != 0 && i + 1 < bytes.len() && bytes[i + 1] == b'(' => {
+    |                                                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FNM_LEADING_DIR` in this scope
+   --> lib/exclude.rs:262:35
+    |
+262 |                     if (options & FNM_LEADING_DIR) != 0 {
+    |                                   ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FNM_LEADING_DIR` in this scope
+   --> lib/exclude.rs:338:23
+    |
+338 |         if (options & FNM_LEADING_DIR) == 0 {
+    |                       ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FNM_CASEFOLD` in this scope
+   --> lib/exclude.rs:339:27
+    |
+339 |             if (options & FNM_CASEFOLD) != 0 {
+    |                           ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_CASEFOLD;
+    |
+
+error[E0425]: cannot find value `FNM_CASEFOLD` in this scope
+   --> lib/exclude.rs:344:30
+    |
+344 |         } else if (options & FNM_CASEFOLD) == 0 {
+    |                              ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+1   | use libc::FNM_CASEFOLD;
+    |
+
+error[E0425]: cannot find function `mbrtowc` in crate `libc`
+   --> lib/localeinfo.rs:64:30
+    |
+64  |     let mbs = unsafe { libc::mbrtowc(
+    |                              ^^^^^^^ not found in `libc`
+    |
+note: these functions exist but are inaccessible
+   --> lib/mbrtowc.rs:3:5
+    |
+3   | /     fn mbrtowc(
+4   | |         __pwc: *mut wchar_t,
+5   | |         __s: *const libc::c_char,
+6   | |         __n: size_t,
+7   | |         __p: *mut mbstate_t,
+8   | |     ) -> size_t;
+    | |________________^ `crate::lib::mbrtowc::mbrtowc`: not accessible
+    |
+   ::: src/searchutils.rs:190:5
+    |
+190 |       fn mbrtowc(pwc: *mut wchar_t, s: *const c_char, n: usize, ps: *mut mbstate_t) -> usize;
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::searchutils::mbrtowc`: not accessible
+
+error[E0425]: cannot find value `MB_CUR_MAX` in crate `libc`
+   --> lib/localeinfo.rs:145:43
+    |
+145 |     localeinfo.multibyte = unsafe { libc::MB_CUR_MAX } > 1;
+    |                                           ^^^^^^^^^^ not found in `libc`
+    |
+note: static `crate::src::searchutils::MB_CUR_MAX` exists but is inaccessible
+   --> src/searchutils.rs:193:1
+    |
+193 | static MB_CUR_MAX: usize = 1;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `mbrtowc` in crate `libc`
+   --> lib/localeinfo.rs:153:34
+    |
+153 |         let len = unsafe { libc::mbrtowc(&mut wc, &c as *const u8 as *const c_char, 1, &mut s) };
+    |                                  ^^^^^^^ not found in `libc`
+    |
+note: these functions exist but are inaccessible
+   --> lib/mbrtowc.rs:3:5
+    |
+3   | /     fn mbrtowc(
+4   | |         __pwc: *mut wchar_t,
+5   | |         __s: *const libc::c_char,
+6   | |         __n: size_t,
+7   | |         __p: *mut mbstate_t,
+8   | |     ) -> size_t;
+    | |________________^ `crate::lib::mbrtowc::mbrtowc`: not accessible
+    |
+   ::: src/searchutils.rs:190:5
+    |
+190 |       fn mbrtowc(pwc: *mut wchar_t, s: *const c_char, n: usize, ps: *mut mbstate_t) -> usize;
+    |       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::searchutils::mbrtowc`: not accessible
+
+error[E0425]: cannot find value `match_icase` in this scope
+   --> src/dfasearch.rs:124:8
+    |
+124 |     if match_icase {
+    |        ^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::searchutils::match_icase` exists but is inaccessible
+   --> src/searchutils.rs:194:1
+    |
+194 | static match_icase: bool = false;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `RE_ICASE` in this scope
+   --> src/dfasearch.rs:125:24
+    |
+125 |         syntax_bits |= RE_ICASE;
+    |                        ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `DFA_CONFUSING_BRACKETS_ERROR` in this scope
+   --> src/dfasearch.rs:128:19
+    |
+128 |     let dfaopts = DFA_CONFUSING_BRACKETS_ERROR | DFA_STRAY_BACKSLASH_WARN | DFA_PLUS_WARN |
+    |                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `DFA_STRAY_BACKSLASH_WARN` in this scope
+   --> src/dfasearch.rs:128:50
+    |
+128 |     let dfaopts = DFA_CONFUSING_BRACKETS_ERROR | DFA_STRAY_BACKSLASH_WARN | DFA_PLUS_WARN |
+    |                                                  ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `DFA_PLUS_WARN` in this scope
+   --> src/dfasearch.rs:128:77
+    |
+128 |     let dfaopts = DFA_CONFUSING_BRACKETS_ERROR | DFA_STRAY_BACKSLASH_WARN | DFA_PLUS_WARN |
+    |                                                                             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RE_CONTEXT_INDEP_OPS` in this scope
+   --> src/dfasearch.rs:129:26
+    |
+129 |         if syntax_bits & RE_CONTEXT_INDEP_OPS != 0 { DFA_STAR_WARN } else { 0 } |
+    |                          ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `DFA_STAR_WARN` in this scope
+   --> src/dfasearch.rs:129:54
+    |
+129 |         if syntax_bits & RE_CONTEXT_INDEP_OPS != 0 { DFA_STAR_WARN } else { 0 } |
+    |                                                      ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `eolbyte` in this scope
+   --> src/dfasearch.rs:130:12
+    |
+130 |         if eolbyte { 0 } else { DFA_EOL_NUL };
+    |            ^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::eolbyte` exists but is inaccessible
+   --> src/kwsearch.rs:18:5
+    |
+18  |     static mut eolbyte: libc::c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `DFA_EOL_NUL` in this scope
+   --> src/dfasearch.rs:130:33
+    |
+130 |         if eolbyte { 0 } else { DFA_EOL_NUL };
+    |                                 ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `localeinfo` in this scope
+   --> src/dfasearch.rs:133:20
+    |
+133 |     let bs_safe = !localeinfo.multibyte || localeinfo.using_utf8;
+    |                    ^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::localeinfo` exists but is inaccessible
+   --> src/kwsearch.rs:65:5
+    |
+65  |     static mut localeinfo: localeinfo;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `localeinfo` in this scope
+   --> src/dfasearch.rs:133:44
+    |
+133 |     let bs_safe = !localeinfo.multibyte || localeinfo.using_utf8;
+    |                                            ^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::localeinfo` exists but is inaccessible
+   --> src/kwsearch.rs:65:5
+    |
+65  |     static mut localeinfo: localeinfo;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `match_words` in this scope
+   --> src/dfasearch.rs:177:8
+    |
+177 |     if match_words || match_lines {
+    |        ^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::match_words` exists but is inaccessible
+   --> src/kwsearch.rs:16:5
+    |
+16  |     static mut match_words: bool;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `match_lines` in this scope
+   --> src/dfasearch.rs:177:23
+    |
+177 |     if match_words || match_lines {
+    |                       ^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::match_lines` exists but is inaccessible
+   --> src/kwsearch.rs:17:5
+    |
+17  |     static mut match_lines: bool;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `match_lines` in this scope
+   --> src/dfasearch.rs:178:29
+    |
+178 |         let (beg, end) = if match_lines {
+    |                             ^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::match_lines` exists but is inaccessible
+   --> src/kwsearch.rs:17:5
+    |
+17  |     static mut match_lines: bool;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `RE_NO_BK_PARENS` in this scope
+   --> src/dfasearch.rs:179:30
+    |
+179 |             if syntax_bits & RE_NO_BK_PARENS != 0 {
+    |                              ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RE_NO_BK_PARENS` in this scope
+   --> src/dfasearch.rs:185:30
+    |
+185 |             if syntax_bits & RE_NO_BK_PARENS != 0 {
+    |                              ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `eolbyte` in this scope
+   --> src/dfasearch.rs:215:15
+    |
+215 |     let eol = eolbyte;
+    |               ^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::eolbyte` exists but is inaccessible
+   --> src/kwsearch.rs:18:5
+    |
+18  |     static mut eolbyte: libc::c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `localeinfo` in this scope
+   --> src/dfasearch.rs:247:29
+    |
+247 |                         if !localeinfo.multibyte || localeinfo.using_utf8 {
+    |                             ^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::localeinfo` exists but is inaccessible
+   --> src/kwsearch.rs:65:5
+    |
+65  |     static mut localeinfo: localeinfo;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `localeinfo` in this scope
+   --> src/dfasearch.rs:247:53
+    |
+247 |                         if !localeinfo.multibyte || localeinfo.using_utf8 {
+    |                                                     ^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::kwsearch::localeinfo` exists but is inaccessible
+   --> src/kwsearch.rs:65:5
+    |
+65  |     static mut localeinfo: localeinfo;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `acexec` in this scope
+  --> src/kwset.rs:68:26
+   |
+68 |                 kwsexec: acexec,
+   |                          ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `bmexec` in this scope
+  --> src/kwset.rs:90:43
+   |
+90 |             let reverse = self.kwsexec == bmexec;
+   |                                           ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `bmexec` in this scope
+   --> src/kwset.rs:270:40
+    |
+270 |                 (*new_kwset).kwsexec = bmexec;
+    |                                        ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:339:35
+    |
+339 |                     (*self).gc2 = tr(trans, *(*self).target.offset(self.mind - 2));
+    |                                   ^^ not found in this scope
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:502:12
+    |
+502 |         if tr(trans, *tp.offset(-2)) == gc2 {
+    |            ^^ help: a local variable with a similar name exists: `tp`
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:505:20
+    |
+505 |                 if tr(trans, *tp.offset(-i as isize)) != tr(trans, *sp.offset(-i as isize)) {
+    |                    ^^ help: a local variable with a similar name exists: `tp`
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:505:58
+    |
+505 |                 if tr(trans, *tp.offset(-i as isize)) != tr(trans, *sp.offset(-i as isize)) {
+    |                                                          ^^ help: a local variable with a similar name exists: `tp`
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:513:24
+    |
+513 |                     if tr(trans, *tp.offset(-i as isize)) != tr(trans, *sp.offset(-i as isize)) {
+    |                        ^^ help: a local variable with a similar name exists: `tp`
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:513:62
+    |
+513 |                     if tr(trans, *tp.offset(-i as isize)) != tr(trans, *sp.offset(-i as isize)) {
+    |                                                              ^^ help: a local variable with a similar name exists: `tp`
+
+error[E0425]: cannot find function `tr` in this scope
+   --> src/kwset.rs:530:12
+    |
+530 |         if tr(trans, *tp.offset(-1)) != gc1 {
+    |            ^^ help: a local variable with a similar name exists: `tp`
+
+warning: unused imports: `CStr`, `CString`
+ --> lib/argmatch.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::os::raw::c_char`
+ --> lib/argmatch.rs:8:5
+  |
+8 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/argmatch.rs:9:5
+  |
+9 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> lib/argmatch.rs:10:5
+   |
+10 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+  --> lib/argmatch.rs:11:5
+   |
+11 | use std::cmp;
+   |     ^^^^^^^^
+
+warning: unused import: `std::fmt`
+  --> lib/argmatch.rs:12:5
+   |
+12 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+  --> lib/argmatch.rs:13:15
+   |
+13 | use std::io::{self, Write};
+   |               ^^^^  ^^^^^
+
+warning: unused import: `std::env`
+  --> lib/argmatch.rs:15:5
+   |
+15 | use std::env;
+   |     ^^^^^^^^
+
+warning: unused macro definition: `argmatch_verify`
+  --> lib/argmatch.rs:19:14
+   |
+19 | macro_rules! argmatch_verify {
+   |              ^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` on by default
+
+warning: unused label
+  --> lib/chdir_long.rs:59:9
+   |
+59 |         'c_1375: {
+   |         ^^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> lib/chdir_long.rs:120:5
+    |
+120 |     'c_1968: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:146:5
+    |
+146 |     'c_1930: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:208:13
+    |
+208 |             'c_1759: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:234:13
+    |
+234 |             'c_1720: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:280:17
+    |
+280 |                 'c_1640: {
+    |                 ^^^^^^^
+
+warning: unused label
+  --> lib/cycle_check.rs:89:5
+   |
+89 |     'c_1285: {
+   |     ^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> lib/dfa.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/dfa.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/dfa.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `CString`
+ --> lib/exclude.rs:2:16
+  |
+2 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^
+
+warning: unused import: `BufRead`
+ --> lib/exclude.rs:4:21
+  |
+4 | use std::io::{self, BufRead, BufReader, Read};
+  |                     ^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> lib/exclude.rs:5:5
+  |
+5 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/exclude.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::sync::Mutex`
+  --> lib/exclude.rs:11:5
+   |
+11 | use std::sync::Mutex;
+   |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/fd_hook.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused imports: `CStr`, `CString`, `DirBuilder`, `OpenOptions`, `OsStr`, `Path`, `os::unix::ffi::OsStrExt`, `self`
+ --> lib/fts.rs:2:11
+  |
+2 |     ffi::{CStr, CString, OsStr, OsString},
+  |           ^^^^  ^^^^^^^  ^^^^^
+3 |     fs::{self, DirBuilder, File, Metadata, OpenOptions, ReadDir},
+  |          ^^^^  ^^^^^^^^^^                  ^^^^^^^^^^^
+4 |     io::{self, Error, ErrorKind},
+5 |     os::unix::ffi::OsStrExt,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^
+6 |     path::{Path, PathBuf},
+  |            ^^^^
+
+warning: unused import: `::libc`
+ --> lib/glthread/threadlib.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+  --> lib/localeinfo.rs:21:5
+   |
+21 | use std::cmp::Ordering;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashSet`
+  --> lib/localeinfo.rs:22:5
+   |
+22 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryFrom`
+  --> lib/localeinfo.rs:23:5
+   |
+23 | use std::convert::TryFrom;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:116:9
+    |
+116 |         'c_1667: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:168:21
+    |
+168 |                     'c_1506: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbiter.rs:195:21
+    |
+195 |                     'c_1459: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:124:9
+    |
+124 |         'c_1126: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:173:21
+    |
+173 |                     'c_950: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbscasecmp.rs:200:21
+    |
+200 |                     'c_903: {
+    |                     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+   --> lib/mbscasecmp.rs:359:17
+    |
+359 |                 ({
+    |                 ^
+...
+381 |                 })
+    |                  ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+359 ~                 {
+360 |                     let mut __res: libc::c_int = 0;
+  ...
+380 |                     __res
+381 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/mbscasecmp.rs:389:17
+    |
+389 |                 ({
+    |                 ^
+...
+411 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+389 ~                 {
+390 |                     let mut __res: libc::c_int = 0;
+  ...
+410 |                     __res
+411 ~                 }
+    |
+
+warning: unused label
+  --> lib/mbslen.rs:93:9
+   |
+93 |         'c_768: {
+   |         ^^^^^^
+
+warning: unused label
+   --> lib/mbslen.rs:142:21
+    |
+142 |                     'c_593: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbslen.rs:169:21
+    |
+169 |                     'c_546: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:108:9
+    |
+108 |         'c_1477: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:157:21
+    |
+157 |                     'c_1303: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbsstr.rs:184:21
+    |
+184 |                     'c_1256: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:126:9
+    |
+126 |         'c_2845: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:175:21
+    |
+175 |                     'c_2682: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/mbuiter.rs:202:21
+    |
+202 |                     'c_2635: {
+    |                     ^^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:210:17
+    |
+210 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+228 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+210 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+211 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+227 |                     })
+228 ~                 },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:167:17
+    |
+167 |                 (if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+    |                 ^
+...
+185 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+167 ~                 if ::core::mem::size_of::<f128::f128>() as libc::c_ulong
+168 |                     > (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+  ...
+184 |                     })
+185 ~                 },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:178:21
+    |
+178 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+184 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+178 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+179 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+183 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+184 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:199:17
+    |
+199 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+205 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+199 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+200 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+204 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+205 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:221:21
+    |
+221 |                     (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                     ^
+...
+227 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+221 ~                     if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+222 |                         > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+226 |                         ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+227 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:242:17
+    |
+242 |                 (if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+    |                 ^
+...
+248 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+242 ~                 if ::core::mem::size_of::<uintmax_t>() as libc::c_ulong
+243 |                     > ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+247 |                     ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+248 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:273:21
+    |
+273 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+279 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+273 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+274 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+278 |                         0 as *mut libc::c_char
+279 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:364:21
+    |
+364 |                     (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                     ^
+...
+370 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+364 ~                     if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+365 |                         < ::core::mem::size_of::<*mut libc::c_void>() as libc::c_ulong
+  ...
+369 |                         0 as *mut libc::c_char
+370 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:392:29
+    |
+392 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+    |                       ^
+...
+399 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+392 ~                             if (::core::mem::size_of::<ptrdiff_t>() as libc::c_ulong)
+393 |                                 < ::core::mem::size_of::<*mut libc::c_void>()
+  ...
+398 |                                 0 as *mut libc::c_char
+399 ~                             },
+    |
+
+warning: unused label
+   --> lib/propername.rs:139:9
+    |
+139 |         'c_786: {
+    |         ^^^^^^
+
+warning: unused label
+   --> lib/propername.rs:188:21
+    |
+188 |                     'c_610: {
+    |                     ^^^^^^
+
+warning: unused label
+   --> lib/propername.rs:215:21
+    |
+215 |                     'c_563: {
+    |                     ^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> lib/quotearg.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> lib/quotearg.rs:2:5
+  |
+2 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/quotearg.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/quotearg.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> lib/quotearg.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::borrow::Cow`
+ --> lib/quotearg.rs:7:5
+  |
+7 | use std::borrow::Cow;
+  |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> lib/quotearg.rs:8:5
+  |
+8 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `c_uint`
+  --> lib/regex.rs:10:27
+   |
+10 | use std::os::raw::{c_int, c_uint};
+   |                           ^^^^^^
+
+warning: unused import: `std::ptr`
+  --> lib/regex.rs:11:5
+   |
+11 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> lib/regex.rs:12:5
+   |
+12 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+  --> lib/regex.rs:13:5
+   |
+13 | use std::ffi::CStr;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt`
+  --> lib/regex.rs:14:5
+   |
+14 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> lib/strtoll.rs:79:37
+   |
+79 | ...                   __res = (if __c < -(128 as libc::c_int)
+   |                               ^
+...
+85 | ...                   });
+   |                        ^
+   |
+help: remove these parentheses
+   |
+79 ~                             __res = if __c < -(128 as libc::c_int)
+80 |                                 || __c > 255 as libc::c_int
+ ...
+84 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+85 ~                             };
+   |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:114:37
+    |
+114 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+120 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+114 ~                             __res = if __c < -(128 as libc::c_int)
+115 |                                 || __c > 255 as libc::c_int
+  ...
+119 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+120 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:177:37
+    |
+177 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+183 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+177 ~                             __res = if __c < -(128 as libc::c_int)
+178 |                                 || __c > 255 as libc::c_int
+  ...
+182 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+183 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:247:33
+    |
+247 |                         __res = (if __c < -(128 as libc::c_int)
+    |                                 ^
+...
+253 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+247 ~                         __res = if __c < -(128 as libc::c_int)
+248 |                             || __c > 255 as libc::c_int
+  ...
+252 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+253 ~                         };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoll.rs:278:37
+    |
+278 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+284 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+278 ~                             __res = if __c < -(128 as libc::c_int)
+279 |                                 || __c > 255 as libc::c_int
+  ...
+283 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+284 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+  --> lib/strtoull.rs:79:37
+   |
+79 | ...                   __res = (if __c < -(128 as libc::c_int)
+   |                               ^
+...
+85 | ...                   });
+   |                        ^
+   |
+help: remove these parentheses
+   |
+79 ~                             __res = if __c < -(128 as libc::c_int)
+80 |                                 || __c > 255 as libc::c_int
+ ...
+84 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+85 ~                             };
+   |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:114:37
+    |
+114 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+120 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+114 ~                             __res = if __c < -(128 as libc::c_int)
+115 |                                 || __c > 255 as libc::c_int
+  ...
+119 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+120 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:177:37
+    |
+177 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+183 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+177 ~                             __res = if __c < -(128 as libc::c_int)
+178 |                                 || __c > 255 as libc::c_int
+  ...
+182 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+183 ~                             };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:230:33
+    |
+230 |                         __res = (if __c < -(128 as libc::c_int)
+    |                                 ^
+...
+236 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+230 ~                         __res = if __c < -(128 as libc::c_int)
+231 |                             || __c > 255 as libc::c_int
+  ...
+235 |                             *(*__ctype_toupper_loc()).offset(__c as isize)
+236 ~                         };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/strtoull.rs:261:37
+    |
+261 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+267 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+261 ~                             __res = if __c < -(128 as libc::c_int)
+262 |                                 || __c > 255 as libc::c_int
+  ...
+266 |                                 *(*__ctype_toupper_loc()).offset(__c as isize)
+267 ~                             };
+    |
+
+warning: unused label
+   --> lib/trim.rs:116:9
+    |
+116 |         'c_1962: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> lib/trim.rs:168:21
+    |
+168 |                     'c_1794: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> lib/trim.rs:195:21
+    |
+195 |                     'c_1747: {
+    |                     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/unistd.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/unistr/u8_uctomb.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/wctype_h.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3537:21
+     |
+3537 |                     (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |                     ^
+...
+4208 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3537 ~                     if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+   ...
+4207 |                         })
+4208 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3538:25
+     |
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3883 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3538 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3539 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3882 |                             0 as libc::c_int
+3883 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3539:29
+     |
+3539 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3744 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3539 ~                             if n < 0 as libc::c_int as libc::c_long {
+3540 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+3743 |                                 })
+3744 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3540:33
+     |
+3540 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3621 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3540 ~                                 if ((if 1 as libc::c_int != 0 {
+3541 |                                     0 as libc::c_int as libc::c_long
+   ...
+3620 |                                         as libc::c_int
+3621 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3623:33
+     |
+3623 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3743 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3623 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3624 |                                     0 as libc::c_int as libc::c_long
+   ...
+3742 |                                         / s < n) as libc::c_int
+3743 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3722:37
+     |
+3722 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3739 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3722 ~                                     if ((if 1 as libc::c_int != 0 {
+3723 |                                         0 as libc::c_int as libc::c_long
+   ...
+3738 |                                             as libc::c_int
+3739 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3746:29
+     |
+3746 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3873 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3746 ~                             if s == 0 as libc::c_int as libc::c_long {
+3747 |                                 0 as libc::c_int
+   ...
+3872 |                                 })
+3873 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3749:33
+     |
+3749 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3872 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3749 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3750 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3871 |                                     (127 as libc::c_int as libc::c_long / s < n) as libc::c_int
+3872 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3750:37
+     |
+3750 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3869 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3750 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3751 |                                         0 as libc::c_int as libc::c_long
+   ...
+3868 |                                             / n < s) as libc::c_int
+3869 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3849:41
+     |
+3849 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3865 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3849 ~                                         if ((if 1 as libc::c_int != 0 {
+3850 |                                             0 as libc::c_int as libc::c_long
+   ...
+3864 |                                                 as libc::c_int
+3865 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3885:25
+     |
+3885 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4207 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3885 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3886 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4206 |                             0 as libc::c_int
+4207 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3886:29
+     |
+3886 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4082 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3886 ~                             if n < 0 as libc::c_int as libc::c_long {
+3887 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4081 |                                 })
+4082 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3887:33
+     |
+3887 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3973 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3887 ~                                 if ((if 1 as libc::c_int != 0 {
+3888 |                                     0 as libc::c_int as libc::c_long
+   ...
+3972 |                                         as libc::c_int
+3973 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3975:33
+     |
+3975 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4081 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3975 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3976 |                                     0 as libc::c_int as libc::c_long
+   ...
+4080 |                                     (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4081 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4064:37
+     |
+4064 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4078 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4064 ~                                     if ((if 1 as libc::c_int != 0 {
+4065 |                                         0 as libc::c_int as libc::c_long
+   ...
+4077 |                                             as libc::c_int
+4078 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4084:29
+     |
+4084 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4197 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4084 ~                             if s == 0 as libc::c_int as libc::c_long {
+4085 |                                 0 as libc::c_int
+   ...
+4196 |                                 })
+4197 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4087:33
+     |
+4087 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4087 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4088 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4195 |                                         as libc::c_long / s < n) as libc::c_int
+4196 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4088:37
+     |
+4088 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4192 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4088 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4089 |                                         0 as libc::c_int as libc::c_long
+   ...
+4191 |                                         (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4192 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4177:41
+     |
+4177 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4189 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4177 ~                                         if ((if 1 as libc::c_int != 0 {
+4178 |                                             0 as libc::c_int as libc::c_long
+   ...
+4188 |                                                 < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4189 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4210:21
+     |
+4210 |                     (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                     ^
+...
+7043 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4210 ~                     if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4211 |                         == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+7042 |                         })
+7043 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4213:25
+     |
+4213 |                         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+     |                         ^
+...
+4899 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4213 ~                         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+4214 |                         {
+   ...
+4898 |                             })
+4899 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4215:29
+     |
+4215 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4574 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4215 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4216 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4573 |                                 0 as libc::c_int
+4574 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4216:33
+     |
+4216 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4428 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4216 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4217 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4427 |                                     })
+4428 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4217:37
+     |
+4217 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4299 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4217 ~                                     if ((if 1 as libc::c_int != 0 {
+4218 |                                         0 as libc::c_int as libc::c_long
+   ...
+4298 |                                             as libc::c_int
+4299 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4301:37
+     |
+4301 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4427 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4301 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4302 |                                         0 as libc::c_int as libc::c_long
+   ...
+4426 |                                             as libc::c_long / s < n) as libc::c_int
+4427 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4406:41
+     |
+4406 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4423 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4406 ~                                         if ((if 1 as libc::c_int != 0 {
+4407 |                                             0 as libc::c_int as libc::c_long
+   ...
+4422 |                                                 as libc::c_int
+4423 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4430:33
+     |
+4430 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4564 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4430 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4431 |                                     0 as libc::c_int
+   ...
+4563 |                                     })
+4564 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4433:37
+     |
+4433 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4563 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4433 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4434 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4562 |                                             as libc::c_int
+4563 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4434:41
+     |
+4434 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4559 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4434 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4435 |                                             0 as libc::c_int as libc::c_long
+   ...
+4558 |                                                 as libc::c_long / n < s) as libc::c_int
+4559 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4539:45
+     |
+4539 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4555 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4539 ~                                             if ((if 1 as libc::c_int != 0 {
+4540 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4554 |                                                     as libc::c_int
+4555 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4576:29
+     |
+4576 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4898 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4576 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4577 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4897 |                                 0 as libc::c_int
+4898 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4577:33
+     |
+4577 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4773 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4577 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4578 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4772 |                                     })
+4773 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4578:37
+     |
+4578 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4664 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4578 ~                                     if ((if 1 as libc::c_int != 0 {
+4579 |                                         0 as libc::c_int as libc::c_long
+   ...
+4663 |                                             as libc::c_int
+4664 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4666:37
+     |
+4666 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4772 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4666 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4667 |                                         0 as libc::c_int as libc::c_long
+   ...
+4771 |                                         (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4772 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4755:41
+     |
+4755 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4769 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4755 ~                                         if ((if 1 as libc::c_int != 0 {
+4756 |                                             0 as libc::c_int as libc::c_long
+   ...
+4768 |                                                 as libc::c_int
+4769 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4775:33
+     |
+4775 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4888 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4775 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4776 |                                     0 as libc::c_int
+   ...
+4887 |                                     })
+4888 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4778:37
+     |
+4778 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4887 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4778 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4779 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4886 |                                             + 1 as libc::c_int) as libc::c_long / s < n) as libc::c_int
+4887 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4779:41
+     |
+4779 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4883 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4779 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4780 |                                             0 as libc::c_int as libc::c_long
+   ...
+4882 |                                             (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4883 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4868:45
+     |
+4868 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4880 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4868 ~                                             if ((if 1 as libc::c_int != 0 {
+4869 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4879 |                                                     < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4880 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4901:25
+     |
+4901 |                         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                         ^
+...
+7042 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4901 ~                         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4902 |                             == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+7041 |                             })
+7042 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4904:29
+     |
+4904 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5603 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4904 ~                             if ((if 1 as libc::c_int != 0 {
+4905 |                                 0 as libc::c_int as libc::c_long
+   ...
+5602 |                                 })
+5603 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4911:33
+     |
+4911 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5270 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4911 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+4912 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5269 |                                     0 as libc::c_int
+5270 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4912:37
+     |
+4912 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5124 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4912 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4913 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5123 |                                         })
+5124 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4913:41
+     |
+4913 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4995 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4913 ~                                         if ((if 1 as libc::c_int != 0 {
+4914 |                                             0 as libc::c_int as libc::c_long
+   ...
+4994 |                                                 as libc::c_int
+4995 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4997:41
+     |
+4997 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5123 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4997 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4998 |                                             0 as libc::c_int as libc::c_long
+   ...
+5122 |                                                 as libc::c_long / s < n) as libc::c_int
+5123 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5102:45
+     |
+5102 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5119 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5102 ~                                             if ((if 1 as libc::c_int != 0 {
+5103 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5118 |                                                     as libc::c_int
+5119 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5126:37
+     |
+5126 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5260 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5126 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5127 |                                         0 as libc::c_int
+   ...
+5259 |                                         })
+5260 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5129:41
+     |
+5129 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5259 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5129 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5130 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5258 |                                                 as libc::c_int
+5259 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5130:45
+     |
+5130 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5255 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5130 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5131 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5254 |                                                     as libc::c_long / n < s) as libc::c_int
+5255 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5235:49
+     |
+5235 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5251 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5235 ~                                                 if ((if 1 as libc::c_int != 0 {
+5236 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5250 |                                                         as libc::c_int
+5251 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5272:33
+     |
+5272 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5602 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5272 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+5273 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5601 |                                     0 as libc::c_int
+5602 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5273:37
+     |
+5273 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5475 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5273 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5274 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5474 |                                         })
+5475 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5274:41
+     |
+5274 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5366 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5274 ~                                         if ((if 1 as libc::c_int != 0 {
+5275 |                                             0 as libc::c_int as libc::c_long
+   ...
+5365 |                                                 as libc::c_int
+5366 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5368:41
+     |
+5368 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5474 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5368 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5369 |                                             0 as libc::c_int as libc::c_long
+   ...
+5473 |                                             (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+5474 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5457:45
+     |
+5457 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5471 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5457 ~                                             if ((if 1 as libc::c_int != 0 {
+5458 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5470 |                                                     as libc::c_int
+5471 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5477:37
+     |
+5477 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5477 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5478 |                                         0 as libc::c_int
+   ...
+5591 |                                         })
+5592 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5480:41
+     |
+5480 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5591 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5480 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5481 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5590 |                                                 as libc::c_int
+5591 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5481:45
+     |
+5481 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5585 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5481 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5482 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5584 |                                                 (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+5585 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5570:49
+     |
+5570 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5582 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5570 ~                                                 if ((if 1 as libc::c_int != 0 {
+5571 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5581 |                                                         < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+5582 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5605:29
+     |
+5605 | ...                   (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                       ^
+...
+7041 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5605 ~                             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+5606 |                                 == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+7040 |                                 })
+7041 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5608:33
+     |
+5608 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5608 ~                                 if ((if 1 as libc::c_int != 0 {
+5609 |                                     0 as libc::c_int as libc::c_long
+   ...
+6311 |                                     })
+6312 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5615:37
+     |
+5615 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5972 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5615 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5616 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5971 |                                         0 as libc::c_int
+5972 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5616:41
+     |
+5616 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5827 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5616 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5617 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+5826 |                                             })
+5827 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5617:45
+     |
+5617 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5698 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5617 ~                                             if ((if 1 as libc::c_int != 0 {
+5618 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5697 |                                                     as libc::c_int
+5698 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5700:45
+     |
+5700 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5700 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5701 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5825 |                                                     - 1 as libc::c_long) / s < n) as libc::c_int
+5826 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5805:49
+     |
+5805 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5822 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5805 ~                                                 if ((if 1 as libc::c_int != 0 {
+5806 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5821 |                                                         as libc::c_int
+5822 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5829:41
+     |
+5829 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5962 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5829 ~                                         if s == 0 as libc::c_int as libc::c_long {
+5830 |                                             0 as libc::c_int
+   ...
+5961 |                                             })
+5962 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5832:45
+     |
+5832 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5961 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5832 ~                                             if n < 0 as libc::c_int as libc::c_long {
+5833 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5960 |                                                 (9223372036854775807 as libc::c_long / s < n) as libc::c_int
+5961 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5833:49
+     |
+5833 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5958 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5833 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+5834 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5957 |                                                         - 1 as libc::c_long) / n < s) as libc::c_int
+5958 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5938:53
+     |
+5938 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5954 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5938 ~                                                     if ((if 1 as libc::c_int != 0 {
+5939 |                                                         0 as libc::c_int as libc::c_long
+   ...
+5953 |                                                             as libc::c_int
+5954 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5974:37
+     |
+5974 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6311 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5974 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5975 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6310 |                                         0 as libc::c_int
+6311 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5975:41
+     |
+5975 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6183 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5975 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5976 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6182 |                                             })
+6183 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5976:45
+     |
+5976 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6074 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5976 ~                                             if (if 1 as libc::c_int != 0 {
+5977 |                                                 0 as libc::c_int as libc::c_ulong
+   ...
+6073 |                                                         as libc::c_ulong) as libc::c_int
+6074 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6076:45
+     |
+6076 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6182 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6076 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6077 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6181 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6182 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6165:49
+     |
+6165 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6179 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6165 ~                                                 if ((if 1 as libc::c_int != 0 {
+6166 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6178 |                                                         as libc::c_int
+6179 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6185:41
+     |
+6185 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6301 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6185 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6186 |                                             0 as libc::c_int
+   ...
+6300 |                                             })
+6301 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6188:45
+     |
+6188 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6300 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6188 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6189 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6299 |                                                     as libc::c_int
+6300 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6189:49
+     |
+6189 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6293 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6189 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6190 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6292 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+6293 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6278:53
+     |
+6278 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6290 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6278 ~                                                     if ((if 1 as libc::c_int != 0 {
+6279 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6289 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+6290 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6314:33
+     |
+6314 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7040 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6314 ~                                 if ((if 1 as libc::c_int != 0 {
+6315 |                                     0 as libc::c_int as libc::c_long
+   ...
+7039 |                                     })
+7040 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6321:37
+     |
+6321 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6695 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6321 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6322 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6694 |                                         0 as libc::c_int
+6695 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6322:41
+     |
+6322 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6542 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6322 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6323 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+6541 |                                             })
+6542 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6323:45
+     |
+6323 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6409 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6323 ~                                             if ((if 1 as libc::c_int != 0 {
+6324 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6408 |                                                         as libc::c_longlong) as libc::c_int
+6409 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6411:45
+     |
+6411 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6541 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6411 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6412 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6540 |                                                     < n as libc::c_longlong) as libc::c_int
+6541 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6518:49
+     |
+6518 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6536 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6518 ~                                                 if ((if 1 as libc::c_int != 0 {
+6519 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6535 |                                                                 as libc::c_longlong) as libc::c_int
+6536 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6544:41
+     |
+6544 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6683 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6544 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6545 |                                             0 as libc::c_int
+   ...
+6682 |                                             })
+6683 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6547:45
+     |
+6547 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6682 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6547 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6548 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6681 |                                                     as libc::c_int
+6682 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6548:49
+     |
+6548 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6677 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6548 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6549 |                                                     0 as libc::c_int as libc::c_longlong
+   ...
+6676 |                                                         < s as libc::c_longlong) as libc::c_int
+6677 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6655:53
+     |
+6655 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6672 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6655 ~                                                     if ((if 1 as libc::c_int != 0 {
+6656 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6671 |                                                                 as libc::c_longlong) as libc::c_int
+6672 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6697:37
+     |
+6697 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7039 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6697 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6698 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7038 |                                         0 as libc::c_int
+7039 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6698:41
+     |
+6698 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6910 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6698 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6699 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6909 |                                             })
+6910 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6699:45
+     |
+6699 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6699 ~                                             if (if 1 as libc::c_int != 0 {
+6700 |                                                 0 as libc::c_int as libc::c_ulonglong
+   ...
+6800 |                                                         as libc::c_ulonglong) as libc::c_int
+6801 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6803:45
+     |
+6803 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6909 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6803 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6804 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6908 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6909 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6892:49
+     |
+6892 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6906 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6892 ~                                                 if ((if 1 as libc::c_int != 0 {
+6893 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6905 |                                                         as libc::c_int
+6906 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6912:41
+     |
+6912 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7029 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6912 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6913 |                                             0 as libc::c_int
+   ...
+7028 |                                             })
+7029 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6915:45
+     |
+6915 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7028 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6915 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6916 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7027 |                                                     < n as libc::c_ulonglong) as libc::c_int
+7028 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6916:49
+     |
+6916 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7020 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6916 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6917 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7019 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+7020 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:7005:53
+     |
+7005 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7017 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7005 ~                                                     if ((if 1 as libc::c_int != 0 {
+7006 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7016 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+7017 ~                                                     }
+     |
+
+warning: unused import: `IntErrorKind`
+  --> lib/xstrtoimax.rs:18:16
+   |
+18 | use std::num::{IntErrorKind, ParseIntError};
+   |                ^^^^^^^^^^^^
+
+warning: unused import: `std::str::FromStr`
+  --> lib/xstrtoimax.rs:19:5
+   |
+19 | use std::str::FromStr;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/dfasearch.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/dfasearch.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/dfasearch.rs:3:16
+  |
+3 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`
+ --> src/dfasearch.rs:4:20
+  |
+4 | use std::os::raw::{c_char, c_int};
+  |                    ^^^^^^  ^^^^^
+
+warning: unused imports: `OsStr`, `OsString`, `PathBuf`, `Write`, `self`
+ --> src/grep.rs:2:11
+  |
+2 |     ffi::{OsStr, OsString},
+  |           ^^^^^  ^^^^^^^^
+3 |     fs::{self, File},
+  |          ^^^^
+4 |     io::{self, BufRead, BufReader, Read, Write},
+  |                                          ^^^^^
+5 |     path::{Path, PathBuf},
+  |                  ^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/kwset.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/kwset.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/kwset.rs:4:5
+  |
+4 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> src/searchutils.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/searchutils.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> src/searchutils.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::str`
+ --> src/searchutils.rs:6:5
+  |
+6 | use std::str;
+  |     ^^^^^^^^
+
+warning: unused import: `std::char`
+ --> src/searchutils.rs:7:5
+  |
+7 | use std::char;
+  |     ^^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/searchutils.rs:8:5
+  |
+8 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::iter`
+ --> src/searchutils.rs:9:5
+  |
+9 | use std::iter;
+  |     ^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> src/searchutils.rs:79:43
+   |
+79 |                         let long_enough = (!*cur.offset(-i) >> (7 - i) == 0;
+   |                                           ^                                ^
+   |
+help: remove these parentheses
+   |
+79 -                         let long_enough = (!*cur.offset(-i) >> (7 - i) == 0;
+79 +                         let long_enough = !*cur.offset(-i) >> (7 - i) == 0;
+   |
+
+error[E0308]: mismatched types
+    --> lib/closeout.rs:59:34
+     |
+59   |     let old_ptr = FILE_NAME.swap(ptr, Ordering::SeqCst);
+     |                             ---- ^^^ expected `u8`, found `i8`
+     |                             |
+     |                             arguments to this function are incorrect
+     |
+     = note: expected raw pointer `*mut u8`
+                found raw pointer `*mut i8`
+note: associated function defined here
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/sync/atomic.rs:1243:12
+     |
+1243 |     pub fn swap(&self, ptr: *mut T, order: Ordering) -> *mut T {
+     |            ^^^^
+
+error[E0308]: mismatched types
+   --> lib/closeout.rs:61:36
+    |
+61  |         unsafe { CString::from_raw(old_ptr) };
+    |                  ----------------- ^^^^^^^ expected `i8`, found `u8`
+    |                  |
+    |                  arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*mut i8`
+               found raw pointer `*mut u8`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/ffi/c_str.rs:397:19
+    |
+397 |     pub unsafe fn from_raw(ptr: *mut c_char) -> CString {
+    |                   ^^^^^^^^
+
+error[E0599]: no method named `into_raw` found for struct `Stdout` in the current scope
+  --> lib/closeout.rs:87:41
+   |
+87 |     if let Err(err) = std::io::stdout().into_raw().and_then(|handle| {
+   |                                         ^^^^^^^^ method not found in `Stdout`
+
+error[E0599]: no function or associated item named `from_raw_fd` found for struct `std::fs::File` in the current scope
+  --> lib/closeout.rs:88:48
+   |
+88 |         let mut file = unsafe { std::fs::File::from_raw_fd(handle) };
+   |                                                ^^^^^^^^^^^ function or associated item not found in `std::fs::File`
+   |
+   = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+   |
+3  | use std::os::unix::io::FromRawFd;
+   |
+
+error[E0308]: mismatched types
+   --> lib/closeout.rs:99:56
+    |
+99  |                 unsafe { Some(std::ffi::CStr::from_ptr(file_name_ptr).to_str().unwrap_or("")) }
+    |                               ------------------------ ^^^^^^^^^^^^^ expected `i8`, found `u8`
+    |                               |
+    |                               arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*const i8`
+               found raw pointer `*mut u8`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/c_str.rs:248:19
+    |
+248 |     pub unsafe fn from_ptr<'a>(ptr: *const c_char) -> &'a CStr {
+    |                   ^^^^^^^^
+
+error[E0599]: no method named `into_raw` found for struct `Stderr` in the current scope
+   --> lib/closeout.rs:107:45
+    |
+107 |         if let Err(err) = std::io::stderr().into_raw().and_then(|handle| {
+    |                                             ^^^^^^^^ method not found in `Stderr`
+
+error[E0599]: no function or associated item named `from_raw_fd` found for struct `std::fs::File` in the current scope
+   --> lib/closeout.rs:108:52
+    |
+108 |             let mut file = unsafe { std::fs::File::from_raw_fd(handle) };
+    |                                                    ^^^^^^^^^^^ function or associated item not found in `std::fs::File`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+3   | use std::os::unix::io::FromRawFd;
+    |
+
+error[E0277]: `(dyn for<'r, 's> Fn(&'r FtsEnt, &'s FtsEnt) -> i32 + 'static)` doesn't implement `Debug`
+  --> lib/fts.rs:84:5
+   |
+72 | #[derive(Debug)]
+   |          ----- in this derive macro expansion
+...
+84 |     pub fts_compar: Option<Box<dyn Fn(&FtsEnt, &FtsEnt) -> i32>>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `(dyn for<'r, 's> Fn(&'r FtsEnt, &'s FtsEnt) -> i32 + 'static)` cannot be formatted using `{:?}` because it doesn't implement `Debug`
+   |
+   = help: the trait `Debug` is not implemented for `(dyn for<'r, 's> Fn(&'r FtsEnt, &'s FtsEnt) -> i32 + 'static)`
+   = help: the following other types implement trait `Debug`:
+             (dyn Any + 'static)
+             (dyn Any + Send + 'static)
+             (dyn Any + Send + Sync + 'static)
+   = note: this error originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0599]: no function or associated item named `default` found for struct `Metadata` in the current scope
+   --> lib/fts.rs:157:38
+    |
+157 |                 fts_statp: Metadata::default(),
+    |                                      ^^^^^^^ function or associated item not found in `Metadata`
+
+error[E0599]: no variant or associated item named `Verbatim` found for enum `FtsOptions` in the current scope
+   --> lib/fts.rs:170:38
+    |
+12  | pub enum FtsOptions {
+    | ------------------- variant or associated item `Verbatim` not found for this enum
+...
+170 |             if options & FtsOptions::Verbatim as u32 == 0 {
+    |                                      ^^^^^^^^ variant or associated item not found in `FtsOptions`
+
+error[E0277]: the type `String` cannot be indexed by `usize`
+   --> lib/fts.rs:171:54
+    |
+171 |                 while len > 1 && p.ends_with('/') && p[p.len() - 2] == '/' {
+    |                                                      ^^^^^^^^^^^^^^ `String` cannot be indexed by `usize`
+    |
+    = help: the trait `Index<usize>` is not implemented for `String`
+    = help: the following other types implement trait `Index<Idx>`:
+              <String as Index<RangeFrom<usize>>>
+              <String as Index<RangeFull>>
+              <String as Index<RangeInclusive<usize>>>
+              <String as Index<RangeTo<usize>>>
+              <String as Index<RangeToInclusive<usize>>>
+              <String as Index<std::ops::Range<usize>>>
+              <str as Index<I>>
+
+error[E0599]: no function or associated item named `default` found for struct `Metadata` in the current scope
+   --> lib/fts.rs:191:38
+    |
+191 |                 fts_statp: Metadata::default(),
+    |                                      ^^^^^^^ function or associated item not found in `Metadata`
+
+error[E0599]: no function or associated item named `default` found for struct `Metadata` in the current scope
+   --> lib/fts.rs:235:34
+    |
+235 |             fts_statp: Metadata::default(),
+    |                                  ^^^^^^^ function or associated item not found in `Metadata`
+
+error[E0599]: no method named `into_raw_fd` found for struct `std::fs::File` in the current scope
+   --> lib/fts.rs:247:28
+    |
+247 |                 Ok(f) => f.into_raw_fd(),
+    |                            ^^^^^^^^^^^ method not found in `std::fs::File`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/fd/raw.rs:135:8
+    |
+135 |     fn into_raw_fd(self) -> RawFd;
+    |        ----------- the method is available for `std::fs::File` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::io::IntoRawFd;
+    |
+
+error[E0308]: mismatched types
+   --> lib/malloca.rs:25:46
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus);
+    |                              --------------- ^^^^ expected `u64`, found `i32`
+    |                              |
+    |                              arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/mod.rs:852:5
+    |
+852 | /     uint_impl! { u64, u64, i64, NonZeroU64, 64, 18446744073709551615, 12, "0xaa00000000006e1", "0x6e10aa",
+853 | |     "0x1234567890123456", "0x5634129078563412", "0x6a2c48091e6a2c48",
+854 | |     "[0x56, 0x34, 0x12, 0x90, 0x78, 0x56, 0x34, 0x12]",
+855 | |     "[0x12, 0x34, 0x56, 0x78, 0x90, 0x12, 0x34, 0x56]",
+856 | |     "", "", ""}
+    | |_______________^
+    = note: this error originates in the macro `uint_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u64` and panic if the converted value doesn't fit
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus.try_into().unwrap());
+    |                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> lib/malloca.rs:26:35
+   |
+26 |     *(&mut nplus as *mut idx_t) = fresh0;
+   |     ---------------------------   ^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     expected due to the type of this binding
+
+error[E0599]: no function or associated item named `from_str_radix` found for type parameter `T` in the current scope
+  --> lib/xstrtol.rs:66:18
+   |
+26 | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+   |                - function or associated item `from_str_radix` not found for this type parameter
+...
+66 |         match T::from_str_radix(num_str, base) {
+   |                  ^^^^^^^^^^^^^^
+   |                  |
+   |                  function or associated item not found in `T`
+   |                  help: there is an associated function with a similar name: `from_str`
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:124:16
+    |
+124 |         'b' => scale(value, 512),
+    |                ^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:8
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:124:16
+    |
+124 |         'b' => scale(value, 512),
+    |                ^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:36
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:124:29
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+124 |         'b' => scale(value, 512),
+    |                -----        ^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:172:4
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ^^^^^    --------  ---------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:125:16
+    |
+125 |         'B' => scale(value, 1024),
+    |                ^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:8
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:125:16
+    |
+125 |         'B' => scale(value, 1024),
+    |                ^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:36
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:125:29
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+125 |         'B' => scale(value, 1024),
+    |                -----        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:172:4
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ^^^^^    --------  ---------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:127:16
+    |
+127 |         'E' => scale_by_power(value, base, 6),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:127:16
+    |
+127 |         'E' => scale_by_power(value, base, 6),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:127:16
+    |
+127 |         'E' => scale_by_power(value, base, 6),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:127:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+127 |         'E' => scale_by_power(value, base, 6),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:128:22
+    |
+128 |         'G' | 'g' => scale_by_power(value, base, 3),
+    |                      ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:128:22
+    |
+128 |         'G' | 'g' => scale_by_power(value, base, 3),
+    |                      ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:128:22
+    |
+128 |         'G' | 'g' => scale_by_power(value, base, 3),
+    |                      ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:128:44
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+128 |         'G' | 'g' => scale_by_power(value, base, 3),
+    |                      --------------        ^^^^ expected type parameter `T`, found integer
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:129:22
+    |
+129 |         'k' | 'K' => scale_by_power(value, base, 1),
+    |                      ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:129:22
+    |
+129 |         'k' | 'K' => scale_by_power(value, base, 1),
+    |                      ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:129:22
+    |
+129 |         'k' | 'K' => scale_by_power(value, base, 1),
+    |                      ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:129:44
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+129 |         'k' | 'K' => scale_by_power(value, base, 1),
+    |                      --------------        ^^^^ expected type parameter `T`, found integer
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:130:22
+    |
+130 |         'M' | 'm' => scale_by_power(value, base, 2),
+    |                      ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:130:22
+    |
+130 |         'M' | 'm' => scale_by_power(value, base, 2),
+    |                      ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:130:22
+    |
+130 |         'M' | 'm' => scale_by_power(value, base, 2),
+    |                      ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:130:44
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+130 |         'M' | 'm' => scale_by_power(value, base, 2),
+    |                      --------------        ^^^^ expected type parameter `T`, found integer
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:131:16
+    |
+131 |         'P' => scale_by_power(value, base, 5),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:131:16
+    |
+131 |         'P' => scale_by_power(value, base, 5),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:131:16
+    |
+131 |         'P' => scale_by_power(value, base, 5),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:131:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+131 |         'P' => scale_by_power(value, base, 5),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:132:16
+    |
+132 |         'Q' => scale_by_power(value, base, 10),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:132:16
+    |
+132 |         'Q' => scale_by_power(value, base, 10),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:132:16
+    |
+132 |         'Q' => scale_by_power(value, base, 10),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:132:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+132 |         'Q' => scale_by_power(value, base, 10),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:133:16
+    |
+133 |         'R' => scale_by_power(value, base, 9),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:133:16
+    |
+133 |         'R' => scale_by_power(value, base, 9),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:133:16
+    |
+133 |         'R' => scale_by_power(value, base, 9),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:133:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+133 |         'R' => scale_by_power(value, base, 9),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:134:22
+    |
+134 |         'T' | 't' => scale_by_power(value, base, 4),
+    |                      ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:134:22
+    |
+134 |         'T' | 't' => scale_by_power(value, base, 4),
+    |                      ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:134:22
+    |
+134 |         'T' | 't' => scale_by_power(value, base, 4),
+    |                      ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:134:44
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+134 |         'T' | 't' => scale_by_power(value, base, 4),
+    |                      --------------        ^^^^ expected type parameter `T`, found integer
+    |                      |
+    |                      arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:135:16
+    |
+135 |         'w' => scale(value, 2),
+    |                ^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:8
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:135:16
+    |
+135 |         'w' => scale(value, 2),
+    |                ^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale`
+   --> lib/xstrtol.rs:174:36
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ----- required by a bound in this
+173 | where
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:135:29
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+135 |         'w' => scale(value, 2),
+    |                -----        ^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:172:4
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |    ^^^^^    --------  ---------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:136:16
+    |
+136 |         'Y' => scale_by_power(value, base, 8),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:136:16
+    |
+136 |         'Y' => scale_by_power(value, base, 8),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:136:16
+    |
+136 |         'Y' => scale_by_power(value, base, 8),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:136:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+136 |         'Y' => scale_by_power(value, base, 8),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0277]: cannot multiply `T` by `T`
+   --> lib/xstrtol.rs:137:16
+    |
+137 |         'Z' => scale_by_power(value, base, 7),
+    |                ^^^^^^^^^^^^^^ no implementation for `T * T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:8
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::ops::Mul,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: Ord` is not satisfied
+   --> lib/xstrtol.rs:137:16
+    |
+137 |         'Z' => scale_by_power(value, base, 7),
+    |                ^^^^^^^^^^^^^^ the trait `Ord` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:36
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                    ^^^^^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::cmp::Ord,
+    |                +++++++++++++++
+
+error[E0277]: the trait bound `T: From<u32>` is not satisfied
+   --> lib/xstrtol.rs:137:16
+    |
+137 |         'Z' => scale_by_power(value, base, 7),
+    |                ^^^^^^^^^^^^^^ the trait `From<u32>` is not implemented for `T`
+    |
+note: required by a bound in `scale_by_power`
+   --> lib/xstrtol.rs:189:59
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    -------------- required by a bound in this
+188 | where
+189 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + From<u32>,
+    |                                                           ^^^^^^^^^ required by this bound in `scale_by_power`
+help: consider further restricting this bound
+    |
+33  |         + Copy + std::convert::From<u32>,
+    |                +++++++++++++++++++++++++
+
+error[E0308]: mismatched types
+   --> lib/xstrtol.rs:137:38
+    |
+26  | pub fn xstrtol<T>(s: &str, base: u32, valid_suffixes: Option<&str>) -> Result<(T, StrToLongError), StrToLongError>
+    |                - this type parameter
+...
+137 |         'Z' => scale_by_power(value, base, 7),
+    |                --------------        ^^^^ expected type parameter `T`, found integer
+    |                |
+    |                arguments to this function are incorrect
+    |
+    = note: expected type parameter `T`
+                         found type `{integer}`
+note: function defined here
+   --> lib/xstrtol.rs:187:4
+    |
+187 | fn scale_by_power<T>(value: T, base: T, power: u32) -> Result<T, StrToLongError>
+    |    ^^^^^^^^^^^^^^    --------  -------  ----------
+
+error[E0599]: no function or associated item named `max_value` found for type parameter `T` in the current scope
+   --> lib/xstrtol.rs:176:18
+    |
+172 | fn scale<T>(value: T, factor: T) -> Result<T, StrToLongError>
+    |          - function or associated item `max_value` not found for this type parameter
+...
+176 |     let max = T::max_value();
+    |                  ^^^^^^^^^ function or associated item not found in `T`
+    |
+    = help: items from traits can only be used if the type parameter is bounded by the trait
+help: the following trait defines an item `max_value`, perhaps you need to restrict type parameter `T` with it:
+    |
+174 |     T: std::ops::Mul<Output = T> + std::cmp::Ord + Copy + MaxValue,
+    |                                                         ++++++++++
+
+error[E0277]: the trait bound `T: From<{integer}>` is not satisfied
+   --> lib/xstrtol.rs:177:18
+    |
+177 |     if factor == T::try_from(0).unwrap() {
+    |                  ^^^^^^^^^^^ the trait `From<{integer}>` is not implemented for `T`
+    |
+    = help: the following other types implement trait `From<T>`:
+              <T as From<!>>
+              <T as From<T>>
+    = note: required because of the requirements on the impl of `Into<T>` for `{integer}`
+    = note: required because of the requirements on the impl of `TryFrom<{integer}>` for `T`
+
+error[E0277]: the trait bound `T: From<{integer}>` is not satisfied
+   --> lib/xstrtol.rs:178:19
+    |
+178 |         return Ok(T::try_from(0).unwrap());
+    |                   ^^^^^^^^^^^ the trait `From<{integer}>` is not implemented for `T`
+    |
+    = help: the following other types implement trait `From<T>`:
+              <T as From<!>>
+              <T as From<T>>
+    = note: required because of the requirements on the impl of `Into<T>` for `{integer}`
+    = note: required because of the requirements on the impl of `TryFrom<{integer}>` for `T`
+
+error[E0609]: no field `pcount` on type `DfaComp`
+   --> src/dfasearch.rs:155:16
+    |
+155 |             dc.pcount += 1;
+    |                ^^^^^^ unknown field
+    |
+    = note: available fields are: `kwset`, `dfa`, `patterns`, `kwset_exact_matches`, `begline`
+
+error[E0624]: associated function `matches` is private
+   --> src/grep.rs:102:21
+    |
+54  |         fn matches(&self, line: &[u8]) -> bool {
+    |         -------------------------------------- private associated function defined here
+...
+102 |             if grep.matches(&buffer) {
+    |                     ^^^^^^^ private associated function
+
+error[E0277]: `*mut Trie` is not an iterator
+   --> src/kwset.rs:272:29
+    |
+272 |                 for curr in &mut (*self.trie).next {
+    |                             ^^^^^^^^^^^^^^^^^^^^^^ `*mut Trie` is not an iterator
+    |
+    = help: the trait `Iterator` is not implemented for `*mut Trie`
+    = note: required because of the requirements on the impl of `Iterator` for `&mut *mut Trie`
+    = note: required because of the requirements on the impl of `IntoIterator` for `&mut *mut Trie`
+
+error[E0277]: `*mut Trie` is not an iterator
+   --> src/kwset.rs:287:25
+    |
+287 |             for curr in &mut (*self.trie).next {
+    |                         ^^^^^^^^^^^^^^^^^^^^^^ `*mut Trie` is not an iterator
+    |
+    = help: the trait `Iterator` is not implemented for `*mut Trie`
+    = note: required because of the requirements on the impl of `Iterator` for `&mut *mut Trie`
+    = note: required because of the requirements on the impl of `IntoIterator` for `&mut *mut Trie`
+
+error[E0609]: no field `accepting` on type `*mut Trie`
+   --> src/kwset.rs:433:40
+    |
+433 |             if !reverse && (*cur).trie.accepting != 0 && (*tree).trie.accepting == 0 {
+    |                            ------------^^^^^^^^^
+    |                            |
+    |                            help: `(*cur).trie` is a raw pointer; try dereferencing it: `(*(*cur).trie).accepting`
+
+error[E0609]: no field `accepting` on type `*mut Trie`
+   --> src/kwset.rs:433:71
+    |
+433 |             if !reverse && (*cur).trie.accepting != 0 && (*tree).trie.accepting == 0 {
+    |                                                          -------------^^^^^^^^^
+    |                                                          |
+    |                                                          help: `(*tree).trie` is a raw pointer; try dereferencing it: `(*(*tree).trie).accepting`
+
+error[E0308]: mismatched types
+   --> src/kwset.rs:528:13
+    |
+495 | ) -> bool {
+    |      ---- expected `bool` because of return type
+...
+528 |             break;
+    |             ^^^^^
+    |             |
+    |             expected `bool`, found `()`
+    |             help: give it a value of the expected type: `break true`
+
+error[E0308]: mismatched types
+   --> src/kwset.rs:532:32
+    |
+532 |                 tp = tp.offset(*d1.offset((*
+    |                         ------ ^^^^^^^^^^^^^ expected `isize`, found `u8`
+    |                         |
+    |                         arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/const_ptr.rs:453:25
+    |
+453 |     pub const unsafe fn offset(self, count: isize) -> *const T
+    |                         ^^^^^^
+help: you can convert a `u8` to an `isize`
+    |
+532 |                 tp = tp.offset((*d1.offset((*).into()
+    |                                +             ++++++++
+
+error[E0599]: no method named `is_alphanumeric` found for type `u32` in the current scope
+  --> src/searchutils.rs:34:32
+   |
+34 |     wc == '_' as wchar_t || wc.is_alphanumeric()
+   |                                ^^^^^^^^^^^^^^^ method not found in `u32`
+
+error[E0308]: mismatched types
+   --> src/searchutils.rs:56:23
+    |
+56  |     unsafe { kwsalloc(trans.as_ref().map(|v| v.as_ptr())) }
+    |              -------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected *-ptr, found enum `Option`
+    |              |
+    |              arguments to this function are incorrect
+    |
+    = note: expected raw pointer `*const u8`
+                      found enum `Option<*const u8>`
+note: function defined here
+   --> src/searchutils.rs:187:8
+    |
+187 |     fn kwsalloc(trans: *const u8) -> kwset_t;
+    |        ^^^^^^^^
+
+warning: unreachable expression
+  --> src/searchutils.rs:94:21
+   |
+93 |                         break;
+   |                         ----- any code following this expression is unreachable
+94 |                     }
+   |                     ^ unreachable expression
+   |
+   = note: `#[warn(unreachable_code)]` on by default
+
+Some errors have detailed explanations: E0106, E0277, E0308, E0425, E0432, E0433, E0583, E0599, E0609...
+For more information about an error, try `rustc --explain E0106`.
+warning: `c2rust_out` (lib) generated 204 warnings
+error: could not compile `c2rust_out` due to 187 previous errors; 204 warnings emitted

@@ -1,0 +1,3421 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/nettle-3.10)
+warning: unused label
+  --> aes128_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+  --> aes128_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes192_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes192_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes256_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes256_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes_set_key_internal.rs:58:5
+   |
+58 |     'c_812: {
+   |     ^^^^^^
+
+warning: unused label
+  --> arcfour.rs:43:5
+   |
+43 |     'c_416: {
+   |     ^^^^^^
+
+warning: unused label
+  --> arcfour.rs:73:5
+   |
+73 |     'c_373: {
+   |     ^^^^^^
+
+warning: unused label
+   --> arctwo.rs:301:5
+    |
+301 |     'c_1903: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:455:5
+    |
+455 |     'c_2639: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:615:5
+    |
+615 |     'c_1088: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:645:5
+    |
+645 |     'c_1049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:675:5
+    |
+675 |     'c_1006: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:185:13
+    |
+185 |             'c_1361: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:215:13
+    |
+215 |             'c_1319: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:294:5
+    |
+294 |     'c_1818: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_decode.rs:329:13
+    |
+329 |             'c_2163: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base64_decode.rs:421:5
+    |
+421 |     'c_2237: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:131:5
+    |
+131 |     'c_1633: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:157:5
+    |
+157 |     'c_1574: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:251:5
+    |
+251 |     'c_1276: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:307:9
+    |
+307 |         'c_1949: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:364:5
+    |
+364 |     'c_1415: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:429:5
+    |
+429 |     'c_2054: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> blowfish.rs:1803:5
+     |
+1803 |     'c_3953: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> blowfish.rs:1900:5
+     |
+1900 |     'c_5762: {
+     |     ^^^^^^^
+
+warning: unused label
+  --> buffer.rs:49:5
+   |
+49 |     'c_1732: {
+   |     ^^^^^^^
+
+warning: unused label
+  --> camellia128_crypt.rs:60:5
+   |
+60 |     'c_282: {
+   |     ^^^^^^
+
+warning: unused label
+  --> camellia256_crypt.rs:60:5
+   |
+60 |     'c_306: {
+   |     ^^^^^^
+
+warning: unused label
+    --> cast128.rs:2107:5
+     |
+2107 |     'c_12424: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2480:5
+     |
+2480 |     'c_14620: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2862:5
+     |
+2862 |     'c_8680: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2892:5
+     |
+2892 |     'c_8637: {
+     |     ^^^^^^^
+
+warning: unused label
+  --> cbc.rs:59:5
+   |
+59 |     'c_1675: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> cbc.rs:108:5
+    |
+108 |     'c_2063: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> ccm.rs:99:5
+   |
+99 |     'c_2154: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:129:5
+    |
+129 |     'c_2115: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:184:5
+    |
+184 |     'c_1991: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:504:5
+    |
+504 |     'c_2682: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:569:5
+    |
+569 |     'c_2825: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:188:5
+    |
+188 |     'c_936: {
+    |     ^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:236:5
+    |
+236 |     'c_1096: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:289:5
+    |
+289 |     'c_1195: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> cmac.rs:249:5
+    |
+249 |     'c_2242: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> cmac64.rs:224:5
+    |
+224 |     'c_2188: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ctr.rs:304:13
+    |
+304 |             'c_1733: {
+    |             ^^^^^^^
+
+warning: unused label
+  --> ctr16.rs:88:13
+   |
+88 |             'c_569: {
+   |             ^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> ctr16.rs:135:21
+    |
+135 |                     (if blocks_0
+    |                     ^
+...
+141 |                     }),
+    |                      ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+135 ~                     if blocks_0
+136 |                         < (512 as libc::c_int / 16 as libc::c_int) as libc::c_ulong
+  ...
+140 |                         (512 as libc::c_int / 16 as libc::c_int) as libc::c_ulong
+141 ~                     },
+    |
+
+warning: unused label
+   --> ctr16.rs:199:21
+    |
+199 |                     'c_334: {
+    |                     ^^^^^^
+
+warning: unused label
+    --> des.rs:3487:5
+     |
+3487 |     'c_8482: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> des.rs:3532:5
+     |
+3532 |     'c_12589: {
+     |     ^^^^^^^^
+
+warning: unused label
+   --> eax.rs:293:5
+    |
+293 |     'c_1382: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> eax.rs:323:5
+    |
+323 |     'c_1339: {
+    |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> examples/nettle_openssl.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused label
+   --> fat_x86_64.rs:701:5
+    |
+701 |     'c_2689: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:766:5
+    |
+766 |     'c_4142: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:831:5
+    |
+831 |     'c_4049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:896:5
+    |
+896 |     'c_3956: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:961:5
+    |
+961 |     'c_3859: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1026:5
+     |
+1026 |     'c_3766: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1094:5
+     |
+1094 |     'c_3669: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1163:5
+     |
+1163 |     'c_3568: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1232:5
+     |
+1232 |     'c_3460: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1292:5
+     |
+1292 |     'c_2789: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1346:5
+     |
+1346 |     'c_3298: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1407:5
+     |
+1407 |     'c_3206: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1472:5
+     |
+1472 |     'c_3056: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1532:5
+     |
+1532 |     'c_2962: {
+     |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:230:5
+    |
+230 |     'c_2184: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:263:5
+    |
+263 |     'c_2137: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:377:5
+    |
+377 |     'c_2658: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:437:5
+    |
+437 |     'c_2759: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:494:5
+    |
+494 |     'c_2916: {
+    |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused label
+   --> gosthash94.rs:680:5
+    |
+680 |     'c_4526: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> hmac.rs:99:5
+   |
+99 |     'c_999: {
+   |     ^^^^^^
+
+warning: unused label
+   --> knuth_lfib.rs:160:5
+    |
+160 |     'c_1803: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md2.rs:426:5
+    |
+426 |     'c_1492: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md4.rs:142:5
+    |
+142 |     'c_3499: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md4.rs:172:5
+    |
+172 |     'c_3439: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md5.rs:143:5
+    |
+143 |     'c_4465: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md5.rs:173:5
+    |
+173 |     'c_4405: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:127:5
+    |
+127 |     'c_867: {
+    |     ^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:157:5
+    |
+157 |     'c_820: {
+    |     ^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:264:5
+    |
+264 |     'c_1156: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:294:5
+    |
+294 |     'c_1113: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:187:9
+    |
+187 |         'c_1697: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:262:5
+    |
+262 |     'c_1196: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:292:5
+    |
+292 |     'c_1157: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:322:5
+    |
+322 |     'c_1108: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:424:5
+    |
+424 |     'c_1980: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:513:5
+    |
+513 |     'c_2049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:858:5
+    |
+858 |     'c_3024: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:936:5
+    |
+936 |     'c_3163: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> pbkdf2.rs:62:5
+   |
+62 |     'c_1933: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> poly1305_aes.rs:147:9
+    |
+147 |         'c_908: {
+    |         ^^^^^^
+
+warning: unused label
+   --> ripemd160.rs:147:5
+    |
+147 |     'c_1168: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ripemd160.rs:181:5
+    |
+181 |     'c_1108: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> serpent_set_key.rs:38:5
+   |
+38 |     'c_5857: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> serpent_set_key.rs:795:5
+    |
+795 |     'c_238: {
+    |     ^^^^^^
+
+warning: unused label
+   --> sha1.rs:145:5
+    |
+145 |     'c_2194: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha1.rs:175:5
+    |
+175 |     'c_2134: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha256.rs:210:5
+    |
+210 |     'c_2342: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha256.rs:240:5
+    |
+240 |     'c_2282: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> sha3.rs:71:5
+   |
+71 |     'c_796: {
+   |     ^^^^^^
+
+warning: unused label
+   --> sha3.rs:141:5
+    |
+141 |     'c_901: {
+    |     ^^^^^^
+
+warning: unused label
+  --> sha3_shake.rs:90:5
+   |
+90 |     'c_865: {
+   |     ^^^^^^
+
+warning: unused label
+   --> sha512.rs:244:5
+    |
+244 |     'c_2920: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:274:5
+    |
+274 |     'c_2860: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:503:5
+    |
+503 |     'c_2959: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:561:5
+    |
+561 |     'c_3077: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:621:5
+    |
+621 |     'c_3194: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:681:5
+    |
+681 |     'c_3312: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_cmac.rs:189:5
+    |
+189 |     'c_1662: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_cmac.rs:341:5
+    |
+341 |     'c_1712: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:174:5
+    |
+174 |     'c_1316: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:392:5
+    |
+392 |     'c_1556: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:422:5
+    |
+422 |     'c_1516: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:514:5
+    |
+514 |     'c_1764: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> sm3.rs:4262:5
+     |
+4262 |     'c_41715: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> sm3.rs:4292:5
+     |
+4292 |     'c_41655: {
+     |     ^^^^^^^^
+
+warning: unused label
+   --> sm4.rs:479:5
+    |
+479 |     'c_2599: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2827:5
+     |
+2827 |     'c_8641: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2871:5
+     |
+2871 |     'c_8690: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2930:5
+     |
+2930 |     'c_8810: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:1799:17
+     |
+1799 |                 'c_36861: {
+     |                 ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:1959:21
+     |
+1959 |                     'c_36390: {
+     |                     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:2911:5
+     |
+2911 |     'c_2404: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3049:5
+     |
+3049 |     'c_5590: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3174:5
+     |
+3174 |     'c_2778: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3251:5
+     |
+3251 |     'c_2974: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3293:5
+     |
+3293 |     'c_3070: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3369:5
+     |
+3369 |     'c_3254: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3414:5
+     |
+3414 |     'c_3691: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3567:5
+     |
+3567 |     'c_4151: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3725:5
+     |
+3725 |     'c_4611: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3881:5
+     |
+3881 |     'c_4940: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3911:5
+     |
+3911 |     'c_4901: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3944:5
+     |
+3944 |     'c_4813: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3980:5
+     |
+3980 |     'c_4724: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4053:5
+     |
+4053 |     'c_9540: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4079:5
+     |
+4079 |     'c_9502: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4108:5
+     |
+4108 |     'c_9456: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4172:5
+     |
+4172 |     'c_7817: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4198:5
+     |
+4198 |     'c_7779: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4227:5
+     |
+4227 |     'c_7731: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4291:5
+     |
+4291 |     'c_16327: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4323:5
+     |
+4323 |     'c_16275: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4721:5
+     |
+4721 |     'c_13281: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4789:5
+     |
+4789 |     'c_13097: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4867:5
+     |
+4867 |     'c_13324: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4911:9
+     |
+4911 |         'c_12853: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5158:5
+     |
+5158 |     'c_11049: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5457:9
+     |
+5457 |         'c_9856: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5519:5
+     |
+5519 |     'c_9287: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5549:5
+     |
+5549 |     'c_9249: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5587:5
+     |
+5587 |     'c_9157: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5935:5
+     |
+5935 |     'c_11763: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5965:5
+     |
+5965 |     'c_11725: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6006:9
+     |
+6006 |         'c_9717: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6038:9
+     |
+6038 |         'c_9661: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6076:9
+     |
+6076 |         'c_9588: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6122:13
+     |
+6122 |             'c_7587: {
+     |             ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6167:5
+     |
+6167 |     'c_13400: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6193:5
+     |
+6193 |     'c_13362: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6225:9
+     |
+6225 |         'c_11815: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6293:5
+     |
+6293 |     'c_14622: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6560:9
+     |
+6560 |         'c_16867: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6688:5
+     |
+6688 |     'c_17948: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6716:5
+     |
+6716 |     'c_17896: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6818:5
+     |
+6818 |     'c_18247: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6895:5
+     |
+6895 |     'c_18045: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7311:5
+     |
+7311 |     'c_28272: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7422:5
+     |
+7422 |     'c_28534: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7458:9
+     |
+7458 |         'c_28460: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7850:9
+     |
+7850 |         'c_5908: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7894:9
+     |
+7894 |         'c_5780: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8495:5
+     |
+8495 |     'c_19943: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8549:13
+     |
+8549 |             'c_19806: {
+     |             ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8681:5
+     |
+8681 |     'c_20101: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8910:5
+     |
+8910 |     'c_20512: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8954:5
+     |
+8954 |     'c_21012: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9080:5
+     |
+9080 |     'c_21156: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9411:9
+     |
+9411 |         'c_21549: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9670:9
+     |
+9670 |         'c_23154: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9732:13
+     |
+9732 |             'c_22977: {
+     |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10018:5
+      |
+10018 |     'c_15741: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10046:5
+      |
+10046 |     'c_15688: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10103:5
+      |
+10103 |     'c_15993: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10131:5
+      |
+10131 |     'c_15941: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10169:5
+      |
+10169 |     'c_15852: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10274:5
+      |
+10274 |     'c_25086: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10300:5
+      |
+10300 |     'c_25048: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10381:13
+      |
+10381 |             'c_24818: {
+      |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10475:5
+      |
+10475 |     'c_24430: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10508:5
+      |
+10508 |     'c_24376: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10542:5
+      |
+10542 |     'c_24330: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10573:5
+      |
+10573 |     'c_24283: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10605:5
+      |
+10605 |     'c_24217: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10712:5
+      |
+10712 |     'c_25208: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10809:5
+      |
+10809 |     'c_23701: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10893:5
+      |
+10893 |     'c_25617: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10979:13
+      |
+10979 |             'c_23744: {
+      |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11161:5
+      |
+11161 |     'c_14917: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11193:5
+      |
+11193 |     'c_14853: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11336:5
+      |
+11336 |     'c_25934: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11450:5
+      |
+11450 |     'c_26416: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11562:5
+      |
+11562 |     'c_26894: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11624:5
+      |
+11624 |     'c_14748: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11650:5
+      |
+11650 |     'c_14710: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11862:5
+      |
+11862 |     'c_30941: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11892:5
+      |
+11892 |     'c_30893: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11923:5
+      |
+11923 |     'c_30841: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11965:9
+      |
+11965 |         'c_30758: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12083:9
+      |
+12083 |         'c_30438: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12113:9
+      |
+12113 |         'c_30399: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12192:9
+      |
+12192 |         'c_27538: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12246:5
+      |
+12246 |     'c_27336: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12309:5
+      |
+12309 |     'c_30283: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12339:5
+      |
+12339 |     'c_30235: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12428:5
+      |
+12428 |     'c_29955: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12616:5
+      |
+12616 |     'c_29742: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12760:9
+      |
+12760 |         'c_29185: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12790:5
+      |
+12790 |     'c_29120: {
+      |     ^^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:501:5
+    |
+501 |     'c_3098: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:548:5
+    |
+548 |     'c_3424: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:584:5
+    |
+584 |     'c_3311: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:676:5
+    |
+676 |     'c_3215: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:707:5
+    |
+707 |     'c_3171: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:754:5
+    |
+754 |     'c_2952: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:851:9
+    |
+851 |         'c_4246: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:960:5
+    |
+960 |     'c_3804: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/input.rs:990:5
+    |
+990 |     'c_3761: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:341:9
+    |
+341 |         'c_2954: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:427:5
+    |
+427 |     'c_3094: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:466:5
+    |
+466 |     'c_3227: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:499:5
+    |
+499 |     'c_3167: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:614:17
+    |
+614 |                 'c_3651: {
+    |                 ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:649:21
+    |
+649 |                     'c_3518: {
+    |                     ^^^^^^^
+
+warning: unused label
+   --> tools/output.rs:717:5
+    |
+717 |     'c_3922: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/parse.rs:580:13
+    |
+580 |             'c_1683: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> tools/parse.rs:610:13
+    |
+610 |             'c_1632: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> tools/sexp_conv.rs:735:5
+    |
+735 |     'c_3835: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/sexp_conv.rs:892:17
+    |
+892 |                 'c_4267: {
+    |                 ^^^^^^^
+
+warning: unused label
+   --> twofish.rs:821:5
+    |
+821 |     'c_2694: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> twofish.rs:987:5
+    |
+987 |     'c_3543: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> twofish.rs:1195:5
+     |
+1195 |     'c_4335: {
+     |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:128:5
+    |
+128 |     'c_886: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac128.rs:158:5
+    |
+158 |     'c_843: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac128.rs:348:5
+    |
+348 |     'c_1771: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:376:5
+    |
+376 |     'c_1732: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:460:5
+    |
+460 |     'c_1528: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:129:5
+    |
+129 |     'c_912: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac32.rs:159:5
+    |
+159 |     'c_869: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac32.rs:313:5
+    |
+313 |     'c_1727: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:341:5
+    |
+341 |     'c_1688: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:404:5
+    |
+404 |     'c_1533: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:131:5
+    |
+131 |     'c_917: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac64.rs:161:5
+    |
+161 |     'c_874: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac64.rs:338:5
+    |
+338 |     'c_1845: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:366:5
+    |
+366 |     'c_1806: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:439:5
+    |
+439 |     'c_1630: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:128:5
+    |
+128 |     'c_881: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac96.rs:158:5
+    |
+158 |     'c_838: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac96.rs:337:5
+    |
+337 |     'c_1731: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:365:5
+    |
+365 |     'c_1692: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:443:5
+    |
+443 |     'c_1502: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_l2.rs:203:5
+    |
+203 |     'c_1516: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_poly128.rs:174:5
+    |
+174 |     'c_1061: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_poly128.rs:215:5
+    |
+215 |     'c_584: {
+    |     ^^^^^^
+
+warning: unused label
+  --> umac_poly64.rs:50:5
+   |
+50 |     'c_606: {
+   |     ^^^^^^
+
+warning: unused label
+  --> xts.rs:78:5
+   |
+78 |     'c_2003: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> yarrow256.rs:197:5
+    |
+197 |     'c_2237: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> yarrow256.rs:384:5
+    |
+384 |     'c_2644: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> yarrow256.rs:486:5
+    |
+486 |     'c_2838: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> yarrow256.rs:523:9
+    |
+523 |         'c_2774: {
+    |         ^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> yarrow256.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> tools/input.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> tools/output.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> tools/parse.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> tools/sexp_conv.rs:10:1
+   |
+10 | #![feature(label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+warning: unused variable: `ctx`
+  --> base16_meta.rs:73:45
+   |
+73 | unsafe extern "C" fn base16_encode_init(mut ctx: *mut libc::c_void) {}
+   |                                             ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+   |
+   = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `ctx`
+  --> base16_meta.rs:75:9
+   |
+75 |     mut ctx: *mut libc::c_void,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+
+warning: unused variable: `ctx`
+  --> base16_meta.rs:84:9
+   |
+84 |     mut ctx: *mut libc::c_void,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+
+warning: unused variable: `dst`
+  --> base16_meta.rs:85:9
+   |
+85 |     mut dst: *mut libc::c_char,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_dst`
+
+warning: variable `initial_iv` is assigned to, but never used
+   --> cfb.rs:141:17
+    |
+141 |         let mut initial_iv: *mut uint8_t = 0 as *mut uint8_t;
+    |                 ^^^^^^^^^^
+    |
+    = note: consider using `_initial_iv` instead
+
+warning: unused variable: `argc`
+  --> examples/base16dec.rs:83:9
+   |
+83 |     mut argc: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+  --> examples/base16dec.rs:84:9
+   |
+84 |     mut argv: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: unused variable: `argc`
+  --> examples/base16enc.rs:71:9
+   |
+71 |     mut argc: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+  --> examples/base16enc.rs:72:9
+   |
+72 |     mut argv: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: unused variable: `argc`
+  --> examples/base64dec.rs:85:9
+   |
+85 |     mut argc: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+  --> examples/base64dec.rs:86:9
+   |
+86 |     mut argv: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: unused variable: `argc`
+  --> examples/base64enc.rs:84:9
+   |
+84 |     mut argc: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+  --> examples/base64enc.rs:85:9
+   |
+85 |     mut argv: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: unused variable: `ctx`
+  --> realloc.rs:61:9
+   |
+61 |     mut ctx: *mut libc::c_void,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+
+warning: unused variable: `ctx`
+  --> realloc.rs:73:9
+   |
+73 |     mut ctx: *mut libc::c_void,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_ctx`
+
+warning: unused variable: `size`
+   --> testsuite/testutils.rs:517:9
+    |
+517 |     mut size: size_t,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `p`
+   --> testsuite/testutils.rs:518:9
+    |
+518 |     mut p: *const libc::c_void,
+    |         ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `size`
+   --> testsuite/testutils.rs:522:9
+    |
+522 |     mut size: size_t,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `p`
+   --> testsuite/testutils.rs:523:9
+    |
+523 |     mut p: *const libc::c_void,
+    |         ^ help: if this is intentional, prefix it with an underscore: `_p`
+
+warning: unused variable: `unused_old_size`
+    --> testsuite/testutils.rs:2936:9
+     |
+2936 |     mut unused_old_size: size_t,
+     |         ^^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_unused_old_size`
+
+warning: unused variable: `unused_size`
+    --> testsuite/testutils.rs:2951:9
+     |
+2951 |     mut unused_size: size_t,
+     |         ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_unused_size`
+
+warning: unnecessary `unsafe` block
+   --> examples/timing.rs:124:69
+    |
+124 | pub static mut time_start: Option::<unsafe extern "C" fn() -> ()> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+    |
+    = note: `#[warn(unused_unsafe)]` on by default
+
+warning: unnecessary `unsafe` block
+   --> examples/timing.rs:128:79
+    |
+128 | pub static mut time_end: Option::<unsafe extern "C" fn() -> libc::c_double> = unsafe {
+    |                                                                               ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:447:69
+    |
+447 | static mut nettle_aes128_encrypt_vec: Option::<aes128_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:450:69
+    |
+450 | static mut nettle_aes128_decrypt_vec: Option::<aes128_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:453:69
+    |
+453 | static mut nettle_aes192_encrypt_vec: Option::<aes192_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:456:69
+    |
+456 | static mut nettle_aes192_decrypt_vec: Option::<aes192_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:459:69
+    |
+459 | static mut nettle_aes256_encrypt_vec: Option::<aes256_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:462:69
+    |
+462 | static mut nettle_aes256_decrypt_vec: Option::<aes256_crypt_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:465:79
+    |
+465 | static mut nettle_cbc_aes128_encrypt_vec: Option::<cbc_aes128_encrypt_func> = unsafe {
+    |                                                                               ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:468:79
+    |
+468 | static mut nettle_cbc_aes192_encrypt_vec: Option::<cbc_aes192_encrypt_func> = unsafe {
+    |                                                                               ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:471:79
+    |
+471 | static mut nettle_cbc_aes256_encrypt_vec: Option::<cbc_aes256_encrypt_func> = unsafe {
+    |                                                                               ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:474:55
+    |
+474 | static mut nettle_memxor_vec: Option::<memxor_func> = unsafe {
+    |                                                       ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:477:69
+    |
+477 | static mut nettle_sha1_compress_vec: Option::<sha1_compress_func> = unsafe {
+    |                                                                     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:480:78
+    |
+480 | static mut _nettle_sha256_compress_n_vec: Option::<sha256_compress_n_func> = unsafe {
+    |                                                                              ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:483:70
+    |
+483 | static mut _nettle_ghash_set_key_vec: Option::<ghash_set_key_func> = unsafe {
+    |                                                                      ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> fat_x86_64.rs:486:68
+    |
+486 | static mut _nettle_ghash_update_vec: Option::<ghash_update_func> = unsafe {
+    |                                                                    ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> testsuite/testutils.rs:2957:5
+     |
+2957 | > = unsafe {
+     |     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> testsuite/testutils.rs:2962:5
+     |
+2962 | > = unsafe {
+     |     ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> testsuite/testutils.rs:2974:5
+     |
+2974 | > = unsafe {
+     |     ^^^^^^ unnecessary `unsafe` block
+
+warning: path statement with no effect
+   --> aes_invert_internal.rs:291:9
+    |
+291 |         i;
+    |         ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+  --> aes_set_key_internal.rs:95:9
+   |
+95 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> aes_set_key_internal.rs:139:9
+    |
+139 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> arcfour.rs:93:9
+   |
+93 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> arcfour.rs:111:9
+    |
+111 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> arcfour.rs:143:9
+    |
+143 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> arctwo.rs:394:13
+    |
+394 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> arctwo.rs:695:9
+    |
+695 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> arctwo.rs:704:9
+    |
+704 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> arctwo.rs:742:9
+    |
+742 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> balloon.rs:292:9
+    |
+292 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> balloon.rs:355:17
+    |
+355 |                 k;
+    |                 ^^
+
+warning: path statement with no effect
+   --> balloon.rs:358:13
+    |
+358 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> balloon.rs:361:9
+    |
+361 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> base16_decode.rs:265:17
+    |
+265 |                 done;
+    |                 ^^^^^
+
+warning: path statement with no effect
+   --> base16_decode.rs:273:9
+    |
+273 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> base16_encode.rs:35:9
+   |
+35 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> base64_decode.rs:391:17
+    |
+391 |                 done;
+    |                 ^^^^^
+
+warning: path statement with no effect
+   --> base64_decode.rs:399:9
+    |
+399 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> base64_encode.rs:282:9
+    |
+282 |         left;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> base64_encode.rs:336:9
+    |
+336 |         left;
+    |         ^^^^^
+
+warning: path statement with no effect
+    --> blowfish.rs:2011:9
+     |
+2011 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> blowfish.rs:2032:9
+     |
+2032 |         j;
+     |         ^^
+
+warning: path statement with no effect
+    --> blowfish.rs:2050:13
+     |
+2050 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> blowfish.rs:2053:9
+     |
+2053 |         i;
+     |         ^^
+
+warning: path statement with no effect
+  --> blowfish_bcrypt.rs:87:9
+   |
+87 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> blowfish_bcrypt.rs:438:17
+    |
+438 |                 ptr;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> blowfish_bcrypt.rs:444:13
+    |
+444 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> blowfish_bcrypt.rs:453:9
+    |
+453 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> camellia_invert_key.rs:29:13
+   |
+29 |             i;
+   |             ^^
+
+warning: path statement with no effect
+  --> camellia_invert_key.rs:43:13
+   |
+43 |             i;
+   |             ^^
+
+warning: path statement with no effect
+   --> ccm.rs:168:9
+    |
+168 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> cfb.rs:253:9
+    |
+253 |         length;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> cfb.rs:255:9
+    |
+255 |         pos;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> cfb.rs:309:13
+    |
+309 |             i;
+    |             ^^
+
+warning: path statement with no effect
+  --> cnd_memcpy.rs:34:9
+   |
+34 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> ctr.rs:136:9
+    |
+136 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> des.rs:2874:9
+     |
+2874 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> des.rs:2897:9
+     |
+2897 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> des.rs:3258:13
+     |
+3258 |             n;
+     |             ^^
+
+warning: path statement with no effect
+  --> des3.rs:47:9
+   |
+47 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> examples/nettle_benchmark.rs:648:13
+    |
+648 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> examples/nettle_benchmark.rs:747:13
+    |
+747 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> examples/nettle_benchmark.rs:751:9
+    |
+751 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> examples/nettle_benchmark.rs:760:9
+    |
+760 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> examples/nettle_benchmark.rs:772:9
+    |
+772 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1330:9
+     |
+1330 |         pos;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1406:9
+     |
+1406 |         pos;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1488:9
+     |
+1488 |         pos;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1573:9
+     |
+1573 |         pos;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1589:9
+     |
+1589 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1891:13
+     |
+1891 |             tc_i;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1911:9
+     |
+1911 |         tc_j;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1953:13
+     |
+1953 |             tc_i;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:1973:9
+     |
+1973 |         tc_j;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2011:13
+     |
+2011 |             tc_i;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2031:9
+     |
+2031 |         tc_j;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2083:13
+     |
+2083 |             tc_i;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2103:9
+     |
+2103 |         tc_j;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2271:13
+     |
+2271 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2295:13
+     |
+2295 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2303:13
+     |
+2303 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> examples/nettle_benchmark.rs:2330:9
+     |
+2330 |         optind;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+   --> gcm.rs:325:9
+    |
+325 |         lo;
+    |         ^^^
+
+warning: path statement with no effect
+   --> gcm.rs:327:9
+    |
+327 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> ghash_set_key.rs:82:9
+   |
+82 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> ghash_set_key.rs:114:9
+    |
+114 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> gosthash94.rs:559:9
+    |
+559 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> hkdf.rs:57:9
+   |
+57 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> knuth_lfib.rs:46:9
+   |
+46 |         j;
+   |         ^^
+
+warning: path statement with no effect
+  --> knuth_lfib.rs:52:9
+   |
+52 |         j;
+   |         ^^
+
+warning: path statement with no effect
+  --> knuth_lfib.rs:65:13
+   |
+65 |             j;
+   |             ^^
+
+warning: path statement with no effect
+  --> knuth_lfib.rs:98:13
+   |
+98 |             j;
+   |             ^^
+
+warning: path statement with no effect
+   --> knuth_lfib.rs:107:17
+    |
+107 |                 j;
+    |                 ^^
+
+warning: path statement with no effect
+   --> knuth_lfib.rs:122:13
+    |
+122 |             t;
+    |             ^^
+
+warning: path statement with no effect
+   --> knuth_lfib.rs:132:9
+    |
+132 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> knuth_lfib.rs:139:9
+    |
+139 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> knuth_lfib.rs:207:9
+    |
+207 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> md2.rs:312:9
+    |
+312 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> md2.rs:326:13
+    |
+326 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> md2.rs:331:9
+    |
+331 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> md4.rs:231:9
+    |
+231 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> md4.rs:579:9
+    |
+579 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> md5.rs:293:9
+    |
+293 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> memeql_sec.rs:31:9
+   |
+31 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> nettle_lookup_hash.rs:42:9
+   |
+42 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> nist_keywrap.rs:223:13
+    |
+223 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> nist_keywrap.rs:226:9
+    |
+226 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> nist_keywrap.rs:357:13
+    |
+357 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> nist_keywrap.rs:360:9
+    |
+360 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> ocb.rs:445:9
+    |
+445 |         count;
+    |         ^^^^^^
+
+warning: path statement with no effect
+   --> ocb.rs:450:9
+    |
+450 |         n;
+    |         ^^
+
+warning: path statement with no effect
+   --> ocb.rs:452:9
+    |
+452 |         o;
+    |         ^^
+
+warning: path statement with no effect
+   --> ocb.rs:574:13
+    |
+574 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> ocb.rs:684:13
+    |
+684 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> ocb.rs:687:9
+    |
+687 |         n;
+    |         ^^
+
+warning: path statement with no effect
+   --> ocb.rs:695:9
+    |
+695 |         n;
+    |         ^^
+
+warning: path statement with no effect
+   --> ocb.rs:710:13
+    |
+710 |             i_0;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> pbkdf2.rs:126:13
+    |
+126 |             u;
+    |             ^^
+
+warning: path statement with no effect
+   --> pbkdf2.rs:135:9
+    |
+135 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:181:9
+    |
+181 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:264:9
+    |
+264 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:349:9
+    |
+349 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:436:9
+    |
+436 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:522:9
+    |
+522 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:612:9
+    |
+612 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:693:9
+    |
+693 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> serpent_set_key.rs:779:9
+    |
+779 |         keys;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> sha512.rs:465:9
+    |
+465 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> siv_gcm.rs:259:9
+    |
+259 |         buffer;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> siv_gcm.rs:261:9
+    |
+261 |         c;
+    |         ^^
+
+warning: path statement with no effect
+    --> streebog.rs:2591:9
+     |
+2591 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> streebog.rs:2647:9
+     |
+2647 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> streebog.rs:2664:13
+     |
+2664 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> streebog.rs:2686:9
+     |
+2686 |         i;
+     |         ^^
+
+warning: path statement with no effect
+   --> testsuite/testutils.rs:507:9
+    |
+507 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:1271:9
+     |
+1271 |         block;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:1634:9
+     |
+1634 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:2065:9
+     |
+2065 |         in_align;
+     |         ^^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:2465:9
+     |
+2465 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:2555:9
+     |
+2555 |         offset;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:2594:9
+     |
+2594 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:2702:9
+     |
+2702 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:3080:9
+     |
+3080 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:3135:9
+     |
+3135 |         n;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:3224:9
+     |
+3224 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:3342:9
+     |
+3342 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4341:9
+     |
+4341 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4384:9
+     |
+4384 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4475:9
+     |
+4475 |         up;
+     |         ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4477:9
+     |
+4477 |         rp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4522:9
+     |
+4522 |         qh;
+     |         ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4527:17
+     |
+4527 |                 qh;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4564:9
+     |
+4564 |         ql;
+     |         ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4574:9
+     |
+4574 |         m;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4584:13
+     |
+4584 |             m;
+     |             ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4587:17
+     |
+4587 |                 m;
+     |                 ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4693:13
+     |
+4693 |             m;
+     |             ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4762:9
+     |
+4762 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4832:9
+     |
+4832 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:4954:13
+     |
+4954 |             __clz_c;
+     |             ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5115:13
+     |
+5115 |             _qh;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5406:9
+     |
+5406 |         q;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5418:17
+     |
+5418 |                 q;
+     |                 ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5854:13
+     |
+5854 |             q;
+     |             ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5866:21
+     |
+5866 |                     q;
+     |                     ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:5900:17
+     |
+5900 |                 q;
+     |                 ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6274:9
+     |
+6274 |         exp;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6334:9
+     |
+6334 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6535:13
+     |
+6535 |             _qh;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6586:9
+     |
+6586 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6629:17
+     |
+6629 |                 done;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6664:9
+     |
+6664 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:6870:13
+     |
+6870 |             k;
+     |             ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:7401:9
+     |
+7401 |         rn;
+     |         ^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:7530:9
+     |
+7530 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:7590:13
+     |
+7590 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:8569:17
+     |
+8569 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> testsuite/testutils.rs:9002:9
+     |
+9002 |         __clz_c;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:10251:9
+      |
+10251 |         k;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:10344:9
+      |
+10344 |         __clz_c;
+      |         ^^^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:10425:13
+      |
+10425 |             __clz_c_0;
+      |             ^^^^^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:10433:9
+      |
+10433 |         c;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11003:13
+      |
+11003 |             j;
+      |             ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11098:13
+      |
+11098 |             i;
+      |             ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11359:9
+      |
+11359 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11473:9
+      |
+11473 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11585:9
+      |
+11585 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11710:9
+      |
+11710 |         ndigits;
+      |         ^^^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11827:9
+      |
+11827 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:11988:17
+      |
+11988 |                 k;
+      |                 ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12059:21
+      |
+12059 |                     bytes;
+      |                     ^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12062:17
+      |
+12062 |                 j;
+      |                 ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12066:13
+      |
+12066 |             k;
+      |             ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12232:9
+      |
+12232 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12269:9
+      |
+12269 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12405:13
+      |
+12405 |             j;
+      |             ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12409:9
+      |
+12409 |         count;
+      |         ^^^^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12583:9
+      |
+12583 |         i;
+      |         ^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12637:9
+      |
+12637 |         sp;
+      |         ^^^
+
+warning: path statement with no effect
+     --> testsuite/testutils.rs:12706:9
+      |
+12706 |         sp;
+      |         ^^^
+
+warning: path statement with no effect
+   --> tools/input.rs:883:13
+    |
+883 |             length;
+    |             ^^^^^^^
+
+warning: path statement with no effect
+   --> tools/input.rs:901:21
+    |
+901 |                     length;
+    |                     ^^^^^^^
+
+warning: path statement with no effect
+   --> tools/input.rs:929:21
+    |
+929 |                     length;
+    |                     ^^^^^^^
+
+warning: path statement with no effect
+   --> tools/nettle_hash.rs:238:9
+    |
+238 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> tools/nettle_hash.rs:495:13
+    |
+495 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> tools/output.rs:301:13
+    |
+301 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> tools/output.rs:365:13
+    |
+365 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> tools/output.rs:387:9
+    |
+387 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> tools/output.rs:590:13
+    |
+590 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> tools/output.rs:671:17
+    |
+671 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> tools/sexp_conv.rs:679:37
+    |
+679 | ...                   item;
+    |                       ^^^^^
+
+warning: path statement with no effect
+   --> tools/sexp_conv.rs:693:21
+    |
+693 |                     item;
+    |                     ^^^^^
+
+warning: path statement with no effect
+   --> tools/sexp_conv.rs:971:29
+    |
+971 | ...                   i;
+    |                       ^^
+
+warning: path statement with no effect
+   --> tools/sexp_conv.rs:994:21
+    |
+994 |                     i;
+    |                     ^^
+
+warning: path statement with no effect
+   --> twofish.rs:655:9
+    |
+655 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> twofish.rs:867:9
+    |
+867 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> twofish.rs:908:9
+    |
+908 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> twofish.rs:918:9
+    |
+918 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> twofish.rs:937:13
+    |
+937 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> twofish.rs:940:9
+    |
+940 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1023:13
+     |
+1023 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1137:13
+     |
+1137 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1165:13
+     |
+1165 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1231:13
+     |
+1231 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1345:13
+     |
+1345 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> twofish.rs:1373:13
+     |
+1373 |             i;
+     |             ^^
+
+warning: path statement with no effect
+   --> umac128.rs:521:9
+    |
+521 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> umac96.rs:504:9
+    |
+504 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> umac_l2.rs:46:9
+   |
+46 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> umac_l2.rs:88:13
+   |
+88 |             i;
+   |             ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:111:13
+    |
+111 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:152:17
+    |
+152 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:174:13
+    |
+174 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:231:13
+    |
+231 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:250:13
+    |
+250 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:270:17
+    |
+270 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:287:17
+    |
+287 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> umac_l2.rs:307:13
+    |
+307 |             i;
+    |             ^^
+
+warning: path statement with no effect
+  --> umac_l3.rs:22:9
+   |
+22 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> umac_l3.rs:42:9
+   |
+42 |         i;
+   |         ^^
+
+warning: unused unary operation that must be used
+   --> umac_poly128.rs:132:13
+    |
+132 |             *fresh0;
+    |             ^^^^^^^ the unary operation produces a value
+    |
+    = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+132 |             let _ = *fresh0;
+    |             +++++++
+
+warning: unused unary operation that must be used
+   --> umac_poly128.rs:138:13
+    |
+138 |             *fresh1;
+    |             ^^^^^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+138 |             let _ = *fresh1;
+    |             +++++++
+
+warning: path statement with no effect
+  --> umac_poly64.rs:88:13
+   |
+88 |             y;
+   |             ^^
+
+warning: path statement with no effect
+  --> umac_set_key.rs:37:9
+   |
+37 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> umac_set_key.rs:133:9
+    |
+133 |         count;
+    |         ^^^^^^
+
+warning: path statement with no effect
+  --> write_be32.rs:44:9
+   |
+44 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> write_le32.rs:41:9
+   |
+41 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> write_le64.rs:61:9
+   |
+61 |         i;
+   |         ^^
+
+warning: path statement with no effect
+   --> yarrow256.rs:174:9
+    |
+174 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> yarrow256.rs:329:9
+    |
+329 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> yarrow256.rs:357:9
+    |
+357 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> yarrow256.rs:565:13
+    |
+565 |             k;
+    |             ^^
+
+warning: path statement with no effect
+   --> yarrow256.rs:568:9
+    |
+568 |         i;
+    |         ^^
+
+warning: path statement with no effect
+  --> yarrow_key_event.rs:20:9
+   |
+20 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> yarrow_key_event.rs:34:13
+   |
+34 |             entropy;
+   |             ^^^^^^^^
+
+warning: path statement with no effect
+  --> yarrow_key_event.rs:47:9
+   |
+47 |         i;
+   |         ^^
+
+warning: path statement with no effect
+  --> yarrow_key_event.rs:51:9
+   |
+51 |         entropy;
+   |         ^^^^^^^^
+
+error: symbol `die` is already defined
+  --> tools/misc.rs:70:1
+   |
+70 | pub unsafe extern "C" fn die(mut format: *const libc::c_char, mut args: ...) -> ! {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `c2rust_out` (lib) generated 562 warnings
+error: could not compile `c2rust_out` due to previous error; 562 warnings emitted

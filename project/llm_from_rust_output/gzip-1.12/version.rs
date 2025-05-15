@@ -1,0 +1,1 @@
+pub static Version: &'static str = "1.12";

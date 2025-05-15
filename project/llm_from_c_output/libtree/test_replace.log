@@ -1,0 +1,72 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/libtree)
+error[E0433]: failed to resolve: use of undeclared crate or module `atty`
+   --> libtree.rs:203:53
+    |
+203 |             color: env::var("NO_COLOR").is_err() && atty::is(atty::Stream::Stdout),
+    |                                                     ^^^^ use of undeclared crate or module `atty`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `atty`
+   --> libtree.rs:203:62
+    |
+203 |             color: env::var("NO_COLOR").is_err() && atty::is(atty::Stream::Stdout),
+    |                                                              ^^^^ use of undeclared crate or module `atty`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `glob`
+   --> libtree.rs:350:26
+    |
+350 |             for entry in glob::glob(&glob_pattern).unwrap().filter_map(Result::ok) {
+    |                          ^^^^ use of undeclared crate or module `glob`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> libtree.rs:219:31
+    |
+219 |         let uname = nix::sys::utsname::uname().unwrap();
+    |                               ^^^^^^^ not found in `nix::sys`
+    |
+help: consider importing this struct
+    |
+1   | use libc::utsname;
+    |
+help: if you import `utsname`, refer to it directly
+    |
+219 -         let uname = nix::sys::utsname::uname().unwrap();
+219 +         let uname = utsname::uname().unwrap();
+    |
+
+warning: unused imports: `Read`, `SeekFrom`, `Seek`, `Write`, `collections::HashSet`, `ffi::OsStr`, `mem`
+ --> libtree.rs:2:5
+  |
+2 |     collections::HashSet,
+  |     ^^^^^^^^^^^^^^^^^^^^
+3 |     env, fs,
+4 |     io::{self, Read, Seek, SeekFrom, Write},
+  |                ^^^^  ^^^^  ^^^^^^^^  ^^^^^
+5 |     mem,
+  |     ^^^
+...
+8 |     ffi::OsStr,
+  |     ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+error[E0277]: the size for values of type `[u8]` cannot be known at compilation time
+   --> libtree.rs:350:17
+    |
+350 |             for entry in glob::glob(&glob_pattern).unwrap().filter_map(Result::ok) {
+    |                 ^^^^^ doesn't have a size known at compile-time
+    |
+    = help: within `Path`, the trait `Sized` is not implemented for `[u8]`
+    = note: required because it appears within the type `Path`
+    = note: all local variables must have a statically known size
+    = help: unsized locals are gated as an unstable feature
+
+warning: unused import: `os::unix::ffi::OsStrExt`
+ --> libtree.rs:9:5
+  |
+9 |     os::unix::ffi::OsStrExt,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0277, E0433.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 2 warnings
+error: could not compile `c2rust_out` due to 5 previous errors; 2 warnings emitted

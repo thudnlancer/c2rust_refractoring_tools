@@ -1,0 +1,1 @@
+pub static exit_failure: i32 = 1;

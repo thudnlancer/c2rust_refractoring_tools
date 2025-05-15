@@ -1,16 +1,9 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
-#![feature(asm, extern_types)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
+use ::c2rust_bitfields;
+use ::c2rust_asm_casts;
 use c2rust_asm_casts::AsmCastTrait;
 use core::arch::asm;
 extern "C" {
@@ -3182,7 +3175,7 @@ unsafe extern "C" fn cdbus_process_opts_get(
         cdbus_reply_string(
             ps,
             msg,
-            b"git-5c9b648b-dirty-2025-03-16\0" as *const u8 as *const i8,
+            b"git-62f8c2b8-dirty-2025-05-05\0" as *const u8 as *const i8,
         );
         return 1 as i32 != 0;
     }

@@ -1,0 +1,43 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/glpk-5.0)
+error: this file contains an unclosed delimiter
+   --> src/amd/amd_2.rs:523:28
+    |
+150 | ) {
+    |   - unclosed delimiter
+...
+215 |     while nel < n {
+    |                   - unclosed delimiter
+...
+518 |         for pme in pme1..=pme2 {
+    |                                - unclosed delimiter
+...
+521 |             if nvi > 0 {
+    |                        - unclosed delimiter
+522 |                 nv[i as usize] = nvi;
+523 |                 let mut deg
+    |                            ^
+
+error: expected one of `:`, `;`, `=`, `@`, or `|`, found `}`
+   --> src/amd/amd_2.rs:523:28
+    |
+523 |                 let mut deg
+    |                            ^ expected one of `:`, `;`, `=`, `@`, or `|`
+
+error: unexpected closing delimiter: `]`
+  --> src/amd/amd_dump.rs:24:25
+   |
+18 | use std::io::{self, Read};
+   |              -          - ...matches this closing brace
+   |              |
+   |              this opening brace...
+...
+24 | #[cfg(debug_assertions))]
+   |                         ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> src/amd/amd_dump.rs:24:2
+   |
+24 | #[cfg(debug_assertions))]
+   |  ^ unclosed delimiter  ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 4 previous errors

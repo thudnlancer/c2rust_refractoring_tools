@@ -1,0 +1,1506 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/enscript-1.6.1)
+warning: unused label
+    --> afmlib/afmparse.rs:1547:9
+     |
+1547 |         'c_3699: {
+     |         ^^^^^^^
+     |
+     = note: `#[warn(unused_labels)]` on by default
+
+warning: unused import: `::libc`
+ --> compat/getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `::libc`
+ --> compat/getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:15755:33
+      |
+15755 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+15760 | ...                   })
+      |                        ^
+      |
+      = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+      |
+15755 ~                                 if (fail_stack.stack).is_null() {
+15756 |                                     0 as libc::c_int
+    ...
+15759 |                                     1 as libc::c_int
+15760 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:16750:37
+      |
+16750 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+16755 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16750 ~                                     if (fail_stack.stack).is_null() {
+16751 |                                         0 as libc::c_int
+    ...
+16754 |                                         1 as libc::c_int
+16755 ~                                     }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17011:29
+      |
+17011 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17016 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17011 ~                             if (fail_stack.stack).is_null() {
+17012 |                                 0 as libc::c_int
+    ...
+17015 |                                 1 as libc::c_int
+17016 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17298:29
+      |
+17298 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17303 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17298 ~                             if (fail_stack.stack).is_null() {
+17299 |                                 0 as libc::c_int
+    ...
+17302 |                                 1 as libc::c_int
+17303 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17394:29
+      |
+17394 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17399 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17394 ~                             if (fail_stack.stack).is_null() {
+17395 |                                 0 as libc::c_int
+    ...
+17398 |                                 1 as libc::c_int
+17399 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17535:29
+      |
+17535 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17541 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17535 ~                             if d.offset(-(1 as libc::c_int as isize))
+17536 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17540 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17541 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17547:29
+      |
+17547 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17551 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17547 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17548 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17549 |                             } else {
+17550 |                                 *d as libc::c_int
+17551 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17574:29
+      |
+17574 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17580 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17574 ~                             if d.offset(-(1 as libc::c_int as isize))
+17575 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17579 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17580 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17586:29
+      |
+17586 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17590 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17586 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17587 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17588 |                             } else {
+17589 |                                 *d as libc::c_int
+17590 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17604:25
+      |
+17604 |                         (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                         ^
+...
+17608 |                         })
+      |                          ^
+      |
+help: remove these parentheses
+      |
+17604 ~                         if d == string2.offset(-(1 as libc::c_int as isize)) {
+17605 |                             *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17606 |                         } else {
+17607 |                             *d as libc::c_int
+17608 ~                         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17617:33
+      |
+17617 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17623 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17617 ~                                 if d.offset(-(1 as libc::c_int as isize))
+17618 |                                     == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17622 |                                     *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17623 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17638:29
+      |
+17638 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17644 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17638 ~                             if d.offset(-(1 as libc::c_int as isize))
+17639 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17643 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17644 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17649:29
+      |
+17649 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17653 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17649 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17650 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17651 |                             } else {
+17652 |                                 *d as libc::c_int
+17653 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17680:33
+      |
+17680 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17684 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17680 ~                                 if d == string2.offset(-(1 as libc::c_int as isize)) {
+17681 |                                     *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17682 |                                 } else {
+17683 |                                     *d as libc::c_int
+17684 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17736:33
+      |
+17736 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17740 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17736 ~                                 if d == string2.offset(-(1 as libc::c_int as isize)) {
+17737 |                                     *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17738 |                                 } else {
+17739 |                                     *d as libc::c_int
+17740 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17902:37
+      |
+17902 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17907 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17902 ~                                     if (fail_stack.stack).is_null() {
+17903 |                                         0 as libc::c_int
+    ...
+17906 |                                         1 as libc::c_int
+17907 ~                                     }
+      |
+
+warning: unnecessary parentheses around method argument
+     --> compat/regex.rs:18239:13
+      |
+18239 |             (if dend == end_match_1 {
+      |             ^
+...
+18243 |             }),
+      |              ^
+      |
+help: remove these parentheses
+      |
+18239 ~             if dend == end_match_1 {
+18240 |                 string1
+18241 |             } else {
+18242 |                 string2.offset(-(size1 as isize))
+18243 ~             },
+      |
+
+warning: unused label
+    --> src/psgen.rs:4813:5
+     |
+4813 |     'c_18653: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> src/psgen.rs:4877:5
+     |
+4877 |     'c_8716: {
+     |     ^^^^^^^
+
+warning: unnecessary parentheses around function argument
+   --> states/prims.rs:670:17
+    |
+670 |                 (if ((*n).u.re.compiled).fastmap_accurate() as i32 != 0 {
+    |                 ^
+...
+675 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+670 ~                 if ((*n).u.re.compiled).fastmap_accurate() as i32 != 0 {
+671 |                     &mut (*n).u.re.compiled
+  ...
+674 |                     &mut (*n).u.re.compiled
+675 ~                 },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> states/prims.rs:726:17
+    |
+726 |                 (if ((*n).u.re.compiled).fastmap_accurate() as i32 != 0 {
+    |                 ^
+...
+731 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+726 ~                 if ((*n).u.re.compiled).fastmap_accurate() as i32 != 0 {
+727 |                     &mut (*n).u.re.compiled
+  ...
+730 |                     &mut (*n).u.re.compiled
+731 ~                 },
+    |
+
+warning: crate-level attribute should be in the root module
+  --> afmlib/afm.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> afmlib/afmparse.rs:10:1
+   |
+10 | #![feature(extern_types, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> afmlib/deffont.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/main.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/psgen.rs:10:1
+   |
+10 | #![feature(extern_types, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> src/util.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> states/prims.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> states/process.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> states/utils.rs:10:1
+   |
+10 | #![feature(extern_types)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+     --> compat/regex.rs:15332:15
+      |
+15332 |     store_op1(op as libc::c_uint, loc, arg);
+      |     --------- ^^^^^^^^^^^^^^^^^^ expected enum `re_opcode_t`, found `u32`
+      |     |
+      |     arguments to this function are incorrect
+      |
+note: function defined here
+     --> compat/regex.rs:15292:22
+      |
+15292 | unsafe extern "C" fn store_op1(
+      |                      ^^^^^^^^^
+15293 |     mut op: re_opcode_t,
+      |     -------------------
+15294 |     mut loc: *mut libc::c_uchar,
+      |     ---------------------------
+15295 |     mut arg: libc::c_int,
+      |     --------------------
+
+error[E0308]: mismatched types
+     --> compat/regex.rs:15348:15
+      |
+15348 |     store_op2(op as libc::c_uint, loc, arg1, arg2);
+      |     --------- ^^^^^^^^^^^^^^^^^^ expected enum `re_opcode_t`, found `u32`
+      |     |
+      |     arguments to this function are incorrect
+      |
+note: function defined here
+     --> compat/regex.rs:15303:22
+      |
+15303 | unsafe extern "C" fn store_op2(
+      |                      ^^^^^^^^^
+15304 |     mut op: re_opcode_t,
+      |     -------------------
+15305 |     mut loc: *mut libc::c_uchar,
+      |     ---------------------------
+15306 |     mut arg1: libc::c_int,
+      |     ---------------------
+15307 |     mut arg2: libc::c_int,
+      |     ---------------------
+
+error[E0308]: mismatched types
+     --> compat/regex.rs:16009:9
+      |
+16007 |     let mut result: libc::c_int = re_match_2_internal(
+      |                                   ------------------- arguments to this function are incorrect
+16008 |         bufp,
+16009 |         0 as *mut libc::c_void,
+      |         ^^^^^^^^^^^^^^^^^^^^^^ expected `i8`, found enum `c_void`
+      |
+      = note: expected raw pointer `*const i8`
+                 found raw pointer `*mut c_void`
+note: function defined here
+     --> compat/regex.rs:16042:22
+      |
+16042 | unsafe extern "C" fn re_match_2_internal(
+      |                      ^^^^^^^^^^^^^^^^^^^
+16043 |     mut bufp: *mut re_pattern_buffer,
+      |     --------------------------------
+16044 |     mut string1: *const libc::c_char,
+      |     --------------------------------
+16045 |     mut size1: libc::c_int,
+      |     ----------------------
+16046 |     mut string2: *const libc::c_char,
+      |     --------------------------------
+16047 |     mut size2: libc::c_int,
+      |     ----------------------
+16048 |     mut pos: libc::c_int,
+      |     --------------------
+16049 |     mut regs: *mut re_registers,
+      |     ---------------------------
+16050 |     mut stop: libc::c_int,
+      |     ---------------------
+
+error[E0308]: mismatched types
+   --> states/prims.rs:822:30
+    |
+822 |     n = match_arg(prim_name, NodeType::nVOID as i32 as u32, &mut arg, env, linenum);
+    |         ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> states/prims.rs:555:22
+    |
+555 | unsafe extern "C" fn match_arg(
+    |                      ^^^^^^^^^
+556 |     mut prim_name: *mut i8,
+    |     ----------------------
+557 |     mut type_0: NodeType,
+    |     --------------------
+558 |     mut argp: *mut *mut ListItem,
+    |     ----------------------------
+559 |     mut env: *mut Environment,
+    |     -------------------------
+560 |     mut linenum: u32,
+    |     ----------------
+
+error[E0308]: mismatched types
+   --> states/prims.rs:883:32
+    |
+883 |     var = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+    |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+    |           |
+    |           arguments to this function are incorrect
+    |
+note: function defined here
+   --> states/prims.rs:555:22
+    |
+555 | unsafe extern "C" fn match_arg(
+    |                      ^^^^^^^^^
+556 |     mut prim_name: *mut i8,
+    |     ----------------------
+557 |     mut type_0: NodeType,
+    |     --------------------
+558 |     mut argp: *mut *mut ListItem,
+    |     ----------------------------
+559 |     mut env: *mut Environment,
+    |     -------------------------
+560 |     mut linenum: u32,
+    |     ----------------
+
+error[E0308]: mismatched types
+   --> states/prims.rs:930:30
+    |
+930 |     n = match_arg(prim_name, NodeType::nVOID as i32 as u32, &mut arg, env, linenum);
+    |         ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> states/prims.rs:555:22
+    |
+555 | unsafe extern "C" fn match_arg(
+    |                      ^^^^^^^^^
+556 |     mut prim_name: *mut i8,
+    |     ----------------------
+557 |     mut type_0: NodeType,
+    |     --------------------
+558 |     mut argp: *mut *mut ListItem,
+    |     ----------------------------
+559 |     mut env: *mut Environment,
+    |     -------------------------
+560 |     mut linenum: u32,
+    |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1096:30
+     |
+1096 |     s = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |         ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |         |
+     |         arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1279:9
+     |
+1277 |     start = match_arg(
+     |             --------- arguments to this function are incorrect
+1278 |         prim_name,
+1279 |         NodeType::nINTEGER as i32 as u32,
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1284:32
+     |
+1284 |     end = match_arg(prim_name, NodeType::nINTEGER as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1399:32
+     |
+1399 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1437:31
+     |
+1437 |     ch = match_arg(prim_name, NodeType::nINTEGER as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1438:31
+     |
+1438 |     st = match_arg(prim_name, NodeType::nINTEGER as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1493:32
+     |
+1493 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1494:31
+     |
+1494 |     re = match_arg(prim_name, NodeType::nREGEXP as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1787:32
+     |
+1787 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1788:31
+     |
+1788 |     re = match_arg(prim_name, NodeType::nREGEXP as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1791:9
+     |
+1789 |     subst = match_arg(
+     |             --------- arguments to this function are incorrect
+1790 |         prim_name,
+1791 |         NodeType::nSTRING as i32 as u32,
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1822:32
+     |
+1822 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1823:31
+     |
+1823 |     re = match_arg(prim_name, NodeType::nREGEXP as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1826:9
+     |
+1824 |     subst = match_arg(
+     |             --------- arguments to this function are incorrect
+1825 |         prim_name,
+1826 |         NodeType::nSTRING as i32 as u32,
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1860:31
+     |
+1860 |     re = match_arg(prim_name, NodeType::nREGEXP as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1861:32
+     |
+1861 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:1961:32
+     |
+1961 |     fmt = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2221:31
+     |
+2221 |     s1 = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2222:31
+     |
+2222 |     s2 = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2286:30
+     |
+2286 |     n = match_arg(prim_name, NodeType::nVOID as i32 as u32, &mut arg, env, linenum);
+     |         ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |         |
+     |         arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2367:31
+     |
+2367 |     s1 = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2368:31
+     |
+2368 |     s2 = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |          ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |          |
+     |          arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2369:32
+     |
+2369 |     len = match_arg(prim_name, NodeType::nINTEGER as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2439:32
+     |
+2439 |     str = match_arg(prim_name, NodeType::nSTRING as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2442:9
+     |
+2440 |     start = match_arg(
+     |             --------- arguments to this function are incorrect
+2441 |         prim_name,
+2442 |         NodeType::nINTEGER as i32 as u32,
+     |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+    --> states/prims.rs:2447:32
+     |
+2447 |     end = match_arg(prim_name, NodeType::nINTEGER as i32 as u32, &mut arg, env, linenum);
+     |           ---------            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `prims::NodeType`, found `u32`
+     |           |
+     |           arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/prims.rs:555:22
+     |
+555  | unsafe extern "C" fn match_arg(
+     |                      ^^^^^^^^^
+556  |     mut prim_name: *mut i8,
+     |     ----------------------
+557  |     mut type_0: NodeType,
+     |     --------------------
+558  |     mut argp: *mut *mut ListItem,
+     |     ----------------------------
+559  |     mut env: *mut Environment,
+     |     -------------------------
+560  |     mut linenum: u32,
+     |     ----------------
+
+error[E0308]: mismatched types
+   --> states/utils.rs:911:21
+    |
+911 |     n2 = node_alloc((*n).type_0 as u32);
+    |          ---------- ^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+    |          |
+    |          arguments to this function are incorrect
+    |
+note: function defined here
+   --> states/utils.rs:896:26
+    |
+896 | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+    |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+   --> states/utils.rs:998:20
+    |
+998 |     n = node_alloc(NodeType::nSTRING as i32 as u32);
+    |         ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+    |         |
+    |         arguments to this function are incorrect
+    |
+note: function defined here
+   --> states/utils.rs:896:26
+    |
+896 | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+    |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1286:28
+     |
+1286 |             n = node_alloc(NodeType::nSTRING as i32 as u32);
+     |                 ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1311:28
+     |
+1311 |             n = node_alloc(NodeType::nSTRING as i32 as u32);
+     |                 ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1333:28
+     |
+1333 |             n = node_alloc(NodeType::nINTEGER as i32 as u32);
+     |                 ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1421:32
+     |
+1421 |                 n = node_alloc(NodeType::nINTEGER as i32 as u32);
+     |                     ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                     |
+     |                     arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1472:32
+     |
+1472 |                 n = node_alloc(NodeType::nREAL as i32 as u32);
+     |                     ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                     |
+     |                     arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1577:28
+     |
+1577 |             n = node_alloc(NodeType::nINTEGER as i32 as u32);
+     |                 ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1715:25
+     |
+1712 |                     n2 = calculate_binary(
+     |                          ---------------- arguments to this function are incorrect
+...
+1715 |                         ExprType::ePLUS as i32 as u32,
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1723:25
+     |
+1720 |                     n2 = calculate_binary(
+     |                          ---------------- arguments to this function are incorrect
+...
+1723 |                         ExprType::eMINUS as i32 as u32,
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1731:25
+     |
+1728 |                     n2 = calculate_binary(
+     |                          ---------------- arguments to this function are incorrect
+...
+1731 |                         ExprType::eMULT as i32 as u32,
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1739:25
+     |
+1736 |                     n2 = calculate_binary(
+     |                          ---------------- arguments to this function are incorrect
+...
+1739 |                         ExprType::eDIV as i32 as u32,
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1760:17
+     |
+1757 |               n = calculate_binary(
+     |                   ---------------- arguments to this function are incorrect
+...
+1760 | /                 (if (*expr).type_0 as u32 == ExprType::ePOSTFIXADD as i32 as u32 {
+1761 | |                     ExprType::ePLUS as i32
+1762 | |                 } else {
+1763 | |                     ExprType::eMINUS as i32
+1764 | |                 }) as u32,
+     | |_________________________^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1777:17
+     |
+1774 |               n = calculate_binary(
+     |                   ---------------- arguments to this function are incorrect
+...
+1777 | /                 (if (*expr).type_0 as u32 == ExprType::ePREFIXADD as i32 as u32 {
+1778 | |                     ExprType::ePLUS as i32
+1779 | |                 } else {
+1780 | |                     ExprType::eMINUS as i32
+1781 | |                 }) as u32,
+     | |_________________________^ expected enum `utils::ExprType`, found `u32`
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1952:32
+     |
+1952 |                 l = node_alloc(NodeType::nINTEGER as i32 as u32);
+     |                     ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::NodeType`, found `u32`
+     |                     |
+     |                     arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:896:26
+     |
+896  | pub unsafe extern "C" fn node_alloc(mut type_0: NodeType) -> *mut Node {
+     |                          ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+    --> states/utils.rs:1995:40
+     |
+1995 |             n = calculate_binary(l, r, (*expr).type_0 as u32, (*expr).linenum);
+     |                 ----------------       ^^^^^^^^^^^^^^^^^^^^^ expected enum `utils::ExprType`, found `u32`
+     |                 |
+     |                 arguments to this function are incorrect
+     |
+note: function defined here
+    --> states/utils.rs:1409:22
+     |
+1409 | unsafe extern "C" fn calculate_binary(
+     |                      ^^^^^^^^^^^^^^^^
+1410 |     mut l: *mut Node,
+     |     ----------------
+1411 |     mut r: *mut Node,
+     |     ----------------
+1412 |     mut type_0: ExprType,
+     |     --------------------
+1413 |     mut linenum_0: u32,
+     |     ------------------
+
+For more information about this error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 33 warnings
+error: could not compile `c2rust_out` due to 48 previous errors; 33 warnings emitted

@@ -1,0 +1,58 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/compton)
+error: this file contains an unclosed delimiter
+   --> src/opengl.rs:477:16
+    |
+353 | fn glx_init(ps: &mut Session, need_render: bool) -> bool {
+    |                                                          - unclosed delimiter
+...
+405 |     if psglx.context.is_null() {
+    |                                - unclosed delimiter
+...
+464 |         {
+    |         - unclosed delimiter
+465 |             let p_debug_message_callback = unsafe {
+    |                                                   - unclosed delimiter
+466 |                 mem::transmute::<*const u8, unsafe extern "C" fn(
+    |                                                                 - unclosed delimiter
+...
+477 |                
+    |                ^
+
+error: mismatched closing delimiter: `}`
+   --> src/opengl.rs:256:33
+    |
+249 |     unsafe {
+    |            - closing delimiter possibly meant for this
+...
+256 |         let found = wd_is_in_str(Some(CStr::from_ptr(glx_exts).to_str().ok(), ext);
+    |                                 ^ unclosed delimiter
+...
+262 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> src/opengl.rs:256:33
+    |
+256 |         let found = wd_is_in_str(Some(CStr::from_ptr(glx_exts).to_str().ok(), ext);
+    |                                 ^ unclosed delimiter                              ^ help: `)` may belong here
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `)`
+   --> src/opengl.rs:262:5
+    |
+261 |         found
+    |              - expected one of 8 possible tokens
+262 |     }
+    |     ^ unexpected token
+
+error: expected one of `,`, `->`, or `>`, found `}`
+   --> src/opengl.rs:477:16
+    |
+477 |                
+    |                ^ expected one of `,`, `->`, or `>`
+    |
+help: you might have meant to end the type parameters here
+    |
+477 |                >
+    |
+
+error: could not compile `c2rust_out` due to 5 previous errors

@@ -1,0 +1,98 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/glpk-5.0)
+error: this file contains an unclosed delimiter
+   --> src/amd/amd_2.rs:491:22
+    |
+49  | ) {
+    |   - unclosed delimiter
+...
+488 |     if let Some(info) = info {
+    |                              - unclosed delimiter
+...
+491 |         let lnzme = (
+    |                     -^
+    |                     |
+    |                     unclosed delimiter
+
+error: expected one of `.`, `;`, `?`, `else`, or an operator, found `}`
+   --> src/amd/amd_2.rs:491:22
+    |
+491 |         let lnzme = (
+    |                      ^ expected one of `.`, `;`, `?`, `else`, or an operator
+
+error: mismatched closing delimiter: `}`
+  --> src/api/cpp.rs:70:42
+   |
+69 |             if v_t >= 0 {
+   |                         - closing delimiter possibly meant for this
+70 |                 t[i as usize] = ptr::read((*v).data.cast::<libc::c_char>().offset(v_t as isize).cast::<libc::c_double>();
+   |                                          ^ unclosed delimiter
+...
+74 |             } else {
+   |             ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+  --> src/api/cpp.rs:88:25
+   |
+87 |         unsafe {
+   |                - closing delimiter possibly meant for this
+88 |             let mut a = (*(*G.v.offset(j as isize)).in_0;
+   |                         ^ unclosed delimiter
+...
+97 |         }
+   |         ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> src/api/cpp.rs:70:42
+   |
+70 |                 t[i as usize] = ptr::read((*v).data.cast::<libc::c_char>().offset(v_t as isize).cast::<libc::c_double>();
+   |                                          ^ unclosed delimiter                                                           ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> src/api/cpp.rs:74:13
+   |
+74 |             } else {
+   |             ^ expected expression
+
+error: expected one of `(`, `)`, `,`, `.`, `::`, `?`, or an operator, found `;`
+  --> src/api/cpp.rs:88:25
+   |
+88 |             let mut a = (*(*G.v.offset(j as isize)).in_0;
+   |                         ^ unclosed delimiter            ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> src/api/cpp.rs:97:9
+   |
+97 |         }
+   |         ^ expected expression
+
+error: unexpected closing delimiter: `}`
+   --> src/api/maxffalg.rs:240:5
+    |
+235 |         if !cut.is_null() {
+    |                           - this opening brace...
+236 |             glp_free(cut as *mut c_void);
+237 |         }
+    |         - ...matches this closing brace
+...
+240 |     }
+    |     ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+   --> src/api/maxffalg.rs:203:40
+    |
+203 |                     while !a.is_null() {
+    |                                        ^ unclosed delimiter
+...
+210 |                         );
+    |                         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+   --> src/api/maxffalg.rs:218:38
+    |
+218 |                 for i in 1..=(*G).nv {
+    |                                      ^ unclosed delimiter
+...
+225 |                     );
+    |                     ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 11 previous errors

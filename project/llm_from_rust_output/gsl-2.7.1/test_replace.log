@@ -1,0 +1,46 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/gsl-2.7.1)
+error: this file contains an unclosed delimiter
+   --> blas/blas.rs:497:11
+    |
+202 | extern "C" {
+    |            - unclosed delimiter
+...
+492 |     fn cblas_dtrsv(
+    |                   - unclosed delimiter
+...
+497 |         N:
+    |           ^
+
+error: expected type, found `)`
+   --> blas/blas.rs:497:11
+    |
+497 |         N:
+    |           ^ expected type
+
+error: expected one of `->`, `;`, `where`, or `{`, found `}`
+   --> blas/blas.rs:497:11
+    |
+492 |     fn cblas_dtrsv(
+    |        ----------- while parsing this `fn`
+...
+497 |         N:
+    |           ^ expected one of `->`, `;`, `where`, or `{`
+
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `=>`
+  --> cblas/chemm.rs:63:31
+   |
+63 |         CBLAS_ORDER::ColMajor => (m.max(1), (m.max(1)),
+   |                               ^^ expected one of 8 possible tokens
+
+error: mismatched closing delimiter: `}`
+  --> cblas/chemm.rs:63:34
+   |
+61 |     let (ldb_min, ldc_min) = match order {
+   |                                          - closing delimiter possibly meant for this
+62 |         CBLAS_ORDER::RowMajor => (n.max(1), (n.max(1)),
+63 |         CBLAS_ORDER::ColMajor => (m.max(1), (m.max(1)),
+   |                                  ^ unclosed delimiter
+64 |     };
+   |     ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 5 previous errors

@@ -1,0 +1,397 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/hiredis)
+error[E0432]: unresolved import `std::net::UnixStream`
+ --> net.rs:3:39
+  |
+3 | use std::net::{SocketAddr, TcpStream, UnixStream};
+  |                                       ^^^^^^^^^^ no `UnixStream` in `net`
+
+error: cannot find macro `lazy_static` in this scope
+  --> alloc.rs:55:1
+   |
+55 | lazy_static! {
+   | ^^^^^^^^^^^
+
+error[E0425]: cannot find value `HIREDIS_ALLOC_FNS` in this scope
+  --> alloc.rs:60:19
+   |
+60 |     let mut fns = HIREDIS_ALLOC_FNS.lock().unwrap();
+   |                   ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `HIREDIS_ALLOC_FNS` in this scope
+  --> alloc.rs:67:19
+   |
+67 |     let mut fns = HIREDIS_ALLOC_FNS.lock().unwrap();
+   |                   ^^^^^^^^^^^^^^^^^ not found in this scope
+
+warning: unused import: `std::sync::Mutex`
+ --> alloc.rs:4:5
+  |
+4 | use std::sync::Mutex;
+  |     ^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `CStr`, `CString`
+ --> hiredis.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> hiredis.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> net.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `SocketAddr`
+ --> net.rs:3:16
+  |
+3 | use std::net::{SocketAddr, TcpStream, UnixStream};
+  |                ^^^^^^^^^^
+
+warning: unused imports: `c_char`, `c_ulong`, `sa_family_t`, `size_t`
+ --> net.rs:6:19
+  |
+6 | use libc::{c_int, c_char, c_void, c_long, c_ulong, socklen_t, size_t, sa_family_t};
+  |                   ^^^^^^                  ^^^^^^^             ^^^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> net.rs:7:5
+  |
+7 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_long`, `c_uchar`, `c_ushort`
+ --> async.rs:1:52
+  |
+1 | use std::os::raw::{c_char, c_int, c_void, c_ulong, c_long, c_uchar, c_ushort, c_uint, c_longlong};
+  |                                                    ^^^^^^  ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> async.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> async.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> async.rs:4:16
+  |
+4 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> async.rs:5:5
+  |
+5 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+ --> async.rs:6:5
+  |
+6 | use std::time::Duration;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> read.rs:1:32
+  |
+1 | use std::ffi::{c_char, c_void, CStr, CString};
+  |                                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> read.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_uchar`, `c_uint`
+ --> read.rs:3:49
+  |
+3 | use std::os::raw::{c_double, c_int, c_longlong, c_uchar, c_uint, c_ulong};
+  |                                                 ^^^^^^^  ^^^^^^
+
+warning: unused import: `CString`
+ --> sds.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused imports: `c_int`, `c_long`, `c_longlong`, `c_uchar`, `c_uint`, `c_ulong`, `c_ulonglong`
+ --> sds.rs:2:28
+  |
+2 | use std::os::raw::{c_char, c_int, c_long, c_longlong, c_uchar, c_uint, c_ulong, c_ulonglong, c_void};
+  |                            ^^^^^  ^^^^^^  ^^^^^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> sds.rs:4:5
+  |
+4 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> sds.rs:6:5
+  |
+6 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around match arm expression
+   --> sds.rs:128:14
+    |
+128 |         1 => (*(s.sub(3) as *const u8) as usize),
+    |              ^                                 ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+128 -         1 => (*(s.sub(3) as *const u8) as usize),
+128 +         1 => *(s.sub(3) as *const u8) as usize,
+    |
+
+warning: unnecessary parentheses around match arm expression
+   --> sds.rs:129:14
+    |
+129 |         2 => (*(s.sub(5) as *const u16) as usize),
+    |              ^                                  ^
+    |
+help: remove these parentheses
+    |
+129 -         2 => (*(s.sub(5) as *const u16) as usize),
+129 +         2 => *(s.sub(5) as *const u16) as usize,
+    |
+
+warning: unnecessary parentheses around match arm expression
+   --> sds.rs:130:14
+    |
+130 |         3 => (*(s.sub(9) as *const u32) as usize),
+    |              ^                                  ^
+    |
+help: remove these parentheses
+    |
+130 -         3 => (*(s.sub(9) as *const u32) as usize),
+130 +         3 => *(s.sub(9) as *const u32) as usize,
+    |
+
+warning: unnecessary parentheses around match arm expression
+   --> sds.rs:131:14
+    |
+131 |         4 => (*(s.sub(17) as *const u64) as usize),
+    |              ^                                   ^
+    |
+help: remove these parentheses
+    |
+131 -         4 => (*(s.sub(17) as *const u64) as usize),
+131 +         4 => *(s.sub(17) as *const u64) as usize,
+    |
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2623:13
+     |
+2623 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2629 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2623 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2624 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2628 |                 __isinfl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2629 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2658:13
+     |
+2658 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2664 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2658 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2659 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2663 |                 __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2664 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> test.rs:2694:13
+     |
+2694 |             (if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+     |             ^
+...
+2700 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+2694 ~             if ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+2695 |                 == ::core::mem::size_of::<libc::c_double>() as libc::c_ulong
+   ...
+2699 |                 __isnanl(f128::f128::new((*(reply as *mut redisReply)).dval))
+2700 ~             }
+     |
+
+error[E0740]: unions cannot contain fields that may need dropping
+   --> async.rs:197:5
+    |
+197 |     tcp: RedisTcpOptions,
+    |     ^^^^^^^^^^^^^^^^^^^^
+    |
+    = note: a type is guaranteed not to need dropping when it implements `Copy`, or when it is the special `ManuallyDrop<_>` type
+help: when the type does not implement `Copy`, wrap it inside a `ManuallyDrop<_>` and ensure it is manually dropped
+    |
+197 |     tcp: std::mem::ManuallyDrop<RedisTcpOptions>,
+    |          +++++++++++++++++++++++               +
+
+error[E0308]: mismatched types
+  --> alloc.rs:30:20
+   |
+30 |     unsafe { alloc(mem::size_of::<u8>() * size) }
+   |              ----- ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `Layout`, found `usize`
+   |              |
+   |              arguments to this function are incorrect
+   |
+note: function defined here
+  --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/alloc.rs:94:15
+   |
+94 | pub unsafe fn alloc(layout: Layout) -> *mut u8 {
+   |               ^^^^^
+
+error[E0308]: mismatched types
+   --> alloc.rs:34:27
+    |
+34  |     unsafe { alloc_zeroed(mem::size_of::<u8>() * nmemb * size) }
+    |              ------------ ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `Layout`, found `usize`
+    |              |
+    |              arguments to this function are incorrect
+    |
+note: function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/alloc.rs:165:15
+    |
+165 | pub unsafe fn alloc_zeroed(layout: Layout) -> *mut u8 {
+    |               ^^^^^^^^^^^^
+
+error[E0061]: this function takes 3 arguments but 2 arguments were supplied
+   --> alloc.rs:38:14
+    |
+38  |     unsafe { realloc(ptr, mem::size_of::<u8>() * size) }
+    |              ^^^^^^^      --------------------------- an argument of type `Layout` is missing
+    |
+note: function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/alloc.rs:131:15
+    |
+131 | pub unsafe fn realloc(ptr: *mut u8, layout: Layout, new_size: usize) -> *mut u8 {
+    |               ^^^^^^^
+help: provide the argument
+    |
+38  |     unsafe { realloc(ptr, /* Layout */, mem::size_of::<u8>() * size) }
+    |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0308]: mismatched types
+   --> alloc.rs:52:27
+    |
+52  |     unsafe { dealloc(ptr, mem::size_of::<u8>()) }
+    |              -------      ^^^^^^^^^^^^^^^^^^^^ expected struct `Layout`, found `usize`
+    |              |
+    |              arguments to this function are incorrect
+    |
+note: function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/alloc.rs:112:15
+    |
+112 | pub unsafe fn dealloc(ptr: *mut u8, layout: Layout) {
+    |               ^^^^^^^
+
+error[E0609]: no field `push_cb` on type `hiredis::redisContext`
+  --> hiredis.rs:92:20
+   |
+92 |     let old = (*c).push_cb;
+   |                    ^^^^^^^ unknown field
+   |
+   = note: available fields are: `err`, `errstr`, `fd`, `flags`, `obuf`, `reader`
+
+error[E0609]: no field `push_cb` on type `hiredis::redisContext`
+  --> hiredis.rs:93:10
+   |
+93 |     (*c).push_cb = func;
+   |          ^^^^^^^ unknown field
+   |
+   = note: available fields are: `err`, `errstr`, `fd`, `flags`, `obuf`, `reader`
+
+error[E0609]: no field `funcs` on type `hiredis::redisContext`
+   --> hiredis.rs:103:25
+    |
+103 |     let nread = ((*(*c).funcs).read.expect("non-null function pointer"))(
+    |                         ^^^^^ unknown field
+    |
+    = note: available fields are: `err`, `errstr`, `fd`, `flags`, `obuf`, `reader`
+
+error[E0609]: no field `funcs` on type `hiredis::redisContext`
+   --> hiredis.rs:127:32
+    |
+127 |         let nwritten = ((*(*c).funcs).write.expect("non-null function pointer"))(c);
+    |                                ^^^^^ unknown field
+    |
+    = note: available fields are: `err`, `errstr`, `fd`, `flags`, `obuf`, `reader`
+
+error[E0277]: `?` couldn't convert the error to `std::io::Error`
+  --> net.rs:91:56
+   |
+87 | ) -> Result<(), Error> {
+   |      ----------------- expected `std::io::Error` because of this
+...
+91 |         TcpStream::connect_timeout(&socket_addr.parse()?, timeout)?
+   |                                                        ^ the trait `From<AddrParseError>` is not implemented for `std::io::Error`
+   |
+   = note: the question mark operation (`?`) implicitly performs a conversion on the error value using the `From` trait
+   = help: the following other types implement trait `From<T>`:
+             <std::io::Error as From<ErrorKind>>
+             <std::io::Error as From<IntoInnerError<W>>>
+             <std::io::Error as From<NulError>>
+   = note: required because of the requirements on the impl of `FromResidual<Result<Infallible, AddrParseError>>` for `Result<(), std::io::Error>`
+
+error[E0599]: no function or associated item named `connect_timeout` found for struct `UnixStream` in the current scope
+   --> net.rs:107:24
+    |
+107 |         StdUnixStream::connect_timeout(&path.into(), timeout)?
+    |                        ^^^^^^^^^^^^^^^
+    |                        |
+    |                        function or associated item not found in `UnixStream`
+    |                        help: there is an associated function with a similar name: `read_timeout`
+
+error[E0308]: mismatched types
+  --> sds.rs:81:25
+   |
+81 |             *s.sub(1) = (type_ as u8) | ((initlen << 3) as u8);
+   |             ---------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `i8`, found `u8`
+   |             |
+   |             expected due to the type of this binding
+
+error[E0308]: mismatched types
+  --> sds.rs:87:25
+   |
+87 |             *s.sub(1) = type_ as u8;
+   |             ---------   ^^^^^^^^^^^ expected `i8`, found `u8`
+   |             |
+   |             expected due to the type of this binding
+
+Some errors have detailed explanations: E0061, E0277, E0308, E0425, E0432, E0599, E0609, E0740.
+For more information about an error, try `rustc --explain E0061`.
+warning: `c2rust_out` (lib) generated 27 warnings
+error: could not compile `c2rust_out` due to 17 previous errors; 27 warnings emitted

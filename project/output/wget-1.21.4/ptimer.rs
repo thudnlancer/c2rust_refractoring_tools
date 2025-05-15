@@ -1,15 +1,7 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
 extern "C" {
     fn clock_getres(__clock_id: clockid_t, __res: *mut timespec) -> i32;
     fn clock_gettime(__clock_id: clockid_t, __tp: *mut timespec) -> i32;

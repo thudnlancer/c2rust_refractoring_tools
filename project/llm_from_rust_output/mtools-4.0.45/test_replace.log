@@ -1,0 +1,2814 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/mtools-4.0.45)
+error: this file contains an unclosed delimiter
+   --> devices.rs:527:25
+    |
+519 | pub fn init_geom(fd: RawFd, dev: &mut Device, orig_dev: Option<&Device>, statbuf: &Stat) -> i32 {
+    |                                                                                                 - unclosed delimiter
+...
+527 |     if statbuf.st_mode &
+    |                         ^
+
+error: expected expression, found `}`
+   --> devices.rs:527:25
+    |
+527 |     if statbuf.st_mode &
+    |                         ^ expected expression
+
+error: mismatched closing delimiter: `}`
+  --> fat_free.rs:95:17
+   |
+94 |     let first = if fat32_root_cluster(dir) != 0 {
+   |                                                 - closing delimiter possibly meant for this
+95 |         first | ((dir_entry.start_hi[0] as u32 + ((dir_entry.start_hi[1] as u32) << 8) << 16)
+   |                 ^ unclosed delimiter
+96 |     } else {
+   |     ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> fat_free.rs:93:45
+    |
+80  | pub fn fat_free_with_dir(dir: &mut Stream, dir_entry: &mut Directory) -> c_int {
+    |                                                                                - closing delimiter possibly meant for this
+...
+93  |     let first = dir_entry.start[0] as u32 + ((dir_entry.start[1] as u32) << 8;
+    |                                             ^ unclosed delimiter
+...
+101 | }
+    | ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> fat_free.rs:93:45
+   |
+93 |     let first = dir_entry.start[0] as u32 + ((dir_entry.start[1] as u32) << 8;
+   |                                             ^ unclosed delimiter             ^ help: `)` may belong here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `)`
+   --> fat_free.rs:101:1
+    |
+100 |     fat_free(dir, first)
+    |                         - expected one of `.`, `;`, `?`, `}`, or an operator
+101 | }
+    | ^ unexpected token
+
+error: mismatched closing delimiter: `}`
+   --> mdir.rs:170:24
+    |
+164 | fn print_date(dir: &directory) {
+    |                                - closing delimiter possibly meant for this
+...
+170 |     let month = format!(
+    |                        ^ unclosed delimiter
+...
+177 | }
+    | ^ mismatched closing delimiter
+
+error: expected one of `.`, `;`, `?`, `else`, or an operator, found `}`
+   --> mdir.rs:177:1
+    |
+177 | }
+    | ^ expected one of `.`, `;`, `?`, `else`, or an operator
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found keyword `as`
+   --> mdu.rs:102:22
+    |
+102 |                 b'i' as i32 => set_cmd_line_image(optarg),
+    |                      ^^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error: mismatched closing delimiter: `}`
+   --> mmount.rs:105:28
+    |
+104 |             if argc > 2 {
+    |                         - closing delimiter possibly meant for this
+105 |                 args.extend(argv[2..].iter().map(|a| CString::new(a.as_str()).collect::<Result<Vec<_>, _>>().unwrap());
+    |                            ^ unclosed delimiter
+106 |             } else {
+    |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> mmount.rs:105:28
+    |
+105 |                 args.extend(argv[2..].iter().map(|a| CString::new(a.as_str()).collect::<Result<Vec<_>, _>>().unwrap());
+    |                            ^ unclosed delimiter                                                                       ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> mmount.rs:106:13
+    |
+106 |             } else {
+    |             ^ expected expression
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found keyword `as`
+   --> mshortname.rs:136:22
+    |
+136 |                 b'i' as c_int => set_cmd_line_image(optarg),
+    |                      ^^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error: `<` is interpreted as a start of generic arguments for `mt_off_t`, not a shift
+   --> partition.rs:282:101
+    |
+282 |         let part_size = u32::from_le_bytes(part_table[dev.partition as usize].nr_sects) as mt_off_t << 9;
+    |                                                                                                     ^^ - interpreted as generic arguments
+    |                                                                                                     |
+    |                                                                                                     not interpreted as shift
+    |
+help: try shifting the cast value
+    |
+282 |         let part_size = (u32::from_le_bytes(part_table[dev.partition as usize].nr_sects) as mt_off_t) << 9;
+    |                         +                                                                           +
+
+error: mismatched closing delimiter: `}`
+  --> match.rs:7:5
+   |
+6  | fn casecmp(a: WChar, b: WChar) -> i32 {
+   |                                       - closing delimiter possibly meant for this
+7  |     (char::from_u32(a as WInt).map_or(0, |a| 
+   |     ^ unclosed delimiter
+...
+12 | }
+   | ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `)`
+  --> scsi_io.rs:43:51
+   |
+43 |             self.tot_sectors = u32::from_be_bytes([buf[0], buf[1], buf[2], buf[3]);
+   |                                                  -^                              ^ mismatched closing delimiter
+   |                                                  ||
+   |                                                  |unclosed delimiter
+   |                                                  closing delimiter possibly meant for this
+
+error[E0428]: the name `MainParam` is defined multiple times
+   --> mdu.rs:152:1
+    |
+10  | struct MainParam;
+    | ----------------- previous definition of the type `MainParam` here
+...
+152 | struct MainParam {
+    | ^^^^^^^^^^^^^^^^ `MainParam` redefined here
+    |
+    = note: `MainParam` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `BoundedString` is defined multiple times
+   --> mdu.rs:200:1
+    |
+12  | struct BoundedString;
+    | --------------------- previous definition of the type `BoundedString` here
+...
+200 | struct BoundedString {
+    | ^^^^^^^^^^^^^^^^^^^^ `BoundedString` redefined here
+    |
+    = note: `BoundedString` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `DirEntry` is defined multiple times
+   --> mdu.rs:205:1
+    |
+11  | struct DirEntry;
+    | ---------------- previous definition of the type `DirEntry` here
+...
+205 | struct DirEntry {
+    | ^^^^^^^^^^^^^^^ `DirEntry` redefined here
+    |
+    = note: `DirEntry` must be defined only once in the type namespace of this module
+
+error[E0428]: the name `Directory` is defined multiple times
+   --> mdu.rs:214:1
+    |
+9   | struct Directory;
+    | ----------------- previous definition of the type `Directory` here
+...
+214 | struct Directory {
+    | ^^^^^^^^^^^^^^^^ `Directory` redefined here
+    |
+    = note: `Directory` must be defined only once in the type namespace of this module
+
+error[E0255]: the name `exit` is defined multiple times
+   --> minfo.rs:212:5
+    |
+5   | use std::process::exit;
+    |     ------------------ previous import of the value `exit` here
+...
+212 |     fn exit(status: c_int) -> !;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `exit` redefined here
+    |
+    = note: `exit` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+    |
+5   | use std::process::exit as other_exit;
+    |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error: environment variable `VERSION` not defined
+  --> mcd.rs:63:46
+   |
+63 |     eprintln!("Mtools version {}, dated {}", env!("VERSION"), env!("DATE"));
+   |                                              ^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in the macro `env` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `DATE` not defined
+  --> mcd.rs:63:63
+   |
+63 |     eprintln!("Mtools version {}, dated {}", env!("VERSION"), env!("DATE"));
+   |                                                               ^^^^^^^^^^^^
+   |
+   = note: this error originates in the macro `env` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: environment variable `PROGNAME` not defined
+  --> mcd.rs:64:60
+   |
+64 |     eprintln!("Usage: {}: [-V] [-i image] msdosdirectory", env!("PROGNAME"));
+   |                                                            ^^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in the macro `env` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0432]: unresolved imports `libc::mbrtowc`, `libc::wcsnlen`
+ --> charsetConv.rs:6:90
+  |
+6 | use libc::{size_t, wchar_t, iconv_t, mbstate_t, nl_item, iconv, iconv_open, iconv_close, mbrtowc, wcsnlen};
+  |                                                                                          ^^^^^^^  ^^^^^^^
+  |                                                                                          |        |
+  |                                                                                          |        no `wcsnlen` in the root
+  |                                                                                          |        help: a similar name exists in the module: `wcslen`
+  |                                                                                          no `mbrtowc` in the root
+
+error[E0432]: unresolved import `libc::stderr`
+ --> charsetConv.rs:7:94
+  |
+7 | use libc::{calloc, free, memset, memcmp, strcpy, strcat, strlen, strerror, sprintf, fprintf, stderr, exit, __errno_location};
+  |                                                                                              ^^^^^^ no `stderr` in the root
+
+error[E0432]: unresolved imports `libc::gethostbyname`, `libc::inet_addr`
+  --> floppyd_io.rs:10:94
+   |
+10 |     c_char, c_int, c_long, c_uchar, c_uint, c_ulong, c_ushort, c_void, close, connect, free, gethostbyname,
+   |                                                                                              ^^^^^^^^^^^^^ no `gethostbyname` in the root
+11 |     hostent, in_addr, in_addr_t, inet_addr, setsockopt, shutdown, sockaddr, sockaddr_in, socklen_t,
+   |                                  ^^^^^^^^^ no `inet_addr` in the root
+   |
+help: a similar name exists in the module
+   |
+10 |     c_char, c_int, c_long, c_uchar, c_uint, c_ulong, c_ushort, c_void, close, connect, free, gethostname,
+   |                                                                                              ~~~~~~~~~~~
+help: a similar name exists in the module
+   |
+11 |     hostent, in_addr, in_addr_t, in6_addr, setsockopt, shutdown, sockaddr, sockaddr_in, socklen_t,
+   |                                  ~~~~~~~~
+
+error[E0432]: unresolved imports `libc::random`, `libc::srandom`
+ --> mformat.rs:9:18
+  |
+9 | use libc::{time, random, srandom, exit as libc_exit, close, read, write, open, isatty};
+  |                  ^^^^^^  ^^^^^^^ no `srandom` in the root
+  |                  |
+  |                  no `random` in the root
+  |
+help: a similar name exists in the module
+  |
+9 | use libc::{time, rand, srandom, exit as libc_exit, close, read, write, open, isatty};
+  |                  ~~~~
+help: a similar name exists in the module
+  |
+9 | use libc::{time, random, srand, exit as libc_exit, close, read, write, open, isatty};
+  |                          ~~~~~
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> signal.rs:1:5
+  |
+1 | use nix::sys::signal::{self, SigHandler, Signal};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> signal.rs:2:5
+  |
+2 | use nix::sys::signal::{sigaction, SaFlags, SigAction, SigSet};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> tty.rs:5:5
+  |
+5 | use nix::sys::termios;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> tty.rs:6:5
+  |
+6 | use nix::sys::signal::{self, Signal};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `rand`
+ --> mlabel.rs:7:5
+  |
+7 | use rand::Rng;
+  |     ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> lockdev.rs:4:5
+  |
+4 | use nix::sys::signal::{self, SigHandler, Signal};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> lockdev.rs:5:5
+  |
+5 | use nix::fcntl::{flock, FlockArg};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> lockdev.rs:6:5
+  |
+6 | use nix::errno::Errno;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> mcopy.rs:8:5
+  |
+8 | use nix::sys::stat::{stat, fstat};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> mcopy.rs:9:5
+  |
+9 | use nix::fcntl::{open, OFlag};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mcopy.rs:10:5
+   |
+10 | use nix::sys::stat::Mode;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mcopy.rs:11:5
+   |
+11 | use nix::unistd::{access, mkdir, unlink, AccessFlags};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> privileges.rs:4:5
+  |
+4 | use nix::unistd::{getuid, geteuid, getgid, getegid, setuid, seteuid, setgid, Uid, Gid};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> privileges.rs:5:5
+  |
+5 | use nix::fcntl::{fcntl, FcntlArg, FdFlag};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `nix`
+ --> tty.rs:7:5
+  |
+7 | use nix::unistd;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `bitflags`
+ --> xdf_io.rs:8:5
+  |
+8 | use bitflags::bitflags;
+  |     ^^^^^^^^ use of undeclared crate or module `bitflags`
+
+error: cannot determine resolution for the macro `bitflags`
+  --> xdf_io.rs:14:1
+   |
+14 | bitflags! {
+   | ^^^^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error[E0106]: missing lifetime specifier
+   --> directory.rs:221:6
+    |
+215 |     dn: &dos_name_t,
+    |         -----------
+...
+220 |     ndir: &mut directory,
+    |           --------------
+221 | ) -> &mut directory {
+    |      ^ expected named lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `dn` or `ndir`
+help: consider introducing a named lifetime parameter
+    |
+214 ~ pub fn mk_entry<'a>(
+215 ~     dn: &'a dos_name_t,
+216 |     attr: u8,
+  ...
+219 |     date: time_t,
+220 ~     ndir: &'a mut directory,
+221 ~ ) -> &'a mut directory {
+    |
+
+error[E0106]: missing lifetime specifier
+   --> directory.rs:265:6
+    |
+259 |     base: &str,
+    |           ----
+...
+264 |     ndir: &mut directory,
+    |           --------------
+265 | ) -> &mut directory {
+    |      ^ expected named lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `base` or `ndir`
+help: consider introducing a named lifetime parameter
+    |
+258 ~ pub fn mk_entry_from_base<'a>(
+259 ~     base: &'a str,
+260 |     attr: u8,
+  ...
+263 |     date: time_t,
+264 ~     ndir: &'a mut directory,
+265 ~ ) -> &'a mut directory {
+    |
+
+error[E0106]: missing lifetime specifier
+  --> expand.rs:23:55
+   |
+23 | fn expand(input: &CStr, ans: &mut [u8]) -> io::Result<&CStr> {
+   |                  -----       ---------                ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `input` or `ans`
+help: consider introducing a named lifetime parameter
+   |
+23 | fn expand<'a>(input: &'a CStr, ans: &'a mut [u8]) -> io::Result<&'a CStr> {
+   |          ++++         ++             ++                          ++
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> mcopy.rs:265:44
+    |
+265 |             if e == nix::Error::from_errno(nix::errno::Errno::EEXIST) {
+    |                                            ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+   --> mlabel.rs:138:26
+    |
+138 |                 serial = rand::thread_rng().gen();
+    |                          ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> privileges.rs:43:35
+   |
+43 |     fn setuid(&self, uid: Uid) -> nix::Result<()> {
+   |                                   ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> privileges.rs:78:46
+   |
+78 |     pub fn close_exec<T: AsRawFd>(fd: &T) -> nix::Result<()> {
+   |                                              ^^^ use of undeclared crate or module `nix`
+
+error[E0425]: cannot find value `mtools_default_codepage` in this scope
+  --> charsetConv.rs:92:20
+   |
+92 |         codepage = mtools_default_codepage;
+   |                    ^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `doscp_t` in this scope
+   --> dirCache.rs:101:72
+    |
+101 |     get_dosConvert: Option<unsafe extern "C" fn(*mut Stream_t) -> *mut doscp_t>,
+    |                                                                        ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use crate::directory::doscp_t;
+    |
+1   | use crate::direntry::doscp_t;
+    |
+1   | use crate::mk_direntry::doscp_t;
+    |
+
+error[E0425]: cannot find function `getDirCacheP` in this scope
+   --> dirCache.rs:258:19
+    |
+258 |         let dcp = getDirCacheP(stream);
+    |                   ^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `c_ushort` in this scope
+  --> direntry.rs:27:18
+   |
+27 |     _cur_column: c_ushort,
+   |                  ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_ushort;
+   |
+1  | use libc::c_ushort;
+   |
+1  | use std::ffi::c_ushort;
+   |
+1  | use std::os::raw::c_ushort;
+   |
+
+error[E0412]: cannot find type `c_schar` in this scope
+  --> direntry.rs:28:21
+   |
+28 |       _vtable_offset: c_schar,
+   |                       ^^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_char` defined here
+   |
+help: a type alias with a similar name exists
+   |
+28 |     _vtable_offset: c_char,
+   |                     ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_schar;
+   |
+1  | use libc::c_schar;
+   |
+1  | use std::ffi::c_schar;
+   |
+1  | use std::os::raw::c_schar;
+   |
+
+error[E0412]: cannot find type `c_long` in this scope
+  --> direntry.rs:46:14
+   |
+46 |   type off_t = c_long;
+   |                ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_ulong` defined here
+   |
+help: a type alias with a similar name exists
+   |
+46 | type off_t = c_ulong;
+   |              ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_long;
+   |
+1  | use libc::c_long;
+   |
+1  | use std::ffi::c_long;
+   |
+1  | use std::os::raw::c_long;
+   |
+
+error[E0412]: cannot find type `c_long` in this scope
+  --> direntry.rs:47:16
+   |
+47 |   type off64_t = c_long;
+   |                  ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_ulong` defined here
+   |
+help: a type alias with a similar name exists
+   |
+47 | type off64_t = c_ulong;
+   |                ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_long;
+   |
+1  | use libc::c_long;
+   |
+1  | use std::ffi::c_long;
+   |
+1  | use std::os::raw::c_long;
+   |
+
+error[E0412]: cannot find type `c_long` in this scope
+  --> direntry.rs:48:16
+   |
+48 |   type ssize_t = c_long;
+   |                  ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_ulong` defined here
+   |
+help: a type alias with a similar name exists
+   |
+48 | type ssize_t = c_ulong;
+   |                ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_long;
+   |
+1  | use libc::c_long;
+   |
+1  | use std::ffi::c_long;
+   |
+1  | use std::os::raw::c_long;
+   |
+
+error[E0412]: cannot find type `time_t` in this scope
+  --> direntry.rs:76:63
+   |
+45 | type size_t = c_ulong;
+   | ---------------------- similarly named type alias `size_t` defined here
+...
+76 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut time_t, *mut off_t, *mut c_int, *mut uint32_t) -> c_int>,
+   |                                                               ^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+76 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut size_t, *mut off_t, *mut c_int, *mut uint32_t) -> c_int>,
+   |                                                               ~~~~~~
+help: consider importing one of these items
+   |
+1  | use libc::time_t;
+   |
+1  | use std::os::linux::raw::time_t;
+   |
+
+error[E0412]: cannot find type `c_char` in this scope
+  --> fat.rs:61:12
+   |
+61 |       drive: c_char,
+   |              ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uchar` defined here
+   |
+help: a type alias with a similar name exists
+   |
+61 |     drive: c_uchar,
+   |            ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_char;
+   |
+1  | use libc::c_char;
+   |
+1  | use std::ffi::c_char;
+   |
+1  | use std::os::raw::c_char;
+   |
+
+error[E0412]: cannot find type `doscp_t` in this scope
+  --> fat.rs:75:14
+   |
+75 |     cp: *mut doscp_t,
+   |              ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::directory::doscp_t;
+   |
+1  | use crate::direntry::doscp_t;
+   |
+1  | use crate::mk_direntry::doscp_t;
+   |
+
+error[E0412]: cannot find type `c_char` in this scope
+  --> fat.rs:87:59
+   |
+87 |       read: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> ssize_t>,
+   |                                                             ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uchar` defined here
+   |
+help: a type alias with a similar name exists
+   |
+87 |     read: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_uchar, size_t) -> ssize_t>,
+   |                                                           ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_char;
+   |
+1  | use libc::c_char;
+   |
+1  | use std::ffi::c_char;
+   |
+1  | use std::os::raw::c_char;
+   |
+
+error[E0412]: cannot find type `c_char` in this scope
+  --> fat.rs:88:60
+   |
+88 |       write: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> ssize_t>,
+   |                                                              ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uchar` defined here
+   |
+help: a type alias with a similar name exists
+   |
+88 |     write: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_uchar, size_t) -> ssize_t>,
+   |                                                            ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_char;
+   |
+1  | use libc::c_char;
+   |
+1  | use std::ffi::c_char;
+   |
+1  | use std::os::raw::c_char;
+   |
+
+error[E0412]: cannot find type `c_char` in this scope
+  --> fat.rs:89:60
+   |
+89 |       pread: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> ssize_t>,
+   |                                                              ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uchar` defined here
+   |
+help: a type alias with a similar name exists
+   |
+89 |     pread: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_uchar, mt_off_t, size_t) -> ssize_t>,
+   |                                                            ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_char;
+   |
+1  | use libc::c_char;
+   |
+1  | use std::ffi::c_char;
+   |
+1  | use std::os::raw::c_char;
+   |
+
+error[E0412]: cannot find type `c_char` in this scope
+  --> fat.rs:90:61
+   |
+90 |       pwrite: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> ssize_t>,
+   |                                                               ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uchar` defined here
+   |
+help: a type alias with a similar name exists
+   |
+90 |     pwrite: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_uchar, mt_off_t, size_t) -> ssize_t>,
+   |                                                             ~~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_char;
+   |
+1  | use libc::c_char;
+   |
+1  | use std::ffi::c_char;
+   |
+1  | use std::os::raw::c_char;
+   |
+
+error[E0412]: cannot find type `device_t` in this scope
+  --> fat.rs:93:63
+   |
+93 |     set_geom: Option<unsafe extern "C" fn(*mut Stream_t, *mut device_t, *mut device_t) -> c_int>,
+   |                                                               ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::dirCache::device_t;
+   |
+1  | use crate::direntry::device_t;
+   |
+
+error[E0412]: cannot find type `device_t` in this scope
+  --> fat.rs:93:78
+   |
+93 |     set_geom: Option<unsafe extern "C" fn(*mut Stream_t, *mut device_t, *mut device_t) -> c_int>,
+   |                                                                              ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::dirCache::device_t;
+   |
+1  | use crate::direntry::device_t;
+   |
+
+error[E0412]: cannot find type `time_t` in this scope
+  --> fat.rs:94:63
+   |
+11 | type size_t = c_ulong;
+   | ---------------------- similarly named type alias `size_t` defined here
+...
+94 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut time_t, *mut mt_off_t, *mut c_int, *mut uint32_t) -> c_int>,
+   |                                                               ^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+94 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut size_t, *mut mt_off_t, *mut c_int, *mut uint32_t) -> c_int>,
+   |                                                               ~~~~~~
+help: consider importing one of these items
+   |
+1  | use libc::time_t;
+   |
+1  | use std::os::linux::raw::time_t;
+   |
+
+error[E0412]: cannot find type `doscp_t` in this scope
+  --> fat.rs:96:72
+   |
+96 |     get_dosConvert: Option<unsafe extern "C" fn(*mut Stream_t) -> *mut doscp_t>,
+   |                                                                        ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::directory::doscp_t;
+   |
+1  | use crate::direntry::doscp_t;
+   |
+1  | use crate::mk_direntry::doscp_t;
+   |
+
+error[E0412]: cannot find type `bootsector` in this scope
+   --> fat.rs:150:39
+    |
+150 |     fn fat_read(&mut self, boot: &mut bootsector, nodups: c_int) -> Result<(), Error> {
+    |                                       ^^^^^^^^^^ not found in this scope
+    |
+note: union `crate::minfo::bootsector` exists but is inaccessible
+   --> minfo.rs:101:1
+    |
+101 | union bootsector {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `bootsector` in this scope
+   --> fat.rs:169:43
+    |
+169 |     fn old_fat_read(&mut self, boot: &mut bootsector, nodups: c_int) -> Result<(), Error> {
+    |                                           ^^^^^^^^^^ not found in this scope
+    |
+note: union `crate::minfo::bootsector` exists but is inaccessible
+   --> minfo.rs:101:1
+    |
+101 | union bootsector {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `bootsector` in this scope
+   --> fat.rs:190:42
+    |
+190 |     fn fat_32_read(&mut self, boot: &mut bootsector) -> Result<(), Error> {
+    |                                          ^^^^^^^^^^ not found in this scope
+    |
+note: union `crate::minfo::bootsector` exists but is inaccessible
+   --> minfo.rs:101:1
+    |
+101 | union bootsector {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `bootsector` in this scope
+   --> fat.rs:196:47
+    |
+196 |     fn check_media_type(&mut self, boot: &mut bootsector) -> Result<c_int, Error> {
+    |                                               ^^^^^^^^^^ not found in this scope
+    |
+note: union `crate::minfo::bootsector` exists but is inaccessible
+   --> minfo.rs:101:1
+    |
+101 | union bootsector {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `doscp_t` in this scope
+  --> file.rs:84:73
+   |
+84 |     get_dos_convert: Option<unsafe extern "C" fn(*mut Stream_t) -> *mut doscp_t>,
+   |                                                                         ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::directory::doscp_t;
+   |
+1  | use crate::direntry::doscp_t;
+   |
+1  | use crate::mk_direntry::doscp_t;
+   |
+
+error[E0412]: cannot find type `dirCacheEntry_t` in this scope
+   --> file.rs:130:24
+    |
+130 |     entries: *mut *mut dirCacheEntry_t,
+    |                        ^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use crate::dirCache::dirCacheEntry_t;
+    |
+
+error[E0412]: cannot find type `wchar_t` in this scope
+   --> file.rs:160:12
+    |
+160 |     name: [wchar_t; 256],
+    |            ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use crate::mk_direntry::wchar_t;
+    |
+1   | use libc::wchar_t;
+    |
+
+error[E0412]: cannot find type `FatMap_t` in this scope
+   --> file.rs:181:19
+    |
+181 |     fat_map: *mut FatMap_t,
+    |                   ^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> fat.rs:33:1
+    |
+33  | struct FatMap_t {
+    | ^^^^^^^^^^^^^^^ `crate::fat::FatMap_t`: not accessible
+    |
+   ::: minfo.rs:204:1
+    |
+204 | type FatMap_t = ();
+    | ^^^^^^^^^^^^^^^^^^^ `crate::minfo::FatMap_t`: not accessible
+
+error[E0412]: cannot find type `doscp_t` in this scope
+   --> file.rs:200:14
+    |
+200 |     cp: *mut doscp_t,
+    |              ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use crate::directory::doscp_t;
+    |
+1   | use crate::direntry::doscp_t;
+    |
+1   | use crate::mk_direntry::doscp_t;
+    |
+
+error[E0425]: cannot find function `fat_write` in this scope
+   --> init.rs:234:14
+    |
+234 |     unsafe { fat_write(fs) };
+    |              ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `set_device_from_old_dos` in this scope
+   --> init.rs:298:24
+    |
+298 |     } else if unsafe { set_device_from_old_dos(media, dev) } < 0 {
+    |                        ^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use crate::old_dos::set_device_from_old_dos;
+    |
+
+error[E0425]: cannot find value `stdout` in crate `libc`
+  --> mattrib.rs:75:31
+   |
+75 |     unsafe { fprint_pwd(libc::stdout, entry, 0) };
+   |                               ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stdout;
+   |
+help: if you import `stdout`, refer to it directly
+   |
+75 -     unsafe { fprint_pwd(libc::stdout, entry, 0) };
+75 +     unsafe { fprint_pwd(stdout, entry, 0) };
+   |
+
+error[E0425]: cannot find value `stdout` in crate `libc`
+  --> mattrib.rs:89:35
+   |
+89 |         unsafe { fprint_pwd(libc::stdout, entry, 0) };
+   |                                   ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stdout;
+   |
+help: if you import `stdout`, refer to it directly
+   |
+89 -         unsafe { fprint_pwd(libc::stdout, entry, 0) };
+89 +         unsafe { fprint_pwd(stdout, entry, 0) };
+   |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> mcopy.rs:265:26
+    |
+265 |             if e == nix::Error::from_errno(nix::errno::Errno::EEXIST) {
+    |                          ^^^^^ not found in `nix`
+    |
+help: consider importing one of these items
+    |
+1   | use core::fmt::Error;
+    |
+1   | use crate::mcopy::io::Error;
+    |
+1   | use std::error::Error;
+    |
+1   | use std::fmt::Error;
+    |
+      and 1 other candidate
+help: if you import `Error`, refer to it directly
+    |
+265 -             if e == nix::Error::from_errno(nix::errno::Errno::EEXIST) {
+265 +             if e == Error::from_errno(nix::errno::Errno::EEXIST) {
+    |
+
+error[E0412]: cannot find type `ssize_t` in this scope
+  --> mdir.rs:39:78
+   |
+28 | type size_t = usize;
+   | -------------------- similarly named type alias `size_t` defined here
+...
+39 |     read: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> ssize_t>,
+   |                                                                              ^^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+39 |     read: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> size_t>,
+   |                                                                              ~~~~~~
+help: consider importing one of these items
+   |
+1  | use crate::swap::ssize_t;
+   |
+1  | use libc::ssize_t;
+   |
+
+error[E0412]: cannot find type `ssize_t` in this scope
+  --> mdir.rs:40:79
+   |
+28 | type size_t = usize;
+   | -------------------- similarly named type alias `size_t` defined here
+...
+40 |     write: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> ssize_t>,
+   |                                                                               ^^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+40 |     write: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, size_t) -> size_t>,
+   |                                                                               ~~~~~~
+help: consider importing one of these items
+   |
+1  | use crate::swap::ssize_t;
+   |
+1  | use libc::ssize_t;
+   |
+
+error[E0412]: cannot find type `ssize_t` in this scope
+  --> mdir.rs:41:89
+   |
+28 | type size_t = usize;
+   | -------------------- similarly named type alias `size_t` defined here
+...
+41 |     pread: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> ssize_t>,
+   |                                                                                         ^^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+41 |     pread: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> size_t>,
+   |                                                                                         ~~~~~~
+help: consider importing one of these items
+   |
+1  | use crate::swap::ssize_t;
+   |
+1  | use libc::ssize_t;
+   |
+
+error[E0412]: cannot find type `ssize_t` in this scope
+  --> mdir.rs:42:90
+   |
+28 | type size_t = usize;
+   | -------------------- similarly named type alias `size_t` defined here
+...
+42 |     pwrite: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> ssize_t>,
+   |                                                                                          ^^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+42 |     pwrite: Option<unsafe extern "C" fn(*mut Stream_t, *mut c_char, mt_off_t, size_t) -> size_t>,
+   |                                                                                          ~~~~~~
+help: consider importing one of these items
+   |
+1  | use crate::swap::ssize_t;
+   |
+1  | use libc::ssize_t;
+   |
+
+error[E0412]: cannot find type `time_t` in this scope
+  --> mdir.rs:46:63
+   |
+28 | type size_t = usize;
+   | -------------------- similarly named type alias `size_t` defined here
+...
+46 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut time_t, *mut mt_off_t, *mut c_int, *mut u32) -> c_int>,
+   |                                                               ^^^^^^
+   |
+help: a type alias with a similar name exists
+   |
+46 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut size_t, *mut mt_off_t, *mut c_int, *mut u32) -> c_int>,
+   |                                                               ~~~~~~
+help: consider importing one of these items
+   |
+1  | use libc::time_t;
+   |
+1  | use std::os::linux::raw::time_t;
+   |
+
+error[E0412]: cannot find type `doscp_t` in this scope
+  --> mdir.rs:48:73
+   |
+48 |     get_dos_convert: Option<unsafe extern "C" fn(*mut Stream_t) -> *mut doscp_t>,
+   |                                                                         ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::directory::doscp_t;
+   |
+1  | use crate::direntry::doscp_t;
+   |
+1  | use crate::mk_direntry::doscp_t;
+   |
+
+error[E0425]: cannot find function `towlower` in crate `libc`
+   --> mdir.rs:160:20
+    |
+160 |     unsafe { libc::towlower(ch as wint_t) as wchar_t }
+    |                    ^^^^^^^^ help: a function with a similar name exists: `tolower`
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.172/src/unix/mod.rs:588:5
+    |
+588 |     pub fn tolower(c: c_int) -> c_int;
+    |     --------------------------------- similarly named function `tolower` defined here
+
+error[E0425]: cannot find value `mtools_twenty_four_hour_clock` in this scope
+   --> mdir.rs:181:29
+    |
+181 |     let am_pm = if unsafe { mtools_twenty_four_hour_clock } == 0 {
+    |                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `mtools_twenty_four_hour_clock` in this scope
+   --> mdir.rs:187:17
+    |
+187 |     if unsafe { mtools_twenty_four_hour_clock } == 0 {
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `getDrive` in this scope
+   --> mdir.rs:311:26
+    |
+311 |     let drive = unsafe { getDrive(dir) };
+    |                          ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `copy_stream` in this scope
+   --> mdir.rs:318:23
+    |
+318 |         current_dir = copy_stream(dir);
+    |                       ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `getPwd` in this scope
+   --> mdir.rs:319:24
+    |
+319 |         dyn_dir_path = getPwd(getDirentry(dir));
+    |                        ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `getDirentry` in this scope
+   --> mdir.rs:319:31
+    |
+319 |         dyn_dir_path = getPwd(getDirentry(dir));
+    |                               ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `is_root_entry` in this scope
+   --> mdoctorfat.rs:195:33
+    |
+195 |         if arg.mark_bad == 0 && is_root_entry(entry) != 0 {
+    |                                 ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use crate::direntry::is_root_entry;
+    |
+
+error[E0425]: cannot find function `dir_write` in this scope
+   --> mdoctorfat.rs:201:13
+    |
+201 |             dir_write(entry);
+    |             ^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> mattrib.rs:49:1
+    |
+49  | fn dir_write(entry: &mut DirEntry) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::dir_write`: not accessible
+    |
+   ::: mdel.rs:188:5
+    |
+188 |     fn dir_write(entry: *mut Direntry);
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::dir_write`: not accessible
+
+error[E0425]: cannot find function `get_fs` in this scope
+   --> mdoctorfat.rs:203:18
+    |
+203 |         arg.fs = get_fs(mp.file);
+    |                  ^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> fat_free.rs:108:1
+    |
+108 | unsafe fn get_fs(stream: *mut Stream) -> *mut Fs {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::fat_free::get_fs`: not accessible
+    |
+   ::: init.rs:262:1
+    |
+262 | fn get_fs(stream: *mut Stream) -> *mut Stream {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::init::get_fs`: not accessible
+
+error[E0425]: cannot find value `mversion` in this scope
+   --> mdoctorfat.rs:214:70
+    |
+214 |     eprintln!("Mtools version {}, dated {}", unsafe { CStr::from_ptr(mversion).to_string_lossy() }, unsafe { CStr::from_ptr(mdate).to_str...
+    |                                                                      ^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+1   | use crate::patchlevel::mversion;
+    |
+
+error[E0425]: cannot find value `mdate` in this scope
+   --> mdoctorfat.rs:214:125
+    |
+214 | ...rsion).to_string_lossy() }, unsafe { CStr::from_ptr(mdate).to_string_lossy() });
+    |                                                        ^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+1   | use crate::patchlevel::mdate;
+    |
+
+error[E0425]: cannot find value `progname` in this scope
+   --> mdoctorfat.rs:215:66
+    |
+215 |     eprintln!("Usage: [-b] {} file fat", unsafe { CStr::from_ptr(progname).to_string_lossy() });
+    |                                                                  ^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> mainloop.rs:112:1
+    |
+112 | fn progname() -> &'static str {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mainloop::progname`: not accessible
+    |
+   ::: mdel.rs:196:5
+    |
+196 |     static mut progname: *const c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::progname`: not accessible
+    |
+   ::: mdu.rs:134:5
+    |
+134 |     static progname: *const c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::progname`: not accessible
+    |
+   ::: minfo.rs:242:5
+    |
+242 |     static mut progname: *const c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::minfo::progname`: not accessible
+    |
+   ::: mshortname.rs:67:5
+    |
+67  |     static mut progname: *const c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::progname`: not accessible
+    |
+   ::: mshowfat.rs:222:1
+    |
+222 | static mut progname: *const c_char = b"progname\0".as_ptr() as *const _;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::progname`: not accessible
+
+error[E0412]: cannot find type `c_void` in this scope
+  --> mformat.rs:45:14
+   |
+45 |     cp: *mut c_void, // Placeholder for codepage
+   |              ^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_void;
+   |
+1  | use libc::c_void;
+   |
+1  | use std::ffi::c_void;
+   |
+1  | use std::os::raw::c_void;
+   |
+
+error[E0412]: cannot find type `time_t` in this scope
+   --> minfo.rs:152:63
+    |
+11  | type size_t = usize;
+    | -------------------- similarly named type alias `size_t` defined here
+...
+152 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut time_t, *mut mt_off_t, *mut c_int, *mut uint32_t) -> c_int>,
+    |                                                               ^^^^^^
+    |
+help: a type alias with a similar name exists
+    |
+152 |     get_data: Option<unsafe extern "C" fn(*mut Stream_t, *mut size_t, *mut mt_off_t, *mut c_int, *mut uint32_t) -> c_int>,
+    |                                                               ~~~~~~
+help: consider importing one of these items
+    |
+1   | use libc::time_t;
+    |
+1   | use std::os::linux::raw::time_t;
+    |
+
+error[E0425]: cannot find value `stderr` in this scope
+   --> minfo.rs:288:9
+    |
+288 |         stderr,
+    |         ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+
+error[E0425]: cannot find value `stderr` in this scope
+   --> minfo.rs:294:9
+    |
+294 |         stderr,
+    |         ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+
+error[E0412]: cannot find type `MainParam` in this scope
+  --> mmd.rs:86:55
+   |
+86 | fn create_dir_callback(entry: *mut Direntry, mp: *mut MainParam) -> c_int {
+   |                                                       ^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::mdel::MainParam;
+   |
+1  | use crate::mshortname::MainParam;
+   |
+
+error[E0412]: cannot find type `Arg` in this scope
+  --> mmd.rs:88:48
+   |
+88 |     let ch = unsafe { &mut (*(*mp).arg as *mut Arg).ch };
+   |                                                ^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use crate::mdel::Arg;
+   |
+
+error[E0422]: cannot find struct, variant or union type `Arg` in this scope
+   --> mmd.rs:106:19
+    |
+106 |     let mut arg = Arg {
+    |                   ^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use crate::mdel::Arg;
+    |
+
+error[E0433]: failed to resolve: use of undeclared type `MainParam`
+   --> mmd.rs:108:13
+    |
+108 |         mp: MainParam::new(),
+    |             ^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use crate::mdel::MainParam;
+    |
+1   | use crate::mshortname::MainParam;
+    |
+
+error[E0412]: cannot find type `c_ulong` in this scope
+  --> mshowfat.rs:10:14
+   |
+10 |   type SizeT = c_ulong;
+   |                ^^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_long` defined here
+   |
+help: a type alias with a similar name exists
+   |
+10 | type SizeT = c_long;
+   |              ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_ulong;
+   |
+1  | use libc::c_ulong;
+   |
+1  | use std::ffi::c_ulong;
+   |
+1  | use std::os::raw::c_ulong;
+   |
+
+error[E0412]: cannot find type `c_ulong` in this scope
+  --> streamcache.rs:12:15
+   |
+12 |   type size_t = c_ulong;
+   |                 ^^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_long` defined here
+   |
+help: a type alias with a similar name exists
+   |
+12 | type size_t = c_long;
+   |               ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_ulong;
+   |
+1  | use libc::c_ulong;
+   |
+1  | use std::ffi::c_ulong;
+   |
+1  | use std::os::raw::c_ulong;
+   |
+
+error[E0412]: cannot find type `DeviceFlags` in this scope
+  --> xdf_io.rs:33:17
+   |
+33 |     misc_flags: DeviceFlags,
+   |                 ^^^^^^^^^^^ not found in this scope
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:1
+   |
+13 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:31
+   |
+14 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+
+warning: unused imports: `Read`, `SeekFrom`, `Seek`
+ --> buffer.rs:1:28
+  |
+1 | use std::io::{self, Write, Read, Seek, SeekFrom};
+  |                            ^^^^  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> buffer.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> buffer.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> buffer.rs:5:5
+  |
+5 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> buffer.rs:72:9
+   |
+72 |         (self.cylinder_size - (pos % self.cylinder_size as i64) as usize)
+   |         ^                                                               ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+72 -         (self.cylinder_size - (pos % self.cylinder_size as i64) as usize)
+72 +         self.cylinder_size - (pos % self.cylinder_size as i64) as usize
+   |
+
+warning: unused import: `std::slice`
+ --> charsetConv.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused imports: `c_long`, `c_void`
+ --> config.rs:1:44
+  |
+1 | use libc::{c_char, c_int, c_uint, c_ulong, c_long, c_uchar, c_ushort, c_void, off_t};
+  |                                            ^^^^^^                     ^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> config.rs:2:16
+  |
+2 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `BufRead`, `BufReader`
+ --> config.rs:4:15
+  |
+4 | use std::io::{BufRead, BufReader};
+  |               ^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::str::FromStr`
+ --> config.rs:6:5
+  |
+6 | use std::str::FromStr;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+ --> copyfile.rs:3:5
+  |
+3 | use std::sync::Arc;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt::Write`
+ --> device.rs:2:5
+  |
+2 | use std::fmt::Write;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `ptr`
+ --> devices.rs:5:5
+  |
+5 |     ptr,
+  |     ^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> dirCache.rs:1:16
+  |
+1 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused import: `c_ulong`
+ --> dirCache.rs:2:60
+  |
+2 | use std::os::raw::{c_char, c_void, c_int, c_uint, c_uchar, c_ulong};
+  |                                                            ^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> dirCache.rs:6:5
+  |
+6 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> directory.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> directory.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> directory.rs:3:17
+  |
+3 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> directory.rs:4:16
+  |
+4 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> direntry.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::ffi::c_void`
+ --> dos2unix.rs:1:5
+  |
+1 | use std::ffi::c_void;
+  |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> dos2unix.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `Write`
+ --> expand.rs:2:27
+  |
+2 | use std::io::{self, Read, Write};
+  |                           ^^^^^
+
+warning: unused imports: `AsRawFd`, `FromRawFd`, `IntoRawFd`
+ --> expand.rs:3:25
+  |
+3 | use std::os::unix::io::{AsRawFd, FromRawFd, IntoRawFd};
+  |                         ^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> expand.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> fat.rs:4:5
+  |
+4 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> fat.rs:6:5
+  |
+6 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem::size_of`
+ --> file.rs:2:5
+  |
+2 | use std::mem::size_of;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `null`
+ --> file.rs:3:26
+  |
+3 | use std::ptr::{null_mut, null};
+  |                          ^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> file.rs:4:17
+  |
+4 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `c_longlong`, `c_ulonglong`
+ --> file.rs:5:20
+  |
+5 | use std::os::raw::{c_longlong, c_ulonglong};
+  |                    ^^^^^^^^^^  ^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> file_name.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused imports: `c_int`, `c_uint`
+ --> file_name.rs:2:28
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_uchar};
+  |                            ^^^^^  ^^^^^^
+
+warning: unused imports: `CStr`, `CString`, `FromRawFd`, `OpenOptions`, `TcpStream`, `fs::OpenOptionsExt`, `mem`, `path::Path`, `ptr`, `time::Duration`
+  --> floppyd.rs:2:11
+   |
+2  |     ffi::{CStr, CString},
+   |           ^^^^  ^^^^^^^
+3  |     fs::{File, OpenOptions},
+   |                ^^^^^^^^^^^
+4  |     io::{self, Read, Seek, SeekFrom, Write},
+5  |     mem,
+   |     ^^^
+6  |     net::{TcpListener, TcpStream},
+   |                        ^^^^^^^^^
+7  |     os::unix::{
+8  |         fs::OpenOptionsExt,
+   |         ^^^^^^^^^^^^^^^^^^
+9  |         io::{AsRawFd, FromRawFd, RawFd},
+   |                       ^^^^^^^^^
+10 |     },
+11 |     path::Path,
+   |     ^^^^^^^^^^
+12 |     ptr,
+   |     ^^^
+13 |     time::Duration,
+   |     ^^^^^^^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uchar`, `c_uint`, `c_ulong`, `gid_t`, `pid_t`, `size_t`, `ssize_t`, `uid_t`
+  --> floppyd.rs:17:11
+   |
+17 |     self, c_char, c_int, c_uchar, c_uint, c_ulong, c_void, gid_t, pid_t, size_t, ssize_t, uid_t,
+   |           ^^^^^^  ^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^          ^^^^^  ^^^^^  ^^^^^^  ^^^^^^^  ^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> floppyd_installtest.rs:1:16
+  |
+1 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused imports: `FromRawFd`, `RawFd`
+ --> floppyd_installtest.rs:4:25
+  |
+4 | use std::os::unix::io::{FromRawFd, RawFd};
+  |                         ^^^^^^^^^  ^^^^^
+
+warning: unused import: `std::str::FromStr`
+ --> floppyd_installtest.rs:6:5
+  |
+6 | use std::str::FromStr;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> floppyd_io.rs:2:15
+  |
+2 | use std::io::{Read, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused imports: `TcpStream`, `ToSocketAddrs`
+ --> floppyd_io.rs:4:16
+  |
+4 | use std::net::{TcpStream, ToSocketAddrs};
+  |                ^^^^^^^^^  ^^^^^^^^^^^^^
+
+warning: unused imports: `AsRawFd`, `FromRawFd`
+ --> floppyd_io.rs:5:25
+  |
+5 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+  |                         ^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+ --> floppyd_io.rs:7:5
+  |
+7 | use std::time::Duration;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_long`, `c_uchar`, `c_uint`, `c_ulong`, `c_ushort`, `free`, `hostent`, `shutdown`, `strerror`
+  --> floppyd_io.rs:10:20
+   |
+10 |     c_char, c_int, c_long, c_uchar, c_uint, c_ulong, c_ushort, c_void, close, connect, free, gethostbyname,
+   |                    ^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^                          ^^^^
+11 |     hostent, in_addr, in_addr_t, inet_addr, setsockopt, shutdown, sockaddr, sockaddr_in, socklen_t,
+   |     ^^^^^^^                                             ^^^^^^^^
+12 |     socket, strerror, AF_INET, IPPROTO_TCP, SOCK_STREAM, TCP_CORK,
+   |             ^^^^^^^^
+
+warning: unused imports: `SeekFrom`, `Seek`
+ --> force_io.rs:1:34
+  |
+1 | use std::io::{self, Read, Write, Seek, SeekFrom};
+  |                                  ^^^^  ^^^^^^^^
+
+warning: unused imports: `Layout`, `alloc`, `dealloc`
+ --> hash.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `Hash`
+ --> hash.rs:2:17
+  |
+2 | use std::hash::{Hash, Hasher};
+  |                 ^^^^
+
+warning: unused import: `std::collections::hash_map::DefaultHasher`
+ --> hash.rs:3:5
+  |
+3 | use std::collections::hash_map::DefaultHasher;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> init.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> init.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_uchar`, `c_uint`, `c_ulong`
+ --> init.rs:4:35
+  |
+4 | use std::os::raw::{c_char, c_int, c_uchar, c_uint, c_ulong, c_void};
+  |                                   ^^^^^^^  ^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> lba.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused imports: `c_uchar`, `c_uint`, `c_ulong`, `c_void`
+ --> mainloop.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_uchar, c_uint, c_ulong, c_void};
+  |                                   ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mainloop.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mainloop.rs:4:5
+  |
+4 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `Metadata`
+ --> mainloop.rs:5:21
+  |
+5 | use std::fs::{File, Metadata};
+  |                     ^^^^^^^^
+
+warning: unused imports: `Read`, `SeekFrom`, `Seek`, `Write`
+ --> mainloop.rs:6:15
+  |
+6 | use std::io::{Read, Write, Seek, SeekFrom};
+  |               ^^^^  ^^^^^  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::os::unix::fs::MetadataExt`
+ --> mainloop.rs:7:5
+  |
+7 | use std::os::unix::fs::MetadataExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mattrib.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_char`
+ --> mattrib.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uchar, c_void};
+  |                    ^^^^^^
+
+warning: unused import: `std::fs::File`
+ --> mbadblocks.rs:1:5
+  |
+1 | use std::fs::File;
+  |     ^^^^^^^^^^^^^
+
+warning: unused imports: `Read`, `SeekFrom`, `Seek`, `Write`
+ --> mbadblocks.rs:2:21
+  |
+2 | use std::io::{self, Read, Write, Seek, SeekFrom};
+  |                     ^^^^  ^^^^^  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mbadblocks.rs:3:5
+  |
+3 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mbadblocks.rs:4:16
+  |
+4 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_long`, `c_uint`, `c_ulong`, `c_void`
+ --> mbadblocks.rs:5:20
+  |
+5 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_long, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mbadblocks.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mbadblocks.rs:7:5
+  |
+7 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `Ordering`
+  --> mbadblocks.rs:10:37
+   |
+10 | use std::sync::atomic::{AtomicBool, Ordering};
+   |                                     ^^^^^^^^
+
+warning: unused import: `CStr`
+ --> mcat.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> mcat.rs:4:5
+  |
+4 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mcat.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`, `size_t`
+ --> mcat.rs:7:12
+  |
+7 | use libc::{c_char, c_int, c_void, size_t, off_t};
+  |            ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused import: `CString`
+ --> mcd.rs:1:16
+  |
+1 | use std::ffi::{CString, OsString};
+  |                ^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+ --> mcd.rs:4:5
+  |
+4 | use std::os::unix::ffi::OsStringExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> mcopy.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused imports: `File`, `Metadata`, `OpenOptions`
+ --> mcopy.rs:2:15
+  |
+2 | use std::fs::{File, Metadata, OpenOptions};
+  |               ^^^^  ^^^^^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> mcopy.rs:3:21
+  |
+3 | use std::io::{self, Read, Write};
+  |                     ^^^^  ^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+ --> mcopy.rs:4:5
+  |
+4 | use std::os::unix::ffi::OsStrExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `PathBuf`
+ --> mcopy.rs:5:23
+  |
+5 | use std::path::{Path, PathBuf};
+  |                       ^^^^^^^
+
+warning: unused import: `std::time::SystemTime`
+ --> mcopy.rs:6:5
+  |
+6 | use std::time::SystemTime;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `mode_t`
+ --> mcopy.rs:7:35
+  |
+7 | use libc::{c_char, c_int, c_void, mode_t, time_t};
+  |                                   ^^^^^^
+
+warning: unused import: `CStr`
+ --> mdel.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `CString`
+ --> mdir.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `c_ulong`
+ --> mdir.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_ulong, c_void};
+  |                                   ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mdir.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> mdir.rs:5:15
+  |
+5 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> mdir.rs:6:17
+  |
+6 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mdir.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+ --> mdir.rs:8:5
+  |
+8 | use std::fs;
+  |     ^^^^^^^
+
+warning: unused import: `CString`
+ --> mdoctorfat.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mdoctorfat.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `CStr`
+ --> mformat.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `c_ulong`
+ --> mformat.rs:2:70
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_uchar, c_ushort, c_long, c_ulong};
+  |                                                                      ^^^^^^^
+
+warning: unused imports: `null_mut`, `null`
+ --> mformat.rs:3:16
+  |
+3 | use std::ptr::{null_mut, null};
+  |                ^^^^^^^^  ^^^^
+
+warning: unused import: `size_of`
+ --> mformat.rs:4:16
+  |
+4 | use std::mem::{size_of, zeroed};
+  |                ^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Error`
+ --> mformat.rs:5:15
+  |
+5 | use std::io::{Error, ErrorKind};
+  |               ^^^^^  ^^^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> mformat.rs:6:15
+  |
+6 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> mformat.rs:7:5
+  |
+7 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `exit as libc_exit`, `isatty`, `time`, `write`
+ --> mformat.rs:9:12
+  |
+9 | use libc::{time, random, srandom, exit as libc_exit, close, read, write, open, isatty};
+  |            ^^^^                   ^^^^^^^^^^^^^^^^^               ^^^^^        ^^^^^^
+
+warning: unused imports: `O_CREAT`, `O_TRUNC`, `O_WRONLY`
+  --> mformat.rs:10:22
+   |
+10 | use libc::{O_RDONLY, O_WRONLY, O_CREAT, O_TRUNC};
+   |                      ^^^^^^^^  ^^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ffi::OsStr`
+  --> mformat.rs:11:5
+   |
+11 | use std::ffi::OsStr;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+  --> mformat.rs:12:5
+   |
+12 | use std::os::unix::ffi::OsStrExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> minfo.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> minfo.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> minfo.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::process::exit`
+ --> minfo.rs:5:5
+  |
+5 | use std::process::exit;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `OsString`
+ --> misc.rs:2:31
+  |
+2 | use std::ffi::{CString, CStr, OsString};
+  |                               ^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+ --> misc.rs:5:5
+  |
+5 | use std::os::unix::ffi::OsStringExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Path`
+ --> misc.rs:6:17
+  |
+6 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+
+warning: unused import: `std::ptr`
+ --> misc.rs:8:5
+  |
+8 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `passwd`, `uid_t`
+ --> misc.rs:9:12
+  |
+9 | use libc::{uid_t, geteuid, getlogin, getpwuid, getpwnam, passwd, c_char, c_void};
+  |            ^^^^^                                         ^^^^^^  ^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> missFuncs.rs:2:5
+  |
+2 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mk_direntry.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_ulong`, `c_ushort`
+ --> mk_direntry.rs:2:52
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_uchar, c_ushort, c_ulong};
+  |                                                    ^^^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mk_direntry.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mk_direntry.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> mk_direntry.rs:5:5
+  |
+5 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> mk_direntry.rs:6:15
+  |
+6 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `CString`
+ --> mkmanifest.rs:2:16
+  |
+2 | use std::ffi::{CString, CStr, OsStr};
+  |                ^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+ --> mkmanifest.rs:3:5
+  |
+3 | use std::os::unix::ffi::OsStrExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_uint`, `c_ulong`
+ --> mlabel.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                                   ^^^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mlabel.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> mlabel.rs:5:15
+  |
+5 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> mlabel.rs:6:17
+  |
+6 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mmd.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_uint`
+ --> mmd.rs:2:44
+  |
+2 | use std::os::raw::{c_char, c_int, c_uchar, c_uint, c_void};
+  |                                            ^^^^^^
+
+warning: unused import: `Stdio`
+ --> mmount.rs:3:35
+  |
+3 | use std::process::{Command, exit, Stdio};
+  |                                   ^^^^^
+
+warning: unused import: `std::ptr`
+ --> mmount.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mmove.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mmove.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mpartition.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> mpartition.rs:2:15
+  |
+2 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `Read`, `SeekFrom`, `Seek`, `Write`
+ --> mpartition.rs:3:15
+  |
+3 | use std::io::{Read, Write, Seek, SeekFrom};
+  |               ^^^^  ^^^^^  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mpartition.rs:5:5
+  |
+5 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mpartition.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mpartition.rs:7:5
+  |
+7 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> mpartition.rs:9:5
+  |
+9 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `CString`
+ --> mshowfat.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mzip.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `ErrorKind`
+ --> mzip.rs:3:22
+  |
+3 | use std::io::{Error, ErrorKind, Result};
+  |                      ^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mzip.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mzip.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> offset.rs:1:25
+  |
+1 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused import: `std::mem`
+ --> offset.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_long`, `c_uchar`, `c_uint`, `c_ulong`, `c_ushort`, `c_void`
+ --> offset.rs:4:20
+  |
+4 | use std::os::raw::{c_char, c_void, c_int, c_uint, c_uchar, c_ushort, c_ulong, c_long};
+  |                    ^^^^^^  ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `CString`
+ --> open_image.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> open_image.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `c_void`
+ --> partition.rs:1:16
+  |
+1 | use std::ffi::{c_void, c_char, c_int, c_uchar, c_ushort, c_uint, c_long, c_ulong};
+  |                ^^^^^^
+
+warning: unused import: `std::mem`
+ --> partition.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> partition.rs:4:15
+  |
+4 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `std::time::SystemTime`
+ --> partition.rs:5:5
+  |
+5 | use std::time::SystemTime;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::time::SystemTime`
+ --> plain_io.rs:5:5
+  |
+5 | use std::time::SystemTime;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_int`, `c_void`, `mode_t`, `size_t`, `ssize_t`
+ --> plain_io.rs:6:12
+  |
+6 | use libc::{c_int, c_char, c_void, size_t, ssize_t, off_t, mode_t};
+  |            ^^^^^          ^^^^^^  ^^^^^^  ^^^^^^^         ^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> plain_io.rs:7:16
+  |
+7 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> plain_io.rs:9:5
+  |
+9 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> precmd.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::unix::fs::PermissionsExt`
+ --> privileges.rs:2:5
+  |
+2 | use std::os::unix::fs::PermissionsExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> match.rs:7:5
+   |
+7  |       (char::from_u32(a as WInt).map_or(0, |a| 
+   |       ^
+...
+11 |       )
+   |  ______^
+12 | | }
+   | |_^
+   |
+help: remove these parentheses
+   |
+7  ~     char::from_u32(a as WInt).map_or(0, |a| 
+8  |         char::from_u32(b as WInt).map_or(0, |b| 
+9  |             (a.to_uppercase().eq(b.to_uppercase())) as i32
+10 |         )
+11 ~     )
+   |
+
+warning: unused imports: `CStr`, `CString`
+ --> remap.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> remap.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `c_ulong`
+ --> remap.rs:3:20
+  |
+3 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> scsi.rs:1:5
+  |
+1 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `ErrorKind`
+ --> scsi.rs:3:22
+  |
+3 | use std::io::{Error, ErrorKind, Result};
+  |                      ^^^^^^^^^
+
+warning: unused imports: `mem`, `ptr`, `time::SystemTime`
+ --> scsi_io.rs:5:5
+  |
+5 |     mem,
+  |     ^^^
+6 |     os::unix::io::{AsRawFd, FromRawFd, RawFd},
+7 |     ptr,
+  |     ^^^
+8 |     time::SystemTime,
+  |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> stream.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> streamcache.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `Wrapping`
+ --> strtonum.rs:1:31
+  |
+1 | use std::num::{ParseIntError, Wrapping};
+  |                               ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> swap.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> swap.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> swap.rs:3:5
+  |
+3 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> tty.rs:1:5
+  |
+1 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> unix2dos.rs:3:5
+  |
+3 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> unixdir.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `File`
+ --> unixdir.rs:2:15
+  |
+2 | use std::fs::{File, Metadata};
+  |               ^^^^
+
+warning: unused import: `FileTypeExt`
+ --> unixdir.rs:4:38
+  |
+4 | use std::os::unix::fs::{MetadataExt, FileTypeExt};
+  |                                      ^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> unixdir.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `c_void`
+ --> unixdir.rs:7:12
+  |
+7 | use libc::{c_char, c_int, c_uint, c_void, time_t};
+  |            ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused import: `std::mem`
+ --> unixdir.rs:8:5
+  |
+8 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::OsStr`
+ --> unixdir.rs:9:5
+  |
+9 | use std::ffi::OsStr;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+  --> unixdir.rs:10:5
+   |
+10 | use std::os::unix::ffi::OsStrExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> vfat.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_void`
+ --> vfat.rs:2:52
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_uchar, c_void};
+  |                                                    ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> vfat.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> vfat.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> vfat.rs:5:5
+  |
+5 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> vfat.rs:6:5
+  |
+6 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Error`
+ --> vfat.rs:7:15
+  |
+7 | use std::io::{Error, ErrorKind};
+  |               ^^^^^  ^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> xdf_io.rs:1:25
+  |
+1 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused import: `std::ptr`
+ --> xdf_io.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> xdf_io.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `SeekFrom`, `Seek`
+ --> xdf_io.rs:6:28
+  |
+6 | use std::io::{Read, Write, Seek, SeekFrom};
+  |                            ^^^^  ^^^^^^^^
+
+warning: unused imports: `c_uchar`, `c_void`, `size_t`
+ --> xdf_io.rs:7:27
+  |
+7 | use libc::{c_int, c_uint, c_uchar, c_char, c_void, off_t, size_t, ssize_t};
+  |                           ^^^^^^^          ^^^^^^         ^^^^^^
+
+error[E0658]: use of unstable library feature 'io_error_more'
+  --> copyfile.rs:43:36
+   |
+43 |                     if e.kind() == ErrorKind::StorageFull {
+   |                                    ^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #86442 <https://github.com/rust-lang/rust/issues/86442> for more information
+   = help: add `#![feature(io_error_more)]` to the crate attributes to enable
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+  --> devices.rs:38:24
+   |
+38 | #[derive(Debug, Clone, Copy)]
+   |                        ^^^^
+...
+53 |     pub precmd: Option<CString>,
+   |     --------------------------- this field does not implement `Copy`
+...
+60 |     pub postcmd: Option<CString>,
+   |     ---------------------------- this field does not implement `Copy`
+   |
+note: the `Copy` impl for `Option<CString>` requires that `CString: Copy`
+  --> devices.rs:53:17
+   |
+53 |     pub precmd: Option<CString>,
+   |                 ^^^^^^^^^^^^^^^
+...
+60 |     pub postcmd: Option<CString>,
+   |                  ^^^^^^^^^^^^^^^
+   = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+  --> lockdev.rs:8:24
+   |
+8  | #[derive(Debug, Clone, Copy)]
+   |                        ^^^^
+9  | pub struct Device {
+10 |     pub name: Option<String>,
+   |     ------------------------ this field does not implement `Copy`
+...
+23 |     pub precmd: Option<String>,
+   |     -------------------------- this field does not implement `Copy`
+...
+27 |     pub data_map: Option<String>,
+   |     ---------------------------- this field does not implement `Copy`
+...
+30 |     pub postcmd: Option<String>,
+   |     --------------------------- this field does not implement `Copy`
+31 |     pub cfg_filename: Option<String>,
+   |     -------------------------------- this field does not implement `Copy`
+   |
+note: the `Copy` impl for `Option<String>` requires that `String: Copy`
+  --> lockdev.rs:10:15
+   |
+10 |     pub name: Option<String>,
+   |               ^^^^^^^^^^^^^^
+...
+23 |     pub precmd: Option<String>,
+   |                 ^^^^^^^^^^^^^^
+...
+27 |     pub data_map: Option<String>,
+   |                   ^^^^^^^^^^^^^^
+...
+30 |     pub postcmd: Option<String>,
+   |                  ^^^^^^^^^^^^^^
+31 |     pub cfg_filename: Option<String>,
+   |                       ^^^^^^^^^^^^^^
+   = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0106, E0204, E0255, E0412, E0422, E0425, E0428, E0432, E0433...
+For more information about an error, try `rustc --explain E0106`.
+warning: `c2rust_out` (lib) generated 195 warnings
+error: could not compile `c2rust_out` due to 118 previous errors; 195 warnings emitted

@@ -1,0 +1,852 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/enscript-1.6.1)
+error: this file contains an unclosed delimiter
+   --> afmlib/deffont.rs:279:43
+    |
+79  | static BUILTIN_COURIER: &[AFMEncodingTable] = &[
+    |                                                - unclosed delimiter
+...
+279 |     AFMEncodingTable { code: -1, character
+    |                      - unclosed delimiter ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/deffont.rs:279:43
+    |
+279 |     AFMEncodingTable { code: -1, character
+    |                                           ^ expected one of `.`, `;`, `?`, or an operator
+
+error: unknown byte escape: `v`
+   --> states/lex.rs:209:35
+    |
+209 |             Some(b'v') => Some(b'\v'),
+    |                                   ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `b`
+   --> states/lex.rs:210:35
+    |
+210 |             Some(b'b') => Some(b'\b'),
+    |                                   ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `f`
+   --> states/lex.rs:212:35
+    |
+212 |             Some(b'f') => Some(b'\f'),
+    |                                   ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `a`
+   --> states/lex.rs:213:35
+    |
+213 |             Some(b'a') => Some(b'\a'),
+    |                                   ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `f`
+   --> states/lex.rs:279:35
+    |
+279 |             Some(b'f') => Some(b'\f'),
+    |                                   ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: expected one of `!`, `(`, `+`, `,`, `::`, `<`, or `>`, found `<eof>`
+   --> states/utils.rs:573:34
+    |
+573 | static mut CURRENT_MATCH: Option<Match
+    |                                  ^^^^^ expected one of 7 possible tokens
+    |
+help: you might have meant to end the type parameters here
+    |
+573 | static mut CURRENT_MATCH: Option<Match>
+    |                                       +
+
+error[E0432]: unresolved import `regex`
+  --> states/process.rs:30:5
+   |
+30 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0432]: unresolved import `getopts`
+ --> src/main.rs:8:5
+  |
+8 | use getopts::Options;
+  |     ^^^^^^^ use of undeclared crate or module `getopts`
+
+error[E0432]: unresolved import `regex`
+ --> src/main.rs:9:5
+  |
+9 | use regex::Regex;
+  |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0432]: unresolved import `regex`
+  --> states/prims.rs:13:5
+   |
+13 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0530]: let bindings cannot shadow statics
+   --> states/prims.rs:372:13
+    |
+102 | static mut ns_prims: *mut HashMap<String, Primitive> = ptr::null_mut();
+    | ----------------------------------------------------------------------- the static `ns_prims` is defined here
+...
+372 |         let ns_prims = &mut *ns_prims;
+    |             ^^^^^^^^ cannot be named the same as a static
+
+error[E0412]: cannot find type `AFMEncodingTable` in this scope
+   --> afmlib/afm.rs:304:12
+    |
+180 | enum AFMEncoding {
+    | ---------------- similarly named enum `AFMEncoding` defined here
+...
+304 |     enc: &[AFMEncodingTable],
+    |            ^^^^^^^^^^^^^^^^
+    |
+help: an enum with a similar name exists
+    |
+304 |     enc: &[AFMEncoding],
+    |            ~~~~~~~~~~~
+help: consider importing one of these items
+    |
+1   | use crate::afmlib::e_88591::AFMEncodingTable;
+    |
+1   | use crate::afmlib::e_88592::AFMEncodingTable;
+    |
+1   | use crate::afmlib::e_88593::AFMEncodingTable;
+    |
+1   | use crate::afmlib::e_88594::AFMEncodingTable;
+    |
+      and 7 other candidates
+
+error[E0425]: cannot find value `YY_BUFFER_NEW` in this scope
+   --> states/lex.rs:121:28
+    |
+121 |             buffer_status: YY_BUFFER_NEW,
+    |                            ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `FILE` in this scope
+  --> states/prims.rs:92:22
+   |
+92 | static mut ofp: *mut FILE = ptr::null_mut();
+   |                      ^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/fs.rs:98:1
+   |
+98 | pub struct File {
+   | --------------- similarly named struct `File` defined here
+   |
+help: a struct with a similar name exists
+   |
+92 | static mut ofp: *mut File = ptr::null_mut();
+   |                      ~~~~
+help: consider importing one of these items
+   |
+1  | use crate::compat::xalloc::FILE;
+   |
+1  | use crate::src::mkafmmap::FILE;
+   |
+1  | use crate::src::prt_lpr::FILE;
+   |
+1  | use crate::states::main::FILE;
+   |
+     and 1 other candidate
+
+error[E0425]: cannot find value `arg` in this scope
+   --> states/prims.rs:120:12
+    |
+120 |         if arg.is_null() {
+    |            ^^^ not found in this scope
+...
+207 |     NEED_ARG!();
+    |     ----------- in this macro invocation
+    |
+    = note: this error originates in the macro `NEED_ARG` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0433]: failed to resolve: use of undeclared type `CStr`
+   --> states/prims.rs:123:26
+    |
+123 |                 unsafe { CStr::from_ptr(defs_file).to_string_lossy() },
+    |                          ^^^^ not found in this scope
+...
+207 |     NEED_ARG!();
+    |     ----------- in this macro invocation
+    |
+    = note: this error originates in the macro `NEED_ARG` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider importing one of these items
+    |
+1   | use core::ffi::CStr;
+    |
+1   | use std::ffi::CStr;
+    |
+
+error[E0425]: cannot find value `linenum` in this scope
+   --> states/prims.rs:124:17
+    |
+124 |                 linenum,
+    |                 ^^^^^^^ not found in this scope
+...
+207 |     NEED_ARG!();
+    |     ----------- in this macro invocation
+    |
+    = note: this error originates in the macro `NEED_ARG` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider importing this static
+    |
+1   | use crate::states::main::linenum;
+    |
+
+error[E0425]: cannot find value `prim_name` in this scope
+   --> states/prims.rs:125:17
+    |
+125 |                 prim_name
+    |                 ^^^^^^^^^ not found in this scope
+...
+207 |     NEED_ARG!();
+    |     ----------- in this macro invocation
+    |
+    = note: this error originates in the macro `NEED_ARG` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0433]: failed to resolve: use of undeclared type `CStr`
+   --> states/prims.rs:212:22
+    |
+212 |             unsafe { CStr::from_ptr(defs_file).to_string_lossy() },
+    |                      ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::CStr;
+    |
+1   | use std::ffi::CStr;
+    |
+
+error[E0433]: failed to resolve: use of undeclared type `CStr`
+   --> states/prims.rs:315:25
+    |
+315 |                 let s = CStr::from_ptr(node.u.sym).to_string_lossy();
+    |                         ^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::CStr;
+    |
+1   | use std::ffi::CStr;
+    |
+
+error[E0425]: cannot find value `start_stmts` in this scope
+   --> states/process.rs:111:39
+    |
+111 |     let result = eval_statement_list(&start_stmts, None, &mut return_seen);
+    |                                       ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+27  | use crate::states::main::start_stmts;
+    |
+
+error[E0425]: cannot find value `ns_states` in this scope
+   --> states/process.rs:134:23
+    |
+134 |     let state = match ns_states.get(name) {
+    |                       ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+27  | use crate::states::main::ns_states;
+    |
+
+error[E0425]: cannot find value `program` in this scope
+   --> states/process.rs:137:51
+    |
+137 |             eprintln!("{}: undefined state '{}'", program, name);
+    |                                                   ^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+27  | use crate::states::main::program;
+    |
+
+warning: unused imports: `CStr`, `CString`
+ --> afmlib/afm.rs:1:16
+  |
+1 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `c_char`, `c_int`, `c_void`
+ --> afmlib/afm.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> afmlib/afm.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> afmlib/afm.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `PathBuf`, `Path`
+ --> afmlib/afm.rs:6:17
+  |
+6 | use std::path::{Path, PathBuf};
+  |                 ^^^^  ^^^^^^^
+
+warning: unused import: `std::fs::File`
+ --> afmlib/afm.rs:7:5
+  |
+7 | use std::fs::File;
+  |     ^^^^^^^^^^^^^
+
+warning: unused imports: `Error as IoError`, `Read`
+ --> afmlib/afm.rs:8:15
+  |
+8 | use std::io::{Read, Write, Error as IoError};
+  |               ^^^^         ^^^^^^^^^^^^^^^^
+
+warning: unused import: `Error as IoError`
+ --> afmlib/afmparse.rs:3:35
+  |
+3 | use std::io::{BufRead, BufReader, Error as IoError, Read};
+  |                                   ^^^^^^^^^^^^^^^^
+
+warning: unused import: `::libc`
+ --> compat/getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> compat/getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> compat/regex.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `RangeInclusive`
+ --> compat/regex.rs:2:23
+  |
+2 | use std::ops::{Range, RangeInclusive};
+  |                       ^^^^^^^^^^^^^^
+
+warning: unused imports: `CString`, `OsString`
+ --> src/main.rs:2:16
+  |
+2 | use std::ffi::{CString, OsString};
+  |                ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `OpenOptions`
+ --> src/main.rs:3:21
+  |
+3 | use std::fs::{File, OpenOptions};
+  |                     ^^^^^^^^^^^
+
+warning: unused import: `Read`
+ --> src/main.rs:4:21
+  |
+4 | use std::io::{self, Read, Write, stdin, stdout};
+  |                     ^^^^
+
+warning: unused imports: `LC_MESSAGES`, `setlocale`
+  --> src/main.rs:10:12
+   |
+10 | use libc::{LC_MESSAGES, setlocale};
+   |            ^^^^^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/main.rs:11:5
+   |
+11 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/psgen.rs:27:5
+   |
+27 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> src/psgen.rs:28:5
+   |
+28 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `OpenOptions`
+  --> src/psgen.rs:29:21
+   |
+29 | use std::fs::{File, OpenOptions};
+   |                     ^^^^^^^^^^^
+
+warning: unused imports: `SeekFrom`, `Seek`
+  --> src/psgen.rs:30:34
+   |
+30 | use std::io::{self, Read, Write, Seek, SeekFrom};
+   |                                  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> src/psgen.rs:31:5
+   |
+31 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/psgen.rs:32:5
+   |
+32 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/util.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `BufWriter`, `Write`
+ --> src/util.rs:3:27
+  |
+3 | use std::io::{self, Read, Write, BufRead, BufReader, BufWriter};
+  |                           ^^^^^                      ^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/util.rs:6:5
+  |
+6 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+ --> src/util.rs:7:5
+  |
+7 | use std::os::unix::ffi::OsStrExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> src/util.rs:8:17
+  |
+8 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> src/util.rs:10:5
+   |
+10 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/util.rs:11:5
+   |
+11 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused imports: `getpwuid`, `getuid`, `passwd`, `stat`
+  --> src/util.rs:12:12
+   |
+12 | use libc::{stat, passwd, getpwuid, getuid};
+   |            ^^^^  ^^^^^^  ^^^^^^^^  ^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> states/gram.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> states/gram.rs:2:5
+  |
+2 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> states/lex.rs:2:5
+  |
+2 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cell::RefCell`
+ --> states/lex.rs:3:5
+  |
+3 | use std::cell::RefCell;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::rc::Rc`
+ --> states/lex.rs:4:5
+  |
+4 | use std::rc::Rc;
+  |     ^^^^^^^^^^^
+
+warning: unused import: `std::env`
+ --> states/prims.rs:2:5
+  |
+2 | use std::env;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> states/prims.rs:3:5
+  |
+3 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt`
+ --> states/prims.rs:4:5
+  |
+4 | use std::fmt;
+  |     ^^^^^^^^
+
+warning: unused import: `std::fs::File`
+ --> states/prims.rs:5:5
+  |
+5 | use std::fs::File;
+  |     ^^^^^^^^^^^^^
+
+warning: unused import: `self`
+ --> states/prims.rs:6:15
+  |
+6 | use std::io::{self, Write};
+  |               ^^^^
+
+warning: unused import: `std::mem`
+ --> states/prims.rs:7:5
+  |
+7 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused macro definition: `LAST_ARG`
+   --> states/prims.rs:132:14
+    |
+132 | macro_rules! LAST_ARG {
+    |              ^^^^^^^^
+    |
+    = note: `#[warn(unused_macros)]` on by default
+
+warning: unused macro definition: `MATCH_ARG`
+   --> states/prims.rs:146:14
+    |
+146 | macro_rules! MATCH_ARG {
+    |              ^^^^^^^^^
+
+warning: unused macro definition: `APPEND`
+   --> states/prims.rs:152:14
+    |
+152 | macro_rules! APPEND {
+    |              ^^^^^^
+
+warning: unused macro definition: `FMTSPECIAL`
+   --> states/prims.rs:169:14
+    |
+169 | macro_rules! FMTSPECIAL {
+    |              ^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> states/process.rs:29:5
+   |
+29 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> states/process.rs:31:5
+   |
+31 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: unions cannot contain fields that may need dropping
+  --> states/prims.rs:32:5
+   |
+32 |     str: StringData,
+   |     ^^^^^^^^^^^^^^^
+   |
+   = note: a type is guaranteed not to need dropping when it implements `Copy`, or when it is the special `ManuallyDrop<_>` type
+help: when the type does not implement `Copy`, wrap it inside a `ManuallyDrop<_>` and ensure it is manually dropped
+   |
+32 |     str: std::mem::ManuallyDrop<StringData>,
+   |          +++++++++++++++++++++++          +
+
+error[E0277]: the trait bound `afmparse::AFMIndividualCharacterMetrics: std::marker::Copy` is not satisfied
+   --> afmlib/afmparse.rs:291:20
+    |
+291 |         encoding: [None; 256],
+    |                    ^^^^ the trait `std::marker::Copy` is not implemented for `afmparse::AFMIndividualCharacterMetrics`
+    |
+    = note: required because of the requirements on the impl of `std::marker::Copy` for `Option<afmparse::AFMIndividualCharacterMetrics>`
+    = note: the `Copy` trait is required because this value will be copied for each element of the array
+
+error[E0369]: binary operation `!=` cannot be applied to type `AFMKey`
+   --> afmlib/afmparse.rs:301:12
+    |
+301 |     if key != AFMKey::StartFontMetrics {
+    |        --- ^^ ------------------------ AFMKey
+    |        |
+    |        AFMKey
+    |
+note: an implementation of `PartialEq<_>` might be missing for `AFMKey`
+   --> afmlib/afmparse.rs:18:1
+    |
+18  | pub enum AFMKey {
+    | ^^^^^^^^^^^^^^^ must implement `PartialEq<_>`
+help: consider annotating `AFMKey` with `#[derive(PartialEq)]`
+    |
+18  | #[derive(PartialEq)]
+    |
+
+error[E0599]: no method named `is_ascii_uppercase` found for type `usize` in the current scope
+   --> compat/regex.rs:106:29
+    |
+106 |             table[i] = if i.is_ascii_uppercase() {
+    |                             ^^^^^^^^^^^^^^^^^^ method not found in `usize`
+
+error[E0599]: no method named `to_ascii_lowercase` found for type `usize` in the current scope
+   --> compat/regex.rs:107:19
+    |
+107 |                 i.to_ascii_lowercase()
+    |                   ^^^^^^^^^^^^^^^^^^ method not found in `usize`
+
+error[E0308]: mismatched types
+   --> compat/regex.rs:112:31
+    |
+112 |         self.translate = Some(table);
+    |                          ---- ^^^^^ expected `u8`, found `usize`
+    |                          |
+    |                          arguments to this enum variant are incorrect
+    |
+    = note: expected struct `Vec<u8>`
+               found struct `Vec<usize>`
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0282]: type annotations needed
+  --> src/main.rs:86:28
+   |
+86 |             current_match: None,
+   |                            ^^^^ cannot infer type of the type parameter `T` declared on the enum `Option`
+   |
+help: consider specifying the generic argument
+   |
+86 |             current_match: None::<T>,
+   |                                +++++
+
+error[E0308]: mismatched types
+   --> src/main.rs:100:25
+    |
+100 |         self.ofp = Some(stdout());
+    |                    ---- ^^^^^^^^ expected struct `File`, found struct `Stdout`
+    |                    |
+    |                    arguments to this enum variant are incorrect
+    |
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> src/main.rs:202:41
+    |
+202 |                     self.vardefs_tail = tail.next.as_mut().map(|n| n);
+    |                     -----------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `Box`, found mutable reference
+    |                     |
+    |                     expected due to the type of this binding
+    |
+    = note: expected enum `Option<Box<src::main::VariableDef>>`
+               found enum `Option<&mut Box<src::main::VariableDef>>`
+
+error[E0308]: mismatched types
+   --> src/main.rs:205:41
+    |
+205 |                     self.vardefs_tail = self.vardefs.as_mut().map(|n| n);
+    |                     -----------------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `Box`, found mutable reference
+    |                     |
+    |                     expected due to the type of this binding
+    |
+    = note: expected enum `Option<Box<src::main::VariableDef>>`
+               found enum `Option<&mut Box<src::main::VariableDef>>`
+
+error[E0308]: mismatched types
+   --> src/main.rs:227:29
+    |
+227 |             self.ifp = Some(stdin());
+    |                        ---- ^^^^^^^ expected struct `File`, found struct `Stdin`
+    |                        |
+    |                        arguments to this enum variant are incorrect
+    |
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> src/main.rs:232:37
+    |
+232 |                     self.ifp = Some(stdin());
+    |                                ---- ^^^^^^^ expected struct `File`, found struct `Stdin`
+    |                                |
+    |                                arguments to this enum variant are incorrect
+    |
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0599]: no method named `as_raw_fd` found for struct `File` in the current scope
+   --> src/main.rs:266:16
+    |
+266 |         if ofp.as_raw_fd() != stdout().as_raw_fd() {
+    |                ^^^^^^^^^ method not found in `File`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/fd/raw.rs:57:8
+    |
+57  |     fn as_raw_fd(&self) -> RawFd;
+    |        --------- the method is available for `File` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::io::AsRawFd;
+    |
+
+error[E0599]: no method named `as_raw_fd` found for struct `Stdout` in the current scope
+   --> src/main.rs:266:40
+    |
+266 |         if ofp.as_raw_fd() != stdout().as_raw_fd() {
+    |                                        ^^^^^^^^^ method not found in `Stdout`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/fd/raw.rs:57:8
+    |
+57  |     fn as_raw_fd(&self) -> RawFd;
+    |        --------- the method is available for `Stdout` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::io::AsRawFd;
+    |
+
+error[E0277]: the trait bound `File: Clone` is not satisfied
+   --> src/psgen.rs:115:9
+    |
+96  | #[derive(Debug, Clone)]
+    |                 ----- in this derive macro expansion
+...
+115 |         fp: Option<File>,
+    |         ^^^^^^^^^^^^^^^^ the trait `Clone` is not implemented for `File`
+    |
+    = note: required because of the requirements on the impl of `Clone` for `Option<File>`
+    = note: this error originates in the derive macro `Clone` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `File: From<ChildStdout>` is not satisfied
+  --> src/util.rs:59:13
+   |
+59 |             File::from(child.stdout.unwrap())
+   |             ^^^^^^^^^^ the trait `From<ChildStdout>` is not implemented for `File`
+   |
+   = help: the trait `From<OwnedFd>` is implemented for `File`
+
+error[E0308]: mismatched types
+   --> src/util.rs:201:12
+    |
+201 |     if let Ok(exists) = file_exists("test", Some("txt")) {
+    |            ^^^^^^^^^^   -------------------------------- this expression has type `bool`
+    |            |
+    |            expected `bool`, found enum `Result`
+    |
+    = note: expected type `bool`
+               found enum `Result<_, _>`
+
+error[E0609]: no field `data` on type `*mut prims::ListItem`
+   --> states/prims.rs:208:39
+    |
+208 |     let n = unsafe { eval_expr((*arg).data, env) };
+    |                                -------^^^^
+    |                                |
+    |                                help: `(*arg)` is a raw pointer; try dereferencing it: `(*(*arg)).data`
+
+error[E0609]: no field `next` on type `*mut prims::ListItem`
+   --> states/prims.rs:219:23
+    |
+219 |         *arg = (*arg).next;
+    |                -------^^^^
+    |                |
+    |                help: `(*arg)` is a raw pointer; try dereferencing it: `(*(*arg)).next`
+
+error[E0308]: mismatched types
+   --> states/prims.rs:290:31
+    |
+290 |                     node_free(*node.u.array.array.add(i));
+    |                     --------- ^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `prims::Node`, found *-ptr
+    |                     |
+    |                     arguments to this function are incorrect
+    |
+    = note:   expected struct `prims::Node`
+            found raw pointer `*mut prims::Node`
+note: function defined here
+   --> states/prims.rs:277:4
+    |
+277 | fn node_free(node: Node) {
+    |    ^^^^^^^^^ ----------
+
+error[E0308]: mismatched types
+   --> states/prims.rs:320:32
+    |
+320 |                     print_node(&*node.u.array.array.add(i));
+    |                     ---------- ^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected struct `prims::Node`, found *-ptr
+    |                     |
+    |                     arguments to this function are incorrect
+    |
+    = note: expected reference `&prims::Node`
+               found reference `&*mut prims::Node`
+note: function defined here
+   --> states/prims.rs:299:4
+    |
+299 | fn print_node(node: &Node) {
+    |    ^^^^^^^^^^ -----------
+
+error[E0599]: no function or associated item named `void` found for struct `states::process::Node` in the current scope
+   --> states/process.rs:142:37
+    |
+35  | struct Node {
+    | ----------- function or associated item `void` not found for this struct
+...
+142 |     let mut result = Box::new(Node::void());
+    |                                     ^^^^ function or associated item not found in `states::process::Node`
+
+error[E0599]: no function or associated item named `void` found for struct `states::process::Node` in the current scope
+   --> states/process.rs:249:20
+    |
+35  | struct Node {
+    | ----------- function or associated item `void` not found for this struct
+...
+249 |     Box::new(Node::void())
+    |                    ^^^^ function or associated item not found in `states::process::Node`
+
+warning: unused import: `Write`
+ --> afmlib/afm.rs:8:21
+  |
+8 | use std::io::{Read, Write, Error as IoError};
+  |                     ^^^^^
+
+warning: unused import: `Write`
+ --> states/prims.rs:6:21
+  |
+6 | use std::io::{self, Write};
+  |                     ^^^^^
+
+Some errors have detailed explanations: E0277, E0282, E0308, E0369, E0412, E0425, E0432, E0433, E0530...
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 50 warnings
+error: could not compile `c2rust_out` due to 48 previous errors; 50 warnings emitted

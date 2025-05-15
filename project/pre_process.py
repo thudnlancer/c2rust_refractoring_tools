@@ -12,7 +12,7 @@ prog_list = ['binn', 'cflow', 'compton', 'cpio-2.14', 'enscript-1.6.1', 'finduti
              'libtree', 'libzahl', 'make-4.4.1', 'minilisp', 'mtools-4.0.45', 'nettle-3.10', 'pth-2.0.7', 'rcs-5.10.0', 'sed-4.9', 'tar-1.34', 'twemproxy', 'webdis', 'wget-1.21.4']
 
 def get_prog_path(prog_name):
-    return '../c_prog/' + prog_name
+    return 'c_prog/' + prog_name
 
 def get_location_path(prog_name):
     return 'location_c/' + prog_name
@@ -86,7 +86,7 @@ def make_data_csv():
         writer = csv.writer(csvfile)
         writer.writerow(['Name', 'File_Num', 'LOC', 'Struct_Num', 'Union_Num', 'Enum_Num', 'Func_Num'])  # 写入表头
         for prog in prog_list:
-            path_to_project = get_path_name(prog)
+            path_to_project = get_prog_path(prog)
             stats = count_c_prog(path_to_project)
             writer.writerow(get_data_list(prog, stats))
 
@@ -157,7 +157,7 @@ def make_candidate_c_list(proj_path):
 
     struct_json_file = 'location_c/' + prog + '/struct.json'
     enum_json_file = 'location_c/' + prog +  '/enum.json'
-    prefix_filter = '../c_prog/' + prog + '/'
+    prefix_filter = 'c_prog/' + prog + '/'
     with open(struct_json_file, 'r', encoding='utf-8') as f:
         data = json.load(f)
 
@@ -319,7 +319,7 @@ def analyze_project_with_compile_commands(project_path, compile_commands_path):
                     # print(f"No compile command found for {file_path}")
                     continue
 
-                print(f"Analyzing {file_path}...")
+                # print(f"Analyzing {file_path}...")
                 included_files = get_included_files(file_path, compile_command, project_path)
                 if included_files is not None:
                     includes_map[file_path] = included_files
@@ -369,13 +369,22 @@ def make_c_include_list(proj_path):
     with open('c_include_list/' + prog + '/c_include_list.json', 'w') as f:
         json.dump(project_includes, f, indent=4)
 
+def delete_rs_files(directory):
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".rs") or file.endswith(".toml"):
+                os.remove(os.path.join(root, file))
+        for dir in dirs:
+            delete_rs_files(os.path.join(root, dir))
+
 def setup_c2rust(proj_path):
+    delete_rs_files(proj_path)
     saved_cwd = os.getcwd()
     os.chdir(proj_path)
     os.system("make clean")
     os.system("rm -f compile_commands.json")
     os.system("bear make")
-    os.system("c2rust transpile compile_commands.json")
+    os.system("c2rust transpile -e compile_commands.json")
     os.chdir(saved_cwd)
 
 # setup_c2rust()
@@ -394,7 +403,7 @@ def pre_process(proj_path):
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
-        print("usage: refactoring program path or default path: ../c_prog/")
+        print("usage: refactoring program path or default path: c_prog/")
     if len(sys.argv) == 2:
         proj_path = sys.argv[1]
         pre_process(proj_path)

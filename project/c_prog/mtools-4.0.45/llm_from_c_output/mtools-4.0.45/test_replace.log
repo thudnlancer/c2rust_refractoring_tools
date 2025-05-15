@@ -1,0 +1,3566 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/mtools-4.0.45)
+error: `<` is interpreted as a start of generic arguments for `u64`, not a comparison
+  --> buffer.rs:97:56
+   |
+97 |                 if self.current + self.cur_size as u64 < start {
+   |                                                        ^ ------- interpreted as generic arguments
+   |                                                        |
+   |                                                        not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+97 |                 if self.current + (self.cur_size as u64) < start {
+   |                                   +                    +
+
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+  --> dirCache.rs:45:33
+   |
+45 |         if initial_slots as i32 < 0 {
+   |                                 ^ --- interpreted as generic arguments
+   |                                 |
+   |                                 not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+45 |         if (initial_slots as i32) < 0 {
+   |            +                    +
+
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+  --> dirCache.rs:65:24
+   |
+65 |         if slot as i32 < 0 {
+   |                        ^ --- interpreted as generic arguments
+   |                        |
+   |                        not interpreted as comparison
+   |
+help: try comparing the cast value
+   |
+65 |         if (slot as i32) < 0 {
+   |            +           +
+
+error: `<` is interpreted as a start of generic arguments for `i32`, not a comparison
+   --> dirCache.rs:307:20
+    |
+307 |     if slot as i32 < 0 {
+    |                    ^ --- interpreted as generic arguments
+    |                    |
+    |                    not interpreted as comparison
+    |
+help: try comparing the cast value
+    |
+307 |     if (slot as i32) < 0 {
+    |        +           +
+
+error: this file contains an unclosed delimiter
+   --> fat.rs:445:53
+    |
+58  | impl Fs {
+    |         - unclosed delimiter
+...
+441 |     fn fat_decode(&mut self, pos: u32) -> u32 {
+    |                                               - unclosed delimiter
+442 |         match self.fat_bits {
+    |                             - unclosed delimiter
+...
+445 |             32 => self.fat32_decode(pos).unwrap_or(1
+    |                                                   - ^
+    |                                                   |
+    |                                                   unclosed delimiter
+
+error: mismatched closing delimiter: `}`
+   --> fat.rs:266:15
+    |
+265 |         if num & 1 != 0 {
+    |                         - closing delimiter possibly meant for this
+266 |             Ok(((byte1 as u32) << 4) | (((byte0 as u32) & 0xF0) >> 4)
+    |               ^ unclosed delimiter
+267 |         } else {
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> fat.rs:268:15
+    |
+267 |         } else {
+    |                - closing delimiter possibly meant for this
+268 |             Ok((((byte1 as u32) & 0xF) << 8) | (byte0 as u32)
+    |               ^ unclosed delimiter
+269 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> init.rs:413:17
+    |
+379 | fn fs_init(drive: char, mode: i32, is_rop: &mut bool) -> Result<Fs, FsError> {
+    |                                                                              - closing delimiter possibly meant for this
+...
+413 |     fs.cp = Some(Arc::new(cp_open(&dev.codepage)?);
+    |                 ^ unclosed delimiter
+...
+416 | }
+    | ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> init.rs:413:17
+    |
+413 |     fs.cp = Some(Arc::new(cp_open(&dev.codepage)?);
+    |                 ^ unclosed delimiter              ^ help: `)` may belong here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `)`
+   --> init.rs:416:1
+    |
+415 |     Ok(fs)
+    |           - expected one of `.`, `;`, `?`, `}`, or an operator
+416 | }
+    | ^ unexpected token
+
+error: this file contains an unclosed delimiter
+   --> mk_direntry.rs:485:14
+    |
+482 | ) -> i32 {
+    |          - unclosed delimiter
+...
+485 |     mt_mwrite
+    |              ^
+
+error: this trait cannot be derived for unions
+  --> init.rs:60:10
+   |
+60 | #[derive(Debug, Default)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> init.rs:60:17
+   |
+60 | #[derive(Debug, Default)]
+   |                 ^^^^^^^
+
+error[E0433]: failed to resolve: could not find `windows` in `os`
+ --> dirCache.rs:2:14
+  |
+2 | use std::os::windows::ffi::OsStringExt;
+  |              ^^^^^^^ could not find `windows` in `os`
+
+error[E0432]: unresolved imports `libc::towupper`, `libc::towlower`, `libc::iswcntrl`, `libc::iswlower`, `libc::iswupper`
+  --> file_name.rs:13:12
+   |
+13 | use libc::{towupper, towlower, iswcntrl, iswlower, iswupper};
+   |            ^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^^^ no `iswupper` in the root
+   |            |         |         |         |
+   |            |         |         |         no `iswlower` in the root
+   |            |         |         no `iswcntrl` in the root
+   |            |         no `towlower` in the root
+   |            no `towupper` in the root
+   |
+help: a similar name exists in the module
+   |
+13 | use libc::{toupper, towlower, iswcntrl, iswlower, iswupper};
+   |            ~~~~~~~
+help: a similar name exists in the module
+   |
+13 | use libc::{towupper, tolower, iswcntrl, iswlower, iswupper};
+   |                      ~~~~~~~
+help: a similar name exists in the module
+   |
+13 | use libc::{towupper, towlower, iscntrl, iswlower, iswupper};
+   |                                ~~~~~~~
+help: a similar name exists in the module
+   |
+13 | use libc::{towupper, towlower, iswcntrl, islower, iswupper};
+   |                                          ~~~~~~~
+help: a similar name exists in the module
+   |
+13 | use libc::{towupper, towlower, iswcntrl, iswlower, isupper};
+   |                                                    ~~~~~~~
+
+error[E0432]: unresolved imports `libc::S_ISDIR`, `libc::S_ISREG`
+  --> mcopy.rs:28:32
+   |
+28 | use libc::{self, time_t, stat, S_ISDIR, S_ISREG};
+   |                                ^^^^^^^  ^^^^^^^ no `S_ISREG` in the root
+   |                                |
+   |                                no `S_ISDIR` in the root
+   |
+help: a similar name exists in the module
+   |
+28 | use libc::{self, time_t, stat, S_IFDIR, S_ISREG};
+   |                                ~~~~~~~
+help: a similar name exists in the module
+   |
+28 | use libc::{self, time_t, stat, S_ISDIR, S_IFREG};
+   |                                         ~~~~~~~
+
+error[E0432]: unresolved import `crate::utils`
+  --> mcopy.rs:34:12
+   |
+34 | use crate::utils::{copy_file, ask_confirmation, file_too_big};
+   |            ^^^^^ could not find `utils` in the crate root
+
+error[E0432]: unresolved import `clap`
+  --> mdoctorfat.rs:29:5
+   |
+29 | use clap::{App, Arg, ArgMatches};
+   |     ^^^^ use of undeclared crate or module `clap`
+
+error[E0432]: unresolved import `libc::O_BINARY`
+ --> mformat.rs:9:38
+  |
+9 | use libc::{O_RDWR, O_CREAT, O_TRUNC, O_BINARY};
+  |                                      ^^^^^^^^ no `O_BINARY` in the root
+
+error[E0432]: unresolved imports `libc::wint_t`, `libc::iswlower`, `libc::iswupper`, `libc::wcschr`
+  --> mlabel.rs:31:21
+   |
+31 | use libc::{wchar_t, wint_t, iswlower, iswupper, wcschr, strchr};
+   |                     ^^^^^^  ^^^^^^^^  ^^^^^^^^  ^^^^^^ no `wcschr` in the root
+   |                     |       |         |
+   |                     |       |         no `iswupper` in the root
+   |                     |       no `iswlower` in the root
+   |                     no `wint_t` in the root
+   |
+help: a similar name exists in the module
+   |
+31 | use libc::{wchar_t, int8_t, iswlower, iswupper, wcschr, strchr};
+   |                     ~~~~~~
+help: a similar name exists in the module
+   |
+31 | use libc::{wchar_t, wint_t, islower, iswupper, wcschr, strchr};
+   |                             ~~~~~~~
+help: a similar name exists in the module
+   |
+31 | use libc::{wchar_t, wint_t, iswlower, isupper, wcschr, strchr};
+   |                                       ~~~~~~~
+
+error[E0432]: unresolved import `crate::sysincludes`
+  --> mmove.rs:33:12
+   |
+33 | use crate::sysincludes::*;
+   |            ^^^^^^^^^^^ could not find `sysincludes` in the crate root
+
+error[E0432]: unresolved import `crate::nameclash`
+  --> mmove.rs:37:12
+   |
+37 | use crate::nameclash::*;
+   |            ^^^^^^^^^ could not find `nameclash` in the crate root
+
+error[E0432]: unresolved import `crate::fs`
+  --> mmove.rs:39:12
+   |
+39 | use crate::fs::*;
+   |            ^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `std::fs`
+
+error[E0432]: unresolved import `widestring`
+  --> file_name.rs:11:5
+   |
+11 | use widestring::{WideChar, WideStr, WideString};
+   |     ^^^^^^^^^^ use of undeclared crate or module `widestring`
+
+error[E0432]: unresolved import `encoding_rs`
+  --> file_name.rs:12:5
+   |
+12 | use encoding_rs::{Encoding, DecoderResult, EncoderResult};
+   |     ^^^^^^^^^^^ use of undeclared crate or module `encoding_rs`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mcopy.rs:29:5
+   |
+29 | use nix::sys::stat::{fstat, stat};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mcopy.rs:30:5
+   |
+30 | use nix::fcntl::{open, OFlag};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mcopy.rs:31:5
+   |
+31 | use nix::sys::signal;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `byteorder`
+ --> floppyd_io.rs:8:5
+  |
+8 | use byteorder::{ByteOrder, LittleEndian, BigEndian, ReadBytesExt, WriteBytesExt};
+  |     ^^^^^^^^^ use of undeclared crate or module `byteorder`
+
+error[E0432]: unresolved import `nix`
+  --> mcopy.rs:32:5
+   |
+32 | use nix::unistd;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mlabel.rs:32:5
+   |
+32 | use nix::fcntl::{open, OFlag};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mlabel.rs:33:5
+   |
+33 | use nix::sys::stat::Mode;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> mlabel.rs:34:5
+   |
+34 | use nix::unistd::{read, write, close};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved imports `crate::mtools::MainParam`, `crate::mtools::ClashHandling`, `crate::mtools::Direntry`, `crate::mtools::Stream`, `crate::mtools::DosName`, `crate::mtools::get_time_now`, `crate::mtools::print_oom`
+  --> mcopy.rs:33:21
+   |
+33 | use crate::mtools::{MainParam, ClashHandling, Direntry, Stream, DosName, get_time_now, print_oom};
+   |                     ^^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^^^^^  ^^^^^^^^^ no `print_oom` in `mtools`
+   |                     |          |              |         |       |        |
+   |                     |          |              |         |       |        no `get_time_now` in `mtools`
+   |                     |          |              |         |       no `DosName` in `mtools`
+   |                     |          |              |         no `Stream` in `mtools`
+   |                     |          |              no `Direntry` in `mtools`
+   |                     |          no `ClashHandling` in `mtools`
+   |                     no `MainParam` in `mtools`
+
+error[E0432]: unresolved import `rand`
+  --> mlabel.rs:35:5
+   |
+35 | use rand::Rng;
+   |     ^^^^ use of undeclared crate or module `rand`
+
+error[E0407]: method `read` is not a member of trait `Stream`
+   --> file.rs:138:5
+    |
+138 |       fn read(&mut self, buf: &mut [u8]) -> io::Result<usize> {
+    |       ^  ---- help: there is an associated function with a similar name: `pread`
+    |  _____|
+    | |
+139 | |         let mut len = buf.len().try_into().unwrap_or(u32::MAX);
+140 | |         let mut pos = 0;
+141 | |         
+...   |
+150 | |         Ok(ret)
+151 | |     }
+    | |_____^ not a member of trait `Stream`
+
+error[E0407]: method `write` is not a member of trait `Stream`
+   --> file.rs:153:5
+    |
+153 |       fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+    |       ^  ----- help: there is an associated function with a similar name: `pwrite`
+    |  _____|
+    | |
+154 | |         let max_len = u32::MAX - self.where_;
+155 | |         let len = buf.len().min(max_len as usize) as u32;
+156 | |         let requested_len = len;
+...   |
+179 | |         Ok(bytes_written as usize)
+180 | |     }
+    | |_____^ not a member of trait `Stream`
+
+error[E0106]: missing lifetime specifier
+   --> file_name.rs:142:6
+    |
+138 |     cp: &DosCp,
+    |         ------
+139 |     ans: &mut [u8],
+    |          ---------
+140 |     dn: &DosName,
+    |         --------
+141 |     ans_size: usize,
+142 | ) -> &[u8] {
+    |      ^ expected named lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `cp`, `ans`, or `dn`
+help: consider introducing a named lifetime parameter
+    |
+137 ~ pub fn unix_normalize<'a>(
+138 ~     cp: &'a DosCp,
+139 ~     ans: &'a mut [u8],
+140 ~     dn: &'a DosName,
+141 |     ans_size: usize,
+142 ~ ) -> &'a [u8] {
+    |
+
+error[E0106]: missing lifetime specifier
+   --> file_name.rs:318:6
+    |
+313 |     dos_cp: &DosCp,
+    |             ------
+314 |     base: &[u8],
+    |           -----
+315 |     ext: &[u8],
+    |          -----
+316 |     case_flag: u8,
+317 |     ret: &mut [u16],
+    |          ----------
+318 | ) -> &[u16] {
+    |      ^ expected named lifetime parameter
+    |
+    = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `dos_cp`, `base`, `ext`, or `ret`
+help: consider introducing a named lifetime parameter
+    |
+312 ~ pub fn unix_name<'a>(
+313 ~     dos_cp: &'a DosCp,
+314 ~     base: &'a [u8],
+315 ~     ext: &'a [u8],
+316 |     case_flag: u8,
+317 ~     ret: &'a mut [u16],
+318 ~ ) -> &'a [u16] {
+    |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+   --> mbadblocks.rs:168:22
+    |
+168 |             .map(|_| rand::random::<u8>())
+    |                      ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `getopts`
+   --> mmove.rs:188:20
+    |
+188 |     let mut opts = getopts::Options::new();
+    |                    ^^^^^^^ use of undeclared crate or module `getopts`
+
+error[E0412]: cannot find type `StreamClass` in this scope
+  --> file.rs:77:20
+   |
+77 | static FILE_CLASS: StreamClass = StreamClass;
+   |                    ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `StreamClass` in this scope
+  --> file.rs:77:34
+   |
+77 | static FILE_CLASS: StreamClass = StreamClass;
+   |                                  ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `fat32_root_cluster` in this scope
+   --> file.rs:186:15
+    |
+186 |     let num = fat32_root_cluster(dir);
+    |               ^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::fat_free::fat32_root_cluster` exists but is inaccessible
+   --> fat_free.rs:56:1
+    |
+56  | fn fat32_root_cluster(_dir: &Stream_t) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `count_bytes` in this scope
+   --> file.rs:202:9
+    |
+202 |         count_bytes(dir, num)?
+    |         ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_fs` in this scope
+   --> file.rs:204:18
+    |
+204 |         let fs = get_fs(dir)?;
+    |                  ^^^^^^ not found in this scope
+    |
+note: function `crate::fat_free::get_fs` exists but is inaccessible
+   --> fat_free.rs:48:1
+    |
+48  | fn get_fs(_dir: &Stream_t) -> Fs_t {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `mt_internal_file_open` in this scope
+   --> file.rs:208:16
+    |
+208 |     let file = mt_internal_file_open(dir, num, size, &entry)?;
+    |                ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `bufferize` in this scope
+   --> file.rs:209:5
+    |
+209 |     bufferize(file)
+    |     ^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:198:43
+    |
+198 |         if unsafe { iswcntrl(buffer[s] as wint_t) } != 0 {
+    |                                           ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:201:50
+    |
+201 |         } else if unsafe { iswlower(buffer[s] as wint_t) } != 0 {
+    |                                                  ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:202:60
+    |
+202 |             buffer[t_idx] = unsafe { towupper(buffer[s] as wint_t) } as u16;
+    |                                                            ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:208:50
+    |
+208 |         } else if unsafe { iswupper(buffer[s] as wint_t) } != 0 {
+    |                                                  ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0425]: cannot find value `ext_case` in this scope
+   --> file_name.rs:305:12
+    |
+305 |         if ext_case == Case::Lower {
+    |            ^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:344:46
+    |
+344 |                 *c = unsafe { towlower(*c as wint_t) } as u8;
+    |                                              ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0412]: cannot find type `wint_t` in this scope
+   --> file_name.rs:360:46
+    |
+360 |                 *c = unsafe { towlower(*c as wint_t) } as u8;
+    |                                              ^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+3   | use crate::direntry::wint_t;
+    |
+3   | use crate::mdir::wint_t;
+    |
+3   | use crate::r#match::wint_t;
+    |
+
+error[E0425]: cannot find value `O_LARGEFILE` in this scope
+   --> floppyd.rs:321:81
+    |
+321 |         dev_fd = Some(unsafe { open(device_name.as_ptr() as *const i8, O_RDWR | O_LARGEFILE) });
+    |                                                                                 ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+6   | use crate::floppyd::libc::O_LARGEFILE;
+    |
+6   | use libc::O_LARGEFILE;
+    |
+
+error[E0425]: cannot find value `O_LARGEFILE` in this scope
+   --> floppyd.rs:324:87
+    |
+324 |             dev_fd = Some(unsafe { open(device_name.as_ptr() as *const i8, O_RDONLY | O_LARGEFILE) });
+    |                                                                                       ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+6   | use crate::floppyd::libc::O_LARGEFILE;
+    |
+6   | use libc::O_LARGEFILE;
+    |
+
+error[E0425]: cannot find value `O_LARGEFILE` in this scope
+   --> floppyd.rs:349:86
+    |
+349 |                 let fd = unsafe { open(device_name.as_ptr() as *const i8, O_RDONLY | O_LARGEFILE) };
+    |                                                                                      ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+6   | use crate::floppyd::libc::O_LARGEFILE;
+    |
+6   | use libc::O_LARGEFILE;
+    |
+
+error[E0425]: cannot find value `O_LARGEFILE` in this scope
+   --> floppyd.rs:362:84
+    |
+362 |                 let fd = unsafe { open(device_name.as_ptr() as *const i8, O_RDWR | O_LARGEFILE) };
+    |                                                                                    ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+6   | use crate::floppyd::libc::O_LARGEFILE;
+    |
+6   | use libc::O_LARGEFILE;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> init.rs:149:24
+    |
+149 |     cp: Option<Arc<dyn Any>>,
+    |                        ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::any::Any;
+    |
+1   | use std::any::Any;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> init.rs:434:43
+    |
+434 | fn cp_open(codepage: &str) -> Result<impl Any, FsError> {
+    |                                           ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::any::Any;
+    |
+1   | use std::any::Any;
+    |
+
+error[E0425]: cannot find function `open_dos2unix` in this scope
+   --> mcopy.rs:166:18
+    |
+166 |         source = open_dos2unix(source, arg.convert_charset)?;
+    |                  ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::dos2unix::open_dos2unix;
+    |
+
+error[E0425]: cannot find value `dos_copydir` in this scope
+   --> mcopy.rs:315:35
+    |
+315 |             arg.mp.dir_callback = dos_copydir;
+    |                                   ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `dos_to_dos` in this scope
+   --> mcopy.rs:316:31
+    |
+316 |             arg.mp.callback = dos_to_dos;
+    |                               ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `unix_to_dos` in this scope
+   --> mcopy.rs:317:36
+    |
+250 | fn dos_to_unix(_entry: Option<&Direntry>, mp: &MainParam) -> io::Result<()> {
+    | --------------------------------------------------------------------------- similarly named function `dos_to_unix` defined here
+...
+317 |             arg.mp.unix_callback = unix_to_dos;
+    |                                    ^^^^^^^^^^^ help: a function with a similar name exists: `dos_to_unix`
+
+error[E0425]: cannot find function `main_loop` in this scope
+   --> mcopy.rs:321:5
+    |
+321 |     main_loop(&arg.mp, &args)
+    |     ^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::mainloop::main_loop;
+    |
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mdoctorfat.rs:47:30
+    |
+47  | fn dos_doctorfat(entry: &mut Direntry, arg: &ArgData) -> io::Result<()> {
+    |                              ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0425]: cannot find function `mversion` in this scope
+  --> mdoctorfat.rs:65:46
+   |
+65 |     eprintln!("Mtools version {}, dated {}", mversion(), mdate());
+   |                                              ^^^^^^^^ not found in this scope
+   |
+help: consider importing this static
+   |
+21 | use crate::patchlevel::mversion;
+   |
+
+error[E0425]: cannot find function `mdate` in this scope
+  --> mdoctorfat.rs:65:58
+   |
+65 |     eprintln!("Mtools version {}, dated {}", mversion(), mdate());
+   |                                                          ^^^^^ not found in this scope
+   |
+help: consider importing this static
+   |
+21 | use crate::patchlevel::mdate;
+   |
+
+error[E0425]: cannot find function `progname` in this scope
+  --> mdoctorfat.rs:66:42
+   |
+66 |     eprintln!("Usage: [-b] {} file fat", progname());
+   |                                          ^^^^^^^^ not found in this scope
+   |
+help: consider importing this static
+   |
+21 | use crate::mtools::progname;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `Fs`
+   --> mdoctorfat.rs:110:24
+    |
+110 |     let mut fs = match Fs::new(&mut file) {
+    |                        ^^ help: a trait with a similar name exists: `Fn`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ops/function.rs:74:1
+    |
+74  | pub trait Fn<Args>: FnMut<Args> {
+    | ------------------------------- similarly named trait `Fn` defined here
+    |
+note: these structs exist but are inaccessible
+   --> fat.rs:23:1
+    |
+23  | struct Fs {
+    | ^^^^^^^^^ `crate::fat::Fs`: not accessible
+    |
+   ::: file.rs:40:1
+    |
+40  | struct Fs {
+    | ^^^^^^^^^ `crate::file::Fs`: not accessible
+    |
+   ::: init.rs:131:1
+    |
+131 | struct Fs {
+    | ^^^^^^^^^ `crate::init::Fs`: not accessible
+    |
+   ::: mbadblocks.rs:38:1
+    |
+38  | struct Fs {
+    | ^^^^^^^^^ `crate::mbadblocks::Fs`: not accessible
+    |
+   ::: mformat.rs:35:1
+    |
+35  | struct Fs {
+    | ^^^^^^^^^ `crate::mformat::Fs`: not accessible
+
+error[E0433]: failed to resolve: use of undeclared type `Direntry`
+   --> mdoctorfat.rs:118:27
+    |
+118 |     let mut entry = match Direntry::new(&fs) {
+    |                           ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0425]: cannot find value `dos_name` in this scope
+  --> mk_direntry.rs:82:29
+   |
+82 |             name_converter: dos_name,
+   |                             ^^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+22 | use crate::file_name::dos_name;
+   |
+
+error[E0425]: cannot find function `opentty` in this scope
+   --> mk_direntry.rs:157:35
+    |
+157 |     if a == ClashAction::None && !opentty(1) {
+    |                                   ^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::tty::opentty;
+    |
+
+error[E0425]: cannot find function `unix_normalize` in this scope
+   --> mk_direntry.rs:162:9
+    |
+162 |         unix_normalize(cp, dosname)
+    |         ^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::file_name::unix_normalize;
+    |
+
+error[E0425]: cannot find value `mtools_raw_tty` in this scope
+   --> mk_direntry.rs:184:12
+    |
+184 |         if mtools_raw_tty {
+    |            ^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::tty::mtools_raw_tty;
+    |
+
+error[E0425]: cannot find value `got_signal` in this scope
+   --> mk_direntry.rs:228:13
+    |
+228 |             got_signal = true;
+    |             ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::signal::got_signal;
+    |
+
+error[E0425]: cannot find function `autorename_long` in this scope
+   --> mk_direntry.rs:238:17
+    |
+238 |                 autorename_long(longname, true);
+    |                 ^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::vfat::autorename_long` exists but is inaccessible
+   --> vfat.rs:234:1
+    |
+234 | fn autorename_long(name: &mut [u8], bump: bool) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `autorename_short` in this scope
+   --> mk_direntry.rs:241:17
+    |
+241 |                 autorename_short(dosname, true);
+    |                 ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> file_name.rs:409:1
+    |
+409 | fn autorename_short(dn: &mut DosName, _long: bool) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::file_name::autorename_short`: not accessible
+    |
+   ::: vfat.rs:230:1
+    |
+230 | fn autorename_short(name: &mut DosName, bump: bool) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::vfat::autorename_short`: not accessible
+
+error[E0412]: cannot find type `ScanState` in this scope
+   --> mk_direntry.rs:283:15
+    |
+283 |     ssp: &mut ScanState,
+    |               ^^^^^^^^^ not found in this scope
+    |
+note: struct `crate::vfat::ScanState` exists but is inaccessible
+   --> vfat.rs:114:1
+    |
+114 | struct ScanState {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `get_dosconvert` in this scope
+   --> mk_direntry.rs:286:14
+    |
+286 |     let cp = get_dosconvert(dir);
+    |              ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RESERVED` in this scope
+   --> mk_direntry.rs:291:16
+    |
+291 |         (true, RESERVED)
+    |                ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `LONG_ILLEGALS` in this scope
+   --> mk_direntry.rs:292:43
+    |
+292 |     } else if contains_illegals(longname, LONG_ILLEGALS, 1024) {
+    |                                           ^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::LONG_ILLEGALS` exists but is inaccessible
+   --> vfat.rs:135:1
+    |
+135 | const LONG_ILLEGALS: &str = "\"*\\<>/?:|\x05";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ILLEGALS` in this scope
+   --> mk_direntry.rs:293:16
+    |
+293 |         (true, ILLEGALS)
+    |                ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `RESERVED` in this scope
+   --> mk_direntry.rs:296:17
+    |
+296 |         (false, RESERVED)
+    |                 ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `SHORT_ILLEGALS` in this scope
+   --> mk_direntry.rs:297:111
+    |
+297 |     } else if !ch.is_label && contains_illegals(&dosname.base.iter().map(|&b| b as char).collect::<String>(), SHORT_ILLEGALS, 11) {
+    |                                                                                                               ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::SHORT_ILLEGALS` exists but is inaccessible
+   --> vfat.rs:134:1
+    |
+134 | const SHORT_ILLEGALS: &str = ";+=[]',\"*\\<>/?:|";
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ILLEGALS` in this scope
+   --> mk_direntry.rs:299:17
+    |
+299 |         (false, ILLEGALS)
+    |                 ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `lookup_for_insert` in this scope
+   --> mk_direntry.rs:301:15
+    |
+301 | ...   match lookup_for_insert(dir, &mut entry, dosname, longname, ssp, ch.ignore_entry, ch.source_entry, pessimistic_short_rename && ch.u...
+    |             ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `dir_read` in this scope
+   --> mk_direntry.rs:322:12
+    |
+322 |         if dir_read(&mut entry).is_err() {
+    |            ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::directory::dir_read;
+    |
+
+error[E0425]: cannot find function `is_dir` in this scope
+   --> mk_direntry.rs:325:50
+    |
+325 |         no_overwrite = match_pos == ch.source || is_dir(&entry);
+    |                                                  ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `ask_confirmation` in this scope
+   --> mk_direntry.rs:331:43
+    |
+331 |         if (entry.dir.attr & 0x5) != 0 && ask_confirmation("file is read only, overwrite anyway (y/n)? ") {
+    |                                           ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::tty::ask_confirmation;
+    |
+
+error[E0425]: cannot find function `fat_free_with_direntry` in this scope
+   --> mk_direntry.rs:334:12
+    |
+334 |         if fat_free_with_direntry(&entry).is_err() {
+    |            ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::fat_free::fat_free_with_direntry` exists but is inaccessible
+   --> fat_free.rs:102:1
+    |
+102 | fn fat_free_with_direntry(entry: &Direntry_t) -> io::Result<()> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `wipe_entry` in this scope
+   --> mk_direntry.rs:337:9
+    |
+337 |         wipe_entry(&entry);
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `ScanState` in this scope
+   --> mk_direntry.rs:348:11
+    |
+348 |     ssp: &ScanState,
+    |           ^^^^^^^^^ not found in this scope
+    |
+note: struct `crate::vfat::ScanState` exists but is inaccessible
+   --> vfat.rs:114:1
+    |
+114 | struct ScanState {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:349:42
+    |
+349 |     cb: &dyn Fn(&DosName, &str, &mut dyn Any, &Direntry) -> i32,
+    |                                          ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:350:19
+    |
+350 |     arg: &mut dyn Any,
+    |                   ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0425]: cannot find function `fat_error` in this scope
+   --> mk_direntry.rs:353:8
+    |
+353 |     if fat_error(dir) {
+    |        ^^^^^^^^^ not found in this scope
+    |
+note: function `crate::mainloop::fat_error` exists but is inaccessible
+   --> mainloop.rs:50:5
+    |
+50  |     fn fat_error(Dir: *mut Stream_t) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `set_entry_to_pos` in this scope
+   --> mk_direntry.rs:359:5
+    |
+359 |     set_entry_to_pos(&mut entry, ssp.slot);
+    |     ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `native_to_wchar` in this scope
+   --> mk_direntry.rs:360:5
+    |
+360 |     native_to_wchar(longname, &mut entry.name, MAX_VNAMELEN, 0, 0);
+    |     ^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use crate::charsetConv::native_to_wchar;
+    |
+22  | use crate::file_name::native_to_wchar;
+    |
+
+error[E0425]: cannot find value `MAX_VNAMELEN` in this scope
+   --> mk_direntry.rs:360:48
+    |
+360 |     native_to_wchar(longname, &mut entry.name, MAX_VNAMELEN, 0, 0);
+    |                                                ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::MAX_VNAMELEN` exists but is inaccessible
+   --> vfat.rs:19:1
+    |
+19  | const MAX_VNAMELEN: usize = 255;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MAX_VNAMELEN` in this scope
+   --> mk_direntry.rs:361:16
+    |
+361 |     entry.name[MAX_VNAMELEN] = '\0';
+    |                ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::MAX_VNAMELEN` exists but is inaccessible
+   --> vfat.rs:19:1
+    |
+19  | const MAX_VNAMELEN: usize = 255;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `EXTCASE` in this scope
+   --> mk_direntry.rs:362:30
+    |
+362 |     entry.dir.case = case & (EXTCASE | BASECASE);
+    |                              ^^^^^^^ not found in this scope
+    |
+note: constant `crate::file_name::EXTCASE` exists but is inaccessible
+   --> file_name.rs:402:1
+    |
+402 | const EXTCASE: i32 = 0x08;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `BASECASE` in this scope
+   --> mk_direntry.rs:362:40
+    |
+362 |     entry.dir.case = case & (EXTCASE | BASECASE);
+    |                                        ^^^^^^^^ not found in this scope
+    |
+note: constant `crate::file_name::BASECASE` exists but is inaccessible
+   --> file_name.rs:401:1
+    |
+401 | const BASECASE: i32 = 0x04;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `write_vfat` in this scope
+   --> mk_direntry.rs:366:24
+    |
+366 |             ssp.slot = write_vfat(dir, dosname, longname, ssp.free_start, &entry);
+    |                        ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `write_vfat` in this scope
+   --> mk_direntry.rs:369:13
+    |
+369 |             write_vfat(dir, dosname, "", ssp.free_start, &entry);
+    |             ^^^^^^^^^^ not found in this scope
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:387:42
+    |
+387 |     cb: &dyn Fn(&DosName, &str, &mut dyn Any, &Direntry) -> i32,
+    |                                          ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:388:19
+    |
+388 |     arg: &mut dyn Any,
+    |                   ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0425]: cannot find value `VBUFSIZE` in this scope
+   --> mk_direntry.rs:391:46
+    |
+391 |     let mut longname = String::with_capacity(VBUFSIZE);
+    |                                              ^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> mlabel.rs:37:1
+    |
+37  | const VBUFSIZE: usize = 256;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mlabel::VBUFSIZE`: not accessible
+    |
+   ::: vfat.rs:18:1
+    |
+18  | const VBUFSIZE: usize = (MAX_VFAT_SUBENTRIES * VSE_NAMELEN) + 1;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::vfat::VBUFSIZE`: not accessible
+
+error[E0425]: cannot find function `get_dosconvert` in this scope
+   --> mk_direntry.rs:392:14
+    |
+392 |     let cp = get_dosconvert(dir);
+    |              ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `is_special` in this scope
+   --> mk_direntry.rs:396:8
+    |
+396 |     if is_special(argname) {
+    |        ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::file_name::is_special;
+    |
+
+error[E0425]: cannot find value `dos_name` in this scope
+   --> mk_direntry.rs:401:29
+    |
+401 |     if ch.name_converter == dos_name {
+    |                             ^^^^^^^^
+    |
+help: a local variable with a similar name exists
+    |
+401 |     if ch.name_converter == dosname {
+    |                             ~~~~~~~
+help: consider importing this function
+    |
+22  | use crate::file_name::dos_name;
+    |
+
+error[E0433]: failed to resolve: use of undeclared type `ScanState`
+   --> mk_direntry.rs:439:20
+    |
+439 |     let mut scan = ScanState::default();
+    |                    ^^^^^^^^^ not found in this scope
+    |
+note: struct `crate::vfat::ScanState` exists but is inaccessible
+   --> vfat.rs:114:1
+    |
+114 | struct ScanState {
+    | ^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `progname` in this scope
+   --> mk_direntry.rs:451:57
+    |
+451 |                     eprintln!("{}: No directory slots", progname);
+    |                                                         ^^^^^^^^
+    |
+help: a local variable with a similar name exists
+    |
+451 |                     eprintln!("{}: No directory slots", argname);
+    |                                                         ~~~~~~~
+help: consider importing this static
+    |
+22  | use crate::mtools::progname;
+    |
+
+error[E0425]: cannot find function `dir_grow` in this scope
+   --> mk_direntry.rs:455:20
+    |
+455 |                 if dir_grow(dir, scan.max_entry).is_err() {
+    |                    ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::directory::dir_grow;
+    |
+
+error[E0425]: cannot find value `ret` in this scope
+   --> mk_direntry.rs:468:64
+    |
+468 |                 eprintln!("Internal error: clash_action={:?}", ret);
+    |                                                                ^^^ not found in this scope
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:479:42
+    |
+479 |     cb: &dyn Fn(&DosName, &str, &mut dyn Any, &Direntry) -> i32,
+    |                                          ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> mk_direntry.rs:480:19
+    |
+480 |     arg: &mut dyn Any,
+    |                   ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use core::any::Any;
+    |
+22  | use std::any::Any;
+    |
+
+error[E0425]: cannot find value `mt_mwrite` in this scope
+   --> mk_direntry.rs:485:5
+    |
+485 |     mt_mwrite
+    |     ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `native_to_wchar` in this scope
+   --> mlabel.rs:104:15
+    |
+104 |     let len = native_to_wchar(filename, &mut wbuffer, 11, 0, 0);
+    |               ^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use crate::charsetConv::native_to_wchar;
+    |
+22  | use crate::file_name::native_to_wchar;
+    |
+
+error[E0425]: cannot find function `ch_towupper` in this scope
+   --> mlabel.rs:127:26
+    |
+127 |             wbuffer[i] = ch_towupper(wbuffer[i]);
+    |                          ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `wchar_to_dos` in this scope
+   --> mlabel.rs:146:5
+    |
+146 |     wchar_to_dos(cp, &wbuffer, &mut ans.base, len, mangled);
+    |     ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+22  | use crate::charsetConv::wchar_to_dos;
+    |
+22  | use crate::file_name::wchar_to_dos;
+    |
+
+error[E0425]: cannot find function `mk_entry` in this scope
+   --> mlabel.rs:168:5
+    |
+168 |     mk_entry(dosname, 0x8, 0, 0, now as i32, &mut entry.dir);
+    |     ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::directory::mk_entry;
+    |
+
+error[E0425]: cannot find value `mversion` in this scope
+   --> mlabel.rs:173:46
+    |
+173 |     eprintln!("Mtools version {}, dated {}", mversion, mdate);
+    |                                              ^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::patchlevel::mversion;
+    |
+
+error[E0425]: cannot find value `mdate` in this scope
+   --> mlabel.rs:173:56
+    |
+173 |     eprintln!("Mtools version {}, dated {}", mversion, mdate);
+    |                                                        ^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::patchlevel::mdate;
+    |
+
+error[E0425]: cannot find value `progname` in this scope
+   --> mlabel.rs:174:56
+    |
+174 |     eprintln!("Usage: {} [-vscVn] [-N serial] drive:", progname);
+    |                                                        ^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::mtools::progname;
+    |
+
+error[E0425]: cannot find value `optind` in this scope
+   --> mlabel.rs:206:15
+    |
+206 |     if argc - optind > 1 {
+    |               ^^^^^^ not found in this scope
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0425]: cannot find value `optind` in this scope
+   --> mlabel.rs:210:15
+    |
+210 |     if argc - optind == 1 {
+    |               ^^^^^^ not found in this scope
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0425]: cannot find value `optind` in this scope
+   --> mlabel.rs:211:25
+    |
+211 |         let arg = &argv[optind as usize];
+    |                         ^^^^^^ not found in this scope
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0425]: cannot find function `get_default_drive` in this scope
+   --> mlabel.rs:218:17
+    |
+218 |         drive = get_default_drive();
+    |                 ^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::config::get_default_drive;
+    |
+
+error[E0425]: cannot find function `open_root_dir` in this scope
+   --> mlabel.rs:237:16
+    |
+237 |     root_dir = open_root_dir(drive, if is_rop.is_some() { 0 } else { O_RDWR }, is_rop.is_some());
+    |                ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::streamcache::open_root_dir;
+    |
+
+error[E0425]: cannot find value `O_RDWR` in this scope
+   --> mlabel.rs:237:70
+    |
+237 |     root_dir = open_root_dir(drive, if is_rop.is_some() { 0 } else { O_RDWR }, is_rop.is_some());
+    |                                                                      ^^^^^^ not found in this scope
+    |
+help: consider importing this constant
+    |
+22  | use libc::O_RDWR;
+    |
+
+error[E0425]: cannot find function `initialize_direntry` in this scope
+   --> mlabel.rs:248:5
+    |
+248 |     initialize_direntry(&mut entry, root_dir.as_ref().unwrap());
+    |     ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `vfat_lookup` in this scope
+   --> mlabel.rs:249:13
+    |
+249 |     let r = vfat_lookup(
+    |             ^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+    |
+   ::: mdel.rs:33:5
+    |
+33  | /     fn vfat_lookup(
+34  | |         entry: *mut direntry_t,
+35  | |         filename: *const libc::c_char,
+36  | |         length: size_t,
+...   |
+41  | |         longname_len: size_t,
+42  | |     ) -> libc::c_int;
+    | |_____________________^ `crate::mdel::vfat_lookup`: not accessible
+    |
+   ::: mdir.rs:45:5
+    |
+45  | /     fn vfat_lookup(
+46  | |         entry: *mut direntry_t,
+47  | |         filename: *const libc::c_char,
+48  | |         length: size_t,
+...   |
+53  | |         longname_len: size_t,
+54  | |     ) -> libc::c_int;
+    | |_____________________^ `crate::mdir::vfat_lookup`: not accessible
+   --> mainloop.rs:51:5
+    |
+51  | /     fn vfat_lookup(
+52  | |         entry: *mut direntry_t,
+53  | |         filename: *const libc::c_char,
+54  | |         length: size_t,
+...   |
+59  | |         longname_len: size_t,
+60  | |     ) -> libc::c_int;
+    | |_____________________^ `crate::mainloop::vfat_lookup`: not accessible
+
+error[E0425]: cannot find value `ACCEPT_LABEL` in this scope
+   --> mlabel.rs:253:9
+    |
+253 |         ACCEPT_LABEL | MATCH_ANY,
+    |         ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::ACCEPT_LABEL` exists but is inaccessible
+   --> vfat.rs:29:1
+    |
+29  | const ACCEPT_LABEL: u32 = 0x08;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MATCH_ANY` in this scope
+   --> mlabel.rs:253:24
+    |
+253 |         ACCEPT_LABEL | MATCH_ANY,
+    |                        ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::MATCH_ANY` exists but is inaccessible
+   --> vfat.rs:32:1
+    |
+32  | const MATCH_ANY: u32 = 0x40;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `is_not_found` in this scope
+   --> mlabel.rs:265:12
+    |
+265 |         if is_not_found(&entry) {
+    |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `is_not_found` in this scope
+   --> mlabel.rs:288:45
+    |
+288 |     if (!show || !new_label.is_empty()) && !is_not_found(&entry) {
+    |                                             ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `ask_confirmation` in this scope
+   --> mlabel.rs:290:16
+    |
+290 |             if ask_confirmation("Delete volume label (y/n): ") {
+    |                ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::tty::ask_confirmation;
+    |
+
+error[E0425]: cannot find function `wipe_entry` in this scope
+   --> mlabel.rs:295:9
+    |
+295 |         wipe_entry(&mut entry);
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `mwrite_one` in this scope
+   --> mlabel.rs:300:21
+    |
+300 |         result = if mwrite_one(
+    |                     ^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> mk_direntry.rs:475:1
+    |
+475 | / fn mwrite_one(
+476 | |     dir: &Stream,
+477 | |     argname: Option<&str>,
+478 | |     shortname: Option<&str>,
+...   |
+484 | |     let shortname = shortname.map(|s| s.to_string());
+485 | |     mt_mwrite
+    | |_____________^ `crate::mk_direntry::mwrite_one`: not accessible
+    |
+   ::: mmd.rs:97:5
+    |
+97  | /     pub fn mwrite_one(
+98  | |         _dir: *mut Stream,
+99  | |         _filename: &str,
+100 | |         _flags: i32,
+...   |
+106 | |         1
+107 | |     }
+    | |_____^ `crate::mmd::mtools::mwrite_one`: not accessible
+
+error[E0425]: cannot find function `get_fs` in this scope
+   --> mlabel.rs:316:18
+    |
+316 |         let fs = get_fs(root_dir.as_ref().unwrap());
+    |                  ^^^^^^ not found in this scope
+    |
+note: function `crate::fat_free::get_fs` exists but is inaccessible
+   --> fat_free.rs:48:1
+    |
+48  | fn get_fs(_dir: &Stream_t) -> Fs_t {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `force_pread` in this scope
+   --> mlabel.rs:317:21
+    |
+317 |         have_boot = force_pread(fs, &mut boot.characters, 0, std::mem::size_of::<BootSector>())
+    |                     ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::force_io::force_pread;
+    |
+
+error[E0425]: cannot find value `boot` in this scope
+   --> mlabel.rs:317:42
+    |
+317 |         have_boot = force_pread(fs, &mut boot.characters, 0, std::mem::size_of::<BootSector>())
+    |                                          ^^^^ not found in this scope
+
+error[E0412]: cannot find type `BootSector` in this scope
+   --> mlabel.rs:317:82
+    |
+317 |         have_boot = force_pread(fs, &mut boot.characters, 0, std::mem::size_of::<BootSector>())
+    |                                                                                  ^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> init.rs:41:1
+    |
+41  | struct BootSector {
+    | ^^^^^^^^^^^^^^^^^ `crate::init::BootSector`: not accessible
+    |
+   ::: mformat.rs:69:1
+    |
+69  | union BootSector {
+    | ^^^^^^^^^^^^^^^^ `crate::mformat::BootSector`: not accessible
+    |
+   ::: minfo.rs:32:1
+    |
+32  | struct BootSector {
+    | ^^^^^^^^^^^^^^^^^ `crate::minfo::BootSector`: not accessible
+
+error[E0412]: cannot find type `BootSector` in this scope
+   --> mlabel.rs:318:36
+    |
+318 |             == std::mem::size_of::<BootSector>();
+    |                                    ^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> init.rs:41:1
+    |
+41  | struct BootSector {
+    | ^^^^^^^^^^^^^^^^^ `crate::init::BootSector`: not accessible
+    |
+   ::: mformat.rs:69:1
+    |
+69  | union BootSector {
+    | ^^^^^^^^^^^^^^^^ `crate::mformat::BootSector`: not accessible
+    |
+   ::: minfo.rs:32:1
+    |
+32  | struct BootSector {
+    | ^^^^^^^^^^^^^^^^^ `crate::minfo::BootSector`: not accessible
+
+error[E0433]: failed to resolve: use of undeclared type `SystemTime`
+  --> mmd.rs:90:16
+   |
+90 |         *now = SystemTime::now()
+   |                ^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+9  |     use crate::mmd::SystemTime;
+   |
+9  |     use std::time::SystemTime;
+   |
+
+error[E0425]: cannot find value `UNIX_EPOCH` in this scope
+  --> mmd.rs:91:29
+   |
+91 |             .duration_since(UNIX_EPOCH)
+   |                             ^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+9  |     use crate::mmd::UNIX_EPOCH;
+   |
+9  |     use std::time::UNIX_EPOCH;
+   |
+
+error[E0425]: cannot find value `optind` in crate `libc`
+   --> mmd.rs:326:30
+    |
+326 |     if argc - unsafe { libc::optind } < 1 {
+    |                              ^^^^^^ not found in `libc`
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0425]: cannot find value `optind` in crate `libc`
+   --> mmd.rs:335:36
+    |
+335 |         unsafe { argv.offset(libc::optind as isize) },
+    |                                    ^^^^^^ not found in `libc`
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0425]: cannot find value `optind` in crate `libc`
+   --> mmd.rs:336:31
+    |
+336 |         argc - unsafe { libc::optind },
+    |                               ^^^^^^ not found in `libc`
+    |
+note: these statics exist but are inaccessible
+   --> mattrib.rs:13:5
+    |
+13  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::optind`: not accessible
+    |
+   ::: mcat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcat::optind`: not accessible
+    |
+   ::: mcd.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mcd::optind`: not accessible
+    |
+   ::: mdel.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::optind`: not accessible
+    |
+   ::: mdir.rs:16:5
+    |
+16  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdir::optind`: not accessible
+    |
+   ::: mdu.rs:10:5
+    |
+10  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdu::optind`: not accessible
+    |
+   ::: mpartition.rs:20:5
+    |
+20  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mpartition::optind`: not accessible
+    |
+   ::: mshortname.rs:9:5
+    |
+9   |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshortname::optind`: not accessible
+    |
+   ::: mshowfat.rs:11:5
+    |
+11  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mshowfat::optind`: not accessible
+    |
+   ::: mzip.rs:17:5
+    |
+17  |     static mut optind: libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mzip::optind`: not accessible
+
+error[E0412]: cannot find type `MainParam` in this scope
+   --> mmove.rs:44:9
+    |
+44  |     mp: MainParam,
+    |         ^^^^^^^^^ help: a struct with a similar name exists: `MainParam_t`
+    |
+   ::: mainloop.rs:301:1
+    |
+301 | pub struct MainParam_t {
+    | ---------------------- similarly named struct `MainParam_t` defined here
+    |
+note: struct `crate::mmd::mtools::MainParam` exists but is inaccessible
+   --> mmd.rs:9:5
+    |
+9   |     pub struct MainParam {
+    |     ^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mmove.rs:45:19
+    |
+45  |     entry: Option<Direntry>,
+    |                   ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0412]: cannot find type `ClashHandling` in this scope
+  --> mmove.rs:46:9
+   |
+46 |     ch: ClashHandling,
+   |         ^^^^^^^^^^^^^ not found in this scope
+   |
+note: these items exist but are inaccessible
+  --> mk_direntry.rs:63:1
+   |
+63 | struct ClashHandling {
+   | ^^^^^^^^^^^^^^^^^^^^ `crate::mk_direntry::ClashHandling`: not accessible
+   |
+  ::: mlabel.rs:74:1
+   |
+74 | struct ClashHandling {
+   | ^^^^^^^^^^^^^^^^^^^^ `crate::mlabel::ClashHandling`: not accessible
+   |
+  ::: mmd.rs:32:5
+   |
+32 |     pub enum ClashHandling {
+   |     ^^^^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::ClashHandling`: not accessible
+
+error[E0412]: cannot find type `DosName` in this scope
+  --> mmove.rs:49:23
+   |
+49 | fn renameit(dosname: &DosName, longname: Option<&str>, arg0: &mut Arg, target_entry: &mut Direntry) -> Result<(), Error> {
+   |                       ^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+22 | use crate::file_name::DosName;
+   |
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mmove.rs:49:91
+    |
+49  | fn renameit(dosname: &DosName, longname: Option<&str>, arg0: &mut Arg, target_entry: &mut Direntry) -> Result<(), Error> {
+    |                                                                                           ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0425]: cannot find function `dosname_to_direntry` in this scope
+  --> mmove.rs:54:5
+   |
+54 |     dosname_to_direntry(dosname, &mut target_entry.dir)?;
+   |     ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `is_dir` in this scope
+  --> mmove.rs:56:8
+   |
+56 |     if is_dir(target_entry) {
+   |        ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_direntry` in this scope
+  --> mmove.rs:57:27
+   |
+57 |         let moved_entry = get_direntry(&arg.mp.file)?;
+   |                           ^^^^^^^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of undeclared type `Direntry`
+   --> mmove.rs:60:33
+    |
+60  |             let mut sub_entry = Direntry::new();
+    |                                 ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0425]: cannot find function `initialize_direntry` in this scope
+  --> mmove.rs:61:13
+   |
+61 |             initialize_direntry(&mut sub_entry, &arg.mp.file)?;
+   |             ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `vfat_lookup` in this scope
+  --> mmove.rs:63:19
+   |
+63 |             match vfat_lookup(&mut sub_entry, "..", 2, ACCEPT_DIR, None, 0, None, 0) {
+   |                   ^^^^^^^^^^^ not found in this scope
+   |
+note: these functions exist but are inaccessible
+   |
+  ::: mdel.rs:33:5
+   |
+33 | /     fn vfat_lookup(
+34 | |         entry: *mut direntry_t,
+35 | |         filename: *const libc::c_char,
+36 | |         length: size_t,
+...  |
+41 | |         longname_len: size_t,
+42 | |     ) -> libc::c_int;
+   | |_____________________^ `crate::mdel::vfat_lookup`: not accessible
+   |
+  ::: mdir.rs:45:5
+   |
+45 | /     fn vfat_lookup(
+46 | |         entry: *mut direntry_t,
+47 | |         filename: *const libc::c_char,
+48 | |         length: size_t,
+...  |
+53 | |         longname_len: size_t,
+54 | |     ) -> libc::c_int;
+   | |_____________________^ `crate::mdir::vfat_lookup`: not accessible
+  --> mainloop.rs:51:5
+   |
+51 | /     fn vfat_lookup(
+52 | |         entry: *mut direntry_t,
+53 | |         filename: *const libc::c_char,
+54 | |         length: size_t,
+...  |
+59 | |         longname_len: size_t,
+60 | |     ) -> libc::c_int;
+   | |_____________________^ `crate::mainloop::vfat_lookup`: not accessible
+
+error[E0425]: cannot find value `ACCEPT_DIR` in this scope
+  --> mmove.rs:63:56
+   |
+63 |             match vfat_lookup(&mut sub_entry, "..", 2, ACCEPT_DIR, None, 0, None, 0) {
+   |                                                        ^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::vfat::ACCEPT_DIR` exists but is inaccessible
+  --> vfat.rs:30:1
+   |
+30 | const ACCEPT_DIR: u32 = 0x10;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `get_data` in this scope
+  --> mmove.rs:69:21
+   |
+69 |                     get_data(&target_entry.dir, 0, 0, 0, &mut fat)?;
+   |                     ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `fat32_root_cluster` in this scope
+  --> mmove.rs:70:31
+   |
+70 |                     if fat == fat32_root_cluster(&target_entry.dir) {
+   |                               ^^^^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: function `crate::fat_free::fat32_root_cluster` exists but is inaccessible
+  --> fat_free.rs:56:1
+   |
+56 | fn fat32_root_cluster(_dir: &Stream_t) -> bool {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `dir_write` in this scope
+  --> mmove.rs:76:21
+   |
+76 |                     dir_write(&sub_entry)?;
+   |                     ^^^^^^^^^ not found in this scope
+   |
+note: these functions exist but are inaccessible
+  --> mattrib.rs:27:5
+   |
+27 |     fn dir_write(entry: *mut direntry_t);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mattrib::dir_write`: not accessible
+   |
+  ::: mdel.rs:46:5
+   |
+46 |     fn dir_write(entry: *mut direntry_t);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mdel::dir_write`: not accessible
+   |
+  ::: mmd.rs:75:5
+   |
+75 |     pub fn dir_write(_entry: &Direntry) -> bool {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::dir_write`: not accessible
+
+error[E0425]: cannot find function `wipe_entry` in this scope
+  --> mmove.rs:84:13
+   |
+84 |             wipe_entry(&moved_entry)?;
+   |             ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `wipe_entry` in this scope
+  --> mmove.rs:93:5
+   |
+93 |     wipe_entry(arg.mp.direntry.as_mut().unwrap())?;
+   |     ^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mmove.rs:97:28
+    |
+97  | fn rename_file(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                            ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0412]: cannot find type `MainParam` in this scope
+   --> mmove.rs:97:47
+    |
+97  | fn rename_file(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                                               ^^^^^^^^^ help: a struct with a similar name exists: `MainParam_t`
+    |
+   ::: mainloop.rs:301:1
+    |
+301 | pub struct MainParam_t {
+    | ---------------------- similarly named struct `MainParam_t` defined here
+    |
+note: struct `crate::mmd::mtools::MainParam` exists but is inaccessible
+   --> mmd.rs:9:5
+    |
+9   |     pub struct MainParam {
+    |     ^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `mp_pick_target_name` in this scope
+    --> mmove.rs:111:20
+     |
+111  |       let longname = mp_pick_target_name(mp)?;
+     |                      ^^^^^^^^^^^^^^^^^^^ help: a function with a similar name exists: `mpPickTargetName`
+     |
+    ::: mainloop.rs:1157:1
+     |
+1157 | / pub unsafe extern "C" fn mpPickTargetName(
+1158 | |     mut mp: *mut MainParam_t,
+1159 | | ) -> *const libc::c_char {
+1160 | |     if !((*mp).targetName).is_null() {
+...    |
+1164 | |     };
+1165 | | }
+     | |_- similarly named function `mpPickTargetName` defined here
+
+error[E0425]: cannot find function `mwrite_one` in this scope
+   --> mmove.rs:113:18
+    |
+113 |     let result = mwrite_one(target_dir, longname, shortname, renameit, arg as *mut Arg as *mut c_void, &mut arg.ch)?;
+    |                  ^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> mk_direntry.rs:475:1
+    |
+475 | / fn mwrite_one(
+476 | |     dir: &Stream,
+477 | |     argname: Option<&str>,
+478 | |     shortname: Option<&str>,
+...   |
+484 | |     let shortname = shortname.map(|s| s.to_string());
+485 | |     mt_mwrite
+    | |_____________^ `crate::mk_direntry::mwrite_one`: not accessible
+    |
+   ::: mmd.rs:97:5
+    |
+97  | /     pub fn mwrite_one(
+98  | |         _dir: *mut Stream,
+99  | |         _filename: &str,
+100 | |         _flags: i32,
+...   |
+106 | |         1
+107 | |     }
+    | |_____^ `crate::mmd::mtools::mwrite_one`: not accessible
+
+error[E0425]: cannot find value `GOT_ONE` in this scope
+   --> mmove.rs:116:12
+    |
+116 |         Ok(GOT_ONE)
+    |            ^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::GOT_ONE` exists but is inaccessible
+   --> mmd.rs:43:5
+    |
+43  |     pub const GOT_ONE: i32 = 0;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ERROR_ONE` in this scope
+   --> mmove.rs:118:12
+    |
+118 |         Ok(ERROR_ONE)
+    |            ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::ERROR_ONE` exists but is inaccessible
+   --> mmd.rs:42:5
+    |
+42  |     pub const ERROR_ONE: i32 = -1;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mmove.rs:122:33
+    |
+122 | fn rename_directory(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                                 ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0412]: cannot find type `MainParam` in this scope
+   --> mmove.rs:122:52
+    |
+122 | fn rename_directory(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                                                    ^^^^^^^^^ help: a struct with a similar name exists: `MainParam_t`
+    |
+   ::: mainloop.rs:301:1
+    |
+301 | pub struct MainParam_t {
+    | ---------------------- similarly named struct `MainParam_t` defined here
+    |
+note: struct `crate::mmd::mtools::MainParam` exists but is inaccessible
+   --> mmd.rs:9:5
+    |
+9   |     pub struct MainParam {
+    |     ^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `is_subdir_of` in this scope
+   --> mmove.rs:123:8
+    |
+123 |     if is_subdir_of(&mp.target_dir.as_ref().unwrap(), &mp.file) {
+    |        ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `fprint_pwd` in this scope
+   --> mmove.rs:125:9
+    |
+125 |         fprint_pwd(io::stderr(), entry, false)?;
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `fprint_pwd` in this scope
+   --> mmove.rs:127:9
+    |
+127 |         fprint_pwd(io::stderr(), &get_direntry(&mp.target_dir.as_ref().unwrap())?, false)?;
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_direntry` in this scope
+   --> mmove.rs:127:35
+    |
+127 |         fprint_pwd(io::stderr(), &get_direntry(&mp.target_dir.as_ref().unwrap())?, false)?;
+    |                                   ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ERROR_ONE` in this scope
+   --> mmove.rs:129:19
+    |
+129 |         return Ok(ERROR_ONE);
+    |                   ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::ERROR_ONE` exists but is inaccessible
+   --> mmd.rs:42:5
+    |
+42  |     pub const ERROR_ONE: i32 = -1;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `is_root_entry` in this scope
+   --> mmove.rs:132:8
+    |
+132 |     if is_root_entry(entry) {
+    |        ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `fprint_pwd` in this scope
+   --> mmove.rs:134:9
+    |
+134 |         fprint_pwd(io::stderr(), entry, false)?;
+    |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ERROR_ONE` in this scope
+   --> mmove.rs:135:19
+    |
+135 |         return Ok(ERROR_ONE);
+    |                   ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::ERROR_ONE` exists but is inaccessible
+   --> mmd.rs:42:5
+    |
+42  |     pub const ERROR_ONE: i32 = -1;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ERROR_ONE` in this scope
+   --> mmove.rs:139:14
+    |
+139 |     if ret & ERROR_ONE != 0 {
+    |              ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::ERROR_ONE` exists but is inaccessible
+   --> mmd.rs:42:5
+    |
+42  |     pub const ERROR_ONE: i32 = -1;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `Direntry` in this scope
+   --> mmove.rs:146:33
+    |
+146 | fn rename_oldsyntax(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                                 ^^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> file.rs:16:1
+    |
+16  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::file::Direntry`: not accessible
+    |
+   ::: mk_direntry.rs:95:1
+    |
+95  | struct Direntry;
+    | ^^^^^^^^^^^^^^^^ `crate::mk_direntry::Direntry`: not accessible
+    |
+   ::: mlabel.rs:58:1
+    |
+58  | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::mlabel::Direntry`: not accessible
+    |
+   ::: mmd.rs:19:5
+    |
+19  |     pub struct Direntry {
+    |     ^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::Direntry`: not accessible
+    |
+   ::: vfat.rs:106:1
+    |
+106 | struct Direntry {
+    | ^^^^^^^^^^^^^^^ `crate::vfat::Direntry`: not accessible
+
+error[E0412]: cannot find type `MainParam` in this scope
+   --> mmove.rs:146:52
+    |
+146 | fn rename_oldsyntax(entry: &mut Direntry, mp: &mut MainParam) -> Result<i32, Error> {
+    |                                                    ^^^^^^^^^ help: a struct with a similar name exists: `MainParam_t`
+    |
+   ::: mainloop.rs:301:1
+    |
+301 | pub struct MainParam_t {
+    | ---------------------- similarly named struct `MainParam_t` defined here
+    |
+note: struct `crate::mmd::mtools::MainParam` exists but is inaccessible
+   --> mmd.rs:9:5
+    |
+9   |     pub struct MainParam {
+    |     ^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `mwrite_one` in this scope
+   --> mmove.rs:157:18
+    |
+157 |     let result = mwrite_one(target_dir, longname, shortname, renameit, arg as *mut Arg as *mut c_void, &mut arg.ch)?;
+    |                  ^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> mk_direntry.rs:475:1
+    |
+475 | / fn mwrite_one(
+476 | |     dir: &Stream,
+477 | |     argname: Option<&str>,
+478 | |     shortname: Option<&str>,
+...   |
+484 | |     let shortname = shortname.map(|s| s.to_string());
+485 | |     mt_mwrite
+    | |_____________^ `crate::mk_direntry::mwrite_one`: not accessible
+    |
+   ::: mmd.rs:97:5
+    |
+97  | /     pub fn mwrite_one(
+98  | |         _dir: *mut Stream,
+99  | |         _filename: &str,
+100 | |         _flags: i32,
+...   |
+106 | |         1
+107 | |     }
+    | |_____^ `crate::mmd::mtools::mwrite_one`: not accessible
+
+error[E0425]: cannot find value `GOT_ONE` in this scope
+   --> mmove.rs:160:12
+    |
+160 |         Ok(GOT_ONE)
+    |            ^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::GOT_ONE` exists but is inaccessible
+   --> mmd.rs:43:5
+    |
+43  |     pub const GOT_ONE: i32 = 0;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ERROR_ONE` in this scope
+   --> mmove.rs:162:12
+    |
+162 |         Ok(ERROR_ONE)
+    |            ^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::mmd::mtools::ERROR_ONE` exists but is inaccessible
+   --> mmd.rs:42:5
+    |
+42  |     pub const ERROR_ONE: i32 = -1;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `mversion` in this scope
+   --> mmove.rs:167:46
+    |
+167 |     eprintln!("Mtools version {}, dated {}", mversion, mdate);
+    |                                              ^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::patchlevel::mversion;
+    |
+
+error[E0425]: cannot find value `mdate` in this scope
+   --> mmove.rs:167:56
+    |
+167 |     eprintln!("Mtools version {}, dated {}", mversion, mdate);
+    |                                                        ^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+22  | use crate::patchlevel::mdate;
+    |
+
+error[E0433]: failed to resolve: use of undeclared type `MainParam`
+   --> mmove.rs:177:13
+    |
+177 |         mp: MainParam::new(),
+    |             ^^^^^^^^^ help: a struct with a similar name exists: `MainParam_t`
+    |
+   ::: mainloop.rs:301:1
+    |
+301 | pub struct MainParam_t {
+    | ---------------------- similarly named struct `MainParam_t` defined here
+    |
+note: struct `crate::mmd::mtools::MainParam` exists but is inaccessible
+   --> mmd.rs:9:5
+    |
+9   |     pub struct MainParam {
+    |     ^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0433]: failed to resolve: use of undeclared type `ClashHandling`
+   --> mmove.rs:179:13
+    |
+179 |         ch: ClashHandling::new(),
+    |             ^^^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> mk_direntry.rs:63:1
+    |
+63  | struct ClashHandling {
+    | ^^^^^^^^^^^^^^^^^^^^ `crate::mk_direntry::ClashHandling`: not accessible
+    |
+   ::: mlabel.rs:74:1
+    |
+74  | struct ClashHandling {
+    | ^^^^^^^^^^^^^^^^^^^^ `crate::mlabel::ClashHandling`: not accessible
+    |
+   ::: mmd.rs:32:5
+    |
+32  |     pub enum ClashHandling {
+    |     ^^^^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::ClashHandling`: not accessible
+
+error[E0425]: cannot find function `init_clash_handling` in this scope
+   --> mmove.rs:182:5
+    |
+182 |     init_clash_handling(&mut arg.ch);
+    |     ^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::mmd::mtools::init_clash_handling` exists but is inaccessible
+   --> mmd.rs:120:5
+    |
+120 |     pub fn init_clash_handling(ch: &mut ClashHandling) {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `help_flag` in this scope
+   --> mmove.rs:184:8
+    |
+184 |       if help_flag(argc, &argv) {
+    |          ^^^^^^^^^ help: a function with a similar name exists: `helpFlag`
+    |
+   ::: mtools.rs:589:1
+    |
+589 | / pub unsafe extern "C" fn helpFlag(
+590 | |     mut argc: libc::c_int,
+591 | |     mut argv: *mut *mut libc::c_char,
+592 | | ) -> libc::c_int {
+...   |
+597 | |         ) == 0) as libc::c_int;
+598 | | }
+    | |_- similarly named function `helpFlag` defined here
+
+error[E0425]: cannot find function `set_cmd_line_image` in this scope
+   --> mmove.rs:208:9
+    |
+208 |         set_cmd_line_image(&img);
+    |         ^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::config::set_cmd_line_image;
+    |
+
+error[E0425]: cannot find function `handle_clash_options` in this scope
+   --> mmove.rs:214:9
+    |
+214 |         handle_clash_options(&mut arg.ch, 'o');
+    |         ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::mmd::mtools::handle_clash_options` exists but is inaccessible
+   --> mmd.rs:124:5
+    |
+124 |     pub fn handle_clash_options(ch: &mut ClashHandling, opt: char) -> bool {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `handle_clash_options` in this scope
+   --> mmove.rs:218:12
+    |
+218 |         if handle_clash_options(&mut arg.ch, opt.chars().next().unwrap()) {
+    |            ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::mmd::mtools::handle_clash_options` exists but is inaccessible
+   --> mmd.rs:124:5
+    |
+124 |     pub fn handle_clash_options(ch: &mut ClashHandling, opt: char) -> bool {
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ACCEPT_PLAIN` in this scope
+   --> mmove.rs:252:26
+    |
+252 |     arg.mp.lookupflags = ACCEPT_PLAIN | ACCEPT_DIR | DO_OPEN_DIRS | NO_DOTS;
+    |                          ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::ACCEPT_PLAIN` exists but is inaccessible
+   --> vfat.rs:31:1
+    |
+31  | const ACCEPT_PLAIN: u32 = 0x20;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `ACCEPT_DIR` in this scope
+   --> mmove.rs:252:41
+    |
+252 |     arg.mp.lookupflags = ACCEPT_PLAIN | ACCEPT_DIR | DO_OPEN_DIRS | NO_DOTS;
+    |                                         ^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::ACCEPT_DIR` exists but is inaccessible
+   --> vfat.rs:30:1
+    |
+30  | const ACCEPT_DIR: u32 = 0x10;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `DO_OPEN_DIRS` in this scope
+   --> mmove.rs:252:54
+    |
+252 |     arg.mp.lookupflags = ACCEPT_PLAIN | ACCEPT_DIR | DO_OPEN_DIRS | NO_DOTS;
+    |                                                      ^^^^^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> mmd.rs:40:5
+    |
+40  |     pub const DO_OPEN_DIRS: u32 = 0x02;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::mmd::mtools::DO_OPEN_DIRS`: not accessible
+    |
+   ::: vfat.rs:35:1
+    |
+35  | const DO_OPEN_DIRS: u32 = 0x400;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::vfat::DO_OPEN_DIRS`: not accessible
+
+error[E0425]: cannot find value `NO_DOTS` in this scope
+   --> mmove.rs:252:69
+    |
+252 |     arg.mp.lookupflags = ACCEPT_PLAIN | ACCEPT_DIR | DO_OPEN_DIRS | NO_DOTS;
+    |                                                                     ^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::NO_DOTS` exists but is inaccessible
+   --> vfat.rs:34:1
+    |
+34  | const NO_DOTS: u32 = 0x100;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `mt_basename` in this scope
+   --> mmove.rs:263:29
+    |
+263 |         arg.fromname = Some(mt_basename(&arg.fromname.unwrap()));
+    |                             ^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+22  | use crate::missFuncs::mt_basename;
+    |
+
+error[E0425]: cannot find value `MAX_VNAMELEN` in this scope
+   --> mmove.rs:268:32
+    |
+268 |     let mut longname = [0; 4 * MAX_VNAMELEN + 1];
+    |                                ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::vfat::MAX_VNAMELEN` exists but is inaccessible
+   --> vfat.rs:19:1
+    |
+19  | const MAX_VNAMELEN: usize = 255;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:31
+   |
+14 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `max`
+ --> buffer.rs:2:21
+  |
+2 | use std::cmp::{min, max};
+  |                     ^^^
+
+warning: unused import: `std::ptr`
+ --> buffer.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> buffer.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::raw::c_void`
+ --> buffer.rs:5:5
+  |
+5 | use std::os::raw::c_void;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+  --> buffer.rs:35:9
+   |
+35 |         (self.cylinder_size - (pos % self.cylinder_size as u64) as usize)
+   |         ^                                                               ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+35 -         (self.cylinder_size - (pos % self.cylinder_size as u64) as usize)
+35 +         self.cylinder_size - (pos % self.cylinder_size as u64) as usize
+   |
+
+warning: unused import: `::libc`
+ --> codepages.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> config.rs:647:11
+    |
+647 |     ret = ({
+    |           ^
+...
+666 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+647 ~     ret = {
+648 |         let mut __res: libc::c_int = 0;
+  ...
+665 |         __res
+666 ~     };
+    |
+
+warning: unused import: `std::ffi::OsString`
+ --> dirCache.rs:1:5
+  |
+1 | use std::ffi::OsString;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> dirCache.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> dirCache.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> dirCache.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::ops::BitOrAssign`
+ --> dirCache.rs:6:5
+  |
+6 | use std::ops::BitOrAssign;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused label
+   --> direntry.rs:238:5
+    |
+238 |     'c_7352: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> direntry.rs:272:5
+    |
+272 |     'c_7410: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:303:5
+    |
+303 |     'c_7462: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:334:5
+    |
+334 |     'c_7515: {
+    |     ^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> fat.rs:1:21
+  |
+1 | use std::io::{self, Read, Write};
+  |                     ^^^^  ^^^^^
+
+warning: unused import: `std::ptr`
+ --> fat.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> fat.rs:4:5
+  |
+4 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> fat.rs:5:5
+  |
+5 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `SeekFrom`
+ --> file.rs:2:40
+  |
+2 | use std::io::{self, Read, Write, Seek, SeekFrom};
+  |                                        ^^^^^^^^
+
+warning: unused import: `UNIX_EPOCH`
+ --> file.rs:3:29
+  |
+3 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                             ^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> file.rs:5:5
+  |
+5 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `CString`
+ --> file_name.rs:3:22
+  |
+3 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`
+ --> file_name.rs:4:20
+  |
+4 | use std::os::raw::{c_char, c_int};
+  |                    ^^^^^^  ^^^^^
+
+warning: unused import: `std::ptr`
+ --> file_name.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> file_name.rs:6:5
+  |
+6 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> file_name.rs:7:5
+  |
+7 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `PathBuf`
+ --> file_name.rs:8:23
+  |
+8 | use std::path::{Path, PathBuf};
+  |                       ^^^^^^^
+
+warning: unused imports: `CString`, `OsString`
+ --> floppyd.rs:7:16
+  |
+7 | use std::ffi::{CString, OsString};
+  |                ^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> floppyd.rs:8:15
+  |
+8 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `SeekFrom`, `Seek`
+ --> floppyd.rs:9:28
+  |
+9 | use std::io::{Read, Write, Seek, SeekFrom};
+  |                            ^^^^  ^^^^^^^^
+
+warning: unused import: `FromRawFd`
+  --> floppyd.rs:11:34
+   |
+11 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+   |                                  ^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> floppyd.rs:12:5
+   |
+12 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::process`
+  --> floppyd.rs:13:5
+   |
+13 | use std::process;
+   |     ^^^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+  --> floppyd.rs:14:5
+   |
+14 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `F_LOCK`, `F_TEST`, `F_TLOCK`, `O_WRONLY`, `SIGCHLD`, `SIGHUP`, `SIGINT`, `SIGQUIT`, `SIGTERM`, `SIG_IGN`, `alarm`, `c_int`, `dup2`, `exit`, `fork`, `getenv`, `getpid`, `gid_t`, `lockf`, `pid_t`, `setsid`, `uid_t`, `umask`
+  --> floppyd.rs:17:11
+   |
+17 |     self, c_int, gid_t, pid_t, uid_t, 
+   |           ^^^^^  ^^^^^  ^^^^^  ^^^^^
+18 |     SIGCHLD, SIG_IGN, SIGHUP, SIGINT, SIGQUIT, SIGTERM, 
+   |     ^^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^
+19 |     alarm, close, dup2, exit, fork, getenv, getpid, 
+   |     ^^^^^         ^^^^  ^^^^  ^^^^  ^^^^^^  ^^^^^^
+20 |     lockf, open, setsid, umask, F_LOCK, F_TEST, F_TLOCK, 
+   |     ^^^^^        ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^  ^^^^^^^
+21 |     O_RDONLY, O_RDWR, O_WRONLY
+   |                       ^^^^^^^^
+
+warning: unused import: `ffi::CString`
+ --> floppyd_installtest.rs:2:5
+  |
+2 |     ffi::CString,
+  |     ^^^^^^^^^^^^
+
+warning: unused import: `SocketAddr`
+ --> floppyd_io.rs:2:27
+  |
+2 | use std::net::{TcpStream, SocketAddr, ToSocketAddrs};
+  |                           ^^^^^^^^^^
+
+warning: unused import: `RawFd`
+ --> floppyd_io.rs:3:34
+  |
+3 | use std::os::unix::io::{AsRawFd, RawFd};
+  |                                  ^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> floppyd_io.rs:5:5
+  |
+5 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> floppyd_io.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> floppyd_io.rs:10:5
+   |
+10 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused label
+   --> force_io.rs:139:9
+    |
+139 |         'c_7022: {
+    |         ^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> init.rs:8:5
+  |
+8 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> init.rs:11:5
+   |
+11 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around `match` scrutinee expression
+   --> mattrib.rs:390:11
+    |
+390 |     match ({
+    |           ^
+...
+409 |     }) {
+    |      ^
+    |
+help: remove these parentheses
+    |
+390 ~     match {
+391 |         let mut __res: libc::c_int = 0;
+  ...
+408 |         __res
+409 ~     } {
+    |
+
+warning: unused imports: `ffi::OsString`, `num::ParseIntError`, `path::Path`, `str::FromStr`
+  --> mbadblocks.rs:25:5
+   |
+25 |     path::Path,
+   |     ^^^^^^^^^^
+26 |     process::exit,
+27 |     ffi::OsString,
+   |     ^^^^^^^^^^^^^
+28 |     env,
+29 |     str::FromStr,
+   |     ^^^^^^^^^^^^
+30 |     num::ParseIntError,
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `File`
+  --> mcopy.rs:23:21
+   |
+23 | use std::fs::{self, File, OpenOptions};
+   |                     ^^^^
+
+warning: unused import: `Read`
+  --> mcopy.rs:24:21
+   |
+24 | use std::io::{self, Read, Write};
+   |                     ^^^^
+
+warning: unused import: `PermissionsExt`
+  --> mcopy.rs:25:25
+   |
+25 | use std::os::unix::fs::{PermissionsExt, MetadataExt};
+   |                         ^^^^^^^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+  --> mcopy.rs:27:17
+   |
+27 | use std::time::{SystemTime, UNIX_EPOCH};
+   |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `stat`
+  --> mcopy.rs:28:26
+   |
+28 | use libc::{self, time_t, stat, S_ISDIR, S_ISREG};
+   |                          ^^^^
+
+warning: unused import: `std::ffi::OsString`
+  --> mdoctorfat.rs:22:5
+   |
+22 | use std::ffi::OsString;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `File`
+  --> mdoctorfat.rs:23:15
+   |
+23 | use std::fs::{File, OpenOptions};
+   |               ^^^^
+
+warning: unused import: `std::path::PathBuf`
+  --> mdoctorfat.rs:26:5
+   |
+26 | use std::path::PathBuf;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> mformat.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> mformat.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_int`, `c_uchar`, `c_uint`
+ --> mformat.rs:3:36
+  |
+3 | use std::os::raw::{c_void, c_char, c_int, c_uint, c_uchar};
+  |                                    ^^^^^  ^^^^^^  ^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> mformat.rs:4:16
+  |
+4 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `Read`, `Write`, `self`
+ --> mformat.rs:5:15
+  |
+5 | use std::io::{self, Read, Write};
+  |               ^^^^  ^^^^  ^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> mformat.rs:6:15
+  |
+6 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mformat.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::fs::OpenOptionsExt`
+ --> mformat.rs:8:5
+  |
+8 | use std::os::unix::fs::OpenOptionsExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `O_CREAT`, `O_RDWR`, `O_TRUNC`
+ --> mformat.rs:9:12
+  |
+9 | use libc::{O_RDWR, O_CREAT, O_TRUNC, O_BINARY};
+  |            ^^^^^^  ^^^^^^^  ^^^^^^^
+
+warning: unused import: `Write`
+  --> minfo.rs:22:27
+   |
+22 | use std::io::{self, Read, Write, Seek, SeekFrom};
+   |                           ^^^^^
+
+warning: unused import: `std::path::Path`
+  --> minfo.rs:23:5
+   |
+23 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::OsString`
+  --> minfo.rs:25:5
+   |
+25 | use std::ffi::OsString;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+  --> minfo.rs:26:5
+   |
+26 | use std::os::unix::ffi::OsStringExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> minfo.rs:27:5
+   |
+27 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> minfo.rs:28:5
+   |
+28 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt`
+  --> minfo.rs:29:5
+   |
+29 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> mk_direntry.rs:22:16
+   |
+22 | use std::ffi::{CStr, CString};
+   |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+  --> mk_direntry.rs:23:5
+   |
+23 | use std::os::raw::c_char;
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> mk_direntry.rs:24:5
+   |
+24 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::fs::File`
+  --> mk_direntry.rs:27:5
+   |
+27 | use std::fs::File;
+   |     ^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> mk_direntry.rs:28:5
+   |
+28 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> mk_direntry.rs:29:5
+   |
+29 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> mlabel.rs:22:16
+   |
+22 | use std::ffi::{CStr, CString};
+   |                ^^^^  ^^^^^^^
+
+warning: unused imports: `Write`, `self`
+  --> mlabel.rs:23:15
+   |
+23 | use std::io::{self, Write};
+   |               ^^^^  ^^^^^
+
+warning: unused import: `std::os::raw::c_int`
+  --> mlabel.rs:24:5
+   |
+24 | use std::os::raw::c_int;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> mlabel.rs:25:5
+   |
+25 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> mlabel.rs:27:5
+   |
+27 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+  --> mlabel.rs:28:15
+   |
+28 | use std::fs::{File, OpenOptions};
+   |               ^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+  --> mlabel.rs:29:5
+   |
+29 | use std::os::unix::ffi::OsStrExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+  --> mlabel.rs:30:5
+   |
+30 | use std::os::unix::io::AsRawFd;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> mmd.rs:1:5
+  |
+1 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+ --> mmd.rs:2:5
+  |
+2 | use std::os::unix::ffi::OsStrExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> mmd.rs:3:5
+  |
+3 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> mmd.rs:6:15
+  |
+6 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused imports: `CString`, `OsStr`
+  --> mmove.rs:22:16
+   |
+22 | use std::ffi::{CString, OsStr};
+   |                ^^^^^^^  ^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+  --> mmove.rs:23:5
+   |
+23 | use std::os::unix::ffi::OsStrExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `PathBuf`, `Path`
+  --> mmove.rs:24:17
+   |
+24 | use std::path::{Path, PathBuf};
+   |                 ^^^^  ^^^^^^^
+
+warning: unused import: `Write`
+  --> mmove.rs:25:21
+   |
+25 | use std::io::{self, Write, Error, ErrorKind};
+   |                     ^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+  --> mmove.rs:26:15
+   |
+26 | use std::fs::{File, OpenOptions};
+   |               ^^^^  ^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::fs::OpenOptionsExt`
+  --> mmove.rs:27:5
+   |
+27 | use std::os::unix::fs::OpenOptionsExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> mmove.rs:28:5
+   |
+28 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> mmove.rs:29:5
+   |
+29 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> mmove.rs:30:5
+   |
+30 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `c_int`
+  --> mmove.rs:31:20
+   |
+31 | use libc::{O_RDWR, c_int, c_void};
+   |                    ^^^^^
+
+warning: unused import: `crate::plain_io::*`
+  --> mmove.rs:36:5
+   |
+36 | use crate::plain_io::*;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `crate::file::*`
+  --> mmove.rs:38:5
+   |
+38 | use crate::file::*;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `Write`
+  --> remap.rs:19:21
+   |
+19 | use std::io::{self, Write};
+   |                     ^^^^^
+
+warning: unused import: `std::fmt`
+  --> remap.rs:20:5
+   |
+20 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unnecessary parentheses around `match` scrutinee expression
+   --> strtonum.rs:205:11
+    |
+205 |     match ({
+    |           ^
+...
+224 |     }) {
+    |      ^
+    |
+help: remove these parentheses
+    |
+205 ~     match {
+206 |         let mut __res: libc::c_int = 0;
+  ...
+223 |         __res
+224 ~     } {
+    |
+
+warning: unused imports: `CStr`, `CString`
+ --> vfat.rs:6:16
+  |
+6 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_uchar`
+ --> vfat.rs:7:20
+  |
+7 | use std::os::raw::{c_char, c_uchar};
+  |                    ^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> vfat.rs:8:5
+  |
+8 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> vfat.rs:9:5
+  |
+9 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp`
+  --> vfat.rs:10:5
+   |
+10 | use std::cmp;
+   |     ^^^^^^^^
+
+warning: unused import: `std::fmt`
+  --> vfat.rs:11:5
+   |
+11 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Error`, `self`
+  --> vfat.rs:12:15
+   |
+12 | use std::io::{self, Error, ErrorKind};
+   |               ^^^^  ^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> vfat.rs:13:5
+   |
+13 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+Some errors have detailed explanations: E0106, E0405, E0407, E0412, E0425, E0432, E0433.
+For more information about an error, try `rustc --explain E0106`.
+warning: `c2rust_out` (lib) generated 115 warnings
+error: could not compile `c2rust_out` due to 204 previous errors; 115 warnings emitted

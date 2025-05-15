@@ -1,0 +1,1102 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/gzip-1.12)
+error: mismatched closing delimiter: `}`
+  --> unlzw.rs:79:13
+   |
+74 |     fn input(&mut self, n_bits: usize) -> CodeInt {
+   |                                                   - closing delimiter possibly meant for this
+...
+79 |         c = ((p[0] as CodeInt) | ((p[1] as CodeInt) << 8) | ((p[2] as CodeInt) << 16);
+   |             ^ unclosed delimiter
+...
+83 |     }
+   |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> unlzw.rs:79:13
+   |
+79 |         c = ((p[0] as CodeInt) | ((p[1] as CodeInt) << 8) | ((p[2] as CodeInt) << 16);
+   |             ^ unclosed delimiter                                                     ^ help: `)` may belong here
+
+error: expected one of `!`, `.`, `::`, `;`, `?`, `{`, `}`, or an operator, found `)`
+  --> unlzw.rs:83:5
+   |
+82 |         c
+   |          - expected one of 8 possible tokens
+83 |     }
+   |     ^ unexpected token
+
+error: this file contains an unclosed delimiter
+   --> util.rs:284:22
+    |
+90  | impl GzipState {
+    |                - unclosed delimiter
+...
+270 |     fn xunlink(&self, filename: &str) -> io::Result<()> {
+    |                                                         - unclosed delimiter
+271 |         match std::fs::remove_file(filename) {
+    |                                              - unclosed delimiter
+272 |             Ok(_) => Ok(()),
+273 |             Err(e) => {
+    |                       - unclosed delimiter
+...
+284 |                 Err(e
+    |                    - ^
+    |                    |
+    |                    unclosed delimiter
+
+error: mismatched closing delimiter: `]`
+   --> util.rs:134:32
+    |
+134 |                 c = CRC_32_TAB[((c as u8 ^ byte) as usize] ^ (c >> 8);
+    |                               -^                         ^ mismatched closing delimiter
+    |                               ||
+    |                               |unclosed delimiter
+    |                               closing delimiter possibly meant for this
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> lib/unistd.rs:143:56
+    |
+143 | pub fn execlp(file: *const c_char, arg: *const c_char, ...) -> c_int {
+    |                                                        ^^^
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> lib/unistd.rs:150:55
+    |
+150 | pub fn execl(file: *const c_char, arg: *const c_char, ...) -> c_int {
+    |                                                       ^^^
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> lib/unistd.rs:157:56
+    |
+157 | pub fn execle(file: *const c_char, arg: *const c_char, ...) -> c_int {
+    |                                                        ^^^
+
+error[E0432]: unresolved import `std::os::unix::fs::FileTimesExt`
+ --> lib/utimens.rs:1:25
+  |
+1 | use std::os::unix::fs::{FileTimesExt, MetadataExt};
+  |                         ^^^^^^^^^^^^
+  |                         |
+  |                         no `FileTimesExt` in `os::unix::fs`
+  |                         help: a similar name exists in the module: `FileTypeExt`
+
+error[E0432]: unresolved import `crc32fast`
+ --> unzip.rs:4:5
+  |
+4 | use crc32fast::Hasher as Crc32;
+  |     ^^^^^^^^^ use of undeclared crate or module `crc32fast`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_args.rs:58:23
+   |
+58 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/printf_args.rs:122:51
+    |
+122 |                 (*ap).a.a_longdouble = args.arg::<f128::f128>();
+    |                                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:18
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:4:54
+  |
+4 |     fn frexpl(_: f128::f128, _: *mut libc::c_int) -> f128::f128;
+  |                                                      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:18
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                  ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+ --> lib/printf_frexpl.rs:5:49
+  |
+5 |     fn ldexpl(_: f128::f128, _: libc::c_int) -> f128::f128;
+  |                                                 ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:10:12
+   |
+10 |     mut x: f128::f128,
+   |            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_frexpl.rs:12:6
+   |
+12 | ) -> f128::f128 {
+   |      ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/printf_parse.rs:62:23
+   |
+62 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0425]: cannot find function `copy_within` in module `mem`
+   --> deflate.rs:188:18
+    |
+188 |             mem::copy_within(&self.window[WSIZE..], 0, WSIZE);
+    |                  ^^^^^^^^^^^ not found in `mem`
+
+error[E0425]: cannot find value `MAX_PATH_LEN` in this scope
+  --> gzip.rs:46:18
+   |
+46 |     ifname: [u8; MAX_PATH_LEN],
+   |                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_PATH_LEN` in this scope
+  --> gzip.rs:47:18
+   |
+47 |     ofname: [u8; MAX_PATH_LEN],
+   |                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_PATH_LEN` in this scope
+  --> gzip.rs:78:25
+   |
+78 |             ifname: [0; MAX_PATH_LEN],
+   |                         ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_PATH_LEN` in this scope
+  --> gzip.rs:79:25
+   |
+79 |             ofname: [0; MAX_PATH_LEN],
+   |                         ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `set_errno` in module `io`
+  --> lib/free.rs:37:13
+   |
+37 |         io::set_errno(errno);
+   |             ^^^^^^^^^ not found in `io`
+
+error[E0425]: cannot find function `getlogin_r` in crate `libc`
+   --> lib/unistd.rs:213:20
+    |
+213 |     unsafe { libc::getlogin_r(name, size) }
+    |                    ^^^^^^^^^^ help: a function with a similar name exists: `getlogin`
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/unix/mod.rs:986:5
+    |
+986 |     pub fn getlogin() -> *mut c_char;
+    |     -------------------------------- similarly named function `getlogin` defined here
+
+error[E0425]: cannot find value `prefix_len` in this scope
+   --> unpack.rs:150:37
+    |
+150 |             let mut len = if peek < prefix_len.len() { prefix_len[peek] as usize } else { 0 };
+    |                                     ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `prefix_len` in this scope
+   --> unpack.rs:150:56
+    |
+150 |             let mut len = if peek < prefix_len.len() { prefix_len[peek] as usize } else { 0 };
+    |                                                        ^^^^^^^^^^ not found in this scope
+
+warning: unused import: `std::cmp`
+ --> deflate.rs:2:5
+  |
+2 | use std::cmp;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `AtomicBool`, `CStr`, `CString`, `File`, `OpenOptions`, `Ordering`, `PathBuf`, `Path`, `Read`, `Write`, `mem`, `os::unix::ffi::OsStrExt`, `ptr`, `self`, `slice`
+  --> gzip.rs:2:10
+   |
+2  |     fs::{File, OpenOptions},
+   |          ^^^^  ^^^^^^^^^^^
+3  |     io::{self, Read, Write},
+   |          ^^^^  ^^^^  ^^^^^
+4  |     path::{Path, PathBuf},
+   |            ^^^^  ^^^^^^^
+5  |     ffi::{CStr, CString},
+   |           ^^^^  ^^^^^^^
+6  |     os::unix::ffi::OsStrExt,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+7  |     time::{SystemTime, UNIX_EPOCH},
+8  |     mem,
+   |     ^^^
+9  |     ptr,
+   |     ^^^
+10 |     slice,
+   |     ^^^^^
+11 |     sync::atomic::{AtomicBool, Ordering},
+   |                    ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> inflate.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> inflate.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `Write`
+ --> inflate.rs:3:21
+  |
+3 | use std::io::{self, Write};
+  |                     ^^^^^
+
+warning: unused label
+  --> lib/chdir_long.rs:59:9
+   |
+59 |         'c_1358: {
+   |         ^^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> lib/chdir_long.rs:120:5
+    |
+120 |     'c_1957: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:146:5
+    |
+146 |     'c_1919: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:208:13
+    |
+208 |             'c_1748: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:234:13
+    |
+234 |             'c_1709: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> lib/chdir_long.rs:280:17
+    |
+280 |                 'c_1629: {
+    |                 ^^^^^^^
+
+warning: unused imports: `AsRawFd`, `FromRawFd`
+ --> lib/cloexec.rs:3:25
+  |
+3 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+  |                         ^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `Ordering`
+  --> lib/exitfail.rs:18:36
+   |
+18 | use std::sync::atomic::{AtomicI32, Ordering};
+   |                                    ^^^^^^^^
+
+warning: unused import: `FromRawFd`
+  --> lib/fclose.rs:19:34
+   |
+19 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+   |                                  ^^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> lib/fclose.rs:20:5
+   |
+20 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unnecessary parentheses around `if` condition
+  --> lib/fclose.rs:86:8
+   |
+86 |     if (!freading(&file) || file.seek(SeekFrom::Current(0)).is_ok()) {
+   |        ^                                                           ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+86 -     if (!freading(&file) || file.seek(SeekFrom::Current(0)).is_ok()) {
+86 +     if !freading(&file) || file.seek(SeekFrom::Current(0)).is_ok() {
+   |
+
+warning: unused import: `c_void`
+  --> lib/fcntl.rs:19:28
+   |
+19 | use std::os::raw::{c_char, c_void};
+   |                            ^^^^^^
+
+warning: unused import: `::libc`
+ --> lib/fd_hook.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> lib/fflush.rs:3:5
+  |
+3 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> lib/fprintf.rs:19:5
+   |
+19 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Read`
+  --> lib/fpurge.rs:17:28
+   |
+17 | use std::io::{self, Write, Read, Seek};
+   |                            ^^^^
+
+warning: unused import: `std::ptr`
+  --> lib/free.rs:21:5
+   |
+21 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> lib/getprogname.rs:18:5
+   |
+18 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+  --> lib/getprogname.rs:19:5
+   |
+19 | use std::os::unix::ffi::OsStringExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+  --> lib/getprogname.rs:20:5
+   |
+20 | use std::path::Path;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+ --> lib/glthread/lock.rs:9:5
+  |
+9 | use std::time::Duration;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+  --> lib/glthread/threadlib.rs:19:25
+   |
+19 | use std::sync::atomic::{AtomicBool, Ordering};
+   |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::sync::Once`
+  --> lib/glthread/threadlib.rs:20:5
+   |
+20 | use std::sync::Once;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::thread`
+  --> lib/glthread/threadlib.rs:21:5
+   |
+21 | use std::thread;
+   |     ^^^^^^^^^^^
+
+warning: unused import: `std::num::NonZeroUsize`
+  --> lib/ialloc.rs:20:5
+   |
+20 | use std::num::NonZeroUsize;
+   |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> lib/malloca.rs:103:22
+    |
+103 |         let offset = ((umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem);
+    |                      ^                                                       ^
+    |
+help: remove these parentheses
+    |
+103 -         let offset = ((umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem);
+103 +         let offset = (umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem;
+    |
+
+warning: unnecessary parentheses around assigned value
+  --> lib/printf_frexpl.rs:15:13
+   |
+15 |     oldcw = ({
+   |             ^
+...
+19 |     });
+   |      ^
+   |
+help: remove these parentheses
+   |
+15 ~     oldcw = {
+16 |         let mut _cw: fpucw_t = 0;
+17 |         asm!("fnstcw [{0}]", in (reg) & mut _cw, options(preserves_flags));
+18 |         _cw
+19 ~     };
+   |
+
+warning: unused label
+  --> lib/printf_frexpl.rs:23:5
+   |
+23 |     'c_149: {
+   |     ^^^^^^
+
+warning: unused label
+  --> lib/printf_frexpl.rs:37:5
+   |
+37 |     'c_59: {
+   |     ^^^^^
+
+warning: unused imports: `CStr`, `CString`, `OsStr`
+ --> lib/savedir.rs:2:16
+  |
+2 | use std::ffi::{CStr, CString, OsStr, OsString};
+  |                ^^^^  ^^^^^^^  ^^^^^
+
+warning: unused import: `std::error::Error`
+ --> lib/strerror_r.rs:1:5
+  |
+1 | use std::error::Error;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Duration`
+ --> lib/timespec.rs:5:17
+  |
+5 | use std::time::{Duration, SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> lib/unistd.rs:10:5
+   |
+10 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::raw`
+  --> lib/unistd.rs:11:5
+   |
+11 | use std::os::raw;
+   |     ^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> lib/vasnprintf.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::mem`
+ --> lib/vasnprintf.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `Write`
+ --> lib/vasnprintf.rs:6:21
+  |
+6 | use std::io::{self, Write};
+  |                     ^^^^^
+
+warning: unused import: `std::cmp`
+ --> lib/vasnprintf.rs:7:5
+  |
+7 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> lib/vasnprintf.rs:9:5
+  |
+9 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `self`
+  --> lib/vfprintf.rs:18:15
+   |
+18 | use std::io::{self, Write};
+   |               ^^^^
+
+warning: unused import: `BufRead`
+  --> lib/yesno.rs:18:21
+   |
+18 | use std::io::{self, BufRead};
+   |                     ^^^^^^^
+
+warning: unused import: `std::fs::File`
+ --> unlzw.rs:1:5
+  |
+1 | use std::fs::File;
+  |     ^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> unlzw.rs:3:5
+  |
+3 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> unlzw.rs:79:13
+   |
+79 |         c = ((p[0] as CodeInt) | ((p[1] as CodeInt) << 8) | ((p[2] as CodeInt) << 16);
+   |             ^                                                                        ^
+   |
+help: remove these parentheses
+   |
+79 -         c = ((p[0] as CodeInt) | ((p[1] as CodeInt) << 8) | ((p[2] as CodeInt) << 16);
+79 +         c = (p[0] as CodeInt) | ((p[1] as CodeInt) << 8) | ((p[2] as CodeInt) << 16);
+   |
+
+warning: unnecessary parentheses around assigned value
+   --> unlzw.rs:137:33
+    |
+137 |                 state.posbits = ((state.posbits - 1) + 
+    |                                 ^
+138 |                     ((state.n_bits * 8) - (state.posbits - 1 + state.n_bits * 8) % (state.n_bits * 8)));
+    |                                                                                                       ^
+    |
+help: remove these parentheses
+    |
+137 ~                 state.posbits = (state.posbits - 1) + 
+138 ~                     ((state.n_bits * 8) - (state.posbits - 1 + state.n_bits * 8) % (state.n_bits * 8));
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> unlzw.rs:165:33
+    |
+165 |                 state.posbits = ((state.posbits - 1) + 
+    |                                 ^
+166 |                     ((state.n_bits * 8) - (state.posbits - 1 + state.n_bits * 8) % (state.n_bits * 8)));
+    |                                                                                                       ^
+    |
+help: remove these parentheses
+    |
+165 ~                 state.posbits = (state.posbits - 1) + 
+166 ~                     ((state.n_bits * 8) - (state.posbits - 1 + state.n_bits * 8) % (state.n_bits * 8));
+    |
+
+warning: unused import: `std::fs::File`
+ --> unzip.rs:2:5
+  |
+2 | use std::fs::File;
+  |     ^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> unzip.rs:3:5
+  |
+3 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> util.rs:1:15
+  |
+1 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> util.rs:2:21
+  |
+2 | use std::io::{self, Read, Write, Error, ErrorKind};
+  |                     ^^^^  ^^^^^
+
+warning: unused import: `std::env`
+ --> util.rs:4:5
+  |
+4 | use std::env;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::unix::fs::OpenOptionsExt`
+ --> util.rs:6:5
+  |
+6 | use std::os::unix::fs::OpenOptionsExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> util.rs:8:5
+  |
+8 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> util.rs:9:5
+  |
+9 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+  --> util.rs:10:5
+   |
+10 | use std::slice;
+   |     ^^^^^^^^^^
+
+error[E0658]: use of unstable library feature 'once_cell'
+ --> lib/strerror_r.rs:5:5
+  |
+5 | use std::sync::OnceLock;
+  |     ^^^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #74465 <https://github.com/rust-lang/rust/issues/74465> for more information
+  = help: add `#![feature(once_cell)]` to the crate attributes to enable
+
+error[E0658]: use of unstable library feature 'once_cell'
+ --> lib/strerror_r.rs:7:23
+  |
+7 | static STRERROR_LOCK: OnceLock<std::sync::Mutex<()>> = OnceLock::new();
+  |                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: see issue #74465 <https://github.com/rust-lang/rust/issues/74465> for more information
+  = help: add `#![feature(once_cell)]` to the crate attributes to enable
+
+error[E0658]: use of unstable library feature 'once_cell'
+ --> lib/strerror_r.rs:7:56
+  |
+7 | static STRERROR_LOCK: OnceLock<std::sync::Mutex<()>> = OnceLock::new();
+  |                                                        ^^^^^^^^
+  |
+  = note: see issue #74465 <https://github.com/rust-lang/rust/issues/74465> for more information
+  = help: add `#![feature(once_cell)]` to the crate attributes to enable
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0658]: use of unstable library feature 'once_cell'
+ --> lib/strerror_r.rs:7:56
+  |
+7 | static STRERROR_LOCK: OnceLock<std::sync::Mutex<()>> = OnceLock::new();
+  |                                                        ^^^^^^^^^^^^^
+  |
+  = note: see issue #74465 <https://github.com/rust-lang/rust/issues/74465> for more information
+  = help: add `#![feature(once_cell)]` to the crate attributes to enable
+
+error[E0609]: no field `eoffile` on type `&mut DeflateState`
+   --> deflate.rs:116:14
+    |
+116 |         self.eoffile = false;
+    |              ^^^^^^^ help: a field with a similar name exists: `eofile`
+
+error[E0609]: no field `nice_match` on type `&mut DeflateState`
+   --> deflate.rs:168:37
+    |
+168 |                 if best_len >= self.nice_match as usize {
+    |                                     ^^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `window`, `prev`, `head`, `window_size`, `block_start` ... and 12 others
+
+error[E0609]: no field `max_insert_length` on type `&mut DeflateState`
+   --> deflate.rs:254:41
+    |
+254 |                 if match_length <= self.max_insert_length as usize {
+    |                                         ^^^^^^^^^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `window`, `prev`, `head`, `window_size`, `block_start` ... and 12 others
+
+error[E0599]: no method named `flush` found for struct `Stdout` in the current scope
+    --> lib/fflush.rs:13:26
+     |
+13   |             io::stdout().flush()?;
+     |                          ^^^^^ method not found in `Stdout`
+     |
+    ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1496:8
+     |
+1496 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stdout` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+1    | use std::io::Write;
+     |
+
+error[E0599]: no method named `flush` found for struct `Stderr` in the current scope
+    --> lib/fflush.rs:14:26
+     |
+14   |             io::stderr().flush()?;
+     |                          ^^^^^ method not found in `Stderr`
+     |
+    ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:1496:8
+     |
+1496 |     fn flush(&mut self) -> Result<()>;
+     |        ----- the method is available for `Stderr` here
+     |
+     = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+     |
+1    | use std::io::Write;
+     |
+
+error[E0599]: no method named `force_unlock` found for struct `Mutex` in the current scope
+  --> lib/glthread/lock.rs:42:29
+   |
+42 |         unsafe { self.inner.force_unlock(); }
+   |                             ^^^^^^^^^^^^ help: there is an associated function with a similar name: `try_lock`
+
+error[E0599]: no method named `force_unlock` found for struct `Mutex` in the current scope
+   --> lib/glthread/lock.rs:201:33
+    |
+201 |             unsafe { self.inner.force_unlock(); }
+    |                                 ^^^^^^^^^^^^ help: there is an associated function with a similar name: `try_lock`
+
+error[E0599]: no method named `frexp` found for type `f32` in the current scope
+   --> lib/math.rs:121:41
+    |
+121 | pub fn frexpf(x: f32) -> (f32, i32) { x.frexp() }
+    |                                         ^^^^^ help: there is an associated function with a similar name: `exp`
+
+error[E0599]: no method named `frexp` found for type `f64` in the current scope
+   --> lib/math.rs:122:40
+    |
+122 | pub fn frexp(x: f64) -> (f64, i32) { x.frexp() }
+    |                                        ^^^^^ help: there is an associated function with a similar name: `exp`
+
+error[E0599]: no method named `ldexp` found for type `f32` in the current scope
+   --> lib/math.rs:123:44
+    |
+123 | pub fn ldexpf(x: f32, exp: i32) -> f32 { x.ldexp(exp) }
+    |                                            ^^^^^ help: there is an associated function with a similar name: `exp`
+
+error[E0599]: no method named `ldexp` found for type `f64` in the current scope
+   --> lib/math.rs:124:43
+    |
+124 | pub fn ldexp(x: f64, exp: i32) -> f64 { x.ldexp(exp) }
+    |                                           ^^^^^ help: there is an associated function with a similar name: `exp`
+
+error[E0308]: mismatched types
+   --> lib/math.rs:125:38
+    |
+125 | pub fn modff(x: f32) -> (f32, f32) { x.fract() }
+    |                         ----------   ^^^^^^^^^ expected tuple, found `f32`
+    |                         |
+    |                         expected `(f32, f32)` because of return type
+    |
+    = note: expected tuple `(f32, f32)`
+                found type `f32`
+
+error[E0308]: mismatched types
+   --> lib/math.rs:126:37
+    |
+126 | pub fn modf(x: f64) -> (f64, f64) { x.fract() }
+    |                        ----------   ^^^^^^^^^ expected tuple, found `f64`
+    |                        |
+    |                        expected `(f64, f64)` because of return type
+    |
+    = note: expected tuple `(f64, f64)`
+                found type `f64`
+
+error[E0308]: mismatched types
+  --> lib/printf.rs:23:5
+   |
+21 | pub fn printf(format: &str, args: std::fmt::Arguments<'_>) -> io::Result<usize> {
+   |                                                               ----------------- expected `Result<usize, std::io::Error>` because of return type
+22 |     let mut stdout = io::stdout();
+23 |     stdout.write_fmt(args)
+   |     ^^^^^^^^^^^^^^^^^^^^^^ expected `usize`, found `()`
+   |
+   = note: expected enum `Result<usize, _>`
+              found enum `Result<(), _>`
+
+error[E0599]: no method named `ino` found for struct `Metadata` in the current scope
+   --> lib/savedir.rs:43:32
+    |
+43  |             let ino = metadata.ino();
+    |                                ^^^ method not found in `Metadata`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/unix/fs.rs:407:8
+    |
+407 |     fn ino(&self) -> u64;
+    |        --- the method is available for `Metadata` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::fs::MetadataExt;
+    |
+
+error[E0658]: use of unstable library feature 'once_cell'
+  --> lib/strerror_r.rs:10:19
+   |
+10 |     STRERROR_LOCK.get_or_init(|| std::sync::Mutex::new(()))
+   |                   ^^^^^^^^^^^
+   |
+   = note: see issue #74465 <https://github.com/rust-lang/rust/issues/74465> for more information
+   = help: add `#![feature(once_cell)]` to the crate attributes to enable
+
+error[E0599]: the method `write_fmt` exists for mutable reference `&mut str`, but its trait bounds were not satisfied
+  --> lib/strerror_r.rs:60:21
+   |
+60 |             let _ = write!(unsafe { std::str::from_utf8_unchecked_mut(buf) }, "Unknown error {}", errnum);
+   |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ method cannot be called on `&mut str` due to unsatisfied trait bounds
+   |
+   = note: the following trait bounds were not satisfied:
+           `str: std::fmt::Write`
+           which is required by `&mut str: std::fmt::Write`
+   = note: this error originates in the macro `write` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0283]: type annotations needed for `*const T`
+   --> lib/unistd.rs:145:13
+    |
+145 |         let mut args = ptr::null();
+    |             ^^^^^^^^   --------- type must be known at this point
+    |
+    = note: cannot satisfy `_: Thin`
+note: required by a bound in `null`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:512:31
+    |
+512 | pub const fn null<T: ?Sized + Thin>() -> *const T {
+    |                               ^^^^ required by this bound in `null`
+help: consider specifying the type argument in the function call
+    |
+145 |         let mut args = ptr::null::<T>();
+    |                                 +++++
+
+error[E0283]: type annotations needed for `*const T`
+   --> lib/unistd.rs:152:13
+    |
+152 |         let mut args = ptr::null();
+    |             ^^^^^^^^   --------- type must be known at this point
+    |
+    = note: cannot satisfy `_: Thin`
+note: required by a bound in `null`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:512:31
+    |
+512 | pub const fn null<T: ?Sized + Thin>() -> *const T {
+    |                               ^^^^ required by this bound in `null`
+help: consider specifying the type argument in the function call
+    |
+152 |         let mut args = ptr::null::<T>();
+    |                                 +++++
+
+error[E0283]: type annotations needed for `*const T`
+   --> lib/unistd.rs:159:13
+    |
+159 |         let mut args = ptr::null();
+    |             ^^^^^^^^   --------- type must be known at this point
+    |
+    = note: cannot satisfy `_: Thin`
+note: required by a bound in `null`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:512:31
+    |
+512 | pub const fn null<T: ?Sized + Thin>() -> *const T {
+    |                               ^^^^ required by this bound in `null`
+help: consider specifying the type argument in the function call
+    |
+159 |         let mut args = ptr::null::<T>();
+    |                                 +++++
+
+error[E0599]: no method named `as_bytes` found for reference `&OsStr` in the current scope
+   --> lib/utimens.rs:120:57
+    |
+120 |                 let c_path = CString::new(p.as_os_str().as_bytes()).unwrap();
+    |                                                         ^^^^^^^^ method not found in `&OsStr`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::ffi::OsStrExt;
+    |
+
+error[E0658]: use of unstable library feature 'file_set_times'
+   --> lib/utimens.rs:161:15
+    |
+161 |             f.set_times(atime, mtime)?;
+    |               ^^^^^^^^^
+    |
+    = note: see issue #98245 <https://github.com/rust-lang/rust/issues/98245> for more information
+    = help: add `#![feature(file_set_times)]` to the crate attributes to enable
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> lib/utimens.rs:161:15
+    |
+161 |             f.set_times(atime, mtime)?;
+    |               ^^^^^^^^^ -----  ----- argument of type `SystemTime` unexpected
+    |                         |
+    |                         expected struct `FileTimes`, found struct `SystemTime`
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/fs.rs:644:12
+    |
+644 |     pub fn set_times(&self, times: FileTimes) -> io::Result<()> {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+161 |             f.set_times(/* FileTimes */)?;
+    |               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0658]: use of unstable library feature 'file_set_times'
+   --> lib/utimens.rs:164:18
+    |
+164 |             file.set_times(atime, mtime)?;
+    |                  ^^^^^^^^^
+    |
+    = note: see issue #98245 <https://github.com/rust-lang/rust/issues/98245> for more information
+    = help: add `#![feature(file_set_times)]` to the crate attributes to enable
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> lib/utimens.rs:164:18
+    |
+164 |             file.set_times(atime, mtime)?;
+    |                  ^^^^^^^^^ -----  ----- argument of type `SystemTime` unexpected
+    |                            |
+    |                            expected struct `FileTimes`, found struct `SystemTime`
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/fs.rs:644:12
+    |
+644 |     pub fn set_times(&self, times: FileTimes) -> io::Result<()> {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+164 |             file.set_times(/* FileTimes */)?;
+    |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0658]: use of unstable library feature 'file_set_times'
+   --> lib/utimens.rs:169:15
+    |
+169 |             f.set_times(now, now)?;
+    |               ^^^^^^^^^
+    |
+    = note: see issue #98245 <https://github.com/rust-lang/rust/issues/98245> for more information
+    = help: add `#![feature(file_set_times)]` to the crate attributes to enable
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> lib/utimens.rs:169:15
+    |
+169 |             f.set_times(now, now)?;
+    |               ^^^^^^^^^ ---  --- argument of type `SystemTime` unexpected
+    |                         |
+    |                         expected struct `FileTimes`, found struct `SystemTime`
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/fs.rs:644:12
+    |
+644 |     pub fn set_times(&self, times: FileTimes) -> io::Result<()> {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+169 |             f.set_times(/* FileTimes */)?;
+    |               ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0658]: use of unstable library feature 'file_set_times'
+   --> lib/utimens.rs:172:18
+    |
+172 |             file.set_times(now, now)?;
+    |                  ^^^^^^^^^
+    |
+    = note: see issue #98245 <https://github.com/rust-lang/rust/issues/98245> for more information
+    = help: add `#![feature(file_set_times)]` to the crate attributes to enable
+
+error[E0061]: this function takes 1 argument but 2 arguments were supplied
+   --> lib/utimens.rs:172:18
+    |
+172 |             file.set_times(now, now)?;
+    |                  ^^^^^^^^^ ---  --- argument of type `SystemTime` unexpected
+    |                            |
+    |                            expected struct `FileTimes`, found struct `SystemTime`
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/fs.rs:644:12
+    |
+644 |     pub fn set_times(&self, times: FileTimes) -> io::Result<()> {
+    |            ^^^^^^^^^
+help: remove the extra argument
+    |
+172 |             file.set_times(/* FileTimes */)?;
+    |                  ~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0599]: no method named `as_bytes` found for reference `&OsStr` in the current scope
+   --> lib/utimens.rs:207:56
+    |
+207 |             let c_path = CString::new(file.as_os_str().as_bytes()).unwrap();
+    |                                                        ^^^^^^^^ method not found in `&OsStr`
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+1   | use std::os::unix::ffi::OsStrExt;
+    |
+
+error[E0277]: the trait bound `Vec<_>: std::fmt::Write` is not satisfied
+  --> lib/vfprintf.rs:29:38
+   |
+29 |     let formatted = match fmt::write(&mut output, args) {
+   |                           ---------- ^^^^^^^^^^^ the trait `std::fmt::Write` is not implemented for `Vec<_>`
+   |                           |
+   |                           required by a bound introduced by this call
+   |
+   = help: the following other types implement trait `std::fmt::Write`:
+             &mut W
+             Formatter<'_>
+             OsString
+             String
+   = note: required for the cast from `Vec<_>` to the object type `dyn std::fmt::Write`
+
+error[E0599]: no method named `read_exact` found for struct `Stdin` in the current scope
+   --> lib/yesno.rs:45:31
+    |
+45  |         let yes = match stdin.read_exact(&mut buf) {
+    |                               ^^^^^^^^^^ method not found in `Stdin`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:800:8
+    |
+800 |     fn read_exact(&mut self, buf: &mut [u8]) -> Result<()> {
+    |        ---------- the method is available for `Stdin` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+18  | use std::io::Read;
+    |
+
+error[E0599]: no method named `read` found for struct `Stdin` in the current scope
+   --> lib/yesno.rs:56:25
+    |
+56  |             match stdin.read(&mut consume_buf) {
+    |                         ^^^^ method not found in `Stdin`
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/io/mod.rs:626:8
+    |
+626 |     fn read(&mut self, buf: &mut [u8]) -> Result<usize>;
+    |        ---- the method is available for `Stdin` here
+    |
+    = help: items from traits can only be used if the trait is in scope
+help: the following trait is implemented but not in scope; perhaps add a `use` for it:
+    |
+18  | use std::io::Read;
+    |
+
+error[E0308]: mismatched types
+   --> trees.rs:361:25
+    |
+361 |                         (bits as i64 - tree[m as usize].len as i64) * tree[m as usize].freq as i64;
+    |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `u64`, found `i64`
+
+error[E0277]: cannot add-assign `i64` to `u64`
+   --> trees.rs:360:34
+    |
+360 |                     self.opt_len +=
+    |                                  ^^ no implementation for `u64 += i64`
+    |
+    = help: the trait `AddAssign<i64>` is not implemented for `u64`
+    = help: the following other types implement trait `AddAssign<Rhs>`:
+              <f32 as AddAssign<&f32>>
+              <f32 as AddAssign>
+              <f64 as AddAssign<&f64>>
+              <f64 as AddAssign>
+              <i128 as AddAssign<&i128>>
+              <i128 as AddAssign>
+              <i16 as AddAssign<&i16>>
+              <i16 as AddAssign>
+            and 20 others
+
+warning: unused import: `std::fmt::Write`
+ --> lib/strerror_r.rs:3:5
+  |
+3 | use std::fmt::Write;
+  |     ^^^^^^^^^^^^^^^
+
+Some errors have detailed explanations: E0061, E0277, E0283, E0308, E0425, E0432, E0433, E0599, E0609...
+For more information about an error, try `rustc --explain E0061`.
+warning: `c2rust_out` (lib) generated 62 warnings
+error: could not compile `c2rust_out` due to 67 previous errors; 62 warnings emitted

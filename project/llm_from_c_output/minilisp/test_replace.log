@@ -1,0 +1,296 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/minilisp)
+error: this file contains an unclosed delimiter
+   --> minilisp.rs:563:8
+    |
+551 | fn prim_defmacro(env: &mut Env, args: &[Obj]) -> Obj {
+    |                                                      - unclosed delimiter
+...
+563 |     env
+    |        ^
+
+warning: unused import: `std::env`
+ --> minilisp.rs:2:5
+  |
+2 | use std::env;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `Read`, `Write`
+ --> minilisp.rs:3:21
+  |
+3 | use std::io::{self, Read, Write};
+  |                     ^^^^  ^^^^^
+
+warning: unused import: `std::mem`
+ --> minilisp.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> minilisp.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> minilisp.rs:6:5
+  |
+6 | use std::slice;
+  |     ^^^^^^^^^^
+
+error[E0369]: binary operation `==` cannot be applied to type `for<'r, 's> fn(&'r mut Env, &'s [Obj]) -> Obj`
+  --> minilisp.rs:14:15
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+14 |     Primitive(fn(&mut Env, &[Obj]) -> Obj),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0369]: binary operation `==` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:18:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+18 |         env: Box<Env>,
+   |         ^^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:23:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+23 |         env: Box<Env>,
+   |         ^^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0369]: binary operation `==` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:27:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+27 |         up: Box<Env>,
+   |         ^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `for<'r, 's> fn(&'r mut Env, &'s [Obj]) -> Obj`
+  --> minilisp.rs:14:15
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+14 |     Primitive(fn(&mut Env, &[Obj]) -> Obj),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0369]: binary operation `!=` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:18:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+18 |         env: Box<Env>,
+   |         ^^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:23:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+23 |         env: Box<Env>,
+   |         ^^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0369]: binary operation `!=` cannot be applied to type `Box<Env>`
+  --> minilisp.rs:27:9
+   |
+9  | #[derive(Debug, Clone, PartialEq)]
+   |                        --------- in this derive macro expansion
+...
+27 |         up: Box<Env>,
+   |         ^^^^^^^^^^^^
+   |
+note: an implementation of `PartialEq` might be missing for `Env`
+  --> minilisp.rs:36:1
+   |
+36 | struct Env {
+   | ^^^^^^^^^^ must implement `PartialEq`
+   = note: this error originates in the derive macro `PartialEq` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `Env` with `#[derive(PartialEq)]`
+   |
+36 | #[derive(PartialEq)]
+   |
+
+error[E0599]: the method `clone` exists for mutable reference `&mut Peekable<I>`, but its trait bounds were not satisfied
+   --> minilisp.rs:172:58
+    |
+172 |         Some(c) if c.is_digit(10) || (*c == '-' && chars.clone().nth(1).map_or(false, |c| c.is_digit(10))) => {
+    |                                                          ^^^^^ method cannot be called on `&mut Peekable<I>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/iter/adapters/peekable.rs:15:1
+    |
+15  | pub struct Peekable<I: Iterator> {
+    | -------------------------------- doesn't satisfy `Peekable<I>: Clone`
+    |
+    = note: the following trait bounds were not satisfied:
+            `I: Clone`
+            which is required by `Peekable<I>: Clone`
+help: consider restricting the type parameter to satisfy the trait bound
+    |
+149 | fn parse<I: Iterator<Item = char>>(chars: &mut std::iter::Peekable<I>) -> Obj where I: Clone {
+    |                                                                               ++++++++++++++
+
+error[E0308]: mismatched types
+   --> minilisp.rs:326:54
+    |
+326 |             let mut new_env = Env::new(Some(Box::new(closure_env.clone())));
+    |                                             -------- ^^^^^^^^^^^^^^^^^^^ expected struct `Env`, found struct `Box`
+    |                                             |
+    |                                             arguments to this function are incorrect
+    |
+    = note: expected struct `Env`
+               found struct `Box<Env>`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/boxed.rs:213:12
+    |
+213 |     pub fn new(x: T) -> Self {
+    |            ^^^
+help: consider unboxing the value
+    |
+326 |             let mut new_env = Env::new(Some(Box::new(*closure_env.clone())));
+    |                                                      +
+
+error[E0599]: no method named `as_symbol` found for reference `&Box<Obj>` in the current scope
+   --> minilisp.rs:346:48
+    |
+346 |                     env.vars.insert(param_head.as_symbol().unwrap(), arg.clone());
+    |                                                ^^^^^^^^^ method not found in `&Box<Obj>`
+
+error[E0599]: no method named `is_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:526:35
+    |
+10  | enum Obj {
+    | -------- method `is_symbol` not found for this enum
+...
+526 |     if args.len() < 3 || !args[0].is_symbol() {
+    |                                   ^^^^^^^^^ method not found in `Obj`
+
+error[E0599]: no method named `as_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:529:24
+    |
+10  | enum Obj {
+    | -------- method `as_symbol` not found for this enum
+...
+529 |     let name = args[0].as_symbol().unwrap();
+    |                        ^^^^^^^^^ method not found in `Obj`
+
+error[E0599]: no method named `is_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:542:36
+    |
+10  | enum Obj {
+    | -------- method `is_symbol` not found for this enum
+...
+542 |     if args.len() != 2 || !args[0].is_symbol() {
+    |                                    ^^^^^^^^^ method not found in `Obj`
+
+error[E0599]: no method named `as_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:545:24
+    |
+10  | enum Obj {
+    | -------- method `as_symbol` not found for this enum
+...
+545 |     let name = args[0].as_symbol().unwrap();
+    |                        ^^^^^^^^^ method not found in `Obj`
+
+error[E0599]: no method named `is_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:552:35
+    |
+10  | enum Obj {
+    | -------- method `is_symbol` not found for this enum
+...
+552 |     if args.len() < 3 || !args[0].is_symbol() {
+    |                                   ^^^^^^^^^ method not found in `Obj`
+
+error[E0599]: no method named `as_symbol` found for enum `Obj` in the current scope
+   --> minilisp.rs:555:24
+    |
+10  | enum Obj {
+    | -------- method `as_symbol` not found for this enum
+...
+555 |     let name = args[0].as_symbol().unwrap();
+    |                        ^^^^^^^^^ method not found in `Obj`
+
+error[E0308]: mismatched types
+   --> minilisp.rs:563:5
+    |
+551 | fn prim_defmacro(env: &mut Env, args: &[Obj]) -> Obj {
+    |                                                  --- expected `Obj` because of return type
+...
+563 |     env
+    |     ^^^ expected enum `Obj`, found `&mut Env`
+
+Some errors have detailed explanations: E0308, E0369, E0599.
+For more information about an error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 5 warnings
+error: could not compile `c2rust_out` due to 19 previous errors; 5 warnings emitted

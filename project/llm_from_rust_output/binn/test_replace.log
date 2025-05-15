@@ -1,0 +1,126 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/binn)
+error: this file contains an unclosed delimiter
+   --> src/binn.rs:483:32
+    |
+447 | unsafe fn read_map_id(pp: *mut *mut c_uchar, plimit: *mut c_uchar) -> c_int {
+    |                                                                             - unclosed delimiter
+...
+468 |     } else {
+    |            - unclosed delimiter
+469 |         match type_ as c_int {
+    |                              - unclosed delimiter
+...
+482 |             0xc0 => {
+    |                     - unclosed delimiter
+483 |                 id = c as c_int
+    |                                ^
+
+error[E0425]: cannot find function `binn_ptr` in this scope
+   --> src/binn.rs:259:19
+    |
+259 |     let old_ptr = binn_ptr(old) as *mut c_uchar;
+    |                   ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `IsValidBinnHeader` in this scope
+   --> src/binn.rs:262:8
+    |
+262 |     if IsValidBinnHeader(old_ptr as *const c_void, &mut type_, &mut count, &mut size, &mut header_size) == 0 {
+    |        ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `binn_is_valid` in this scope
+   --> src/binn.rs:290:8
+    |
+290 |     if binn_is_valid(data, &mut (*value).type_, &mut (*value).count, &mut (*value).size) == 0 {
+    |        ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `binn_is_valid_ex` in this scope
+   --> src/binn.rs:308:8
+    |
+308 |     if binn_is_valid_ex(data, &mut (*value).type_, &mut (*value).count, &mut size) == 0 {
+    |        ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `copy_be32` in this scope
+   --> src/binn.rs:416:17
+    |
+416 |                 copy_be32(&mut DataSize as *mut c_int as *mut u32_0, p as *mut u32_0);
+    |                 ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `copy_be32` in this scope
+   --> src/binn.rs:436:17
+    |
+436 |                 copy_be32(&mut DataSize as *mut c_int as *mut u32_0, p as *mut u32_0);
+    |                 ^^^^^^^^^ not found in this scope
+
+warning: unused imports: `CStr`, `CString`
+ --> src/binn.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `copy_nonoverlapping`, `null`
+ --> src/binn.rs:4:26
+  |
+4 | use std::ptr::{null_mut, null, copy_nonoverlapping};
+  |                          ^^^^  ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/binn.rs:5:5
+  |
+5 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::str::FromStr`
+ --> src/binn.rs:6:5
+  |
+6 | use std::str::FromStr;
+  |     ^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> src/binn.rs:465:31
+    |
+465 |       if c as c_int & 0x80 == 0 {
+    |  _______________________________^
+466 | |         let sign = (c as c_int & 0x40) as u8;
+467 | |         id = c as c_int & 0x3f;
+468 | |     } else {
+    | |_____^ expected `i32`, found `()`
+
+error[E0308]: mismatched types
+   --> src/binn.rs:470:21
+    |
+470 |               0x80 => {
+    |  _____________________^
+471 | |                 id = c as c_int & 0xf;
+472 | |                 id = id << 8 | *p as c_int;
+473 | |                 p = p.offset(1);
+474 | |             }
+    | |_____________^ expected `i32`, found `()`
+
+error[E0308]: mismatched types
+   --> src/binn.rs:475:21
+    |
+475 |               0xa0 => {
+    |  _____________________^
+476 | |                 id = c as c_int & 0xf;
+477 | |                 id = id << 8 | *p as c_int;
+478 | |                 p = p.offset(1);
+479 | |                 id = id << 8 | *p as c_int;
+480 | |                 p = p.offset(1);
+481 | |             }
+    | |_____________^ expected `i32`, found `()`
+
+error[E0308]: mismatched types
+   --> src/binn.rs:483:17
+    |
+447 | unsafe fn read_map_id(pp: *mut *mut c_uchar, plimit: *mut c_uchar) -> c_int {
+    |                                                                       ----- expected `i32` because of return type
+...
+483 |                 id = c as c_int
+    |                 ^^^^^^^^^^^^^^^ expected `i32`, found `()`
+
+Some errors have detailed explanations: E0308, E0425.
+For more information about an error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 4 warnings
+error: could not compile `c2rust_out` due to 11 previous errors; 4 warnings emitted

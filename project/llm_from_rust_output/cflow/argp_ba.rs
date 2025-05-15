@@ -1,0 +1,1 @@
+pub static ARGP_PROGRAM_BUG_ADDRESS: Option<&'static str> = None;

@@ -1,0 +1,1452 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/make-4.4.1)
+error: this file contains an unclosed delimiter
+   --> src/implicit.rs:482:39
+    |
+279 | ) -> c_int {
+    |            - unclosed delimiter
+280 |     unsafe {
+    |            - unclosed delimiter
+...
+356 |                         if !(recursions > 0
+    |                             - this delimiter might not be properly closed...
+357 |                             && *target.add(1) == 0
+358 |                             && (*rule).terminal == 0)
+    |                                                     - ...as it matches this but it has different indentation
+...
+462 |         'outer: while intermed_ok < 2 {
+    |                                       - unclosed delimiter
+...
+476 |             for ri in 0..nrules {
+    |                                 - unclosed delimiter
+...
+482 |                 rule = (*tryrules.add(
+    |                        -             -^
+    |                        |             |
+    |                        |             unclosed delimiter
+    |                        unclosed delimiter
+
+error: mismatched closing delimiter: `}`
+   --> src/implicit.rs:449:29
+    |
+448 |                     for j in 0..(*(*tryrules.add(ri as isize)).rule).num as usize {
+    |                                                                                   - closing delimiter possibly meant for this
+449 |                         if *(*((*(*tryrules.add(ri as isize)).rule).targets.add(j))
+    |                             ^ unclosed delimiter
+...
+456 |                     }
+    |                     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `{`
+   --> src/implicit.rs:449:29
+    |
+449 |                         if *(*((*(*tryrules.add(ri as isize)).rule).targets.add(j))
+    |                             ^ unclosed delimiter
+450 |                             .add(1)
+451 |                             == 0
+    |                                 - help: `)` may belong here
+452 |                         {
+    |                         ^
+
+error: expected expression, found `)`
+   --> src/implicit.rs:456:21
+    |
+456 |                     }
+    |                     ^ expected expression
+
+error: `<` is interpreted as a start of generic arguments for `usize`, not a comparison
+   --> src/strcache.rs:100:61
+    |
+100 |         if self.total_strings > 20 && sp.bytesfree as usize < self.total_size / self.total_strings + 1 {
+    |                                                             ^ ----- interpreted as generic arguments
+    |                                                             |
+    |                                                             not interpreted as comparison
+    |
+help: try comparing the cast value
+    |
+100 |         if self.total_strings > 20 && (sp.bytesfree as usize) < self.total_size / self.total_strings + 1 {
+    |                                       +                     +
+
+error[E0255]: the name `Command` is defined multiple times
+   --> src/function.rs:195:1
+    |
+10  | use std::process::{Command, Stdio};
+    |                    ------- previous import of the type `Command` here
+...
+195 | struct Command {
+    | ^^^^^^^^^^^^^^ `Command` redefined here
+    |
+    = note: `Command` must be defined only once in the type namespace of this module
+help: you can use `as` to change the binding name of the import
+    |
+10  | use std::process::{Command as OtherCommand, Stdio};
+    |                    ~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> src/posixos.rs:6:5
+  |
+6 | use nix::fcntl::{fcntl, FcntlArg, OFlag};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> src/posixos.rs:7:5
+  |
+7 | use nix::sys::stat::{fstat, FileStat};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> src/posixos.rs:8:5
+  |
+8 | use nix::unistd::{close, dup, pipe, read, write};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `std::sync::atomic::AtomicUint`
+ --> src/dir.rs:8:25
+  |
+8 | use std::sync::atomic::{AtomicUint, Ordering};
+  |                         ^^^^^^^^^^
+  |                         |
+  |                         no `AtomicUint` in `sync::atomic`
+  |                         help: a similar name exists in the module: `AtomicU8`
+
+error[E0432]: unresolved import `glob`
+ --> src/read.rs:8:5
+  |
+8 | use glob::glob;
+  |     ^^^^ use of undeclared crate or module `glob`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+  --> src/shuffle.rs:73:9
+   |
+73 |     use rand::seq::SliceRandom;
+   |         ^^^^ use of undeclared crate or module `rand`
+
+error[E0432]: unresolved import `fnmatch`
+ --> src/ar.rs:6:5
+  |
+6 | use fnmatch::fnmatch;
+  |     ^^^^^^^ use of undeclared crate or module `fnmatch`
+
+error[E0432]: unresolved import `rand`
+  --> src/shuffle.rs:74:9
+   |
+74 |     use rand::SeedableRng;
+   |         ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `ctor`
+   --> src/function.rs:371:3
+    |
+371 | #[ctor::ctor]
+    |   ^^^^ use of undeclared crate or module `ctor`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `tempfile`
+  --> src/output.rs:86:21
+   |
+86 |     let temp_file = tempfile::tempfile()?;
+   |                     ^^^^^^^^ use of undeclared crate or module `tempfile`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/posixos.rs:41:48
+   |
+41 |             nix::sys::stat::mkfifo(&fifo_name, nix::sys::stat::Mode::S_IRUSR | nix::sys::stat::Mode::S_IWUSR)?;
+   |                                                ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/posixos.rs:41:80
+   |
+41 |             nix::sys::stat::mkfifo(&fifo_name, nix::sys::stat::Mode::S_IRUSR | nix::sys::stat::Mode::S_IWUSR)?;
+   |                                                                                ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/posixos.rs:99:45
+   |
+99 |         fcntl(fd, FcntlArg::F_SETFD(flags | nix::fcntl::FdFlag::FD_CLOEXEC.bits()))?;
+   |                                             ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:133:23
+    |
+133 |         let mut fds = nix::poll::PollFd::new(self.job_fds[0], nix::poll::PollFlags::POLLIN);
+    |                       ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:133:63
+    |
+133 |         let mut fds = nix::poll::PollFd::new(self.job_fds[0], nix::poll::PollFlags::POLLIN);
+    |                                                               ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:136:15
+    |
+136 |         match nix::poll::poll(&mut [fds], timeout_ms)? {
+    |               ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:198:20
+    |
+198 |         let lock = nix::fcntl::flock(self.handle, nix::fcntl::FlockArg::LockExclusive)?;
+    |                    ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:198:51
+    |
+198 |         let lock = nix::fcntl::flock(self.handle, nix::fcntl::FlockArg::LockExclusive)?;
+    |                                                   ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:203:9
+    |
+203 |         nix::fcntl::flock(self.handle, nix::fcntl::FlockArg::Unlock)?;
+    |         ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+   --> src/posixos.rs:203:40
+    |
+203 |         nix::fcntl::flock(self.handle, nix::fcntl::FlockArg::Unlock)?;
+    |                                        ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+  --> src/shuffle.rs:75:19
+   |
+75 |     let mut rng = rand::rngs::StdRng::seed_from_u64(config.seed as u64);
+   |                   ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+   --> src/shuffle.rs:179:5
+    |
+179 |     rand::random()
+    |     ^^^^ use of undeclared crate or module `rand`
+
+error[E0412]: cannot find type `Command` in this scope
+  --> src/ar.rs:14:19
+   |
+14 |     pub cmds: Vec<Command>,
+   |                   ^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::src::shuffle::Command;
+   |
+1  | use std::process::Command;
+   |
+
+error[E0412]: cannot find type `VariableSet` in this scope
+  --> src/ar.rs:20:24
+   |
+20 |     pub variables: Vec<VariableSet>,
+   |                        ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::src::default::VariableSet;
+   |
+1  | use crate::src::rule::VariableSet;
+   |
+1  | use crate::src::variable::VariableSet;
+   |
+
+error[E0412]: cannot find type `VariableSet` in this scope
+  --> src/ar.rs:21:28
+   |
+21 |     pub pat_variables: Vec<VariableSet>,
+   |                            ^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use crate::src::default::VariableSet;
+   |
+1  | use crate::src::rule::VariableSet;
+   |
+1  | use crate::src::variable::VariableSet;
+   |
+
+error[E0425]: cannot find function `ar_name_equal` in this scope
+   --> src/ar.rs:145:8
+    |
+145 |     if ar_name_equal(name, mem, truncated) {
+    |        ^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::arscan::ar_name_equal` exists but is inaccessible
+   --> src/arscan.rs:178:1
+    |
+178 | fn ar_name_equal(name: &str, mem: &str, truncated: bool) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `lookup_file` in this scope
+   --> src/ar.rs:154:18
+    |
+154 |     let arfile = lookup_file(&arname).or_else(|| {
+    |                  ^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/file.rs:259:1
+    |
+259 | fn lookup_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::file::lookup_file`: not accessible
+    |
+   ::: src/implicit.rs:172:5
+    |
+172 |     fn lookup_file(name: *const c_char) -> *mut File;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::implicit::lookup_file`: not accessible
+    |
+   ::: src/load.rs:209:1
+    |
+209 | fn lookup_file(name: &str) -> Option<File> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::load::lookup_file`: not accessible
+    |
+   ::: src/remake.rs:338:1
+    |
+338 | fn lookup_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::remake::lookup_file`: not accessible
+    |
+   ::: src/vpath.rs:326:1
+    |
+326 | fn lookup_file(name: &str) -> Option<File> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::vpath::lookup_file`: not accessible
+
+error[E0425]: cannot find function `file_exists_p` in this scope
+   --> src/ar.rs:155:12
+    |
+155 |         if file_exists_p(&arname) {
+    |            ^^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/dir.rs:62:1
+    |
+62  | fn file_exists_p(name: &CStr) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::dir::file_exists_p`: not accessible
+    |
+   ::: src/implicit.rs:161:5
+    |
+161 |     fn file_exists_p(name: *const c_char) -> c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::implicit::file_exists_p`: not accessible
+
+error[E0425]: cannot find function `enter_file` in this scope
+   --> src/ar.rs:156:18
+    |
+156 |             Some(enter_file(&arname))
+    |                  ^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/default.rs:137:1
+    |
+137 | fn enter_file(name: *const libc::c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::default::enter_file`: not accessible
+    |
+   ::: src/file.rs:263:1
+    |
+263 | fn enter_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::file::enter_file`: not accessible
+    |
+   ::: src/implicit.rs:173:5
+    |
+173 |     fn enter_file(name: *const c_char) -> *mut File;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::implicit::enter_file`: not accessible
+    |
+   ::: src/remake.rs:343:1
+    |
+343 | fn enter_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::remake::enter_file`: not accessible
+
+error[E0425]: cannot find function `f_mtime` in this scope
+   --> src/ar.rs:162:9
+    |
+162 |         f_mtime(file, false);
+    |         ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::remake::f_mtime` exists but is inaccessible
+   --> src/remake.rs:246:1
+    |
+246 | fn f_mtime(file: *mut File, search: c_int) -> uintmax_t {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `ar_scan` in this scope
+   --> src/ar.rs:164:15
+    |
+164 |     let val = ar_scan(&arname, ar_member_date_1, &memname);
+    |               ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::arscan::ar_scan` exists but is inaccessible
+   --> src/arscan.rs:79:1
+    |
+79  | / fn ar_scan(
+80  | |     archive: &Path,
+81  | |     function: ArMemberFunc,
+82  | |     arg: *const c_void,
+...   |
+175 | |     Ok(0)
+176 | | }
+    | |_^ not accessible
+
+error[E0425]: cannot find function `enter_file` in this scope
+   --> src/ar.rs:174:18
+    |
+174 |     let arfile = enter_file(&arname);
+    |                  ^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/default.rs:137:1
+    |
+137 | fn enter_file(name: *const libc::c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::default::enter_file`: not accessible
+    |
+   ::: src/file.rs:263:1
+    |
+263 | fn enter_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::file::enter_file`: not accessible
+    |
+   ::: src/implicit.rs:173:5
+    |
+173 |     fn enter_file(name: *const c_char) -> *mut File;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::implicit::enter_file`: not accessible
+    |
+   ::: src/remake.rs:343:1
+    |
+343 | fn enter_file(name: *const c_char) -> *mut File {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::remake::enter_file`: not accessible
+
+error[E0425]: cannot find function `f_mtime` in this scope
+   --> src/ar.rs:175:5
+    |
+175 |     f_mtime(arfile, false);
+    |     ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::remake::f_mtime` exists but is inaccessible
+   --> src/remake.rs:246:1
+    |
+246 | fn f_mtime(file: *mut File, search: c_int) -> uintmax_t {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `ar_member_touch` in this scope
+   --> src/ar.rs:176:11
+    |
+152 | pub fn ar_member_date(name: &str) -> Option<SystemTime> {
+    | ------------------------------------------------------- similarly named function `ar_member_date` defined here
+...
+176 |     match ar_member_touch(&arname, &memname) {
+    |           ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `ar_member_date`
+    |
+note: function `crate::src::arscan::ar_member_touch` exists but is inaccessible
+   --> src/arscan.rs:209:1
+    |
+209 | fn ar_member_touch(arname: &Path, memname: &str) -> Result<(), i32> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `ar_scan` in this scope
+   --> src/ar.rs:251:5
+    |
+251 |     ar_scan(arname, ar_glob_match, &mut state);
+    |     ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::arscan::ar_scan` exists but is inaccessible
+   --> src/arscan.rs:79:1
+    |
+79  | / fn ar_scan(
+80  | |     archive: &Path,
+81  | |     function: ArMemberFunc,
+82  | |     arg: *const c_void,
+...   |
+175 | |     Ok(0)
+176 | | }
+    | |_^ not accessible
+
+error[E0412]: cannot find type `Variable` in this scope
+   --> src/default.rs:152:11
+    |
+152 | ) -> *mut Variable {
+    |           ^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use crate::src::variable::Variable;
+    |
+
+error[E0412]: cannot find type `glob_t` in this scope
+   --> src/dir.rs:128:28
+    |
+128 | fn dir_setup_glob(gl: &mut glob_t) {
+    |                            ^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use libc::glob_t;
+    |
+
+error[E0425]: cannot find value `env_recursion` in this scope
+  --> src/expand.rs:66:23
+   |
+66 |     if v.expanding && env_recursion != 0 {
+   |                       ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> src/file.rs:75:17
+   |
+75 |       considered: c_uint,
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+75 |     considered: c_int,
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_ushort` in this scope
+   --> src/file.rs:137:21
+    |
+137 |     ncommand_lines: c_ushort,
+    |                     ^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::c_ushort;
+    |
+1   | use libc::c_ushort;
+    |
+1   | use std::ffi::c_ushort;
+    |
+1   | use std::os::raw::c_ushort;
+    |
+
+error[E0412]: cannot find type `c_uint` in this scope
+   --> src/file.rs:186:13
+    |
+186 |       length: c_uint,
+    |               ^^^^^^
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+    |
+22  | / alias_core_ffi! {
+23  | |     c_char c_schar c_uchar
+24  | |     c_short c_ushort
+25  | |     c_int c_uint
+...   |
+30  | |     c_void
+31  | | }
+    | |_- similarly named type alias `c_int` defined here
+    |
+help: a type alias with a similar name exists
+    |
+186 |     length: c_int,
+    |             ~~~~~
+help: consider importing one of these items
+    |
+1   | use core::ffi::c_uint;
+    |
+1   | use libc::c_uint;
+    |
+1   | use std::ffi::c_uint;
+    |
+1   | use std::os::raw::c_uint;
+    |
+
+error[E0412]: cannot find type `Variable` in this scope
+   --> src/implicit.rs:198:15
+    |
+198 |     ) -> *mut Variable;
+    |               ^^^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+1   | use crate::src::variable::Variable;
+    |
+
+error[E0412]: cannot find type `c_int` in this scope
+  --> src/loadapi.rs:10:78
+   |
+10 |   type hash_cmp_func_t = Option<extern "C" fn(*const c_void, *const c_void) -> c_int>;
+   |                                                                                ^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uint` defined here
+   |
+help: a type alias with a similar name exists
+   |
+10 | type hash_cmp_func_t = Option<extern "C" fn(*const c_void, *const c_void) -> c_uint>;
+   |                                                                              ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_int;
+   |
+1  | use libc::c_int;
+   |
+1  | use std::ffi::c_int;
+   |
+1  | use std::os::raw::c_int;
+   |
+
+error[E0412]: cannot find type `c_int` in this scope
+  --> src/loadapi.rs:47:24
+   |
+47 |       pub command_flags: c_int,
+   |                          ^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uint` defined here
+   |
+help: a type alias with a similar name exists
+   |
+47 |     pub command_flags: c_uint,
+   |                        ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_int;
+   |
+1  | use libc::c_int;
+   |
+1  | use std::ffi::c_int;
+   |
+1  | use std::os::raw::c_int;
+   |
+
+error[E0412]: cannot find type `update_status` in this scope
+  --> src/loadapi.rs:27:23
+   |
+27 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ not found in this scope
+   |
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0412]: cannot find type `cmd_state` in this scope
+  --> src/loadapi.rs:27:23
+   |
+27 | #[derive(Copy, Clone, BitfieldStruct)]
+   |                       ^^^^^^^^^^^^^^ not found in this scope
+   |
+   = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0412]: cannot find type `c_int` in this scope
+  --> src/loadapi.rs:81:25
+   |
+81 |       pub next_is_parent: c_int,
+   |                           ^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_uint` defined here
+   |
+help: a type alias with a similar name exists
+   |
+81 |     pub next_is_parent: c_uint,
+   |                         ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_int;
+   |
+1  | use libc::c_int;
+   |
+1  | use std::ffi::c_int;
+   |
+1  | use std::os::raw::c_int;
+   |
+
+error[E0412]: cannot find type `AtomicU32` in this scope
+  --> src/output.rs:11:19
+   |
+11 | static MAKELEVEL: AtomicU32 = AtomicU32::new(0);
+   |                   ^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::sync::atomic::AtomicU32;
+   |
+1  | use std::sync::atomic::AtomicU32;
+   |
+
+error[E0433]: failed to resolve: use of undeclared type `AtomicU32`
+  --> src/output.rs:11:31
+   |
+11 | static MAKELEVEL: AtomicU32 = AtomicU32::new(0);
+   |                               ^^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::sync::atomic::AtomicU32;
+   |
+1  | use std::sync::atomic::AtomicU32;
+   |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> src/posixos.rs:41:23
+   |
+41 |             nix::sys::stat::mkfifo(&fifo_name, nix::sys::stat::Mode::S_IRUSR | nix::sys::stat::Mode::S_IWUSR)?;
+   |                       ^^^^ not found in `nix::sys`
+   |
+help: consider importing one of these items
+   |
+1  | use libc::stat;
+   |
+1  | use std::os::linux::raw::stat;
+   |
+help: if you import `stat`, refer to it directly
+   |
+41 -             nix::sys::stat::mkfifo(&fifo_name, nix::sys::stat::Mode::S_IRUSR | nix::sys::stat::Mode::S_IWUSR)?;
+41 +             stat::mkfifo(&fifo_name, nix::sys::stat::Mode::S_IRUSR | nix::sys::stat::Mode::S_IWUSR)?;
+   |
+
+error[E0425]: cannot find value `config` in this scope
+  --> src/shuffle.rs:75:53
+   |
+75 |     let mut rng = rand::rngs::StdRng::seed_from_u64(config.seed as u64);
+   |                                                     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `config` in this scope
+  --> src/shuffle.rs:93:11
+   |
+93 |     match config.mode {
+   |           ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `config` in this scope
+   --> src/shuffle.rs:121:17
+    |
+121 |     if matches!(config.mode, ShuffleMode::None) || not_parallel {
+    |                 ^^^^^^ not found in this scope
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:31
+   |
+13 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+
+warning: unused import: `Path`
+ --> lib/concat_filename.rs:2:17
+  |
+2 | use std::path::{Path, PathBuf};
+  |                 ^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> lib/findprog_in.rs:1:16
+  |
+1 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStrExt`
+ --> lib/findprog_in.rs:2:5
+  |
+2 | use std::os::unix::ffi::OsStrExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/ar.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_long`, `c_uint`, `c_ulong`, `c_void`
+ --> src/ar.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_long, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/ar.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `size_t`, `time_t`
+ --> src/ar.rs:5:12
+  |
+5 | use libc::{size_t, time_t};
+  |            ^^^^^^  ^^^^^^
+
+warning: unused imports: `off_t`, `size_t`, `ssize_t`
+ --> src/arscan.rs:9:51
+  |
+9 | use libc::{c_int, c_char, c_long, c_uint, c_void, off_t, size_t, ssize_t};
+  |                                                   ^^^^^  ^^^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/arscan.rs:10:5
+   |
+10 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `CStr`
+ --> src/commands.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `c_void`
+ --> src/commands.rs:2:52
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                                                    ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/commands.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> src/commands.rs:5:17
+  |
+5 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `exit`, `kill`, `memcmp`, `memcpy`, `strchr`, `strcmp`, `strlen`, `strstr`, `unlink`
+ --> src/commands.rs:6:18
+  |
+6 | use libc::{stat, kill, signal, unlink, exit, memcpy, memcmp, strcmp, strchr, strstr, strlen};
+  |                  ^^^^          ^^^^^^  ^^^^  ^^^^^^  ^^^^^^  ^^^^^^  ^^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `c_ulong`, `c_void`
+ --> src/dir.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `PathBuf`
+ --> src/dir.rs:3:23
+  |
+3 | use std::path::{Path, PathBuf};
+  |                       ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/dir.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `lstat`, `opendir`, `readdir`, `stat`
+ --> src/dir.rs:6:12
+  |
+6 | use libc::{stat, lstat, opendir, closedir, readdir, dirent, DIR};
+  |            ^^^^  ^^^^^  ^^^^^^^            ^^^^^^^
+
+warning: unused import: `CStr`
+ --> src/expand.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`
+ --> src/expand.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^                   ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/expand.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/expand.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/file.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_void`
+ --> src/file.rs:2:52
+  |
+2 | use std::os::raw::{c_char, c_int, c_long, c_ulong, c_void};
+  |                                                    ^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/file.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> src/file.rs:5:17
+  |
+5 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `Hash`
+ --> src/file.rs:7:17
+  |
+7 | use std::hash::{Hash, Hasher};
+  |                 ^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/function.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_long`, `c_longlong`, `c_uchar`, `c_uint`, `c_ulong`, `c_void`
+ --> src/function.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_long, c_longlong, c_uchar, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/function.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/function.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/function.rs:5:5
+  |
+5 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `File`, `OpenOptions`
+ --> src/function.rs:7:15
+  |
+7 | use std::fs::{File, OpenOptions};
+  |               ^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Error`, `Read`, `Write`
+ --> src/function.rs:8:15
+  |
+8 | use std::io::{Read, Write, Error, ErrorKind};
+  |               ^^^^  ^^^^^  ^^^^^  ^^^^^^^^^
+
+warning: unused imports: `PathBuf`, `Path`
+ --> src/function.rs:9:17
+  |
+9 | use std::path::{Path, PathBuf};
+  |                 ^^^^  ^^^^^^^
+
+warning: unused import: `Stdio`
+  --> src/function.rs:10:29
+   |
+10 | use std::process::{Command, Stdio};
+   |                             ^^^^^
+
+warning: unused imports: `Layout`, `alloc`, `dealloc`
+ --> src/hash.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::collections::hash_map::DefaultHasher`
+ --> src/hash.rs:3:5
+  |
+3 | use std::collections::hash_map::DefaultHasher;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Hash`, `Hasher`
+ --> src/hash.rs:4:17
+  |
+4 | use std::hash::{Hash, Hasher};
+  |                 ^^^^  ^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/implicit.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/implicit.rs:2:16
+  |
+2 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> src/implicit.rs:362:45
+    |
+362 | ...                   .offset((suffix.offset_from(target) as isize - 1));
+    |                               ^                                       ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+362 -                                     .offset((suffix.offset_from(target) as isize - 1));
+362 +                                     .offset(suffix.offset_from(target) as isize - 1);
+    |
+
+warning: unused label
+   --> src/implicit.rs:462:9
+    |
+462 |         'outer: while intermed_ok < 2 {
+    |         ^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unnecessary parentheses around assigned value
+   --> src/implicit.rs:482:24
+    |
+482 |                 rule = (*tryrules.add(
+    |                        ^              ^
+    |
+help: remove these parentheses
+    |
+482 -                 rule = (*tryrules.add(
+482 +                 rule = *tryrules.add(
+    |
+
+warning: unused imports: `Ordering`, `OsStr`, `SystemTime`, `UNIX_EPOCH`, `os::unix::ffi::OsStrExt`, `ptr`
+ --> src/job.rs:2:26
+  |
+2 |     ffi::{CStr, CString, OsStr},
+  |                          ^^^^^
+3 |     os::unix::ffi::OsStrExt,
+  |     ^^^^^^^^^^^^^^^^^^^^^^^
+4 |     ptr,
+  |     ^^^
+5 |     sync::atomic::{AtomicBool, AtomicU32, Ordering},
+  |                                           ^^^^^^^^
+6 |     time::{SystemTime, UNIX_EPOCH},
+  |            ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `c_char`, `c_double`, `c_uint`, `c_ulong`, `c_void`, `size_t`, `ssize_t`, `stat`, `time_t`
+  --> src/job.rs:10:5
+   |
+10 |     c_char, c_double, c_int, c_uint, c_ulong, c_void, pid_t, size_t, ssize_t, stat, time_t,
+   |     ^^^^^^  ^^^^^^^^         ^^^^^^  ^^^^^^^  ^^^^^^         ^^^^^^  ^^^^^^^  ^^^^  ^^^^^^
+
+warning: unused import: `c_uint`
+ --> src/load.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                                   ^^^^^^
+
+warning: unused import: `RTLD_LAZY`
+ --> src/load.rs:5:45
+  |
+5 | use libc::{dlclose, dlopen, dlsym, dlerror, RTLD_LAZY, RTLD_GLOBAL, RTLD_NOW};
+  |                                             ^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/load.rs:6:5
+  |
+6 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> src/loadapi.rs:1:25
+  |
+1 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused import: `CStr`
+ --> src/main.rs:2:25
+  |
+2 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused import: `c_void`
+ --> src/main.rs:3:35
+  |
+3 | use std::os::raw::{c_char, c_int, c_void};
+  |                                   ^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/main.rs:5:5
+  |
+5 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> src/main.rs:7:17
+  |
+7 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/main.rs:8:5
+  |
+8 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `PathBuf`, `Path`
+ --> src/main.rs:9:17
+  |
+9 | use std::path::{Path, PathBuf};
+  |                 ^^^^  ^^^^^^^
+
+warning: unused import: `std::fs`
+  --> src/main.rs:10:5
+   |
+10 | use std::fs;
+   |     ^^^^^^^
+
+warning: unused imports: `Write`, `self`
+  --> src/main.rs:11:15
+   |
+11 | use std::io::{self, Write};
+   |               ^^^^  ^^^^^
+
+warning: unused import: `OsStr`
+ --> src/misc.rs:1:31
+  |
+1 | use std::ffi::{CStr, CString, OsStr, OsString};
+  |                               ^^^^^
+
+warning: unused imports: `OpenOptions`, `remove_file`
+ --> src/misc.rs:4:21
+  |
+4 | use std::fs::{File, OpenOptions, remove_file};
+  |                     ^^^^^^^^^^^  ^^^^^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> src/misc.rs:5:15
+  |
+5 | use std::io::{Read, Write, Error, ErrorKind};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/misc.rs:8:5
+  |
+8 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/misc.rs:9:5
+  |
+9 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_int`, `mode_t`, `ssize_t`, `time_t`
+  --> src/misc.rs:11:12
+   |
+11 | use libc::{c_int, c_uint, c_char, c_void, size_t, ssize_t, pid_t, mode_t, time_t};
+   |            ^^^^^                                  ^^^^^^^         ^^^^^^  ^^^^^^
+
+warning: unused import: `IntoRawFd`
+  --> src/misc.rs:12:36
+   |
+12 | use std::os::unix::io::{FromRawFd, IntoRawFd, RawFd};
+   |                                    ^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/misc.rs:13:5
+   |
+13 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/output.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `OpenOptions`
+ --> src/output.rs:2:21
+  |
+2 | use std::fs::{File, OpenOptions};
+  |                     ^^^^^^^^^^^
+
+warning: unused imports: `AsRawFd`, `FromRawFd`
+ --> src/output.rs:4:25
+  |
+4 | use std::os::unix::io::{AsRawFd, FromRawFd};
+  |                         ^^^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/output.rs:5:5
+  |
+5 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/output.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`, `off_t`, `size_t`
+ --> src/output.rs:8:18
+  |
+8 | use libc::{self, c_int, c_char, c_void, size_t, off_t};
+  |                  ^^^^^  ^^^^^^  ^^^^^^  ^^^^^^  ^^^^^
+
+warning: unused import: `File`
+ --> src/posixos.rs:1:15
+  |
+1 | use std::fs::{File, OpenOptions};
+  |               ^^^^
+
+warning: unused import: `FromRawFd`
+ --> src/posixos.rs:3:34
+  |
+3 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+  |                                  ^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/posixos.rs:4:5
+  |
+4 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+ --> src/posixos.rs:5:25
+  |
+5 | use std::sync::atomic::{AtomicBool, Ordering};
+  |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `mode_t`
+ --> src/posixos.rs:9:12
+  |
+9 | use libc::{c_char, c_int, c_uint, mode_t};
+  |            ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/read.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/read.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/read.rs:5:5
+  |
+5 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fs`
+ --> src/read.rs:6:5
+  |
+6 | use std::fs;
+  |     ^^^^^^^
+
+warning: unused import: `std::io`
+ --> src/read.rs:7:5
+  |
+7 | use std::io;
+  |     ^^^^^^^
+
+warning: unused imports: `S_IFDIR`, `stat`
+ --> src/read.rs:9:12
+  |
+9 | use libc::{stat, S_IFDIR};
+  |            ^^^^  ^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/remake.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> src/remake.rs:4:17
+  |
+4 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/remote_stub.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/rule.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/rule.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> src/rule.rs:5:5
+  |
+5 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/shuffle.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/shuffle.rs:2:16
+  |
+2 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> src/shuffle.rs:3:5
+  |
+3 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/shuffle.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/strcache.rs:2:16
+  |
+2 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/strcache.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/variable.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `c_void`
+ --> src/variable.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^           ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/variable.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/variable.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/vpath.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_uint`, `c_void`
+ --> src/vpath.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^           ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/vpath.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `SystemTime`
+ --> src/vpath.rs:5:17
+  |
+5 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate
+   --> src/function.rs:194:10
+    |
+194 | #[derive(Debug, Clone)]
+    |          ^^^^^
+    |          |
+    |          impl doesn't use only types from inside the current crate
+    |          `std::process::Command` is not defined in the current crate
+    |
+    = note: define and implement a trait or new type instead
+    = note: this error originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0117]: only traits defined in the current crate can be implemented for types defined outside of the crate
+   --> src/function.rs:194:17
+    |
+194 | #[derive(Debug, Clone)]
+    |                 ^^^^^
+    |                 |
+    |                 impl doesn't use only types from inside the current crate
+    |                 `std::process::Command` is not defined in the current crate
+    |
+    = note: define and implement a trait or new type instead
+    = note: this error originates in the derive macro `Clone` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+ --> src/guile.rs:1:10
+  |
+1 | #[derive(Copy, Clone, Debug)]
+  |          ^^^^
+2 | pub struct Floc {
+3 |     pub filenm: Option<String>,
+  |     -------------------------- this field does not implement `Copy`
+  |
+note: the `Copy` impl for `Option<String>` requires that `String: Copy`
+ --> src/guile.rs:3:17
+  |
+3 |     pub filenm: Option<String>,
+  |                 ^^^^^^^^^^^^^^
+  = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0117, E0204, E0255, E0412, E0425, E0432, E0433.
+For more information about an error, try `rustc --explain E0117`.
+warning: `c2rust_out` (lib) generated 106 warnings
+error: could not compile `c2rust_out` due to 62 previous errors; 106 warnings emitted

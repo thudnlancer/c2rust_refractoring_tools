@@ -1,0 +1,227 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/minilisp)
+warning: unused label
+   --> minilisp.rs:493:5
+    |
+493 |     'c_3062: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> minilisp.rs:632:5
+    |
+632 |     'c_3428: {
+    |     ^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> minilisp.rs:10:1
+   |
+10 | #![feature(c_variadic, label_break_value)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: unused variable: `env`
+    --> minilisp.rs:1098:9
+     |
+1098 |     mut env: *mut *mut Obj,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `root`
+    --> minilisp.rs:1276:9
+     |
+1276 |     mut root: *mut libc::c_void,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_root`
+
+warning: unused variable: `env`
+    --> minilisp.rs:1277:9
+     |
+1277 |     mut env: *mut *mut Obj,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+
+warning: unused variable: `env`
+    --> minilisp.rs:1442:9
+     |
+1442 |     mut env: *mut *mut Obj,
+     |         ^^^ help: if this is intentional, prefix it with an underscore: `_env`
+
+warning: unused variable: `list`
+    --> minilisp.rs:1443:9
+     |
+1443 |     mut list: *mut *mut Obj,
+     |         ^^^^ help: if this is intentional, prefix it with an underscore: `_list`
+
+warning: unused variable: `argc`
+    --> minilisp.rs:2103:22
+     |
+2103 | unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
+     |                      ^^^^ help: if this is intentional, prefix it with an underscore: `_argc`
+
+warning: unused variable: `argv`
+    --> minilisp.rs:2103:37
+     |
+2103 | unsafe fn main_0(mut argc: i32, mut argv: *mut *mut i8) -> i32 {
+     |                                     ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: path statement with no effect
+   --> minilisp.rs:478:13
+    |
+478 |             i;
+    |             ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> minilisp.rs:686:9
+    |
+686 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:735:9
+    |
+735 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:787:9
+    |
+787 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:804:9
+    |
+804 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> minilisp.rs:963:9
+    |
+963 |         len;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> minilisp.rs:980:9
+    |
+980 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1004:9
+     |
+1004 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1044:9
+     |
+1044 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1071:9
+     |
+1071 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1108:9
+     |
+1108 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1144:13
+     |
+1144 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1189:9
+     |
+1189 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1235:17
+     |
+1235 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1354:9
+     |
+1354 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1389:9
+     |
+1389 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1425:9
+     |
+1425 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1560:9
+     |
+1560 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1598:9
+     |
+1598 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1638:9
+     |
+1638 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1676:9
+     |
+1676 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1696:9
+     |
+1696 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1721:9
+     |
+1721 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1803:9
+     |
+1803 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:1825:9
+     |
+1825 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> minilisp.rs:2115:9
+     |
+2115 |         i;
+     |         ^^
+
+warning: `c2rust_out` (lib) generated 36 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 0.67s

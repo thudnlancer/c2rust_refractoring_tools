@@ -807,7 +807,7 @@ def refactoring(proj_path):
 
 if __name__ == "__main__":
     if len(sys.argv) > 2:
-        print("usage: refactoring program path or default path: ../c_prog/")
+        print("usage: refactoring program path or default path: c_prog/")
     if len(sys.argv) == 2:
         proj_path = sys.argv[1]
         refactoring(proj_path)

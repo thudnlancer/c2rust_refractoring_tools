@@ -1,0 +1,1 @@
+pub static GSL_VERSION: &str = "2.7.1";

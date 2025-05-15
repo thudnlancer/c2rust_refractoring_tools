@@ -1,0 +1,57 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/nettle-3.10)
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> arctwo.rs:74:18
+   |
+74 |                 );
+   |                  ^
+   |                  |
+   |                  expected one of `)`, `,`, `.`, `?`, or an operator
+   |                  help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> arctwo.rs:78:18
+   |
+78 |                 );
+   |                  ^
+   |                  |
+   |                  expected one of `)`, `,`, `.`, `?`, or an operator
+   |                  help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> arctwo.rs:82:18
+   |
+82 |                 );
+   |                  ^
+   |                  |
+   |                  expected one of `)`, `,`, `.`, `?`, or an operator
+   |                  help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> arctwo.rs:83:28
+   |
+83 |                 w3 = rotl16(
+   |                            ^ unclosed delimiter
+...
+86 |                 );
+   |                  ^ help: `)` may belong here
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `w3`
+  --> arctwo.rs:83:17
+   |
+82 |                 );
+   |                   -
+   |                   |
+   |                   expected one of `)`, `,`, `.`, `?`, or an operator
+   |                   help: missing `,`
+83 |                 w3 = rotl16(
+   |                 ^^ unexpected token
+
+error: mismatched closing delimiter: `]`
+   --> arctwo.rs:179:37
+    |
+179 |             let mut x = ARCTWO_SBOX[(s[i] & (255 >> (7 & !(ekb as u8))) as usize];
+    |                                    -^ unclosed delimiter                        ^ mismatched closing delimiter
+    |                                    |
+    |                                    closing delimiter possibly meant for this
+
+error: could not compile `c2rust_out` due to 6 previous errors

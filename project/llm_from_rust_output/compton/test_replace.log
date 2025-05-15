@@ -1,0 +1,410 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/compton)
+error: this trait cannot be derived for unions
+  --> src/c2.rs:54:10
+   |
+54 | #[derive(Debug, Clone, Copy)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> src/c2.rs:97:10
+   |
+97 | #[derive(Debug, Clone, Copy)]
+   |          ^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `dbus`
+ --> src/dbus.rs:1:5
+  |
+1 | use dbus::{
+  |     ^^^^ use of undeclared crate or module `dbus`
+
+error[E0432]: unresolved import `dbus`
+ --> src/dbus.rs:1:5
+  |
+1 | use dbus::{
+  |     ^^^^ help: a similar path exists: `super::dbus`
+
+error[E0432]: unresolved import `regex`
+ --> src/c2.rs:6:5
+  |
+6 | use regex::Regex;
+  |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `pcre2`
+ --> src/c2.rs:8:5
+  |
+8 | use pcre2::bytes::Regex as PcreRegex;
+  |     ^^^^^ use of undeclared crate or module `pcre2`
+
+error[E0432]: unresolved import `glob`
+ --> src/c2.rs:7:5
+  |
+7 | use glob::Pattern;
+  |     ^^^^ use of undeclared crate or module `glob`
+
+error[E0432]: unresolved import `gl`
+ --> src/opengl.rs:1:5
+  |
+1 | use gl;
+  |     ^^ no external crate `gl`
+
+error[E0432]: unresolved import `x11`
+ --> src/opengl.rs:8:5
+  |
+8 | use x11::xlib;
+  |     ^^^ use of undeclared crate or module `x11`
+
+error[E0432]: unresolved import `x11`
+ --> src/opengl.rs:9:5
+  |
+9 | use x11::xfixes;
+  |     ^^^ use of undeclared crate or module `x11`
+
+error[E0432]: unresolved import `x11`
+  --> src/opengl.rs:10:5
+   |
+10 | use x11::glx;
+   |     ^^^ use of undeclared crate or module `x11`
+
+error[E0412]: cannot find type `Display` in this scope
+   --> src/c2.rs:319:34
+    |
+319 |     fn XInternAtom(display: *mut Display, name: *const c_char, only_if_exists: c_int) -> Atom;
+    |                                  ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::fmt::Display;
+    |
+1   | use crate::src::compton::Display;
+    |
+1   | use std::fmt::Display;
+    |
+1   | use std::path::Display;
+    |
+
+error[E0412]: cannot find type `Display` in this scope
+   --> src/c2.rs:320:35
+    |
+320 |     fn XGetAtomName(display: *mut Display, atom: Atom) -> *mut c_char;
+    |                                   ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::fmt::Display;
+    |
+1   | use crate::src::compton::Display;
+    |
+1   | use std::fmt::Display;
+    |
+1   | use std::path::Display;
+    |
+
+error[E0425]: cannot find function `force_repaint` in this scope
+   --> src/dbus.rs:106:33
+    |
+106 | ...                   force_repaint(session);
+    |                       ^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use crate::src::compton::force_repaint;
+    |
+
+error[E0412]: cannot find type `Session` in this scope
+   --> src/opengl.rs:208:28
+    |
+208 | fn rect_is_fullscreen(ps: &Session, x: c_int, y: c_int, wid: c_uint, hei: c_uint) -> bool {
+    |                            ^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/c2.rs:81:1
+    |
+81  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::c2::Session`: not accessible
+    |
+   ::: src/dbus.rs:32:1
+    |
+32  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::dbus::Session`: not accessible
+
+error[E0412]: cannot find type `Session` in this scope
+   --> src/opengl.rs:265:33
+    |
+265 |     pub fn init(&mut self, ps: &Session, need_render: bool) -> bool {
+    |                                 ^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/c2.rs:81:1
+    |
+81  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::c2::Session`: not accessible
+    |
+   ::: src/dbus.rs:32:1
+    |
+32  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::dbus::Session`: not accessible
+
+error[E0412]: cannot find type `Session` in this scope
+   --> src/opengl.rs:271:36
+    |
+271 |     pub fn destroy(&mut self, ps: &Session) {
+    |                                    ^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/c2.rs:81:1
+    |
+81  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::c2::Session`: not accessible
+    |
+   ::: src/dbus.rs:32:1
+    |
+32  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::dbus::Session`: not accessible
+
+error[E0412]: cannot find type `Session` in this scope
+   --> src/opengl.rs:276:35
+    |
+276 |     pub fn reinit(&mut self, ps: &Session, need_render: bool) -> bool {
+    |                                   ^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/c2.rs:81:1
+    |
+81  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::c2::Session`: not accessible
+    |
+   ::: src/dbus.rs:32:1
+    |
+32  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::dbus::Session`: not accessible
+
+error[E0412]: cannot find type `Session` in this scope
+   --> src/opengl.rs:282:43
+    |
+282 |     pub fn on_root_change(&mut self, ps: &Session) {
+    |                                           ^^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> src/c2.rs:81:1
+    |
+81  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::c2::Session`: not accessible
+    |
+   ::: src/dbus.rs:32:1
+    |
+32  | struct Session {
+    | ^^^^^^^^^^^^^^ `crate::src::dbus::Session`: not accessible
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:11:1
+   |
+11 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:31
+   |
+12 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> src/c2.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::mem`
+ --> src/c2.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `cell::RefCell`, `collections::HashMap`, `os::unix::io::RawFd`, `rc::Rc`, `sync::Arc`
+  --> src/dbus.rs:11:5
+   |
+11 |     sync::Arc,
+   |     ^^^^^^^^^
+12 |     time::Duration,
+13 |     collections::HashMap,
+   |     ^^^^^^^^^^^^^^^^^^^^
+14 |     os::unix::io::RawFd,
+   |     ^^^^^^^^^^^^^^^^^^^
+15 |     rc::Rc,
+   |     ^^^^^^
+16 |     cell::RefCell,
+   |     ^^^^^^^^^^^^^
+
+warning: unused import: `libc`
+ --> src/opengl.rs:2:5
+  |
+2 | use libc;
+  |     ^^^^
+
+warning: unused import: `std::mem`
+ --> src/opengl.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_ulong`
+ --> src/opengl.rs:6:51
+  |
+6 | use std::os::raw::{c_char, c_void, c_int, c_uint, c_ulong, c_float, c_double};
+  |                                                   ^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+ --> src/opengl.rs:7:5
+  |
+7 | use std::sync::Arc;
+  |     ^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0277]: `WinPropData` doesn't implement `Debug`
+  --> src/c2.rs:48:5
+   |
+46 | #[derive(Debug, Clone, Copy)]
+   |          ----- in this derive macro expansion
+47 | struct WinProp {
+48 |     data: WinPropData,
+   |     ^^^^^^^^^^^^^^^^^ `WinPropData` cannot be formatted using `{:?}`
+   |
+   = help: the trait `Debug` is not implemented for `WinPropData`
+   = note: add `#[derive(Debug)]` to `WinPropData` or manually `impl Debug for WinPropData`
+   = note: this error originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `WinPropData` with `#[derive(Debug)]`
+   |
+55 | #[derive(Debug)]
+   |
+
+error[E0277]: `C2PtrUnion` doesn't implement `Debug`
+  --> src/c2.rs:94:5
+   |
+91 | #[derive(Debug, Clone, Copy)]
+   |          ----- in this derive macro expansion
+...
+94 |     ptr: C2PtrUnion,
+   |     ^^^^^^^^^^^^^^^ `C2PtrUnion` cannot be formatted using `{:?}`
+   |
+   = help: the trait `Debug` is not implemented for `C2PtrUnion`
+   = note: add `#[derive(Debug)]` to `C2PtrUnion` or manually `impl Debug for C2PtrUnion`
+   = note: this error originates in the derive macro `Debug` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: consider annotating `C2PtrUnion` with `#[derive(Debug)]`
+   |
+98 | #[derive(Debug)]
+   |
+
+error[E0609]: no field `dpy` on type `&c2::Session`
+   --> src/c2.rs:213:30
+    |
+213 |             XInternAtom(self.dpy, c_name.as_ptr(), 0)
+    |                              ^^^ unknown field
+
+error[E0609]: no field `a` on type `&c2::Win`
+   --> src/c2.rs:218:11
+    |
+218 |         w.a.map_state == 2 && self.active_win as *const _ == w as *const _
+    |           ^ unknown field
+
+error[E0609]: no field `active_win` on type `&c2::Session`
+   --> src/c2.rs:218:36
+    |
+218 |         w.a.map_state == 2 && self.active_win as *const _ == w as *const _
+    |                                    ^^^^^^^^^^ unknown field
+
+error[E0609]: no field `root_width` on type `&c2::Session`
+   --> src/c2.rs:223:32
+    |
+223 |         x as u32 + wid >= self.root_width as u32 && 
+    |                                ^^^^^^^^^^ unknown field
+
+error[E0609]: no field `root_height` on type `&c2::Session`
+   --> src/c2.rs:224:32
+    |
+224 |         y as u32 + hei >= self.root_height as u32
+    |                                ^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `a` on type `&c2::Win`
+   --> src/c2.rs:228:35
+    |
+228 |         self.rect_is_fullscreen(w.a.x, w.a.y, w.widthb as u32, w.heightb as u32) &&
+    |                                   ^ unknown field
+
+error[E0609]: no field `a` on type `&c2::Win`
+   --> src/c2.rs:228:42
+    |
+228 |         self.rect_is_fullscreen(w.a.x, w.a.y, w.widthb as u32, w.heightb as u32) &&
+    |                                          ^ unknown field
+
+error[E0609]: no field `widthb` on type `&c2::Win`
+   --> src/c2.rs:228:49
+    |
+228 |         self.rect_is_fullscreen(w.a.x, w.a.y, w.widthb as u32, w.heightb as u32) &&
+    |                                                 ^^^^^^ unknown field
+
+error[E0609]: no field `heightb` on type `&c2::Win`
+   --> src/c2.rs:228:66
+    |
+228 |         self.rect_is_fullscreen(w.a.x, w.a.y, w.widthb as u32, w.heightb as u32) &&
+    |                                                                  ^^^^^^^ unknown field
+
+error[E0609]: no field `bounding_shaped` on type `&c2::Win`
+   --> src/c2.rs:229:13
+    |
+229 |         (!w.bounding_shaped || w.rounded_corners)
+    |             ^^^^^^^^^^^^^^^ unknown field
+
+error[E0609]: no field `rounded_corners` on type `&c2::Win`
+   --> src/c2.rs:229:34
+    |
+229 |         (!w.bounding_shaped || w.rounded_corners)
+    |                                  ^^^^^^^^^^^^^^^ unknown field
+
+error[E0282]: type annotations needed
+   --> src/c2.rs:308:25
+    |
+308 |             regex_pcre: None,
+    |                         ^^^^ cannot infer type of the type parameter `T` declared on the enum `Option`
+    |
+help: consider specifying the generic argument
+    |
+308 |             regex_pcre: None::<T>,
+    |                             +++++
+
+error[E0609]: no field `reset` on type `&mut dbus::Session`
+   --> src/dbus.rs:102:41
+    |
+102 | ...                   session.reset = true;
+    |                               ^^^^^ unknown field
+    |
+    = note: available fields are: `dbus_conn`
+
+error[E0283]: type annotations needed
+   --> src/opengl.rs:252:22
+    |
+252 |             context: ptr::null_mut(),
+    |                      ^^^^^^^^^^^^^ cannot infer type of the type parameter `T` declared on the function `null_mut`
+    |
+    = note: cannot satisfy `_: Thin`
+note: required by a bound in `null_mut`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ptr/mod.rs:667:35
+    |
+667 | pub const fn null_mut<T: ?Sized + Thin>() -> *mut T {
+    |                                   ^^^^ required by this bound in `null_mut`
+help: consider specifying the type argument in the function call
+    |
+252 |             context: ptr::null_mut::<T>(),
+    |                                   +++++
+
+Some errors have detailed explanations: E0277, E0282, E0283, E0412, E0425, E0432, E0433, E0609.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 10 warnings
+error: could not compile `c2rust_out` due to 35 previous errors; 10 warnings emitted

@@ -1,0 +1,191 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/minilisp)
+error[E0425]: cannot find function `error` in this scope
+   --> minilisp.rs:112:9
+    |
+112 |         error("Memory exhausted");
+    |         ^^^^^ not found in this scope
+
+error[E0425]: cannot find function `alloc_semispace` in this scope
+   --> minilisp.rs:130:14
+    |
+130 |     MEMORY = alloc_semispace();
+    |              ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward_root_objects` in this scope
+   --> minilisp.rs:135:5
+    |
+135 |     forward_root_objects(root);
+    |     ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:141:43
+    |
+141 |                 (*scan1).value.cell.car = forward((*scan1).value.cell.car);
+    |                                           ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:142:43
+    |
+142 |                 (*scan1).value.cell.cdr = forward((*scan1).value.cell.cdr);
+    |                                           ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:145:50
+    |
+145 |                 (*scan1).value.function.params = forward((*scan1).value.function.params);
+    |                                                  ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:146:48
+    |
+146 |                 (*scan1).value.function.body = forward((*scan1).value.function.body);
+    |                                                ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:147:47
+    |
+147 |                 (*scan1).value.function.env = forward((*scan1).value.function.env);
+    |                                               ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:150:43
+    |
+150 |                 (*scan1).value.env.vars = forward((*scan1).value.env.vars);
+    |                                           ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `forward` in this scope
+   --> minilisp.rs:151:41
+    |
+151 |                 (*scan1).value.env.up = forward((*scan1).value.env.up);
+    |                                         ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `error` in this scope
+   --> minilisp.rs:153:18
+    |
+153 |             _ => error(&format!("Bug: copy: unknown type {:?}", (*scan1).type_)),
+    |                  ^^^^^ not found in this scope
+
+error[E0425]: cannot find function `munmap` in this scope
+   --> minilisp.rs:158:5
+    |
+158 |     munmap(FROM_SPACE, 65536);
+    |     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::munmap;
+    |
+
+error[E0425]: cannot find function `get_env_flag` in this scope
+   --> minilisp.rs:171:20
+    |
+171 |         DEBUG_GC = get_env_flag("MINILISP_DEBUG_GC");
+    |                    ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_env_flag` in this scope
+   --> minilisp.rs:172:21
+    |
+172 |         ALWAYS_GC = get_env_flag("MINILISP_ALWAYS_GC");
+    |                     ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `alloc_semispace` in this scope
+   --> minilisp.rs:174:18
+    |
+174 |         MEMORY = alloc_semispace();
+    |                  ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `make_env` in this scope
+   --> minilisp.rs:178:23
+    |
+178 |         let mut env = make_env(&mut root, &mut NIL, &mut NIL);
+    |                       ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `define_constants` in this scope
+   --> minilisp.rs:180:9
+    |
+180 |         define_constants(&mut root, &mut env);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `define_primitives` in this scope
+   --> minilisp.rs:181:9
+    |
+181 |         define_primitives(&mut root, &mut env);
+    |         ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `read_expr` in this scope
+   --> minilisp.rs:184:24
+    |
+184 |             let expr = read_expr(&mut root);
+    |                        ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `error` in this scope
+   --> minilisp.rs:189:17
+    |
+189 |                 error("Stray close parenthesis");
+    |                 ^^^^^ not found in this scope
+
+error[E0425]: cannot find function `error` in this scope
+   --> minilisp.rs:192:17
+    |
+192 |                 error("Stray dot");
+    |                 ^^^^^ not found in this scope
+
+error[E0423]: expected function, found macro `print`
+   --> minilisp.rs:194:13
+    |
+194 |             print(eval(&mut root, &mut env, &mut expr));
+    |             ^^^^^ not a function
+    |
+help: use `!` to invoke the macro
+    |
+194 |             print!(eval(&mut root, &mut env, &mut expr));
+    |                  +
+
+error[E0425]: cannot find function `eval` in this scope
+   --> minilisp.rs:194:19
+    |
+194 |             print(eval(&mut root, &mut env, &mut expr));
+    |                   ^^^^ not found in this scope
+
+warning: unused import: `std::env`
+ --> minilisp.rs:1:5
+  |
+1 | use std::env;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `CStr`, `CString`
+ --> minilisp.rs:2:16
+  |
+2 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused imports: `c_int`, `c_long`, `c_uchar`, `c_ulong`, `c_ushort`
+ --> minilisp.rs:6:28
+  |
+6 | use std::os::raw::{c_char, c_int, c_void, c_uchar, c_long, c_ulong, c_ushort};
+  |                            ^^^^^          ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> minilisp.rs:7:5
+  |
+7 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0740]: unions cannot contain fields that may need dropping
+  --> minilisp.rs:29:5
+   |
+29 |     cell: Cell,
+   |     ^^^^^^^^^^
+   |
+   = note: a type is guaranteed not to need dropping when it implements `Copy`, or when it is the special `ManuallyDrop<_>` type
+help: when the type does not implement `Copy`, wrap it inside a `ManuallyDrop<_>` and ensure it is manually dropped
+   |
+29 |     cell: std::mem::ManuallyDrop<Cell>,
+   |           +++++++++++++++++++++++    +
+
+Some errors have detailed explanations: E0423, E0425, E0740.
+For more information about an error, try `rustc --explain E0423`.
+warning: `c2rust_out` (lib) generated 4 warnings
+error: could not compile `c2rust_out` due to 24 previous errors; 4 warnings emitted

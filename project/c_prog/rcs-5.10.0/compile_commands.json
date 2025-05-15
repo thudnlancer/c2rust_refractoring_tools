@@ -1,0 +1,1047 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "ident.o",
+            "ident.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "ident.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsrev.o",
+            "rcsrev.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsrev.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "fd-safer.o",
+            "fd-safer.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "fd-safer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "exitfail.o",
+            "exitfail.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "exitfail.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "getprogname.o",
+            "getprogname.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "getprogname.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "xsize.o",
+            "xsize.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "xsize.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "sprintf.o",
+            "sprintf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "sprintf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcs.o",
+            "rcs.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcs.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "dup-safer.o",
+            "dup-safer.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "dup-safer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "merge.o",
+            "merge.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "merge.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-isr.o",
+            "b-isr.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-isr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsmap.o",
+            "rcsmap.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsmap.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-frexpl.o",
+            "printf-frexpl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "printf-frexpl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "stat-time.o",
+            "stat-time.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "stat-time.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "xalloc-die.o",
+            "xalloc-die.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "xalloc-die.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rlog.o",
+            "rlog.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rlog.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-grok.o",
+            "b-grok.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-grok.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsclean.o",
+            "rcsclean.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsclean.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "xmalloc.o",
+            "xmalloc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "xmalloc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "super.o",
+            "super.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "super.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "vasnprintf.o",
+            "vasnprintf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "vasnprintf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "progname.o",
+            "progname.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "progname.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsmerge.o",
+            "rcsmerge.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsmerge.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "gettime.o",
+            "gettime.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "gettime.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "asnprintf.o",
+            "asnprintf.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "asnprintf.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "utimens.o",
+            "utimens.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "utimens.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-frexp.o",
+            "printf-frexp.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "printf-frexp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-fro.o",
+            "b-fro.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-fro.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "merger.o",
+            "merger.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "merger.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "pipe-safer.o",
+            "pipe-safer.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "pipe-safer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "concat-filename.o",
+            "concat-filename.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "concat-filename.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "partime.o",
+            "partime.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "partime.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcstime.o",
+            "rcstime.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcstime.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsgen.o",
+            "rcsgen.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsgen.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsutil.o",
+            "rcsutil.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsutil.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "unistd.o",
+            "unistd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "unistd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-parse.o",
+            "printf-parse.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "printf-parse.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "findprog.o",
+            "findprog.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "findprog.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "hash-pjw.o",
+            "hash-pjw.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "hash-pjw.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "timespec.o",
+            "timespec.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "timespec.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-divvy.o",
+            "b-divvy.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-divvy.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "printf-args.o",
+            "printf-args.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "printf-args.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-feph.o",
+            "b-feph.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-feph.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "co.o",
+            "co.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "co.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "xconcat-filename.o",
+            "xconcat-filename.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "xconcat-filename.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "obstack.o",
+            "obstack.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "obstack.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "sig-handler.o",
+            "sig-handler.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "sig-handler.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsdiff.o",
+            "rcsdiff.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsdiff.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "fcntl.o",
+            "fcntl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "fcntl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "math.o",
+            "math.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "math.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsfcmp.o",
+            "rcsfcmp.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsfcmp.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsedit.o",
+            "rcsedit.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsedit.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-excwho.o",
+            "b-excwho.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-excwho.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-esds.o",
+            "b-esds.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-esds.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "ci.o",
+            "ci.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "ci.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-peer.o",
+            "b-peer.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-peer.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-anchor.o",
+            "b-anchor.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-anchor.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-kwxout.o",
+            "b-kwxout.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-kwxout.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-g",
+            "-O2",
+            "-o",
+            "basename-lgpl.o",
+            "basename-lgpl.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/lib",
+        "file": "basename-lgpl.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "maketime.o",
+            "maketime.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "maketime.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcskeep.o",
+            "rcskeep.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcskeep.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "gnu-h-v.o",
+            "gnu-h-v.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "gnu-h-v.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-complain.o",
+            "b-complain.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-complain.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "rcsfnms.o",
+            "rcsfnms.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "rcsfnms.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-DHAVE_CONFIG_H",
+            "-I.",
+            "-I../lib",
+            "-I../lib",
+            "-g",
+            "-O2",
+            "-o",
+            "b-fb.o",
+            "b-fb.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/rcs-5.10.0/src",
+        "file": "b-fb.c"
+    }
+]

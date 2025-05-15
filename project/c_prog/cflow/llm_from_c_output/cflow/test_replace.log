@@ -1,0 +1,709 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/cflow)
+error: expected `;`, found keyword `if`
+   --> gnu/argp_parse.rs:380:18
+    |
+380 |                 )
+    |                  ^ help: add `;` here
+381 |                 if !(fresh1 > 0 as libc::c_int) {
+    |                 -- unexpected token
+
+error: mismatched closing delimiter: `}`
+  --> gnu/getopt.rs:49:26
+   |
+48 |             for i in 0..len {
+   |                             - closing delimiter possibly meant for this
+49 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                          ^ unclosed delimiter
+50 |             }
+   |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> gnu/getopt.rs:49:26
+   |
+49 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                          ^ unclosed delimiter                                          ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> gnu/getopt.rs:50:13
+   |
+50 |             }
+   |             ^ expected expression
+
+error: Binary expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:205:17
+    |
+205 |                 compile_error!("Binary expression is not supposed to be used")
+    |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:221:9
+    |
+221 |         compile_error!("Conditional expression is not supposed to be used");
+    |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Binary expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:464:33
+    |
+464 | / ...                   compile_error!(
+465 | | ...                       "Binary expression is not supposed to be used"
+466 | | ...                   )
+    | |_______________________^
+
+error: Conditional expression is not supposed to be used
+   --> gnu/argp_fmtstream.rs:484:25
+    |
+484 | /                         compile_error!(
+485 | |                             "Conditional expression is not supposed to be used"
+486 | |                         );
+    | |_________________________^
+
+error[E0432]: unresolved import `clap`
+  --> src/main.rs:10:5
+   |
+10 | use clap::{App, Arg, ArgMatches, SubCommand};
+   |     ^^^^ use of undeclared crate or module `clap`
+
+error[E0432]: unresolved import `lazy_static`
+  --> src/main.rs:11:5
+   |
+11 | use lazy_static::lazy_static;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0432]: unresolved import `regex`
+  --> src/main.rs:12:5
+   |
+12 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+
+error: cannot find macro `lazy_static` in this scope
+   --> src/c.rs:504:1
+    |
+504 | lazy_static! {
+    | ^^^^^^^^^^^
+
+error: cannot determine resolution for the macro `lazy_static`
+  --> src/main.rs:18:1
+   |
+18 | lazy_static! {
+   | ^^^^^^^^^^^
+   |
+   = note: import resolution is stuck, try simplifying macro imports
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> gnu/printf_args.rs:58:23
+   |
+58 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> gnu/printf_args.rs:121:51
+    |
+121 |                 (*ap).a.a_longdouble = args.arg::<f128::f128>();
+    |                                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> gnu/printf_parse.rs:57:23
+   |
+57 |     pub a_longdouble: f128::f128,
+   |                       ^^^^ use of undeclared crate or module `f128`
+
+error[E0425]: cannot find value `KEYWORDS` in this scope
+   --> src/c.rs:358:47
+    |
+358 |                     if let Some(token_type) = KEYWORDS.get(&ident) {
+    |                                               ^^^^^^^^ not found in this scope
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> src/output.rs:52:84
+   |
+52 |     handler: fn(OutputCommand, &mut dyn Write, u32, Option<&[u8]>, Option<&mut dyn Any>) -> io::Result<()>,
+   |                                                                                    ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> src/output.rs:53:34
+   |
+53 |     handler_data: Option<Box<dyn Any>>,
+   |                                  ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0425]: cannot find value `PRINT_LINE_NUMBERS` in this scope
+  --> src/output.rs:94:12
+   |
+94 |         if PRINT_LINE_NUMBERS {
+   |            ^^^^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::posix::PRINT_LINE_NUMBERS` exists but is inaccessible
+  --> src/posix.rs:37:1
+   |
+37 | static mut PRINT_LINE_NUMBERS: bool = false;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PRINT_LEVELS` in this scope
+  --> src/output.rs:97:12
+   |
+97 |         if PRINT_LEVELS {
+   |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `LEVEL_BEGIN` in this scope
+   --> src/output.rs:100:31
+    |
+100 |         write!(outfile, "{}", LEVEL_BEGIN)?;
+    |                               ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `LEVEL_INDENT` in this scope
+   --> src/output.rs:102:35
+    |
+102 |             write!(outfile, "{}", LEVEL_INDENT[LEVEL_MARK[i] as usize])?;
+    |                                   ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `LEVEL_END` in this scope
+   --> src/output.rs:104:33
+    |
+104 |         writeln!(outfile, "{}", LEVEL_END[last as usize])
+    |                                 ^^^^^^^^^ not found in this scope
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> src/output.rs:110:84
+    |
+110 |     handler: fn(OutputCommand, &mut dyn Write, u32, Option<&[u8]>, Option<&mut dyn Any>) -> io::Result<()>,
+    |                                                                                    ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::any::Any;
+    |
+1   | use std::any::Any;
+    |
+
+error[E0405]: cannot find trait `Any` in this scope
+   --> src/output.rs:111:34
+    |
+111 |     handler_data: Option<Box<dyn Any>>,
+    |                                  ^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::any::Any;
+    |
+1   | use std::any::Any;
+    |
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:220:8
+    |
+220 |     if include_symbol(sym) {
+    |        ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `collect_symbols` in this scope
+   --> src/output.rs:276:19
+    |
+215 | fn compare_symbols(a: &Symbol, b: &Symbol) -> Ordering {
+    | ------------------------------------------------------ similarly named function `compare_symbols` defined here
+...
+276 |     let symbols = collect_symbols(is_var, false);
+    |                   ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `compare_symbols`
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:297:22
+    |
+297 |     !p.is_empty() && include_symbol(unsafe { &*p.front().unwrap() })
+    |                      ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:302:21
+    |
+302 |     !iter.any(|sym| include_symbol(unsafe { &**sym }))
+    |                     ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:307:13
+    |
+307 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:307:38
+    |
+307 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |                                      ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:308:13
+    |
+308 |         || !include_symbol(sym)
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:331:13
+    |
+331 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:331:38
+    |
+331 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |                                      ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:332:13
+    |
+332 |         || !include_symbol(sym)
+    |             ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `collect_functions` in this scope
+   --> src/output.rs:354:23
+    |
+354 |     let mut symbols = collect_functions();
+    |                       ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `collect_symbols` in this scope
+   --> src/output.rs:378:27
+    |
+215 | fn compare_symbols(a: &Symbol, b: &Symbol) -> Ordering {
+    | ------------------------------------------------------ similarly named function `compare_symbols` defined here
+...
+378 |     let mut all_symbols = collect_symbols(is_var, false);
+    |                           ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `compare_symbols`
+
+error[E0425]: cannot find value `REVERSE_TREE` in this scope
+   --> src/output.rs:383:8
+    |
+383 |     if REVERSE_TREE {
+    |        ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `lookup` in this scope
+   --> src/output.rs:389:33
+    |
+389 |         if let Some(main_sym) = lookup(START_NAME) {
+    |                                 ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `START_NAME` in this scope
+   --> src/output.rs:389:40
+    |
+389 |         if let Some(main_sym) = lookup(START_NAME) {
+    |                                        ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `OUTNAME` in this scope
+   --> src/output.rs:409:12
+    |
+409 |         if OUTNAME == "-" {
+    |            ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `OUTNAME` in this scope
+   --> src/output.rs:412:50
+    |
+412 |             OUTFILE = Some(Box::new(File::create(OUTNAME)?));
+    |                                                  ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PRINT_OPTION` in this scope
+   --> src/output.rs:416:12
+    |
+416 |         if PRINT_OPTION & PRINT_XREF != 0 {
+    |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PRINT_XREF` in this scope
+   --> src/output.rs:416:27
+    |
+416 |         if PRINT_OPTION & PRINT_XREF != 0 {
+    |                           ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PRINT_OPTION` in this scope
+   --> src/output.rs:419:12
+    |
+419 |         if PRINT_OPTION & PRINT_TREE != 0 {
+    |            ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PRINT_TREE` in this scope
+   --> src/output.rs:419:27
+    |
+419 |         if PRINT_OPTION & PRINT_TREE != 0 {
+    |                           ^^^^^^^^^^ not found in this scope
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around block return value
+   --> gnu/argp_fmtstream.rs:558:13
+    |
+558 |             ({
+    |             ^
+...
+594 |             })
+    |              ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+558 ~             {
+559 |                 let mut __ptr: *const libc::c_char = (*fs).buf as *const libc::c_char;
+  ...
+593 |                     .wrapping_div(1 as libc::c_int as size_t)
+594 ~             }
+    |
+
+warning: unused label
+   --> gnu/argp_help.rs:794:5
+    |
+794 |     'c_8703: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> gnu/argp_help.rs:824:9
+    |
+824 |         'c_8643: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> gnu/argp_help.rs:876:9
+    |
+876 |         'c_8526: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> gnu/argp_help.rs:916:13
+    |
+916 |             'c_8454: {
+    |             ^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+    --> gnu/argp_help.rs:1330:33
+     |
+1330 |                         __res = (if __c < -(128 as libc::c_int)
+     |                                 ^
+...
+1336 |                         });
+     |                          ^
+     |
+help: remove these parentheses
+     |
+1330 ~                         __res = if __c < -(128 as libc::c_int)
+1331 |                             || __c > 255 as libc::c_int
+   ...
+1335 |                             *(*__ctype_tolower_loc()).offset(__c as isize)
+1336 ~                         };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> gnu/argp_help.rs:1353:37
+     |
+1353 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+1359 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1353 ~                             __res = if __c < -(128 as libc::c_int)
+1354 |                                 || __c > 255 as libc::c_int
+   ...
+1358 |                                 *(*__ctype_tolower_loc()).offset(__c as isize)
+1359 ~                             };
+     |
+
+warning: unused label
+    --> gnu/argp_help.rs:1470:13
+     |
+1470 |             'c_9293: {
+     |             ^^^^^^^
+
+warning: unused label
+    --> gnu/argp_help.rs:1508:17
+     |
+1508 |                 'c_9231: {
+     |                 ^^^^^^^
+
+warning: unused import: `::libc`
+ --> gnu/argp_pin.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused imports: `CString`, `OsString`
+ --> gnu/getopt.rs:2:16
+  |
+2 | use std::ffi::{CString, OsString};
+  |                ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+ --> gnu/getopt.rs:3:5
+  |
+3 | use std::os::unix::ffi::OsStringExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/getopt.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around method argument
+  --> gnu/getopt.rs:49:50
+   |
+49 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                                                  ^                                    ^
+   |
+help: remove these parentheses
+   |
+49 -                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+49 +                 argv.swap((bottom + i) as usize, top - (middle - bottom) + i as usize;
+   |
+
+warning: unused imports: `CString`, `fmt`, `mem`
+ --> gnu/vasnprintf.rs:2:17
+  |
+2 |     ffi::{CStr, CString},
+  |                 ^^^^^^^
+3 |     fmt,
+  |     ^^^
+4 |     io::{self, Write},
+5 |     mem,
+  |     ^^^
+
+warning: unnecessary parentheses around assigned value
+   --> src/argcv.rs:184:21
+    |
+184 |                 n = (if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+    |                     ^
+...
+217 |                 });
+    |                  ^
+    |
+help: remove these parentheses
+    |
+184 ~                 n = if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+185 |                     & _ISdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+  ...
+216 |                     })
+217 ~                 };
+    |
+
+warning: unnecessary parentheses around block return value
+   --> src/argcv.rs:189:21
+    |
+189 |                     (if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+    |                     ^
+...
+216 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+189 ~                     if *(*__ctype_b_loc()).offset(n as isize) as libc::c_int
+190 |                         & _ISxdigit as libc::c_int as libc::c_ushort as libc::c_int != 0
+  ...
+215 |                         255 as libc::c_int
+216 ~                     }
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> src/argcv.rs:199:45
+    |
+199 | ...                   __res = (if __c < -(128 as libc::c_int)
+    |                               ^
+...
+205 | ...                   });
+    |                        ^
+    |
+help: remove these parentheses
+    |
+199 ~                                     __res = if __c < -(128 as libc::c_int)
+200 |                                         || __c > 255 as libc::c_int
+  ...
+204 |                                         *(*__ctype_toupper_loc()).offset(__c as isize)
+205 ~                                     };
+    |
+
+warning: unused import: `std::collections::HashMap`
+ --> src/c.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Read`
+ --> src/c.rs:3:21
+  |
+3 | use std::io::{self, Read, BufRead, BufReader};
+  |                     ^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/c.rs:4:5
+  |
+4 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `CString`, `OsString`
+ --> src/main.rs:1:16
+  |
+1 | use std::ffi::{CString, OsString};
+  |                ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+ --> src/main.rs:2:5
+  |
+2 | use std::os::unix::ffi::OsStringExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::PathBuf`
+ --> src/main.rs:3:5
+  |
+3 | use std::path::PathBuf;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::env`
+ --> src/main.rs:4:5
+  |
+4 | use std::env;
+  |     ^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> src/main.rs:5:15
+  |
+5 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> src/output.rs:3:5
+  |
+3 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/output.rs:6:5
+  |
+6 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> src/output.rs:7:5
+  |
+7 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/output.rs:8:5
+  |
+8 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/output.rs:9:5
+  |
+9 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> src/parser.rs:21:5
+   |
+21 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> src/parser.rs:22:16
+   |
+22 | use std::ffi::{CStr, CString};
+   |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`
+  --> src/parser.rs:23:20
+   |
+23 | use std::os::raw::{c_char, c_int};
+   |                    ^^^^^^  ^^^^^
+
+warning: unused import: `std::ptr`
+  --> src/parser.rs:24:5
+   |
+24 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> src/parser.rs:25:5
+   |
+25 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::fmt`
+  --> src/parser.rs:26:5
+   |
+26 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/symbol.rs:3:16
+  |
+3 | use std::ffi::{CString, CStr};
+  |                ^^^^^^^  ^^^^
+
+warning: unused import: `std::mem`
+ --> src/symbol.rs:5:5
+  |
+5 | use std::mem;
+  |     ^^^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:10:15
+   |
+10 |     pub flag: Option<Box<i32>>,
+   |               ^^^^^^---------- help: remove these generics
+   |               |
+   |               expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:7:12
+   |
+7  | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:19:17
+   |
+19 |     pub optarg: Option<String>,
+   |                 ^^^^^^-------- help: remove these generics
+   |                 |
+   |                 expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:7:12
+   |
+7  | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:21:21
+   |
+21 |     pub __nextchar: Option<String>,
+   |                     ^^^^^^-------- help: remove these generics
+   |                     |
+   |                     expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:7:12
+   |
+7  | pub struct Option {
+   |            ^^^^^^
+
+Some errors have detailed explanations: E0107, E0405, E0425, E0432, E0433.
+For more information about an error, try `rustc --explain E0107`.
+warning: `c2rust_out` (lib) generated 40 warnings
+error: could not compile `c2rust_out` due to 50 previous errors; 40 warnings emitted

@@ -1,0 +1,68 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/gawk-5.2.2)
+error: this file contains an unclosed delimiter
+   --> debug.rs:472:20
+    |
+451 | unsafe extern "C" fn set_gawk_output(file: *const c_char) {
+    |                                                           - unclosed delimiter
+...
+469 |     if fd == -1 {
+    |                 - unclosed delimiter
+470 |         if libc::strncmp(file, b"/dev/\0".as_ptr() as *const c_char, 5) == 0 {
+    |                                                                              - unclosed delimiter
+471 |             let cp = file.add(5);
+472 |             if libc
+    |                    ^
+
+error: expected `{`, found `}`
+   --> debug.rs:472:20
+    |
+472 |             if libc
+    |                    ^ expected `{`
+    |
+note: the `if` expression is missing a block after this condition
+   --> debug.rs:472:16
+    |
+472 |             if libc
+    |                ^^^^
+
+error: this file contains an unclosed delimiter
+   --> eval.rs:447:23
+    |
+447 | unsafe fn push_frame(f
+    |                     - ^
+    |                     |
+    |                     unclosed delimiter
+
+error: expected one of `:`, `@`, or `|`, found `)`
+   --> eval.rs:447:23
+    |
+447 | unsafe fn push_frame(f
+    |                       ^ expected one of `:`, `@`, or `|`
+    |
+    = note: anonymous parameters are removed in the 2018 edition (see RFC 1685)
+help: if this is a `self` type, give it a parameter name
+    |
+447 | unsafe fn push_frame(self: f
+    |                      +++++
+help: if this is a parameter name, give it a type
+    |
+447 | unsafe fn push_frame(f: TypeName
+    |                       ++++++++++
+help: if this is a type, explicitly ignore the parameter name
+    |
+447 | unsafe fn push_frame(_: f
+    |                      ++
+
+error: expected one of `->`, `where`, or `{`, found `<eof>`
+   --> eval.rs:447:23
+    |
+447 | unsafe fn push_frame(f
+    |                       ^ expected one of `->`, `where`, or `{`
+
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `->`
+   --> field.rs:110:30
+    |
+110 |     save_FS = dupnode(FS_node->var_value);
+    |                              ^^ expected one of 8 possible tokens
+
+error: could not compile `c2rust_out` due to 6 previous errors

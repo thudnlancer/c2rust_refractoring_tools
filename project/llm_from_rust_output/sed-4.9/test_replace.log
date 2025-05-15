@@ -1,0 +1,5698 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/sed-4.9)
+error[E0583]: file not found for module `fflush`
+  --> c2rust-lib.rs:17:1
+   |
+17 | pub mod fflush;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fflush`, create file "gnulib_tests/fflush.rs" or "gnulib_tests/fflush/mod.rs"
+
+error[E0583]: file not found for module `file_has_acl`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod file_has_acl;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `file_has_acl`, create file "gnulib_tests/file_has_acl.rs" or "gnulib_tests/file_has_acl/mod.rs"
+
+error[E0583]: file not found for module `fpurge`
+  --> c2rust-lib.rs:19:1
+   |
+19 | pub mod fpurge;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fpurge`, create file "gnulib_tests/fpurge.rs" or "gnulib_tests/fpurge/mod.rs"
+
+error[E0583]: file not found for module `freading`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod freading;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `freading`, create file "gnulib_tests/freading.rs" or "gnulib_tests/freading/mod.rs"
+
+error[E0583]: file not found for module `fseek`
+  --> c2rust-lib.rs:21:1
+   |
+21 | pub mod fseek;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseek`, create file "gnulib_tests/fseek.rs" or "gnulib_tests/fseek/mod.rs"
+
+error[E0583]: file not found for module `fseeko`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod fseeko;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseeko`, create file "gnulib_tests/fseeko.rs" or "gnulib_tests/fseeko/mod.rs"
+
+error[E0583]: file not found for module `thread`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod thread;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+  --> c2rust-lib.rs:26:1
+   |
+26 | pub mod ioctl;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+  --> c2rust-lib.rs:27:1
+   |
+27 | pub mod locale;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod localename;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod localename_table;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod nanosleep;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `pthread_sigmask`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod pthread_sigmask;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `pthread_sigmask`, create file "gnulib_tests/pthread_sigmask.rs" or "gnulib_tests/pthread_sigmask/mod.rs"
+
+error[E0583]: file not found for module `read_file`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod read_file;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `read_file`, create file "gnulib_tests/read_file.rs" or "gnulib_tests/read_file/mod.rs"
+
+error[E0583]: file not found for module `sockets`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod sockets;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sockets`, create file "gnulib_tests/sockets.rs" or "gnulib_tests/sockets/mod.rs"
+
+error[E0583]: file not found for module `strerror_r`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod strerror_r;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `strerror_r`, create file "gnulib_tests/strerror_r.rs" or "gnulib_tests/strerror_r/mod.rs"
+
+error[E0583]: file not found for module `sys_socket`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod sys_socket;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sys_socket`, create file "gnulib_tests/sys_socket.rs" or "gnulib_tests/sys_socket/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod test_localcharset;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `vma_iter`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod vma_iter;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `vma_iter`, create file "gnulib_tests/vma_iter.rs" or "gnulib_tests/vma_iter/mod.rs"
+
+error: mismatched closing delimiter: `}`
+  --> lib/c_strncasecmp.rs:19:34
+   |
+18 |     while remaining > 0 {
+   |                         - closing delimiter possibly meant for this
+19 |         let c1 = iter1.next().map(|&c| c_tolower(c as i32) as i32;
+   |                                  ^ unclosed delimiter
+...
+36 |     }
+   |     ^ mismatched closing delimiter
+
+error: expected one of `!`, `(`, `)`, `,`, `.`, `::`, `<`, `?`, or an operator, found `;`
+  --> lib/c_strncasecmp.rs:19:34
+   |
+19 |         let c1 = iter1.next().map(|&c| c_tolower(c as i32) as i32;
+   |                                  ^ unclosed delimiter            ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> lib/c_strncasecmp.rs:36:5
+   |
+36 |     }
+   |     ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> sed/debug.rs:500:17
+    |
+438 | fn debug_print_function(program: *const vector, sc: *const sed_cmd) {
+    |                                                                     - unclosed delimiter
+439 |     unsafe {
+    |            - unclosed delimiter
+...
+444 |         match (*sc).cmd as c_int {
+    |                                  - unclosed delimiter
+...
+500 |             _ =>
+    |                 ^
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found keyword `as`
+   --> sed/debug.rs:445:18
+    |
+445 |             b':' as i32 => {
+    |                  ^^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error[E0255]: the name `set_permissions` is defined multiple times
+  --> lib/set_permissions.rs:21:1
+   |
+3  | use std::fs::{File, set_permissions, Permissions};
+   |                     --------------- previous import of the value `set_permissions` here
+...
+21 | pub fn set_permissions(ctx: &PermissionContext, name: Option<&CString>, desc: Option<&File>) -> io::Result<()> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `set_permissions` redefined here
+   |
+   = note: `set_permissions` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+3  | use std::fs::{File, set_permissions as other_set_permissions, Permissions};
+   |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error: Binary expression is not supposed to be used
+    --> sed/execute.rs:1869:25
+     |
+1869 |                         compile_error!("Binary expression is not supposed to be used")
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+    --> sed/execute.rs:1891:17
+     |
+1891 |                 compile_error!("Conditional expression is not supposed to be used");
+     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> lib/cloexec.rs:2:5
+  |
+2 | use nix::fcntl::{fcntl, FcntlArg, FdFlag, OFlag};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> sed/utils.rs:9:5
+  |
+9 | use nix::errno::Errno;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> sed/utils.rs:10:5
+   |
+10 | use nix::fcntl::OFlag;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> sed/utils.rs:11:5
+   |
+11 | use nix::sys::stat::Mode;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `getopts`
+ --> sed/sed.rs:7:5
+  |
+7 | use getopts::Options;
+  |     ^^^^^^^ use of undeclared crate or module `getopts`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `once_cell`
+  --> sed/utils.rs:13:5
+   |
+13 | use once_cell::sync::Lazy;
+   |     ^^^^^^^^^ use of undeclared crate or module `once_cell`
+
+error[E0432]: unresolved import `nix`
+  --> sed/utils.rs:12:5
+   |
+12 | use nix::unistd;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> lib/cloexec.rs:4:65
+  |
+4 | pub fn set_cloexec_flag(desc: RawFd, value: bool) -> Result<(), nix::Error> {
+  |                                                                 ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> lib/cloexec.rs:18:48
+   |
+18 | pub fn dup_cloexec(fd: RawFd) -> Result<RawFd, nix::Error> {
+   |                                                ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `getrandom`
+  --> lib/tempname.rs:22:22
+   |
+22 |     if let Ok(len) = getrandom::getrandom(&mut buf) {
+   |                      ^^^^^^^^^ use of undeclared crate or module `getrandom`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `gettextrs`
+ --> lib/xalloc_die.rs:4:15
+  |
+4 |     let msg = gettextrs::gettext("memory exhausted");
+  |               ^^^^^^^^^ use of undeclared crate or module `gettextrs`
+
+error[E0425]: cannot find function `setlocale_null_r` in crate `libc`
+ --> lib/hard_locale.rs:9:15
+  |
+9 |         libc::setlocale_null_r(
+  |               ^^^^^^^^^^^^^^^^ not found in `libc`
+  |
+help: consider importing this function
+  |
+1 | use crate::lib::setlocale_null::setlocale_null_r;
+  |
+help: if you import `setlocale_null_r`, refer to it directly
+  |
+9 -         libc::setlocale_null_r(
+9 +         setlocale_null_r(
+  |
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:25:59
+   |
+25 |         let new_length = self.length.checked_mul(2).ok_or(alloc::LayoutError)?;
+   |                                                           ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:36:32
+   |
+36 |                     return Err(alloc::LayoutError);
+   |                                ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:38:45
+   |
+38 |                 NonNull::new(new_ptr).ok_or(alloc::LayoutError)?
+   |                                             ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:43:28
+   |
+43 |                 return Err(alloc::LayoutError);
+   |                            ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:52:41
+   |
+52 |             NonNull::new(new_ptr).ok_or(alloc::LayoutError)?
+   |                                         ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0425]: cannot find function `mbrtowc` in crate `libc`
+  --> lib/mbrtowc.rs:33:30
+   |
+33 |     let ret = unsafe { libc::mbrtowc(pwc, s_ptr, n, ps_ptr as *mut _) };
+   |                              ^^^^^^^ not found in `libc`
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> sed/compile.rs:49:16
+   |
+49 |     repl_type: c_uint,
+   |                ^^^^^^
+   |
+  ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/primitives.rs:58:9
+   |
+58 |         pub type c_int = i32;
+   |         -------------- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+49 |     repl_type: c_int,
+   |                ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> sed/compile.rs:65:18
+   |
+65 |     range_state: c_uint,
+   |                  ^^^^^^
+   |
+  ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/primitives.rs:58:9
+   |
+58 |         pub type c_int = i32;
+   |         -------------- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+65 |     range_state: c_int,
+   |                  ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> sed/compile.rs:99:16
+   |
+99 |     addr_type: c_uint,
+   |                ^^^^^^
+   |
+  ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/primitives.rs:58:9
+   |
+58 |         pub type c_int = i32;
+   |         -------------- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+99 |     addr_type: c_int,
+   |                ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+   --> sed/compile.rs:142:24
+    |
+142 | static mut posixicity: c_uint = 0;
+    |                        ^^^^^^
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/primitives.rs:58:9
+    |
+58  |         pub type c_int = i32;
+    |         -------------- similarly named type alias `c_int` defined here
+    |
+help: a type alias with a similar name exists
+    |
+142 | static mut posixicity: c_int = 0;
+    |                        ~~~~~
+help: consider importing one of these items
+    |
+1   | use core::ffi::c_uint;
+    |
+1   | use libc::c_uint;
+    |
+1   | use std::ffi::c_uint;
+    |
+1   | use std::os::raw::c_uint;
+    |
+
+error[E0425]: cannot find value `cur_input` in this scope
+   --> sed/compile.rs:147:9
+    |
+147 |     if !cur_input.name.is_null() {
+    |         ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `cur_input` in this scope
+   --> sed/compile.rs:156:13
+    |
+156 |             cur_input.name,
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `cur_input` in this scope
+   --> sed/compile.rs:157:13
+    |
+157 |             cur_input.line,
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `cur_input` in this scope
+   --> sed/compile.rs:169:13
+    |
+169 |             cur_input.string_expr_count,
+    |             ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `prog` in this scope
+   --> sed/compile.rs:170:14
+    |
+170 |             (prog.cur.offset_from(prog.base)) as c_ulong,
+    |              ^^^^ not found in this scope
+
+error[E0425]: cannot find value `prog` in this scope
+   --> sed/compile.rs:170:35
+    |
+170 |             (prog.cur.offset_from(prog.base)) as c_ulong,
+    |                                   ^^^^ not found in this scope
+
+error[E0412]: cannot find type `c_uint` in this scope
+   --> sed/compile.rs:186:14
+    |
+186 |     buftype: c_uint,
+    |              ^^^^^^
+    |
+   ::: /home/c2rust/.cargo/registry/src/mirrors.tuna.tsinghua.edu.cn-df7c3c540f42cdbd/libc-0.2.171/src/primitives.rs:58:9
+    |
+58  |         pub type c_int = i32;
+    |         -------------- similarly named type alias `c_int` defined here
+    |
+help: a type alias with a similar name exists
+    |
+186 |     buftype: c_int,
+    |              ~~~~~
+help: consider importing one of these items
+    |
+1   | use core::ffi::c_uint;
+    |
+1   | use libc::c_uint;
+    |
+1   | use std::ffi::c_uint;
+    |
+1   | use std::os::raw::c_uint;
+    |
+
+error[E0412]: cannot find type `c_ushort` in this scope
+  --> sed/debug.rs:32:18
+   |
+32 |     _cur_column: c_ushort,
+   |                  ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_ushort;
+   |
+1  | use libc::c_ushort;
+   |
+1  | use std::ffi::c_ushort;
+   |
+1  | use std::os::raw::c_ushort;
+   |
+
+error[E0412]: cannot find type `c_schar` in this scope
+  --> sed/debug.rs:33:21
+   |
+33 |       _vtable_offset: c_schar,
+   |                       ^^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_char` defined here
+   |
+help: a type alias with a similar name exists
+   |
+33 |     _vtable_offset: c_char,
+   |                     ~~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_schar;
+   |
+1  | use libc::c_schar;
+   |
+1  | use std::ffi::c_schar;
+   |
+1  | use std::os::raw::c_schar;
+   |
+
+error[E0425]: cannot find function `__ctype_b_loc` in this scope
+   --> sed/debug.rs:214:24
+    |
+214 |         if 1 != 0 && (*__ctype_b_loc()).offset(c as isize) as c_int & _ISprint as c_int != 0
+    |                        ^^^^^^^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> lib/dfa.rs:19:5
+    |
+19  |     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::lib::dfa::__ctype_b_loc`: not accessible
+    |
+   ::: lib/regex.rs:18:5
+    |
+18  |     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::lib::regex::__ctype_b_loc`: not accessible
+    |
+   ::: sed/execute.rs:152:5
+    |
+152 |     fn __ctype_b_loc() -> *mut *const libc::c_ushort;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::sed::execute::__ctype_b_loc`: not accessible
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:217:13
+    |
+217 |             putchar_unlocked(c as c_int);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:220:9
+    |
+220 |         putchar_unlocked('\\' as i32);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:222:18
+    |
+222 |             7 => putchar_unlocked('a' as i32),
+    |                  ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:223:19
+    |
+223 |             12 => putchar_unlocked('f' as i32),
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:224:19
+    |
+224 |             13 => putchar_unlocked('r' as i32),
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:225:18
+    |
+225 |             9 => putchar_unlocked('t' as i32),
+    |                  ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:226:19
+    |
+226 |             11 => putchar_unlocked('v' as i32),
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:227:19
+    |
+227 |             10 => putchar_unlocked('n' as i32),
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:228:19
+    |
+228 |             92 => putchar_unlocked('\\' as i32),
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:229:18
+    |
+229 |             _ => printf(b"o%03o\0".as_ptr() as *const c_char, c as c_uint),
+    |                  ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:241:17
+    |
+241 |                 fputs_unlocked(b"\\/\0".as_ptr() as *const c_char, stdout);
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:241:68
+    |
+241 |                 fputs_unlocked(b"\\/\0".as_ptr() as *const c_char, stdout);
+    |                                                                    ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:256:13
+    |
+256 |             putchar_unlocked(if addr { 'I' as i32 } else { 'i' as i32 });
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:259:13
+    |
+259 |             putchar_unlocked(if addr { 'M' as i32 } else { 'm' as i32 });
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:267:13
+    |
+267 |             fputs_unlocked(b"//\0".as_ptr() as *const c_char, stdout);
+    |             ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:267:63
+    |
+267 |             fputs_unlocked(b"//\0".as_ptr() as *const c_char, stdout);
+    |                                                               ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:270:9
+    |
+270 |         putchar_unlocked('/' as i32);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:272:9
+    |
+272 |         putchar_unlocked('/' as i32);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:283:17
+    |
+283 |                 fputs_unlocked(b"[ADDR-NULL]\0".as_ptr() as *const c_char, stdout);
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:283:76
+    |
+283 |                 fputs_unlocked(b"[ADDR-NULL]\0".as_ptr() as *const c_char, stdout);
+    |                                                                            ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:290:17
+    |
+290 |                 printf(b"%lu\0".as_ptr() as *const c_char, (*a).addr_number);
+    |                 ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:293:17
+    |
+293 |                 printf(
+    |                 ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:300:17
+    |
+300 |                 printf(b"+%lu\0".as_ptr() as *const c_char, (*a).addr_step);
+    |                 ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:303:17
+    |
+303 |                 printf(b"~%lu\0".as_ptr() as *const c_char, (*a).addr_step);
+    |                 ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:306:17
+    |
+306 |                 putchar_unlocked('$' as i32);
+    |                 ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:322:17
+    |
+322 |                 putchar_unlocked('\\' as i32);
+    |                 ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:324:53
+    |
+324 |                     replacement_types::REPL_ASIS => putchar_unlocked('E' as i32),
+    |                                                     ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:325:58
+    |
+325 |                     replacement_types::REPL_UPPERCASE => putchar_unlocked('U' as i32),
+    |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:326:58
+    |
+326 |                     replacement_types::REPL_LOWERCASE => putchar_unlocked('L' as i32),
+    |                                                          ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:330:25
+    |
+330 |                         putchar_unlocked('u' as i32)
+    |                         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:335:25
+    |
+335 |                         putchar_unlocked('l' as i32)
+    |                         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `fwrite_unlocked` in this scope
+   --> sed/debug.rs:342:17
+    |
+342 |                 fwrite_unlocked(
+    |                 ^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fwrite_unlocked` exists but is inaccessible
+   --> sed/execute.rs:83:5
+    |
+83  | /     fn fwrite_unlocked(
+84  | |         __ptr: *const libc::c_void,
+85  | |         __size: size_t,
+86  | |         __n: size_t,
+87  | |         __stream: *mut FILE,
+88  | |     ) -> size_t;
+    | |________________^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:346:21
+    |
+346 |                     stdout,
+    |                     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:351:21
+    |
+351 |                     putchar_unlocked('&' as i32);
+    |                     ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:353:21
+    |
+353 |                     printf(b"\\%d\0".as_ptr() as *const c_char, (*p).subst_id);
+    |                     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:366:9
+    |
+366 |         fputs_unlocked((*o).name, stdout);
+    |         ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:366:35
+    |
+366 |         fputs_unlocked((*o).name, stdout);
+    |                                   ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:377:9
+    |
+377 |         putchar_unlocked('/' as i32);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:380:13
+    |
+380 |             putchar_unlocked('g' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:383:13
+    |
+383 |             putchar_unlocked('e' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:386:13
+    |
+386 |             putchar_unlocked('p' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `printf` in this scope
+   --> sed/debug.rs:389:13
+    |
+389 |             printf(b"%lu\0".as_ptr() as *const c_char, (*s).numb);
+    |             ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::printf;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:392:13
+    |
+392 |             putchar_unlocked('w' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:401:13
+    |
+401 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:404:17
+    |
+404 |                 fputs_unlocked(
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:406:21
+    |
+406 |                     stdout,
+    |                     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:410:13
+    |
+410 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `fputs_unlocked` in this scope
+   --> sed/debug.rs:413:17
+    |
+413 |                 fputs_unlocked(
+    |                 ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::sed::execute::fputs_unlocked` exists but is inaccessible
+   --> sed/execute.rs:76:5
+    |
+76  |     fn fputs_unlocked(__s: *const libc::c_char, __stream: *mut FILE) -> libc::c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `stdout` in this scope
+   --> sed/debug.rs:415:21
+    |
+415 |                     stdout,
+    |                     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use std::io::stdout;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:419:13
+    |
+419 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:421:13
+    |
+421 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:424:21
+    |
+424 |                     putchar_unlocked(i as c_uchar as c_int);
+    |                     ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:427:13
+    |
+427 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:430:21
+    |
+430 |                     putchar_unlocked(*(*sc).x.translate.offset(i as isize) as c_int);
+    |                     ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:433:13
+    |
+433 |             putchar_unlocked('/' as i32);
+    |             ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find function `putchar_unlocked` in this scope
+   --> sed/debug.rs:443:9
+    |
+443 |         putchar_unlocked((*sc).cmd as c_int);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::putchar_unlocked;
+    |
+
+error[E0425]: cannot find value `program_name` in crate `libc`
+   --> sed/utils.rs:43:30
+    |
+43  |         CStr::from_ptr(libc::program_name)
+    |                              ^^^^^^^^^^^^ not found in `libc`
+    |
+note: these statics exist but are inaccessible
+   --> sed/compile.rs:143:1
+    |
+143 | static mut program_name: *const c_char = ptr::null();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::sed::compile::program_name`: not accessible
+    |
+   ::: sed/execute.rs:168:5
+    |
+168 |     static mut program_name: *const libc::c_char;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::sed::execute::program_name`: not accessible
+
+warning: unused imports: `AsRawFd`, `FromRawFd`
+ --> lib/cloexec.rs:1:25
+  |
+1 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+  |                         ^^^^^^^  ^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused imports: `SeekFrom`, `Write`
+ --> lib/close_stream.rs:2:39
+  |
+2 | use std::io::{self, Error, ErrorKind, Write, Seek, SeekFrom};
+  |                                       ^^^^^        ^^^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> lib/close_stream.rs:3:5
+  |
+3 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/closeout.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> lib/dfa.rs:614:31
+    |
+614 |     let mut ub: libc::c_int = ({
+    |                               ^
+...
+633 |     });
+    |      ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+614 ~     let mut ub: libc::c_int = {
+615 |         let mut __res: libc::c_int = 0;
+  ...
+632 |         __res
+633 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> lib/dfa.rs:643:29
+    |
+643 |                     __res = (if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+    |                             ^
+...
+647 |                     });
+    |                      ^
+    |
+help: remove these parentheses
+    |
+643 ~                     __res = if __c < -(128 as libc::c_int) || __c > 255 as libc::c_int {
+644 |                         __c
+645 |                     } else {
+646 |                         *(*__ctype_toupper_loc()).offset(__c as isize)
+647 ~                     };
+    |
+
+warning: unused label
+    --> lib/dfa.rs:4365:13
+     |
+4365 |             'c_6187: {
+     |             ^^^^^^^
+     |
+     = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+    --> lib/dfa.rs:5288:17
+     |
+5288 |                 'c_17723: {
+     |                 ^^^^^^^^
+
+warning: unused label
+    --> lib/dfa.rs:5416:17
+     |
+5416 |                 'c_16931: {
+     |                 ^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+    --> lib/dfa.rs:5546:57
+     |
+5546 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+5552 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5546 ~                                                 __res = if __c < -(128 as libc::c_int)
+5547 |                                                     || __c > 255 as libc::c_int
+   ...
+5551 |                                                     *(*__ctype_toupper_loc()).offset(__c as isize)
+5552 ~                                                 };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> lib/dfa.rs:5568:61
+     |
+5568 | ...                   __res = (if __c < -(128 as libc::c_int)
+     |                               ^
+...
+5574 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5568 ~                                                     __res = if __c < -(128 as libc::c_int)
+5569 |                                                         || __c > 255 as libc::c_int
+   ...
+5573 |                                                         *(*__ctype_toupper_loc()).offset(__c as isize)
+5574 ~                                                     };
+     |
+
+warning: unused import: `Ordering`
+ --> lib/exitfail.rs:1:36
+  |
+1 | use std::sync::atomic::{AtomicI32, Ordering};
+  |                                    ^^^^^^^^
+
+warning: unused import: `AsRawFd`
+ --> lib/fcntl.rs:1:25
+  |
+1 | use std::os::unix::io::{AsRawFd, FromRawFd, RawFd};
+  |                         ^^^^^^^
+
+warning: unused import: `c_int`
+ --> lib/free.rs:1:12
+  |
+1 | use libc::{c_int, c_void};
+  |            ^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/hard_locale.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/ialloc.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::char`
+ --> lib/localeinfo.rs:1:5
+  |
+1 | use std::char;
+  |     ^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> lib/localeinfo.rs:2:5
+  |
+2 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> lib/localeinfo.rs:3:5
+  |
+3 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::str`
+ --> lib/localeinfo.rs:5:5
+  |
+5 | use std::str;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/malloc/dynarray_finalize.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/malloc/dynarray_resize.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::num::NonZeroUsize`
+ --> lib/malloc/dynarray_resize.rs:4:5
+  |
+4 | use std::num::NonZeroUsize;
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/malloc/dynarray_resize_clear.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_uchar`
+ --> lib/mbrtowc.rs:2:43
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_uchar, c_ulong};
+  |                                           ^^^^^^^
+
+warning: unused import: `CStr`
+ --> lib/quotearg.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused imports: `c_char`, `c_ulong`
+ --> lib/quotearg.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_uint, c_ulong};
+  |                    ^^^^^^                 ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/quotearg.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around method argument
+    --> lib/regex.rs:1572:45
+     |
+1572 | ...                   (if i_0 < mbclen {
+     |                       ^
+...
+1576 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1572 ~                                             if i_0 < mbclen {
+1573 |                                                 i_0
+1574 |                                             } else {
+1575 |                                                 mbclen.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1576 ~                                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4072:17
+     |
+4072 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4078 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4072 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4073 |                     < max_i18n_object_size
+   ...
+4077 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4078 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4083:13
+     |
+4083 |             (if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+     |             ^
+...
+4101 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+4083 ~             if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+4084 |                 < (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+   ...
+4100 |                 ::core::mem::size_of::<re_node_set>() as libc::c_ulong
+4101 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4092:17
+     |
+4092 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4098 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4092 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4093 |                     < max_i18n_object_size
+   ...
+4097 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4098 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4116:17
+     |
+4116 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4122 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4116 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4117 |                     < max_i18n_object_size
+   ...
+4121 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4122 ~                 }
+     |
+
+warning: unused import: `CString`
+ --> lib/se_label.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/se_label.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `c_char`
+ --> lib/se_selinux.rs:3:20
+  |
+3 | use std::os::raw::{c_char, c_int, c_uint, c_ushort};
+  |                    ^^^^^^
+
+warning: unused import: `set_permissions`
+ --> lib/set_permissions.rs:3:21
+  |
+3 | use std::fs::{File, set_permissions, Permissions};
+  |                     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> lib/setlocale_null.rs:2:5
+  |
+2 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3537:21
+     |
+3537 |                     (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+     |                     ^
+...
+4208 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3537 ~                     if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t) {
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+   ...
+4207 |                         })
+4208 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3538:25
+     |
+3538 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+3883 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3538 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3539 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+3882 |                             0 as libc::c_int
+3883 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3539:29
+     |
+3539 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3744 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3539 ~                             if n < 0 as libc::c_int as libc::c_long {
+3540 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+3743 |                                 })
+3744 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3540:33
+     |
+3540 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3621 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3540 ~                                 if ((if 1 as libc::c_int != 0 {
+3541 |                                     0 as libc::c_int as libc::c_long
+   ...
+3620 |                                         as libc::c_int
+3621 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3623:33
+     |
+3623 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3743 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3623 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3624 |                                     0 as libc::c_int as libc::c_long
+   ...
+3742 |                                         / s < n) as libc::c_int
+3743 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3722:37
+     |
+3722 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3739 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3722 ~                                     if ((if 1 as libc::c_int != 0 {
+3723 |                                         0 as libc::c_int as libc::c_long
+   ...
+3738 |                                             as libc::c_int
+3739 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3746:29
+     |
+3746 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3873 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3746 ~                             if s == 0 as libc::c_int as libc::c_long {
+3747 |                                 0 as libc::c_int
+   ...
+3872 |                                 })
+3873 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3749:33
+     |
+3749 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+3872 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3749 ~                                 if n < 0 as libc::c_int as libc::c_long {
+3750 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+3871 |                                     (127 as libc::c_int as libc::c_long / s < n) as libc::c_int
+3872 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3750:37
+     |
+3750 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3869 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3750 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+3751 |                                         0 as libc::c_int as libc::c_long
+   ...
+3868 |                                             / n < s) as libc::c_int
+3869 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3849:41
+     |
+3849 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3865 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3849 ~                                         if ((if 1 as libc::c_int != 0 {
+3850 |                                             0 as libc::c_int as libc::c_long
+   ...
+3864 |                                                 as libc::c_int
+3865 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3885:25
+     |
+3885 |                         (if (if s < 0 as libc::c_int as libc::c_long {
+     |                         ^
+...
+4207 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3885 ~                         if (if s < 0 as libc::c_int as libc::c_long {
+3886 |                             (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4206 |                             0 as libc::c_int
+4207 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3886:29
+     |
+3886 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4082 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3886 ~                             if n < 0 as libc::c_int as libc::c_long {
+3887 |                                 (if ((if 1 as libc::c_int != 0 {
+   ...
+4081 |                                 })
+4082 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3887:33
+     |
+3887 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+3973 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3887 ~                                 if ((if 1 as libc::c_int != 0 {
+3888 |                                     0 as libc::c_int as libc::c_long
+   ...
+3972 |                                         as libc::c_int
+3973 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3975:33
+     |
+3975 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4081 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3975 ~                                 if (if (if ((if 1 as libc::c_int != 0 {
+3976 |                                     0 as libc::c_int as libc::c_long
+   ...
+4080 |                                     (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4081 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4064:37
+     |
+4064 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4078 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4064 ~                                     if ((if 1 as libc::c_int != 0 {
+4065 |                                         0 as libc::c_int as libc::c_long
+   ...
+4077 |                                             as libc::c_int
+4078 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4084:29
+     |
+4084 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4197 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4084 ~                             if s == 0 as libc::c_int as libc::c_long {
+4085 |                                 0 as libc::c_int
+   ...
+4196 |                                 })
+4197 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4087:33
+     |
+4087 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4087 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4088 |                                     (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4195 |                                         as libc::c_long / s < n) as libc::c_int
+4196 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4088:37
+     |
+4088 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4192 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4088 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4089 |                                         0 as libc::c_int as libc::c_long
+   ...
+4191 |                                         (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4192 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4177:41
+     |
+4177 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4189 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4177 ~                                         if ((if 1 as libc::c_int != 0 {
+4178 |                                             0 as libc::c_int as libc::c_long
+   ...
+4188 |                                                 < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4189 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4210:21
+     |
+4210 |                     (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                     ^
+...
+7043 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+4210 ~                     if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4211 |                         == ::core::mem::size_of::<libc::c_short>() as libc::c_ulong
+   ...
+7042 |                         })
+7043 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4213:25
+     |
+4213 |                         (if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+     |                         ^
+...
+4899 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4213 ~                         if !((0 as libc::c_int as idx_t) < -(1 as libc::c_int) as idx_t)
+4214 |                         {
+   ...
+4898 |                             })
+4899 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4215:29
+     |
+4215 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4574 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4215 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4216 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4573 |                                 0 as libc::c_int
+4574 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4216:33
+     |
+4216 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4428 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4216 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4217 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4427 |                                     })
+4428 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4217:37
+     |
+4217 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4299 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4217 ~                                     if ((if 1 as libc::c_int != 0 {
+4218 |                                         0 as libc::c_int as libc::c_long
+   ...
+4298 |                                             as libc::c_int
+4299 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4301:37
+     |
+4301 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4427 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4301 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4302 |                                         0 as libc::c_int as libc::c_long
+   ...
+4426 |                                             as libc::c_long / s < n) as libc::c_int
+4427 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4406:41
+     |
+4406 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4423 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4406 ~                                         if ((if 1 as libc::c_int != 0 {
+4407 |                                             0 as libc::c_int as libc::c_long
+   ...
+4422 |                                                 as libc::c_int
+4423 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4430:33
+     |
+4430 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4564 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4430 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4431 |                                     0 as libc::c_int
+   ...
+4563 |                                     })
+4564 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4433:37
+     |
+4433 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4563 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4433 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4434 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4562 |                                             as libc::c_int
+4563 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4434:41
+     |
+4434 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4559 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4434 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4435 |                                             0 as libc::c_int as libc::c_long
+   ...
+4558 |                                                 as libc::c_long / n < s) as libc::c_int
+4559 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4539:45
+     |
+4539 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4555 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4539 ~                                             if ((if 1 as libc::c_int != 0 {
+4540 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4554 |                                                     as libc::c_int
+4555 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4576:29
+     |
+4576 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4898 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4576 ~                             if (if s < 0 as libc::c_int as libc::c_long {
+4577 |                                 (if n < 0 as libc::c_int as libc::c_long {
+   ...
+4897 |                                 0 as libc::c_int
+4898 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4577:33
+     |
+4577 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4773 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4577 ~                                 if n < 0 as libc::c_int as libc::c_long {
+4578 |                                     (if ((if 1 as libc::c_int != 0 {
+   ...
+4772 |                                     })
+4773 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4578:37
+     |
+4578 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4664 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4578 ~                                     if ((if 1 as libc::c_int != 0 {
+4579 |                                         0 as libc::c_int as libc::c_long
+   ...
+4663 |                                             as libc::c_int
+4664 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4666:37
+     |
+4666 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4772 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4666 ~                                     if (if (if ((if 1 as libc::c_int != 0 {
+4667 |                                         0 as libc::c_int as libc::c_long
+   ...
+4771 |                                         (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+4772 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4755:41
+     |
+4755 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4769 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4755 ~                                         if ((if 1 as libc::c_int != 0 {
+4756 |                                             0 as libc::c_int as libc::c_long
+   ...
+4768 |                                                 as libc::c_int
+4769 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4775:33
+     |
+4775 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4888 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4775 ~                                 if s == 0 as libc::c_int as libc::c_long {
+4776 |                                     0 as libc::c_int
+   ...
+4887 |                                     })
+4888 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4778:37
+     |
+4778 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+4887 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4778 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4779 |                                         (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+4886 |                                             + 1 as libc::c_int) as libc::c_long / s < n) as libc::c_int
+4887 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4779:41
+     |
+4779 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4883 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4779 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4780 |                                             0 as libc::c_int as libc::c_long
+   ...
+4882 |                                             (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+4883 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4868:45
+     |
+4868 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4880 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4868 ~                                             if ((if 1 as libc::c_int != 0 {
+4869 |                                                 0 as libc::c_int as libc::c_long
+   ...
+4879 |                                                     < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+4880 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4901:25
+     |
+4901 |                         (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                         ^
+...
+7042 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+4901 ~                         if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+4902 |                             == ::core::mem::size_of::<libc::c_int>() as libc::c_ulong
+   ...
+7041 |                             })
+7042 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4904:29
+     |
+4904 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5603 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4904 ~                             if ((if 1 as libc::c_int != 0 {
+4905 |                                 0 as libc::c_int as libc::c_long
+   ...
+5602 |                                 })
+5603 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4911:33
+     |
+4911 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5270 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4911 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+4912 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5269 |                                     0 as libc::c_int
+5270 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4912:37
+     |
+4912 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5124 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4912 ~                                     if n < 0 as libc::c_int as libc::c_long {
+4913 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5123 |                                         })
+5124 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4913:41
+     |
+4913 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+4995 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4913 ~                                         if ((if 1 as libc::c_int != 0 {
+4914 |                                             0 as libc::c_int as libc::c_long
+   ...
+4994 |                                                 as libc::c_int
+4995 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4997:41
+     |
+4997 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5123 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4997 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+4998 |                                             0 as libc::c_int as libc::c_long
+   ...
+5122 |                                                 as libc::c_long / s < n) as libc::c_int
+5123 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5102:45
+     |
+5102 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5119 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5102 ~                                             if ((if 1 as libc::c_int != 0 {
+5103 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5118 |                                                     as libc::c_int
+5119 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5126:37
+     |
+5126 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5260 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5126 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5127 |                                         0 as libc::c_int
+   ...
+5259 |                                         })
+5260 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5129:41
+     |
+5129 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5259 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5129 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5130 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5258 |                                                 as libc::c_int
+5259 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5130:45
+     |
+5130 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5255 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5130 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5131 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5254 |                                                     as libc::c_long / n < s) as libc::c_int
+5255 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5235:49
+     |
+5235 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5251 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5235 ~                                                 if ((if 1 as libc::c_int != 0 {
+5236 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5250 |                                                         as libc::c_int
+5251 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5272:33
+     |
+5272 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5602 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5272 ~                                 if (if s < 0 as libc::c_int as libc::c_long {
+5273 |                                     (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5601 |                                     0 as libc::c_int
+5602 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5273:37
+     |
+5273 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5475 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5273 ~                                     if n < 0 as libc::c_int as libc::c_long {
+5274 |                                         (if ((if 1 as libc::c_int != 0 {
+   ...
+5474 |                                         })
+5475 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5274:41
+     |
+5274 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5366 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5274 ~                                         if ((if 1 as libc::c_int != 0 {
+5275 |                                             0 as libc::c_int as libc::c_long
+   ...
+5365 |                                                 as libc::c_int
+5366 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5368:41
+     |
+5368 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5474 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5368 ~                                         if (if (if ((if 1 as libc::c_int != 0 {
+5369 |                                             0 as libc::c_int as libc::c_long
+   ...
+5473 |                                             (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+5474 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5457:45
+     |
+5457 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5471 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5457 ~                                             if ((if 1 as libc::c_int != 0 {
+5458 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5470 |                                                     as libc::c_int
+5471 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5477:37
+     |
+5477 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5477 ~                                     if s == 0 as libc::c_int as libc::c_long {
+5478 |                                         0 as libc::c_int
+   ...
+5591 |                                         })
+5592 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5480:41
+     |
+5480 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5591 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5480 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5481 |                                             (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5590 |                                                 as libc::c_int
+5591 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5481:45
+     |
+5481 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5585 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5481 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5482 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5584 |                                                 (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+5585 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5570:49
+     |
+5570 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5582 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5570 ~                                                 if ((if 1 as libc::c_int != 0 {
+5571 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5581 |                                                         < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+5582 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5605:29
+     |
+5605 | ...                   (if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+     |                       ^
+...
+7041 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5605 ~                             if ::core::mem::size_of::<idx_t>() as libc::c_ulong
+5606 |                                 == ::core::mem::size_of::<libc::c_long>() as libc::c_ulong
+   ...
+7040 |                                 })
+7041 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5608:33
+     |
+5608 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5608 ~                                 if ((if 1 as libc::c_int != 0 {
+5609 |                                     0 as libc::c_int as libc::c_long
+   ...
+6311 |                                     })
+6312 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5615:37
+     |
+5615 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5972 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5615 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5616 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+5971 |                                         0 as libc::c_int
+5972 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5616:41
+     |
+5616 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5827 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5616 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5617 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+5826 |                                             })
+5827 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5617:45
+     |
+5617 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5698 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5617 ~                                             if ((if 1 as libc::c_int != 0 {
+5618 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5697 |                                                     as libc::c_int
+5698 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5700:45
+     |
+5700 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5700 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+5701 |                                                 0 as libc::c_int as libc::c_long
+   ...
+5825 |                                                     - 1 as libc::c_long) / s < n) as libc::c_int
+5826 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5805:49
+     |
+5805 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5822 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5805 ~                                                 if ((if 1 as libc::c_int != 0 {
+5806 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5821 |                                                         as libc::c_int
+5822 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5829:41
+     |
+5829 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5962 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5829 ~                                         if s == 0 as libc::c_int as libc::c_long {
+5830 |                                             0 as libc::c_int
+   ...
+5961 |                                             })
+5962 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5832:45
+     |
+5832 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+5961 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5832 ~                                             if n < 0 as libc::c_int as libc::c_long {
+5833 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+5960 |                                                 (9223372036854775807 as libc::c_long / s < n) as libc::c_int
+5961 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5833:49
+     |
+5833 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5958 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5833 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+5834 |                                                     0 as libc::c_int as libc::c_long
+   ...
+5957 |                                                         - 1 as libc::c_long) / n < s) as libc::c_int
+5958 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5938:53
+     |
+5938 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+5954 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5938 ~                                                     if ((if 1 as libc::c_int != 0 {
+5939 |                                                         0 as libc::c_int as libc::c_long
+   ...
+5953 |                                                             as libc::c_int
+5954 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5974:37
+     |
+5974 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6311 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5974 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+5975 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6310 |                                         0 as libc::c_int
+6311 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5975:41
+     |
+5975 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6183 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5975 ~                                         if n < 0 as libc::c_int as libc::c_long {
+5976 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6182 |                                             })
+6183 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:5976:45
+     |
+5976 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6074 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5976 ~                                             if (if 1 as libc::c_int != 0 {
+5977 |                                                 0 as libc::c_int as libc::c_ulong
+   ...
+6073 |                                                         as libc::c_ulong) as libc::c_int
+6074 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6076:45
+     |
+6076 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6182 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6076 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6077 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6181 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6182 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6165:49
+     |
+6165 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6179 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6165 ~                                                 if ((if 1 as libc::c_int != 0 {
+6166 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6178 |                                                         as libc::c_int
+6179 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6185:41
+     |
+6185 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6301 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6185 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6186 |                                             0 as libc::c_int
+   ...
+6300 |                                             })
+6301 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6188:45
+     |
+6188 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6300 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6188 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6189 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6299 |                                                     as libc::c_int
+6300 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6189:49
+     |
+6189 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6293 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6189 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6190 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6292 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+6293 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6278:53
+     |
+6278 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6290 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6278 ~                                                     if ((if 1 as libc::c_int != 0 {
+6279 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6289 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+6290 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6314:33
+     |
+6314 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7040 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6314 ~                                 if ((if 1 as libc::c_int != 0 {
+6315 |                                     0 as libc::c_int as libc::c_long
+   ...
+7039 |                                     })
+7040 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6321:37
+     |
+6321 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6695 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6321 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6322 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+6694 |                                         0 as libc::c_int
+6695 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6322:41
+     |
+6322 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6542 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6322 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6323 |                                             (if ((if 1 as libc::c_int != 0 {
+   ...
+6541 |                                             })
+6542 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6323:45
+     |
+6323 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6409 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6323 ~                                             if ((if 1 as libc::c_int != 0 {
+6324 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6408 |                                                         as libc::c_longlong) as libc::c_int
+6409 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6411:45
+     |
+6411 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6541 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6411 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6412 |                                                 0 as libc::c_int as libc::c_longlong
+   ...
+6540 |                                                     < n as libc::c_longlong) as libc::c_int
+6541 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6518:49
+     |
+6518 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6536 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6518 ~                                                 if ((if 1 as libc::c_int != 0 {
+6519 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6535 |                                                                 as libc::c_longlong) as libc::c_int
+6536 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6544:41
+     |
+6544 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6683 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6544 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6545 |                                             0 as libc::c_int
+   ...
+6682 |                                             })
+6683 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6547:45
+     |
+6547 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6682 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6547 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6548 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+6681 |                                                     as libc::c_int
+6682 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6548:49
+     |
+6548 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6677 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6548 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6549 |                                                     0 as libc::c_int as libc::c_longlong
+   ...
+6676 |                                                         < s as libc::c_longlong) as libc::c_int
+6677 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6655:53
+     |
+6655 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6672 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6655 ~                                                     if ((if 1 as libc::c_int != 0 {
+6656 |                                                         0 as libc::c_int as libc::c_long
+   ...
+6671 |                                                                 as libc::c_longlong) as libc::c_int
+6672 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6697:37
+     |
+6697 | ...                   (if (if s < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7039 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6697 ~                                     if (if s < 0 as libc::c_int as libc::c_long {
+6698 |                                         (if n < 0 as libc::c_int as libc::c_long {
+   ...
+7038 |                                         0 as libc::c_int
+7039 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6698:41
+     |
+6698 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+6910 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6698 ~                                         if n < 0 as libc::c_int as libc::c_long {
+6699 |                                             (if (if 1 as libc::c_int != 0 {
+   ...
+6909 |                                             })
+6910 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6699:45
+     |
+6699 | ...                   (if (if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6699 ~                                             if (if 1 as libc::c_int != 0 {
+6700 |                                                 0 as libc::c_int as libc::c_ulonglong
+   ...
+6800 |                                                         as libc::c_ulonglong) as libc::c_int
+6801 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6803:45
+     |
+6803 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6909 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6803 ~                                             if (if (if ((if 1 as libc::c_int != 0 {
+6804 |                                                 0 as libc::c_int as libc::c_long
+   ...
+6908 |                                                 (0 as libc::c_int as libc::c_long / s < n) as libc::c_int
+6909 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6892:49
+     |
+6892 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+6906 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6892 ~                                                 if ((if 1 as libc::c_int != 0 {
+6893 |                                                     0 as libc::c_int as libc::c_long
+   ...
+6905 |                                                         as libc::c_int
+6906 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6912:41
+     |
+6912 | ...                   (if s == 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7029 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6912 ~                                         if s == 0 as libc::c_int as libc::c_long {
+6913 |                                             0 as libc::c_int
+   ...
+7028 |                                             })
+7029 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6915:45
+     |
+6915 | ...                   (if n < 0 as libc::c_int as libc::c_long {
+     |                       ^
+...
+7028 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6915 ~                                             if n < 0 as libc::c_int as libc::c_long {
+6916 |                                                 (if (if (if ((if 1 as libc::c_int != 0 {
+   ...
+7027 |                                                     < n as libc::c_ulonglong) as libc::c_int
+7028 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:6916:49
+     |
+6916 | ...                   (if (if (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7020 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6916 ~                                                 if (if (if ((if 1 as libc::c_int != 0 {
+6917 |                                                     0 as libc::c_int as libc::c_long
+   ...
+7019 |                                                     (0 as libc::c_int as libc::c_long / n < s) as libc::c_int
+7020 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:7005:53
+     |
+7005 | ...                   (if ((if 1 as libc::c_int != 0 {
+     |                       ^
+...
+7017 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7005 ~                                                     if ((if 1 as libc::c_int != 0 {
+7006 |                                                         0 as libc::c_int as libc::c_long
+   ...
+7016 |                                                             < s - 1 as libc::c_int as libc::c_long) as libc::c_int
+7017 ~                                                     }
+     |
+
+warning: unused import: `wchar_t`
+ --> sed/compile.rs:1:67
+  |
+1 | use libc::{c_char, c_int, c_uchar, c_ulong, c_void, size_t, FILE, wchar_t};
+  |                                                                   ^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> sed/compile.rs:3:5
+  |
+3 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> sed/compile.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::raw::c_long`
+ --> sed/compile.rs:5:5
+  |
+5 | use std::os::raw::c_long;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> sed/compile.rs:6:5
+  |
+6 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> sed/debug.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> sed/debug.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2025:21
+     |
+2025 |                     ({
+     |                     ^
+...
+2058 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2025 ~                     {
+2026 |                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+2057 |                             )
+2058 ~                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:2492:37
+     |
+2492 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+2551 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2492 ~                                 n = if 0 != 0 && 0 != 0
+2493 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+2550 |                                     })
+2551 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2499:37
+     |
+2499 | ...                   ({
+     |                       ^
+...
+2533 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2499 ~                                     {
+2500 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+2532 |                                             )
+2533 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:2507:72
+     |
+2507 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+2517 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2507 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+2508 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+2516 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+2517 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2535:37
+     |
+2535 | ...                   (if 0 != 0
+     |                       ^
+...
+2550 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2535 ~                                     if 0 != 0
+2536 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+2549 |                                         )
+2550 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3017:37
+     |
+3017 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+3076 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3017 ~                                 n = if 0 != 0 && 0 != 0
+3018 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+3075 |                                     })
+3076 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3024:37
+     |
+3024 | ...                   ({
+     |                       ^
+...
+3058 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3024 ~                                     {
+3025 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+3057 |                                             )
+3058 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3032:72
+     |
+3032 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+3042 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3032 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+3033 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+3041 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+3042 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3060:37
+     |
+3060 | ...                   (if 0 != 0
+     |                       ^
+...
+3075 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3060 ~                                     if 0 != 0
+3061 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+3074 |                                         )
+3075 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3543:37
+     |
+3543 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+3602 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3543 ~                                 n = if 0 != 0 && 0 != 0
+3544 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+3601 |                                     })
+3602 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3550:37
+     |
+3550 | ...                   ({
+     |                       ^
+...
+3584 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3550 ~                                     {
+3551 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+3583 |                                             )
+3584 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3558:72
+     |
+3558 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+3568 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3558 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+3559 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+3567 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+3568 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3586:37
+     |
+3586 | ...                   (if 0 != 0
+     |                       ^
+...
+3601 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3586 ~                                     if 0 != 0
+3587 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+3600 |                                         )
+3601 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4068:37
+     |
+4068 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+4127 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4068 ~                                 n = if 0 != 0 && 0 != 0
+4069 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+4126 |                                     })
+4127 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4075:37
+     |
+4075 | ...                   ({
+     |                       ^
+...
+4109 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4075 ~                                     {
+4076 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+4108 |                                             )
+4109 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4083:72
+     |
+4083 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+4093 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4083 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+4084 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+4092 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+4093 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4111:37
+     |
+4111 | ...                   (if 0 != 0
+     |                       ^
+...
+4126 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4111 ~                                     if 0 != 0
+4112 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+4125 |                                         )
+4126 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4593:37
+     |
+4593 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+4652 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4593 ~                                 n = if 0 != 0 && 0 != 0
+4594 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+4651 |                                     })
+4652 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4600:37
+     |
+4600 | ...                   ({
+     |                       ^
+...
+4634 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4600 ~                                     {
+4601 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+4633 |                                             )
+4634 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4608:72
+     |
+4608 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+4618 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4608 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+4609 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+4617 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+4618 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4636:37
+     |
+4636 | ...                   (if 0 != 0
+     |                       ^
+...
+4651 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4636 ~                                     if 0 != 0
+4637 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+4650 |                                         )
+4651 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5118:37
+     |
+5118 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+5177 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5118 ~                                 n = if 0 != 0 && 0 != 0
+5119 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+5176 |                                     })
+5177 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5125:37
+     |
+5125 | ...                   ({
+     |                       ^
+...
+5159 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5125 ~                                     {
+5126 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+5158 |                                             )
+5159 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5133:72
+     |
+5133 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+5143 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5133 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+5134 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+5142 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+5143 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5161:37
+     |
+5161 | ...                   (if 0 != 0
+     |                       ^
+...
+5176 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5161 ~                                     if 0 != 0
+5162 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+5175 |                                         )
+5176 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5643:37
+     |
+5643 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+5702 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5643 ~                                 n = if 0 != 0 && 0 != 0
+5644 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+5701 |                                     })
+5702 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5650:37
+     |
+5650 | ...                   ({
+     |                       ^
+...
+5684 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5650 ~                                     {
+5651 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+5683 |                                             )
+5684 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5658:72
+     |
+5658 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+5668 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5658 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+5659 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+5667 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+5668 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5686:37
+     |
+5686 | ...                   (if 0 != 0
+     |                       ^
+...
+5701 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5686 ~                                     if 0 != 0
+5687 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+5700 |                                         )
+5701 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6168:37
+     |
+6168 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+6227 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6168 ~                                 n = if 0 != 0 && 0 != 0
+6169 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+6226 |                                     })
+6227 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6175:37
+     |
+6175 | ...                   ({
+     |                       ^
+...
+6209 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6175 ~                                     {
+6176 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+6208 |                                             )
+6209 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6183:72
+     |
+6183 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+6193 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6183 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+6184 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+6192 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+6193 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6211:37
+     |
+6211 | ...                   (if 0 != 0
+     |                       ^
+...
+6226 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6211 ~                                     if 0 != 0
+6212 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+6225 |                                         )
+6226 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6693:37
+     |
+6693 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+6752 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6693 ~                                 n = if 0 != 0 && 0 != 0
+6694 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+6751 |                                     })
+6752 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6700:37
+     |
+6700 | ...                   ({
+     |                       ^
+...
+6734 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6700 ~                                     {
+6701 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+6733 |                                             )
+6734 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6708:72
+     |
+6708 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+6718 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6708 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+6709 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+6717 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+6718 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6736:37
+     |
+6736 | ...                   (if 0 != 0
+     |                       ^
+...
+6751 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6736 ~                                     if 0 != 0
+6737 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+6750 |                                         )
+6751 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7218:37
+     |
+7218 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+7277 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7218 ~                                 n = if 0 != 0 && 0 != 0
+7219 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+7276 |                                     })
+7277 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7225:37
+     |
+7225 | ...                   ({
+     |                       ^
+...
+7259 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7225 ~                                     {
+7226 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+7258 |                                             )
+7259 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7233:72
+     |
+7233 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+7243 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7233 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+7234 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+7242 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+7243 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7261:37
+     |
+7261 | ...                   (if 0 != 0
+     |                       ^
+...
+7276 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7261 ~                                     if 0 != 0
+7262 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+7275 |                                         )
+7276 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7743:37
+     |
+7743 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+7802 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7743 ~                                 n = if 0 != 0 && 0 != 0
+7744 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+7801 |                                     })
+7802 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7750:37
+     |
+7750 | ...                   ({
+     |                       ^
+...
+7784 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7750 ~                                     {
+7751 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+7783 |                                             )
+7784 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7758:72
+     |
+7758 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+7768 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7758 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+7759 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+7767 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+7768 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7786:37
+     |
+7786 | ...                   (if 0 != 0
+     |                       ^
+...
+7801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7786 ~                                     if 0 != 0
+7787 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+7800 |                                         )
+7801 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8268:37
+     |
+8268 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+8327 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8268 ~                                 n = if 0 != 0 && 0 != 0
+8269 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+8326 |                                     })
+8327 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8275:37
+     |
+8275 | ...                   ({
+     |                       ^
+...
+8309 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8275 ~                                     {
+8276 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+8308 |                                             )
+8309 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8283:72
+     |
+8283 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+8293 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8283 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+8284 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+8292 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+8293 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8311:37
+     |
+8311 | ...                   (if 0 != 0
+     |                       ^
+...
+8326 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8311 ~                                     if 0 != 0
+8312 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+8325 |                                         )
+8326 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8793:37
+     |
+8793 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+8852 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8793 ~                                 n = if 0 != 0 && 0 != 0
+8794 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+8851 |                                     })
+8852 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8800:37
+     |
+8800 | ...                   ({
+     |                       ^
+...
+8834 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8800 ~                                     {
+8801 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+8833 |                                             )
+8834 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8808:72
+     |
+8808 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+8818 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8808 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+8809 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+8817 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+8818 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8836:37
+     |
+8836 | ...                   (if 0 != 0
+     |                       ^
+...
+8851 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8836 ~                                     if 0 != 0
+8837 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+8850 |                                         )
+8851 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9318:37
+     |
+9318 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+9377 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9318 ~                                 n = if 0 != 0 && 0 != 0
+9319 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+9376 |                                     })
+9377 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9325:37
+     |
+9325 | ...                   ({
+     |                       ^
+...
+9359 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9325 ~                                     {
+9326 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+9358 |                                             )
+9359 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9333:72
+     |
+9333 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+9343 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9333 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+9334 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+9342 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+9343 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9361:37
+     |
+9361 | ...                   (if 0 != 0
+     |                       ^
+...
+9376 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9361 ~                                     if 0 != 0
+9362 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+9375 |                                         )
+9376 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9843:37
+     |
+9843 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+9902 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9843 ~                                 n = if 0 != 0 && 0 != 0
+9844 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+   ...
+9901 |                                     })
+9902 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9850:37
+     |
+9850 | ...                   ({
+     |                       ^
+...
+9884 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9850 ~                                     {
+9851 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+   ...
+9883 |                                             )
+9884 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9858:72
+     |
+9858 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+     |                                                  ^
+...
+9868 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9858 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+9859 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+   ...
+9867 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+9868 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9886:37
+     |
+9886 | ...                   (if 0 != 0
+     |                       ^
+...
+9901 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9886 ~                                     if 0 != 0
+9887 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+   ...
+9900 |                                         )
+9901 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10368:37
+      |
+10368 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+10427 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10368 ~                                 n = if 0 != 0 && 0 != 0
+10369 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+10426 |                                     })
+10427 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10375:37
+      |
+10375 | ...                   ({
+      |                       ^
+...
+10409 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10375 ~                                     {
+10376 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+10408 |                                             )
+10409 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10383:72
+      |
+10383 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+10393 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10383 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+10384 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+10392 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+10393 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10411:37
+      |
+10411 | ...                   (if 0 != 0
+      |                       ^
+...
+10426 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10411 ~                                     if 0 != 0
+10412 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+10425 |                                         )
+10426 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10893:37
+      |
+10893 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+10952 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10893 ~                                 n = if 0 != 0 && 0 != 0
+10894 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+10951 |                                     })
+10952 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10900:37
+      |
+10900 | ...                   ({
+      |                       ^
+...
+10934 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10900 ~                                     {
+10901 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+10933 |                                             )
+10934 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10908:72
+      |
+10908 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+10918 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10908 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+10909 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+10917 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+10918 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10936:37
+      |
+10936 | ...                   (if 0 != 0
+      |                       ^
+...
+10951 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10936 ~                                     if 0 != 0
+10937 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+10950 |                                         )
+10951 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11418:37
+      |
+11418 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+11477 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11418 ~                                 n = if 0 != 0 && 0 != 0
+11419 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+11476 |                                     })
+11477 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11425:37
+      |
+11425 | ...                   ({
+      |                       ^
+...
+11459 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11425 ~                                     {
+11426 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+11458 |                                             )
+11459 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11433:72
+      |
+11433 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+11443 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11433 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+11434 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+11442 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+11443 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11461:37
+      |
+11461 | ...                   (if 0 != 0
+      |                       ^
+...
+11476 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11461 ~                                     if 0 != 0
+11462 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+11475 |                                         )
+11476 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11943:37
+      |
+11943 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+12002 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11943 ~                                 n = if 0 != 0 && 0 != 0
+11944 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+12001 |                                     })
+12002 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11950:37
+      |
+11950 | ...                   ({
+      |                       ^
+...
+11984 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11950 ~                                     {
+11951 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+11983 |                                             )
+11984 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11958:72
+      |
+11958 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+11968 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11958 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+11959 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+11967 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+11968 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11986:37
+      |
+11986 | ...                   (if 0 != 0
+      |                       ^
+...
+12001 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11986 ~                                     if 0 != 0
+11987 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+12000 |                                         )
+12001 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12468:37
+      |
+12468 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+12527 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12468 ~                                 n = if 0 != 0 && 0 != 0
+12469 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+12526 |                                     })
+12527 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12475:37
+      |
+12475 | ...                   ({
+      |                       ^
+...
+12509 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12475 ~                                     {
+12476 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+12508 |                                             )
+12509 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12483:72
+      |
+12483 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+12493 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12483 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+12484 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+12492 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+12493 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12511:37
+      |
+12511 | ...                   (if 0 != 0
+      |                       ^
+...
+12526 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12511 ~                                     if 0 != 0
+12512 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+12525 |                                         )
+12526 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12993:37
+      |
+12993 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+13052 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12993 ~                                 n = if 0 != 0 && 0 != 0
+12994 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+13051 |                                     })
+13052 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13000:37
+      |
+13000 | ...                   ({
+      |                       ^
+...
+13034 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13000 ~                                     {
+13001 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+13033 |                                             )
+13034 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13008:72
+      |
+13008 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+13018 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13008 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+13009 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+13017 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+13018 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13036:37
+      |
+13036 | ...                   (if 0 != 0
+      |                       ^
+...
+13051 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13036 ~                                     if 0 != 0
+13037 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+13050 |                                         )
+13051 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13518:37
+      |
+13518 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+13577 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13518 ~                                 n = if 0 != 0 && 0 != 0
+13519 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+13576 |                                     })
+13577 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13525:37
+      |
+13525 | ...                   ({
+      |                       ^
+...
+13559 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13525 ~                                     {
+13526 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+13558 |                                             )
+13559 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13533:72
+      |
+13533 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+13543 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13533 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+13534 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+13542 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+13543 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13561:37
+      |
+13561 | ...                   (if 0 != 0
+      |                       ^
+...
+13576 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13561 ~                                     if 0 != 0
+13562 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+13575 |                                         )
+13576 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14043:37
+      |
+14043 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+14102 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14043 ~                                 n = if 0 != 0 && 0 != 0
+14044 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+14101 |                                     })
+14102 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14050:37
+      |
+14050 | ...                   ({
+      |                       ^
+...
+14084 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14050 ~                                     {
+14051 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+14083 |                                             )
+14084 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14058:72
+      |
+14058 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+14068 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14058 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+14059 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+14067 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+14068 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14086:37
+      |
+14086 | ...                   (if 0 != 0
+      |                       ^
+...
+14101 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14086 ~                                     if 0 != 0
+14087 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+14100 |                                         )
+14101 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14568:37
+      |
+14568 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+14627 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14568 ~                                 n = if 0 != 0 && 0 != 0
+14569 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+14626 |                                     })
+14627 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14575:37
+      |
+14575 | ...                   ({
+      |                       ^
+...
+14609 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14575 ~                                     {
+14576 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+14608 |                                             )
+14609 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14583:72
+      |
+14583 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+14593 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14583 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+14584 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+14592 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+14593 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14611:37
+      |
+14611 | ...                   (if 0 != 0
+      |                       ^
+...
+14626 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14611 ~                                     if 0 != 0
+14612 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+14625 |                                         )
+14626 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15093:37
+      |
+15093 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+15152 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15093 ~                                 n = if 0 != 0 && 0 != 0
+15094 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+15151 |                                     })
+15152 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15100:37
+      |
+15100 | ...                   ({
+      |                       ^
+...
+15134 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15100 ~                                     {
+15101 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+15133 |                                             )
+15134 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15108:72
+      |
+15108 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+15118 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15108 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+15109 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+15117 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+15118 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15136:37
+      |
+15136 | ...                   (if 0 != 0
+      |                       ^
+...
+15151 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15136 ~                                     if 0 != 0
+15137 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+15150 |                                         )
+15151 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15618:37
+      |
+15618 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+15677 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15618 ~                                 n = if 0 != 0 && 0 != 0
+15619 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+15676 |                                     })
+15677 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15625:37
+      |
+15625 | ...                   ({
+      |                       ^
+...
+15659 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15625 ~                                     {
+15626 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+15658 |                                             )
+15659 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15633:72
+      |
+15633 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+15643 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15633 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+15634 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+15642 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+15643 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15661:37
+      |
+15661 | ...                   (if 0 != 0
+      |                       ^
+...
+15676 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15661 ~                                     if 0 != 0
+15662 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+15675 |                                         )
+15676 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16143:37
+      |
+16143 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+16202 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16143 ~                                 n = if 0 != 0 && 0 != 0
+16144 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+16201 |                                     })
+16202 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16150:37
+      |
+16150 | ...                   ({
+      |                       ^
+...
+16184 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16150 ~                                     {
+16151 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+16183 |                                             )
+16184 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16158:72
+      |
+16158 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+16168 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16158 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+16159 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+16167 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+16168 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16186:37
+      |
+16186 | ...                   (if 0 != 0
+      |                       ^
+...
+16201 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16186 ~                                     if 0 != 0
+16187 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+16200 |                                         )
+16201 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16668:37
+      |
+16668 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+16727 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16668 ~                                 n = if 0 != 0 && 0 != 0
+16669 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+16726 |                                     })
+16727 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16675:37
+      |
+16675 | ...                   ({
+      |                       ^
+...
+16709 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16675 ~                                     {
+16676 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+16708 |                                             )
+16709 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16683:72
+      |
+16683 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+16693 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16683 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+16684 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+16692 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+16693 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16711:37
+      |
+16711 | ...                   (if 0 != 0
+      |                       ^
+...
+16726 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16711 ~                                     if 0 != 0
+16712 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+16725 |                                         )
+16726 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17193:37
+      |
+17193 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+17252 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17193 ~                                 n = if 0 != 0 && 0 != 0
+17194 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+17251 |                                     })
+17252 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17200:37
+      |
+17200 | ...                   ({
+      |                       ^
+...
+17234 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17200 ~                                     {
+17201 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+17233 |                                             )
+17234 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17208:72
+      |
+17208 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+17218 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17208 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+17209 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+17217 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+17218 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17236:37
+      |
+17236 | ...                   (if 0 != 0
+      |                       ^
+...
+17251 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17236 ~                                     if 0 != 0
+17237 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+17250 |                                         )
+17251 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17718:37
+      |
+17718 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+17777 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17718 ~                                 n = if 0 != 0 && 0 != 0
+17719 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+17776 |                                     })
+17777 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17725:37
+      |
+17725 | ...                   ({
+      |                       ^
+...
+17759 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17725 ~                                     {
+17726 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+17758 |                                             )
+17759 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17733:72
+      |
+17733 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+17743 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17733 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+17734 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+17742 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+17743 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17761:37
+      |
+17761 | ...                   (if 0 != 0
+      |                       ^
+...
+17776 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17761 ~                                     if 0 != 0
+17762 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+17775 |                                         )
+17776 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:18243:37
+      |
+18243 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+18302 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+18243 ~                                 n = if 0 != 0 && 0 != 0
+18244 |                                     && (::core::mem::size_of::<libc::c_char>() as libc::c_ulong)
+    ...
+18301 |                                     })
+18302 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:18250:37
+      |
+18250 | ...                   ({
+      |                       ^
+...
+18284 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+18250 ~                                     {
+18251 |                                         let mut __ptr: *mut libc::c_char = buf.as_mut_ptr();
+    ...
+18283 |                                             )
+18284 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:18258:72
+      |
+18258 | ...                   let mut __c: libc::c_int = (if ((*__stream)._IO_read_ptr
+      |                                                  ^
+...
+18268 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+18258 ~                                             let mut __c: libc::c_int = if ((*__stream)._IO_read_ptr
+18259 |                                                 >= (*__stream)._IO_read_end) as libc::c_int as libc::c_long
+    ...
+18267 |                                                 *(fresh23 as *mut libc::c_uchar) as libc::c_int
+18268 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:18286:37
+      |
+18286 | ...                   (if 0 != 0
+      |                       ^
+...
+18301 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+18286 ~                                     if 0 != 0
+18287 |                                         && ::core::mem::size_of::<libc::c_char>() as libc::c_ulong
+    ...
+18300 |                                         )
+18301 ~                                     }
+      |
+
+warning: unused import: `std::mem`
+ --> sed/mbcs.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_void`
+ --> sed/mbcs.rs:3:43
+  |
+3 | use std::os::raw::{c_char, c_int, c_uint, c_void};
+  |                                           ^^^^^^
+
+warning: unused import: `CString`
+ --> sed/regexp.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::slice`
+ --> sed/regexp.rs:5:5
+  |
+5 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `ssize_t`
+ --> sed/regexp.rs:6:30
+  |
+6 | use libc::{size_t, regoff_t, ssize_t};
+  |                              ^^^^^^^
+
+warning: unused import: `CStr`
+ --> sed/sed.rs:2:25
+  |
+2 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused import: `c_ulong`
+ --> sed/sed.rs:3:35
+  |
+3 | use std::os::raw::{c_char, c_int, c_ulong};
+  |                                   ^^^^^^^
+
+warning: unused import: `OsStr`
+ --> sed/utils.rs:1:31
+  |
+1 | use std::ffi::{CStr, CString, OsStr, OsString};
+  |                               ^^^^^
+
+warning: unused imports: `SeekFrom`, `Seek`
+ --> sed/utils.rs:3:34
+  |
+3 | use std::io::{self, Read, Write, Seek, SeekFrom, ErrorKind};
+  |                                  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> sed/utils.rs:6:5
+  |
+6 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_int`, `c_void`, `mode_t`, `size_t`, `ssize_t`
+ --> sed/utils.rs:8:26
+  |
+8 | use libc::{self, c_char, c_int, c_void, size_t, ssize_t, mode_t};
+  |                          ^^^^^  ^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^
+
+error[E0184]: the trait `Copy` may not be implemented for this type; the type has a destructor
+ --> lib/qcopy_acl.rs:6:17
+  |
+6 | #[derive(Clone, Copy)]
+  |                 ^^^^ `Copy` not allowed on types with destructors
+  |
+  = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0184, E0255, E0412, E0423, E0425, E0432, E0433, E0583.
+For more information about an error, try `rustc --explain E0184`.
+warning: `c2rust_out` (lib) generated 279 warnings
+error: could not compile `c2rust_out` due to 117 previous errors; 279 warnings emitted

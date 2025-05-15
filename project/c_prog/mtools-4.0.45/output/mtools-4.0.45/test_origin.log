@@ -1,0 +1,2387 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/mtools-4.0.45)
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:31
+   |
+14 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused label
+   --> buffer.rs:226:5
+    |
+226 |     'c_7360: {
+    |     ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+   --> buffer.rs:619:5
+    |
+619 |     'c_8925: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> buffer.rs:645:5
+    |
+645 |     'c_8887: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> buffer.rs:671:5
+    |
+671 |     'c_8848: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> buffer.rs:697:5
+    |
+697 |     'c_8804: {
+    |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> codepages.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> config.rs:647:11
+    |
+647 |     ret = ({
+    |           ^
+...
+666 |     });
+    |      ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+647 ~     ret = {
+648 |         let mut __res: libc::c_int = 0;
+  ...
+665 |         __res
+666 ~     };
+    |
+
+warning: unused label
+   --> dirCache.rs:430:13
+    |
+430 |             'c_7966: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:238:5
+    |
+238 |     'c_7352: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:272:5
+    |
+272 |     'c_7410: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:303:5
+    |
+303 |     'c_7462: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> direntry.rs:334:5
+    |
+334 |     'c_7515: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> fat.rs:1484:5
+     |
+1484 |     'c_11556: {
+     |     ^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> floppyd.rs:882:20
+    |
+882 |             port = ({
+    |                    ^
+...
+901 |             });
+    |              ^
+    |
+help: remove these parentheses
+    |
+882 ~             port = {
+883 |                 let mut __v: libc::c_ushort = 0;
+  ...
+900 |                 __v
+901 ~             };
+    |
+
+warning: unnecessary parentheses around assigned value
+    --> floppyd.rs:986:21
+     |
+986  |         .sin_port = ({
+     |                     ^
+...
+1005 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+986  ~         .sin_port = {
+987  |         let mut __v: libc::c_ushort = 0;
+   ...
+1004 |         __v
+1005 ~     };
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> floppyd.rs:1238:25
+     |
+1238 |             bind_port = ({
+     |                         ^
+...
+1257 |             });
+     |              ^
+     |
+help: remove these parentheses
+     |
+1238 ~             bind_port = {
+1239 |                 let mut __v: libc::c_ushort = 0;
+   ...
+1256 |                 __v
+1257 ~             };
+     |
+
+warning: unnecessary parentheses around assigned value
+   --> floppyd_installtest.rs:423:21
+    |
+423 |         .sin_port = ({
+    |                     ^
+...
+442 |     });
+    |      ^
+    |
+help: remove these parentheses
+    |
+423 ~         .sin_port = {
+424 |         let mut __v: libc::c_ushort = 0;
+  ...
+441 |         __v
+442 ~     };
+    |
+
+warning: unnecessary parentheses around assigned value
+    --> floppyd_io.rs:1111:21
+     |
+1111 |         .sin_port = ({
+     |                     ^
+...
+1130 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1111 ~         .sin_port = {
+1112 |         let mut __v: libc::c_ushort = 0;
+   ...
+1129 |         __v
+1130 ~     };
+     |
+
+warning: unused label
+   --> force_io.rs:139:9
+    |
+139 |         'c_7022: {
+    |         ^^^^^^^
+
+warning: unnecessary parentheses around `match` scrutinee expression
+   --> mattrib.rs:390:11
+    |
+390 |     match ({
+    |           ^
+...
+409 |     }) {
+    |      ^
+    |
+help: remove these parentheses
+    |
+390 ~     match {
+391 |         let mut __res: libc::c_int = 0;
+  ...
+408 |         __res
+409 ~     } {
+    |
+
+warning: unused label
+   --> mformat.rs:658:5
+    |
+658 |     'c_8997: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1020:5
+     |
+1020 |     'c_11372: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1112:5
+     |
+1112 |     'c_10191: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1150:5
+     |
+1150 |     'c_10126: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1190:5
+     |
+1190 |     'c_10043: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1224:5
+     |
+1224 |     'c_9960: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1253:5
+     |
+1253 |     'c_9894: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1342:13
+     |
+1342 |             'c_11467: {
+     |             ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1425:9
+     |
+1425 |         'c_11027: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1488:5
+     |
+1488 |     'c_10814: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1516:5
+     |
+1516 |     'c_10769: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1607:9
+     |
+1607 |         'c_11885: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> mformat.rs:1745:9
+     |
+1745 |         'c_10647: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> minfo.rs:1054:5
+     |
+1054 |     'c_9351: {
+     |     ^^^^^^^
+
+warning: unnecessary parentheses around `match` scrutinee expression
+   --> mk_direntry.rs:512:15
+    |
+512 |         match ({
+    |               ^
+...
+538 |         }) {
+    |          ^
+    |
+help: remove these parentheses
+    |
+512 ~         match {
+513 |             let mut __res: libc::c_int = 0;
+  ...
+537 |             __res
+538 ~         } {
+    |
+
+warning: unused label
+   --> mk_direntry.rs:883:5
+    |
+883 |     'c_7749: {
+    |     ^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+    --> mk_direntry.rs:1171:9
+     |
+1171 |     c = ({
+     |         ^
+...
+1190 |     });
+     |      ^
+     |
+help: remove these parentheses
+     |
+1171 ~     c = {
+1172 |         let mut __res: libc::c_int = 0;
+   ...
+1189 |         __res
+1190 ~     };
+     |
+
+warning: unnecessary parentheses around `match` scrutinee expression
+   --> strtonum.rs:205:11
+    |
+205 |     match ({
+    |           ^
+...
+224 |     }) {
+    |      ^
+    |
+help: remove these parentheses
+    |
+205 ~     match {
+206 |         let mut __res: libc::c_int = 0;
+  ...
+223 |         __res
+224 ~     } {
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+warning: unused variable: `type_0`
+    --> config.rs:1624:9
+     |
+1624 |     mut type_0: libc::c_int,
+     |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `convertCharset`
+   --> dos2unix.rs:182:9
+    |
+182 |     mut convertCharset: libc::c_int,
+    |         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_convertCharset`
+
+warning: unused variable: `mode`
+   --> file.rs:760:9
+    |
+760 |     mut mode: libc::c_int,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_mode`
+
+warning: unused variable: `verbose`
+   --> file_name.rs:211:9
+    |
+211 |     mut verbose: libc::c_int,
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_verbose`
+
+warning: unused variable: `a`
+    --> floppyd.rs:1023:39
+     |
+1023 | unsafe extern "C" fn alarm_signal(mut a: libc::c_int) -> ! {
+     |                                       ^ help: if this is intentional, prefix it with an underscore: `_a`
+
+warning: unused variable: `x`
+    --> floppyd.rs:1414:34
+     |
+1414 | unsafe extern "C" fn cleanup(mut x: libc::c_int) -> ! {
+     |                                  ^ help: if this is intentional, prefix it with an underscore: `_x`
+
+warning: unused variable: `start`
+   --> force_io.rs:166:9
+    |
+166 |     mut start: mt_off_t,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_start`
+
+warning: unused variable: `a`
+   --> lockdev.rs:169:31
+    |
+169 | unsafe extern "C" fn alrm(mut a: libc::c_int) {}
+    |                               ^ help: if this is intentional, prefix it with an underscore: `_a`
+
+warning: unused variable: `filename`
+   --> mainloop.rs:443:9
+    |
+443 |     mut filename: *const libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_filename`
+
+warning: unused variable: `Stream`
+   --> mainloop.rs:449:9
+    |
+449 |     mut Stream: *mut Stream_t,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_Stream`
+
+warning: unused variable: `mp`
+   --> mattrib.rs:275:9
+    |
+275 |     mut mp: *mut MainParam_t,
+    |         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `mp`
+   --> mattrib.rs:308:9
+    |
+308 |     mut mp: *mut MainParam_t,
+    |         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `type_0`
+   --> mattrib.rs:423:9
+    |
+423 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `type_0`
+   --> mbadblocks.rs:372:9
+    |
+372 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `type_0`
+   --> mcat.rs:268:9
+    |
+268 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `mp`
+   --> mcd.rs:234:9
+    |
+234 |     mut mp: *mut MainParam_t,
+    |         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `type_0`
+   --> mcd.rs:270:9
+    |
+270 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `entry`
+   --> mcopy.rs:892:9
+    |
+892 |     mut entry: *mut direntry_t,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_entry`
+
+warning: unused variable: `mp`
+   --> mdir.rs:712:9
+    |
+712 |     mut mp: *mut MainParam_t,
+    |         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `entry`
+   --> mdir.rs:954:9
+    |
+954 |     mut entry: *mut direntry_t,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_entry`
+
+warning: unused variable: `type_0`
+    --> mdir.rs:1037:9
+     |
+1037 |     mut type_0: libc::c_int,
+     |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `mp`
+   --> mdoctorfat.rs:406:41
+    |
+406 | unsafe extern "C" fn unix_doctorfat(mut mp: *mut MainParam_t) -> libc::c_int {
+    |                                         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `mtype`
+   --> mdoctorfat.rs:431:9
+    |
+431 |     mut mtype: libc::c_int,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_mtype`
+
+warning: unused variable: `type_0`
+   --> mdu.rs:345:9
+    |
+345 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `dummy`
+    --> mformat.rs:1947:9
+     |
+1947 |     mut dummy: libc::c_int,
+     |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_dummy`
+
+warning: unused variable: `type_0`
+    --> minfo.rs:1097:9
+     |
+1097 |     mut type_0: libc::c_int,
+     |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `verbose`
+   --> mlabel.rs:602:9
+    |
+602 |     mut verbose: libc::c_int,
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_verbose`
+
+warning: unused variable: `longname`
+   --> mlabel.rs:691:9
+    |
+691 |     mut longname: *mut libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_longname`
+
+warning: unused variable: `arg0`
+   --> mlabel.rs:692:9
+    |
+692 |     mut arg0: *mut libc::c_void,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_arg0`
+
+warning: unused variable: `type_0`
+   --> mlabel.rs:725:9
+    |
+725 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `longname`
+   --> mmd.rs:327:9
+    |
+327 |     mut longname: *mut libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_longname`
+
+warning: unused variable: `entry`
+   --> mmd.rs:486:9
+    |
+486 |     mut entry: *mut direntry_t,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_entry`
+
+warning: unused variable: `type_0`
+   --> mmd.rs:509:9
+    |
+509 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `type_0`
+   --> mmount.rs:286:9
+    |
+286 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `longname`
+   --> mmove.rs:354:9
+    |
+354 |     mut longname: *mut libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_longname`
+
+warning: unused variable: `dummy`
+   --> mpartition.rs:516:9
+    |
+516 |     mut dummy: libc::c_int,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_dummy`
+
+warning: unused variable: `mp`
+   --> mshortname.rs:238:9
+    |
+238 |     mut mp: *mut MainParam_t,
+    |         ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `type_0`
+   --> mshortname.rs:262:9
+    |
+262 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `mp`
+   --> mshowfat.rs:262:39
+    |
+262 | unsafe extern "C" fn unix_showfat(mut mp: *mut MainParam_t) -> libc::c_int {
+    |                                       ^^ help: if this is intentional, prefix it with an underscore: `_mp`
+
+warning: unused variable: `mtype`
+   --> mshowfat.rs:287:9
+    |
+287 |     mut mtype: libc::c_int,
+    |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_mtype`
+
+warning: unused variable: `type_0`
+   --> mzip.rs:541:9
+    |
+541 |     mut type_0: libc::c_int,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_type_0`
+
+warning: unused variable: `used_dev`
+   --> partition.rs:336:9
+    |
+336 |     mut used_dev: *mut device,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_used_dev`
+
+warning: unused variable: `orig_dev`
+   --> partition.rs:624:9
+    |
+624 |     mut orig_dev: *mut device,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_orig_dev`
+
+warning: unused variable: `Stream`
+   --> plain_io.rs:321:37
+    |
+321 | unsafe extern "C" fn file_flush(mut Stream: *mut Stream_t) -> libc::c_int {
+    |                                     ^^^^^^ help: if this is intentional, prefix it with an underscore: `_Stream`
+
+warning: unused variable: `Stream`
+   --> plain_io.rs:411:39
+    |
+411 | unsafe extern "C" fn file_discard(mut Stream: *mut Stream_t) -> libc::c_int {
+    |                                       ^^^^^^ help: if this is intentional, prefix it with an underscore: `_Stream`
+
+warning: unused variable: `message`
+  --> privileges.rs:20:38
+   |
+20 | unsafe extern "C" fn print_privs(mut message: *const libc::c_char) {}
+   |                                      ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_message`
+
+warning: unused variable: `flag`
+  --> scsi.rs:52:9
+   |
+52 |     mut flag: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_flag`
+
+warning: unused variable: `mode`
+  --> scsi.rs:53:9
+   |
+53 |     mut mode: libc::c_int,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_mode`
+
+warning: unused variable: `extra_data`
+  --> scsi.rs:54:9
+   |
+54 |     mut extra_data: *mut *mut libc::c_void,
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_extra_data`
+
+warning: unused variable: `extra_data`
+  --> scsi.rs:69:9
+   |
+69 |     mut extra_data: *mut libc::c_void,
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_extra_data`
+
+warning: unused variable: `dummy`
+   --> signal.rs:139:41
+    |
+139 | unsafe extern "C" fn signal_handler(mut dummy: libc::c_int) {
+    |                                         ^^^^^ help: if this is intentional, prefix it with an underscore: `_dummy`
+
+warning: unused variable: `Stream`
+   --> stream.rs:179:9
+    |
+179 |     mut Stream: *mut Stream_t,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_Stream`
+
+warning: unused variable: `dev`
+   --> stream.rs:180:9
+    |
+180 |     mut dev: *mut device_t,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_dev`
+
+warning: unused variable: `orig_dev`
+   --> stream.rs:181:9
+    |
+181 |     mut orig_dev: *mut device_t,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_orig_dev`
+
+warning: unused variable: `dummy`
+   --> tty.rs:123:39
+    |
+123 | unsafe extern "C" fn tty_time_out(mut dummy: libc::c_int) -> ! {
+    |                                       ^^^^^ help: if this is intentional, prefix it with an underscore: `_dummy`
+
+warning: unused variable: `convertCharset`
+   --> unix2dos.rs:209:9
+    |
+209 |     mut convertCharset: libc::c_int,
+    |         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_convertCharset`
+
+warning: unused variable: `orig_dev`
+    --> xdf_io.rs:1299:9
+     |
+1299 |     mut orig_dev: *mut device,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_orig_dev`
+
+warning: unnecessary `unsafe` block
+   --> buffer.rs:551:35
+    |
+551 | static mut BufferClass: Class_t = unsafe {
+    |                                   ^^^^^^ unnecessary `unsafe` block
+    |
+    = note: `#[warn(unused_unsafe)]` on by default
+
+warning: unnecessary `unsafe` block
+   --> dos2unix.rs:145:35
+    |
+145 | static mut FilterClass: Class_t = unsafe {
+    |                                   ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> file.rs:1026:33
+     |
+1026 | static mut FileClass: Class_t = unsafe {
+     |                                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> floppyd_io.rs:963:40
+    |
+963 | static mut FloppydFileClass: Class_t = unsafe {
+    |                                        ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> init.rs:425:35
+    |
+425 | pub static mut FsClass: Class_t = unsafe {
+    |                                   ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+  --> mtools.rs:94:39
+   |
+94 | static mut dispatch: [dispatch; 26] = unsafe {
+   |                                       ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> offset.rs:149:35
+    |
+149 | static mut OffsetClass: Class_t = unsafe {
+    |                                   ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> partition.rs:632:38
+    |
+632 | static mut PartitionClass: Class_t = unsafe {
+    |                                      ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> plain_io.rs:414:39
+    |
+414 | static mut SimpleFileClass: Class_t = unsafe {
+    |                                       ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> remap.rs:274:34
+    |
+274 | static mut RemapClass: Class_t = unsafe {
+    |                                  ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> scsi_io.rs:474:39
+    |
+474 | static mut ScsiDeviceClass: Class_t = unsafe {
+    |                                       ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> swap.rs:168:33
+    |
+168 | static mut SwapClass: Class_t = unsafe {
+    |                                 ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> unix2dos.rs:172:35
+    |
+172 | static mut FilterClass: Class_t = unsafe {
+    |                                   ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+   --> unixdir.rs:276:32
+    |
+276 | static mut DirClass: Class_t = unsafe {
+    |                                ^^^^^^ unnecessary `unsafe` block
+
+warning: unnecessary `unsafe` block
+    --> xdf_io.rs:1308:32
+     |
+1308 | static mut XdfClass: Class_t = unsafe {
+     |                                ^^^^^^ unnecessary `unsafe` block
+
+warning: `sectorsToBytes` redeclared with a different signature
+  --> file.rs:47:5
+   |
+47 |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: fat.rs:39:5
+   |
+39 |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+   |     -------------------------------------------------------------- `sectorsToBytes` previously declared here
+   |
+   = note: `#[warn(clashing_extern_declarations)]` on by default
+   = note: expected `unsafe extern "C" fn(*mut fat::Fs_t, u32) -> i64`
+              found `unsafe extern "C" fn(*mut file::Fs_t, u32) -> i64`
+
+warning: `sectorsToBytes` redeclared with a different signature
+  --> mbadblocks.rs:62:5
+   |
+62 |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: fat.rs:39:5
+   |
+39 |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+   |     -------------------------------------------------------------- `sectorsToBytes` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*mut fat::Fs_t, u32) -> i64`
+              found `unsafe extern "C" fn(*mut mbadblocks::Fs_t, u32) -> i64`
+
+warning: `sectorsToBytes` redeclared with a different signature
+   --> mformat.rs:129:5
+    |
+129 |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: fat.rs:39:5
+    |
+39  |     fn sectorsToBytes(This: *mut Fs_t, off: uint32_t) -> mt_off_t;
+    |     -------------------------------------------------------------- `sectorsToBytes` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*mut fat::Fs_t, u32) -> i64`
+               found `unsafe extern "C" fn(*mut mformat::Fs_t, u32) -> i64`
+
+warning: `mk_entry` redeclared with a different signature
+  --> mlabel.rs:42:5
+   |
+42 |  /     fn mk_entry(
+43 |  |         filename: *const dos_name_t,
+44 |  |         attr: libc::c_uchar,
+45 |  |         fat: libc::c_uint,
+...   |
+48 |  |         ndir: *mut directory,
+49 |  |     ) -> *mut directory;
+   |  |________________________^ this signature doesn't match the previous declaration
+   |
+  ::: mcopy.rs:44:5
+   |
+44 | /      fn mk_entry(
+45 | |          filename: *const dos_name_t,
+46 | |          attr: libc::c_uchar,
+47 | |          fat: libc::c_uint,
+...  |
+50 | |          ndir: *mut directory,
+51 | |      ) -> *mut directory;
+   | |_________________________- `mk_entry` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const mcopy::dos_name_t, u8, u32, u32, i64, *mut mcopy::directory) -> *mut mcopy::directory`
+              found `unsafe extern "C" fn(*const mlabel::dos_name_t, u8, u32, u32, i64, *mut mlabel::directory) -> *mut mlabel::directory`
+
+warning: `dosnameToDirentry` redeclared with a different signature
+  --> mmove.rs:31:5
+   |
+31 |     fn dosnameToDirentry(n: *const dos_name_t, dir: *mut directory);
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: directory.rs:33:5
+   |
+33 |     fn dosnameToDirentry(n: *const dos_name_t, dir: *mut directory);
+   |     ---------------------------------------------------------------- `dosnameToDirentry` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const directory::dos_name_t, *mut directory::directory)`
+              found `unsafe extern "C" fn(*const mmove::dos_name_t, *mut mmove::directory)`
+
+warning: path statement with no effect
+   --> charsetConv.rs:544:9
+    |
+544 |         i;
+    |         ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> charsetConv.rs:580:9
+    |
+580 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> charsetConv.rs:728:9
+    |
+728 |         wchar;
+    |         ^^^^^^
+
+warning: path statement with no effect
+   --> charsetConv.rs:730:9
+    |
+730 |         out_len;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+   --> charsetConv.rs:740:9
+    |
+740 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> charsetConv.rs:841:9
+    |
+841 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> config.rs:811:9
+    |
+811 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> config.rs:822:5
+    |
+822 |     linenumber;
+    |     ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> config.rs:853:13
+    |
+853 |             pos;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> config.rs:857:5
+    |
+857 |     token_nr;
+    |     ^^^^^^^^^
+
+warning: path statement with no effect
+   --> config.rs:887:5
+    |
+887 |     pos;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> config.rs:938:5
+    |
+938 |     pos;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> config.rs:940:5
+    |
+940 |     token_nr;
+    |     ^^^^^^^^^
+
+warning: path statement with no effect
+   --> config.rs:959:5
+    |
+959 |     pos;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> config.rs:961:5
+    |
+961 |     token_nr;
+    |     ^^^^^^^^^
+
+warning: path statement with no effect
+   --> config.rs:980:5
+    |
+980 |     pos;
+    |     ^^^^
+
+warning: path statement with no effect
+   --> config.rs:982:5
+    |
+982 |     token_nr;
+    |     ^^^^^^^^^
+
+warning: path statement with no effect
+    --> config.rs:1000:9
+     |
+1000 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1039:9
+     |
+1039 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1043:5
+     |
+1043 |     cur_devs;
+     |     ^^^^^^^^^
+
+warning: path statement with no effect
+    --> config.rs:1050:5
+     |
+1050 |     cur_devs;
+     |     ^^^^^^^^^
+
+warning: path statement with no effect
+    --> config.rs:1181:9
+     |
+1181 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1199:9
+     |
+1199 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1215:17
+     |
+1215 |                 pos;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> config.rs:1231:9
+     |
+1231 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1261:9
+     |
+1261 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> config.rs:1543:5
+     |
+1543 |     file_nr;
+     |     ^^^^^^^^
+
+warning: path statement with no effect
+    --> config.rs:1729:9
+     |
+1729 |         dev;
+     |         ^^^^
+
+warning: dereferencing a null pointer
+    --> config.rs:1750:31
+     |
+1750 |                 address: &mut (*(0 as *mut device)).name as *mut *const libc::c_char
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+     |
+     = note: `#[warn(deref_nullptr)]` on by default
+
+warning: dereferencing a null pointer
+    --> config.rs:1759:31
+     |
+1759 |                 address: &mut (*(0 as *mut device)).offset as *mut mt_off_t as caddr_t,
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1767:31
+     |
+1767 |                 address: &mut (*(0 as *mut device)).partition as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1776:31
+     |
+1776 |                 address: &mut (*(0 as *mut device)).fat_bits as *mut libc::c_int
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1785:31
+     |
+1785 |                 address: &mut (*(0 as *mut device)).fat_bits as *mut libc::c_int
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1794:31
+     |
+1794 |                 address: &mut (*(0 as *mut device)).mode as *mut libc::c_int as caddr_t,
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1802:31
+     |
+1802 |                 address: &mut (*(0 as *mut device)).tracks as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1811:31
+     |
+1811 |                 address: &mut (*(0 as *mut device)).tracks as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1820:31
+     |
+1820 |                 address: &mut (*(0 as *mut device)).heads as *mut uint16_t as caddr_t,
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1828:31
+     |
+1828 |                 address: &mut (*(0 as *mut device)).sectors as *mut uint16_t as caddr_t,
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1836:31
+     |
+1836 |                 address: &mut (*(0 as *mut device)).hidden as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1845:31
+     |
+1845 |                 address: &mut (*(0 as *mut device)).precmd as *mut *mut libc::c_char
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1854:31
+     |
+1854 |                 address: &mut (*(0 as *mut device)).postcmd as *mut *mut libc::c_char
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1863:31
+     |
+1863 |                 address: &mut (*(0 as *mut device)).blocksize as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1872:31
+     |
+1872 |                 address: &mut (*(0 as *mut device)).codepage as *mut libc::c_uint
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: dereferencing a null pointer
+    --> config.rs:1881:31
+     |
+1881 |                 address: &mut (*(0 as *mut device)).data_map as *mut *const libc::c_char
+     |                               ^^^^^^^^^^^^^^^^^^^^^ this code causes undefined behavior when executed
+
+warning: path statement with no effect
+   --> devices.rs:248:9
+    |
+248 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> devices.rs:259:9
+    |
+259 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> devices.rs:277:9
+    |
+277 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> dirCache.rs:225:9
+    |
+225 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> dirCache.rs:227:9
+    |
+227 |         name;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> dirCache.rs:326:13
+    |
+326 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> dirCache.rs:413:13
+    |
+413 |             beginSlot;
+    |             ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> dirCache.rs:457:17
+    |
+457 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> dirCache.rs:513:9
+    |
+513 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> dirCache.rs:570:13
+    |
+570 |             i;
+    |             ^^
+
+warning: unused unary operation that must be used
+   --> direntry.rs:393:13
+    |
+393 |             *len_available;
+    |             ^^^^^^^^^^^^^^ the unary operation produces a value
+    |
+    = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+    |
+393 |             let _ = *len_available;
+    |             +++++++
+
+warning: path statement with no effect
+   --> direntry.rs:450:17
+    |
+450 |                 ptr;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> direntry.rs:499:13
+    |
+499 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> direntry.rs:505:13
+    |
+505 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> direntry.rs:512:13
+    |
+512 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> direntry.rs:521:13
+    |
+521 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> dos2unix.rs:141:9
+    |
+141 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> fat.rs:442:9
+    |
+442 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> fat.rs:605:17
+    |
+605 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> fat.rs:621:13
+    |
+621 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> fat.rs:636:17
+    |
+636 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> fat.rs:948:21
+    |
+948 |                     bit;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> fat.rs:950:21
+    |
+950 |                     j;
+    |                     ^^
+
+warning: path statement with no effect
+   --> fat.rs:954:13
+    |
+954 |             slot;
+    |             ^^^^^
+
+warning: path statement with no effect
+   --> fat.rs:957:9
+    |
+957 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> fat.rs:1095:13
+     |
+1095 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> fat.rs:1098:9
+     |
+1098 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> fat.rs:1251:9
+     |
+1251 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> fat.rs:1615:9
+     |
+1615 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> fat.rs:1635:17
+     |
+1635 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> fat.rs:1705:17
+     |
+1705 |                 total;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> fat.rs:1708:13
+     |
+1708 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> fat.rs:1760:13
+     |
+1760 |             total;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> fat.rs:1766:9
+     |
+1766 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> fat.rs:1783:21
+     |
+1783 |                     total;
+     |                     ^^^^^^
+
+warning: path statement with no effect
+    --> fat.rs:1789:17
+     |
+1789 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> fat.rs:1824:9
+     |
+1824 |         size2;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> fat.rs:1875:13
+     |
+1875 |             i;
+     |             ^^
+
+warning: path statement with no effect
+   --> file.rs:402:9
+    |
+402 |         ret;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> file.rs:493:9
+    |
+493 |         blocks;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> file.rs:496:9
+    |
+496 |         rel;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> file.rs:554:13
+    |
+554 |             end;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> file.rs:559:9
+    |
+559 |         rel;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> file.rs:594:9
+    |
+594 |         rel;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> file.rs:702:9
+    |
+702 |         CurCluNr;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> file.rs:931:9
+    |
+931 |         accum;
+    |         ^^^^^^
+
+warning: path statement with no effect
+   --> file_name.rs:127:9
+    |
+127 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> file_name.rs:129:9
+    |
+129 |         a;
+    |         ^^
+
+warning: path statement with no effect
+   --> file_name.rs:139:13
+    |
+139 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> file_name.rs:141:13
+    |
+141 |             a;
+    |             ^^
+
+warning: path statement with no effect
+   --> file_name.rs:200:13
+    |
+200 |             t_idx;
+    |             ^^^^^^
+
+warning: path statement with no effect
+   --> file_name.rs:203:9
+    |
+203 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> file_name.rs:303:13
+    |
+303 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> file_name.rs:317:13
+    |
+317 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> floppyd.rs:877:9
+    |
+877 |         digits;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> floppyd_installtest.rs:350:9
+    |
+350 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> floppyd_installtest.rs:355:9
+    |
+355 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> floppyd_installtest.rs:366:9
+    |
+366 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> floppyd_installtest.rs:371:9
+    |
+371 |         p;
+    |         ^^
+
+warning: path statement with no effect
+    --> floppyd_io.rs:1030:9
+     |
+1030 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> floppyd_io.rs:1035:9
+     |
+1035 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> floppyd_io.rs:1044:9
+     |
+1044 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> floppyd_io.rs:1054:9
+     |
+1054 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> floppyd_io.rs:1059:9
+     |
+1059 |         p;
+     |         ^^
+
+warning: path statement with no effect
+   --> hash.rs:116:9
+    |
+116 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> hash.rs:125:13
+    |
+125 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> hash.rs:135:13
+    |
+135 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> hash.rs:166:9
+    |
+166 |         ii;
+    |         ^^^
+
+warning: path statement with no effect
+   --> hash.rs:214:13
+    |
+214 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> hash.rs:249:9
+    |
+249 |         ctr;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> hash.rs:293:9
+    |
+293 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> hash.rs:357:9
+    |
+357 |         ttl;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> init.rs:608:17
+    |
+608 |                 j;
+    |                 ^^
+
+warning: path statement with no effect
+   --> init.rs:761:9
+    |
+761 |         retry_write;
+    |         ^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> init.rs:830:9
+    |
+830 |         dev;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> llong.rs:122:9
+    |
+122 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mainloop.rs:760:13
+    |
+760 |             filename0;
+    |             ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mainloop.rs:765:13
+    |
+765 |             filename0;
+    |             ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mainloop.rs:803:9
+    |
+803 |         ptr;
+    |         ^^^^
+
+warning: path statement with no effect
+    --> mainloop.rs:1089:9
+     |
+1089 |         i;
+     |         ^^
+
+warning: path statement with no effect
+   --> mattrib.rs:532:21
+    |
+532 |                     ptr;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> mattrib.rs:542:21
+    |
+542 |                     ptr;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> mattrib.rs:550:9
+    |
+550 |         optind;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:356:21
+    |
+356 |                     i;
+    |                     ^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:466:21
+    |
+466 |                     i;
+    |                     ^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:508:25
+    |
+508 |                         i;
+    |                         ^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:620:37
+    |
+620 | ...                   i;
+    |                       ^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:649:37
+    |
+649 | ...                   i;
+    |                       ^^
+
+warning: path statement with no effect
+   --> mbadblocks.rs:668:37
+    |
+668 | ...                   i;
+    |                       ^^
+
+warning: path statement with no effect
+   --> mcat.rs:372:9
+    |
+372 |         dev;
+    |         ^^^^
+
+warning: path statement with no effect
+    --> mcopy.rs:1448:9
+     |
+1448 |         argc;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> mcopy.rs:1477:13
+     |
+1477 |             argc;
+     |             ^^^^^
+
+warning: path statement with no effect
+   --> mdel.rs:303:9
+    |
+303 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mdel.rs:594:9
+    |
+594 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mdir.rs:372:13
+    |
+372 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdir.rs:385:13
+    |
+385 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdir.rs:400:13
+    |
+400 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdir.rs:405:9
+    |
+405 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> mdir.rs:477:9
+    |
+477 |         srcp;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> mdir.rs:705:5
+    |
+705 |     dirsOnDrive;
+    |     ^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mdir.rs:774:13
+    |
+774 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdir.rs:804:13
+    |
+804 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdir.rs:896:5
+    |
+896 |     filesOnDrive;
+    |     ^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mdir.rs:898:5
+    |
+898 |     filesInDir;
+    |     ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mdoctorfat.rs:568:13
+    |
+568 |             number;
+    |             ^^^^^^^
+
+warning: path statement with no effect
+   --> mdoctorfat.rs:587:13
+    |
+587 |             eptr;
+    |             ^^^^^
+
+warning: path statement with no effect
+   --> mdoctorfat.rs:619:13
+    |
+619 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> mdoctorfat.rs:622:9
+    |
+622 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mformat.rs:724:13
+    |
+724 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> mformat.rs:744:17
+    |
+744 |                 size2;
+    |                 ^^^^^^
+
+warning: path statement with no effect
+   --> mformat.rs:772:17
+    |
+772 |                 size2;
+    |                 ^^^^^^
+
+warning: path statement with no effect
+   --> mformat.rs:786:13
+    |
+786 |             j;
+    |             ^^
+
+warning: path statement with no effect
+   --> mformat.rs:962:9
+    |
+962 |         i;
+    |         ^^
+
+warning: path statement with no effect
+    --> mformat.rs:1046:9
+     |
+1046 |         rem_sect;
+     |         ^^^^^^^^^
+
+warning: path statement with no effect
+    --> mformat.rs:1069:9
+     |
+1069 |         corr;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> mformat.rs:1905:13
+     |
+1905 |             j;
+     |             ^^
+
+warning: path statement with no effect
+    --> mformat.rs:2419:9
+     |
+2419 |         dev;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> mformat.rs:2699:13
+     |
+2699 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> minfo.rs:1266:9
+     |
+1266 |         optind;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+   --> misc.rs:283:13
+    |
+283 |             col;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> misc.rs:302:13
+    |
+302 |             col;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> misc.rs:306:9
+    |
+306 |         row;
+    |         ^^^^
+
+warning: unused unary operation that must be used
+   --> misc.rs:386:5
+    |
+386 |     *endp;
+    |     ^^^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+386 |     let _ = *endp;
+    |     +++++++
+
+warning: path statement with no effect
+   --> mk_direntry.rs:639:9
+    |
+639 |         string;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> mk_direntry.rs:676:9
+    |
+676 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mk_direntry.rs:697:9
+    |
+697 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mk_direntry.rs:950:9
+    |
+950 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> mkmanifest.rs:150:9
+    |
+150 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mkmanifest.rs:197:9
+    |
+197 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mkmanifest.rs:208:13
+    |
+208 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> mlabel.rs:661:9
+    |
+661 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mmove.rs:712:9
+    |
+712 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mpartition.rs:454:9
+    |
+454 |         heads;
+    |         ^^^^^^
+
+warning: path statement with no effect
+   --> mpartition.rs:459:13
+    |
+459 |             sectors;
+    |             ^^^^^^^^
+
+warning: path statement with no effect
+   --> mpartition.rs:647:17
+    |
+647 |                 verbose;
+    |                 ^^^^^^^^
+
+warning: path statement with no effect
+   --> mpartition.rs:764:9
+    |
+764 |         dev;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> mpartition.rs:889:17
+    |
+889 |                 has_activated;
+    |                 ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> mpartition.rs:941:9
+    |
+941 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mtools.rs:555:9
+    |
+555 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mtools.rs:583:9
+    |
+583 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> mzip.rs:791:9
+    |
+791 |         dev;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> old_dos.rs:247:9
+    |
+247 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> old_dos.rs:263:9
+    |
+263 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> old_dos.rs:297:9
+    |
+297 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> partition.rs:325:9
+    |
+325 |         i;
+    |         ^^
+
+warning: unused unary operation that must be used
+   --> partition.rs:351:17
+    |
+351 |                 *has_activated;
+    |                 ^^^^^^^^^^^^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+351 |                 let _ = *has_activated;
+    |                 +++++++
+
+warning: path statement with no effect
+   --> partition.rs:554:9
+    |
+554 |         i;
+    |         ^^
+
+warning: unused unary operation that must be used
+  --> match.rs:25:9
+   |
+25 |         *p;
+   |         ^^ the unary operation produces a value
+   |
+help: use `let _ = ...` to ignore the resulting value
+   |
+25 |         let _ = *p;
+   |         +++++++
+
+warning: unused unary operation that must be used
+  --> match.rs:48:17
+   |
+48 |                 *p;
+   |                 ^^ the unary operation produces a value
+   |
+help: use `let _ = ...` to ignore the resulting value
+   |
+48 |                 let _ = *p;
+   |                 +++++++
+
+warning: path statement with no effect
+   --> match.rs:117:21
+    |
+117 |                     p;
+    |                     ^^
+
+warning: path statement with no effect
+   --> match.rs:119:21
+    |
+119 |                     length;
+    |                     ^^^^^^^
+
+warning: path statement with no effect
+   --> match.rs:131:21
+    |
+131 |                     s;
+    |                     ^^
+
+warning: path statement with no effect
+   --> match.rs:137:17
+    |
+137 |                 p;
+    |                 ^^
+
+warning: path statement with no effect
+   --> match.rs:139:17
+    |
+139 |                 length;
+    |                 ^^^^^^^
+
+warning: path statement with no effect
+   --> match.rs:149:17
+    |
+149 |                 p;
+    |                 ^^
+
+warning: path statement with no effect
+   --> match.rs:151:17
+    |
+151 |                 length;
+    |                 ^^^^^^^
+
+warning: path statement with no effect
+   --> match.rs:172:9
+    |
+172 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> match.rs:174:9
+    |
+174 |         length;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> match.rs:176:9
+    |
+176 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> remap.rs:212:13
+    |
+212 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> remap.rs:262:13
+    |
+262 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> remap.rs:370:17
+    |
+370 |                 ptr;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> remap.rs:393:17
+    |
+393 |                 count;
+    |                 ^^^^^^
+
+warning: path statement with no effect
+   --> scsi_io.rs:278:9
+    |
+278 |         sectors;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+   --> scsi_io.rs:310:13
+    |
+310 |             nsect;
+    |             ^^^^^^
+
+warning: path statement with no effect
+   --> streamcache.rs:178:9
+    |
+178 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> streamcache.rs:191:9
+    |
+191 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> strtonum.rs:283:13
+    |
+283 |             eptr;
+    |             ^^^^^
+
+warning: path statement with no effect
+   --> unix2dos.rs:168:9
+    |
+168 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> vfat.rs:342:9
+    |
+342 |         end;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:367:9
+    |
+367 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> vfat.rs:391:9
+    |
+391 |         dotpos;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:405:13
+    |
+405 |             seqnum;
+    |             ^^^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:414:17
+    |
+414 |                 tildapos;
+    |                 ^^^^^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:417:17
+    |
+417 |                 dotpos;
+    |                 ^^^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:486:9
+    |
+486 |         out;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:488:9
+    |
+488 |         out;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:490:9
+    |
+490 |         in_0;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:492:9
+    |
+492 |         j;
+    |         ^^
+
+warning: path statement with no effect
+   --> vfat.rs:508:9
+    |
+508 |         out;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:510:9
+    |
+510 |         in_0;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:512:9
+    |
+512 |         in_0;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:535:9
+    |
+535 |         name;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> vfat.rs:681:13
+    |
+681 |             vse_id;
+    |             ^^^^^^^
+
+warning: path statement with no effect
+   --> xdf_io.rs:583:17
+    |
+583 |                 raw_cmd;
+    |                 ^^^^^^^^
+
+warning: path statement with no effect
+   --> xdf_io.rs:608:17
+    |
+608 |                 j;
+    |                 ^^
+
+warning: path statement with no effect
+   --> xdf_io.rs:618:9
+    |
+618 |         j;
+    |         ^^
+
+warning: unused unary operation that must be used
+   --> xdf_io.rs:701:9
+    |
+701 |         *nr;
+    |         ^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+701 |         let _ = *nr;
+    |         +++++++
+
+warning: unused unary operation that must be used
+    --> xdf_io.rs:1006:9
+     |
+1006 |         *sector;
+     |         ^^^^^^^ the unary operation produces a value
+     |
+help: use `let _ = ...` to ignore the resulting value
+     |
+1006 |         let _ = *sector;
+     |         +++++++
+
+warning: path statement with no effect
+    --> xdf_io.rs:1013:9
+     |
+1013 |         ptr;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1015:9
+     |
+1015 |         n;
+     |         ^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1030:9
+     |
+1030 |         ptr;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1032:9
+     |
+1032 |         n;
+     |         ^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1095:17
+     |
+1095 |                 ptr;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1098:13
+     |
+1098 |             map;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1122:13
+     |
+1122 |             ptr;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1142:13
+     |
+1142 |             sector;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> xdf_io.rs:1507:41
+     |
+1507 | ...                   type_0;
+     |                       ^^^^^^^
+
+error: symbol `mtools_lock_timeout` is already defined
+   --> floppyd.rs:363:1
+    |
+363 | pub static mut mtools_lock_timeout: libc::c_uint = 30 as libc::c_int as libc::c_uint;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `c2rust_out` (lib) generated 359 warnings
+error: could not compile `c2rust_out` due to previous error; 359 warnings emitted

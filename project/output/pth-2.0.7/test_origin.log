@@ -1,0 +1,155 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/pth-2.0.7)
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:19
+   |
+14 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> test_httpd.rs:370:21
+    |
+370 |         .sin_port = ({
+    |                     ^
+...
+389 |     });
+    |      ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+370 ~         .sin_port = {
+371 |         let mut __v: libc::c_ushort = 0;
+  ...
+388 |         __v
+389 ~     };
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0277]: the trait bound `pth_event::timeval: core::ffi::sealed_trait::VaArgSafe` is not satisfied
+   --> pth_event.rs:379:37
+    |
+379 |         let mut tv: pth_time_t = ap.arg::<pth_time_t>();
+    |                                     ^^^ the trait `core::ffi::sealed_trait::VaArgSafe` is not implemented for `pth_event::timeval`
+    |
+    = help: the following other types implement trait `core::ffi::sealed_trait::VaArgSafe`:
+              *const T
+              *mut T
+              f64
+              i16
+              i32
+              i64
+              i8
+              isize
+            and 5 others
+note: required by a bound in `VaListImpl::<'f>::arg`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/mod.rs:510:26
+    |
+510 |     pub unsafe fn arg<T: sealed_trait::VaArgSafe>(&mut self) -> T {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `VaListImpl::<'f>::arg`
+
+error[E0277]: the trait bound `pth_event::timeval: core::ffi::sealed_trait::VaArgSafe` is not satisfied
+   --> pth_event.rs:438:36
+    |
+438 |         (*ev).ev_args.FUNC.tv = ap.arg::<pth_time_t>();
+    |                                    ^^^ the trait `core::ffi::sealed_trait::VaArgSafe` is not implemented for `pth_event::timeval`
+    |
+    = help: the following other types implement trait `core::ffi::sealed_trait::VaArgSafe`:
+              *const T
+              *mut T
+              f64
+              i16
+              i32
+              i64
+              i8
+              isize
+            and 5 others
+note: required by a bound in `VaListImpl::<'f>::arg`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/mod.rs:510:26
+    |
+510 |     pub unsafe fn arg<T: sealed_trait::VaArgSafe>(&mut self) -> T {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `VaListImpl::<'f>::arg`
+
+error[E0277]: the trait bound `f128::f128: core::ffi::sealed_trait::VaArgSafe` is not satisfied
+   --> pth_string.rs:244:43
+    |
+244 | ...                   fvalue = args.arg::<f128::f128>();
+    |                                     ^^^ the trait `core::ffi::sealed_trait::VaArgSafe` is not implemented for `f128::f128`
+    |
+    = help: the following other types implement trait `core::ffi::sealed_trait::VaArgSafe`:
+              *const T
+              *mut T
+              f64
+              i16
+              i32
+              i64
+              i8
+              isize
+            and 5 others
+note: required by a bound in `VaListImpl::<'f>::arg`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/mod.rs:510:26
+    |
+510 |     pub unsafe fn arg<T: sealed_trait::VaArgSafe>(&mut self) -> T {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `VaListImpl::<'f>::arg`
+
+error[E0277]: the trait bound `f128::f128: core::ffi::sealed_trait::VaArgSafe` is not satisfied
+   --> pth_string.rs:369:43
+    |
+369 | ...                   fvalue = args.arg::<f128::f128>();
+    |                                     ^^^ the trait `core::ffi::sealed_trait::VaArgSafe` is not implemented for `f128::f128`
+    |
+    = help: the following other types implement trait `core::ffi::sealed_trait::VaArgSafe`:
+              *const T
+              *mut T
+              f64
+              i16
+              i32
+              i64
+              i8
+              isize
+            and 5 others
+note: required by a bound in `VaListImpl::<'f>::arg`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/mod.rs:510:26
+    |
+510 |     pub unsafe fn arg<T: sealed_trait::VaArgSafe>(&mut self) -> T {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `VaListImpl::<'f>::arg`
+
+error[E0277]: the trait bound `f128::f128: core::ffi::sealed_trait::VaArgSafe` is not satisfied
+   --> pth_string.rs:376:43
+    |
+376 | ...                   fvalue = args.arg::<f128::f128>();
+    |                                     ^^^ the trait `core::ffi::sealed_trait::VaArgSafe` is not implemented for `f128::f128`
+    |
+    = help: the following other types implement trait `core::ffi::sealed_trait::VaArgSafe`:
+              *const T
+              *mut T
+              f64
+              i16
+              i32
+              i64
+              i8
+              isize
+            and 5 others
+note: required by a bound in `VaListImpl::<'f>::arg`
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/ffi/mod.rs:510:26
+    |
+510 |     pub unsafe fn arg<T: sealed_trait::VaArgSafe>(&mut self) -> T {
+    |                          ^^^^^^^^^^^^^^^^^^^^^^^ required by this bound in `VaListImpl::<'f>::arg`
+
+For more information about this error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 4 warnings
+error: could not compile `c2rust_out` due to 5 previous errors; 4 warnings emitted

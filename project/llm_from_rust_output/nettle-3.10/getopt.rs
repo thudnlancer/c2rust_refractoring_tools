@@ -1,0 +1,1 @@
+// No unsafe code or libc dependency needed in this case

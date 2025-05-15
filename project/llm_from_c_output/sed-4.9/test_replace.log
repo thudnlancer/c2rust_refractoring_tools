@@ -1,0 +1,1450 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/sed-4.9)
+error[E0583]: file not found for module `fflush`
+  --> c2rust-lib.rs:17:1
+   |
+17 | pub mod fflush;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fflush`, create file "gnulib_tests/fflush.rs" or "gnulib_tests/fflush/mod.rs"
+
+error[E0583]: file not found for module `file_has_acl`
+  --> c2rust-lib.rs:18:1
+   |
+18 | pub mod file_has_acl;
+   | ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `file_has_acl`, create file "gnulib_tests/file_has_acl.rs" or "gnulib_tests/file_has_acl/mod.rs"
+
+error[E0583]: file not found for module `fpurge`
+  --> c2rust-lib.rs:19:1
+   |
+19 | pub mod fpurge;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fpurge`, create file "gnulib_tests/fpurge.rs" or "gnulib_tests/fpurge/mod.rs"
+
+error[E0583]: file not found for module `freading`
+  --> c2rust-lib.rs:20:1
+   |
+20 | pub mod freading;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `freading`, create file "gnulib_tests/freading.rs" or "gnulib_tests/freading/mod.rs"
+
+error[E0583]: file not found for module `fseek`
+  --> c2rust-lib.rs:21:1
+   |
+21 | pub mod fseek;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseek`, create file "gnulib_tests/fseek.rs" or "gnulib_tests/fseek/mod.rs"
+
+error[E0583]: file not found for module `fseeko`
+  --> c2rust-lib.rs:22:1
+   |
+22 | pub mod fseeko;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseeko`, create file "gnulib_tests/fseeko.rs" or "gnulib_tests/fseeko/mod.rs"
+
+error[E0583]: file not found for module `thread`
+  --> c2rust-lib.rs:24:1
+   |
+24 | pub mod thread;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+  --> c2rust-lib.rs:26:1
+   |
+26 | pub mod ioctl;
+   | ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+  --> c2rust-lib.rs:27:1
+   |
+27 | pub mod locale;
+   | ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+  --> c2rust-lib.rs:28:1
+   |
+28 | pub mod localename;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+  --> c2rust-lib.rs:29:1
+   |
+29 | pub mod localename_table;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+  --> c2rust-lib.rs:30:1
+   |
+30 | pub mod nanosleep;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `pthread_sigmask`
+  --> c2rust-lib.rs:31:1
+   |
+31 | pub mod pthread_sigmask;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `pthread_sigmask`, create file "gnulib_tests/pthread_sigmask.rs" or "gnulib_tests/pthread_sigmask/mod.rs"
+
+error[E0583]: file not found for module `read_file`
+  --> c2rust-lib.rs:32:1
+   |
+32 | pub mod read_file;
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `read_file`, create file "gnulib_tests/read_file.rs" or "gnulib_tests/read_file/mod.rs"
+
+error[E0583]: file not found for module `sockets`
+  --> c2rust-lib.rs:33:1
+   |
+33 | pub mod sockets;
+   | ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sockets`, create file "gnulib_tests/sockets.rs" or "gnulib_tests/sockets/mod.rs"
+
+error[E0583]: file not found for module `strerror_r`
+  --> c2rust-lib.rs:34:1
+   |
+34 | pub mod strerror_r;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `strerror_r`, create file "gnulib_tests/strerror_r.rs" or "gnulib_tests/strerror_r/mod.rs"
+
+error[E0583]: file not found for module `sys_socket`
+  --> c2rust-lib.rs:35:1
+   |
+35 | pub mod sys_socket;
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sys_socket`, create file "gnulib_tests/sys_socket.rs" or "gnulib_tests/sys_socket/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+  --> c2rust-lib.rs:36:1
+   |
+36 | pub mod test_localcharset;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `vma_iter`
+  --> c2rust-lib.rs:37:1
+   |
+37 | pub mod vma_iter;
+   | ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `vma_iter`, create file "gnulib_tests/vma_iter.rs" or "gnulib_tests/vma_iter/mod.rs"
+
+error: this file contains an unclosed delimiter
+   --> sed/compile.rs:616:13
+    |
+613 | fn release_label(list_head: Option<Box<SedLabel>>) -> Option<Box<SedLabel>> {
+    |                                                                             - unclosed delimiter
+614 |     list_head.and_then(|mut head| {
+    |                       -           - unclosed delimiter
+    |                       |
+    |                       unclosed delimiter
+615 |         let next = head.next.take();
+616 |         next
+    |             ^
+
+error[E0658]: `cfg(sanitize)` is experimental and subject to change
+  --> lib/closeout.rs:65:14
+   |
+65 |     if !cfg!(sanitize = "address") {
+   |              ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #39699 <https://github.com/rust-lang/rust/issues/39699> for more information
+   = help: add `#![feature(cfg_sanitize)]` to the crate attributes to enable
+
+error[E0433]: failed to resolve: use of undeclared crate or module `encoding_rs`
+  --> sed/mbcs.rs:23:5
+   |
+23 | use encoding_rs::mem::decode_latin1;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `encoding_rs`
+
+error[E0432]: unresolved import `encoding_rs`
+  --> sed/mbcs.rs:22:5
+   |
+22 | use encoding_rs::Encoding;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `encoding_rs`
+
+error[E0432]: unresolved imports `std::os::fd::AsRawFd`, `std::os::fd::FromRawFd`
+  --> sed/utils.rs:23:14
+   |
+23 |     os::fd::{AsRawFd, FromRawFd},
+   |              ^^^^^^^  ^^^^^^^^^ no `FromRawFd` in `os::fd`
+   |              |
+   |              no `AsRawFd` in `os::fd`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+ --> lib/dfa.rs:6:5
+  |
+6 | use regex_syntax::hir::{self, Hir, HirKind};
+  |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `regex_syntax`
+ --> lib/dfa.rs:6:5
+  |
+6 | use regex_syntax::hir::{self, Hir, HirKind};
+  |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `regex_syntax`
+ --> lib/dfa.rs:7:5
+  |
+7 | use regex_syntax::ParserBuilder;
+  |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `regex_automata`
+ --> lib/dfa.rs:8:5
+  |
+8 | use regex_automata::{dfa, nfa};
+  |     ^^^^^^^^^^^^^^ use of undeclared crate or module `regex_automata`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+  --> sed/regexp.rs:25:5
+   |
+25 | use regex_syntax::hir::Hir;
+   |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0432]: unresolved import `rand`
+ --> lib/tempname.rs:6:5
+  |
+6 | use rand::Rng;
+  |     ^^^^ use of undeclared crate or module `rand`
+
+error[E0432]: unresolved import `regex_syntax`
+  --> sed/regexp.rs:26:5
+   |
+26 | use regex_syntax::Parser;
+   |     ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex`
+  --> sed/regexp.rs:28:5
+   |
+28 | use regex::bytes::Regex as BytesRegex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+   |
+help: there is a crate or module with a similar name
+   |
+28 | use regexp::bytes::Regex as BytesRegex;
+   |     ~~~~~~
+
+error[E0432]: unresolved import `regex`
+  --> sed/regexp.rs:27:5
+   |
+27 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+   |
+help: there is a crate or module with a similar name
+   |
+27 | use regexp::Regex;
+   |     ~~~~~~
+
+error[E0432]: unresolved import `lazy_static`
+  --> lib/setlocale_null.rs:10:5
+   |
+10 | use lazy_static::lazy_static;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0432]: unresolved import `regex`
+  --> sed/sed.rs:23:5
+   |
+23 | use regex::Regex;
+   |     ^^^^^ use of undeclared crate or module `regex`
+
+error[E0432]: unresolved import `lazy_static`
+  --> sed/sed.rs:24:5
+   |
+24 | use lazy_static::lazy_static;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0432]: unresolved import `nix`
+  --> sed/sed.rs:26:5
+   |
+26 | use nix::unistd;
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `getopts`
+  --> sed/sed.rs:27:5
+   |
+27 | use getopts::Options;
+   |     ^^^^^^^ use of undeclared crate or module `getopts`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `lazy_static`
+  --> sed/utils.rs:61:1
+   |
+61 | lazy_static::lazy_static! {
+   | ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `getrandom`
+  --> lib/tempname.rs:27:21
+   |
+27 |     if let Ok(()) = getrandom::getrandom(&mut buf) {
+   |                     ^^^^^^^^^ use of undeclared crate or module `getrandom`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+  --> lib/tempname.rs:80:19
+   |
+80 |     let mut rng = rand::thread_rng();
+   |                   ^^^^ use of undeclared crate or module `rand`
+
+error[E0433]: failed to resolve: use of undeclared type `Posixicity`
+   --> sed/compile.rs:378:24
+    |
+378 |     if posixicity() == Posixicity::PosixlyExtended {
+    |                        ^^^^^^^^^^ use of undeclared type `Posixicity`
+
+error[E0433]: failed to resolve: use of undeclared type `Posixicity`
+   --> sed/compile.rs:522:36
+    |
+522 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                                    ^^^^^^^^^^ use of undeclared type `Posixicity`
+
+error[E0433]: failed to resolve: use of undeclared type `Posixicity`
+   --> sed/compile.rs:528:36
+    |
+528 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                                    ^^^^^^^^^^ use of undeclared type `Posixicity`
+
+error[E0433]: failed to resolve: use of undeclared type `Posixicity`
+   --> sed/compile.rs:534:36
+    |
+534 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                                    ^^^^^^^^^^ use of undeclared type `Posixicity`
+
+error[E0433]: failed to resolve: use of undeclared type `RegexFlags`
+  --> sed/debug.rs:60:25
+   |
+60 |     if r.flags.contains(RegexFlags::ICASE) {
+   |                         ^^^^^^^^^^ use of undeclared type `RegexFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `RegexFlags`
+  --> sed/debug.rs:63:25
+   |
+63 |     if r.flags.contains(RegexFlags::NEWLINE) {
+   |                         ^^^^^^^^^^ use of undeclared type `RegexFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:81:9
+   |
+81 |         AddrType::Null => print!("[ADDR-NULL]"),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:82:9
+   |
+82 |         AddrType::Regex => {
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:86:9
+   |
+86 |         AddrType::Number => print!("{}", a.addr_number),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:87:9
+   |
+87 |         AddrType::NumberMod => print!("{}~{}", a.addr_number, a.addr_step),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:88:9
+   |
+88 |         AddrType::Step => print!("+{}", a.addr_step),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:89:9
+   |
+89 |         AddrType::StepMod => print!("~{}", a.addr_step),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+  --> sed/debug.rs:90:9
+   |
+90 |         AddrType::Last => print!("$"),
+   |         ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+  --> sed/debug.rs:95:30
+   |
+95 |     let mut last_repl_type = ReplacementType::AsIs;
+   |                              ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+   --> sed/debug.rs:102:17
+    |
+102 |                 ReplacementType::AsIs => print!("E"),
+    |                 ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+   --> sed/debug.rs:103:17
+    |
+103 |                 ReplacementType::Uppercase => print!("U"),
+    |                 ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+   --> sed/debug.rs:104:17
+    |
+104 |                 ReplacementType::Lowercase => print!("L"),
+    |                 ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+   --> sed/debug.rs:106:48
+    |
+106 |                     if repl.repl_type.contains(ReplacementType::UppercaseFirst) {
+    |                                                ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `ReplacementType`
+   --> sed/debug.rs:108:55
+    |
+108 |                     } else if repl.repl_type.contains(ReplacementType::LowercaseFirst) {
+    |                                                       ^^^^^^^^^^^^^^^ use of undeclared type `ReplacementType`
+
+error[E0433]: failed to resolve: use of undeclared type `AddrType`
+   --> sed/execute.rs:418:32
+    |
+418 |             if a1.addr_type == AddrType::IsNum && a1.addr_number == 0 {
+    |                                ^^^^^^^^ use of undeclared type `AddrType`
+
+error[E0433]: failed to resolve: use of undeclared type `RangeState`
+   --> sed/execute.rs:419:35
+    |
+419 |                 cmd.range_state = RangeState::Active;
+    |                                   ^^^^^^^^^^ use of undeclared type `RangeState`
+
+error[E0433]: failed to resolve: use of undeclared type `RangeState`
+   --> sed/execute.rs:421:35
+    |
+421 |                 cmd.range_state = RangeState::Inactive;
+    |                                   ^^^^^^^^^^ use of undeclared type `RangeState`
+
+error[E0433]: failed to resolve: could not find `DecodeUtf16State` in `char`
+  --> sed/mbcs.rs:40:53
+   |
+40 |     let mb_pending = !matches!(cur_stat, std::char::DecodeUtf16State::Empty);
+   |                                                     ^^^^^^^^^^^^^^^^ could not find `DecodeUtf16State` in `char`
+
+error[E0433]: failed to resolve: could not find `DecodeUtf16State` in `char`
+  --> sed/mbcs.rs:47:36
+   |
+47 |             *cur_stat = std::char::DecodeUtf16State::Empty;
+   |                                    ^^^^^^^^^^^^^^^^ could not find `DecodeUtf16State` in `char`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:142:9
+    |
+142 |         regex_syntax::hir::Hir::empty().kind().to_owned()
+    |         ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:144:9
+    |
+144 |         regex_syntax::hir::Hir::empty().kind().to_owned()
+    |         ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:147:28
+    |
+147 |     let syntax = syntax & !regex_syntax::hir::DotNotNewline;
+    |                            ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:148:27
+    |
+148 |     let syntax = syntax | regex_syntax::hir::NoPosixBacktracking;
+    |                           ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:152:24
+    |
+152 |         0 => syntax & !regex_syntax::hir::UnmatchedRightParenOrd,
+    |                        ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:153:23
+    |
+153 |         1 => syntax | regex_syntax::hir::UnmatchedRightParenOrd,
+    |                       ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:154:23
+    |
+154 |         2 => syntax | regex_syntax::hir::UnmatchedRightParenOrd | regex_syntax::hir::NoGnuOps,
+    |                       ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `regex_syntax`
+   --> sed/regexp.rs:154:67
+    |
+154 |         2 => syntax | regex_syntax::hir::UnmatchedRightParenOrd | regex_syntax::hir::NoGnuOps,
+    |                                                                   ^^^^^^^^^^^^ use of undeclared crate or module `regex_syntax`
+
+error[E0425]: cannot find value `MB_CUR_MAX` in crate `libc`
+   --> lib/localeinfo.rs:105:43
+    |
+105 |     localeinfo.multibyte = unsafe { libc::MB_CUR_MAX } > 1;
+    |                                           ^^^^^^^^^^ not found in `libc`
+    |
+help: consider importing this static
+    |
+20  | use crate::sed::mbcs::MB_CUR_MAX;
+    |
+help: if you import `MB_CUR_MAX`, refer to it directly
+    |
+105 -     localeinfo.multibyte = unsafe { libc::MB_CUR_MAX } > 1;
+105 +     localeinfo.multibyte = unsafe { MB_CUR_MAX } > 1;
+    |
+
+error[E0425]: cannot find function `mbrtowc` in crate `libc`
+   --> lib/localeinfo.rs:116:19
+    |
+116 |             libc::mbrtowc(
+    |                   ^^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+20  | use crate::lib::mbrtowc::mbrtowc;
+    |
+help: if you import `mbrtowc`, refer to it directly
+    |
+116 -             libc::mbrtowc(
+116 +             mbrtowc(
+    |
+
+error[E0423]: cannot initialize a tuple struct which contains private fields
+  --> lib/malloc/dynarray_emplace_enlarge.rs:29:24
+   |
+29 |             return Err(TryFromIntError(()));
+   |                        ^^^^^^^^^^^^^^^
+   |
+note: constructor is not visible here due to private fields
+  --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/error.rs:9:28
+   |
+9  | pub struct TryFromIntError(pub(crate) ());
+   |                            ^^^^^^^^^^^^^ private field
+
+error[E0423]: cannot initialize a tuple struct which contains private fields
+  --> lib/malloc/dynarray_emplace_enlarge.rs:34:66
+   |
+34 |     let new_size = new_allocated.checked_mul(element_size).ok_or(TryFromIntError(()))?;
+   |                                                                  ^^^^^^^^^^^^^^^
+   |
+note: constructor is not visible here due to private fields
+  --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/error.rs:9:28
+   |
+9  | pub struct TryFromIntError(pub(crate) ());
+   |                            ^^^^^^^^^^^^^ private field
+
+error[E0423]: cannot initialize a tuple struct which contains private fields
+  --> lib/malloc/dynarray_emplace_enlarge.rs:41:68
+   |
+41 |         let layout = Layout::array::<T>(new_allocated).map_err(|_| TryFromIntError(()))?;
+   |                                                                    ^^^^^^^^^^^^^^^
+   |
+note: constructor is not visible here due to private fields
+  --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/error.rs:9:28
+   |
+9  | pub struct TryFromIntError(pub(crate) ());
+   |                            ^^^^^^^^^^^^^ private field
+
+error[E0423]: cannot initialize a tuple struct which contains private fields
+  --> lib/malloc/dynarray_emplace_enlarge.rs:45:28
+   |
+45 |                 return Err(TryFromIntError(()));
+   |                            ^^^^^^^^^^^^^^^
+   |
+note: constructor is not visible here due to private fields
+  --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/error.rs:9:28
+   |
+9  | pub struct TryFromIntError(pub(crate) ());
+   |                            ^^^^^^^^^^^^^ private field
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_set_array_size.rs:40:28
+   |
+40 |                 return Err(alloc::LayoutError);
+   |                            ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0423]: expected value, found struct `alloc::LayoutError`
+  --> lib/malloc/scratch_buffer_set_array_size.rs:53:24
+   |
+53 |             return Err(alloc::LayoutError);
+   |                        ^^^^^^^^^^^^^^^^^^ constructor is not visible here due to private fields
+
+error[E0574]: expected struct, variant or union type, found enum `std::ffi::c_void`
+  --> lib/mbrlen.rs:29:61
+   |
+29 |                 INTERNAL_STATE = std::mem::MaybeUninit::new(std::ffi::c_void {});
+   |                                                             ^^^^^^^^^^^^^^^^ not a struct, variant or union type
+   |
+help: consider importing this type alias instead
+   |
+18 | use std::os::raw::c_void;
+   |
+help: if you import `c_void`, refer to it directly
+   |
+29 -                 INTERNAL_STATE = std::mem::MaybeUninit::new(std::ffi::c_void {});
+29 +                 INTERNAL_STATE = std::mem::MaybeUninit::new(c_void {});
+   |
+
+error[E0425]: cannot find value `LOCALE_LOCK` in this scope
+   --> lib/setlocale_null.rs:105:17
+    |
+105 |     let _lock = LOCALE_LOCK.lock().unwrap();
+    |                 ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `sandbox` in this scope
+   --> sed/compile.rs:344:8
+    |
+344 |     if sandbox() {
+    |        ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `posixicity` in this scope
+   --> sed/compile.rs:378:8
+    |
+378 |     if posixicity() == Posixicity::PosixlyExtended {
+    |        ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `posixicity` in this scope
+   --> sed/compile.rs:522:20
+    |
+522 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `posixicity` in this scope
+   --> sed/compile.rs:528:20
+    |
+528 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `posixicity` in this scope
+   --> sed/compile.rs:534:20
+    |
+534 |                 if posixicity() == Posixicity::PosixlyBasic {
+    |                    ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `file_write` in this scope
+   --> sed/compile.rs:552:51
+    |
+552 |                 cmd.outf = Some(get_openfile(&mut file_write, "w", true));
+    |                                                   ^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Regex` in this scope
+  --> sed/debug.rs:59:32
+   |
+59 | fn debug_print_regex_flags(r: &Regex, addr: bool) {
+   |                                ^^^^^ not found in this scope
+   |
+help: there is an enum variant `crate::sed::sed::AddrType::Regex` and 1 other; try using the variant's enum
+   |
+59 | fn debug_print_regex_flags(r: &crate::sed::sed::AddrType, addr: bool) {
+   |                                ~~~~~~~~~~~~~~~~~~~~~~~~~
+59 | fn debug_print_regex_flags(r: &crate::sed::sed::TextType, addr: bool) {
+   |                                ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0412]: cannot find type `Regex` in this scope
+  --> sed/debug.rs:68:26
+   |
+68 | fn debug_print_regex(r: &Regex) {
+   |                          ^^^^^ not found in this scope
+   |
+help: there is an enum variant `crate::sed::sed::AddrType::Regex` and 1 other; try using the variant's enum
+   |
+68 | fn debug_print_regex(r: &crate::sed::sed::AddrType) {
+   |                          ~~~~~~~~~~~~~~~~~~~~~~~~~
+68 | fn debug_print_regex(r: &crate::sed::sed::TextType) {
+   |                          ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0412]: cannot find type `Addr` in this scope
+   --> sed/debug.rs:79:25
+    |
+79  | fn debug_print_addr(a: &Addr) {
+    |                         ^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:158:1
+    |
+158 | struct Addr {
+    | ^^^^^^^^^^^ `crate::sed::compile::Addr`: not accessible
+    |
+   ::: sed/sed.rs:111:1
+    |
+111 | struct Addr {
+    | ^^^^^^^^^^^ `crate::sed::sed::Addr`: not accessible
+
+error[E0412]: cannot find type `Replacement` in this scope
+   --> sed/debug.rs:94:38
+    |
+94  | fn debug_print_subst_replacement(r: &Replacement) {
+    |                                      ^^^^^^^^^^^ not found in this scope
+    |
+note: struct `crate::sed::sed::Replacement` exists but is inaccessible
+   --> sed/sed.rs:119:1
+    |
+119 | struct Replacement {
+    | ^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `Output` in this scope
+   --> sed/debug.rs:132:32
+    |
+132 | fn debug_print_output_file(o: &Output) {
+    |                                ^^^^^^ not found in this scope
+    |
+help: consider importing this struct
+    |
+21  | use std::process::Output;
+    |
+
+error[E0412]: cannot find type `Subst` in this scope
+   --> sed/debug.rs:136:26
+    |
+136 | fn debug_print_subst(s: &Subst) {
+    |                          ^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:181:1
+    |
+181 | struct Subst {
+    | ^^^^^^^^^^^^ `crate::sed::compile::Subst`: not accessible
+    |
+   ::: sed/sed.rs:128:1
+    |
+128 | struct Subst {
+    | ^^^^^^^^^^^^ `crate::sed::sed::Subst`: not accessible
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/debug.rs:161:33
+    |
+161 | fn debug_print_translation(sc: &SedCmd) {
+    |                                 ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0425]: cannot find value `MB_CUR_MAX` in this scope
+   --> sed/debug.rs:162:8
+    |
+162 |     if MB_CUR_MAX > 1 {
+    |        ^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this static
+    |
+21  | use crate::sed::mbcs::MB_CUR_MAX;
+    |
+
+error[E0412]: cannot find type `Vector` in this scope
+   --> sed/debug.rs:195:35
+    |
+195 | fn debug_print_function(program: &Vector, sc: &SedCmd) {
+    |                                   ^^^^^^ not found in this scope
+    |
+note: struct `crate::sed::sed::Vector` exists but is inaccessible
+   --> sed/sed.rs:30:1
+    |
+30  | struct Vector {
+    | ^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/debug.rs:195:48
+    |
+195 | fn debug_print_function(program: &Vector, sc: &SedCmd) {
+    |                                                ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0412]: cannot find type `Vector` in this scope
+   --> sed/debug.rs:242:38
+    |
+242 | pub fn debug_print_command(program: &Vector, sc: &SedCmd) {
+    |                                      ^^^^^^ not found in this scope
+    |
+note: struct `crate::sed::sed::Vector` exists but is inaccessible
+   --> sed/sed.rs:30:1
+    |
+30  | struct Vector {
+    | ^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/debug.rs:242:51
+    |
+242 | pub fn debug_print_command(program: &Vector, sc: &SedCmd) {
+    |                                                   ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0412]: cannot find type `Vector` in this scope
+   --> sed/debug.rs:279:38
+    |
+279 | pub fn debug_print_program(program: &Vector) {
+    |                                      ^^^^^^ not found in this scope
+    |
+note: struct `crate::sed::sed::Vector` exists but is inaccessible
+   --> sed/sed.rs:30:1
+    |
+30  | struct Vector {
+    | ^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `mbstate_t` in this scope
+  --> sed/execute.rs:32:14
+   |
+32 |     mbstate: mbstate_t,
+   |              ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+  --> sed/execute.rs:72:14
+   |
+72 |     mbstate: mbstate_t { __count: 0, __value: [0; 1] },
+   |              ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+  --> sed/execute.rs:81:14
+   |
+81 |     mbstate: mbstate_t { __count: 0, __value: [0; 1] },
+   |              ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+  --> sed/execute.rs:90:14
+   |
+90 |     mbstate: mbstate_t { __count: 0, __value: [0; 1] },
+   |              ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+  --> sed/execute.rs:99:14
+   |
+99 |     mbstate: mbstate_t { __count: 0, __value: [0; 1] },
+   |              ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+   --> sed/execute.rs:161:23
+    |
+161 |         buf.mbstate = mbstate_t { __count: 0, __value: [0; 1] };
+    |                       ^^^^^^^^^ not found in this scope
+
+error[E0422]: cannot find struct, variant or union type `mbstate_t` in this scope
+   --> sed/execute.rs:173:27
+    |
+173 |             buf.mbstate = mbstate_t { __count: 0, __value: [0; 1] };
+    |                           ^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/execute.rs:415:34
+    |
+415 | fn reset_addresses(vec: &mut Vec<SedCmd>) {
+    |                                  ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/execute.rs:427:64
+    |
+427 | fn read_pattern_space(input: &mut Input, the_program: &mut Vec<SedCmd>, append: bool) -> bool {
+    |                                                                ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0412]: cannot find type `SedCmd` in this scope
+   --> sed/execute.rs:469:40
+    |
+469 | fn process_files(the_program: &mut Vec<SedCmd>, argv: Vec<PathBuf>) -> i32 {
+    |                                        ^^^^^^ not found in this scope
+    |
+note: these structs exist but are inaccessible
+   --> sed/compile.rs:137:1
+    |
+137 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::compile::SedCmd`: not accessible
+    |
+   ::: sed/sed.rs:140:1
+    |
+140 | struct SedCmd {
+    | ^^^^^^^^^^^^^ `crate::sed::sed::SedCmd`: not accessible
+
+error[E0425]: cannot find function `execute_program` in this scope
+   --> sed/execute.rs:492:18
+    |
+492 |         status = execute_program(the_program, &mut input);
+    |                  ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `DecodeUtf16State` in module `std::char`
+  --> sed/mbcs.rs:38:53
+   |
+38 | pub fn is_mb_char(ch: u8, cur_stat: &mut std::char::DecodeUtf16State) -> Result<bool, io::Error> {
+   |                                                     ^^^^^^^^^^^^^^^^ help: a struct with a similar name exists: `DecodeUtf16`
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/char/decode.rs:15:1
+   |
+15 | pub struct DecodeUtf16<I>
+   | ------------------------- similarly named struct `DecodeUtf16` defined here
+
+error[E0412]: cannot find type `Dfa` in this scope
+  --> sed/sed.rs:53:17
+   |
+53 |     dfa: Option<Dfa>,
+   |                 ^^^ not found in this scope
+   |
+note: struct `crate::lib::dfa::Dfa` exists but is inaccessible
+  --> lib/dfa.rs:11:1
+   |
+11 | struct Dfa {
+   | ^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `OPEN_FILES` in this scope
+  --> sed/utils.rs:77:26
+   |
+77 |     let mut open_files = OPEN_FILES.lock().unwrap();
+   |                          ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `OPEN_FILES` in this scope
+  --> sed/utils.rs:85:22
+   |
+85 |     let open_files = OPEN_FILES.lock().unwrap();
+   |                      ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FILE_TO_UNLINK` in this scope
+   --> sed/utils.rs:143:30
+    |
+143 |     let mut file_to_unlink = FILE_TO_UNLINK.lock().unwrap();
+    |                              ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FILE_TO_UNLINK` in this scope
+   --> sed/utils.rs:153:30
+    |
+153 |     let mut file_to_unlink = FILE_TO_UNLINK.lock().unwrap();
+    |                              ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `FILE_TO_UNLINK` in this scope
+   --> sed/utils.rs:158:30
+    |
+158 |     let mut file_to_unlink = FILE_TO_UNLINK.lock().unwrap();
+    |                              ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `OPEN_FILES` in this scope
+   --> sed/utils.rs:234:26
+    |
+234 |     let mut open_files = OPEN_FILES.lock().unwrap();
+    |                          ^^^^^^^^^^ not found in this scope
+
+error[E0603]: module `fd` is private
+   --> sed/utils.rs:23:9
+    |
+23  |     os::fd::{AsRawFd, FromRawFd},
+    |         ^^ private module
+    |
+note: the module `fd` is defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/mod.rs:150:1
+    |
+150 | mod fd;
+    | ^^^^^^
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:1
+   |
+13 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `AsRawFd`
+  --> lib/cloexec.rs:16:25
+   |
+16 | use std::os::unix::io::{AsRawFd, RawFd};
+   |                         ^^^^^^^
+
+warning: unused import: `ErrorKind`
+  --> lib/cloexec.rs:17:30
+   |
+17 | use std::io::{Result, Error, ErrorKind};
+   |                              ^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+ --> lib/dfa.rs:1:5
+  |
+1 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/dfa.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+ --> lib/dfa.rs:4:5
+  |
+4 | use std::ffi::CString;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Ordering`
+  --> lib/exitfail.rs:18:36
+   |
+18 | use std::sync::atomic::{AtomicI32, Ordering};
+   |                                    ^^^^^^^^
+
+warning: unused imports: `c_void`, `dup2`
+ --> lib/fcntl.rs:4:19
+  |
+4 | use libc::{c_int, c_void, dup2, fcntl as libc_fcntl, F_DUPFD, F_GETFD, F_SETFD, FD_CLOEXEC};
+  |                   ^^^^^^  ^^^^
+
+warning: unused import: `::libc`
+ --> lib/fd_hook.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `std::ptr`
+  --> lib/free.rs:21:5
+   |
+21 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> lib/getprogname.rs:18:5
+   |
+18 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+  --> lib/getprogname.rs:19:5
+   |
+19 | use std::os::unix::ffi::OsStringExt;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Once`
+  --> lib/getprogname.rs:21:5
+   |
+21 | use std::sync::Once;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `RwLock`
+  --> lib/glthread/lock.rs:19:39
+   |
+19 | use std::sync::{Mutex, Condvar, Once, RwLock};
+   |                                       ^^^^^^
+
+warning: unused import: `std::time::Duration`
+  --> lib/glthread/lock.rs:22:5
+   |
+22 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+  --> lib/glthread/threadlib.rs:19:25
+   |
+19 | use std::sync::atomic::{AtomicBool, Ordering};
+   |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::sync::Once`
+  --> lib/glthread/threadlib.rs:20:5
+   |
+20 | use std::sync::Once;
+   |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::thread`
+  --> lib/glthread/threadlib.rs:21:5
+   |
+21 | use std::thread;
+   |     ^^^^^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> lib/localcharset.rs:3:5
+  |
+3 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+  --> lib/localeinfo.rs:21:5
+   |
+21 | use std::cmp::Ordering;
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashSet`
+  --> lib/localeinfo.rs:22:5
+   |
+22 | use std::collections::HashSet;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> lib/localeinfo.rs:27:5
+   |
+27 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> lib/malloc/dynarray_finalize.rs:21:5
+   |
+21 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> lib/malloc/scratch_buffer_grow_preserve.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+  --> lib/malloca.rs:83:22
+   |
+83 |         let offset = ((umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem);
+   |                      ^                                                       ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+83 -         let offset = ((umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem);
+83 +         let offset = (umemplus & !alignment2_mask) + SA_ALIGNMENT_MAX - umem;
+   |
+
+warning: unused import: `dealloc`
+ --> lib/obstack.rs:1:25
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                         ^^^^^^^
+
+warning: unused import: `NonNull`
+ --> lib/obstack.rs:2:22
+  |
+2 | use std::ptr::{self, NonNull};
+  |                      ^^^^^^^
+
+warning: unused import: `alloc`
+ --> lib/quotearg.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^
+
+warning: unused import: `std::cmp::min`
+ --> lib/quotearg.rs:2:5
+  |
+2 | use std::cmp::min;
+  |     ^^^^^^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> lib/quotearg.rs:7:5
+  |
+7 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> lib/regex.rs:9:5
+  |
+9 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> lib/regex.rs:10:5
+   |
+10 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+  --> lib/regex.rs:11:5
+   |
+11 | use std::ffi::CStr;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `CString`
+ --> lib/setlocale_null.rs:6:22
+  |
+6 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::sync::Mutex`
+ --> lib/setlocale_null.rs:9:5
+  |
+9 | use std::sync::Mutex;
+  |     ^^^^^^^^^^^^^^^^
+
+warning: unused import: `Path`
+  --> lib/stripslash.rs:26:28
+   |
+26 | use std::path::{Component, Path, PathBuf};
+   |                            ^^^^
+
+warning: unused import: `::libc`
+ --> lib/wctype_h.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `MaybeUninit`
+ --> lib/xmalloc.rs:3:25
+  |
+3 | use std::mem::{size_of, MaybeUninit};
+  |                         ^^^^^^^^^^^
+
+warning: unused imports: `BufReader`, `BufWriter`, `collections::HashMap`, `error::Error`, `ffi::CStr`, `ffi::CString`, `fmt`, `mem`, `os::raw::c_char`, `os::unix::ffi::OsStrExt`, `path::Path`
+  --> sed/compile.rs:21:29
+   |
+21 |     io::{self, Read, Write, BufReader, BufWriter},
+   |                             ^^^^^^^^^  ^^^^^^^^^
+22 |     path::Path,
+   |     ^^^^^^^^^^
+23 |     str,
+24 |     collections::HashMap,
+   |     ^^^^^^^^^^^^^^^^^^^^
+25 |     ffi::CString,
+   |     ^^^^^^^^^^^^
+26 |     os::unix::ffi::OsStrExt,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+27 |     mem,
+   |     ^^^
+28 |     ptr,
+29 |     ffi::CStr,
+   |     ^^^^^^^^^
+30 |     os::raw::c_char,
+   |     ^^^^^^^^^^^^^^^
+31 |     fmt,
+   |     ^^^
+32 |     error::Error,
+   |     ^^^^^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+  --> sed/debug.rs:21:15
+   |
+21 | use std::io::{self, Write};
+   |               ^^^^  ^^^^^
+
+warning: unused import: `std::fmt`
+  --> sed/debug.rs:22:5
+   |
+22 | use std::fmt;
+   |     ^^^^^^^^
+
+warning: unused imports: `AtomicBool`, `BufRead`, `BufReader`, `BufWriter`, `OpenOptions`, `Ordering`, `collections::VecDeque`, `error::Error`, `ffi::CString`, `ffi::OsStr`, `fmt`, `os::unix::ffi::OsStrExt`, `os::unix::fs::MetadataExt`, `result::Result`, `self`
+  --> sed/execute.rs:2:16
+   |
+2  |     fs::{File, OpenOptions},
+   |                ^^^^^^^^^^^
+3  |     io::{self, Read, Write, BufRead, BufReader, BufWriter},
+   |          ^^^^               ^^^^^^^  ^^^^^^^^^  ^^^^^^^^^
+4  |     path::{Path, PathBuf},
+5  |     ffi::CString,
+   |     ^^^^^^^^^^^^
+6  |     os::unix::ffi::OsStrExt,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+...
+10 |     fmt,
+   |     ^^^
+11 |     error::Error,
+   |     ^^^^^^^^^^^^
+12 |     result::Result,
+   |     ^^^^^^^^^^^^^^
+13 |     collections::VecDeque,
+   |     ^^^^^^^^^^^^^^^^^^^^^
+14 |     ffi::OsStr,
+   |     ^^^^^^^^^^
+15 |     os::unix::fs::MetadataExt,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+16 |     sync::atomic::{AtomicBool, Ordering},
+   |                    ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> sed/mbcs.rs:17:5
+   |
+17 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> sed/mbcs.rs:18:5
+   |
+18 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::str`
+  --> sed/mbcs.rs:19:5
+   |
+19 | use std::str;
+   |     ^^^^^^^^
+
+warning: unused imports: `ErrorKind`, `Error`
+  --> sed/mbcs.rs:21:21
+   |
+21 | use std::io::{self, Error, ErrorKind};
+   |                     ^^^^^  ^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> sed/regexp.rs:17:5
+   |
+17 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+  --> sed/regexp.rs:18:5
+   |
+18 | use std::os::raw::c_char;
+   |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> sed/regexp.rs:19:5
+   |
+19 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> sed/regexp.rs:20:5
+   |
+20 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+  --> sed/regexp.rs:21:5
+   |
+21 | use std::slice;
+   |     ^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+  --> sed/regexp.rs:22:5
+   |
+22 | use std::cmp;
+   |     ^^^^^^^^
+
+warning: unused import: `std::env`
+  --> sed/regexp.rs:23:5
+   |
+23 | use std::env;
+   |     ^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> sed/regexp.rs:24:5
+   |
+24 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CString`, `OsString`
+  --> sed/sed.rs:17:16
+   |
+17 | use std::ffi::{CString, OsString};
+   |                ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `OpenOptions`
+  --> sed/sed.rs:18:21
+   |
+18 | use std::fs::{File, OpenOptions};
+   |                     ^^^^^^^^^^^
+
+warning: unused imports: `BufReader`, `BufWriter`, `Read`, `self`
+  --> sed/sed.rs:19:15
+   |
+19 | use std::io::{self, BufReader, BufWriter, Read, Write};
+   |               ^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^
+
+warning: unused imports: `PathBuf`, `Path`
+  --> sed/sed.rs:20:17
+   |
+20 | use std::path::{Path, PathBuf};
+   |                 ^^^^  ^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> sed/sed.rs:21:5
+   |
+21 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+  --> sed/sed.rs:22:25
+   |
+22 | use std::sync::atomic::{AtomicBool, Ordering};
+   |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`, `size_t`
+  --> sed/sed.rs:25:12
+   |
+25 | use libc::{c_char, c_int, c_void, size_t};
+   |            ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused imports: `ErrorKind`, `Path`, `SeekFrom`, `Seek`, `collections::LinkedList`, `os::unix::ffi::OsStrExt`, `sync::Mutex`
+  --> sed/utils.rs:20:29
+   |
+20 |     io::{self, Read, Write, Seek, SeekFrom, ErrorKind},
+   |                             ^^^^  ^^^^^^^^  ^^^^^^^^^
+21 |     path::{Path, PathBuf},
+   |            ^^^^
+22 |     os::unix::ffi::OsStrExt,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+23 |     os::fd::{AsRawFd, FromRawFd},
+24 |     sync::Mutex,
+   |     ^^^^^^^^^^^
+25 |     collections::LinkedList,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+  --> lib/dfa.rs:67:24
+   |
+67 | #[derive(Debug, Clone, Copy)]
+   |                        ^^^^
+...
+70 |     elems: PositionSet,
+   |     ------------------ this field does not implement `Copy`
+...
+73 |     mbps: PositionSet,
+   |     ----------------- this field does not implement `Copy`
+   |
+   = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0204, E0412, E0422, E0423, E0425, E0432, E0433, E0574, E0583...
+For more information about an error, try `rustc --explain E0204`.
+warning: `c2rust_out` (lib) generated 62 warnings
+error: could not compile `c2rust_out` due to 123 previous errors; 62 warnings emitted

@@ -2,14 +2,16 @@ import os
 import shutil
 import subprocess
 import json
+import pre_process
 import sys
+from pathlib import Path
 from contextlib import contextmanager
 
 def delete_rs_files(directory):
     """递归删除目录中的所有 .rs 文件"""
     for root, dirs, files in os.walk(directory):
         for file in files:
-            if file.endswith(".rs"):
+            if file.endswith(".rs") or file.endswith(".toml"):
                 os.remove(os.path.join(root, file))
         for dir in dirs:
             delete_rs_files(os.path.join(root, dir))
@@ -75,27 +77,36 @@ def run_cargo_build(log_file: str):
 
 
 def get_file_list(directory):
-    prog = os.path.basename(directory)
-    path_to_json = 'enum_code_rust/' + prog + '/enum.json'
-    file_list = []
-    with open(path_to_json, 'r', encoding='utf-8') as f:
-        data = json.load(f)
-    for rs_file_path, enums_info in data.items():
-        file_list.append(rs_file_path)
-    return file_list
+    rs_files = []
+    for root, _, files in os.walk(directory):
+        for file in files:
+            if file.endswith(".rs"):
+                rs_files.append(os.path.join(root, file))
+    return rs_files
 
 def setup_logging(log_file: str):
     """Configure logging to both file and console."""
     import logging
-    logging.basicConfig(
-        level=logging.INFO,
-        format='%(asctime)s [%(levelname)s] %(message)s',
-        handlers=[
-            logging.FileHandler(log_file),
-            logging.StreamHandler()
-        ]
-    )
-    return logging.getLogger()
+
+    logger = logging.getLogger()
+    if log_file:
+            try:
+                log_path = Path(log_file)
+                
+                # Create parent directories if they don't exist
+                log_path.parent.mkdir(parents=True, exist_ok=True)
+                
+                # Create empty file if it doesn't exist
+                if not log_path.exists():
+                    log_path.touch(exist_ok=True)
+                
+                # Verify file is writable
+                if not os.access(log_file, os.W_OK):
+                    raise PermissionError(f"No write permissions for log file: {log_file}")
+                
+            except Exception as e:
+                logger.error(f"Failed to setup file logging: {str(e)}")
+    return logger
 
 
 
@@ -109,9 +120,9 @@ def change_directory(destination):
     finally:
         os.chdir(original_dir)
 
-def main(directory, file_list, output_dir):
-    log_origin = "test_origin.log"
-    log_replace = "test_replace.log"
+def main(directory, output_dir):
+    log_origin = "../../" + output_dir + "/test_origin.log"
+    log_replace = "../../" + output_dir + "/test_replace.log"
     # 1. 递归删除所有的 .rs 文件
     delete_rs_files(directory)
     
@@ -119,9 +130,11 @@ def main(directory, file_list, output_dir):
         # 2. 运行 c2rust transpile -e
         run_c2rust_transpile()
     
-    with change_directory(directory):
+    file_list = get_file_list(directory)
+    
+    # with change_directory(directory):
         # 4. 运行 cargo build
-        run_cargo_build(log_origin)
+        # run_cargo_build(log_origin)
     
     # 3. 替换生成的 .rs 文件
     replace_rs_files(file_list, output_dir)
@@ -136,12 +149,18 @@ def main(directory, file_list, output_dir):
 if __name__ == "__main__":
     # 示例路径和文件清单
     args = sys.argv
-    if len(args) != 2:
-        print("Usage: python test.py <directory>")
+    if len(args) > 2:
+        print("Usage: python test.py <directory> or default path: c_prog/")
         sys.exit(1)
-    directory = args[1]
-    file_list = get_file_list(directory)
-    prog = os.path.basename(directory)
-    output_dir = os.path.join('output', prog)
-    
-    main(directory, file_list, output_dir)
+    if len(sys.argv) == 2:
+        directory = args[1]
+        file_list = get_file_list(directory)
+        prog = os.path.basename(directory)
+        output_dir = os.path.join('llm_from_rust_output', prog)
+        
+        main(directory, output_dir)
+    else:
+        for prog in pre_process.prog_list:
+            proj_path = pre_process.get_prog_path(prog)
+            output_dir = os.path.join('llm_from_rust_output', prog)
+            main(proj_path, output_dir)

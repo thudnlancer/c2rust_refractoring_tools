@@ -1,0 +1,510 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/nettle-3.10)
+error: this file contains an unclosed delimiter
+  --> aes_decrypt_table.rs:68:101
+   |
+7  | pub const NETTLE_AES_DECRYPT_TABLE: AesTable = AesTable {
+   |                                                         - unclosed delimiter
+...
+26 |     table: [
+   |            - unclosed delimiter
+...
+61 |         [
+   |         - unclosed delimiter
+...
+68 |             0x68487058, 0xfd458f19, 0x6cde9487, 0xf87b52b7, 0xd373ab23, 0x024b72e2, 0x8f1fe357, 0xab
+   |                                                                                                     ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+  --> aes_decrypt_table.rs:68:101
+   |
+68 |             0x68487058, 0xfd458f19, 0x6cde9487, 0xf87b52b7, 0xd373ab23, 0x024b72e2, 0x8f1fe357, 0xab
+   |                                                                                                     ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> aes_encrypt_table.rs:120:59
+    |
+7   | pub const NETTLE_AES_ENCRYPT_TABLE: AesTable = AesTable {
+    |                                                         - unclosed delimiter
+...
+42  |     table: [
+    |            - unclosed delimiter
+...
+109 |         [
+    |         - unclosed delimiter
+...
+120 |             0x3434685c, 0xa5a551f4, 0xe5e5d134, 0xf1f1f908
+    |                                                           ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> aes_encrypt_table.rs:120:59
+    |
+120 |             0x3434685c, 0xa5a551f4, 0xe5e5d134, 0xf1f1f908
+    |                                                           ^ expected one of `.`, `;`, `?`, or an operator
+
+error: mismatched closing delimiter: `]`
+   --> arctwo.rs:134:37
+    |
+134 |             let mut x = ARCTWO_SBOX[(S[i] as usize & (0xff >> (7 & (!ekb as usize)))];
+    |                                    -^ unclosed delimiter                            ^ mismatched closing delimiter
+    |                                    |
+    |                                    closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `]`
+  --> base64_encode.rs:38:41
+   |
+38 |                 dst[out_pos] = alphabet[(0x3f & (src[in_pos] as usize) << 4];
+   |                                        -^                                  ^ mismatched closing delimiter
+   |                                        ||
+   |                                        |unclosed delimiter
+   |                                        closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `]`
+  --> base64_encode.rs:42:41
+   |
+42 |                 dst[out_pos] = alphabet[(0x3f & (src[in_pos + 1] as usize) << 2];
+   |                                        -^                                      ^ mismatched closing delimiter
+   |                                        ||
+   |                                        |unclosed delimiter
+   |                                        closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `]`
+  --> base64_encode.rs:44:41
+   |
+44 |                 dst[out_pos] = alphabet[(0x3f & ((src[in_pos] as usize) << 4 | (src[in_pos + 1] as usize) >> 4)];
+   |                                        -^ unclosed delimiter                                                   ^ mismatched closing delimiter
+   |                                        |
+   |                                        closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `]`
+  --> base64_encode.rs:50:33
+   |
+50 |         dst[out_pos] = alphabet[(0x3f & (src[in_pos] as usize) >> 2];
+   |                                -^                                  ^ mismatched closing delimiter
+   |                                ||
+   |                                |unclosed delimiter
+   |                                closing delimiter possibly meant for this
+
+error: this file contains an unclosed delimiter
+  --> blowfish.rs:94:71
+   |
+13 | const INITIAL_CTX: BlowfishCtx = BlowfishCtx {
+   |                                              - unclosed delimiter
+14 |     s: [
+   |        - unclosed delimiter
+...
+60 |         [
+   |         - unclosed delimiter
+...
+94 |             0xdb6c4f15, 0xfacb4fd0, 0xc742f442, 0xef6abbb5, 0x654f3b1d
+   |                                                                       ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+  --> blowfish.rs:94:71
+   |
+94 |             0xdb6c4f15, 0xfacb4fd0, 0xc742f442, 0xef6abbb5, 0x654f3b1d
+   |                                                                       ^ expected one of `.`, `;`, `?`, or an operator
+
+error: mismatched closing delimiter: `}`
+  --> buffer_init.rs:39:37
+   |
+38 |             if self.alloc != 0 {
+   |                                - closing delimiter possibly meant for this
+39 |                 self.contents = Some(NonNull::new(new_ptr as *mut u8).unwrap();
+   |                                     ^ unclosed delimiter
+40 |             } else {
+   |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> buffer_init.rs:39:37
+   |
+39 |                 self.contents = Some(NonNull::new(new_ptr as *mut u8).unwrap();
+   |                                     ^ unclosed delimiter                      ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> buffer_init.rs:40:13
+   |
+40 |             } else {
+   |             ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> camellia_table.rs:478:9
+    |
+13  | pub const NETTLE_CAMELLIA_TABLE: CamelliaTable = CamelliaTable {
+    |                                                                - unclosed delimiter
+...
+272 |     sp0222: [
+    |             - unclosed delimiter
+...
+478 |         
+    |         ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> camellia_table.rs:478:9
+    |
+478 |         
+    |         ^ expected one of `.`, `;`, `?`, or an operator
+
+error: mismatched closing delimiter: `}`
+  --> ccm_aes256.rs:72:33
+   |
+71 |         unsafe {
+   |                - closing delimiter possibly meant for this
+72 |             nettle_ccm_set_nonce(
+   |                                 ^ unclosed delimiter
+...
+89 |         }
+   |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:94:30
+    |
+93  |         unsafe {
+    |                - closing delimiter possibly meant for this
+94  |             nettle_ccm_update(
+    |                              ^ unclosed delimiter
+...
+108 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:114:31
+    |
+113 |         unsafe {
+    |                - closing delimiter possibly meant for this
+114 |             nettle_ccm_encrypt(
+    |                               ^ unclosed delimiter
+...
+129 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:135:31
+    |
+134 |         unsafe {
+    |                - closing delimiter possibly meant for this
+135 |             nettle_ccm_decrypt(
+    |                               ^ unclosed delimiter
+...
+150 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:155:30
+    |
+154 |         unsafe {
+    |                - closing delimiter possibly meant for this
+155 |             nettle_ccm_digest(
+    |                              ^ unclosed delimiter
+...
+169 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:181:39
+    |
+180 |         unsafe {
+    |                - closing delimiter possibly meant for this
+181 |             nettle_ccm_encrypt_message(
+    |                                       ^ unclosed delimiter
+...
+200 |         }
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> ccm_aes256.rs:212:39
+    |
+211 |         unsafe {
+    |                - closing delimiter possibly meant for this
+212 |             nettle_ccm_decrypt_message(
+    |                                       ^ unclosed delimiter
+...
+231 |         }
+    |         ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> ccm_aes256.rs:72:33
+   |
+72 |             nettle_ccm_set_nonce(
+   |                                 ^ unclosed delimiter
+...
+88 |             );
+   |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> ccm_aes256.rs:89:9
+   |
+89 |         }
+   |         ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> ccm_aes256.rs:94:30
+    |
+94  |             nettle_ccm_update(
+    |                              ^ unclosed delimiter
+...
+107 |             );
+    |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> ccm_aes256.rs:108:9
+    |
+108 |         }
+    |         ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> ccm_aes256.rs:114:31
+    |
+114 |             nettle_ccm_encrypt(
+    |                               ^ unclosed delimiter
+...
+128 |             );
+    |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> ccm_aes256.rs:129:9
+    |
+129 |         }
+    |         ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> ccm_aes256.rs:135:31
+    |
+135 |             nettle_ccm_decrypt(
+    |                               ^ unclosed delimiter
+...
+149 |             );
+    |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> ccm_aes256.rs:150:9
+    |
+150 |         }
+    |         ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> ccm_aes256.rs:155:30
+    |
+155 |             nettle_ccm_digest(
+    |                              ^ unclosed delimiter
+...
+168 |             );
+    |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> ccm_aes256.rs:169:9
+    |
+169 |         }
+    |         ^ expected expression
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> ccm_aes256.rs:181:39
+    |
+181 |             nettle_ccm_encrypt_message(
+    |                                       ^ unclosed delimiter
+...
+199 |             );
+    |              ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> ccm_aes256.rs:200:9
+    |
+200 |         }
+    |         ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> des.rs:100:37
+    |
+82  | const ROTORS: [uint8_t; 768] = [
+    |                                - unclosed delimiter
+...
+100 |     18, 33, 41, 46, 9, 49, 36, 37, 0
+    |                                     ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> des.rs:100:37
+    |
+100 |     18, 33, 41, 46, 9, 49, 36, 37, 0
+    |                                     ^ expected one of `.`, `;`, `?`, or an operator
+
+error: mismatched closing delimiter: `]`
+   --> knuth_lfib.rs:104:24
+    |
+104 |                 self.x[(self.index.wrapping_add(100).wrapping_sub(37) % 100 as usize],
+    |                       -^ unclosed delimiter                                         ^ mismatched closing delimiter
+    |                       |
+    |                       closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `}`
+   --> md5.rs:144:33
+    |
+143 |         ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $i:expr) => {
+    |                                                                            - closing delimiter possibly meant for this
+144 |             $a = $b.wrapping_add(
+    |                                 ^ unclosed delimiter
+...
+150 |         };
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> md5.rs:173:33
+    |
+172 |         ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $i:expr) => {
+    |                                                                            - closing delimiter possibly meant for this
+173 |             $a = $b.wrapping_add(
+    |                                 ^ unclosed delimiter
+...
+179 |         };
+    |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> md5.rs:202:33
+    |
+201 |         ($a:expr, $b:expr, $c:expr, $d:expr, $k:expr, $s:expr, $i:expr) => {
+    |                                                                            - closing delimiter possibly meant for this
+202 |             $a = $b.wrapping_add(
+    |                                 ^ unclosed delimiter
+...
+208 |         };
+    |         ^ mismatched closing delimiter
+
+error: this file contains an unclosed delimiter
+   --> ocb.rs:460:68
+    |
+448 | ) {
+    |   - unclosed delimiter
+...
+460 |     nettle_ocb_set_nonce(&mut ctx, cipher, f, tlength, nlength, non
+    |                         - unclosed delimiter                       ^
+
+error: mismatched closing delimiter: `}`
+   --> serpent_set_key.rs:51:32
+    |
+44  |     loop {
+    |          - closing delimiter possibly meant for this
+...
+51  |         let [w0, w1, w2, w3] = [w[0], w[1], w[2], w[3];
+    |                                ^ unclosed delimiter
+...
+103 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `,`, `.`, `?`, `]`, or an operator, found `;`
+  --> serpent_set_key.rs:51:32
+   |
+51 |         let [w0, w1, w2, w3] = [w[0], w[1], w[2], w[3];
+   |                                ^ unclosed delimiter   ^ help: `]` may belong here
+
+error: expected expression, found `]`
+   --> serpent_set_key.rs:103:5
+    |
+103 |     }
+    |     ^ expected expression
+
+error: expected one of `!`, `(`, `+`, `::`, `;`, `<`, `where`, or `{`, found `,`
+  --> siv_gcm_aes128.rs:54:13
+   |
+29 | extern "C" {
+   |            - while parsing this item list starting here
+...
+54 |     ) -> i32,
+   |             ^ expected one of 8 possible tokens
+55 | }
+   | - the item list ends here
+
+error: this file contains an unclosed delimiter
+   --> tools/input.rs:595:81
+    |
+146 | impl<R: Read> SexpInput<R> {
+    |                            - unclosed delimiter
+...
+540 |     ) -> io::Result<SexpToken> {
+    |                                - unclosed delimiter
+541 |         loop {
+    |              - unclosed delimiter
+542 |             match self.ctype {
+    |                              - unclosed delimiter
+...
+553 |                 SexpCharType::Normal => {
+    |                                         - unclosed delimiter
+554 |                     match self.c {
+    |                                  - unclosed delimiter
+...
+591 |                         b' ' | b'\t' | b'\n' | b'\r' => {
+    |                                                         - unclosed delimiter
+592 |                             if mode == SexpMode::Canonical {
+    |                                                            - unclosed delimiter
+593 |                                 return Err(Error::new(
+    |                                           -          - unclosed delimiter
+    |                                           |
+    |                                           unclosed delimiter
+594 |                                     ErrorKind::InvalidData,
+595 |                                     "Whitespace encountered in canonical mode",
+    |                                                                                 ^
+
+error: this file contains an unclosed delimiter
+   --> tools/sexp_conv.rs:467:18
+    |
+395 | fn main() {
+    |           - unclosed delimiter
+...
+412 |     unsafe {
+    |            - unclosed delimiter
+...
+461 |         let mut output = SexpOutput {
+    |                                     - unclosed delimiter
+...
+467 |             hash:
+    |                  ^
+
+error: expected expression, found `}`
+   --> tools/sexp_conv.rs:467:18
+    |
+461 |         let mut output = SexpOutput {
+    |                          ---------- while parsing this struct
+...
+467 |             hash:
+    |                  ^ expected expression
+
+error: expected one of `.`, `;`, `?`, `else`, or an operator, found `}`
+   --> tools/sexp_conv.rs:467:18
+    |
+467 |             hash:
+    |                  ^ expected one of `.`, `;`, `?`, `else`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> twofish.rs:127:70
+    |
+124 | fn h(k: i32, x: u8, l0: u32, l1: u32, l2: u32, l3: u32) -> u32 {
+    |                                                                - unclosed delimiter
+...
+127 |         ^ h_byte(k, 2, x, (l0 >> 16) as u8, (l1 >> 16) as u8, (l2 >> 
+    |                 -                                             -      ^
+    |                 |                                             |
+    |                 unclosed delimiter                            unclosed delimiter
+
+error: mismatched closing delimiter: `]`
+   --> twofish.rs:109:36
+    |
+109 |     let y = Q_TABLE[i as usize][4][(l0 ^ Q_TABLE[i as usize][3][(l1 ^ Q_TABLE[i as usize][2][if k == 2 {
+    |                                   -^ unclosed delimiter
+    |                                   |
+    |                                   closing delimiter possibly meant for this
+...
+117 |     }]) as usize] as usize];
+    |                           ^ mismatched closing delimiter
+
+error: expected expression, found `)`
+   --> twofish.rs:127:70
+    |
+127 |         ^ h_byte(k, 2, x, (l0 >> 16) as u8, (l1 >> 16) as u8, (l2 >> 
+    |                                                                      ^ expected expression
+
+error: couldn't read camellia_sp1110.rs: No such file or directory (os error 2)
+ --> camellia256_set_encrypt_key.rs:4:13
+  |
+4 |     sp1110: include!("camellia_sp1110.rs"),
+  |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: this error originates in the macro `include` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error: could not compile `c2rust_out` due to 54 previous errors

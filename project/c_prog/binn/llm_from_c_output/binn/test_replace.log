@@ -1,0 +1,271 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/binn)
+warning: unused variable: `byte`
+    --> src/binn.rs:1223:13
+     |
+1223 |     let mut byte: libc::c_uchar = 0;
+     |             ^^^^ help: if this is intentional, prefix it with an underscore: `_byte`
+     |
+     = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `f1`
+    --> src/binn.rs:2528:13
+     |
+2528 |     let mut f1: libc::c_float = 0.;
+     |             ^^ help: if this is intentional, prefix it with an underscore: `_f1`
+
+warning: unused variable: `d1`
+    --> src/binn.rs:2529:13
+     |
+2529 |     let mut d1: libc::c_double = 0.;
+     |             ^^ help: if this is intentional, prefix it with an underscore: `_d1`
+
+warning: unused variable: `pstr`
+    --> src/binn.rs:2530:13
+     |
+2530 |     let mut pstr: [libc::c_char; 128] = [0; 128];
+     |             ^^^^ help: if this is intentional, prefix it with an underscore: `_pstr`
+
+warning: unused variable: `dest_type`
+    --> src/binn.rs:2726:9
+     |
+2726 |     mut dest_type: libc::c_int,
+     |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_dest_type`
+
+warning: path statement with no effect
+   --> src/binn.rs:168:9
+    |
+168 |         i;
+    |         ^^
+    |
+    = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> src/binn.rs:591:5
+    |
+591 |     p;
+    |     ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:595:9
+    |
+595 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:601:13
+    |
+601 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:634:17
+    |
+634 |                 p;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:639:17
+    |
+639 |                 p;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:663:13
+    |
+663 |             DataSize;
+    |             ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/binn.rs:765:9
+    |
+765 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:792:9
+    |
+792 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:814:9
+    |
+814 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:875:5
+    |
+875 |     p;
+    |     ^^
+
+warning: path statement with no effect
+   --> src/binn.rs:878:5
+    |
+878 |     int32;
+    |     ^^^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1168:13
+     |
+1168 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1200:17
+     |
+1200 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1209:17
+     |
+1209 |                 size;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1240:9
+     |
+1240 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1250:9
+     |
+1250 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1254:5
+     |
+1254 |     p;
+     |     ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1332:5
+     |
+1332 |     p;
+     |     ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1361:9
+     |
+1361 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1381:9
+     |
+1381 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1559:17
+     |
+1559 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1597:9
+     |
+1597 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1685:5
+     |
+1685 |     p;
+     |     ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1694:9
+     |
+1694 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1762:17
+     |
+1762 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1945:5
+     |
+1945 |     pos;
+     |     ^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:1957:9
+     |
+1957 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:2015:17
+     |
+2015 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:2028:9
+     |
+2028 |         counter;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:2038:9
+     |
+2038 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:2302:13
+     |
+2302 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:3992:25
+     |
+3992 |                         size;
+     |                         ^^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4072:9
+     |
+4072 |         str;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4079:9
+     |
+4079 |         str;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4093:9
+     |
+4093 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4104:9
+     |
+4104 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4116:9
+     |
+4116 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/binn.rs:4133:9
+     |
+4133 |         p;
+     |         ^^
+
+warning: `c2rust_out` (lib) generated 44 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 1.56s

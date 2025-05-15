@@ -1,0 +1,1213 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/pth-2.0.7)
+error: format argument must be a string literal
+  --> pth_debug.rs:53:39
+   |
+53 |             message.push_str(&format!(&self.format, self.args.join(", ")));
+   |                                       ^^^^^^^^^^^^
+   |
+help: you might be missing a string literal to format with
+   |
+53 |             message.push_str(&format!("{} {}", &self.format, self.args.join(", ")));
+   |                                       ++++++++
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+  --> pth_string.rs:92:5
+   |
+92 | /     ...
+93 | | ) -> c_int {
+   | |_
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> pth_string.rs:117:5
+    |
+117 | /     ...
+118 | | ) -> *mut c_char {
+    | |_
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> pth_util.rs:1:5
+  |
+1 | use nix::errno::Errno;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved imports `libc::__pid_t`, `libc::__uid_t`, `libc::__time_t`, `libc::__suseconds_t`, `libc::__ssize_t`
+ --> pth_sched.rs:6:35
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, __uid_t, __time_t, __suseconds_t, __ssize_t, size_t, ssize_t};
+  |                                   ^^^^^^^  ^^^^^^^  ^^^^^^^^  ^^^^^^^^^^^^^  ^^^^^^^^^ no `__ssize_t` in the root
+  |                                   |        |        |         |
+  |                                   |        |        |         no `__suseconds_t` in the root
+  |                                   |        |        no `__time_t` in the root
+  |                                   |        no `__uid_t` in the root
+  |                                   no `__pid_t` in the root
+  |
+help: a similar name exists in the module
+  |
+6 | use libc::{timeval, fd_set, FILE, pid_t, __uid_t, __time_t, __suseconds_t, __ssize_t, size_t, ssize_t};
+  |                                   ~~~~~
+help: a similar name exists in the module
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, uid_t, __time_t, __suseconds_t, __ssize_t, size_t, ssize_t};
+  |                                            ~~~~~
+help: a similar name exists in the module
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, __uid_t, time_t, __suseconds_t, __ssize_t, size_t, ssize_t};
+  |                                                     ~~~~~~
+help: a similar name exists in the module
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, __uid_t, __time_t, suseconds_t, __ssize_t, size_t, ssize_t};
+  |                                                               ~~~~~~~~~~~
+help: a similar name exists in the module
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, __uid_t, __time_t, __suseconds_t, ssize_t, size_t, ssize_t};
+  |                                                                              ~~~~~~~
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> pth_util.rs:3:5
+  |
+3 | use nix::sys::signal::{self, SigSet, Signal};
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> pth_util.rs:4:5
+  |
+4 | use nix::sys::time::TimeVal;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> pth_fork.rs:3:5
+  |
+3 | use nix::unistd::Pid;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+ --> pth_fork.rs:4:5
+  |
+4 | use nix::errno::errno;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `nix`
+ --> pth_util.rs:2:5
+  |
+2 | use nix::fcntl;
+  |     ^^^ use of undeclared crate or module `nix`
+
+error: cannot find macro `lazy_static` in this scope
+  --> pth_fork.rs:94:1
+   |
+94 | lazy_static! {
+   | ^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> pth_fork.rs:70:15
+   |
+70 |         match nix::unistd::fork() {
+   |               ^^^ use of undeclared crate or module `nix`
+
+error[E0106]: missing lifetime specifier
+  --> pth_util.rs:41:56
+   |
+41 | pub fn pth_util_cpystrn(dst: &mut [u8], src: &[u8]) -> &mut [u8] {
+   |                              ---------       -----     ^ expected named lifetime parameter
+   |
+   = help: this function's return type contains a borrowed value, but the signature does not say whether it is borrowed from `dst` or `src`
+help: consider introducing a named lifetime parameter
+   |
+41 | pub fn pth_util_cpystrn<'a>(dst: &'a mut [u8], src: &'a [u8]) -> &'a mut [u8] {
+   |                        ++++       ++                 ++           ++
+
+error[E0433]: failed to resolve: use of undeclared crate or module `ctrlc`
+  --> test_httpd.rs:75:5
+   |
+75 |     ctrlc::set_handler(move || {
+   |     ^^^^^ use of undeclared crate or module `ctrlc`
+
+error[E0425]: cannot find function `exit` in module `thread`
+  --> pth_cancel.rs:53:21
+   |
+53 |             thread::exit();
+   |                     ^^^^ not found in `thread`
+   |
+help: consider importing one of these items
+   |
+1  | use libc::exit;
+   |
+1  | use std::process::exit;
+   |
+help: if you import `exit`, refer to it directly
+   |
+53 -             thread::exit();
+53 +             exit();
+   |
+
+error[E0412]: cannot find type `pth_msgport_st` in crate `libc`
+  --> pth_event.rs:43:32
+   |
+43 |     Msg { mp: Option<Box<libc::pth_msgport_st>> },
+   |                                ^^^^^^^^^^^^^^ not found in `libc`
+
+error[E0412]: cannot find type `pth_mutex_st` in crate `libc`
+  --> pth_event.rs:44:37
+   |
+44 |     Mutex { mutex: Option<Box<libc::pth_mutex_st>> },
+   |                                     ^^^^^^^^^^^^ not found in `libc`
+
+error[E0412]: cannot find type `pth_cond_st` in crate `libc`
+  --> pth_event.rs:45:35
+   |
+45 |     Cond { cond: Option<Box<libc::pth_cond_st>> },
+   |                                   ^^^^^^^^^^^ not found in `libc`
+
+error[E0412]: cannot find type `pth_st` in crate `libc`
+  --> pth_event.rs:46:33
+   |
+46 |     Tid { tid: Option<Box<libc::pth_st>> },
+   |                                 ^^^^^^ not found in `libc`
+   |
+help: consider importing one of these items
+   |
+1  | use crate::pth_attr::pth_st;
+   |
+1  | use crate::pth_sync::pth_st;
+   |
+help: if you import `pth_st`, refer to it directly
+   |
+46 -     Tid { tid: Option<Box<libc::pth_st>> },
+46 +     Tid { tid: Option<Box<pth_st>> },
+   |
+
+error[E0425]: cannot find value `AT_FORK` in this scope
+   --> pth_fork.rs:104:5
+    |
+104 |     AT_FORK.push(prepare, parent, child, arg).map_or_else(|e| e, |_| 1)
+    |     ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `AT_FORK` in this scope
+   --> pth_fork.rs:108:5
+    |
+108 |     AT_FORK.pop().map_or_else(|e| e, |_| 1)
+    |     ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `AT_FORK` in this scope
+   --> pth_fork.rs:112:5
+    |
+112 |     AT_FORK.fork().map_or_else(|e| e, |pid| match pid {
+    |     ^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `sigset_t` in this scope
+  --> pth_sched.rs:41:17
+   |
+41 |     sigpending: sigset_t,
+   |                 ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0412]: cannot find type `sigset_t` in this scope
+  --> pth_sched.rs:74:28
+   |
+74 | static mut pth_sigpending: sigset_t = sigset_t { __val: [0; 16] };
+   |                            ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0422]: cannot find struct, variant or union type `sigset_t` in this scope
+  --> pth_sched.rs:74:39
+   |
+74 | static mut pth_sigpending: sigset_t = sigset_t { __val: [0; 16] };
+   |                                       ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0412]: cannot find type `sigset_t` in this scope
+  --> pth_sched.rs:75:26
+   |
+75 | static mut pth_sigblock: sigset_t = sigset_t { __val: [0; 16] };
+   |                          ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0422]: cannot find struct, variant or union type `sigset_t` in this scope
+  --> pth_sched.rs:75:37
+   |
+75 | static mut pth_sigblock: sigset_t = sigset_t { __val: [0; 16] };
+   |                                     ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0412]: cannot find type `sigset_t` in this scope
+  --> pth_sched.rs:76:26
+   |
+76 | static mut pth_sigcatch: sigset_t = sigset_t { __val: [0; 16] };
+   |                          ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0422]: cannot find struct, variant or union type `sigset_t` in this scope
+  --> pth_sched.rs:76:37
+   |
+76 | static mut pth_sigcatch: sigset_t = sigset_t { __val: [0; 16] };
+   |                                     ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0412]: cannot find type `sigset_t` in this scope
+  --> pth_sched.rs:77:27
+   |
+77 | static mut pth_sigraised: sigset_t = sigset_t { __val: [0; 16] };
+   |                           ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0422]: cannot find struct, variant or union type `sigset_t` in this scope
+  --> pth_sched.rs:77:38
+   |
+77 | static mut pth_sigraised: sigset_t = sigset_t { __val: [0; 16] };
+   |                                      ^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::sigset_t;
+   |
+
+error[E0433]: failed to resolve: could not find `VaList` in `fmt`
+  --> pth_string.rs:82:34
+   |
+82 |     let mut args = unsafe { fmt::VaList::new(args) };
+   |                                  ^^^^^^ not found in `fmt`
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::VaList;
+   |
+1  | use std::ffi::VaList;
+   |
+help: if you import `VaList`, refer to it directly
+   |
+82 -     let mut args = unsafe { fmt::VaList::new(args) };
+82 +     let mut args = unsafe { VaList::new(args) };
+   |
+
+error[E0433]: failed to resolve: could not find `VaList` in `fmt`
+  --> pth_string.rs:94:34
+   |
+94 |     let mut args = unsafe { fmt::VaList::new(ptr::null_mut()) };
+   |                                  ^^^^^^ not found in `fmt`
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::VaList;
+   |
+1  | use std::ffi::VaList;
+   |
+help: if you import `VaList`, refer to it directly
+   |
+94 -     let mut args = unsafe { fmt::VaList::new(ptr::null_mut()) };
+94 +     let mut args = unsafe { VaList::new(ptr::null_mut()) };
+   |
+
+error[E0433]: failed to resolve: could not find `VaList` in `fmt`
+   --> pth_string.rs:104:34
+    |
+104 |     let mut args = unsafe { fmt::VaList::new(ap) };
+    |                                  ^^^^^^ not found in `fmt`
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::VaList;
+    |
+1   | use std::ffi::VaList;
+    |
+help: if you import `VaList`, refer to it directly
+    |
+104 -     let mut args = unsafe { fmt::VaList::new(ap) };
+104 +     let mut args = unsafe { VaList::new(ap) };
+    |
+
+error[E0433]: failed to resolve: could not find `VaList` in `fmt`
+   --> pth_string.rs:119:34
+    |
+119 |     let mut args = unsafe { fmt::VaList::new(ptr::null_mut()) };
+    |                                  ^^^^^^ not found in `fmt`
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::VaList;
+    |
+1   | use std::ffi::VaList;
+    |
+help: if you import `VaList`, refer to it directly
+    |
+119 -     let mut args = unsafe { fmt::VaList::new(ptr::null_mut()) };
+119 +     let mut args = unsafe { VaList::new(ptr::null_mut()) };
+    |
+
+error[E0412]: cannot find type `ucontext_t` in this scope
+  --> pth_uctx.rs:61:23
+   |
+61 |     mctx: MaybeUninit<ucontext_t>,
+   |                       ^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this struct
+   |
+1  | use libc::ucontext_t;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> test_sig.rs:42:23
+   |
+42 |       fn pth_sleep(sec: c_uint) -> c_uint;
+   |                         ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+42 |     fn pth_sleep(sec: c_int) -> c_uint;
+   |                       ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> test_sig.rs:42:34
+   |
+42 |       fn pth_sleep(sec: c_uint) -> c_uint;
+   |                                    ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+42 |     fn pth_sleep(sec: c_uint) -> c_int;
+   |                                  ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+  --> test_sig.rs:58:19
+   |
+58 |             libc::stderr,
+   |                   ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stderr;
+   |
+help: if you import `stderr`, refer to it directly
+   |
+58 -             libc::stderr,
+58 +             stderr,
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+  --> test_sig.rs:68:23
+   |
+68 |                 libc::stderr,
+   |                       ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stderr;
+   |
+help: if you import `stderr`, refer to it directly
+   |
+68 -                 libc::stderr,
+68 +                 stderr,
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+  --> test_sig.rs:76:19
+   |
+76 |             libc::stderr,
+   |                   ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stderr;
+   |
+help: if you import `stderr`, refer to it directly
+   |
+76 -             libc::stderr,
+76 +             stderr,
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+  --> test_sig.rs:82:19
+   |
+82 |             libc::stderr,
+   |                   ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stderr;
+   |
+help: if you import `stderr`, refer to it directly
+   |
+82 -             libc::stderr,
+82 +             stderr,
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+  --> test_sig.rs:93:19
+   |
+93 |             libc::stderr,
+   |                   ^^^^^^ not found in `libc`
+   |
+help: consider importing this function
+   |
+1  | use std::io::stderr;
+   |
+help: if you import `stderr`, refer to it directly
+   |
+93 -             libc::stderr,
+93 +             stderr,
+   |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:106:23
+    |
+106 |         fprintf(libc::stderr, b"%s: enter\n\0".as_ptr() as *const c_char, name);
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+106 -         fprintf(libc::stderr, b"%s: enter\n\0".as_ptr() as *const c_char, name);
+106 +         fprintf(stderr, b"%s: enter\n\0".as_ptr() as *const c_char, name);
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:123:23
+    |
+123 |                 libc::stderr,
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+123 -                 libc::stderr,
+123 +                 stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:133:23
+    |
+133 |                 libc::stderr,
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+133 -                 libc::stderr,
+133 +                 stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:143:23
+    |
+143 |                 libc::stderr,
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+143 -                 libc::stderr,
+143 +                 stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:149:23
+    |
+149 |                 libc::stderr,
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+149 -                 libc::stderr,
+149 +                 stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:156:23
+    |
+156 |         fprintf(libc::stderr, b"%s: leave\n\0".as_ptr() as *const c_char, name);
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+156 -         fprintf(libc::stderr, b"%s: leave\n\0".as_ptr() as *const c_char, name);
+156 +         fprintf(stderr, b"%s: leave\n\0".as_ptr() as *const c_char, name);
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:166:19
+    |
+166 |             libc::stderr,
+    |                   ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+166 -             libc::stderr,
+166 +             stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:169:23
+    |
+169 |         fprintf(libc::stderr, b"\n\0".as_ptr() as *const c_char);
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+169 -         fprintf(libc::stderr, b"\n\0".as_ptr() as *const c_char);
+169 +         fprintf(stderr, b"\n\0".as_ptr() as *const c_char);
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:171:19
+    |
+171 |             libc::stderr,
+    |                   ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+171 -             libc::stderr,
+171 +             stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:175:19
+    |
+175 |             libc::stderr,
+    |                   ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+175 -             libc::stderr,
+175 +             stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:178:23
+    |
+178 |         fprintf(libc::stderr, b"\n\0".as_ptr() as *const c_char);
+    |                       ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+178 -         fprintf(libc::stderr, b"\n\0".as_ptr() as *const c_char);
+178 +         fprintf(stderr, b"\n\0".as_ptr() as *const c_char);
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:180:19
+    |
+180 |             libc::stderr,
+    |                   ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+180 -             libc::stderr,
+180 +             stderr,
+    |
+
+error[E0425]: cannot find value `stderr` in crate `libc`
+   --> test_sig.rs:228:19
+    |
+228 |             libc::stderr,
+    |                   ^^^^^^ not found in `libc`
+    |
+help: consider importing this function
+    |
+1   | use std::io::stderr;
+    |
+help: if you import `stderr`, refer to it directly
+    |
+228 -             libc::stderr,
+228 +             stderr,
+    |
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:19
+   |
+14 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> pth_attr.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::mem`
+ --> pth_attr.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `UNIX_EPOCH`
+ --> pth_cancel.rs:4:29
+  |
+4 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                             ^^^^^^^^^^
+
+warning: unused imports: `Layout`, `alloc`, `dealloc`
+ --> pth_clean.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr::NonNull`
+ --> pth_clean.rs:2:5
+  |
+2 | use std::ptr::NonNull;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AtomicPtr`, `Ordering`
+ --> pth_clean.rs:3:25
+  |
+3 | use std::sync::atomic::{AtomicPtr, Ordering};
+  |                         ^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `Ordering`
+ --> pth_compat.rs:1:36
+  |
+1 | use std::sync::atomic::{AtomicI32, Ordering};
+  |                                    ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> pth_data.rs:3:17
+  |
+3 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> pth_debug.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_ulong`, `c_void`
+ --> pth_debug.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_ulong, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> pth_debug.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> pth_debug.rs:4:17
+  |
+4 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `Ordering`
+ --> pth_errno.rs:1:36
+  |
+1 | use std::sync::atomic::{AtomicI32, Ordering};
+  |                                    ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> pth_event.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `Duration`, `Instant`
+ --> pth_event.rs:4:17
+  |
+4 | use std::time::{Duration, Instant};
+  |                 ^^^^^^^^  ^^^^^^^
+
+warning: unused import: `Once`
+ --> pth_fork.rs:1:24
+  |
+1 | use std::sync::{Mutex, Once};
+  |                        ^^^^
+
+warning: unused imports: `c_ulong`, `off_t`, `pid_t`
+ --> pth_high.rs:1:27
+  |
+1 | use libc::{c_int, c_uint, c_ulong, c_long, c_void, size_t, ssize_t, off_t, socklen_t, pid_t};
+  |                           ^^^^^^^                                   ^^^^^             ^^^^^
+
+warning: unused imports: `FILE`, `sigaction`, `sigset_t`, `time_t`
+ --> pth_lib.rs:1:27
+  |
+1 | use libc::{c_int, c_void, time_t, timeval, sigset_t, sigaction, FILE};
+  |                           ^^^^^^           ^^^^^^^^  ^^^^^^^^^  ^^^^
+
+warning: unused import: `std::mem::MaybeUninit`
+ --> pth_mctx.rs:2:5
+  |
+2 | use std::mem::MaybeUninit;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> pth_msg.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::ptr`
+ --> pth_msg.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+ --> pth_msg.rs:5:17
+  |
+5 | use std::time::{SystemTime, UNIX_EPOCH};
+  |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unnecessary parentheses around assigned value
+   --> pth_ring.rs:178:22
+    |
+178 |                 rn = (*rn.unwrap().next.get());
+    |                      ^                       ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+178 -                 rn = (*rn.unwrap().next.get());
+178 +                 rn = *rn.unwrap().next.get();
+    |
+
+warning: unused imports: `c_long`, `c_uint`, `c_ulong`, `c_ushort`, `c_void`
+ --> pth_sched.rs:1:27
+  |
+1 | use std::os::raw::{c_int, c_void, c_char, c_long, c_ulong, c_uint, c_ushort};
+  |                           ^^^^^^          ^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^^
+
+warning: unused imports: `MaybeUninit`, `size_of`
+ --> pth_sched.rs:2:16
+  |
+2 | use std::mem::{size_of, MaybeUninit};
+  |                ^^^^^^^  ^^^^^^^^^^^
+
+warning: unused import: `null`
+ --> pth_sched.rs:3:26
+  |
+3 | use std::ptr::{null_mut, null};
+  |                          ^^^^
+
+warning: unused imports: `AtomicBool`, `Ordering`
+ --> pth_sched.rs:4:25
+  |
+4 | use std::sync::atomic::{AtomicBool, Ordering};
+  |                         ^^^^^^^^^^  ^^^^^^^^
+
+warning: unused imports: `getpid`, `kill`, `read`, `select`, `sigaction`, `sigaddset`, `sigdelset`, `sigemptyset`, `sigfillset`, `sigismember`, `sigpending`, `sigprocmask`, `sigsuspend`, `write`
+ --> pth_sched.rs:5:19
+  |
+5 | ...e, read, write, pipe, getpid, kill, sigemptyset, sigfillset, sigaddset, sigdelset, sigismember, sigprocmask, sigsuspend, sigaction, sigpending, gettimeofday, selec...
+  |       ^^^^  ^^^^^        ^^^^^^  ^^^^  ^^^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^^^  ^^^^^^^^^  ^^^^^^^^^^                ^^^^^^
+
+warning: unused imports: `FILE`, `fd_set`, `size_t`, `ssize_t`
+ --> pth_sched.rs:6:21
+  |
+6 | use libc::{timeval, fd_set, FILE, __pid_t, __uid_t, __time_t, __suseconds_t, __ssize_t, size_t, ssize_t};
+  |                     ^^^^^^  ^^^^                                                        ^^^^^^  ^^^^^^^
+
+warning: unused imports: `c_long`, `c_longlong`, `c_ulong`, `c_ushort`
+ --> pth_string.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_long, c_longlong, c_ulong, c_ushort, c_void};
+  |                                   ^^^^^^  ^^^^^^^^^^  ^^^^^^^  ^^^^^^^^
+
+warning: unused import: `Write`
+ --> pth_string.rs:4:22
+  |
+4 | use std::fmt::{self, Write};
+  |                      ^^^^^
+
+warning: unused import: `c_void`
+ --> pth_sync.rs:1:36
+  |
+1 | use libc::{c_int, c_uint, c_ulong, c_void};
+  |                                    ^^^^^^
+
+warning: unused import: `Ordering`
+ --> pth_syscall.rs:1:36
+  |
+1 | use std::sync::atomic::{AtomicI32, Ordering};
+  |                                    ^^^^^^^^
+
+warning: unused import: `null_mut`
+ --> pth_tcb.rs:2:16
+  |
+2 | use std::ptr::{null_mut, NonNull};
+  |                ^^^^^^^^
+
+warning: unused import: `null_mut`
+ --> pth_uctx.rs:2:16
+  |
+2 | use std::ptr::{null_mut, NonNull};
+  |                ^^^^^^^^
+
+warning: unused import: `std::process::exit`
+ --> pth_uctx.rs:3:5
+  |
+3 | use std::process::exit;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `size_of`
+ --> pth_uctx.rs:4:16
+  |
+4 | use std::mem::{size_of, MaybeUninit};
+  |                ^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> pth_util.rs:5:5
+  |
+5 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> pth_util.rs:7:5
+  |
+7 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> test_common.rs:1:5
+   |
+1  | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:41:1
+   |
+41 | pub mod test_common;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> test_httpd.rs:2:16
+   |
+2  | use std::ffi::{CString, CStr};
+   |                ^^^^^^^  ^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod test_httpd;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `AsRawFd`, `FromRawFd`
+  --> test_httpd.rs:5:25
+   |
+5  | use std::os::unix::io::{AsRawFd, FromRawFd};
+   |                         ^^^^^^^  ^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod test_httpd;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> test_misc.rs:1:16
+   |
+1  | use std::ffi::{CString, CStr};
+   |                ^^^^^^^  ^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:43:1
+   |
+43 | pub mod test_misc;
+   | ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+  --> test_mp.rs:1:16
+   |
+1  | use std::ffi::{CString, CStr};
+   |                ^^^^^^^  ^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`
+  --> test_mp.rs:2:20
+   |
+2  | use std::os::raw::{c_char, c_int, c_void};
+   |                    ^^^^^^  ^^^^^  ^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> test_mp.rs:3:5
+   |
+3  | use std::ptr;
+   |     ^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> test_philo.rs:1:5
+   |
+1  | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:45:1
+   |
+45 | pub mod test_philo;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> test_philo.rs:2:5
+   |
+2  | use std::ptr;
+   |     ^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:45:1
+   |
+45 | pub mod test_philo;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::process`
+  --> test_philo.rs:3:5
+   |
+3  | use std::process;
+   |     ^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:45:1
+   |
+45 | pub mod test_philo;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> test_select.rs:1:5
+   |
+1  | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:46:1
+   |
+46 | pub mod test_select;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Write`
+  --> test_select.rs:2:27
+   |
+2  | use std::io::{self, Read, Write};
+   |                           ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:46:1
+   |
+46 | pub mod test_select;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::process`
+  --> test_select.rs:3:5
+   |
+3  | use std::process;
+   |     ^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:46:1
+   |
+46 | pub mod test_select;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> test_sig.rs:1:5
+   |
+1  | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:48:1
+   |
+48 | pub mod test_sig;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> test_uctx.rs:1:5
+   |
+1  | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:50:1
+   |
+50 | pub mod test_uctx;
+   | ^^^^^^^^^^^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+ --> pth_pqueue.rs:3:24
+  |
+3 | #[derive(Debug, Clone, Copy)]
+  |                        ^^^^
+4 | pub struct PthPqueue {
+5 |     q_head: Option<Box<PthSt>>,
+  |     -------------------------- this field does not implement `Copy`
+  |
+note: the `Copy` impl for `Option<Box<pth_pqueue::PthSt>>` requires that `Box<pth_pqueue::PthSt>: Copy`
+ --> pth_pqueue.rs:5:13
+  |
+5 |     q_head: Option<Box<PthSt>>,
+  |             ^^^^^^^^^^^^^^^^^^
+  = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0204]: the trait `Copy` may not be implemented for this type
+  --> pth_pqueue.rs:9:24
+   |
+9  | #[derive(Debug, Clone, Copy)]
+   |                        ^^^^
+10 | pub struct PthSt {
+11 |     q_prev: Option<Box<PthSt>>,
+   |     -------------------------- this field does not implement `Copy`
+12 |     q_next: Option<Box<PthSt>>,
+   |     -------------------------- this field does not implement `Copy`
+   |
+note: the `Copy` impl for `Option<Box<pth_pqueue::PthSt>>` requires that `Box<pth_pqueue::PthSt>: Copy`
+  --> pth_pqueue.rs:11:13
+   |
+11 |     q_prev: Option<Box<PthSt>>,
+   |             ^^^^^^^^^^^^^^^^^^
+12 |     q_next: Option<Box<PthSt>>,
+   |             ^^^^^^^^^^^^^^^^^^
+   = note: this error originates in the derive macro `Copy` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0106, E0204, E0412, E0422, E0425, E0432, E0433.
+For more information about an error, try `rustc --explain E0106`.
+warning: `c2rust_out` (lib) generated 57 warnings
+error: could not compile `c2rust_out` due to 58 previous errors; 57 warnings emitted

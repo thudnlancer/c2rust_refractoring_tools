@@ -1,0 +1,1173 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/libzahl)
+error[E0432]: unresolved import `crate::internals`
+ --> src/zdivmod.rs:5:12
+  |
+5 | use crate::internals::{
+  |            ^^^^^^^^^ could not find `internals` in the crate root
+
+error[E0432]: unresolved import `crate::internals`
+ --> src/zmodpowu.rs:2:12
+  |
+2 | use crate::internals::*;
+  |            ^^^^^^^^^ could not find `internals` in the crate root
+
+error[E0432]: unresolved import `crate::errors`
+ --> src/zmodpowu.rs:3:12
+  |
+3 | use crate::errors::{ZError, LibZahlError};
+  |            ^^^^^^ could not find `errors` in the crate root
+
+error[E0432]: unresolved import `crate::zahl`
+ --> src/zmodpowu.rs:4:12
+  |
+4 | use crate::zahl::Zahl;
+  |            ^^^^ could not find `zahl` in the crate root
+
+error[E0432]: unresolved import `crate::internals`
+ --> src/znot.rs:2:12
+  |
+2 | use crate::internals::*;
+  |            ^^^^^^^^^ could not find `internals` in the crate root
+
+error[E0432]: unresolved import `crate::zahl`
+ --> src/znot.rs:3:12
+  |
+3 | use crate::zahl::*;
+  |            ^^^^ could not find `zahl` in the crate root
+
+error[E0432]: unresolved import `libzahl`
+ --> src/zpow.rs:2:5
+  |
+2 | use libzahl::{zahl_char_t, ZError, ZNumber};
+  |     ^^^^^^^ use of undeclared crate or module `libzahl`
+
+error[E0432]: unresolved import `libzahl`
+ --> src/zpowu.rs:3:5
+  |
+3 | use libzahl::{
+  |     ^^^^^^^ use of undeclared crate or module `libzahl`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+ --> src/zrand.rs:4:5
+  |
+4 | use rand::{Rng, SeedableRng, rngs::StdRng};
+  |     ^^^^ use of undeclared crate or module `rand`
+  |
+help: there is a crate or module with a similar name
+  |
+4 | use zrand::{Rng, SeedableRng, rngs::StdRng};
+  |     ~~~~~
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+ --> src/zrand.rs:5:5
+  |
+5 | use rand::distributions::Uniform;
+  |     ^^^^ use of undeclared crate or module `rand`
+  |
+help: there is a crate or module with a similar name
+  |
+5 | use zrand::distributions::Uniform;
+  |     ~~~~~
+
+error[E0432]: unresolved import `rand`
+ --> src/zrand.rs:4:5
+  |
+4 | use rand::{Rng, SeedableRng, rngs::StdRng};
+  |     ^^^^ use of undeclared crate or module `rand`
+  |
+help: there is a crate or module with a similar name
+  |
+4 | use zrand::{Rng, SeedableRng, rngs::StdRng};
+  |     ~~~~~
+
+error[E0432]: unresolved import `libzahl`
+ --> src/zstr.rs:4:5
+  |
+4 | use libzahl::{z_t, zzero, znegative, zabs, zdivmod, BITS_PER_CHAR};
+  |     ^^^^^^^ use of undeclared crate or module `libzahl`
+
+error[E0432]: unresolved import `num_bigint`
+ --> src/zmodmul.rs:2:5
+  |
+2 | use num_bigint::BigInt;
+  |     ^^^^^^^^^^ use of undeclared crate or module `num_bigint`
+
+error[E0432]: unresolved import `num_traits`
+ --> src/zmodmul.rs:3:5
+  |
+3 | use num_traits::{Zero, One};
+  |     ^^^^^^^^^^ use of undeclared crate or module `num_traits`
+
+error[E0432]: unresolved import `num_bigint`
+ --> src/zptest.rs:1:5
+  |
+1 | use num_bigint::BigInt;
+  |     ^^^^^^^^^^ use of undeclared crate or module `num_bigint`
+
+error[E0432]: unresolved import `num_traits`
+ --> src/zptest.rs:2:5
+  |
+2 | use num_traits::{Zero, One, FromPrimitive};
+  |     ^^^^^^^^^^ use of undeclared crate or module `num_traits`
+
+error[E0432]: unresolved import `rand`
+ --> src/zptest.rs:3:5
+  |
+3 | use rand::Rng;
+  |     ^^^^ use of undeclared crate or module `rand`
+
+error[E0426]: use of undeclared label `'done`
+  --> src/zdivmod.rs:65:43
+   |
+65 | ...                   break 'done;
+   |                             ^^^^^ undeclared label `'done`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `rand`
+  --> src/zptest.rs:40:19
+   |
+40 |     let mut rng = rand::thread_rng();
+   |                   ^^^^ use of undeclared crate or module `rand`
+
+error[E0425]: cannot find function `zrsh_taint` in this scope
+  --> src/zdivmod.rs:70:33
+   |
+70 | ...                   zrsh_taint(&mut tds[i], BITS_PER_CHAR);
+   |                       ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `libzahl_error` in this scope
+  --> src/zerror.rs:18:8
+   |
+18 |     if libzahl_error >= 0 {
+   |        ^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::zperror::libzahl_error` exists but is inaccessible
+  --> src/zperror.rs:6:5
+   |
+6  |     static libzahl_error: i32;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `libzahl_error` in this scope
+  --> src/zerror.rs:20:55
+   |
+20 |             *desc = std::io::Error::from_raw_os_error(libzahl_error)
+   |                                                       ^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::zperror::libzahl_error` exists but is inaccessible
+  --> src/zperror.rs:6:5
+   |
+6  |     static libzahl_error: i32;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `libzahl_error` in this scope
+  --> src/zerror.rs:24:54
+   |
+24 |         return Err(std::io::Error::from_raw_os_error(libzahl_error));
+   |                                                      ^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::zperror::libzahl_error` exists but is inaccessible
+  --> src/zperror.rs:6:5
+   |
+6  |     static libzahl_error: i32;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `libzahl_error` in this scope
+  --> src/zerror.rs:28:16
+   |
+28 |         match -libzahl_error {
+   |                ^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::zperror::libzahl_error` exists but is inaccessible
+  --> src/zperror.rs:6:5
+   |
+6  |     static libzahl_error: i32;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `libzahl_error` in this scope
+  --> src/zerror.rs:37:12
+   |
+37 |     match -libzahl_error {
+   |            ^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::zperror::libzahl_error` exists but is inaccessible
+  --> src/zperror.rs:6:5
+   |
+6  |     static libzahl_error: i32;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zgcd.rs:18:21
+   |
+18 | pub fn zgcd(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                     ^^^ not found in this scope
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zgcd.rs:18:30
+   |
+18 | pub fn zgcd(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                              ^^^ not found in this scope
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zgcd.rs:18:39
+   |
+18 | pub fn zgcd(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                                       ^^^ not found in this scope
+
+error[E0425]: cannot find function `zzero` in this scope
+   --> src/zgcd.rs:23:8
+    |
+23  |     if zzero(b) {
+    |        ^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:141:1
+    |
+141 | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zzero`: not accessible
+    |
+   ::: src/zsqr.rs:32:1
+    |
+32  | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsqr::zzero`: not accessible
+    |
+   ::: src/ztrunc.rs:11:1
+    |
+11  | fn zzero(b: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::ztrunc::zzero`: not accessible
+
+error[E0425]: cannot find function `zzero` in this scope
+   --> src/zgcd.rs:27:8
+    |
+27  |     if zzero(c) {
+    |        ^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:141:1
+    |
+141 | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zzero`: not accessible
+    |
+   ::: src/zsqr.rs:32:1
+    |
+32  | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsqr::zzero`: not accessible
+    |
+   ::: src/ztrunc.rs:11:1
+    |
+11  | fn zzero(b: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::ztrunc::zzero`: not accessible
+
+error[E0425]: cannot find function `znegative2` in this scope
+  --> src/zgcd.rs:32:15
+   |
+32 |     let neg = znegative2(b, c);
+   |               ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zlsb` in this scope
+  --> src/zgcd.rs:34:17
+   |
+34 |     let u_lsb = zlsb(b);
+   |                 ^^^^ not found in this scope
+
+error[E0425]: cannot find function `zlsb` in this scope
+  --> src/zgcd.rs:35:17
+   |
+35 |     let v_lsb = zlsb(c);
+   |                 ^^^^ not found in this scope
+
+error[E0425]: cannot find value `libzahl_tmp_gcd_u` in this scope
+  --> src/zgcd.rs:38:17
+   |
+38 |     let mut u = libzahl_tmp_gcd_u.clone();
+   |                 ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `libzahl_tmp_gcd_v` in this scope
+  --> src/zgcd.rs:39:17
+   |
+39 |     let mut v = libzahl_tmp_gcd_v.clone();
+   |                 ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zrsh` in this scope
+  --> src/zgcd.rs:41:5
+   |
+41 |     zrsh(&mut u, b, u_lsb);
+   |     ^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+1  | use crate::src::zrsh::zrsh;
+   |
+
+error[E0425]: cannot find function `zrsh` in this scope
+  --> src/zgcd.rs:42:5
+   |
+42 |     zrsh(&mut v, c, v_lsb);
+   |     ^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+1  | use crate::src::zrsh::zrsh;
+   |
+
+error[E0425]: cannot find function `zcmpmag` in this scope
+  --> src/zgcd.rs:48:22
+   |
+48 |         let cmpmag = zcmpmag(&u, &v);
+   |                      ^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zswap_tainted_unsigned` in this scope
+  --> src/zgcd.rs:53:13
+   |
+53 |             zswap_tainted_unsigned(&mut u, &mut v);
+   |             ^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zsub_positive_assign` in this scope
+   --> src/zgcd.rs:55:9
+    |
+55  |         zsub_positive_assign(&mut v, &u);
+    |         ^^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::zsub::zsub_positive_assign` exists but is inaccessible
+   --> src/zsub.rs:149:1
+    |
+149 | fn zsub_positive_assign(a: &mut Z, b: &Z) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `zrsh_taint` in this scope
+  --> src/zgcd.rs:56:9
+   |
+56 |         zrsh_taint(&mut v, zlsb(&v));
+   |         ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zlsb` in this scope
+  --> src/zgcd.rs:56:28
+   |
+56 |         zrsh_taint(&mut v, zlsb(&v));
+   |                            ^^^^ not found in this scope
+
+error[E0425]: cannot find function `zlsh` in this scope
+  --> src/zgcd.rs:59:5
+   |
+59 |     zlsh(a, &u, shifts);
+   |     ^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+1  | use crate::src::zlsh::zlsh;
+   |
+
+error[E0425]: cannot find function, tuple struct or tuple variant `SET_SIGNUM` in this scope
+  --> src/zgcd.rs:60:5
+   |
+60 |     SET_SIGNUM(a, if neg { -1 } else { 1 });
+   |     ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmod` in this scope
+   --> src/zmodpowu.rs:29:5
+    |
+29  |     zmod(&mut tb, b, d)?;
+    |     ^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:111:1
+    |
+111 | fn zmod(dest: &mut Z, src: &Z, modulus: &Z) -> Result<(), Box<dyn Error>> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zmod`: not accessible
+    |
+   ::: src/zmodsqr.rs:29:1
+    |
+29  | fn zmod(_a: &mut Z, _b: &Z, _c: &Z) -> Result<(), TryFromIntError> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodsqr::zmod`: not accessible
+
+error[E0425]: cannot find function `zmodsqr` in this scope
+  --> src/zmodpowu.rs:43:9
+   |
+43 |         zmodsqr(&mut tb, &tb, &td)?;
+   |         ^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+2  | use crate::src::zmodsqr::zmodsqr;
+   |
+
+error[E0425]: cannot find function `zmodmul` in this scope
+   --> src/zmodpowu.rs:45:13
+    |
+45  |             zmodmul(a, a, &tb, &td)?;
+    |             ^^^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodmul.rs:11:1
+    |
+11  | fn zmodmul(a: &mut BigInt, b: &BigInt, c: &BigInt, d: &BigInt) {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodmul::zmodmul`: not accessible
+    |
+   ::: src/zmodpow.rs:116:1
+    |
+116 | fn zmodmul(dest: &mut Z, a: &Z, b: &Z, modulus: &Z) -> Result<(), Box<dyn Error>> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zmodmul`: not accessible
+
+error[E0425]: cannot find value `libzahl_tmp_modsqr` in this scope
+  --> src/zmodsqr.rs:13:13
+   |
+7  | static mut LIBZAHL_TMP_MODSQR: Z = Z;
+   | ------------------------------------- similarly named static `LIBZAHL_TMP_MODSQR` defined here
+...
+13 |             libzahl_tmp_modsqr = c.clone();
+   |             ^^^^^^^^^^^^^^^^^^ help: a static with a similar name exists: `LIBZAHL_TMP_MODSQR`
+
+error[E0425]: cannot find value `libzahl_tmp_modsqr` in this scope
+  --> src/zmodsqr.rs:15:25
+   |
+7  | static mut LIBZAHL_TMP_MODSQR: Z = Z;
+   | ------------------------------------- similarly named static `LIBZAHL_TMP_MODSQR` defined here
+...
+15 |             zmod(a, a, &libzahl_tmp_modsqr)?;
+   |                         ^^^^^^^^^^^^^^^^^^ help: a static with a similar name exists: `LIBZAHL_TMP_MODSQR`
+
+error[E0412]: cannot find type `Z` in this scope
+ --> src/znot.rs:5:21
+  |
+5 | pub fn znot(a: &mut Z, b: &Z) {
+  |                     ^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+2 | use crate::src::allocator::Z;
+  |
+2 | use crate::src::zload::Z;
+  |
+2 | use crate::src::zlsh::Z;
+  |
+2 | use crate::src::zmodpow::Z;
+  |
+    and 4 other candidates
+
+error[E0412]: cannot find type `Z` in this scope
+ --> src/znot.rs:5:28
+  |
+5 | pub fn znot(a: &mut Z, b: &Z) {
+  |                            ^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+2 | use crate::src::allocator::Z;
+  |
+2 | use crate::src::zload::Z;
+  |
+2 | use crate::src::zlsh::Z;
+  |
+2 | use crate::src::zmodpow::Z;
+  |
+    and 4 other candidates
+
+error[E0425]: cannot find function `unlikely` in this scope
+ --> src/znot.rs:8:8
+  |
+8 |     if unlikely(b.is_zero()) {
+  |        ^^^^^^^^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+2 | use core::intrinsics::unlikely;
+  |
+2 | use std::intrinsics::unlikely;
+  |
+
+error[E0425]: cannot find function `zbits` in this scope
+   --> src/znot.rs:13:12
+    |
+13  |     bits = zbits(b);
+    |            ^^^^^ help: a local variable with a similar name exists: `bits`
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:98:1
+    |
+98  | fn zbits(z: &Z) -> usize {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zbits`: not accessible
+    |
+   ::: src/zmul.rs:98:1
+    |
+98  | fn zbits(z: &Z) -> usize { 0 }
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmul::zbits`: not accessible
+    |
+   ::: src/zsqr.rs:103:1
+    |
+103 | fn zbits(z: &Z) -> usize {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsqr::zbits`: not accessible
+
+error[E0425]: cannot find function `bits_in_last_char` in this scope
+  --> src/znot.rs:21:12
+   |
+21 |     bits = bits_in_last_char(bits);
+   |            ^^^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: these functions exist but are inaccessible
+  --> src/zbset.rs:45:1
+   |
+45 | fn bits_in_last_char(bit: usize) -> usize {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zbset::bits_in_last_char`: not accessible
+   |
+  ::: src/zlsh.rs:58:1
+   |
+58 | fn bits_in_last_char(bits: usize) -> usize {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zlsh::bits_in_last_char`: not accessible
+   |
+  ::: src/zrsh.rs:54:1
+   |
+54 | fn bits_in_last_char(bits: usize) -> usize {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zrsh::bits_in_last_char`: not accessible
+   |
+  ::: src/ztrunc.rs:19:1
+   |
+19 | fn bits_in_last_char(bits: usize) -> usize {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::ztrunc::bits_in_last_char`: not accessible
+
+error[E0412]: cannot find type `zahl_char_t` in this scope
+  --> src/znot.rs:23:39
+   |
+23 |         a.chars[a.used - 1] &= ((1 as zahl_char_t) << bits) - 1;
+   |                                       ^^^^^^^^^^^ not found in this scope
+   |
+note: these type aliases exist but are inaccessible
+  --> src/allocator.rs:12:1
+   |
+12 | type zahl_char_t = u64; // Assuming this is the type based on common bignum implementations
+   | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::allocator::zahl_char_t`: not accessible
+   |
+  ::: src/zsetup.rs:22:1
+   |
+22 | type zahl_char_t = u8;
+   | ^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsetup::zahl_char_t`: not accessible
+
+error[E0425]: cannot find function `trim_and_zero` in this scope
+  --> src/znot.rs:26:5
+   |
+26 |     trim_and_zero(a);
+   |     ^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `Z` in this scope
+ --> src/zor.rs:5:20
+  |
+5 | pub fn zor(a: &mut Z, b: &Z, c: &Z) {
+  |                    ^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+1 | use crate::src::allocator::Z;
+  |
+1 | use crate::src::zload::Z;
+  |
+1 | use crate::src::zlsh::Z;
+  |
+1 | use crate::src::zmodpow::Z;
+  |
+    and 4 other candidates
+
+error[E0412]: cannot find type `Z` in this scope
+ --> src/zor.rs:5:27
+  |
+5 | pub fn zor(a: &mut Z, b: &Z, c: &Z) {
+  |                           ^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+1 | use crate::src::allocator::Z;
+  |
+1 | use crate::src::zload::Z;
+  |
+1 | use crate::src::zlsh::Z;
+  |
+1 | use crate::src::zmodpow::Z;
+  |
+    and 4 other candidates
+
+error[E0412]: cannot find type `Z` in this scope
+ --> src/zor.rs:5:34
+  |
+5 | pub fn zor(a: &mut Z, b: &Z, c: &Z) {
+  |                                  ^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+1 | use crate::src::allocator::Z;
+  |
+1 | use crate::src::zload::Z;
+  |
+1 | use crate::src::zlsh::Z;
+  |
+1 | use crate::src::zmodpow::Z;
+  |
+    and 4 other candidates
+
+error[E0425]: cannot find function `unlikely` in this scope
+ --> src/zor.rs:6:8
+  |
+6 |     if unlikely(b.is_zero()) {
+  |        ^^^^^^^^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+1 | use core::intrinsics::unlikely;
+  |
+1 | use std::intrinsics::unlikely;
+  |
+
+error[E0425]: cannot find function `unlikely` in this scope
+ --> src/zor.rs:9:15
+  |
+9 |     } else if unlikely(c.is_zero()) {
+  |               ^^^^^^^^ not found in this scope
+  |
+help: consider importing one of these items
+  |
+1 | use core::intrinsics::unlikely;
+  |
+1 | use std::intrinsics::unlikely;
+  |
+
+error[E0425]: cannot find function `zmem_2op_precise` in this scope
+  --> src/zor.rs:20:13
+   |
+20 |             zmem_2op_precise(a.chars_mut(), a.chars(), c.chars(), n, |x, y| x | y);
+   |             ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zor.rs:23:13
+   |
+23 |             zmemcpy_range(a.chars_mut(), c.chars(), n, m);
+   |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `unlikely` in this scope
+  --> src/zor.rs:25:15
+   |
+25 |     } else if unlikely(a.as_ptr() == c.as_ptr()) {
+   |               ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::intrinsics::unlikely;
+   |
+1  | use std::intrinsics::unlikely;
+   |
+
+error[E0425]: cannot find function `zmem_2op_precise` in this scope
+  --> src/zor.rs:27:13
+   |
+27 |             zmem_2op_precise(a.chars_mut(), a.chars(), b.chars(), n, |x, y| x | y);
+   |             ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zor.rs:30:13
+   |
+30 |             zmemcpy_range(a.chars_mut(), b.chars(), n, m);
+   |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmem_2op` in this scope
+  --> src/zor.rs:34:13
+   |
+34 |             zmem_2op(a.chars_mut(), c.chars(), b.chars(), n, |x, y| x | y);
+   |             ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zor.rs:36:9
+   |
+36 |         zmemcpy_range(a.chars_mut(), b.chars(), n, m);
+   |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmem_2op` in this scope
+  --> src/zor.rs:39:13
+   |
+39 |             zmem_2op(a.chars_mut(), b.chars(), c.chars(), n, |x, y| x | y);
+   |             ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zor.rs:41:9
+   |
+41 |         zmemcpy_range(a.chars_mut(), c.chars(), n, m);
+   |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zpositive2` in this scope
+  --> src/zor.rs:45:18
+   |
+45 |     a.set_signum(zpositive2(b, c) * 2 - 1);
+   |                  ^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `ZAHL_FLUFF` in this scope
+  --> src/zsetup.rs:69:74
+   |
+69 |         static CONSTANT_CHARS: [zahl_char_t; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF] = [0; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF];
+   |                                                                          ^^^^^^^^^^ not found in this scope
+...
+75 | list_consts!(/* constant definitions */);
+   | ---------------------------------------- in this macro invocation
+   |
+note: constant `crate::src::allocator::ZAHL_FLUFF` exists but is inaccessible
+  --> src/allocator.rs:18:1
+   |
+18 | const ZAHL_FLUFF: usize = 1; // Additional allocation space
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+   = note: this error originates in the macro `list_consts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `ZAHL_FLUFF` in this scope
+  --> src/zsetup.rs:69:120
+   |
+69 |         static CONSTANT_CHARS: [zahl_char_t; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF] = [0; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF];
+   |                                                                                                                        ^^^^^^^^^^ not found in this scope
+...
+75 | list_consts!(/* constant definitions */);
+   | ---------------------------------------- in this macro invocation
+   |
+note: constant `crate::src::allocator::ZAHL_FLUFF` exists but is inaccessible
+  --> src/allocator.rs:18:1
+   |
+18 | const ZAHL_FLUFF: usize = 1; // Additional allocation space
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+   = note: this error originates in the macro `list_consts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `ZAHL_FLUFF` in this scope
+   --> src/zsetup.rs:69:74
+    |
+69  |         static CONSTANT_CHARS: [zahl_char_t; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF] = [0; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF];
+    |                                                                          ^^^^^^^^^^ not found in this scope
+...
+105 |         list_consts!(/* initialize constants */);
+    |         ---------------------------------------- in this macro invocation
+    |
+note: constant `crate::src::allocator::ZAHL_FLUFF` exists but is inaccessible
+   --> src/allocator.rs:18:1
+    |
+18  | const ZAHL_FLUFF: usize = 1; // Additional allocation space
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+    = note: this error originates in the macro `list_consts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `ZAHL_FLUFF` in this scope
+   --> src/zsetup.rs:69:120
+    |
+69  |         static CONSTANT_CHARS: [zahl_char_t; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF] = [0; 0 $(+ { let _ = $i; 1 })* + ZAHL_FLUFF];
+    |                                                                                                                        ^^^^^^^^^^ not found in this scope
+...
+105 |         list_consts!(/* initialize constants */);
+    |         ---------------------------------------- in this macro invocation
+    |
+note: constant `crate::src::allocator::ZAHL_FLUFF` exists but is inaccessible
+   --> src/allocator.rs:18:1
+    |
+18  | const ZAHL_FLUFF: usize = 1; // Additional allocation space
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+    = note: this error originates in the macro `list_consts` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `libzahl_const_1e19` in this scope
+   --> src/zstr.rs:104:44
+    |
+104 |         zdivmod(&mut num, &mut rem, &num, &libzahl_const_1e19);
+    |                                            ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zxor.rs:15:21
+   |
+15 | pub fn zxor(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                     ^^^ not found in this scope
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zxor.rs:15:30
+   |
+15 | pub fn zxor(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                              ^^^ not found in this scope
+
+error[E0412]: cannot find type `z_t` in this scope
+  --> src/zxor.rs:15:39
+   |
+15 | pub fn zxor(a: &mut z_t, b: &z_t, c: &z_t) {
+   |                                       ^^^ not found in this scope
+
+error[E0425]: cannot find function `zzero` in this scope
+   --> src/zxor.rs:16:8
+    |
+16  |     if zzero(b) {
+    |        ^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:141:1
+    |
+141 | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zzero`: not accessible
+    |
+   ::: src/zsqr.rs:32:1
+    |
+32  | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsqr::zzero`: not accessible
+    |
+   ::: src/ztrunc.rs:11:1
+    |
+11  | fn zzero(b: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::ztrunc::zzero`: not accessible
+
+error[E0425]: cannot find function, tuple struct or tuple variant `SET` in this scope
+  --> src/zxor.rs:17:9
+   |
+17 |         SET(a, c);
+   |         ^^^ not found in this scope
+
+error[E0425]: cannot find function `zzero` in this scope
+   --> src/zxor.rs:19:15
+    |
+19  |     } else if zzero(c) {
+    |               ^^^^^ not found in this scope
+    |
+note: these functions exist but are inaccessible
+   --> src/zmodpow.rs:141:1
+    |
+141 | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zmodpow::zzero`: not accessible
+    |
+   ::: src/zsqr.rs:32:1
+    |
+32  | fn zzero(z: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::zsqr::zzero`: not accessible
+    |
+   ::: src/ztrunc.rs:11:1
+    |
+11  | fn zzero(b: &Z) -> bool {
+    | ^^^^^^^^^^^^^^^^^^^^^^^ `crate::src::ztrunc::zzero`: not accessible
+
+error[E0425]: cannot find function, tuple struct or tuple variant `SET` in this scope
+  --> src/zxor.rs:20:9
+   |
+20 |         SET(a, b);
+   |         ^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `ENSURE_SIZE` in this scope
+  --> src/zxor.rs:32:5
+   |
+32 |     ENSURE_SIZE(a, m);
+   |     ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `ZMEM_2OP_PRECISE` in this scope
+  --> src/zxor.rs:35:9
+   |
+35 |         ZMEM_2OP_PRECISE(&mut a.chars, &a.chars, cc, n, |x, y| x ^ y);
+   |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zxor.rs:37:13
+   |
+37 |             zmemcpy_range(&mut a.chars, cc, n, m);
+   |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `ZMEM_2OP_PRECISE` in this scope
+  --> src/zxor.rs:40:9
+   |
+40 |         ZMEM_2OP_PRECISE(&mut a.chars, &a.chars, bc, n, |x, y| x ^ y);
+   |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zxor.rs:42:13
+   |
+42 |             zmemcpy_range(&mut a.chars, bc, n, m);
+   |             ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `ZMEM_2OP` in this scope
+  --> src/zxor.rs:45:9
+   |
+45 |         ZMEM_2OP(&mut a.chars, cc, bc, n, |x, y| x ^ y);
+   |         ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zxor.rs:46:9
+   |
+46 |         zmemcpy_range(&mut a.chars, bc, n, m);
+   |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function, tuple struct or tuple variant `ZMEM_2OP` in this scope
+  --> src/zxor.rs:48:9
+   |
+48 |         ZMEM_2OP(&mut a.chars, bc, cc, n, |x, y| x ^ y);
+   |         ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zmemcpy_range` in this scope
+  --> src/zxor.rs:49:9
+   |
+49 |         zmemcpy_range(&mut a.chars, cc, n, m);
+   |         ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `zsignum` in this scope
+   --> src/zxor.rs:53:26
+    |
+53  |     let sign = 1 - 2 * ((zsignum(b) ^ zsignum(c)) < 0);
+    |                          ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::zmodpow::zsignum` exists but is inaccessible
+   --> src/zmodpow.rs:149:1
+    |
+149 | fn zsignum(z: &Z) -> i32 {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `zsignum` in this scope
+   --> src/zxor.rs:53:39
+    |
+53  |     let sign = 1 - 2 * ((zsignum(b) ^ zsignum(c)) < 0);
+    |                                       ^^^^^^^ not found in this scope
+    |
+note: function `crate::src::zmodpow::zsignum` exists but is inaccessible
+   --> src/zmodpow.rs:149:1
+    |
+149 | fn zsignum(z: &Z) -> i32 {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function, tuple struct or tuple variant `TRIM_AND_SIGN` in this scope
+  --> src/zxor.rs:54:5
+   |
+54 |     TRIM_AND_SIGN(a, sign);
+   |     ^^^^^^^^^^^^^ not found in this scope
+
+error[E0658]: the `!` type is experimental
+  --> src/zsetup.rs:11:60
+   |
+11 |     static LIBZAHL_JMP_BUF: RefCell<Option<Box<dyn Fn() -> !>>> = RefCell::new(None);
+   |                                                            ^
+   |
+   = note: see issue #35121 <https://github.com/rust-lang/rust/issues/35121> for more information
+   = help: add `#![feature(never_type)]` to the crate attributes to enable
+
+error[E0658]: the `!` type is experimental
+  --> src/zsetup.rs:77:32
+   |
+77 | fn zsetup(env: Box<dyn Fn() -> ! + UnwindSafe>) -> Result<(), Box<dyn std::error::Error>> {
+   |                                ^
+   |
+   = note: see issue #35121 <https://github.com/rust-lang/rust/issues/35121> for more information
+   = help: add `#![feature(never_type)]` to the crate attributes to enable
+
+warning: unused import: `std::mem`
+ --> src/allocator.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::num::NonZeroUsize`
+ --> src/zbset.rs:3:5
+  |
+3 | use std::num::NonZeroUsize;
+  |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zdivmod.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zdivmod.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused label
+  --> src/zdivmod.rs:75:21
+   |
+75 |                     'done: {
+   |                     ^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused import: `Layout`
+ --> src/zfree.rs:2:24
+  |
+2 | use std::alloc::{self, Layout};
+  |                        ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zfree.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zgcd.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Read`
+ --> src/zload.rs:3:21
+  |
+3 | use std::io::{self, Read};
+  |                     ^^^^
+
+warning: unnecessary parentheses around block return value
+  --> src/zload.rs:63:37
+   |
+63 |         if a.is_zero() { 0 } else { ((a.used + 3) & !3) };
+   |                                     ^                 ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+63 -         if a.is_zero() { 0 } else { ((a.used + 3) & !3) };
+63 +         if a.is_zero() { 0 } else { (a.used + 3) & !3 };
+   |
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zlsh.rs:3:5
+  |
+3 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zlsh.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zmodmul.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/zpow.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryFrom`
+ --> src/zpowu.rs:2:5
+  |
+2 | use std::convert::TryFrom;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+ --> src/zrand.rs:6:5
+  |
+6 | use std::os::unix::io::AsRawFd;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/zrsh.rs:1:5
+  |
+1 | use std::cmp;
+  |     ^^^^^^^^
+
+warning: unused imports: `Layout`, `alloc`, `dealloc`
+ --> src/zsetup.rs:4:18
+  |
+4 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `catch_unwind`
+ --> src/zsetup.rs:6:18
+  |
+6 | use std::panic::{catch_unwind, UnwindSafe};
+  |                  ^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zsqr.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `AddAssign`, `Shl`
+ --> src/zsqr.rs:4:16
+  |
+4 | use std::ops::{Shl, AddAssign};
+  |                ^^^  ^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zstr.rs:1:5
+  |
+1 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/zstr.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `dealloc`
+ --> src/zstr.rs:3:25
+  |
+3 | use std::alloc::{alloc, dealloc, Layout};
+  |                         ^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/zunsetup.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0277]: the trait bound `Vec<Box<[u8]>>: Copy` is not satisfied
+  --> src/zfree.rs:10:58
+   |
+10 | static mut LIBZAHL_POOL: [Option<Vec<Box<[u8]>>>; 64] = [None; 64];
+   |                                                          ^^^^ the trait `Copy` is not implemented for `Vec<Box<[u8]>>`
+   |
+   = note: required because of the requirements on the impl of `Copy` for `Option<Vec<Box<[u8]>>>`
+   = note: the `Copy` trait is required because this value will be copied for each element of the array
+
+error[E0599]: no method named `leak` found for struct `String` in the current scope
+  --> src/zerror.rs:22:18
+   |
+22 |                 .leak();
+   |                  ^^^^ method not found in `String`
+
+error[E0369]: binary operation `==` cannot be applied to type `&zmul::Z`
+  --> src/zmul.rs:58:23
+   |
+58 |     let mut m2 = if b == c { m } else { zbits(c) };
+   |                     - ^^ - &zmul::Z
+   |                     |
+   |                     &zmul::Z
+
+error[E0277]: the trait bound `zsetup::Z: Clone` is not satisfied
+    --> src/zsetup.rs:10:71
+     |
+10   |     static LIBZAHL_TMP_DIVMOD_DS: RefCell<Vec<Z>> = RefCell::new(vec![Z::new(); BITS_PER_CHAR]);
+     |                                                                  -----^^^^^^^^----------------
+     |                                                                  |    |
+     |                                                                  |    the trait `Clone` is not implemented for `zsetup::Z`
+     |                                                                  required by a bound introduced by this call
+     |
+note: required by a bound in `from_elem`
+    --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/vec/mod.rs:2456:21
+     |
+2456 | pub fn from_elem<T: Clone>(elem: T, n: usize) -> Vec<T> {
+     |                     ^^^^^ required by this bound in `from_elem`
+help: consider annotating `zsetup::Z` with `#[derive(Clone)]`
+     |
+24   | #[derive(Clone)]
+     |
+
+error[E0277]: cannot multiply `{integer}` by `bool`
+  --> src/zxor.rs:53:22
+   |
+53 |     let sign = 1 - 2 * ((zsignum(b) ^ zsignum(c)) < 0);
+   |                      ^ no implementation for `{integer} * bool`
+   |
+   = help: the trait `Mul<bool>` is not implemented for `{integer}`
+   = help: the following other types implement trait `Mul<Rhs>`:
+             <&'a f32 as Mul<f32>>
+             <&'a f64 as Mul<f64>>
+             <&'a i128 as Mul<i128>>
+             <&'a i16 as Mul<i16>>
+             <&'a i32 as Mul<i32>>
+             <&'a i64 as Mul<i64>>
+             <&'a i8 as Mul<i8>>
+             <&'a isize as Mul<isize>>
+           and 49 others
+
+Some errors have detailed explanations: E0277, E0369, E0412, E0425, E0426, E0432, E0433, E0599, E0658.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 26 warnings
+error: could not compile `c2rust_out` due to 102 previous errors; 26 warnings emitted

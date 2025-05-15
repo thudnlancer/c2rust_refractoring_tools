@@ -1,0 +1,551 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/findutils-4.9.0)
+error: expected one of `::`, `;`, or `as`, found `<eof>`
+   --> find/parser.rs:280:14
+    |
+280 | use std::os::un
+    |              ^^ expected one of `::`, `;`, or `as`
+
+error: unknown byte escape: `a`
+   --> find/print.rs:466:20
+    |
+466 |         b'a' => b'\a',
+    |                    ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `b`
+   --> find/print.rs:467:20
+    |
+467 |         b'b' => b'\b',
+    |                    ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `f`
+   --> find/print.rs:468:20
+    |
+468 |         b'f' => b'\f',
+    |                    ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `v`
+   --> find/print.rs:472:20
+    |
+472 |         b'v' => b'\v',
+    |                    ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: expected identifier, found `(`
+   --> find/print.rs:314:21
+    |
+313 |                 if (*our_pred).need_stat && (*our_pred).p_cost as u32 < EvaluationCost::NeedsStatInfo as u32 {
+    |                                                                                                          --- while parsing this struct
+314 |                     (*our_pred).p_cost = EvaluationCost::NeedsStatInfo;
+    |                     ^ expected identifier
+
+error: `<` is interpreted as a start of generic arguments for `u32`, not a comparison
+   --> find/print.rs:313:71
+    |
+313 |                 if (*our_pred).need_stat && (*our_pred).p_cost as u32 < EvaluationCost::NeedsStatInfo as u32 {
+    |                                                                       ^ -------------------------------- interpreted as generic arguments
+    |                                                                       |
+    |                                                                       not interpreted as comparison
+    |
+help: try comparing the cast value
+    |
+313 |                 if (*our_pred).need_stat && ((*our_pred).p_cost as u32) < EvaluationCost::NeedsStatInfo as u32 {
+    |                                             +                         +
+
+error: expected identifier, found `<eof>`
+   --> find/print.rs:495:8
+    |
+495 | unsafe fn
+    |        ^^ expected identifier
+
+error: mismatched closing delimiter: `}`
+   --> gl/lib/fts.rs:199:12
+    |
+197 |     unsafe {
+    |            - closing delimiter possibly meant for this
+198 |         (*sp).fts_cwd_fd = libc::AT_FDCWD;
+199 |         if (options & FTS_CWDFD != 0 && !HAVE_OPENAT_SUPPORT {
+    |            ^ unclosed delimiter
+...
+208 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected identifier, found keyword `let`
+   --> gl/lib/fts.rs:200:13
+    |
+199 |         if (options & FTS_CWDFD != 0 && !HAVE_OPENAT_SUPPORT {
+    |                                          ------------------- while parsing this struct
+200 |             let fd = open(b".\0".as_ptr() as *const libc::c_char, libc::O_SEARCH | libc::O_CLOEXEC);
+    |             ^^^ expected identifier, found keyword
+
+error: expected one of `,`, `:`, or `}`, found `::`
+   --> gl/lib/fts.rs:200:71
+    |
+199 |         if (options & FTS_CWDFD != 0 && !HAVE_OPENAT_SUPPORT {
+    |                                          ------------------- while parsing this struct
+200 |             let fd = open(b".\0".as_ptr() as *const libc::c_char, libc::O_SEARCH | libc::O_CLOEXEC);
+    |                                                                       ^^ expected one of `,`, `:`, or `}`
+
+error: expected `{`, found `}`
+   --> gl/lib/fts.rs:208:5
+    |
+208 |     }
+    |     ^ expected `{`
+    |
+note: the `if` expression is missing a block after this condition
+   --> gl/lib/fts.rs:199:12
+    |
+199 |           if (options & FTS_CWDFD != 0 && !HAVE_OPENAT_SUPPORT {
+    |  ____________^
+200 | |             let fd = open(b".\0".as_ptr() as *const libc::c_char, libc::O_SEARCH | libc::O_CLOEXEC);
+201 | |             if fd >= 0 {
+202 | |                 close(fd);
+...   |
+207 | |         }
+208 | |     }
+    | |_____^
+
+error: mismatched closing delimiter: `}`
+  --> gl/lib/malloca.rs:76:22
+   |
+69 |     unsafe {
+   |            - closing delimiter possibly meant for this
+...
+76 |         let offset = ((umemplus & !(2 * MAX_ALIGNMENT - 1)) + MAX_ALIGNMENT - (mem as usize);
+   |                      ^ unclosed delimiter
+...
+83 |     }
+   |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> gl/lib/malloca.rs:76:22
+   |
+76 |         let offset = ((umemplus & !(2 * MAX_ALIGNMENT - 1)) + MAX_ALIGNMENT - (mem as usize);
+   |                      ^ unclosed delimiter                                                   ^ help: `)` may belong here
+
+error: expected one of `.`, `;`, `?`, `}`, or an operator, found `)`
+  --> gl/lib/malloca.rs:83:5
+   |
+82 |         Some(vp)
+   |                 - expected one of `.`, `;`, `?`, `}`, or an operator
+83 |     }
+   |     ^ unexpected token
+
+error: unknown character escape: `v`
+   --> gl/lib/mbchar.rs:241:18
+    |
+241 |         '\t' | '\v' | '\f' | ' ' | '!' | '"' | '#' | '%' | '&' | '\'' | '(' | ')' | '*' |
+    |                  ^ unknown character escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+    |
+241 |         '\t' | r"\v" | '\f' | ' ' | '!' | '"' | '#' | '%' | '&' | '\'' | '(' | ')' | '*' |
+    |                ~~~~~
+
+error: unknown character escape: `f`
+   --> gl/lib/mbchar.rs:241:25
+    |
+241 |         '\t' | '\v' | '\f' | ' ' | '!' | '"' | '#' | '%' | '&' | '\'' | '(' | ')' | '*' |
+    |                         ^ unknown character escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+    |
+241 |         '\t' | '\v' | r"\f" | ' ' | '!' | '"' | '#' | '%' | '&' | '\'' | '(' | ')' | '*' |
+    |                       ~~~~~
+
+error: mismatched closing delimiter: `}`
+  --> gl/lib/mbchar.rs:93:45
+   |
+92 |             if other.wc_valid {
+   |                               - closing delimiter possibly meant for this
+93 |                 (towlower(self.wc) as i32 - (towlower(other.wc) as i32
+   |                                             ^ unclosed delimiter
+94 |             } else {
+   |             ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> gl/lib/mktime.rs:191:34
+    |
+170 |     loop {
+    |          - closing delimiter possibly meant for this
+...
+191 |         if t == t1 && t != t2 && (tm_tmp.tm_isdst < 0 || (isdst < 0 && dst2 <= (tm_tmp.tm_isdst != 0) as i32 || (isdst != 0) != (tm_tmp.t...
+    |                                  ^ unclosed delimiter
+...
+204 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `{`
+   --> gl/lib/mktime.rs:191:34
+    |
+191 | ...2 && (tm_tmp.tm_isdst < 0 || (isdst < 0 && dst2 <= (tm_tmp.tm_isdst != 0) as i32 || (isdst != 0) != (tm_tmp.tm_isdst != 0)) {
+    |         ^                                                                                                                     -^
+    |         |                                                                                                                     |
+    |         unclosed delimiter                                                                                                    help: `)` may belong here
+
+error: expected expression, found `)`
+   --> gl/lib/mktime.rs:204:5
+    |
+204 |     }
+    |     ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> gl/lib/nstrftime.rs:479:20
+    |
+53  | ) -> Result<usize, io::Error> {
+    |                               - unclosed delimiter
+...
+58  |     while let Some(c) = f.next() {
+    |                                  - unclosed delimiter
+...
+117 |         if let Some(format_char) = f.next() {
+    |                                             - unclosed delimiter
+118 |             match format_char {
+    |                               - unclosed delimiter
+...
+479 |                 'Y'
+    |                    ^
+
+error: mismatched closing delimiter: `}`
+  --> gl/lib/nstrftime.rs:42:10
+   |
+32 | fn tm_diff(a: &chrono::NaiveDateTime, b: &chrono::NaiveDateTime) -> i32 {
+   |                                                                         - closing delimiter possibly meant for this
+...
+42 |     60 * (60 * (24 * days + (a.hour() - b.hour()) as i32 + (a.minute() - b.minute()) as i32)
+   |          ^ unclosed delimiter
+43 |         + (a.second() - b.second()) as i32
+44 | }
+   | ^ mismatched closing delimiter
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found `}`
+   --> gl/lib/nstrftime.rs:479:20
+    |
+479 |                 'Y'
+    |                    ^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> gl/lib/xstrtol.rs:108:30
+    |
+108 |                     return Ok((T::from(1).unwrap(), Some(&s[1..]), StrToLongError::Ok);
+    |                              ^ unclosed delimiter                                     ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> gl/lib/xstrtol.rs:109:17
+    |
+109 |                 }
+    |                 ^ expected expression
+
+error[E0583]: file not found for module `binary_io`
+   --> c2rust-lib.rs:169:1
+    |
+169 | pub mod binary_io;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `binary_io`, create file "gnulib_tests/binary_io.rs" or "gnulib_tests/binary_io/mod.rs"
+
+error[E0583]: file not found for module `dtotimespec`
+   --> c2rust-lib.rs:170:1
+    |
+170 | pub mod dtotimespec;
+    | ^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `dtotimespec`, create file "gnulib_tests/dtotimespec.rs" or "gnulib_tests/dtotimespec/mod.rs"
+
+error[E0583]: file not found for module `thread`
+   --> c2rust-lib.rs:172:1
+    |
+172 | pub mod thread;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `imaxtostr`
+   --> c2rust-lib.rs:174:1
+    |
+174 | pub mod imaxtostr;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `imaxtostr`, create file "gnulib_tests/imaxtostr.rs" or "gnulib_tests/imaxtostr/mod.rs"
+
+error[E0583]: file not found for module `inttostr`
+   --> c2rust-lib.rs:175:1
+    |
+175 | pub mod inttostr;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `inttostr`, create file "gnulib_tests/inttostr.rs" or "gnulib_tests/inttostr/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+   --> c2rust-lib.rs:176:1
+    |
+176 | pub mod ioctl;
+    | ^^^^^^^^^^^^^^
+    |
+    = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+   --> c2rust-lib.rs:177:1
+    |
+177 | pub mod locale;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+   --> c2rust-lib.rs:178:1
+    |
+178 | pub mod localename;
+    | ^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+   --> c2rust-lib.rs:179:1
+    |
+179 | pub mod localename_table;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+   --> c2rust-lib.rs:180:1
+    |
+180 | pub mod nanosleep;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `offtostr`
+   --> c2rust-lib.rs:181:1
+    |
+181 | pub mod offtostr;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `offtostr`, create file "gnulib_tests/offtostr.rs" or "gnulib_tests/offtostr/mod.rs"
+
+error[E0583]: file not found for module `priv_set`
+   --> c2rust-lib.rs:182:1
+    |
+182 | pub mod priv_set;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `priv_set`, create file "gnulib_tests/priv_set.rs" or "gnulib_tests/priv_set/mod.rs"
+
+error[E0583]: file not found for module `sig_handler`
+   --> c2rust-lib.rs:183:1
+    |
+183 | pub mod sig_handler;
+    | ^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `sig_handler`, create file "gnulib_tests/sig_handler.rs" or "gnulib_tests/sig_handler/mod.rs"
+
+error[E0583]: file not found for module `tempname`
+   --> c2rust-lib.rs:184:1
+    |
+184 | pub mod tempname;
+    | ^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `tempname`, create file "gnulib_tests/tempname.rs" or "gnulib_tests/tempname/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+   --> c2rust-lib.rs:185:1
+    |
+185 | pub mod test_localcharset;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `timespec_add`
+   --> c2rust-lib.rs:186:1
+    |
+186 | pub mod timespec_add;
+    | ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `timespec_add`, create file "gnulib_tests/timespec_add.rs" or "gnulib_tests/timespec_add/mod.rs"
+
+error[E0583]: file not found for module `timespec_sub`
+   --> c2rust-lib.rs:187:1
+    |
+187 | pub mod timespec_sub;
+    | ^^^^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `timespec_sub`, create file "gnulib_tests/timespec_sub.rs" or "gnulib_tests/timespec_sub/mod.rs"
+
+error[E0583]: file not found for module `tmpdir`
+   --> c2rust-lib.rs:188:1
+    |
+188 | pub mod tmpdir;
+    | ^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `tmpdir`, create file "gnulib_tests/tmpdir.rs" or "gnulib_tests/tmpdir/mod.rs"
+
+error[E0583]: file not found for module `uinttostr`
+   --> c2rust-lib.rs:189:1
+    |
+189 | pub mod uinttostr;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `uinttostr`, create file "gnulib_tests/uinttostr.rs" or "gnulib_tests/uinttostr/mod.rs"
+
+error[E0583]: file not found for module `umaxtostr`
+   --> c2rust-lib.rs:190:1
+    |
+190 | pub mod umaxtostr;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `umaxtostr`, create file "gnulib_tests/umaxtostr.rs" or "gnulib_tests/umaxtostr/mod.rs"
+
+error[E0583]: file not found for module `unlinkdir`
+   --> c2rust-lib.rs:191:1
+    |
+191 | pub mod unlinkdir;
+    | ^^^^^^^^^^^^^^^^^^
+    |
+    = help: to create the module `unlinkdir`, create file "gnulib_tests/unlinkdir.rs" or "gnulib_tests/unlinkdir/mod.rs"
+
+error: unknown character escape: `b`
+  --> lib/listfile.rs:81:15
+   |
+81 |             '\b' => write!(stream, "\\b")?,
+   |               ^ unknown character escape
+   |
+   = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+   |
+81 |             r"\b" => write!(stream, "\\b")?,
+   |             ~~~~~
+
+error: unknown character escape: `f`
+  --> lib/listfile.rs:84:15
+   |
+84 |             '\f' => write!(stream, "\\f")?,
+   |               ^ unknown character escape
+   |
+   = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+help: if you meant to write a literal backslash (perhaps escaping in a regular expression), consider a raw string literal
+   |
+84 |             r"\f" => write!(stream, "\\f")?,
+   |             ~~~~~
+
+error: mismatched closing delimiter: `}`
+  --> lib/listfile.rs:55:17
+   |
+54 |         } else {
+   |                - closing delimiter possibly meant for this
+55 |             Some(CStr::from_ptr((*passwd).pw_name).ok()?.to_str().ok()?.to_string()
+   |                 ^ unclosed delimiter
+56 |         }
+   |         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+  --> lib/listfile.rs:66:17
+   |
+65 |         } else {
+   |                - closing delimiter possibly meant for this
+66 |             Some(CStr::from_ptr((*group).gr_name).ok()?.to_str().ok()?.to_string()
+   |                 ^ unclosed delimiter
+67 |         }
+   |         ^ mismatched closing delimiter
+
+error[E0428]: the name `areadlinkat` is defined multiple times
+  --> gl/lib/areadlinkat.rs:37:1
+   |
+31 | pub fn areadlinkat(fd: i32, filename: &Path) -> io::Result<PathBuf> {
+   | ------------------------------------------------------------------- previous definition of the value `areadlinkat` here
+...
+37 | pub fn areadlinkat(fd: i32, filename: &Path) -> io::Result<PathBuf> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `areadlinkat` redefined here
+   |
+   = note: `areadlinkat` must be defined only once in the value namespace of this module
+
+error[E0255]: the name `dup` is defined multiple times
+  --> gl/lib/fcntl.rs:78:1
+   |
+4  | use libc::{c_int, c_void, dup, dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                           --- previous import of the value `dup` here
+...
+78 | pub fn dup(fd: RawFd) -> Result<RawFd> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `dup` redefined here
+   |
+   = note: `dup` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+4  | use libc::{c_int, c_void, dup as other_dup, dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                           ~~~~~~~~~~~~~~~~
+
+error[E0255]: the name `dup2` is defined multiple times
+  --> gl/lib/fcntl.rs:66:1
+   |
+4  | use libc::{c_int, c_void, dup, dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                                ---- previous import of the value `dup2` here
+...
+66 | pub fn dup2(oldfd: RawFd, newfd: RawFd) -> Result<RawFd> {
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `dup2` redefined here
+   |
+   = note: `dup2` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+4  | use libc::{c_int, c_void, dup, dup2 as other_dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                                ~~~~~~~~~~~~~~~~~~
+
+error[E0255]: the name `F_DUPFD_CLOEXEC` is defined multiple times
+  --> gl/lib/fcntl.rs:10:1
+   |
+4  | use libc::{c_int, c_void, dup, dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                                                                    --------------- previous import of the value `F_DUPFD_CLOEXEC` here
+...
+10 | pub const F_DUPFD_CLOEXEC: c_int = F_DUPFD | O_CLOEXEC;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `F_DUPFD_CLOEXEC` redefined here
+   |
+   = note: `F_DUPFD_CLOEXEC` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+   |
+4  | use libc::{c_int, c_void, dup, dup2, fcntl as libc_fcntl, F_DUPFD, F_DUPFD_CLOEXEC as OtherF_DUPFD_CLOEXEC, F_GETFD, F_SETFD, FD_CLOEXEC};
+   |                                                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+error[E0255]: the name `stat` is defined multiple times
+   --> gl/lib/fts.rs:129:5
+    |
+11  | use libc::{self, c_int, c_void, dirent, stat};
+    |                                         ---- previous import of the value `stat` here
+...
+129 |     fn stat(path: *const libc::c_char, buf: *mut stat) -> c_int;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `stat` redefined here
+    |
+    = note: `stat` must be defined only once in the value namespace of this module
+help: you can use `as` to change the binding name of the import
+    |
+11  | use libc::{self, c_int, c_void, dirent, stat as other_stat};
+    |                                         ~~~~~~~~~~~~~~~~~~
+
+error: format argument must be a string literal
+   --> gl/lib/argmatch.rs:110:15
+    |
+110 |     eprintln!(format, value, context);
+    |               ^^^^^^
+    |
+help: you might be missing a string literal to format with
+    |
+110 |     eprintln!("{} {} {}", format, value, context);
+    |               +++++++++++
+
+error: couldn't read gl/lib/uniwidth/uniwidth/width0.rs: No such file or directory (os error 2)
+  --> gl/lib/uniwidth/width.rs:29:5
+   |
+29 |     include!("uniwidth/width0.rs");
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: this error originates in the macro `include` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+Some errors have detailed explanations: E0255, E0428, E0583.
+For more information about an error, try `rustc --explain E0255`.
+error: could not compile `c2rust_out` due to 58 previous errors

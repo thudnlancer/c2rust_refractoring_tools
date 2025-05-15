@@ -1,0 +1,642 @@
+[
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zperror.o",
+            "src/zperror.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zperror.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zrsh.o",
+            "src/zrsh.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zrsh.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zload.o",
+            "src/zload.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zload.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zand.o",
+            "src/zand.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zand.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zor.o",
+            "src/zor.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zor.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zerror.o",
+            "src/zerror.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zerror.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zstr.o",
+            "src/zstr.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zstr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zstr_length.o",
+            "src/zstr_length.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zstr_length.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "ztrunc.o",
+            "src/ztrunc.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/ztrunc.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zxor.o",
+            "src/zxor.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zxor.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zadd.o",
+            "src/zadd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zadd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zsub.o",
+            "src/zsub.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zsub.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zsqr.o",
+            "src/zsqr.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zsqr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zmodpowu.o",
+            "src/zmodpowu.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zmodpowu.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zpow.o",
+            "src/zpow.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zpow.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zmodsqr.o",
+            "src/zmodsqr.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zmodsqr.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "allocator.o",
+            "src/allocator.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/allocator.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zrand.o",
+            "src/zrand.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zrand.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zgcd.o",
+            "src/zgcd.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zgcd.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zmodpow.o",
+            "src/zmodpow.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zmodpow.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zunsetup.o",
+            "src/zunsetup.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zunsetup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zmodmul.o",
+            "src/zmodmul.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zmodmul.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zfree.o",
+            "src/zfree.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zfree.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zlsh.o",
+            "src/zlsh.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zlsh.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zmul.o",
+            "src/zmul.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zmul.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zdivmod.o",
+            "src/zdivmod.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zdivmod.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zpowu.o",
+            "src/zpowu.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zpowu.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "znot.o",
+            "src/znot.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/znot.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zsets.o",
+            "src/zsets.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zsets.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zptest.o",
+            "src/zptest.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zptest.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zsetup.o",
+            "src/zsetup.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zsetup.c"
+    },
+    {
+        "arguments": [
+            "cc",
+            "-c",
+            "-std=c99",
+            "-O3",
+            "-flto",
+            "-Wall",
+            "-pedantic",
+            "-D_DEFAULT_SOURCE",
+            "-D_BSD_SOURCE",
+            "-D_XOPEN_SOURCE=700",
+            "-DGOOD_RAND",
+            "-o",
+            "zbset.o",
+            "src/zbset.c"
+        ],
+        "directory": "/home/c2rust/Desktop/project/c_prog/libzahl",
+        "file": "src/zbset.c"
+    }
+]

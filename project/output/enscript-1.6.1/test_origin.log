@@ -1,0 +1,414 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/enscript-1.6.1)
+warning: unused label
+    --> afmlib/afmparse.rs:1309:9
+     |
+1309 |         'c_3699: {
+     |         ^^^^^^^
+     |
+     = note: `#[warn(unused_labels)]` on by default
+
+warning: unused import: `::libc`
+ --> compat/getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `::libc`
+ --> compat/getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:15502:33
+      |
+15502 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+15507 | ...                   })
+      |                        ^
+      |
+      = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+      |
+15502 ~                                 if (fail_stack.stack).is_null() {
+15503 |                                     0 as libc::c_int
+    ...
+15506 |                                     1 as libc::c_int
+15507 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:16491:37
+      |
+16491 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+16496 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16491 ~                                     if (fail_stack.stack).is_null() {
+16492 |                                         0 as libc::c_int
+    ...
+16495 |                                         1 as libc::c_int
+16496 ~                                     }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:16753:29
+      |
+16753 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+16758 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16753 ~                             if (fail_stack.stack).is_null() {
+16754 |                                 0 as libc::c_int
+    ...
+16757 |                                 1 as libc::c_int
+16758 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17041:29
+      |
+17041 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17046 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17041 ~                             if (fail_stack.stack).is_null() {
+17042 |                                 0 as libc::c_int
+    ...
+17045 |                                 1 as libc::c_int
+17046 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17138:29
+      |
+17138 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17143 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17138 ~                             if (fail_stack.stack).is_null() {
+17139 |                                 0 as libc::c_int
+    ...
+17142 |                                 1 as libc::c_int
+17143 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17294:29
+      |
+17294 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17300 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17294 ~                             if d.offset(-(1 as libc::c_int as isize))
+17295 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17299 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17300 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17306:29
+      |
+17306 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17310 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17306 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17307 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17308 |                             } else {
+17309 |                                 *d as libc::c_int
+17310 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17333:29
+      |
+17333 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17339 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17333 ~                             if d.offset(-(1 as libc::c_int as isize))
+17334 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17338 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17339 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17345:29
+      |
+17345 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17349 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17345 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17346 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17347 |                             } else {
+17348 |                                 *d as libc::c_int
+17349 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17363:25
+      |
+17363 |                         (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                         ^
+...
+17367 |                         })
+      |                          ^
+      |
+help: remove these parentheses
+      |
+17363 ~                         if d == string2.offset(-(1 as libc::c_int as isize)) {
+17364 |                             *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17365 |                         } else {
+17366 |                             *d as libc::c_int
+17367 ~                         }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17376:33
+      |
+17376 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17382 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17376 ~                                 if d.offset(-(1 as libc::c_int as isize))
+17377 |                                     == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17381 |                                     *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17382 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17397:29
+      |
+17397 | ...                   (if d.offset(-(1 as libc::c_int as isize))
+      |                       ^
+...
+17403 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17397 ~                             if d.offset(-(1 as libc::c_int as isize))
+17398 |                                 == string2.offset(-(1 as libc::c_int as isize))
+    ...
+17402 |                                 *d.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17403 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17408:29
+      |
+17408 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17412 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17408 ~                             if d == string2.offset(-(1 as libc::c_int as isize)) {
+17409 |                                 *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17410 |                             } else {
+17411 |                                 *d as libc::c_int
+17412 ~                             }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17439:33
+      |
+17439 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17443 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17439 ~                                 if d == string2.offset(-(1 as libc::c_int as isize)) {
+17440 |                                     *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17441 |                                 } else {
+17442 |                                     *d as libc::c_int
+17443 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17495:33
+      |
+17495 | ...                   (if d == string2.offset(-(1 as libc::c_int as isize)) {
+      |                       ^
+...
+17499 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17495 ~                                 if d == string2.offset(-(1 as libc::c_int as isize)) {
+17496 |                                     *end1.offset(-(1 as libc::c_int as isize)) as libc::c_int
+17497 |                                 } else {
+17498 |                                     *d as libc::c_int
+17499 ~                                 }
+      |
+
+warning: unnecessary parentheses around block return value
+     --> compat/regex.rs:17661:37
+      |
+17661 | ...                   (if (fail_stack.stack).is_null() {
+      |                       ^
+...
+17666 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17661 ~                                     if (fail_stack.stack).is_null() {
+17662 |                                         0 as libc::c_int
+    ...
+17665 |                                         1 as libc::c_int
+17666 ~                                     }
+      |
+
+warning: unnecessary parentheses around method argument
+     --> compat/regex.rs:18011:13
+      |
+18011 |             (if dend == end_match_1 {
+      |             ^
+...
+18015 |             }),
+      |              ^
+      |
+help: remove these parentheses
+      |
+18011 ~             if dend == end_match_1 {
+18012 |                 string1
+18013 |             } else {
+18014 |                 string2.offset(-(size1 as isize))
+18015 ~             },
+      |
+
+warning: unused label
+    --> src/psgen.rs:4554:5
+     |
+4554 |     'c_18653: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> src/psgen.rs:4629:5
+     |
+4629 |     'c_8716: {
+     |     ^^^^^^^
+
+warning: unnecessary parentheses around function argument
+   --> states/prims.rs:467:17
+    |
+467 |                 (if ((*n).u.re.compiled).fastmap_accurate() as libc::c_int != 0 {
+    |                 ^
+...
+472 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+467 ~                 if ((*n).u.re.compiled).fastmap_accurate() as libc::c_int != 0 {
+468 |                     &mut (*n).u.re.compiled
+  ...
+471 |                     &mut (*n).u.re.compiled
+472 ~                 },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> states/prims.rs:523:17
+    |
+523 |                 (if ((*n).u.re.compiled).fastmap_accurate() as libc::c_int != 0 {
+    |                 ^
+...
+528 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+523 ~                 if ((*n).u.re.compiled).fastmap_accurate() as libc::c_int != 0 {
+524 |                     &mut (*n).u.re.compiled
+  ...
+527 |                     &mut (*n).u.re.compiled
+528 ~                 },
+    |
+
+error[E0308]: mismatched types
+     --> compat/regex.rs:15755:9
+      |
+15753 |     let mut result: libc::c_int = re_match_2_internal(
+      |                                   ------------------- arguments to this function are incorrect
+15754 |         bufp,
+15755 |         0 as *mut libc::c_void,
+      |         ^^^^^^^^^^^^^^^^^^^^^^ expected `i8`, found enum `c_void`
+      |
+      = note: expected raw pointer `*const i8`
+                 found raw pointer `*mut c_void`
+note: function defined here
+     --> compat/regex.rs:15788:22
+      |
+15788 | unsafe extern "C" fn re_match_2_internal(
+      |                      ^^^^^^^^^^^^^^^^^^^
+15789 |     mut bufp: *mut re_pattern_buffer,
+      |     --------------------------------
+15790 |     mut string1: *const libc::c_char,
+      |     --------------------------------
+15791 |     mut size1: libc::c_int,
+      |     ----------------------
+15792 |     mut string2: *const libc::c_char,
+      |     --------------------------------
+15793 |     mut size2: libc::c_int,
+      |     ----------------------
+15794 |     mut pos: libc::c_int,
+      |     --------------------
+15795 |     mut regs: *mut re_registers,
+      |     ---------------------------
+15796 |     mut stop: libc::c_int,
+      |     ---------------------
+
+For more information about this error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 24 warnings
+error: could not compile `c2rust_out` due to previous error; 24 warnings emitted

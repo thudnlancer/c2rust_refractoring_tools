@@ -1,226 +1,226 @@
 {
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zmodpow.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zmodpow.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zsub.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zsub.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zlsh.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zlsh.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zptest.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zptest.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zmodsqr.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zmodsqr.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zsets.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zsets.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zgcd.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zgcd.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zdivmod.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zdivmod.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/ztrunc.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/ztrunc.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zrand.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zrand.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zload.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zload.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zsetup.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zsetup.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zpow.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zpow.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zunsetup.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zunsetup.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/allocator.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/allocator.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zbset.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zbset.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zmodmul.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zmodmul.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zpowu.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zpowu.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zand.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zand.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zxor.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zxor.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zstr.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zstr.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zperror.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zperror.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zsqr.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zsqr.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zmul.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zmul.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zerror.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zerror.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zstr_length.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zstr_length.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zfree.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zfree.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zrsh.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zrsh.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/znot.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/znot.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zor.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zor.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zmodpowu.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zmodpowu.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ],
-    "/home/c2rust/Desktop/c_prog/libzahl/src/zadd.c": [
-        "/home/c2rust/Desktop/c_prog/libzahl/src/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/internals.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/memory.h",
-        "/home/c2rust/Desktop/c_prog/libzahl/zahl/inlines.h"
+    "/home/c2rust/Desktop/project/c_prog/libzahl/src/zadd.c": [
+        "/home/c2rust/Desktop/project/c_prog/libzahl/src/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/internals.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/memory.h",
+        "/home/c2rust/Desktop/project/c_prog/libzahl/zahl/inlines.h"
     ]
 }

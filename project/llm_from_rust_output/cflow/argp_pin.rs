@@ -1,0 +1,1 @@
+// No direct equivalent needed in safe Rust as libc is used for C interop

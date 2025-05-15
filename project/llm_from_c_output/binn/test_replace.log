@@ -1,0 +1,84 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/binn)
+warning: unused import: `std::mem`
+ --> src/binn.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `CString`
+ --> src/binn.rs:5:22
+  |
+5 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `std::slice`
+ --> src/binn.rs:7:5
+  |
+7 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+ --> src/binn.rs:8:5
+  |
+8 | use std::convert::TryInto;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::cmp`
+ --> src/binn.rs:9:5
+  |
+9 | use std::cmp;
+  |     ^^^^^^^^
+
+error[E0308]: mismatched types
+   --> src/binn.rs:156:30
+    |
+156 |             MALLOC_FN = Some(libc::malloc);
+    |                         ---- ^^^^^^^^^^^^ expected normal fn, found unsafe fn
+    |                         |
+    |                         arguments to this enum variant are incorrect
+    |
+    = note: expected fn pointer `extern "C" fn(_) -> _`
+                  found fn item `unsafe extern "C" fn(_) -> _ {malloc}`
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> src/binn.rs:159:31
+    |
+159 |             REALLOC_FN = Some(libc::realloc);
+    |                          ---- ^^^^^^^^^^^^^ expected normal fn, found unsafe fn
+    |                          |
+    |                          arguments to this enum variant are incorrect
+    |
+    = note: expected fn pointer `extern "C" fn(_, _) -> _`
+                  found fn item `unsafe extern "C" fn(_, _) -> _ {libc::realloc}`
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+error[E0308]: mismatched types
+   --> src/binn.rs:162:28
+    |
+162 |             FREE_FN = Some(libc::free);
+    |                       ---- ^^^^^^^^^^ expected normal fn, found unsafe fn
+    |                       |
+    |                       arguments to this enum variant are incorrect
+    |
+    = note: expected fn pointer `extern "C" fn(_)`
+                  found fn item `unsafe extern "C" fn(_) {free}`
+note: tuple variant defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:526:5
+    |
+526 |     Some(#[stable(feature = "rust1", since = "1.0.0")] T),
+    |     ^^^^
+
+For more information about this error, try `rustc --explain E0308`.
+warning: `c2rust_out` (lib) generated 5 warnings
+error: could not compile `c2rust_out` due to 3 previous errors; 5 warnings emitted

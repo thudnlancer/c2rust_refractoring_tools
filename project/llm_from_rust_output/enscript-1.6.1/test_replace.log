@@ -1,0 +1,9 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/enscript-1.6.1)
+error[E0765]: unterminated double quote string
+   --> afmlib/e_88591.rs:235:49
+    |
+235 |     EncodingTable { code: 0xe1, character: Some("
+    |                                                 ^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `c2rust_out` due to previous error

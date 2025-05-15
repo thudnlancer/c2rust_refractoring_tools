@@ -1,0 +1,453 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/libtree)
+error: mismatched closing delimiter: `}`
+   --> libtree.rs:277:17
+    |
+276 |             color: unsafe {
+    |                           - closing delimiter possibly meant for this
+277 |                 (libc::getenv(CString::new("NO_COLOR").unwrap().as_ptr()).is_null()
+    |                 ^ unclosed delimiter
+278 |                     && libc::isatty(1) != 0
+279 |             } as c_int,
+    |             ^ mismatched closing delimiter
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:12:17
+   |
+12 |   const _ISalnum: c_uint = 8;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+12 | const _ISalnum: c_int = 8;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:13:17
+   |
+13 |   const _ISpunct: c_uint = 4;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+13 | const _ISpunct: c_int = 4;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:14:17
+   |
+14 |   const _IScntrl: c_uint = 2;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+14 | const _IScntrl: c_int = 2;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:15:17
+   |
+15 |   const _ISblank: c_uint = 1;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+15 | const _ISblank: c_int = 1;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:16:17
+   |
+16 |   const _ISgraph: c_uint = 32768;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+16 | const _ISgraph: c_int = 32768;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:17:17
+   |
+17 |   const _ISprint: c_uint = 16384;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+17 | const _ISprint: c_int = 16384;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:18:17
+   |
+18 |   const _ISspace: c_uint = 8192;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+18 | const _ISspace: c_int = 8192;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:19:18
+   |
+19 |   const _ISxdigit: c_uint = 4096;
+   |                    ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+19 | const _ISxdigit: c_int = 4096;
+   |                  ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:20:17
+   |
+20 |   const _ISdigit: c_uint = 2048;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+20 | const _ISdigit: c_int = 2048;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:21:17
+   |
+21 |   const _ISalpha: c_uint = 1024;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+21 | const _ISalpha: c_int = 1024;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:22:17
+   |
+22 |   const _ISlower: c_uint = 512;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+22 | const _ISlower: c_int = 512;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+error[E0412]: cannot find type `c_uint` in this scope
+  --> libtree.rs:23:17
+   |
+23 |   const _ISupper: c_uint = 256;
+   |                   ^^^^^^
+   |
+  ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/std/src/os/raw/mod.rs:22:1
+   |
+22 | / alias_core_ffi! {
+23 | |     c_char c_schar c_uchar
+24 | |     c_short c_ushort
+25 | |     c_int c_uint
+...  |
+30 | |     c_void
+31 | | }
+   | |_- similarly named type alias `c_int` defined here
+   |
+help: a type alias with a similar name exists
+   |
+23 | const _ISupper: c_int = 256;
+   |                 ~~~~~
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_uint;
+   |
+1  | use libc::c_uint;
+   |
+1  | use std::ffi::c_uint;
+   |
+1  | use std::os::raw::c_uint;
+   |
+
+warning: unused imports: `Write`, `c_long`, `c_void`, `mem`, `path::Path`
+ --> libtree.rs:4:16
+  |
+4 |     io::{Read, Write},
+  |                ^^^^^
+5 |     mem,
+  |     ^^^
+6 |     os::raw::{c_char, c_int, c_long, c_ulong, c_void},
+  |                              ^^^^^^           ^^^^^^
+7 |     path::Path,
+  |     ^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around block return value
+   --> libtree.rs:277:17
+    |
+277 |                   (libc::getenv(CString::new("NO_COLOR").unwrap().as_ptr()).is_null()
+    |                   ^
+278 |                       && libc::isatty(1) != 0
+    |  ____________________________________________^
+279 | |             } as c_int,
+    | |_____________^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+277 ~                 libc::getenv(CString::new("NO_COLOR").unwrap().as_ptr()).is_null()
+278 ~                     && libc::isatty(1) != 0 as c_int,
+    |
+
+error[E0599]: the method `resize` exists for struct `Vec<VisitedFile>`, but its trait bounds were not satisfied
+   --> libtree.rs:222:22
+    |
+192 | struct VisitedFile {
+    | ------------------ doesn't satisfy `VisitedFile: Clone`
+...
+222 |             self.arr.resize(self.capacity as usize, VisitedFile { st_dev: 0, st_ino: 0 });
+    |                      ^^^^^^
+    |
+    = note: the following trait bounds were not satisfied:
+            `VisitedFile: Clone`
+help: consider annotating `VisitedFile` with `#[derive(Clone)]`
+    |
+192 | #[derive(Clone)]
+    |
+
+error[E0560]: struct `utsname` has no field named `__domainname`
+   --> libtree.rs:257:13
+    |
+257 |             __domainname: [0; 65],
+    |             ^^^^^^^^^^^^ help: a field with a similar name exists: `domainname`
+
+Some errors have detailed explanations: E0412, E0560, E0599.
+For more information about an error, try `rustc --explain E0412`.
+warning: `c2rust_out` (lib) generated 2 warnings
+error: could not compile `c2rust_out` due to 15 previous errors; 2 warnings emitted

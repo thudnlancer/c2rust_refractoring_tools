@@ -1,0 +1,3437 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/make-4.4.1)
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:13:31
+   |
+13 | extern crate c2rust_bitfields;#[macro_use]
+   |                               ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:27:21
+   |
+27 |                     (if !suffix.is_null() {
+   |                     ^
+...
+31 |                     }),
+   |                      ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+27 ~                     if !suffix.is_null() {
+28 |                         strlen(suffix)
+29 |                     } else {
+30 |                         0 as libc::c_int as libc::c_ulong
+31 ~                     },
+   |
+
+warning: unnecessary parentheses around method argument
+  --> lib/concat_filename.rs:53:21
+   |
+53 |                     (if !suffix.is_null() {
+   |                     ^
+...
+57 |                     }),
+   |                      ^
+   |
+help: remove these parentheses
+   |
+53 ~                     if !suffix.is_null() {
+54 |                         strlen(suffix)
+55 |                     } else {
+56 |                         0 as libc::c_int as libc::c_ulong
+57 ~                     },
+   |
+
+warning: unnecessary parentheses around function argument
+   --> src/commands.rs:626:29
+    |
+626 | ...                   (if !((*d).name).is_null() {
+    |                       ^
+...
+630 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+626 ~                             if !((*d).name).is_null() {
+627 |                                 (*d).name
+628 |                             } else {
+629 |                                 (*(*d).file).name
+630 ~                             },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/commands.rs:638:29
+    |
+638 | ...                   (if !((*d).name).is_null() {
+    |                       ^
+...
+642 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+638 ~                             if !((*d).name).is_null() {
+639 |                                 (*d).name
+640 |                             } else {
+641 |                                 (*(*d).file).name
+642 ~                             },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1497:17
+     |
+1497 |                 (if !(-(1 as libc::c_int) as uintmax_t
+     |                 ^
+...
+1506 |                 }),
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1497 ~                 if !(-(1 as libc::c_int) as uintmax_t
+1498 |                     <= 0 as libc::c_int as libc::c_ulong)
+   ...
+1505 |                             .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1506 ~                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1530:21
+     |
+1530 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+1539 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1530 ~                     if !(-(1 as libc::c_int) as uintmax_t
+1531 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+1538 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1539 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/file.rs:1577:21
+     |
+1577 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+1586 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1577 ~                     if !(-(1 as libc::c_int) as uintmax_t
+1578 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+1585 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1586 ~                     },
+     |
+
+warning: unused import: `::libc`
+ --> src/getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> src/getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> src/implicit.rs:747:61
+    |
+747 | ...                   (if check_lastslash as libc::c_int != 0 {
+    |                       ^
+...
+751 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+747 ~                                                             if check_lastslash as libc::c_int != 0 {
+748 |                                                                 pathlen
+749 |                                                             } else {
+750 |                                                                 0 as libc::c_int as libc::c_ulong
+751 ~                                                             },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/implicit.rs:895:33
+    |
+895 | ...                   (if check_lastslash_0 as libc::c_int != 0 {
+    |                       ^
+...
+899 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+895 ~                                 if check_lastslash_0 as libc::c_int != 0 {
+896 |                                     pathlen
+897 |                                 } else {
+898 |                                     0 as libc::c_int as libc::c_ulong
+899 ~                                 },
+    |
+
+warning: unnecessary parentheses around `match` scrutinee expression
+    --> src/main.rs:1434:23
+     |
+1434 |                 match ({
+     |                       ^
+...
+1461 |                 }) {
+     |                  ^
+     |
+help: remove these parentheses
+     |
+1434 ~                 match {
+1435 |                     let mut __res: libc::c_int = 0;
+   ...
+1460 |                     __res
+1461 ~                 } {
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/main.rs:2707:21
+     |
+2707 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+2716 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2707 ~                     if !(-(1 as libc::c_int) as uintmax_t
+2708 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+2715 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2716 ~                     },
+     |
+
+warning: unnecessary parentheses around function argument
+    --> src/main.rs:2852:21
+     |
+2852 |                     (if !((*d_1).name).is_null() {
+     |                     ^
+...
+2856 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2852 ~                     if !((*d_1).name).is_null() {
+2853 |                         (*d_1).name
+2854 |                     } else {
+2855 |                         (*(*d_1).file).name
+2856 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/main.rs:3337:21
+     |
+3337 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+3346 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3337 ~                     if !(-(1 as libc::c_int) as uintmax_t
+3338 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+3345 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+3346 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/output.rs:594:21
+    |
+594 |                     (if !flocp.is_null() && !((*flocp).filenm).is_null() {
+    |                     ^
+...
+598 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+594 ~                     if !flocp.is_null() && !((*flocp).filenm).is_null() {
+595 |                         strlen((*flocp).filenm)
+596 |                     } else {
+597 |                         0 as libc::c_int as libc::c_ulong
+598 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/output.rs:657:21
+    |
+657 |                     (if !flocp.is_null() && !((*flocp).filenm).is_null() {
+    |                     ^
+...
+661 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+657 ~                     if !flocp.is_null() && !((*flocp).filenm).is_null() {
+658 |                         strlen((*flocp).filenm)
+659 |                     } else {
+660 |                         0 as libc::c_int as libc::c_ulong
+661 ~                     },
+    |
+
+warning: unnecessary parentheses around function argument
+    --> src/read.rs:3160:33
+     |
+3160 | ...                   (if !((*d2).name).is_null() {
+     |                       ^
+...
+3164 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3160 ~                                 if !((*d2).name).is_null() {
+3161 |                                     (*d2).name
+3162 |                                 } else {
+3163 |                                     (*(*d2).file).name
+3164 ~                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/remake.rs:401:21
+    |
+401 |                     (if !(-(1 as libc::c_int) as uintmax_t
+    |                     ^
+...
+410 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+401 ~                     if !(-(1 as libc::c_int) as uintmax_t
+402 |                         <= 0 as libc::c_int as libc::c_ulong)
+  ...
+409 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+410 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> src/remake.rs:938:21
+    |
+938 |                     (if !(-(1 as libc::c_int) as uintmax_t
+    |                     ^
+...
+947 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+938 ~                     if !(-(1 as libc::c_int) as uintmax_t
+939 |                         <= 0 as libc::c_int as libc::c_ulong)
+  ...
+946 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+947 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:1675:21
+     |
+1675 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+1684 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+1675 ~                     if !(-(1 as libc::c_int) as uintmax_t
+1676 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+1683 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1684 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:2211:33
+     |
+2211 | ...                   (if !(-(1 as libc::c_int) as uintmax_t
+     |                       ^
+...
+2220 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2211 ~                                 if !(-(1 as libc::c_int) as uintmax_t
+2212 |                                     <= 0 as libc::c_int as libc::c_ulong)
+   ...
+2219 |                                             .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2220 ~                                 },
+     |
+
+warning: unnecessary parentheses around method argument
+    --> src/remake.rs:2232:21
+     |
+2232 |                     (if !(-(1 as libc::c_int) as uintmax_t
+     |                     ^
+...
+2241 |                     }),
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2232 ~                     if !(-(1 as libc::c_int) as uintmax_t
+2233 |                         <= 0 as libc::c_int as libc::c_ulong)
+   ...
+2240 |                                 .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+2241 ~                     },
+     |
+
+warning: unnecessary parentheses around method argument
+   --> src/rule.rs:354:29
+    |
+354 | ...                   (if (*dep).wait_here() as libc::c_int != 0 {
+    |                       ^
+...
+360 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+354 ~                             if (*dep).wait_here() as libc::c_int != 0 {
+355 |                                 (::core::mem::size_of::<[libc::c_char; 7]>()
+  ...
+359 |                                 0 as libc::c_int as libc::c_ulong
+360 ~                             },
+    |
+
+warning: unnecessary parentheses around function argument
+   --> src/rule.rs:347:25
+    |
+347 |                         (if !((*dep).name).is_null() {
+    |                         ^
+...
+351 |                         }),
+    |                          ^
+    |
+help: remove these parentheses
+    |
+347 ~                         if !((*dep).name).is_null() {
+348 |                             (*dep).name
+349 |                         } else {
+350 |                             (*(*dep).file).name
+351 ~                         },
+    |
+
+warning: unused import: `::libc`
+ --> src/signame.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> src/vpath.rs:542:33
+    |
+542 | ...                   (if !(-(1 as libc::c_int) as uintmax_t
+    |                       ^
+...
+551 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+542 ~                                 if !(-(1 as libc::c_int) as uintmax_t
+543 |                                     <= 0 as libc::c_int as libc::c_ulong)
+  ...
+550 |                                             .wrapping_sub(1 as libc::c_int as libc::c_ulong)
+551 ~                                 },
+    |
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+warning: unused variable: `desc`
+   --> src/ar.rs:233:9
+    |
+233 |     mut desc: libc::c_int,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_desc`
+    |
+    = note: `#[warn(unused_variables)]` on by default
+
+warning: unused variable: `hdrpos`
+   --> src/ar.rs:236:9
+    |
+236 |     mut hdrpos: libc::c_long,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_hdrpos`
+
+warning: unused variable: `datapos`
+   --> src/ar.rs:237:9
+    |
+237 |     mut datapos: libc::c_long,
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_datapos`
+
+warning: unused variable: `size`
+   --> src/ar.rs:238:9
+    |
+238 |     mut size: libc::c_long,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `uid`
+   --> src/ar.rs:240:9
+    |
+240 |     mut uid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_uid`
+
+warning: unused variable: `gid`
+   --> src/ar.rs:241:9
+    |
+241 |     mut gid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_gid`
+
+warning: unused variable: `mode`
+   --> src/ar.rs:242:9
+    |
+242 |     mut mode: libc::c_uint,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_mode`
+
+warning: unused variable: `desc`
+   --> src/ar.rs:379:9
+    |
+379 |     mut desc: libc::c_int,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_desc`
+
+warning: unused variable: `truncated`
+   --> src/ar.rs:381:9
+    |
+381 |     mut truncated: libc::c_int,
+    |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_truncated`
+
+warning: unused variable: `hdrpos`
+   --> src/ar.rs:382:9
+    |
+382 |     mut hdrpos: libc::c_long,
+    |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_hdrpos`
+
+warning: unused variable: `datapos`
+   --> src/ar.rs:383:9
+    |
+383 |     mut datapos: libc::c_long,
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_datapos`
+
+warning: unused variable: `size`
+   --> src/ar.rs:384:9
+    |
+384 |     mut size: libc::c_long,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `date`
+   --> src/ar.rs:385:9
+    |
+385 |     mut date: intmax_t,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_date`
+
+warning: unused variable: `uid`
+   --> src/ar.rs:386:9
+    |
+386 |     mut uid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_uid`
+
+warning: unused variable: `gid`
+   --> src/ar.rs:387:9
+    |
+387 |     mut gid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_gid`
+
+warning: unused variable: `mode`
+   --> src/ar.rs:388:9
+    |
+388 |     mut mode: libc::c_uint,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_mode`
+
+warning: unused variable: `hdr`
+   --> src/arscan.rs:561:17
+    |
+561 |         let mut hdr: ar_hdr = ar_hdr {
+    |                 ^^^ help: if this is intentional, prefix it with an underscore: `_hdr`
+
+warning: unused variable: `desc`
+   --> src/arscan.rs:580:9
+    |
+580 |     mut desc: libc::c_int,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_desc`
+
+warning: unused variable: `datapos`
+   --> src/arscan.rs:584:9
+    |
+584 |     mut datapos: libc::c_long,
+    |         ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_datapos`
+
+warning: unused variable: `size`
+   --> src/arscan.rs:585:9
+    |
+585 |     mut size: libc::c_long,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_size`
+
+warning: unused variable: `date`
+   --> src/arscan.rs:586:9
+    |
+586 |     mut date: intmax_t,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_date`
+
+warning: unused variable: `uid`
+   --> src/arscan.rs:587:9
+    |
+587 |     mut uid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_uid`
+
+warning: unused variable: `gid`
+   --> src/arscan.rs:588:9
+    |
+588 |     mut gid: libc::c_int,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_gid`
+
+warning: unused variable: `mode`
+   --> src/arscan.rs:589:9
+    |
+589 |     mut mode: libc::c_uint,
+    |         ^^^^ help: if this is intentional, prefix it with an underscore: `_mode`
+
+warning: unused variable: `key`
+   --> src/dir.rs:341:43
+    |
+341 | unsafe extern "C" fn directory_hash_2(mut key: *const libc::c_void) -> libc::c_ulong {
+    |                                           ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `key`
+   --> src/dir.rs:375:41
+    |
+375 | unsafe extern "C" fn dirfile_hash_2(mut key: *const libc::c_void) -> libc::c_ulong {
+    |                                         ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `key`
+   --> src/file.rs:430:38
+    |
+430 | unsafe extern "C" fn file_hash_2(mut key: *const libc::c_void) -> libc::c_ulong {
+    |                                      ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `key`
+   --> src/function.rs:548:13
+    |
+548 |     let mut key: *const function_table_entry = keyv as *const function_table_entry;
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `funcname`
+   --> src/function.rs:952:9
+    |
+952 |     mut funcname: *const libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+   --> src/function.rs:965:9
+    |
+965 |     mut funcname: *const libc::c_char,
+    |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1006:9
+     |
+1006 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1080:9
+     |
+1080 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1280:9
+     |
+1280 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1296:9
+     |
+1296 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1309:9
+     |
+1309 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1330:9
+     |
+1330 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1417:9
+     |
+1417 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1462:9
+     |
+1462 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1536:9
+     |
+1536 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1555:9
+     |
+1555 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1613:9
+     |
+1613 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `key`
+    --> src/function.rs:1687:40
+     |
+1687 | unsafe extern "C" fn a_word_hash_2(mut key: *const libc::c_void) -> libc::c_ulong {
+     |                                        ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:1932:9
+     |
+1932 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2031:9
+     |
+2031 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2168:9
+     |
+2168 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2257:9
+     |
+2257 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2288:9
+     |
+2288 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2317:9
+     |
+2317 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2349:9
+     |
+2349 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2358:9
+     |
+2358 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2370:9
+     |
+2370 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2583:9
+     |
+2583 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2695:9
+     |
+2695 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:2771:9
+     |
+2771 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:3015:9
+     |
+3015 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `funcname`
+    --> src/function.rs:3262:9
+     |
+3262 |     mut funcname: *const libc::c_char,
+     |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_funcname`
+
+warning: unused variable: `flocp`
+  --> src/guile.rs:10:48
+   |
+10 | pub unsafe extern "C" fn guile_gmake_setup(mut flocp: *const floc) -> libc::c_int {
+   |                                                ^^^^^ help: if this is intentional, prefix it with an underscore: `_flocp`
+
+warning: unused variable: `sig`
+   --> src/job.rs:806:44
+    |
+806 | pub unsafe extern "C" fn child_handler(mut sig: libc::c_int) {
+    |                                            ^^^ help: if this is intentional, prefix it with an underscore: `_sig`
+
+warning: unused variable: `batch_filename`
+    --> src/job.rs:2508:9
+     |
+2508 |     mut batch_filename: *mut *mut libc::c_char,
+     |         ^^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_batch_filename`
+
+warning: unused variable: `sig`
+    --> src/main.rs:1418:47
+     |
+1418 | unsafe extern "C" fn debug_signal_handler(mut sig: libc::c_int) {
+     |                                               ^^^ help: if this is intentional, prefix it with an underscore: `_sig`
+
+warning: unused variable: `first_p`
+  --> src/remote_stub.rs:15:49
+   |
+15 | pub unsafe extern "C" fn start_remote_job_p(mut first_p: libc::c_int) -> libc::c_int {
+   |                                                 ^^^^^^^ help: if this is intentional, prefix it with an underscore: `_first_p`
+
+warning: unused variable: `argv`
+  --> src/remote_stub.rs:20:9
+   |
+20 |     mut argv: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_argv`
+
+warning: unused variable: `envp`
+  --> src/remote_stub.rs:21:9
+   |
+21 |     mut envp: *mut *mut libc::c_char,
+   |         ^^^^ help: if this is intentional, prefix it with an underscore: `_envp`
+
+warning: unused variable: `stdin_fd`
+  --> src/remote_stub.rs:22:9
+   |
+22 |     mut stdin_fd: libc::c_int,
+   |         ^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_stdin_fd`
+
+warning: unused variable: `is_remote`
+  --> src/remote_stub.rs:23:9
+   |
+23 |     mut is_remote: *mut libc::c_int,
+   |         ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_is_remote`
+
+warning: unused variable: `id_ptr`
+  --> src/remote_stub.rs:24:9
+   |
+24 |     mut id_ptr: *mut pid_t,
+   |         ^^^^^^ help: if this is intentional, prefix it with an underscore: `_id_ptr`
+
+warning: unused variable: `used_stdin`
+  --> src/remote_stub.rs:25:9
+   |
+25 |     mut used_stdin: *mut libc::c_int,
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_used_stdin`
+
+warning: unused variable: `exit_code_ptr`
+  --> src/remote_stub.rs:31:9
+   |
+31 |     mut exit_code_ptr: *mut libc::c_int,
+   |         ^^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_exit_code_ptr`
+
+warning: unused variable: `signal_ptr`
+  --> src/remote_stub.rs:32:9
+   |
+32 |     mut signal_ptr: *mut libc::c_int,
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_signal_ptr`
+
+warning: unused variable: `coredump_ptr`
+  --> src/remote_stub.rs:33:9
+   |
+33 |     mut coredump_ptr: *mut libc::c_int,
+   |         ^^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_coredump_ptr`
+
+warning: unused variable: `block`
+  --> src/remote_stub.rs:34:9
+   |
+34 |     mut block: libc::c_int,
+   |         ^^^^^ help: if this is intentional, prefix it with an underscore: `_block`
+
+warning: unused variable: `id`
+  --> src/remote_stub.rs:45:9
+   |
+45 |     mut id: pid_t,
+   |         ^^ help: if this is intentional, prefix it with an underscore: `_id`
+
+warning: unused variable: `sig`
+  --> src/remote_stub.rs:46:9
+   |
+46 |     mut sig: libc::c_int,
+   |         ^^^ help: if this is intentional, prefix it with an underscore: `_sig`
+
+warning: unused variable: `a`
+   --> src/shuffle.rs:258:9
+    |
+258 |     mut a: *mut *mut libc::c_void,
+    |         ^ help: if this is intentional, prefix it with an underscore: `_a`
+
+warning: unused variable: `len`
+   --> src/shuffle.rs:259:9
+    |
+259 |     mut len: size_t,
+    |         ^^^ help: if this is intentional, prefix it with an underscore: `_len`
+
+warning: unused variable: `key`
+   --> src/strcache.rs:246:37
+    |
+246 | unsafe extern "C" fn str_hash_2(mut key: *const libc::c_void) -> libc::c_ulong {
+    |                                     ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: unused variable: `key`
+   --> src/variable.rs:488:13
+    |
+488 |     let mut key: *const variable = keyv as *const variable;
+    |             ^^^ help: if this is intentional, prefix it with an underscore: `_key`
+
+warning: `enter_file` redeclared with a different signature
+  --> src/commands.rs:91:5
+   |
+91 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:43:5
+   |
+43 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------ `enter_file` previously declared here
+   |
+   = note: `#[warn(clashing_extern_declarations)]` on by default
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut src::commands::file`
+
+warning: `enter_file` redeclared with a different signature
+  --> src/default.rs:10:5
+   |
+10 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:43:5
+   |
+43 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------ `enter_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut src::default::file`
+
+warning: `lookup_file` redeclared with a different signature
+  --> src/implicit.rs:71:5
+   |
+71 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:44:5
+   |
+44 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------- `lookup_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut implicit::file`
+
+warning: `enter_file` redeclared with a different signature
+  --> src/implicit.rs:72:5
+   |
+72 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:43:5
+   |
+43 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------ `enter_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut implicit::file`
+
+warning: `lookup_file` redeclared with a different signature
+   --> src/job.rs:115:5
+    |
+115 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:44:5
+    |
+44  |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ------------------------------------------------------- `lookup_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+               found `unsafe extern "C" fn(*const i8) -> *mut job::file`
+
+warning: `lookup_file` redeclared with a different signature
+  --> src/load.rs:40:5
+   |
+40 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:44:5
+   |
+44 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------- `lookup_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut load::file`
+
+warning: `allocated_variable_expand_for_file` redeclared with a different signature
+   --> src/loadapi.rs:9:5
+    |
+9   | /     fn allocated_variable_expand_for_file(
+10  | |         line: *const libc::c_char,
+11  | |         file: *mut file,
+12  | |     ) -> *mut libc::c_char;
+    | |___________________________^ this signature doesn't match the previous declaration
+    |
+   ::: src/function.rs:130:5
+    |
+130 | /     fn allocated_variable_expand_for_file(
+131 | |         line: *const libc::c_char,
+132 | |         file: *mut file,
+133 | |     ) -> *mut libc::c_char;
+    | |___________________________- `allocated_variable_expand_for_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8, *mut function::file) -> *mut i8`
+               found `unsafe extern "C" fn(*const i8, *mut loadapi::file) -> *mut i8`
+
+warning: `enter_file` redeclared with a different signature
+   --> src/main.rs:171:5
+    |
+171 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:43:5
+    |
+43  |     fn enter_file(name: *const libc::c_char) -> *mut file;
+    |     ------------------------------------------------------ `enter_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+               found `unsafe extern "C" fn(*const i8) -> *mut main::file`
+
+warning: `f_mtime` redeclared with a different signature
+   --> src/main.rs:172:5
+    |
+172 |     fn f_mtime(file: *mut file, search: libc::c_int) -> uintmax_t;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:45:5
+    |
+45  |     fn f_mtime(file: *mut file, search: libc::c_int) -> uintmax_t;
+    |     -------------------------------------------------------------- `f_mtime` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*mut ar::file, i32) -> u64`
+               found `unsafe extern "C" fn(*mut main::file, i32) -> u64`
+
+warning: `lookup_file` redeclared with a different signature
+   --> src/main.rs:175:5
+    |
+175 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:44:5
+    |
+44  |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ------------------------------------------------------- `lookup_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+               found `unsafe extern "C" fn(*const i8) -> *mut main::file`
+
+warning: `lookup_file` redeclared with a different signature
+   --> src/read.rs:114:5
+    |
+114 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:44:5
+    |
+44  |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+    |     ------------------------------------------------------- `lookup_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+               found `unsafe extern "C" fn(*const i8) -> *mut read::file`
+
+warning: `enter_file` redeclared with a different signature
+   --> src/read.rs:115:5
+    |
+115 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+    |
+   ::: src/ar.rs:43:5
+    |
+43  |     fn enter_file(name: *const libc::c_char) -> *mut file;
+    |     ------------------------------------------------------ `enter_file` previously declared here
+    |
+    = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+               found `unsafe extern "C" fn(*const i8) -> *mut read::file`
+
+warning: `lookup_file` redeclared with a different signature
+  --> src/remake.rs:90:5
+   |
+90 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:44:5
+   |
+44 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------- `lookup_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut remake::file`
+
+warning: `enter_file` redeclared with a different signature
+  --> src/remake.rs:91:5
+   |
+91 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:43:5
+   |
+43 |     fn enter_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------ `enter_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut remake::file`
+
+warning: `lookup_file` redeclared with a different signature
+  --> src/rule.rs:40:5
+   |
+40 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:44:5
+   |
+44 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------- `lookup_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut src::rule::file`
+
+warning: `lookup_file` redeclared with a different signature
+  --> src/vpath.rs:48:5
+   |
+48 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ this signature doesn't match the previous declaration
+   |
+  ::: src/ar.rs:44:5
+   |
+44 |     fn lookup_file(name: *const libc::c_char) -> *mut file;
+   |     ------------------------------------------------------- `lookup_file` previously declared here
+   |
+   = note: expected `unsafe extern "C" fn(*const i8) -> *mut ar::file`
+              found `unsafe extern "C" fn(*const i8) -> *mut src::vpath::file`
+
+warning: path statement with no effect
+  --> lib/findprog_in.rs:89:13
+   |
+89 |             p;
+   |             ^^
+   |
+   = note: `#[warn(path_statements)]` on by default
+
+warning: path statement with no effect
+   --> lib/findprog_in.rs:160:17
+    |
+160 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> lib/findprog_in.rs:188:13
+    |
+188 |             cp;
+    |             ^^^
+
+warning: path statement with no effect
+   --> lib/findprog_in.rs:295:17
+    |
+295 |                 i_0;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> src/ar.rs:429:21
+    |
+429 |                     p;
+    |                     ^^
+
+warning: path statement with no effect
+   --> src/ar.rs:443:9
+    |
+443 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/arscan.rs:149:9
+    |
+149 |         ptr;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/arscan.rs:192:9
+    |
+192 |         ptr;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/arscan.rs:521:21
+    |
+521 |                     clear;
+    |                     ^^^^^^
+
+warning: path statement with no effect
+   --> src/arscan.rs:535:17
+    |
+535 |                 member_offset;
+    |                 ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/commands.rs:652:9
+    |
+652 |         bar_len;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/commands.rs:656:9
+    |
+656 |         plus_len;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/commands.rs:907:29
+    |
+907 | ...                   b;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/commands.rs:914:21
+    |
+914 |                     end;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> src/commands.rs:955:17
+    |
+955 |                 p;
+    |                 ^^
+
+warning: path statement with no effect
+    --> src/commands.rs:1006:9
+     |
+1006 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/commands.rs:1022:9
+     |
+1022 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/commands.rs:1269:13
+     |
+1269 |             end;
+     |             ^^^^
+
+warning: path statement with no effect
+   --> src/default.rs:662:9
+    |
+662 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/default.rs:668:9
+    |
+668 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/dir.rs:269:9
+    |
+269 |         open_directories;
+    |         ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:551:13
+    |
+551 |             open_directories;
+    |             ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:660:9
+    |
+660 |         open_directories;
+    |         ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:708:5
+    |
+708 |     slash;
+    |     ^^^^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:897:29
+    |
+897 | ...                   im;
+    |                       ^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:900:29
+    |
+900 | ...                   f;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/dir.rs:904:21
+    |
+904 |                     files_slot;
+    |                     ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/dir.rs:973:9
+    |
+973 |         dir_slot;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:353:13
+    |
+353 |             ep;
+    |             ^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:520:33
+    |
+520 | ...                   count;
+    |                       ^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:530:29
+    |
+530 | ...                   p;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/expand.rs:624:37
+    |
+624 | ...                   ppercent;
+    |                       ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:628:41
+    |
+628 | ...                   rpercent;
+    |                       ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:634:37
+    |
+634 | ...                   pattern;
+    |                       ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:636:37
+    |
+636 | ...                   replace;
+    |                       ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/expand.rs:678:9
+    |
+678 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/file.rs:495:13
+    |
+495 |             name;
+    |             ^^^^^
+
+warning: path statement with no effect
+   --> src/file.rs:927:9
+    |
+927 |         file_slot;
+    |         ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/file.rs:946:9
+    |
+946 |         p;
+    |         ^^
+
+warning: path statement with no effect
+    --> src/file.rs:1091:21
+     |
+1091 |                     nperc;
+     |                     ^^^^^^
+
+warning: path statement with no effect
+    --> src/file.rs:1093:21
+     |
+1093 |                     cs;
+     |                     ^^^
+
+warning: path statement with no effect
+    --> src/file.rs:1694:9
+     |
+1694 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/file.rs:2273:13
+     |
+2273 |             fp;
+     |             ^^^
+
+warning: path statement with no effect
+   --> src/function.rs:758:9
+    |
+758 |         o;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/function.rs:773:9
+    |
+773 |         replace_percent;
+    |         ^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/function.rs:777:9
+    |
+777 |         pattern_percent;
+    |         ^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/function.rs:805:9
+    |
+805 |         e;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/function.rs:880:17
+    |
+880 |                 count;
+    |                 ^^^^^^
+
+warning: path statement with no effect
+   --> src/function.rs:883:17
+    |
+883 |                 count;
+    |                 ^^^^^^
+
+warning: path statement with no effect
+   --> src/function.rs:892:9
+    |
+892 |         ptr;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/function.rs:999:9
+    |
+999 |         o;
+    |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1134:13
+     |
+1134 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1139:17
+     |
+1139 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1162:9
+     |
+1162 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1194:13
+     |
+1194 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1227:9
+     |
+1227 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1273:9
+     |
+1273 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1337:9
+     |
+1337 |         i;
+     |         ^^
+
+warning: unused unary operation that must be used
+    --> src/function.rs:1354:9
+     |
+1354 |         *begpp;
+     |         ^^^^^^ the unary operation produces a value
+     |
+     = note: `#[warn(unused_must_use)]` on by default
+help: use `let _ = ...` to ignore the resulting value
+     |
+1354 |         let _ = *begpp;
+     |         +++++++
+
+warning: unused unary operation that must be used
+    --> src/function.rs:1362:9
+     |
+1362 |         *endpp;
+     |         ^^^^^^ the unary operation produces a value
+     |
+help: use `let _ = ...` to ignore the resulting value
+     |
+1362 |         let _ = *endpp;
+     |         +++++++
+
+warning: path statement with no effect
+    --> src/function.rs:1603:9
+     |
+1603 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1636:9
+     |
+1636 |         vp_next;
+     |         ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1642:13
+     |
+1642 |             list_iterator;
+     |             ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1660:13
+     |
+1660 |             vp_next;
+     |             ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1758:9
+     |
+1758 |         word_count;
+     |         ^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1774:9
+     |
+1774 |         pat_count;
+     |         ^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1789:13
+     |
+1789 |             cp;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1796:13
+     |
+1796 |             literals;
+     |             ^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1800:9
+     |
+1800 |         pp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1811:13
+     |
+1811 |             cp;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1817:9
+     |
+1817 |         wp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1852:13
+     |
+1852 |             wp;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1863:17
+     |
+1863 |                 wp;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1893:17
+     |
+1893 |                 wp;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1897:9
+     |
+1897 |         pp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1916:9
+     |
+1916 |         wp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/function.rs:1920:9
+     |
+1920 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1944:13
+     |
+1944 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1954:13
+     |
+1954 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1956:13
+     |
+1956 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:1971:9
+     |
+1971 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2046:9
+     |
+2046 |         t;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2048:9
+     |
+2048 |         wordi;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2063:9
+     |
+2063 |         t;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2104:13
+     |
+2104 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2107:9
+     |
+2107 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2142:9
+     |
+2142 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2149:9
+     |
+2149 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2236:9
+     |
+2236 |         argv;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2241:13
+     |
+2241 |             argv;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2310:9
+     |
+2310 |         argv;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2406:9
+     |
+2406 |         src;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2620:13
+     |
+2620 |             start;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2628:13
+     |
+2628 |             end;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2643:21
+     |
+2643 |                     dest;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2652:25
+     |
+2652 |                         dest;
+     |                         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2687:9
+     |
+2687 |         dest;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2764:9
+     |
+2764 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:2782:9
+     |
+2782 |         fn_0;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2786:13
+     |
+2786 |             fn_0;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:2830:9
+     |
+2830 |         command_count;
+     |         ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3048:9
+     |
+3048 |         o;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:3100:9
+     |
+3100 |         command_count;
+     |         ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3143:9
+     |
+3143 |         beg;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3154:17
+     |
+3154 |                 nargs;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3157:17
+     |
+3157 |                 count;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3168:9
+     |
+3168 |         end;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3201:13
+     |
+3201 |             nargs;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3213:13
+     |
+3213 |             argvp;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3229:13
+     |
+3229 |             nargs;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3242:13
+     |
+3242 |             argvp;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3252:13
+     |
+3252 |             argvp;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3285:13
+     |
+3285 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/function.rs:3337:9
+     |
+3337 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:3339:9
+     |
+3339 |         argv;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/function.rs:3354:9
+     |
+3354 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/function.rs:3389:9
+     |
+3389 |         e;
+     |         ^^
+
+warning: path statement with no effect
+   --> src/hash.rs:301:9
+    |
+301 |         vec;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/hash.rs:314:9
+    |
+314 |         vec;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/hash.rs:349:9
+    |
+349 |         slot;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> src/hash.rs:368:9
+    |
+368 |         slot;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> src/hash.rs:395:9
+    |
+395 |         ovp;
+    |         ^^^^
+
+warning: path statement with no effect
+   --> src/hash.rs:469:9
+    |
+469 |         slot;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:459:9
+    |
+459 |         p;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:497:37
+    |
+497 | ...                   count;
+    |                       ^^^^^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:505:37
+    |
+505 | ...                   p;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:509:33
+    |
+509 | ...                   p;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:528:13
+    |
+528 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:596:5
+    |
+596 |     depth;
+    |     ^^^^^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:757:53
+    |
+757 | ...                   nrules;
+    |                       ^^^^^^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:767:21
+    |
+767 |                     ti;
+    |                     ^^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:806:29
+    |
+806 | ...                   j;
+    |                       ^^
+
+warning: path statement with no effect
+   --> src/implicit.rs:811:17
+    |
+811 |                 ri;
+    |                 ^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1008:41
+     |
+1008 | ...                   deps_found;
+     |                       ^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1081:49
+     |
+1081 | ...                   cp_0;
+     |                       ^^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1094:53
+     |
+1094 | ...                   cp_0;
+     |                       ^^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1144:49
+     |
+1144 | ...                   deps_found;
+     |                       ^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1155:49
+     |
+1155 | ...                   p_0;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1512:17
+     |
+1512 |                 ri;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1519:13
+     |
+1519 |             intermed_ok;
+     |             ^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1713:21
+     |
+1713 |                     ri;
+     |                     ^^^
+
+warning: path statement with no effect
+    --> src/implicit.rs:1721:5
+     |
+1721 |     depth;
+     |     ^^^^^^
+
+warning: path statement with no effect
+   --> src/job.rs:644:9
+    |
+644 |         cp;
+    |         ^^^
+
+warning: path statement with no effect
+   --> src/job.rs:652:9
+    |
+652 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/job.rs:808:5
+    |
+808 |     dead_children;
+    |     ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/job.rs:849:13
+    |
+849 |             dead_children;
+    |             ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/job.rs:971:17
+    |
+971 |                 command_count;
+    |                 ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1023:29
+     |
+1023 | ...                   job_counter;
+     |                       ^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1275:5
+     |
+1275 |     jobserver_tokens;
+     |     ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1285:13
+     |
+1285 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/job.rs:1322:13
+     |
+1322 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/job.rs:1349:17
+     |
+1349 |                 p1;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1352:13
+     |
+1352 |             p1;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1420:13
+     |
+1420 |             commands_started;
+     |             ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1530:21
+     |
+1530 |                     job_counter;
+     |                     ^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1592:17
+     |
+1592 |                 job_slots_used;
+     |                 ^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1655:13
+     |
+1655 |             ref_0;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1703:29
+     |
+1703 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:1720:33
+     |
+1720 | ...                   in_0;
+     |                       ^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1731:33
+     |
+1731 | ...                   out;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1740:29
+     |
+1740 | ...                   count;
+     |                       ^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:1765:9
+     |
+1765 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/job.rs:1829:5
+     |
+1829 |     jobserver_tokens;
+     |     ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2302:53
+     |
+2302 | ...                   pp;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2350:57
+     |
+2350 | ...                   l_0;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2352:57
+     |
+2352 | ...                   pp_0;
+     |                       ^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2458:17
+     |
+2458 |                 argc;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2476:17
+     |
+2476 |                 argc;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2571:9
+     |
+2571 |         line;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2610:21
+     |
+2610 |                     cap;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2681:45
+     |
+2681 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2737:49
+     |
+2737 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2747:57
+     |
+2747 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2807:57
+     |
+2807 | ...                   j;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2818:53
+     |
+2818 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2830:33
+     |
+2830 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2842:45
+     |
+2842 | ...                   i;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/job.rs:2870:49
+     |
+2870 | ...                   j_0;
+     |                       ^^^^
+
+warning: path statement with no effect
+    --> src/job.rs:2920:21
+     |
+2920 |                     f;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/job.rs:3005:21
+     |
+3005 |                     a;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/job.rs:3047:9
+     |
+3047 |         cp;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/job.rs:3083:17
+     |
+3083 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/job.rs:3105:13
+     |
+3105 |             p;
+     |             ^^
+
+warning: path statement with no effect
+   --> src/load.rs:417:13
+    |
+417 |             fp;
+    |             ^^^
+
+warning: path statement with no effect
+   --> src/load.rs:460:13
+    |
+460 |             fp;
+    |             ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1347:9
+     |
+1347 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/main.rs:1408:13
+     |
+1408 |             name;
+     |             ^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1514:21
+     |
+1514 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/main.rs:1522:13
+     |
+1522 |             pp;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1621:9
+     |
+1621 |         cpp;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1865:13
+     |
+1865 |             program;
+     |             ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1947:13
+     |
+1947 |             ep;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1965:21
+     |
+1965 |                     ep;
+     |                     ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:1998:9
+     |
+1998 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/main.rs:2185:13
+     |
+2185 |             i_0;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2299:17
+     |
+2299 |                 len_0;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2302:13
+     |
+2302 |             len_0;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2309:13
+     |
+2309 |             len_0;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2429:13
+     |
+2429 |             i_1;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2498:13
+     |
+2498 |             i_2;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2513:13
+     |
+2513 |             i_2;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2696:13
+     |
+2696 |             p_1;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2720:13
+     |
+2720 |             p_2;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2764:13
+     |
+2764 |             num_mkfiles;
+     |             ^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:2990:21
+     |
+2990 |                     i_3;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3056:37
+     |
+3056 | ...                   av;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3109:41
+     |
+3109 | ...                   mfidx;
+     |                       ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3119:41
+     |
+3119 | ...                   av;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3185:37
+     |
+3185 | ...                   mfidx;
+     |                       ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3190:25
+     |
+3190 |                         av;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3192:25
+     |
+3192 |                         nv;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3224:17
+     |
+3224 |                 restarts;
+     |                 ^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3240:25
+     |
+3240 |                         p_3;
+     |                         ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3292:21
+     |
+3292 |                     p_4;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3350:13
+     |
+3350 |             p_5;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3528:9
+     |
+3528 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/main.rs:3540:9
+     |
+3540 |         c;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/main.rs:3809:53
+     |
+3809 | ...                   k;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/main.rs:3882:37
+     |
+3882 | ...                   cp;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:3958:21
+     |
+3958 |                     cs;
+     |                     ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:4010:9
+     |
+4010 |         value;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:4044:13
+     |
+4044 |             value;
+     |             ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:4056:17
+     |
+4056 |                 value;
+     |                 ^^^^^^
+
+warning: path statement with no effect
+    --> src/main.rs:4448:29
+     |
+4448 | ...                   i;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/main.rs:4458:9
+     |
+4458 |         cs;
+     |         ^^^
+
+warning: path statement with no effect
+    --> src/main.rs:4591:9
+     |
+4591 |         flagstring;
+     |         ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/misc.rs:346:17
+    |
+346 |                 i;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/misc.rs:349:13
+    |
+349 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/misc.rs:369:17
+    |
+369 |                 in_0;
+    |                 ^^^^^
+
+warning: path statement with no effect
+   --> src/misc.rs:381:21
+    |
+381 |                     out;
+    |                     ^^^^
+
+warning: path statement with no effect
+   --> src/misc.rs:543:9
+    |
+543 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/misc.rs:553:9
+    |
+553 |         s;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/misc.rs:739:13
+    |
+739 |             tp;
+    |             ^^^
+
+warning: path statement with no effect
+   --> src/posixos.rs:711:9
+    |
+711 |         tokens;
+    |         ^^^^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:688:13
+    |
+688 |             num_makefiles;
+    |             ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:690:13
+    |
+690 |             makefiles;
+    |             ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:703:13
+    |
+703 |             p_0;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:722:17
+    |
+722 |                 p_0;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:878:17
+    |
+878 |                 dir;
+    |                 ^^^^
+
+warning: path statement with no effect
+   --> src/read.rs:987:9
+    |
+987 |         line;
+    |         ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:1235:13
+     |
+1235 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:1299:17
+     |
+1299 |                 p2;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/read.rs:1870:45
+     |
+1870 | ...                   colonp;
+     |                       ^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:1984:41
+     |
+1984 | ...                   p2;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/read.rs:1989:45
+     |
+1989 | ...                   p2;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2083:49
+     |
+2083 | ...                   p2;
+     |                       ^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2246:9
+     |
+2246 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:2324:9
+     |
+2324 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:2368:17
+     |
+2368 |                 nlevels;
+     |                 ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2534:9
+     |
+2534 |         line;
+     |         ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2613:17
+     |
+2613 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:2701:13
+     |
+2701 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:2718:17
+     |
+2718 |                 p_0;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2754:25
+     |
+2754 |                         count;
+     |                         ^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2757:25
+     |
+2757 |                         count;
+     |                         ^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2764:21
+     |
+2764 |                     line;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2771:21
+     |
+2771 |                     line;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2789:21
+     |
+2789 |                     p_1;
+     |                     ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2815:21
+     |
+2815 |                     line;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2835:25
+     |
+2835 |                         count_0;
+     |                         ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2841:25
+     |
+2841 |                         count_0;
+     |                         ^^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2844:21
+     |
+2844 |                     line;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2848:17
+     |
+2848 |                 line;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2854:21
+     |
+2854 |                     line;
+     |                     ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2868:17
+     |
+2868 |                 line;
+     |                 ^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:2904:9
+     |
+2904 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3359:13
+     |
+3359 |             c;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3399:13
+     |
+3399 |             c;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3634:13
+     |
+3634 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3659:25
+     |
+3659 |                         pcount;
+     |                         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:3664:29
+     |
+3664 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3669:21
+     |
+3669 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3680:17
+     |
+3680 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3683:13
+     |
+3683 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3726:17
+     |
+3726 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3729:13
+     |
+3729 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3764:17
+     |
+3764 |                 e;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3831:13
+     |
+3831 |             i;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3834:9
+     |
+3834 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3898:9
+     |
+3898 |         eol;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:3940:13
+     |
+3940 |             nlines;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:3945:17
+     |
+3945 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:3960:17
+     |
+3960 |                 p2;
+     |                 ^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4008:9
+     |
+4008 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4030:17
+     |
+4030 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4034:17
+     |
+4034 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4037:21
+     |
+4037 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4050:17
+     |
+4050 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4055:21
+     |
+4055 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4066:17
+     |
+4066 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4119:45
+     |
+4119 | ...                   count;
+     |                       ^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4127:45
+     |
+4127 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4131:41
+     |
+4131 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4146:33
+     |
+4146 | ...                   p;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4163:13
+     |
+4163 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4204:13
+     |
+4204 |             idx;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4206:13
+     |
+4206 |             cpp;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4254:25
+     |
+4254 |                         len;
+     |                         ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4293:21
+     |
+4293 |                     len_0;
+     |                     ^^^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4304:13
+     |
+4304 |             cpp;
+     |             ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4328:9
+     |
+4328 |         cpp;
+     |         ^^^^
+
+warning: path statement with no effect
+    --> src/read.rs:4472:13
+     |
+4472 |             p;
+     |             ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4505:25
+     |
+4505 |                         s;
+     |                         ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4538:29
+     |
+4538 | ...                   e;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4546:29
+     |
+4546 | ...                   e;
+     |                       ^^
+
+warning: path statement with no effect
+    --> src/read.rs:4738:21
+     |
+4738 |                     i;
+     |                     ^^
+
+warning: path statement with no effect
+   --> src/remake.rs:468:5
+    |
+468 |     considered;
+    |     ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/remake.rs:624:13
+    |
+624 |             considered;
+    |             ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/remake.rs:911:5
+    |
+911 |     depth;
+    |     ^^^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:1255:5
+     |
+1255 |     depth;
+     |     ^^^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:1628:17
+     |
+1628 |                 i;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/remake.rs:1640:21
+     |
+1640 |                     commands_started;
+     |                     ^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:1664:17
+     |
+1664 |                 i_0;
+     |                 ^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:2571:25
+     |
+2571 |                         std_dirs;
+     |                         ^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:2573:25
+     |
+2573 |                         dp;
+     |                         ^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:2612:21
+     |
+2612 |                     vpath_index_0;
+     |                     ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/remake.rs:2614:21
+     |
+2614 |                     dp;
+     |                     ^^^
+
+warning: path statement with no effect
+   --> src/rule.rs:340:13
+    |
+340 |             k;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/rule.rs:376:13
+    |
+376 |             k;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/rule.rs:496:17
+    |
+496 |                 d;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/rule.rs:503:9
+    |
+503 |         pre_deps;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/rule.rs:514:9
+    |
+514 |         num_pattern_rules;
+    |         ^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/rule.rs:533:13
+    |
+533 |             ndeps;
+    |             ^^^^^^
+
+warning: path statement with no effect
+   --> src/rule.rs:543:21
+    |
+543 |                     p;
+    |                     ^^
+
+warning: path statement with no effect
+   --> src/rule.rs:861:17
+    |
+861 |                 j;
+    |                 ^^
+
+warning: path statement with no effect
+   --> src/rule.rs:931:13
+    |
+931 |             i;
+    |             ^^
+
+warning: unused unary operation that must be used
+   --> src/rule.rs:976:5
+    |
+976 |     *fresh7;
+    |     ^^^^^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+976 |     let _ = *fresh7;
+    |     +++++++
+
+warning: unused unary operation that must be used
+    --> src/rule.rs:1052:9
+     |
+1052 |         *fresh8;
+     |         ^^^^^^^ the unary operation produces a value
+     |
+help: use `let _ = ...` to ignore the resulting value
+     |
+1052 |         let _ = *fresh8;
+     |         +++++++
+
+warning: path statement with no effect
+    --> src/rule.rs:1054:9
+     |
+1054 |         i;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/rule.rs:1086:9
+     |
+1086 |         rules;
+     |         ^^^^^^
+
+warning: path statement with no effect
+    --> src/rule.rs:1091:13
+     |
+1091 |             terminal;
+     |             ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/shuffle.rs:234:9
+    |
+234 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/shuffle.rs:254:9
+    |
+254 |         i;
+    |         ^^
+
+warning: path statement with no effect
+   --> src/shuffle.rs:272:9
+    |
+272 |         ndeps;
+    |         ^^^^^^
+
+warning: path statement with no effect
+   --> src/shuffle.rs:287:9
+    |
+287 |         dp;
+    |         ^^^
+
+warning: path statement with no effect
+   --> src/shuffle.rs:296:9
+    |
+296 |         dp;
+    |         ^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:144:5
+    |
+144 |     total_buffers;
+    |     ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:176:5
+    |
+176 |     total_strings;
+    |     ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:290:5
+    |
+290 |     total_adds;
+    |     ^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:413:9
+    |
+413 |         numbuffs;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:431:9
+    |
+431 |         numbuffs;
+    |         ^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/strcache.rs:433:9
+    |
+433 |         fullbuffs;
+    |         ^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/variable.rs:626:9
+    |
+626 |         variable_changenum;
+    |         ^^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/variable.rs:644:9
+    |
+644 |         name;
+    |         ^^^^^
+
+warning: path statement with no effect
+   --> src/variable.rs:657:13
+    |
+657 |             name;
+    |             ^^^^^
+
+warning: path statement with no effect
+   --> src/variable.rs:728:17
+    |
+728 |                 variable_changenum;
+    |                 ^^^^^^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+   --> src/variable.rs:792:13
+    |
+792 |             vp;
+    |             ^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1085:9
+     |
+1085 |         from_var_slot;
+     |         ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1413:9
+     |
+1413 |         env_recursion;
+     |         ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1475:13
+     |
+1475 |             v_slot;
+     |             ^^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1666:9
+     |
+1666 |         v_slot;
+     |         ^^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1696:9
+     |
+1696 |         env_recursion;
+     |         ^^^^^^^^^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1972:9
+     |
+1972 |         p;
+     |         ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:1998:17
+     |
+1998 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2057:25
+     |
+2057 |                         p;
+     |                         ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2077:25
+     |
+2077 |                         p;
+     |                         ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2097:25
+     |
+2097 |                         p;
+     |                         ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2135:21
+     |
+2135 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2140:25
+     |
+2140 |                         count;
+     |                         ^^^^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2143:21
+     |
+2143 |                     p;
+     |                     ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2238:13
+     |
+2238 |             dp;
+     |             ^^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2370:17
+     |
+2370 |                 p;
+     |                 ^^
+
+warning: path statement with no effect
+    --> src/variable.rs:2453:9
+     |
+2453 |         rules;
+     |         ^^^^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:346:9
+    |
+346 |         dirpath;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:358:13
+    |
+358 |             maxelem;
+    |             ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:377:13
+    |
+377 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:384:13
+    |
+384 |             len;
+    |             ^^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:400:13
+    |
+400 |             p;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:449:13
+    |
+449 |             gp;
+    |             ^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:628:9
+    |
+628 |         i;
+    |         ^^
+
+warning: unused unary operation that must be used
+   --> src/vpath.rs:664:13
+    |
+664 |             *vpath_index;
+    |             ^^^^^^^^^^^^ the unary operation produces a value
+    |
+help: use `let _ = ...` to ignore the resulting value
+    |
+664 |             let _ = *vpath_index;
+    |             +++++++
+
+warning: path statement with no effect
+   --> src/vpath.rs:697:9
+    |
+697 |         nvpaths;
+    |         ^^^^^^^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:714:13
+    |
+714 |             i;
+    |             ^^
+
+warning: path statement with no effect
+   --> src/vpath.rs:772:13
+    |
+772 |             i_0;
+    |             ^^^^
+
+warning: `c2rust_out` (lib) generated 496 warnings
+    Finished dev [unoptimized + debuginfo] target(s) in 2.16s

@@ -1,204 +1,204 @@
 {
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_debug.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_debug.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_fork.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_fork.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_attr.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_attr.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_pqueue.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_pqueue.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_lib.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_lib.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_uctx.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_uctx.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_data.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_data.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_ring.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_ring.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_msg.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_msg.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_std.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_std.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_sfio.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_sfio.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_philo.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_common.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_philo.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_common.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_httpd.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_common.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_httpd.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_common.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_mp.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_common.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_mp.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_common.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_ext.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_ext.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_syscall.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_syscall.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_misc.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_misc.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_errno.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_errno.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_uctx.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_uctx.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_sig.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_sig.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_common.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_common.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_common.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_common.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_clean.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_clean.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_sync.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_sync.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_time.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_time.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/test_select.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/test_select.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_compat.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_compat.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_string.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_string.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_util.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_util.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_mctx.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_mctx.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_cancel.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_cancel.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_high.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_high.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_tcb.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_tcb.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_event.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_event.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ],
-    "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_sched.c": [
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_p.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_vers.c",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acdef.h",
-        "/home/c2rust/Desktop/c_prog/pth-2.0.7/pth_acmac.h"
+    "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_sched.c": [
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_p.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_vers.c",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acdef.h",
+        "/home/c2rust/Desktop/project/c_prog/pth-2.0.7/pth_acmac.h"
     ]
 }

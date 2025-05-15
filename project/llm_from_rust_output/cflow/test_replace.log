@@ -1,0 +1,1592 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/cflow)
+error: mismatched closing delimiter: `}`
+  --> gnu/getopt.rs:60:26
+   |
+59 |             for i in 0..len {
+   |                             - closing delimiter possibly meant for this
+60 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                          ^ unclosed delimiter
+61 |             }
+   |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> gnu/getopt.rs:60:26
+   |
+60 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                          ^ unclosed delimiter                                          ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> gnu/getopt.rs:61:13
+   |
+61 |             }
+   |             ^ expected expression
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found keyword `as`
+   --> gnu/printf_parse.rs:170:27
+    |
+170 |                     b'\'' as i8 => {
+    |                           ^^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error: expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`, found keyword `as`
+   --> gnu/printf_parse.rs:330:26
+    |
+330 |                     b'h' as i8 => {
+    |                          ^^ expected one of `...`, `..=`, `..`, `=>`, `if`, or `|`
+
+error: this file contains an unclosed delimiter
+   --> gnu/vasnprintf.rs:540:47
+    |
+135 | ) -> Option<CString> {
+    |                      - unclosed delimiter
+136 |     unsafe {
+    |            - unclosed delimiter
+...
+205 |         while i < d.count {
+    |                           - unclosed delimiter
+...
+304 |             } else {
+    |                    - unclosed delimiter
+...
+329 |                 } else {
+    |                        - unclosed delimiter
+...
+481 |                     loop {
+    |                          - unclosed delimiter
+...
+535 |                         } else if retcount < 0 {
+    |                                                - unclosed delimiter
+...
+540 |                             if !(bigger_need >
+    |                                 -             ^
+    |                                 |
+    |                                 unclosed delimiter
+
+error: expected expression, found `)`
+   --> gnu/vasnprintf.rs:540:47
+    |
+540 | ...                   if !(bigger_need >
+    |                                         ^ expected expression
+
+error: expected `{`, found `}`
+   --> gnu/vasnprintf.rs:540:47
+    |
+540 | ...                   if !(bigger_need >
+    |                                         ^ expected `{`
+    |
+note: the `if` expression is missing a block after this condition
+   --> gnu/vasnprintf.rs:540:32
+    |
+540 | ...                   if !(bigger_need >
+    |                          ^^^^^^^^^^^^^^^
+
+error: this trait cannot be derived for unions
+  --> gnu/printf_parse.rs:34:10
+   |
+34 | #[derive(Debug, Clone)]
+   |          ^^^^^
+
+error: this trait cannot be derived for unions
+  --> src/parser.rs:77:10
+   |
+77 | #[derive(Debug, Clone, Copy)]
+   |          ^^^^^
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> gnu/argp_help.rs:128:5
+    |
+128 | /     ...
+129 | | ) {
+    | |_
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> gnu/argp_help.rs:139:5
+    |
+139 | /     ...
+140 | | ) {
+    | |_
+
+error[E0433]: failed to resolve: use of undeclared crate or module `once_cell`
+  --> gnu/argp_version_etc.rs:18:32
+   |
+18 | static PROGRAM_CANONICAL_NAME: once_cell::sync::OnceCell<&'static CStr> = once_cell::sync::OnceCell::new();
+   |                                ^^^^^^^^^ use of undeclared crate or module `once_cell`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `once_cell`
+  --> gnu/argp_version_etc.rs:19:25
+   |
+19 | static PROGRAM_AUTHORS: once_cell::sync::OnceCell<&'static [&'static CStr]> = once_cell::sync::OnceCell::new();
+   |                         ^^^^^^^^^ use of undeclared crate or module `once_cell`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `gettextrs`
+ --> gnu/xalloc_die.rs:4:15
+  |
+4 |     let msg = gettextrs::gettext("memory exhausted");
+  |               ^^^^^^^^^ use of undeclared crate or module `gettextrs`
+
+error[E0530]: let bindings cannot shadow statics
+   --> src/parser.rs:392:13
+    |
+190 | static mut level: c_int = 0;
+    | ---------------------------- the static `level` is defined here
+...
+392 |     let mut level = 0;
+    |             ^^^^^ cannot be named the same as a static
+
+error[E0412]: cannot find type `c_ushort` in this scope
+   --> gnu/argp_parse.rs:271:39
+    |
+271 |     fn __ctype_b_loc() -> *mut *const c_ushort;
+    |                                       ^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use core::ffi::c_ushort;
+    |
+1   | use libc::c_ushort;
+    |
+1   | use std::ffi::c_ushort;
+    |
+1   | use std::os::raw::c_ushort;
+    |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `once_cell`
+  --> gnu/argp_version_etc.rs:18:92
+   |
+18 | static PROGRAM_CANONICAL_NAME: once_cell::sync::OnceCell<&'static CStr> = once_cell::sync::OnceCell::new();
+   |                                                                                            ^^^^^^^^ not found in `once_cell::sync`
+   |
+help: consider importing one of these items
+   |
+1  | use core::cell::OnceCell;
+   |
+1  | use std::cell::OnceCell;
+   |
+help: if you import `OnceCell`, refer to it directly
+   |
+18 - static PROGRAM_CANONICAL_NAME: once_cell::sync::OnceCell<&'static CStr> = once_cell::sync::OnceCell::new();
+18 + static PROGRAM_CANONICAL_NAME: once_cell::sync::OnceCell<&'static CStr> = OnceCell::new();
+   |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `once_cell`
+  --> gnu/argp_version_etc.rs:19:96
+   |
+19 | static PROGRAM_AUTHORS: once_cell::sync::OnceCell<&'static [&'static CStr]> = once_cell::sync::OnceCell::new();
+   |                                                                                                ^^^^^^^^ not found in `once_cell::sync`
+   |
+help: consider importing one of these items
+   |
+1  | use core::cell::OnceCell;
+   |
+1  | use std::cell::OnceCell;
+   |
+help: if you import `OnceCell`, refer to it directly
+   |
+19 - static PROGRAM_AUTHORS: once_cell::sync::OnceCell<&'static [&'static CStr]> = once_cell::sync::OnceCell::new();
+19 + static PROGRAM_AUTHORS: once_cell::sync::OnceCell<&'static [&'static CStr]> = OnceCell::new();
+   |
+
+error[E0412]: cannot find type `FILE` in module `std::io`
+  --> gnu/argp_xinl.rs:32:35
+   |
+32 |     pub err_stream: *mut std::io::FILE,
+   |                                   ^^^^ not found in `std::io`
+   |
+help: consider importing one of these items
+   |
+1  | use crate::gnu::argp_parse::FILE;
+   |
+1  | use crate::gnu::argp_version_etc::FILE;
+   |
+1  | use crate::src::parser::FILE;
+   |
+1  | use libc::FILE;
+   |
+help: if you import `FILE`, refer to it directly
+   |
+32 -     pub err_stream: *mut std::io::FILE,
+32 +     pub err_stream: *mut FILE,
+   |
+
+error[E0412]: cannot find type `FILE` in module `std::io`
+  --> gnu/argp_xinl.rs:33:35
+   |
+33 |     pub out_stream: *mut std::io::FILE,
+   |                                   ^^^^ not found in `std::io`
+   |
+help: consider importing one of these items
+   |
+1  | use crate::gnu::argp_parse::FILE;
+   |
+1  | use crate::gnu::argp_version_etc::FILE;
+   |
+1  | use crate::src::parser::FILE;
+   |
+1  | use libc::FILE;
+   |
+help: if you import `FILE`, refer to it directly
+   |
+33 -     pub out_stream: *mut std::io::FILE,
+33 +     pub out_stream: *mut FILE,
+   |
+
+error[E0412]: cannot find type `FILE` in module `std::io`
+  --> gnu/argp_xinl.rs:79:71
+   |
+79 |     fn argp_state_help(state: *const ArgpState, stream: *mut std::io::FILE, flags: c_uint);
+   |                                                                       ^^^^ not found in `std::io`
+   |
+help: consider importing one of these items
+   |
+1  | use crate::gnu::argp_parse::FILE;
+   |
+1  | use crate::gnu::argp_version_etc::FILE;
+   |
+1  | use crate::src::parser::FILE;
+   |
+1  | use libc::FILE;
+   |
+help: if you import `FILE`, refer to it directly
+   |
+79 -     fn argp_state_help(state: *const ArgpState, stream: *mut std::io::FILE, flags: c_uint);
+79 +     fn argp_state_help(state: *const ArgpState, stream: *mut FILE, flags: c_uint);
+   |
+
+error[E0412]: cannot find type `f128` in this scope
+  --> gnu/vasnprintf.rs:40:23
+   |
+40 |     pub a_longdouble: f128,
+   |                       ^^^^ help: a builtin type with a similar name exists: `i128`
+
+error[E0425]: cannot find function `printf_parse` in this scope
+   --> gnu/vasnprintf.rs:148:12
+    |
+148 |         if printf_parse(format.as_ptr(), &mut d, &mut a) < 0 {
+    |            ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use crate::gnu::printf_parse::printf_parse;
+    |
+
+error[E0425]: cannot find function `printf_fetchargs` in this scope
+   --> gnu/vasnprintf.rs:152:12
+    |
+152 |         if printf_fetchargs(args, &mut a) < 0 {
+    |            ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use crate::gnu::printf_args::printf_fetchargs;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:153:13
+    |
+153 |             free(d.dir as *mut c_void);
+    |             ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:155:17
+    |
+155 |                 free(a.arg as *mut c_void);
+    |                 ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `__errno_location` in this scope
+   --> gnu/vasnprintf.rs:157:14
+    |
+157 |             *__errno_location() = 22;
+    |              ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::__errno_location;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:175:17
+    |
+175 |                 free(d.dir as *mut c_void);
+    |                 ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:177:21
+    |
+177 |                     free(a.arg as *mut c_void);
+    |                     ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `__errno_location` in this scope
+   --> gnu/vasnprintf.rs:179:18
+    |
+179 |                 *__errno_location() = 12;
+    |                  ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::__errno_location;
+    |
+
+error[E0425]: cannot find function `malloc` in this scope
+   --> gnu/vasnprintf.rs:182:23
+    |
+182 |             let buf = malloc(buf_memsize) as *mut c_char;
+    |                       ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::malloc;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:184:17
+    |
+184 |                 free(d.dir as *mut c_void);
+    |                 ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `free` in this scope
+   --> gnu/vasnprintf.rs:186:21
+    |
+186 |                     free(a.arg as *mut c_void);
+    |                     ^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::free;
+    |
+
+error[E0425]: cannot find function `__errno_location` in this scope
+   --> gnu/vasnprintf.rs:188:18
+    |
+188 |                 *__errno_location() = 12;
+    |                  ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::__errno_location;
+    |
+
+error[E0425]: cannot find function `malloc` in this scope
+   --> gnu/vasnprintf.rs:229:25
+    |
+229 |                         malloc(memory_size) as *mut c_char
+    |                         ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::malloc;
+    |
+
+error[E0425]: cannot find function `realloc` in this scope
+   --> gnu/vasnprintf.rs:231:25
+    |
+231 |                         realloc(result as *mut c_void, memory_size) as *mut c_char
+    |                         ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::realloc;
+    |
+1   | use std::alloc::realloc;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:239:25
+    |
+239 |                         memcpy(
+    |                         ^^^^^^
+    |
+help: a local variable with a similar name exists
+    |
+239 |                         memory(
+    |                         ~~~~~~
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:249:21
+    |
+249 |                     memcpy(
+    |                     ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:260:21
+    |
+260 |                     abort();
+    |                     ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `malloc` in this scope
+   --> gnu/vasnprintf.rs:281:25
+    |
+281 |                         malloc(memory_size) as *mut c_char
+    |                         ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::malloc;
+    |
+
+error[E0425]: cannot find function `realloc` in this scope
+   --> gnu/vasnprintf.rs:283:25
+    |
+283 |                         realloc(result as *mut c_void, memory_size) as *mut c_char
+    |                         ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::realloc;
+    |
+1   | use std::alloc::realloc;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:291:25
+    |
+291 |                         memcpy(
+    |                         ^^^^^^
+    |
+help: a local variable with a similar name exists
+    |
+291 |                         memory(
+    |                         ~~~~~~
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:306:21
+    |
+306 |                     abort();
+    |                     ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:327:30
+    |
+327 |                         _ => abort(),
+    |                              ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:380:29
+    |
+380 | ...                   memcpy(
+    |                       ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:392:29
+    |
+392 | ...                   memcpy(
+    |                       ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:426:29
+    |
+426 | ...                   abort();
+    |                       ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:435:29
+    |
+435 | ...                   abort();
+    |                       ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `malloc` in this scope
+   --> gnu/vasnprintf.rs:458:29
+    |
+458 | ...                   malloc(memory_size) as *mut c_char
+    |                       ^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::malloc;
+    |
+
+error[E0425]: cannot find function `realloc` in this scope
+   --> gnu/vasnprintf.rs:460:29
+    |
+460 | ...                   realloc(result as *mut c_void, memory_size) as *mut c_char
+    |                       ^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::realloc;
+    |
+1   | use std::alloc::realloc;
+    |
+
+error[E0425]: cannot find function `memcpy` in this scope
+   --> gnu/vasnprintf.rs:468:29
+    |
+468 | ...                   memcpy(
+    |                       ^^^^^^
+    |
+help: a local variable with a similar name exists
+    |
+468 |                             memory(
+    |                             ~~~~~~
+help: consider importing this function
+    |
+1   | use libc::memcpy;
+    |
+
+error[E0425]: cannot find function `snprintf` in this scope
+   --> gnu/vasnprintf.rs:494:42
+    |
+494 | ...                   0 => snprintf(
+    |                            ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::snprintf;
+    |
+
+error[E0425]: cannot find function `snprintf` in this scope
+   --> gnu/vasnprintf.rs:501:42
+    |
+501 | ...                   1 => snprintf(
+    |                            ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::snprintf;
+    |
+
+error[E0425]: cannot find function `snprintf` in this scope
+   --> gnu/vasnprintf.rs:509:42
+    |
+509 | ...                   2 => snprintf(
+    |                            ^^^^^^^^ not found in this scope
+    |
+help: consider importing this function
+    |
+1   | use libc::snprintf;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:518:42
+    |
+518 | ...                   _ => abort(),
+    |                            ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:522:34
+    |
+522 | ...                   _ => abort(),
+    |                            ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find function `abort` in this scope
+   --> gnu/vasnprintf.rs:527:33
+    |
+527 | ...                   abort();
+    |                       ^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use libc::abort;
+    |
+1   | use std::process::abort;
+    |
+
+error[E0425]: cannot find value `PRINT_LINE_NUMBERS` in this scope
+  --> src/output.rs:89:16
+   |
+89 |             if PRINT_LINE_NUMBERS != 0 {
+   |                ^^^^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::main::PRINT_LINE_NUMBERS` exists but is inaccessible
+  --> src/main.rs:77:1
+   |
+77 | static mut PRINT_LINE_NUMBERS: c_int = 0;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PRINT_LEVELS` in this scope
+  --> src/output.rs:92:16
+   |
+92 |             if PRINT_LEVELS != 0 {
+   |                ^^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::main::PRINT_LEVELS` exists but is inaccessible
+  --> src/main.rs:78:1
+   |
+78 | static mut PRINT_LEVELS: c_int = 0;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `LEVEL_BEGIN` in this scope
+  --> src/output.rs:95:32
+   |
+95 |             write!(file, "{}", LEVEL_BEGIN).unwrap();
+   |                                ^^^^^^^^^^^ not found in this scope
+   |
+note: static `crate::src::main::LEVEL_BEGIN` exists but is inaccessible
+  --> src/main.rs:89:1
+   |
+89 | static mut LEVEL_BEGIN: *mut c_char = ptr::null_mut();
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `LEVEL_INDENT` in this scope
+   --> src/output.rs:100:21
+    |
+100 |                     LEVEL_INDENT[LEVEL_MARK[i as usize] as usize]
+    |                     ^^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::LEVEL_INDENT` exists but is inaccessible
+   --> src/main.rs:87:1
+    |
+87  | static mut LEVEL_INDENT: [*mut c_char; 2] = [ptr::null_mut(); 2];
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `LEVEL_END` in this scope
+   --> src/output.rs:103:32
+    |
+103 |             write!(file, "{}", LEVEL_END[last as usize]).unwrap();
+    |                                ^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::LEVEL_END` exists but is inaccessible
+   --> src/main.rs:88:1
+    |
+88  | static mut LEVEL_END: [*mut c_char; 2] = [ptr::null_mut(); 2];
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0422]: cannot find struct, variant or union type `OutputSymbol` in this scope
+   --> src/output.rs:184:30
+    |
+184 |             let mut output = OutputSymbol {
+    |                              ^^^^^^^^^^^^ not found in this scope
+    |
+help: consider importing one of these items
+    |
+1   | use crate::src::gnu::OutputSymbol;
+    |
+1   | use crate::src::posix::OutputSymbol;
+    |
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:207:8
+    |
+207 |     if include_symbol(sym) {
+    |        ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::main::include_symbol` exists but is inaccessible
+   --> src/main.rs:106:1
+    |
+106 | unsafe extern "C" fn include_symbol(sym: *mut Symbol) -> c_int {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:275:5
+    |
+275 |     include_symbol(sym)
+    |     ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::main::include_symbol` exists but is inaccessible
+   --> src/main.rs:106:1
+    |
+106 | unsafe extern "C" fn include_symbol(sym: *mut Symbol) -> c_int {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:284:13
+    |
+284 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |             ^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::MAX_DEPTH` exists but is inaccessible
+   --> src/main.rs:82:1
+    |
+82  | static mut MAX_DEPTH: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:284:38
+    |
+284 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |                                      ^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::MAX_DEPTH` exists but is inaccessible
+   --> src/main.rs:82:1
+    |
+82  | static mut MAX_DEPTH: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:285:13
+    |
+285 |         || !include_symbol(sym)
+    |             ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::main::include_symbol` exists but is inaccessible
+   --> src/main.rs:106:1
+    |
+106 | unsafe extern "C" fn include_symbol(sym: *mut Symbol) -> c_int {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:305:13
+    |
+305 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |             ^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::MAX_DEPTH` exists but is inaccessible
+   --> src/main.rs:82:1
+    |
+82  | static mut MAX_DEPTH: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `MAX_DEPTH` in this scope
+   --> src/output.rs:305:38
+    |
+305 |         || (MAX_DEPTH != 0 && lev >= MAX_DEPTH)
+    |                                      ^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::MAX_DEPTH` exists but is inaccessible
+   --> src/main.rs:82:1
+    |
+82  | static mut MAX_DEPTH: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `include_symbol` in this scope
+   --> src/output.rs:306:13
+    |
+306 |         || !include_symbol(sym)
+    |             ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::src::main::include_symbol` exists but is inaccessible
+   --> src/main.rs:106:1
+    |
+106 | unsafe extern "C" fn include_symbol(sym: *mut Symbol) -> c_int {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `REVERSE_TREE` in this scope
+   --> src/output.rs:356:8
+    |
+356 |     if REVERSE_TREE != 0 {
+    |        ^^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::REVERSE_TREE` exists but is inaccessible
+   --> src/main.rs:81:1
+    |
+81  | static mut REVERSE_TREE: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `START_NAME` in this scope
+   --> src/output.rs:362:71
+    |
+362 |         if let Some(main_sym) = symbols.iter_mut().find(|s| s.name == START_NAME) {
+    |                                                                       ^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::START_NAME` exists but is inaccessible
+   --> src/main.rs:91:1
+    |
+91  | static mut START_NAME: *mut c_char = ptr::null_mut();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `OUTNAME` in this scope
+   --> src/output.rs:379:12
+    |
+379 |         if OUTNAME == "-" {
+    |            ^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::OUTNAME` exists but is inaccessible
+   --> src/main.rs:71:1
+    |
+71  | static mut OUTNAME: *mut c_char = ptr::null_mut();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `OUTNAME` in this scope
+   --> src/output.rs:382:41
+    |
+382 |             OUTFILE = Some(File::create(OUTNAME)?);
+    |                                         ^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::OUTNAME` exists but is inaccessible
+   --> src/main.rs:71:1
+    |
+71  | static mut OUTNAME: *mut c_char = ptr::null_mut();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PRINT_OPTION` in this scope
+   --> src/output.rs:386:12
+    |
+386 |         if PRINT_OPTION & 0x1 != 0 {
+    |            ^^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::PRINT_OPTION` exists but is inaccessible
+   --> src/main.rs:72:1
+    |
+72  | static mut PRINT_OPTION: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `collect_symbols` in this scope
+   --> src/output.rs:387:30
+    |
+202 | fn compare_symbols(a: &Symbol, b: &Symbol) -> Ordering {
+    | ------------------------------------------------------ similarly named function `compare_symbols` defined here
+...
+387 |             xref_output(&mut collect_symbols(is_var));
+    |                              ^^^^^^^^^^^^^^^ help: a function with a similar name exists: `compare_symbols`
+
+error[E0425]: cannot find value `PRINT_OPTION` in this scope
+   --> src/output.rs:389:12
+    |
+389 |         if PRINT_OPTION & 0x2 != 0 {
+    |            ^^^^^^^^^^^^ not found in this scope
+    |
+note: static `crate::src::main::PRINT_OPTION` exists but is inaccessible
+   --> src/main.rs:72:1
+    |
+72  | static mut PRINT_OPTION: c_int = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `collect_functions` in this scope
+   --> src/output.rs:390:30
+    |
+390 |             tree_output(&mut collect_functions());
+    |                              ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `c_ushort` in this scope
+  --> src/parser.rs:27:18
+   |
+27 |     _cur_column: c_ushort,
+   |                  ^^^^^^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::ffi::c_ushort;
+   |
+1  | use libc::c_ushort;
+   |
+1  | use std::ffi::c_ushort;
+   |
+1  | use std::os::raw::c_ushort;
+   |
+
+error[E0412]: cannot find type `table_entry` in this scope
+   --> src/parser.rs:139:17
+    |
+139 |     owner: *mut table_entry,
+    |                 ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `table_entry` in this scope
+   --> src/parser.rs:139:17
+    |
+138 | pub struct symbol {
+    |                  - help: you might be missing a type parameter: `<table_entry>`
+139 |     owner: *mut table_entry,
+    |                 ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `filename` in this scope
+   --> src/parser.rs:241:24
+    |
+241 |         CStr::from_ptr(filename).to_string_lossy(),
+    |                        ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `get_token` in this scope
+   --> src/parser.rs:299:21
+    |
+299 |         let type_ = get_token();
+    |                     ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `line_num` in this scope
+   --> src/parser.rs:300:24
+    |
+300 |         tokpush(type_, line_num, yylval.str_);
+    |                        ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `yylval` in this scope
+   --> src/parser.rs:300:34
+    |
+300 |         tokpush(type_, line_num, yylval.str_);
+    |                                  ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_obstack_begin` in this scope
+   --> src/parser.rs:329:5
+    |
+329 |     _obstack_begin(
+    |     ^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_obstack_newchunk` in this scope
+   --> src/parser.rs:350:21
+    |
+350 |                     _obstack_newchunk(__o, 1);
+    |                     ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_obstack_newchunk` in this scope
+   --> src/parser.rs:360:17
+    |
+360 |                 _obstack_newchunk(__o, len);
+    |                 ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `omit_symbol_names_option` in this scope
+   --> src/parser.rs:393:30
+    |
+393 |     let mut found_ident = if omit_symbol_names_option == 0 { 1 } else { 0 };
+    |                              ^^^^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `omit_arguments_option` in this scope
+   --> src/parser.rs:399:20
+    |
+399 |                 if omit_arguments_option != 0 {
+    |                    ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `omit_arguments_option` in this scope
+   --> src/parser.rs:407:20
+    |
+407 |                 if omit_arguments_option != 0 {
+    |                    ^^^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `_obstack_newchunk` in this scope
+   --> src/parser.rs:428:9
+    |
+428 |         _obstack_newchunk(__o, 1);
+    |         ^^^^^^^^^^^^^^^^^ not found in this scope
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused import: `std::ops::Range`
+ --> gnu/argp_fmtstream.rs:3:5
+  |
+3 | use std::ops::Range;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ops::Range`
+ --> gnu/argp_fs_xinl.rs:2:5
+  |
+2 | use std::ops::Range;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> gnu/argp_help.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> gnu/argp_parse.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> gnu/argp_parse.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::process`
+ --> gnu/argp_parse.rs:5:5
+  |
+5 | use std::process;
+  |     ^^^^^^^^^^^^
+
+warning: unused import: `std::thread`
+ --> gnu/argp_parse.rs:6:5
+  |
+6 | use std::thread;
+  |     ^^^^^^^^^^^
+
+warning: unused import: `std::time::Duration`
+ --> gnu/argp_parse.rs:7:5
+  |
+7 | use std::time::Duration;
+  |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> gnu/argp_pvh.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_void`
+ --> gnu/argp_pvh.rs:2:71
+  |
+2 | use std::os::raw::{c_char, c_int, c_ulong, c_long, c_ushort, c_schar, c_void};
+  |                                                                       ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/argp_pvh.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/argp_version_etc.rs:2:5
+  |
+2 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> gnu/argp_xinl.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> gnu/asnprintf.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::os::raw::c_char`
+ --> gnu/dirname_lgpl.rs:2:5
+  |
+2 | use std::os::raw::c_char;
+  |     ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/dirname_lgpl.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `Ordering`
+ --> gnu/exitfail.rs:1:36
+  |
+1 | use std::sync::atomic::{AtomicI32, Ordering};
+  |                                    ^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`, `OsString`
+ --> gnu/getopt.rs:2:16
+  |
+2 | use std::ffi::{CString, CStr, OsString};
+  |                ^^^^^^^  ^^^^  ^^^^^^^^
+
+warning: unused import: `std::os::unix::ffi::OsStringExt`
+ --> gnu/getopt.rs:3:5
+  |
+3 | use std::os::unix::ffi::OsStringExt;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/getopt.rs:4:5
+  |
+4 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unnecessary parentheses around method argument
+  --> gnu/getopt.rs:60:50
+   |
+60 |                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+   |                                                  ^                                    ^
+   |
+   = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+   |
+60 -                 argv.swap((bottom + i) as usize, (top - (middle - bottom) + i as usize);
+60 +                 argv.swap((bottom + i) as usize, top - (middle - bottom) + i as usize;
+   |
+
+warning: unused imports: `CStr`, `CString`
+ --> gnu/getopt1.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `c_char`
+ --> gnu/getopt1.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int};
+  |                    ^^^^^^
+
+warning: unused imports: `Layout`, `alloc`, `dealloc`
+ --> gnu/hash.rs:1:18
+  |
+1 | use std::alloc::{alloc, dealloc, Layout};
+  |                  ^^^^^  ^^^^^^^  ^^^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> gnu/hash.rs:2:5
+  |
+2 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`, `c_void`
+ --> gnu/printf_args.rs:1:16
+  |
+1 | use std::ffi::{c_void, CStr, CString};
+  |                ^^^^^^  ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_double`, `c_float`, `c_int`, `c_long`, `c_longlong`, `c_schar`, `c_short`, `c_uchar`, `c_uint`, `c_ulong`, `c_ulonglong`, `c_ushort`
+ --> gnu/printf_args.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_double, c_float, c_int, c_long, c_longlong, c_schar, c_short, c_uchar, c_uint, c_ulong, c_ulonglong, c_ushort};
+  |                    ^^^^^^  ^^^^^^^^  ^^^^^^^  ^^^^^  ^^^^^^  ^^^^^^^^^^  ^^^^^^^  ^^^^^^^  ^^^^^^^  ^^^^^^  ^^^^^^^  ^^^^^^^^^^^  ^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/printf_args.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::fmt`
+ --> gnu/printf_parse.rs:1:5
+  |
+1 | use std::fmt;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> gnu/printf_parse.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `std::slice`
+ --> gnu/printf_parse.rs:4:5
+  |
+4 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> gnu/stripslash.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> gnu/version_etc.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `alloc_zeroed`
+ --> gnu/xmalloc.rs:1:25
+  |
+1 | use std::alloc::{alloc, alloc_zeroed, dealloc, handle_alloc_error, Layout};
+  |                         ^^^^^^^^^^^^
+
+warning: unused import: `copy_nonoverlapping`
+ --> gnu/xmalloc.rs:2:16
+  |
+2 | use std::ptr::{copy_nonoverlapping, null_mut};
+  |                ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> gnu/xmalloc.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_void`
+ --> src/argcv.rs:2:35
+  |
+2 | use std::os::raw::{c_char, c_int, c_void};
+  |                                   ^^^^^^
+
+warning: unused import: `std::slice`
+ --> src/argcv.rs:4:5
+  |
+4 | use std::slice;
+  |     ^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/c.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_void`
+ --> src/c.rs:2:20
+  |
+2 | use std::os::raw::{c_char, c_int, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/c.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/c.rs:4:5
+  |
+4 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `Read`, `Write`
+ --> src/c.rs:6:15
+  |
+6 | use std::io::{Read, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `std::path::Path`
+ --> src/c.rs:7:5
+  |
+7 | use std::path::Path;
+  |     ^^^^^^^^^^^^^^^
+
+warning: unused imports: `Layout`, `alloc_zeroed`
+ --> src/depmap.rs:1:18
+  |
+1 | use std::alloc::{alloc_zeroed, Layout};
+  |                  ^^^^^^^^^^^^  ^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+ --> src/gnu.rs:1:5
+  |
+1 | use std::ffi::CStr;
+  |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/gnu.rs:3:5
+  |
+3 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `CStr`
+ --> src/main.rs:1:25
+  |
+1 | use std::ffi::{CString, CStr};
+  |                         ^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/output.rs:3:16
+  |
+3 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> src/output.rs:6:5
+  |
+6 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_char`
+ --> src/output.rs:7:20
+  |
+7 | use std::os::raw::{c_char, c_int, c_uchar, c_ulong, c_void};
+  |                    ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> src/output.rs:8:5
+  |
+8 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `CString`
+ --> src/parser.rs:1:22
+  |
+1 | use std::ffi::{CStr, CString};
+  |                      ^^^^^^^
+
+warning: unused import: `c_uint`
+ --> src/parser.rs:4:35
+  |
+4 | use std::os::raw::{c_char, c_int, c_uint, c_void, c_long, c_ulong};
+  |                                   ^^^^^^
+
+warning: unused import: `std::collections::LinkedList`
+ --> src/parser.rs:5:5
+  |
+5 | use std::collections::LinkedList;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `CStr`, `CString`
+ --> src/posix.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^  ^^^^^^^
+
+warning: unused import: `self`
+ --> src/posix.rs:2:16
+  |
+2 | use std::fmt::{self, Write};
+  |                ^^^^
+
+warning: unused import: `std::cmp::Ordering`
+ --> src/symbol.rs:1:5
+  |
+1 | use std::cmp::Ordering;
+  |     ^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Hash`
+ --> src/symbol.rs:4:17
+  |
+4 | use std::hash::{Hash, Hasher};
+  |                 ^^^^
+
+warning: unused import: `std::ptr`
+ --> src/symbol.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:17:15
+   |
+17 |     pub flag: Option<&'static mut i32>,
+   |               ^^^^^^------------------ help: remove these generics
+   |               |
+   |               expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:14:12
+   |
+14 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:25:17
+   |
+25 |     pub optarg: Option<String>,
+   |                 ^^^^^^-------- help: remove these generics
+   |                 |
+   |                 expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:14:12
+   |
+14 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt.rs:27:19
+   |
+27 |     pub nextchar: Option<String>,
+   |                   ^^^^^^-------- help: remove these generics
+   |                   |
+   |                   expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt.rs:14:12
+   |
+14 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:15:15
+   |
+15 |     pub flag: Option<Box<c_int>>,
+   |               ^^^^^^------------ help: remove these generics
+   |               |
+   |               expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:24:17
+   |
+24 |     pub optarg: Option<String>,
+   |                 ^^^^^^-------- help: remove these generics
+   |                 |
+   |                 expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:26:19
+   |
+26 |     pub nextchar: Option<String>,
+   |                   ^^^^^^-------- help: remove these generics
+   |                   |
+   |                   expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+   --> gnu/getopt.rs:108:14
+    |
+108 |     longind: Option<&mut i32>,
+    |              ^^^^^^---------- help: remove these generics
+    |              |
+    |              expected 0 generic arguments
+    |
+note: struct defined here, with 0 generic parameters
+   --> gnu/getopt.rs:14:12
+    |
+14  | pub struct Option {
+    |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:46:13
+   |
+46 | ) -> Result<Option<c_int>, String> {
+   |             ^^^^^^------- help: remove these generics
+   |             |
+   |             expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:57:13
+   |
+57 | ) -> Result<Option<c_int>, String> {
+   |             ^^^^^^------- help: remove these generics
+   |             |
+   |             expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:67:13
+   |
+67 | ) -> Result<Option<c_int>, String> {
+   |             ^^^^^^------- help: remove these generics
+   |             |
+   |             expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:78:13
+   |
+78 | ) -> Result<Option<c_int>, String> {
+   |             ^^^^^^------- help: remove these generics
+   |             |
+   |             expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+  --> gnu/getopt1.rs:90:13
+   |
+90 | ) -> Result<Option<c_int>, String> {
+   |             ^^^^^^------- help: remove these generics
+   |             |
+   |             expected 0 generic arguments
+   |
+note: struct defined here, with 0 generic parameters
+  --> gnu/getopt1.rs:12:12
+   |
+12 | pub struct Option {
+   |            ^^^^^^
+
+error[E0107]: this struct takes 0 generic arguments but 1 generic argument was supplied
+   --> gnu/getopt1.rs:104:13
+    |
+104 | ) -> Result<Option<c_int>, String> {
+    |             ^^^^^^------- help: remove these generics
+    |             |
+    |             expected 0 generic arguments
+    |
+note: struct defined here, with 0 generic parameters
+   --> gnu/getopt1.rs:12:12
+    |
+12  | pub struct Option {
+    |            ^^^^^^
+
+Some errors have detailed explanations: E0107, E0412, E0422, E0425, E0433, E0530.
+For more information about an error, try `rustc --explain E0107`.
+warning: `c2rust_out` (lib) generated 61 warnings
+error: could not compile `c2rust_out` due to 107 previous errors; 61 warnings emitted

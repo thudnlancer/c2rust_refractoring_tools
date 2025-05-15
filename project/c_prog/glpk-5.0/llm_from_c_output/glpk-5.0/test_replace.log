@@ -1,0 +1,107 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/glpk-5.0)
+error: mismatched closing delimiter: `}`
+   --> src/zlib/deflate.rs:285:15
+    |
+284 | fn insert_string(s: &mut DeflateState, str: u32, match_head: &mut u32) {
+    |                                                                        - closing delimiter possibly meant for this
+285 |     let idx = (str + (MIN_MATCH - 1) as usize;
+    |               ^ unclosed delimiter
+...
+292 | }
+    | ^ mismatched closing delimiter
+
+error: expected one of `!`, `(`, `)`, `,`, `.`, `::`, `<`, or `?`, found `;`
+   --> src/zlib/deflate.rs:285:15
+    |
+285 |     let idx = (str + (MIN_MATCH - 1) as usize;
+    |               ^ unclosed delimiter           ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> src/zlib/deflate.rs:292:1
+    |
+292 | }
+    | ^ expected expression
+
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `;`
+  --> src/zlib/inffast.rs:39:59
+   |
+39 |             hold += (u32::from(unsafe { *in_buf }) << bits;
+   |                                                           ^
+   |                                                           |
+   |                                                           expected one of 8 possible tokens
+   |                                                           help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `in_buf`
+  --> src/zlib/inffast.rs:40:13
+   |
+39 |             hold += (u32::from(unsafe { *in_buf }) << bits;
+   |                                                            -
+   |                                                            |
+   |                                                            expected one of `)`, `,`, `.`, `?`, or an operator
+   |                                                            help: missing `,`
+40 |             in_buf = in_buf.checked_add(1).ok_or(ZLibError::BufError)?;
+   |             ^^^^^^ unexpected token
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> src/zlib/inffast.rs:40:71
+   |
+40 |             in_buf = in_buf.checked_add(1).ok_or(ZLibError::BufError)?;
+   |                                                                       ^
+   |                                                                       |
+   |                                                                       expected one of `)`, `,`, `.`, `?`, or an operator
+   |                                                                       help: missing `,`
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `bits`
+  --> src/zlib/inffast.rs:41:13
+   |
+40 |             in_buf = in_buf.checked_add(1).ok_or(ZLibError::BufError)?;
+   |                                                                        -
+   |                                                                        |
+   |                                                                        expected one of `)`, `,`, `.`, `?`, or an operator
+   |                                                                        help: missing `,`
+41 |             bits += 8;
+   |             ^^^^ unexpected token
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> src/zlib/inffast.rs:41:22
+   |
+41 |             bits += 8;
+   |                      ^
+   |                      |
+   |                      expected one of `)`, `,`, `.`, `?`, or an operator
+   |                      help: missing `,`
+
+error: expected one of `!`, `)`, `,`, `.`, `::`, `?`, `{`, or an operator, found `;`
+  --> src/zlib/inffast.rs:42:21
+   |
+42 |             hold += (u32::from(unsafe { *in_buf }) << bits;
+   |                     ^ unclosed delimiter                  ^ help: `)` may belong here
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `hold`
+  --> src/zlib/inffast.rs:42:13
+   |
+41 |             bits += 8;
+   |                       -
+   |                       |
+   |                       expected one of `)`, `,`, `.`, `?`, or an operator
+   |                       help: missing `,`
+42 |             hold += (u32::from(unsafe { *in_buf }) << bits;
+   |             ^^^^ unexpected token
+
+error: mismatched closing delimiter: `]`
+   --> src/zlib/inffast.rs:209:38
+    |
+209 |                         here = dcode[(here.val as usize + (hold & ((1 << op) - 1)) as usize];
+    |                                     -^ unclosed delimiter                                  ^ mismatched closing delimiter
+    |                                     |
+    |                                     closing delimiter possibly meant for this
+
+error: mismatched closing delimiter: `]`
+   --> src/zlib/inffast.rs:217:30
+    |
+217 |                 here = lcode[(here.val as usize + (hold & ((1 << op) - 1)) as usize];
+    |                             -^ unclosed delimiter                                  ^ mismatched closing delimiter
+    |                             |
+    |                             closing delimiter possibly meant for this
+
+error: could not compile `c2rust_out` due to 12 previous errors

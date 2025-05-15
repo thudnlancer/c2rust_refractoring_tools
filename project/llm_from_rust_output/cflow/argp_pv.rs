@@ -1,0 +1,1 @@
+pub static ARGP_PROGRAM_VERSION: Option<&'static str> = None;

@@ -1,0 +1,16 @@
+pub static COMPILED_FEATURES: [&str; 14] = [
+    "-cares",
+    "+digest",
+    "-gpgme",
+    "+https",
+    "+ipv6",
+    "+iri",
+    "+large-file",
+    "-metalink",
+    "+nls",
+    "+ntlm",
+    "+opie",
+    "-psl",
+    "+ssl/gnutls",
+    "",
+];

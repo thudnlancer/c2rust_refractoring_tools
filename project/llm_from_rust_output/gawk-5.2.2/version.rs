@@ -1,0 +1,1 @@
+pub static VERSION_STRING: &str = "GNU Awk 5.2.2";

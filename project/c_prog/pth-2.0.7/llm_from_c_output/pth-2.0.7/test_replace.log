@@ -1,0 +1,2637 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/pth-2.0.7)
+error: expected identifier, found keyword `await`
+   --> pth_sync.rs:260:12
+    |
+260 |     pub fn await(&self, mutex: &PthMutex) -> PthResult<()> {
+    |            ^^^^^ expected identifier, found keyword
+    |
+help: escape `await` to use it as an identifier
+    |
+260 |     pub fn r#await(&self, mutex: &PthMutex) -> PthResult<()> {
+    |            ++
+
+error: expected one of `(`, `,`, `::`, or `=`, found `<`
+   --> pth_tcb.rs:157:31
+    |
+157 |         #[cfg(PTH_STACKGROWTH < 0)]
+    |                               ^ expected one of `(`, `,`, `::`, or `=`
+
+error: expected one of `(`, `)`, `,`, `::`, or `=`, found `<`
+   --> pth_tcb.rs:161:35
+    |
+161 |         #[cfg(not(PTH_STACKGROWTH < 0))]
+    |                                  -^ expected one of `(`, `)`, `,`, `::`, or `=`
+    |                                  |
+    |                                  help: missing `,`
+
+error[E0565]: unsupported literal
+   --> pth_tcb.rs:161:37
+    |
+161 |         #[cfg(not(PTH_STACKGROWTH < 0))]
+    |                                     ^
+
+error[E0428]: the name `pth_current` is defined multiple times
+   --> pth_cancel.rs:196:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | -------------------------------------------------- previous definition of the value `pth_current` here
+...
+196 | fn pth_current() -> &'static PthCurrent {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `pth_current` redefined here
+    |
+    = note: `pth_current` must be defined only once in the value namespace of this module
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> pth_event.rs:131:25
+    |
+131 | fn pth_event(spec: u32, args: ...) -> *mut PthEvent {
+    |                         ^^^^^^^^^
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> pth_event.rs:145:41
+    |
+145 | fn pth_event_extract(ev: *mut PthEvent, args: ...) -> i32 {
+    |                                         ^^^^^^^^^
+
+error: only foreign or `unsafe extern "C"` functions may be C-variadic
+   --> pth_event.rs:152:41
+    |
+152 | fn pth_event_concat(evf: *mut PthEvent, args: ...) -> *mut PthEvent {
+    |                                         ^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `signal_hook`
+  --> test_httpd.rs:38:5
+   |
+38 | use signal_hook::consts::{SIGINT, SIGTERM, SIGPIPE};
+   |     ^^^^^^^^^^^ use of undeclared crate or module `signal_hook`
+
+error[E0432]: unresolved import `crate::pth_p`
+  --> pth_high.rs:31:12
+   |
+31 | use crate::pth_p::{pth_time_t, pth_event_t, pth_key_t, pth_error, pth_time, pth_time_set, pth_time_add, pth_time_sub, pth_event, pth_wait...
+   |            ^^^^^
+   |            |
+   |            unresolved import
+   |            help: a similar path exists: `crate::pth_lib::pth_p`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `signal_hook`
+  --> test_sig.rs:29:5
+   |
+29 | use signal_hook::{iterator::Signals, SIGINT, SIGUSR1, SIGUSR2};
+   |     ^^^^^^^^^^^ use of undeclared crate or module `signal_hook`
+
+error[E0432]: unresolved import `signal_hook`
+  --> test_httpd.rs:39:5
+   |
+39 | use signal_hook::flag;
+   |     ^^^^^^^^^^^ use of undeclared crate or module `signal_hook`
+
+error[E0432]: unresolved import `signal_hook`
+  --> test_sig.rs:29:5
+   |
+29 | use signal_hook::{iterator::Signals, SIGINT, SIGUSR1, SIGUSR2};
+   |     ^^^^^^^^^^^ use of undeclared crate or module `signal_hook`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> pth_sched.rs:33:5
+   |
+33 | use nix::sys::signal::{self, SigSet, Signal};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> pth_sched.rs:34:5
+   |
+34 | use nix::sys::select::{select, FdSet};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `nix`
+  --> pth_sched.rs:35:5
+   |
+35 | use nix::unistd::{pipe, write, read};
+   |     ^^^ use of undeclared crate or module `nix`
+
+error[E0432]: unresolved import `crossbeam_channel`
+  --> test_sig.rs:30:5
+   |
+30 | use crossbeam_channel::{Sender, Receiver, unbounded};
+   |     ^^^^^^^^^^^^^^^^^ use of undeclared crate or module `crossbeam_channel`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `lazy_static`
+  --> pth_data.rs:47:1
+   |
+47 | lazy_static::lazy_static! {
+   | ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `lazy_static`
+  --> test_mp.rs:66:1
+   |
+66 | lazy_static::lazy_static! {
+   | ^^^^^^^^^^^ use of undeclared crate or module `lazy_static`
+
+error: cannot find macro `lazy_static` in this scope
+   --> pth_sched.rs:158:1
+    |
+158 | lazy_static! {
+    | ^^^^^^^^^^^
+
+error: cannot find macro `bitflags` in this scope
+  --> pth_string.rs:27:1
+   |
+27 | bitflags! {
+   | ^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+  --> pth_string.rs:67:27
+   |
+67 |         if flags.contains(FormatFlags::MINUS) {
+   |                           ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+  --> pth_string.rs:71:28
+   |
+71 |         if !flags.contains(FormatFlags::MINUS) {
+   |                            ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+  --> pth_string.rs:81:27
+   |
+81 |         if flags.contains(FormatFlags::MINUS) {
+   |                           ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+  --> pth_string.rs:98:41
+   |
+98 |     let mut uvalue = if !flags.contains(FormatFlags::UNSIGNED) {
+   |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:102:34
+    |
+102 |         } else if flags.contains(FormatFlags::PLUS) {
+    |                                  ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:105:34
+    |
+105 |         } else if flags.contains(FormatFlags::SPACE) {
+    |                                  ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:115:31
+    |
+115 |     let caps = flags.contains(FormatFlags::UP);
+    |                               ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:139:48
+    |
+139 |     let (zpadlen, spadlen) = if flags.contains(FormatFlags::ZERO) {
+    |                                                ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:145:37
+    |
+145 |     let spadlen = if flags.contains(FormatFlags::MINUS) {
+    |                                     ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:187:30
+    |
+187 |     } else if flags.contains(FormatFlags::PLUS) {
+    |                              ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:189:30
+    |
+189 |     } else if flags.contains(FormatFlags::SPACE) {
+    |                              ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:232:36
+    |
+232 |     let padlen = if flags.contains(FormatFlags::MINUS) {
+    |                                    ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:238:23
+    |
+238 |     if flags.contains(FormatFlags::ZERO) && padlen > 0 {
+    |                       ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:286:21
+    |
+286 |     let mut flags = FormatFlags::empty();
+    |                     ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:306:41
+    |
+306 |                     '-' => flags.insert(FormatFlags::MINUS),
+    |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:307:41
+    |
+307 |                     '+' => flags.insert(FormatFlags::PLUS),
+    |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:308:41
+    |
+308 |                     ' ' => flags.insert(FormatFlags::SPACE),
+    |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:309:41
+    |
+309 |                     '#' => flags.insert(FormatFlags::NUM),
+    |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:310:41
+    |
+310 |                     '0' => flags.insert(FormatFlags::ZERO),
+    |                                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:371:48
+    |
+371 | ...                   local_flags.insert(FormatFlags::UP);
+    |                                          ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:373:44
+    |
+373 |                         local_flags.insert(FormatFlags::UNSIGNED);
+    |                                            ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared type `FormatFlags`
+   --> pth_string.rs:413:25
+    |
+413 |                 flags = FormatFlags::empty();
+    |                         ^^^^^^^^^^^ use of undeclared type `FormatFlags`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `array_init`
+   --> test_philo.rs:149:29
+    |
+149 |     let condvars = Arc::new(array_init::array_init(|_| Condvar::new()));
+    |                             ^^^^^^^^^^ use of undeclared crate or module `array_init`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `ctrlc`
+   --> test_philo.rs:163:5
+    |
+163 |     ctrlc::set_handler(move || {
+    |     ^^^^^ use of undeclared crate or module `ctrlc`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:70:27
+   |
+70 |             let mut fds = mio::unix::EventedFd(&0);
+   |                           ^^^ use of undeclared crate or module `mio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:72:33
+   |
+72 |             poll.register(&fds, mio::Token(0), mio::Ready::readable(), mio::PollOpt::edge())?;
+   |                                 ^^^ use of undeclared crate or module `mio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:72:72
+   |
+72 |             poll.register(&fds, mio::Token(0), mio::Ready::readable(), mio::PollOpt::edge())?;
+   |                                                                        ^^^ use of undeclared crate or module `mio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:73:30
+   |
+73 |             let mut events = mio::Events::with_capacity(1);
+   |                              ^^^ use of undeclared crate or module `mio`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `scopeguard`
+  --> test_sig.rs:67:20
+   |
+67 |     let _cleanup = scopeguard::guard((), |_| child_cleanup(&name));
+   |                    ^^^^^^^^^^ use of undeclared crate or module `scopeguard`
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_cancel.rs:132:17
+    |
+132 |             if !pth_pqueue_contains(q, &thread) {
+    |                 ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_delete` in this scope
+   --> pth_cancel.rs:135:13
+    |
+135 |             pth_pqueue_delete(q, &thread);
+    |             ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_insert` in this scope
+   --> pth_cancel.rs:144:17
+    |
+144 |                 pth_pqueue_insert(&mut pth_DQ, PTH_PRIO_STD, thread);
+    |                 ^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+  --> pth_data.rs:72:28
+   |
+34 | const PTH_KEY_MAX: usize = 1024;
+   | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+72 |         if let Ok(false) = PTH_KEYTAB[k].used.compare_exchange(false, true, Ordering::SeqCst, Ordering::SeqCst) {
+   |                            ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+  --> pth_data.rs:74:14
+   |
+34 | const PTH_KEY_MAX: usize = 1024;
+   | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+74 |             *PTH_KEYTAB[k].destructor.lock().unwrap() = func;
+   |              ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+  --> pth_data.rs:87:9
+   |
+34 | const PTH_KEY_MAX: usize = 1024;
+   | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+87 |     if !PTH_KEYTAB[key].used.swap(false, Ordering::SeqCst) {
+   |         ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+  --> pth_data.rs:91:6
+   |
+34 | const PTH_KEY_MAX: usize = 1024;
+   | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+91 |     *PTH_KEYTAB[key].destructor.lock().unwrap() = None;
+   |      ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+   --> pth_data.rs:100:9
+    |
+34  | const PTH_KEY_MAX: usize = 1024;
+    | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+100 |     if !PTH_KEYTAB[key].used.load(Ordering::SeqCst) {
+    |         ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `CURRENT_THREAD` in this scope
+   --> pth_data.rs:104:19
+    |
+104 |     let current = CURRENT_THREAD.lock().unwrap();
+    |                   ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::CURRENT_THREAD` exists but is inaccessible
+   --> pth_event.rs:108:1
+    |
+108 | / thread_local! {
+109 | |     static CURRENT_THREAD: RefCell<Option<Arc<Mutex<PthThread>>>> = RefCell::new(None);
+110 | |     static KEY_TABLE: RefCell<HashMap<PthKey, Arc<Mutex<PthEvent>>>> = RefCell::new(HashMap::new());
+111 | | }
+    | |_^ not accessible
+    = note: this error originates in the macro `$crate::__thread_local_inner` which comes from the expansion of the macro `thread_local` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+   --> pth_data.rs:128:9
+    |
+34  | const PTH_KEY_MAX: usize = 1024;
+    | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+128 |     if !PTH_KEYTAB[key].used.load(Ordering::SeqCst) {
+    |         ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `CURRENT_THREAD` in this scope
+   --> pth_data.rs:132:19
+    |
+132 |     let current = CURRENT_THREAD.lock().unwrap();
+    |                   ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::CURRENT_THREAD` exists but is inaccessible
+   --> pth_event.rs:108:1
+    |
+108 | / thread_local! {
+109 | |     static CURRENT_THREAD: RefCell<Option<Arc<Mutex<PthThread>>>> = RefCell::new(None);
+110 | |     static KEY_TABLE: RefCell<HashMap<PthKey, Arc<Mutex<PthEvent>>>> = RefCell::new(HashMap::new());
+111 | | }
+    | |_^ not accessible
+    = note: this error originates in the macro `$crate::__thread_local_inner` which comes from the expansion of the macro `thread_local` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `CURRENT_THREAD` in this scope
+   --> pth_data.rs:138:19
+    |
+138 |     let current = CURRENT_THREAD.lock().unwrap();
+    |                   ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::CURRENT_THREAD` exists but is inaccessible
+   --> pth_event.rs:108:1
+    |
+108 | / thread_local! {
+109 | |     static CURRENT_THREAD: RefCell<Option<Arc<Mutex<PthThread>>>> = RefCell::new(None);
+110 | |     static KEY_TABLE: RefCell<HashMap<PthKey, Arc<Mutex<PthEvent>>>> = RefCell::new(HashMap::new());
+111 | | }
+    | |_^ not accessible
+    = note: this error originates in the macro `$crate::__thread_local_inner` which comes from the expansion of the macro `thread_local` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+   --> pth_data.rs:151:45
+    |
+34  | const PTH_KEY_MAX: usize = 1024;
+    | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+151 |             if *value != ptr::null_mut() && PTH_KEYTAB[*key].used.load(Ordering::SeqCst) {
+    |                                             ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_KEYTAB` in this scope
+   --> pth_data.rs:152:43
+    |
+34  | const PTH_KEY_MAX: usize = 1024;
+    | -------------------------------- similarly named constant `PTH_KEY_MAX` defined here
+...
+152 |                 if let Some(destructor) = PTH_KEYTAB[*key].destructor.lock().unwrap().as_mut() {
+    |                                           ^^^^^^^^^^ help: a constant with a similar name exists: `PTH_KEY_MAX`
+
+error[E0425]: cannot find value `PTH_VERSION_STR` in this scope
+   --> pth_debug.rs:125:43
+    |
+125 |     writeln!(writer, "| Pth Version: {}", PTH_VERSION_STR)?;
+    |                                           ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_loadval` in this scope
+   --> pth_debug.rs:126:47
+    |
+126 |     writeln!(writer, "| Load Average: {:.2}", pth_loadval)?;
+    |                                               ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_NQ` in this scope
+   --> pth_debug.rs:127:40
+    |
+127 |     pth_dumpqueue(&mut writer, "NEW", &pth_NQ)?;
+    |                                        ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_NQ` exists but is inaccessible
+   --> pth_cancel.rs:183:1
+    |
+183 | static mut pth_NQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_RQ` in this scope
+   --> pth_debug.rs:128:42
+    |
+128 |     pth_dumpqueue(&mut writer, "READY", &pth_RQ)?;
+    |                                          ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_RQ` exists but is inaccessible
+   --> pth_cancel.rs:184:1
+    |
+184 | static mut pth_RQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_debug.rs:130:53
+    |
+130 |     writeln!(writer, "|   1. thread {:p} (\"{}\")", pth_current, pth_current.name)?;
+    |                                                     ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_debug.rs:130:66
+    |
+130 |     writeln!(writer, "|   1. thread {:p} (\"{}\")", pth_current, pth_current.name)?;
+    |                                                                  ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0425]: cannot find value `pth_WQ` in this scope
+   --> pth_debug.rs:131:44
+    |
+131 |     pth_dumpqueue(&mut writer, "WAITING", &pth_WQ)?;
+    |                                            ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_WQ` exists but is inaccessible
+   --> pth_cancel.rs:185:1
+    |
+185 | static mut pth_WQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_SQ` in this scope
+   --> pth_debug.rs:132:46
+    |
+132 |     pth_dumpqueue(&mut writer, "SUSPENDED", &pth_SQ)?;
+    |                                              ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_DQ` in this scope
+   --> pth_debug.rs:133:41
+    |
+133 |     pth_dumpqueue(&mut writer, "DEAD", &pth_DQ)?;
+    |                                         ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_DQ` exists but is inaccessible
+   --> pth_cancel.rs:186:1
+    |
+186 | static mut pth_DQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `pth_pqueue_t` in this scope
+   --> pth_debug.rs:138:61
+    |
+138 | pub fn pth_dumpqueue<W: Write>(mut writer: W, qn: &str, q: &pth_pqueue_t) -> io::Result<()> {
+    |                                                             ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_elements` in this scope
+   --> pth_debug.rs:140:13
+    |
+140 |     let n = pth_pqueue_elements(q);
+    |             ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_head` in this scope
+   --> pth_debug.rs:146:17
+    |
+146 |     let mut t = pth_pqueue_head(q);
+    |                 ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_walk` in this scope
+   --> pth_debug.rs:150:13
+    |
+150 |         t = pth_pqueue_walk(q, thread, PTH_WALK_NEXT);
+    |             ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_WALK_NEXT` in this scope
+   --> pth_debug.rs:150:40
+    |
+150 |         t = pth_pqueue_walk(q, thread, PTH_WALK_NEXT);
+    |                                        ^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::PTH_WALK_NEXT` exists but is inaccessible
+   --> pth_event.rs:70:1
+    |
+70  | const PTH_WALK_NEXT: u32 = 0x01;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_TIME_NOW` in this scope
+  --> pth_high.rs:48:34
+   |
+48 |     let mut until = pth_time_set(PTH_TIME_NOW);
+   |                                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_EVENT_TIME` in this scope
+  --> pth_high.rs:51:24
+   |
+51 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                        ^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_EVENT_TIME` exists but is inaccessible
+  --> pth_event.rs:56:1
+   |
+56 | const PTH_EVENT_TIME: u32 = 0x08;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_MODE_STATIC` in this scope
+  --> pth_high.rs:51:41
+   |
+51 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                                         ^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_MODE_STATIC` exists but is inaccessible
+  --> pth_event.rs:51:1
+   |
+51 | const PTH_MODE_STATIC: u32 = 0x02;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_KEY_INIT` in this scope
+  --> pth_high.rs:51:63
+   |
+51 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                                                               ^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_KEY_INIT` exists but is inaccessible
+  --> pth_event.rs:47:1
+   |
+47 | const PTH_KEY_INIT: PthKey = 0;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_TIME_NOW` in this scope
+  --> pth_high.rs:56:32
+   |
+56 |         let now = pth_time_set(PTH_TIME_NOW);
+   |                                ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_TIME_NOW` in this scope
+  --> pth_high.rs:71:34
+   |
+71 |     let mut until = pth_time_set(PTH_TIME_NOW);
+   |                                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_EVENT_TIME` in this scope
+  --> pth_high.rs:74:24
+   |
+74 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                        ^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_EVENT_TIME` exists but is inaccessible
+  --> pth_event.rs:56:1
+   |
+56 | const PTH_EVENT_TIME: u32 = 0x08;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_MODE_STATIC` in this scope
+  --> pth_high.rs:74:41
+   |
+74 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                                         ^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_MODE_STATIC` exists but is inaccessible
+  --> pth_event.rs:51:1
+   |
+51 | const PTH_MODE_STATIC: u32 = 0x02;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_KEY_INIT` in this scope
+  --> pth_high.rs:74:63
+   |
+74 |     let ev = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until)
+   |                                                               ^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_KEY_INIT` exists but is inaccessible
+  --> pth_event.rs:47:1
+   |
+47 | const PTH_KEY_INIT: PthKey = 0;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_TIME_NOW` in this scope
+  --> pth_high.rs:87:34
+   |
+87 |     let mut until = pth_time_set(PTH_TIME_NOW);
+   |                                  ^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_EVENT_TIME` in this scope
+  --> pth_high.rs:90:31
+   |
+90 |     if let Ok(ev) = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until) {
+   |                               ^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_EVENT_TIME` exists but is inaccessible
+  --> pth_event.rs:56:1
+   |
+56 | const PTH_EVENT_TIME: u32 = 0x08;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_MODE_STATIC` in this scope
+  --> pth_high.rs:90:48
+   |
+90 |     if let Ok(ev) = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until) {
+   |                                                ^^^^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_MODE_STATIC` exists but is inaccessible
+  --> pth_event.rs:51:1
+   |
+51 | const PTH_MODE_STATIC: u32 = 0x02;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_KEY_INIT` in this scope
+  --> pth_high.rs:90:70
+   |
+90 |     if let Ok(ev) = pth_event(PTH_EVENT_TIME | PTH_MODE_STATIC, &mut PTH_KEY_INIT, until) {
+   |                                                                      ^^^^^^^^^^^^ not found in this scope
+   |
+note: constant `crate::pth_event::PTH_KEY_INIT` exists but is inaccessible
+  --> pth_event.rs:47:1
+   |
+47 | const PTH_KEY_INIT: PthKey = 0;
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_EVENT_SIGS` in this scope
+   --> pth_high.rs:127:28
+    |
+127 |     let mut ev = pth_event(PTH_EVENT_SIGS | PTH_MODE_STATIC, &mut PTH_KEY_INIT, set, sigp)
+    |                            ^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::PTH_EVENT_SIGS` exists but is inaccessible
+   --> pth_event.rs:55:1
+    |
+55  | const PTH_EVENT_SIGS: u32 = 0x04;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_MODE_STATIC` in this scope
+   --> pth_high.rs:127:45
+    |
+127 |     let mut ev = pth_event(PTH_EVENT_SIGS | PTH_MODE_STATIC, &mut PTH_KEY_INIT, set, sigp)
+    |                                             ^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::PTH_MODE_STATIC` exists but is inaccessible
+   --> pth_event.rs:51:1
+    |
+51  | const PTH_MODE_STATIC: u32 = 0x02;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_KEY_INIT` in this scope
+   --> pth_high.rs:127:67
+    |
+127 |     let mut ev = pth_event(PTH_EVENT_SIGS | PTH_MODE_STATIC, &mut PTH_KEY_INIT, set, sigp)
+    |                                                                   ^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::PTH_KEY_INIT` exists but is inaccessible
+   --> pth_event.rs:47:1
+    |
+47  | const PTH_KEY_INIT: PthKey = 0;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_event_concat` in this scope
+   --> pth_high.rs:131:9
+    |
+131 |         pth_event_concat(&mut ev, &ev_extra, None);
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_event::pth_event_concat` exists but is inaccessible
+   --> pth_event.rs:152:1
+    |
+152 | fn pth_event_concat(evf: *mut PthEvent, args: ...) -> *mut PthEvent {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_event_isolate` in this scope
+   --> pth_high.rs:137:9
+    |
+137 |         pth_event_isolate(&mut ev);
+    |         ^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_event::pth_event_isolate` exists but is inaccessible
+   --> pth_event.rs:159:1
+    |
+159 | fn pth_event_isolate(ev: *mut PthEvent) -> *mut PthEvent {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_event_status` in this scope
+   --> pth_high.rs:138:12
+    |
+138 |         if pth_event_status(&ev) != PTH_STATUS_OCCURRED {
+    |            ^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_event::pth_event_status` exists but is inaccessible
+   --> pth_event.rs:177:1
+    |
+177 | fn pth_event_status(ev: *mut PthEvent) -> PthStatus {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_STATUS_OCCURRED` in this scope
+   --> pth_high.rs:138:37
+    |
+138 |         if pth_event_status(&ev) != PTH_STATUS_OCCURRED {
+    |                                     ^^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: constant `crate::pth_event::PTH_STATUS_OCCURRED` exists but is inaccessible
+   --> pth_event.rs:49:1
+    |
+49  | const PTH_STATUS_OCCURRED: PthStatus = 1;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_syscall_init` in this scope
+  --> pth_lib.rs:50:5
+   |
+50 |     pth_syscall_init()?;
+   |     ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_scheduler_init` in this scope
+   --> pth_lib.rs:53:9
+    |
+53  |     if !pth_scheduler_init()? {
+    |         ^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_sched::pth_scheduler_init` exists but is inaccessible
+   --> pth_sched.rs:177:1
+    |
+177 | fn pth_scheduler_init() -> Result<(), String> {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_syscall_kill` in this scope
+  --> pth_lib.rs:54:9
+   |
+54 |         pth_syscall_kill();
+   |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_attr_new` in this scope
+  --> pth_lib.rs:59:18
+   |
+59 |     let t_attr = pth_attr_new();
+   |                  ^^^^^^^^^^^^ not found in this scope
+   |
+note: function `crate::test_std::pth::pth_attr_new` exists but is inaccessible
+  --> test_std.rs:58:5
+   |
+58 |     pub fn pth_attr_new() -> pth_attr_t {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_spawn` in this scope
+  --> pth_lib.rs:61:21
+   |
+61 |     let pth_sched = pth_spawn(t_attr, pth_scheduler, None)?;
+   |                     ^^^^^^^^^ not found in this scope
+   |
+note: function `crate::test_std::pth::pth_spawn` exists but is inaccessible
+  --> test_std.rs:66:5
+   |
+66 |     pub fn pth_spawn(_attr: pth_attr_t, f: impl FnOnce() + Send + 'static, _arg: ()) -> Option<pth_t> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_scheduler` in this scope
+   --> pth_lib.rs:61:39
+    |
+61  |     let pth_sched = pth_spawn(t_attr, pth_scheduler, None)?;
+    |                                       ^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_sched::pth_scheduler` exists but is inaccessible
+   --> pth_sched.rs:201:1
+    |
+201 | fn pth_scheduler(dummy: *mut ()) -> *mut () {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_spawn` in this scope
+  --> pth_lib.rs:65:20
+   |
+65 |     let pth_main = pth_spawn(t_attr, None, None)?;
+   |                    ^^^^^^^^^ not found in this scope
+   |
+note: function `crate::test_std::pth::pth_spawn` exists but is inaccessible
+  --> test_std.rs:66:5
+   |
+66 |     pub fn pth_spawn(_attr: pth_attr_t, f: impl FnOnce() + Send + 'static, _arg: ()) -> Option<pth_t> {
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_lib.rs:68:5
+    |
+68  |     pth_current = pth_sched;
+    |     ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0425]: cannot find function `pth_mctx_switch` in this scope
+  --> pth_lib.rs:69:5
+   |
+69 |     pth_mctx_switch(&pth_main.mctx, &pth_sched.mctx);
+   |     ^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_lib.rs:79:8
+    |
+79  |     if pth_current != pth_main {
+    |        ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0425]: cannot find value `pth_main` in this scope
+  --> pth_lib.rs:79:23
+   |
+79 |     if pth_current != pth_main {
+   |                       ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_thread_cleanup` in this scope
+   --> pth_lib.rs:83:5
+    |
+83  |     pth_thread_cleanup(pth_main);
+    |     ^^^^^^^^^^^^^^^^^^ not found in this scope
+    |
+note: function `crate::pth_cancel::pth_thread_cleanup` exists but is inaccessible
+   --> pth_cancel.rs:208:1
+    |
+208 | fn pth_thread_cleanup(_: &Arc<Mutex<PthThread>>) {}
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_main` in this scope
+  --> pth_lib.rs:83:24
+   |
+83 |     pth_thread_cleanup(pth_main);
+   |                        ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_scheduler_kill` in this scope
+  --> pth_lib.rs:84:5
+   |
+84 |     pth_scheduler_kill();
+   |     ^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_tcb_free` in this scope
+  --> pth_lib.rs:86:5
+   |
+86 |     pth_tcb_free(pth_sched);
+   |     ^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+26 | use crate::pth_tcb::pth_tcb_free;
+   |
+
+error[E0425]: cannot find value `pth_sched` in this scope
+  --> pth_lib.rs:86:18
+   |
+86 |     pth_tcb_free(pth_sched);
+   |                  ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_tcb_free` in this scope
+  --> pth_lib.rs:87:5
+   |
+87 |     pth_tcb_free(pth_main);
+   |     ^^^^^^^^^^^^ not found in this scope
+   |
+help: consider importing this function
+   |
+26 | use crate::pth_tcb::pth_tcb_free;
+   |
+
+error[E0425]: cannot find value `pth_main` in this scope
+  --> pth_lib.rs:87:18
+   |
+87 |     pth_tcb_free(pth_main);
+   |                  ^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_syscall_kill` in this scope
+  --> pth_lib.rs:88:5
+   |
+88 |     pth_syscall_kill();
+   |     ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `pth_t` in this scope
+  --> pth_lib.rs:93:22
+   |
+93 | pub fn pth_self() -> pth_t {
+   |                      ^^^^^ not found in this scope
+   |
+note: type alias `crate::test_std::pth::pth_t` exists but is inaccessible
+  --> test_std.rs:46:5
+   |
+46 |     pub type pth_t = thread::JoinHandle<()>;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_lib.rs:94:5
+    |
+94  |     pth_current
+    |     ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0412]: cannot find type `pth_t` in this scope
+  --> pth_lib.rs:97:21
+   |
+97 | pub fn pth_raise(t: pth_t, sig: c_int) -> Result<bool, Error> {
+   |                     ^^^^^ not found in this scope
+   |
+note: type alias `crate::test_std::pth::pth_t` exists but is inaccessible
+  --> test_std.rs:46:5
+   |
+46 |     pub type pth_t = thread::JoinHandle<()>;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `pth_current` in this scope
+   --> pth_lib.rs:98:28
+    |
+98  |     if t.is_null() || t == pth_current || sig < 0 || sig > PTH_NSIG {
+    |                            ^^^^^^^^^^^ not found in this scope
+    |
+note: these items exist but are inaccessible
+   --> pth_cancel.rs:182:1
+    |
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_cancel::pth_current`: not accessible
+    |
+   ::: pth_clean.rs:104:1
+    |
+104 | fn pth_current() -> &'static mut PthThread {
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_clean::pth_current`: not accessible
+
+error[E0425]: cannot find value `PTH_NSIG` in this scope
+   --> pth_lib.rs:98:60
+    |
+98  |     if t.is_null() || t == pth_current || sig < 0 || sig > PTH_NSIG {
+    |                                                            ^^^^^^^^ not found in this scope
+    |
+note: these constants exist but are inaccessible
+   --> pth_high.rs:33:1
+    |
+33  | const PTH_NSIG: i32 = 32;
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_high::PTH_NSIG`: not accessible
+    |
+   ::: pth_sched.rs:285:1
+    |
+285 | const PTH_NSIG: usize = 32; // Simplified
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^ `crate::pth_sched::PTH_NSIG`: not accessible
+
+error[E0425]: cannot find function `pth_yield` in this scope
+   --> pth_lib.rs:119:5
+    |
+74  | pub fn pth_kill() -> Result<bool, Error> {
+    | ---------------------------------------- similarly named function `pth_kill` defined here
+...
+119 |     pth_yield(Some(t))?;
+    |     ^^^^^^^^^ help: a function with a similar name exists: `pth_kill`
+    |
+note: function `crate::test_std::pth::pth_yield` exists but is inaccessible
+   --> test_std.rs:76:5
+    |
+76  |     pub fn pth_yield() {}
+    |     ^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0412]: cannot find type `pth_t` in this scope
+   --> pth_lib.rs:124:29
+    |
+124 | pub fn pth_thread_exists(t: pth_t) -> Result<bool, Error> {
+    |                             ^^^^^ not found in this scope
+    |
+note: type alias `crate::test_std::pth::pth_t` exists but is inaccessible
+   --> test_std.rs:46:5
+    |
+46  |     pub type pth_t = thread::JoinHandle<()>;
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_lib.rs:125:9
+    |
+125 |     if !pth_pqueue_contains(&pth_NQ, t) &&
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_NQ` in this scope
+   --> pth_lib.rs:125:30
+    |
+125 |     if !pth_pqueue_contains(&pth_NQ, t) &&
+    |                              ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_NQ` exists but is inaccessible
+   --> pth_cancel.rs:183:1
+    |
+183 | static mut pth_NQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_lib.rs:126:9
+    |
+126 |        !pth_pqueue_contains(&pth_RQ, t) &&
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_RQ` in this scope
+   --> pth_lib.rs:126:30
+    |
+126 |        !pth_pqueue_contains(&pth_RQ, t) &&
+    |                              ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_RQ` exists but is inaccessible
+   --> pth_cancel.rs:184:1
+    |
+184 | static mut pth_RQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_lib.rs:127:9
+    |
+127 |        !pth_pqueue_contains(&pth_WQ, t) &&
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_WQ` in this scope
+   --> pth_lib.rs:127:30
+    |
+127 |        !pth_pqueue_contains(&pth_WQ, t) &&
+    |                              ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_WQ` exists but is inaccessible
+   --> pth_cancel.rs:185:1
+    |
+185 | static mut pth_WQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_lib.rs:128:9
+    |
+128 |        !pth_pqueue_contains(&pth_SQ, t) &&
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_SQ` in this scope
+   --> pth_lib.rs:128:30
+    |
+128 |        !pth_pqueue_contains(&pth_SQ, t) &&
+    |                              ^^^^^^ not found in this scope
+
+error[E0425]: cannot find function `pth_pqueue_contains` in this scope
+   --> pth_lib.rs:129:9
+    |
+129 |        !pth_pqueue_contains(&pth_DQ, t) {
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `pth_DQ` in this scope
+   --> pth_lib.rs:129:30
+    |
+129 |        !pth_pqueue_contains(&pth_DQ, t) {
+    |                              ^^^^^^ not found in this scope
+    |
+note: static `crate::pth_cancel::pth_DQ` exists but is inaccessible
+   --> pth_cancel.rs:186:1
+    |
+186 | static mut pth_DQ: PthPQueue = PthPQueue::new();
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ not accessible
+
+error[E0425]: cannot find value `PTH_FDMODE_NONBLOCK` in this scope
+   --> pth_lib.rs:142:9
+    |
+142 |         PTH_FDMODE_NONBLOCK
+    |         ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FDMODE_BLOCK` in this scope
+   --> pth_lib.rs:144:9
+    |
+144 |         PTH_FDMODE_BLOCK
+    |         ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FDMODE_BLOCK` in this scope
+   --> pth_lib.rs:147:19
+    |
+147 |     if oldmode == PTH_FDMODE_BLOCK && newmode == PTH_FDMODE_NONBLOCK {
+    |                   ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FDMODE_NONBLOCK` in this scope
+   --> pth_lib.rs:147:50
+    |
+147 |     if oldmode == PTH_FDMODE_BLOCK && newmode == PTH_FDMODE_NONBLOCK {
+    |                                                  ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FDMODE_NONBLOCK` in this scope
+   --> pth_lib.rs:149:26
+    |
+149 |     } else if oldmode == PTH_FDMODE_NONBLOCK && newmode == PTH_FDMODE_BLOCK {
+    |                          ^^^^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FDMODE_BLOCK` in this scope
+   --> pth_lib.rs:149:60
+    |
+149 |     } else if oldmode == PTH_FDMODE_NONBLOCK && newmode == PTH_FDMODE_BLOCK {
+    |                                                            ^^^^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_SIGPIPE` in this scope
+   --> pth_sched.rs:180:6
+    |
+180 |     *PTH_SIGPIPE.lock().unwrap() = (read_fd, write_fd);
+    |      ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_NQ` in this scope
+   --> pth_sched.rs:186:5
+    |
+186 |     PTH_NQ.lock().unwrap().init();
+    |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_RQ` in this scope
+   --> pth_sched.rs:187:5
+    |
+187 |     PTH_RQ.lock().unwrap().init();
+    |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_WQ` in this scope
+   --> pth_sched.rs:188:5
+    |
+188 |     PTH_WQ.lock().unwrap().init();
+    |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_SQ` in this scope
+   --> pth_sched.rs:189:5
+    |
+189 |     PTH_SQ.lock().unwrap().init();
+    |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_DQ` in this scope
+   --> pth_sched.rs:190:5
+    |
+190 |     PTH_DQ.lock().unwrap().init();
+    |     ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_SCHED` in this scope
+   --> pth_sched.rs:193:21
+    |
+193 |     let mut sched = PTH_SCHED.lock().unwrap();
+    |                     ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_CURRENT` in this scope
+   --> pth_sched.rs:195:6
+    |
+195 |     *PTH_CURRENT.lock().unwrap() = None;
+    |      ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_NQ` in this scope
+   --> pth_sched.rs:206:29
+    |
+206 |         while let Some(t) = PTH_NQ.lock().unwrap().delmax() {
+    |                             ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_FAVOURNEW` in this scope
+   --> pth_sched.rs:209:28
+    |
+209 |             let prio = if *PTH_FAVOURNEW.lock().unwrap() {
+    |                            ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_RQ` in this scope
+   --> pth_sched.rs:215:13
+    |
+215 |             PTH_RQ.lock().unwrap().insert(prio, Arc::new(Mutex::new(t)));
+    |             ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_RQ` in this scope
+   --> pth_sched.rs:222:23
+    |
+222 |         let current = PTH_RQ.lock().unwrap().delmax();
+    |                       ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_CURRENT` in this scope
+   --> pth_sched.rs:228:10
+    |
+228 |         *PTH_CURRENT.lock().unwrap() = Some(current.clone());
+    |          ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_DQ` in this scope
+   --> pth_sched.rs:248:17
+    |
+248 |                 PTH_DQ.lock().unwrap().insert(PTH_PRIO_STD, current.clone());
+    |                 ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_CURRENT` in this scope
+   --> pth_sched.rs:250:14
+    |
+250 |             *PTH_CURRENT.lock().unwrap() = None;
+    |              ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_CURRENT` in this scope
+   --> pth_sched.rs:257:32
+    |
+257 |         if let Some(current) = PTH_CURRENT.lock().unwrap().as_ref() {
+    |                                ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_RQ` in this scope
+   --> pth_sched.rs:258:13
+    |
+258 |             PTH_RQ.lock().unwrap().insert(current.lock().unwrap().prio, current.clone());
+    |             ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_RQ` in this scope
+   --> pth_sched.rs:262:12
+    |
+262 |         if PTH_RQ.lock().unwrap().elements() == 0 && PTH_NQ.lock().unwrap().elements() == 0 {
+    |            ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_NQ` in this scope
+   --> pth_sched.rs:262:54
+    |
+262 |         if PTH_RQ.lock().unwrap().elements() == 0 && PTH_NQ.lock().unwrap().elements() == 0 {
+    |                                                      ^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_SIGRAISED` in this scope
+   --> pth_sched.rs:279:5
+    |
+279 |     PTH_SIGRAISED.lock().unwrap().add(sig);
+    |     ^^^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `PTH_SIGPIPE` in this scope
+   --> pth_sched.rs:280:16
+    |
+280 |     let pipe = PTH_SIGPIPE.lock().unwrap();
+    |                ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `FormatFlags` in this scope
+  --> pth_string.rs:65:42
+   |
+65 |     fn outstr(&mut self, s: &str, flags: FormatFlags, min: usize, max: usize) {
+   |                                          ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `FormatFlags` in this scope
+  --> pth_string.rs:95:12
+   |
+95 |     flags: FormatFlags,
+   |            ^^^^^^^^^^^ not found in this scope
+
+error[E0412]: cannot find type `FormatFlags` in this scope
+   --> pth_string.rs:181:12
+    |
+181 |     flags: FormatFlags,
+    |            ^^^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MSG_PORTS` in this scope
+  --> test_mp.rs:81:25
+   |
+81 |         let mut ports = MSG_PORTS.lock().unwrap();
+   |                         ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MSG_PORTS` in this scope
+   --> test_mp.rs:139:21
+    |
+139 |         let ports = MSG_PORTS.lock().unwrap();
+    |                     ^^^^^^^^^ not found in this scope
+
+error[E0425]: cannot find value `MSG_PORTS` in this scope
+   --> test_mp.rs:146:25
+    |
+146 |         let mut ports = MSG_PORTS.lock().unwrap();
+    |                         ^^^^^^^^^ not found in this scope
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:71:29
+   |
+71 |             let poll = mio::Poll::new()?;
+   |                             ^^^^ not found in `mio`
+   |
+help: consider importing one of these items
+   |
+28 | use core::task::Poll;
+   |
+28 | use std::task::Poll;
+   |
+help: if you import `Poll`, refer to it directly
+   |
+71 -             let poll = mio::Poll::new()?;
+71 +             let poll = Poll::new()?;
+   |
+
+error[E0433]: failed to resolve: use of undeclared crate or module `mio`
+  --> test_select.rs:72:53
+   |
+72 |             poll.register(&fds, mio::Token(0), mio::Ready::readable(), mio::PollOpt::edge())?;
+   |                                                     ^^^^^ not found in `mio`
+   |
+help: consider importing one of these items
+   |
+28 | use core::future::Ready;
+   |
+28 | use core::task::Ready;
+   |
+28 | use std::future::Ready;
+   |
+28 | use std::task::Ready;
+   |
+help: if you import `Ready`, refer to it directly
+   |
+72 -             poll.register(&fds, mio::Token(0), mio::Ready::readable(), mio::PollOpt::edge())?;
+72 +             poll.register(&fds, mio::Token(0), Ready::readable(), mio::PollOpt::edge())?;
+   |
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:12:1
+   |
+12 | #[macro_use]
+   | ^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_imports)]` on by default
+
+warning: unused `#[macro_use]` import
+  --> c2rust-lib.rs:14:19
+   |
+14 | extern crate f128;#[macro_use]
+   |                   ^^^^^^^^^^^^
+
+warning: unused import: `CStr`
+ --> pth_attr.rs:1:16
+  |
+1 | use std::ffi::{CStr, CString};
+  |                ^^^^
+
+warning: unused import: `std::mem`
+ --> pth_attr.rs:2:5
+  |
+2 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused import: `c_int`
+ --> pth_attr.rs:4:28
+  |
+4 | use std::os::raw::{c_char, c_int, c_void};
+  |                            ^^^^^
+
+warning: unused macro definition: `pth_debug1`
+  --> pth_debug.rs:35:14
+   |
+35 | macro_rules! pth_debug1 {
+   |              ^^^^^^^^^^
+   |
+   = note: `#[warn(unused_macros)]` on by default
+
+warning: unused macro definition: `pth_debug2`
+  --> pth_debug.rs:40:14
+   |
+40 | macro_rules! pth_debug2 {
+   |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug3`
+  --> pth_debug.rs:45:14
+   |
+45 | macro_rules! pth_debug3 {
+   |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug4`
+  --> pth_debug.rs:50:14
+   |
+50 | macro_rules! pth_debug4 {
+   |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug5`
+  --> pth_debug.rs:55:14
+   |
+55 | macro_rules! pth_debug5 {
+   |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug6`
+  --> pth_debug.rs:60:14
+   |
+60 | macro_rules! pth_debug6 {
+   |              ^^^^^^^^^^
+
+warning: unused import: `std::mem`
+  --> pth_event.rs:34:5
+   |
+34 | use std::mem;
+   |     ^^^^^^^^
+
+warning: unused imports: `Duration`, `Instant`
+  --> pth_high.rs:26:17
+   |
+26 | use std::time::{Duration, Instant};
+   |                 ^^^^^^^^  ^^^^^^^
+
+warning: unused import: `std::os::unix::io::RawFd`
+  --> pth_high.rs:28:5
+   |
+28 | use std::os::unix::io::RawFd;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `iovec`, `pollfd`, `sockaddr`, `socklen_t`, `timeval`
+  --> pth_high.rs:30:22
+   |
+30 | use libc::{timespec, timeval, sigset_t, sockaddr, socklen_t, pollfd, iovec};
+   |                      ^^^^^^^            ^^^^^^^^  ^^^^^^^^^  ^^^^^^  ^^^^^
+
+warning: unused imports: `SystemTime`, `UNIX_EPOCH`
+  --> pth_lib.rs:27:17
+   |
+27 | use std::time::{SystemTime, UNIX_EPOCH};
+   |                 ^^^^^^^^^^  ^^^^^^^^^^
+
+warning: unused import: `self`
+  --> pth_lib.rs:28:15
+   |
+28 | use std::io::{self, Error, ErrorKind};
+   |               ^^^^
+
+warning: unused import: `std::os::unix::io::AsRawFd`
+  --> pth_lib.rs:29:5
+   |
+29 | use std::os::unix::io::AsRawFd;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Mutex`
+  --> pth_lib.rs:30:17
+   |
+30 | use std::sync::{Mutex, Once};
+   |                 ^^^^^
+
+warning: unused import: `sigset_t`
+  --> pth_lib.rs:31:41
+   |
+31 | use libc::{self, c_long, c_int, c_void, sigset_t, SIG_IGN, F_GETFL, F_SETFL, O_NONBLOCK};
+   |                                         ^^^^^^^^
+
+warning: unused import: `std::ffi::CStr`
+  --> pth_msg.rs:29:5
+   |
+29 | use std::ffi::CStr;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `std::ptr`
+  --> pth_msg.rs:30:5
+   |
+30 | use std::ptr;
+   |     ^^^^^^^^
+
+warning: unused imports: `AsRawFd`, `RawFd`
+  --> pth_sched.rs:30:25
+   |
+30 | use std::os::unix::io::{RawFd, AsRawFd};
+   |                         ^^^^^  ^^^^^^^
+
+warning: unused import: `SIGSEGV`
+  --> pth_sched.rs:36:19
+   |
+36 | use libc::{c_int, SIGSEGV};
+   |                   ^^^^^^^
+
+warning: unused macro definition: `pth_debug1`
+   --> pth_sched.rs:288:14
+    |
+288 | macro_rules! pth_debug1 {
+    |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug2`
+   --> pth_sched.rs:291:14
+    |
+291 | macro_rules! pth_debug2 {
+    |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug3`
+   --> pth_sched.rs:294:14
+    |
+294 | macro_rules! pth_debug3 {
+    |              ^^^^^^^^^^
+
+warning: unused macro definition: `pth_debug4`
+   --> pth_sched.rs:297:14
+    |
+297 | macro_rules! pth_debug4 {
+    |              ^^^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+ --> pth_string.rs:2:15
+  |
+2 | use std::io::{self, Write};
+  |               ^^^^  ^^^^^
+
+warning: unused import: `std::mem`
+ --> pth_string.rs:3:5
+  |
+3 | use std::mem;
+  |     ^^^^^^^^
+
+warning: unused imports: `c_char`, `c_int`, `c_long`, `c_void`
+ --> pth_string.rs:4:20
+  |
+4 | use std::os::raw::{c_char, c_int, c_long, c_void};
+  |                    ^^^^^^  ^^^^^  ^^^^^^  ^^^^^^
+
+warning: unused import: `std::ptr`
+ --> pth_string.rs:5:5
+  |
+5 | use std::ptr;
+  |     ^^^^^^^^
+
+warning: unused import: `Arc`
+  --> pth_sync.rs:26:17
+   |
+26 | use std::sync::{Arc, Mutex, Condvar};
+   |                 ^^^
+
+warning: unused import: `std::time::Duration`
+  --> pth_sync.rs:29:5
+   |
+29 | use std::time::Duration;
+   |     ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::LinkedList`
+  --> pth_sync.rs:30:5
+   |
+30 | use std::collections::LinkedList;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::ffi::CString`
+  --> pth_tcb.rs:30:5
+   |
+30 | use std::ffi::CString;
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::str`
+  --> test_httpd.rs:36:5
+   |
+36 | use std::str;
+   |     ^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod test_httpd;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::fmt::Write as FmtWrite`
+  --> test_httpd.rs:37:5
+   |
+37 | use std::fmt::Write as FmtWrite;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:42:1
+   |
+42 | pub mod test_httpd;
+   | ^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Write`
+  --> test_mp.rs:27:30
+   |
+27 | use std::io::{self, BufRead, Write};
+   |                              ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::convert::TryInto`
+  --> test_mp.rs:31:5
+   |
+31 | use std::convert::TryInto;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `Mutex`
+  --> test_mp.rs:32:22
+   |
+32 | use std::sync::{Arc, Mutex};
+   |                      ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::collections::HashMap`
+  --> test_mp.rs:33:5
+   |
+33 | use std::collections::HashMap;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:44:1
+   |
+44 | pub mod test_mp;
+   | ^^^^^^^^^^^^^^^^
+
+warning: unused import: `Write`
+  --> test_select.rs:28:27
+   |
+28 | use std::io::{self, Read, Write};
+   |                           ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:46:1
+   |
+46 | pub mod test_select;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::mpsc`
+  --> test_select.rs:31:5
+   |
+31 | use std::sync::mpsc;
+   |     ^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:46:1
+   |
+46 | pub mod test_select;
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Arc`
+  --> test_sig.rs:26:17
+   |
+26 | use std::sync::{Arc, Mutex};
+   |                 ^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:48:1
+   |
+48 | pub mod test_sig;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Write`, `self`
+  --> test_std.rs:30:15
+   |
+30 | use std::io::{self, Write};
+   |               ^^^^  ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:49:1
+   |
+49 | pub mod test_std;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::thread`
+  --> test_std.rs:32:5
+   |
+32 | use std::thread;
+   |     ^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:49:1
+   |
+49 | pub mod test_std;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Arc`, `Mutex`
+  --> test_std.rs:33:17
+   |
+33 | use std::sync::{Arc, Mutex};
+   |                 ^^^  ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:49:1
+   |
+49 | pub mod test_std;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::error::Error`
+  --> test_std.rs:34:5
+   |
+34 | use std::error::Error;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> c2rust-lib.rs:49:1
+   |
+49 | pub mod test_std;
+   | ^^^^^^^^^^^^^^^^^
+
+warning: unused imports: `Arc`, `Mutex`
+  --> test_std.rs:38:21
+   |
+38 |     use std::sync::{Arc, Mutex};
+   |                     ^^^  ^^^^^
+   |
+help: consider adding a `#[cfg(test)]` to the containing module
+  --> test_std.rs:37:1
+   |
+37 | mod pth {
+   | ^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+error[E0308]: `match` arms have incompatible types
+   --> pth_attr.rs:130:25
+    |
+119 |                   let (src, dst) = match cmd {
+    |                                    --------- `match` arms have incompatible types
+...
+122 | /                         if let Some(ref tid) = self.a_tid {
+123 | |                             (&val, &mut tid.prio)
+124 | |                         } else {
+125 | |                             (&val, &mut self.a_prio)
+126 | |                         }
+    | |_________________________- this is found to be of type `(&&i32, &mut i32)`
+...
+130 | /                         if let Some(ref tid) = self.a_tid {
+131 | |                             (&tid.prio, dst)
+132 | |                         } else {
+133 | |                             (&self.a_prio, dst)
+134 | |                         }
+    | |_________________________^ expected `&i32`, found `i32`
+    |
+    = note: expected tuple `(&&i32, &mut i32)`
+               found tuple `(&i32, &&mut i32)`
+
+error[E0308]: `match` arms have incompatible types
+   --> pth_attr.rs:177:25
+    |
+166 |                   let (src, dst) = match cmd {
+    |                                    --------- `match` arms have incompatible types
+...
+169 | /                         if let Some(ref tid) = self.a_tid {
+170 | |                             (&val, &mut tid.dispatches)
+171 | |                         } else {
+172 | |                             (&val, &mut self.a_dispatches)
+173 | |                         }
+    | |_________________________- this is found to be of type `(&&i32, &mut i32)`
+...
+177 | /                         if let Some(ref tid) = self.a_tid {
+178 | |                             (&tid.dispatches, dst)
+179 | |                         } else {
+180 | |                             (&self.a_dispatches, dst)
+181 | |                         }
+    | |_________________________^ expected `&i32`, found `i32`
+    |
+    = note: expected tuple `(&&i32, &mut i32)`
+               found tuple `(&i32, &&mut i32)`
+
+error[E0308]: `match` arms have incompatible types
+   --> pth_attr.rs:199:25
+    |
+188 |                   let (src, dst) = match cmd {
+    |                                    --------- `match` arms have incompatible types
+...
+191 | /                         if let Some(ref tid) = self.a_tid {
+192 | |                             (&val, &mut tid.joinable)
+193 | |                         } else {
+194 | |                             (&val, &mut self.a_joinable)
+195 | |                         }
+    | |_________________________- this is found to be of type `(&&i32, &mut i32)`
+...
+199 | /                         if let Some(ref tid) = self.a_tid {
+200 | |                             (&tid.joinable, dst)
+201 | |                         } else {
+202 | |                             (&self.a_joinable, dst)
+203 | |                         }
+    | |_________________________^ expected `&i32`, found `i32`
+    |
+    = note: expected tuple `(&&i32, &mut i32)`
+               found tuple `(&i32, &&mut i32)`
+
+error[E0308]: `match` arms have incompatible types
+   --> pth_attr.rs:221:25
+    |
+210 |                   let (src, dst) = match cmd {
+    |                                    --------- `match` arms have incompatible types
+...
+213 | /                         if let Some(ref tid) = self.a_tid {
+214 | |                             (&val, &mut tid.cancelstate)
+215 | |                         } else {
+216 | |                             (&val, &mut self.a_cancelstate)
+217 | |                         }
+    | |_________________________- this is found to be of type `(&&u32, &mut u32)`
+...
+221 | /                         if let Some(ref tid) = self.a_tid {
+222 | |                             (&tid.cancelstate, dst)
+223 | |                         } else {
+224 | |                             (&self.a_cancelstate, dst)
+225 | |                         }
+    | |_________________________^ expected `&u32`, found `u32`
+    |
+    = note: expected tuple `(&&u32, &mut u32)`
+               found tuple `(&u32, &&mut u32)`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:243:29
+    |
+243 | ...                   tid.stacksize
+    |                       ^^^^^^^^^^^^^
+    |                       |
+    |                       expected `&mut u32`, found `u32`
+    |                       help: consider mutably borrowing here: `&mut tid.stacksize`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:245:29
+    |
+245 | ...                   self.a_stacksize
+    |                       ^^^^^^^^^^^^^^^^
+    |                       |
+    |                       expected `&mut u32`, found `u32`
+    |                       help: consider mutably borrowing here: `&mut self.a_stacksize`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:263:29
+    |
+263 | ...                   tid.stack
+    |                       ^^^^^^^^^
+    |                       |
+    |                       expected `&mut *mut i8`, found *-ptr
+    |                       help: consider mutably borrowing here: `&mut tid.stack`
+    |
+    = note: expected mutable reference `&mut *mut i8`
+                     found raw pointer `*mut i8`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:265:29
+    |
+265 | ...                   self.a_stackaddr
+    |                       ^^^^^^^^^^^^^^^^
+    |                       |
+    |                       expected `&mut *mut i8`, found *-ptr
+    |                       help: consider mutably borrowing here: `&mut self.a_stackaddr`
+    |
+    = note: expected mutable reference `&mut *mut i8`
+                     found raw pointer `*mut i8`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:277:21
+    |
+277 |                     tid.spawned
+    |                     ^^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut tid.spawned`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:279:21
+    |
+279 |                     UNIX_EPOCH
+    |                     ^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut UNIX_EPOCH`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:289:21
+    |
+289 |                     tid.lastran
+    |                     ^^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut tid.lastran`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:291:21
+    |
+291 |                     UNIX_EPOCH
+    |                     ^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut UNIX_EPOCH`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:301:21
+    |
+301 |                     tid.running
+    |                     ^^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut tid.running`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:303:21
+    |
+303 |                     UNIX_EPOCH
+    |                     ^^^^^^^^^^
+    |                     |
+    |                     expected `&mut SystemTime`, found struct `SystemTime`
+    |                     help: consider mutably borrowing here: `&mut UNIX_EPOCH`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:315:24
+    |
+315 |                 *dst = self.a_tid.as_ref().unwrap().start_func;
+    |                 ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected mutable reference, found enum `Option`
+    |                 |
+    |                 expected due to the type of this binding
+    |
+    = note: expected mutable reference `&mut Option<extern "C" fn(*mut c_void) -> *mut c_void>`
+                            found enum `Option<extern "C" fn(*mut c_void) -> *mut c_void>`
+help: consider dereferencing here to assign to the mutably borrowed value
+    |
+315 |                 **dst = self.a_tid.as_ref().unwrap().start_func;
+    |                 +
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:326:24
+    |
+326 |                 *dst = self.a_tid.as_ref().unwrap().start_arg;
+    |                 ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut *mut c_void`, found *-ptr
+    |                 |
+    |                 expected due to the type of this binding
+    |
+    = note: expected mutable reference `&mut *mut c_void`
+                     found raw pointer `*mut c_void`
+help: consider dereferencing here to assign to the mutably borrowed value
+    |
+326 |                 **dst = self.a_tid.as_ref().unwrap().start_arg;
+    |                 +
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:337:24
+    |
+337 |                 *dst = self.a_tid.as_ref().unwrap().state;
+    |                 ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut i32`, found `i32`
+    |                 |
+    |                 expected due to the type of this binding
+    |
+help: consider dereferencing here to assign to the mutably borrowed value
+    |
+337 |                 **dst = self.a_tid.as_ref().unwrap().state;
+    |                 +
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:348:24
+    |
+348 |                 *dst = self.a_tid.as_ref().unwrap().events;
+    |                 ----   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `&mut *mut c_void`, found *-ptr
+    |                 |
+    |                 expected due to the type of this binding
+    |
+    = note: expected mutable reference `&mut *mut c_void`
+                     found raw pointer `*mut c_void`
+help: consider dereferencing here to assign to the mutably borrowed value
+    |
+348 |                 **dst = self.a_tid.as_ref().unwrap().events;
+    |                 +
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:356:50
+    |
+356 |                 *dst = if self.a_tid.is_some() { TRUE } else { FALSE };
+    |                                                  ^^^^
+    |                                                  |
+    |                                                  expected `&mut i32`, found `i32`
+    |                                                  help: consider mutably borrowing here: `&mut TRUE`
+
+error[E0308]: mismatched types
+   --> pth_attr.rs:356:64
+    |
+356 |                 *dst = if self.a_tid.is_some() { TRUE } else { FALSE };
+    |                                                                ^^^^^
+    |                                                                |
+    |                                                                expected `&mut i32`, found `i32`
+    |                                                                help: consider mutably borrowing here: `&mut FALSE`
+
+error[E0618]: expected function, found `Option<PthCurrent>`
+   --> pth_cancel.rs:85:19
+    |
+85  |     let current = pth_current();
+    |                   ^^^^^^^^^^^--
+    |                   |
+    |                   call expression requires function
+...
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ------------------------------------------ `pth_cancel::pth_current` defined here
+
+error[E0618]: expected function, found `Option<PthCurrent>`
+   --> pth_cancel.rs:97:19
+    |
+97  |     let current = pth_current();
+    |                   ^^^^^^^^^^^--
+    |                   |
+    |                   call expression requires function
+...
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ------------------------------------------ `pth_cancel::pth_current` defined here
+
+error[E0618]: expected function, found `Option<PthCurrent>`
+   --> pth_cancel.rs:108:19
+    |
+108 |     let current = pth_current();
+    |                   ^^^^^^^^^^^--
+    |                   |
+    |                   call expression requires function
+...
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ------------------------------------------ `pth_cancel::pth_current` defined here
+
+error[E0618]: expected function, found `Option<PthCurrent>`
+   --> pth_cancel.rs:152:19
+    |
+152 |     let current = pth_current();
+    |                   ^^^^^^^^^^^--
+    |                   |
+    |                   call expression requires function
+...
+182 | static mut pth_current: Option<PthCurrent> = None;
+    | ------------------------------------------ `pth_cancel::pth_current` defined here
+
+error[E0599]: no method named `is_null` found for struct `Box<(dyn FnOnce(*mut ()) + 'static)>` in the current scope
+  --> pth_clean.rs:65:13
+   |
+65 |     if func.is_null() {
+   |        ---- ^^^^^^^ method not found in `Box<(dyn FnOnce(*mut ()) + 'static)>`
+   |        |
+   |        this is a function, perhaps you wish to call it
+
+error[E0599]: no method named `is_null` found for mutable reference `&mut usize` in the current scope
+  --> pth_data.rs:67:12
+   |
+67 |     if key.is_null() {
+   |            ^^^^^^^ method not found in `&mut usize`
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:167:43
+    |
+167 |             ring = (*ev).ev_next.unwrap().as_ptr();
+    |                    -----------------------^^^^^^
+    |                    |                      |
+    |                    |                      this is an associated function, not a method
+    |                    help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0609]: no field `ev_next` on type `Arc<Mutex<pth_event::PthEvent>>`
+   --> pth_event.rs:168:36
+    |
+168 |             (*ev).ev_prev.unwrap().ev_next = (*ev).ev_next;
+    |                                    ^^^^^^^ unknown field
+
+error[E0609]: no field `ev_prev` on type `Arc<Mutex<pth_event::PthEvent>>`
+   --> pth_event.rs:169:36
+    |
+169 |             (*ev).ev_next.unwrap().ev_prev = (*ev).ev_prev;
+    |                                    ^^^^^^^ unknown field
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:193:55
+    |
+193 |                 current = (*current).ev_next.unwrap().as_ptr();
+    |                           ----------------------------^^^^^^
+    |                           |                           |
+    |                           |                           this is an associated function, not a method
+    |                           help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:195:55
+    |
+195 |                 current = (*current).ev_prev.unwrap().as_ptr();
+    |                           ----------------------------^^^^^^
+    |                           |                           |
+    |                           |                           this is an associated function, not a method
+    |                           help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0609]: no field `ev_next` on type `Arc<Mutex<pth_event::PthEvent>>`
+   --> pth_event.rs:215:36
+    |
+215 |             (*ev).ev_prev.unwrap().ev_next = (*ev).ev_next;
+    |                                    ^^^^^^^ unknown field
+
+error[E0609]: no field `ev_prev` on type `Arc<Mutex<pth_event::PthEvent>>`
+   --> pth_event.rs:216:36
+    |
+216 |             (*ev).ev_next.unwrap().ev_prev = (*ev).ev_prev;
+    |                                    ^^^^^^^ unknown field
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:221:56
+    |
+221 |                 let next = (*current).ev_next.unwrap().as_ptr();
+    |                            ----------------------------^^^^^^
+    |                            |                           |
+    |                            |                           this is an associated function, not a method
+    |                            help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:243:51
+    |
+243 |             current = (*current).ev_next.unwrap().as_ptr();
+    |                       ----------------------------^^^^^^
+    |                       |                           |
+    |                       |                           this is an associated function, not a method
+    |                       help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0599]: no method named `as_ptr` found for struct `Arc<Mutex<pth_event::PthEvent>>` in the current scope
+   --> pth_event.rs:276:51
+    |
+276 |             current = (*current).ev_next.unwrap().as_ptr();
+    |                       ----------------------------^^^^^^
+    |                       |                           |
+    |                       |                           this is an associated function, not a method
+    |                       help: use associated function syntax instead: `Arc::<Mutex<pth_event::PthEvent>>::as_ptr`
+    |
+    = note: found the following associated functions; to be used as methods, functions must have a `self` parameter
+    = note: the candidate is defined in an impl for the type `Arc<T>`
+
+error[E0308]: mismatched types
+   --> pth_high.rs:103:44
+    |
+103 |     pth_sc::sigprocmask(how, set.unwrap_or(ptr::null()), oset.map(|x| x as *mut _).unwrap_or(ptr::null_mut()))
+    |                                  --------- ^^^^^^^^^^^ expected `&libc::sigset_t`, found *-ptr
+    |                                  |
+    |                                  arguments to this function are incorrect
+    |
+    = note: expected reference `&libc::sigset_t`
+             found raw pointer `*const _`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/option.rs:796:18
+    |
+796 |     pub const fn unwrap_or(self, default: T) -> T
+    |                  ^^^^^^^^^
+
+error[E0282]: type annotations needed
+   --> pth_high.rs:110:31
+    |
+110 |     pth_sigwait_ev(set, sigp, None)
+    |                               ^^^^ cannot infer type of the type parameter `T` declared on the enum `Option`
+    |
+help: consider specifying the generic argument
+    |
+110 |     pth_sigwait_ev(set, sigp, None::<T>)
+    |                                   +++++
+
+error[E0599]: no function or associated item named `default` found for struct `libc::sigset_t` in the current scope
+   --> pth_high.rs:114:33
+    |
+114 |     let mut pending = sigset_t::default();
+    |                                 ^^^^^^^ function or associated item not found in `libc::sigset_t`
+
+error[E0609]: no field `sa_handler` on type `libc::sigaction`
+   --> pth_lib.rs:111:11
+    |
+111 |     if sa.sa_handler == SIG_IGN {
+    |           ^^^^^^^^^^ unknown field
+    |
+    = note: available fields are: `sa_sigaction`, `sa_mask`, `sa_flags`, `sa_restorer`
+
+error[E0599]: no method named `is_null` found for mutable reference `&mut std::sync::Once` in the current scope
+   --> pth_lib.rs:157:17
+    |
+157 |     if oncectrl.is_null() || constructor.is_null() {
+    |                 ^^^^^^^ method not found in `&mut std::sync::Once`
+
+error[E0599]: no method named `is_null` found for fn pointer `fn(*mut c_void)` in the current scope
+   --> pth_lib.rs:157:42
+    |
+157 |     if oncectrl.is_null() || constructor.is_null() {
+    |                              ----------- ^^^^^^^ method not found in `fn(*mut c_void)`
+    |                              |
+    |                              this is a function, perhaps you wish to call it
+
+error[E0599]: no method named `retain` found for struct `MutexGuard<'_, LinkedList<Arc<Mutex<pth_msg::PthMsgPort>>>>` in the current scope
+  --> pth_msg.rs:68:16
+   |
+68 |     port_guard.retain(|x| !Arc::ptr_eq(x, &mp));
+   |                ^^^^^^ method not found in `MutexGuard<'_, LinkedList<Arc<Mutex<pth_msg::PthMsgPort>>>>`
+
+error[E0308]: mismatched types
+   --> pth_msg.rs:86:33
+    |
+86  |     mp_guard.mp_queue.push_back(m);
+    |                       --------- ^ expected struct `Arc`, found `()`
+    |                       |
+    |                       arguments to this function are incorrect
+    |
+    = note: expected struct `Arc<Mutex<pth_msg::PthMsgPort>>`
+            found unit type `()`
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/alloc/src/collections/linked_list.rs:836:12
+    |
+836 |     pub fn push_back(&mut self, elt: T) {
+    |            ^^^^^^^^^
+
+error[E0308]: mismatched types
+  --> pth_msg.rs:92:5
+   |
+90 | pub fn pth_msgport_get(mp: Arc<Mutex<PthMsgPort>>) -> Option<PthMessage> {
+   |                                                       ------------------ expected `Option<()>` because of return type
+91 |     let mut mp_guard = mp.lock().unwrap();
+92 |     mp_guard.mp_queue.pop_front()
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found struct `Arc`
+   |
+   = note: expected enum `Option<()>`
+              found enum `Option<Arc<Mutex<pth_msg::PthMsgPort>>>`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:361:67
+    |
+361 | ...                   Some(FormatConversion::Short) => args.next().unwrap().as_i64().unwrap() as i16 as i64,
+    |                                                             ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:362:66
+    |
+362 | ...                   Some(FormatConversion::Long) => args.next().unwrap().as_i64().unwrap(),
+    |                                                            ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:363:70
+    |
+363 | ...                   Some(FormatConversion::LongLong) => args.next().unwrap().as_i64().unwrap(),
+    |                                                                ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:364:39
+    |
+364 | ...                   _ => args.next().unwrap().as_i64().unwrap(),
+    |                                 ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:376:67
+    |
+376 | ...                   Some(FormatConversion::Short) => args.next().unwrap().as_u64().unwrap() as u16 as u64,
+    |                                                             ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:377:66
+    |
+377 | ...                   Some(FormatConversion::Long) => args.next().unwrap().as_u64().unwrap(),
+    |                                                            ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:378:70
+    |
+378 | ...                   Some(FormatConversion::LongLong) => args.next().unwrap().as_u64().unwrap(),
+    |                                                                ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:379:39
+    |
+379 | ...                   _ => args.next().unwrap().as_u64().unwrap(),
+    |                                 ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:392:72
+    |
+392 | ...                   Some(FormatConversion::LongDouble) => args.next().unwrap().as_f64().unwrap(),
+    |                                                                  ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:393:39
+    |
+393 | ...                   _ => args.next().unwrap().as_f64().unwrap(),
+    |                                 ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:398:38
+    |
+398 |                         let c = args.next().unwrap().as_char().unwrap();
+    |                                      ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:402:38
+    |
+402 |                         let s = args.next().unwrap().as_str().unwrap();
+    |                                      ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0599]: the method `next` exists for mutable reference `&mut Arguments<'_>`, but its trait bounds were not satisfied
+   --> pth_string.rs:406:38
+    |
+406 |                         let p = args.next().unwrap().as_pointer().unwrap();
+    |                                      ^^^^ method cannot be called on `&mut Arguments<'_>` due to unsatisfied trait bounds
+    |
+   ::: /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/fmt/mod.rs:470:1
+    |
+470 | pub struct Arguments<'a> {
+    | ------------------------ doesn't satisfy `Arguments<'_>: Iterator`
+    |
+    = note: the following trait bounds were not satisfied:
+            `Arguments<'_>: Iterator`
+            which is required by `&mut Arguments<'_>: Iterator`
+
+error[E0369]: binary operation `==` cannot be applied to type `MutexGuard<'_, PthMutexState>`
+   --> pth_sync.rs:217:51
+    |
+217 |         if self.write_mutex.state.lock().unwrap() == &PthMutexState::Locked {
+    |            -------------------------------------- ^^ ---------------------- &PthMutexState
+    |            |
+    |            MutexGuard<'_, PthMutexState>
+
+error[E0308]: mismatched types
+   --> pth_tcb.rs:126:21
+    |
+126 |         sigpending: 0,
+    |                     ^ expected struct `libc::sigset_t`, found integer
+
+error[E0308]: mismatched types
+  --> test_philo.rs:91:16
+   |
+91 |     printstate(table);
+   |     ---------- ^^^^^ expected `&Mutex<Table>`, found struct `MutexGuard`
+   |     |
+   |     arguments to this function are incorrect
+   |
+   = note: expected reference `&Mutex<Table>`
+                 found struct `MutexGuard<'_, Table>`
+note: function defined here
+  --> test_philo.rs:64:4
+   |
+64 | fn printstate(table: &Mutex<Table>) {
+   |    ^^^^^^^^^^ --------------------
+
+error[E0599]: no method named `lock` found for struct `MutexGuard<'_, Table>` in the current scope
+  --> test_philo.rs:95:27
+   |
+95 |         .wait_while(table.lock().unwrap(), |t| t.status[k] != PhilStat::Eating)
+   |                           ^^^^ private field, not a method
+
+error[E0609]: no field `status` on type `&mut _`
+  --> test_philo.rs:95:50
+   |
+95 |         .wait_while(table.lock().unwrap(), |t| t.status[k] != PhilStat::Eating)
+   |                                                  ^^^^^^
+
+error[E0308]: mismatched types
+   --> test_philo.rs:103:16
+    |
+103 |     printstate(&table);
+    |     ---------- ^^^^^^ expected struct `Mutex`, found struct `MutexGuard`
+    |     |
+    |     arguments to this function are incorrect
+    |
+    = note: expected reference `&Mutex<Table>`
+               found reference `&MutexGuard<'_, Table>`
+note: function defined here
+   --> test_philo.rs:64:4
+    |
+64  | fn printstate(table: &Mutex<Table>) {
+    |    ^^^^^^^^^^ --------------------
+
+error[E0308]: mismatched types
+   --> test_philo.rs:109:10
+    |
+109 |     test(table, condvars, next);
+    |     ---- ^^^^^ expected `&Mutex<Table>`, found struct `MutexGuard`
+    |     |
+    |     arguments to this function are incorrect
+    |
+    = note: expected reference `&Mutex<Table>`
+                  found struct `MutexGuard<'_, Table>`
+note: function defined here
+   --> test_philo.rs:74:4
+    |
+74  | fn test(table: &Mutex<Table>, condvars: &[Condvar; PHILNUM], i: usize) -> bool {
+    |    ^^^^ --------------------  -----------------------------  --------
+
+error[E0308]: mismatched types
+   --> test_philo.rs:110:10
+    |
+110 |     test(table, condvars, prev);
+    |     ---- ^^^^^ expected `&Mutex<Table>`, found struct `MutexGuard`
+    |     |
+    |     arguments to this function are incorrect
+    |
+    = note: expected reference `&Mutex<Table>`
+                  found struct `MutexGuard<'_, Table>`
+note: function defined here
+   --> test_philo.rs:74:4
+    |
+74  | fn test(table: &Mutex<Table>, condvars: &[Condvar; PHILNUM], i: usize) -> bool {
+    |    ^^^^ --------------------  -----------------------------  --------
+
+error[E0599]: no method named `clone` found for struct `Arc<_>` in the current scope
+   --> test_philo.rs:155:33
+    |
+155 |         let condvars = condvars.clone();
+    |                                 ^^^^^ method not found in `Arc<_>`
+
+error[E0308]: mismatched types
+   --> test_std.rs:107:13
+    |
+107 |             Box::new(res) as Box<dyn std::any::Any>
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found struct `Box`
+    |
+    = note: expected unit type `()`
+                  found struct `Box<(dyn Any + 'static)>`
+
+error[E0308]: mismatched types
+   --> test_std.rs:159:13
+    |
+159 |             Box::new(res) as Box<dyn std::any::Any>
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found struct `Box`
+    |
+    = note: expected unit type `()`
+                  found struct `Box<(dyn Any + 'static)>`
+
+error[E0308]: mismatched types
+   --> test_std.rs:177:13
+    |
+177 |             Box::new(res) as Box<dyn std::any::Any>
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `()`, found struct `Box`
+    |
+    = note: expected unit type `()`
+                  found struct `Box<(dyn Any + 'static)>`
+
+Some errors have detailed explanations: E0282, E0308, E0369, E0412, E0425, E0428, E0432, E0433, E0565...
+For more information about an error, try `rustc --explain E0282`.
+warning: `c2rust_out` (lib) generated 51 warnings
+error: could not compile `c2rust_out` due to 239 previous errors; 51 warnings emitted

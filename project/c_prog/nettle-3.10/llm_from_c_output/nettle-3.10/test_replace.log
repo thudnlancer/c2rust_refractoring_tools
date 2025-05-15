@@ -1,0 +1,1713 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/nettle-3.10)
+error: unknown byte escape: `b`
+   --> tools/input.rs:174:43
+    |
+174 |                     b'b' => { self.c = b'\b'; Ok(true) },
+    |                                           ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error: unknown byte escape: `f`
+   --> tools/input.rs:177:43
+    |
+177 |                     b'f' => { self.c = b'\f'; Ok(true) },
+    |                                           ^ unknown byte escape
+    |
+    = help: for more information, visit <https://static.rust-lang.org/doc/master/reference.html#literals>
+
+error[E0432]: unresolved import `sha2`
+ --> yarrow256.rs:2:5
+  |
+2 | use sha2::{Sha256, Digest};
+  |     ^^^^ use of undeclared crate or module `sha2`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `aes`
+ --> yarrow256.rs:4:5
+  |
+4 | use aes::cipher::{BlockEncrypt, KeyInit};
+  |     ^^^ use of undeclared crate or module `aes`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `aes`
+ --> yarrow256.rs:5:5
+  |
+5 | use aes::cipher::generic_array::GenericArray;
+  |     ^^^ use of undeclared crate or module `aes`
+
+error[E0432]: unresolved import `aes`
+ --> yarrow256.rs:3:5
+  |
+3 | use aes::Aes256;
+  |     ^^^ use of undeclared crate or module `aes`
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> tools/output.rs:40:34
+   |
+40 |     fn init(&self, ctx: &mut dyn Any);
+   |                                  ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> tools/output.rs:41:36
+   |
+41 |     fn update(&self, ctx: &mut dyn Any, length: usize, data: &[u8]);
+   |                                    ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> tools/output.rs:42:36
+   |
+42 |     fn digest(&self, ctx: &mut dyn Any, length: usize, digest: &mut [u8]);
+   |                                    ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> tools/output.rs:71:25
+   |
+71 |     ctx: Option<Box<dyn Any>>,
+   |                         ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0405]: cannot find trait `Any` in this scope
+  --> tools/output.rs:93:72
+   |
+93 |     pub fn hash_init(&mut self, hash: &'a dyn NettleHash, ctx: Box<dyn Any>) {
+   |                                                                        ^^^ not found in this scope
+   |
+help: consider importing one of these items
+   |
+1  | use core::any::Any;
+   |
+1  | use std::any::Any;
+   |
+
+error[E0425]: cannot find value `nettle_base16` in this scope
+   --> tools/output.rs:215:30
+    |
+215 |         self.put_code_start(&nettle_base16)?;
+    |                              ^^^^^^^^^^^^^
+...
+226 | pub struct NettleBase16;
+    | ------------------------ similarly named unit struct `NettleBase16` defined here
+    |
+help: a unit struct with a similar name exists
+    |
+215 |         self.put_code_start(&NettleBase16)?;
+    |                              ~~~~~~~~~~~~
+help: consider importing this static
+    |
+1   | use crate::base16_meta::nettle_base16;
+    |
+
+warning: unused label
+  --> aes128_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+   |
+   = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+  --> aes128_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes192_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes192_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes256_decrypt.rs:56:5
+   |
+56 |     'c_411: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes256_encrypt.rs:56:5
+   |
+56 |     'c_407: {
+   |     ^^^^^^
+
+warning: unused label
+  --> aes_set_key_internal.rs:58:5
+   |
+58 |     'c_812: {
+   |     ^^^^^^
+
+warning: unused label
+  --> arcfour.rs:43:5
+   |
+43 |     'c_416: {
+   |     ^^^^^^
+
+warning: unused label
+  --> arcfour.rs:73:5
+   |
+73 |     'c_373: {
+   |     ^^^^^^
+
+warning: unused label
+   --> arctwo.rs:301:5
+    |
+301 |     'c_1903: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:455:5
+    |
+455 |     'c_2639: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:615:5
+    |
+615 |     'c_1088: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:645:5
+    |
+645 |     'c_1049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> arctwo.rs:675:5
+    |
+675 |     'c_1006: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:185:13
+    |
+185 |             'c_1361: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:215:13
+    |
+215 |             'c_1319: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base16_decode.rs:294:5
+    |
+294 |     'c_1818: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_decode.rs:329:13
+    |
+329 |             'c_2163: {
+    |             ^^^^^^^
+
+warning: unused label
+   --> base64_decode.rs:421:5
+    |
+421 |     'c_2237: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:131:5
+    |
+131 |     'c_1633: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:157:5
+    |
+157 |     'c_1574: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:251:5
+    |
+251 |     'c_1276: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:307:9
+    |
+307 |         'c_1949: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:364:5
+    |
+364 |     'c_1415: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> base64_encode.rs:429:5
+    |
+429 |     'c_2054: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> blowfish.rs:1803:5
+     |
+1803 |     'c_3953: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> blowfish.rs:1900:5
+     |
+1900 |     'c_5762: {
+     |     ^^^^^^^
+
+warning: unused label
+  --> buffer.rs:49:5
+   |
+49 |     'c_1732: {
+   |     ^^^^^^^
+
+warning: unused label
+  --> camellia128_crypt.rs:60:5
+   |
+60 |     'c_282: {
+   |     ^^^^^^
+
+warning: unused label
+  --> camellia256_crypt.rs:60:5
+   |
+60 |     'c_306: {
+   |     ^^^^^^
+
+warning: unused label
+    --> cast128.rs:2107:5
+     |
+2107 |     'c_12424: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2480:5
+     |
+2480 |     'c_14620: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2862:5
+     |
+2862 |     'c_8680: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> cast128.rs:2892:5
+     |
+2892 |     'c_8637: {
+     |     ^^^^^^^
+
+warning: unused label
+  --> cbc.rs:59:5
+   |
+59 |     'c_1675: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> cbc.rs:108:5
+    |
+108 |     'c_2063: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> ccm.rs:99:5
+   |
+99 |     'c_2154: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:129:5
+    |
+129 |     'c_2115: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:184:5
+    |
+184 |     'c_1991: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:504:5
+    |
+504 |     'c_2682: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ccm.rs:569:5
+    |
+569 |     'c_2825: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:188:5
+    |
+188 |     'c_936: {
+    |     ^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:236:5
+    |
+236 |     'c_1096: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> chacha_poly1305.rs:289:5
+    |
+289 |     'c_1195: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> cmac.rs:249:5
+    |
+249 |     'c_2242: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> cmac64.rs:224:5
+    |
+224 |     'c_2188: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ctr.rs:304:13
+    |
+304 |             'c_1733: {
+    |             ^^^^^^^
+
+warning: unused label
+  --> ctr16.rs:88:13
+   |
+88 |             'c_569: {
+   |             ^^^^^^
+
+warning: unnecessary parentheses around method argument
+   --> ctr16.rs:135:21
+    |
+135 |                     (if blocks_0
+    |                     ^
+...
+141 |                     }),
+    |                      ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+135 ~                     if blocks_0
+136 |                         < (512 as libc::c_int / 16 as libc::c_int) as libc::c_ulong
+  ...
+140 |                         (512 as libc::c_int / 16 as libc::c_int) as libc::c_ulong
+141 ~                     },
+    |
+
+warning: unused label
+   --> ctr16.rs:199:21
+    |
+199 |                     'c_334: {
+    |                     ^^^^^^
+
+warning: unused label
+    --> des.rs:3487:5
+     |
+3487 |     'c_8482: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> des.rs:3532:5
+     |
+3532 |     'c_12589: {
+     |     ^^^^^^^^
+
+warning: unused label
+   --> eax.rs:293:5
+    |
+293 |     'c_1382: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> eax.rs:323:5
+    |
+323 |     'c_1339: {
+    |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> examples/nettle_openssl.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` on by default
+
+warning: unused label
+   --> fat_x86_64.rs:701:5
+    |
+701 |     'c_2689: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:766:5
+    |
+766 |     'c_4142: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:831:5
+    |
+831 |     'c_4049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:896:5
+    |
+896 |     'c_3956: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> fat_x86_64.rs:961:5
+    |
+961 |     'c_3859: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1026:5
+     |
+1026 |     'c_3766: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1094:5
+     |
+1094 |     'c_3669: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1163:5
+     |
+1163 |     'c_3568: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1232:5
+     |
+1232 |     'c_3460: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1292:5
+     |
+1292 |     'c_2789: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1346:5
+     |
+1346 |     'c_3298: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1407:5
+     |
+1407 |     'c_3206: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1472:5
+     |
+1472 |     'c_3056: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> fat_x86_64.rs:1532:5
+     |
+1532 |     'c_2962: {
+     |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:230:5
+    |
+230 |     'c_2184: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:263:5
+    |
+263 |     'c_2137: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:377:5
+    |
+377 |     'c_2658: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:437:5
+    |
+437 |     'c_2759: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> gcm.rs:494:5
+    |
+494 |     'c_2916: {
+    |     ^^^^^^^
+
+warning: unused import: `::libc`
+ --> getopt.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused import: `::libc`
+ --> getopt1.rs:1:5
+  |
+1 | use ::libc;
+  |     ^^^^^^
+
+warning: unused label
+   --> gosthash94.rs:680:5
+    |
+680 |     'c_4526: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> hmac.rs:99:5
+   |
+99 |     'c_999: {
+   |     ^^^^^^
+
+warning: unused label
+   --> knuth_lfib.rs:160:5
+    |
+160 |     'c_1803: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md2.rs:426:5
+    |
+426 |     'c_1492: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md4.rs:142:5
+    |
+142 |     'c_3499: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md4.rs:172:5
+    |
+172 |     'c_3439: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md5.rs:143:5
+    |
+143 |     'c_4465: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> md5.rs:173:5
+    |
+173 |     'c_4405: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:127:5
+    |
+127 |     'c_867: {
+    |     ^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:157:5
+    |
+157 |     'c_820: {
+    |     ^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:264:5
+    |
+264 |     'c_1156: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> nist_keywrap.rs:294:5
+    |
+294 |     'c_1113: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:187:9
+    |
+187 |         'c_1697: {
+    |         ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:262:5
+    |
+262 |     'c_1196: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:292:5
+    |
+292 |     'c_1157: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:322:5
+    |
+322 |     'c_1108: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:424:5
+    |
+424 |     'c_1980: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:513:5
+    |
+513 |     'c_2049: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:858:5
+    |
+858 |     'c_3024: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ocb.rs:936:5
+    |
+936 |     'c_3163: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> pbkdf2.rs:62:5
+   |
+62 |     'c_1933: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> poly1305_aes.rs:147:9
+    |
+147 |         'c_908: {
+    |         ^^^^^^
+
+warning: unused label
+   --> ripemd160.rs:147:5
+    |
+147 |     'c_1168: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> ripemd160.rs:181:5
+    |
+181 |     'c_1108: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> serpent_set_key.rs:38:5
+   |
+38 |     'c_5857: {
+   |     ^^^^^^^
+
+warning: unused label
+   --> serpent_set_key.rs:795:5
+    |
+795 |     'c_238: {
+    |     ^^^^^^
+
+warning: unused label
+   --> sha1.rs:145:5
+    |
+145 |     'c_2194: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha1.rs:175:5
+    |
+175 |     'c_2134: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha256.rs:210:5
+    |
+210 |     'c_2342: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha256.rs:240:5
+    |
+240 |     'c_2282: {
+    |     ^^^^^^^
+
+warning: unused label
+  --> sha3.rs:71:5
+   |
+71 |     'c_796: {
+   |     ^^^^^^
+
+warning: unused label
+   --> sha3.rs:141:5
+    |
+141 |     'c_901: {
+    |     ^^^^^^
+
+warning: unused label
+  --> sha3_shake.rs:90:5
+   |
+90 |     'c_865: {
+   |     ^^^^^^
+
+warning: unused label
+   --> sha512.rs:244:5
+    |
+244 |     'c_2920: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:274:5
+    |
+274 |     'c_2860: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:503:5
+    |
+503 |     'c_2959: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:561:5
+    |
+561 |     'c_3077: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:621:5
+    |
+621 |     'c_3194: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> sha512.rs:681:5
+    |
+681 |     'c_3312: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_cmac.rs:189:5
+    |
+189 |     'c_1662: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_cmac.rs:341:5
+    |
+341 |     'c_1712: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:174:5
+    |
+174 |     'c_1316: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:392:5
+    |
+392 |     'c_1556: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:422:5
+    |
+422 |     'c_1516: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> siv_gcm.rs:514:5
+    |
+514 |     'c_1764: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> sm3.rs:4262:5
+     |
+4262 |     'c_41715: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> sm3.rs:4292:5
+     |
+4292 |     'c_41655: {
+     |     ^^^^^^^^
+
+warning: unused label
+   --> sm4.rs:479:5
+    |
+479 |     'c_2599: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2827:5
+     |
+2827 |     'c_8641: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2871:5
+     |
+2871 |     'c_8690: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> streebog.rs:2930:5
+     |
+2930 |     'c_8810: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:1799:17
+     |
+1799 |                 'c_36861: {
+     |                 ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:1959:21
+     |
+1959 |                     'c_36390: {
+     |                     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:2911:5
+     |
+2911 |     'c_2404: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3049:5
+     |
+3049 |     'c_5590: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3174:5
+     |
+3174 |     'c_2778: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3251:5
+     |
+3251 |     'c_2974: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3293:5
+     |
+3293 |     'c_3070: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3369:5
+     |
+3369 |     'c_3254: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3414:5
+     |
+3414 |     'c_3691: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3567:5
+     |
+3567 |     'c_4151: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3725:5
+     |
+3725 |     'c_4611: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3881:5
+     |
+3881 |     'c_4940: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3911:5
+     |
+3911 |     'c_4901: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3944:5
+     |
+3944 |     'c_4813: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:3980:5
+     |
+3980 |     'c_4724: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4053:5
+     |
+4053 |     'c_9540: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4079:5
+     |
+4079 |     'c_9502: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4108:5
+     |
+4108 |     'c_9456: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4172:5
+     |
+4172 |     'c_7817: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4198:5
+     |
+4198 |     'c_7779: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4227:5
+     |
+4227 |     'c_7731: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4291:5
+     |
+4291 |     'c_16327: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4323:5
+     |
+4323 |     'c_16275: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4721:5
+     |
+4721 |     'c_13281: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4789:5
+     |
+4789 |     'c_13097: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4867:5
+     |
+4867 |     'c_13324: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:4911:9
+     |
+4911 |         'c_12853: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5158:5
+     |
+5158 |     'c_11049: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5457:9
+     |
+5457 |         'c_9856: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5519:5
+     |
+5519 |     'c_9287: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5549:5
+     |
+5549 |     'c_9249: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5587:5
+     |
+5587 |     'c_9157: {
+     |     ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5935:5
+     |
+5935 |     'c_11763: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:5965:5
+     |
+5965 |     'c_11725: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6006:9
+     |
+6006 |         'c_9717: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6038:9
+     |
+6038 |         'c_9661: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6076:9
+     |
+6076 |         'c_9588: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6122:13
+     |
+6122 |             'c_7587: {
+     |             ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6167:5
+     |
+6167 |     'c_13400: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6193:5
+     |
+6193 |     'c_13362: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6225:9
+     |
+6225 |         'c_11815: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6293:5
+     |
+6293 |     'c_14622: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6560:9
+     |
+6560 |         'c_16867: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6688:5
+     |
+6688 |     'c_17948: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6716:5
+     |
+6716 |     'c_17896: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6818:5
+     |
+6818 |     'c_18247: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:6895:5
+     |
+6895 |     'c_18045: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7311:5
+     |
+7311 |     'c_28272: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7422:5
+     |
+7422 |     'c_28534: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7458:9
+     |
+7458 |         'c_28460: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7850:9
+     |
+7850 |         'c_5908: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:7894:9
+     |
+7894 |         'c_5780: {
+     |         ^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8495:5
+     |
+8495 |     'c_19943: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8549:13
+     |
+8549 |             'c_19806: {
+     |             ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8681:5
+     |
+8681 |     'c_20101: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8910:5
+     |
+8910 |     'c_20512: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:8954:5
+     |
+8954 |     'c_21012: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9080:5
+     |
+9080 |     'c_21156: {
+     |     ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9411:9
+     |
+9411 |         'c_21549: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9670:9
+     |
+9670 |         'c_23154: {
+     |         ^^^^^^^^
+
+warning: unused label
+    --> testsuite/testutils.rs:9732:13
+     |
+9732 |             'c_22977: {
+     |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10018:5
+      |
+10018 |     'c_15741: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10046:5
+      |
+10046 |     'c_15688: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10103:5
+      |
+10103 |     'c_15993: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10131:5
+      |
+10131 |     'c_15941: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10169:5
+      |
+10169 |     'c_15852: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10274:5
+      |
+10274 |     'c_25086: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10300:5
+      |
+10300 |     'c_25048: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10381:13
+      |
+10381 |             'c_24818: {
+      |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10475:5
+      |
+10475 |     'c_24430: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10508:5
+      |
+10508 |     'c_24376: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10542:5
+      |
+10542 |     'c_24330: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10573:5
+      |
+10573 |     'c_24283: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10605:5
+      |
+10605 |     'c_24217: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10712:5
+      |
+10712 |     'c_25208: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10809:5
+      |
+10809 |     'c_23701: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10893:5
+      |
+10893 |     'c_25617: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:10979:13
+      |
+10979 |             'c_23744: {
+      |             ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11161:5
+      |
+11161 |     'c_14917: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11193:5
+      |
+11193 |     'c_14853: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11336:5
+      |
+11336 |     'c_25934: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11450:5
+      |
+11450 |     'c_26416: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11562:5
+      |
+11562 |     'c_26894: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11624:5
+      |
+11624 |     'c_14748: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11650:5
+      |
+11650 |     'c_14710: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11862:5
+      |
+11862 |     'c_30941: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11892:5
+      |
+11892 |     'c_30893: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11923:5
+      |
+11923 |     'c_30841: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:11965:9
+      |
+11965 |         'c_30758: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12083:9
+      |
+12083 |         'c_30438: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12113:9
+      |
+12113 |         'c_30399: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12192:9
+      |
+12192 |         'c_27538: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12246:5
+      |
+12246 |     'c_27336: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12309:5
+      |
+12309 |     'c_30283: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12339:5
+      |
+12339 |     'c_30235: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12428:5
+      |
+12428 |     'c_29955: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12616:5
+      |
+12616 |     'c_29742: {
+      |     ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12760:9
+      |
+12760 |         'c_29185: {
+      |         ^^^^^^^^
+
+warning: unused label
+     --> testsuite/testutils.rs:12790:5
+      |
+12790 |     'c_29120: {
+      |     ^^^^^^^^
+
+warning: unused imports: `BufRead`, `self`
+ --> tools/input.rs:1:15
+  |
+1 | use std::io::{self, Read, BufRead};
+  |               ^^^^        ^^^^^^^
+
+warning: unused import: `std::fmt`
+ --> tools/input.rs:2:5
+  |
+2 | use std::fmt;
+  |     ^^^^^^^^
+
+warning: unused import: `std::convert::TryFrom`
+ --> tools/input.rs:4:5
+  |
+4 | use std::convert::TryFrom;
+  |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused label
+   --> tools/sexp_conv.rs:430:5
+    |
+430 |     'c_3835: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> tools/sexp_conv.rs:587:17
+    |
+587 |                 'c_4267: {
+    |                 ^^^^^^^
+
+warning: unused label
+   --> twofish.rs:821:5
+    |
+821 |     'c_2694: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> twofish.rs:987:5
+    |
+987 |     'c_3543: {
+    |     ^^^^^^^
+
+warning: unused label
+    --> twofish.rs:1195:5
+     |
+1195 |     'c_4335: {
+     |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:128:5
+    |
+128 |     'c_886: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac128.rs:158:5
+    |
+158 |     'c_843: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac128.rs:348:5
+    |
+348 |     'c_1771: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:376:5
+    |
+376 |     'c_1732: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac128.rs:460:5
+    |
+460 |     'c_1528: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:129:5
+    |
+129 |     'c_912: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac32.rs:159:5
+    |
+159 |     'c_869: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac32.rs:313:5
+    |
+313 |     'c_1727: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:341:5
+    |
+341 |     'c_1688: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac32.rs:404:5
+    |
+404 |     'c_1533: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:131:5
+    |
+131 |     'c_917: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac64.rs:161:5
+    |
+161 |     'c_874: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac64.rs:338:5
+    |
+338 |     'c_1845: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:366:5
+    |
+366 |     'c_1806: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac64.rs:439:5
+    |
+439 |     'c_1630: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:128:5
+    |
+128 |     'c_881: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac96.rs:158:5
+    |
+158 |     'c_838: {
+    |     ^^^^^^
+
+warning: unused label
+   --> umac96.rs:337:5
+    |
+337 |     'c_1731: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:365:5
+    |
+365 |     'c_1692: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac96.rs:443:5
+    |
+443 |     'c_1502: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_l2.rs:203:5
+    |
+203 |     'c_1516: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_poly128.rs:174:5
+    |
+174 |     'c_1061: {
+    |     ^^^^^^^
+
+warning: unused label
+   --> umac_poly128.rs:215:5
+    |
+215 |     'c_584: {
+    |     ^^^^^^
+
+warning: unused label
+  --> umac_poly64.rs:50:5
+   |
+50 |     'c_606: {
+   |     ^^^^^^
+
+warning: unused label
+  --> xts.rs:78:5
+   |
+78 |     'c_2003: {
+   |     ^^^^^^^
+
+warning: unused import: `std::mem`
+ --> yarrow256.rs:1:5
+  |
+1 | use std::mem;
+  |     ^^^^^^^^
+
+warning: the feature `asm` has been stable since 1.59.0 and no longer requires an attribute to enable
+ --> c2rust-lib.rs:8:12
+  |
+8 | #![feature(asm)]
+  |            ^^^
+  |
+  = note: `#[warn(stable_features)]` on by default
+
+Some errors have detailed explanations: E0405, E0425, E0432, E0433.
+For more information about an error, try `rustc --explain E0405`.
+warning: `c2rust_out` (lib) generated 261 warnings
+error: could not compile `c2rust_out` due to 12 previous errors; 261 warnings emitted

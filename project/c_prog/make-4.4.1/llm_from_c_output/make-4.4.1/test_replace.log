@@ -1,0 +1,42 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/make-4.4.1)
+error: mismatched closing delimiter: `}`
+   --> src/commands.rs:228:23
+    |
+227 |     unsafe {
+    |            - closing delimiter possibly meant for this
+228 |         signal::signal(Signal::from_c_int(sig).unwrap();
+    |                       ^ unclosed delimiter
+229 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> src/commands.rs:228:23
+    |
+228 |         signal::signal(Signal::from_c_int(sig).unwrap();
+    |                       ^ unclosed delimiter             ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> src/commands.rs:229:5
+    |
+229 |     }
+    |     ^ expected expression
+
+error: unexpected closing delimiter: `]`
+   --> src/default.rs:125:31
+    |
+118 |     PatternRule {
+    |                 - this opening brace...
+...
+122 |     },
+    |     - ...matches this closing brace
+...
+125 | #[cfg(not(target_os = "vms")))]
+    |                               ^ unexpected closing delimiter
+
+error: mismatched closing delimiter: `)`
+   --> src/default.rs:125:2
+    |
+125 | #[cfg(not(target_os = "vms")))]
+    |  ^ unclosed delimiter        ^ mismatched closing delimiter
+
+error: could not compile `c2rust_out` due to 5 previous errors

@@ -1,0 +1,37 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/c_prog/cpio-2.14)
+error: expected `;`, found keyword `if`
+   --> gnu/argp_parse.rs:379:18
+    |
+379 |                 )
+    |                  ^ help: add `;` here
+380 |                 if !(fresh1 > 0 as libc::c_int) {
+    |                 -- unexpected token
+
+error: mismatched closing delimiter: `}`
+   --> gnu/time_rz.rs:106:49
+    |
+105 |                         } else {
+    |                                - closing delimiter possibly meant for this
+106 |                             let new_tz = tzalloc(Some(CStr::from_ptr(zone).to_str().unwrap());
+    |                                                 ^ unclosed delimiter
+...
+113 |                         }
+    |                         ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> gnu/time_rz.rs:173:22
+    |
+172 |         if (*tz).tz_is_set != 0 {
+    |                                 - closing delimiter possibly meant for this
+173 |             setenv_tz(Some(CStr::from_ptr((*tz).abbrs.as_ptr()).to_str().unwrap()) == Ok(())
+    |                      ^ unclosed delimiter
+174 |         } else {
+    |         ^ mismatched closing delimiter
+
+error: expected one of `!`, `(`, `)`, `+`, `,`, `::`, or `<`, found keyword `as`
+  --> gnu/time_rz.rs:91:42
+   |
+91 |             && zone as *mut c_char < (tm as *mut c_char).add(1))
+   |                                          ^^ expected one of 7 possible tokens
+
+error: could not compile `c2rust_out` due to 4 previous errors

@@ -1,0 +1,145 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/wget-1.21.4)
+error: expected one of `!`, `(`, `...`, `..=`, `..`, `::`, `=>`, `if`, `{`, or `|`, found `-`
+   --> lib/mbiter.rs:100:20
+    |
+100 |         usize::MAX - 1 => {
+    |                    ^ expected one of 10 possible tokens
+
+error: mismatched closing delimiter: `}`
+   --> lib/md5.rs:175:41
+    |
+174 |                 ($a:expr, $b:expr, $c:expr, $d:expr, $x:expr, $s:expr, $ac:expr) => {
+    |                                                                                     - closing delimiter possibly meant for this
+175 |                     $a = $a.wrapping_add(($d ^ ($b & ($c ^ $d)))
+    |                                         ^ unclosed delimiter
+...
+179 |                 };
+    |                 ^ mismatched closing delimiter
+
+error: mismatched closing delimiter: `}`
+   --> lib/md5.rs:159:51
+    |
+144 |     fn process_block(&mut self, len: usize) {
+    |                                             - closing delimiter possibly meant for this
+...
+159 |         self.total[1] = self.total[1].wrapping_add(
+    |                                                   ^ unclosed delimiter
+...
+290 |     }
+    |     ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+   --> lib/md5.rs:159:51
+    |
+159 |         self.total[1] = self.total[1].wrapping_add(
+    |                                                   ^ unclosed delimiter
+160 |             (len >> 31 >> 1) as u32 + ((self.total[0] < lolen) as u32,
+161 |         );
+    |          ^ help: `)` may belong here
+
+error: expected expression, found `)`
+   --> lib/md5.rs:290:5
+    |
+290 |     }
+    |     ^ expected expression
+
+error: this file contains an unclosed delimiter
+   --> lib/printf_parse.rs:484:50
+    |
+152 | ) -> Result<(), ()> {
+    |                     - unclosed delimiter
+...
+160 |     while unsafe { *cp } != 0 {
+    |                               - unclosed delimiter
+...
+387 |         match unsafe { *cp } {
+    |                              - unclosed delimiter
+...
+454 |             b'w' => {
+    |                     - unclosed delimiter
+...
+483 |                 } else if unsafe { *cp.add(1) } == b'8' as i8 {
+    |                                                               - unclosed delimiter
+484 |                     signed_type = ArgType::Int8;
+    |                                                  ^
+
+error: mismatched closing delimiter: `}`
+  --> lib/tmpdir.rs:36:21
+   |
+32 |     let dir = if try_tmpdir {
+   |                             - closing delimiter possibly meant for this
+...
+36 |             .or_else(|| dir.map(PathBuf::from).filter(|p| direxists(p))
+   |                     ^ unclosed delimiter
+37 |     } else {
+   |     ^ mismatched closing delimiter
+
+error: this file contains an unclosed delimiter
+   --> lib/unicase/cased.rs:845:19
+    |
+13  | impl BitmapTable {
+    |                  - unclosed delimiter
+14  |     const fn new() -> Self {
+    |                            - unclosed delimiter
+15  |         BitmapTable {
+    |                     - unclosed delimiter
+...
+21  |             level2: [
+    |                     - unclosed delimiter
+...
+845 |                 -1
+    |                   ^
+
+error: mismatched closing delimiter: `}`
+  --> lib/unicase/ignorable.rs:31:24
+   |
+28 |             if lookup2 >= 0 {
+   |                             - closing delimiter possibly meant for this
+...
+31 |                 return ((lookup3 >> (uc & 0x1f)) as i32 & 1;
+   |                        ^ unclosed delimiter
+32 |             }
+   |             ^ mismatched closing delimiter
+
+error: expected one of `)`, `,`, `.`, `?`, or an operator, found `;`
+  --> lib/unicase/ignorable.rs:31:24
+   |
+31 |                 return ((lookup3 >> (uc & 0x1f)) as i32 & 1;
+   |                        ^ unclosed delimiter                ^ help: `)` may belong here
+
+error: expected expression, found `)`
+  --> lib/unicase/ignorable.rs:32:13
+   |
+32 |             }
+   |             ^ expected expression
+
+error: this file contains an unclosed delimiter
+  --> lib/unicase/tolower.rs:96:34
+   |
+11 | const U_MAPPING: UnicodeMapping = {
+   |                                   - unclosed delimiter
+12 |     let mut init = UnicodeMapping {
+   |                                   - unclosed delimiter
+13 |         level1: [0, 512],
+14 |         level2: [
+   |                 - unclosed delimiter
+...
+96 |             -1, -1, -1, -1, -1, -
+   |                                  ^
+
+error: expected expression, found `]`
+  --> lib/unicase/tolower.rs:96:34
+   |
+12 |     let mut init = UnicodeMapping {
+   |                    -------------- while parsing this struct
+...
+96 |             -1, -1, -1, -1, -1, -
+   |                                  ^ expected expression
+
+error: expected one of `.`, `;`, `?`, `else`, or an operator, found `}`
+  --> lib/unicase/tolower.rs:96:34
+   |
+96 |             -1, -1, -1, -1, -1, -
+   |                                  ^ expected one of `.`, `;`, `?`, `else`, or an operator
+
+error: could not compile `c2rust_out` due to 14 previous errors

@@ -1,0 +1,129 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/enscript-1.6.1)
+error: this file contains an unclosed delimiter
+   --> afmlib/deffont.rs:279:43
+    |
+79  | static BUILTIN_COURIER: &[AFMEncodingTable] = &[
+    |                                                - unclosed delimiter
+...
+279 |     AFMEncodingTable { code: -1, character
+    |                      - unclosed delimiter ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/deffont.rs:279:43
+    |
+279 |     AFMEncodingTable { code: -1, character
+    |                                           ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88591.rs:200:7
+    |
+36  | pub const AFM_88591_ENCODING: &[AfmEncodingTable] = &[
+    |                                                      - unclosed delimiter
+...
+200 |     Af
+    |       ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88591.rs:200:7
+    |
+200 |     Af
+    |       ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88592.rs:199:67
+    |
+36  | pub const AFM_88592_ENCODING: &[AfmEncodingEntry] = &[
+    |                                                      - unclosed delimiter
+...
+199 |     AfmEncodingEntry { code: 0xa2, enc: AfmEnc::Named("breve") },
+    |                                                                   ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88592.rs:199:67
+    |
+199 |     AfmEncodingEntry { code: 0xa2, enc: AfmEnc::Named("breve") },
+    |                                                                   ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88593.rs:206:57
+    |
+36  | pub const AFM_88593_ENCODING: &[AfmEncoding] = &[
+    |                                                 - unclosed delimiter
+...
+206 |     AfmEncoding { code: 0xa9, enc: AfmEnc::Named("Idot")
+    |                 - unclosed delimiter                    ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88593.rs:206:57
+    |
+206 |     AfmEncoding { code: 0xa9, enc: AfmEnc::Named("Idot")
+    |                                                         ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88594.rs:200:48
+    |
+37  | pub const AFM_88594_ENCODING: &[AfmEncodingTable] = &[
+    |                                                      - unclosed delimiter
+...
+200 |     AfmEncodingTable { code: 0xa2, encoding: Af
+    |                      - unclosed delimiter      ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88594.rs:200:48
+    |
+200 |     AfmEncodingTable { code: 0xa2, encoding: Af
+    |                                                ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88595.rs:200:49
+    |
+37  | pub const AFM_88595_ENCODING: &[AfmEncodingTable] = &[
+    |                                                      - unclosed delimiter
+...
+200 |     AfmEncodingTable { code: 0xa2, encoding: Afm
+    |                      - unclosed delimiter       ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88595.rs:200:49
+    |
+200 |     AfmEncodingTable { code: 0xa2, encoding: Afm
+    |                                                 ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_88597.rs:200:4
+    |
+36  | pub const AFM_88597_ENCODING: &[AfmEncodingEntry] = &[
+    |                                                      - unclosed delimiter
+...
+200 |    
+    |    ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_88597.rs:200:4
+    |
+200 |    
+    |    ^ expected one of `.`, `;`, `?`, or an operator
+
+error: this file contains an unclosed delimiter
+   --> afmlib/e_hp8.rs:221:7
+    |
+33  | pub const AFM_HP8_ENCODING: &[AFMEncoding] = &[
+    |                                               - unclosed delimiter
+...
+221 |     AF
+    |       ^
+
+error: expected one of `.`, `;`, `?`, or an operator, found `<eof>`
+   --> afmlib/e_hp8.rs:221:7
+    |
+221 |     AF
+    |       ^ expected one of `.`, `;`, `?`, or an operator
+
+error[E0765]: unterminated double quote string
+   --> afmlib/e_koi8.rs:199:65
+    |
+199 |     AfmEncodingTable { code: 0xa1, encoding: AfmEncoding::Named("ex
+    |                                                                 ^^^
+
+For more information about this error, try `rustc --explain E0765`.
+error: could not compile `c2rust_out` due to 17 previous errors

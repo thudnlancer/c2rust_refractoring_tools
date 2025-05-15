@@ -1,16 +1,9 @@
-#![allow(
-    dead_code,
-    mutable_transmutes,
-    non_camel_case_types,
-    non_snake_case,
-    non_upper_case_globals,
-    unused_assignments,
-    unused_mut
-)]
-#![feature(c_variadic)]
 use std::ops::{
     Add, AddAssign, Sub, SubAssign, Mul, MulAssign, Div, DivAssign, Rem, RemAssign,
 };
+use ::libc;
+use ::f128;
+use ::num_traits;
 use num_traits::ToPrimitive;
 extern "C" {
     fn malloc(_: u64) -> *mut libc::c_void;
