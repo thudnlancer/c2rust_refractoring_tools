@@ -1,0 +1,5081 @@
+   Compiling c2rust_out v0.0.0 (/home/c2rust/Desktop/project/c_prog/sed-4.9)
+error[E0583]: file not found for module `fflush`
+  --> c2rust-lib.rs:16:5
+   |
+16 |     pub mod fflush;
+   |     ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fflush`, create file "gnulib_tests/fflush.rs" or "gnulib_tests/fflush/mod.rs"
+
+error[E0583]: file not found for module `file_has_acl`
+  --> c2rust-lib.rs:17:5
+   |
+17 |     pub mod file_has_acl;
+   |     ^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `file_has_acl`, create file "gnulib_tests/file_has_acl.rs" or "gnulib_tests/file_has_acl/mod.rs"
+
+error[E0583]: file not found for module `fpurge`
+  --> c2rust-lib.rs:18:5
+   |
+18 |     pub mod fpurge;
+   |     ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fpurge`, create file "gnulib_tests/fpurge.rs" or "gnulib_tests/fpurge/mod.rs"
+
+error[E0583]: file not found for module `freading`
+  --> c2rust-lib.rs:19:5
+   |
+19 |     pub mod freading;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `freading`, create file "gnulib_tests/freading.rs" or "gnulib_tests/freading/mod.rs"
+
+error[E0583]: file not found for module `fseek`
+  --> c2rust-lib.rs:20:5
+   |
+20 |     pub mod fseek;
+   |     ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseek`, create file "gnulib_tests/fseek.rs" or "gnulib_tests/fseek/mod.rs"
+
+error[E0583]: file not found for module `fseeko`
+  --> c2rust-lib.rs:21:5
+   |
+21 |     pub mod fseeko;
+   |     ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `fseeko`, create file "gnulib_tests/fseeko.rs" or "gnulib_tests/fseeko/mod.rs"
+
+error[E0583]: file not found for module `thread`
+  --> c2rust-lib.rs:23:9
+   |
+23 |         pub mod thread;
+   |         ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `thread`, create file "gnulib_tests/glthread/thread.rs" or "gnulib_tests/glthread/thread/mod.rs"
+
+error[E0583]: file not found for module `ioctl`
+  --> c2rust-lib.rs:25:5
+   |
+25 |     pub mod ioctl;
+   |     ^^^^^^^^^^^^^^
+   |
+   = help: to create the module `ioctl`, create file "gnulib_tests/ioctl.rs" or "gnulib_tests/ioctl/mod.rs"
+
+error[E0583]: file not found for module `locale`
+  --> c2rust-lib.rs:26:5
+   |
+26 |     pub mod locale;
+   |     ^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `locale`, create file "gnulib_tests/locale.rs" or "gnulib_tests/locale/mod.rs"
+
+error[E0583]: file not found for module `localename`
+  --> c2rust-lib.rs:27:5
+   |
+27 |     pub mod localename;
+   |     ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename`, create file "gnulib_tests/localename.rs" or "gnulib_tests/localename/mod.rs"
+
+error[E0583]: file not found for module `localename_table`
+  --> c2rust-lib.rs:28:5
+   |
+28 |     pub mod localename_table;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `localename_table`, create file "gnulib_tests/localename_table.rs" or "gnulib_tests/localename_table/mod.rs"
+
+error[E0583]: file not found for module `nanosleep`
+  --> c2rust-lib.rs:29:5
+   |
+29 |     pub mod nanosleep;
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `nanosleep`, create file "gnulib_tests/nanosleep.rs" or "gnulib_tests/nanosleep/mod.rs"
+
+error[E0583]: file not found for module `pthread_sigmask`
+  --> c2rust-lib.rs:30:5
+   |
+30 |     pub mod pthread_sigmask;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `pthread_sigmask`, create file "gnulib_tests/pthread_sigmask.rs" or "gnulib_tests/pthread_sigmask/mod.rs"
+
+error[E0583]: file not found for module `read_file`
+  --> c2rust-lib.rs:31:5
+   |
+31 |     pub mod read_file;
+   |     ^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `read_file`, create file "gnulib_tests/read_file.rs" or "gnulib_tests/read_file/mod.rs"
+
+error[E0583]: file not found for module `sockets`
+  --> c2rust-lib.rs:32:5
+   |
+32 |     pub mod sockets;
+   |     ^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sockets`, create file "gnulib_tests/sockets.rs" or "gnulib_tests/sockets/mod.rs"
+
+error[E0583]: file not found for module `strerror_r`
+  --> c2rust-lib.rs:33:5
+   |
+33 |     pub mod strerror_r;
+   |     ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `strerror_r`, create file "gnulib_tests/strerror_r.rs" or "gnulib_tests/strerror_r/mod.rs"
+
+error[E0583]: file not found for module `sys_socket`
+  --> c2rust-lib.rs:34:5
+   |
+34 |     pub mod sys_socket;
+   |     ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `sys_socket`, create file "gnulib_tests/sys_socket.rs" or "gnulib_tests/sys_socket/mod.rs"
+
+error[E0583]: file not found for module `test_localcharset`
+  --> c2rust-lib.rs:35:5
+   |
+35 |     pub mod test_localcharset;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `test_localcharset`, create file "gnulib_tests/test_localcharset.rs" or "gnulib_tests/test_localcharset/mod.rs"
+
+error[E0583]: file not found for module `vma_iter`
+  --> c2rust-lib.rs:36:5
+   |
+36 |     pub mod vma_iter;
+   |     ^^^^^^^^^^^^^^^^^
+   |
+   = help: to create the module `vma_iter`, create file "gnulib_tests/vma_iter.rs" or "gnulib_tests/vma_iter/mod.rs"
+
+error: expected one of `(`, `,`, `=`, `{`, or `}`, found `::`
+    --> lib/dfa.rs:1174:20
+     |
+1174 |     C2RustUnnamed_5::E,
+     |                    ^^ expected one of `(`, `,`, `=`, `{`, or `}`
+
+error: expected one of `!` or `::`, found `,`
+    --> lib/dfa.rs:1174:23
+     |
+1174 |     C2RustUnnamed_5::E,
+     |                       ^ expected one of `!` or `::`
+
+error: Binary expression is not supposed to be used
+   --> sed/debug.rs:754:21
+    |
+754 |                     compile_error!("Binary expression is not supposed to be used")
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+   --> sed/debug.rs:768:13
+    |
+768 |             compile_error!("Conditional expression is not supposed to be used");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Binary expression is not supposed to be used
+   --> sed/debug.rs:960:21
+    |
+960 |                     compile_error!("Binary expression is not supposed to be used")
+    |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+   --> sed/debug.rs:974:13
+    |
+974 |             compile_error!("Conditional expression is not supposed to be used");
+    |             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Binary expression is not supposed to be used
+    --> sed/debug.rs:1107:25
+     |
+1107 |                         compile_error!("Binary expression is not supposed to be used")
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+    --> sed/debug.rs:1121:17
+     |
+1121 |                 compile_error!("Conditional expression is not supposed to be used");
+     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Binary expression is not supposed to be used
+    --> sed/execute.rs:2215:25
+     |
+2215 |                         compile_error!("Binary expression is not supposed to be used")
+     |                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error: Conditional expression is not supposed to be used
+    --> sed/execute.rs:2235:17
+     |
+2235 |                 compile_error!("Conditional expression is not supposed to be used");
+     |                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/malloc/scratch_buffer_grow.rs:32:35
+   |
+32 |     pub __clang_max_align_nonce2: f128::f128,
+   |                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/malloc/scratch_buffer_grow_preserve.rs:34:35
+   |
+34 |     pub __clang_max_align_nonce2: f128::f128,
+   |                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+  --> lib/malloc/scratch_buffer_set_array_size.rs:32:35
+   |
+32 |     pub __clang_max_align_nonce2: f128::f128,
+   |                                   ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:147:48
+    |
+147 |         alignment = if ::core::mem::align_of::<f128::f128>() as u64
+    |                                                ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:156:37
+    |
+156 |             ::core::mem::align_of::<f128::f128>() as u64
+    |                                     ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:168:44
+    |
+168 |                 (if ::core::mem::size_of::<f128::f128>() as u64
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:177:44
+    |
+177 |                     ::core::mem::size_of::<f128::f128>() as u64
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:189:43
+    |
+189 |             & !(if ::core::mem::size_of::<f128::f128>() as u64
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:198:40
+    |
+198 |                 ::core::mem::size_of::<f128::f128>() as u64
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:211:44
+    |
+211 |                 (if ::core::mem::size_of::<f128::f128>() as u64
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:220:44
+    |
+220 |                     ::core::mem::size_of::<f128::f128>() as u64
+    |                                            ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:232:43
+    |
+232 |             & !(if ::core::mem::size_of::<f128::f128>() as u64
+    |                                           ^^^^ use of undeclared crate or module `f128`
+
+error[E0433]: failed to resolve: use of undeclared crate or module `f128`
+   --> lib/obstack.rs:241:40
+    |
+241 |                 ::core::mem::size_of::<f128::f128>() as u64
+    |                                        ^^^^ use of undeclared crate or module `f128`
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:211:17
+    |
+211 |                 (if ::core::mem::size_of::<f128::f128>() as u64
+    |                 ^
+...
+229 |                 }),
+    |                  ^
+    |
+    = note: `#[warn(unused_parens)]` on by default
+help: remove these parentheses
+    |
+211 ~                 if ::core::mem::size_of::<f128::f128>() as u64
+212 |                     > (if ::core::mem::size_of::<uintmax_t>() as u64
+  ...
+228 |                     })
+229 ~                 },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:168:17
+    |
+168 |                 (if ::core::mem::size_of::<f128::f128>() as u64
+    |                 ^
+...
+186 |                 }),
+    |                  ^
+    |
+help: remove these parentheses
+    |
+168 ~                 if ::core::mem::size_of::<f128::f128>() as u64
+169 |                     > (if ::core::mem::size_of::<uintmax_t>() as u64
+  ...
+185 |                     })
+186 ~                 },
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:179:21
+    |
+179 |                     (if ::core::mem::size_of::<uintmax_t>() as u64
+    |                     ^
+...
+185 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+179 ~                     if ::core::mem::size_of::<uintmax_t>() as u64
+180 |                         > ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+184 |                         ::core::mem::size_of::<*mut libc::c_void>() as u64
+185 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:200:17
+    |
+200 |                 (if ::core::mem::size_of::<uintmax_t>() as u64
+    |                 ^
+...
+206 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+200 ~                 if ::core::mem::size_of::<uintmax_t>() as u64
+201 |                     > ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+205 |                     ::core::mem::size_of::<*mut libc::c_void>() as u64
+206 ~                 }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:222:21
+    |
+222 |                     (if ::core::mem::size_of::<uintmax_t>() as u64
+    |                     ^
+...
+228 |                     })
+    |                      ^
+    |
+help: remove these parentheses
+    |
+222 ~                     if ::core::mem::size_of::<uintmax_t>() as u64
+223 |                         > ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+227 |                         ::core::mem::size_of::<*mut libc::c_void>() as u64
+228 ~                     }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> lib/obstack.rs:243:17
+    |
+243 |                 (if ::core::mem::size_of::<uintmax_t>() as u64
+    |                 ^
+...
+249 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+243 ~                 if ::core::mem::size_of::<uintmax_t>() as u64
+244 |                     > ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+248 |                     ::core::mem::size_of::<*mut libc::c_void>() as u64
+249 ~                 }
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:273:21
+    |
+273 |                     (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                     ^
+...
+279 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+273 ~                     if (::core::mem::size_of::<ptrdiff_t>() as u64)
+274 |                         < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+278 |                         0 as *mut i8
+279 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:364:21
+    |
+364 |                     (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                     ^
+...
+370 |                     }),
+    |                      ^
+    |
+help: remove these parentheses
+    |
+364 ~                     if (::core::mem::size_of::<ptrdiff_t>() as u64)
+365 |                         < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+369 |                         0 as *mut i8
+370 ~                     },
+    |
+
+warning: unnecessary parentheses around method argument
+   --> lib/obstack.rs:392:29
+    |
+392 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+    |                       ^
+...
+398 | ...                   }),
+    |                        ^
+    |
+help: remove these parentheses
+    |
+392 ~                             if (::core::mem::size_of::<ptrdiff_t>() as u64)
+393 |                                 < ::core::mem::size_of::<*mut libc::c_void>() as u64
+  ...
+397 |                                 0 as *mut i8
+398 ~                             },
+    |
+
+warning: unnecessary parentheses around method argument
+    --> lib/regex.rs:1966:45
+     |
+1966 | ...                   (if i_0 < mbclen {
+     |                       ^
+...
+1970 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1966 ~                                             if i_0 < mbclen {
+1967 |                                                 i_0
+1968 |                                             } else {
+1969 |                                                 mbclen.wrapping_sub(1 as libc::c_int as libc::c_ulong)
+1970 ~                                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4443:17
+     |
+4443 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4449 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4443 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4444 |                     < max_i18n_object_size
+   ...
+4448 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4449 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4454:13
+     |
+4454 |             (if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+     |             ^
+...
+4472 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+4454 ~             if (::core::mem::size_of::<re_node_set>() as libc::c_ulong)
+4455 |                 < (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+   ...
+4471 |                 ::core::mem::size_of::<re_node_set>() as libc::c_ulong
+4472 ~             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4463:17
+     |
+4463 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4469 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4463 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4464 |                     < max_i18n_object_size
+   ...
+4468 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4469 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/regex.rs:4487:17
+     |
+4487 |                 (if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+     |                 ^
+...
+4493 |                 })
+     |                  ^
+     |
+help: remove these parentheses
+     |
+4487 ~                 if (::core::mem::size_of::<regmatch_t>() as libc::c_ulong)
+4488 |                     < max_i18n_object_size
+   ...
+4492 |                     ::core::mem::size_of::<regmatch_t>() as libc::c_ulong
+4493 ~                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2390:21
+     |
+2390 |                     (if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+     |                     ^
+...
+2829 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2390 ~                     if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+2391 |                         (if (if s < 0 as i32 as i64 {
+   ...
+2828 |                         })
+2829 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2391:25
+     |
+2391 |                         (if (if s < 0 as i32 as i64 {
+     |                         ^
+...
+2609 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2391 ~                         if (if s < 0 as i32 as i64 {
+2392 |                             (if n < 0 as i32 as i64 {
+   ...
+2608 |                             0 as i32
+2609 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2392:29
+     |
+2392 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+2519 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2392 ~                             if n < 0 as i32 as i64 {
+2393 |                                 (if ((if 1 as i32 != 0 {
+   ...
+2518 |                                 })
+2519 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2393:33
+     |
+2393 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2445 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2393 ~                                 if ((if 1 as i32 != 0 {
+2394 |                                     0 as i32 as i64
+   ...
+2444 |                                     }) <= -(1 as i32) as i64 - n) as i32
+2445 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2447:33
+     |
+2447 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2518 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2447 ~                                 if (if (if ((if 1 as i32 != 0 {
+2448 |                                     0 as i32 as i64
+   ...
+2517 |                                     ((-(127 as i32) - 1 as i32) as i64 / s < n) as i32
+2518 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2506:37
+     |
+2506 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+2515 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2506 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+2507 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2514 |                                                 < n - 1 as i32 as i64) as i32
+2515 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2521:29
+     |
+2521 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+2599 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2521 ~                             if s == 0 as i32 as i64 {
+2522 |                                 0 as i32
+   ...
+2598 |                                 })
+2599 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2524:33
+     |
+2524 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+2598 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2524 ~                                 if n < 0 as i32 as i64 {
+2525 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+2597 |                                     (127 as i32 as i64 / s < n) as i32
+2598 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2525:37
+     |
+2525 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2595 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2525 ~                                     if (if (if ((if 1 as i32 != 0 {
+2526 |                                         0 as i32 as i64
+   ...
+2594 |                                         ((-(127 as i32) - 1 as i32) as i64 / n < s) as i32
+2595 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2584:41
+     |
+2584 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+2592 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2584 ~                                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+2585 |                                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2591 |                                                 < s - 1 as i32 as i64) as i32
+2592 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2611:25
+     |
+2611 |                         (if (if s < 0 as i32 as i64 {
+     |                         ^
+...
+2828 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2611 ~                         if (if s < 0 as i32 as i64 {
+2612 |                             (if n < 0 as i32 as i64 {
+   ...
+2827 |                             0 as i32
+2828 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2612:29
+     |
+2612 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+2741 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2612 ~                             if n < 0 as i32 as i64 {
+2613 |                                 (if ((if 1 as i32 != 0 {
+   ...
+2740 |                                 })
+2741 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2613:33
+     |
+2613 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2668 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2613 ~                                 if ((if 1 as i32 != 0 {
+2614 |                                     0 as i32 as i64
+   ...
+2667 |                                     }) <= -(1 as i32) as i64 - n) as i32
+2668 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2670:33
+     |
+2670 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2740 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2670 ~                                 if (if (if ((if 1 as i32 != 0 {
+2671 |                                     0 as i32 as i64
+   ...
+2739 |                                     (0 as i32 as i64 / s < n) as i32
+2740 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2729:37
+     |
+2729 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+2737 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2729 ~                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+2730 |                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2736 |                                             as i32
+2737 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2743:29
+     |
+2743 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+2820 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2743 ~                             if s == 0 as i32 as i64 {
+2744 |                                 0 as i32
+   ...
+2819 |                                 })
+2820 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2746:33
+     |
+2746 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+2819 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2746 ~                                 if n < 0 as i32 as i64 {
+2747 |                                     (if (if (if ((if 1 as i32 != 0 {
+   ...
+2818 |                                     ((127 as i32 * 2 as i32 + 1 as i32) as i64 / s < n) as i32
+2819 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2747:37
+     |
+2747 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2816 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2747 ~                                     if (if (if ((if 1 as i32 != 0 {
+2748 |                                         0 as i32 as i64
+   ...
+2815 |                                         (0 as i32 as i64 / n < s) as i32
+2816 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2806:41
+     |
+2806 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+2813 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2806 ~                                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+2807 |                                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2812 |                                                 as i32
+2813 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2831:21
+     |
+2831 |                     (if ::core::mem::size_of::<idx_t>() as u64
+     |                     ^
+...
+4738 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2831 ~                     if ::core::mem::size_of::<idx_t>() as u64
+2832 |                         == ::core::mem::size_of::<libc::c_short>() as u64
+   ...
+4737 |                         })
+4738 ~                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2834:25
+     |
+2834 |                         (if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+     |                         ^
+...
+3275 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+2834 ~                         if !((0 as i32 as idx_t) < -(1 as i32) as idx_t) {
+2835 |                             (if (if s < 0 as i32 as i64 {
+   ...
+3274 |                             })
+3275 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2835:29
+     |
+2835 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+3053 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2835 ~                             if (if s < 0 as i32 as i64 {
+2836 |                                 (if n < 0 as i32 as i64 {
+   ...
+3052 |                                 0 as i32
+3053 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2836:33
+     |
+2836 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+2963 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2836 ~                                 if n < 0 as i32 as i64 {
+2837 |                                     (if ((if 1 as i32 != 0 {
+   ...
+2962 |                                     })
+2963 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2837:37
+     |
+2837 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2889 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2837 ~                                     if ((if 1 as i32 != 0 {
+2838 |                                         0 as i32 as i64
+   ...
+2888 |                                         }) <= -(1 as i32) as i64 - n) as i32
+2889 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2891:37
+     |
+2891 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+2962 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2891 ~                                     if (if (if ((if 1 as i32 != 0 {
+2892 |                                         0 as i32 as i64
+   ...
+2961 |                                         ((-(32767 as i32) - 1 as i32) as i64 / s < n) as i32
+2962 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2950:41
+     |
+2950 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+2959 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2950 ~                                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+2951 |                                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+2958 |                                                     < n - 1 as i32 as i64) as i32
+2959 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2965:33
+     |
+2965 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+3043 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2965 ~                                 if s == 0 as i32 as i64 {
+2966 |                                     0 as i32
+   ...
+3042 |                                     })
+3043 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2968:37
+     |
+2968 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3042 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2968 ~                                     if n < 0 as i32 as i64 {
+2969 |                                         (if (if (if ((if 1 as i32 != 0 {
+   ...
+3041 |                                         (32767 as i32 as i64 / s < n) as i32
+3042 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:2969:41
+     |
+2969 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3039 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2969 ~                                         if (if (if ((if 1 as i32 != 0 {
+2970 |                                             0 as i32 as i64
+   ...
+3038 |                                             ((-(32767 as i32) - 1 as i32) as i64 / n < s) as i32
+3039 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3028:45
+     |
+3028 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+3036 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3028 ~                                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+3029 |                                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3035 |                                                     < s - 1 as i32 as i64) as i32
+3036 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3055:29
+     |
+3055 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+3274 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3055 ~                             if (if s < 0 as i32 as i64 {
+3056 |                                 (if n < 0 as i32 as i64 {
+   ...
+3273 |                                 0 as i32
+3274 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3056:33
+     |
+3056 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3185 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3056 ~                                 if n < 0 as i32 as i64 {
+3057 |                                     (if ((if 1 as i32 != 0 {
+   ...
+3184 |                                     })
+3185 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3057:37
+     |
+3057 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3112 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3057 ~                                     if ((if 1 as i32 != 0 {
+3058 |                                         0 as i32 as i64
+   ...
+3111 |                                         }) <= -(1 as i32) as i64 - n) as i32
+3112 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3114:37
+     |
+3114 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3184 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3114 ~                                     if (if (if ((if 1 as i32 != 0 {
+3115 |                                         0 as i32 as i64
+   ...
+3183 |                                         (0 as i32 as i64 / s < n) as i32
+3184 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3173:41
+     |
+3173 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+3181 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3173 ~                                         if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+3174 |                                             - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3180 |                                                 as i32
+3181 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3187:33
+     |
+3187 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+3264 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3187 ~                                 if s == 0 as i32 as i64 {
+3188 |                                     0 as i32
+   ...
+3263 |                                     })
+3264 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3190:37
+     |
+3190 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3263 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3190 ~                                     if n < 0 as i32 as i64 {
+3191 |                                         (if (if (if ((if 1 as i32 != 0 {
+   ...
+3262 |                                         ((32767 as i32 * 2 as i32 + 1 as i32) as i64 / s < n) as i32
+3263 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3191:41
+     |
+3191 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3260 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3191 ~                                         if (if (if ((if 1 as i32 != 0 {
+3192 |                                             0 as i32 as i64
+   ...
+3259 |                                             (0 as i32 as i64 / n < s) as i32
+3260 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3250:45
+     |
+3250 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+3257 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3250 ~                                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+3251 |                                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3256 |                                                     as i32
+3257 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3277:25
+     |
+3277 |                         (if ::core::mem::size_of::<idx_t>() as u64
+     |                         ^
+...
+4737 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3277 ~                         if ::core::mem::size_of::<idx_t>() as u64
+3278 |                             == ::core::mem::size_of::<i32>() as u64
+   ...
+4736 |                             })
+4737 ~                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3280:29
+     |
+3280 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+     |                       ^
+...
+3730 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3280 ~                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+3281 |                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3729 |                                 })
+3730 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3283:33
+     |
+3283 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+3499 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3283 ~                                 if (if s < 0 as i32 as i64 {
+3284 |                                     (if n < 0 as i32 as i64 {
+   ...
+3498 |                                     0 as i32
+3499 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3284:37
+     |
+3284 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3411 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3284 ~                                     if n < 0 as i32 as i64 {
+3285 |                                         (if ((if 1 as i32 != 0 {
+   ...
+3410 |                                         })
+3411 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3285:41
+     |
+3285 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3337 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3285 ~                                         if ((if 1 as i32 != 0 {
+3286 |                                             0 as i32 as i64
+   ...
+3336 |                                             }) <= -(1 as i32) as i64 - n) as i32
+3337 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3339:41
+     |
+3339 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3410 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3339 ~                                         if (if (if ((if 1 as i32 != 0 {
+3340 |                                             0 as i32 as i64
+   ...
+3409 |                                             ((-(2147483647 as i32) - 1 as i32) as i64 / s < n) as i32
+3410 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3398:45
+     |
+3398 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+3407 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3398 ~                                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+3399 |                                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3406 |                                                         as i64) < n - 1 as i32 as i64) as i32
+3407 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3413:37
+     |
+3413 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+3491 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3413 ~                                     if s == 0 as i32 as i64 {
+3414 |                                         0 as i32
+   ...
+3490 |                                         })
+3491 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3416:41
+     |
+3416 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3490 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3416 ~                                         if n < 0 as i32 as i64 {
+3417 |                                             (if (if (if ((if 1 as i32 != 0 {
+   ...
+3489 |                                             (2147483647 as i32 as i64 / s < n) as i32
+3490 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3417:45
+     |
+3417 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3487 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3417 ~                                             if (if (if ((if 1 as i32 != 0 {
+3418 |                                                 0 as i32 as i64
+   ...
+3486 |                                                 ((-(2147483647 as i32) - 1 as i32) as i64 / n < s) as i32
+3487 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3476:49
+     |
+3476 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+3484 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3476 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+3477 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3483 |                                                         < s - 1 as i32 as i64) as i32
+3484 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3501:33
+     |
+3501 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+3729 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3501 ~                                 if (if s < 0 as i32 as i64 {
+3502 |                                     (if n < 0 as i32 as i64 {
+   ...
+3728 |                                     0 as i32
+3729 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3502:37
+     |
+3502 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3640 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3502 ~                                     if n < 0 as i32 as i64 {
+3503 |                                         (if ((if 1 as i32 != 0 {
+   ...
+3639 |                                         })
+3640 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3503:41
+     |
+3503 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3567 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3503 ~                                         if ((if 1 as i32 != 0 {
+3504 |                                             0 as i32 as i64
+   ...
+3566 |                                             }) <= -(1 as i32) as i64 - n) as i32
+3567 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3569:41
+     |
+3569 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3639 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3569 ~                                         if (if (if ((if 1 as i32 != 0 {
+3570 |                                             0 as i32 as i64
+   ...
+3638 |                                             (0 as i32 as i64 / s < n) as i32
+3639 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3628:45
+     |
+3628 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+3636 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3628 ~                                             if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+3629 |                                                 - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3635 |                                                     as i32
+3636 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3642:37
+     |
+3642 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+3721 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3642 ~                                     if s == 0 as i32 as i64 {
+3643 |                                         0 as i32
+   ...
+3720 |                                         })
+3721 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3645:41
+     |
+3645 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3720 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3645 ~                                         if n < 0 as i32 as i64 {
+3646 |                                             (if (if (if ((if 1 as i32 != 0 {
+   ...
+3719 |                                                 .wrapping_add(1 as u32) as i64 / s < n) as i32
+3720 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3646:45
+     |
+3646 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3715 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3646 ~                                             if (if (if ((if 1 as i32 != 0 {
+3647 |                                                 0 as i32 as i64
+   ...
+3714 |                                                 (0 as i32 as i64 / n < s) as i32
+3715 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3705:49
+     |
+3705 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+3712 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3705 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+3706 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3711 |                                                         as i32
+3712 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3732:29
+     |
+3732 | ...                   (if ::core::mem::size_of::<idx_t>() as u64
+     |                       ^
+...
+4736 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3732 ~                             if ::core::mem::size_of::<idx_t>() as u64
+3733 |                                 == ::core::mem::size_of::<i64>() as u64
+   ...
+4735 |                                 })
+4736 ~                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3735:33
+     |
+3735 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+     |                       ^
+...
+4197 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3735 ~                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+3736 |                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4196 |                                     })
+4197 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3738:37
+     |
+3738 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+3959 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3738 ~                                     if (if s < 0 as i32 as i64 {
+3739 |                                         (if n < 0 as i32 as i64 {
+   ...
+3958 |                                         0 as i32
+3959 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3739:41
+     |
+3739 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3870 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3739 ~                                         if n < 0 as i32 as i64 {
+3740 |                                             (if ((if 1 as i32 != 0 {
+   ...
+3869 |                                             })
+3870 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3740:45
+     |
+3740 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3795 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3740 ~                                             if ((if 1 as i32 != 0 {
+3741 |                                                 0 as i32 as i64
+   ...
+3794 |                                                 }) <= -(1 as i32) as i64 - n) as i32
+3795 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3797:45
+     |
+3797 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3869 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3797 ~                                             if (if (if ((if 1 as i32 != 0 {
+3798 |                                                 0 as i32 as i64
+   ...
+3868 |                                                 ((-(9223372036854775807 as i64) - 1 as i64) / s < n) as i32
+3869 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3856:49
+     |
+3856 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+3866 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3856 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+3857 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3865 |                                                             < n - 1 as i32 as i64) as i32
+3866 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3872:41
+     |
+3872 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+3951 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3872 ~                                         if s == 0 as i32 as i64 {
+3873 |                                             0 as i32
+   ...
+3950 |                                             })
+3951 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3875:45
+     |
+3875 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+3950 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3875 ~                                             if n < 0 as i32 as i64 {
+3876 |                                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+3949 |                                                 (9223372036854775807 as i64 / s < n) as i32
+3950 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3876:49
+     |
+3876 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+3947 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3876 ~                                                 if (if (if ((if 1 as i32 != 0 {
+3877 |                                                     0 as i32 as i64
+   ...
+3946 |                                                     ((-(9223372036854775807 as i64) - 1 as i64) / n < s) as i32
+3947 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3935:53
+     |
+3935 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+3944 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3935 ~                                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+3936 |                                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+3943 |                                                             < s - 1 as i32 as i64) as i32
+3944 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3961:37
+     |
+3961 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+4196 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3961 ~                                     if (if s < 0 as i32 as i64 {
+3962 |                                         (if n < 0 as i32 as i64 {
+   ...
+4195 |                                         0 as i32
+4196 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3962:41
+     |
+3962 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4106 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3962 ~                                         if n < 0 as i32 as i64 {
+3963 |                                             (if (if 1 as i32 != 0 {
+   ...
+4105 |                                             })
+4106 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:3963:45
+     |
+3963 | ...                   (if (if 1 as i32 != 0 {
+     |                       ^
+...
+4033 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3963 ~                                             if (if 1 as i32 != 0 {
+3964 |                                                 0 as i32 as u64
+   ...
+4032 |                                                 }) <= (-(1 as i32) as i64 - n) as u64) as i32
+4033 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4035:45
+     |
+4035 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4105 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4035 ~                                             if (if (if ((if 1 as i32 != 0 {
+4036 |                                                 0 as i32 as i64
+   ...
+4104 |                                                 (0 as i32 as i64 / s < n) as i32
+4105 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4094:49
+     |
+4094 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+4102 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4094 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+4095 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4101 |                                                         as i32
+4102 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4108:41
+     |
+4108 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+4188 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4108 ~                                         if s == 0 as i32 as i64 {
+4109 |                                             0 as i32
+   ...
+4187 |                                             })
+4188 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4111:45
+     |
+4111 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4187 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4111 ~                                             if n < 0 as i32 as i64 {
+4112 |                                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+4186 |                                                     .wrapping_div(s as u64) < n as u64) as i32
+4187 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4112:49
+     |
+4112 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4181 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4112 ~                                                 if (if (if ((if 1 as i32 != 0 {
+4113 |                                                     0 as i32 as i64
+   ...
+4180 |                                                     (0 as i32 as i64 / n < s) as i32
+4181 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4171:53
+     |
+4171 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+4178 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4171 ~                                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+4172 |                                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4177 |                                                             as i32
+4178 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4199:33
+     |
+4199 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+     |                       ^
+...
+4735 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4199 ~                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { nbytes })
+4200 |                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4734 |                                     })
+4735 ~                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4202:37
+     |
+4202 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+4487 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4202 ~                                     if (if s < 0 as i32 as i64 {
+4203 |                                         (if n < 0 as i32 as i64 {
+   ...
+4486 |                                         0 as i32
+4487 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4203:41
+     |
+4203 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4366 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4203 ~                                         if n < 0 as i32 as i64 {
+4204 |                                             (if ((if 1 as i32 != 0 {
+   ...
+4365 |                                             })
+4366 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4204:45
+     |
+4204 | ...                   (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4264 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4204 ~                                             if ((if 1 as i32 != 0 {
+4205 |                                                 0 as i32 as libc::c_longlong
+   ...
+4263 |                                                 }) <= (-(1 as i32) as i64 - n) as libc::c_longlong) as i32
+4264 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4266:45
+     |
+4266 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4365 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4266 ~                                             if (if (if ((if 1 as i32 != 0 {
+4267 |                                                 0 as i32 as libc::c_longlong
+   ...
+4364 |                                                     < n as libc::c_longlong) as i32
+4365 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4347:49
+     |
+4347 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+4360 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4347 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+4348 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4359 |                                                             < (n - 1 as i32 as i64) as libc::c_longlong) as i32
+4360 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4368:41
+     |
+4368 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+4475 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4368 ~                                         if s == 0 as i32 as i64 {
+4369 |                                             0 as i32
+   ...
+4474 |                                             })
+4475 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4371:45
+     |
+4371 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4474 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4371 ~                                             if n < 0 as i32 as i64 {
+4372 |                                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+4473 |                                                     / s as libc::c_longlong) < n as libc::c_longlong) as i32
+4474 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4372:49
+     |
+4372 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4470 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4372 ~                                                 if (if (if ((if 1 as i32 != 0 {
+4373 |                                                     0 as i32 as libc::c_longlong
+   ...
+4469 |                                                         < s as libc::c_longlong) as i32
+4470 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4453:53
+     |
+4453 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+4465 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4453 ~                                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+4454 |                                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4464 |                                                             < (s - 1 as i32 as i64) as libc::c_longlong) as i32
+4465 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4489:37
+     |
+4489 | ...                   (if (if s < 0 as i32 as i64 {
+     |                       ^
+...
+4734 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4489 ~                                     if (if s < 0 as i32 as i64 {
+4490 |                                         (if n < 0 as i32 as i64 {
+   ...
+4733 |                                         0 as i32
+4734 ~                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4490:41
+     |
+4490 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4640 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4490 ~                                         if n < 0 as i32 as i64 {
+4491 |                                             (if (if 1 as i32 != 0 {
+   ...
+4639 |                                             })
+4640 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4491:45
+     |
+4491 | ...                   (if (if 1 as i32 != 0 {
+     |                       ^
+...
+4567 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4491 ~                                             if (if 1 as i32 != 0 {
+4492 |                                                 0 as i32 as libc::c_ulonglong
+   ...
+4566 |                                                 }) <= (-(1 as i32) as i64 - n) as libc::c_ulonglong) as i32
+4567 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4569:45
+     |
+4569 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4639 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4569 ~                                             if (if (if ((if 1 as i32 != 0 {
+4570 |                                                 0 as i32 as i64
+   ...
+4638 |                                                 (0 as i32 as i64 / s < n) as i32
+4639 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4628:49
+     |
+4628 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+     |                       ^
+...
+4636 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4628 ~                                                 if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { n })
+4629 |                                                     - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4635 |                                                         as i32
+4636 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4642:41
+     |
+4642 | ...                   (if s == 0 as i32 as i64 {
+     |                       ^
+...
+4724 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4642 ~                                         if s == 0 as i32 as i64 {
+4643 |                                             0 as i32
+   ...
+4723 |                                             })
+4724 ~                                         }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4645:45
+     |
+4645 | ...                   (if n < 0 as i32 as i64 {
+     |                       ^
+...
+4723 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4645 ~                                             if n < 0 as i32 as i64 {
+4646 |                                                 (if (if (if ((if 1 as i32 != 0 {
+   ...
+4722 |                                                     < n as libc::c_ulonglong) as i32
+4723 ~                                             }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4646:49
+     |
+4646 | ...                   (if (if (if ((if 1 as i32 != 0 {
+     |                       ^
+...
+4715 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4646 ~                                                 if (if (if ((if 1 as i32 != 0 {
+4647 |                                                     0 as i32 as i64
+   ...
+4714 |                                                     (0 as i32 as i64 / n < s) as i32
+4715 ~                                                 }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> lib/xmalloc.rs:4705:53
+     |
+4705 | ...                   (if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+     |                       ^
+...
+4712 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4705 ~                                                     if ((if 1 as i32 != 0 { 0 as i32 as i64 } else { s })
+4706 |                                                         - 1 as i32 as i64) < 0 as i32 as i64
+   ...
+4711 |                                                             as i32
+4712 ~                                                     }
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/compile.rs:1460:13
+     |
+1460 |             ({
+     |             ^
+...
+1497 |             })
+     |              ^
+     |
+help: remove these parentheses
+     |
+1460 ~             {
+1461 |                 let mut __o1: *mut obstack = __h;
+   ...
+1496 |                 __value
+1497 ~             }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> sed/compile.rs:1477:33
+     |
+1477 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+1483 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+1477 ~                                 if (::core::mem::size_of::<ptrdiff_t>() as u64)
+1478 |                                     < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+1482 |                                     0 as *mut i8
+1483 ~                                 },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/compile.rs:2004:9
+     |
+2004 |         ({
+     |         ^
+...
+2040 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+2004 ~         {
+2005 |             let mut __o1: *mut obstack = __h;
+   ...
+2039 |             __value
+2040 ~         }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> sed/compile.rs:2021:29
+     |
+2021 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+2027 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2021 ~                             if (::core::mem::size_of::<ptrdiff_t>() as u64)
+2022 |                                 < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+2026 |                                 0 as *mut i8
+2027 ~                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/compile.rs:2081:9
+     |
+2081 |         ({
+     |         ^
+...
+2117 |         })
+     |          ^
+     |
+help: remove these parentheses
+     |
+2081 ~         {
+2082 |             let mut __o1: *mut obstack = __h;
+   ...
+2116 |             __value
+2117 ~         }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> sed/compile.rs:2098:29
+     |
+2098 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+2104 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2098 ~                             if (::core::mem::size_of::<ptrdiff_t>() as u64)
+2099 |                                 < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+2103 |                                 0 as *mut i8
+2104 ~                             },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/compile.rs:3002:21
+     |
+3002 |                     ({
+     |                     ^
+...
+3039 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+3002 ~                     {
+3003 |                         let mut __o1: *mut obstack = __h;
+   ...
+3038 |                         __value
+3039 ~                     }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> sed/compile.rs:3019:41
+     |
+3019 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+3025 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3019 ~                                         if (::core::mem::size_of::<ptrdiff_t>() as u64)
+3020 |                                             < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+3024 |                                             0 as *mut i8
+3025 ~                                         },
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/compile.rs:3389:25
+     |
+3389 |                         ({
+     |                         ^
+...
+3426 |                         })
+     |                          ^
+     |
+help: remove these parentheses
+     |
+3389 ~                         {
+3390 |                             let mut __o1: *mut obstack = __h;
+   ...
+3425 |                             __value
+3426 ~                         }
+     |
+
+warning: unnecessary parentheses around method argument
+    --> sed/compile.rs:3406:45
+     |
+3406 | ...                   (if (::core::mem::size_of::<ptrdiff_t>() as u64)
+     |                       ^
+...
+3412 | ...                   }),
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3406 ~                                             if (::core::mem::size_of::<ptrdiff_t>() as u64)
+3407 |                                                 < ::core::mem::size_of::<*mut libc::c_void>() as u64
+   ...
+3411 |                                                 0 as *mut i8
+3412 ~                                             },
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/compile.rs:3731:49
+     |
+3731 | ...                   __res = (if __c < -(128 as i32) || __c > 255 as i32 {
+     |                               ^
+...
+3735 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3731 ~                                         __res = if __c < -(128 as i32) || __c > 255 as i32 {
+3732 |                                             __c
+3733 |                                         } else {
+3734 |                                             *(*__ctype_toupper_loc()).offset(__c as isize)
+3735 ~                                         };
+     |
+
+warning: unused label
+   --> sed/debug.rs:895:13
+    |
+895 |             'c_6272: {
+    |             ^^^^^^^
+    |
+    = note: `#[warn(unused_labels)]` on by default
+
+warning: unused label
+    --> sed/debug.rs:1010:13
+     |
+1010 |             'c_4812: {
+     |             ^^^^^^^
+
+warning: unused label
+    --> sed/debug.rs:1054:13
+     |
+1054 |             'c_4502: {
+     |             ^^^^^^^
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2350:21
+     |
+2350 |                     ({
+     |                     ^
+...
+2380 |                     })
+     |                      ^
+     |
+help: remove these parentheses
+     |
+2350 ~                     {
+2351 |                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+2379 |                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+2380 ~                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:2791:37
+     |
+2791 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+2841 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2791 ~                                 n = if 0 != 0 && 0 != 0
+2792 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+2840 |                                     })
+2841 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2796:37
+     |
+2796 | ...                   ({
+     |                       ^
+...
+2826 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2796 ~                                     {
+2797 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+2825 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+2826 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:2803:64
+     |
+2803 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+2812 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2803 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+2804 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+2811 |                                                 *(fresh23 as *mut u8) as i32
+2812 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:2828:37
+     |
+2828 | ...                   (if 0 != 0
+     |                       ^
+...
+2840 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+2828 ~                                     if 0 != 0
+2829 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+2839 |                                         )
+2840 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3286:37
+     |
+3286 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+3336 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3286 ~                                 n = if 0 != 0 && 0 != 0
+3287 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+3335 |                                     })
+3336 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3291:37
+     |
+3291 | ...                   ({
+     |                       ^
+...
+3321 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3291 ~                                     {
+3292 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+3320 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+3321 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3298:64
+     |
+3298 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+3307 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3298 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+3299 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+3306 |                                                 *(fresh23 as *mut u8) as i32
+3307 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3323:37
+     |
+3323 | ...                   (if 0 != 0
+     |                       ^
+...
+3335 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3323 ~                                     if 0 != 0
+3324 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+3334 |                                         )
+3335 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3782:37
+     |
+3782 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+3832 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3782 ~                                 n = if 0 != 0 && 0 != 0
+3783 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+3831 |                                     })
+3832 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3787:37
+     |
+3787 | ...                   ({
+     |                       ^
+...
+3817 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3787 ~                                     {
+3788 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+3816 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+3817 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:3794:64
+     |
+3794 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+3803 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3794 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+3795 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+3802 |                                                 *(fresh23 as *mut u8) as i32
+3803 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:3819:37
+     |
+3819 | ...                   (if 0 != 0
+     |                       ^
+...
+3831 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+3819 ~                                     if 0 != 0
+3820 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+3830 |                                         )
+3831 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4277:37
+     |
+4277 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+4327 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4277 ~                                 n = if 0 != 0 && 0 != 0
+4278 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+4326 |                                     })
+4327 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4282:37
+     |
+4282 | ...                   ({
+     |                       ^
+...
+4312 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4282 ~                                     {
+4283 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+4311 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+4312 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4289:64
+     |
+4289 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+4298 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4289 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+4290 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+4297 |                                                 *(fresh23 as *mut u8) as i32
+4298 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4314:37
+     |
+4314 | ...                   (if 0 != 0
+     |                       ^
+...
+4326 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4314 ~                                     if 0 != 0
+4315 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+4325 |                                         )
+4326 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4772:37
+     |
+4772 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+4822 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4772 ~                                 n = if 0 != 0 && 0 != 0
+4773 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+4821 |                                     })
+4822 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4777:37
+     |
+4777 | ...                   ({
+     |                       ^
+...
+4807 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4777 ~                                     {
+4778 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+4806 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+4807 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:4784:64
+     |
+4784 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+4793 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4784 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+4785 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+4792 |                                                 *(fresh23 as *mut u8) as i32
+4793 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:4809:37
+     |
+4809 | ...                   (if 0 != 0
+     |                       ^
+...
+4821 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+4809 ~                                     if 0 != 0
+4810 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+4820 |                                         )
+4821 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5267:37
+     |
+5267 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+5317 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5267 ~                                 n = if 0 != 0 && 0 != 0
+5268 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+5316 |                                     })
+5317 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5272:37
+     |
+5272 | ...                   ({
+     |                       ^
+...
+5302 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5272 ~                                     {
+5273 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+5301 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+5302 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5279:64
+     |
+5279 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+5288 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5279 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+5280 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+5287 |                                                 *(fresh23 as *mut u8) as i32
+5288 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5304:37
+     |
+5304 | ...                   (if 0 != 0
+     |                       ^
+...
+5316 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5304 ~                                     if 0 != 0
+5305 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+5315 |                                         )
+5316 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5762:37
+     |
+5762 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+5812 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5762 ~                                 n = if 0 != 0 && 0 != 0
+5763 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+5811 |                                     })
+5812 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5767:37
+     |
+5767 | ...                   ({
+     |                       ^
+...
+5797 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5767 ~                                     {
+5768 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+5796 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+5797 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:5774:64
+     |
+5774 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+5783 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5774 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+5775 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+5782 |                                                 *(fresh23 as *mut u8) as i32
+5783 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:5799:37
+     |
+5799 | ...                   (if 0 != 0
+     |                       ^
+...
+5811 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+5799 ~                                     if 0 != 0
+5800 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+5810 |                                         )
+5811 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6257:37
+     |
+6257 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+6307 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6257 ~                                 n = if 0 != 0 && 0 != 0
+6258 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+6306 |                                     })
+6307 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6262:37
+     |
+6262 | ...                   ({
+     |                       ^
+...
+6292 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6262 ~                                     {
+6263 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+6291 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+6292 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6269:64
+     |
+6269 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+6278 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6269 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+6270 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+6277 |                                                 *(fresh23 as *mut u8) as i32
+6278 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6294:37
+     |
+6294 | ...                   (if 0 != 0
+     |                       ^
+...
+6306 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6294 ~                                     if 0 != 0
+6295 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+6305 |                                         )
+6306 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6752:37
+     |
+6752 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+6802 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6752 ~                                 n = if 0 != 0 && 0 != 0
+6753 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+6801 |                                     })
+6802 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6757:37
+     |
+6757 | ...                   ({
+     |                       ^
+...
+6787 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6757 ~                                     {
+6758 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+6786 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+6787 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:6764:64
+     |
+6764 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+6773 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6764 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+6765 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+6772 |                                                 *(fresh23 as *mut u8) as i32
+6773 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:6789:37
+     |
+6789 | ...                   (if 0 != 0
+     |                       ^
+...
+6801 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+6789 ~                                     if 0 != 0
+6790 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+6800 |                                         )
+6801 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7247:37
+     |
+7247 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+7297 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7247 ~                                 n = if 0 != 0 && 0 != 0
+7248 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+7296 |                                     })
+7297 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7252:37
+     |
+7252 | ...                   ({
+     |                       ^
+...
+7282 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7252 ~                                     {
+7253 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+7281 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+7282 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7259:64
+     |
+7259 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+7268 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7259 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+7260 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+7267 |                                                 *(fresh23 as *mut u8) as i32
+7268 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7284:37
+     |
+7284 | ...                   (if 0 != 0
+     |                       ^
+...
+7296 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7284 ~                                     if 0 != 0
+7285 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+7295 |                                         )
+7296 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7742:37
+     |
+7742 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+7792 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7742 ~                                 n = if 0 != 0 && 0 != 0
+7743 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+7791 |                                     })
+7792 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7747:37
+     |
+7747 | ...                   ({
+     |                       ^
+...
+7777 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7747 ~                                     {
+7748 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+7776 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+7777 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:7754:64
+     |
+7754 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+7763 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7754 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+7755 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+7762 |                                                 *(fresh23 as *mut u8) as i32
+7763 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:7779:37
+     |
+7779 | ...                   (if 0 != 0
+     |                       ^
+...
+7791 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+7779 ~                                     if 0 != 0
+7780 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+7790 |                                         )
+7791 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8237:37
+     |
+8237 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+8287 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8237 ~                                 n = if 0 != 0 && 0 != 0
+8238 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+8286 |                                     })
+8287 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8242:37
+     |
+8242 | ...                   ({
+     |                       ^
+...
+8272 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8242 ~                                     {
+8243 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+8271 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+8272 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8249:64
+     |
+8249 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+8258 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8249 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+8250 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+8257 |                                                 *(fresh23 as *mut u8) as i32
+8258 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8274:37
+     |
+8274 | ...                   (if 0 != 0
+     |                       ^
+...
+8286 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8274 ~                                     if 0 != 0
+8275 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+8285 |                                         )
+8286 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8732:37
+     |
+8732 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+8782 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8732 ~                                 n = if 0 != 0 && 0 != 0
+8733 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+8781 |                                     })
+8782 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8737:37
+     |
+8737 | ...                   ({
+     |                       ^
+...
+8767 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8737 ~                                     {
+8738 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+8766 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+8767 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:8744:64
+     |
+8744 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+8753 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8744 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+8745 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+8752 |                                                 *(fresh23 as *mut u8) as i32
+8753 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:8769:37
+     |
+8769 | ...                   (if 0 != 0
+     |                       ^
+...
+8781 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+8769 ~                                     if 0 != 0
+8770 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+8780 |                                         )
+8781 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9227:37
+     |
+9227 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+9277 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9227 ~                                 n = if 0 != 0 && 0 != 0
+9228 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+9276 |                                     })
+9277 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9232:37
+     |
+9232 | ...                   ({
+     |                       ^
+...
+9262 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9232 ~                                     {
+9233 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+9261 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+9262 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9239:64
+     |
+9239 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+9248 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9239 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+9240 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+9247 |                                                 *(fresh23 as *mut u8) as i32
+9248 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9264:37
+     |
+9264 | ...                   (if 0 != 0
+     |                       ^
+...
+9276 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9264 ~                                     if 0 != 0
+9265 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+9275 |                                         )
+9276 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9722:37
+     |
+9722 | ...                   n = (if 0 != 0 && 0 != 0
+     |                           ^
+...
+9772 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9722 ~                                 n = if 0 != 0 && 0 != 0
+9723 |                                     && (::core::mem::size_of::<i8>() as u64)
+   ...
+9771 |                                     })
+9772 ~                                 };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9727:37
+     |
+9727 | ...                   ({
+     |                       ^
+...
+9757 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9727 ~                                     {
+9728 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+   ...
+9756 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+9757 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+    --> sed/execute.rs:9734:64
+     |
+9734 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+     |                                          ^
+...
+9743 | ...                   });
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9734 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+9735 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+   ...
+9742 |                                                 *(fresh23 as *mut u8) as i32
+9743 ~                                             };
+     |
+
+warning: unnecessary parentheses around block return value
+    --> sed/execute.rs:9759:37
+     |
+9759 | ...                   (if 0 != 0
+     |                       ^
+...
+9771 | ...                   })
+     |                        ^
+     |
+help: remove these parentheses
+     |
+9759 ~                                     if 0 != 0
+9760 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+   ...
+9770 |                                         )
+9771 ~                                     }
+     |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10217:37
+      |
+10217 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+10267 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10217 ~                                 n = if 0 != 0 && 0 != 0
+10218 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+10266 |                                     })
+10267 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10222:37
+      |
+10222 | ...                   ({
+      |                       ^
+...
+10252 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10222 ~                                     {
+10223 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+10251 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+10252 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10229:64
+      |
+10229 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+10238 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10229 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+10230 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+10237 |                                                 *(fresh23 as *mut u8) as i32
+10238 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10254:37
+      |
+10254 | ...                   (if 0 != 0
+      |                       ^
+...
+10266 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10254 ~                                     if 0 != 0
+10255 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+10265 |                                         )
+10266 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10712:37
+      |
+10712 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+10762 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10712 ~                                 n = if 0 != 0 && 0 != 0
+10713 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+10761 |                                     })
+10762 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10717:37
+      |
+10717 | ...                   ({
+      |                       ^
+...
+10747 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10717 ~                                     {
+10718 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+10746 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+10747 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:10724:64
+      |
+10724 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+10733 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10724 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+10725 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+10732 |                                                 *(fresh23 as *mut u8) as i32
+10733 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:10749:37
+      |
+10749 | ...                   (if 0 != 0
+      |                       ^
+...
+10761 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+10749 ~                                     if 0 != 0
+10750 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+10760 |                                         )
+10761 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11207:37
+      |
+11207 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+11257 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11207 ~                                 n = if 0 != 0 && 0 != 0
+11208 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+11256 |                                     })
+11257 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11212:37
+      |
+11212 | ...                   ({
+      |                       ^
+...
+11242 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11212 ~                                     {
+11213 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+11241 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+11242 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11219:64
+      |
+11219 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+11228 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11219 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+11220 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+11227 |                                                 *(fresh23 as *mut u8) as i32
+11228 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11244:37
+      |
+11244 | ...                   (if 0 != 0
+      |                       ^
+...
+11256 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11244 ~                                     if 0 != 0
+11245 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+11255 |                                         )
+11256 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11702:37
+      |
+11702 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+11752 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11702 ~                                 n = if 0 != 0 && 0 != 0
+11703 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+11751 |                                     })
+11752 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11707:37
+      |
+11707 | ...                   ({
+      |                       ^
+...
+11737 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11707 ~                                     {
+11708 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+11736 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+11737 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:11714:64
+      |
+11714 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+11723 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11714 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+11715 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+11722 |                                                 *(fresh23 as *mut u8) as i32
+11723 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:11739:37
+      |
+11739 | ...                   (if 0 != 0
+      |                       ^
+...
+11751 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+11739 ~                                     if 0 != 0
+11740 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+11750 |                                         )
+11751 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12197:37
+      |
+12197 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+12247 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12197 ~                                 n = if 0 != 0 && 0 != 0
+12198 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+12246 |                                     })
+12247 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12202:37
+      |
+12202 | ...                   ({
+      |                       ^
+...
+12232 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12202 ~                                     {
+12203 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+12231 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+12232 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12209:64
+      |
+12209 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+12218 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12209 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+12210 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+12217 |                                                 *(fresh23 as *mut u8) as i32
+12218 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12234:37
+      |
+12234 | ...                   (if 0 != 0
+      |                       ^
+...
+12246 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12234 ~                                     if 0 != 0
+12235 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+12245 |                                         )
+12246 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12692:37
+      |
+12692 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+12742 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12692 ~                                 n = if 0 != 0 && 0 != 0
+12693 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+12741 |                                     })
+12742 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12697:37
+      |
+12697 | ...                   ({
+      |                       ^
+...
+12727 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12697 ~                                     {
+12698 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+12726 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+12727 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:12704:64
+      |
+12704 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+12713 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12704 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+12705 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+12712 |                                                 *(fresh23 as *mut u8) as i32
+12713 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:12729:37
+      |
+12729 | ...                   (if 0 != 0
+      |                       ^
+...
+12741 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+12729 ~                                     if 0 != 0
+12730 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+12740 |                                         )
+12741 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13187:37
+      |
+13187 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+13237 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13187 ~                                 n = if 0 != 0 && 0 != 0
+13188 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+13236 |                                     })
+13237 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13192:37
+      |
+13192 | ...                   ({
+      |                       ^
+...
+13222 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13192 ~                                     {
+13193 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+13221 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+13222 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13199:64
+      |
+13199 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+13208 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13199 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+13200 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+13207 |                                                 *(fresh23 as *mut u8) as i32
+13208 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13224:37
+      |
+13224 | ...                   (if 0 != 0
+      |                       ^
+...
+13236 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13224 ~                                     if 0 != 0
+13225 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+13235 |                                         )
+13236 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13682:37
+      |
+13682 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+13732 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13682 ~                                 n = if 0 != 0 && 0 != 0
+13683 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+13731 |                                     })
+13732 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13687:37
+      |
+13687 | ...                   ({
+      |                       ^
+...
+13717 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13687 ~                                     {
+13688 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+13716 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+13717 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:13694:64
+      |
+13694 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+13703 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13694 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+13695 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+13702 |                                                 *(fresh23 as *mut u8) as i32
+13703 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:13719:37
+      |
+13719 | ...                   (if 0 != 0
+      |                       ^
+...
+13731 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+13719 ~                                     if 0 != 0
+13720 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+13730 |                                         )
+13731 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14177:37
+      |
+14177 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+14227 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14177 ~                                 n = if 0 != 0 && 0 != 0
+14178 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+14226 |                                     })
+14227 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14182:37
+      |
+14182 | ...                   ({
+      |                       ^
+...
+14212 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14182 ~                                     {
+14183 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+14211 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+14212 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14189:64
+      |
+14189 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+14198 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14189 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+14190 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+14197 |                                                 *(fresh23 as *mut u8) as i32
+14198 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14214:37
+      |
+14214 | ...                   (if 0 != 0
+      |                       ^
+...
+14226 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14214 ~                                     if 0 != 0
+14215 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+14225 |                                         )
+14226 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14672:37
+      |
+14672 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+14722 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14672 ~                                 n = if 0 != 0 && 0 != 0
+14673 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+14721 |                                     })
+14722 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14677:37
+      |
+14677 | ...                   ({
+      |                       ^
+...
+14707 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14677 ~                                     {
+14678 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+14706 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+14707 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:14684:64
+      |
+14684 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+14693 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14684 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+14685 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+14692 |                                                 *(fresh23 as *mut u8) as i32
+14693 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:14709:37
+      |
+14709 | ...                   (if 0 != 0
+      |                       ^
+...
+14721 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+14709 ~                                     if 0 != 0
+14710 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+14720 |                                         )
+14721 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15167:37
+      |
+15167 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+15217 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15167 ~                                 n = if 0 != 0 && 0 != 0
+15168 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+15216 |                                     })
+15217 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15172:37
+      |
+15172 | ...                   ({
+      |                       ^
+...
+15202 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15172 ~                                     {
+15173 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+15201 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+15202 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15179:64
+      |
+15179 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+15188 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15179 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+15180 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+15187 |                                                 *(fresh23 as *mut u8) as i32
+15188 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15204:37
+      |
+15204 | ...                   (if 0 != 0
+      |                       ^
+...
+15216 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15204 ~                                     if 0 != 0
+15205 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+15215 |                                         )
+15216 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15662:37
+      |
+15662 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+15712 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15662 ~                                 n = if 0 != 0 && 0 != 0
+15663 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+15711 |                                     })
+15712 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15667:37
+      |
+15667 | ...                   ({
+      |                       ^
+...
+15697 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15667 ~                                     {
+15668 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+15696 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+15697 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:15674:64
+      |
+15674 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+15683 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15674 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+15675 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+15682 |                                                 *(fresh23 as *mut u8) as i32
+15683 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:15699:37
+      |
+15699 | ...                   (if 0 != 0
+      |                       ^
+...
+15711 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+15699 ~                                     if 0 != 0
+15700 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+15710 |                                         )
+15711 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16157:37
+      |
+16157 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+16207 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16157 ~                                 n = if 0 != 0 && 0 != 0
+16158 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+16206 |                                     })
+16207 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16162:37
+      |
+16162 | ...                   ({
+      |                       ^
+...
+16192 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16162 ~                                     {
+16163 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+16191 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+16192 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16169:64
+      |
+16169 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+16178 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16169 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+16170 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+16177 |                                                 *(fresh23 as *mut u8) as i32
+16178 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16194:37
+      |
+16194 | ...                   (if 0 != 0
+      |                       ^
+...
+16206 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16194 ~                                     if 0 != 0
+16195 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+16205 |                                         )
+16206 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16652:37
+      |
+16652 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+16702 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16652 ~                                 n = if 0 != 0 && 0 != 0
+16653 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+16701 |                                     })
+16702 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16657:37
+      |
+16657 | ...                   ({
+      |                       ^
+...
+16687 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16657 ~                                     {
+16658 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+16686 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+16687 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:16664:64
+      |
+16664 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+16673 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16664 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+16665 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+16672 |                                                 *(fresh23 as *mut u8) as i32
+16673 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:16689:37
+      |
+16689 | ...                   (if 0 != 0
+      |                       ^
+...
+16701 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+16689 ~                                     if 0 != 0
+16690 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+16700 |                                         )
+16701 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17147:37
+      |
+17147 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+17197 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17147 ~                                 n = if 0 != 0 && 0 != 0
+17148 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+17196 |                                     })
+17197 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17152:37
+      |
+17152 | ...                   ({
+      |                       ^
+...
+17182 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17152 ~                                     {
+17153 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+17181 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+17182 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17159:64
+      |
+17159 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+17168 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17159 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+17160 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+17167 |                                                 *(fresh23 as *mut u8) as i32
+17168 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17184:37
+      |
+17184 | ...                   (if 0 != 0
+      |                       ^
+...
+17196 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17184 ~                                     if 0 != 0
+17185 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+17195 |                                         )
+17196 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17642:37
+      |
+17642 | ...                   n = (if 0 != 0 && 0 != 0
+      |                           ^
+...
+17692 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17642 ~                                 n = if 0 != 0 && 0 != 0
+17643 |                                     && (::core::mem::size_of::<i8>() as u64)
+    ...
+17691 |                                     })
+17692 ~                                 };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17647:37
+      |
+17647 | ...                   ({
+      |                       ^
+...
+17677 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17647 ~                                     {
+17648 |                                         let mut __ptr: *mut i8 = buf.as_mut_ptr();
+    ...
+17676 |                                             .wrapping_div(::core::mem::size_of::<i8>() as u64)
+17677 ~                                     }
+      |
+
+warning: unnecessary parentheses around assigned value
+     --> sed/execute.rs:17654:64
+      |
+17654 | ...                   let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+      |                                          ^
+...
+17663 | ...                   });
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17654 ~                                             let mut __c: i32 = if ((*__stream)._IO_read_ptr
+17655 |                                                 >= (*__stream)._IO_read_end) as i32 as i64 != 0
+    ...
+17662 |                                                 *(fresh23 as *mut u8) as i32
+17663 ~                                             };
+      |
+
+warning: unnecessary parentheses around block return value
+     --> sed/execute.rs:17679:37
+      |
+17679 | ...                   (if 0 != 0
+      |                       ^
+...
+17691 | ...                   })
+      |                        ^
+      |
+help: remove these parentheses
+      |
+17679 ~                                     if 0 != 0
+17680 |                                         && ::core::mem::size_of::<i8>() as u64 == 0 as i32 as u64
+    ...
+17690 |                                         )
+17691 ~                                     }
+      |
+
+warning: unnecessary parentheses around block return value
+   --> sed/utils.rs:639:13
+    |
+639 |             ({
+    |             ^
+...
+667 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+639 ~             {
+640 |                 let mut __ptr: *const i8 = ptr as *const i8;
+  ...
+666 |                 size.wrapping_mul(nmemb).wrapping_sub(__cnt).wrapping_div(size)
+667 ~             }
+    |
+
+warning: unnecessary parentheses around block return value
+   --> sed/utils.rs:669:13
+    |
+669 |             (if 0 != 0 && size == 0 as i32 as u64 || 0 != 0 && nmemb == 0 as i32 as u64 {
+    |             ^
+...
+673 |             })
+    |              ^
+    |
+help: remove these parentheses
+    |
+669 ~             if 0 != 0 && size == 0 as i32 as u64 || 0 != 0 && nmemb == 0 as i32 as u64 {
+670 |                 0 as i32 as size_t
+671 |             } else {
+672 |                 fwrite_unlocked(ptr, size, nmemb, stream)
+673 ~             }
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> sed/utils.rs:700:21
+    |
+700 |             nmemb = (if 0 != 0 && 0 != 0 && size.wrapping_mul(nmemb) <= 8 as i32 as u64
+    |                     ^
+...
+738 |             });
+    |              ^
+    |
+help: remove these parentheses
+    |
+700 ~             nmemb = if 0 != 0 && 0 != 0 && size.wrapping_mul(nmemb) <= 8 as i32 as u64
+701 |                 && size != 0 as i32 as u64
+  ...
+737 |                 })
+738 ~             };
+    |
+
+warning: unnecessary parentheses around block return value
+   --> sed/utils.rs:703:17
+    |
+703 |                 ({
+    |                 ^
+...
+729 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+703 ~                 {
+704 |                     let mut __ptr: *mut i8 = ptr as *mut i8;
+  ...
+728 |                     size.wrapping_mul(nmemb).wrapping_sub(__cnt).wrapping_div(size)
+729 ~                 }
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> sed/utils.rs:709:44
+    |
+709 |                         let mut __c: i32 = (if ((*__stream)._IO_read_ptr
+    |                                            ^
+...
+718 |                         });
+    |                          ^
+    |
+help: remove these parentheses
+    |
+709 ~                         let mut __c: i32 = if ((*__stream)._IO_read_ptr
+710 |                             >= (*__stream)._IO_read_end) as i32 as i64 != 0
+  ...
+717 |                             *(fresh4 as *mut u8) as i32
+718 ~                         };
+    |
+
+warning: unnecessary parentheses around block return value
+   --> sed/utils.rs:731:17
+    |
+731 |                 (if 0 != 0 && size == 0 as i32 as u64
+    |                 ^
+...
+737 |                 })
+    |                  ^
+    |
+help: remove these parentheses
+    |
+731 ~                 if 0 != 0 && size == 0 as i32 as u64
+732 |                     || 0 != 0 && nmemb == 0 as i32 as u64
+  ...
+736 |                     fread_unlocked(ptr, size, nmemb, stream)
+737 ~                 }
+    |
+
+warning: unnecessary parentheses around assigned value
+   --> sed/utils.rs:841:23
+    |
+841 |             linklen = (if buf_used < buf_size {
+    |                       ^
+...
+849 |             });
+    |              ^
+    |
+help: remove these parentheses
+    |
+841 ~             linklen = if buf_used < buf_size {
+842 |                 readlink(
+  ...
+848 |                 0 as i32 as i64
+849 ~             };
+    |
+
+warning: crate-level attribute should be in the root module
+  --> lib/binary_io.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `#[warn(unused_attributes)]` on by default
+
+warning: crate-level attribute should be in the root module
+  --> lib/c_ctype.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/fcntl.rs:10:1
+   |
+10 | #![feature(c_variadic)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/ialloc.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/se_context.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/se_label.rs:10:1
+   |
+10 | #![feature(extern_types, linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/se_selinux.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+
+warning: crate-level attribute should be in the root module
+  --> lib/stat_time.rs:10:1
+   |
+10 | #![feature(linkage)]
+   | ^^^^^^^^^^^^^^^^^^^^
+
+error[E0308]: mismatched types
+   --> lib/malloca.rs:25:46
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus);
+    |                              --------------- ^^^^ expected `u64`, found `i32`
+    |                              |
+    |                              arguments to this function are incorrect
+    |
+note: associated function defined here
+   --> /home/c2rust/.rustup/toolchains/nightly-2022-08-08-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/library/core/src/num/mod.rs:852:5
+    |
+852 | /     uint_impl! { u64, u64, i64, NonZeroU64, 64, 18446744073709551615, 12, "0xaa00000000006e1", "0x6e10aa",
+853 | |     "0x1234567890123456", "0x5634129078563412", "0x6a2c48091e6a2c48",
+854 | |     "[0x56, 0x34, 0x12, 0x90, 0x78, 0x56, 0x34, 0x12]",
+855 | |     "[0x12, 0x34, 0x56, 0x78, 0x90, 0x12, 0x34, 0x56]",
+856 | |     "", "", ""}
+    | |_______________^
+    = note: this error originates in the macro `uint_impl` (in Nightly builds, run with -Z macro-backtrace for more info)
+help: you can convert an `i32` to a `u64` and panic if the converted value doesn't fit
+    |
+25  |     let (fresh0, fresh1) = n.overflowing_add(plus.try_into().unwrap());
+    |                                                  ++++++++++++++++++++
+
+error[E0308]: mismatched types
+  --> lib/malloca.rs:26:35
+   |
+26 |     *(&mut nplus as *mut idx_t) = fresh0;
+   |     ---------------------------   ^^^^^^ expected `i64`, found `u64`
+   |     |
+   |     expected due to the type of this binding
+
+error[E0599]: no method named `set_field` found for enum `re_token_type_t` in the current scope
+   --> lib/regex.rs:172:23
+    |
+172 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ method not found in `re_token_type_t`
+...
+189 | pub enum re_token_type_t {
+    | ------------------------ method `set_field` not found for this enum
+    |
+    = help: items from traits can only be used if the trait is implemented and in scope
+    = note: the following trait defines an item `set_field`, perhaps you need to implement it:
+            candidate #1: `FieldType`
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+error[E0277]: the trait bound `re_token_type_t: FieldType` is not satisfied
+   --> lib/regex.rs:172:23
+    |
+172 | #[derive(Copy, Clone, BitfieldStruct)]
+    |                       ^^^^^^^^^^^^^^ the trait `FieldType` is not implemented for `re_token_type_t`
+    |
+    = help: the following other types implement trait `FieldType`:
+              bool
+              i128
+              i16
+              i32
+              i64
+              i8
+              u128
+              u16
+            and 3 others
+    = note: this error originates in the derive macro `BitfieldStruct` (in Nightly builds, run with -Z macro-backtrace for more info)
+
+warning: unreachable statement
+   --> sed/debug.rs:895:13
+    |
+883 | /             __assert_fail(
+884 | |                 b"0\0" as *const u8 as *const i8,
+885 | |                 b"sed/debug.c\0" as *const u8 as *const i8,
+886 | |                 291 as i32 as u32,
+...   |
+893 | |                     .as_ptr(),
+894 | |             );
+    | |_____________- any code following this expression is unreachable
+895 | /             'c_6272: {
+896 | |                 __assert_fail(
+897 | |                     b"0\0" as *const u8 as *const i8,
+898 | |                     b"sed/debug.c\0" as *const u8 as *const i8,
+...   |
+907 | |                 );
+908 | |             };
+    | |______________^ unreachable statement
+    |
+    = note: `#[warn(unreachable_code)]` on by default
+
+warning: unreachable statement
+    --> sed/debug.rs:1010:13
+     |
+998  | /             __assert_fail(
+999  | |                 b"0\0" as *const u8 as *const i8,
+1000 | |                 b"sed/debug.c\0" as *const u8 as *const i8,
+1001 | |                 382 as i32 as u32,
+...    |
+1008 | |                     .as_ptr(),
+1009 | |             );
+     | |_____________- any code following this expression is unreachable
+1010 | /             'c_4812: {
+1011 | |                 __assert_fail(
+1012 | |                     b"0\0" as *const u8 as *const i8,
+1013 | |                     b"sed/debug.c\0" as *const u8 as *const i8,
+...    |
+1022 | |                 );
+1023 | |             };
+     | |______________^ unreachable statement
+
+warning: unreachable statement
+    --> sed/debug.rs:1054:13
+     |
+1042 | /             __assert_fail(
+1043 | |                 b"0\0" as *const u8 as *const i8,
+1044 | |                 b"sed/debug.c\0" as *const u8 as *const i8,
+1045 | |                 404 as i32 as u32,
+...    |
+1052 | |                     .as_ptr(),
+1053 | |             );
+     | |_____________- any code following this expression is unreachable
+1054 | /             'c_4502: {
+1055 | |                 __assert_fail(
+1056 | |                     b"0\0" as *const u8 as *const i8,
+1057 | |                     b"sed/debug.c\0" as *const u8 as *const i8,
+...    |
+1066 | |                 );
+1067 | |             };
+     | |______________^ unreachable statement
+
+Some errors have detailed explanations: E0277, E0308, E0433, E0583, E0599.
+For more information about an error, try `rustc --explain E0277`.
+warning: `c2rust_out` (lib) generated 269 warnings
+error: could not compile `c2rust_out` due to 46 previous errors; 269 warnings emitted

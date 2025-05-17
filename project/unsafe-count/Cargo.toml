@@ -1,0 +1,9 @@
+[package]
+name = "unsafe-count"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+syn = {version = "2.0", features=["full", "extra-traits", "printing", "clone-impls", "visit"]}
+quote = "1.0"
+proc-macro2 = {version = "1.0.78", features=["span-locations"]}

@@ -7,7 +7,7 @@
 
         {
             "name": "Python 调试程序: 当前文件",
-            "args": [],
+            "args": ["c_prog/sed-4.9"],
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",

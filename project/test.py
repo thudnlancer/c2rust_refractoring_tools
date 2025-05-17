@@ -132,9 +132,9 @@ def main(directory, output_dir):
     
     file_list = get_file_list(directory)
     
-    # with change_directory(directory):
+    with change_directory(directory):
         # 4. 运行 cargo build
-        # run_cargo_build(log_origin)
+        run_cargo_build(log_origin)
     
     # 3. 替换生成的 .rs 文件
     replace_rs_files(file_list, output_dir)
@@ -156,11 +156,11 @@ if __name__ == "__main__":
         directory = args[1]
         file_list = get_file_list(directory)
         prog = os.path.basename(directory)
-        output_dir = os.path.join('llm_from_rust_output', prog)
+        output_dir = os.path.join('output', prog)
         
         main(directory, output_dir)
     else:
         for prog in pre_process.prog_list:
             proj_path = pre_process.get_prog_path(prog)
-            output_dir = os.path.join('llm_from_rust_output', prog)
+            output_dir = os.path.join('output', prog)
             main(proj_path, output_dir)

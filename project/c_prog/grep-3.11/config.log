@@ -27,13 +27,16 @@ uname -v = #167~18.04.1-Ubuntu SMP Wed May 24 00:51:42 UTC 2023
 /usr/bin/oslevel       = unknown
 /bin/universe          = unknown
 
+PATH: /usr/bin/python3.8/
 PATH: /usr/local/bin/
 PATH: /home/c2rust/.cargo/bin/
-PATH: /home/c2rust/.vscode-server/cli/servers/Stable-384ff7382de624fb94dbaf6da11977bba1ecd427/server/bin/remote-cli/
+PATH: /home/c2rust/.vscode-server/extensions/ms-python.python-2024.2.1/pythonFiles/deactivate/bash/
+PATH: /home/c2rust/Desktop/.venv/bin/
+PATH: /home/c2rust/.vscode-server/bin/8b3775030ed1a69b13e4f4c628c612102e30a681/bin/remote-cli/
 PATH: /home/c2rust/.local/bin/
+PATH: /usr/bin/python3.8/
 PATH: /usr/local/bin/
 PATH: /home/c2rust/.cargo/bin/
-PATH: /home/c2rust/.local/bin/
 PATH: /usr/local/sbin/
 PATH: /usr/local/bin/
 PATH: /usr/sbin/
@@ -991,8 +994,8 @@ configure:9169: $? = 0
 configure:9169: result: yes
 configure:9169: checking for _set_invalid_parameter_handler
 configure:9169: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccOWwWc3.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:98: undefined reference to `_set_invalid_parameter_handler'
+/tmp/cc2qSAYV.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:98: undefined reference to `_set_invalid_parameter_handler'
 collect2: error: ld returned 1 exit status
 configure:9169: $? = 1
 configure: failed program was:
@@ -1140,8 +1143,8 @@ configure:9169: $? = 0
 configure:9169: result: yes
 configure:9169: checking for getexecname
 configure:9169: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccX26PNs.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:108: undefined reference to `getexecname'
+/tmp/ccR8z9Sl.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:108: undefined reference to `getexecname'
 collect2: error: ld returned 1 exit status
 configure:9169: $? = 1
 configure: failed program was:
@@ -1285,8 +1288,8 @@ configure:9169: $? = 0
 configure:9169: result: yes
 configure:9169: checking for mbslen
 configure:9169: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cc2mOiDQ.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:113: undefined reference to `mbslen'
+/tmp/cczeJRiB.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:113: undefined reference to `mbslen'
 collect2: error: ld returned 1 exit status
 configure:9169: $? = 1
 configure: failed program was:
@@ -1465,8 +1468,8 @@ configure:9169: $? = 0
 configure:9169: result: yes
 configure:9169: checking for pthread_sigmask
 configure:9169: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cc3d9b3s.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:127: undefined reference to `pthread_sigmask'
+/tmp/cceqkd5V.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:127: undefined reference to `pthread_sigmask'
 collect2: error: ld returned 1 exit status
 configure:9169: $? = 1
 configure: failed program was:
@@ -1622,8 +1625,8 @@ configure:9169: $? = 0
 configure:9169: result: yes
 configure:9169: checking for vasnprintf
 configure:9169: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccRS00eO.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:131: undefined reference to `vasnprintf'
+/tmp/ccNct3t9.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:131: undefined reference to `vasnprintf'
 collect2: error: ld returned 1 exit status
 configure:9169: $? = 1
 configure: failed program was:
@@ -2997,8 +3000,8 @@ configure:15420: result: yes
 configure:15441: checking for pthread.h
 configure:15441: result: yes
 configure:15479: gcc -o conftest -g -O2   conftest.c   >&5
-/tmp/ccNLT77O.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:131: undefined reference to `pthread_mutexattr_init'
+/tmp/ccO7I0tx.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:131: undefined reference to `pthread_mutexattr_init'
 collect2: error: ld returned 1 exit status
 configure:15479: $? = 1
 configure: failed program was:
@@ -3888,8 +3891,8 @@ conftest.c: In function 'main':
 conftest.c:144:1: warning: implicit declaration of function 'unreachable' [-Wimplicit-function-declaration]
  unreachable ();
  ^~~~~~~~~~~
-/tmp/ccd8CkMn.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:144: undefined reference to `unreachable'
+/tmp/ccXLLmSx.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:144: undefined reference to `unreachable'
 collect2: error: ld returned 1 exit status
 configure:20239: $? = 1
 configure: failed program was:
@@ -6803,8 +6806,8 @@ configure:26925: checking for Solaris 11.4 locale system
 configure:26962: result: no
 configure:26975: checking for getlocalename_l
 configure:26975: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/ccmbA6TQ.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:213: undefined reference to `getlocalename_l'
+/tmp/cc3pS0IC.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:213: undefined reference to `getlocalename_l'
 collect2: error: ld returned 1 exit status
 configure:26975: $? = 1
 configure: failed program was:
@@ -10895,8 +10898,8 @@ configure:33982: result: yes
 configure:34029: checking for getprogname
 configure:34066: checking for getprogname
 configure:34066: gcc -o conftest -g -O2   conftest.c  >&5
-/tmp/cc33w6Dl.o: In function `main':
-/home/c2rust/Desktop/c_prog/grep-3.11/conftest.c:282: undefined reference to `getprogname'
+/tmp/ccI8ADlK.o: In function `main':
+/home/c2rust/Desktop/project/c_prog/grep-3.11/conftest.c:282: undefined reference to `getprogname'
 collect2: error: ld returned 1 exit status
 configure:34066: $? = 1
 configure: failed program was:
@@ -12903,7 +12906,7 @@ configure:39336: gcc -o conftest -g -O2   conftest.c  >&5
 configure:39336: $? = 0
 configure:39336: ./conftest
 conftest: regexec.c:1344: pop_fail_stack: Assertion `num >= 0' failed.
-./configure: line 3368: 44254 Terminated              ./conftest$ac_exeext
+./configure: line 3368: 47545 Terminated              ./conftest$ac_exeext
 configure:39336: $? = 143
 configure: program exited with status 143
 configure: failed program was:
@@ -22105,6 +22108,7 @@ config.status:2866: creating po/Makefile.in
 config.status:2866: creating doc/Makefile
 config.status:2866: creating gnulib-tests/Makefile
 config.status:2866: creating config.h
+config.status:3047: config.h is unchanged
 config.status:3126: executing depfiles commands
 config.status:3203: cd lib       && sed -e '/# am--include-marker/d' Makefile         | make -f - am--depfiles
 make: Nothing to be done for 'am--depfiles'.
@@ -22679,7 +22683,7 @@ sv_cv_stack_direction_msg='grows down'
 ## Output variables. ##
 ## ----------------- ##
 
-ACLOCAL='${SHELL} '\''/home/c2rust/Desktop/c_prog/grep-3.11/build-aux/missing'\'' aclocal-1.16'
+ACLOCAL='${SHELL} '\''/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/missing'\'' aclocal-1.16'
 ALLOCA=''
 ALLOCA_H='alloca.h'
 AMDEPBACKSLASH='\'
@@ -22694,9 +22698,9 @@ APPLE_UNIVERSAL_BUILD='0'
 AR='ar'
 ARFLAGS='cr'
 ASSERT_H='assert.h'
-AUTOCONF='${SHELL} '\''/home/c2rust/Desktop/c_prog/grep-3.11/build-aux/missing'\'' autoconf'
-AUTOHEADER='${SHELL} '\''/home/c2rust/Desktop/c_prog/grep-3.11/build-aux/missing'\'' autoheader'
-AUTOMAKE='${SHELL} '\''/home/c2rust/Desktop/c_prog/grep-3.11/build-aux/missing'\'' automake-1.16'
+AUTOCONF='${SHELL} '\''/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/missing'\'' autoconf'
+AUTOHEADER='${SHELL} '\''/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/missing'\'' autoheader'
+AUTOMAKE='${SHELL} '\''/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/missing'\'' automake-1.16'
 AWK='mawk'
 BITSIZEOF_PTRDIFF_T=''
 BITSIZEOF_SIG_ATOMIC_T=''
@@ -23795,7 +23799,7 @@ LTLIBMULTITHREAD='-pthread'
 LTLIBOBJS=''
 LTLIBSIGSEGV=''
 LTLIBTHREAD=''
-MAKEINFO='${SHELL} '\''/home/c2rust/Desktop/c_prog/grep-3.11/build-aux/missing'\'' makeinfo'
+MAKEINFO='${SHELL} '\''/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/missing'\'' makeinfo'
 MBRTOWC_LIB=''
 MKDIR_P='/bin/mkdir -p'
 MSGFMT='/usr/bin/msgfmt'
@@ -24221,7 +24225,7 @@ WINT_T_SUFFIX=''
 XGETTEXT='/usr/bin/xgettext'
 XGETTEXT_015='/usr/bin/xgettext'
 XGETTEXT_EXTRA_OPTIONS=' --flag=error:3:c-format --flag=error_at_line:5:c-format --keyword='\''proper_name:1,"This is a proper name. See the gettext manual, section Names."'\'' --keyword='\''proper_name_utf8:1,"This is a proper name. See the gettext manual, section Names."'\'''
-abs_aux_dir='/home/c2rust/Desktop/c_prog/grep-3.11/build-aux'
+abs_aux_dir='/home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux'
 ac_ct_CC='gcc'
 am__EXEEXT_FALSE=''
 am__EXEEXT_TRUE='#'
@@ -24280,7 +24284,7 @@ includedir_c_make='\"$(includedir)\"'
 infodir='${datarootdir}/info'
 infodir_c='"/usr/local/share/info"'
 infodir_c_make='\"$(infodir)\"'
-install_sh='${SHELL} /home/c2rust/Desktop/c_prog/grep-3.11/build-aux/install-sh'
+install_sh='${SHELL} /home/c2rust/Desktop/project/c_prog/grep-3.11/build-aux/install-sh'
 libdir='${exec_prefix}/lib'
 libdir_c='"/usr/local/lib"'
 libdir_c_make='\"$(libdir)\"'
